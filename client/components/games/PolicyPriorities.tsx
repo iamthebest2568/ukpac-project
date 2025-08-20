@@ -2,7 +2,7 @@ import { useState } from "react";
 
 interface PolicyPrioritiesProps {
   sessionID: string | null;
-  onNavigate: (gameId: string) => void;
+  onNavigate: (screenId: string, data?: any) => void;
 }
 
 const PolicyPriorities = ({ sessionID, onNavigate }: PolicyPrioritiesProps) => {
@@ -36,12 +36,8 @@ const PolicyPriorities = ({ sessionID, onNavigate }: PolicyPrioritiesProps) => {
   };
 
   const handleNext = () => {
-    console.log({
-      sessionID: sessionID,
-      game: 'priorities',
-      data: selectedPriorities
-    });
-    onNavigate('thankYou');
+    const data = { selectedPriorities };
+    onNavigate('beneficiaries', data);
   };
 
   return (
@@ -76,6 +72,18 @@ const PolicyPriorities = ({ sessionID, onNavigate }: PolicyPrioritiesProps) => {
 
         <div className="mb-4 text-center text-sm text-gray-400">
           เลือกได้สูงสุด 3 ข้อ (เลือกแล้ว {selectedPriorities.length}/3)
+        </div>
+
+        {/* Progress indicator */}
+        <div className="mb-6 text-center">
+          <div className="flex justify-center space-x-2 mb-2">
+            <div className="w-3 h-3 rounded-full bg-green-400"></div>
+            <div className="w-3 h-3 rounded-full bg-green-400"></div>
+            <div className="w-3 h-3 rounded-full bg-game-yellow"></div>
+            <div className="w-3 h-3 rounded-full bg-gray-600"></div>
+            <div className="w-3 h-3 rounded-full bg-gray-600"></div>
+          </div>
+          <p className="text-sm text-gray-400">ขั้นตอนที่ 3 จาก 5</p>
         </div>
 
         <button 
