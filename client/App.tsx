@@ -85,16 +85,18 @@ const JourneyRouter = () => {
         return <IndexPage onNavigate={navigateToScreen} />;
       default:
         return (
-          <div className="game-container flex items-center justify-center text-center min-h-screen">
-            <div>
-              <h1 className="question-text">ไม่พบหน้าที่ต้องการ</h1>
-              <p className="text-lg mb-6">Screen "{activeScreen}" ไม่ถูกต้อง</p>
-              <button 
-                className="btn-primary max-w-xs"
-                onClick={() => navigateToScreen('index')}
-              >
-                กลับสู่หน้าหลัก
-              </button>
+          <div className="theme-white min-h-screen">
+            <div className="app-container flex items-center justify-center text-center min-h-screen">
+              <div className="animate-fade-in-up">
+                <h1 className="text-h2">ไม่พบหน้าที่ต้องการ</h1>
+                <p className="text-body mb-6">Screen "{activeScreen}" ไม่ถูกต้อง</p>
+                <button
+                  className="btn btn-primary max-w-xs"
+                  onClick={() => navigateToScreen('index')}
+                >
+                  กลับสู่หน้าหลัก
+                </button>
+              </div>
             </div>
           </div>
         );
