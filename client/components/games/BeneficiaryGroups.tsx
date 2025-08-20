@@ -104,13 +104,13 @@ const BeneficiaryGroups = ({ sessionID, onNavigate }: BeneficiaryGroupsProps) =>
 
         {/* System Status - Selection Counter */}
         <div className="selection-counter">
-          เลือกได้สู���สุด {maxSelections} กลุ่ม (เลือกแล้ว {selectedGroups.length}/{maxSelections})
+          เลือกได้สูงสุด {maxSelections} กลุ่ม (เลือกแล้ว {selectedGroups.length}/{maxSelections})
         </div>
 
         {/* Error Prevention Message */}
         {selectedGroups.length >= maxSelections && (
           <div className="status-message warning">
-            คุณเลือกครบจำนวนแล้ว หากต้องการเลือกกลุ่มใหม่ กรุณายกเลิกการเลือกกลุ่มใดก���ุ่มหนึ่งก่อน
+            คุณเลือกครบจำนวนแล้ว หากต้องการเลือกกลุ่มใหม่ กรุณายกเลิกการเลือกกลุ่มใดกลุ่มหนึ่งก่อน
           </div>
         )}
 
