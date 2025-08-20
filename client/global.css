@@ -1,97 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   /**
-   * Tailwind CSS theme
-   * tailwind.config.ts expects the following color variables to be expressed as HSL values.
-   * A different format will require also updating the theme in tailwind.config.ts.
-  */
+   * Mini-Games App Theme System
+   * White Theme: white background, black text (narrative screens)
+   * Dark Theme: deep navy blue background, white text (mini-game activities)
+   */
   :root {
+    /* White Theme (default - narrative screens) */
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 0 0% 0%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 0 0% 0%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 0 0% 0%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 51 100% 50%; /* #FFD100 - bright yellow */
+    --primary-foreground: 0 0% 0%; /* black text on yellow */
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 210 9% 42%; /* #6c757d - medium grey */
+    --secondary-foreground: 0 0% 100%; /* white text on grey */
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 51 100% 50%;
+    --accent-foreground: 0 0% 0%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 0 0% 89%;
+    --input: 0 0% 89%;
+    --ring: 0 0% 0%;
 
     --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    /* Dark Theme - deep navy blue for mini-game activities */
+    --background: 207 74% 11%; /* #0D1B2A - deep navy blue */
+    --foreground: 0 0% 100%; /* white text */
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 207 74% 11%;
+    --card-foreground: 0 0% 100%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 207 74% 11%;
+    --popover-foreground: 0 0% 100%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 51 100% 50%; /* #FFD100 - bright yellow */
+    --primary-foreground: 0 0% 0%; /* black text on yellow */
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 210 9% 42%; /* #6c757d - medium grey */
+    --secondary-foreground: 0 0% 100%; /* white text on grey */
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 207 74% 15%;
+    --muted-foreground: 0 0% 65%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 51 100% 50%;
+    --accent-foreground: 0 0% 0%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --border: 207 74% 20%;
+    --input: 207 74% 20%;
+    --ring: 0 0% 100%;
   }
 }
 
@@ -101,6 +81,67 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-kanit;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Game app layout - single centered column max 420px */
+  .game-container {
+    @apply mx-auto max-w-game px-4 min-h-screen;
+  }
+
+  /* Question text styling */
+  .question-text {
+    @apply text-2xl font-bold text-center mb-6;
+  }
+
+  /* Primary button - bright yellow */
+  .btn-primary {
+    @apply bg-game-yellow text-black font-bold py-btn-y px-8 rounded-full-rounded w-full transition-all duration-200 hover:bg-opacity-90;
+  }
+
+  /* Secondary button - medium grey */
+  .btn-secondary {
+    @apply bg-game-grey text-white font-bold py-btn-y px-8 rounded-full-rounded w-full transition-all duration-200 hover:bg-opacity-90;
+  }
+
+  /* Illustration panel - comic-style with border */
+  .illustration-panel {
+    @apply border-2 border-black p-4 mb-6 bg-white rounded-lg;
+  }
+
+  /* Dark theme illustration panel */
+  .dark .illustration-panel {
+    @apply border-white;
+  }
+}
+
+@layer components {
+  /* Checkbox styling for game components */
+  .game-checkbox {
+    @apply w-5 h-5 rounded border-2 border-current mr-3 flex-shrink-0;
+  }
+
+  .game-checkbox:checked {
+    @apply bg-game-yellow border-game-yellow;
+  }
+
+  /* Card selection styling */
+  .selection-card {
+    @apply p-4 rounded-lg border-2 cursor-pointer transition-all duration-200 text-center;
+  }
+
+  .selection-card.selected {
+    @apply border-game-yellow bg-game-yellow bg-opacity-10;
+  }
+
+  .selection-card:not(.selected) {
+    @apply border-gray-400 hover:border-gray-300;
+  }
+
+  /* Number input styling */
+  .budget-input {
+    @apply w-20 px-3 py-2 text-center border border-gray-400 rounded bg-transparent text-current;
   }
 }
