@@ -2,7 +2,7 @@ import { useState } from "react";
 
 interface BeneficiaryGroupsProps {
   sessionID: string | null;
-  onNavigate: (gameId: string) => void;
+  onNavigate: (screenId: string, data?: any) => void;
 }
 
 const BeneficiaryGroups = ({ sessionID, onNavigate }: BeneficiaryGroupsProps) => {
@@ -35,12 +35,8 @@ const BeneficiaryGroups = ({ sessionID, onNavigate }: BeneficiaryGroupsProps) =>
   };
 
   const handleNext = () => {
-    console.log({
-      sessionID: sessionID,
-      game: 'beneficiaries',
-      data: selectedGroups
-    });
-    onNavigate('thankYou');
+    const data = { selectedGroups };
+    onNavigate('ask04', data);
   };
 
   return (
@@ -67,6 +63,18 @@ const BeneficiaryGroups = ({ sessionID, onNavigate }: BeneficiaryGroupsProps) =>
 
         <div className="mb-4 text-center text-sm text-gray-400">
           เลือกได้สูงสุด 3 กลุ่ม (เลือกแล้ว {selectedGroups.length}/3)
+        </div>
+
+        {/* Progress indicator */}
+        <div className="mb-6 text-center">
+          <div className="flex justify-center space-x-2 mb-2">
+            <div className="w-3 h-3 rounded-full bg-green-400"></div>
+            <div className="w-3 h-3 rounded-full bg-green-400"></div>
+            <div className="w-3 h-3 rounded-full bg-green-400"></div>
+            <div className="w-3 h-3 rounded-full bg-game-yellow"></div>
+            <div className="w-3 h-3 rounded-full bg-gray-600"></div>
+          </div>
+          <p className="text-sm text-gray-400">ขั้นตอนที่ 4 จาก 5</p>
         </div>
 
         <button 
