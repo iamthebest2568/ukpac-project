@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 interface BudgetAllocationProps {
   sessionID: string | null;
-  onNavigate: (gameId: string) => void;
+  onNavigate: (screenId: string, data?: any) => void;
 }
 
 const BudgetAllocation = ({ sessionID, onNavigate }: BudgetAllocationProps) => {
@@ -39,12 +39,8 @@ const BudgetAllocation = ({ sessionID, onNavigate }: BudgetAllocationProps) => {
   };
 
   const handleNext = () => {
-    console.log({
-      sessionID: sessionID,
-      game: 'budget',
-      data: budgetAllocation
-    });
-    onNavigate('thankYou');
+    const data = { budgetAllocation };
+    onNavigate('ask04', data);
   };
 
   const isComplete = allocatedBudget === totalBudget;
@@ -99,7 +95,7 @@ const BudgetAllocation = ({ sessionID, onNavigate }: BudgetAllocationProps) => {
 
         {remainingBudget > 0 && (
           <div className="mb-4 p-3 bg-yellow-900 bg-opacity-50 border border-yellow-500 rounded-lg text-yellow-200 text-sm text-center">
-            คุณยังมีงบประมาณเหลือ {remainingBudget} บาท
+            คุ���ยังมีงบประมาณเหลือ {remainingBudget} บาท
           </div>
         )}
 
@@ -116,6 +112,18 @@ const BudgetAllocation = ({ sessionID, onNavigate }: BudgetAllocationProps) => {
             กรุณาจัดสรรงบประมาณให้ครบ {totalBudget} บาท
           </p>
         )}
+
+        {/* Progress indicator */}
+        <div className="mt-8 text-center">
+          <div className="flex justify-center space-x-2 mb-2">
+            <div className="w-3 h-3 rounded-full bg-green-400"></div>
+            <div className="w-3 h-3 rounded-full bg-green-400"></div>
+            <div className="w-3 h-3 rounded-full bg-game-yellow"></div>
+            <div className="w-3 h-3 rounded-full bg-gray-600"></div>
+            <div className="w-3 h-3 rounded-full bg-gray-600"></div>
+          </div>
+          <p className="text-sm text-gray-400">ขั้นตอนที่ 3 จาก 5</p>
+        </div>
       </div>
     </div>
   );
