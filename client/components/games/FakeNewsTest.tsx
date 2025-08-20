@@ -2,17 +2,13 @@ import { useState } from "react";
 
 interface FakeNewsTestProps {
   sessionID: string | null;
-  onNavigate: (gameId: string) => void;
+  onNavigate: (screenId: string, data?: any) => void;
 }
 
 const FakeNewsTest = ({ sessionID, onNavigate }: FakeNewsTestProps) => {
   const handleAction = (action: 'search' | 'ignore') => {
-    console.log({
-      sessionID: sessionID,
-      game: 'fakeNews',
-      data: { action }
-    });
-    onNavigate('thankYou');
+    const data = { action };
+    onNavigate('endScreen', data);
   };
 
   return (
@@ -44,7 +40,7 @@ const FakeNewsTest = ({ sessionID, onNavigate }: FakeNewsTestProps) => {
         <div className="mb-8">
           <p className="text-white leading-relaxed text-lg">
             ตอนนี้มีข้อมูลที่ขัดแย้งกันของนโยบาย เช่น บางทีบอกว่าเก็บ 20 บ้าง ก็ 80 บ้าง 
-            บ้างก็บอกว่า ไม่เก็บ รถ 4 ที่นั่ง บ้า��ก็เก็บหมด คุณคิดว่าจะทำอย่างไร
+            บ้างก็บอกว่า ไม่เก็บ รถ 4 ที่นั่ง บ้างก็เก็บหมด คุณคิดว่าจะทำอย่างไร
           </p>
         </div>
 
@@ -54,15 +50,27 @@ const FakeNewsTest = ({ sessionID, onNavigate }: FakeNewsTestProps) => {
             className="btn-secondary"
             onClick={() => handleAction('ignore')}
           >
-            ไม่ทำอะไร ถึงเวลาก็รู้เอง
+            ไม่ทำอะไร ��ึงเวลาก็รู้เอง
           </button>
           
-          <button 
+          <button
             className="btn-primary"
             onClick={() => handleAction('search')}
           >
             หาข่าวต่อ
           </button>
+        </div>
+
+        {/* Progress indicator */}
+        <div className="mt-8 text-center">
+          <div className="flex justify-center space-x-2 mb-2">
+            <div className="w-3 h-3 rounded-full bg-green-400"></div>
+            <div className="w-3 h-3 rounded-full bg-green-400"></div>
+            <div className="w-3 h-3 rounded-full bg-green-400"></div>
+            <div className="w-3 h-3 rounded-full bg-green-400"></div>
+            <div className="w-3 h-3 rounded-full bg-game-yellow"></div>
+          </div>
+          <p className="text-sm text-gray-400">ขั้นตอนสุดท้าย</p>
         </div>
       </div>
     </div>
