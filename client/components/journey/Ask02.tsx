@@ -23,8 +23,8 @@ const Ask02 = ({ sessionID, onNavigate }: Ask02Props) => {
   };
 
   return (
-    <div className="bg-white min-h-screen">
-      <div className="game-container py-8">
+    <div className="theme-white min-h-screen">
+      <div className="app-container py-8 animate-fade-in-up">
         {/* Illustration Panel - Character on escalator */}
         <div className="illustration-panel">
           <div className="flex items-center justify-center h-40 bg-gradient-to-b from-gray-100 to-blue-100 rounded-lg relative overflow-hidden">
@@ -42,70 +42,87 @@ const Ask02 = ({ sessionID, onNavigate }: Ask02Props) => {
             
             {/* Character on escalator */}
             <div className="relative z-10 text-center">
-              <div className="text-5xl mb-2 transform -rotate-12">🧑‍💼</div>
-              <div className="text-xs text-gray-600">กำลังคิด...</div>
+              <div className="text-5xl mb-2 transform -rotate-12" role="img" aria-label="บุคคลกำลังคิดบนบันไดเลื่อน">🧑‍💼</div>
+              <div className="text-caption text-gray-600">กำลังคิด...</div>
             </div>
 
             {/* Thought bubble */}
             <div className="absolute top-4 right-4 bg-white p-2 rounded-full shadow-md">
-              <div className="text-lg">💭</div>
+              <div className="text-lg" role="img" aria-label="ความคิด">💭</div>
             </div>
           </div>
         </div>
 
-        {/* Question */}
-        <h2 className="question-text">
-          ทำไมคุณถึงรู้สึกแบบนั้น?
-        </h2>
-
-        {/* Additional context */}
-        <div className="mb-8 text-center text-gray-600">
-          <p>ช่วยเล่าให้เราฟังหน่อยว่าเหตุผลของคุณคืออะไร</p>
+        {/* Question Section */}
+        <div className="question-section">
+          <h1 className="text-h2">
+            ทำไมคุณถึงรู้สึกแบบนั้น?
+          </h1>
         </div>
 
-        {/* Choice buttons */}
-        <div className="space-y-4">
-          <button 
-            className="btn-primary text-left"
-            onClick={() => handleChoice('coverage')}
-          >
-            <span className="mr-3">🎯</span>
-            นโยบายไม่ครอบคลุม
-          </button>
-          
-          <button 
-            className="btn-primary text-left"
-            onClick={() => handleChoice('ineffective')}
-          >
-            <span className="mr-3">❌</span>
-            เก็บไปก็ไม่มีอะไรเกิดขึ้น
-          </button>
-          
-          <button 
-            className="btn-primary text-left"
-            onClick={() => handleChoice('other')}
-          >
-            <span className="mr-3">💬</span>
-            อื่นๆ
-          </button>
+        {/* Context */}
+        <div className="context-info">
+          <p className="text-body text-center">
+            ช่วยเล่าให้เราฟังหน่อยว่าเหตุผลของคุณคืออะไร
+          </p>
+        </div>
+
+        {/* Answer Section - Choice buttons */}
+        <div className="answer-section">
+          <div className="space-y-4">
+            <button 
+              className="btn btn-primary text-left"
+              onClick={() => handleChoice('coverage')}
+              aria-describedby="coverage-description"
+            >
+              <span className="mr-3" role="img" aria-label="ครอบคลุม">🎯</span>
+              นโยบายไม่ครอบคลุม
+            </button>
+            <div id="coverage-description" className="sr-only">
+              เห็นว่านโยบายยังไม่ครอบคลุมประเด็นสำคัญ</div>
+            
+            <button 
+              className="btn btn-primary text-left"
+              onClick={() => handleChoice('ineffective')}
+              aria-describedby="ineffective-description"
+            >
+              <span className="mr-3" role="img" aria-label="ไม่มีประสิทธิภาพ">❌</span>
+              เก็บไปก็ไม่มีอะไรเกิดขึ้น
+            </button>
+            <div id="ineffective-description" className="sr-only">
+              เห็นว่าการเก็บเงินอาจไม่ส่งผลต่อการแก้ปัญหา
+            </div>
+            
+            <button 
+              className="btn btn-primary text-left"
+              onClick={() => handleChoice('other')}
+              aria-describedby="other-description"
+            >
+              <span className="mr-3" role="img" aria-label="อื่นๆ">💬</span>
+              อื่นๆ
+            </button>
+            <div id="other-description" className="sr-only">
+              มีเหตุผลอื่นที่ต้องการแสดงความคิดเห็น
+            </div>
+          </div>
         </div>
 
         {/* Progress indicator */}
-        <div className="mt-8 text-center">
-          <div className="flex justify-center space-x-2 mb-2">
-            <div className="w-3 h-3 rounded-full bg-green-400"></div>
-            <div className="w-3 h-3 rounded-full bg-game-yellow"></div>
-            <div className="w-3 h-3 rounded-full bg-gray-300"></div>
-            <div className="w-3 h-3 rounded-full bg-gray-300"></div>
-            <div className="w-3 h-3 rounded-full bg-gray-300"></div>
+        <div className="progress-container">
+          <div className="progress-dots">
+            <div className="progress-dot completed" aria-label="ขั้นตอนที่ 1 เสร็จสิ้น"></div>
+            <div className="progress-dot active" aria-label="ขั้นตอนที่ 2 กำลังดำเนินการ"></div>
+            <div className="progress-dot inactive" aria-label="ขั้นตอนที่ 3"></div>
+            <div className="progress-dot inactive" aria-label="ขั้นตอนที่ 4"></div>
+            <div className="progress-dot inactive" aria-label="ขั้นตอนที่ 5"></div>
           </div>
-          <p className="text-sm text-gray-500">ขั้นตอนที่ 2 จาก 5</p>
+          <p className="text-caption">ขั้นตอนที่ 2 จาก 5</p>
         </div>
 
-        {/* Back button */}
-        <div className="mt-6 text-center">
+        {/* Navigation help */}
+        <div className="completion-zone">
           <button 
-            className="text-gray-500 text-sm hover:text-gray-700 transition-colors"
+            className="btn btn-secondary text-sm"
             onClick={() => onNavigate('ask01')}
           >
             ← กลับไปหน้าก่อน
