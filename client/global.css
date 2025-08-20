@@ -142,6 +142,40 @@
 
   /* Number input styling */
   .budget-input {
-    @apply w-20 px-3 py-2 text-center border border-gray-400 rounded bg-transparent text-current;
+    @apply w-20 px-3 py-2 text-center border border-gray-400 rounded bg-transparent text-current focus:border-game-yellow;
+  }
+
+  /* Enhanced interactions */
+  .selection-card.selected {
+    @apply border-game-yellow bg-game-yellow bg-opacity-10 transform scale-105 shadow-md;
+  }
+
+  /* Focus and accessibility improvements */
+  button:focus, textarea:focus, input:focus {
+    outline: 2px solid #FFD100;
+    outline-offset: 2px;
+  }
+
+  /* Smooth hover effects */
+  button:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Loading and disabled states */
+  button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+
+  /* Dark theme enhancements */
+  .dark .selection-card:not(.selected) {
+    @apply border-gray-600 hover:border-gray-500;
+  }
+
+  .dark .budget-input {
+    @apply border-gray-600 focus:border-game-yellow;
   }
 }
