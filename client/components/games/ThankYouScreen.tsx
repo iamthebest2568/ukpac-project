@@ -41,7 +41,7 @@ const ThankYouScreen = ({ sessionID, onNavigate }: ThankYouScreenProps) => {
         {/* Thank you message */}
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-black mb-6 leading-relaxed">
-            ขอบคุณที่���่วมเป็นส่วนหนึ่ง<br />
+            ขอบคุณที่ร่วมเป็นส่วนหนึ่ง<br />
             ในการพัฒนาเมืองนี้ให้ดีขึ้น
           </h1>
           
