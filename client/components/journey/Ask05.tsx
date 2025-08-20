@@ -14,66 +14,76 @@ const Ask05 = ({ sessionID, onNavigate }: Ask05Props) => {
   };
 
   return (
-    <div className="bg-white min-h-screen">
-      <div className="game-container py-8">
-        {/* Question */}
-        <h2 className="question-text mb-6">
-          คุณคิดว่ารัฐควรทำอะไร<br />
-          ที่จะทำให้นโยบายนี้เกิดขึ้นได้<br />
-          และเป็นประโยชน์ต่อประชาชน<br />
-          อย่างแท้จริง?
-        </h2>
+    <div className="theme-white min-h-screen">
+      <div className="app-container py-8 animate-fade-in-up">
+        {/* Question Section */}
+        <div className="question-section">
+          <h1 className="text-h2 mb-6">
+            คุณคิดว่ารัฐควรทำอะไร<br />
+            ที่จะทำให้นโยบายนี้เกิดขึ้นได้<br />
+            และเป็นประโยชน์ต่อประชาช��<br />
+            อย่างแท้จริง?
+          </h1>
+        </div>
 
         {/* Encouragement text */}
-        <div className="mb-8 text-center text-gray-600">
-          <p className="leading-relaxed">
+        <div className="context-info">
+          <p className="text-body text-center leading-relaxed">
             ข้อเสนอแนะของคุณจะช่วยให้นโยบายมีความเป็นไปได้และเป็นประโยชน์มากขึ้น
           </p>
         </div>
 
         {/* Text input area */}
-        <div className="mb-8">
+        <div className="answer-section">
           <textarea
             value={textInput}
             onChange={(e) => setTextInput(e.target.value)}
             placeholder="แบ่งปันข้อเสนอแนะของคุณเพื่อให้นโยบายนี้ประสบความสำเร็จ..."
-            className="w-full h-40 p-4 border-2 border-gray-300 rounded-lg resize-none focus:border-game-yellow focus:outline-none transition-colors text-gray-800 placeholder-gray-400"
+            className="input-field h-40 resize-none"
             rows={5}
+            aria-describedby="character-count"
           />
-          <div className="text-right text-sm text-gray-400 mt-2">
+          <div id="character-count" className="text-right text-caption mt-2">
             {textInput.length} ตัวอักษร
           </div>
         </div>
 
-        {/* Action buttons */}
-        <div className="space-y-4">
+        {/* Progress indicator */}
+        <div className="progress-container">
+          <div className="progress-dots">
+            <div className="progress-dot completed" aria-label="ขั้นตอนที่ 1 เสร็จสิ้น"></div>
+            <div className="progress-dot completed" aria-label="ขั้นตอนที่ 2 เสร็จสิ้น"></div>
+            <div className="progress-dot completed" aria-label="ขั้นตอนที่ 3 เสร็จสิ้น"></div>
+            <div className="progress-dot completed" aria-label="ขั้นตอนที่ 4 เสร็จสิ้น"></div>
+            <div className="progress-dot active" aria-label="ขั้นตอนที่ 5 กำลังดำเนินการ"></div>
+          </div>
+          <p className="text-caption">ขั้นตอนที่ 5 จาก 5</p>
+        </div>
+
+        {/* Completion Zone */}
+        <div className="completion-zone">
           <button 
-            className="btn-primary"
+            className="btn btn-primary"
             onClick={handleNext}
             disabled={textInput.trim().length === 0}
+            aria-describedby="next-button-description"
           >
             ต่อไป
           </button>
-        </div>
-
-        {/* Progress indicator */}
-        <div className="mt-8 text-center">
-          <div className="flex justify-center space-x-2 mb-2">
-            <div className="w-3 h-3 rounded-full bg-green-400"></div>
-            <div className="w-3 h-3 rounded-full bg-green-400"></div>
-            <div className="w-3 h-3 rounded-full bg-green-400"></div>
-            <div className="w-3 h-3 rounded-full bg-green-400"></div>
-            <div className="w-3 h-3 rounded-full bg-game-yellow"></div>
-          </div>
-          <p className="text-sm text-gray-500">ขั้นตอนที่ 5 จาก 5</p>
+          
+          {textInput.trim().length === 0 && (
+            <div id="next-button-description" className="status-message info mt-4">
+              กรุณากรอ��ข้อเสนอแนะเพื่อดำเนินการต่อ
+            </div>
+          )}
         </div>
 
         {/* Tips for suggestions */}
-        <div className="mt-8 p-4 bg-blue-50 rounded-lg">
-          <h4 className="font-semibold text-gray-800 mb-2">💡 ตัวอย่างข้อเสนอแนะที่เป็นประโยชน์:</h4>
-          <ul className="text-sm text-gray-700 space-y-1">
+        <div className="context-info">
+          <h4 className="text-body font-bold text-text-primary mb-2">💡 ตัวอย่างข้อเสนอแนะที่เป็นประโยชน์:</h4>
+          <ul className="text-caption text-text-secondary space-y-1">
             <li>• ควรปรับปรุงระบบขนส่งสาธารณะให้ดีกว่าก่อน</li>
-            <li>• จัดหาทางเลือกสำหรับผู้ที่ได้รับผลกระ��บ</li>
+            <li>• จัดหาทางเลือกสำหรับผู้ที่ได้รับผลกระทบ</li>
             <li>• มีการชดเชยหรือสวัสดิการเพิ่มเติม</li>
             <li>• จัดให้มีการประชาสัมพันธ์และชี้แจงที่ชัดเจน</li>
             <li>• มีการทดลองใช้ในพื้นที่เฉพาะก่อน</li>
@@ -84,7 +94,7 @@ const Ask05 = ({ sessionID, onNavigate }: Ask05Props) => {
         {/* Back button */}
         <div className="mt-6 text-center">
           <button 
-            className="text-gray-500 text-sm hover:text-gray-700 transition-colors"
+            className="btn btn-secondary text-sm max-w-xs"
             onClick={() => onNavigate('ask04')}
           >
             ← กลับไปหน้าก่อน
