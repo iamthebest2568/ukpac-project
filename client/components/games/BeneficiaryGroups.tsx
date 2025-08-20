@@ -7,14 +7,15 @@ interface BeneficiaryGroupsProps {
 
 const BeneficiaryGroups = ({ sessionID, onNavigate }: BeneficiaryGroupsProps) => {
   const [selectedGroups, setSelectedGroups] = useState<string[]>([]);
+  const maxSelections = 3;
 
   const beneficiaryGroups = [
-    { id: 'everyone', label: 'ทุกคน', icon: '👥' },
-    { id: 'locals', label: 'คนในพื้นที่', icon: '🏘️' },
-    { id: 'elderly', label: 'ผู้สูงอายุ', icon: '👴' },
-    { id: 'students', label: 'นักเรียนนักศึกษา', icon: '🎓' },
-    { id: 'disabled', label: 'คนพิการ', icon: '♿' },
-    { id: 'other', label: 'XXX', icon: '❓' }
+    { id: 'everyone', label: 'ทุกคน', icon: '👥', description: 'ประชาชนทุกคน' },
+    { id: 'locals', label: 'คนในพื้นที่', icon: '🏘️', description: 'ผู้ที่อาศัยในพื้นที่' },
+    { id: 'elderly', label: 'ผู้สูงอายุ', icon: '👴', description: 'ผู้สูงอายุ 60 ปีขึ้นไป' },
+    { id: 'students', label: 'นักเรียนนักศึกษา', icon: '����', description: 'นักเรียนและนักศึกษา' },
+    { id: 'disabled', label: 'คนพิการ', icon: '♿', description: 'ผู้พิการทุกประเภท' },
+    { id: 'other', label: 'อื่นๆ', icon: '❓', description: 'กลุ่มอื่นๆ ที่เฉพาะเจาะจง' }
   ];
 
   const handleGroupToggle = (groupId: string) => {
@@ -26,7 +27,7 @@ const BeneficiaryGroups = ({ sessionID, onNavigate }: BeneficiaryGroupsProps) =>
         return prev.filter(g => g !== groupId);
       } else {
         // Add if not selected and under limit
-        if (prev.length < 3) {
+        if (prev.length < maxSelections) {
           return [...prev, groupId];
         }
         return prev;
@@ -39,51 +40,109 @@ const BeneficiaryGroups = ({ sessionID, onNavigate }: BeneficiaryGroupsProps) =>
     onNavigate('ask04', data);
   };
 
+  const isSelectionDisabled = (groupId: string) => {
+    return selectedGroups.length >= maxSelections && !selectedGroups.includes(groupId);
+  };
+
   return (
-    <div className="dark">
-      <div className="game-container py-8">
-        <h2 className="question-text">
-          คุณคิดว่าใครควรได้รับการลดค่าโดยสารรถไฟฟ้าบ้าง
-        </h2>
+    <div className="theme-dark min-h-screen">
+      <div className="app-container py-8 animate-fade-in-up">
+        {/* Question Section */}
+        <div className="question-section">
+          <h1 className="text-h2">
+            คุณคิดว่าใครควรได้รับการลดค่าโดยสารรถไฟฟ้าบ้าง
+          </h1>
+        </div>
         
-        <div className="grid grid-cols-2 gap-4 mb-8">
-          {beneficiaryGroups.map((group) => (
-            <div 
-              key={group.id}
-              className={`selection-card ${
-                selectedGroups.includes(group.id) ? 'selected' : ''
-              }`}
-              onClick={() => handleGroupToggle(group.id)}
-            >
-              <div className="text-3xl mb-2">{group.icon}</div>
-              <div className="text-sm font-medium text-white">{group.label}</div>
-            </div>
-          ))}
+        {/* Answer Section */}
+        <div className="answer-section">
+          <div className="grid grid-cols-2 gap-4">
+            {beneficiaryGroups.map((group) => (
+              <div 
+                key={group.id}
+                className={`selection-card ${
+                  selectedGroups.includes(group.id) ? 'selected' : ''
+                } ${isSelectionDisabled(group.id) ? 'disabled' : ''}`}
+                onClick={() => !isSelectionDisabled(group.id) && handleGroupToggle(group.id)}
+                role="checkbox"
+                aria-checked={selectedGroups.includes(group.id)}
+                aria-disabled={isSelectionDisabled(group.id)}
+                aria-describedby={`group-${group.id}-description`}
+                tabIndex={isSelectionDisabled(group.id) ? -1 : 0}
+                onKeyDown={(e) => {
+                  if ((e.key === 'Enter' || e.key === ' ') && !isSelectionDisabled(group.id)) {
+                    e.preventDefault();
+                    handleGroupToggle(group.id);
+                  }
+                }}
+              >
+                <div className="text-4xl mb-3" role="img" aria-label={group.description}>
+                  {group.icon}
+                </div>
+                <div className="text-body font-medium text-white mb-1">
+                  {group.label}
+                </div>
+                <div 
+                  id={`group-${group.id}-description`}
+                  className="text-caption text-gray-300"
+                >
+                  {group.description}
+                </div>
+                
+                {/* Selection indicator */}
+                {selectedGroups.includes(group.id) && (
+                  <div className="absolute top-2 right-2 w-6 h-6 bg-primary-action rounded-full flex items-center justify-center">
+                    <svg className="w-4 h-4 text-black" fill="currentColor" viewBox="0 0 20 20" role="img" aria-label="เลือกแล้ว">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
 
-        <div className="mb-4 text-center text-sm text-gray-400">
-          เลือกได้สูงสุด 3 กลุ่ม (เลือกแล้ว {selectedGroups.length}/3)
+        {/* System Status - Selection Counter */}
+        <div className="selection-counter">
+          เลือกได้สู���สุด {maxSelections} กลุ่ม (เลือกแล้ว {selectedGroups.length}/{maxSelections})
         </div>
+
+        {/* Error Prevention Message */}
+        {selectedGroups.length >= maxSelections && (
+          <div className="status-message warning">
+            คุณเลือกครบจำนวนแล้ว หากต้องการเลือกกลุ่มใหม่ กรุณายกเลิกการเลือกกลุ่มใดกลุ่มหนึ่งก่อน
+          </div>
+        )}
 
         {/* Progress indicator */}
-        <div className="mb-6 text-center">
-          <div className="flex justify-center space-x-2 mb-2">
-            <div className="w-3 h-3 rounded-full bg-green-400"></div>
-            <div className="w-3 h-3 rounded-full bg-green-400"></div>
-            <div className="w-3 h-3 rounded-full bg-green-400"></div>
-            <div className="w-3 h-3 rounded-full bg-game-yellow"></div>
-            <div className="w-3 h-3 rounded-full bg-gray-600"></div>
+        <div className="progress-container">
+          <div className="progress-dots">
+            <div className="progress-dot completed" aria-label="ขั้นตอนที่ 1 เสร็จสิ้น"></div>
+            <div className="progress-dot completed" aria-label="ขั้นตอนที่ 2 เสร็จสิ้น"></div>
+            <div className="progress-dot completed" aria-label="ขั้นตอนที่ 3 เสร็จสิ้น"></div>
+            <div className="progress-dot active" aria-label="ขั้นตอนที่ 4 กำลังดำเนินการ"></div>
+            <div className="progress-dot inactive" aria-label="ข���้นตอนที่ 5"></div>
           </div>
-          <p className="text-sm text-gray-400">ขั้นตอนที่ 4 จาก 5</p>
+          <p className="text-caption">ขั้นตอนที่ 4 จาก 5</p>
         </div>
 
-        <button 
-          className="btn-primary"
-          onClick={handleNext}
-          disabled={selectedGroups.length === 0}
-        >
-          ต่อไป
-        </button>
+        {/* Completion Zone */}
+        <div className="completion-zone">
+          <button 
+            className="btn btn-primary"
+            onClick={handleNext}
+            disabled={selectedGroups.length === 0}
+            aria-describedby="next-button-description"
+          >
+            ต่อไป
+          </button>
+          
+          {selectedGroups.length === 0 && (
+            <div id="next-button-description" className="status-message info mt-4">
+              กรุณาเลือกอย่างน้อย 1 กลุ่มเพื่อดำเนินการต่อ
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
