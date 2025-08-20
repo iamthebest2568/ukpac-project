@@ -7,6 +7,7 @@ interface PolicyPrioritiesProps {
 
 const PolicyPriorities = ({ sessionID, onNavigate }: PolicyPrioritiesProps) => {
   const [selectedPriorities, setSelectedPriorities] = useState<string[]>([]);
+  const maxSelections = 3;
 
   const priorities = [
     'ลดค่าโดยสารรถไฟฟ้า',
@@ -27,7 +28,7 @@ const PolicyPriorities = ({ sessionID, onNavigate }: PolicyPrioritiesProps) => {
         return prev.filter(p => p !== priority);
       } else {
         // Add if not selected and under limit
-        if (prev.length < 3) {
+        if (prev.length < maxSelections) {
           return [...prev, priority];
         }
         return prev;
@@ -40,59 +41,95 @@ const PolicyPriorities = ({ sessionID, onNavigate }: PolicyPrioritiesProps) => {
     onNavigate('beneficiaries', data);
   };
 
+  const isSelectionDisabled = (priority: string) => {
+    return selectedPriorities.length >= maxSelections && !selectedPriorities.includes(priority);
+  };
+
   return (
-    <div className="dark">
-      <div className="game-container py-8">
-        <h2 className="question-text">
-          คุณคิดว่าควรใช้เงินที่ได้จากการเก็บไปพัฒนาอะไร
-        </h2>
+    <div className="theme-dark min-h-screen">
+      <div className="app-container py-8 animate-fade-in-up">
+        {/* Question Section */}
+        <div className="question-section">
+          <h1 className="text-h2">
+            คุณคิดว่าควรใช้เงินที่ได้จากการเก็บไปพัฒนาอะไร
+          </h1>
+        </div>
         
-        <div className="space-y-4 mb-8">
-          {priorities.map((priority, index) => (
-            <div 
-              key={index}
-              className="flex items-center p-4 rounded-lg border border-gray-600 cursor-pointer hover:border-gray-400 transition-colors"
-              onClick={() => handlePriorityToggle(priority)}
-            >
-              <div className={`w-5 h-5 rounded border-2 mr-3 flex-shrink-0 flex items-center justify-center ${
-                selectedPriorities.includes(priority) 
-                  ? 'bg-game-yellow border-game-yellow' 
-                  : 'border-gray-400'
-              }`}>
-                {selectedPriorities.includes(priority) && (
-                  <svg className="w-3 h-3 text-black" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                  </svg>
-                )}
+        {/* Answer Section */}
+        <div className="answer-section">
+          <div className="space-y-4">
+            {priorities.map((priority, index) => (
+              <div 
+                key={index}
+                className={`selection-checkbox ${
+                  selectedPriorities.includes(priority) ? 'selected' : ''
+                } ${isSelectionDisabled(priority) ? 'disabled' : ''}`}
+                onClick={() => !isSelectionDisabled(priority) && handlePriorityToggle(priority)}
+                role="checkbox"
+                aria-checked={selectedPriorities.includes(priority)}
+                aria-disabled={isSelectionDisabled(priority)}
+                tabIndex={isSelectionDisabled(priority) ? -1 : 0}
+                onKeyDown={(e) => {
+                  if ((e.key === 'Enter' || e.key === ' ') && !isSelectionDisabled(priority)) {
+                    e.preventDefault();
+                    handlePriorityToggle(priority);
+                  }
+                }}
+              >
+                <div className="checkbox-icon">
+                  {selectedPriorities.includes(priority) && (
+                    <svg className="w-3 h-3 text-black" fill="currentColor" viewBox="0 0 20 20" role="img" aria-label="เลือกแล้ว">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                  )}
+                </div>
+                <span className="text-body text-white">{priority}</span>
               </div>
-              <span className="text-white">{priority}</span>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
-        <div className="mb-4 text-center text-sm text-gray-400">
-          เลือกได้สูงสุด 3 ข้อ (เลือกแล้ว {selectedPriorities.length}/3)
+        {/* System Status - Selection Counter */}
+        <div className="selection-counter">
+          เลือกได้สูงสุด {maxSelections} ข้อ (เลือกแล้ว {selectedPriorities.length}/{maxSelections})
         </div>
+
+        {/* Error Prevention Message */}
+        {selectedPriorities.length >= maxSelections && (
+          <div className="status-message warning">
+            คุณเลือกครบจำนวนแล้ว หากต้องการเลือกข้อใหม่ กรุณายกเลิกการเลือกข้อใดข้อหนึ่งก่อน
+          </div>
+        )}
 
         {/* Progress indicator */}
-        <div className="mb-6 text-center">
-          <div className="flex justify-center space-x-2 mb-2">
-            <div className="w-3 h-3 rounded-full bg-green-400"></div>
-            <div className="w-3 h-3 rounded-full bg-green-400"></div>
-            <div className="w-3 h-3 rounded-full bg-game-yellow"></div>
-            <div className="w-3 h-3 rounded-full bg-gray-600"></div>
-            <div className="w-3 h-3 rounded-full bg-gray-600"></div>
+        <div className="progress-container">
+          <div className="progress-dots">
+            <div className="progress-dot completed" aria-label="ขั้นตอนที่ 1 เสร็จสิ้น"></div>
+            <div className="progress-dot completed" aria-label="ขั้นตอนที่ 2 เสร็จสิ้น"></div>
+            <div className="progress-dot active" aria-label="ขั้นตอนที่ 3 กำลังดำเนินการ"></div>
+            <div className="progress-dot inactive" aria-label="ขั้นตอนที่ 4"></div>
+            <div className="progress-dot inactive" aria-label="ขั้นตอนที่ 5"></div>
           </div>
-          <p className="text-sm text-gray-400">ขั้นตอนที่ 3 จาก 5</p>
+          <p className="text-caption">ขั้นตอนที่ 3 จาก 5</p>
         </div>
 
-        <button 
-          className="btn-primary"
-          onClick={handleNext}
-          disabled={selectedPriorities.length === 0}
-        >
-          ต่อไป
-        </button>
+        {/* Completion Zone */}
+        <div className="completion-zone">
+          <button 
+            className="btn btn-primary"
+            onClick={handleNext}
+            disabled={selectedPriorities.length === 0}
+            aria-describedby="next-button-description"
+          >
+            ต่อไป
+          </button>
+          
+          {selectedPriorities.length === 0 && (
+            <div id="next-button-description" className="status-message info mt-4">
+              กรุณาเลือกอย่างน้อย 1 ข้อเพื่อดำเนินการต่อ
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
