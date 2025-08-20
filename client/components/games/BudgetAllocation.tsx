@@ -173,7 +173,7 @@ const BudgetAllocation = ({ sessionID, onNavigate }: BudgetAllocationProps) => {
 
         {remainingBudget > 0 && remainingBudget < totalBudget && (
           <div className="status-message warning">
-            คุณยังม��งบประมาณเหลือ <strong>{remainingBudget} บาท</strong> กรุณาจัดสรรให้ครบ
+            คุณยังมีงบประมาณเหลือ <strong>{remainingBudget} บาท</strong> กรุณาจัดสรรให้ครบ
           </div>
         )}
 
@@ -208,7 +208,7 @@ const BudgetAllocation = ({ sessionID, onNavigate }: BudgetAllocationProps) => {
           
           {!isComplete && (
             <div id="next-button-description" className="status-message info mt-4">
-              กรุณาจัดสรรงบประมาณให้ครบ {totalBudget} บาทเพื่อดำเนินการต่อ
+              กรุณาจัดสรร���บประมาณให้ครบ {totalBudget} บาทเพื่อดำเนินการต่อ
             </div>
           )}
         </div>
