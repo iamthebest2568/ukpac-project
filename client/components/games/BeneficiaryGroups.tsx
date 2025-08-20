@@ -121,7 +121,7 @@ const BeneficiaryGroups = ({ sessionID, onNavigate }: BeneficiaryGroupsProps) =>
             <div className="progress-dot completed" aria-label="ขั้นตอนที่ 2 เสร็จสิ้น"></div>
             <div className="progress-dot completed" aria-label="ขั้นตอนที่ 3 เสร็จสิ้น"></div>
             <div className="progress-dot active" aria-label="ขั้นตอนที่ 4 กำลังดำเนินการ"></div>
-            <div className="progress-dot inactive" aria-label="ข���้นตอนที่ 5"></div>
+            <div className="progress-dot inactive" aria-label="ขั้นตอนที่ 5"></div>
           </div>
           <p className="text-caption">ขั้นตอนที่ 4 จาก 5</p>
         </div>
