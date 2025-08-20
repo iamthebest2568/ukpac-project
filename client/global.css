@@ -6,176 +6,568 @@
 
 @layer base {
   /**
-   * Mini-Games App Theme System
-   * White Theme: white background, black text (narrative screens)
-   * Dark Theme: deep navy blue background, white text (mini-game activities)
+   * UK PACK Design System - UX/UI Heuristics Applied
+   * Consistent design system enforcing Jakob's Law and visual hierarchy
    */
   :root {
-    /* White Theme (default - narrative screens) */
-    --background: 0 0% 100%;
-    --foreground: 0 0% 0%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 0%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 0%;
-
-    --primary: 51 100% 50%; /* #FFD100 - bright yellow */
-    --primary-foreground: 0 0% 0%; /* black text on yellow */
-
-    --secondary: 210 9% 42%; /* #6c757d - medium grey */
-    --secondary-foreground: 0 0% 100%; /* white text on grey */
-
-    --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 45%;
-
-    --accent: 51 100% 50%;
-    --accent-foreground: 0 0% 0%;
-
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 0 0% 89%;
-    --input: 0 0% 89%;
-    --ring: 0 0% 0%;
-
-    --radius: 0.5rem;
+    /* Color System - Strict palette enforcement */
+    --color-primary-action: #FFD100; /* Bright yellow - PRIMARY ACTIONS ONLY */
+    --color-secondary-action: #6c757d; /* Medium grey - SECONDARY ACTIONS ONLY */
+    --color-dark-theme-bg: #0D1B2A; /* Dark navy - GAME SCREENS ONLY */
+    --color-white-theme-bg: #FFFFFF; /* White - NARRATIVE SCREENS ONLY */
+    --color-success: #10B981; /* Green for completed states */
+    --color-warning: #F59E0B; /* Amber for attention states */
+    --color-error: #EF4444; /* Red for error states */
+    --color-text-primary: #1F2937; /* Dark grey for primary text */
+    --color-text-secondary: #6B7280; /* Medium grey for secondary text */
+    --color-text-inverse: #FFFFFF; /* White text for dark backgrounds */
+    --color-border: #E5E7EB; /* Light grey for borders */
+    --color-border-focus: var(--color-primary-action); /* Yellow for focus states */
+    
+    /* Typography Scale - Strict hierarchy */
+    --font-size-h1: 32px; /* Main questions (H1) */
+    --font-size-h2: 24px; /* Sub questions (H2) */
+    --font-size-body: 16px; /* Body text, labels, buttons */
+    --font-size-caption: 14px; /* Small text, help text */
+    --font-size-micro: 12px; /* Very small text */
+    
+    --font-weight-bold: 700; /* Headers, important text */
+    --font-weight-medium: 500; /* Buttons, labels */
+    --font-weight-regular: 400; /* Body text */
+    
+    --line-height-tight: 1.25; /* Headers */
+    --line-height-normal: 1.5; /* Body text */
+    --line-height-relaxed: 1.75; /* Long form text */
+    
+    /* Spacing System - Consistent vertical rhythm */
+    --space-micro: 4px;
+    --space-xs: 8px;
+    --space-sm: 12px;
+    --space-md: 16px; /* Base unit */
+    --space-lg: 24px;
+    --space-xl: 32px; /* Between sections */
+    --space-2xl: 48px; /* Above main questions */
+    --space-3xl: 64px; /* Major sections */
+    
+    /* Interactive Elements */
+    --border-radius-sm: 6px;
+    --border-radius-md: 8px;
+    --border-radius-lg: 12px;
+    --border-radius-full: 999px; /* Buttons only */
+    
+    --border-width-thin: 1px;
+    --border-width-medium: 2px;
+    --border-width-thick: 3px; /* Selection indicators */
+    
+    /* Shadows and elevations */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --shadow-focus: 0 0 0 3px rgba(255, 209, 0, 0.3);
+    
+    /* Animation timing */
+    --transition-fast: 150ms ease-in-out;
+    --transition-normal: 250ms ease-in-out;
+    --transition-slow: 350ms ease-in-out;
   }
 
-  .dark {
-    /* Dark Theme - deep navy blue for mini-game activities */
-    --background: 207 74% 11%; /* #0D1B2A - deep navy blue */
-    --foreground: 0 0% 100%; /* white text */
+  /* Global resets and base styles */
+  * {
+    box-sizing: border-box;
+  }
 
-    --card: 207 74% 11%;
-    --card-foreground: 0 0% 100%;
+  body {
+    font-family: 'Kanit', sans-serif;
+    font-size: var(--font-size-body);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-normal);
+    color: var(--color-text-primary);
+    background-color: var(--color-white-theme-bg);
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
-    --popover: 207 74% 11%;
-    --popover-foreground: 0 0% 100%;
+  /* Focus management for accessibility */
+  *:focus {
+    outline: none;
+    box-shadow: var(--shadow-focus);
+  }
 
-    --primary: 51 100% 50%; /* #FFD100 - bright yellow */
-    --primary-foreground: 0 0% 0%; /* black text on yellow */
-
-    --secondary: 210 9% 42%; /* #6c757d - medium grey */
-    --secondary-foreground: 0 0% 100%; /* white text on grey */
-
-    --muted: 207 74% 15%;
-    --muted-foreground: 0 0% 65%;
-
-    --accent: 51 100% 50%;
-    --accent-foreground: 0 0% 0%;
-
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
-
-    --border: 207 74% 20%;
-    --input: 207 74% 20%;
-    --ring: 0 0% 100%;
+  /* Remove focus from mouse users, keep for keyboard users */
+  .js-focus-visible *:focus:not(.focus-visible) {
+    box-shadow: none;
   }
 }
 
 @layer base {
-  * {
-    @apply border-border;
+  /* Layout System - Consistent container and spacing */
+  .app-container {
+    max-width: 420px;
+    margin: 0 auto;
+    padding: 0 var(--space-md);
+    min-height: 100vh;
   }
 
-  body {
-    @apply bg-background text-foreground font-kanit;
-    margin: 0;
-    padding: 0;
+  @media (max-width: 320px) {
+    .app-container {
+      padding: 0 var(--space-xs);
+    }
   }
 
-  /* Game app layout - single centered column max 420px */
-  .game-container {
-    @apply mx-auto max-w-game px-4 min-h-screen;
+  @media (min-width: 421px) {
+    .app-container {
+      padding: 0 var(--space-lg);
+    }
   }
 
-  /* Question text styling */
-  .question-text {
-    @apply text-2xl font-bold text-center mb-6;
+  /* Theme Enforcement */
+  .theme-white {
+    background-color: var(--color-white-theme-bg);
+    color: var(--color-text-primary);
   }
 
-  /* Primary button - bright yellow */
+  .theme-dark {
+    background-color: var(--color-dark-theme-bg);
+    color: var(--color-text-inverse);
+  }
+
+  /* Typography System - Strict hierarchy */
+  .text-h1 {
+    font-size: var(--font-size-h1);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-tight);
+    margin-top: var(--space-2xl);
+    margin-bottom: var(--space-xl);
+    text-align: center;
+  }
+
+  .text-h2 {
+    font-size: var(--font-size-h2);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-tight);
+    margin-top: var(--space-2xl);
+    margin-bottom: var(--space-xl);
+    text-align: center;
+  }
+
+  .text-body {
+    font-size: var(--font-size-body);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-normal);
+  }
+
+  .text-caption {
+    font-size: var(--font-size-caption);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-normal);
+    color: var(--color-text-secondary);
+  }
+
+  /* Button System - Jakob's Law compliance */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px; /* Minimum touch target */
+    padding: var(--space-md) var(--space-xl);
+    font-size: var(--font-size-body);
+    font-weight: var(--font-weight-medium);
+    border-radius: var(--border-radius-full);
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    text-decoration: none;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left var(--transition-slow);
+  }
+
+  .btn:hover:before {
+    left: 100%;
+  }
+
+  /* Primary Button - ONLY for main actions */
   .btn-primary {
-    @apply bg-game-yellow text-black font-bold py-btn-y px-8 rounded-full-rounded w-full transition-all duration-200 hover:bg-opacity-90;
+    background-color: var(--color-primary-action);
+    color: #000000;
+    box-shadow: var(--shadow-md);
   }
 
-  /* Secondary button - medium grey */
+  .btn-primary:hover:not(:disabled) {
+    background-color: #E6BC00;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .btn-primary:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* Secondary Button - ONLY for alternative actions */
   .btn-secondary {
-    @apply bg-game-grey text-white font-bold py-btn-y px-8 rounded-full-rounded w-full transition-all duration-200 hover:bg-opacity-90;
+    background-color: var(--color-secondary-action);
+    color: var(--color-text-inverse);
+    box-shadow: var(--shadow-md);
   }
 
-  /* Illustration panel - comic-style with border */
+  .btn-secondary:hover:not(:disabled) {
+    background-color: #5A626B;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .btn-secondary:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* Disabled state - Clear visual feedback */
+  .btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+    pointer-events: none;
+  }
+
+  /* Selection Components */
+  .selection-checkbox {
+    display: flex;
+    align-items: center;
+    padding: var(--space-md);
+    border: var(--border-width-medium) solid #374151;
+    border-radius: var(--border-radius-md);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    margin-bottom: var(--space-md);
+    background-color: transparent;
+  }
+
+  .selection-checkbox:hover {
+    border-color: #9CA3AF;
+    background-color: rgba(156, 163, 175, 0.05);
+  }
+
+  .selection-checkbox.selected {
+    border-color: var(--color-primary-action);
+    background-color: rgba(255, 209, 0, 0.1);
+  }
+
+  .selection-checkbox.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  .checkbox-icon {
+    width: 20px;
+    height: 20px;
+    border: var(--border-width-medium) solid #9CA3AF;
+    border-radius: var(--border-radius-sm);
+    margin-right: var(--space-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all var(--transition-normal);
+  }
+
+  .selection-checkbox.selected .checkbox-icon {
+    background-color: var(--color-primary-action);
+    border-color: var(--color-primary-action);
+  }
+
+  .selection-card {
+    padding: var(--space-lg);
+    border: var(--border-width-medium) solid #374151;
+    border-radius: var(--border-radius-lg);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    text-align: center;
+    background-color: transparent;
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .selection-card:hover {
+    border-color: #9CA3AF;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .selection-card.selected {
+    border-color: var(--color-primary-action);
+    border-width: var(--border-width-thick);
+    background-color: rgba(255, 209, 0, 0.1);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .selection-card.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  /* Input Fields */
+  .input-field {
+    width: 100%;
+    padding: var(--space-md);
+    border: var(--border-width-medium) solid var(--color-border);
+    border-radius: var(--border-radius-md);
+    font-size: var(--font-size-body);
+    font-family: inherit;
+    transition: all var(--transition-normal);
+    background-color: transparent;
+  }
+
+  .input-field:focus {
+    border-color: var(--color-border-focus);
+    box-shadow: var(--shadow-focus);
+  }
+
+  .input-field::placeholder {
+    color: var(--color-text-secondary);
+  }
+
+  /* Dark theme input */
+  .theme-dark .input-field {
+    border-color: #4B5563;
+    color: var(--color-text-inverse);
+  }
+
+  .theme-dark .input-field:focus {
+    border-color: var(--color-border-focus);
+  }
+
+  /* Progress Indicators */
+  .progress-container {
+    text-align: center;
+    margin: var(--space-2xl) 0;
+  }
+
+  .progress-dots {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-xs);
+    margin-bottom: var(--space-sm);
+  }
+
+  .progress-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    transition: all var(--transition-normal);
+  }
+
+  .progress-dot.completed {
+    background-color: var(--color-success);
+    transform: scale(1.1);
+  }
+
+  .progress-dot.active {
+    background-color: var(--color-primary-action);
+    transform: scale(1.25);
+    box-shadow: 0 0 8px rgba(255, 209, 0, 0.4);
+  }
+
+  .progress-dot.inactive {
+    background-color: #9CA3AF;
+  }
+
+  .theme-dark .progress-dot.inactive {
+    background-color: #4B5563;
+  }
+
+  /* Status Messages */
+  .status-message {
+    padding: var(--space-md);
+    border-radius: var(--border-radius-md);
+    margin: var(--space-lg) 0;
+    font-size: var(--font-size-caption);
+    text-align: center;
+  }
+
+  .status-message.info {
+    background-color: #EFF6FF;
+    color: #1E40AF;
+    border: 1px solid #DBEAFE;
+  }
+
+  .status-message.warning {
+    background-color: #FFFBEB;
+    color: #92400E;
+    border: 1px solid #FED7AA;
+  }
+
+  .status-message.error {
+    background-color: #FEF2F2;
+    color: #B91C1C;
+    border: 1px solid #FECACA;
+  }
+
+  .status-message.success {
+    background-color: #F0FDF4;
+    color: #166534;
+    border: 1px solid #BBF7D0;
+  }
+
+  /* Illustration Panels */
   .illustration-panel {
-    @apply border-2 border-black p-4 mb-6 bg-white rounded-lg;
+    border: var(--border-width-medium) solid #000000;
+    border-radius: var(--border-radius-lg);
+    padding: var(--space-lg);
+    margin-bottom: var(--space-xl);
+    background-color: var(--color-white-theme-bg);
+    box-shadow: var(--shadow-sm);
+    animation: fadeInUp 0.6s ease-out;
   }
 
-  /* Dark theme illustration panel */
-  .dark .illustration-panel {
-    @apply border-white;
+  .theme-dark .illustration-panel {
+    border-color: var(--color-text-inverse);
+  }
+
+  /* Completion Zone - Clear visual separation */
+  .completion-zone {
+    margin-top: var(--space-2xl);
+    padding-top: var(--space-xl);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .theme-dark .completion-zone {
+    border-top-color: #4B5563;
+  }
+
+  /* Utility classes for consistent spacing */
+  .section-spacing {
+    margin-bottom: var(--space-xl);
+  }
+
+  .item-spacing {
+    margin-bottom: var(--space-md);
+  }
+
+  /* Animation definitions */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp var(--transition-slow) ease-out;
   }
 }
 
 @layer components {
-  /* Checkbox styling for game components */
-  .game-checkbox {
-    @apply w-5 h-5 rounded border-2 border-current mr-3 flex-shrink-0;
+  /* High-level component patterns */
+  .question-section {
+    margin-bottom: var(--space-xl);
   }
 
-  .game-checkbox:checked {
-    @apply bg-game-yellow border-game-yellow;
+  .answer-section {
+    margin-bottom: var(--space-2xl);
   }
 
-  /* Card selection styling */
-  .selection-card {
-    @apply p-4 rounded-lg border-2 cursor-pointer transition-all duration-200 text-center;
+  .context-info {
+    padding: var(--space-md);
+    background-color: rgba(59, 130, 246, 0.05);
+    border-radius: var(--border-radius-md);
+    border-left: 4px solid #3B82F6;
+    margin-bottom: var(--space-xl);
   }
 
-  .selection-card.selected {
-    @apply border-game-yellow bg-game-yellow bg-opacity-10;
+  /* Selection counter - Visibility of system status */
+  .selection-counter {
+    text-align: center;
+    font-size: var(--font-size-caption);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-lg);
+    font-weight: var(--font-weight-medium);
   }
 
-  .selection-card:not(.selected) {
-    @apply border-gray-400 hover:border-gray-300;
+  .theme-dark .selection-counter {
+    color: #9CA3AF;
   }
 
-  /* Number input styling */
-  .budget-input {
-    @apply w-20 px-3 py-2 text-center border border-gray-400 rounded bg-transparent text-current focus:border-game-yellow;
+  /* Budget display - Enhanced visibility */
+  .budget-display {
+    background-color: rgba(255, 209, 0, 0.1);
+    border: 2px solid var(--color-primary-action);
+    border-radius: var(--border-radius-lg);
+    padding: var(--space-lg);
+    margin-bottom: var(--space-xl);
+    text-align: center;
   }
 
-  /* Enhanced interactions */
-  .selection-card.selected {
-    @apply border-game-yellow bg-game-yellow bg-opacity-10 transform scale-105 shadow-md;
+  .budget-item {
+    font-size: 18px;
+    font-weight: var(--font-weight-medium);
+    margin-bottom: var(--space-sm);
   }
 
-  /* Focus and accessibility improvements */
-  button:focus, textarea:focus, input:focus {
-    outline: 2px solid #FFD100;
-    outline-offset: 2px;
+  .budget-remaining {
+    font-size: 20px;
+    font-weight: var(--font-weight-bold);
   }
 
-  /* Smooth hover effects */
-  button:hover:not(:disabled) {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  .budget-remaining.negative {
+    color: var(--color-error);
   }
 
-  /* Loading and disabled states */
-  button:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-    transform: none;
-    box-shadow: none;
+  .budget-remaining.positive {
+    color: var(--color-success);
+  }
+}
+
+/* Error prevention styles */
+@layer utilities {
+  .limit-reached {
+    opacity: 0.5;
+    pointer-events: none;
+    position: relative;
   }
 
-  /* Dark theme enhancements */
-  .dark .selection-card:not(.selected) {
-    @apply border-gray-600 hover:border-gray-500;
+  .limit-reached::after {
+    content: 'ครบจำนวนที่เลือกแล้ว';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--border-radius-sm);
+    font-size: var(--font-size-micro);
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity var(--transition-normal);
   }
 
-  .dark .budget-input {
-    @apply border-gray-600 focus:border-game-yellow;
+  .limit-reached:hover::after {
+    opacity: 1;
   }
 }
