@@ -19,15 +19,18 @@ interface EngagementData {
 }
 
 const EngagementOverview = ({ token }: EngagementOverviewProps) => {
+  console.log('📊 EngagementOverview: Component initialized with token:', !!token);
   const [data, setData] = useState<EngagementData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    console.log('📊 EngagementOverview: useEffect triggered, fetching data');
     fetchEngagementData();
 
     // Subscribe to real-time updates
     const unsubscribe = subscribeToUpdates(() => {
+      console.log('📊 EngagementOverview: Real-time update triggered');
       fetchEngagementData();
     });
 
@@ -35,18 +38,22 @@ const EngagementOverview = ({ token }: EngagementOverviewProps) => {
   }, []);
 
   const fetchEngagementData = () => {
+    console.log('📊 EngagementOverview: fetchEngagementData called');
     try {
       const result = getEngagementSummary();
+      console.log('📊 EngagementOverview: Got data:', result);
       setData(result);
     } catch (error) {
-      console.error('Error fetching engagement data:', error);
+      console.error('❌ EngagementOverview: Error fetching engagement data:', error);
       setError('Failed to load engagement data');
     } finally {
+      console.log('📊 EngagementOverview: Setting loading to false');
       setIsLoading(false);
     }
   };
 
   if (isLoading) {
+    console.log('⏳ EngagementOverview: Still loading...');
     return (
       <div className="space-y-6">
         {/* Loading skeleton */}
@@ -63,6 +70,7 @@ const EngagementOverview = ({ token }: EngagementOverviewProps) => {
   }
 
   if (error || !data) {
+    console.log('❌ EngagementOverview: Error or no data:', { error, hasData: !!data });
     return (
       <div className="bg-red-50 border border-red-200 rounded-lg p-6 text-center">
         <div className="text-red-500 text-2xl mb-2">❌</div>
