@@ -8,7 +8,7 @@ interface PolicySummaryProps {
 
 interface SummaryCard {
   priority: string;
-  beneficiaries: string[];
+  beneficiaries: { label: string; icon: string }[];
 }
 
 const PolicySummary = ({ sessionID, onNavigate, journeyData }: PolicySummaryProps) => {
@@ -101,7 +101,7 @@ const PolicySummary = ({ sessionID, onNavigate, journeyData }: PolicySummaryProp
           <div className="progress-dots">
             <div className="progress-dot completed" aria-label="ขั้นตอนที่ 1 เสร็จสิ้น"></div>
             <div className="progress-dot completed" aria-label="ขั้นตอนที่ 2 เสร็จสิ้น"></div>
-            <div className="progress-dot completed" aria-label="ขั้นตอนที่ 3 เสร็จสิ้น"></div>
+            <div className="progress-dot completed" aria-label="ขั้นตอนที่ 3 เสร็จ��ิ้น"></div>
             <div className="progress-dot completed" aria-label="ขั้นตอนที่ 4 เสร็จสิ้น"></div>
             <div className="progress-dot active" aria-label="ขั้นตอนที่ 5 กำลังดำเนินการ"></div>
           </div>
