@@ -33,7 +33,7 @@ const Ask01 = ({ sessionID, onNavigate }: Ask01Props) => {
             <div className="relative z-10 flex items-center justify-center space-x-8">
               <div className="text-center">
                 <div className="text-4xl mb-2" role="img" aria-label="นักธุรกิจ">🧑‍💼</div>
-                <div className="text-caption text-gray-600">นักธุร��ิจ</div>
+                <div className="text-caption text-gray-600">นักธุรกิจ</div>
               </div>
               
               {/* Speech bubble */}
@@ -127,7 +127,7 @@ const Ask01 = ({ sessionID, onNavigate }: Ask01Props) => {
 
         {/* Additional guidance */}
         <div className="status-message info">
-          กรุณาเลือกความคิดเห็นที่ตรงกับความรู้สึกของคุณมากที่สุด
+          กรุณาเลือกความคิดเห็นที่ตรงกับความรู้สึกของคุณมากที่สุ��
         </div>
       </div>
     </div>
