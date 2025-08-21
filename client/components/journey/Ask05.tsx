@@ -6,46 +6,80 @@ interface Ask05Props {
 }
 
 const Ask05 = ({ sessionID, onNavigate }: Ask05Props) => {
-  const [textInput, setTextInput] = useState('');
+  const [suggestion, setSuggestion] = useState('');
 
   const handleNext = () => {
-    const data = { suggestion: textInput };
+    // Log the user's suggestion to the console
+    console.log('User suggestion:', suggestion);
+    console.log('Session ID:', sessionID);
+    
+    const data = { suggestion };
     onNavigate('fakeNews', data);
   };
 
   return (
     <div className="theme-white min-h-screen">
       <div className="app-container py-8 animate-fade-in-up">
+        {/* Illustration Panel - Suggestion box */}
+        <div className="illustration-panel">
+          <div className="flex items-center justify-center h-40 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg relative overflow-hidden">
+            {/* Suggestion box visualization */}
+            <div className="relative z-10 text-center">
+              <div className="text-5xl mb-2" role="img" aria-label="กล่องข้อเสนอแนะ">💡</div>
+              <div className="text-caption text-gray-600">แชร์ความคิดเห็นของคุณ</div>
+            </div>
+
+            {/* Decorative elements */}
+            <div className="absolute top-4 left-4 w-3 h-3 bg-blue-400 rounded-full"></div>
+            <div className="absolute top-6 right-6 w-2 h-2 bg-purple-400 rounded-full"></div>
+            <div className="absolute bottom-4 left-6 w-2 h-2 bg-yellow-400 rounded-full"></div>
+            <div className="absolute bottom-6 right-4 w-3 h-3 bg-green-400 rounded-full"></div>
+          </div>
+        </div>
+
         {/* Question Section */}
         <div className="question-section">
-          <h1 className="text-h2 mb-6">
-            คุณคิดว่ารัฐควรทำอะไร<br />
-            ที่จะทำให้นโยบายนี้เกิดขึ้นได้<br />
-            และเป็นประโยชน์ต่อประชาชน<br />
-            อย่างแท้จริง?
+          <h1 className="text-h2 text-center text-black">
+            คุณคิดว่ารัฐควรทำอะไร ที่จะทำให้นโยบ���ยนี้เกิดขึ้นได้และเป็นประโยชน์ต่อประชาชนอย่างแท้จริง
           </h1>
         </div>
 
-        {/* Encouragement text */}
+        {/* Context text */}
         <div className="context-info">
-          <p className="text-body text-center leading-relaxed">
-            ข้อเสนอแนะของคุณจะช่วยให้นโยบายมีความเป็นไปได้และเป็นประโยชน์มากขึ้น
+          <p className="text-body text-center text-black">
+            ข้อเสนอแนะของคุณมีค่ามากสำหรับการพัฒนานโยบายให้ดีขึ้น
           </p>
         </div>
 
-        {/* Text input area */}
+        {/* Answer Section - Text Input */}
         <div className="answer-section">
-          <textarea
-            value={textInput}
-            onChange={(e) => setTextInput(e.target.value)}
-            placeholder="แบ่งปันข้อเสนอแนะของ��ุณเพื่อให้นโยบายนี้ประสบความสำเร็จ..."
-            className="input-field h-40 resize-none"
-            rows={5}
-            aria-describedby="character-count"
-          />
-          <div id="character-count" className="text-right text-caption mt-2">
-            {textInput.length} ตัวอักษร
+          <div className="space-y-4">
+            <label 
+              htmlFor="suggestion-input" 
+              className="block text-body font-medium text-black mb-2"
+            >
+              ข้อเสนอแนะของคุณ:
+            </label>
+            <textarea
+              id="suggestion-input"
+              value={suggestion}
+              onChange={(e) => setSuggestion(e.target.value)}
+              className="w-full h-32 p-4 border border-gray-300 rounded-lg resize-none focus:ring-2 focus:ring-primary-action focus:border-primary-action text-black placeholder-gray-500"
+              placeholder="พิมพ์ข้อความของคุณที่นี่"
+              aria-describedby="suggestion-help"
+              rows={6}
+            />
+            <div id="suggestion-help" className="text-caption text-gray-600">
+              แชร์ความคิดเห็น ข้อเสนอแนะ หรือแนวทางที่คุณคิดว่าจะช่วยให้นโยบายนี้ประสบความสำเร็จ
+            </div>
           </div>
+        </div>
+
+        {/* Character counter */}
+        <div className="text-right">
+          <span className="text-caption text-gray-500">
+            {suggestion.length} ตัวอักษร
+          </span>
         </div>
 
         {/* Progress indicator */}
@@ -57,7 +91,7 @@ const Ask05 = ({ sessionID, onNavigate }: Ask05Props) => {
             <div className="progress-dot completed" aria-label="ขั้นตอนที่ 4 เสร็จสิ้น"></div>
             <div className="progress-dot active" aria-label="ขั้นตอนที่ 5 กำลังดำเนินการ"></div>
           </div>
-          <p className="text-caption">ขั้นตอนที�� 5 จาก 5</p>
+          <p className="text-caption text-black">ขั้นตอนที่ 5 จาก 5</p>
         </div>
 
         {/* Completion Zone */}
@@ -65,40 +99,22 @@ const Ask05 = ({ sessionID, onNavigate }: Ask05Props) => {
           <button 
             className="btn btn-primary"
             onClick={handleNext}
-            disabled={textInput.trim().length === 0}
             aria-describedby="next-button-description"
           >
             ต่อไป
           </button>
           
-          {textInput.trim().length === 0 && (
+          {suggestion.trim().length === 0 && (
             <div id="next-button-description" className="status-message info mt-4">
-              กรุณากรอกข้อเสนอแนะเพื่อดำเนินการต่อ
+              คุณสามารถข้ามขั้นตอนนี้ได้หากไม่มีข้อเสนอแนะเพิ่มเติม
             </div>
           )}
-        </div>
-
-        {/* Tips for suggestions */}
-        <div className="context-info">
-          <h4 className="text-body font-bold text-text-primary mb-2">💡 ตัวอย่างข้อเสนอแนะที่เป็นประโยชน์:</h4>
-          <ul className="text-caption text-text-secondary space-y-1">
-            <li>• ควรปรับปรุงระบบขนส่งสาธารณะให้ดีกว่าก่อน</li>
-            <li>• จัดหาทางเลือกสำหรับผู้ที่ได้รับผลกระทบ</li>
-            <li>• มีการชดเชยหรือสวัสดิการเพิ่มเติม</li>
-            <li>• จัดให้มีการประชาสัมพันธ์และชี้แจงที่ชัดเจน</li>
-            <li>• มีการทดลองใช้ในพื้นที่เฉพาะก่อน</li>
-            <li>• ปรับอัตราให้เหมาะสมกับรายได้ของประชาชน</li>
-          </ul>
-        </div>
-
-        {/* Back button */}
-        <div className="mt-6 text-center">
-          <button 
-            className="btn btn-secondary text-sm max-w-xs"
-            onClick={() => onNavigate('ask04')}
-          >
-            ← กลับไปหน้าก่อน
-          </button>
+          
+          {suggestion.trim().length > 0 && (
+            <div className="status-message success mt-4">
+              ขอบคุณสำหรับข้อเสนอแนะที่มีค่า!
+            </div>
+          )}
         </div>
       </div>
     </div>
