@@ -54,100 +54,75 @@ const BudgetStep3Result = ({ sessionID, onNavigate, journeyData }: BudgetStep3Re
   return (
     <div className="theme-white min-h-screen">
       <div className="app-container py-8 animate-fade-in-up">
-        {/* Illustration Panel - Future City Collage */}
-        <div className="illustration-panel">
-          <div className="flex items-center justify-center h-64 bg-gradient-to-br from-blue-50 to-green-50 rounded-lg relative overflow-hidden p-6">
-            <div className="text-center">
-              <h2 className="text-h3 text-black mb-4">ภาพเมืองในอนาคต</h2>
-              
-              {/* Polaroid-style photos representing choices */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-2xl">
-                {resultSummary.map((item, index) => (
-                  <div 
-                    key={index}
-                    className="bg-white p-3 rounded-lg shadow-md transform rotate-1 hover:rotate-0 transition-transform duration-300"
-                    style={{ 
-                      transform: `rotate(${index % 2 === 0 ? '2deg' : '-2deg'})`,
-                    }}
-                  >
-                    <div className="bg-gray-100 rounded aspect-square flex items-center justify-center mb-2">
-                      <div className="text-4xl" role="img" aria-label={item.priority}>
-                        {item.icon}
-                      </div>
-                    </div>
-                    <div className="text-caption text-black text-center font-medium">
-                      {item.priority}
-                    </div>
-                    <div className="text-caption text-gray-600 text-center">
-                      {item.allocation} หน่วย ({item.percentage.toFixed(0)}%)
-                    </div>
-                  </div>
-                ))}
-              </div>
-              
-              {/* Future city elements */}
-              <div className="mt-6 flex justify-center space-x-4 text-3xl opacity-70">
-                <span role="img" aria-label="อาคารสูง">🏢</span>
-                <span role="img" aria-label="ต้นไม้">🌳</span>
-                <span role="img" aria-label="รถไฟฟ้า">🚊</span>
-                <span role="img" aria-label="ผู้คน">👥</span>
-                <span role="img" aria-label="โครงสร้างพื้นฐาน">🌉</span>
+        {/* Header with Refresh Icon */}
+        <div className="flex justify-between items-center mb-8">
+          <h1 className="text-h2 text-black">
+            ภาพเมืองในอนาคต
+          </h1>
+          <button
+            className="p-2 text-gray-600 hover:text-black transition-colors"
+            aria-label="Refresh"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+            </svg>
+          </button>
+        </div>
+
+        {/* Main Polaroid Collage */}
+        <div className="relative h-96 mb-12 flex items-center justify-center">
+          {/* Polaroid Photo 1 - Left */}
+          <div
+            className="absolute polaroid-frame"
+            style={{
+              transform: 'rotate(-12deg) translate(-60px, -20px)',
+              zIndex: 1
+            }}
+          >
+            <div className="polaroid-image bg-gradient-to-br from-blue-200 to-blue-300 flex items-center justify-center">
+              <div className="text-6xl">
+                {resultSummary[0]?.icon || '🏢'}
               </div>
             </div>
+            <div className="polaroid-caption">
+              {resultSummary[0]?.priority || 'รถไฟฟ้า'}
+            </div>
           </div>
-        </div>
 
-        {/* Summary Section */}
-        <div className="question-section">
-          <h1 className="text-h2 text-center text-black">
-            สรุปการจัดสรรงบประมาณของคุณ
-          </h1>
-        </div>
-
-        {/* Results Display */}
-        <div className="answer-section">
-          <div className="space-y-4">
-            {resultSummary.map((item, index) => (
-              <div 
-                key={index}
-                className="bg-gray-50 border border-gray-200 rounded-lg p-6 flex items-center justify-between"
-              >
-                <div className="flex items-center space-x-4">
-                  <div className="text-3xl" role="img" aria-label={item.priority}>
-                    {item.icon}
-                  </div>
-                  <div>
-                    <h3 className="text-body font-semibold text-black">
-                      {item.priority}
-                    </h3>
-                    <p className="text-caption text-gray-600">
-                      อันดับที่ {index + 1} ในความสำคัญ
-                    </p>
-                  </div>
-                </div>
-                
-                <div className="text-right">
-                  <div className="text-body font-semibold text-black">
-                    {item.allocation} หน่วย
-                  </div>
-                  <div className="text-caption text-gray-600">
-                    {item.percentage.toFixed(1)}% ของงบทั้งหมด
-                  </div>
-                </div>
+          {/* Polaroid Photo 2 - Center */}
+          <div
+            className="absolute polaroid-frame"
+            style={{
+              transform: 'rotate(8deg) translate(0px, 30px)',
+              zIndex: 3
+            }}
+          >
+            <div className="polaroid-image bg-gradient-to-br from-green-200 to-green-300 flex items-center justify-center">
+              <div className="text-6xl">
+                {resultSummary[1]?.icon || '🚌'}
               </div>
-            ))}
+            </div>
+            <div className="polaroid-caption">
+              {resultSummary[1]?.priority || 'รถเมล์'}
+            </div>
           </div>
-        </div>
 
-        {/* Summary Message */}
-        <div className="context-info">
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 text-center">
-            <p className="text-body text-black">
-              <strong>ยอดเยี่ยม!</strong> คุณได้วางแผนการใช้งบประมาณเพื่อพัฒนาเมืองในอนาคตแล้ว
-            </p>
-            <p className="text-caption text-gray-600 mt-2">
-              การจัดสรรงบประมาณนี้จะช่วยให้เมืองของเรามีการพัฒนาที่ตอบสนองความต้องการของประชาชน
-            </p>
+          {/* Polaroid Photo 3 - Right */}
+          <div
+            className="absolute polaroid-frame"
+            style={{
+              transform: 'rotate(-5deg) translate(70px, -30px)',
+              zIndex: 2
+            }}
+          >
+            <div className="polaroid-image bg-gradient-to-br from-yellow-200 to-orange-300 flex items-center justify-center">
+              <div className="text-6xl">
+                {resultSummary[2]?.icon || '🅿️'}
+              </div>
+            </div>
+            <div className="polaroid-caption">
+              {resultSummary[2]?.priority || 'ที่จอดรถ'}
+            </div>
           </div>
         </div>
 
@@ -165,7 +140,7 @@ const BudgetStep3Result = ({ sessionID, onNavigate, journeyData }: BudgetStep3Re
 
         {/* Completion Zone */}
         <div className="completion-zone">
-          <button 
+          <button
             className="btn btn-primary"
             onClick={handleNext}
           >
