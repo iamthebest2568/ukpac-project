@@ -329,13 +329,47 @@
     box-shadow: var(--shadow-sm);
   }
 
-  /* Disabled state - Clear visual feedback */
+  /* Disabled state - Enhanced accessibility */
   .btn:disabled {
-    opacity: 0.4;
+    opacity: 0.6;
     cursor: not-allowed;
     transform: none;
     box-shadow: none;
     pointer-events: none;
+    position: relative;
+  }
+
+  .btn:disabled::after {
+    content: attr(aria-label);
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--border-radius-sm);
+    font-size: var(--font-size-micro);
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 1000;
+    transition: opacity var(--transition-normal);
+  }
+
+  .btn:disabled:hover::after {
+    opacity: 1;
+  }
+
+  /* Enhanced button accessibility */
+  .btn[aria-pressed="true"] {
+    background-color: var(--color-success);
+    border-color: var(--color-success);
+  }
+
+  .btn:focus-visible {
+    outline: 2px solid var(--color-primary-action);
+    outline-offset: 2px;
   }
 
   /* White Theme Selection Checkbox - For white background screens */
