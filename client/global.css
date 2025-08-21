@@ -344,6 +344,15 @@
     box-shadow: var(--shadow-focus);
   }
 
+  .input-field.border-error {
+    border-color: var(--color-error);
+  }
+
+  .input-field.border-error:focus {
+    border-color: var(--color-error);
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.3);
+  }
+
   .input-field::placeholder {
     color: var(--color-text-secondary);
   }
