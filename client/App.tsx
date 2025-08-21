@@ -41,6 +41,17 @@ const JourneyRouter = () => {
   const [sessionID, setSessionID] = useState<string | null>(null);
   const [userJourneyData, setUserJourneyData] = useState<any>({});
 
+  // Add skip link for accessibility
+  const SkipLink = () => (
+    <a
+      href="#main-content"
+      className="skip-link"
+      aria-label="ข้ามไปยังเนื้อหาหลัก"
+    >
+      ข้ามไปยังเนื้อ���าหลัก
+    </a>
+  );
+
   useEffect(() => {
     // Parse URL query parameters on page load
     const urlParams = new URLSearchParams(window.location.search);
