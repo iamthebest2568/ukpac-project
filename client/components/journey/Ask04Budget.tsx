@@ -1,3 +1,5 @@
+import { logEvent } from '../../services/dataLogger.js';
+
 interface Ask04BudgetProps {
   sessionID: string | null;
   onNavigate: (screenId: string, data?: any) => void;
@@ -12,7 +14,18 @@ const Ask04Budget = ({ sessionID, onNavigate, journeyData }: Ask04BudgetProps) =
     }[choice];
 
     const data = { choice, choiceText };
-    
+
+    // Log the satisfaction choice (for MN3 path)
+    logEvent({
+      event: 'SATISFACTION_CHOICE',
+      payload: {
+        choice: choiceText,
+        choiceKey: choice,
+        path: 'MN3',
+        sessionID
+      }
+    });
+
     if (choice === 'satisfied') {
       onNavigate('fakeNews', data);
     } else {
@@ -29,7 +42,7 @@ const Ask04Budget = ({ sessionID, onNavigate, journeyData }: Ask04BudgetProps) =
             {/* Results summary visualization */}
             <div className="relative z-10 text-center">
               <div className="text-4xl mb-2" role="img" aria-label="ผลลัพธ์">📊</div>
-              <div className="text-caption text-gray-600 mb-2">ผลลัพธ์จากการตอบของคุณ</div>
+              <div className="text-caption text-gray-600 mb-2">ผลลัพธ์จากก��รตอบของคุณ</div>
               
               {/* Mini charts/icons representing results */}
               <div className="flex justify-center space-x-4 mt-3">

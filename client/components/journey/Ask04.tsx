@@ -1,3 +1,5 @@
+import { logEvent } from '../../services/dataLogger.js';
+
 interface Ask04Props {
   sessionID: string | null;
   onNavigate: (screenId: string, data?: any) => void;
@@ -12,7 +14,18 @@ const Ask04 = ({ sessionID, onNavigate, journeyData }: Ask04Props) => {
     }[choice];
 
     const data = { choice, choiceText };
-    
+
+    // Log the satisfaction choice (for MN1/MN2 path)
+    logEvent({
+      event: 'SATISFACTION_CHOICE',
+      payload: {
+        choice: choiceText,
+        choiceKey: choice,
+        path: 'MN1_MN2',
+        sessionID
+      }
+    });
+
     if (choice === 'satisfied') {
       onNavigate('fakeNews', data);
     } else {
