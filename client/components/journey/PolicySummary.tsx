@@ -16,12 +16,12 @@ const PolicySummary = ({ sessionID, onNavigate, journeyData }: PolicySummaryProp
 
   // Beneficiary mapping for icons and labels
   const beneficiaryMapping = {
-    'everyone': 'ทุกคน',
-    'locals': 'คนในพื้นที่',
-    'elderly': 'ผู้สูงอายุ',
-    'students': 'นักเรียนนักศึกษา',
-    'disabled': 'คนพิการ',
-    'other': 'อื่นๆ'
+    'everyone': { label: 'ทุกคน', icon: '👥' },
+    'locals': { label: 'คนในพื้นที่', icon: '🏘️' },
+    'elderly': { label: 'ผู้สูงอายุ', icon: '👴' },
+    'students': { label: 'นักเรียนนักศึกษ��', icon: '🎓' },
+    'disabled': { label: 'คนพิการ', icon: '♿' },
+    'other': { label: 'อื่นๆ', icon: '❓' }
   };
 
   useEffect(() => {
