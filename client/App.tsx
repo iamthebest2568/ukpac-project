@@ -16,6 +16,7 @@ import Ask02_2 from "./components/journey/Ask02_2";
 import Ask04 from "./components/journey/Ask04";
 import Ask05 from "./components/journey/Ask05";
 import EndScreen from "./components/journey/EndScreen";
+import PolicySummary from "./components/journey/PolicySummary";
 
 // Agree journey components
 import SourceSelection from "./components/journey/SourceSelection";
