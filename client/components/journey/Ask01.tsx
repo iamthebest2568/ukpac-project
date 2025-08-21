@@ -1,3 +1,5 @@
+import { logEvent } from '../../services/dataLogger.js';
+
 interface Ask01Props {
   sessionID: string | null;
   onNavigate: (screenId: string, data?: any) => void;
@@ -12,7 +14,17 @@ const Ask01 = ({ sessionID, onNavigate }: Ask01Props) => {
     }[choice];
 
     const data = { choice, choiceText };
-    
+
+    // Log user choice
+    logEvent({
+      event: 'ASK01_CHOICE',
+      payload: {
+        choice: choiceText,
+        choiceKey: choice,
+        sessionID
+      }
+    });
+
     if (choice === 'agree') {
       onNavigate('fakeNews', data);
     } else {
