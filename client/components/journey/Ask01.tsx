@@ -84,7 +84,7 @@ const Ask01 = ({ sessionID, onNavigate }: Ask01Props) => {
               เห็นด้วย
             </button>
             <div id="agree-description" className="sr-only">
-              เห็นด้วยกับนโยบายการเก็บค่าธรรมเนียมรถยนต์ส่วนบุคคล
+              เห็น��้วยกับนโยบายการเก็บค่าธรรมเนียมรถยนต์ส่วนบุคคล
             </div>
             
             <button 
@@ -108,7 +108,7 @@ const Ask01 = ({ sessionID, onNavigate }: Ask01Props) => {
               ไม่เห็นด้วย
             </button>
             <div id="disagree-description" className="sr-only">
-              ไม่เห็นด้วยกับนโยบายการเก็บค่าธรรมเนีย��รถยนต์ส่วนบุคคล
+              ไม่เห็นด้วยกับนโยบายการเก็บค่าธรรมเนียมรถยนต์ส���วนบุคคล
             </div>
           </div>
         </div>
@@ -127,7 +127,7 @@ const Ask01 = ({ sessionID, onNavigate }: Ask01Props) => {
 
         {/* Additional guidance */}
         <div className="status-message info">
-          กรุณาเลือกความคิดเห็นที่ตรงกับความรู้สึกของคุณมากที่สุ��
+          กรุณาเลือกความคิดเห็นที่ตรงกับความรู้สึกของคุณมากที่สุด
         </div>
       </div>
     </div>
