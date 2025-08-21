@@ -28,9 +28,13 @@ import RewardDecision from "./components/journey/RewardDecision";
 import RewardForm from "./components/journey/RewardForm";
 import FinalThankYou from "./components/journey/FinalThankYou";
 
-// Mini-game components (updated)
-import PolicyPriorities from "./components/games/PolicyPriorities";
-import BeneficiaryGroups from "./components/games/BeneficiaryGroups";
+// Flow containers
+import Flow_MiniGame_MN1 from "./components/flows/Flow_MiniGame_MN1";
+import Flow_MiniGame_MN2 from "./components/flows/Flow_MiniGame_MN2";
+import Flow_MiniGame_MN3 from "./components/flows/Flow_MiniGame_MN3";
+import Flow_EndSequence from "./components/flows/Flow_EndSequence";
+
+// Remaining mini-game components
 import BudgetAllocation from "./components/games/BudgetAllocation";
 import FakeNewsTest from "./components/games/FakeNewsTest";
 
