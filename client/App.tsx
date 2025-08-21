@@ -77,10 +77,35 @@ const JourneyRouter = () => {
       console.log('Journey Data Updated:', { screen: activeScreen, data, sessionID });
     }
     setActiveScreen(screenId);
-    
+
     // Update URL without page reload
     const newUrl = `${window.location.pathname}?gameID=${screenId}${sessionID ? `&sessionID=${sessionID}` : ''}`;
     window.history.pushState({}, '', newUrl);
+  };
+
+  // Flow completion handlers
+  const handleMN1Complete = (data: any) => {
+    setFlowData(prev => ({ ...prev, mn1: data }));
+    setActiveScreen('Flow_MiniGame_MN2');
+    console.log('MN1 Flow Completed:', data);
+  };
+
+  const handleMN2Complete = (data: any) => {
+    setFlowData(prev => ({ ...prev, mn2: data }));
+    setActiveScreen('ask04');
+    console.log('MN2 Flow Completed:', data);
+  };
+
+  const handleMN3Complete = (data: any) => {
+    setFlowData(prev => ({ ...prev, mn3: data }));
+    setActiveScreen('ask04_budget');
+    console.log('MN3 Flow Completed:', data);
+  };
+
+  const handleEndSequenceComplete = (data: any) => {
+    setFlowData(prev => ({ ...prev, endSequence: data }));
+    setActiveScreen('index'); // Return to index after completing the journey
+    console.log('End Sequence Completed:', data);
   };
 
   // Render appropriate component based on activeScreen state
