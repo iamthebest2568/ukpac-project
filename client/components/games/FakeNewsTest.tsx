@@ -1,3 +1,5 @@
+import { logEvent } from '../../services/dataLogger.js';
+
 interface FakeNewsTestProps {
   sessionID: string | null;
   onNavigate: (screenId: string, data?: any) => void;
@@ -6,6 +8,16 @@ interface FakeNewsTestProps {
 const FakeNewsTest = ({ sessionID, onNavigate }: FakeNewsTestProps) => {
   const handleAction = (action: 'search' | 'ignore') => {
     const data = { action };
+
+    // Log the fake news interaction
+    logEvent({
+      event: 'FAKENEWS_CHOICE',
+      payload: {
+        choice: action,
+        scenario: 'ข่าวเรื่องการเปลี่ยนแปลงค่าโดยสาร',
+        sessionID
+      }
+    });
 
     if (action === 'search') {
       // Navigate to source selection for the 'Agree' journey
