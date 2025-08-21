@@ -9,8 +9,12 @@ const Ask02_2 = ({ sessionID, onNavigate }: Ask02_2Props) => {
   const [textInput, setTextInput] = useState('');
 
   const handleNext = () => {
+    // Log the user's text input to the console
+    console.log('User other reason input:', textInput);
+    console.log('Session ID:', sessionID);
+
     const data = { textInput };
-    onNavigate('ask04', data);
+    onNavigate('ask05', data);
   };
 
   return (
@@ -27,7 +31,7 @@ const Ask02_2 = ({ sessionID, onNavigate }: Ask02_2Props) => {
         {/* Encouragement text */}
         <div className="context-info">
           <p className="text-body text-center">
-            ความคิดเห็นของคุณมีความสำคัญมากต่อการพัฒนาโยบาย
+            ความคิดเห็นของคุณมีควา���สำคัญมากต่อการพัฒนาโยบาย
           </p>
         </div>
 
