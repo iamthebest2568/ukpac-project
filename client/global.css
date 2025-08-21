@@ -315,6 +315,32 @@
     color: var(--color-error);
   }
 
+  /* Polaroid Frame Styles */
+  .polaroid-frame {
+    @apply bg-white p-4 pb-8 shadow-xl;
+    width: 200px;
+    border-radius: 4px;
+    transition: transform 0.3s ease;
+  }
+
+  .polaroid-frame:hover {
+    transform: scale(1.05) !important;
+  }
+
+  .polaroid-image {
+    @apply w-full h-40 mb-3;
+    border-radius: 2px;
+  }
+
+  .polaroid-caption {
+    @apply text-center text-black font-medium text-sm;
+    font-family: 'Kanit', sans-serif;
+    margin-top: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
   /* Selection Components */
   .selection-checkbox {
     display: flex;
