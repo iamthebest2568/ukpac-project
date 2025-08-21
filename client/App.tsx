@@ -85,6 +85,14 @@ const JourneyRouter = () => {
         return <Ask05 sessionID={sessionID} onNavigate={navigateToScreen} />;
       case 'fakeNews':
         return <FakeNewsTest sessionID={sessionID} onNavigate={navigateToScreen} />;
+      case 'sourceSelection':
+        return <SourceSelection sessionID={sessionID} onNavigate={navigateToScreen} />;
+      case 'rewardDecision':
+        return <RewardDecision sessionID={sessionID} onNavigate={navigateToScreen} />;
+      case 'rewardForm':
+        return <RewardForm sessionID={sessionID} onNavigate={navigateToScreen} />;
+      case 'finalThankYou':
+        return <FinalThankYou sessionID={sessionID} onNavigate={navigateToScreen} />;
       case 'endScreen':
         return <EndScreen sessionID={sessionID} onNavigate={navigateToScreen} journeyData={userJourneyData} />;
       case null:
