@@ -20,11 +20,13 @@ interface DashboardProps {
 type DashboardSection = 'overview' | 'deepdive' | 'endgame' | 'feedback' | 'trends';
 
 const Dashboard = ({ token, user, onLogout }: DashboardProps) => {
+  console.log('📊 Dashboard: Component initialized with props:', { token, user: user?.username });
   const [activeSection, setActiveSection] = useState<DashboardSection>('overview');
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    console.log('📊 Dashboard: useEffect triggered, setting loading to false');
     // Dashboard is ready - no token verification needed for local auth
     setIsLoading(false);
   }, []);
@@ -32,6 +34,7 @@ const Dashboard = ({ token, user, onLogout }: DashboardProps) => {
   // Token verification removed - using local authentication
 
   const renderActiveSection = () => {
+    console.log('🎨 Dashboard: Rendering section:', activeSection);
     switch (activeSection) {
       case 'overview':
         return <EngagementOverview token={token} />;
@@ -47,6 +50,7 @@ const Dashboard = ({ token, user, onLogout }: DashboardProps) => {
   };
 
   if (isLoading) {
+    console.log('⏳ Dashboard: Still loading...');
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
@@ -69,6 +73,7 @@ const Dashboard = ({ token, user, onLogout }: DashboardProps) => {
     );
   }
 
+  console.log('🎨 Dashboard: Rendering main dashboard layout');
   return (
     <div className="min-h-screen bg-gray-50 flex">
       {/* Sidebar */}
