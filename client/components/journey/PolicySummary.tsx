@@ -132,7 +132,7 @@ const PolicySummary = ({ sessionID, onNavigate, journeyData }: PolicySummaryProp
             className="btn btn-primary"
             onClick={handleNext}
           >
-            ต่อไป
+            ไปต่อ
           </button>
         </div>
       </div>

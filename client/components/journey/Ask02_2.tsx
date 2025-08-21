@@ -70,7 +70,7 @@ const Ask02_2 = ({ sessionID, onNavigate }: Ask02_2Props) => {
             disabled={textInput.trim().length === 0}
             aria-describedby="next-button-description"
           >
-            ต่อไป
+            ไปต่อ
           </button>
 
           {textInput.trim().length === 0 && (

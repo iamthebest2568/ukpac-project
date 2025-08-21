@@ -85,7 +85,7 @@ const Ask05 = ({ sessionID, onNavigate }: Ask05Props) => {
         {/* Progress indicator */}
         <div className="progress-container">
           <div className="progress-dots">
-            <div className="progress-dot completed" aria-label="ขั้นตอนที่ 1 เสร็จสิ้น"></div>
+            <div className="progress-dot completed" aria-label="ขั้นตอนที�� 1 เสร็จสิ้น"></div>
             <div className="progress-dot completed" aria-label="ขั้นตอนที่ 2 เสร็จสิ้น"></div>
             <div className="progress-dot completed" aria-label="ขั้นตอนที่ 3 เสร็จสิ้น"></div>
             <div className="progress-dot completed" aria-label="ขั้นตอนที่ 4 เสร็จสิ้น"></div>
@@ -101,7 +101,7 @@ const Ask05 = ({ sessionID, onNavigate }: Ask05Props) => {
             onClick={handleNext}
             aria-describedby="next-button-description"
           >
-            ต่อไป
+            ไปต่อ
           </button>
           
           {suggestion.trim().length === 0 && (

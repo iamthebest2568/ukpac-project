@@ -97,7 +97,7 @@ const PolicyPriorities = ({ sessionID, onNavigate }: PolicyPrioritiesProps) => {
         {/* Error Prevention Message */}
         {selectedPriorities.length >= maxSelections && (
           <div className="status-message warning">
-            คุณเลือกครบจำนวนแล้ว หากต้องการเลือกข้อใหม่ กรุณายกเลิกการเลือกข้อใดข้อหนึ่งก่อน
+            คุณเลือกครบจำนวนแล้ว หากต้องการเลือกข้อใหม่ กรุณายกเลิกกา��เลือกข้อใดข้อหนึ่งก่อน
           </div>
         )}
 
@@ -121,7 +121,7 @@ const PolicyPriorities = ({ sessionID, onNavigate }: PolicyPrioritiesProps) => {
             disabled={selectedPriorities.length === 0}
             aria-describedby="next-button-description"
           >
-            ต่อไป
+            ไปต่อ
           </button>
           
           {selectedPriorities.length === 0 && (

@@ -134,7 +134,7 @@ const BeneficiaryGroups = ({ sessionID, onNavigate }: BeneficiaryGroupsProps) =>
             disabled={selectedGroups.length === 0}
             aria-describedby="next-button-description"
           >
-            ต่อไป
+            ไปต่อ
           </button>
           
           {selectedGroups.length === 0 && (
