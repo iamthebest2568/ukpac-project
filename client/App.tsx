@@ -94,6 +94,8 @@ const JourneyRouter = () => {
         return <BudgetStep3Result sessionID={sessionID} onNavigate={navigateToScreen} journeyData={userJourneyData} />;
       case 'ask04':
         return <Ask04 sessionID={sessionID} onNavigate={navigateToScreen} journeyData={userJourneyData} />;
+      case 'ask04_budget':
+        return <Ask04Budget sessionID={sessionID} onNavigate={navigateToScreen} journeyData={userJourneyData} />;
       case 'ask05':
         return <Ask05 sessionID={sessionID} onNavigate={navigateToScreen} />;
       case 'fakeNews':
