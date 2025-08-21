@@ -67,11 +67,13 @@ const JourneyRouter = () => {
     const urlParams = new URLSearchParams(window.location.search);
     const gameID = urlParams.get('gameID');
     const sessionIDParam = urlParams.get('sessionID');
-    
+
+    console.log('App.tsx - URL parsing:', { gameID, sessionIDParam, fullURL: window.location.href });
+
     // Set sessionID
     setSessionID(sessionIDParam || `session_${Date.now()}`);
-    
-    // Set activeScreen - default to 'ask01' if no gameID provided
+
+    // Set activeScreen - default to 'index' if no gameID provided
     setActiveScreen(gameID || 'index');
   }, []);
 
@@ -115,6 +117,8 @@ const JourneyRouter = () => {
 
   // Render appropriate component based on activeScreen state
   const renderJourneyComponent = () => {
+    console.log('App.tsx - Rendering component for activeScreen:', activeScreen);
+
     switch (activeScreen) {
       case 'index':
         return <IndexPage onNavigate={navigateToScreen} />;
