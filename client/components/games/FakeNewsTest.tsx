@@ -6,13 +6,13 @@ interface FakeNewsTestProps {
 const FakeNewsTest = ({ sessionID, onNavigate }: FakeNewsTestProps) => {
   const handleAction = (action: 'search' | 'ignore') => {
     const data = { action };
-    
+
     if (action === 'search') {
       // Navigate to source selection for the 'Agree' journey
       onNavigate('sourceSelection', data);
     } else {
-      // Navigate to reward decision for the 'Agree' journey
-      onNavigate('rewardDecision', data);
+      // Navigate directly to Flow_EndSequence (reward decision flow)
+      onNavigate('Flow_EndSequence', data);
     }
   };
 
