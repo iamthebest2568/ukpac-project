@@ -34,6 +34,9 @@ import Flow_MiniGame_MN2 from "./components/flows/Flow_MiniGame_MN2";
 import Flow_MiniGame_MN3 from "./components/flows/Flow_MiniGame_MN3";
 import Flow_EndSequence from "./components/flows/Flow_EndSequence";
 
+// Dashboard
+import DashboardApp from "./components/dashboard/DashboardApp";
+
 // Remaining mini-game components
 import BudgetAllocation from "./components/games/BudgetAllocation";
 import FakeNewsTest from "./components/games/FakeNewsTest";
