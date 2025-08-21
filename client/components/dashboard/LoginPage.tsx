@@ -4,9 +4,10 @@
  */
 
 import { useState } from 'react';
+import { authenticateUser } from '../../data/dashboardService.js';
 
 interface LoginPageProps {
-  onLogin: (token: string, user: any) => void;
+  onLogin: (authResult: any) => void;
   onError: (error: string) => void;
 }
 
@@ -18,33 +19,21 @@ const LoginPage = ({ onLogin, onError }: LoginPageProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
 
     try {
-      const response = await fetch('http://localhost:3001/api/v1/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(credentials)
-      });
+      const authResult = authenticateUser(credentials.username, credentials.password);
 
-      const data = await response.json();
-
-      if (response.ok) {
-        // Store token in localStorage
-        localStorage.setItem('dashboardToken', data.token);
-        localStorage.setItem('dashboardUser', JSON.stringify(data.user));
-        
-        onLogin(data.token, data.user);
+      if (authResult.success) {
+        onLogin(authResult);
       } else {
-        onError(data.message || 'Login failed');
+        onError(authResult.error || 'Login failed');
       }
     } catch (error) {
       console.error('Login error:', error);
-      onError('Unable to connect to server. Please make sure the backend is running on port 3001.');
+      onError('Authentication error occurred');
     } finally {
       setIsLoading(false);
     }

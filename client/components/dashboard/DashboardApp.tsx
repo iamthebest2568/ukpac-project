@@ -6,6 +6,7 @@
 import { useState, useEffect } from 'react';
 import LoginPage from './LoginPage';
 import Dashboard from './Dashboard';
+import { checkAuthentication } from '../../data/dashboardService.js';
 
 const DashboardApp = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -19,44 +20,28 @@ const DashboardApp = () => {
     checkExistingAuth();
   }, []);
 
-  const checkExistingAuth = async () => {
+  const checkExistingAuth = () => {
     try {
-      const savedToken = localStorage.getItem('dashboardToken');
-      const savedUser = localStorage.getItem('dashboardUser');
+      const authResult = checkAuthentication();
 
-      if (savedToken && savedUser) {
-        // Verify token is still valid
-        const response = await fetch('http://localhost:3001/api/v1/auth/verify', {
-          method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${savedToken}`,
-            'Content-Type': 'application/json'
-          }
-        });
-
-        if (response.ok) {
-          setToken(savedToken);
-          setUser(JSON.parse(savedUser));
-          setIsAuthenticated(true);
-        } else {
-          // Token is invalid, clear storage
-          localStorage.removeItem('dashboardToken');
-          localStorage.removeItem('dashboardUser');
-        }
+      if (authResult.isAuthenticated) {
+        setToken('local-auth-token'); // Mock token for compatibility
+        setUser(authResult.user);
+        setIsAuthenticated(true);
       }
     } catch (error) {
       console.error('Error checking authentication:', error);
       // Clear potentially corrupted data
-      localStorage.removeItem('dashboardToken');
-      localStorage.removeItem('dashboardUser');
+      sessionStorage.removeItem('dashboardAuth');
+      sessionStorage.removeItem('isLoggedIn');
     } finally {
       setIsLoading(false);
     }
   };
 
-  const handleLogin = (newToken: string, newUser: any) => {
-    setToken(newToken);
-    setUser(newUser);
+  const handleLogin = (authResult: any) => {
+    setToken('local-auth-token'); // Mock token for compatibility
+    setUser(authResult.user);
     setIsAuthenticated(true);
     setError(null);
   };
@@ -68,23 +53,9 @@ const DashboardApp = () => {
     setIsAuthenticated(false);
     setError(null);
 
-    // Clear localStorage
-    localStorage.removeItem('dashboardToken');
-    localStorage.removeItem('dashboardUser');
-
-    // Optional: Call logout endpoint
-    if (token) {
-      fetch('http://localhost:3001/api/v1/auth/logout', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        }
-      }).catch(error => {
-        console.error('Logout request failed:', error);
-        // Don't block logout on API failure
-      });
-    }
+    // Clear sessionStorage
+    sessionStorage.removeItem('dashboardAuth');
+    sessionStorage.removeItem('isLoggedIn');
   };
 
   const handleError = (errorMessage: string) => {
