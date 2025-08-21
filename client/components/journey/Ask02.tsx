@@ -16,7 +16,7 @@ const Ask02 = ({ sessionID, onNavigate }: Ask02Props) => {
     if (choice === 'coverage') {
       onNavigate('priorities', data);
     } else if (choice === 'ineffective') {
-      onNavigate('budget', data);
+      onNavigate('budget_step1_choice', data);
     } else {
       onNavigate('ask02_2', data);
     }
