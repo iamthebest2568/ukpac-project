@@ -166,6 +166,10 @@
     color: var(--color-text-secondary);
   }
 
+  .text-error {
+    color: var(--color-error);
+  }
+
   /* Button System - Jakob's Law compliance */
   .btn {
     display: inline-flex;
