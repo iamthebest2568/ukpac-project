@@ -500,7 +500,7 @@
     pointer-events: none;
   }
 
-  /* Input Fields */
+  /* Input Fields - Mobile optimized */
   .input-field {
     width: 100%;
     padding: var(--space-md);
@@ -510,6 +510,18 @@
     font-family: inherit;
     transition: all var(--transition-normal);
     background-color: transparent;
+    min-height: 48px; /* Touch target accessibility */
+    box-sizing: border-box;
+    -webkit-appearance: none; /* Remove iOS styling */
+    resize: vertical; /* Only allow vertical resize on textareas */
+  }
+
+  /* Mobile input optimizations */
+  @media (max-width: 375px) {
+    .input-field {
+      font-size: 16px; /* Prevent zoom on iOS */
+      padding: var(--space-sm) var(--space-md);
+    }
   }
 
   .input-field:focus {
