@@ -22,7 +22,7 @@ const DashboardApp = () => {
   }, []);
 
   const checkExistingAuth = () => {
-    console.log('🔍 DashboardApp: Checking existing authentication...');
+    console.log('�� DashboardApp: Checking existing authentication...');
     try {
       const authResult = checkAuthentication();
       console.log('🔍 DashboardApp: Auth result:', authResult);
@@ -120,6 +120,10 @@ const DashboardApp = () => {
     error
   });
 
+  // Temporarily use the minimal test component to debug the issue
+  return <MinimalDashboardTest />;
+
+  /*
   if (isAuthenticated && token && user) {
     console.log('📊 DashboardApp: Rendering Dashboard component');
     return (
@@ -138,6 +142,7 @@ const DashboardApp = () => {
       />
     );
   }
+  */
 };
 
 export default DashboardApp;
