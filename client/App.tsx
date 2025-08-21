@@ -7,6 +7,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { logEvent } from './services/dataLogger.js';
 
 // Journey components
 import IndexPage from "./components/journey/IndexPage";
@@ -58,7 +59,7 @@ const JourneyRouter = () => {
       className="skip-link"
       aria-label="ข้ามไปยังเนื้อหาหลัก"
     >
-      ข้าม���ปยังเนื้อหาหลั���
+      ข้ามไปยังเนื้อหาหลั���
     </a>
   );
 
@@ -68,7 +69,15 @@ const JourneyRouter = () => {
     const gameID = urlParams.get('gameID');
     const sessionIDParam = urlParams.get('sessionID');
 
-    console.log('App.tsx - URL parsing:', { gameID, sessionIDParam, fullURL: window.location.href });
+    // Log page navigation
+    logEvent({
+      event: 'PAGE_NAVIGATION',
+      payload: {
+        gameID: gameID || 'index',
+        url: window.location.href,
+        referrer: document.referrer
+      }
+    });
 
     // Set sessionID
     setSessionID(sessionIDParam || `session_${Date.now()}`);
@@ -81,7 +90,17 @@ const JourneyRouter = () => {
   const navigateToScreen = (screenId: string, data?: any) => {
     if (data) {
       setUserJourneyData(prev => ({ ...prev, [activeScreen || 'unknown']: data }));
-      console.log('Journey Data Updated:', { screen: activeScreen, data, sessionID });
+
+      // Log screen navigation
+      logEvent({
+        event: 'SCREEN_NAVIGATION',
+        payload: {
+          fromScreen: activeScreen,
+          toScreen: screenId,
+          data,
+          sessionID
+        }
+      });
     }
     setActiveScreen(screenId);
 
@@ -94,30 +113,30 @@ const JourneyRouter = () => {
   const handleMN1Complete = (data: any) => {
     setFlowData(prev => ({ ...prev, mn1: data }));
     setActiveScreen('Flow_MiniGame_MN2');
-    console.log('MN1 Flow Completed:', data);
+    // MN1 completion logged in component
   };
 
   const handleMN2Complete = (data: any) => {
     setFlowData(prev => ({ ...prev, mn2: data }));
     setActiveScreen('ask04');
-    console.log('MN2 Flow Completed:', data);
+    // MN2 completion logged in component
   };
 
   const handleMN3Complete = (data: any) => {
     setFlowData(prev => ({ ...prev, mn3: data }));
     setActiveScreen('ask04_budget');
-    console.log('MN3 Flow Completed:', data);
+    // MN3 completion logged in component
   };
 
   const handleEndSequenceComplete = (data: any) => {
     setFlowData(prev => ({ ...prev, endSequence: data }));
     setActiveScreen('index'); // Return to index after completing the journey
-    console.log('End Sequence Completed:', data);
+    // End sequence completion logged in component
   };
 
   // Render appropriate component based on activeScreen state
   const renderJourneyComponent = () => {
-    console.log('App.tsx - Rendering component for activeScreen:', activeScreen);
+    // Remove debug logging for production
 
     switch (activeScreen) {
       case 'index':
