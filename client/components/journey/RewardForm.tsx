@@ -84,7 +84,7 @@ const RewardForm = ({ sessionID, onNavigate }: RewardFormProps) => {
           <div className="text-center">
             <div className="text-4xl mb-3" role="img" aria-label="แบบฟอร์ม">📝</div>
             <p className="text-body text-text-secondary">
-              กรุณากรอกข้อมูลของคุณเพื่อเข้าร่วมการจับรางวัล
+              กรุณาก���อกข้อมูลของคุณเพื่อเข้าร่วมการจับรางวัล
             </p>
           </div>
         </div>
@@ -170,12 +170,6 @@ const RewardForm = ({ sessionID, onNavigate }: RewardFormProps) => {
               ส่งข้อมูลเพื่อเข้าร่วมการจับรางวัล
             </div>
             
-            <button 
-              className="btn btn-secondary"
-              onClick={handleGoBack}
-            >
-              ← กลับไปก่อนหน้านี้
-            </button>
           </div>
         </div>
 

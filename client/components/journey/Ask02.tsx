@@ -119,15 +119,6 @@ const Ask02 = ({ sessionID, onNavigate }: Ask02Props) => {
           <p className="text-caption">ขั้นตอนที่ 2 จาก 5</p>
         </div>
 
-        {/* Navigation help */}
-        <div className="completion-zone">
-          <button 
-            className="btn btn-secondary text-sm"
-            onClick={() => onNavigate('ask01')}
-          >
-            ← กลับไปหน้าก่อน
-          </button>
-        </div>
       </div>
     </div>
   );
