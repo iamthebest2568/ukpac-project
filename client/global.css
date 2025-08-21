@@ -364,30 +364,46 @@
     color: var(--color-error);
   }
 
-  /* Polaroid Frame Styles */
+  /* Polaroid Frame Styles - Mobile responsive */
   .polaroid-frame {
-    @apply bg-white p-4 pb-8 shadow-xl;
-    width: 200px;
+    @apply bg-white p-3 pb-6 shadow-lg;
+    width: clamp(160px, 45vw, 200px);
     border-radius: 4px;
     transition: transform 0.3s ease;
+    box-sizing: border-box;
   }
 
   .polaroid-frame:hover {
-    transform: scale(1.05) !important;
+    transform: scale(1.03) !important;
   }
 
   .polaroid-image {
-    @apply w-full h-40 mb-3;
+    @apply w-full mb-2;
+    height: clamp(120px, 30vw, 160px);
     border-radius: 2px;
   }
 
   .polaroid-caption {
-    @apply text-center text-black font-medium text-sm;
+    @apply text-center text-black font-medium;
     font-family: 'Kanit', sans-serif;
-    margin-top: 8px;
+    font-size: clamp(11px, 2.5vw, 14px);
+    margin-top: 6px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    line-height: 1.2;
+  }
+
+  /* Mobile polaroid adjustments */
+  @media (max-width: 375px) {
+    .polaroid-frame {
+      @apply p-2 pb-4;
+      margin: 0 2px; /* Tighter spacing on small screens */
+    }
+
+    .polaroid-frame:hover {
+      transform: scale(1.02) !important;
+    }
   }
 
   /* Selection Components - Mobile optimized */
