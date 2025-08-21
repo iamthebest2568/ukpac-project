@@ -103,20 +103,31 @@
 }
 
 @layer base {
-  /* Layout System - Consistent container and spacing */
+  /* Layout System - Mobile-first responsive container */
   .app-container {
+    width: 100%;
     max-width: 420px;
     margin: 0 auto;
-    padding: 0 var(--space-md);
+    padding: 0 var(--space-sm);
     min-height: 100vh;
+    box-sizing: border-box;
   }
 
+  /* Small mobile devices (320px and below) */
   @media (max-width: 320px) {
     .app-container {
       padding: 0 var(--space-xs);
     }
   }
 
+  /* Large mobile devices (375px and up) */
+  @media (min-width: 375px) {
+    .app-container {
+      padding: 0 var(--space-md);
+    }
+  }
+
+  /* Tablet and desktop (421px and up) */
   @media (min-width: 421px) {
     .app-container {
       padding: 0 var(--space-lg);
