@@ -14,6 +14,7 @@ import Ask01 from "./components/journey/Ask01";
 import Ask02 from "./components/journey/Ask02";
 import Ask02_2 from "./components/journey/Ask02_2";
 import Ask04 from "./components/journey/Ask04";
+import Ask04Budget from "./components/journey/Ask04Budget";
 import Ask05 from "./components/journey/Ask05";
 import EndScreen from "./components/journey/EndScreen";
 import PolicySummary from "./components/journey/PolicySummary";
