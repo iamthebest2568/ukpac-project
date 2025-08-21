@@ -83,11 +83,11 @@ const Sidebar = ({ activeSection, onSectionChange, user }: SidebarProps) => {
       {/* Footer/Status */}
       <div className="p-4 border-t border-gray-200">
         <div className="text-center">
-          <div className="w-3 h-3 bg-blue-400 rounded-full inline-block mr-2"></div>
-          <span className="text-sm text-gray-600">Local Data Ready</span>
+          <div className="w-3 h-3 bg-green-400 rounded-full inline-block mr-2 animate-pulse"></div>
+          <span className="text-sm text-gray-600">Real-Time Data</span>
         </div>
         <div className="text-xs text-gray-500 text-center mt-2">
-          Serverless Mode • 5,420+ Sessions
+          Live Collection • Auto-Updates
         </div>
       </div>
     </div>
