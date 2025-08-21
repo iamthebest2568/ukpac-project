@@ -22,7 +22,7 @@ const DashboardApp = () => {
   }, []);
 
   const checkExistingAuth = () => {
-    console.log('�� DashboardApp: Checking existing authentication...');
+    console.log('🔍 DashboardApp: Checking existing authentication...');
     try {
       const authResult = checkAuthentication();
       console.log('🔍 DashboardApp: Auth result:', authResult);
@@ -120,19 +120,37 @@ const DashboardApp = () => {
     error
   });
 
-  // Temporarily use the minimal test component to debug the issue
-  return <MinimalDashboardTest />;
-
-  /*
   if (isAuthenticated && token && user) {
     console.log('📊 DashboardApp: Rendering Dashboard component');
-    return (
-      <Dashboard
-        token={token}
-        user={user}
-        onLogout={handleLogout}
-      />
-    );
+    console.log('📊 DashboardApp: Dashboard props:', { token, user, hasOnLogout: !!handleLogout });
+
+    // Add error boundary
+    try {
+      return (
+        <Dashboard
+          token={token}
+          user={user}
+          onLogout={handleLogout}
+        />
+      );
+    } catch (error) {
+      console.error('❌ DashboardApp: Error rendering Dashboard:', error);
+      return (
+        <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+          <div className="text-center">
+            <div className="text-red-500 text-5xl mb-4">💥</div>
+            <h2 className="text-xl font-semibold text-gray-900 mb-2">Dashboard Error</h2>
+            <p className="text-gray-600 mb-4">Error rendering dashboard: {error.message}</p>
+            <button
+              onClick={() => window.location.reload()}
+              className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+            >
+              Reload Page
+            </button>
+          </div>
+        </div>
+      );
+    }
   } else {
     console.log('🔐 DashboardApp: Rendering LoginPage component');
     return (
@@ -142,7 +160,6 @@ const DashboardApp = () => {
       />
     );
   }
-  */
 };
 
 export default DashboardApp;
