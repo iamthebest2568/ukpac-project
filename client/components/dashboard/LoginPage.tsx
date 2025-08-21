@@ -115,25 +115,6 @@ const LoginPage = ({ onLogin, onError }: LoginPageProps) => {
               )}
             </button>
           </form>
-
-          {/* Demo Credentials Info */}
-          <div className="mt-6 p-4 bg-gray-50 rounded-lg">
-            <h4 className="text-sm font-medium text-gray-700 mb-2">Demo Credentials:</h4>
-            <div className="text-sm text-gray-600 space-y-1">
-              <p><strong>Username:</strong> alex</p>
-              <p><strong>Password:</strong> Geetr2526Ur!</p>
-            </div>
-            <button
-              type="button"
-              onClick={() => {
-                setCredentials({ username: 'alex', password: 'Geetr2526Ur!' });
-              }}
-              className="mt-2 text-xs text-blue-600 hover:text-blue-800 underline"
-              disabled={isLoading}
-            >
-              Use demo credentials
-            </button>
-          </div>
         </div>
 
         {/* Footer */}
