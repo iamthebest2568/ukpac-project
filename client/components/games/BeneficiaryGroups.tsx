@@ -37,7 +37,7 @@ const BeneficiaryGroups = ({ sessionID, onNavigate }: BeneficiaryGroupsProps) =>
 
   const handleNext = () => {
     const data = { selectedGroups };
-    onNavigate('ask04', data);
+    onNavigate('policySummary', data);
   };
 
   const isSelectionDisabled = (groupId: string) => {
@@ -123,7 +123,7 @@ const BeneficiaryGroups = ({ sessionID, onNavigate }: BeneficiaryGroupsProps) =>
             <div className="progress-dot active" aria-label="ขั้นตอนที่ 4 กำลังดำเนินการ"></div>
             <div className="progress-dot inactive" aria-label="ขั้นตอนที่ 5"></div>
           </div>
-          <p className="text-caption">ขั้นตอนที่ 4 จาก 5</p>
+          <p className="text-caption">ขั้นตอนที��� 4 จาก 5</p>
         </div>
 
         {/* Completion Zone */}
