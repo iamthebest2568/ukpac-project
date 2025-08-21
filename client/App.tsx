@@ -85,6 +85,12 @@ const JourneyRouter = () => {
         return <PolicySummary sessionID={sessionID} onNavigate={navigateToScreen} journeyData={userJourneyData} />;
       case 'budget':
         return <BudgetAllocation sessionID={sessionID} onNavigate={navigateToScreen} />;
+      case 'budget_step1_choice':
+        return <BudgetStep1Choice sessionID={sessionID} onNavigate={navigateToScreen} />;
+      case 'budget_step2_allocation':
+        return <BudgetStep2Allocation sessionID={sessionID} onNavigate={navigateToScreen} journeyData={userJourneyData} />;
+      case 'budget_step3_result':
+        return <BudgetStep3Result sessionID={sessionID} onNavigate={navigateToScreen} journeyData={userJourneyData} />;
       case 'ask04':
         return <Ask04 sessionID={sessionID} onNavigate={navigateToScreen} journeyData={userJourneyData} />;
       case 'ask05':
