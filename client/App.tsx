@@ -48,7 +48,7 @@ const JourneyRouter = () => {
       className="skip-link"
       aria-label="ข้ามไปยังเนื้อหาหลัก"
     >
-      ข้ามไปยังเนื้อ���าหลัก
+      ข้ามไปยังเนื้อหาหลัก
     </a>
   );
 
@@ -145,7 +145,10 @@ const JourneyRouter = () => {
 
   return (
     <div className="min-h-screen">
-      {renderJourneyComponent()}
+      <SkipLink />
+      <main id="main-content" role="main">
+        {renderJourneyComponent()}
+      </main>
     </div>
   );
 };
