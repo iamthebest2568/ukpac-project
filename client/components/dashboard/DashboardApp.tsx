@@ -6,6 +6,7 @@
 import { useState, useEffect } from 'react';
 import LoginPage from './LoginPage';
 import Dashboard from './Dashboard';
+import SimpleDashboard from './SimpleDashboard';
 import MinimalDashboardTest from './MinimalDashboardTest';
 import { checkAuthentication } from '../../data/realTimeDashboardService.js';
 
