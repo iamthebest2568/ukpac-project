@@ -25,33 +25,11 @@ const Dashboard = ({ token, user, onLogout }: DashboardProps) => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Verify token on component mount
-    verifyToken();
+    // Dashboard is ready - no token verification needed for local auth
+    setIsLoading(false);
   }, []);
 
-  const verifyToken = async () => {
-    try {
-      const response = await fetch('http://localhost:3001/api/v1/auth/verify', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        }
-      });
-
-      if (!response.ok) {
-        throw new Error('Token verification failed');
-      }
-
-      setIsLoading(false);
-    } catch (error) {
-      console.error('Token verification error:', error);
-      setError('Session expired. Please login again.');
-      setTimeout(() => {
-        onLogout();
-      }, 2000);
-    }
-  };
+  // Token verification removed - using local authentication
 
   const renderActiveSection = () => {
     switch (activeSection) {
