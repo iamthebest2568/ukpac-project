@@ -4,6 +4,7 @@
  */
 
 import { useState, useEffect } from "react";
+import { logEvent } from '../../../services/dataLogger.js';
 
 interface Step2_AllocationProps {
   sessionID: string | null;
@@ -66,12 +67,23 @@ const Step2_Allocation = ({ sessionID, onNext, onBack, journeyData }: Step2_Allo
   };
 
   const handleNext = () => {
-    const data = { 
-      budget_step2_allocation: { 
-        budgetAllocation, 
-        allocatedBudget, 
-        selectedPriorities 
-      } 
+    // Log the budget allocation completion
+    logEvent({
+      event: 'BUDGET_STEP2_COMPLETE',
+      payload: {
+        budgetAllocation,
+        allocatedBudget,
+        selectedPriorities,
+        sessionID
+      }
+    });
+
+    const data = {
+      budget_step2_allocation: {
+        budgetAllocation,
+        allocatedBudget,
+        selectedPriorities
+      }
     };
     onNext(data);
   };
@@ -85,7 +97,7 @@ const Step2_Allocation = ({ sessionID, onNext, onBack, journeyData }: Step2_Allo
         {/* Question Section */}
         <div className="question-section">
           <h1 className="text-h2 text-center text-black">
-            คุณจะให้งบประมาณแต่ละข้อเท่าไร
+            คุณจ���ให้งบประมาณแต่ละข้อเท่าไร
           </h1>
         </div>
         
@@ -112,7 +124,7 @@ const Step2_Allocation = ({ sessionID, onNext, onBack, journeyData }: Step2_Allo
                 aria-valuenow={allocatedBudget}
                 aria-valuemin={0}
                 aria-valuemax={totalBudget}
-                aria-label={`ใช้งบประมาณไปแล้ว ${allocatedBudget} จาก ${totalBudget}`}
+                aria-label={`ใช้งบประมาณไ��แล้ว ${allocatedBudget} จาก ${totalBudget}`}
               ></div>
             </div>
             <div className="text-caption mt-2 text-center text-black">
@@ -221,7 +233,7 @@ const Step2_Allocation = ({ sessionID, onNext, onBack, journeyData }: Step2_Allo
             disabled={!isComplete}
             aria-describedby="next-button-description"
           >
-            ไปต่อ
+            ไปต���อ
           </button>
           
           {!isComplete && (

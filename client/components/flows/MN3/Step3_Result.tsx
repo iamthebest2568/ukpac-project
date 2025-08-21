@@ -4,6 +4,7 @@
  */
 
 import { useEffect, useState } from "react";
+import { logEvent } from '../../../services/dataLogger.js';
 
 interface Step3_ResultProps {
   sessionID: string | null;
@@ -53,6 +54,17 @@ const Step3_Result = ({ sessionID, onNext, onBack, journeyData }: Step3_ResultPr
   }, [journeyData]);
 
   const handleNext = () => {
+    // Log the complete MN3 minigame with full data
+    logEvent({
+      event: 'MINIGAME_MN3_COMPLETE',
+      payload: {
+        top3Choices: journeyData?.budget_step1_choice?.top3BudgetChoices || [],
+        budgetAllocation: journeyData?.budget_step2_allocation?.budgetAllocation || {},
+        resultSummary,
+        sessionID
+      }
+    });
+
     const data = { budget_step3_result: { budgetResultReviewed: true, resultSummary } };
     onNext(data);
   };
@@ -139,7 +151,7 @@ const Step3_Result = ({ sessionID, onNext, onBack, journeyData }: Step3_ResultPr
             <div className="progress-dot completed" aria-label="ขั้นตอนที่ 2 เสร็จสิ้น"></div>
             <div className="progress-dot completed" aria-label="ขั้นตอนที่ 3 เสร็จสิ้น"></div>
             <div className="progress-dot completed" aria-label="ขั้นตอนที่ 4 เสร็จสิ้น"></div>
-            <div className="progress-dot active" aria-label="ขั้นตอนที่ 5 กำลังดำเนินการ"></div>
+            <div className="progress-dot active" aria-label="ขั้นตอนที่ 5 กำลังดำ���นินการ"></div>
           </div>
           <p className="text-caption text-black">ขั้นตอนที่ 5 จาก 5</p>
         </div>
