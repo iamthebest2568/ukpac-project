@@ -3,6 +3,8 @@
  * Moved from FinalThankYou component
  */
 
+import { logEvent } from '../../../services/dataLogger.js';
+
 interface Step3_ThankYouProps {
   sessionID: string | null;
   onNext: (data: any) => void;
@@ -12,14 +14,28 @@ interface Step3_ThankYouProps {
 
 const Step3_ThankYou = ({ sessionID, onNext, onBack, journeyData }: Step3_ThankYouProps) => {
   const handleShare = () => {
-    // Share functionality - non-functional as per flowchart but completes the flow
-    console.log('Share button clicked - completing flow');
+    // Log the share action
+    logEvent({
+      event: 'FINAL_SHARE_CLICKED',
+      payload: {
+        action: 'shared',
+        sessionID
+      }
+    });
+
     onNext({ action: 'shared', completedAt: new Date().toISOString() });
   };
 
   const handleFinish = () => {
-    // Finish game - non-functional as per flowchart but completes the flow
-    console.log('Finish game clicked - completing flow');
+    // Log the finish game action
+    logEvent({
+      event: 'FINAL_FINISH_CLICKED',
+      payload: {
+        action: 'finished',
+        sessionID
+      }
+    });
+
     onNext({ action: 'finished', completedAt: new Date().toISOString() });
   };
 

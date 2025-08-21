@@ -4,6 +4,7 @@
  */
 
 import { useState } from "react";
+import { logEvent } from '../../../services/dataLogger.js';
 
 interface Step2_FormProps {
   sessionID: string | null;
@@ -30,7 +31,7 @@ const Step2_Form = ({ sessionID, onNext, onBack, initialData }: Step2_FormProps)
 
     // Phone validation
     if (!formData.phone.trim()) {
-      newErrors.phone = 'กรุณา���รอกเบอร์โทร';
+      newErrors.phone = 'กรุณากรอกเบอร์โทร';
     } else if (!/^[0-9]{9,10}$/.test(formData.phone.replace(/[-\s]/g, ''))) {
       newErrors.phone = 'เบอร์โทรศัพท์ไม่ถูกต้อง';
     }
@@ -49,6 +50,15 @@ const Step2_Form = ({ sessionID, onNext, onBack, initialData }: Step2_FormProps)
 
   const handleNext = () => {
     if (validateForm()) {
+      // Log the reward form submission
+      logEvent({
+        event: 'REWARD_FORM_SUBMIT',
+        payload: {
+          data: formData,
+          sessionID
+        }
+      });
+
       // Navigate to final thank you
       const data = { rewardForm: formData };
       onNext(data);
@@ -125,7 +135,7 @@ const Step2_Form = ({ sessionID, onNext, onBack, initialData }: Step2_FormProps)
 
         {/* Privacy Notice */}
         <div className="context-info">
-          <h4 className="text-body font-bold text-black mb-2">🔒 ค���ามเป็นส่วนตัว:</h4>
+          <h4 className="text-body font-bold text-black mb-2">🔒 ความเป็นส่วนตัว:</h4>
           <ul className="text-caption text-gray-600 space-y-1">
             <li>• ข้อมูลจะถูกใช้เฉพาะสำหรับการจัดส่งรางวัลเท่านั้น</li>
             <li>• เราจะไม่แชร์ข้อมูลให้กับบุคคลที่สาม</li>

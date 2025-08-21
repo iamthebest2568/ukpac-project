@@ -3,6 +3,8 @@
  * Moved from RewardDecision component
  */
 
+import { logEvent } from '../../../services/dataLogger.js';
+
 interface Step1_DecisionProps {
   sessionID: string | null;
   onNext: (data: any) => void;
@@ -16,6 +18,16 @@ const Step1_Decision = ({ sessionID, onNext, onBack, initialData }: Step1_Decisi
       participate: 'ลุ้นรับรางวัล',
       decline: 'ไม่'
     }[choice];
+
+    // Log the reward decision
+    logEvent({
+      event: 'REWARD_DECISION',
+      payload: {
+        choice,
+        choiceText,
+        sessionID
+      }
+    });
 
     const data = { rewardDecision: { choice, choiceText } };
     onNext(data);
@@ -95,7 +107,7 @@ const Step1_Decision = ({ sessionID, onNext, onBack, initialData }: Step1_Decisi
             <div className="progress-dot completed" aria-label="ขั้นตอนที่ 2 เสร็จสิ้น"></div>
             <div className="progress-dot completed" aria-label="ขั้นตอนที่ 3 เสร็จสิ้น"></div>
             <div className="progress-dot completed" aria-label="ขั้นตอนที่ 4 เสร็จสิ้น"></div>
-            <div className="progress-dot active" aria-label="ขั้นตอนที่ 5 กำลั��ดำเนินการ"></div>
+            <div className="progress-dot active" aria-label="ขั้นตอนท��่ 5 กำลังดำเนินการ"></div>
           </div>
           <p className="text-caption text-black">ขั้นตอนที่ 5 จาก 5</p>
         </div>
