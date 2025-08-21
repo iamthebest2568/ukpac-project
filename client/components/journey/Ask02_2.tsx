@@ -19,7 +19,7 @@ const Ask02_2 = ({ sessionID, onNavigate }: Ask02_2Props) => {
         {/* Question Section */}
         <div className="question-section">
           <h1 className="text-h2">
-            อื่นๆ คืออะไ���<br />
+            อื่นๆ คืออะไร<br />
             ช่วยบอกเราหน่อยได้ไหม
           </h1>
         </div>
@@ -92,7 +92,7 @@ const Ask02_2 = ({ sessionID, onNavigate }: Ask02_2Props) => {
             <li>• กังวลเรื่องผลกระทบต่อผู้มีรายได้น้อย</li>
             <li>• เห็นว่าควรมีระบบขนส่งสาธารณะที่ดีกว่าก่อน</li>
             <li>• ต้องการให้มีการศึกษาผลกระทบเพิ่มเติม</li>
-            <li>• มีข้อเสนอแนะเชิงนโยบาย</li>
+            <li>• มีข้อเสนอแนะเชิง���โยบาย</li>
           </ul>
         </div>
       </div>
