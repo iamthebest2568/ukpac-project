@@ -119,20 +119,47 @@ const JourneyRouter = () => {
         return <Ask02 sessionID={sessionID} onNavigate={navigateToScreen} />;
       case 'ask02_2':
         return <Ask02_2 sessionID={sessionID} onNavigate={navigateToScreen} />;
-      case 'priorities':
-        return <PolicyPriorities sessionID={sessionID} onNavigate={navigateToScreen} />;
-      case 'beneficiaries':
-        return <BeneficiaryGroups sessionID={sessionID} onNavigate={navigateToScreen} />;
-      case 'policySummary':
-        return <PolicySummary sessionID={sessionID} onNavigate={navigateToScreen} journeyData={userJourneyData} />;
+
+      // Flow containers
+      case 'Flow_MiniGame_MN1':
+        return (
+          <Flow_MiniGame_MN1
+            sessionID={sessionID}
+            onComplete={handleMN1Complete}
+            onBack={() => navigateToScreen('ask02')}
+          />
+        );
+      case 'Flow_MiniGame_MN2':
+        return (
+          <Flow_MiniGame_MN2
+            sessionID={sessionID}
+            onComplete={handleMN2Complete}
+            onBack={() => navigateToScreen('Flow_MiniGame_MN1')}
+            mn1Data={flowData.mn1}
+          />
+        );
+      case 'Flow_MiniGame_MN3':
+        return (
+          <Flow_MiniGame_MN3
+            sessionID={sessionID}
+            onComplete={handleMN3Complete}
+            onBack={() => navigateToScreen('ask02')}
+          />
+        );
+      case 'Flow_EndSequence':
+        return (
+          <Flow_EndSequence
+            sessionID={sessionID}
+            onComplete={handleEndSequenceComplete}
+            onBack={() => navigateToScreen('fakeNews')}
+          />
+        );
+
+      // Legacy components (still needed for some paths)
       case 'budget':
         return <BudgetAllocation sessionID={sessionID} onNavigate={navigateToScreen} />;
-      case 'budget_step1_choice':
-        return <BudgetStep1Choice sessionID={sessionID} onNavigate={navigateToScreen} />;
-      case 'budget_step2_allocation':
-        return <BudgetStep2Allocation sessionID={sessionID} onNavigate={navigateToScreen} journeyData={userJourneyData} />;
-      case 'budget_step3_result':
-        return <BudgetStep3Result sessionID={sessionID} onNavigate={navigateToScreen} journeyData={userJourneyData} />;
+
+      // Core journey components
       case 'ask04':
         return <Ask04 sessionID={sessionID} onNavigate={navigateToScreen} journeyData={userJourneyData} />;
       case 'ask04_budget':
@@ -143,12 +170,8 @@ const JourneyRouter = () => {
         return <FakeNewsTest sessionID={sessionID} onNavigate={navigateToScreen} />;
       case 'sourceSelection':
         return <SourceSelection sessionID={sessionID} onNavigate={navigateToScreen} />;
-      case 'rewardDecision':
-        return <RewardDecision sessionID={sessionID} onNavigate={navigateToScreen} />;
-      case 'rewardForm':
-        return <RewardForm sessionID={sessionID} onNavigate={navigateToScreen} />;
-      case 'finalThankYou':
-        return <FinalThankYou sessionID={sessionID} onNavigate={navigateToScreen} />;
+
+      // End screens
       case 'endScreen':
         return <EndScreen sessionID={sessionID} onNavigate={navigateToScreen} journeyData={userJourneyData} />;
       case null:
