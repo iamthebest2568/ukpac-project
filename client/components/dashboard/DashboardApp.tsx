@@ -6,6 +6,7 @@
 import { useState, useEffect } from 'react';
 import LoginPage from './LoginPage';
 import Dashboard from './Dashboard';
+import WorkingDashboard from './WorkingDashboard';
 import { checkAuthentication } from '../../data/realTimeDashboardService.js';
 
 const DashboardApp = () => {
