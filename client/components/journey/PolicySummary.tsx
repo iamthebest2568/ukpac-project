@@ -19,7 +19,7 @@ const PolicySummary = ({ sessionID, onNavigate, journeyData }: PolicySummaryProp
     'everyone': { label: 'ทุกคน', icon: '👥' },
     'locals': { label: 'คนในพื้นที่', icon: '🏘️' },
     'elderly': { label: 'ผู้สูงอายุ', icon: '👴' },
-    'students': { label: 'นักเรียนนักศึกษ��', icon: '🎓' },
+    'students': { label: 'นักเรียนนักศึกษา', icon: '🎓' },
     'disabled': { label: 'คนพิการ', icon: '♿' },
     'other': { label: 'อื่นๆ', icon: '❓' }
   };
@@ -28,25 +28,17 @@ const PolicySummary = ({ sessionID, onNavigate, journeyData }: PolicySummaryProp
     // Extract data from journey
     const prioritiesData = journeyData?.priorities?.selectedPriorities || [];
     const beneficiariesData = journeyData?.beneficiaries?.selectedGroups || [];
-    
-    // Convert beneficiary IDs to display labels
-    const beneficiaryLabels = beneficiariesData.map((id: string) => 
-      beneficiaryMapping[id as keyof typeof beneficiaryMapping] || id
+
+    // Convert beneficiary IDs to display objects with icons and labels
+    const beneficiaryObjects = beneficiariesData.map((id: string) =>
+      beneficiaryMapping[id as keyof typeof beneficiaryMapping] || { label: id, icon: '❓' }
     );
 
     // Create summary cards - map each priority to the selected beneficiaries
     const cards: SummaryCard[] = prioritiesData.map((priority: string) => ({
       priority,
-      beneficiaries: beneficiaryLabels
+      beneficiaries: beneficiaryObjects
     }));
-
-    // Add a default "ยกเว้น" (exemption) card if we have priorities
-    if (cards.length > 0) {
-      cards.push({
-        priority: 'ยกเว้น',
-        beneficiaries: beneficiaryLabels
-      });
-    }
 
     setSummaryCards(cards);
   }, [journeyData]);
