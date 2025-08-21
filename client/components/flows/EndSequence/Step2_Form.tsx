@@ -15,9 +15,7 @@ interface Step2_FormProps {
 const Step2_Form = ({ sessionID, onNext, onBack, initialData }: Step2_FormProps) => {
   const [formData, setFormData] = useState({
     name: initialData?.name || '',
-    email: initialData?.email || '',
-    phone: initialData?.phone || '',
-    address: initialData?.address || ''
+    phone: initialData?.phone || ''
   });
 
   const [errors, setErrors] = useState<{[key: string]: string}>({});
@@ -27,19 +25,12 @@ const Step2_Form = ({ sessionID, onNext, onBack, initialData }: Step2_FormProps)
 
     // Name validation
     if (!formData.name.trim()) {
-      newErrors.name = 'กรุณากรอกชื่อ-นามสกุล';
-    }
-
-    // Email validation
-    if (!formData.email.trim()) {
-      newErrors.email = 'กรุณากรอกอีเมล';
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = 'รูปแบบอีเมลไม่ถูกต้อง';
+      newErrors.name = 'กรุณากรอกชื่อ';
     }
 
     // Phone validation
     if (!formData.phone.trim()) {
-      newErrors.phone = 'กรุณากรอกเบอร์โทรศัพท์';
+      newErrors.phone = 'กรุณา���รอกเบอร์โทร';
     } else if (!/^[0-9]{9,10}$/.test(formData.phone.replace(/[-\s]/g, ''))) {
       newErrors.phone = 'เบอร์โทรศัพท์ไม่ถูกต้อง';
     }
@@ -97,7 +88,7 @@ const Step2_Form = ({ sessionID, onNext, onBack, initialData }: Step2_FormProps)
             {/* Name */}
             <div>
               <label htmlFor="name" className="block text-body font-medium text-black mb-2">
-                ชื่อ - นามสกุล *
+                ชื่อ *
               </label>
               <input
                 id="name"
@@ -105,35 +96,17 @@ const Step2_Form = ({ sessionID, onNext, onBack, initialData }: Step2_FormProps)
                 value={formData.name}
                 onChange={(e) => handleInputChange('name', e.target.value)}
                 className={`input-field ${errors.name ? 'border-error' : ''}`}
-                placeholder="กรุณากรอกชื่อ-นามสกุล"
+                placeholder="กรุณากรอกชื่อ"
               />
               {errors.name && (
                 <div className="text-error text-caption mt-1">{errors.name}</div>
               )}
             </div>
 
-            {/* Email */}
-            <div>
-              <label htmlFor="email" className="block text-body font-medium text-black mb-2">
-                อีเมล *
-              </label>
-              <input
-                id="email"
-                type="email"
-                value={formData.email}
-                onChange={(e) => handleInputChange('email', e.target.value)}
-                className={`input-field ${errors.email ? 'border-error' : ''}`}
-                placeholder="example@email.com"
-              />
-              {errors.email && (
-                <div className="text-error text-caption mt-1">{errors.email}</div>
-              )}
-            </div>
-
             {/* Phone */}
             <div>
               <label htmlFor="phone" className="block text-body font-medium text-black mb-2">
-                เบอร์โทรศัพท์ *
+                เบอร์โทร *
               </label>
               <input
                 id="phone"
@@ -147,27 +120,12 @@ const Step2_Form = ({ sessionID, onNext, onBack, initialData }: Step2_FormProps)
                 <div className="text-error text-caption mt-1">{errors.phone}</div>
               )}
             </div>
-
-            {/* Address */}
-            <div>
-              <label htmlFor="address" className="block text-body font-medium text-black mb-2">
-                ที่อยู่ (ไม่บังคับ)
-              </label>
-              <textarea
-                id="address"
-                value={formData.address}
-                onChange={(e) => handleInputChange('address', e.target.value)}
-                className="input-field h-24 resize-none"
-                placeholder="ที่อยู่สำหรับจัดส่งรางวัล (ถ้ามี)"
-                rows={3}
-              />
-            </div>
           </div>
         </div>
 
         {/* Privacy Notice */}
         <div className="context-info">
-          <h4 className="text-body font-bold text-black mb-2">🔒 ความเป็นส่วนตัว:</h4>
+          <h4 className="text-body font-bold text-black mb-2">🔒 ค���ามเป็นส่วนตัว:</h4>
           <ul className="text-caption text-gray-600 space-y-1">
             <li>• ข้อมูลจะถูกใช้เฉพาะสำหรับการจัดส่งรางวัลเท่านั้น</li>
             <li>• เราจะไม่แชร์ข้อมูลให้กับบุคคลที่สาม</li>
@@ -177,20 +135,11 @@ const Step2_Form = ({ sessionID, onNext, onBack, initialData }: Step2_FormProps)
 
         {/* Completion Zone */}
         <div className="completion-zone">
-          {onBack && (
-            <button 
-              className="btn btn-secondary mb-4"
-              onClick={onBack}
-            >
-              ← กลับ
-            </button>
-          )}
-          
           <button 
             className="btn btn-primary"
             onClick={handleNext}
           >
-            ส่งข้อมูล
+            ส่งเพื่อลุ้นรับรางวัล
           </button>
         </div>
       </div>

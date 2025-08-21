@@ -13,8 +13,8 @@ interface Step1_DecisionProps {
 const Step1_Decision = ({ sessionID, onNext, onBack, initialData }: Step1_DecisionProps) => {
   const handleChoice = (choice: 'participate' | 'decline') => {
     const choiceText = {
-      participate: 'เข้าร่วม',
-      decline: 'ไม่เข้าร่วม'
+      participate: 'ลุ้นรับรางวัล',
+      decline: 'ไม่'
     }[choice];
 
     const data = { rewardDecision: { choice, choiceText } };
@@ -44,15 +44,8 @@ const Step1_Decision = ({ sessionID, onNext, onBack, initialData }: Step1_Decisi
         {/* Question Section */}
         <div className="question-section">
           <h1 className="text-h2 text-center text-black">
-            คุณต้องการเข้าร่วมโครงการรับรางวัลหรือไม่?
+            ขอบคุณที่ร่วมเป็นส่วนหนึ่งในการพัฒนาเมือง อยากกรอกข้อมูลเพิ่มเติมเพื่อลุ้นรับรางวัลบัตรเดินทางมูลค่า 300 บาท หรือไม่
           </h1>
-        </div>
-
-        {/* Context text */}
-        <div className="context-info">
-          <p className="text-body text-center text-black">
-            เราขอเชิญคุณเข้าร่วมโครงการรับรางวัลจากการมีส่วนร่วมในแบบสำรวจนี้
-          </p>
         </div>
 
         {/* Answer Section - Choice buttons */}
@@ -63,8 +56,8 @@ const Step1_Decision = ({ sessionID, onNext, onBack, initialData }: Step1_Decisi
               onClick={() => handleChoice('participate')}
               aria-describedby="participate-description"
             >
-              <span className="mr-3" role="img" aria-label="เข้าร่วม">✅</span>
-              เข้าร่วมโครงการรับรางวัล
+              <span className="mr-3" role="img" aria-label="ลุ้นรับรางวัล">✅</span>
+              ลุ้นรับรางวัล
             </button>
             <div id="participate-description" className="sr-only">
               เข้าร่วมโครงการและกรอกข้อมูลเพื่อรับรางวัล
@@ -75,8 +68,8 @@ const Step1_Decision = ({ sessionID, onNext, onBack, initialData }: Step1_Decisi
               onClick={() => handleChoice('decline')}
               aria-describedby="decline-description"
             >
-              <span className="mr-3" role="img" aria-label="ไม่เข้าร่วม">❌</span>
-              ไม่เข้าร่วม
+              <span className="mr-3" role="img" aria-label="ไม่">❌</span>
+              ไม่
             </button>
             <div id="decline-description" className="sr-only">
               ไม่เข้าร่วมโครงการรับรางวัล
@@ -102,21 +95,9 @@ const Step1_Decision = ({ sessionID, onNext, onBack, initialData }: Step1_Decisi
             <div className="progress-dot completed" aria-label="ขั้นตอนที่ 2 เสร็จสิ้น"></div>
             <div className="progress-dot completed" aria-label="ขั้นตอนที่ 3 เสร็จสิ้น"></div>
             <div className="progress-dot completed" aria-label="ขั้นตอนที่ 4 เสร็จสิ้น"></div>
-            <div className="progress-dot active" aria-label="ขั้นตอนที่ 5 กำลังดำเนินการ"></div>
+            <div className="progress-dot active" aria-label="ขั้นตอนที่ 5 กำลั��ดำเนินการ"></div>
           </div>
           <p className="text-caption text-black">ขั้นตอนที่ 5 จาก 5</p>
-        </div>
-
-        {/* Completion Zone */}
-        <div className="completion-zone">
-          {onBack && (
-            <button 
-              className="btn btn-secondary text-sm"
-              onClick={onBack}
-            >
-              ← กลับไปหน้าก่อน
-            </button>
-          )}
         </div>
       </div>
     </div>

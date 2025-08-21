@@ -12,24 +12,13 @@ interface Step3_ThankYouProps {
 
 const Step3_ThankYou = ({ sessionID, onNext, onBack, journeyData }: Step3_ThankYouProps) => {
   const handleShare = () => {
-    // Share functionality
-    if (navigator.share) {
-      navigator.share({
-        title: 'ร่วมพัฒนาเมืองไทยให้ดีขึ้น - แบบสำรวจเชิงโต้ตอบ',
-        text: 'มาร่วมแสดงความคิดเห็นเกี่ยวกับนโยบายการพัฒนาเมืองกับเราด้วย! ใช้เวลาแค่ 3-5 นาที',
-        url: window.location.origin
-      });
-    } else {
-      // Fallback - copy to clipboard
-      navigator.clipboard.writeText(window.location.origin);
-      alert('ลิงก์ถูกคัดลอกแล้ว! แชร์ให้เพื่อนได้เลย');
-    }
+    // Share functionality - non-functional as per flowchart
+    console.log('Share button clicked - non-functional');
   };
 
   const handleFinish = () => {
-    // Complete the journey and return to index
-    const data = { journeyCompleted: true, completedAt: new Date().toISOString() };
-    onNext(data);
+    // Finish game - non-functional as per flowchart
+    console.log('Finish game clicked - non-functional');
   };
 
   return (
@@ -58,44 +47,8 @@ const Step3_ThankYou = ({ sessionID, onNext, onBack, journeyData }: Step3_ThankY
         {/* Thank you message */}
         <div className="question-section">
           <h1 className="text-h2 text-center text-black">
-            ขอบคุณที่ร่วมพัฒนาเมืองไทย
+            ขอบคุณที่ร่วมกิจกรรม เราจะประกาศรายชื่อผู้โชคดีวันที่ XXXXXX
           </h1>
-        </div>
-
-        {/* Message content */}
-        <div className="context-info">
-          <div className="text-center space-y-4">
-            <p className="text-body text-black">
-              ความค���ดเห็นของคุณจะถูกนำไปใช้ในการพัฒนานโยบายสาธารณะให้ดีขึ้น
-            </p>
-            
-            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-              <h3 className="text-body font-bold text-green-800 mb-2">สิ่งที่เกิดขึ้นต่อไป:</h3>
-              <ul className="text-caption text-green-700 space-y-1 text-left">
-                <li>• ข้อมูลจะถูกวิเคราะห์อย่างละเอียด</li>
-                <li>• ผลการศึกษาจะถูกนำเสนอต่อหน่วยงานที่เกี่ยวข้อง</li>
-                <li>• คุณจะได้รับข่าวสารผลการศึกษา (หากระบุอีเมล)</li>
-                <li>• เราจะมีโครงการสำรวจใหม่ในอนาคต</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        {/* Statistics */}
-        <div className="answer-section">
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 text-center">
-            <h3 className="text-body font-bold text-blue-800 mb-4">สถิติการมีส่วนร่วม</h3>
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <div className="text-2xl font-bold text-blue-600">5 นาที</div>
-                <div className="text-caption text-blue-700">เวลาที่คุณใช้</div>
-              </div>
-              <div>
-                <div className="text-2xl font-bold text-blue-600">100%</div>
-                <div className="text-caption text-blue-700">ความสมบูรณ์</div>
-              </div>
-            </div>
-          </div>
         </div>
 
         {/* Action buttons */}
@@ -106,21 +59,16 @@ const Step3_ThankYou = ({ sessionID, onNext, onBack, journeyData }: Step3_ThankY
               onClick={handleShare}
             >
               <span className="mr-2" role="img" aria-label="แชร์">📤</span>
-              แชร์ให้เพื่อน
+              แชร์เกมนี้ให้เพื่อน
             </button>
             
             <button 
               className="btn btn-secondary"
               onClick={handleFinish}
             >
-              เสร็จสิ้น
+              จบเกม
             </button>
           </div>
-        </div>
-
-        {/* Final message */}
-        <div className="status-message success">
-          <strong>ภารกิจสำเร็จ!</strong> คุณได้ช่วยทำให้เมืองไทยดีขึ้นแล้ว 🇹🇭
         </div>
       </div>
     </div>
