@@ -14,9 +14,9 @@ const Ask02 = ({ sessionID, onNavigate }: Ask02Props) => {
     const data = { choice, choiceText };
     
     if (choice === 'coverage') {
-      onNavigate('priorities', data);
+      onNavigate('Flow_MiniGame_MN1', data);
     } else if (choice === 'ineffective') {
-      onNavigate('budget_step1_choice', data);
+      onNavigate('Flow_MiniGame_MN3', data);
     } else {
       onNavigate('ask02_2', data);
     }
