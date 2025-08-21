@@ -4,6 +4,7 @@
  */
 
 import { useState } from "react";
+import { logEvent } from '../../../services/dataLogger.js';
 
 interface Step1_PrioritiesProps {
   sessionID: string | null;
@@ -17,7 +18,7 @@ const Step1_Priorities = ({ sessionID, onNext, onBack, initialData = [] }: Step1
   const maxSelections = 3;
 
   const priorities = [
-    'ลดค่าโดยสารรถไฟฟ้า',
+    'ลดค่า���ดยสารรถไฟฟ้า',
     'ปรับปรุงคุณภาพรถเมล์',
     'ตั๋วร่วม',
     'เพิ่มความถี่รถเมล์',
@@ -44,6 +45,15 @@ const Step1_Priorities = ({ sessionID, onNext, onBack, initialData = [] }: Step1
   };
 
   const handleNext = () => {
+    // Log the minigame completion
+    logEvent({
+      event: 'MINIGAME_MN1_COMPLETE',
+      payload: {
+        selectedPolicies: selectedPriorities,
+        sessionID
+      }
+    });
+
     const data = { priorities: { selectedPriorities } };
     onNext(data);
   };

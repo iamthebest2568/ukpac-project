@@ -4,6 +4,7 @@
  */
 
 import { useState } from "react";
+import { logEvent } from '../../../services/dataLogger.js';
 
 interface Step1_ChoiceProps {
   sessionID: string | null;
@@ -46,6 +47,15 @@ const Step1_Choice = ({ sessionID, onNext, onBack, initialData }: Step1_ChoicePr
   };
 
   const handleNext = () => {
+    // Log the budget choice selection
+    logEvent({
+      event: 'BUDGET_STEP1_COMPLETE',
+      payload: {
+        top3Choices: selectedPriorities,
+        sessionID
+      }
+    });
+
     const data = { budget_step1_choice: { top3BudgetChoices: selectedPriorities } };
     onNext(data);
   };
