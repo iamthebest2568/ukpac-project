@@ -78,6 +78,8 @@ const JourneyRouter = () => {
         return <PolicyPriorities sessionID={sessionID} onNavigate={navigateToScreen} />;
       case 'beneficiaries':
         return <BeneficiaryGroups sessionID={sessionID} onNavigate={navigateToScreen} />;
+      case 'policySummary':
+        return <PolicySummary sessionID={sessionID} onNavigate={navigateToScreen} journeyData={userJourneyData} />;
       case 'budget':
         return <BudgetAllocation sessionID={sessionID} onNavigate={navigateToScreen} />;
       case 'ask04':
