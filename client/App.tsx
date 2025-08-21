@@ -17,6 +17,12 @@ import Ask04 from "./components/journey/Ask04";
 import Ask05 from "./components/journey/Ask05";
 import EndScreen from "./components/journey/EndScreen";
 
+// Agree journey components
+import SourceSelection from "./components/journey/SourceSelection";
+import RewardDecision from "./components/journey/RewardDecision";
+import RewardForm from "./components/journey/RewardForm";
+import FinalThankYou from "./components/journey/FinalThankYou";
+
 // Mini-game components (updated)
 import PolicyPriorities from "./components/games/PolicyPriorities";
 import BeneficiaryGroups from "./components/games/BeneficiaryGroups";
