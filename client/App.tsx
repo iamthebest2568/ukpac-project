@@ -44,6 +44,7 @@ const JourneyRouter = () => {
   const [activeScreen, setActiveScreen] = useState<string | null>(null);
   const [sessionID, setSessionID] = useState<string | null>(null);
   const [userJourneyData, setUserJourneyData] = useState<any>({});
+  const [flowData, setFlowData] = useState<any>({}); // Store data from completed flows
 
   // Add skip link for accessibility
   const SkipLink = () => (
