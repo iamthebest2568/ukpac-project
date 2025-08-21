@@ -208,7 +208,7 @@ const BudgetAllocation = ({ sessionID, onNavigate }: BudgetAllocationProps) => {
           
           {!isComplete && (
             <div id="next-button-description" className="status-message info mt-4">
-              กรุณาจัดสรร���บประมาณให้ครบ {totalBudget} บาทเพื่อดำเนินการต่อ
+              กรุณาจัดสรรงบประมาณให้ครบ {totalBudget} บาทเพื่อดำเนินการต่อ
             </div>
           )}
         </div>
