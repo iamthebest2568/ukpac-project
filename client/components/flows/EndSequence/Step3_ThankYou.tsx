@@ -12,13 +12,15 @@ interface Step3_ThankYouProps {
 
 const Step3_ThankYou = ({ sessionID, onNext, onBack, journeyData }: Step3_ThankYouProps) => {
   const handleShare = () => {
-    // Share functionality - non-functional as per flowchart
-    console.log('Share button clicked - non-functional');
+    // Share functionality - non-functional as per flowchart but completes the flow
+    console.log('Share button clicked - completing flow');
+    onNext({ action: 'shared', completedAt: new Date().toISOString() });
   };
 
   const handleFinish = () => {
-    // Finish game - non-functional as per flowchart
-    console.log('Finish game clicked - non-functional');
+    // Finish game - non-functional as per flowchart but completes the flow
+    console.log('Finish game clicked - completing flow');
+    onNext({ action: 'finished', completedAt: new Date().toISOString() });
   };
 
   return (
