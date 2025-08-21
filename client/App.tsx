@@ -10,13 +10,15 @@ import { useState, useEffect } from "react";
 
 // Journey components
 import IndexPage from "./components/journey/IndexPage";
+import DashboardIndex from "./pages/DashboardIndex";
 import Ask01 from "./components/journey/Ask01";
 import Ask02 from "./components/journey/Ask02";
 import Ask02_2 from "./components/journey/Ask02_2";
 import Ask04 from "./components/journey/Ask04";
 import Ask04Budget from "./components/journey/Ask04Budget";
 import Ask05 from "./components/journey/Ask05";
-import EndScreen from "./components/journey/EndScreen";
+// End screens
+import EndScreen from "./components/games/ThankYouScreen";
 import PolicySummary from "./components/journey/PolicySummary";
 import BudgetStep1Choice from "./components/journey/BudgetStep1Choice";
 import BudgetStep2Allocation from "./components/journey/BudgetStep2Allocation";
@@ -115,7 +117,7 @@ const JourneyRouter = () => {
   const renderJourneyComponent = () => {
     switch (activeScreen) {
       case 'index':
-        return <DashboardIndex onNavigate={navigateToScreen} />;
+        return <IndexPage onNavigate={navigateToScreen} />;
       case 'dashboard':
         return <DashboardApp />;
       case 'ask01':
@@ -179,6 +181,8 @@ const JourneyRouter = () => {
       // End screens
       case 'endScreen':
         return <EndScreen sessionID={sessionID} onNavigate={navigateToScreen} journeyData={userJourneyData} />;
+      case 'dashboardIndex':
+        return <DashboardIndex onNavigate={navigateToScreen} />;
       case null:
         return <IndexPage onNavigate={navigateToScreen} />;
       default:
