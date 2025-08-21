@@ -24,7 +24,7 @@ const Step2_Summary = ({ sessionID, onNext, onBack, journeyData }: Step2_Summary
   const beneficiaryMapping = {
     'everyone': { label: 'ทุกคน', icon: '👥' },
     'locals': { label: 'คนในพื้นที่', icon: '🏘️' },
-    'elderly': { label: 'ผู้สูง���ายุ', icon: '👴' },
+    'elderly': { label: 'ผู้สูงอายุ', icon: '👴' },
     'students': { label: 'นักเรียนนักศึกษา', icon: '🎓' },
     'disabled': { label: 'คนพิการ', icon: '♿' },
     'other': { label: 'อื่นๆ', icon: '❓' }
@@ -134,20 +134,12 @@ const Step2_Summary = ({ sessionID, onNext, onBack, journeyData }: Step2_Summary
 
         {/* Completion Zone */}
         <div className="completion-zone">
-          {onBack && (
-            <button 
-              className="btn btn-secondary mb-4"
-              onClick={onBack}
-            >
-              ← กลับ
-            </button>
-          )}
           
           <button 
             className="btn btn-primary"
             onClick={handleNext}
           >
-            ต่อไป
+            ไปต่อ
           </button>
         </div>
       </div>

@@ -21,7 +21,7 @@ const Step1_Priorities = ({ sessionID, onNext, onBack, initialData = [] }: Step1
     'ปรับปรุงคุณภาพรถเมล์',
     'ตั๋วร่วม',
     'เพิ่มความถี่รถเมล์',
-    'เพิ่มความถี่��ถไฟฟ้า',
+    'เพิ่มความถี่รถไฟฟ้า',
     'เพิ่มที่จอดรถ',
     'เพิ่ม feeder ในซอย'
   ];
@@ -58,7 +58,7 @@ const Step1_Priorities = ({ sessionID, onNext, onBack, initialData = [] }: Step1
         {/* Question Section */}
         <div className="question-section">
           <h1 className="text-h2">
-            คุณคิดว่าควรใช้เงินที่ได้จากการเก็บไปพัฒนาอะไ��
+            คุณคิดว่าควรใช้เงินที่ได้จากการเก็บไปพัฒนาอะไร
           </h1>
         </div>
         
@@ -114,7 +114,7 @@ const Step1_Priorities = ({ sessionID, onNext, onBack, initialData = [] }: Step1
             <div className="progress-dot completed" aria-label="ขั้นตอนที่ 1 เสร็จสิ้น"></div>
             <div className="progress-dot completed" aria-label="ขั้นตอนที่ 2 เสร็จสิ้น"></div>
             <div className="progress-dot active" aria-label="ขั้นตอนที่ 3 กำลังดำเนินการ"></div>
-            <div className="progress-dot inactive" aria-label="ขั้นตอนที่ 4"></div>
+            <div className="progress-dot inactive" aria-label="ขั้���ตอนที่ 4"></div>
             <div className="progress-dot inactive" aria-label="ขั้นตอนที่ 5"></div>
           </div>
           <p className="text-caption">ขั้นตอนที่ 3 จาก 5</p>
@@ -122,14 +122,6 @@ const Step1_Priorities = ({ sessionID, onNext, onBack, initialData = [] }: Step1
 
         {/* Completion Zone */}
         <div className="completion-zone">
-          {onBack && (
-            <button 
-              className="btn btn-secondary mb-4"
-              onClick={onBack}
-            >
-              ← กลับ
-            </button>
-          )}
           
           <button 
             className="btn btn-primary"
@@ -137,7 +129,7 @@ const Step1_Priorities = ({ sessionID, onNext, onBack, initialData = [] }: Step1
             disabled={selectedPriorities.length === 0}
             aria-describedby="next-button-description"
           >
-            ต่อไป
+            ไปต่อ
           </button>
           
           {selectedPriorities.length === 0 && (

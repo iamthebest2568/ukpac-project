@@ -196,7 +196,7 @@ const Step2_Allocation = ({ sessionID, onNext, onBack, journeyData }: Step2_Allo
 
         {isComplete && (
           <div className="status-message success">
-            <strong>เยี่ยม!</strong> คุณจัดสรรงบ���ระมาณครบ {totalBudget} หน่วยแล้ว
+            <strong>เยี่ยม!</strong> คุณจัดสรรงบประมาณครบ {totalBudget} หน่วยแล้ว
           </div>
         )}
 
@@ -214,14 +214,6 @@ const Step2_Allocation = ({ sessionID, onNext, onBack, journeyData }: Step2_Allo
 
         {/* Completion Zone */}
         <div className="completion-zone">
-          {onBack && (
-            <button 
-              className="btn btn-secondary mb-4"
-              onClick={onBack}
-            >
-              ← กลับ
-            </button>
-          )}
           
           <button 
             className="btn btn-primary"

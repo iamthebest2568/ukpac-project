@@ -23,7 +23,7 @@ const Step1_Choice = ({ sessionID, onNext, onBack, initialData }: Step1_ChoicePr
     'ปรับปรุงคุณภาพรถเมล์',
     'ตั๋วร่วม',
     'เพิ่มความถี่รถเมล์',
-    'เพิ่มความถ��่รถไฟฟ้า',
+    'เพิ่มความถี่รถไฟฟ้า',
     'เพิ่มที่จอดรถ',
     'เพิ่ม feeder ในซอย'
   ];
@@ -62,7 +62,7 @@ const Step1_Choice = ({ sessionID, onNext, onBack, initialData }: Step1_ChoicePr
         {/* Question Section */}
         <div className="question-section">
           <h1 className="text-h2 text-center text-black">
-            คุณ���ิดว่าควรใช้เงินที่ได้จากการเก็บไปพัฒนาอะไร ก่อน 3 อันดับแรก
+            คุณคิดว่าควรใช้เงินที่ได้จากการเก็บไปพัฒนาอะไร ก่อน 3 อันดับแรก
           </h1>
         </div>
         
@@ -108,7 +108,7 @@ const Step1_Choice = ({ sessionID, onNext, onBack, initialData }: Step1_ChoicePr
         {/* Error Prevention Message */}
         {selectedPriorities.length >= maxSelections && (
           <div className="status-message warning">
-            คุณเลือกครบจำนวนแล้ว หากต้องการเลือกข้อใหม่ กรุณ��ยกเลิกการเลือกข้อใดข้อหนึ่งก่อน
+            คุณเลือกครบจำนวนแล้ว หากต้องการเลือกข้อใหม่ กรุณายกเลิกการเลือกข้อใดข้อหนึ่งก่อน
           </div>
         )}
 
@@ -119,21 +119,13 @@ const Step1_Choice = ({ sessionID, onNext, onBack, initialData }: Step1_ChoicePr
             <div className="progress-dot completed" aria-label="ขั้นตอนที่ 2 เสร็จสิ้น"></div>
             <div className="progress-dot active" aria-label="ขั้นตอนที่ 3 กำลังดำเนินการ"></div>
             <div className="progress-dot inactive" aria-label="ขั้นตอนที่ 4"></div>
-            <div className="progress-dot inactive" aria-label="ขั้นตอนที่ 5"></div>
+            <div className="progress-dot inactive" aria-label="ขั���นตอนที่ 5"></div>
           </div>
           <p className="text-caption text-black">ขั้นตอนที่ 3 จาก 5</p>
         </div>
 
         {/* Completion Zone */}
         <div className="completion-zone">
-          {onBack && (
-            <button 
-              className="btn btn-secondary mb-4"
-              onClick={onBack}
-            >
-              ← กลับ
-            </button>
-          )}
           
           <button 
             className="btn btn-primary"

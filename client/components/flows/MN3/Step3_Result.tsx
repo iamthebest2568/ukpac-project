@@ -146,14 +146,6 @@ const Step3_Result = ({ sessionID, onNext, onBack, journeyData }: Step3_ResultPr
 
         {/* Completion Zone */}
         <div className="completion-zone">
-          {onBack && (
-            <button 
-              className="btn btn-secondary mb-4"
-              onClick={onBack}
-            >
-              ← กลับ
-            </button>
-          )}
           
           <button 
             className="btn btn-primary"

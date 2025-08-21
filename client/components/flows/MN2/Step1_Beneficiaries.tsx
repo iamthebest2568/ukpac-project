@@ -99,7 +99,7 @@ const Step1_Beneficiaries = ({ sessionID, onNext, onBack, initialData = [] }: St
                 {/* Selection indicator */}
                 {selectedGroups.includes(group.id) && (
                   <div className="absolute top-2 right-2 w-6 h-6 bg-primary-action rounded-full flex items-center justify-center">
-                    <svg className="w-4 h-4 text-black" fill="currentColor" viewBox="0 0 20 20" role="img" aria-label="เลือกแล้ว">
+                    <svg className="w-4 h-4 text-black" fill="currentColor" viewBox="0 0 20 20" role="img" aria-label="เลือก��ล้ว">
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                     </svg>
                   </div>
@@ -126,7 +126,7 @@ const Step1_Beneficiaries = ({ sessionID, onNext, onBack, initialData = [] }: St
           <div className="progress-dots">
             <div className="progress-dot completed" aria-label="ขั้นตอนที่ 1 เสร็จสิ้น"></div>
             <div className="progress-dot completed" aria-label="ขั้นตอนที่ 2 เสร็จสิ้น"></div>
-            <div className="progress-dot completed" aria-label="ขั้นตอนที่ 3 เสร็จสิ้น"></div>
+            <div className="progress-dot completed" aria-label="��ั้นตอนที่ 3 เสร็จสิ้น"></div>
             <div className="progress-dot active" aria-label="ขั้นตอนที่ 4 กำลังดำเนินการ"></div>
             <div className="progress-dot inactive" aria-label="ขั้นตอนที่ 5"></div>
           </div>
@@ -135,14 +135,6 @@ const Step1_Beneficiaries = ({ sessionID, onNext, onBack, initialData = [] }: St
 
         {/* Completion Zone */}
         <div className="completion-zone">
-          {onBack && (
-            <button 
-              className="btn btn-secondary mb-4"
-              onClick={onBack}
-            >
-              ← กลับ
-            </button>
-          )}
           
           <button 
             className="btn btn-primary"
@@ -150,7 +142,7 @@ const Step1_Beneficiaries = ({ sessionID, onNext, onBack, initialData = [] }: St
             disabled={selectedGroups.length === 0}
             aria-describedby="next-button-description"
           >
-            ต่อไป
+            ไปต่อ
           </button>
           
           {selectedGroups.length === 0 && (
