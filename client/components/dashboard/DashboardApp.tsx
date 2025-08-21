@@ -23,37 +23,29 @@ const DashboardApp = () => {
   }, []);
 
   const checkExistingAuth = () => {
-    console.log('🔍 DashboardApp: Checking existing authentication...');
     try {
       const authResult = checkAuthentication();
-      console.log('🔍 DashboardApp: Auth result:', authResult);
 
       if (authResult.isAuthenticated) {
-        console.log('✅ DashboardApp: User is authenticated, setting state');
         setToken('local-auth-token'); // Mock token for compatibility
         setUser(authResult.user);
         setIsAuthenticated(true);
-      } else {
-        console.log('❌ DashboardApp: User is not authenticated');
       }
     } catch (error) {
-      console.error('❌ DashboardApp: Error checking authentication:', error);
+      console.error('Error checking authentication:', error);
       // Clear potentially corrupted data
       sessionStorage.removeItem('dashboardAuth');
       sessionStorage.removeItem('isLoggedIn');
     } finally {
-      console.log('🔍 DashboardApp: Setting loading to false');
       setIsLoading(false);
     }
   };
 
   const handleLogin = (authResult: any) => {
-    console.log('🔐 DashboardApp: Handling login with result:', authResult);
     setToken('local-auth-token'); // Mock token for compatibility
     setUser(authResult.user);
     setIsAuthenticated(true);
     setError(null);
-    console.log('✅ DashboardApp: Login state updated successfully');
   };
 
   const handleLogout = () => {
@@ -113,17 +105,7 @@ const DashboardApp = () => {
   }
 
   // Main application routing
-  console.log('🎨 DashboardApp: Rendering with state:', {
-    isAuthenticated,
-    hasToken: !!token,
-    hasUser: !!user,
-    isLoading,
-    error
-  });
-
   if (isAuthenticated && token && user) {
-    console.log('📊 DashboardApp: Rendering Dashboard component');
-    console.log('📊 DashboardApp: Dashboard props:', { token, user, hasOnLogout: !!handleLogout });
 
     // Add error boundary
     try {
