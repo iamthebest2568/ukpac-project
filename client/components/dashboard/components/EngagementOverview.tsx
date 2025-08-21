@@ -4,7 +4,7 @@
  */
 
 import { useState, useEffect } from 'react';
-import { getEngagementSummary } from '../../../data/dashboardService.js';
+import { getEngagementSummary, subscribeToUpdates } from '../../../data/realTimeDashboardService.js';
 
 interface EngagementOverviewProps {
   token: string;
@@ -25,6 +25,13 @@ const EngagementOverview = ({ token }: EngagementOverviewProps) => {
 
   useEffect(() => {
     fetchEngagementData();
+
+    // Subscribe to real-time updates
+    const unsubscribe = subscribeToUpdates(() => {
+      fetchEngagementData();
+    });
+
+    return unsubscribe;
   }, []);
 
   const fetchEngagementData = () => {

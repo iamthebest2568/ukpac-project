@@ -4,7 +4,7 @@
  */
 
 import { useState } from 'react';
-import { authenticateUser } from '../../data/dashboardService.js';
+import { authenticateUser } from '../../data/realTimeDashboardService.js';
 
 interface LoginPageProps {
   onLogin: (authResult: any) => void;

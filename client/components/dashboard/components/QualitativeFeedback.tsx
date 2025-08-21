@@ -6,8 +6,9 @@
 import { useState, useEffect } from 'react';
 import {
   getCustomReasons,
-  getSuggestions
-} from '../../../data/dashboardService.js';
+  getSuggestions,
+  subscribeToUpdates
+} from '../../../data/realTimeDashboardService.js';
 
 interface QualitativeFeedbackProps {
   token: string;
@@ -38,6 +39,15 @@ const QualitativeFeedback = ({ token }: QualitativeFeedbackProps) => {
   useEffect(() => {
     fetchAllData();
   }, [currentReasonPage, currentSuggestionPage]);
+
+  useEffect(() => {
+    // Subscribe to real-time updates
+    const unsubscribe = subscribeToUpdates(() => {
+      fetchAllData();
+    });
+
+    return unsubscribe;
+  }, []);
 
   const fetchAllData = () => {
     try {
@@ -215,7 +225,7 @@ const QualitativeFeedback = ({ token }: QualitativeFeedbackProps) => {
               <p className="text-3xl font-bold text-gray-900">
                 {customReasons?.totalItems || 0}
               </p>
-              <p className="text-xs text-gray-500">From "อื่นๆ" responses</p>
+              <p className="text-xs text-gray-500">From "อ��่นๆ" responses</p>
             </div>
             <div className="text-orange-500 text-2xl">💭</div>
           </div>

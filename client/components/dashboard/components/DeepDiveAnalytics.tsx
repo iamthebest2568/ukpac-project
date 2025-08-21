@@ -8,8 +8,9 @@ import {
   getReasoningBreakdown,
   getMinigame1And2Data,
   getMinigame3Data,
-  getSatisfactionData
-} from '../../../data/dashboardService.js';
+  getSatisfactionData,
+  subscribeToUpdates
+} from '../../../data/realTimeDashboardService.js';
 
 interface DeepDiveAnalyticsProps {
   token: string;
@@ -51,6 +52,13 @@ const DeepDiveAnalytics = ({ token }: DeepDiveAnalyticsProps) => {
 
   useEffect(() => {
     fetchAllData();
+
+    // Subscribe to real-time updates
+    const unsubscribe = subscribeToUpdates(() => {
+      fetchAllData();
+    });
+
+    return unsubscribe;
   }, []);
 
   const fetchAllData = () => {

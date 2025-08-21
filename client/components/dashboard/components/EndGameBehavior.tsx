@@ -6,8 +6,9 @@
 import { useState, useEffect } from 'react';
 import {
   getFakeNewsData,
-  getRewardFunnelData
-} from '../../../data/dashboardService.js';
+  getRewardFunnelData,
+  subscribeToUpdates
+} from '../../../data/realTimeDashboardService.js';
 
 interface EndGameBehaviorProps {
   token: string;
@@ -41,6 +42,13 @@ const EndGameBehavior = ({ token }: EndGameBehaviorProps) => {
 
   useEffect(() => {
     fetchAllData();
+
+    // Subscribe to real-time updates
+    const unsubscribe = subscribeToUpdates(() => {
+      fetchAllData();
+    });
+
+    return unsubscribe;
   }, []);
 
   const fetchAllData = () => {
