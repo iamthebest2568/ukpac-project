@@ -208,13 +208,13 @@
     }
   }
 
-  /* Button System - Jakob's Law compliance */
+  /* Button System - Mobile-optimized touch targets */
   .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 48px; /* Minimum touch target */
-    padding: var(--space-md) var(--space-xl);
+    min-height: 48px; /* WCAG AA minimum touch target */
+    padding: var(--space-md) var(--space-lg);
     font-size: var(--font-size-body);
     font-weight: var(--font-weight-medium);
     border-radius: var(--border-radius-full);
@@ -225,6 +225,17 @@
     width: 100%;
     position: relative;
     overflow: hidden;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent; /* Remove iOS tap highlight */
+  }
+
+  /* Larger touch targets on small screens */
+  @media (max-width: 375px) {
+    .btn {
+      min-height: 52px;
+      padding: var(--space-md) var(--space-md);
+      font-size: clamp(15px, 4vw, 16px);
+    }
   }
 
   .btn:before {
