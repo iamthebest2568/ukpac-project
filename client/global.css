@@ -390,7 +390,7 @@
     text-overflow: ellipsis;
   }
 
-  /* Selection Components */
+  /* Selection Components - Mobile optimized */
   .selection-checkbox {
     display: flex;
     align-items: center;
@@ -401,6 +401,17 @@
     transition: all var(--transition-normal);
     margin-bottom: var(--space-md);
     background-color: transparent;
+    min-height: 48px; /* Touch target accessibility */
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Larger touch areas on mobile */
+  @media (max-width: 375px) {
+    .selection-checkbox {
+      min-height: 52px;
+      padding: var(--space-sm) var(--space-md);
+    }
   }
 
   .selection-checkbox:hover {
