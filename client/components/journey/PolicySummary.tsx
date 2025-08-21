@@ -60,35 +60,53 @@ const PolicySummary = ({ sessionID, onNavigate, journeyData }: PolicySummaryProp
         
         {/* Summary Cards Section */}
         <div className="answer-section">
-          <div className="space-y-4">
+          <div className="space-y-6">
             {summaryCards.map((card, index) => (
-              <div 
+              <div
                 key={index}
-                className="bg-gray-100 rounded-lg p-6 border border-gray-200"
+                className="bg-gray-100 rounded-xl p-6 shadow-sm border border-gray-200"
               >
-                {/* Priority Title */}
-                <h3 className="text-body font-semibold text-black mb-4">
+                {/* Policy Name - Sub-header */}
+                <h3 className="text-h3 font-semibold text-black mb-6">
                   {card.priority}
                 </h3>
-                
-                {/* Beneficiary Labels */}
-                <div className="flex flex-wrap gap-2">
+
+                {/* Beneficiary Icons Row */}
+                <div className="flex flex-wrap gap-4">
                   {card.beneficiaries.map((beneficiary, beneficiaryIndex) => (
-                    <span 
+                    <div
                       key={beneficiaryIndex}
-                      className="inline-flex items-center px-3 py-1 rounded-full text-caption bg-gray-200 text-gray-700 border border-gray-300"
+                      className="flex flex-col items-center"
                     >
-                      {beneficiary}
-                    </span>
+                      {/* Black Circular Icon */}
+                      <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center mb-2">
+                        <span className="text-xl text-white" role="img" aria-label={beneficiary.label}>
+                          {beneficiary.icon}
+                        </span>
+                      </div>
+                      {/* Label underneath */}
+                      <span className="text-caption text-black font-medium text-center">
+                        {beneficiary.label}
+                      </span>
+                    </div>
                   ))}
-                  {/* Add placeholder labels to match the mockup structure */}
+                  {/* Add placeholder icons to maintain visual consistency */}
                   {Array.from({ length: Math.max(0, 4 - card.beneficiaries.length) }, (_, i) => (
-                    <span 
+                    <div
                       key={`placeholder-${i}`}
-                      className="inline-flex items-center px-3 py-1 rounded-full text-caption bg-gray-200 text-gray-500 border border-gray-300"
+                      className="flex flex-col items-center"
                     >
-                      XXXX
-                    </span>
+                      {/* Black Circular Icon - Placeholder */}
+                      <div className="w-12 h-12 bg-gray-400 rounded-full flex items-center justify-center mb-2">
+                        <span className="text-xl text-white" role="img" aria-label="placeholder">
+                          ❓
+                        </span>
+                      </div>
+                      {/* Label underneath */}
+                      <span className="text-caption text-gray-500 font-medium text-center">
+                        XXXX
+                      </span>
+                    </div>
                   ))}
                 </div>
               </div>
@@ -101,7 +119,7 @@ const PolicySummary = ({ sessionID, onNavigate, journeyData }: PolicySummaryProp
           <div className="progress-dots">
             <div className="progress-dot completed" aria-label="ขั้นตอนที่ 1 เสร็จสิ้น"></div>
             <div className="progress-dot completed" aria-label="ขั้นตอนที่ 2 เสร็จสิ้น"></div>
-            <div className="progress-dot completed" aria-label="ขั้นตอนที่ 3 เสร็จ��ิ้น"></div>
+            <div className="progress-dot completed" aria-label="ขั้นตอนที่ 3 เสร็จสิ้น"></div>
             <div className="progress-dot completed" aria-label="ขั้นตอนที่ 4 เสร็จสิ้น"></div>
             <div className="progress-dot active" aria-label="ขั้นตอนที่ 5 กำลังดำเนินการ"></div>
           </div>
