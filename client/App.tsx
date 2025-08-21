@@ -112,7 +112,9 @@ const JourneyRouter = () => {
   const renderJourneyComponent = () => {
     switch (activeScreen) {
       case 'index':
-        return <IndexPage onNavigate={navigateToScreen} />;
+        return <DashboardIndex onNavigate={navigateToScreen} />;
+      case 'dashboard':
+        return <DashboardApp />;
       case 'ask01':
         return <Ask01 sessionID={sessionID} onNavigate={navigateToScreen} />;
       case 'ask02':
