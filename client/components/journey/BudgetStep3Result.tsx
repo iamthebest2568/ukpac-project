@@ -48,7 +48,7 @@ const BudgetStep3Result = ({ sessionID, onNavigate, journeyData }: BudgetStep3Re
 
   const handleNext = () => {
     const data = { budgetResultReviewed: true };
-    onNavigate('ask04', data);
+    onNavigate('ask04_budget', data);
   };
 
   return (
