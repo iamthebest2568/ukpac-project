@@ -2,14 +2,96 @@
 <html lang="th">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ร่วมพัฒนาเมืองไทย - แบบสำรวจเชิงโต้ตอบ</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- SEO and App Info -->
+    <title>UK PACK - ร่วมพัฒนาเมืองไทย | แบบสำรวจเชิงโต้ตอบ</title>
+    <meta name="description" content="แบบสำรวจเชิงโต้ตอบเพื่อการพัฒนานโยบายสาธารณะที่ดีขึ้น ร่วมแสดงความคิดเห็นแล���สร้างอนาคตเมืองไทยไปด้วยกัน" />
+    <meta name="keywords" content="นโยบายสาธารณะ, การมีส่วนร่วม, เมืองไทย, แบบสำรวจ, UK PACK" />
+    <meta name="author" content="UK PACK Team" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="UK PACK - ร่วมพัฒนาเมืองไทย" />
+    <meta property="og:description" content="แบบสำรวจเชิงโต้ตอบเพื่อการพัฒนานโยบายสาธารณะที่ดีขึ้น" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="UK PACK - ร่วมพัฒนาเมืองไทย" />
+    <meta name="twitter:description" content="แบบสำรวจเชิงโต้ตอบเพื่อการพัฒนานโยบายสาธารณะที่ดีขึ้น" />
+
+    <!-- App Configuration -->
+    <meta name="theme-color" content="#FFD100" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="UK PACK" />
+
+    <!-- Preload critical fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Accessibility -->
+    <meta name="color-scheme" content="light" />
+
+    <!-- Security -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https://fonts.googleapis.com https://fonts.gstatic.com; img-src 'self' data: blob:;" />
   </head>
 
   <body>
-    <div id="root"></div>
+    <div id="root" role="main" aria-label="UK PACK Application"></div>
 
     <script type="module" src="/client/App.tsx"></script>
+
+    <!-- Accessibility enhancement script -->
+    <script>
+      // Focus management for better keyboard navigation
+      document.addEventListener('DOMContentLoaded', function() {
+        // Add focus-visible polyfill behavior
+        function applyFocusVisiblePolyfill() {
+          let hadKeyboardEvent = true;
+          const keyboardThreshold = 5;
+          let keyboardTimer = 0;
+
+          const pointerMap = {
+            mouse: true,
+            pen: true,
+            touch: true
+          };
+
+          function onPointerDown() {
+            hadKeyboardEvent = false;
+          }
+
+          function onKeyDown(e) {
+            if (e.metaKey || e.altKey || e.ctrlKey) {
+              return;
+            }
+            hadKeyboardEvent = true;
+          }
+
+          function onFocus(e) {
+            if (hadKeyboardEvent || e.target.matches(':focus-visible')) {
+              e.target.classList.add('focus-visible');
+            }
+          }
+
+          function onBlur(e) {
+            e.target.classList.remove('focus-visible');
+          }
+
+          document.addEventListener('keydown', onKeyDown, true);
+          document.addEventListener('mousedown', onPointerDown, true);
+          document.addEventListener('pointerdown', onPointerDown, true);
+          document.addEventListener('touchstart', onPointerDown, true);
+          document.addEventListener('focus', onFocus, true);
+          document.addEventListener('blur', onBlur, true);
+        }
+
+        applyFocusVisiblePolyfill();
+      });
+    </script>
   </body>
 </html>
