@@ -128,7 +128,7 @@ const DashboardApp = () => {
     // Add error boundary
     try {
       return (
-        <Dashboard
+        <SimpleDashboard
           token={token}
           user={user}
           onLogout={handleLogout}
