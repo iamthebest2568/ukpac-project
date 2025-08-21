@@ -1,3 +1,5 @@
+import { logEvent } from '../../services/dataLogger.js';
+
 interface Ask02Props {
   sessionID: string | null;
   onNavigate: (screenId: string, data?: any) => void;
@@ -12,7 +14,17 @@ const Ask02 = ({ sessionID, onNavigate }: Ask02Props) => {
     }[choice];
 
     const data = { choice, choiceText };
-    
+
+    // Log the reasoning choice
+    logEvent({
+      event: 'ASK02_CHOICE',
+      payload: {
+        choice: choiceText,
+        choiceKey: choice,
+        sessionID
+      }
+    });
+
     if (choice === 'coverage') {
       onNavigate('Flow_MiniGame_MN1', data);
     } else if (choice === 'ineffective') {
@@ -102,7 +114,7 @@ const Ask02 = ({ sessionID, onNavigate }: Ask02Props) => {
               อื่นๆ
             </button>
             <div id="other-description" className="sr-only">
-              มีเหตุผลอื่นที่ต้องการแสดงความคิดเห็น
+              มีเหตุผลอื่นที่ต้องการแสด��ความคิดเห็น
             </div>
           </div>
         </div>
