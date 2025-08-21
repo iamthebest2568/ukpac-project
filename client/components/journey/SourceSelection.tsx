@@ -1,3 +1,5 @@
+import { logEvent } from '../../services/dataLogger.js';
+
 interface SourceSelectionProps {
   sessionID: string | null;
   onNavigate: (screenId: string, data?: any) => void;
@@ -14,14 +16,17 @@ const SourceSelection = ({ sessionID, onNavigate }: SourceSelectionProps) => {
 
   const handleSourceChoice = (sourceId: string, sourceLabel: string) => {
     const data = { source: sourceId, sourceLabel };
-    
-    // Log the choice to console as requested
-    console.log({ 
-      sessionID,
-      game: 'sourceSelection', 
-      data: { source: sourceLabel } 
+
+    // Log the source selection choice
+    logEvent({
+      event: 'SOURCE_SELECTION',
+      payload: {
+        source: sourceLabel,
+        sourceId,
+        sessionID
+      }
     });
-    
+
     // Navigate to Flow_EndSequence (reward decision flow)
     onNavigate('Flow_EndSequence', data);
   };

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { logEvent } from '../../services/dataLogger.js';
 
 interface Ask05Props {
   sessionID: string | null;
@@ -9,10 +10,15 @@ const Ask05 = ({ sessionID, onNavigate }: Ask05Props) => {
   const [suggestion, setSuggestion] = useState('');
 
   const handleNext = () => {
-    // Log the user's suggestion to the console
-    console.log('User suggestion:', suggestion);
-    console.log('Session ID:', sessionID);
-    
+    // Log the user's suggestion
+    logEvent({
+      event: 'ASK05_SUBMIT',
+      payload: {
+        suggestion,
+        sessionID
+      }
+    });
+
     const data = { suggestion };
     onNavigate('fakeNews', data);
   };
@@ -85,7 +91,7 @@ const Ask05 = ({ sessionID, onNavigate }: Ask05Props) => {
         {/* Progress indicator */}
         <div className="progress-container">
           <div className="progress-dots">
-            <div className="progress-dot completed" aria-label="ขั้นตอนที�� 1 เสร็จสิ้น"></div>
+            <div className="progress-dot completed" aria-label="ขั้นตอนที่ 1 เสร็จสิ้น"></div>
             <div className="progress-dot completed" aria-label="ขั้นตอนที่ 2 เสร็จสิ้น"></div>
             <div className="progress-dot completed" aria-label="ขั้นตอนที่ 3 เสร็จสิ้น"></div>
             <div className="progress-dot completed" aria-label="ขั้นตอนที่ 4 เสร็จสิ้น"></div>
@@ -106,7 +112,7 @@ const Ask05 = ({ sessionID, onNavigate }: Ask05Props) => {
           
           {suggestion.trim().length === 0 && (
             <div id="next-button-description" className="status-message info mt-4">
-              คุณสามารถข้ามขั้นตอนนี้ได้หากไม่มีข้อเสนอแนะเพิ่มเติม
+              คุณสามารถข้ามขั้นตอนนี้ได้หากไม่มีข้อเสนอแน���เพิ่มเติม
             </div>
           )}
           

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { logEvent } from '../../services/dataLogger.js';
 
 interface Ask02_2Props {
   sessionID: string | null;
@@ -9,9 +10,14 @@ const Ask02_2 = ({ sessionID, onNavigate }: Ask02_2Props) => {
   const [textInput, setTextInput] = useState('');
 
   const handleNext = () => {
-    // Log the user's text input to the console
-    console.log('User other reason input:', textInput);
-    console.log('Session ID:', sessionID);
+    // Log the user's custom reason
+    logEvent({
+      event: 'ASK02_2_SUBMIT',
+      payload: {
+        customReason: textInput,
+        sessionID
+      }
+    });
 
     const data = { textInput };
     onNavigate('ask05', data);
