@@ -64,24 +64,15 @@ const Ask02_2 = ({ sessionID, onNavigate }: Ask02_2Props) => {
 
         {/* Completion Zone */}
         <div className="completion-zone">
-          <div className="space-y-4">
-            <button 
-              className="btn btn-primary"
-              onClick={handleNext}
-              disabled={textInput.trim().length === 0}
-              aria-describedby="next-button-description"
-            >
-              ต่อไป
-            </button>
-            
-            <button 
-              className="btn btn-secondary"
-              onClick={() => onNavigate('ask02')}
-            >
-              กลับไปเลือกใหม่
-            </button>
-          </div>
-          
+          <button
+            className="btn btn-primary"
+            onClick={handleNext}
+            disabled={textInput.trim().length === 0}
+            aria-describedby="next-button-description"
+          >
+            ต่อไป
+          </button>
+
           {textInput.trim().length === 0 && (
             <div id="next-button-description" className="status-message info mt-4">
               กรุณากรอกข้อความเพื่อดำเนินการต่อ
@@ -95,7 +86,7 @@ const Ask02_2 = ({ sessionID, onNavigate }: Ask02_2Props) => {
           <ul className="text-caption text-text-secondary space-y-1">
             <li>• กังวลเรื่องผลกระทบต่อผู้มีรายได้น้อย</li>
             <li>• เห็นว่าควรมีระบบขนส่งสาธารณะที่ดีกว่าก่อน</li>
-            <li>• ต้องการให้มีการศึกษาผลกระทบเพิ่มเติม</li>
+            <li>• ต้องการให้มีการศึกษา���ลกระทบเพิ่มเติม</li>
             <li>• มีข้อเสนอแนะเชิง���โยบาย</li>
           </ul>
         </div>
