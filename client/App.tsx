@@ -17,6 +17,9 @@ import Ask04 from "./components/journey/Ask04";
 import Ask05 from "./components/journey/Ask05";
 import EndScreen from "./components/journey/EndScreen";
 import PolicySummary from "./components/journey/PolicySummary";
+import BudgetStep1Choice from "./components/journey/BudgetStep1Choice";
+import BudgetStep2Allocation from "./components/journey/BudgetStep2Allocation";
+import BudgetStep3Result from "./components/journey/BudgetStep3Result";
 
 // Agree journey components
 import SourceSelection from "./components/journey/SourceSelection";
