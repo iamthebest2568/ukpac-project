@@ -24,7 +24,8 @@ const WorkingDashboard = ({ token, user, onLogout }: WorkingDashboardProps) => {
   const loadDashboardData = async () => {
     try {
       // Import and load data safely
-      const { getEngagementSummary, getLoggedEvents } = await import('../../data/realTimeDashboardService.js');
+      const { getEngagementSummary } = await import('../../data/realTimeDashboardService.js');
+      const { getLoggedEvents } = await import('../../services/dataLogger.js');
       
       const engagementData = getEngagementSummary();
       const allEvents = getLoggedEvents();
