@@ -4,6 +4,7 @@
  */
 
 import { useState, useEffect } from 'react';
+import { getEngagementSummary } from '../../../data/dashboardService.js';
 
 interface EngagementOverviewProps {
   token: string;
@@ -26,21 +27,10 @@ const EngagementOverview = ({ token }: EngagementOverviewProps) => {
     fetchEngagementData();
   }, []);
 
-  const fetchEngagementData = async () => {
+  const fetchEngagementData = () => {
     try {
-      const response = await fetch('http://localhost:3001/api/v1/dashboard/engagement/summary', {
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        }
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to fetch engagement data');
-      }
-
-      const result = await response.json();
-      setData(result.data);
+      const result = getEngagementSummary();
+      setData(result);
     } catch (error) {
       console.error('Error fetching engagement data:', error);
       setError('Failed to load engagement data');

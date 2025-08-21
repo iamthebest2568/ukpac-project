@@ -4,6 +4,12 @@
  */
 
 import { useState, useEffect } from 'react';
+import {
+  getReasoningBreakdown,
+  getMinigame1And2Data,
+  getMinigame3Data,
+  getSatisfactionData
+} from '../../../data/dashboardService.js';
 
 interface DeepDiveAnalyticsProps {
   token: string;
@@ -47,36 +53,19 @@ const DeepDiveAnalytics = ({ token }: DeepDiveAnalyticsProps) => {
     fetchAllData();
   }, []);
 
-  const fetchAllData = async () => {
+  const fetchAllData = () => {
     try {
       setIsLoading(true);
-      const headers = {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json'
-      };
 
-      const [reasoningRes, minigameRes, minigame3Res, satisfactionRes] = await Promise.all([
-        fetch('http://localhost:3001/api/v1/dashboard/deepdive/reasoning', { headers }),
-        fetch('http://localhost:3001/api/v1/dashboard/deepdive/minigame1_2', { headers }),
-        fetch('http://localhost:3001/api/v1/dashboard/deepdive/minigame3', { headers }),
-        fetch('http://localhost:3001/api/v1/dashboard/deepdive/satisfaction', { headers })
-      ]);
+      const reasoning = getReasoningBreakdown();
+      const minigame = getMinigame1And2Data();
+      const minigame3 = getMinigame3Data();
+      const satisfaction = getSatisfactionData();
 
-      if (!reasoningRes.ok || !minigameRes.ok || !minigame3Res.ok || !satisfactionRes.ok) {
-        throw new Error('Failed to fetch analytics data');
-      }
-
-      const [reasoning, minigame, minigame3, satisfaction] = await Promise.all([
-        reasoningRes.json(),
-        minigameRes.json(),
-        minigame3Res.json(),
-        satisfactionRes.json()
-      ]);
-
-      setReasoningData(reasoning.data);
-      setMinigameData(minigame.data);
-      setMinigame3Data(minigame3.data);
-      setSatisfactionData(satisfaction.data);
+      setReasoningData(reasoning);
+      setMinigameData(minigame);
+      setMinigame3Data(minigame3);
+      setSatisfactionData(satisfaction);
     } catch (error) {
       console.error('Error fetching analytics data:', error);
       setError('Failed to load analytics data');
