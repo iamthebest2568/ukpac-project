@@ -7,7 +7,7 @@ const SourceSelection = ({ sessionID, onNavigate }: SourceSelectionProps) => {
   const newsSources = [
     { id: 'tv_news', label: 'ช่องข่าว', icon: '📺', description: 'ข่าวจากสถานีโทรทัศน์' },
     { id: 'government_data', label: 'ข้อมูลจากสนข.', icon: '🏛️', description: 'ข้อมูลจากสำนักงานคณะกรรมการกำกับการขนส่งทางบก' },
-    { id: 'road_signs', label: 'ป้ายประกาศข้างทาง', icon: '🚧', description: 'ป้ายประกาศและแผ่นพับจาก���น่วยงานรัฐ' },
+    { id: 'road_signs', label: 'ป้ายประกาศข้างทาง', icon: '🚧', description: 'ป้ายประกาศและแผ่นพับจากหน่วยงานรัฐ' },
     { id: 'social_media', label: 'โซเชียลมีเดีย', icon: '📱', description: 'ข้อมูลจากเฟซบุ๊ก ไลน์ และแอปพลิเคชัน' },
     { id: 'news_websites', label: 'เว็บไซต์ข่าว', icon: '💻', description: 'พอร์ทัลข่าวออนไลน์และสื่อดิจิทัล' }
   ];
@@ -22,8 +22,8 @@ const SourceSelection = ({ sessionID, onNavigate }: SourceSelectionProps) => {
       data: { source: sourceLabel } 
     });
     
-    // Navigate to reward decision screen
-    onNavigate('rewardDecision', data);
+    // Navigate to Flow_EndSequence (reward decision flow)
+    onNavigate('Flow_EndSequence', data);
   };
 
   return (
