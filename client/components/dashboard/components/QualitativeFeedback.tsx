@@ -4,6 +4,10 @@
  */
 
 import { useState, useEffect } from 'react';
+import {
+  getCustomReasons,
+  getSuggestions
+} from '../../../data/dashboardService.js';
 
 interface QualitativeFeedbackProps {
   token: string;
@@ -35,40 +39,25 @@ const QualitativeFeedback = ({ token }: QualitativeFeedbackProps) => {
     fetchAllData();
   }, [currentReasonPage, currentSuggestionPage]);
 
-  const fetchAllData = async () => {
+  const fetchAllData = () => {
     try {
       setIsLoading(true);
-      const headers = {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json'
-      };
 
-      const [reasonsRes, suggestionsRes] = await Promise.all([
-        fetch(`http://localhost:3001/api/v1/dashboard/feedback/custom_reasons?page=${currentReasonPage}&limit=10`, { headers }),
-        fetch(`http://localhost:3001/api/v1/dashboard/feedback/suggestions?page=${currentSuggestionPage}&limit=10`, { headers })
-      ]);
-
-      if (!reasonsRes.ok || !suggestionsRes.ok) {
-        throw new Error('Failed to fetch feedback data');
-      }
-
-      const [reasons, suggestions] = await Promise.all([
-        reasonsRes.json(),
-        suggestionsRes.json()
-      ]);
+      const reasons = getCustomReasons(currentReasonPage, 10);
+      const suggestions = getSuggestions(currentSuggestionPage, 10);
 
       setCustomReasons({
         data: reasons.data,
-        totalItems: reasons.pagination.totalItems,
-        totalPages: reasons.pagination.totalPages,
-        currentPage: reasons.pagination.currentPage
+        totalItems: reasons.totalItems,
+        totalPages: reasons.totalPages,
+        currentPage: reasons.currentPage
       });
 
       setSuggestions({
         data: suggestions.data,
-        totalItems: suggestions.pagination.totalItems,
-        totalPages: suggestions.pagination.totalPages,
-        currentPage: suggestions.pagination.currentPage
+        totalItems: suggestions.totalItems,
+        totalPages: suggestions.totalPages,
+        currentPage: suggestions.currentPage
       });
     } catch (error) {
       console.error('Error fetching feedback data:', error);

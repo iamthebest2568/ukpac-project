@@ -4,6 +4,10 @@
  */
 
 import { useState, useEffect } from 'react';
+import {
+  getFakeNewsData,
+  getRewardFunnelData
+} from '../../../data/dashboardService.js';
 
 interface EndGameBehaviorProps {
   token: string;
@@ -39,30 +43,15 @@ const EndGameBehavior = ({ token }: EndGameBehaviorProps) => {
     fetchAllData();
   }, []);
 
-  const fetchAllData = async () => {
+  const fetchAllData = () => {
     try {
       setIsLoading(true);
-      const headers = {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json'
-      };
 
-      const [fakeNewsRes, rewardFunnelRes] = await Promise.all([
-        fetch('http://localhost:3001/api/v1/dashboard/endgame/fakenews', { headers }),
-        fetch('http://localhost:3001/api/v1/dashboard/endgame/rewardfunnel', { headers })
-      ]);
+      const fakeNews = getFakeNewsData();
+      const rewardFunnel = getRewardFunnelData();
 
-      if (!fakeNewsRes.ok || !rewardFunnelRes.ok) {
-        throw new Error('Failed to fetch end-game data');
-      }
-
-      const [fakeNews, rewardFunnel] = await Promise.all([
-        fakeNewsRes.json(),
-        rewardFunnelRes.json()
-      ]);
-
-      setFakeNewsData(fakeNews.data);
-      setRewardFunnelData(rewardFunnel.data);
+      setFakeNewsData(fakeNews);
+      setRewardFunnelData(rewardFunnel);
     } catch (error) {
       console.error('Error fetching end-game data:', error);
       setError('Failed to load end-game data');
