@@ -249,6 +249,72 @@
     pointer-events: none;
   }
 
+  /* White Theme Selection Checkbox - For white background screens */
+  .selection-checkbox-white {
+    @apply flex items-center p-4 rounded-lg border cursor-pointer transition-all duration-200;
+    background-color: var(--color-white-theme-bg);
+    border-color: var(--color-border);
+    color: var(--color-text-primary);
+  }
+
+  .selection-checkbox-white:hover:not(.disabled) {
+    border-color: var(--color-primary-action);
+    background-color: #FFFBF0;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .selection-checkbox-white.selected {
+    border-color: var(--color-primary-action);
+    background-color: var(--color-primary-action);
+    color: #000000;
+    box-shadow: var(--shadow-md);
+  }
+
+  .selection-checkbox-white.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    background-color: #F9FAFB;
+    border-color: #E5E7EB;
+  }
+
+  .selection-checkbox-white .checkbox-icon {
+    @apply w-5 h-5 rounded border-2 mr-3 flex items-center justify-center flex-shrink-0;
+    border-color: var(--color-border);
+    background-color: var(--color-white-theme-bg);
+  }
+
+  .selection-checkbox-white.selected .checkbox-icon {
+    background-color: #000000;
+    border-color: #000000;
+  }
+
+  .selection-checkbox-white.disabled .checkbox-icon {
+    background-color: #F3F4F6;
+    border-color: #D1D5DB;
+  }
+
+  /* Budget Display - White Theme */
+  .budget-display-white {
+    @apply p-4 bg-gray-50 rounded-lg border border-gray-200 mb-6;
+  }
+
+  .budget-display-white .budget-item {
+    @apply text-lg font-medium mb-2;
+  }
+
+  .budget-display-white .budget-remaining {
+    @apply text-lg font-bold;
+  }
+
+  .budget-display-white .budget-remaining.positive {
+    color: var(--color-warning);
+  }
+
+  .budget-display-white .budget-remaining.negative {
+    color: var(--color-error);
+  }
+
   /* Selection Components */
   .selection-checkbox {
     display: flex;
