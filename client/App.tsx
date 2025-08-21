@@ -58,7 +58,7 @@ const JourneyRouter = () => {
       className="skip-link"
       aria-label="ข้ามไปยังเนื้อหาหลัก"
     >
-      ข้ามไปยังเนื้อหาหลัก
+      ข้ามไปยังเนื้อหาหลั���
     </a>
   );
 
@@ -117,7 +117,7 @@ const JourneyRouter = () => {
   const renderJourneyComponent = () => {
     switch (activeScreen) {
       case 'index':
-        return <IndexPage onNavigate={navigateToScreen} />;
+        return <DashboardIndex onNavigate={navigateToScreen} />;
       case 'dashboard':
         return <DashboardApp />;
       case 'ask01':
