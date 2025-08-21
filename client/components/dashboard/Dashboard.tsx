@@ -20,13 +20,11 @@ interface DashboardProps {
 type DashboardSection = 'overview' | 'deepdive' | 'endgame' | 'feedback' | 'trends';
 
 const Dashboard = ({ token, user, onLogout }: DashboardProps) => {
-  console.log('📊 Dashboard: Component initialized with props:', { token, user: user?.username });
   const [activeSection, setActiveSection] = useState<DashboardSection>('overview');
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    console.log('📊 Dashboard: useEffect triggered, setting loading to false');
     // Dashboard is ready - no token verification needed for local auth
     setIsLoading(false);
   }, []);
@@ -34,23 +32,32 @@ const Dashboard = ({ token, user, onLogout }: DashboardProps) => {
   // Token verification removed - using local authentication
 
   const renderActiveSection = () => {
-    console.log('🎨 Dashboard: Rendering section:', activeSection);
-    switch (activeSection) {
-      case 'overview':
-        return <EngagementOverview token={token} />;
-      case 'deepdive':
-        return <DeepDiveAnalytics token={token} />;
-      case 'endgame':
-        return <EndGameBehavior token={token} />;
-      case 'feedback':
-        return <QualitativeFeedback token={token} />;
-      default:
-        return <EngagementOverview token={token} />;
+    try {
+      switch (activeSection) {
+        case 'overview':
+          return <EngagementOverview token={token} />;
+        case 'deepdive':
+          return <DeepDiveAnalytics token={token} />;
+        case 'endgame':
+          return <EndGameBehavior token={token} />;
+        case 'feedback':
+          return <QualitativeFeedback token={token} />;
+        default:
+          return <EngagementOverview token={token} />;
+      }
+    } catch (error) {
+      console.error('Error rendering section:', error);
+      return (
+        <div className="bg-red-50 border border-red-200 rounded-lg p-6 text-center">
+          <div className="text-red-500 text-2xl mb-2">⚠️</div>
+          <h3 className="text-lg font-semibold text-red-800 mb-2">Component Error</h3>
+          <p className="text-red-600">Error loading {activeSection} section</p>
+        </div>
+      );
     }
   };
 
   if (isLoading) {
-    console.log('⏳ Dashboard: Still loading...');
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
@@ -73,7 +80,6 @@ const Dashboard = ({ token, user, onLogout }: DashboardProps) => {
     );
   }
 
-  console.log('🎨 Dashboard: Rendering main dashboard layout');
   return (
     <div className="min-h-screen bg-gray-50 flex">
       {/* Sidebar */}
