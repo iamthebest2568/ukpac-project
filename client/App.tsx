@@ -65,6 +65,9 @@ const App = () => (
             <Route path="/" element={<DashboardIndex />} />
             <Route path="/index" element={<Index />} />
 
+            {/* Video Intro */}
+            <Route path="/video-intro" element={<VideoIntroPage />} />
+
             {/* Dashboard */}
             <Route path="/dashboard" element={<DashboardApp />} />
 
