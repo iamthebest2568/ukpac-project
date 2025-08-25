@@ -36,7 +36,7 @@ const DashboardIndex = () => {
                 แสดงความคิดเห็นและมีส่วนร่วมในการออกแบบนโยบายการขนส่งสาธารณะ
               </p>
               <button
-                onClick={() => onNavigate('ask01')}
+                onClick={() => navigate('/ask01')}
                 className="btn btn-primary w-full"
               >
                 เริ่มแบบสำรวจ
@@ -88,7 +88,7 @@ const DashboardIndex = () => {
               <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-xl">🤝</span>
               </div>
-              <h4 className="font-semibold text-gray-900 mb-2">การมีส่วนร่วมของประชาชน</h4>
+              <h4 className="font-semibold text-gray-900 mb-2">การมีส่วนร่วมของประช��ชน</h4>
               <p className="text-sm text-gray-600">เปิดโอกาสให้ทุกคนมีเสียงในการตัดสินใจ</p>
             </div>
           </div>
