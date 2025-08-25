@@ -3,11 +3,10 @@
  * Main landing page with survey and dashboard options
  */
 
-interface DashboardIndexProps {
-  onNavigate: (screen: string) => void;
-}
+import { useNavigate } from 'react-router-dom';
 
-const DashboardIndex = ({ onNavigate }: DashboardIndexProps) => {
+const DashboardIndex = () => {
+  const navigate = useNavigate();
   return (
     <div className="theme-white min-h-screen">
       <div className="app-container py-8 animate-fade-in-up">
