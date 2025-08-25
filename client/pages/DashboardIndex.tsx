@@ -81,16 +81,32 @@ const DashboardIndex = () => {
               <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-2xl" role="img" aria-label="Video">🎬</span>
               </div>
-              <h2 className="text-xl font-bold text-gray-900 mb-3">วิดีโอเชิงโ��้ตอบ</h2>
+              <h2 className="text-xl font-bold text-gray-900 mb-3">วิดีโอเชิงโต้ตอบ</h2>
               <p className="text-gray-600 mb-6">
                 ประสบการณ์การเรียนรู้เกี่ยวกับนโยบายผ่านวิดีโอแบบ immersive
               </p>
-              <button
-                onClick={() => navigate("/video-intro")}
-                className="btn btn-primary w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700"
-              >
-                เริ่มชมวิดีโอ
-              </button>
+              <div className="flex flex-col gap-2">
+                <button
+                  onClick={() => navigate("/video-intro")}
+                  className="btn btn-primary w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700"
+                >
+                  เริ่มชมวิดีโอ (Fixed)
+                </button>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => navigate("/video-intro-test")}
+                    className="btn btn-secondary flex-1 bg-gray-600 hover:bg-gray-700 text-white"
+                  >
+                    Test
+                  </button>
+                  <button
+                    onClick={() => navigate("/video-intro-original")}
+                    className="btn btn-secondary flex-1 bg-gray-600 hover:bg-gray-700 text-white"
+                  >
+                    Original
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
