@@ -55,7 +55,7 @@ const DashboardIndex = () => {
                 เข้าสู่ระบบเพื่อดูข้อมูลการวิเคราะห์และสถิติการมีส่วนร่วมของประชาชน
               </p>
               <button
-                onClick={() => onNavigate('dashboard')}
+                onClick={() => navigate('/dashboard')}
                 className="btn btn-secondary w-full"
               >
                 เข้าสู่แดชบอร์ด
@@ -70,7 +70,7 @@ const DashboardIndex = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="text-center p-6">
               <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-xl">🎯</span>
+                <span className="text-xl">��</span>
               </div>
               <h4 className="font-semibold text-gray-900 mb-2">แบบสำรวจเชิงโต้ตอบ</h4>
               <p className="text-sm text-gray-600">มีส่วนร่วมผ่านเกมและกิจกรรมที่น่าสนใจ</p>
@@ -88,7 +88,7 @@ const DashboardIndex = () => {
               <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-xl">🤝</span>
               </div>
-              <h4 className="font-semibold text-gray-900 mb-2">การมีส่วนร่วมของประช��ชน</h4>
+              <h4 className="font-semibold text-gray-900 mb-2">การมีส่วนร่วมของประชาชน</h4>
               <p className="text-sm text-gray-600">เปิดโอกาสให้ทุกคนมีเสียงในการตัดสินใจ</p>
             </div>
           </div>
