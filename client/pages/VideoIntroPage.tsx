@@ -5,6 +5,7 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useSession } from '../hooks/useSession';
+import { loadYouTubeAPI, createYouTubePlayer, isYouTubeAPIReady, cleanupYouTubeAPI } from '../utils/youtubeAPI';
 
 interface StoryScene {
   type: 'video' | 'choices_only' | 'dynamic_choices' | 'placeholder';
@@ -29,13 +30,7 @@ interface StoryData {
   [key: string]: StoryScene;
 }
 
-// Declare YouTube API types
-declare global {
-  interface Window {
-    YT: any;
-    onYouTubeIframeAPIReady: () => void;
-  }
-}
+// YouTube API types are now handled in the utility
 
 const VideoIntroPage = () => {
   const { navigateToPage } = useSession();
@@ -109,7 +104,7 @@ const VideoIntroPage = () => {
       choices: [
         { text: 'ไม่เชื่อว่าจะได้ผล', action: { type: 'LOG_AND_NAVIGATE', log: { key: 'initial_attitude', value: 'wont_work' }, destination: 'SCENE_POLICY_QNA' } },
         { text: 'กลัวเป็นภาระทางการเงิน', action: { type: 'LOG_AND_NAVIGATE', log: { key: 'initial_attitude', value: 'financial_burden' }, destination: 'SCENE_POLICY_QNA' } },
-        { text: 'ไม่อยากเปลี่ยนวิธีเดินทาง', action: { type: 'LOG_AND_NAVIGATE', log: { key: 'initial_attitude', value: 'unwilling_to_change' }, destination: 'SCENE_POLICY_QNA' } },
+        { text: 'ไม่อยากเปลี่ยนว���ธีเดินทาง', action: { type: 'LOG_AND_NAVIGATE', log: { key: 'initial_attitude', value: 'unwilling_to_change' }, destination: 'SCENE_POLICY_QNA' } },
         { text: 'ลองดู ถ้าไม่ทำอะไร ปัญหาก็ไม่หาย', action: { type: 'LOG_AND_NAVIGATE', log: { key: 'initial_attitude', value: 'positive' }, destination: 'SCENE_POLICY_QNA' } },
       ]
     },
@@ -149,14 +144,32 @@ const VideoIntroPage = () => {
 
   // Load YouTube API
   useEffect(() => {
-    if (!window.YT) {
-      const script = document.createElement('script');
-      script.src = 'https://www.youtube.com/iframe_api';
-      document.head.appendChild(script);
-    }
+    const initializeAPI = async () => {
+      try {
+        if (isYouTubeAPIReady()) {
+          await initializePlayer();
+          return;
+        }
 
-    window.onYouTubeIframeAPIReady = () => {
-      playerRef.current = new window.YT.Player('youtube-player', {
+        await loadYouTubeAPI();
+        await initializePlayer();
+      } catch (error) {
+        console.error('Error initializing YouTube API:', error);
+      }
+    };
+
+    initializeAPI();
+
+    return () => {
+      stopProgressTimer();
+      cleanupYouTubeAPI();
+    };
+  }, []);
+
+  // Initialize YouTube player
+  const initializePlayer = async () => {
+    try {
+      const player = await createYouTubePlayer('youtube-player', {
         height: '100%',
         width: '100%',
         videoId: '6P5LGwaksbw',
@@ -186,12 +199,12 @@ const VideoIntroPage = () => {
           }
         }
       });
-    };
 
-    return () => {
-      stopProgressTimer();
-    };
-  }, []);
+      playerRef.current = player;
+    } catch (error) {
+      console.error('Failed to create YouTube player:', error);
+    }
+  };
 
   // Helper functions
   const stopProgressTimer = useCallback(() => {
@@ -314,7 +327,7 @@ const VideoIntroPage = () => {
         },
         resident: { 
           question: 'คุณเดินทางในพื้นที่บ่อยแค่ไหน?', 
-          options: ['ทุกวัน', 'เกือบทุกวัน', 'สัปดาห์ละ 2-3 ครั้ง', 'สัปดาห์ละครั้ง', 'นานๆ ครั้ง'] 
+          options: ['ทุกวัน', 'เกือบทุกวัน', 'สัปดาห��ละ 2-3 ครั้ง', 'สัปดาห์ละครั้ง', 'นานๆ ครั้ง'] 
         },
         default: { 
           question: 'คุณเดินทางบ่อยแค่ไหน?', 
