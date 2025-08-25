@@ -45,7 +45,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => (
       className="skip-link"
       aria-label="ข้ามไปยังเนื้อหาหลัก"
     >
-      ข้ามไปยังเนื้อหาหลัก
+      ข้า��ไปยังเนื้อหาหลัก
     </a>
     <main id="main-content" role="main">
       {children}
@@ -100,6 +100,14 @@ const App = () => (
             <Route path="/budget" element={<BudgetPage />} />
             <Route path="/end-sequence" element={<EndSequencePage />} />
             <Route path="/end-screen" element={<EndScreenPage />} />
+
+            {/* Builder.io Design mode compatible routes for other pages */}
+            <Route path="/SourceSelectionPage" element={<SourceSelectionPage />} />
+            <Route path="/FakeNewsPage" element={<FakeNewsPage />} />
+            <Route path="/BudgetPage" element={<BudgetPage />} />
+            <Route path="/EndSequencePage" element={<EndSequencePage />} />
+            <Route path="/EndScreenPage" element={<EndScreenPage />} />
+            <Route path="/DashboardIndex" element={<DashboardIndex />} />
             
             {/* Legacy support - redirect old gameID URLs to new routes */}
             <Route path="/legacy" element={<LegacyRedirectHandler />} />
