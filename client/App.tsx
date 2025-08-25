@@ -11,6 +11,7 @@ import DashboardIndex from "./pages/DashboardIndex";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import VideoIntroPage from "./pages/VideoIntroPage";
+import VideoIntroPageFixed from "./pages/VideoIntroPageFixed";
 import VideoIntroTest from "./pages/VideoIntroTest";
 
 // Journey pages
