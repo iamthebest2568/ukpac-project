@@ -61,6 +61,8 @@ export const useSession = (): UseSessionReturn => {
       dashboard: "/dashboard",
       index: "/",
       dashboardIndex: "/",
+      videoIntro: "/video-intro",
+      "video-intro": "/video-intro",
       priorities: "/minigame-mn1", // Legacy alias
       beneficiaries: "/minigame-mn2", // Legacy alias
     };
