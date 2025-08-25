@@ -4,14 +4,7 @@
  */
 
 import { useState, useEffect, useRef } from 'react';
-
-// Declare YouTube API types
-declare global {
-  interface Window {
-    YT: any;
-    onYouTubeIframeAPIReady: () => void;
-  }
-}
+import { loadYouTubeAPI, createYouTubePlayer, isYouTubeAPIReady, resetYouTubeAPIState } from '../utils/youtubeAPI';
 
 const VideoIntroTest = () => {
   const [logs, setLogs] = useState<string[]>([]);
@@ -30,60 +23,31 @@ const VideoIntroTest = () => {
     addLog('Starting VideoIntro diagnostics...');
     
     // Test 1: Check if YouTube API is already loaded
-    if (window.YT && window.YT.Player) {
+    if (isYouTubeAPIReady()) {
       addLog('✅ YouTube API already loaded');
       setYtApiLoaded(true);
       initializePlayer();
     } else {
       addLog('📡 Loading YouTube API...');
-      loadYouTubeAPI();
+      loadYouTubeAPITest();
     }
   }, []);
 
-  const loadYouTubeAPI = () => {
-    // Check if script already exists
-    const existingScript = document.querySelector('script[src*="youtube.com/iframe_api"]');
-    if (existingScript) {
-      addLog('📡 YouTube API script already in DOM, waiting for load...');
-    } else {
-      addLog('📡 Adding YouTube API script to DOM...');
-      const script = document.createElement('script');
-      script.src = 'https://www.youtube.com/iframe_api';
-      script.async = true;
-      script.onload = () => addLog('📡 YouTube API script loaded');
-      script.onerror = () => addLog('❌ Failed to load YouTube API script');
-      document.head.appendChild(script);
-    }
-
-    // Set up global callback
-    window.onYouTubeIframeAPIReady = () => {
-      addLog('✅ YouTube API ready callback triggered');
+  const loadYouTubeAPITest = async () => {
+    try {
+      addLog('🔄 Using robust YouTube API loader...');
+      await loadYouTubeAPI();
+      addLog('✅ YouTube API loaded successfully via utility');
       setYtApiLoaded(true);
       initializePlayer();
-    };
-
-    // Backup: check every 500ms for API availability
-    const checkInterval = setInterval(() => {
-      if (window.YT && window.YT.Player) {
-        addLog('✅ YouTube API detected via polling');
-        clearInterval(checkInterval);
-        setYtApiLoaded(true);
-        initializePlayer();
-      }
-    }, 500);
-
-    // Timeout after 10 seconds
-    setTimeout(() => {
-      clearInterval(checkInterval);
-      if (!ytApiLoaded) {
-        addLog('❌ YouTube API load timeout after 10 seconds');
-      }
-    }, 10000);
+    } catch (error) {
+      addLog(`❌ YouTube API loading failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    }
   };
 
-  const initializePlayer = () => {
-    if (!window.YT || !window.YT.Player) {
-      addLog('❌ Cannot initialize player: YT.Player not available');
+  const initializePlayer = async () => {
+    if (!isYouTubeAPIReady()) {
+      addLog('❌ Cannot initialize player: YouTube API not ready');
       return;
     }
 
@@ -91,7 +55,7 @@ const VideoIntroTest = () => {
     setTestStage('player-init');
 
     try {
-      playerRef.current = new window.YT.Player('youtube-test-player', {
+      const player = await createYouTubePlayer('youtube-test-player', {
         height: '360',
         width: '640',
         videoId: '6P5LGwaksbw', // Same video ID as in VideoIntroPage
@@ -108,11 +72,11 @@ const VideoIntroTest = () => {
             addLog('✅ YouTube player ready');
             setPlayerReady(true);
             setTestStage('player-ready');
-            
+
             // Test video info
             const duration = event.target.getDuration();
             addLog(`📹 Video duration: ${duration} seconds`);
-            
+
             // Test if video is available
             const videoUrl = event.target.getVideoUrl();
             addLog(`📹 Video URL: ${videoUrl}`);
@@ -142,6 +106,9 @@ const VideoIntroTest = () => {
           }
         }
       });
+
+      playerRef.current = player;
+      addLog('✅ YouTube player created successfully via utility');
     } catch (error) {
       addLog(`❌ Failed to create player: ${error}`);
     }
@@ -205,6 +172,23 @@ const VideoIntroTest = () => {
     addLog('Logs cleared');
   };
 
+  const resetAPI = () => {
+    addLog('🔄 Resetting YouTube API state...');
+    resetYouTubeAPIState();
+    setYtApiLoaded(false);
+    setPlayerReady(false);
+    setTestStage('init');
+    if (playerRef.current) {
+      try {
+        playerRef.current.destroy();
+      } catch (e) {
+        console.warn('Error destroying player:', e);
+      }
+      playerRef.current = null;
+    }
+    addLog('✅ API state reset complete');
+  };
+
   return (
     <div className="min-h-screen bg-gray-100 p-8">
       <div className="max-w-4xl mx-auto">
@@ -250,12 +234,20 @@ const VideoIntroTest = () => {
           <div className="bg-white rounded-lg shadow p-6">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-xl font-semibold">Status & Logs</h2>
-              <button
-                onClick={clearLogs}
-                className="px-3 py-1 bg-red-500 hover:bg-red-600 text-white rounded text-sm"
-              >
-                Clear
-              </button>
+              <div className="flex gap-2">
+                <button
+                  onClick={clearLogs}
+                  className="px-3 py-1 bg-red-500 hover:bg-red-600 text-white rounded text-sm"
+                >
+                  Clear
+                </button>
+                <button
+                  onClick={resetAPI}
+                  className="px-3 py-1 bg-orange-500 hover:bg-orange-600 text-white rounded text-sm"
+                >
+                  Reset API
+                </button>
+              </div>
             </div>
             
             {/* Status indicators */}
