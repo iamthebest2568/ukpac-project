@@ -114,6 +114,7 @@ const App = () => (
             <Route path="/EndSequencePage" element={<EndSequencePage />} />
             <Route path="/EndScreenPage" element={<EndScreenPage />} />
             <Route path="/DashboardIndex" element={<DashboardIndex />} />
+            <Route path="/VideoIntroPage" element={<VideoIntroPage />} />
 
             {/* Legacy support - redirect old gameID URLs to new routes */}
             <Route path="/legacy" element={<LegacyRedirectHandler />} />
