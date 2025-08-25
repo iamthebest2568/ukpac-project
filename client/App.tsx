@@ -75,11 +75,24 @@ const App = () => (
             <Route path="/ask04" element={<Ask04Page />} />
             <Route path="/ask04-budget" element={<Ask04BudgetPage />} />
             <Route path="/ask05" element={<Ask05Page />} />
-            
+
+            {/* Builder.io Design mode compatible routes (match component names) */}
+            <Route path="/Ask01Page" element={<Ask01Page />} />
+            <Route path="/Ask02Page" element={<Ask02Page />} />
+            <Route path="/Ask02_2Page" element={<Ask02_2Page />} />
+            <Route path="/Ask04Page" element={<Ask04Page />} />
+            <Route path="/Ask04BudgetPage" element={<Ask04BudgetPage />} />
+            <Route path="/Ask05Page" element={<Ask05Page />} />
+
             {/* Mini-game pages */}
             <Route path="/minigame-mn1" element={<MiniGameMN1Page />} />
             <Route path="/minigame-mn2" element={<MiniGameMN2Page />} />
             <Route path="/minigame-mn3" element={<MiniGameMN3Page />} />
+
+            {/* Builder.io Design mode compatible routes for mini-games */}
+            <Route path="/MiniGameMN1Page" element={<MiniGameMN1Page />} />
+            <Route path="/MiniGameMN2Page" element={<MiniGameMN2Page />} />
+            <Route path="/MiniGameMN3Page" element={<MiniGameMN3Page />} />
             
             {/* Other journey pages */}
             <Route path="/source-selection" element={<SourceSelectionPage />} />
