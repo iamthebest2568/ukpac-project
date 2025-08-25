@@ -92,19 +92,33 @@ const DashboardIndex = () => {
                 >
                   เริ่มชมวิดีโอ (Fixed)
                 </button>
-                <div className="flex gap-2">
+                <div className="grid grid-cols-3 gap-2">
                   <button
                     onClick={() => navigate("/video-intro-test")}
-                    className="btn btn-secondary flex-1 bg-gray-600 hover:bg-gray-700 text-white"
+                    className="btn btn-secondary bg-green-600 hover:bg-green-700 text-white text-sm"
                   >
-                    Test
+                    🔧 Test
                   </button>
                   <button
                     onClick={() => navigate("/video-intro-original")}
-                    className="btn btn-secondary flex-1 bg-gray-600 hover:bg-gray-700 text-white"
+                    className="btn btn-secondary bg-gray-600 hover:bg-gray-700 text-white text-sm"
                   >
-                    Original
+                    📱 Original
                   </button>
+                  <button
+                    onClick={() => {
+                      console.log('Current state:');
+                      console.log('- YouTube API loaded:', !!(window as any).YT);
+                      console.log('- Scripts in DOM:', document.querySelectorAll('script[src*="youtube.com"]').length);
+                      console.log('- Callback set:', !!(window as any).onYouTubeIframeAPIReady);
+                    }}
+                    className="btn btn-secondary bg-orange-600 hover:bg-orange-700 text-white text-sm"
+                  >
+                    🐛 Debug
+                  </button>
+                </div>
+                <div className="text-xs text-gray-500 text-center mt-1">
+                  Fixed: Robust API loading | Test: Diagnostics | Original: Legacy | Debug: Console info
                 </div>
               </div>
             </div>
