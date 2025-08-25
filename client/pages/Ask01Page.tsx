@@ -3,18 +3,13 @@
  * First question asking user's initial opinion on the policy
  */
 
-import Ask01 from '../components/journey/Ask01';
-import { useSession } from '../hooks/useSession';
+import Ask01 from "../components/journey/Ask01";
+import { useSession } from "../hooks/useSession";
 
 const Ask01Page = () => {
   const { sessionID, navigateToPage } = useSession();
 
-  return (
-    <Ask01 
-      sessionID={sessionID} 
-      onNavigate={navigateToPage} 
-    />
-  );
+  return <Ask01 sessionID={sessionID} onNavigate={navigateToPage} />;
 };
 
 export default Ask01Page;

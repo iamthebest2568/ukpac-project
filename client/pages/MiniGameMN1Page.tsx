@@ -3,9 +3,9 @@
  * First mini-game for policy priority selection
  */
 
-import Flow_MiniGame_MN1 from '../components/flows/Flow_MiniGame_MN1';
-import { useSession } from '../hooks/useSession';
-import { useFlowNavigation } from '../hooks/useFlowNavigation';
+import Flow_MiniGame_MN1 from "../components/flows/Flow_MiniGame_MN1";
+import { useSession } from "../hooks/useSession";
+import { useFlowNavigation } from "../hooks/useFlowNavigation";
 
 const MiniGameMN1Page = () => {
   const { sessionID, navigateToPage } = useSession();
@@ -15,7 +15,7 @@ const MiniGameMN1Page = () => {
     <Flow_MiniGame_MN1
       sessionID={sessionID}
       onComplete={handleMN1Complete}
-      onBack={() => navigateToPage('/ask02')}
+      onBack={() => navigateToPage("/ask02")}
     />
   );
 };

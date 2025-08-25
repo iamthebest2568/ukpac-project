@@ -64,10 +64,10 @@ const App = () => (
             {/* Main pages */}
             <Route path="/" element={<DashboardIndex />} />
             <Route path="/index" element={<Index />} />
-            
+
             {/* Dashboard */}
             <Route path="/dashboard" element={<DashboardApp />} />
-            
+
             {/* Survey journey pages */}
             <Route path="/ask01" element={<Ask01Page />} />
             <Route path="/ask02" element={<Ask02Page />} />
@@ -93,7 +93,7 @@ const App = () => (
             <Route path="/MiniGameMN1Page" element={<MiniGameMN1Page />} />
             <Route path="/MiniGameMN2Page" element={<MiniGameMN2Page />} />
             <Route path="/MiniGameMN3Page" element={<MiniGameMN3Page />} />
-            
+
             {/* Other journey pages */}
             <Route path="/source-selection" element={<SourceSelectionPage />} />
             <Route path="/fake-news" element={<FakeNewsPage />} />
@@ -102,16 +102,19 @@ const App = () => (
             <Route path="/end-screen" element={<EndScreenPage />} />
 
             {/* Builder.io Design mode compatible routes for other pages */}
-            <Route path="/SourceSelectionPage" element={<SourceSelectionPage />} />
+            <Route
+              path="/SourceSelectionPage"
+              element={<SourceSelectionPage />}
+            />
             <Route path="/FakeNewsPage" element={<FakeNewsPage />} />
             <Route path="/BudgetPage" element={<BudgetPage />} />
             <Route path="/EndSequencePage" element={<EndSequencePage />} />
             <Route path="/EndScreenPage" element={<EndScreenPage />} />
             <Route path="/DashboardIndex" element={<DashboardIndex />} />
-            
+
             {/* Legacy support - redirect old gameID URLs to new routes */}
             <Route path="/legacy" element={<LegacyRedirectHandler />} />
-            
+
             {/* 404 page */}
             <Route path="*" element={<NotFound />} />
           </Routes>
@@ -124,39 +127,39 @@ const App = () => (
 // Component to handle legacy gameID redirects
 const LegacyRedirectHandler = () => {
   const searchParams = new URLSearchParams(window.location.search);
-  const gameID = searchParams.get('gameID');
-  
+  const gameID = searchParams.get("gameID");
+
   const redirectMap: Record<string, string> = {
-    'ask01': '/ask01',
-    'ask02': '/ask02',
-    'ask02_2': '/ask02-2',
-    'ask04': '/ask04',
-    'ask04_budget': '/ask04-budget',
-    'ask05': '/ask05',
-    'Flow_MiniGame_MN1': '/minigame-mn1',
-    'Flow_MiniGame_MN2': '/minigame-mn2',
-    'Flow_MiniGame_MN3': '/minigame-mn3',
-    'Flow_EndSequence': '/end-sequence',
-    'fakeNews': '/fake-news',
-    'sourceSelection': '/source-selection',
-    'budget': '/budget',
-    'endScreen': '/end-screen',
-    'dashboard': '/dashboard',
-    'index': '/',
-    'dashboardIndex': '/'
+    ask01: "/ask01",
+    ask02: "/ask02",
+    ask02_2: "/ask02-2",
+    ask04: "/ask04",
+    ask04_budget: "/ask04-budget",
+    ask05: "/ask05",
+    Flow_MiniGame_MN1: "/minigame-mn1",
+    Flow_MiniGame_MN2: "/minigame-mn2",
+    Flow_MiniGame_MN3: "/minigame-mn3",
+    Flow_EndSequence: "/end-sequence",
+    fakeNews: "/fake-news",
+    sourceSelection: "/source-selection",
+    budget: "/budget",
+    endScreen: "/end-screen",
+    dashboard: "/dashboard",
+    index: "/",
+    dashboardIndex: "/",
   };
-  
+
   if (gameID && redirectMap[gameID]) {
     // Preserve sessionID in redirect
-    const sessionID = searchParams.get('sessionID');
+    const sessionID = searchParams.get("sessionID");
     const newPath = redirectMap[gameID];
     const newUrl = sessionID ? `${newPath}?sessionID=${sessionID}` : newPath;
     window.location.replace(newUrl);
     return <div>Redirecting...</div>;
   }
-  
+
   // If no valid gameID, redirect to home
-  window.location.replace('/');
+  window.location.replace("/");
   return <div>Redirecting to home...</div>;
 };
 
