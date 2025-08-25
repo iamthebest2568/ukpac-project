@@ -13,6 +13,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useSession } from '../hooks/useSession';
 import { logEvent } from '../services/dataLogger.js';
+import { loadYouTubeAPI, createYouTubePlayer, isYouTubeAPIReady, cleanupYouTubeAPI } from '../utils/youtubeAPI';
 
 interface StoryScene {
   type: 'video' | 'choices_only' | 'dynamic_choices' | 'placeholder';
@@ -37,13 +38,7 @@ interface StoryData {
   [key: string]: StoryScene;
 }
 
-// Declare YouTube API types
-declare global {
-  interface Window {
-    YT: any;
-    onYouTubeIframeAPIReady: () => void;
-  }
-}
+// YouTube API types are now handled in the utility
 
 const VideoIntroPageFixed = () => {
   const { navigateToPage } = useSession();
@@ -86,7 +81,7 @@ const VideoIntroPageFixed = () => {
       type: 'choices_only',
       question: 'คุณเป็นใครในมหานครนี้',
       choices: [
-        { text: 'ผู้ที่ต้องเข้าเมืองทำงาน', action: { type: 'LOG_AND_NAVIGATE', log: { key: 'profile', value: 'commuter' }, destination: 'SCENE_GENDER' } },
+        { text: 'ผู้ท���่ต้องเข้าเมืองทำงาน', action: { type: 'LOG_AND_NAVIGATE', log: { key: 'profile', value: 'commuter' }, destination: 'SCENE_GENDER' } },
         { text: 'ผู้อยู่อาศัยในพื้นที่', action: { type: 'LOG_AND_NAVIGATE', log: { key: 'profile', value: 'resident' }, destination: 'SCENE_GENDER' } },
         { text: 'นักศึกษาที่มาเรียนในพื้นที่', action: { type: 'LOG_AND_NAVIGATE', log: { key: 'profile', value: 'student' }, destination: 'SCENE_GENDER' } },
         { text: 'ผู้ประกอบการที่มาขายของ', action: { type: 'LOG_AND_NAVIGATE', log: { key: 'profile', value: 'vendor' }, destination: 'SCENE_GENDER' } },
@@ -136,7 +131,7 @@ const VideoIntroPageFixed = () => {
     },
     'SCENE_REACTION': {
       type: 'choices_only',
-      question: 'หลังจากรับชม คุณรู้สึกอย่า���ไร?',
+      question: 'หลังจากรับชม คุณรู้สึกอย่างไร?',
       choices: [
         { text: 'ดูแล้ว', action: { type: 'LOG_AND_NAVIGATE', log: { key: 'reaction', value: 'watched' }, destination: 'SCENE_PERSUASION' } },
         { text: 'อยากรู้อยู่พอดี', action: { type: 'LOG_AND_NAVIGATE', log: { key: 'reaction', value: 'curious' }, destination: 'SCENE_PERSUASION' } },
@@ -176,78 +171,25 @@ const VideoIntroPageFixed = () => {
           payload: { attempt: initializationAttempts.current + 1 }
         });
 
-        // Check if YouTube API is already loaded
-        if (window.YT && window.YT.Player) {
-          console.log('YouTube API already loaded');
+        // Check if YouTube API is already ready
+        if (isYouTubeAPIReady()) {
+          console.log('YouTube API already ready');
           setApiLoaded(true);
           await initializePlayer();
           return;
         }
 
-        // Check if script is already in DOM
-        const existingScript = document.querySelector('script[src*="youtube.com/iframe_api"]');
-        if (!existingScript) {
-          console.log('Loading YouTube API script...');
-          const script = document.createElement('script');
-          script.src = 'https://www.youtube.com/iframe_api';
-          script.async = true;
-          script.onerror = () => {
-            setLoadingError('Failed to load YouTube API script');
-            setIsLoading(false);
-          };
-          document.head.appendChild(script);
-        }
+        // Use the robust YouTube API loader
+        console.log('Loading YouTube API...');
+        await loadYouTubeAPI();
 
-        // Set up global callback with timeout
-        const setupCallback = () => {
-          window.onYouTubeIframeAPIReady = async () => {
-            try {
-              console.log('YouTube API ready');
-              if (apiLoadingTimeout.current) {
-                clearTimeout(apiLoadingTimeout.current);
-              }
-              setApiLoaded(true);
-              await initializePlayer();
-            } catch (error) {
-              console.error('Error in API ready callback:', error);
-              setLoadingError('Failed to initialize video player');
-              setIsLoading(false);
-            }
-          };
-        };
-
-        setupCallback();
-
-        // Set timeout for API loading
-        apiLoadingTimeout.current = setTimeout(() => {
-          if (!apiLoaded) {
-            console.error('YouTube API loading timeout');
-            setLoadingError('Video loading timeout. Please refresh and try again.');
-            setIsLoading(false);
-          }
-        }, 15000);
-
-        // Backup: Poll for API availability
-        const pollInterval = setInterval(() => {
-          if (window.YT && window.YT.Player && !apiLoaded) {
-            console.log('YouTube API detected via polling');
-            clearInterval(pollInterval);
-            if (apiLoadingTimeout.current) {
-              clearTimeout(apiLoadingTimeout.current);
-            }
-            setApiLoaded(true);
-            initializePlayer();
-          }
-        }, 500);
-
-        // Cleanup polling after 20 seconds
-        setTimeout(() => {
-          clearInterval(pollInterval);
-        }, 20000);
+        console.log('YouTube API loaded successfully');
+        setApiLoaded(true);
+        await initializePlayer();
 
       } catch (error) {
         console.error('Error initializing YouTube API:', error);
-        setLoadingError('Failed to initialize video system');
+        setLoadingError(error instanceof Error ? error.message : 'Failed to initialize video system');
         setIsLoading(false);
       }
     };
@@ -256,23 +198,21 @@ const VideoIntroPageFixed = () => {
     initializeAPI();
 
     return () => {
-      if (apiLoadingTimeout.current) {
-        clearTimeout(apiLoadingTimeout.current);
-      }
       stopProgressTimer();
+      cleanupYouTubeAPI();
     };
   }, []);
 
   // Initialize YouTube player with better error handling
   const initializePlayer = useCallback(async () => {
-    if (!window.YT || !window.YT.Player) {
+    if (!isYouTubeAPIReady()) {
       throw new Error('YouTube API not available');
     }
 
     try {
       console.log('Initializing YouTube player...');
-      
-      playerRef.current = new window.YT.Player('youtube-player-fixed', {
+
+      const player = await createYouTubePlayer('youtube-player-fixed', {
         height: '100%',
         width: '100%',
         videoId: '6P5LGwaksbw',
@@ -288,7 +228,7 @@ const VideoIntroPageFixed = () => {
         },
         events: {
           onReady: (event: any) => {
-            console.log('YouTube player ready');
+            console.log('YouTube player ready in callback');
             playerReady.current = true;
             setPlayerInitialized(true);
             setIsLoading(false);
@@ -296,7 +236,7 @@ const VideoIntroPageFixed = () => {
             // Log successful initialization
             logEvent({
               event: 'VIDEO_PLAYER_READY',
-              payload: { 
+              payload: {
                 videoId: '6P5LGwaksbw',
                 duration: event.target.getDuration()
               }
@@ -314,9 +254,9 @@ const VideoIntroPageFixed = () => {
             if (suppressEndedHandler.current && event.data === window.YT.PlayerState.ENDED) {
               return;
             }
-            
+
             console.log('Player state changed:', event.data);
-            
+
             if (event.data === window.YT.PlayerState.ENDED) {
               stopProgressTimer();
               const scene = storyData[currentSceneId];
@@ -336,11 +276,11 @@ const VideoIntroPageFixed = () => {
             };
             const errorMessage = errorMessages[event.data] || `Unknown error (${event.data})`;
             setLoadingError(`Video error: ${errorMessage}`);
-            
+
             // Log the error
             logEvent({
               event: 'VIDEO_PLAYER_ERROR',
-              payload: { 
+              payload: {
                 errorCode: event.data,
                 errorMessage: errorMessage
               }
@@ -348,6 +288,9 @@ const VideoIntroPageFixed = () => {
           }
         }
       });
+
+      playerRef.current = player;
+      console.log('YouTube player created successfully');
 
     } catch (error) {
       console.error('Failed to create YouTube player:', error);
@@ -660,7 +603,7 @@ const VideoIntroPageFixed = () => {
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto"></div>
           </div>
           <h2 className="text-xl font-['Kanit'] mb-2">กำลังโหลดวิดีโอ...</h2>
-          <p className="text-sm opacity-75">กรุณารอสักครู่</p>
+          <p className="text-sm opacity-75">กรุ���ารอสักครู่</p>
         </div>
       </div>
     );
