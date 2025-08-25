@@ -97,6 +97,7 @@ Analytics and admin interface:
 
 ```
 / → Main landing page
+/video-intro → Interactive video experience
 /ask01 → Initial policy stance
 /ask02 → Reasoning selection
 /ask02-2 → Custom reasoning
