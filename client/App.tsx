@@ -162,6 +162,4 @@ const LegacyRedirectHandler = () => {
   return <div>Redirecting to home...</div>;
 };
 
-createRoot(document.getElementById("root")!).render(<App />);
-
 export default App;
