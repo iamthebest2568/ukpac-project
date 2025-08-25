@@ -68,7 +68,8 @@ const App = () => (
             <Route path="/index" element={<Index />} />
 
             {/* Video Intro */}
-            <Route path="/video-intro" element={<VideoIntroPage />} />
+            <Route path="/video-intro" element={<VideoIntroPageFixed />} />
+            <Route path="/video-intro-original" element={<VideoIntroPage />} />
             <Route path="/video-intro-test" element={<VideoIntroTest />} />
 
             {/* Dashboard */}
