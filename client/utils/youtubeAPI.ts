@@ -21,7 +21,11 @@ declare global {
  * Check if YouTube API is already available
  */
 export function isYouTubeAPIReady(): boolean {
-  return !!(window.YT && window.YT.Player && typeof window.YT.Player === 'function');
+  return !!(
+    window.YT &&
+    window.YT.Player &&
+    typeof window.YT.Player === "function"
+  );
 }
 
 /**
@@ -43,7 +47,7 @@ export function loadYouTubeAPI(): Promise<void> {
   // Create new loading promise
   apiLoadPromise = new Promise<void>((resolve, reject) => {
     const timeout = setTimeout(() => {
-      reject(new Error('YouTube API loading timeout after 20 seconds'));
+      reject(new Error("YouTube API loading timeout after 20 seconds"));
     }, 20000);
 
     const cleanup = () => {
@@ -53,20 +57,20 @@ export function loadYouTubeAPI(): Promise<void> {
 
     const handleAPIReady = () => {
       if (isYouTubeAPIReady()) {
-        console.log('✅ YouTube API is ready');
+        console.log("✅ YouTube API is ready");
         apiLoaded = true;
         cleanup();
-        
+
         // Execute any pending callbacks
-        loadingCallbacks.forEach(callback => {
+        loadingCallbacks.forEach((callback) => {
           try {
             callback();
           } catch (error) {
-            console.error('Error in YouTube API callback:', error);
+            console.error("Error in YouTube API callback:", error);
           }
         });
         loadingCallbacks = [];
-        
+
         resolve();
       }
     };
@@ -81,22 +85,24 @@ export function loadYouTubeAPI(): Promise<void> {
     const originalCallback = window.onYouTubeIframeAPIReady;
     window.onYouTubeIframeAPIReady = () => {
       // Call original callback if it existed
-      if (originalCallback && typeof originalCallback === 'function') {
+      if (originalCallback && typeof originalCallback === "function") {
         try {
           originalCallback();
         } catch (error) {
-          console.error('Error in original YouTube callback:', error);
+          console.error("Error in original YouTube callback:", error);
         }
       }
       handleAPIReady();
     };
 
     // Check if script already exists in DOM
-    const existingScript = document.querySelector('script[src*="youtube.com/iframe_api"]');
-    
+    const existingScript = document.querySelector(
+      'script[src*="youtube.com/iframe_api"]',
+    );
+
     if (existingScript) {
-      console.log('📡 YouTube API script already exists, waiting for load...');
-      
+      console.log("📡 YouTube API script already exists, waiting for load...");
+
       // Poll for API availability as backup
       const pollInterval = setInterval(() => {
         if (isYouTubeAPIReady()) {
@@ -109,25 +115,24 @@ export function loadYouTubeAPI(): Promise<void> {
       setTimeout(() => {
         clearInterval(pollInterval);
       }, 25000);
-      
     } else {
-      console.log('📡 Loading YouTube API script...');
-      
+      console.log("📡 Loading YouTube API script...");
+
       // Create and load script
-      const script = document.createElement('script');
-      script.src = 'https://www.youtube.com/iframe_api';
+      const script = document.createElement("script");
+      script.src = "https://www.youtube.com/iframe_api";
       script.async = true;
-      
+
       script.onload = () => {
-        console.log('📡 YouTube API script loaded');
+        console.log("📡 YouTube API script loaded");
         // Don't resolve here - wait for the API callback
       };
-      
+
       script.onerror = () => {
         cleanup();
-        reject(new Error('Failed to load YouTube API script'));
+        reject(new Error("Failed to load YouTube API script"));
       };
-      
+
       document.head.appendChild(script);
     }
 
@@ -153,11 +158,11 @@ export function loadYouTubeAPI(): Promise<void> {
  */
 export function createYouTubePlayer(
   elementId: string,
-  options: any
+  options: any,
 ): Promise<any> {
   return loadYouTubeAPI().then(() => {
     if (!isYouTubeAPIReady()) {
-      throw new Error('YouTube API not ready after loading');
+      throw new Error("YouTube API not ready after loading");
     }
 
     return new Promise((resolve, reject) => {
@@ -167,32 +172,32 @@ export function createYouTubePlayer(
           events: {
             ...options.events,
             onReady: (event: any) => {
-              console.log('🎥 YouTube player ready');
+              console.log("🎥 YouTube player ready");
               resolve(player);
-              
+
               // Call original onReady if provided
               if (options.events?.onReady) {
                 try {
                   options.events.onReady(event);
                 } catch (error) {
-                  console.error('Error in onReady callback:', error);
+                  console.error("Error in onReady callback:", error);
                 }
               }
             },
             onError: (event: any) => {
-              console.error('YouTube player error:', event.data);
+              console.error("YouTube player error:", event.data);
               reject(new Error(`YouTube player error: ${event.data}`));
-              
+
               // Call original onError if provided
               if (options.events?.onError) {
                 try {
                   options.events.onError(event);
                 } catch (error) {
-                  console.error('Error in onError callback:', error);
+                  console.error("Error in onError callback:", error);
                 }
               }
-            }
-          }
+            },
+          },
         });
       } catch (error) {
         reject(error);
@@ -220,7 +225,7 @@ export function onYouTubeAPIReady(callback: () => void) {
     try {
       callback();
     } catch (error) {
-      console.error('Error in YouTube API ready callback:', error);
+      console.error("Error in YouTube API ready callback:", error);
     }
   } else {
     // Add to queue
@@ -235,5 +240,5 @@ export function resetYouTubeAPIState() {
   apiLoadPromise = null;
   apiLoaded = false;
   loadingCallbacks = [];
-  console.log('🔄 YouTube API state reset');
+  console.log("🔄 YouTube API state reset");
 }

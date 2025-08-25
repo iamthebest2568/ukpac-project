@@ -3,62 +3,69 @@
  * Tests all individual components of the VideoIntroPage to identify issues
  */
 
-import { useState, useEffect, useRef } from 'react';
-import { loadYouTubeAPI, createYouTubePlayer, isYouTubeAPIReady, resetYouTubeAPIState } from '../utils/youtubeAPI';
+import { useState, useEffect, useRef } from "react";
+import {
+  loadYouTubeAPI,
+  createYouTubePlayer,
+  isYouTubeAPIReady,
+  resetYouTubeAPIState,
+} from "../utils/youtubeAPI";
 
 const VideoIntroTest = () => {
   const [logs, setLogs] = useState<string[]>([]);
   const [ytApiLoaded, setYtApiLoaded] = useState(false);
   const [playerReady, setPlayerReady] = useState(false);
-  const [testStage, setTestStage] = useState('init');
+  const [testStage, setTestStage] = useState("init");
   const playerRef = useRef<any>(null);
 
   const addLog = (message: string) => {
     const timestamp = new Date().toLocaleTimeString();
-    setLogs(prev => [...prev, `[${timestamp}] ${message}`]);
+    setLogs((prev) => [...prev, `[${timestamp}] ${message}`]);
     console.log(`[VideoIntroTest] ${message}`);
   };
 
   useEffect(() => {
-    addLog('Starting VideoIntro diagnostics...');
-    
+    addLog("Starting VideoIntro diagnostics...");
+
     // Test 1: Check if YouTube API is already loaded
     if (isYouTubeAPIReady()) {
-      addLog('✅ YouTube API already loaded');
+      addLog("✅ YouTube API already loaded");
       setYtApiLoaded(true);
       initializePlayer();
     } else {
-      addLog('📡 Loading YouTube API...');
+      addLog("📡 Loading YouTube API...");
       loadYouTubeAPITest();
     }
   }, []);
 
   const loadYouTubeAPITest = async () => {
     try {
-      addLog('🔄 Using robust YouTube API loader...');
+      addLog("🔄 Using robust YouTube API loader...");
       await loadYouTubeAPI();
-      addLog('✅ YouTube API loaded successfully via utility');
+      addLog("✅ YouTube API loaded successfully via utility");
       setYtApiLoaded(true);
       initializePlayer();
     } catch (error) {
-      addLog(`❌ YouTube API loading failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      addLog(
+        `❌ YouTube API loading failed: ${error instanceof Error ? error.message : "Unknown error"}`,
+      );
     }
   };
 
   const initializePlayer = async () => {
     if (!isYouTubeAPIReady()) {
-      addLog('❌ Cannot initialize player: YouTube API not ready');
+      addLog("❌ Cannot initialize player: YouTube API not ready");
       return;
     }
 
-    addLog('🎥 Initializing YouTube player...');
-    setTestStage('player-init');
+    addLog("🎥 Initializing YouTube player...");
+    setTestStage("player-init");
 
     try {
-      const player = await createYouTubePlayer('youtube-test-player', {
-        height: '360',
-        width: '640',
-        videoId: '6P5LGwaksbw', // Same video ID as in VideoIntroPage
+      const player = await createYouTubePlayer("youtube-test-player", {
+        height: "360",
+        width: "640",
+        videoId: "6P5LGwaksbw", // Same video ID as in VideoIntroPage
         playerVars: {
           playsinline: 1,
           controls: 1, // Enable controls for testing
@@ -69,9 +76,9 @@ const VideoIntroTest = () => {
         },
         events: {
           onReady: (event: any) => {
-            addLog('✅ YouTube player ready');
+            addLog("✅ YouTube player ready");
             setPlayerReady(true);
-            setTestStage('player-ready');
+            setTestStage("player-ready");
 
             // Test video info
             const duration = event.target.getDuration();
@@ -82,33 +89,33 @@ const VideoIntroTest = () => {
             addLog(`📹 Video URL: ${videoUrl}`);
           },
           onStateChange: (event: any) => {
-            const states: {[key: number]: string} = {
-              [-1]: 'UNSTARTED',
-              [0]: 'ENDED',
-              [1]: 'PLAYING',
-              [2]: 'PAUSED',
-              [3]: 'BUFFERING',
-              [5]: 'CUED'
+            const states: { [key: number]: string } = {
+              [-1]: "UNSTARTED",
+              [0]: "ENDED",
+              [1]: "PLAYING",
+              [2]: "PAUSED",
+              [3]: "BUFFERING",
+              [5]: "CUED",
             };
             const state = states[event.data] || `UNKNOWN(${event.data})`;
             addLog(`🎵 Player state changed: ${state}`);
           },
           onError: (event: any) => {
-            const errors: {[key: number]: string} = {
-              2: 'Invalid video ID',
-              5: 'HTML5 player error',
-              100: 'Video not found or private',
-              101: 'Video not allowed in embedded players',
-              150: 'Video not allowed in embedded players'
+            const errors: { [key: number]: string } = {
+              2: "Invalid video ID",
+              5: "HTML5 player error",
+              100: "Video not found or private",
+              101: "Video not allowed in embedded players",
+              150: "Video not allowed in embedded players",
             };
             const error = errors[event.data] || `Unknown error (${event.data})`;
             addLog(`❌ Player error: ${error}`);
-          }
-        }
+          },
+        },
       });
 
       playerRef.current = player;
-      addLog('✅ YouTube player created successfully via utility');
+      addLog("✅ YouTube player created successfully via utility");
     } catch (error) {
       addLog(`❌ Failed to create player: ${error}`);
     }
@@ -116,22 +123,22 @@ const VideoIntroTest = () => {
 
   const testPlaySegment = () => {
     if (!playerRef.current || !playerReady) {
-      addLog('❌ Cannot test play segment: Player not ready');
+      addLog("❌ Cannot test play segment: Player not ready");
       return;
     }
 
-    addLog('🎮 Testing segment playback (0-4 seconds)...');
-    setTestStage('segment-test');
-    
+    addLog("🎮 Testing segment playback (0-4 seconds)...");
+    setTestStage("segment-test");
+
     try {
       playerRef.current.seekTo(0, true);
       playerRef.current.playVideo();
-      
+
       // Stop after 4 seconds
       setTimeout(() => {
         if (playerRef.current) {
           playerRef.current.pauseVideo();
-          addLog('✅ Segment playback test completed');
+          addLog("✅ Segment playback test completed");
         }
       }, 4000);
     } catch (error) {
@@ -140,28 +147,28 @@ const VideoIntroTest = () => {
   };
 
   const testOverlaySystem = () => {
-    addLog('🎭 Testing overlay system...');
-    setTestStage('overlay-test');
-    
+    addLog("🎭 Testing overlay system...");
+    setTestStage("overlay-test");
+
     // Test basic state management
-    addLog('✅ Overlay state management works');
+    addLog("✅ Overlay state management works");
   };
 
   const testNavigationHook = () => {
-    addLog('🧭 Testing navigation hook...');
-    setTestStage('navigation-test');
-    
+    addLog("🧭 Testing navigation hook...");
+    setTestStage("navigation-test");
+
     // Test if useSession hook would work
     try {
       // This would be tested in actual implementation
-      addLog('✅ Navigation hook accessible');
+      addLog("✅ Navigation hook accessible");
     } catch (error) {
       addLog(`❌ Navigation hook failed: ${error}`);
     }
   };
 
   const runAllTests = () => {
-    addLog('🚀 Running all tests...');
+    addLog("🚀 Running all tests...");
     setTimeout(() => testPlaySegment(), 1000);
     setTimeout(() => testOverlaySystem(), 2000);
     setTimeout(() => testNavigationHook(), 3000);
@@ -169,38 +176,38 @@ const VideoIntroTest = () => {
 
   const clearLogs = () => {
     setLogs([]);
-    addLog('Logs cleared');
+    addLog("Logs cleared");
   };
 
   const resetAPI = () => {
-    addLog('🔄 Resetting YouTube API state...');
+    addLog("🔄 Resetting YouTube API state...");
     resetYouTubeAPIState();
     setYtApiLoaded(false);
     setPlayerReady(false);
-    setTestStage('init');
+    setTestStage("init");
     if (playerRef.current) {
       try {
         playerRef.current.destroy();
       } catch (e) {
-        console.warn('Error destroying player:', e);
+        console.warn("Error destroying player:", e);
       }
       playerRef.current = null;
     }
-    addLog('✅ API state reset complete');
+    addLog("✅ API state reset complete");
   };
 
   return (
     <div className="min-h-screen bg-gray-100 p-8">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-3xl font-bold mb-6">VideoIntro Diagnostic Test</h1>
-        
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Video Player Test */}
           <div className="bg-white rounded-lg shadow p-6">
             <h2 className="text-xl font-semibold mb-4">YouTube Player Test</h2>
             <div className="mb-4">
-              <div 
-                id="youtube-test-player" 
+              <div
+                id="youtube-test-player"
                 className="w-full aspect-video bg-black rounded"
               />
             </div>
@@ -209,9 +216,9 @@ const VideoIntroTest = () => {
                 onClick={runAllTests}
                 disabled={!playerReady}
                 className={`px-4 py-2 rounded ${
-                  playerReady 
-                    ? 'bg-blue-500 hover:bg-blue-600 text-white' 
-                    : 'bg-gray-300 text-gray-500'
+                  playerReady
+                    ? "bg-blue-500 hover:bg-blue-600 text-white"
+                    : "bg-gray-300 text-gray-500"
                 }`}
               >
                 Run All Tests
@@ -220,9 +227,9 @@ const VideoIntroTest = () => {
                 onClick={testPlaySegment}
                 disabled={!playerReady}
                 className={`px-4 py-2 rounded ${
-                  playerReady 
-                    ? 'bg-green-500 hover:bg-green-600 text-white' 
-                    : 'bg-gray-300 text-gray-500'
+                  playerReady
+                    ? "bg-green-500 hover:bg-green-600 text-white"
+                    : "bg-gray-300 text-gray-500"
                 }`}
               >
                 Test Segment Play
@@ -249,19 +256,27 @@ const VideoIntroTest = () => {
                 </button>
               </div>
             </div>
-            
+
             {/* Status indicators */}
             <div className="grid grid-cols-2 gap-4 mb-4">
-              <div className={`p-3 rounded ${ytApiLoaded ? 'bg-green-100' : 'bg-red-100'}`}>
+              <div
+                className={`p-3 rounded ${ytApiLoaded ? "bg-green-100" : "bg-red-100"}`}
+              >
                 <div className="font-medium">YouTube API</div>
-                <div className={ytApiLoaded ? 'text-green-700' : 'text-red-700'}>
-                  {ytApiLoaded ? '✅ Loaded' : '❌ Not Loaded'}
+                <div
+                  className={ytApiLoaded ? "text-green-700" : "text-red-700"}
+                >
+                  {ytApiLoaded ? "✅ Loaded" : "❌ Not Loaded"}
                 </div>
               </div>
-              <div className={`p-3 rounded ${playerReady ? 'bg-green-100' : 'bg-red-100'}`}>
+              <div
+                className={`p-3 rounded ${playerReady ? "bg-green-100" : "bg-red-100"}`}
+              >
                 <div className="font-medium">Player</div>
-                <div className={playerReady ? 'text-green-700' : 'text-red-700'}>
-                  {playerReady ? '✅ Ready' : '❌ Not Ready'}
+                <div
+                  className={playerReady ? "text-green-700" : "text-red-700"}
+                >
+                  {playerReady ? "✅ Ready" : "❌ Not Ready"}
                 </div>
               </div>
             </div>

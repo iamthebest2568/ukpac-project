@@ -79,9 +79,13 @@ const DashboardIndex = () => {
           <div className="bg-gradient-to-r from-purple-50 to-blue-50 p-8 rounded-xl shadow-lg border border-purple-200 hover:shadow-xl transition-shadow">
             <div className="text-center">
               <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl" role="img" aria-label="Video">🎬</span>
+                <span className="text-2xl" role="img" aria-label="Video">
+                  🎬
+                </span>
               </div>
-              <h2 className="text-xl font-bold text-gray-900 mb-3">วิดีโอเชิงโต้ตอบ</h2>
+              <h2 className="text-xl font-bold text-gray-900 mb-3">
+                วิดีโอเชิงโต้ตอบ
+              </h2>
               <p className="text-gray-600 mb-6">
                 ประสบการณ์การเรียนรู้เกี่ยวกับนโยบายผ่านวิดีโอแบบ immersive
               </p>
@@ -107,10 +111,20 @@ const DashboardIndex = () => {
                   </button>
                   <button
                     onClick={() => {
-                      console.log('Current state:');
-                      console.log('- YouTube API loaded:', !!(window as any).YT);
-                      console.log('- Scripts in DOM:', document.querySelectorAll('script[src*="youtube.com"]').length);
-                      console.log('- Callback set:', !!(window as any).onYouTubeIframeAPIReady);
+                      console.log("Current state:");
+                      console.log(
+                        "- YouTube API loaded:",
+                        !!(window as any).YT,
+                      );
+                      console.log(
+                        "- Scripts in DOM:",
+                        document.querySelectorAll('script[src*="youtube.com"]')
+                          .length,
+                      );
+                      console.log(
+                        "- Callback set:",
+                        !!(window as any).onYouTubeIframeAPIReady,
+                      );
                     }}
                     className="btn btn-secondary bg-orange-600 hover:bg-orange-700 text-white text-sm"
                   >
@@ -118,7 +132,8 @@ const DashboardIndex = () => {
                   </button>
                 </div>
                 <div className="text-xs text-gray-500 text-center mt-1">
-                  Fixed: Robust API loading | Test: Diagnostics | Original: Legacy | Debug: Console info
+                  Fixed: Robust API loading | Test: Diagnostics | Original:
+                  Legacy | Debug: Console info
                 </div>
               </div>
             </div>
