@@ -10,6 +10,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import DashboardIndex from "./pages/DashboardIndex";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import VideoIntroPage from "./pages/VideoIntroPage";
+import VideoIntroPageFixed from "./pages/VideoIntroPageFixed";
+import VideoIntroTest from "./pages/VideoIntroTest";
 
 // Journey pages
 import Ask01Page from "./pages/Ask01Page";
@@ -64,6 +67,11 @@ const App = () => (
             <Route path="/" element={<DashboardIndex />} />
             <Route path="/index" element={<Index />} />
 
+            {/* Video Intro */}
+            <Route path="/video-intro" element={<VideoIntroPageFixed />} />
+            <Route path="/video-intro-original" element={<VideoIntroPage />} />
+            <Route path="/video-intro-test" element={<VideoIntroTest />} />
+
             {/* Dashboard */}
             <Route path="/dashboard" element={<DashboardApp />} />
 
@@ -110,6 +118,7 @@ const App = () => (
             <Route path="/EndSequencePage" element={<EndSequencePage />} />
             <Route path="/EndScreenPage" element={<EndScreenPage />} />
             <Route path="/DashboardIndex" element={<DashboardIndex />} />
+            <Route path="/VideoIntroPage" element={<VideoIntroPage />} />
 
             {/* Legacy support - redirect old gameID URLs to new routes */}
             <Route path="/legacy" element={<LegacyRedirectHandler />} />

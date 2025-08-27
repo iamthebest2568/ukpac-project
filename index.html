@@ -54,12 +54,19 @@
     <!-- Security -->
     <meta
       http-equiv="Content-Security-Policy"
+<<<<<<< HEAD
       content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https://fonts.googleapis.com https://fonts.gstatic.com; img-src 'self' data: blob:;"
+=======
+      content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https://fonts.googleapis.com https://fonts.gstatic.com https://www.youtube.com https://youtube.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.youtube.com; frame-src 'self' https://www.youtube.com; img-src 'self' data: blob: https://www.youtube.com;"
+>>>>>>> refs/remotes/origin/main
     />
   </head>
 
   <body>
     <div id="root" role="main" aria-label="UK PACK Application"></div>
+
+    <!-- Debug utilities for video intro troubleshooting -->
+    <script src="/client/utils/debugVideoIntro.js"></script>
 
     <script type="module" src="/client/main.tsx"></script>
 

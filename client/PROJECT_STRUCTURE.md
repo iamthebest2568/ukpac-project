@@ -29,6 +29,10 @@ Each page corresponds to a specific step in the user journey and can be edited i
 - `MiniGameMN2Page.tsx` - Beneficiary groups selection
 - `MiniGameMN3Page.tsx` - Budget allocation
 
+#### Video Experience Pages
+
+- `VideoIntroPage.tsx` - Immersive video intro with interactive YouTube content
+
 #### Other Journey Pages
 
 - `SourceSelectionPage.tsx` - Information source selection
@@ -93,6 +97,7 @@ Analytics and admin interface:
 
 ```
 / → Main landing page
+/video-intro → Interactive video experience
 /ask01 → Initial policy stance
 /ask02 → Reasoning selection
 /ask02-2 → Custom reasoning
