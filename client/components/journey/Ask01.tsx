@@ -47,7 +47,7 @@ const Ask01 = ({ sessionID, onNavigate }: Ask01Props) => {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0">
         <img
-          src="https://api.builder.io/api/v1/image/assets/TEMP/3cfdc582d291da8313da83afa531f66c01c9c5a7?width=1132"
+          src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F2ebfe207406049019b8d56d5c0d03120?format=webp&width=800"
           alt="รถไฟใต้ดิน"
           className="w-full h-full object-cover object-center"
           style={{ minWidth: "100%", aspectRatio: "2/3" }}
