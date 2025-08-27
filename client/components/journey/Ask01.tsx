@@ -93,7 +93,7 @@ const Ask01 = ({ sessionID, onNavigate }: Ask01Props) => {
                 d="M55.9961 21.1327C55.3295 20.7518 54.5 21.2331 54.5 22.001V28.5546C54.5 29.3224 55.3295 29.8038 55.9961 29.4228L61.7306 26.146C62.4024 25.7621 62.4024 24.7934 61.7306 24.4095L55.9961 21.1327Z"
                 fill="black"
               />
-              <text fill="black" xmlSpace="preserve" style={{whiteSpace: 'pre'}} fontFamily="Kanit" fontSize="12" fontWeight="500" letterSpacing="0px">
+              <text fill="black" xmlSpace="preserve" style={{whiteSpace: 'pre'}} fontFamily="Kanit" fontSize="14" fontWeight="500" letterSpacing="0px">
                 <tspan x="36.4531" y="64.23">ดูอีกครั้ง</tspan>
               </text>
               <defs>
@@ -121,7 +121,7 @@ const Ask01 = ({ sessionID, onNavigate }: Ask01Props) => {
             >
               จากข้อความดังกล่าว
               <br />
-              คุณมีความคิดเห็นอย่างไร
+              คุณมีความค���ดเห็นอย่างไร
             </h1>
           </div>
 
