@@ -91,10 +91,21 @@ const Ask01 = ({ sessionID, onNavigate }: Ask01Props) => {
                 d="M55.9961 21.1327C55.3295 20.7518 54.5 21.2331 54.5 22.001V28.5546C54.5 29.3224 55.3295 29.8038 55.9961 29.4228L61.7306 26.146C62.4024 25.7621 62.4024 24.7934 61.7306 24.4095L55.9961 21.1327Z"
                 fill="black"
               />
+              <text fill="black" xmlSpace="preserve" style={{whiteSpace: 'pre'}} fontFamily="Kanit" fontSize="12" fontWeight="500" letterSpacing="0px">
+                <tspan x="36.4531" y="64.23">ดูอีกครั้ง</tspan>
+              </text>
+              <defs>
+                <filter id="filter0_d_2167_322" x="-17" y="0" width="150" height="150" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                  <feFlood floodOpacity="0" result="BackgroundImageFix"/>
+                  <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                  <feOffset dy="50"/>
+                  <feGaussianBlur stdDeviation="25"/>
+                  <feColorMatrix type="matrix" values="0 0 0 0 0.109804 0 0 0 0 0.109804 0 0 0 0 0.133333 0 0 0 0.1 0"/>
+                  <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_2167_322"/>
+                  <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_2167_322" result="shape"/>
+                </filter>
+              </defs>
             </svg>
-            <span className="text-black text-[10px] font-kanit font-medium leading-none">
-              ดูอีกครั้ง
-            </span>
           </button>
         </div>
 
