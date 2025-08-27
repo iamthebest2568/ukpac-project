@@ -66,7 +66,7 @@ const Ask01 = ({ sessionID, onNavigate }: Ask01Props) => {
       {/* Main Content */}
       <div className="relative z-10 flex flex-col min-h-screen">
         {/* Replay Button */}
-        <div className="flex justify-start p-6 md:p-8">
+        <div className="flex justify-start p-8 md:p-10">
           <button
             onClick={handleReplay}
             className="transition-all duration-200 hover:scale-105"
@@ -121,7 +121,7 @@ const Ask01 = ({ sessionID, onNavigate }: Ask01Props) => {
             >
               จากข้อความดังกล่าว
               <br />
-              คุณมีความค���ดเห็นอย่างไร
+              คุณมีความคิดเห็นอย่างไร
             </h1>
           </div>
 
