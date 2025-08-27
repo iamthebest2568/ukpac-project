@@ -4,7 +4,7 @@
  */
 
 import { useState } from "react";
-import { logEvent } from '../../../services/dataLogger.js';
+import { logEvent } from "../../../services/dataLogger.js";
 
 interface Step1_PrioritiesProps {
   sessionID: string | null;
@@ -13,27 +13,33 @@ interface Step1_PrioritiesProps {
   initialData?: string[];
 }
 
-const Step1_Priorities = ({ sessionID, onNext, onBack, initialData = [] }: Step1_PrioritiesProps) => {
-  const [selectedPriorities, setSelectedPriorities] = useState<string[]>(initialData);
+const Step1_Priorities = ({
+  sessionID,
+  onNext,
+  onBack,
+  initialData = [],
+}: Step1_PrioritiesProps) => {
+  const [selectedPriorities, setSelectedPriorities] =
+    useState<string[]>(initialData);
   const maxSelections = 3;
 
   const priorities = [
-    'ลดค่า���ดยสารรถไฟฟ้า',
-    'ปรับปรุงคุณภาพรถเมล์',
-    'ตั๋วร่วม',
-    'เพิ่มความถี่รถเมล์',
-    'เพิ่มความถี่รถไฟฟ้า',
-    'เพิ่มที่จอดรถ',
-    'เพิ่ม feeder ในซอย'
+    "ลดค่า���ดยสารรถไฟฟ้า",
+    "ปรับปรุงคุณภาพรถเมล์",
+    "ตั๋วร่วม",
+    "เพิ่มความถี่รถเมล์",
+    "เพิ่มความถี่รถไฟฟ้า",
+    "เพิ่มที่จอดรถ",
+    "เพิ่ม feeder ในซอย",
   ];
 
   const handlePriorityToggle = (priority: string) => {
-    setSelectedPriorities(prev => {
+    setSelectedPriorities((prev) => {
       const isSelected = prev.includes(priority);
-      
+
       if (isSelected) {
         // Remove if already selected
-        return prev.filter(p => p !== priority);
+        return prev.filter((p) => p !== priority);
       } else {
         // Add if not selected and under limit
         if (prev.length < maxSelections) {
@@ -47,11 +53,11 @@ const Step1_Priorities = ({ sessionID, onNext, onBack, initialData = [] }: Step1
   const handleNext = () => {
     // Log the minigame completion
     logEvent({
-      event: 'MINIGAME_MN1_COMPLETE',
+      event: "MINIGAME_MN1_COMPLETE",
       payload: {
         selectedPolicies: selectedPriorities,
-        sessionID
-      }
+        sessionID,
+      },
     });
 
     const data = { priorities: { selectedPriorities } };
@@ -59,7 +65,10 @@ const Step1_Priorities = ({ sessionID, onNext, onBack, initialData = [] }: Step1
   };
 
   const isSelectionDisabled = (priority: string) => {
-    return selectedPriorities.length >= maxSelections && !selectedPriorities.includes(priority);
+    return (
+      selectedPriorities.length >= maxSelections &&
+      !selectedPriorities.includes(priority)
+    );
   };
 
   return (
@@ -71,23 +80,29 @@ const Step1_Priorities = ({ sessionID, onNext, onBack, initialData = [] }: Step1
             คุณคิดว่าควรใช้เงินที่ได้จากการเก็บไปพัฒนาอะไร
           </h1>
         </div>
-        
+
         {/* Answer Section */}
         <div className="answer-section">
           <div className="space-y-4">
             {priorities.map((priority, index) => (
-              <div 
+              <div
                 key={index}
                 className={`selection-checkbox ${
-                  selectedPriorities.includes(priority) ? 'selected' : ''
-                } ${isSelectionDisabled(priority) ? 'disabled' : ''}`}
-                onClick={() => !isSelectionDisabled(priority) && handlePriorityToggle(priority)}
+                  selectedPriorities.includes(priority) ? "selected" : ""
+                } ${isSelectionDisabled(priority) ? "disabled" : ""}`}
+                onClick={() =>
+                  !isSelectionDisabled(priority) &&
+                  handlePriorityToggle(priority)
+                }
                 role="checkbox"
                 aria-checked={selectedPriorities.includes(priority)}
                 aria-disabled={isSelectionDisabled(priority)}
                 tabIndex={isSelectionDisabled(priority) ? -1 : 0}
                 onKeyDown={(e) => {
-                  if ((e.key === 'Enter' || e.key === ' ') && !isSelectionDisabled(priority)) {
+                  if (
+                    (e.key === "Enter" || e.key === " ") &&
+                    !isSelectionDisabled(priority)
+                  ) {
                     e.preventDefault();
                     handlePriorityToggle(priority);
                   }
@@ -95,8 +110,18 @@ const Step1_Priorities = ({ sessionID, onNext, onBack, initialData = [] }: Step1
               >
                 <div className="checkbox-icon">
                   {selectedPriorities.includes(priority) && (
-                    <svg className="w-3 h-3 text-black" fill="currentColor" viewBox="0 0 20 20" role="img" aria-label="เลือกแล้ว">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    <svg
+                      className="w-3 h-3 text-black"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      role="img"
+                      aria-label="เลือกแล้ว"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clipRule="evenodd"
+                      />
                     </svg>
                   )}
                 </div>
@@ -108,32 +133,48 @@ const Step1_Priorities = ({ sessionID, onNext, onBack, initialData = [] }: Step1
 
         {/* System Status - Selection Counter */}
         <div className="selection-counter">
-          เลือกได้สูงสุด {maxSelections} ข้อ (เลือกแล้ว {selectedPriorities.length}/{maxSelections})
+          เลือกได้สูงสุด {maxSelections} ข้อ (เลือกแล้ว{" "}
+          {selectedPriorities.length}/{maxSelections})
         </div>
 
         {/* Error Prevention Message */}
         {selectedPriorities.length >= maxSelections && (
           <div className="status-message warning">
-            คุณเลือกครบจำนวนแล้ว หากต้องการเลือกข้อใหม่ กรุณายกเลิกการเลือกข้อใดข้อหนึ่งก่อน
+            คุณเลือกครบจำนวนแล้ว หากต้องการเลือกข้อใหม่
+            กรุณายกเลิกการเลือกข้อใดข้อหนึ่งก่อน
           </div>
         )}
 
         {/* Progress indicator */}
         <div className="progress-container">
           <div className="progress-dots">
-            <div className="progress-dot completed" aria-label="ขั้นตอนที่ 1 เสร็จสิ้น"></div>
-            <div className="progress-dot completed" aria-label="ขั้นตอนที่ 2 เสร็จสิ้น"></div>
-            <div className="progress-dot active" aria-label="ขั้นตอนที่ 3 กำลังดำเนินการ"></div>
-            <div className="progress-dot inactive" aria-label="ขั้���ตอนที่ 4"></div>
-            <div className="progress-dot inactive" aria-label="ขั้นตอนที่ 5"></div>
+            <div
+              className="progress-dot completed"
+              aria-label="ขั้นตอนที่ 1 เสร็จสิ้น"
+            ></div>
+            <div
+              className="progress-dot completed"
+              aria-label="ขั้นตอนที่ 2 เสร็จสิ้น"
+            ></div>
+            <div
+              className="progress-dot active"
+              aria-label="ขั้นตอนที่ 3 กำลังดำเนินการ"
+            ></div>
+            <div
+              className="progress-dot inactive"
+              aria-label="ขั้���ตอนที่ 4"
+            ></div>
+            <div
+              className="progress-dot inactive"
+              aria-label="ขั้นตอนที่ 5"
+            ></div>
           </div>
           <p className="text-caption">ขั้นตอนที่ 3 จาก 5</p>
         </div>
 
         {/* Completion Zone */}
         <div className="completion-zone">
-          
-          <button 
+          <button
             className="btn btn-primary"
             onClick={handleNext}
             disabled={selectedPriorities.length === 0}
@@ -141,9 +182,12 @@ const Step1_Priorities = ({ sessionID, onNext, onBack, initialData = [] }: Step1
           >
             ไปต่อ
           </button>
-          
+
           {selectedPriorities.length === 0 && (
-            <div id="next-button-description" className="status-message info mt-4">
+            <div
+              id="next-button-description"
+              className="status-message info mt-4"
+            >
               กรุณาเลือกอย่างน้อย 1 ข้อเพื่อดำเนินการต่อ
             </div>
           )}

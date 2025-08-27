@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -12,34 +12,36 @@
    */
   :root {
     /* Color System - Strict palette enforcement */
-    --color-primary-action: #FFD100; /* Bright yellow - PRIMARY ACTIONS ONLY */
+    --color-primary-action: #ffd100; /* Bright yellow - PRIMARY ACTIONS ONLY */
     --color-secondary-action: #6c757d; /* Medium grey - SECONDARY ACTIONS ONLY */
-    --color-dark-theme-bg: #0D1B2A; /* Dark navy - GAME SCREENS ONLY */
-    --color-white-theme-bg: #FFFFFF; /* White - NARRATIVE SCREENS ONLY */
-    --color-success: #10B981; /* Green for completed states */
-    --color-warning: #F59E0B; /* Amber for attention states */
-    --color-error: #EF4444; /* Red for error states */
-    --color-text-primary: #1F2937; /* Dark grey for primary text */
-    --color-text-secondary: #6B7280; /* Medium grey for secondary text */
-    --color-text-inverse: #FFFFFF; /* White text for dark backgrounds */
-    --color-border: #E5E7EB; /* Light grey for borders */
-    --color-border-focus: var(--color-primary-action); /* Yellow for focus states */
-    
+    --color-dark-theme-bg: #0d1b2a; /* Dark navy - GAME SCREENS ONLY */
+    --color-white-theme-bg: #ffffff; /* White - NARRATIVE SCREENS ONLY */
+    --color-success: #10b981; /* Green for completed states */
+    --color-warning: #f59e0b; /* Amber for attention states */
+    --color-error: #ef4444; /* Red for error states */
+    --color-text-primary: #1f2937; /* Dark grey for primary text */
+    --color-text-secondary: #6b7280; /* Medium grey for secondary text */
+    --color-text-inverse: #ffffff; /* White text for dark backgrounds */
+    --color-border: #e5e7eb; /* Light grey for borders */
+    --color-border-focus: var(
+      --color-primary-action
+    ); /* Yellow for focus states */
+
     /* Typography Scale - Strict hierarchy */
     --font-size-h1: 32px; /* Main questions (H1) */
     --font-size-h2: 24px; /* Sub questions (H2) */
     --font-size-body: 16px; /* Body text, labels, buttons */
     --font-size-caption: 14px; /* Small text, help text */
     --font-size-micro: 12px; /* Very small text */
-    
+
     --font-weight-bold: 700; /* Headers, important text */
     --font-weight-medium: 500; /* Buttons, labels */
     --font-weight-regular: 400; /* Body text */
-    
+
     --line-height-tight: 1.25; /* Headers */
     --line-height-normal: 1.5; /* Body text */
     --line-height-relaxed: 1.75; /* Long form text */
-    
+
     /* Spacing System - Consistent vertical rhythm */
     --space-micro: 4px;
     --space-xs: 8px;
@@ -49,23 +51,23 @@
     --space-xl: 32px; /* Between sections */
     --space-2xl: 48px; /* Above main questions */
     --space-3xl: 64px; /* Major sections */
-    
+
     /* Interactive Elements */
     --border-radius-sm: 6px;
     --border-radius-md: 8px;
     --border-radius-lg: 12px;
     --border-radius-full: 999px; /* Buttons only */
-    
+
     --border-width-thin: 1px;
     --border-width-medium: 2px;
     --border-width-thick: 3px; /* Selection indicators */
-    
+
     /* Shadows and elevations */
     --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
     --shadow-focus: 0 0 0 3px rgba(255, 209, 0, 0.3);
-    
+
     /* Animation timing */
     --transition-fast: 150ms ease-in-out;
     --transition-normal: 250ms ease-in-out;
@@ -78,7 +80,7 @@
   }
 
   body {
-    font-family: 'Kanit', sans-serif;
+    font-family: "Kanit", sans-serif;
     font-size: var(--font-size-body);
     font-weight: var(--font-weight-regular);
     line-height: var(--line-height-normal);
@@ -136,9 +138,9 @@
   /* Dark mode support */
   @media (prefers-color-scheme: dark) {
     :root {
-      --color-text-primary: #F9FAFB;
-      --color-text-secondary: #D1D5DB;
-      --color-border: #4B5563;
+      --color-text-primary: #f9fafb;
+      --color-text-secondary: #d1d5db;
+      --color-border: #4b5563;
     }
   }
 }
@@ -280,13 +282,18 @@
   }
 
   .btn:before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
     transition: left var(--transition-slow);
   }
 
@@ -302,7 +309,7 @@
   }
 
   .btn-primary:hover:not(:disabled) {
-    background-color: #E6BC00;
+    background-color: #e6bc00;
     transform: translateY(-1px);
     box-shadow: var(--shadow-lg);
   }
@@ -320,7 +327,7 @@
   }
 
   .btn-secondary:hover:not(:disabled) {
-    background-color: #5A626B;
+    background-color: #5a626b;
     transform: translateY(-1px);
     box-shadow: var(--shadow-lg);
   }
@@ -383,7 +390,7 @@
 
   .selection-checkbox-white:hover:not(.disabled) {
     border-color: var(--color-primary-action);
-    background-color: #FFFBF0;
+    background-color: #fffbf0;
     transform: translateY(-1px);
     box-shadow: var(--shadow-sm);
   }
@@ -398,8 +405,8 @@
   .selection-checkbox-white.disabled {
     opacity: 0.4;
     cursor: not-allowed;
-    background-color: #F9FAFB;
-    border-color: #E5E7EB;
+    background-color: #f9fafb;
+    border-color: #e5e7eb;
   }
 
   .selection-checkbox-white .checkbox-icon {
@@ -414,8 +421,8 @@
   }
 
   .selection-checkbox-white.disabled .checkbox-icon {
-    background-color: #F3F4F6;
-    border-color: #D1D5DB;
+    background-color: #f3f4f6;
+    border-color: #d1d5db;
   }
 
   /* Budget Display - White Theme */
@@ -460,7 +467,7 @@
 
   .polaroid-caption {
     @apply text-center text-black font-medium;
-    font-family: 'Kanit', sans-serif;
+    font-family: "Kanit", sans-serif;
     font-size: clamp(11px, 2.5vw, 14px);
     margin-top: 6px;
     white-space: nowrap;
@@ -506,7 +513,7 @@
   }
 
   .selection-checkbox:hover {
-    border-color: #9CA3AF;
+    border-color: #9ca3af;
     background-color: rgba(156, 163, 175, 0.05);
   }
 
@@ -524,7 +531,7 @@
   .checkbox-icon {
     width: 20px;
     height: 20px;
-    border: var(--border-width-medium) solid #9CA3AF;
+    border: var(--border-width-medium) solid #9ca3af;
     border-radius: var(--border-radius-sm);
     margin-right: var(--space-md);
     display: flex;
@@ -572,7 +579,7 @@
   }
 
   .selection-card:hover {
-    border-color: #9CA3AF;
+    border-color: #9ca3af;
     transform: translateY(-2px);
     box-shadow: var(--shadow-md);
   }
@@ -635,7 +642,7 @@
 
   /* Dark theme input */
   .theme-dark .input-field {
-    border-color: #4B5563;
+    border-color: #4b5563;
     color: var(--color-text-inverse);
   }
 
@@ -675,11 +682,11 @@
   }
 
   .progress-dot.inactive {
-    background-color: #9CA3AF;
+    background-color: #9ca3af;
   }
 
   .theme-dark .progress-dot.inactive {
-    background-color: #4B5563;
+    background-color: #4b5563;
   }
 
   /* Status Messages */
@@ -692,27 +699,27 @@
   }
 
   .status-message.info {
-    background-color: #EFF6FF;
-    color: #1E40AF;
-    border: 1px solid #DBEAFE;
+    background-color: #eff6ff;
+    color: #1e40af;
+    border: 1px solid #dbeafe;
   }
 
   .status-message.warning {
-    background-color: #FFFBEB;
-    color: #92400E;
-    border: 1px solid #FED7AA;
+    background-color: #fffbeb;
+    color: #92400e;
+    border: 1px solid #fed7aa;
   }
 
   .status-message.error {
-    background-color: #FEF2F2;
-    color: #B91C1C;
-    border: 1px solid #FECACA;
+    background-color: #fef2f2;
+    color: #b91c1c;
+    border: 1px solid #fecaca;
   }
 
   .status-message.success {
-    background-color: #F0FDF4;
+    background-color: #f0fdf4;
     color: #166534;
-    border: 1px solid #BBF7D0;
+    border: 1px solid #bbf7d0;
   }
 
   /* Illustration Panels */
@@ -738,7 +745,7 @@
   }
 
   .theme-dark .completion-zone {
-    border-top-color: #4B5563;
+    border-top-color: #4b5563;
   }
 
   /* Utility classes for consistent spacing */
@@ -781,7 +788,7 @@
     padding: var(--space-md);
     background-color: rgba(59, 130, 246, 0.05);
     border-radius: var(--border-radius-md);
-    border-left: 4px solid #3B82F6;
+    border-left: 4px solid #3b82f6;
     margin-bottom: var(--space-xl);
   }
 
@@ -795,7 +802,7 @@
   }
 
   .theme-dark .selection-counter {
-    color: #9CA3AF;
+    color: #9ca3af;
   }
 
   /* Budget display - Enhanced visibility */
@@ -905,7 +912,7 @@
   }
 
   .limit-reached::after {
-    content: 'ครบจำนวนที่เลือกแล้ว';
+    content: "ครบจำนวนที่เลือกแล้ว";
     position: absolute;
     top: 50%;
     left: 50%;
@@ -962,7 +969,7 @@
   }
 
   .loading::after {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -976,7 +983,7 @@
   }
 
   .loading::before {
-    content: 'กำลังโหลด...';
+    content: "กำลังโหลด...";
     position: absolute;
     top: 50%;
     left: 50%;
