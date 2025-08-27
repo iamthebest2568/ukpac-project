@@ -66,91 +66,89 @@ const Step2_Form = ({ sessionID, onNext, onBack, initialData }: Step2_FormProps)
   };
 
   return (
-    <div className="theme-white min-h-screen">
-      <div className="app-container py-8 animate-fade-in-up">
-        {/* Illustration Panel - Form visualization */}
-        <div className="illustration-panel">
-          <div className="flex items-center justify-center h-40 bg-gradient-to-r from-green-50 to-blue-50 rounded-lg relative overflow-hidden">
-            {/* Form elements */}
-            <div className="relative z-10 text-center">
-              <div className="text-5xl mb-2" role="img" aria-label="แบบฟอร์ม">📝</div>
-              <div className="text-caption text-gray-600">กรอกข้อมูลรับรางวัล</div>
+    <div className="min-h-screen bg-white flex justify-center">
+      <div className="w-full max-w-[390px] md:max-w-[420px] lg:max-w-[390px] min-h-screen bg-white overflow-hidden relative">
+        {/* Background Image with Overlay */}
+        <div className="absolute inset-0">
+          <img
+            src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F946833431d4b46a0bde1c7d1bc32f67a"
+            alt="กรอกข้อมูลรับรางวัล"
+            className="w-full h-full object-cover object-center"
+            style={{ minWidth: "100%", aspectRatio: "2/3" }}
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background: "linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.90) 44.17%)",
+            }}
+          />
+        </div>
+
+        {/* Main Content */}
+        <div className="relative z-10 flex flex-col min-h-screen">
+          {/* Content Area */}
+          <div className="flex-1 flex flex-col justify-end items-center px-6 md:px-8 pb-8 md:pb-12">
+            {/* Title */}
+            <div className="text-center mb-6 md:mb-8 max-w-[325px]">
+              <h1
+                className="text-white text-center font-kanit text-3xl font-normal leading-normal mb-6"
+                style={{ fontSize: "clamp(24px, 7.5vw, 30px)" }}
+              >
+                กรอกข้อมูลเพื่อรับรางวัล
+              </h1>
             </div>
 
-            {/* Decorative elements */}
-            <div className="absolute top-4 left-4 text-xl" role="img" aria-label="ปากกา">✏️</div>
-            <div className="absolute top-6 right-6 text-lg" role="img" aria-label="เช็ค">✅</div>
-            <div className="absolute bottom-4 left-6 text-lg" role="img" aria-label="ซอง">✉️</div>
-            <div className="absolute bottom-4 right-4 text-xl" role="img" aria-label="โทรศัพท์">📱</div>
+            {/* Form Section */}
+            <div className="w-full max-w-[325px] space-y-4 mb-6">
+              {/* Name Input */}
+              <div>
+                <label htmlFor="name" className="block text-white text-base font-prompt mb-2">
+                  ชื่อ *
+                </label>
+                <input
+                  id="name"
+                  type="text"
+                  value={formData.name}
+                  onChange={(e) => handleInputChange('name', e.target.value)}
+                  className={`w-full h-[53px] rounded-[40px] bg-white border-[1.5px] ${errors.name ? 'border-red-500' : 'border-black'} px-6 text-black font-prompt text-lg placeholder-gray-500`}
+                  placeholder="กรุณากรอกชื่อ"
+                />
+                {errors.name && (
+                  <div className="text-red-400 text-sm mt-1 ml-2">{errors.name}</div>
+                )}
+              </div>
+
+              {/* Phone Input */}
+              <div>
+                <label htmlFor="phone" className="block text-white text-base font-prompt mb-2">
+                  เบอร์โทร *
+                </label>
+                <input
+                  id="phone"
+                  type="tel"
+                  value={formData.phone}
+                  onChange={(e) => handleInputChange('phone', e.target.value)}
+                  className={`w-full h-[53px] rounded-[40px] bg-white border-[1.5px] ${errors.phone ? 'border-red-500' : 'border-black'} px-6 text-black font-prompt text-lg placeholder-gray-500`}
+                  placeholder="08X-XXX-XXXX"
+                />
+                {errors.phone && (
+                  <div className="text-red-400 text-sm mt-1 ml-2">{errors.phone}</div>
+                )}
+              </div>
+            </div>
+
+            {/* Submit Button */}
+            <div className="w-full max-w-[325px]">
+              <button
+                onClick={handleNext}
+                className="w-full h-[53px] rounded-[40px] bg-[#EFBA31] border-[1.5px] border-black flex items-center justify-center transition-all duration-200 hover:scale-105 hover:shadow-lg hover:bg-black active:bg-black group"
+              >
+                <span className="text-black text-center font-prompt text-lg font-medium leading-7 tracking-[0.4px] group-hover:text-[#EFBA31] group-active:text-[#EFBA31]">
+                  ส่งเพื่อลุ้นรับรางวัล
+                </span>
+              </button>
+            </div>
           </div>
-        </div>
-
-        {/* Question Section */}
-        <div className="question-section">
-          <h1 className="text-h2 text-center text-black">
-            กรอกข้อมูลเพื่อรับรางวัล
-          </h1>
-        </div>
-
-        {/* Form Section */}
-        <div className="answer-section">
-          <div className="space-y-6">
-            {/* Name */}
-            <div>
-              <label htmlFor="name" className="block text-body font-medium text-black mb-2">
-                ชื่อ *
-              </label>
-              <input
-                id="name"
-                type="text"
-                value={formData.name}
-                onChange={(e) => handleInputChange('name', e.target.value)}
-                className={`input-field ${errors.name ? 'border-error' : ''}`}
-                placeholder="กรุณากรอกชื่อ"
-              />
-              {errors.name && (
-                <div className="text-error text-caption mt-1">{errors.name}</div>
-              )}
-            </div>
-
-            {/* Phone */}
-            <div>
-              <label htmlFor="phone" className="block text-body font-medium text-black mb-2">
-                เบอร์โทร *
-              </label>
-              <input
-                id="phone"
-                type="tel"
-                value={formData.phone}
-                onChange={(e) => handleInputChange('phone', e.target.value)}
-                className={`input-field ${errors.phone ? 'border-error' : ''}`}
-                placeholder="08X-XXX-XXXX"
-              />
-              {errors.phone && (
-                <div className="text-error text-caption mt-1">{errors.phone}</div>
-              )}
-            </div>
-          </div>
-        </div>
-
-        {/* Privacy Notice */}
-        <div className="context-info">
-          <h4 className="text-body font-bold text-black mb-2">🔒 ความเป็นส่วนตัว:</h4>
-          <ul className="text-caption text-gray-600 space-y-1">
-            <li>• ข้อมูลจะถูกใช้เฉพาะสำหรับการจัดส่งรางวัลเท่านั้น</li>
-            <li>• เราจะไม่แชร์ข้อมูลให้กับบุคคลที่สาม</li>
-            <li>• คุณสามารถขอลบข้อมูลได้ตลอดเวลา</li>
-          </ul>
-        </div>
-
-        {/* Completion Zone */}
-        <div className="completion-zone">
-          <button 
-            className="btn btn-primary"
-            onClick={handleNext}
-          >
-            ส่งเพื่อลุ้นรับรางวัล
-          </button>
         </div>
       </div>
     </div>
