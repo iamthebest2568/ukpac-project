@@ -114,7 +114,7 @@ const Ask01 = ({ sessionID, onNavigate }: Ask01Props) => {
         {/* Question and Choices Container */}
         <div className="flex-1 flex flex-col justify-end items-center px-6 md:px-8 pb-8 md:pb-12">
           {/* Question Text */}
-          <div className="text-center mb-16 max-w-[325px]">
+          <div className="text-center mb-8 md:mb-12 max-w-[325px]">
             <h1
               className="text-white text-center font-kanit text-3xl font-normal leading-normal"
               style={{ fontSize: "clamp(24px, 7.5vw, 30px)" }}
