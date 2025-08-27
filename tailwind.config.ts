@@ -28,6 +28,7 @@ export default {
     extend: {
       fontFamily: {
         'kanit': ['Kanit', 'sans-serif'],
+        'prompt': ['Prompt', 'sans-serif'],
       },
       maxWidth: {
         'app': '420px',
