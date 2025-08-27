@@ -112,7 +112,7 @@ const Ask01 = ({ sessionID, onNavigate }: Ask01Props) => {
         </div>
 
         {/* Question and Choices Container */}
-        <div className="flex-1 flex flex-col justify-center items-center px-6 md:px-8 pb-20">
+        <div className="flex-1 flex flex-col justify-end items-center px-6 md:px-8 pb-8 md:pb-12">
           {/* Question Text */}
           <div className="text-center mb-16 max-w-[325px]">
             <h1
