@@ -52,7 +52,7 @@ const Step1_Decision = ({ sessionID, onNext, onBack, initialData }: Step1_Decisi
     <FigmaStyle1Layout
       backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F946833431d4b46a0bde1c7d1bc32f67a"
       backgroundAlt="รางวัลสำหรับคุณ"
-      title={`ขอบคุณที่ร่วมเป็นส่วนหนึ่ง ในการพัฒนาเมือง  คุณอยากกรอกข้อมูลเพิ่ม เพื่อลุ้นรับรางวัลบัตรขนส่ง สาธารณะ 300 บาท หร��อไม่?`}
+      title={`ขอบคุณที่ร่วมเป็นส่วนหนึ่ง ในการพัฒนาเมือง  คุณอยากกรอกข้อมูลเพิ่ม เพื่อลุ้นรับรางวัลบัตรขนส่ง สาธารณะ 300 บาท หรือไม่?`}
       buttons={buttons}
     />
   );
