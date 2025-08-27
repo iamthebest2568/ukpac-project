@@ -78,7 +78,7 @@ const Ask01 = ({ sessionID, onNavigate }: Ask01Props) => {
               viewBox="0 0 133 150"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className="w-[51px] h-[63px]"
+              className="w-[68px] h-[84px] md:w-[76px] md:h-[95px]"
             >
               <g filter="url(#filter0_d_2167_322)">
                 <circle cx="58" cy="25" r="25" fill="#EFBA31"/>
