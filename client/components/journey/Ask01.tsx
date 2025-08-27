@@ -67,7 +67,7 @@ const Ask01 = ({ sessionID, onNavigate }: Ask01Props) => {
         <div className="flex justify-start p-6 md:p-8">
           <button
             onClick={handleReplay}
-            className="flex flex-col items-center justify-center w-[51px] h-[63px] bg-[#EFBA31] rounded-full shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105"
+            className="transition-all duration-200 hover:scale-105"
             aria-label="ดูอีกครั้ง"
           >
             <svg
@@ -105,7 +105,7 @@ const Ask01 = ({ sessionID, onNavigate }: Ask01Props) => {
             >
               จากข้อความดังกล่าว
               <br />
-              คุณมีความคิดเห็นอย่างไร
+              คุณมีความคิ���เห็นอย่างไร
             </h1>
           </div>
 
