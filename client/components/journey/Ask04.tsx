@@ -1,5 +1,5 @@
-import { logEvent } from '../../services/dataLogger.js';
-import FigmaStyle1Layout from '../layouts/FigmaStyle1Layout';
+import { logEvent } from "../../services/dataLogger.js";
+import FigmaStyle1Layout from "../layouts/FigmaStyle1Layout";
 
 interface Ask04Props {
   sessionID: string | null;
@@ -8,29 +8,29 @@ interface Ask04Props {
 }
 
 const Ask04 = ({ sessionID, onNavigate, journeyData }: Ask04Props) => {
-  const handleChoice = (choice: 'satisfied' | 'unsatisfied') => {
+  const handleChoice = (choice: "satisfied" | "unsatisfied") => {
     const choiceText = {
-      satisfied: 'พอใจ',
-      unsatisfied: 'ไม่พอใจ'
+      satisfied: "พอใจ",
+      unsatisfied: "ไม่พอใจ",
     }[choice];
 
     const data = { choice, choiceText };
 
     // Log the satisfaction choice (for MN1/MN2 path)
     logEvent({
-      event: 'SATISFACTION_CHOICE',
+      event: "SATISFACTION_CHOICE",
       payload: {
         choice: choiceText,
         choiceKey: choice,
-        path: 'MN1_MN2',
-        sessionID
-      }
+        path: "MN1_MN2",
+        sessionID,
+      },
     });
 
-    if (choice === 'satisfied') {
-      onNavigate('fakeNews', data);
+    if (choice === "satisfied") {
+      onNavigate("fakeNews", data);
     } else {
-      onNavigate('ask05', data);
+      onNavigate("ask05", data);
     }
   };
 
@@ -38,14 +38,14 @@ const Ask04 = ({ sessionID, onNavigate, journeyData }: Ask04Props) => {
   const buttons = [
     {
       text: "พอใจ",
-      onClick: () => handleChoice('satisfied'),
-      ariaLabel: "พอใจกับผลลัพธ์ที่ได้จากการตอบคำถาม"
+      onClick: () => handleChoice("satisfied"),
+      ariaLabel: "พอใจกับผลลัพธ์ที่ได้จากการตอบคำถาม",
     },
     {
       text: "ไม่พอใจ",
-      onClick: () => handleChoice('unsatisfied'),
-      ariaLabel: "ไม่พอใจกับผลลัพธ์และต้องการให้ข้อเสนอแนะ"
-    }
+      onClick: () => handleChoice("unsatisfied"),
+      ariaLabel: "ไม่พอใจกับผลลัพธ์และต้องการให้ข้อเสนอแนะ",
+    },
   ];
 
   return (

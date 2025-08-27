@@ -1,5 +1,5 @@
-import { logEvent } from '../../services/dataLogger.js';
-import FigmaStyle1Layout from '../layouts/FigmaStyle1Layout';
+import { logEvent } from "../../services/dataLogger.js";
+import FigmaStyle1Layout from "../layouts/FigmaStyle1Layout";
 
 interface Ask04BudgetProps {
   sessionID: string | null;
@@ -7,30 +7,34 @@ interface Ask04BudgetProps {
   journeyData?: any;
 }
 
-const Ask04Budget = ({ sessionID, onNavigate, journeyData }: Ask04BudgetProps) => {
-  const handleChoice = (choice: 'satisfied' | 'unsatisfied') => {
+const Ask04Budget = ({
+  sessionID,
+  onNavigate,
+  journeyData,
+}: Ask04BudgetProps) => {
+  const handleChoice = (choice: "satisfied" | "unsatisfied") => {
     const choiceText = {
-      satisfied: 'พอใจ',
-      unsatisfied: 'ไม่พอใจ'
+      satisfied: "พอใจ",
+      unsatisfied: "ไม่พอใจ",
     }[choice];
 
     const data = { choice, choiceText };
 
     // Log the satisfaction choice (for MN3 path)
     logEvent({
-      event: 'SATISFACTION_CHOICE',
+      event: "SATISFACTION_CHOICE",
       payload: {
         choice: choiceText,
         choiceKey: choice,
-        path: 'MN3',
-        sessionID
-      }
+        path: "MN3",
+        sessionID,
+      },
     });
 
-    if (choice === 'satisfied') {
-      onNavigate('fakeNews', data);
+    if (choice === "satisfied") {
+      onNavigate("fakeNews", data);
     } else {
-      onNavigate('ask05', data);
+      onNavigate("ask05", data);
     }
   };
 
@@ -38,14 +42,14 @@ const Ask04Budget = ({ sessionID, onNavigate, journeyData }: Ask04BudgetProps) =
   const buttons = [
     {
       text: "พอใจ",
-      onClick: () => handleChoice('satisfied'),
-      ariaLabel: "พอใจกับผลลัพธ์ที่ได้จากการตอบคำถาม"
+      onClick: () => handleChoice("satisfied"),
+      ariaLabel: "พอใจกับผลลัพธ์ที่ได้จากการตอบคำถาม",
     },
     {
       text: "ไม่พอใจ",
-      onClick: () => handleChoice('unsatisfied'),
-      ariaLabel: "ไม่พอใจกับผลลัพธ์และต้องการให้ข้อเสนอแนะ"
-    }
+      onClick: () => handleChoice("unsatisfied"),
+      ariaLabel: "ไม่พอใจกับผลลัพธ์และต้องการให้ข้อเสนอแนะ",
+    },
   ];
 
   return (

@@ -9,53 +9,59 @@ const BudgetAllocation = ({ sessionID, onNavigate }: BudgetAllocationProps) => {
   const [budgetAllocation, setBudgetAllocation] = useState({
     trainDiscount: 0,
     busQuality: 0,
-    parking: 0
+    parking: 0,
   });
 
   const totalBudget = 100;
-  const allocatedBudget = budgetAllocation.trainDiscount + budgetAllocation.busQuality + budgetAllocation.parking;
+  const allocatedBudget =
+    budgetAllocation.trainDiscount +
+    budgetAllocation.busQuality +
+    budgetAllocation.parking;
   const remainingBudget = totalBudget - allocatedBudget;
 
   const budgetItems = [
-    { 
-      key: 'trainDiscount', 
-      label: 'ลดค่าโดยสารรถไฟฟ้า',
-      description: 'การให้ส่วนลดค่าโดยสารระบบรถไฟฟ้า',
-      icon: '🚇'
+    {
+      key: "trainDiscount",
+      label: "ลดค่าโดยสารรถไฟฟ้า",
+      description: "การให้ส่วนลดค่าโดยสารระบบรถไฟฟ้า",
+      icon: "🚇",
     },
-    { 
-      key: 'busQuality', 
-      label: 'ปรับปรุงคุณภาพรถเมล์',
-      description: 'การปรับปรุงและพัฒนาคุณภาพรถโดยสารประจำทาง',
-      icon: '🚌'
+    {
+      key: "busQuality",
+      label: "ปรับปรุงคุณภาพรถเมล์",
+      description: "การปรับปรุงและพัฒนาคุณภาพรถโดยสารประจำทาง",
+      icon: "🚌",
     },
-    { 
-      key: 'parking', 
-      label: 'ที่จอดรถ',
-      description: 'การจัดหาและพัฒนาพื้นที่จอดรถ',
-      icon: '🅿️'
-    }
+    {
+      key: "parking",
+      label: "ที่จอดรถ",
+      description: "การจัดหาและพัฒนาพื้นที่จอดรถ",
+      icon: "🅿️",
+    },
   ];
 
-  const handleBudgetChange = (key: keyof typeof budgetAllocation, value: string) => {
+  const handleBudgetChange = (
+    key: keyof typeof budgetAllocation,
+    value: string,
+  ) => {
     const numValue = parseInt(value) || 0;
     const currentTotal = Object.entries(budgetAllocation)
       .filter(([k]) => k !== key)
       .reduce((sum, [, v]) => sum + v, 0);
-    
+
     // Ensure the new value doesn't exceed remaining budget
     const maxAllowable = totalBudget - currentTotal;
     const finalValue = Math.min(Math.max(0, numValue), maxAllowable);
 
-    setBudgetAllocation(prev => ({
+    setBudgetAllocation((prev) => ({
       ...prev,
-      [key]: finalValue
+      [key]: finalValue,
     }));
   };
 
   const handleNext = () => {
     const data = { budgetAllocation };
-    onNavigate('ask04', data);
+    onNavigate("ask04", data);
   };
 
   const isComplete = allocatedBudget === totalBudget;
@@ -75,7 +81,8 @@ const BudgetAllocation = ({ sessionID, onNavigate }: BudgetAllocationProps) => {
           <div
             className="absolute inset-0"
             style={{
-              background: "linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.90) 44.17%)",
+              background:
+                "linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.90) 44.17%)",
             }}
           />
         </div>
@@ -98,22 +105,37 @@ const BudgetAllocation = ({ sessionID, onNavigate }: BudgetAllocationProps) => {
             <div className="w-full max-w-[325px] mb-6 bg-black bg-opacity-50 rounded-[20px] p-4">
               <div className="text-white text-center">
                 <div className="text-lg font-prompt mb-2">
-                  งบทั้งหมด: <span className="text-[#EFBA31] font-medium">{totalBudget} บาท</span>
+                  งบทั้งหมด:{" "}
+                  <span className="text-[#EFBA31] font-medium">
+                    {totalBudget} บาท
+                  </span>
                 </div>
-                <div className={`text-base font-prompt ${
-                  remainingBudget < 0 ? 'text-red-400' : remainingBudget > 0 ? 'text-yellow-400' : 'text-green-400'
-                }`}>
+                <div
+                  className={`text-base font-prompt ${
+                    remainingBudget < 0
+                      ? "text-red-400"
+                      : remainingBudget > 0
+                        ? "text-yellow-400"
+                        : "text-green-400"
+                  }`}
+                >
                   งบที่เหลือ: {remainingBudget} บาท
                 </div>
-                
+
                 {/* Visual progress bar */}
                 <div className="mt-3">
                   <div className="w-full bg-gray-600 rounded-full h-3">
-                    <div 
+                    <div
                       className={`h-3 rounded-full transition-all duration-300 ${
-                        isOverBudget ? 'bg-red-500' : allocatedBudget === totalBudget ? 'bg-green-500' : 'bg-[#EFBA31]'
+                        isOverBudget
+                          ? "bg-red-500"
+                          : allocatedBudget === totalBudget
+                            ? "bg-green-500"
+                            : "bg-[#EFBA31]"
                       }`}
-                      style={{ width: `${Math.min((allocatedBudget / totalBudget) * 100, 100)}%` }}
+                      style={{
+                        width: `${Math.min((allocatedBudget / totalBudget) * 100, 100)}%`,
+                      }}
                       role="progressbar"
                       aria-valuenow={allocatedBudget}
                       aria-valuemin={0}
@@ -122,7 +144,8 @@ const BudgetAllocation = ({ sessionID, onNavigate }: BudgetAllocationProps) => {
                     ></div>
                   </div>
                   <div className="text-white text-sm mt-2 text-center">
-                    ใช้งบประมาณ {((allocatedBudget / totalBudget) * 100).toFixed(1)}%
+                    ใช้งบประมาณ{" "}
+                    {((allocatedBudget / totalBudget) * 100).toFixed(1)}%
                   </div>
                 </div>
               </div>
@@ -131,57 +154,90 @@ const BudgetAllocation = ({ sessionID, onNavigate }: BudgetAllocationProps) => {
             {/* Budget Items */}
             <div className="w-full max-w-[325px] space-y-4 mb-6">
               {budgetItems.map((item) => (
-                <div key={item.key} className="bg-black bg-opacity-50 rounded-[20px] p-4">
+                <div
+                  key={item.key}
+                  className="bg-black bg-opacity-50 rounded-[20px] p-4"
+                >
                   <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center">
-                      <span className="text-2xl mr-3" role="img" aria-label={item.description}>
+                      <span
+                        className="text-2xl mr-3"
+                        role="img"
+                        aria-label={item.description}
+                      >
                         {item.icon}
                       </span>
                       <div>
-                        <label 
+                        <label
                           htmlFor={`budget-${item.key}`}
                           className="text-white font-prompt text-base font-medium block"
                         >
                           {item.label}
                         </label>
-                        <div className="text-white text-sm opacity-80">{item.description}</div>
+                        <div className="text-white text-sm opacity-80">
+                          {item.description}
+                        </div>
                       </div>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-center space-x-3">
                     <input
                       id={`budget-${item.key}`}
                       type="number"
                       min="0"
                       max={totalBudget}
-                      value={budgetAllocation[item.key as keyof typeof budgetAllocation]}
-                      onChange={(e) => handleBudgetChange(item.key as keyof typeof budgetAllocation, e.target.value)}
+                      value={
+                        budgetAllocation[
+                          item.key as keyof typeof budgetAllocation
+                        ]
+                      }
+                      onChange={(e) =>
+                        handleBudgetChange(
+                          item.key as keyof typeof budgetAllocation,
+                          e.target.value,
+                        )
+                      }
                       className="w-20 h-10 rounded-[10px] bg-white border-[1.5px] border-black text-center text-black font-prompt text-base focus:outline-none focus:ring-2 focus:ring-[#EFBA31]"
                       placeholder="0"
                       aria-describedby={`budget-${item.key}-description`}
                     />
-                    <span className="text-white font-prompt text-base">บาท</span>
-                    
+                    <span className="text-white font-prompt text-base">
+                      บาท
+                    </span>
+
                     {/* Visual indicator of allocation percentage */}
                     <div className="flex-1 bg-gray-600 rounded-full h-2 ml-4">
-                      <div 
+                      <div
                         className="h-2 bg-[#EFBA31] rounded-full transition-all duration-300"
-                        style={{ 
-                          width: `${((budgetAllocation[item.key as keyof typeof budgetAllocation] / totalBudget) * 100)}%` 
+                        style={{
+                          width: `${(budgetAllocation[item.key as keyof typeof budgetAllocation] / totalBudget) * 100}%`,
                         }}
                       ></div>
                     </div>
                     <span className="text-white text-sm w-12 text-right">
-                      {((budgetAllocation[item.key as keyof typeof budgetAllocation] / totalBudget) * 100).toFixed(0)}%
+                      {(
+                        (budgetAllocation[
+                          item.key as keyof typeof budgetAllocation
+                        ] /
+                          totalBudget) *
+                        100
+                      ).toFixed(0)}
+                      %
                     </span>
                   </div>
-                  
-                  <div 
+
+                  <div
                     id={`budget-${item.key}-description`}
                     className="text-white text-sm mt-2 opacity-80"
                   >
-                    จัดสรร: {budgetAllocation[item.key as keyof typeof budgetAllocation]} บาท
+                    จัดสรร:{" "}
+                    {
+                      budgetAllocation[
+                        item.key as keyof typeof budgetAllocation
+                      ]
+                    }{" "}
+                    บาท
                   </div>
                 </div>
               ))}
@@ -191,7 +247,8 @@ const BudgetAllocation = ({ sessionID, onNavigate }: BudgetAllocationProps) => {
             {isOverBudget && (
               <div className="w-full max-w-[325px] mb-4 bg-red-500 bg-opacity-90 rounded-[15px] p-3">
                 <div className="text-white text-center text-sm font-prompt">
-                  <strong>งบประมาณเกินที่กำหนด!</strong> กรุณาปรับลดจำนวนให้อยู่ในงบประมาณ {totalBudget} บาท
+                  <strong>งบประมาณเกินที่กำหนด!</strong>{" "}
+                  กรุณาปรับลดจำนวนให้อยู่ในงบประมาณ {totalBudget} บาท
                 </div>
               </div>
             )}
@@ -199,7 +256,8 @@ const BudgetAllocation = ({ sessionID, onNavigate }: BudgetAllocationProps) => {
             {remainingBudget > 0 && remainingBudget < totalBudget && (
               <div className="w-full max-w-[325px] mb-4 bg-yellow-500 bg-opacity-90 rounded-[15px] p-3">
                 <div className="text-black text-center text-sm font-prompt">
-                  คุณยังมีงบประมาณเหลือ <strong>{remainingBudget} บาท</strong> กรุณาจัดสรรให้ครบ
+                  คุณยังมีงบประมาณเหลือ <strong>{remainingBudget} บาท</strong>{" "}
+                  กรุณาจัดสรรให้ครบ
                 </div>
               </div>
             )}
@@ -207,7 +265,8 @@ const BudgetAllocation = ({ sessionID, onNavigate }: BudgetAllocationProps) => {
             {isComplete && (
               <div className="w-full max-w-[325px] mb-4 bg-green-500 bg-opacity-90 rounded-[15px] p-3">
                 <div className="text-white text-center text-sm font-prompt">
-                  <strong>เยี่ยม!</strong> คุณจัดสรรงบประมาณครบ {totalBudget} บาทแล้ว
+                  <strong>เยี่ยม!</strong> คุณจัดสรรงบประมาณครบ {totalBudget}{" "}
+                  บาทแล้ว
                 </div>
               </div>
             )}
@@ -218,23 +277,28 @@ const BudgetAllocation = ({ sessionID, onNavigate }: BudgetAllocationProps) => {
                 onClick={handleNext}
                 disabled={!isComplete}
                 className={`w-full h-[53px] rounded-[40px] border-[1.5px] border-black flex items-center justify-center transition-all duration-200 ${
-                  !isComplete 
-                    ? 'bg-gray-400 cursor-not-allowed' 
-                    : 'bg-[#EFBA31] hover:scale-105 hover:shadow-lg hover:bg-black active:bg-black group'
+                  !isComplete
+                    ? "bg-gray-400 cursor-not-allowed"
+                    : "bg-[#EFBA31] hover:scale-105 hover:shadow-lg hover:bg-black active:bg-black group"
                 }`}
                 aria-describedby="next-button-description"
               >
-                <span className={`text-center font-prompt text-lg font-medium leading-7 tracking-[0.4px] ${
-                  !isComplete 
-                    ? 'text-gray-600' 
-                    : 'text-black group-hover:text-[#EFBA31] group-active:text-[#EFBA31]'
-                }`}>
+                <span
+                  className={`text-center font-prompt text-lg font-medium leading-7 tracking-[0.4px] ${
+                    !isComplete
+                      ? "text-gray-600"
+                      : "text-black group-hover:text-[#EFBA31] group-active:text-[#EFBA31]"
+                  }`}
+                >
                   ไปต่อ
                 </span>
               </button>
-              
+
               {!isComplete && (
-                <div id="next-button-description" className="text-center text-white text-sm mt-2">
+                <div
+                  id="next-button-description"
+                  className="text-center text-white text-sm mt-2"
+                >
                   กรุณาจัดสรรงบประมาณให้ครบ {totalBudget} บาทเพื่อดำเนินการต่อ
                 </div>
               )}

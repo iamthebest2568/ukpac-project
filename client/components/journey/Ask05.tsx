@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { logEvent } from '../../services/dataLogger.js';
+import { logEvent } from "../../services/dataLogger.js";
 
 interface Ask05Props {
   sessionID: string | null;
@@ -7,20 +7,20 @@ interface Ask05Props {
 }
 
 const Ask05 = ({ sessionID, onNavigate }: Ask05Props) => {
-  const [suggestion, setSuggestion] = useState('');
+  const [suggestion, setSuggestion] = useState("");
 
   const handleNext = () => {
     // Log the user's suggestion
     logEvent({
-      event: 'ASK05_SUBMIT',
+      event: "ASK05_SUBMIT",
       payload: {
         suggestion,
-        sessionID
-      }
+        sessionID,
+      },
     });
 
     const data = { suggestion };
-    onNavigate('fakeNews', data);
+    onNavigate("fakeNews", data);
   };
 
   return (
@@ -37,7 +37,8 @@ const Ask05 = ({ sessionID, onNavigate }: Ask05Props) => {
           <div
             className="absolute inset-0"
             style={{
-              background: "linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.90) 44.17%)",
+              background:
+                "linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.90) 44.17%)",
             }}
           />
         </div>
@@ -52,7 +53,8 @@ const Ask05 = ({ sessionID, onNavigate }: Ask05Props) => {
                 className="text-white text-center font-kanit text-3xl font-normal leading-normal mb-4"
                 style={{ fontSize: "clamp(20px, 6vw, 24px)" }}
               >
-                คุณคิดว่ารัฐควรทำอะไร ที่จะทำให้นโยบายนี้เกิดขึ้นได้และเป็นประโยชน์ต่อประชาชนอย่างแท้จริง
+                คุณคิดว่ารัฐควรทำอะไร
+                ที่จะทำให้นโยบายนี้เกิดขึ้นได้และเป็นประโยชน์ต่อประชาชนอย่างแท้จริง
               </h1>
               <p className="text-white text-center font-prompt text-base leading-relaxed">
                 ข้อเสนอแนะของคุณมีค่ามากสำหรับการพัฒนานโยบายให้ดีขึ้น
@@ -61,8 +63,8 @@ const Ask05 = ({ sessionID, onNavigate }: Ask05Props) => {
 
             {/* Text Input Area */}
             <div className="w-full max-w-[325px] mb-6">
-              <label 
-                htmlFor="suggestion-input" 
+              <label
+                htmlFor="suggestion-input"
                 className="block text-white font-prompt text-base font-medium mb-2"
               >
                 ข้อเสนอแนะของคุณ:
@@ -76,10 +78,14 @@ const Ask05 = ({ sessionID, onNavigate }: Ask05Props) => {
                 aria-describedby="suggestion-help"
                 rows={6}
               />
-              <div id="suggestion-help" className="text-white text-sm font-prompt mt-2">
-                แชร์ความคิดเห็น ข้อเสนอแนะ หรือแนวทางที่คุณคิดว่าจะช่วยให้นโยบายนี้ประสบความสำเร็จ
+              <div
+                id="suggestion-help"
+                className="text-white text-sm font-prompt mt-2"
+              >
+                แชร์ความคิดเห็น ข้อเสนอแนะ
+                หรือแนวทางที่คุณคิดว่าจะช่วยให้นโยบายนี้ประสบความสำเร็จ
               </div>
-              
+
               {/* Character counter */}
               <div className="text-right mt-1">
                 <span className="text-white text-sm">
@@ -101,11 +107,14 @@ const Ask05 = ({ sessionID, onNavigate }: Ask05Props) => {
               </button>
 
               {suggestion.trim().length === 0 && (
-                <div id="next-button-description" className="text-center text-white text-sm mt-2">
+                <div
+                  id="next-button-description"
+                  className="text-center text-white text-sm mt-2"
+                >
                   คุณสามารถข้ามขั้นตอนนี้ได้หากไม่มีข้อเสนอแนะเพิ่มเติม
                 </div>
               )}
-              
+
               {suggestion.trim().length > 0 && (
                 <div className="text-center text-white text-sm mt-2">
                   ขอบคุณสำหรับข้อเสนอแนะที่มีค่า!

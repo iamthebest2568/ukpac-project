@@ -85,7 +85,8 @@ const Step1_Priorities = ({
           <div
             className="absolute inset-0"
             style={{
-              background: "linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.90) 44.17%)",
+              background:
+                "linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.90) 44.17%)",
             }}
           />
         </div>
@@ -108,7 +109,10 @@ const Step1_Priorities = ({
             <div className="w-full max-w-[325px] mb-4 bg-black bg-opacity-50 rounded-[15px] p-3">
               <div className="text-white text-center font-prompt text-sm">
                 เลือกได้สูงสุด {maxSelections} ข้อ (เลือกแล้ว{" "}
-                <span className="text-[#EFBA31] font-medium">{selectedPriorities.length}/{maxSelections}</span>)
+                <span className="text-[#EFBA31] font-medium">
+                  {selectedPriorities.length}/{maxSelections}
+                </span>
+                )
               </div>
             </div>
 
@@ -117,16 +121,16 @@ const Step1_Priorities = ({
               {priorities.map((priority, index) => {
                 const isSelected = selectedPriorities.includes(priority);
                 const isDisabled = isSelectionDisabled(priority);
-                
+
                 return (
                   <div
                     key={index}
                     className={`rounded-[20px] border-[1.5px] p-4 transition-all duration-200 cursor-pointer ${
-                      isSelected 
-                        ? 'bg-[#EFBA31] border-black' 
+                      isSelected
+                        ? "bg-[#EFBA31] border-black"
                         : isDisabled
-                        ? 'bg-gray-400 border-gray-500 cursor-not-allowed opacity-50'
-                        : 'bg-white border-black hover:bg-gray-100'
+                          ? "bg-gray-400 border-gray-500 cursor-not-allowed opacity-50"
+                          : "bg-white border-black hover:bg-gray-100"
                     }`}
                     onClick={() =>
                       !isDisabled && handlePriorityToggle(priority)
@@ -136,21 +140,20 @@ const Step1_Priorities = ({
                     aria-disabled={isDisabled}
                     tabIndex={isDisabled ? -1 : 0}
                     onKeyDown={(e) => {
-                      if (
-                        (e.key === "Enter" || e.key === " ") &&
-                        !isDisabled
-                      ) {
+                      if ((e.key === "Enter" || e.key === " ") && !isDisabled) {
                         e.preventDefault();
                         handlePriorityToggle(priority);
                       }
                     }}
                   >
                     <div className="flex items-center">
-                      <div className={`w-6 h-6 rounded border-2 mr-3 flex items-center justify-center ${
-                        isSelected 
-                          ? 'bg-black border-black' 
-                          : 'bg-white border-gray-400'
-                      }`}>
+                      <div
+                        className={`w-6 h-6 rounded border-2 mr-3 flex items-center justify-center ${
+                          isSelected
+                            ? "bg-black border-black"
+                            : "bg-white border-gray-400"
+                        }`}
+                      >
                         {isSelected && (
                           <svg
                             className="w-4 h-4 text-white"
@@ -167,9 +170,11 @@ const Step1_Priorities = ({
                           </svg>
                         )}
                       </div>
-                      <span className={`font-prompt text-base ${
-                        isSelected ? 'text-black font-medium' : 'text-black'
-                      }`}>
+                      <span
+                        className={`font-prompt text-base ${
+                          isSelected ? "text-black font-medium" : "text-black"
+                        }`}
+                      >
                         {priority}
                       </span>
                     </div>
@@ -182,7 +187,8 @@ const Step1_Priorities = ({
             {selectedPriorities.length >= maxSelections && (
               <div className="w-full max-w-[325px] mb-4 bg-yellow-500 bg-opacity-90 rounded-[15px] p-3">
                 <div className="text-black text-center text-sm font-prompt">
-                  คุณเลือกครบจำนวนแล้ว หากต้องการเลือกข้อใหม่ กรุณายกเลิกการเลือกข้อใดข้อหนึ่งก่อน
+                  คุณเลือกครบจำนวนแล้ว หากต้องการเลือกข้อใหม่
+                  กรุณายกเลิกการเลือกข้อใดข้อหนึ่งก่อน
                 </div>
               </div>
             )}
@@ -193,23 +199,28 @@ const Step1_Priorities = ({
                 onClick={handleNext}
                 disabled={selectedPriorities.length === 0}
                 className={`w-full h-[53px] rounded-[40px] border-[1.5px] border-black flex items-center justify-center transition-all duration-200 ${
-                  selectedPriorities.length === 0 
-                    ? 'bg-gray-400 cursor-not-allowed' 
-                    : 'bg-[#EFBA31] hover:scale-105 hover:shadow-lg hover:bg-black active:bg-black group'
+                  selectedPriorities.length === 0
+                    ? "bg-gray-400 cursor-not-allowed"
+                    : "bg-[#EFBA31] hover:scale-105 hover:shadow-lg hover:bg-black active:bg-black group"
                 }`}
                 aria-describedby="next-button-description"
               >
-                <span className={`text-center font-prompt text-lg font-medium leading-7 tracking-[0.4px] ${
-                  selectedPriorities.length === 0 
-                    ? 'text-gray-600' 
-                    : 'text-black group-hover:text-[#EFBA31] group-active:text-[#EFBA31]'
-                }`}>
+                <span
+                  className={`text-center font-prompt text-lg font-medium leading-7 tracking-[0.4px] ${
+                    selectedPriorities.length === 0
+                      ? "text-gray-600"
+                      : "text-black group-hover:text-[#EFBA31] group-active:text-[#EFBA31]"
+                  }`}
+                >
                   ไปต่อ
                 </span>
               </button>
 
               {selectedPriorities.length === 0 && (
-                <div id="next-button-description" className="text-center text-white text-sm mt-2">
+                <div
+                  id="next-button-description"
+                  className="text-center text-white text-sm mt-2"
+                >
                   กรุณาเลือกอย่างน้อย 1 ข้อเพื่อดำเนินการต่อ
                 </div>
               )}

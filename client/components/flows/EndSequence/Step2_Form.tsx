@@ -4,7 +4,7 @@
  */
 
 import { useState } from "react";
-import { logEvent } from '../../../services/dataLogger.js';
+import { logEvent } from "../../../services/dataLogger.js";
 
 interface Step2_FormProps {
   sessionID: string | null;
@@ -13,27 +13,32 @@ interface Step2_FormProps {
   initialData?: any;
 }
 
-const Step2_Form = ({ sessionID, onNext, onBack, initialData }: Step2_FormProps) => {
+const Step2_Form = ({
+  sessionID,
+  onNext,
+  onBack,
+  initialData,
+}: Step2_FormProps) => {
   const [formData, setFormData] = useState({
-    name: initialData?.name || '',
-    phone: initialData?.phone || ''
+    name: initialData?.name || "",
+    phone: initialData?.phone || "",
   });
 
-  const [errors, setErrors] = useState<{[key: string]: string}>({});
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
   const validateForm = () => {
-    const newErrors: {[key: string]: string} = {};
+    const newErrors: { [key: string]: string } = {};
 
     // Name validation
     if (!formData.name.trim()) {
-      newErrors.name = 'กรุณากรอกชื่อ';
+      newErrors.name = "กรุณากรอกชื่อ";
     }
 
     // Phone validation
     if (!formData.phone.trim()) {
-      newErrors.phone = 'กรุณากรอกเบอร์โทร';
-    } else if (!/^[0-9]{9,10}$/.test(formData.phone.replace(/[-\s]/g, ''))) {
-      newErrors.phone = 'เบอร์โทรศัพท์ไม่ถูกต้อง';
+      newErrors.phone = "กรุณากรอกเบอร์โทร";
+    } else if (!/^[0-9]{9,10}$/.test(formData.phone.replace(/[-\s]/g, ""))) {
+      newErrors.phone = "เบอร์โทรศัพท์ไม่ถูกต้อง";
     }
 
     setErrors(newErrors);
@@ -41,10 +46,10 @@ const Step2_Form = ({ sessionID, onNext, onBack, initialData }: Step2_FormProps)
   };
 
   const handleInputChange = (field: string, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    setFormData((prev) => ({ ...prev, [field]: value }));
     // Clear error when user starts typing
     if (errors[field]) {
-      setErrors(prev => ({ ...prev, [field]: '' }));
+      setErrors((prev) => ({ ...prev, [field]: "" }));
     }
   };
 
@@ -52,11 +57,11 @@ const Step2_Form = ({ sessionID, onNext, onBack, initialData }: Step2_FormProps)
     if (validateForm()) {
       // Log the reward form submission
       logEvent({
-        event: 'REWARD_FORM_SUBMIT',
+        event: "REWARD_FORM_SUBMIT",
         payload: {
           data: formData,
-          sessionID
-        }
+          sessionID,
+        },
       });
 
       // Navigate to final thank you
@@ -79,7 +84,8 @@ const Step2_Form = ({ sessionID, onNext, onBack, initialData }: Step2_FormProps)
           <div
             className="absolute inset-0"
             style={{
-              background: "linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.90) 44.17%)",
+              background:
+                "linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.90) 44.17%)",
             }}
           />
         </div>
@@ -109,7 +115,9 @@ const Step2_Form = ({ sessionID, onNext, onBack, initialData }: Step2_FormProps)
                   strokeLinejoin="round"
                 />
               </svg>
-              <span className="text-white font-prompt text-base">กลับไปก่อนหน้านี้</span>
+              <span className="text-white font-prompt text-base">
+                กลับไปก่อนหน้านี้
+              </span>
             </button>
           </div>
 
@@ -129,37 +137,47 @@ const Step2_Form = ({ sessionID, onNext, onBack, initialData }: Step2_FormProps)
             <div className="w-full max-w-[325px] space-y-4 mb-6">
               {/* Name Input */}
               <div>
-                <label htmlFor="name" className="block text-white text-base font-prompt mb-2">
+                <label
+                  htmlFor="name"
+                  className="block text-white text-base font-prompt mb-2"
+                >
                   ชื่อ *
                 </label>
                 <input
                   id="name"
                   type="text"
                   value={formData.name}
-                  onChange={(e) => handleInputChange('name', e.target.value)}
-                  className={`w-full h-[53px] rounded-[40px] bg-white border-[1.5px] ${errors.name ? 'border-red-500' : 'border-black'} px-6 text-black font-prompt text-lg placeholder-gray-500`}
+                  onChange={(e) => handleInputChange("name", e.target.value)}
+                  className={`w-full h-[53px] rounded-[40px] bg-white border-[1.5px] ${errors.name ? "border-red-500" : "border-black"} px-6 text-black font-prompt text-lg placeholder-gray-500`}
                   placeholder="กรุณากรอกชื่อ"
                 />
                 {errors.name && (
-                  <div className="text-red-400 text-sm mt-1 ml-2">{errors.name}</div>
+                  <div className="text-red-400 text-sm mt-1 ml-2">
+                    {errors.name}
+                  </div>
                 )}
               </div>
 
               {/* Phone Input */}
               <div>
-                <label htmlFor="phone" className="block text-white text-base font-prompt mb-2">
+                <label
+                  htmlFor="phone"
+                  className="block text-white text-base font-prompt mb-2"
+                >
                   เบอร์โทร *
                 </label>
                 <input
                   id="phone"
                   type="tel"
                   value={formData.phone}
-                  onChange={(e) => handleInputChange('phone', e.target.value)}
-                  className={`w-full h-[53px] rounded-[40px] bg-white border-[1.5px] ${errors.phone ? 'border-red-500' : 'border-black'} px-6 text-black font-prompt text-lg placeholder-gray-500`}
+                  onChange={(e) => handleInputChange("phone", e.target.value)}
+                  className={`w-full h-[53px] rounded-[40px] bg-white border-[1.5px] ${errors.phone ? "border-red-500" : "border-black"} px-6 text-black font-prompt text-lg placeholder-gray-500`}
                   placeholder="08X-XXX-XXXX"
                 />
                 {errors.phone && (
-                  <div className="text-red-400 text-sm mt-1 ml-2">{errors.phone}</div>
+                  <div className="text-red-400 text-sm mt-1 ml-2">
+                    {errors.phone}
+                  </div>
                 )}
               </div>
             </div>

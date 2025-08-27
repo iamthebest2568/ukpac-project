@@ -108,7 +108,8 @@ const Step1_Beneficiaries = ({
           <div
             className="absolute inset-0"
             style={{
-              background: "linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.90) 44.17%)",
+              background:
+                "linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.90) 44.17%)",
             }}
           />
         </div>
@@ -131,7 +132,10 @@ const Step1_Beneficiaries = ({
             <div className="w-full max-w-[325px] mb-4 bg-black bg-opacity-50 rounded-[15px] p-3">
               <div className="text-white text-center font-prompt text-sm">
                 เลือกได้สูงสุด {maxSelections} กลุ่ม (เลือกแล้ว{" "}
-                <span className="text-[#EFBA31] font-medium">{selectedGroups.length}/{maxSelections}</span>)
+                <span className="text-[#EFBA31] font-medium">
+                  {selectedGroups.length}/{maxSelections}
+                </span>
+                )
               </div>
             </div>
 
@@ -140,30 +144,25 @@ const Step1_Beneficiaries = ({
               {beneficiaryGroups.map((group) => {
                 const isSelected = selectedGroups.includes(group.id);
                 const isDisabled = isSelectionDisabled(group.id);
-                
+
                 return (
                   <div
                     key={group.id}
                     className={`relative rounded-[20px] border-[1.5px] p-4 transition-all duration-200 cursor-pointer min-h-[120px] ${
-                      isSelected 
-                        ? 'bg-[#EFBA31] border-black' 
+                      isSelected
+                        ? "bg-[#EFBA31] border-black"
                         : isDisabled
-                        ? 'bg-gray-400 border-gray-500 cursor-not-allowed opacity-50'
-                        : 'bg-white border-black hover:bg-gray-100'
+                          ? "bg-gray-400 border-gray-500 cursor-not-allowed opacity-50"
+                          : "bg-white border-black hover:bg-gray-100"
                     }`}
-                    onClick={() =>
-                      !isDisabled && handleGroupToggle(group.id)
-                    }
+                    onClick={() => !isDisabled && handleGroupToggle(group.id)}
                     role="checkbox"
                     aria-checked={isSelected}
                     aria-disabled={isDisabled}
                     aria-describedby={`group-${group.id}-description`}
                     tabIndex={isDisabled ? -1 : 0}
                     onKeyDown={(e) => {
-                      if (
-                        (e.key === "Enter" || e.key === " ") &&
-                        !isDisabled
-                      ) {
+                      if ((e.key === "Enter" || e.key === " ") && !isDisabled) {
                         e.preventDefault();
                         handleGroupToggle(group.id);
                       }
@@ -177,15 +176,17 @@ const Step1_Beneficiaries = ({
                       >
                         {group.icon}
                       </div>
-                      <div className={`font-prompt text-base font-medium mb-1 ${
-                        isSelected ? 'text-black' : 'text-black'
-                      }`}>
+                      <div
+                        className={`font-prompt text-base font-medium mb-1 ${
+                          isSelected ? "text-black" : "text-black"
+                        }`}
+                      >
                         {group.label}
                       </div>
                       <div
                         id={`group-${group.id}-description`}
                         className={`font-prompt text-xs ${
-                          isSelected ? 'text-black opacity-80' : 'text-gray-600'
+                          isSelected ? "text-black opacity-80" : "text-gray-600"
                         }`}
                       >
                         {group.description}
@@ -219,7 +220,8 @@ const Step1_Beneficiaries = ({
             {selectedGroups.length >= maxSelections && (
               <div className="w-full max-w-[325px] mb-4 bg-yellow-500 bg-opacity-90 rounded-[15px] p-3">
                 <div className="text-black text-center text-sm font-prompt">
-                  คุณเลือกครบจำน��นแล้ว หากต้องการเลือกกลุ่มใหม่ กรุณายกเลิกการเลือกกลุ่มใดกลุ่มหนึ่งก่อน
+                  คุณเลือกครบจำน��นแล้ว หากต้องการเลือกกลุ่มใหม่
+                  กรุณายกเลิกการเลือกกลุ่มใดกลุ่มหนึ่งก่อน
                 </div>
               </div>
             )}
@@ -230,23 +232,28 @@ const Step1_Beneficiaries = ({
                 onClick={handleNext}
                 disabled={selectedGroups.length === 0}
                 className={`w-full h-[53px] rounded-[40px] border-[1.5px] border-black flex items-center justify-center transition-all duration-200 ${
-                  selectedGroups.length === 0 
-                    ? 'bg-gray-400 cursor-not-allowed' 
-                    : 'bg-[#EFBA31] hover:scale-105 hover:shadow-lg hover:bg-black active:bg-black group'
+                  selectedGroups.length === 0
+                    ? "bg-gray-400 cursor-not-allowed"
+                    : "bg-[#EFBA31] hover:scale-105 hover:shadow-lg hover:bg-black active:bg-black group"
                 }`}
                 aria-describedby="next-button-description"
               >
-                <span className={`text-center font-prompt text-lg font-medium leading-7 tracking-[0.4px] ${
-                  selectedGroups.length === 0 
-                    ? 'text-gray-600' 
-                    : 'text-black group-hover:text-[#EFBA31] group-active:text-[#EFBA31]'
-                }`}>
+                <span
+                  className={`text-center font-prompt text-lg font-medium leading-7 tracking-[0.4px] ${
+                    selectedGroups.length === 0
+                      ? "text-gray-600"
+                      : "text-black group-hover:text-[#EFBA31] group-active:text-[#EFBA31]"
+                  }`}
+                >
                   ไปต่อ
                 </span>
               </button>
 
               {selectedGroups.length === 0 && (
-                <div id="next-button-description" className="text-center text-white text-sm mt-2">
+                <div
+                  id="next-button-description"
+                  className="text-center text-white text-sm mt-2"
+                >
                   กรุณาเลือกอย่างน้อย 1 กลุ่มเพื่อดำเนินการต่อ
                 </div>
               )}

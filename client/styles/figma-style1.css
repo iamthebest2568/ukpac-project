@@ -31,7 +31,11 @@
 
 .figma-style1-background-overlay {
   @apply absolute inset-0;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.90) 44.17%);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.9) 44.17%
+  );
 }
 
 /* Main Content Layout */
@@ -72,7 +76,7 @@
 
 .figma-style1-button:hover .figma-style1-button-text,
 .figma-style1-button:active .figma-style1-button-text {
-  color: #EFBA31;
+  color: #efba31;
 }
 
 /* Replay Button System */
@@ -91,11 +95,11 @@
 
 /* Color Palette Variables for figma-style1 */
 :root {
-  --figma-style1-primary: #EFBA31;
+  --figma-style1-primary: #efba31;
   --figma-style1-text-dark: #000000;
-  --figma-style1-text-light: #FFFFFF;
-  --figma-style1-overlay-start: rgba(0, 0, 0, 0.00);
-  --figma-style1-overlay-end: rgba(0, 0, 0, 0.90);
+  --figma-style1-text-light: #ffffff;
+  --figma-style1-overlay-start: rgba(0, 0, 0, 0);
+  --figma-style1-overlay-end: rgba(0, 0, 0, 0.9);
 }
 
 /* Responsive Breakpoints for figma-style1 */
@@ -109,11 +113,11 @@
   .figma-style1-header {
     @apply p-10;
   }
-  
+
   .figma-style1-content-area {
     @apply pb-12;
   }
-  
+
   .figma-style1-title-container {
     @apply mb-12;
   }

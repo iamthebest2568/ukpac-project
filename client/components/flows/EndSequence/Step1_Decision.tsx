@@ -3,8 +3,8 @@
  * Moved from RewardDecision component
  */
 
-import { logEvent } from '../../../services/dataLogger.js';
-import FigmaStyle1Layout from '../../layouts/FigmaStyle1Layout';
+import { logEvent } from "../../../services/dataLogger.js";
+import FigmaStyle1Layout from "../../layouts/FigmaStyle1Layout";
 
 interface Step1_DecisionProps {
   sessionID: string | null;
@@ -13,21 +13,26 @@ interface Step1_DecisionProps {
   initialData?: any;
 }
 
-const Step1_Decision = ({ sessionID, onNext, onBack, initialData }: Step1_DecisionProps) => {
-  const handleChoice = (choice: 'participate' | 'decline') => {
+const Step1_Decision = ({
+  sessionID,
+  onNext,
+  onBack,
+  initialData,
+}: Step1_DecisionProps) => {
+  const handleChoice = (choice: "participate" | "decline") => {
     const choiceText = {
-      participate: 'ลุ้นรับรางวัล',
-      decline: 'ไม่'
+      participate: "ลุ้นรับรางวัล",
+      decline: "ไม่",
     }[choice];
 
     // Log the reward decision
     logEvent({
-      event: 'REWARD_DECISION',
+      event: "REWARD_DECISION",
       payload: {
         choice,
         choiceText,
-        sessionID
-      }
+        sessionID,
+      },
     });
 
     const data = { rewardDecision: { choice, choiceText } };
@@ -38,14 +43,14 @@ const Step1_Decision = ({ sessionID, onNext, onBack, initialData }: Step1_Decisi
   const buttons = [
     {
       text: "ลุ้นรับรางวัล",
-      onClick: () => handleChoice('participate'),
-      ariaLabel: "เข้าร่วมโครงการและกรอกข้อมูลเพื่อรับรางวัล"
+      onClick: () => handleChoice("participate"),
+      ariaLabel: "เข้าร่วมโครงการและกรอกข้อมูลเพื่อรับรางวัล",
     },
     {
       text: "ไม่",
-      onClick: () => handleChoice('decline'),
-      ariaLabel: "ไม่เข้าร่วมโครงการรับรางวัล"
-    }
+      onClick: () => handleChoice("decline"),
+      ariaLabel: "ไม่เข้าร่วมโครงการรับรางวัล",
+    },
   ];
 
   return (

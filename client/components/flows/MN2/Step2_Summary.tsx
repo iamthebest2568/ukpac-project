@@ -17,17 +17,22 @@ interface SummaryCard {
   beneficiaries: { label: string; icon: string }[];
 }
 
-const Step2_Summary = ({ sessionID, onNext, onBack, journeyData }: Step2_SummaryProps) => {
+const Step2_Summary = ({
+  sessionID,
+  onNext,
+  onBack,
+  journeyData,
+}: Step2_SummaryProps) => {
   const [summaryCards, setSummaryCards] = useState<SummaryCard[]>([]);
 
   // Beneficiary mapping for icons and labels
   const beneficiaryMapping = {
-    'everyone': { label: 'ทุกคน', icon: '👥' },
-    'locals': { label: 'คนในพื้นที่', icon: '🏘️' },
-    'elderly': { label: 'ผู้สูงอายุ', icon: '👴' },
-    'students': { label: 'นักเรียนนักศึกษา', icon: '🎓' },
-    'disabled': { label: 'คนพิการ', icon: '♿' },
-    'other': { label: 'อื่นๆ', icon: '❓' }
+    everyone: { label: "ทุกคน", icon: "👥" },
+    locals: { label: "คนในพื้นที่", icon: "🏘️" },
+    elderly: { label: "ผู้สูงอายุ", icon: "👴" },
+    students: { label: "นักเรียนนักศึกษา", icon: "🎓" },
+    disabled: { label: "คนพิการ", icon: "♿" },
+    other: { label: "อื่นๆ", icon: "❓" },
   };
 
   useEffect(() => {
@@ -36,14 +41,18 @@ const Step2_Summary = ({ sessionID, onNext, onBack, journeyData }: Step2_Summary
     const beneficiariesData = journeyData?.beneficiaries?.selectedGroups || [];
 
     // Convert beneficiary IDs to display objects with icons and labels
-    const beneficiaryObjects = beneficiariesData.map((id: string) =>
-      beneficiaryMapping[id as keyof typeof beneficiaryMapping] || { label: id, icon: '❓' }
+    const beneficiaryObjects = beneficiariesData.map(
+      (id: string) =>
+        beneficiaryMapping[id as keyof typeof beneficiaryMapping] || {
+          label: id,
+          icon: "❓",
+        },
     );
 
     // Create summary cards - map each priority to the selected beneficiaries
     const cards: SummaryCard[] = prioritiesData.map((priority: string) => ({
       priority,
-      beneficiaries: beneficiaryObjects
+      beneficiaries: beneficiaryObjects,
     }));
 
     setSummaryCards(cards);
@@ -68,7 +77,8 @@ const Step2_Summary = ({ sessionID, onNext, onBack, journeyData }: Step2_Summary
           <div
             className="absolute inset-0"
             style={{
-              background: "linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.90) 44.17%)",
+              background:
+                "linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.90) 44.17%)",
             }}
           />
         </div>
@@ -108,7 +118,11 @@ const Step2_Summary = ({ sessionID, onNext, onBack, journeyData }: Step2_Summary
                       >
                         {/* Circular Icon */}
                         <div className="w-10 h-10 bg-black rounded-full flex items-center justify-center mb-1">
-                          <span className="text-lg text-white" role="img" aria-label={beneficiary.label}>
+                          <span
+                            className="text-lg text-white"
+                            role="img"
+                            aria-label={beneficiary.label}
+                          >
                             {beneficiary.icon}
                           </span>
                         </div>
@@ -119,23 +133,30 @@ const Step2_Summary = ({ sessionID, onNext, onBack, journeyData }: Step2_Summary
                       </div>
                     ))}
                     {/* Add placeholder icons to maintain visual consistency */}
-                    {Array.from({ length: Math.max(0, 3 - card.beneficiaries.length) }, (_, i) => (
-                      <div
-                        key={`placeholder-${i}`}
-                        className="flex flex-col items-center opacity-30"
-                      >
-                        {/* Circular Icon - Placeholder */}
-                        <div className="w-10 h-10 bg-gray-400 rounded-full flex items-center justify-center mb-1">
-                          <span className="text-lg text-white" role="img" aria-label="placeholder">
-                            ❓
+                    {Array.from(
+                      { length: Math.max(0, 3 - card.beneficiaries.length) },
+                      (_, i) => (
+                        <div
+                          key={`placeholder-${i}`}
+                          className="flex flex-col items-center opacity-30"
+                        >
+                          {/* Circular Icon - Placeholder */}
+                          <div className="w-10 h-10 bg-gray-400 rounded-full flex items-center justify-center mb-1">
+                            <span
+                              className="text-lg text-white"
+                              role="img"
+                              aria-label="placeholder"
+                            >
+                              ❓
+                            </span>
+                          </div>
+                          {/* Label underneath */}
+                          <span className="text-xs text-gray-500 font-prompt text-center">
+                            ----
                           </span>
                         </div>
-                        {/* Label underneath */}
-                        <span className="text-xs text-gray-500 font-prompt text-center">
-                          ----
-                        </span>
-                      </div>
-                    ))}
+                      ),
+                    )}
                   </div>
                 </div>
               ))}

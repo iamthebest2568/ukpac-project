@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { logEvent } from '../../services/dataLogger.js';
+import { logEvent } from "../../services/dataLogger.js";
 
 interface Ask02_2Props {
   sessionID: string | null;
@@ -7,20 +7,20 @@ interface Ask02_2Props {
 }
 
 const Ask02_2 = ({ sessionID, onNavigate }: Ask02_2Props) => {
-  const [textInput, setTextInput] = useState('');
+  const [textInput, setTextInput] = useState("");
 
   const handleNext = () => {
     // Log the user's custom reason
     logEvent({
-      event: 'ASK02_2_SUBMIT',
+      event: "ASK02_2_SUBMIT",
       payload: {
         customReason: textInput,
-        sessionID
-      }
+        sessionID,
+      },
     });
 
     const data = { textInput };
-    onNavigate('ask05', data);
+    onNavigate("ask05", data);
   };
 
   return (
@@ -37,7 +37,8 @@ const Ask02_2 = ({ sessionID, onNavigate }: Ask02_2Props) => {
           <div
             className="absolute inset-0"
             style={{
-              background: "linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.90) 44.17%)",
+              background:
+                "linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.90) 44.17%)",
             }}
           />
         </div>
@@ -71,7 +72,10 @@ const Ask02_2 = ({ sessionID, onNavigate }: Ask02_2Props) => {
                 rows={4}
                 aria-describedby="character-count"
               />
-              <div id="character-count" className="text-right text-white text-sm mt-2">
+              <div
+                id="character-count"
+                className="text-right text-white text-sm mt-2"
+              >
                 {textInput.length} ตัวอักษร
               </div>
             </div>
@@ -82,23 +86,28 @@ const Ask02_2 = ({ sessionID, onNavigate }: Ask02_2Props) => {
                 onClick={handleNext}
                 disabled={textInput.trim().length === 0}
                 className={`w-full h-[53px] rounded-[40px] border-[1.5px] border-black flex items-center justify-center transition-all duration-200 ${
-                  textInput.trim().length === 0 
-                    ? 'bg-gray-400 cursor-not-allowed' 
-                    : 'bg-[#EFBA31] hover:scale-105 hover:shadow-lg hover:bg-black active:bg-black group'
+                  textInput.trim().length === 0
+                    ? "bg-gray-400 cursor-not-allowed"
+                    : "bg-[#EFBA31] hover:scale-105 hover:shadow-lg hover:bg-black active:bg-black group"
                 }`}
                 aria-describedby="next-button-description"
               >
-                <span className={`text-center font-prompt text-lg font-medium leading-7 tracking-[0.4px] ${
-                  textInput.trim().length === 0 
-                    ? 'text-gray-600' 
-                    : 'text-black group-hover:text-[#EFBA31] group-active:text-[#EFBA31]'
-                }`}>
+                <span
+                  className={`text-center font-prompt text-lg font-medium leading-7 tracking-[0.4px] ${
+                    textInput.trim().length === 0
+                      ? "text-gray-600"
+                      : "text-black group-hover:text-[#EFBA31] group-active:text-[#EFBA31]"
+                  }`}
+                >
                   ไปต่อ
                 </span>
               </button>
 
               {textInput.trim().length === 0 && (
-                <div id="next-button-description" className="text-center text-white text-sm mt-2">
+                <div
+                  id="next-button-description"
+                  className="text-center text-white text-sm mt-2"
+                >
                   กรุณากรอกข้อความเพื่อดำเนินการต่อ
                 </div>
               )}
@@ -106,7 +115,9 @@ const Ask02_2 = ({ sessionID, onNavigate }: Ask02_2Props) => {
 
             {/* Tips */}
             <div className="w-full max-w-[325px] text-center">
-              <h4 className="text-white font-prompt text-base font-medium mb-2">💡 ตัวอย่างความคิดเห็นที่เป็นประโยชน์:</h4>
+              <h4 className="text-white font-prompt text-base font-medium mb-2">
+                💡 ตัวอย่างความคิดเห็นที่เป็นประโยชน์:
+              </h4>
               <ul className="text-white text-sm font-prompt space-y-1 text-left">
                 <li>• กังวลเรื่องผลกระทบต่อผู้มีรายได้น้อย</li>
                 <li>• เห็นว่าควรมีระบบขนส่งสาธารณะที่ดีกว่าก่อน</li>

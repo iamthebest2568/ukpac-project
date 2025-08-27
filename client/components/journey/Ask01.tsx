@@ -48,18 +48,18 @@ const Ask01 = ({ sessionID, onNavigate }: Ask01Props) => {
     {
       text: "เห็นด้วย",
       onClick: () => handleChoice("agree"),
-      ariaLabel: "เห็นด้วยกับข้อความดังกล่าว"
+      ariaLabel: "เห็นด้วยกับข้อความดังกล่าว",
     },
     {
       text: "กลางๆ",
       onClick: () => handleChoice("neutral"),
-      ariaLabel: "มีความเห็นเป็นกลางต่อข้อความดังกล่าว"
+      ariaLabel: "มีความเห็นเป็นกลางต่อข้อความดังกล่าว",
     },
     {
       text: "ไม่เห็นด้วย",
       onClick: () => handleChoice("disagree"),
-      ariaLabel: "ไม่เห็นด้วยกับข้อความดังกล่าว"
-    }
+      ariaLabel: "ไม่เห็นด้วยกับข้อความดังกล่าว",
+    },
   ];
 
   return (
@@ -71,7 +71,7 @@ const Ask01 = ({ sessionID, onNavigate }: Ask01Props) => {
       buttons={buttons}
       replayButton={{
         onClick: handleReplay,
-        ariaLabel: "ดูอีกครั้ง"
+        ariaLabel: "ดูอีกครั้ง",
       }}
     />
   );

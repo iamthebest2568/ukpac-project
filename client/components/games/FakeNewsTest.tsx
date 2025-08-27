@@ -1,5 +1,5 @@
-import { logEvent } from '../../services/dataLogger.js';
-import FigmaStyle1Layout from '../layouts/FigmaStyle1Layout';
+import { logEvent } from "../../services/dataLogger.js";
+import FigmaStyle1Layout from "../layouts/FigmaStyle1Layout";
 
 interface FakeNewsTestProps {
   sessionID: string | null;
@@ -7,32 +7,32 @@ interface FakeNewsTestProps {
 }
 
 const FakeNewsTest = ({ sessionID, onNavigate }: FakeNewsTestProps) => {
-  const handleAction = (action: 'search' | 'ignore') => {
+  const handleAction = (action: "search" | "ignore") => {
     const data = { action };
 
     // Log the fake news interaction
     logEvent({
-      event: 'FAKENEWS_CHOICE',
+      event: "FAKENEWS_CHOICE",
       payload: {
         choice: action,
-        scenario: 'ข่าวเรื่องการเปลี่ยนแปลงค่าโดยสาร',
-        sessionID
-      }
+        scenario: "ข่าวเรื่องการเปลี่ยนแปลงค่าโดยสาร",
+        sessionID,
+      },
     });
 
-    if (action === 'search') {
+    if (action === "search") {
       // Navigate to source selection for the 'Agree' journey
-      onNavigate('sourceSelection', data);
+      onNavigate("sourceSelection", data);
     } else {
       // Navigate directly to Flow_EndSequence (reward decision flow)
-      onNavigate('Flow_EndSequence', data);
+      onNavigate("Flow_EndSequence", data);
     }
   };
 
   const handleReplay = () => {
     // Replay functionality - could be used to replay audio/video content
     logEvent({
-      event: 'FAKENEWS_REPLAY',
+      event: "FAKENEWS_REPLAY",
       payload: {
         sessionID,
       },
@@ -43,14 +43,14 @@ const FakeNewsTest = ({ sessionID, onNavigate }: FakeNewsTestProps) => {
   const buttons = [
     {
       text: "ไม่ทำอะไร ถึงเวลาก็รู้เอง",
-      onClick: () => handleAction('ignore'),
-      ariaLabel: "เลือกที่จะไม่ดำเนินการใดๆ และรอดูผลลัพธ์"
+      onClick: () => handleAction("ignore"),
+      ariaLabel: "เลือกที่จะไม่ดำเนินการใดๆ และรอดูผลลัพธ์",
     },
     {
       text: "หาข่าวต่อ",
-      onClick: () => handleAction('search'),
-      ariaLabel: "เลือกที่จะหาข้อมูลเพิ่มเติมเพื่อตรวจสอบความถูกต้อง"
-    }
+      onClick: () => handleAction("search"),
+      ariaLabel: "เลือกที่จะหาข้อมูลเพิ่มเติมเพื่อตรวจสอบความถูกต้อง",
+    },
   ];
 
   return (
@@ -66,7 +66,7 @@ const FakeNewsTest = ({ sessionID, onNavigate }: FakeNewsTestProps) => {
       buttons={buttons}
       replayButton={{
         onClick: handleReplay,
-        ariaLabel: "ดูอีกครั้ง"
+        ariaLabel: "ดูอีกครั้ง",
       }}
     />
   );
