@@ -1,0 +1,115 @@
+/**
+ * Figma Style 1 - Design System
+ * 
+ * A complete vertical layout design system with:
+ * - Mobile-first responsive design
+ * - Full-screen background with gradient overlay
+ * - Bottom-positioned content
+ * - Consistent button interactions
+ * - Enhanced replay button
+ */
+
+/* Main Layout Container */
+.figma-style1-container {
+  @apply min-h-screen bg-white flex justify-center;
+}
+
+.figma-style1-content {
+  @apply w-full max-w-[390px] md:max-w-[420px] lg:max-w-[390px] min-h-screen bg-white overflow-hidden relative;
+}
+
+/* Background System */
+.figma-style1-background {
+  @apply absolute inset-0;
+}
+
+.figma-style1-background-image {
+  @apply w-full h-full object-cover object-center;
+  min-width: 100%;
+  aspect-ratio: 2/3;
+}
+
+.figma-style1-background-overlay {
+  @apply absolute inset-0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.90) 44.17%);
+}
+
+/* Main Content Layout */
+.figma-style1-main {
+  @apply relative z-10 flex flex-col min-h-screen;
+}
+
+.figma-style1-header {
+  @apply flex justify-start p-8 md:p-10;
+}
+
+.figma-style1-content-area {
+  @apply flex-1 flex flex-col justify-end items-center px-6 md:px-8 pb-8 md:pb-12;
+}
+
+/* Typography System */
+.figma-style1-title {
+  @apply text-white text-center font-kanit text-3xl font-normal leading-normal;
+  font-size: clamp(24px, 7.5vw, 30px);
+}
+
+.figma-style1-title-container {
+  @apply text-center mb-8 md:mb-12 max-w-[325px];
+}
+
+/* Button System */
+.figma-style1-button-container {
+  @apply w-full max-w-[325px] space-y-4;
+}
+
+.figma-style1-button {
+  @apply w-full h-[53px] rounded-[40px] bg-[#EFBA31] border-[1.5px] border-black flex items-center justify-center transition-all duration-200 hover:scale-105 hover:shadow-lg hover:bg-black active:bg-black group;
+}
+
+.figma-style1-button-text {
+  @apply text-black text-center font-prompt text-lg font-medium leading-7 tracking-[0.4px] group-hover:text-[#EFBA31] group-active:text-[#EFBA31];
+}
+
+/* Replay Button System */
+.figma-style1-replay-button {
+  @apply transition-all duration-200 hover:scale-105;
+}
+
+.figma-style1-replay-svg {
+  @apply w-[68px] h-[84px] md:w-[76px] md:h-[95px];
+}
+
+/* Accessibility */
+.figma-style1-sr-only {
+  @apply sr-only;
+}
+
+/* Color Palette Variables for figma-style1 */
+:root {
+  --figma-style1-primary: #EFBA31;
+  --figma-style1-text-dark: #000000;
+  --figma-style1-text-light: #FFFFFF;
+  --figma-style1-overlay-start: rgba(0, 0, 0, 0.00);
+  --figma-style1-overlay-end: rgba(0, 0, 0, 0.90);
+}
+
+/* Responsive Breakpoints for figma-style1 */
+@media (max-width: 389px) {
+  .figma-style1-content {
+    @apply max-w-full;
+  }
+}
+
+@media (min-width: 421px) {
+  .figma-style1-header {
+    @apply p-10;
+  }
+  
+  .figma-style1-content-area {
+    @apply pb-12;
+  }
+  
+  .figma-style1-title-container {
+    @apply mb-12;
+  }
+}
