@@ -56,9 +56,13 @@ const FakeNewsTest = ({ sessionID, onNavigate }: FakeNewsTestProps) => {
   return (
     <FigmaStyle1Layout
       backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F946833431d4b46a0bde1c7d1bc32f67a"
-      backgroundAlt="ร���ไฟในเมืองยามค่ำคืน"
+      backgroundAlt="รถไฟในเมืองยามค่ำคืน"
       title="ข้อมูลขัดแย้งกัน คุณจะทำอย่างไร?"
       buttons={buttons}
+      replayButton={{
+        onClick: handleReplay,
+        ariaLabel: "ดูอีกครั้ง"
+      }}
     />
   );
 };
