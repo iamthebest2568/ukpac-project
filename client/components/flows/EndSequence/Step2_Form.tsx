@@ -86,6 +86,33 @@ const Step2_Form = ({ sessionID, onNext, onBack, initialData }: Step2_FormProps)
 
         {/* Main Content */}
         <div className="relative z-10 flex flex-col min-h-screen">
+          {/* Back Button */}
+          <div className="flex justify-start p-8 md:p-10">
+            <button
+              onClick={onBack}
+              className="transition-all duration-200 hover:scale-105 flex items-center text-white"
+              aria-label="กลับไปก่อนหน้านี้"
+            >
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="mr-2"
+              >
+                <path
+                  d="M19 12H5M12 19L5 12L12 5"
+                  stroke="white"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              <span className="text-white font-prompt text-base">กลับไปก่อนหน้านี้</span>
+            </button>
+          </div>
+
           {/* Content Area */}
           <div className="flex-1 flex flex-col justify-end items-center px-6 md:px-8 pb-8 md:pb-12">
             {/* Title */}
