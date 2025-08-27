@@ -144,10 +144,10 @@ const Ask01 = ({ sessionID, onNavigate }: Ask01Props) => {
             {/* กลางๆ - Yellow background with black text and border */}
             <button
               onClick={() => handleChoice("neutral")}
-              className="w-full h-[53px] rounded-[40px] bg-[#EFBA31] border-[1.5px] border-black flex items-center justify-center transition-all duration-200 hover:scale-105 hover:shadow-lg"
+              className="w-full h-[53px] rounded-[40px] bg-[#EFBA31] border-[1.5px] border-black flex items-center justify-center transition-all duration-200 hover:scale-105 hover:shadow-lg hover:bg-black active:bg-black group"
               aria-describedby="neutral-description"
             >
-              <span className="text-black text-center font-prompt text-lg font-medium leading-7 tracking-[0.4px]">
+              <span className="text-black text-center font-prompt text-lg font-medium leading-7 tracking-[0.4px] group-hover:text-[#EFBA31] group-active:text-[#EFBA31]">
                 กลางๆ
               </span>
             </button>
@@ -158,10 +158,10 @@ const Ask01 = ({ sessionID, onNavigate }: Ask01Props) => {
             {/* ไม่เห็นด้วย - Yellow background with black text and border */}
             <button
               onClick={() => handleChoice("disagree")}
-              className="w-full h-[53px] rounded-[40px] bg-[#EFBA31] border-[1.5px] border-black flex items-center justify-center transition-all duration-200 hover:scale-105 hover:shadow-lg"
+              className="w-full h-[53px] rounded-[40px] bg-[#EFBA31] border-[1.5px] border-black flex items-center justify-center transition-all duration-200 hover:scale-105 hover:shadow-lg hover:bg-black active:bg-black group"
               aria-describedby="disagree-description"
             >
-              <span className="text-black text-center font-prompt text-lg font-medium leading-7 tracking-[0.4px]">
+              <span className="text-black text-center font-prompt text-lg font-medium leading-7 tracking-[0.4px] group-hover:text-[#EFBA31] group-active:text-[#EFBA31]">
                 ไม่เห็นด้วย
               </span>
             </button>
