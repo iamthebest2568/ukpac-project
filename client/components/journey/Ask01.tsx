@@ -43,7 +43,9 @@ const Ask01 = ({ sessionID, onNavigate }: Ask01Props) => {
   };
 
   return (
-    <div className="min-h-screen bg-white overflow-hidden relative">
+    <div className="min-h-screen bg-white flex justify-center">
+      {/* Central Content Container with Mobile-First Responsive Width */}
+      <div className="w-full max-w-[390px] md:max-w-[420px] lg:max-w-[390px] min-h-screen bg-white overflow-hidden relative">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0">
         <img
@@ -166,8 +168,9 @@ const Ask01 = ({ sessionID, onNavigate }: Ask01Props) => {
             <div id="disagree-description" className="sr-only">
               ไม่เห็นด้วยกับข้อความดังกล่าว
             </div>
-          </div>
-        </div>
+      </div>
+      </div>
+    </div>
       </div>
     </div>
   );
