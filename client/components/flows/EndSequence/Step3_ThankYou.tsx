@@ -3,6 +3,7 @@
  * Moved from FinalThankYou component
  */
 
+import { useState } from 'react';
 import { logEvent } from '../../../services/dataLogger.js';
 
 interface Step3_ThankYouProps {
@@ -13,18 +14,7 @@ interface Step3_ThankYouProps {
 }
 
 const Step3_ThankYou = ({ sessionID, onNext, onBack, journeyData }: Step3_ThankYouProps) => {
-  const handleShare = () => {
-    // Log the share action
-    logEvent({
-      event: 'FINAL_SHARE_CLICKED',
-      payload: {
-        action: 'shared',
-        sessionID
-      }
-    });
-
-    onNext({ action: 'shared', completedAt: new Date().toISOString() });
-  };
+  const [copied, setCopied] = useState(false);
 
   const handleFinish = () => {
     // Log the finish game action
@@ -39,6 +29,77 @@ const Step3_ThankYou = ({ sessionID, onNext, onBack, journeyData }: Step3_ThankY
     onNext({ action: 'finished', completedAt: new Date().toISOString() });
   };
 
+  const openShareWindow = (url: string) => {
+    window.open(url, '_blank', 'noopener,noreferrer,width=600,height=600');
+  };
+
+  const getShareUrl = () => {
+    try {
+      return window.location.href;
+    } catch (e) {
+      return 'https://your-site.example';
+    }
+  };
+
+  const shareText = encodeURIComponent('ร่วมเล่นเกมนี้เพื่อพัฒนาเมืองและมีสิทธิ์ลุ้นรับรางวัล!');
+  const shareUrl = encodeURIComponent(getShareUrl());
+
+  const handleShareFacebook = () => {
+    const url = `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`;
+    logEvent({ event: 'SHARE', payload: { method: 'facebook', sessionID } });
+    openShareWindow(url);
+  };
+
+  const handleShareX = () => {
+    const url = `https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}`;
+    logEvent({ event: 'SHARE', payload: { method: 'x', sessionID } });
+    openShareWindow(url);
+  };
+
+  const handleShareLine = () => {
+    const url = `https://social-plugins.line.me/lineit/share?url=${shareUrl}`;
+    logEvent({ event: 'SHARE', payload: { method: 'line', sessionID } });
+    openShareWindow(url);
+  };
+
+  const handleShareWhatsApp = () => {
+    const url = `https://api.whatsapp.com/send?text=${shareText}%20${shareUrl}`;
+    logEvent({ event: 'SHARE', payload: { method: 'whatsapp', sessionID } });
+    openShareWindow(url);
+  };
+
+  const handleShareMessenger = () => {
+    // Try fb-messenger protocol for mobile; fallback to Facebook sharer
+    const messengerUrl = `fb-messenger://share?link=${shareUrl}`;
+    const fallback = `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`;
+    logEvent({ event: 'SHARE', payload: { method: 'messenger', sessionID } });
+    try {
+      window.location.href = messengerUrl;
+    } catch (e) {
+      openShareWindow(fallback);
+    }
+  };
+
+  const handleShareLinkedIn = () => {
+    const url = `https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}`;
+    logEvent({ event: 'SHARE', payload: { method: 'linkedin', sessionID } });
+    openShareWindow(url);
+  };
+
+  const handleCopyLink = async () => {
+    const plainUrl = getShareUrl();
+    try {
+      await navigator.clipboard.writeText(plainUrl);
+      setCopied(true);
+      logEvent({ event: 'SHARE', payload: { method: 'copy', sessionID } });
+      setTimeout(() => setCopied(false), 2000);
+    } catch (e) {
+      // Fallback: prompt
+      // eslint-disable-next-line no-alert
+      alert('คัดลอกลิงก์ไม่สำเร็จ กรุณาคัดลอกด้วยตนเอง: ' + plainUrl);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-white flex justify-center">
       <div className="w-full max-w-[390px] md:max-w-[420px] lg:max-w-[390px] min-h-screen bg-white overflow-hidden relative">
@@ -48,12 +109,12 @@ const Step3_ThankYou = ({ sessionID, onNext, onBack, journeyData }: Step3_ThankY
             src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F946833431d4b46a0bde1c7d1bc32f67a"
             alt="ขอบคุณสำหรับการมีส่วนร่วม"
             className="w-full h-full object-cover object-center"
-            style={{ minWidth: "100%", aspectRatio: "2/3" }}
+            style={{ minWidth: '100%', aspectRatio: '2/3' }}
           />
           <div
             className="absolute inset-0"
             style={{
-              background: "rgba(0, 0, 0, 0.90)",
+              background: 'rgba(0, 0, 0, 0.90)',
             }}
           />
         </div>
@@ -65,37 +126,31 @@ const Step3_ThankYou = ({ sessionID, onNext, onBack, journeyData }: Step3_ThankY
             {/* Content Container */}
             <div className="w-full max-w-[325px]">
               {/* Title */}
-              <div className="text-center mb-40">
-                <h1
-                  className="text-white text-center font-kanit text-[30px] font-normal leading-normal"
-                >
+              <div className="text-center mb-6">
+                <h1 className="text-white text-center font-kanit text-[30px] font-normal leading-normal">
                   ขอบคุณที่ร่วมเป็นส่วนหนึ่ง<br />
-                  ในการพัฒนาเมือง<br /><br />
-                  เราจะประกาศรางวัลทาง<br />
-                  xxxxxxxxxxxxxxxxxx<br />
-                  วันที่ xxxx xxxxx xxxx
+                  ในการพัฒนาเมือง
                 </h1>
+                <p className="text-white text-center font-prompt mt-4">
+                  เราจะประกาศรางวัลทาง xxxxxxxxxxxxxxxxxx วันที่ xxxx xxxxx xxxx
+                </p>
               </div>
 
-              {/* Action buttons */}
-              <div className="space-y-4">
-                <button
-                  onClick={handleShare}
-                  className="figma-style1-button"
-                  aria-describedby="share-button-description"
-                >
-                  <span className="figma-style1-button-text" id="share-button-description">
-                    แชร์เกมนี้ให้เพื่อน
-                  </span>
-                </button>
-                
-                <button
-                  onClick={handleFinish}
-                  className="figma-style1-button--secondary"
-                >
-                  <span className="figma-style1-button-text">
-                    จบเกม
-                  </span>
+              {/* Share Buttons */}
+              <div className="grid grid-cols-2 gap-3 mb-4">
+                <button className="figma-style1-button" onClick={handleShareFacebook} aria-label="แชร์ไปยัง Facebook">Facebook</button>
+                <button className="figma-style1-button" onClick={handleShareX} aria-label="แชร์ไปยัง X">X</button>
+                <button className="figma-style1-button" onClick={handleShareLine} aria-label="แชร์ไปยัง LINE">LINE</button>
+                <button className="figma-style1-button" onClick={handleShareWhatsApp} aria-label="แชร์ไปยัง WhatsApp">WhatsApp</button>
+                <button className="figma-style1-button" onClick={handleShareMessenger} aria-label="แชร์ไปยัง Messenger">Messenger</button>
+                <button className="figma-style1-button" onClick={handleShareLinkedIn} aria-label="แชร์ไปยัง LinkedIn">LinkedIn</button>
+                <button className="figma-style1-button col-span-2" onClick={handleCopyLink} aria-label="คัดลอกลิงก์">{copied ? 'คัดลอกแล้ว' : 'คัดลอกลิงก์'}</button>
+              </div>
+
+              {/* Finish Button */}
+              <div>
+                <button onClick={handleFinish} className="figma-style1-button--secondary">
+                  <span className="figma-style1-button-text">จบเกม</span>
                 </button>
               </div>
             </div>
