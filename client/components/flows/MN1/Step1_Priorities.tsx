@@ -73,7 +73,7 @@ const Step1_Priorities = ({
 
   return (
     <div className="figma-style1-container">
-      <div className="w-full max-w-[390px] md:max-w-[420px] lg:max-w-[390px] min-h-screen bg-white overflow-hidden relative">
+      <div className="figma-style1-content">
         {/* Background Image with Overlay */}
         <div className="absolute inset-0">
           <img
@@ -145,7 +145,7 @@ const Step1_Priorities = ({
 
               {/* Row 2 */}
               <div className="flex flex-wrap gap-2 mb-3">
-                {["ตั๋วร่วม", "เพิ่มความถี่รถเมล์", "เพิ่มที่จอดรถ"].map((priority, index) => {
+                {["ตั๋วร่วม", "เพิ่มความถี่รถเมล์", "เพิ่มที่��อดรถ"].map((priority, index) => {
                   const isSelected = selectedPriorities.includes(priority);
                   const isDisabled = isSelectionDisabled(priority);
 
