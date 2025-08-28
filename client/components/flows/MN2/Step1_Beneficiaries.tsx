@@ -23,9 +23,9 @@ const Step1_Beneficiaries = ({
   const maxSelections = 3;
 
   const beneficiaryGroups = [
-    {
-      id: "everyone",
-      label: "ทุกคน",
+    { 
+      id: "everyone", 
+      label: "ทุกคน", 
       iconSrc: "https://api.builder.io/api/v1/image/assets/TEMP/1a7aa898479a915b1d4d0ef1156c80bf95c372af?width=100"
     },
     {
@@ -94,136 +94,115 @@ const Step1_Beneficiaries = ({
   };
 
   return (
-    <div className="min-h-screen bg-white flex justify-center">
-      <div className="w-full max-w-[390px] md:max-w-[420px] lg:max-w-[390px] min-h-screen bg-white overflow-hidden relative">
+    <div className="figma-style1-container">
+      <div className="figma-style1-content">
         {/* Background Image with Overlay */}
-        <div className="absolute inset-0">
+        <div className="figma-style1-background">
           <img
             src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F946833431d4b46a0bde1c7d1bc32f67a"
             alt="กลุ่มผู้ได้รับประโยชน์"
-            className="w-full h-full object-cover object-center"
-            style={{ minWidth: "100%", aspectRatio: "2/3" }}
+            className="figma-style1-background-image"
           />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.90) 44.17%)",
-            }}
-          />
+          <div className="figma-style1-background-overlay" />
         </div>
 
         {/* Main Content */}
-        <div className="relative z-10 flex flex-col min-h-screen">
+        <div className="figma-style1-main">
           {/* Content Area */}
-          <div className="flex-1 flex flex-col justify-end items-center px-6 md:px-8 pb-8 md:pb-12">
+          <div className="figma-style1-content-area">
             {/* Title */}
-            <div className="text-center mb-6 md:mb-8 max-w-[325px]">
-              <h1
-                className="text-white text-center font-kanit text-3xl font-normal leading-normal mb-4"
-                style={{ fontSize: "clamp(24px, 7.5vw, 30px)" }}
-              >
-                คุณคิดว่าใครควรได้รับการลดค่าโดยสารรถไฟฟ้าบ้าง
-              </h1>
+            <div className="figma-style1-title-container">
+              <h1 className="figma-style1-title">คุณคิดว่าใครควรได้รับการลดค่าโดยสารรถไฟฟ้าบ้าง</h1>
             </div>
 
-            {/* Selection Counter */}
-            <div className="w-full max-w-[325px] mb-4 bg-black bg-opacity-50 rounded-[15px] p-3">
-              <div className="text-white text-center font-prompt text-sm">
-                เลือกได้สูงสุด {maxSelections} กลุ่ม (เลือกแล้ว{" "}
-                <span className="text-[#EFBA31] font-medium">
-                  {selectedGroups.length}/{maxSelections}
-                </span>
-                )
-              </div>
-            </div>
+            {/* Selection Grid - Figma Layout */}
+            <div className="w-full max-w-[334px] mb-8">
+              {/* Top Row */}
+              <div className="flex justify-between items-start mb-8">
+                {beneficiaryGroups.slice(0, 3).map((group) => {
+                  const isSelected = selectedGroups.includes(group.id);
+                  const isDisabled = isSelectionDisabled(group.id);
 
-            {/* Selection Grid */}
-            <div className="w-full max-w-[325px] grid grid-cols-2 gap-3 mb-6">
-              {beneficiaryGroups.map((group) => {
-                const isSelected = selectedGroups.includes(group.id);
-                const isDisabled = isSelectionDisabled(group.id);
-
-                return (
-                  <div
-                    key={group.id}
-                    className={`relative rounded-[20px] border-[1.5px] p-4 transition-all duration-200 cursor-pointer min-h-[120px] ${
-                      isSelected
-                        ? "bg-[#EFBA31] border-black"
-                        : isDisabled
-                          ? "bg-gray-400 border-gray-500 cursor-not-allowed opacity-50"
-                          : "bg-white border-black hover:bg-gray-100"
-                    }`}
-                    onClick={() => !isDisabled && handleGroupToggle(group.id)}
-                    role="checkbox"
-                    aria-checked={isSelected}
-                    aria-disabled={isDisabled}
-                    aria-describedby={`group-${group.id}-description`}
-                    tabIndex={isDisabled ? -1 : 0}
-                    onKeyDown={(e) => {
-                      if ((e.key === "Enter" || e.key === " ") && !isDisabled) {
-                        e.preventDefault();
-                        handleGroupToggle(group.id);
-                      }
-                    }}
-                  >
-                    <div className="text-center">
-                      <div
-                        className="text-3xl mb-2"
-                        role="img"
-                        aria-label={group.description}
-                      >
-                        {group.icon}
+                  return (
+                    <div
+                      key={group.id}
+                      className="flex flex-col items-center cursor-pointer transition-all duration-200 hover:scale-105"
+                      onClick={() => !isDisabled && handleGroupToggle(group.id)}
+                      role="checkbox"
+                      aria-checked={isSelected}
+                      aria-disabled={isDisabled}
+                      tabIndex={isDisabled ? -1 : 0}
+                      onKeyDown={(e) => {
+                        if ((e.key === "Enter" || e.key === " ") && !isDisabled) {
+                          e.preventDefault();
+                          handleGroupToggle(group.id);
+                        }
+                      }}
+                    >
+                      {/* Circular Icon Background */}
+                      <div className={`w-[80px] h-[80px] rounded-full flex items-center justify-center mb-2 transition-all duration-200 ${
+                        isSelected ? "bg-black" : "bg-[#EFBA31]"
+                      }`}>
+                        <img 
+                          src={group.iconSrc} 
+                          alt={group.label}
+                          className="w-[50px] h-[50px] object-contain"
+                        />
                       </div>
-                      <div
-                        className={`font-prompt text-base font-medium mb-1 ${
-                          isSelected ? "text-black" : "text-black"
-                        }`}
-                      >
+                      {/* Label */}
+                      <span className={`font-prompt text-lg font-medium text-center transition-all duration-200 ${
+                        isSelected ? "text-black" : "text-[#EFBA31]"
+                      }`}>
                         {group.label}
-                      </div>
-                      <div
-                        id={`group-${group.id}-description`}
-                        className={`font-prompt text-xs ${
-                          isSelected ? "text-black opacity-80" : "text-gray-600"
-                        }`}
-                      >
-                        {group.description}
-                      </div>
+                      </span>
                     </div>
-
-                    {/* Selection indicator */}
-                    {isSelected && (
-                      <div className="absolute top-2 right-2 w-6 h-6 bg-black rounded-full flex items-center justify-center">
-                        <svg
-                          className="w-4 h-4 text-white"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                          role="img"
-                          aria-label="เลือกแล้ว"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-
-            {/* Status Messages */}
-            {selectedGroups.length >= maxSelections && (
-              <div className="w-full max-w-[325px] mb-4 bg-yellow-500 bg-opacity-90 rounded-[15px] p-3">
-                <div className="text-black text-center text-sm font-prompt">
-                  คุณเลือกครบจำน��นแล้ว หากต้องการเลือกกลุ่มใหม่
-                  กรุณายกเลิกการเลือกกลุ่มใดกลุ่มหนึ่งก่อน
-                </div>
+                  );
+                })}
               </div>
-            )}
+              
+              {/* Bottom Row */}
+              <div className="flex justify-between items-start">
+                {beneficiaryGroups.slice(3, 6).map((group) => {
+                  const isSelected = selectedGroups.includes(group.id);
+                  const isDisabled = isSelectionDisabled(group.id);
+
+                  return (
+                    <div
+                      key={group.id}
+                      className="flex flex-col items-center cursor-pointer transition-all duration-200 hover:scale-105"
+                      onClick={() => !isDisabled && handleGroupToggle(group.id)}
+                      role="checkbox"
+                      aria-checked={isSelected}
+                      aria-disabled={isDisabled}
+                      tabIndex={isDisabled ? -1 : 0}
+                      onKeyDown={(e) => {
+                        if ((e.key === "Enter" || e.key === " ") && !isDisabled) {
+                          e.preventDefault();
+                          handleGroupToggle(group.id);
+                        }
+                      }}
+                    >
+                      {/* Circular Icon Background */}
+                      <div className={`w-[80px] h-[80px] rounded-full flex items-center justify-center mb-2 transition-all duration-200 ${
+                        isSelected ? "bg-black" : "bg-[#EFBA31]"
+                      }`}>
+                        <img 
+                          src={group.iconSrc} 
+                          alt={group.label}
+                          className="w-[50px] h-[50px] object-contain"
+                        />
+                      </div>
+                      {/* Label */}
+                      <span className={`font-prompt text-lg font-medium text-center transition-all duration-200 ${
+                        isSelected ? "text-black" : "text-[#EFBA31]"
+                      }`}>
+                        {group.label}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
 
             {/* Submit Button */}
             <div className="w-full max-w-[325px]">
@@ -233,15 +212,15 @@ const Step1_Beneficiaries = ({
                 className={`w-full h-[53px] rounded-[40px] border-[1.5px] border-black flex items-center justify-center transition-all duration-200 ${
                   selectedGroups.length === 0
                     ? "bg-gray-400 cursor-not-allowed"
-                    : "bg-[#EFBA31] hover:scale-105 hover:shadow-lg hover:bg-black active:bg-black group"
+                    : "figma-style1-button"
                 }`}
                 aria-describedby="next-button-description"
               >
                 <span
-                  className={`text-center font-prompt text-lg font-medium leading-7 tracking-[0.4px] ${
+                  className={`figma-style1-button-text ${
                     selectedGroups.length === 0
                       ? "text-gray-600"
-                      : "text-black group-hover:text-[#EFBA31] group-active:text-[#EFBA31]"
+                      : ""
                   }`}
                 >
                   ไปต่อ
