@@ -78,7 +78,7 @@ const Step1_Priorities = ({
         <div className="figma-style1-background">
           <img
             src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F946833431d4b46a0bde1c7d1bc32f67a"
-            alt="นโยบายการขนส่ง"
+            alt="นโย��ายการขนส่ง"
             className="figma-style1-background-image"
           />
           <div className="figma-style1-background-overlay" />
@@ -89,13 +89,8 @@ const Step1_Priorities = ({
           {/* Content Area */}
           <div className="figma-style1-content-area">
             {/* Title */}
-            <div className="text-center mb-6 md:mb-8 max-w-[325px]">
-              <h1
-                className="text-white text-center font-kanit text-3xl font-normal leading-normal mb-4"
-                style={{ fontSize: "clamp(24px, 7.5vw, 30px)" }}
-              >
-                คุณคิดว่าควรใช้เงินที่ได้จากการเก็บไปพัฒนาอะไร
-              </h1>
+            <div className="figma-style1-title-container">
+              <h1 className="figma-style1-title">คุณคิดว่าควรใช้เงินที่ได้จากการเก็บไปพัฒนาอะไร</h1>
             </div>
 
             {/* Subtitle */}
@@ -138,7 +133,7 @@ const Step1_Priorities = ({
 
               {/* Row 2 */}
               <div className="flex flex-wrap gap-2 mb-3">
-                {["ตั๋วร่วม", "เพิ่มความถี่รถเมล์", "เพิ่มที่จอดรถ"].map((priority, index) => {
+                {["��ั๋วร่วม", "เพิ่มความถี่รถเมล์", "เพิ่มที่จอดรถ"].map((priority, index) => {
                   const isSelected = selectedPriorities.includes(priority);
                   const isDisabled = isSelectionDisabled(priority);
 
