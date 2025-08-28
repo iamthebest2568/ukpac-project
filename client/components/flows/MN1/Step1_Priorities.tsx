@@ -17,7 +17,7 @@ const Step1_Priorities = ({
   sessionID,
   onNext,
   onBack,
-  initialData = [],
+  initialData = ["ปรับปรุงคุณภาพรถเมล์", "เพิ่มความถี่รถเมล์"],
 }: Step1_PrioritiesProps) => {
   const [selectedPriorities, setSelectedPriorities] =
     useState<string[]>(initialData);
