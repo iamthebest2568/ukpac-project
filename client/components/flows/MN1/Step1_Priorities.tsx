@@ -29,7 +29,7 @@ const Step1_Priorities = ({
     "ตั๋วร่วม",
     "เพิ่มความถี่รถเมล์",
     "เพิ่มที่จอดรถ",
-    "เพิ่มความถี่รถไฟฟ้า",
+    "เพิ่มความ��ี่รถไฟฟ้า",
     "เพิ่ม Feeder ในซอย",
   ];
 
@@ -148,13 +148,13 @@ const Step1_Priorities = ({
                       ? "bg-[#EFBA31] border-black"
                       : isSelectionDisabled("ตั๋วร่วม")
                         ? "bg-gray-300 border-gray-400 cursor-not-allowed opacity-50"
-                        : "bg-white border-[#E4E9F2] hover:bg-gray-50"
+                        : "bg-white border-[#E4E9F2] hover:bg-black hover:scale-105 group"
                   }`}
                   onClick={() => !isSelectionDisabled("ตั๋วร่วม") && handlePriorityToggle("ตั๋วร่วม")}
                   disabled={isSelectionDisabled("ตั๋วร่วม")}
                 >
-                  <span className={`font-prompt text-[15px] text-center ${
-                    selectedPriorities.includes("ตั๋วร่วม") ? "font-semibold text-black" : "font-medium text-black"
+                  <span className={`font-prompt text-[15px] text-center transition-all duration-200 ${
+                    selectedPriorities.includes("ตั๋วร่วม") ? "font-semibold text-black" : "font-medium text-black group-hover:text-[#EFBA31]"
                   }`} style={{ letterSpacing: "0.4px" }}>
                     ตั๋วร่วม
                   </span>
@@ -165,13 +165,13 @@ const Step1_Priorities = ({
                       ? "bg-[#EFBA31] border-black"
                       : isSelectionDisabled("เพิ่มความถี่รถเมล์")
                         ? "bg-gray-300 border-gray-400 cursor-not-allowed opacity-50"
-                        : "bg-white border-[#E4E9F2] hover:bg-gray-50"
+                        : "bg-white border-[#E4E9F2] hover:bg-black hover:scale-105 group"
                   }`}
                   onClick={() => !isSelectionDisabled("เพิ่มความถี่รถเมล์") && handlePriorityToggle("เพิ่มความถี่รถเมล์")}
                   disabled={isSelectionDisabled("เพิ่มความถี่รถเมล์")}
                 >
-                  <span className={`font-prompt text-[15px] text-center ${
-                    selectedPriorities.includes("เพิ่มความถี่รถเมล์") ? "font-semibold text-black" : "font-medium text-black"
+                  <span className={`font-prompt text-[15px] text-center transition-all duration-200 ${
+                    selectedPriorities.includes("เพิ่มความถี่รถเมล์") ? "font-semibold text-black" : "font-medium text-black group-hover:text-[#EFBA31]"
                   }`} style={{ letterSpacing: "0.4px" }}>
                     เพิ่มความถี่รถเมล์
                   </span>
@@ -182,13 +182,13 @@ const Step1_Priorities = ({
                       ? "bg-[#EFBA31] border-black"
                       : isSelectionDisabled("เพิ่มที่จอดรถ")
                         ? "bg-gray-300 border-gray-400 cursor-not-allowed opacity-50"
-                        : "bg-white border-[#E4E9F2] hover:bg-gray-50"
+                        : "bg-white border-[#E4E9F2] hover:bg-black hover:scale-105 group"
                   }`}
                   onClick={() => !isSelectionDisabled("เพิ่มที่จอดรถ") && handlePriorityToggle("เพิ่มที่จอดรถ")}
                   disabled={isSelectionDisabled("เพิ่มที่จอดรถ")}
                 >
-                  <span className={`font-prompt text-[15px] text-center ${
-                    selectedPriorities.includes("เพิ่มที่���อดรถ") ? "font-semibold text-black" : "font-medium text-black"
+                  <span className={`font-prompt text-[15px] text-center transition-all duration-200 ${
+                    selectedPriorities.includes("เพิ่มที่จอดรถ") ? "font-semibold text-black" : "font-medium text-black group-hover:text-[#EFBA31]"
                   }`} style={{ letterSpacing: "0.4px" }}>
                     เพิ่มที่จอดรถ
                   </span>
@@ -228,7 +228,7 @@ const Step1_Priorities = ({
                   <span className={`font-prompt text-[15px] text-center ${
                     selectedPriorities.includes("เพิ่ม Feeder ในซอย") ? "font-semibold text-black" : "font-medium text-black"
                   }`} style={{ letterSpacing: "0.4px" }}>
-                    เพิ่ม Feeder ใน���อย
+                    เพิ่ม Feeder ในซอย
                   </span>
                 </button>
               </div>
@@ -263,7 +263,7 @@ const Step1_Priorities = ({
                   id="next-button-description"
                   className="text-center text-white text-sm mt-2"
                 >
-                  กรุณาเลือกอย่างน��อย 1 ข้อเพื่อดำเนินการต่อ
+                  กรุณาเลือกอย่างน้อย 1 ข้อเพื่อดำเนินการต่อ
                 </div>
               )}
             </div>
