@@ -36,23 +36,59 @@ const Step2_Summary = ({
   };
 
   useEffect(() => {
-    // Extract data from journey
-    const prioritiesData: string[] = journeyData?.priorities?.selectedPriorities || [];
-    const beneficiariesSelections: { priority: string; beneficiaries: string[] }[] =
-      journeyData?.beneficiaries?.selections || [];
+    // Be flexible with incoming data shapes from different parts of the app.
+    // Possible shapes:
+    // - journeyData = { priorities: { selectedPriorities: string[] }, beneficiaries: { selections: [{priority, beneficiaries}] }}
+    // - journeyData = { mn1: { priorities: { selectedPriorities } }, mn2: { beneficiaries: { selections } } }
+    // - journeyData = { priorities: { selectedPriorities } , beneficiaries: { selectedGroups: string[] } } (legacy)
+
+    // Extract priorities from several possible locations
+    const prioritiesData: string[] =
+      journeyData?.priorities?.selectedPriorities ||
+      journeyData?.mn1?.priorities?.selectedPriorities ||
+      journeyData?.mn1?.selectedPriorities ||
+      journeyData?.selectedPriorities ||
+      [];
+
+    // Extract beneficiary selections (per-priority) from several possible locations
+    let beneficiariesSelections: { priority: string; beneficiaries: string[] }[] =
+      journeyData?.beneficiaries?.selections ||
+      journeyData?.mn2?.beneficiaries?.selections ||
+      journeyData?.mn2?.beneficiaries?.selectedGroups ||
+      journeyData?.beneficiaries?.selectedGroups ||
+      [];
+
+    // If beneficiariesSelections is an array of ids (legacy: flat selectedGroups) convert to per-priority mapping
+    if (
+      Array.isArray(beneficiariesSelections) &&
+      beneficiariesSelections.length > 0 &&
+      typeof beneficiariesSelections[0] === "string"
+    ) {
+      // treat as flat array of ids applied to all priorities
+      const flatIds = beneficiariesSelections as unknown as string[];
+      beneficiariesSelections = prioritiesData.map((p) => ({ priority: p, beneficiaries: flatIds }));
+    }
+
+    // If no per-priority selections exist but there's a legacy single selectedGroups array
+    if (
+      (journeyData?.beneficiaries?.selectedGroups && Array.isArray(journeyData.beneficiaries.selectedGroups)) &&
+      (!beneficiariesSelections || beneficiariesSelections.length === 0) &&
+      prioritiesData.length > 0
+    ) {
+      const flat = journeyData.beneficiaries.selectedGroups as string[];
+      beneficiariesSelections = prioritiesData.map((p) => ({ priority: p, beneficiaries: flat }));
+    }
 
     // Build a lookup map for beneficiaries by priority
     const lookup: Record<string, string[]> = {};
-    beneficiariesSelections.forEach((s) => {
+    beneficiariesSelections.forEach((s: any) => {
       lookup[s.priority] = Array.isArray(s.beneficiaries) ? s.beneficiaries : [];
     });
 
     // Create summary cards - map each priority to the selected beneficiaries (converted to label/icon)
     const cards: SummaryCard[] = prioritiesData.map((priority: string) => {
       const beneficiaryIds = lookup[priority] || [];
-      const beneficiaryObjects = beneficiaryIds.map((id: string) =>
-        (beneficiaryMapping as any)[id] || { label: id, icon: "❓" },
-      );
+      const beneficiaryObjects = beneficiaryIds.map((id: string) => (beneficiaryMapping as any)[id] || { label: id, icon: "❓" });
 
       return {
         priority,
