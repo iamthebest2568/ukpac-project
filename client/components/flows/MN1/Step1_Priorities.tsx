@@ -24,13 +24,13 @@ const Step1_Priorities = ({
   const maxSelections = 3;
 
   const priorities = [
-    "ลดค่��โดยสารรถไฟฟ้า",
+    "ลดค่าโดยสารรถไฟฟ้า",
     "ปรับปรุงคุณภาพรถเมล์",
     "ตั๋วร่วม",
     "เพิ่มความถี่รถเมล์",
-    "เพิ่มความถี่รถไฟฟ้า",
     "เพิ่มที่จอดรถ",
-    "เพิ่ม feeder ในซอย",
+    "เพิ่มความถี่รถไฟฟ้า",
+    "เพิ่ม Feeder ในซอย",
   ];
 
   const handlePriorityToggle = (priority: string) => {
@@ -105,93 +105,103 @@ const Step1_Priorities = ({
               </h1>
             </div>
 
-            {/* Selection Counter */}
-            <div className="w-full max-w-[325px] mb-4 bg-black bg-opacity-50 rounded-[15px] p-3">
-              <div className="text-white text-center font-prompt text-sm">
-                เลือกได้สูงสุด {maxSelections} ข้อ (เลือกแล้ว{" "}
-                <span className="text-[#EFBA31] font-medium">
-                  {selectedPriorities.length}/{maxSelections}
-                </span>
-                )
-              </div>
+            {/* Subtitle */}
+            <div className="text-center mb-6">
+              <p className="text-white font-kanit text-lg font-normal">
+                ไม่เกิน 3 นโยบาย
+              </p>
             </div>
 
-            {/* Selection Items */}
-            <div className="w-full max-w-[325px] space-y-3 mb-6">
-              {priorities.map((priority, index) => {
-                const isSelected = selectedPriorities.includes(priority);
-                const isDisabled = isSelectionDisabled(priority);
+            {/* Selection Items - Compact Tag Layout */}
+            <div className="w-full max-w-[354px] mb-8">
+              {/* Row 1 */}
+              <div className="flex flex-wrap gap-2 mb-3">
+                {["ลดค่าโดยสารรถไฟฟ้า", "ปรับปรุงคุณภาพรถเมล์"].map((priority, index) => {
+                  const isSelected = selectedPriorities.includes(priority);
+                  const isDisabled = isSelectionDisabled(priority);
 
-                return (
-                  <div
-                    key={index}
-                    className={`rounded-[20px] border-[1.5px] p-4 transition-all duration-200 cursor-pointer ${
-                      isSelected
-                        ? "bg-[#EFBA31] border-black"
-                        : isDisabled
-                          ? "bg-gray-400 border-gray-500 cursor-not-allowed opacity-50"
-                          : "bg-white border-black hover:bg-gray-100"
-                    }`}
-                    onClick={() =>
-                      !isDisabled && handlePriorityToggle(priority)
-                    }
-                    role="checkbox"
-                    aria-checked={isSelected}
-                    aria-disabled={isDisabled}
-                    tabIndex={isDisabled ? -1 : 0}
-                    onKeyDown={(e) => {
-                      if ((e.key === "Enter" || e.key === " ") && !isDisabled) {
-                        e.preventDefault();
-                        handlePriorityToggle(priority);
-                      }
-                    }}
-                  >
-                    <div className="flex items-center">
-                      <div
-                        className={`w-6 h-6 rounded border-2 mr-3 flex items-center justify-center ${
-                          isSelected
-                            ? "bg-black border-black"
-                            : "bg-white border-gray-400"
-                        }`}
-                      >
-                        {isSelected && (
-                          <svg
-                            className="w-4 h-4 text-white"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                            role="img"
-                            aria-label="เลือกแล้ว"
-                          >
-                            <path
-                              fillRule="evenodd"
-                              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                              clipRule="evenodd"
-                            />
-                          </svg>
-                        )}
-                      </div>
-                      <span
-                        className={`font-prompt text-base ${
-                          isSelected ? "text-black font-medium" : "text-black"
-                        }`}
-                      >
+                  return (
+                    <button
+                      key={index}
+                      className={`h-[41px] px-4 rounded-[40px] border transition-all duration-200 ${
+                        isSelected
+                          ? "bg-[#EFBA31] border-black"
+                          : isDisabled
+                            ? "bg-gray-300 border-gray-400 cursor-not-allowed opacity-50"
+                            : "bg-white border-[#E4E9F2] hover:bg-gray-50"
+                      } ${index === 0 ? "flex-shrink-0" : "flex-1"}`}
+                      onClick={() => !isDisabled && handlePriorityToggle(priority)}
+                      disabled={isDisabled}
+                    >
+                      <span className={`font-prompt text-[15px] text-center ${
+                        isSelected ? "font-semibold text-black" : "font-medium text-black"
+                      }`} style={{ letterSpacing: "0.4px" }}>
                         {priority}
                       </span>
-                    </div>
-                  </div>
-                );
-              })}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Row 2 */}
+              <div className="flex flex-wrap gap-2 mb-3">
+                {["ตั๋วร่วม", "เพิ่มความถี่รถเมล์", "เพิ่มที่จอดรถ"].map((priority, index) => {
+                  const isSelected = selectedPriorities.includes(priority);
+                  const isDisabled = isSelectionDisabled(priority);
+
+                  return (
+                    <button
+                      key={index}
+                      className={`h-[41px] px-4 rounded-[40px] border transition-all duration-200 ${
+                        isSelected
+                          ? "bg-[#EFBA31] border-black"
+                          : isDisabled
+                            ? "bg-gray-300 border-gray-400 cursor-not-allowed opacity-50"
+                            : "bg-white border-[#E4E9F2] hover:bg-gray-50"
+                      } ${index === 0 ? "w-[75px] flex-shrink-0" : index === 1 ? "flex-1" : "w-[110px] flex-shrink-0"}`}
+                      onClick={() => !isDisabled && handlePriorityToggle(priority)}
+                      disabled={isDisabled}
+                    >
+                      <span className={`font-prompt text-[15px] text-center ${
+                        isSelected ? "font-semibold text-black" : "font-medium text-black"
+                      }`} style={{ letterSpacing: "0.4px" }}>
+                        {priority}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Row 3 */}
+              <div className="flex flex-wrap gap-2">
+                {["เพิ่มความถี่รถไฟฟ้า", "เพิ่ม Feeder ในซอย"].map((priority, index) => {
+                  const isSelected = selectedPriorities.includes(priority);
+                  const isDisabled = isSelectionDisabled(priority);
+
+                  return (
+                    <button
+                      key={index}
+                      className={`h-[41px] px-4 rounded-[40px] border transition-all duration-200 ${
+                        isSelected
+                          ? "bg-[#EFBA31] border-black"
+                          : isDisabled
+                            ? "bg-gray-300 border-gray-400 cursor-not-allowed opacity-50"
+                            : "bg-white border-[#E4E9F2] hover:bg-gray-50"
+                      } ${index === 0 ? "flex-1" : "flex-1"}`}
+                      onClick={() => !isDisabled && handlePriorityToggle(priority)}
+                      disabled={isDisabled}
+                    >
+                      <span className={`font-prompt text-[15px] text-center ${
+                        isSelected ? "font-semibold text-black" : "font-medium text-black"
+                      }`} style={{ letterSpacing: "0.4px" }}>
+                        {priority}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
             </div>
 
-            {/* Status Messages */}
-            {selectedPriorities.length >= maxSelections && (
-              <div className="w-full max-w-[325px] mb-4 bg-yellow-500 bg-opacity-90 rounded-[15px] p-3">
-                <div className="text-black text-center text-sm font-prompt">
-                  คุณเลือกครบจำนวนแล้ว หากต้องการเลือกข้อใหม่
-                  กรุณายกเลิกการเลือกข้อใดข้อหนึ่งก่อน
-                </div>
-              </div>
-            )}
 
             {/* Submit Button */}
             <div className="w-full max-w-[325px]">
