@@ -211,15 +211,15 @@ const Step1_Priorities = ({
                 className={`w-full h-[53px] rounded-[40px] border-[1.5px] border-black flex items-center justify-center transition-all duration-200 ${
                   selectedPriorities.length === 0
                     ? "bg-gray-400 cursor-not-allowed"
-                    : "bg-[#EFBA31] hover:scale-105 hover:shadow-lg hover:bg-black active:bg-black group"
+                    : "figma-style1-button"
                 }`}
                 aria-describedby="next-button-description"
               >
                 <span
-                  className={`text-center font-prompt text-lg font-medium leading-7 tracking-[0.4px] ${
+                  className={`figma-style1-button-text ${
                     selectedPriorities.length === 0
                       ? "text-gray-600"
-                      : "text-black group-hover:text-[#EFBA31] group-active:text-[#EFBA31]"
+                      : ""
                   }`}
                 >
                   ไปต่อ
