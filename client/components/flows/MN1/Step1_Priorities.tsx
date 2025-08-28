@@ -100,93 +100,137 @@ const Step1_Priorities = ({
               </p>
             </div>
 
-            {/* Selection Items - Compact Tag Layout */}
-            <div className="figma-style1-button-container">
+            {/* Selection Items - Exact Figma Layout */}
+            <div className="w-full max-w-[354px] mb-8">
               {/* Row 1 */}
-              <div className="flex flex-wrap gap-2 mb-3">
-                {["ลดค่าโดยสารรถไฟฟ้า", "ปรับปรุงคุณภาพรถเมล์"].map((priority, index) => {
-                  const isSelected = selectedPriorities.includes(priority);
-                  const isDisabled = isSelectionDisabled(priority);
-
-                  return (
-                    <button
-                      key={index}
-                      className={`h-[41px] px-4 rounded-[40px] border transition-all duration-200 ${
-                        isSelected
-                          ? "bg-[#EFBA31] border-black"
-                          : isDisabled
-                            ? "bg-gray-300 border-gray-400 cursor-not-allowed opacity-50"
-                            : "bg-white border-[#E4E9F2] hover:bg-gray-50"
-                      } ${index === 0 ? "flex-shrink-0" : "flex-1"}`}
-                      onClick={() => !isDisabled && handlePriorityToggle(priority)}
-                      disabled={isDisabled}
-                    >
-                      <span className={`font-prompt text-[15px] text-center ${
-                        isSelected ? "font-semibold text-black" : "font-medium text-black"
-                      }`} style={{ letterSpacing: "0.4px" }}>
-                        {priority}
-                      </span>
-                    </button>
-                  );
-                })}
+              <div className="flex gap-2 mb-3">
+                <button
+                  className={`w-[163px] h-[41px] rounded-[40px] border transition-all duration-200 ${
+                    selectedPriorities.includes("ลดค่าโดยสารรถไฟฟ้า")
+                      ? "bg-[#EFBA31] border-black"
+                      : isSelectionDisabled("ลดค่าโดยสารรถไฟฟ้า")
+                        ? "bg-gray-300 border-gray-400 cursor-not-allowed opacity-50"
+                        : "bg-white border-[#E4E9F2] hover:bg-gray-50"
+                  }`}
+                  onClick={() => !isSelectionDisabled("ลดค่าโดยสารรถไฟฟ้า") && handlePriorityToggle("ลดค่าโดยสารรถไฟฟ้า")}
+                  disabled={isSelectionDisabled("ลดค่าโดยสารรถไฟฟ้า")}
+                >
+                  <span className={`font-prompt text-[15px] text-center ${
+                    selectedPriorities.includes("ลดค่าโดยสารรถไฟฟ้า") ? "font-semibold text-black" : "font-medium text-black"
+                  }`} style={{ letterSpacing: "0.4px" }}>
+                    ลดค่าโดยสารรถไฟฟ้า
+                  </span>
+                </button>
+                <button
+                  className={`w-[179px] h-[41px] rounded-[40px] border transition-all duration-200 ${
+                    selectedPriorities.includes("ปรับปรุงคุณภาพรถเมล์")
+                      ? "bg-[#EFBA31] border-black"
+                      : isSelectionDisabled("ปรับปรุงคุณภาพรถเมล์")
+                        ? "bg-gray-300 border-gray-400 cursor-not-allowed opacity-50"
+                        : "bg-white border-[#E4E9F2] hover:bg-gray-50"
+                  }`}
+                  onClick={() => !isSelectionDisabled("ปรับปรุงคุณภาพรถเมล์") && handlePriorityToggle("ปรับปรุงคุณภาพรถเมล์")}
+                  disabled={isSelectionDisabled("ปรับปรุงคุณภาพรถเมล์")}
+                >
+                  <span className={`font-prompt text-[15px] text-center ${
+                    selectedPriorities.includes("ปรับปรุงคุณภาพรถเมล์") ? "font-semibold text-black" : "font-medium text-black"
+                  }`} style={{ letterSpacing: "0.4px" }}>
+                    ปรับปรุงคุณภาพรถเมล์
+                  </span>
+                </button>
               </div>
 
               {/* Row 2 */}
-              <div className="flex flex-wrap gap-2 mb-3">
-                {["ตั๋วร่วม", "เพิ่มความถี่รถเมล์", "เพิ่มที่จอดรถ"].map((priority, index) => {
-                  const isSelected = selectedPriorities.includes(priority);
-                  const isDisabled = isSelectionDisabled(priority);
-
-                  return (
-                    <button
-                      key={index}
-                      className={`h-[41px] px-4 rounded-[40px] border transition-all duration-200 ${
-                        isSelected
-                          ? "bg-[#EFBA31] border-black"
-                          : isDisabled
-                            ? "bg-gray-300 border-gray-400 cursor-not-allowed opacity-50"
-                            : "bg-white border-[#E4E9F2] hover:bg-gray-50"
-                      } ${index === 0 ? "w-[75px] flex-shrink-0" : index === 1 ? "flex-1" : "w-[110px] flex-shrink-0"}`}
-                      onClick={() => !isDisabled && handlePriorityToggle(priority)}
-                      disabled={isDisabled}
-                    >
-                      <span className={`font-prompt text-[15px] text-center ${
-                        isSelected ? "font-semibold text-black" : "font-medium text-black"
-                      }`} style={{ letterSpacing: "0.4px" }}>
-                        {priority}
-                      </span>
-                    </button>
-                  );
-                })}
+              <div className="flex gap-2 mb-3">
+                <button
+                  className={`w-[75px] h-[41px] rounded-[40px] border transition-all duration-200 ${
+                    selectedPriorities.includes("ตั๋วร่วม")
+                      ? "bg-[#EFBA31] border-black"
+                      : isSelectionDisabled("ตั๋วร่วม")
+                        ? "bg-gray-300 border-gray-400 cursor-not-allowed opacity-50"
+                        : "bg-white border-[#E4E9F2] hover:bg-gray-50"
+                  }`}
+                  onClick={() => !isSelectionDisabled("ตั๋วร่วม") && handlePriorityToggle("ตั๋วร่วม")}
+                  disabled={isSelectionDisabled("ตั๋วร่วม")}
+                >
+                  <span className={`font-prompt text-[15px] text-center ${
+                    selectedPriorities.includes("ตั๋วร่วม") ? "font-semibold text-black" : "font-medium text-black"
+                  }`} style={{ letterSpacing: "0.4px" }}>
+                    ตั๋วร่วม
+                  </span>
+                </button>
+                <button
+                  className={`w-[148px] h-[41px] rounded-[40px] border transition-all duration-200 ${
+                    selectedPriorities.includes("เพิ่มความถี่รถเมล์")
+                      ? "bg-[#EFBA31] border-black"
+                      : isSelectionDisabled("เพิ่มความถี่รถเมล์")
+                        ? "bg-gray-300 border-gray-400 cursor-not-allowed opacity-50"
+                        : "bg-white border-[#E4E9F2] hover:bg-gray-50"
+                  }`}
+                  onClick={() => !isSelectionDisabled("เพิ่มความถี่รถเมล์") && handlePriorityToggle("เพิ่มความถี่รถเมล์")}
+                  disabled={isSelectionDisabled("เพิ่มความถี่รถ��มล์")}
+                >
+                  <span className={`font-prompt text-[15px] text-center ${
+                    selectedPriorities.includes("เพิ่มความถี่รถเมล์") ? "font-semibold text-black" : "font-medium text-black"
+                  }`} style={{ letterSpacing: "0.4px" }}>
+                    เพิ่มความถี่รถเมล์
+                  </span>
+                </button>
+                <button
+                  className={`w-[110px] h-[41px] rounded-[40px] border transition-all duration-200 ${
+                    selectedPriorities.includes("เพิ่มที่จอดรถ")
+                      ? "bg-[#EFBA31] border-black"
+                      : isSelectionDisabled("เพิ่มที่จอดรถ")
+                        ? "bg-gray-300 border-gray-400 cursor-not-allowed opacity-50"
+                        : "bg-white border-[#E4E9F2] hover:bg-gray-50"
+                  }`}
+                  onClick={() => !isSelectionDisabled("เพิ่มที่จอดรถ") && handlePriorityToggle("เพิ่มที่จอดรถ")}
+                  disabled={isSelectionDisabled("เพิ่มที่จอดรถ")}
+                >
+                  <span className={`font-prompt text-[15px] text-center ${
+                    selectedPriorities.includes("เพิ่มที่จอดรถ") ? "font-semibold text-black" : "font-medium text-black"
+                  }`} style={{ letterSpacing: "0.4px" }}>
+                    เพิ่มที่จอดรถ
+                  </span>
+                </button>
               </div>
 
               {/* Row 3 */}
-              <div className="flex flex-wrap gap-2">
-                {["เพิ่มความถี่รถไฟฟ้า", "เพิ่ม Feeder ในซอย"].map((priority, index) => {
-                  const isSelected = selectedPriorities.includes(priority);
-                  const isDisabled = isSelectionDisabled(priority);
-
-                  return (
-                    <button
-                      key={index}
-                      className={`h-[41px] px-4 rounded-[40px] border transition-all duration-200 ${
-                        isSelected
-                          ? "bg-[#EFBA31] border-black"
-                          : isDisabled
-                            ? "bg-gray-300 border-gray-400 cursor-not-allowed opacity-50"
-                            : "bg-white border-[#E4E9F2] hover:bg-gray-50"
-                      } ${index === 0 ? "flex-1" : "flex-1"}`}
-                      onClick={() => !isDisabled && handlePriorityToggle(priority)}
-                      disabled={isDisabled}
-                    >
-                      <span className={`font-prompt text-[15px] text-center ${
-                        isSelected ? "font-semibold text-black" : "font-medium text-black"
-                      }`} style={{ letterSpacing: "0.4px" }}>
-                        {priority}
-                      </span>
-                    </button>
-                  );
-                })}
+              <div className="flex gap-2">
+                <button
+                  className={`w-[163px] h-[41px] rounded-[40px] border transition-all duration-200 ${
+                    selectedPriorities.includes("เพิ่มความถี่รถไฟฟ้า")
+                      ? "bg-[#EFBA31] border-black"
+                      : isSelectionDisabled("เพิ่มความถี่รถไฟฟ้า")
+                        ? "bg-gray-300 border-gray-400 cursor-not-allowed opacity-50"
+                        : "bg-white border-[#E4E9F2] hover:bg-gray-50"
+                  }`}
+                  onClick={() => !isSelectionDisabled("เพิ่มความถี่รถไฟฟ้า") && handlePriorityToggle("เพิ่มความถี่รถไฟฟ้า")}
+                  disabled={isSelectionDisabled("เพิ่มความถี���รถไฟฟ้า")}
+                >
+                  <span className={`font-prompt text-[15px] text-center ${
+                    selectedPriorities.includes("เพิ่มความถี่รถไฟฟ้า") ? "font-semibold text-black" : "font-medium text-black"
+                  }`} style={{ letterSpacing: "0.4px" }}>
+                    เพิ่มความถี่รถไฟฟ้า
+                  </span>
+                </button>
+                <button
+                  className={`w-[167px] h-[41px] rounded-[40px] border transition-all duration-200 ${
+                    selectedPriorities.includes("เพิ่ม Feeder ในซอย")
+                      ? "bg-[#EFBA31] border-black"
+                      : isSelectionDisabled("เพิ่ม Feeder ในซอย")
+                        ? "bg-gray-300 border-gray-400 cursor-not-allowed opacity-50"
+                        : "bg-white border-[#E4E9F2] hover:bg-gray-50"
+                  }`}
+                  onClick={() => !isSelectionDisabled("เพิ่ม Feeder ในซอย") && handlePriorityToggle("เพิ่ม Feeder ในซอย")}
+                  disabled={isSelectionDisabled("เพิ่ม Feeder ในซอย")}
+                >
+                  <span className={`font-prompt text-[15px] text-center ${
+                    selectedPriorities.includes("เพิ่ม Feeder ในซอย") ? "font-semibold text-black" : "font-medium text-black"
+                  }`} style={{ letterSpacing: "0.4px" }}>
+                    เพิ่ม Feeder ในซอย
+                  </span>
+                </button>
               </div>
             </div>
 
