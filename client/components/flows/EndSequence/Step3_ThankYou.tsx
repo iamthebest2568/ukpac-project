@@ -53,8 +53,7 @@ const Step3_ThankYou = ({ sessionID, onNext, onBack, journeyData }: Step3_ThankY
           <div
             className="absolute inset-0"
             style={{
-              background:
-                "linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.90) 44.17%)",
+              background: "rgba(0, 0, 0, 0.90)",
             }}
           />
         </div>
@@ -62,56 +61,43 @@ const Step3_ThankYou = ({ sessionID, onNext, onBack, journeyData }: Step3_ThankY
         {/* Main Content */}
         <div className="relative z-10 flex flex-col min-h-screen">
           {/* Content Area */}
-          <div className="flex-1 flex flex-col justify-end items-center px-6 md:px-8 pb-8 md:pb-12">
-            
-            {/* Celebration Panel */}
-            <div className="w-full max-w-[325px] mb-8">
-              <div className="bg-white bg-opacity-90 rounded-[20px] p-6 border-[1.5px] border-black relative overflow-hidden">
-                {/* Celebration elements */}
-                <div className="text-center">
-                  <div className="text-6xl mb-3" role="img" aria-label="ขอบคุณ">🎉</div>
-                  <div className="font-kanit text-2xl font-medium text-black mb-2">ขอบคุณมากครับ!</div>
-                  <div className="font-prompt text-base text-gray-600">การมีส่วนร่วมของคุณมีความหมายมาก</div>
-                </div>
-
-                {/* Decorative celebration elements */}
-                <div className="absolute top-3 left-3 text-xl animate-bounce" role="img" aria-label="ดาว">⭐</div>
-                <div className="absolute top-4 right-4 text-lg animate-pulse" role="img" aria-label="หัวใจ">💖</div>
-                <div className="absolute bottom-3 left-4 text-base animate-bounce" role="img" aria-label="ดาว">🌟</div>
-                <div className="absolute bottom-3 right-3 text-xl animate-pulse" role="img" aria-label="เพชร">💎</div>
+          <div className="flex-1 flex flex-col justify-center items-center px-8">
+            {/* Content Container */}
+            <div className="w-full max-w-[325px]">
+              {/* Title */}
+              <div className="text-center mb-40">
+                <h1
+                  className="text-white text-center font-kanit text-[30px] font-normal leading-normal"
+                >
+                  ขอบคุณที่ร่วมเป็นส่วนหนึ่ง<br />
+                  ในการพัฒนาเมือง<br /><br />
+                  เราจะประกาศรางวัลทาง<br />
+                  xxxxxxxxxxxxxxxxxx<br />
+                  วันที่ xxxx xxxxx xxxx
+                </h1>
               </div>
-            </div>
 
-            {/* Title */}
-            <div className="text-center mb-6 md:mb-8 max-w-[325px]">
-              <h1
-                className="text-white text-center font-kanit text-3xl font-normal leading-normal mb-4"
-                style={{ fontSize: "clamp(24px, 7.5vw, 30px)" }}
-              >
-                ขอบคุณที่ร่วมกิจกรรม เราจะประกาศรายชื่อผู้โชคดีวันที่ XXXXXX
-              </h1>
-            </div>
-
-            {/* Action buttons */}
-            <div className="w-full max-w-[325px] space-y-4">
-              <button
-                onClick={handleShare}
-                className="w-full h-[53px] rounded-[40px] bg-[#EFBA31] border-[1.5px] border-black flex items-center justify-center transition-all duration-200 hover:scale-105 hover:shadow-lg hover:bg-black active:bg-black group"
-              >
-                <span className="mr-2 text-lg" role="img" aria-label="แชร์">📤</span>
-                <span className="text-black text-center font-prompt text-lg font-medium leading-7 tracking-[0.4px] group-hover:text-[#EFBA31] group-active:text-[#EFBA31]">
-                  แชร์เกมนี้ให้เพื่อน
-                </span>
-              </button>
-              
-              <button
-                onClick={handleFinish}
-                className="w-full h-[53px] rounded-[40px] bg-white border-[1.5px] border-black flex items-center justify-center transition-all duration-200 hover:scale-105 hover:shadow-lg hover:bg-black active:bg-black group"
-              >
-                <span className="text-black text-center font-prompt text-lg font-medium leading-7 tracking-[0.4px] group-hover:text-white group-active:text-white">
-                  จบเกม
-                </span>
-              </button>
+              {/* Action buttons */}
+              <div className="space-y-4">
+                <button
+                  onClick={handleShare}
+                  className="figma-style1-button"
+                  aria-describedby="share-button-description"
+                >
+                  <span className="figma-style1-button-text" id="share-button-description">
+                    แชร์เกมนี้ให้เพื่อน
+                  </span>
+                </button>
+                
+                <button
+                  onClick={handleFinish}
+                  className="w-full h-[53px] rounded-[40px] bg-black border-none flex items-center justify-center transition-all duration-200 hover:scale-105 hover:shadow-lg"
+                >
+                  <span className="text-[#EFBA31] text-center font-prompt text-lg font-medium leading-7 tracking-[0.4px]">
+                    จบเกม
+                  </span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
