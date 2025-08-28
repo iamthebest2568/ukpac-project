@@ -82,114 +82,133 @@ const Step3_Result = ({
   };
 
   return (
-    <div className="theme-white min-h-screen">
-      <div className="app-container py-8 animate-fade-in-up">
-        {/* Header with Refresh Icon */}
-        <div className="flex justify-between items-center mb-8">
-          <h1 className="text-h2 text-black">ภาพเมืองในอนาคต</h1>
-          <button
-            className="p-2 text-gray-600 hover:text-black transition-colors"
-            aria-label="Refresh"
-          >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
-              />
-            </svg>
-          </button>
+    <div className="min-h-screen bg-white flex justify-center">
+      <div className="w-full max-w-[390px] md:max-w-[420px] lg:max-w-[390px] min-h-screen bg-white overflow-hidden relative">
+        {/* Background Image with Overlay */}
+        <div className="absolute inset-0">
+          <img
+            src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F946833431d4b46a0bde1c7d1bc32f67a"
+            alt="ภาพเมืองในอนาคต"
+            className="w-full h-full object-cover object-center"
+            style={{ minWidth: "100%", aspectRatio: "2/3" }}
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.90) 44.17%)",
+            }}
+          />
         </div>
 
-        {/* Main Polaroid Collage */}
-        <div className="relative h-96 mb-12 flex items-center justify-center">
-          {/* Polaroid Photo 1 - Left */}
-          <div
-            className="absolute polaroid-frame"
-            style={{
-              transform: "rotate(-12deg) translate(-60px, -20px)",
-              zIndex: 1,
-            }}
-          >
-            <div className="polaroid-image bg-gradient-to-br from-blue-200 to-blue-300 flex items-center justify-center">
-              <div className="text-6xl">{resultSummary[0]?.icon || "🏢"}</div>
+        {/* Main Content */}
+        <div className="relative z-10 flex flex-col min-h-screen">
+          {/* Content Area */}
+          <div className="flex-1 flex flex-col justify-end items-center px-6 md:px-8 pb-8 md:pb-12">
+            {/* Title */}
+            <div className="text-center mb-6 md:mb-8 max-w-[325px]">
+              <h1
+                className="text-white text-center font-kanit text-3xl font-normal leading-normal mb-4"
+                style={{ fontSize: "clamp(24px, 7.5vw, 30px)" }}
+              >
+                ภาพเมืองในอนาคต
+              </h1>
             </div>
-            <div className="polaroid-caption">
-              {resultSummary[0]?.priority || "รถไฟฟ้า"}
+
+            {/* Main Polaroid Collage */}
+            <div className="relative h-80 mb-8 flex items-center justify-center max-w-[325px] w-full">
+              {/* Polaroid Photo 1 - Left */}
+              <div
+                className="absolute bg-white rounded-lg p-2 shadow-lg border border-gray-200"
+                style={{
+                  transform: "rotate(-12deg) translate(-40px, -20px)",
+                  zIndex: 1,
+                  width: "100px",
+                  height: "110px",
+                }}
+              >
+                <div className="bg-gradient-to-br from-blue-200 to-blue-300 rounded-md flex items-center justify-center mb-2" style={{ height: "70px" }}>
+                  <div className="text-3xl">{resultSummary[0]?.icon || "🏢"}</div>
+                </div>
+                <div className="text-xs font-prompt text-black text-center px-1 leading-tight">
+                  {resultSummary[0]?.priority?.substring(0, 15) || "รถไฟฟ้า"}
+                  {resultSummary[0]?.priority && resultSummary[0].priority.length > 15 && "..."}
+                </div>
+              </div>
+
+              {/* Polaroid Photo 2 - Center */}
+              <div
+                className="absolute bg-white rounded-lg p-2 shadow-lg border border-gray-200"
+                style={{
+                  transform: "rotate(8deg) translate(0px, 20px)",
+                  zIndex: 3,
+                  width: "100px",
+                  height: "110px",
+                }}
+              >
+                <div className="bg-gradient-to-br from-green-200 to-green-300 rounded-md flex items-center justify-center mb-2" style={{ height: "70px" }}>
+                  <div className="text-3xl">{resultSummary[1]?.icon || "🚌"}</div>
+                </div>
+                <div className="text-xs font-prompt text-black text-center px-1 leading-tight">
+                  {resultSummary[1]?.priority?.substring(0, 15) || "รถเมล์"}
+                  {resultSummary[1]?.priority && resultSummary[1].priority.length > 15 && "..."}
+                </div>
+              </div>
+
+              {/* Polaroid Photo 3 - Right */}
+              <div
+                className="absolute bg-white rounded-lg p-2 shadow-lg border border-gray-200"
+                style={{
+                  transform: "rotate(-5deg) translate(50px, -30px)",
+                  zIndex: 2,
+                  width: "100px",
+                  height: "110px",
+                }}
+              >
+                <div className="bg-gradient-to-br from-yellow-200 to-orange-300 rounded-md flex items-center justify-center mb-2" style={{ height: "70px" }}>
+                  <div className="text-3xl">{resultSummary[2]?.icon || "🅿️"}</div>
+                </div>
+                <div className="text-xs font-prompt text-black text-center px-1 leading-tight">
+                  {resultSummary[2]?.priority?.substring(0, 15) || "ที่จอดรถ"}
+                  {resultSummary[2]?.priority && resultSummary[2].priority.length > 15 && "..."}
+                </div>
+              </div>
+            </div>
+
+            {/* Results Summary */}
+            <div className="w-full max-w-[325px] mb-6 bg-black bg-opacity-50 rounded-[20px] p-4">
+              <h2 className="text-white font-prompt text-lg font-medium mb-3 text-center">การจัดสรรงบประมาณของคุณ</h2>
+              <div className="space-y-2">
+                {resultSummary.map((result, index) => (
+                  <div key={index} className="flex items-center justify-between text-white">
+                    <div className="flex items-center">
+                      <span className="text-lg mr-2" role="img" aria-label={result.priority}>
+                        {result.icon}
+                      </span>
+                      <span className="font-prompt text-sm">
+                        {result.priority.length > 20 ? `${result.priority.substring(0, 20)}...` : result.priority}
+                      </span>
+                    </div>
+                    <div className="text-[#EFBA31] font-prompt text-sm font-medium">
+                      {result.allocation} หน่วย ({result.percentage.toFixed(0)}%)
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Submit Button */}
+            <div className="w-full max-w-[325px]">
+              <button
+                onClick={handleNext}
+                className="w-full h-[53px] rounded-[40px] bg-[#EFBA31] border-[1.5px] border-black flex items-center justify-center transition-all duration-200 hover:scale-105 hover:shadow-lg hover:bg-black active:bg-black group"
+              >
+                <span className="text-black text-center font-prompt text-lg font-medium leading-7 tracking-[0.4px] group-hover:text-[#EFBA31] group-active:text-[#EFBA31]">
+                  ไปต่อ
+                </span>
+              </button>
             </div>
           </div>
-
-          {/* Polaroid Photo 2 - Center */}
-          <div
-            className="absolute polaroid-frame"
-            style={{
-              transform: "rotate(8deg) translate(0px, 30px)",
-              zIndex: 3,
-            }}
-          >
-            <div className="polaroid-image bg-gradient-to-br from-green-200 to-green-300 flex items-center justify-center">
-              <div className="text-6xl">{resultSummary[1]?.icon || "🚌"}</div>
-            </div>
-            <div className="polaroid-caption">
-              {resultSummary[1]?.priority || "รถเมล์"}
-            </div>
-          </div>
-
-          {/* Polaroid Photo 3 - Right */}
-          <div
-            className="absolute polaroid-frame"
-            style={{
-              transform: "rotate(-5deg) translate(70px, -30px)",
-              zIndex: 2,
-            }}
-          >
-            <div className="polaroid-image bg-gradient-to-br from-yellow-200 to-orange-300 flex items-center justify-center">
-              <div className="text-6xl">{resultSummary[2]?.icon || "🅿️"}</div>
-            </div>
-            <div className="polaroid-caption">
-              {resultSummary[2]?.priority || "ที่จอดรถ"}
-            </div>
-          </div>
-        </div>
-
-        {/* Progress indicator */}
-        <div className="progress-container">
-          <div className="progress-dots">
-            <div
-              className="progress-dot completed"
-              aria-label="ขั้นตอนที่ 1 เสร็จสิ้น"
-            ></div>
-            <div
-              className="progress-dot completed"
-              aria-label="ขั้นตอนที่ 2 เสร็จสิ้น"
-            ></div>
-            <div
-              className="progress-dot completed"
-              aria-label="ขั้นตอนที่ 3 เสร็จสิ้น"
-            ></div>
-            <div
-              className="progress-dot completed"
-              aria-label="ขั้นตอนที่ 4 เสร็จสิ้น"
-            ></div>
-            <div
-              className="progress-dot active"
-              aria-label="ขั้นตอนที่ 5 กำลังดำ���นินการ"
-            ></div>
-          </div>
-          <p className="text-caption text-black">ขั้นตอนที่ 5 จาก 5</p>
-        </div>
-
-        {/* Completion Zone */}
-        <div className="completion-zone">
-          <button className="btn btn-primary" onClick={handleNext}>
-            ไปต่อ
-          </button>
         </div>
       </div>
     </div>
