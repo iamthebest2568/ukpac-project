@@ -128,7 +128,7 @@ const Step3_ThankYou = ({ sessionID, onNext, onBack, journeyData }: Step3_ThankY
               {/* Title */}
               <div className="text-center mb-6">
                 <h1 className="text-white text-center font-kanit text-[30px] font-normal leading-normal">
-                  ขอบคุณที่ร่วมเป็นส่วนหนึ่ง<br />
+                  ขอบคุณ���ี่ร่วมเป็นส่วนหนึ่ง<br />
                   ในการพัฒนาเมือง
                 </h1>
                 <p className="text-white text-center font-prompt mt-4">
@@ -136,15 +136,36 @@ const Step3_ThankYou = ({ sessionID, onNext, onBack, journeyData }: Step3_ThankY
                 </p>
               </div>
 
-              {/* Share Buttons */}
-              <div className="grid grid-cols-2 gap-3 mb-4">
-                <button className="figma-style1-button" onClick={handleShareFacebook} aria-label="แชร์ไปยัง Facebook">Facebook</button>
-                <button className="figma-style1-button" onClick={handleShareX} aria-label="แชร์ไปยัง X">X</button>
-                <button className="figma-style1-button" onClick={handleShareLine} aria-label="แชร์ไปยัง LINE">LINE</button>
-                <button className="figma-style1-button" onClick={handleShareWhatsApp} aria-label="แชร์ไปยัง WhatsApp">WhatsApp</button>
-                <button className="figma-style1-button" onClick={handleShareMessenger} aria-label="แชร์ไปยัง Messenger">Messenger</button>
-                <button className="figma-style1-button" onClick={handleShareLinkedIn} aria-label="แชร์ไปยัง LinkedIn">LinkedIn</button>
-                <button className="figma-style1-button col-span-2" onClick={handleCopyLink} aria-label="คัดลอกลิงก์">{copied ? 'คัดลอกแล้ว' : 'คัดลอกลิงก์'}</button>
+              {/* Share Trigger Button (opens popup) */}
+              <div className="mb-4">
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <button className="figma-style1-button" aria-label="เปิดหน้าต่างแชร์">
+                      <span className="figma-style1-button-text">แชร์เกมนี้ให้เพื่อน</span>
+                    </button>
+                  </DialogTrigger>
+
+                  <DialogContent className="p-6">
+                    <DialogTitle className="font-kanit text-lg text-black mb-3">แชร์เกมนี้</DialogTitle>
+                    <DialogDescription className="text-sm text-gray-600 mb-4">เลือกแพลตฟอร์มที่ต้องการแชร์</DialogDescription>
+
+                    <div className="grid grid-cols-2 gap-3 mb-4">
+                      <button className="figma-style1-button" onClick={handleShareFacebook} aria-label="แชร์ไปยัง Facebook">Facebook</button>
+                      <button className="figma-style1-button" onClick={handleShareX} aria-label="แชร์ไปยัง X">X</button>
+                      <button className="figma-style1-button" onClick={handleShareLine} aria-label="แชร์ไปยัง LINE">LINE</button>
+                      <button className="figma-style1-button" onClick={handleShareWhatsApp} aria-label="แชร์ไปยัง WhatsApp">WhatsApp</button>
+                      <button className="figma-style1-button" onClick={handleShareMessenger} aria-label="แชร์ไปยัง Messenger">Messenger</button>
+                      <button className="figma-style1-button" onClick={handleShareLinkedIn} aria-label="แชร์ไปยัง LinkedIn">LinkedIn</button>
+                      <button className="figma-style1-button col-span-2" onClick={handleCopyLink} aria-label="คัดลอกลิงก์">{copied ? 'คัดลอกแล้ว' : 'คัดลอกลิงก์'}</button>
+                    </div>
+
+                    <div className="mt-2">
+                      <DialogClose asChild>
+                        <button className="figma-style1-button--secondary w-full"><span className="figma-style1-button-text">ปิด</span></button>
+                      </DialogClose>
+                    </div>
+                  </DialogContent>
+                </Dialog>
               </div>
 
               {/* Finish Button */}
