@@ -70,13 +70,29 @@ const Step3_ThankYou = ({ sessionID, onNext, onBack, journeyData }: Step3_ThankY
   };
 
   const handleShareMessenger = () => {
-    // Try fb-messenger protocol for mobile; fallback to Facebook sharer
     const messengerUrl = `fb-messenger://share?link=${shareUrl}`;
     const fallback = `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`;
     logEvent({ event: 'SHARE', payload: { method: 'messenger', sessionID } });
-    try {
-      window.location.href = messengerUrl;
-    } catch (e) {
+
+    // Detect mobile devices — messenger app typically available on mobile.
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent || ""
+    );
+
+    if (isMobile) {
+      // Try navigating to messenger protocol which should open the app on mobile.
+      // If it fails (unsupported), after a short delay open the fallback web sharer.
+      try {
+        window.location.href = messengerUrl;
+        // Open fallback after a delay in case protocol fails silently
+        setTimeout(() => {
+          openShareWindow(fallback);
+        }, 1200);
+      } catch (e) {
+        openShareWindow(fallback);
+      }
+    } else {
+      // On desktop, open Facebook sharer (Messenger desktop apps are less consistent)
       openShareWindow(fallback);
     }
   };
@@ -151,7 +167,7 @@ const Step3_ThankYou = ({ sessionID, onNext, onBack, journeyData }: Step3_ThankY
                     <DialogDescription className="text-sm text-gray-600 mb-4">เลือกแพลตฟอร์มที่ต้องการแชร์</DialogDescription>
 
                     <div className="grid grid-cols-2 gap-3 mb-4">
-                      <button className="figma-style1-button" onClick={handleShareFacebook} aria-label="แชร์ไปยัง Facebook">Facebook</button>
+                      <button className="figma-style1-button" onClick={handleShareFacebook} aria-label="แช���์ไปยัง Facebook">Facebook</button>
                       <button className="figma-style1-button" onClick={handleShareX} aria-label="แชร์ไปยัง X">X</button>
                       <button className="figma-style1-button" onClick={handleShareLine} aria-label="แชร์ไปยัง LINE">LINE</button>
                       <button className="figma-style1-button" onClick={handleShareWhatsApp} aria-label="แชร์ไปยัง WhatsApp">WhatsApp</button>
