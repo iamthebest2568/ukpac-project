@@ -24,7 +24,7 @@ const Step1_Priorities = ({
   const maxSelections = 3;
 
   const priorities = [
-    "ลดค่าโดยสารรถไฟฟ้า",
+    "ลดค่���โดยสารรถไฟฟ้า",
     "ปรับปรุงคุณภาพรถเมล์",
     "ตั๋วร่วม",
     "เพิ่มความถี่รถเมล์",
@@ -75,20 +75,13 @@ const Step1_Priorities = ({
     <div className="figma-style1-container">
       <div className="figma-style1-content">
         {/* Background Image with Overlay */}
-        <div className="absolute inset-0">
+        <div className="figma-style1-background">
           <img
             src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F946833431d4b46a0bde1c7d1bc32f67a"
             alt="นโยบายการขนส่ง"
-            className="w-full h-full object-cover object-center"
-            style={{ minWidth: "100%", aspectRatio: "2/3" }}
+            className="figma-style1-background-image"
           />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.90) 44.17%)",
-            }}
-          />
+          <div className="figma-style1-background-overlay" />
         </div>
 
         {/* Main Content */}
@@ -145,7 +138,7 @@ const Step1_Priorities = ({
 
               {/* Row 2 */}
               <div className="flex flex-wrap gap-2 mb-3">
-                {["ตั๋วร่วม", "เพิ่มความถี่รถเมล์", "เพิ่มที่��อดรถ"].map((priority, index) => {
+                {["ตั๋วร่วม", "เพิ่มความถี่รถเมล์", "เพิ่มที่จอดรถ"].map((priority, index) => {
                   const isSelected = selectedPriorities.includes(priority);
                   const isDisabled = isSelectionDisabled(priority);
 
