@@ -146,9 +146,10 @@ const Step2_Form = ({
                 {/* Submit Button */}
                 <button
                   onClick={handleNext}
-                  className="w-full h-[52px] rounded-[40px] bg-[#EFBA31] border-[1.5px] border-black flex items-center justify-center transition-all duration-200 hover:scale-105 hover:shadow-lg hover:bg-black active:bg-black group"
+                  className="figma-style1-button"
+                  aria-describedby="submit-button-description"
                 >
-                  <span className="text-black text-center font-prompt text-lg font-medium leading-7 tracking-[0.4px] group-hover:text-[#EFBA31] group-active:text-[#EFBA31]">
+                  <span className="figma-style1-button-text" id="submit-button-description">
                     ส่งเพื่อลุ้นรับรางวัล
                   </span>
                 </button>
@@ -156,10 +157,10 @@ const Step2_Form = ({
                 {/* Back Button */}
                 <button
                   onClick={onBack}
-                  className="w-full h-[53px] rounded-[40px] bg-black border-none flex items-center justify-center transition-all duration-200 hover:scale-105 hover:shadow-lg"
+                  className="figma-style1-button--secondary"
                   aria-label="กลับไปก่อนหน้านี้"
                 >
-                  <span className="text-[#EFBA31] text-center font-prompt text-lg font-medium leading-7 tracking-[0.4px]">
+                  <span className="figma-style1-button-text">
                     กลับไปก่อนหน้านี้
                   </span>
                 </button>
