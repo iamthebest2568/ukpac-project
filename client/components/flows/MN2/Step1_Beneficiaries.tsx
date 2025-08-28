@@ -23,36 +23,35 @@ const Step1_Beneficiaries = ({
   const maxSelections = 3;
 
   const beneficiaryGroups = [
-    { id: "everyone", label: "ทุกคน", icon: "👥", description: "ประชาชนทุกคน" },
+    {
+      id: "everyone",
+      label: "ทุกคน",
+      iconSrc: "https://api.builder.io/api/v1/image/assets/TEMP/1a7aa898479a915b1d4d0ef1156c80bf95c372af?width=100"
+    },
     {
       id: "locals",
       label: "คนในพื้นที่",
-      icon: "🏘️",
-      description: "ผู้ที่อาศัยในพื้นที่",
+      iconSrc: "https://api.builder.io/api/v1/image/assets/TEMP/1e470dd8f9f7ac27485f56fba45554979acb2509?width=100"
     },
     {
       id: "elderly",
       label: "ผู้สูงอายุ",
-      icon: "👴",
-      description: "ผู้สูงอายุ 60 ปีขึ้นไป",
+      iconSrc: "https://api.builder.io/api/v1/image/assets/TEMP/1b0a18f821ff070a939691646da69e792c28ce55?width=100"
     },
     {
       id: "students",
       label: "นักเรียนนักศึกษา",
-      icon: "🎓",
-      description: "นักเรียนและนักศึกษา",
+      iconSrc: "https://api.builder.io/api/v1/image/assets/TEMP/054c6038c235112715becc476723cafe8d55d68f?width=74"
     },
     {
       id: "disabled",
       label: "คนพิการ",
-      icon: "♿",
-      description: "ผู้พิการทุกประเภท",
+      iconSrc: "https://api.builder.io/api/v1/image/assets/TEMP/9633f8bb6d0c953adb33a0769227522a310bb01f?width=88"
     },
     {
       id: "other",
-      label: "อื่นๆ",
-      icon: "❓",
-      description: "กลุ่มอื่นๆ ที่เฉพาะเจาะจง",
+      label: "XXX",
+      iconSrc: "https://api.builder.io/api/v1/image/assets/TEMP/5a8e81b8e50e6e0ed69f435d1c09e3de070df984?width=82"
     },
   ];
 
