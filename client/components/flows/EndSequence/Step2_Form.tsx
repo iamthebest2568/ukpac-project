@@ -84,114 +84,86 @@ const Step2_Form = ({
           <div
             className="absolute inset-0"
             style={{
-              background:
-                "linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.90) 44.17%)",
+              background: "rgba(0, 0, 0, 0.90)",
             }}
           />
         </div>
 
         {/* Main Content */}
         <div className="relative z-10 flex flex-col min-h-screen">
-          {/* Back Button */}
-          <div className="flex justify-start p-8 md:p-10">
-            <button
-              onClick={onBack}
-              className="transition-all duration-200 hover:scale-105 flex items-center text-white"
-              aria-label="กลับไปก่อนหน้านี้"
-            >
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="mr-2"
-              >
-                <path
-                  d="M19 12H5M12 19L5 12L12 5"
-                  stroke="white"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-              <span className="text-white font-prompt text-base">
-                กลับไปก่อนหน้านี้
-              </span>
-            </button>
-          </div>
-
           {/* Content Area */}
-          <div className="flex-1 flex flex-col justify-end items-center px-6 md:px-8 pb-8 md:pb-12">
-            {/* Title */}
-            <div className="text-center mb-6 md:mb-8 max-w-[325px]">
-              <h1
-                className="text-white text-center font-kanit text-3xl font-normal leading-normal mb-6"
-                style={{ fontSize: "clamp(24px, 7.5vw, 30px)" }}
-              >
-                กรอกข้อมูลเพื่อรับรางวัล
-              </h1>
-            </div>
-
-            {/* Form Section */}
-            <div className="w-full max-w-[325px] space-y-4 mb-6">
-              {/* Name Input */}
-              <div>
-                <label
-                  htmlFor="name"
-                  className="block text-white text-base font-prompt mb-2"
+          <div className="flex-1 flex flex-col justify-center items-center px-6 md:px-8">
+            {/* Form Container */}
+            <div className="w-full max-w-[336px]">
+              {/* Title */}
+              <div className="text-center mb-20">
+                <h1
+                  className="text-white text-center font-kanit text-[30px] font-normal leading-normal"
                 >
-                  ชื่อ *
-                </label>
-                <input
-                  id="name"
-                  type="text"
-                  value={formData.name}
-                  onChange={(e) => handleInputChange("name", e.target.value)}
-                  className={`w-full h-[53px] rounded-[40px] bg-white border-[1.5px] ${errors.name ? "border-red-500" : "border-black"} px-6 text-black font-prompt text-lg placeholder-gray-500`}
-                  placeholder="กรุณากรอกชื่อ"
-                />
-                {errors.name && (
-                  <div className="text-red-400 text-sm mt-1 ml-2">
-                    {errors.name}
-                  </div>
-                )}
+                  กรอกข้อมูล เพื่อรับรางวัล
+                </h1>
               </div>
 
-              {/* Phone Input */}
-              <div>
-                <label
-                  htmlFor="phone"
-                  className="block text-white text-base font-prompt mb-2"
-                >
-                  เบอร์โทร *
-                </label>
-                <input
-                  id="phone"
-                  type="tel"
-                  value={formData.phone}
-                  onChange={(e) => handleInputChange("phone", e.target.value)}
-                  className={`w-full h-[53px] rounded-[40px] bg-white border-[1.5px] ${errors.phone ? "border-red-500" : "border-black"} px-6 text-black font-prompt text-lg placeholder-gray-500`}
-                  placeholder="08X-XXX-XXXX"
-                />
-                {errors.phone && (
-                  <div className="text-red-400 text-sm mt-1 ml-2">
-                    {errors.phone}
-                  </div>
-                )}
-              </div>
-            </div>
+              {/* Form Section */}
+              <div className="space-y-5 mb-12">
+                {/* Name Input */}
+                <div>
+                  <input
+                    id="name"
+                    type="text"
+                    value={formData.name}
+                    onChange={(e) => handleInputChange("name", e.target.value)}
+                    className={`w-full h-[50px] rounded-[10px] bg-white border ${errors.name ? "border-red-500" : "border-[#E4E9F2]"} px-4 text-black font-prompt text-base placeholder-gray-400 focus:outline-none focus:border-[#EFBA31]`}
+                    placeholder="ชื่อ"
+                  />
+                  {errors.name && (
+                    <div className="text-red-400 text-sm mt-1 ml-2">
+                      {errors.name}
+                    </div>
+                  )}
+                </div>
 
-            {/* Submit Button */}
-            <div className="w-full max-w-[325px]">
-              <button
-                onClick={handleNext}
-                className="w-full h-[53px] rounded-[40px] bg-[#EFBA31] border-[1.5px] border-black flex items-center justify-center transition-all duration-200 hover:scale-105 hover:shadow-lg hover:bg-black active:bg-black group"
-              >
-                <span className="text-black text-center font-prompt text-lg font-medium leading-7 tracking-[0.4px] group-hover:text-[#EFBA31] group-active:text-[#EFBA31]">
-                  ส่งเพื่อลุ้นรับรางวัล
-                </span>
-              </button>
+                {/* Phone Input */}
+                <div>
+                  <input
+                    id="phone"
+                    type="tel"
+                    value={formData.phone}
+                    onChange={(e) => handleInputChange("phone", e.target.value)}
+                    className={`w-full h-[50px] rounded-[10px] bg-white border ${errors.phone ? "border-red-500" : "border-[#E4E9F2]"} px-4 text-black font-prompt text-base placeholder-gray-400 focus:outline-none focus:border-[#EFBA31]`}
+                    placeholder="เบอร์โทรศัพท์"
+                  />
+                  {errors.phone && (
+                    <div className="text-red-400 text-sm mt-1 ml-2">
+                      {errors.phone}
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Buttons */}
+              <div className="space-y-4">
+                {/* Submit Button */}
+                <button
+                  onClick={handleNext}
+                  className="w-full h-[52px] rounded-[40px] bg-[#EFBA31] border-[1.5px] border-black flex items-center justify-center transition-all duration-200 hover:scale-105 hover:shadow-lg hover:bg-black active:bg-black group"
+                >
+                  <span className="text-black text-center font-prompt text-lg font-medium leading-7 tracking-[0.4px] group-hover:text-[#EFBA31] group-active:text-[#EFBA31]">
+                    ส่งเพื่อลุ้นรับรางวัล
+                  </span>
+                </button>
+
+                {/* Back Button */}
+                <button
+                  onClick={onBack}
+                  className="w-full h-[53px] rounded-[40px] bg-black border-none flex items-center justify-center transition-all duration-200 hover:scale-105 hover:shadow-lg"
+                  aria-label="กลับไปก่อนหน้านี้"
+                >
+                  <span className="text-[#EFBA31] text-center font-prompt text-lg font-medium leading-7 tracking-[0.4px]">
+                    กลับไปก่อนหน้านี้
+                  </span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
