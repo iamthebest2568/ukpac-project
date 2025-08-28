@@ -17,7 +17,7 @@ const Step1_Priorities = ({
   sessionID,
   onNext,
   onBack,
-  initialData = ["ปรับปรุงคุณภาพรถเมล์", "เพิ่มความถี่รถเมล์"],
+  initialData = [],
 }: Step1_PrioritiesProps) => {
   const [selectedPriorities, setSelectedPriorities] =
     useState<string[]>(initialData);
@@ -90,7 +90,7 @@ const Step1_Priorities = ({
           <div className="figma-style1-content-area">
             {/* Title */}
             <div className="figma-style1-title-container">
-              <h1 className="figma-style1-title">คุณคิดว่าควรใช้เงินที่ได้จากการเก็บไ��พัฒนาอะไร</h1>
+              <h1 className="figma-style1-title">คุณคิดว่าควรใช้เงินที่ได้จากการเก็บไปพัฒนาอะไร</h1>
             </div>
 
             {/* Subtitle */}
@@ -115,7 +115,7 @@ const Step1_Priorities = ({
                   onClick={() => !isSelectionDisabled("ลดค่าโดยสารรถไฟฟ้า") && handlePriorityToggle("ลดค่าโดยสารรถไฟฟ้า")}
                   disabled={isSelectionDisabled("ลดค่าโดยสารรถไฟฟ้า")}
                 >
-                  <span className={`font-prompt text-[15px] text-center transition-all duration-200 ${
+                  <span className={`figma-style1-button-text text-[15px] ${
                     selectedPriorities.includes("ลดค่าโดยสารรถไฟฟ้า") ? "font-semibold text-black" : "font-medium text-black group-hover:text-[#EFBA31]"
                   }`} style={{ letterSpacing: "0.4px" }}>
                     ลดค่าโดยสารรถไฟฟ้า
@@ -132,7 +132,7 @@ const Step1_Priorities = ({
                   onClick={() => !isSelectionDisabled("ปรับปรุงคุณภาพรถเมล์") && handlePriorityToggle("ปรับปรุงคุณภาพรถเมล์")}
                   disabled={isSelectionDisabled("ปรับปรุงคุณภาพรถเมล์")}
                 >
-                  <span className={`font-prompt text-[15px] text-center transition-all duration-200 ${
+                  <span className={`figma-style1-button-text text-[15px] ${
                     selectedPriorities.includes("ปรับปรุงคุณภาพรถเมล์") ? "font-semibold text-black" : "font-medium text-black group-hover:text-[#EFBA31]"
                   }`} style={{ letterSpacing: "0.4px" }}>
                     ปรับปรุงคุณภาพรถเมล์
@@ -153,7 +153,7 @@ const Step1_Priorities = ({
                   onClick={() => !isSelectionDisabled("ตั๋วร่วม") && handlePriorityToggle("ตั๋วร่วม")}
                   disabled={isSelectionDisabled("ตั๋วร่วม")}
                 >
-                  <span className={`font-prompt text-[15px] text-center transition-all duration-200 ${
+                  <span className={`figma-style1-button-text text-[15px] ${
                     selectedPriorities.includes("ตั๋วร่วม") ? "font-semibold text-black" : "font-medium text-black group-hover:text-[#EFBA31]"
                   }`} style={{ letterSpacing: "0.4px" }}>
                     ตั๋วร่วม
@@ -167,10 +167,10 @@ const Step1_Priorities = ({
                         ? "bg-gray-300 border-gray-400 cursor-not-allowed opacity-50"
                         : "bg-white border-[#E4E9F2] hover:bg-black hover:scale-105 group"
                   }`}
-                  onClick={() => !isSelectionDisabled("เพิ���มความถี่รถเมล์") && handlePriorityToggle("เพิ่มความถี่รถเมล์")}
+                  onClick={() => !isSelectionDisabled("เพิ่มความถี่รถเมล์") && handlePriorityToggle("เพิ่มความถี่รถเมล์")}
                   disabled={isSelectionDisabled("เพิ่มความถี่รถเมล์")}
                 >
-                  <span className={`font-prompt text-[15px] text-center transition-all duration-200 ${
+                  <span className={`figma-style1-button-text text-[15px] ${
                     selectedPriorities.includes("เพิ่มความถี่รถเมล์") ? "font-semibold text-black" : "font-medium text-black group-hover:text-[#EFBA31]"
                   }`} style={{ letterSpacing: "0.4px" }}>
                     เพิ่มความถี่รถเมล์
@@ -187,7 +187,7 @@ const Step1_Priorities = ({
                   onClick={() => !isSelectionDisabled("เพิ่มที่จอดรถ") && handlePriorityToggle("เพิ่มที่จอดรถ")}
                   disabled={isSelectionDisabled("เพิ่มที่จอดรถ")}
                 >
-                  <span className={`font-prompt text-[15px] text-center transition-all duration-200 ${
+                  <span className={`figma-style1-button-text text-[15px] ${
                     selectedPriorities.includes("เพิ่มที่จอดรถ") ? "font-semibold text-black" : "font-medium text-black group-hover:text-[#EFBA31]"
                   }`} style={{ letterSpacing: "0.4px" }}>
                     เพิ่มที่จอดรถ
@@ -208,7 +208,7 @@ const Step1_Priorities = ({
                   onClick={() => !isSelectionDisabled("เพิ่มความถี่รถไฟฟ้า") && handlePriorityToggle("เพิ่มความถี่รถไฟฟ้า")}
                   disabled={isSelectionDisabled("เพิ่มความถี่รถไฟฟ้า")}
                 >
-                  <span className={`font-prompt text-[15px] text-center transition-all duration-200 ${
+                  <span className={`figma-style1-button-text text-[15px] ${
                     selectedPriorities.includes("เพิ่มความถี่รถไฟฟ้า") ? "font-semibold text-black" : "font-medium text-black group-hover:text-[#EFBA31]"
                   }`} style={{ letterSpacing: "0.4px" }}>
                     เพิ่มความถี่รถไฟฟ้า
@@ -225,7 +225,7 @@ const Step1_Priorities = ({
                   onClick={() => !isSelectionDisabled("เพิ่ม Feeder ในซอย") && handlePriorityToggle("เพิ่ม Feeder ในซอย")}
                   disabled={isSelectionDisabled("เพิ่ม Feeder ในซอย")}
                 >
-                  <span className={`font-prompt text-[15px] text-center transition-all duration-200 ${
+                  <span className={`figma-style1-button-text text-[15px] ${
                     selectedPriorities.includes("เพิ่ม Feeder ในซอย") ? "font-semibold text-black" : "font-medium text-black group-hover:text-[#EFBA31]"
                   }`} style={{ letterSpacing: "0.4px" }}>
                     เพิ่ม Feeder ในซอย
