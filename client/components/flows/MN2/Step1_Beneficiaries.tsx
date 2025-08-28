@@ -10,22 +10,48 @@ interface Step1_BeneficiariesProps {
   sessionID: string | null;
   onNext: (data: any) => void;
   onBack?: () => void;
-  initialData?: string[];
+  initialData?: any;
+  mn1Data?: any;
 }
 
 const Step1_Beneficiaries = ({
   sessionID,
   onNext,
   onBack,
-  initialData = [],
+  initialData = {},
+  mn1Data,
 }: Step1_BeneficiariesProps) => {
-  const [selectedGroups, setSelectedGroups] = useState<string[]>(initialData);
+  // Prepare priorities from MN1. Expect mn1Data shape: { priorities: { selectedPriorities: string[] } }
+  const priorities: string[] =
+    mn1Data?.priorities?.selectedPriorities && mn1Data.priorities.selectedPriorities.length > 0
+      ? mn1Data.priorities.selectedPriorities
+      : ["ลดค่าโดยสารรถไฟฟ้า"];
+
+  // selections per priority: Record<priority, string[]>
+  const [selections, setSelections] = useState<Record<string, string[]>>(() => {
+    // Initialize with any provided initialData
+    const init: Record<string, string[]> = {};
+    priorities.forEach((p) => {
+      init[p] = [];
+    });
+
+    if (initialData?.selections && Array.isArray(initialData.selections)) {
+      initialData.selections.forEach((s: any) => {
+        if (s?.priority) {
+          init[s.priority] = Array.isArray(s.beneficiaries) ? s.beneficiaries : [];
+        }
+      });
+    }
+
+    return init;
+  });
+
   const maxSelections = 3;
 
   const beneficiaryGroups = [
-    { 
-      id: "everyone", 
-      label: "ทุกคน", 
+    {
+      id: "everyone",
+      label: "ทุกคน",
       iconSrc: "https://api.builder.io/api/v1/image/assets/TEMP/1a7aa898479a915b1d4d0ef1156c80bf95c372af?width=100"
     },
     {
@@ -50,26 +76,30 @@ const Step1_Beneficiaries = ({
     },
     {
       id: "other",
-      label: "XXX",
+      label: "อื่นๆ",
       iconSrc: "https://api.builder.io/api/v1/image/assets/TEMP/5a8e81b8e50e6e0ed69f435d1c09e3de070df984?width=82"
     },
   ];
 
-  const handleGroupToggle = (groupId: string) => {
-    setSelectedGroups((prev) => {
-      const isSelected = prev.includes(groupId);
+  const handleGroupToggle = (priority: string, groupId: string) => {
+    setSelections((prev) => {
+      const prevForPriority = prev[priority] || [];
+      const isSelected = prevForPriority.includes(groupId);
 
       if (isSelected) {
-        // Remove if already selected
-        return prev.filter((g) => g !== groupId);
+        return { ...prev, [priority]: prevForPriority.filter((g) => g !== groupId) };
       } else {
-        // Add if not selected and under limit
-        if (prev.length < maxSelections) {
-          return [...prev, groupId];
+        if (prevForPriority.length < maxSelections) {
+          return { ...prev, [priority]: [...prevForPriority, groupId] };
         }
         return prev;
       }
     });
+  };
+
+  const isSelectionDisabled = (priority: string, groupId: string) => {
+    const sel = selections[priority] || [];
+    return sel.length >= maxSelections && !sel.includes(groupId);
   };
 
   const handleNext = () => {
@@ -77,20 +107,15 @@ const Step1_Beneficiaries = ({
     logEvent({
       event: "MINIGAME_MN2_COMPLETE",
       payload: {
-        selectedGroups,
+        selections,
         sessionID,
       },
     });
 
-    const data = { beneficiaries: { selectedGroups } };
-    onNext(data);
-  };
+    const selectionsArray = priorities.map((p) => ({ priority: p, beneficiaries: selections[p] || [] }));
 
-  const isSelectionDisabled = (groupId: string) => {
-    return (
-      selectedGroups.length >= maxSelections &&
-      !selectedGroups.includes(groupId)
-    );
+    const data = { beneficiaries: { selections: selectionsArray } };
+    onNext(data);
   };
 
   return (
@@ -110,133 +135,99 @@ const Step1_Beneficiaries = ({
         <div className="figma-style1-main">
           {/* Content Area */}
           <div className="figma-style1-content-area">
-            {/* Title */}
-            <div className="figma-style1-title-container">
-              <h1 className="figma-style1-title">คุณคิดว่าใครควรได้รับการลดค่าโดยสารรถไฟฟ้าบ้าง</h1>
-            </div>
+            {/* For each selected priority render a question block */}
+            {priorities.map((priority, idx) => (
+              <div key={priority} className="mb-8 w-full max-w-[334px]">
+                <div className="figma-style1-title-container mb-4">
+                  <h2 className="figma-style1-subtitle">{`คุณคิดว่าใครควรได้รับประโยชน์จาก ${priority} ?`}</h2>
+                </div>
 
-            {/* Selection Grid - Figma Layout */}
-            <div className="w-full max-w-[334px] mb-8">
-              {/* Top Row */}
-              <div className="flex justify-between items-start mb-8">
-                {beneficiaryGroups.slice(0, 3).map((group) => {
-                  const isSelected = selectedGroups.includes(group.id);
-                  const isDisabled = isSelectionDisabled(group.id);
+                {/* Selection Grid - same layout as original */}
+                <div className="mb-4">
+                  <div className="flex justify-between items-start mb-4">
+                    {beneficiaryGroups.slice(0, 3).map((group) => {
+                      const isSelected = (selections[priority] || []).includes(group.id);
+                      const isDisabled = isSelectionDisabled(priority, group.id);
 
-                  return (
-                    <div
-                      key={group.id}
-                      className="flex flex-col items-center cursor-pointer transition-all duration-200 hover:scale-105"
-                      onClick={() => !isDisabled && handleGroupToggle(group.id)}
-                      role="checkbox"
-                      aria-checked={isSelected}
-                      aria-disabled={isDisabled}
-                      tabIndex={isDisabled ? -1 : 0}
-                      onKeyDown={(e) => {
-                        if ((e.key === "Enter" || e.key === " ") && !isDisabled) {
-                          e.preventDefault();
-                          handleGroupToggle(group.id);
-                        }
-                      }}
-                    >
-                      {/* Circular Icon Background */}
-                      <div className={`w-[80px] h-[80px] rounded-full flex items-center justify-center mb-2 transition-all duration-200 ${
-                        isSelected ? "bg-black" : "bg-[#EFBA31]"
-                      }`}>
-                        <img
-                          src={group.iconSrc}
-                          alt={group.label}
-                          className="w-[50px] h-[50px] object-contain mix-blend-normal opacity-100"
-                          style={{ filter: "none" }}
-                        />
-                      </div>
-                      {/* Label */}
-                      <span className={`font-prompt text-lg font-medium text-center transition-all duration-200 ${
-                        isSelected ? "text-black" : "text-[#EFBA31]"
-                      }`}>
-                        {group.label}
-                      </span>
-                    </div>
-                  );
-                })}
+                      return (
+                        <div
+                          key={`${priority}-${group.id}`}
+                          className="flex flex-col items-center cursor-pointer transition-all duration-200 hover:scale-105"
+                          onClick={() => !isDisabled && handleGroupToggle(priority, group.id)}
+                          role="checkbox"
+                          aria-checked={isSelected}
+                          aria-disabled={isDisabled}
+                          tabIndex={isDisabled ? -1 : 0}
+                          onKeyDown={(e) => {
+                            if ((e.key === "Enter" || e.key === " ") && !isDisabled) {
+                              e.preventDefault();
+                              handleGroupToggle(priority, group.id);
+                            }
+                          }}
+                        >
+                          <div className={`w-[80px] h-[80px] rounded-full flex items-center justify-center mb-2 transition-all duration-200 ${
+                            isSelected ? "bg-black" : "bg-[#EFBA31]"
+                          }`}>
+                            <img src={group.iconSrc} alt={group.label} className="w-[50px] h-[50px] object-contain" style={{ filter: 'none' }} />
+                          </div>
+                          <span className={`font-prompt text-lg font-medium text-center ${isSelected ? 'text-black' : 'text-[#EFBA31]'}`}>
+                            {group.label}
+                          </span>
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  <div className="flex justify-between items-start">
+                    {beneficiaryGroups.slice(3, 6).map((group) => {
+                      const isSelected = (selections[priority] || []).includes(group.id);
+                      const isDisabled = isSelectionDisabled(priority, group.id);
+
+                      return (
+                        <div
+                          key={`${priority}-${group.id}`}
+                          className="flex flex-col items-center cursor-pointer transition-all duration-200 hover:scale-105"
+                          onClick={() => !isDisabled && handleGroupToggle(priority, group.id)}
+                          role="checkbox"
+                          aria-checked={isSelected}
+                          aria-disabled={isDisabled}
+                          tabIndex={isDisabled ? -1 : 0}
+                          onKeyDown={(e) => {
+                            if ((e.key === "Enter" || e.key === " ") && !isDisabled) {
+                              e.preventDefault();
+                              handleGroupToggle(priority, group.id);
+                            }
+                          }}
+                        >
+                          <div className={`w-[80px] h-[80px] rounded-full flex items-center justify-center mb-2 transition-all duration-200 ${
+                            isSelected ? "bg-black" : "bg-[#EFBA31]"
+                          }`}>
+                            <img src={group.iconSrc} alt={group.label} className="w-[50px] h-[50px] object-contain" style={{ filter: 'none' }} />
+                          </div>
+                          <span className={`font-prompt text-lg font-medium text-center ${isSelected ? 'text-black' : 'text-[#EFBA31]'}`}>
+                            {group.label}
+                          </span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Small helper showing selected labels */}
+                <div className="text-center mb-2">
+                  <span className="text-sm text-white">เลือกแล้ว: {(selections[priority] || []).map((id) => beneficiaryGroups.find((g) => g.id === id)?.label).join(', ') || 'ยังไม่เลือก'}</span>
+                </div>
               </div>
-              
-              {/* Bottom Row */}
-              <div className="flex justify-between items-start">
-                {beneficiaryGroups.slice(3, 6).map((group) => {
-                  const isSelected = selectedGroups.includes(group.id);
-                  const isDisabled = isSelectionDisabled(group.id);
-
-                  return (
-                    <div
-                      key={group.id}
-                      className="flex flex-col items-center cursor-pointer transition-all duration-200 hover:scale-105"
-                      onClick={() => !isDisabled && handleGroupToggle(group.id)}
-                      role="checkbox"
-                      aria-checked={isSelected}
-                      aria-disabled={isDisabled}
-                      tabIndex={isDisabled ? -1 : 0}
-                      onKeyDown={(e) => {
-                        if ((e.key === "Enter" || e.key === " ") && !isDisabled) {
-                          e.preventDefault();
-                          handleGroupToggle(group.id);
-                        }
-                      }}
-                    >
-                      {/* Circular Icon Background */}
-                      <div className={`w-[80px] h-[80px] rounded-full flex items-center justify-center mb-2 transition-all duration-200 ${
-                        isSelected ? "bg-black" : "bg-[#EFBA31]"
-                      }`}>
-                        <img
-                          src={group.iconSrc}
-                          alt={group.label}
-                          className="w-[50px] h-[50px] object-contain mix-blend-normal opacity-100"
-                          style={{ filter: "none" }}
-                        />
-                      </div>
-                      {/* Label */}
-                      <span className={`font-prompt text-lg font-medium text-center transition-all duration-200 ${
-                        isSelected ? "text-black" : "text-[#EFBA31]"
-                      }`}>
-                        {group.label}
-                      </span>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
+            ))}
 
             {/* Submit Button */}
             <div className="w-full max-w-[325px]">
               <button
                 onClick={handleNext}
-                disabled={selectedGroups.length === 0}
-                className={`w-full h-[53px] rounded-[40px] border-[1.5px] border-black flex items-center justify-center transition-all duration-200 ${
-                  selectedGroups.length === 0
-                    ? "bg-gray-400 cursor-not-allowed"
-                    : "figma-style1-button"
-                }`}
-                aria-describedby="next-button-description"
+                className={`w-full h-[53px] rounded-[40px] border-[1.5px] border-black flex items-center justify-center transition-all duration-200 figma-style1-button`}
               >
-                <span
-                  className={`figma-style1-button-text ${
-                    selectedGroups.length === 0
-                      ? "text-gray-600"
-                      : ""
-                  }`}
-                >
-                  ไปต่อ
-                </span>
+                <span className="figma-style1-button-text">ไปต่อ</span>
               </button>
-
-              {selectedGroups.length === 0 && (
-                <div
-                  id="next-button-description"
-                  className="text-center text-white text-sm mt-2"
-                >
-                  กรุณาเลือกอย่างน้อย 1 กลุ่มเพื่อดำเนินการต่อ
-                </div>
-              )}
             </div>
           </div>
         </div>
