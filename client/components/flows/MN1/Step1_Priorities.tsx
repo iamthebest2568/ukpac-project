@@ -110,7 +110,7 @@ const Step1_Priorities = ({
                       ? "bg-[#EFBA31] border-black"
                       : isSelectionDisabled("ลดค่าโดยสารรถไฟฟ้า")
                         ? "bg-gray-300 border-gray-400 cursor-not-allowed opacity-50"
-                        : "bg-white border-[#E4E9F2] hover:bg-black hover:scale-105 group"
+                        : "bg-[#EFBA31] border-black hover:bg-black hover:scale-105 group"
                   }`}
                   onClick={() => !isSelectionDisabled("ลดค่าโดยสารรถไฟฟ้า") && handlePriorityToggle("ลดค่าโดยสารรถไฟฟ้า")}
                   disabled={isSelectionDisabled("ลดค่าโดยสารรถไฟฟ้า")}
@@ -127,7 +127,7 @@ const Step1_Priorities = ({
                       ? "bg-[#EFBA31] border-black"
                       : isSelectionDisabled("ปรับปรุงคุณภาพรถเมล์")
                         ? "bg-gray-300 border-gray-400 cursor-not-allowed opacity-50"
-                        : "bg-white border-[#E4E9F2] hover:bg-black hover:scale-105 group"
+                        : "bg-[#EFBA31] border-black hover:bg-black hover:scale-105 group"
                   }`}
                   onClick={() => !isSelectionDisabled("ปรับปรุงคุณภาพรถเมล์") && handlePriorityToggle("ปรับปรุงคุณภาพรถเมล์")}
                   disabled={isSelectionDisabled("ปรับปรุงคุณภาพรถเมล์")}
@@ -148,7 +148,7 @@ const Step1_Priorities = ({
                       ? "bg-[#EFBA31] border-black"
                       : isSelectionDisabled("ตั๋วร่วม")
                         ? "bg-gray-300 border-gray-400 cursor-not-allowed opacity-50"
-                        : "bg-white border-[#E4E9F2] hover:bg-black hover:scale-105 group"
+                        : "bg-[#EFBA31] border-black hover:bg-black hover:scale-105 group"
                   }`}
                   onClick={() => !isSelectionDisabled("ตั๋วร่วม") && handlePriorityToggle("ตั๋วร่วม")}
                   disabled={isSelectionDisabled("ตั๋วร่วม")}
@@ -165,7 +165,7 @@ const Step1_Priorities = ({
                       ? "bg-[#EFBA31] border-black"
                       : isSelectionDisabled("เพิ่มความถี่รถเมล์")
                         ? "bg-gray-300 border-gray-400 cursor-not-allowed opacity-50"
-                        : "bg-white border-[#E4E9F2] hover:bg-black hover:scale-105 group"
+                        : "bg-[#EFBA31] border-black hover:bg-black hover:scale-105 group"
                   }`}
                   onClick={() => !isSelectionDisabled("เพิ่มความถี่รถเมล์") && handlePriorityToggle("เพิ่มความถี่รถเมล์")}
                   disabled={isSelectionDisabled("เพิ่มความถี่รถเมล์")}
@@ -182,7 +182,7 @@ const Step1_Priorities = ({
                       ? "bg-[#EFBA31] border-black"
                       : isSelectionDisabled("เพิ่มที่จอดรถ")
                         ? "bg-gray-300 border-gray-400 cursor-not-allowed opacity-50"
-                        : "bg-white border-[#E4E9F2] hover:bg-black hover:scale-105 group"
+                        : "bg-[#EFBA31] border-black hover:bg-black hover:scale-105 group"
                   }`}
                   onClick={() => !isSelectionDisabled("เพิ่มที่จอดรถ") && handlePriorityToggle("เพิ่มที่จอดรถ")}
                   disabled={isSelectionDisabled("เพิ่มที่จอดรถ")}
@@ -203,7 +203,7 @@ const Step1_Priorities = ({
                       ? "bg-[#EFBA31] border-black"
                       : isSelectionDisabled("เพิ่มความถี่รถไฟฟ้า")
                         ? "bg-gray-300 border-gray-400 cursor-not-allowed opacity-50"
-                        : "bg-white border-[#E4E9F2] hover:bg-black hover:scale-105 group"
+                        : "bg-[#EFBA31] border-black hover:bg-black hover:scale-105 group"
                   }`}
                   onClick={() => !isSelectionDisabled("เพิ่มความถี่รถไฟฟ้า") && handlePriorityToggle("เพิ่มความถี่รถไฟฟ้า")}
                   disabled={isSelectionDisabled("เพิ่มความถี่รถไฟฟ้า")}
@@ -220,7 +220,7 @@ const Step1_Priorities = ({
                       ? "bg-[#EFBA31] border-black"
                       : isSelectionDisabled("เพิ่ม Feeder ในซอย")
                         ? "bg-gray-300 border-gray-400 cursor-not-allowed opacity-50"
-                        : "bg-white border-[#E4E9F2] hover:bg-black hover:scale-105 group"
+                        : "bg-[#EFBA31] border-black hover:bg-black hover:scale-105 group"
                   }`}
                   onClick={() => !isSelectionDisabled("เพิ่ม Feeder ในซอย") && handlePriorityToggle("เพิ่ม Feeder ในซอย")}
                   disabled={isSelectionDisabled("เพิ่ม Feeder ในซอย")}
