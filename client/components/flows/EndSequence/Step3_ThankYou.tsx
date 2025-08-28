@@ -91,9 +91,9 @@ const Step3_ThankYou = ({ sessionID, onNext, onBack, journeyData }: Step3_ThankY
                 
                 <button
                   onClick={handleFinish}
-                  className="w-full h-[53px] rounded-[40px] bg-black border-none flex items-center justify-center transition-all duration-200 hover:scale-105 hover:shadow-lg"
+                  className="figma-style1-button--secondary"
                 >
-                  <span className="text-[#EFBA31] text-center font-prompt text-lg font-medium leading-7 tracking-[0.4px]">
+                  <span className="figma-style1-button-text">
                     จบเกม
                   </span>
                 </button>
