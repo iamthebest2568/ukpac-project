@@ -143,10 +143,11 @@ const Step1_Beneficiaries = ({
                       <div className={`w-[80px] h-[80px] rounded-full flex items-center justify-center mb-2 transition-all duration-200 ${
                         isSelected ? "bg-black" : "bg-[#EFBA31]"
                       }`}>
-                        <img 
-                          src={group.iconSrc} 
+                        <img
+                          src={group.iconSrc}
                           alt={group.label}
-                          className="w-[50px] h-[50px] object-contain"
+                          className="w-[50px] h-[50px] object-contain mix-blend-normal opacity-100"
+                          style={{ filter: "none" }}
                         />
                       </div>
                       {/* Label */}
@@ -186,10 +187,11 @@ const Step1_Beneficiaries = ({
                       <div className={`w-[80px] h-[80px] rounded-full flex items-center justify-center mb-2 transition-all duration-200 ${
                         isSelected ? "bg-black" : "bg-[#EFBA31]"
                       }`}>
-                        <img 
-                          src={group.iconSrc} 
+                        <img
+                          src={group.iconSrc}
                           alt={group.label}
-                          className="w-[50px] h-[50px] object-contain"
+                          className="w-[50px] h-[50px] object-contain mix-blend-normal opacity-100"
+                          style={{ filter: "none" }}
                         />
                       </div>
                       {/* Label */}
