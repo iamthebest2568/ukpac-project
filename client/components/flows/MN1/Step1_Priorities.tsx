@@ -72,7 +72,7 @@ const Step1_Priorities = ({
   };
 
   return (
-    <div className="min-h-screen bg-white flex justify-center">
+    <div className="figma-style1-container">
       <div className="w-full max-w-[390px] md:max-w-[420px] lg:max-w-[390px] min-h-screen bg-white overflow-hidden relative">
         {/* Background Image with Overlay */}
         <div className="absolute inset-0">
