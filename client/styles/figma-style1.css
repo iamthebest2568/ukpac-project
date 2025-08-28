@@ -70,6 +70,15 @@
   @apply w-full h-[53px] rounded-[40px] bg-[#EFBA31] border-[1.5px] border-black flex items-center justify-center transition-all duration-200 hover:scale-105 hover:shadow-lg hover:bg-black active:bg-black;
 }
 
+/* Secondary (dark) variant for figma-style1 buttons */
+.figma-style1-button--secondary {
+  @apply w-full h-[53px] rounded-[40px] bg-black border-none flex items-center justify-center transition-all duration-200 hover:scale-105 hover:shadow-lg;
+}
+
+.figma-style1-button--secondary .figma-style1-button-text {
+  @apply text-[#EFBA31];
+}
+
 .figma-style1-button-text {
   @apply text-black text-center font-prompt text-lg font-medium leading-7 tracking-[0.4px];
 }
