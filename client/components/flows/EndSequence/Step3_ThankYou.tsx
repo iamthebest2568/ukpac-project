@@ -5,6 +5,7 @@
 
 import { useState } from 'react';
 import { logEvent } from '../../../services/dataLogger.js';
+import { Dialog, DialogTrigger, DialogContent, DialogTitle, DialogDescription, DialogClose } from '../../ui/dialog';
 
 interface Step3_ThankYouProps {
   sessionID: string | null;
