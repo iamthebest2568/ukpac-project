@@ -1,6 +1,6 @@
 /**
  * UK PACK - MN2 Step 2: Policy Summary
- * Moved from PolicySummary component
+ * Redesigned to match Figma layout exactly
  */
 
 import { useEffect, useState } from "react";
@@ -14,7 +14,7 @@ interface Step2_SummaryProps {
 
 interface SummaryCard {
   priority: string;
-  beneficiaries: { label: string; icon: string }[];
+  beneficiaries: { label: string; iconSrc: string }[];
 }
 
 const Step2_Summary = ({
@@ -27,22 +27,34 @@ const Step2_Summary = ({
 
   // Beneficiary mapping for icons and labels
   const beneficiaryMapping = {
-    everyone: { label: "ทุกคน", icon: "👥" },
-    locals: { label: "คนในพื้นที่", icon: "🏘️" },
-    elderly: { label: "ผู้สูงอายุ", icon: "👴" },
-    students: { label: "นักเรียนนักศึกษา", icon: "🎓" },
-    disabled: { label: "คนพิการ", icon: "♿" },
-    other: { label: "อื่นๆ", icon: "❓" },
+    everyone: { 
+      label: "ทุกคน", 
+      iconSrc: "https://api.builder.io/api/v1/image/assets/TEMP/7cd80c386515c5c0009d1e49c28ba822cd0082f8?width=80"
+    },
+    locals: { 
+      label: "คนในพื้นที่", 
+      iconSrc: "https://api.builder.io/api/v1/image/assets/TEMP/272cf40c4b39c458339f5b7e24299b2d553f4837?width=74"
+    },
+    elderly: { 
+      label: "ผู้สูงอายุ", 
+      iconSrc: "https://api.builder.io/api/v1/image/assets/TEMP/085fb4ec7bf18e454a0e6b40dcba092aeb888728?width=70"
+    },
+    students: { 
+      label: "นักเรียน\nนักศึกษา", 
+      iconSrc: "https://api.builder.io/api/v1/image/assets/TEMP/c18a9a787fb93083a959b16fd6684229df17250f?width=52"
+    },
+    disabled: { 
+      label: "คนพิการ", 
+      iconSrc: "https://api.builder.io/api/v1/image/assets/TEMP/9633f8bb6d0c953adb33a0769227522a310bb01f?width=88"
+    },
+    other: { 
+      label: "อื่นๆ", 
+      iconSrc: "https://api.builder.io/api/v1/image/assets/TEMP/5a8e81b8e50e6e0ed69f435d1c09e3de070df984?width=82"
+    },
   };
 
   useEffect(() => {
     // Be flexible with incoming data shapes from different parts of the app.
-    // Possible shapes:
-    // - journeyData = { priorities: { selectedPriorities: string[] }, beneficiaries: { selections: [{priority, beneficiaries}] }}
-    // - journeyData = { mn1: { priorities: { selectedPriorities } }, mn2: { beneficiaries: { selections } } }
-    // - journeyData = { priorities: { selectedPriorities } , beneficiaries: { selectedGroups: string[] } } (legacy)
-
-    // Extract priorities from several possible locations
     const prioritiesData: string[] =
       journeyData?.priorities?.selectedPriorities ||
       journeyData?.mn1?.priorities?.selectedPriorities ||
@@ -50,7 +62,6 @@ const Step2_Summary = ({
       journeyData?.selectedPriorities ||
       [];
 
-    // Extract beneficiary selections (per-priority) from several possible locations
     let beneficiariesSelections: { priority: string; beneficiaries: string[] }[] =
       journeyData?.beneficiaries?.selections ||
       journeyData?.mn2?.beneficiaries?.selections ||
@@ -64,12 +75,10 @@ const Step2_Summary = ({
       beneficiariesSelections.length > 0 &&
       typeof beneficiariesSelections[0] === "string"
     ) {
-      // treat as flat array of ids applied to all priorities
       const flatIds = beneficiariesSelections as unknown as string[];
       beneficiariesSelections = prioritiesData.map((p) => ({ priority: p, beneficiaries: flatIds }));
     }
 
-    // If no per-priority selections exist but there's a legacy single selectedGroups array
     if (
       (journeyData?.beneficiaries?.selectedGroups && Array.isArray(journeyData.beneficiaries.selectedGroups)) &&
       (!beneficiariesSelections || beneficiariesSelections.length === 0) &&
@@ -85,10 +94,15 @@ const Step2_Summary = ({
       lookup[s.priority] = Array.isArray(s.beneficiaries) ? s.beneficiaries : [];
     });
 
-    // Create summary cards - map each priority to the selected beneficiaries (converted to label/icon)
+    // Create summary cards
     const cards: SummaryCard[] = prioritiesData.map((priority: string) => {
       const beneficiaryIds = lookup[priority] || [];
-      const beneficiaryObjects = beneficiaryIds.map((id: string) => (beneficiaryMapping as any)[id] || { label: id, icon: "❓" });
+      const beneficiaryObjects = beneficiaryIds.map((id: string) => 
+        (beneficiaryMapping as any)[id] || { 
+          label: id, 
+          iconSrc: "https://api.builder.io/api/v1/image/assets/TEMP/5a8e81b8e50e6e0ed69f435d1c09e3de070df984?width=82"
+        }
+      );
 
       return {
         priority,
@@ -99,122 +113,109 @@ const Step2_Summary = ({
     setSummaryCards(cards);
   }, [journeyData]);
 
-  const handleNext = () => {
-    const data = { summary: { summaryReviewed: true, summaryCards } };
+  const handleYes = () => {
+    const data = { summary: { summaryReviewed: true, summaryCards, confirmed: true } };
     onNext(data);
   };
 
+  const handleNo = () => {
+    const data = { summary: { summaryReviewed: true, summaryCards, confirmed: false } };
+    if (onBack) {
+      onBack();
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-white flex justify-center">
-      <div className="w-full max-w-[390px] md:max-w-[420px] lg:max-w-[390px] min-h-screen bg-white overflow-hidden relative">
-        {/* Background Image with Overlay */}
-        <div className="absolute inset-0">
-          <img
-            src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F946833431d4b46a0bde1c7d1bc32f67a"
-            alt="นโยบายสรุป"
-            className="w-full h-full object-cover object-center"
-            style={{ minWidth: "100%", aspectRatio: "2/3" }}
-          />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.90) 44.17%)",
-            }}
-          />
+    <div className="w-full max-w-[390px] min-h-screen bg-white overflow-hidden relative mx-auto">
+      {/* Background Image */}
+      <div className="absolute inset-0">
+        <img
+          src="https://api.builder.io/api/v1/image/assets/TEMP/800ce747c7dddce8b9f8a83f983aeec3551ce472?width=956"
+          alt="Background"
+          className="w-full h-full object-cover object-center"
+        />
+      </div>
+      
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black bg-opacity-90"></div>
+
+      {/* Content */}
+      <div className="relative z-10 flex flex-col min-h-screen px-8 py-11">
+        {/* Header */}
+        <div className="text-center mb-6">
+          <h1 className="text-white font-kanit text-[28px] font-normal leading-normal">
+            นี้คือนโยบายที่คุณเสนอ
+          </h1>
         </div>
 
-        {/* Main Content */}
-        <div className="relative z-10 flex flex-col min-h-screen">
-          {/* Content Area */}
-          <div className="flex-1 flex flex-col justify-end items-center px-6 md:px-8 pb-8 md:pb-12">
-            {/* Title */}
-            <div className="text-center mb-6 md:mb-8 max-w-[325px]">
-              <h1
-                className="text-white text-center font-kanit text-3xl font-normal leading-normal mb-4"
-                style={{ fontSize: "clamp(24px, 7.5vw, 30px)" }}
-              >
-                นโยบายเพิ่มเติมที่คุณเสนอ
-              </h1>
-            </div>
+        {/* Summary Cards */}
+        <div className="flex-1 space-y-4 mb-6">
+          {summaryCards.map((card, index) => (
+            <div
+              key={index}
+              className="relative w-full h-[155px] rounded-[10px] border-[1.5px] border-[#EFBA31]"
+            >
+              {/* Policy Name */}
+              <div className="absolute top-3 left-0 right-0">
+                <h3 className="text-[#EFBA31] font-kanit text-[18px] font-normal text-center leading-normal">
+                  {card.priority}
+                </h3>
+              </div>
 
-            {/* Summary Cards Section */}
-            <div className="w-full max-w-[325px] space-y-4 mb-6">
-              {summaryCards.map((card, index) => (
-                <div
-                  key={index}
-                  className="bg-white bg-opacity-90 rounded-[20px] p-4 border-[1.5px] border-black"
-                >
-                  {/* Policy Name */}
-                  <h3 className="font-kanit text-lg font-medium text-black mb-4 text-center">
-                    {card.priority}
-                  </h3>
-
-                  {/* Beneficiary Icons Row */}
-                  <div className="flex flex-wrap justify-center gap-3">
-                    {card.beneficiaries.map((beneficiary, beneficiaryIndex) => (
-                      <div
-                        key={beneficiaryIndex}
-                        className="flex flex-col items-center"
-                      >
-                        {/* Circular Icon */}
-                        <div className="w-10 h-10 bg-black rounded-full flex items-center justify-center mb-1">
-                          <span
-                            className="text-lg text-white"
-                            role="img"
-                            aria-label={beneficiary.label}
-                          >
-                            {beneficiary.icon}
-                          </span>
-                        </div>
-                        {/* Label underneath */}
-                        <span className="text-xs text-black font-prompt text-center max-w-[60px]">
-                          {beneficiary.label}
-                        </span>
-                      </div>
-                    ))}
-                    {/* Add placeholder icons to maintain visual consistency */}
-                    {Array.from(
-                      { length: Math.max(0, 3 - card.beneficiaries.length) },
-                      (_, i) => (
-                        <div
-                          key={`placeholder-${i}`}
-                          className="flex flex-col items-center opacity-30"
-                        >
-                          {/* Circular Icon - Placeholder */}
-                          <div className="w-10 h-10 bg-gray-400 rounded-full flex items-center justify-center mb-1">
-                            <span
-                              className="text-lg text-white"
-                              role="img"
-                              aria-label="placeholder"
-                            >
-                              ❓
-                            </span>
-                          </div>
-                          {/* Label underneath */}
-                          <span className="text-xs text-gray-500 font-prompt text-center">
-                            ----
-                          </span>
-                        </div>
-                      ),
-                    )}
+              {/* Beneficiary Icons */}
+              <div className="absolute top-12 left-0 right-0 flex justify-center gap-4 px-4">
+                {card.beneficiaries.map((beneficiary, beneficiaryIndex) => (
+                  <div
+                    key={beneficiaryIndex}
+                    className="flex flex-col items-center"
+                  >
+                    {/* Circular Icon Background */}
+                    <div className="w-[60px] h-[60px] rounded-full bg-[#EFBA31] flex items-center justify-center mb-1">
+                      <img
+                        src={beneficiary.iconSrc}
+                        alt={beneficiary.label}
+                        className="w-[40px] h-[29px] object-contain"
+                      />
+                    </div>
+                    {/* Label */}
+                    <span className="text-[#EFBA31] font-prompt text-[12px] font-medium text-center leading-3 whitespace-pre-line max-w-[86px]">
+                      {beneficiary.label}
+                    </span>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
+          ))}
+        </div>
 
-            {/* Submit Button */}
-            <div className="w-full max-w-[325px]">
-              <button
-                onClick={handleNext}
-                className="w-full h-[53px] rounded-[40px] bg-[#EFBA31] border-[1.5px] border-black flex items-center justify-center transition-all duration-200 hover:scale-105 hover:shadow-lg hover:bg-black active:bg-black group"
-              >
-                <span className="text-black text-center font-prompt text-lg font-medium leading-7 tracking-[0.4px] group-hover:text-[#EFBA31] group-active:text-[#EFBA31]">
-                  ไปต่อ
-                </span>
-              </button>
-            </div>
-          </div>
+        {/* Question */}
+        <div className="text-center mb-6">
+          <h2 className="text-white font-kanit text-[28px] font-normal leading-normal">
+            คุณพอใจหรือไม่
+          </h2>
+        </div>
+
+        {/* Action Buttons */}
+        <div className="space-y-4">
+          {/* Yes Button */}
+          <button
+            onClick={handleYes}
+            className="w-full h-[52px] rounded-[40px] bg-[#EFBA31] border-[1.5px] border-black flex items-center justify-center transition-all duration-200 hover:scale-105"
+          >
+            <span className="text-black font-prompt text-[18px] font-medium leading-7 tracking-[0.4px]">
+              ใช่
+            </span>
+          </button>
+
+          {/* No Button */}
+          <button
+            onClick={handleNo}
+            className="w-full h-[52px] rounded-[40px] bg-[#EFBA31] border-[1.5px] border-black flex items-center justify-center transition-all duration-200 hover:scale-105"
+          >
+            <span className="text-black font-prompt text-[18px] font-medium leading-7 tracking-[0.4px]">
+              ไม่ใช่
+            </span>
+          </button>
         </div>
       </div>
     </div>
