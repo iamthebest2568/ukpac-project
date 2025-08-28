@@ -24,7 +24,7 @@ const Step1_Priorities = ({
   const maxSelections = 3;
 
   const priorities = [
-    "ลดค่���โดยสารรถไฟฟ้า",
+    "ลดค่าโดยสารรถไฟฟ้า",
     "ปรับปรุงคุณภาพรถเมล์",
     "ตั๋วร่วม",
     "เพิ่มความถี่รถเมล์",
@@ -85,7 +85,7 @@ const Step1_Priorities = ({
         </div>
 
         {/* Main Content */}
-        <div className="relative z-10 flex flex-col min-h-screen">
+        <div className="figma-style1-main">
           {/* Content Area */}
           <div className="flex-1 flex flex-col justify-end items-center px-6 md:px-8 pb-8 md:pb-12">
             {/* Title */}
