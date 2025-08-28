@@ -113,7 +113,7 @@ const Step3_ThankYou = ({ sessionID, onNext, onBack, journeyData }: Step3_ThankY
     } catch (e) {
       // Fallback: prompt
       // eslint-disable-next-line no-alert
-      alert('คัดลอกลิงก์ไม่สำเร็จ กรุณาคัดลอกด้วยตนเอง: ' + plainUrl);
+      alert('คัดลอกลิงก์ไม่สำเร็จ กรุณาคัดลอกด้วย��นเอง: ' + plainUrl);
     }
   };
 
@@ -145,7 +145,7 @@ const Step3_ThankYou = ({ sessionID, onNext, onBack, journeyData }: Step3_ThankY
               {/* Title */}
               <div className="text-center mb-6">
                 <h1 className="text-white text-center font-kanit text-[30px] font-normal leading-normal">
-                  ขอบคุณ���ี่ร่วมเป็นส่วนหนึ่ง<br />
+                  ขอบคุณที่ร่วมเป็นส่วนหนึ่ง<br />
                   ในการพัฒนาเมือง
                 </h1>
                 <p className="text-white text-center font-prompt mt-4">
@@ -164,10 +164,10 @@ const Step3_ThankYou = ({ sessionID, onNext, onBack, journeyData }: Step3_ThankY
 
                   <DialogContent className="p-6 bg-white rounded-lg">
                     <DialogTitle className="font-kanit text-lg text-black mb-3">แชร์เกมนี้</DialogTitle>
-                    <DialogDescription className="text-sm text-gray-600 mb-4">เลือกแพลตฟอร์มที่ต้องการแชร์</DialogDescription>
+                    <DialogDescription className="text-sm text-gray-600 mb-4">เลือกแพลตฟอร์มที���ต้องการแชร์</DialogDescription>
 
                     <div className="grid grid-cols-2 gap-3 mb-4">
-                      <button className="figma-style1-button" onClick={handleShareFacebook} aria-label="แช���์ไปยัง Facebook">Facebook</button>
+                      <button className="figma-style1-button" onClick={handleShareFacebook} aria-label="แชร์ไปยัง Facebook">Facebook</button>
                       <button className="figma-style1-button" onClick={handleShareX} aria-label="แชร์ไปยัง X">X</button>
                       <button className="figma-style1-button" onClick={handleShareLine} aria-label="แชร์ไปยัง LINE">LINE</button>
                       <button className="figma-style1-button" onClick={handleShareWhatsApp} aria-label="แชร์ไปยัง WhatsApp">WhatsApp</button>
