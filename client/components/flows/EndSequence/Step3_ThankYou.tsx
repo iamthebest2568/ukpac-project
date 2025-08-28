@@ -146,7 +146,7 @@ const Step3_ThankYou = ({ sessionID, onNext, onBack, journeyData }: Step3_ThankY
                     </button>
                   </DialogTrigger>
 
-                  <DialogContent className="p-6">
+                  <DialogContent className="p-6 bg-white rounded-lg">
                     <DialogTitle className="font-kanit text-lg text-black mb-3">แชร์เกมนี้</DialogTitle>
                     <DialogDescription className="text-sm text-gray-600 mb-4">เลือกแพลตฟอร์มที่ต้องการแชร์</DialogDescription>
 
