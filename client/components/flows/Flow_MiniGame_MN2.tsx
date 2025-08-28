@@ -56,6 +56,7 @@ const Flow_MiniGame_MN2 = ({ sessionID, onComplete, onBack, mn1Data }: Flow_Mini
             sessionID={sessionID}
             onNext={handleStepComplete}
             onBack={handleStepBack}
+            mn1Data={mn1Data}
             initialData={flowData.beneficiaries}
           />
         );
