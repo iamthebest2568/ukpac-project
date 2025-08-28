@@ -87,7 +87,7 @@ const Step1_Priorities = ({
         {/* Main Content */}
         <div className="figma-style1-main">
           {/* Content Area */}
-          <div className="flex-1 flex flex-col justify-end items-center px-6 md:px-8 pb-8 md:pb-12">
+          <div className="figma-style1-content-area">
             {/* Title */}
             <div className="text-center mb-6 md:mb-8 max-w-[325px]">
               <h1
