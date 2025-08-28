@@ -107,7 +107,7 @@ const Step1_Priorities = ({
                 <button
                   className={`w-[163px] h-[41px] rounded-[40px] border transition-all duration-200 ${
                     selectedPriorities.includes("ลดค่าโดยสารรถไฟฟ้า")
-                      ? "bg-[#EFBA31] border-black"
+                      ? "bg-black border-black"
                       : isSelectionDisabled("ลดค่าโดยสารรถไฟฟ้า")
                         ? "bg-gray-300 border-gray-400 cursor-not-allowed opacity-50"
                         : "bg-[#EFBA31] border-black hover:bg-black hover:scale-105 group"
@@ -116,7 +116,7 @@ const Step1_Priorities = ({
                   disabled={isSelectionDisabled("ลดค่าโดยสารรถไฟฟ้า")}
                 >
                   <span className={`figma-style1-button-text text-[15px] ${
-                    selectedPriorities.includes("ลดค่าโดยสารรถไฟฟ้า") ? "font-semibold text-black" : "font-medium text-black group-hover:text-[#EFBA31]"
+                    selectedPriorities.includes("ลดค่าโดยสารรถไฟฟ้า") ? "font-semibold text-[#EFBA31]" : "font-medium text-black group-hover:text-[#EFBA31]"
                   }`} style={{ letterSpacing: "0.4px" }}>
                     ลดค่าโดยสารรถไฟฟ้า
                   </span>
@@ -124,7 +124,7 @@ const Step1_Priorities = ({
                 <button
                   className={`w-[179px] h-[41px] rounded-[40px] border transition-all duration-200 ${
                     selectedPriorities.includes("ปรับปรุงคุณภาพรถเมล์")
-                      ? "bg-[#EFBA31] border-black"
+                      ? "bg-black border-black"
                       : isSelectionDisabled("ปรับปรุงคุณภาพรถเมล์")
                         ? "bg-gray-300 border-gray-400 cursor-not-allowed opacity-50"
                         : "bg-[#EFBA31] border-black hover:bg-black hover:scale-105 group"
@@ -133,7 +133,7 @@ const Step1_Priorities = ({
                   disabled={isSelectionDisabled("ปรับปรุงคุณภาพรถเมล์")}
                 >
                   <span className={`figma-style1-button-text text-[15px] ${
-                    selectedPriorities.includes("ปรับปรุงคุณภาพรถเมล์") ? "font-semibold text-black" : "font-medium text-black group-hover:text-[#EFBA31]"
+                    selectedPriorities.includes("ปรับปรุงคุณภาพรถเมล์") ? "font-semibold text-[#EFBA31]" : "font-medium text-black group-hover:text-[#EFBA31]"
                   }`} style={{ letterSpacing: "0.4px" }}>
                     ปรับปรุงคุณภาพรถเมล์
                   </span>
@@ -145,7 +145,7 @@ const Step1_Priorities = ({
                 <button
                   className={`w-[75px] h-[41px] rounded-[40px] border transition-all duration-200 ${
                     selectedPriorities.includes("ตั๋วร่วม")
-                      ? "bg-[#EFBA31] border-black"
+                      ? "bg-black border-black"
                       : isSelectionDisabled("ตั๋วร่วม")
                         ? "bg-gray-300 border-gray-400 cursor-not-allowed opacity-50"
                         : "bg-[#EFBA31] border-black hover:bg-black hover:scale-105 group"
@@ -154,7 +154,7 @@ const Step1_Priorities = ({
                   disabled={isSelectionDisabled("ตั๋วร่วม")}
                 >
                   <span className={`figma-style1-button-text text-[15px] ${
-                    selectedPriorities.includes("ตั๋วร่วม") ? "font-semibold text-black" : "font-medium text-black group-hover:text-[#EFBA31]"
+                    selectedPriorities.includes("ตั๋วร่วม") ? "font-semibold text-[#EFBA31]" : "font-medium text-black group-hover:text-[#EFBA31]"
                   }`} style={{ letterSpacing: "0.4px" }}>
                     ตั๋วร่วม
                   </span>
@@ -162,7 +162,7 @@ const Step1_Priorities = ({
                 <button
                   className={`w-[148px] h-[41px] rounded-[40px] border transition-all duration-200 ${
                     selectedPriorities.includes("เพิ่มความถี่รถเมล์")
-                      ? "bg-[#EFBA31] border-black"
+                      ? "bg-black border-black"
                       : isSelectionDisabled("เพิ่มความถี่รถเมล์")
                         ? "bg-gray-300 border-gray-400 cursor-not-allowed opacity-50"
                         : "bg-[#EFBA31] border-black hover:bg-black hover:scale-105 group"
@@ -171,7 +171,7 @@ const Step1_Priorities = ({
                   disabled={isSelectionDisabled("เพิ่มความถี่รถเมล์")}
                 >
                   <span className={`figma-style1-button-text text-[15px] ${
-                    selectedPriorities.includes("เพิ่มความถี่รถเมล์") ? "font-semibold text-black" : "font-medium text-black group-hover:text-[#EFBA31]"
+                    selectedPriorities.includes("เพิ่มความถี่รถเมล์") ? "font-semibold text-[#EFBA31]" : "font-medium text-black group-hover:text-[#EFBA31]"
                   }`} style={{ letterSpacing: "0.4px" }}>
                     เพิ่มความถี่รถเมล์
                   </span>
@@ -179,7 +179,7 @@ const Step1_Priorities = ({
                 <button
                   className={`w-[110px] h-[41px] rounded-[40px] border transition-all duration-200 ${
                     selectedPriorities.includes("เพิ่มที่จอดรถ")
-                      ? "bg-[#EFBA31] border-black"
+                      ? "bg-black border-black"
                       : isSelectionDisabled("เพิ่มที่จอดรถ")
                         ? "bg-gray-300 border-gray-400 cursor-not-allowed opacity-50"
                         : "bg-[#EFBA31] border-black hover:bg-black hover:scale-105 group"
@@ -188,7 +188,7 @@ const Step1_Priorities = ({
                   disabled={isSelectionDisabled("เพิ่มที่จอดรถ")}
                 >
                   <span className={`figma-style1-button-text text-[15px] ${
-                    selectedPriorities.includes("เพิ่มที่จอดรถ") ? "font-semibold text-black" : "font-medium text-black group-hover:text-[#EFBA31]"
+                    selectedPriorities.includes("เพิ่มที่จอดรถ") ? "font-semibold text-[#EFBA31]" : "font-medium text-black group-hover:text-[#EFBA31]"
                   }`} style={{ letterSpacing: "0.4px" }}>
                     เพิ่มที่จอดรถ
                   </span>
@@ -200,7 +200,7 @@ const Step1_Priorities = ({
                 <button
                   className={`w-[163px] h-[41px] rounded-[40px] border transition-all duration-200 ${
                     selectedPriorities.includes("เพิ่มความถี่รถไฟฟ้า")
-                      ? "bg-[#EFBA31] border-black"
+                      ? "bg-black border-black"
                       : isSelectionDisabled("เพิ่มความถี่รถไฟฟ้า")
                         ? "bg-gray-300 border-gray-400 cursor-not-allowed opacity-50"
                         : "bg-[#EFBA31] border-black hover:bg-black hover:scale-105 group"
@@ -209,7 +209,7 @@ const Step1_Priorities = ({
                   disabled={isSelectionDisabled("เพิ่มความถี่รถไฟฟ้า")}
                 >
                   <span className={`figma-style1-button-text text-[15px] ${
-                    selectedPriorities.includes("เพิ่มความถี่รถไฟฟ้า") ? "font-semibold text-black" : "font-medium text-black group-hover:text-[#EFBA31]"
+                    selectedPriorities.includes("เพิ่มความถี่รถไฟฟ้า") ? "font-semibold text-[#EFBA31]" : "font-medium text-black group-hover:text-[#EFBA31]"
                   }`} style={{ letterSpacing: "0.4px" }}>
                     เพิ่มความถี่รถไฟฟ้า
                   </span>
@@ -217,7 +217,7 @@ const Step1_Priorities = ({
                 <button
                   className={`w-[167px] h-[41px] rounded-[40px] border transition-all duration-200 ${
                     selectedPriorities.includes("เพิ่ม Feeder ในซอย")
-                      ? "bg-[#EFBA31] border-black"
+                      ? "bg-black border-black"
                       : isSelectionDisabled("เพิ่ม Feeder ในซอย")
                         ? "bg-gray-300 border-gray-400 cursor-not-allowed opacity-50"
                         : "bg-[#EFBA31] border-black hover:bg-black hover:scale-105 group"
@@ -226,7 +226,7 @@ const Step1_Priorities = ({
                   disabled={isSelectionDisabled("เพิ่ม Feeder ในซอย")}
                 >
                   <span className={`figma-style1-button-text text-[15px] ${
-                    selectedPriorities.includes("เพิ่ม Feeder ในซอย") ? "font-semibold text-black" : "font-medium text-black group-hover:text-[#EFBA31]"
+                    selectedPriorities.includes("เพิ่ม Feeder ในซอย") ? "font-semibold text-[#EFBA31]" : "font-medium text-black group-hover:text-[#EFBA31]"
                   }`} style={{ letterSpacing: "0.4px" }}>
                     เพิ่ม Feeder ในซอย
                   </span>
