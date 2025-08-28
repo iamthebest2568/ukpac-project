@@ -37,23 +37,28 @@ const Step2_Summary = ({
 
   useEffect(() => {
     // Extract data from journey
-    const prioritiesData = journeyData?.priorities?.selectedPriorities || [];
-    const beneficiariesData = journeyData?.beneficiaries?.selectedGroups || [];
+    const prioritiesData: string[] = journeyData?.priorities?.selectedPriorities || [];
+    const beneficiariesSelections: { priority: string; beneficiaries: string[] }[] =
+      journeyData?.beneficiaries?.selections || [];
 
-    // Convert beneficiary IDs to display objects with icons and labels
-    const beneficiaryObjects = beneficiariesData.map(
-      (id: string) =>
-        beneficiaryMapping[id as keyof typeof beneficiaryMapping] || {
-          label: id,
-          icon: "❓",
-        },
-    );
+    // Build a lookup map for beneficiaries by priority
+    const lookup: Record<string, string[]> = {};
+    beneficiariesSelections.forEach((s) => {
+      lookup[s.priority] = Array.isArray(s.beneficiaries) ? s.beneficiaries : [];
+    });
 
-    // Create summary cards - map each priority to the selected beneficiaries
-    const cards: SummaryCard[] = prioritiesData.map((priority: string) => ({
-      priority,
-      beneficiaries: beneficiaryObjects,
-    }));
+    // Create summary cards - map each priority to the selected beneficiaries (converted to label/icon)
+    const cards: SummaryCard[] = prioritiesData.map((priority: string) => {
+      const beneficiaryIds = lookup[priority] || [];
+      const beneficiaryObjects = beneficiaryIds.map((id: string) =>
+        (beneficiaryMapping as any)[id] || { label: id, icon: "❓" },
+      );
+
+      return {
+        priority,
+        beneficiaries: beneficiaryObjects,
+      };
+    });
 
     setSummaryCards(cards);
   }, [journeyData]);
