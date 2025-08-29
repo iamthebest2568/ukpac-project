@@ -28,13 +28,14 @@ const Step3_Result = ({
   journeyData,
 }: Step3_ResultProps) => {
   const [resultSummary, setResultSummary] = useState<ResultSummary[]>([]);
+  const { navigateToPage, setFlowData } = useSession();
 
   // Icons mapping for priorities
   const priorityIcons: { [key: string]: string } = {
     ลดค่าโดยสารรถไฟฟ้า: "🚇",
     ปรับปรุงคุณภาพรถเมล์: "🚌",
     ตั๋วร่วม: "🎫",
-    เพิ่มความถี่รถเมล์: "🚍",
+    เพิ���มความถี่รถเมล์: "🚍",
     เพิ่มความถี่รถไฟฟ้า: "🚊",
     เพิ่มที่จอดรถ: "🅿️",
     "เพิ่ม feeder ในซอย": "🚐",
@@ -80,7 +81,12 @@ const Step3_Result = ({
     const data = {
       budget_step3_result: { budgetResultReviewed: true, satisfaction: "ใช่", resultSummary },
     };
-    onNext(data);
+
+    // Save flow data
+    setFlowData((prev) => ({ ...prev, mn3: { ...journeyData, ...data } }));
+
+    // Navigate to FakeNewsPage for satisfied users
+    navigateToPage("/fake-news");
   };
 
   const handleNo = () => {
@@ -100,7 +106,12 @@ const Step3_Result = ({
     const data = {
       budget_step3_result: { budgetResultReviewed: true, satisfaction: "ไม่ใช่", resultSummary },
     };
-    onNext(data);
+
+    // Save flow data
+    setFlowData((prev) => ({ ...prev, mn3: { ...journeyData, ...data } }));
+
+    // Navigate to Ask05Page for unsatisfied users
+    navigateToPage("/ask05");
   };
 
   return (
