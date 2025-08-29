@@ -65,6 +65,10 @@ const FigmaStyle1Layout: React.FC<FigmaStyle1LayoutProps> = ({
                 objectFit: 'cover',
                 objectPosition: 'center'
               }}
+              onLoadStart={() => console.log('Video loading started')}
+              onCanPlay={() => console.log('Video can play')}
+              onError={(e) => console.error('Video error:', e)}
+              onLoadedData={() => console.log('Video data loaded')}
             />
           ) : (
             <img
