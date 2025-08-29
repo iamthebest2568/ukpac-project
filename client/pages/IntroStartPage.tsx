@@ -13,12 +13,15 @@ const IntroStartPage = () => {
       backgroundImage="https://cdn.builder.io/o/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Faf32686a3c3d417994a2e2311560fea3?alt=media&token=cd0a67ee-b882-4eaa-a103-6640da4da97e&apiKey=0eb7afe56fd645b8b4ca090471cef081"
       backgroundAlt="Intro background"
       isVideo={true}
-      title="เริ่มต้นการสำรวจ"
+      title={`แล้วถ้าหากวันหนึ่งมี
+การเก็บค่าธรรมเนียม
+เพื่อแก้ไขปัญหาจราจร
+จะเป็นอย่างไร...`}
       buttons={[
         {
-          text: "เริ่มต้น",
+          text: "เริ่มเล่น",
           onClick: handleStart,
-          ariaLabel: "เริ่มต้นการสำรวจ"
+          ariaLabel: "เริ่มเล่นเกม"
         }
       ]}
     />
