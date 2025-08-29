@@ -21,7 +21,16 @@ export const useSession = (): UseSessionReturn => {
   const [searchParams] = useSearchParams();
   const [sessionID, setSessionID] = useState<string>("");
   const [userJourneyData, setUserJourneyData] = useState<any>({});
-  const [flowData, setFlowData] = useState<any>({});
+  const [flowData, setFlowData] = useState<any>(() => {
+    // Initialize flowData from sessionStorage if available
+    try {
+      const stored = sessionStorage.getItem('flowData');
+      return stored ? JSON.parse(stored) : {};
+    } catch (error) {
+      console.error('Error loading flowData from sessionStorage:', error);
+      return {};
+    }
+  });
 
   useEffect(() => {
     // Get or create session ID
