@@ -99,12 +99,29 @@ export const useSession = (): UseSessionReturn => {
     navigate(fullPath);
   };
 
+  const debugSetFlowData = (data: any) => {
+    console.log("=== useSession setFlowData ===");
+    console.log("Setting flowData with:", data);
+    if (typeof data === 'function') {
+      setFlowData((prev) => {
+        console.log("Previous flowData:", prev);
+        const result = data(prev);
+        console.log("New flowData:", result);
+        return result;
+      });
+    } else {
+      console.log("Direct flowData set:", data);
+      setFlowData(data);
+    }
+    console.log("=== End useSession setFlowData ===");
+  };
+
   return {
     sessionID,
     userJourneyData,
     flowData,
     setUserJourneyData,
-    setFlowData,
+    setFlowData: debugSetFlowData,
     navigateToPage,
   };
 };
