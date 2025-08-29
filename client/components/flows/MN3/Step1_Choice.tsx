@@ -1,6 +1,6 @@
 /**
  * UK PACK - MN3 Step 1: Budget Choice Selection
- * Carefully encoded Thai text with proper button sizing
+ * Fixed Thai text encoding
  */
 
 import { useState } from "react";
@@ -23,14 +23,15 @@ const Step1_Choice = ({
     useState<string[]>(initialData);
   const maxSelections = 3;
 
-  const priorities = [
-    "��ดค่าโดยสารรถไฟฟ้า",
-    "ปรับปรุงคุณภาพรถเมล์",
+  // Define priorities with explicit UTF-8 encoding
+  const priorityList = [
+    "ลดค่าโดยสารรถไฟฟ้า",
+    "ปรับปรุงคุณภาพรถเมล์", 
     "ตั๋วร่วม",
     "เพิ่มความถี่รถเมล์",
     "เพิ่มที่จอดรถ",
     "เพิ่มความถี่รถไฟฟ้า",
-    "เพิ่ม Feeder ในซอย",
+    "เพิ่ม Feeder ในซอย"
   ];
 
   const buttonWidths = {
@@ -48,10 +49,8 @@ const Step1_Choice = ({
       const isSelected = prev.includes(priority);
 
       if (isSelected) {
-        // Remove if already selected
         return prev.filter((p) => p !== priority);
       } else {
-        // Add if not selected and under limit
         if (prev.length < maxSelections) {
           return [...prev, priority];
         }
@@ -61,7 +60,6 @@ const Step1_Choice = ({
   };
 
   const handleNext = () => {
-    // Log the budget choice selection
     logEvent({
       event: "BUDGET_STEP1_COMPLETE",
       payload: {
@@ -84,7 +82,6 @@ const Step1_Choice = ({
   return (
     <div className="figma-style1-container">
       <div className="figma-style1-content">
-        {/* Background Image with Overlay */}
         <div className="figma-style1-background">
           <img
             src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F946833431d4b46a0bde1c7d1bc32f67a"
@@ -94,27 +91,22 @@ const Step1_Choice = ({
           <div className="figma-style1-background-overlay" />
         </div>
 
-        {/* Main Content */}
         <div className="figma-style1-main">
-          {/* Content Area */}
           <div className="figma-style1-content-area">
-            {/* Title */}
             <div className="figma-style1-title-container">
               <h1 className="figma-style1-title">คุณคิดว่าควรใช้เงินที่ได้จากการเก็บไปพัฒนาอะไร</h1>
             </div>
 
-            {/* Subtitle */}
             <div className="text-center mb-6">
               <p className="text-white font-kanit text-lg font-normal">
                 ไม่เกิน 3 นโยบาย
               </p>
             </div>
 
-            {/* Selection Items - Exact Figma Layout */}
             <div className="w-full max-w-[354px] mb-8">
               {/* Row 1 */}
               <div className="flex gap-2 mb-3">
-                {priorities.slice(0, 2).map((priority) => (
+                {priorityList.slice(0, 2).map((priority) => (
                   <button
                     key={priority}
                     className={`${buttonWidths[priority]} h-[41px] rounded-[40px] border transition-all duration-200 ${
@@ -138,7 +130,7 @@ const Step1_Choice = ({
 
               {/* Row 2 */}
               <div className="flex gap-2 mb-3">
-                {priorities.slice(2, 5).map((priority) => (
+                {priorityList.slice(2, 5).map((priority) => (
                   <button
                     key={priority}
                     className={`${buttonWidths[priority]} h-[41px] rounded-[40px] border transition-all duration-200 ${
@@ -162,7 +154,7 @@ const Step1_Choice = ({
 
               {/* Row 3 */}
               <div className="flex gap-2">
-                {priorities.slice(5).map((priority) => (
+                {priorityList.slice(5).map((priority) => (
                   <button
                     key={priority}
                     className={`${buttonWidths[priority]} h-[41px] rounded-[40px] border transition-all duration-200 ${
@@ -185,7 +177,6 @@ const Step1_Choice = ({
               </div>
             </div>
 
-            {/* Submit Button */}
             <div className="w-full max-w-[325px]">
               <button
                 onClick={handleNext}
