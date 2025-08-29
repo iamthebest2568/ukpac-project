@@ -97,11 +97,7 @@ const Flow_MiniGame_MN2 = ({ sessionID, onComplete, onBack, mn1Data }: Flow_Mini
       const currentPriority = priorities[currentStep - 1];
       const currentPriorityIndex = currentStep - 1;
       const initialBeneficiaries = flowData.beneficiarySelections[currentPriority]?.beneficiaries || [];
-      
-      console.log("Rendering beneficiary step for:", currentPriority);
-      console.log("Step", currentStep, "of", priorities.length);
-      console.log("Initial beneficiaries:", initialBeneficiaries);
-      
+
       return (
         <Step1_Beneficiaries
           sessionID={sessionID}
