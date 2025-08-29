@@ -60,9 +60,8 @@ const Flow_MiniGame_MN2 = ({ sessionID, onComplete, onBack, mn1Data }: Flow_Mini
         }
       };
       
-      console.log("Updated flowData:", updatedFlowData);
       setFlowData(updatedFlowData);
-      
+
       // Move to next step
       setCurrentStep(currentStep + 1);
     }
