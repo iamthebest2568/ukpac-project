@@ -57,6 +57,11 @@
   font-size: clamp(24px, 7.5vw, 30px);
 }
 
+.figma-style1-subtitle {
+  @apply text-white text-center font-kanit text-2xl font-normal leading-normal;
+  font-size: clamp(20px, 6vw, 24px);
+}
+
 .figma-style1-title-container {
   @apply text-center mb-8 md:mb-12 max-w-[325px];
 }
