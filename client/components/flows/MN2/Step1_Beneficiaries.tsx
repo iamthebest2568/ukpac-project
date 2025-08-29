@@ -29,9 +29,14 @@ const Step1_Beneficiaries = ({
   const priorities: string[] =
     mn1Data?.priorities?.selectedPriorities && mn1Data.priorities.selectedPriorities.length > 0
       ? mn1Data.priorities.selectedPriorities
-      : ["ลดค่าโดยสารรถไฟฟ้า"];
+      : [];
 
   console.log("Final priorities to use:", priorities);
+
+  if (priorities.length === 0) {
+    console.warn("⚠️ No priorities found from MN1! User needs to go back and select priorities first.");
+  }
+
   console.log("=== End Step1_Beneficiaries Component Init ===");
 
   // selections per priority: Record<priority, string[]>
@@ -155,7 +160,7 @@ const Step1_Beneficiaries = ({
             {priorities.map((priority, idx) => (
               <div key={priority} className="mb-8 w-full max-w-[334px]">
                 <div className="figma-style1-title-container mb-4">
-                  <h2 className="figma-style1-subtitle">{`คุณคิดว่าใครควรได้รับประโยชน์จาก ${priority} ?`}</h2>
+                  <h2 className="figma-style1-subtitle">{`คุณคิดว่าใคร��วรได้รับประโยชน์จาก ${priority} ?`}</h2>
                 </div>
 
                 {/* Selection Grid - same layout as original */}
