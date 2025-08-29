@@ -1,10 +1,12 @@
 import React from "react";
 
 interface FigmaStyle1LayoutProps {
-  /** Background image URL */
+  /** Background image URL or video URL */
   backgroundImage: string;
   /** Alt text for background image */
   backgroundAlt?: string;
+  /** Whether the background is a video */
+  isVideo?: boolean;
   /** Title text to display */
   title: string;
   /** Array of button configurations */
