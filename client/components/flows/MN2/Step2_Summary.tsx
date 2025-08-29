@@ -166,7 +166,7 @@ const Step2_Summary = ({
                         key={beneficiaryIndex}
                         className="flex flex-col items-center justify-start"
                         style={{
-                          width: card.beneficiaries.length <= 3 ? '85px' : card.beneficiaries.length <= 4 ? '75px' : '65px'
+                          width: card.beneficiaries.length <= 3 ? '85px' : card.beneficiaries.length <= 4 ? '75px' : card.beneficiaries.length === 6 ? '80px' : '65px'
                         }}
                       >
                         {/* Circular Icon Background */}
