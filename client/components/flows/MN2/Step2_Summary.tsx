@@ -4,7 +4,7 @@
  */
 
 import { useEffect, useState } from "react";
-import { useSession } from "../../hooks/useSession";
+import { useSession } from "../../../hooks/useSession";
 
 interface Step2_SummaryProps {
   sessionID: string | null;
