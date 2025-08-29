@@ -10,6 +10,17 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 
+// Intro pages
+import IntroStartPage from "./pages/IntroStartPage";
+import IntroWhoAreYouPage from "./pages/IntroWhoAreYouPage";
+import IntroGenderPage from "./pages/IntroGenderPage";
+import IntroGroupSelectionPage from "./pages/IntroGroupSelectionPage";
+import IntroTravelModeCityPage from "./pages/IntroTravelModeCityPage";
+import IntroTravelFreqCityPage from "./pages/IntroTravelFreqCityPage";
+import IntroPolicyThoughtsPage from "./pages/IntroPolicyThoughtsPage";
+import IntroReplyFriendPage from "./pages/IntroReplyFriendPage";
+import IntroPolicyFeelPage from "./pages/IntroPolicyFeelPage";
+
 // Journey pages
 import Ask01Page from "./pages/Ask01Page";
 import Ask02Page from "./pages/Ask02Page";
@@ -57,8 +68,19 @@ const App = () => (
         <Layout>
           <Routes>
             {/* Main pages */}
-            <Route path="/" element={<Ask01Page />} />
+            <Route path="/" element={<IntroStartPage />} />
             <Route path="/index" element={<Index />} />
+
+            {/* Intro pages */}
+            <Route path="/intro-start" element={<IntroStartPage />} />
+            <Route path="/intro-who-are-you" element={<IntroWhoAreYouPage />} />
+            <Route path="/intro-gender" element={<IntroGenderPage />} />
+            <Route path="/intro-group-selection" element={<IntroGroupSelectionPage />} />
+            <Route path="/intro-travel-mode-city" element={<IntroTravelModeCityPage />} />
+            <Route path="/intro-travel-freq-city" element={<IntroTravelFreqCityPage />} />
+            <Route path="/intro-policy-thoughts" element={<IntroPolicyThoughtsPage />} />
+            <Route path="/intro-reply-friend" element={<IntroReplyFriendPage />} />
+            <Route path="/intro-policy-feel" element={<IntroPolicyFeelPage />} />
 
             {/* Survey journey pages */}
             <Route path="/ask01" element={<Ask01Page />} />
