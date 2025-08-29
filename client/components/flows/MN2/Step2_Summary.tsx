@@ -132,26 +132,29 @@ const Step2_Summary = ({
             {summaryCards.map((card, index) => (
               <div
                 key={index}
-                className="relative w-full h-[155px] rounded-[10px] border-[1.5px] border-[#EFBA31] bg-transparent"
+                className="w-full rounded-[10px] border-[1.5px] border-[#EFBA31] bg-transparent overflow-hidden"
+                style={{
+                  minHeight: 'auto',
+                  paddingBottom: '16px'
+                }}
               >
                 {/* Policy Name */}
-                <div className="absolute top-3 left-0 right-0">
+                <div className="pt-3 pb-2 px-4">
                   <h3 className="text-[#EFBA31] font-kanit text-[18px] font-normal text-center leading-normal">
                     {card.priority}
                   </h3>
                 </div>
 
                 {/* Beneficiary Icons */}
-                <div className="absolute top-10 left-0 right-0 px-3">
+                <div className="px-4 pb-2">
                   <div
-                    className={`flex flex-wrap justify-center items-start gap-x-3 gap-y-2 ${
+                    className={`flex flex-wrap justify-center items-start gap-x-3 gap-y-3 ${
                       card.beneficiaries.length <= 3
                         ? 'max-w-[280px]'
                         : 'max-w-[320px]'
                     }`}
                     style={{
-                      margin: '0 auto',
-                      minHeight: '100px'
+                      margin: '0 auto'
                     }}
                   >
                     {card.beneficiaries.map((beneficiary, beneficiaryIndex) => (
@@ -159,7 +162,6 @@ const Step2_Summary = ({
                         key={beneficiaryIndex}
                         className="flex flex-col items-center justify-start"
                         style={{
-                          minHeight: '85px',
                           width: card.beneficiaries.length <= 3 ? '85px' : card.beneficiaries.length <= 4 ? '75px' : '65px'
                         }}
                       >
