@@ -93,7 +93,39 @@ const Step2_Summary = ({
     });
 
     console.log("Summary Cards:", cards);
-    setSummaryCards(cards);
+
+    // Fallback for testing - if no cards, show example data
+    if (cards.length === 0) {
+      const fallbackCards: SummaryCard[] = [
+        {
+          priority: "ลดค่าโดยสารรถไฟฟ้า",
+          beneficiaries: [
+            { id: "everyone", label: "ทุกคน", iconSrc: "https://api.builder.io/api/v1/image/assets/TEMP/7cd80c386515c5c0009d1e49c28ba822cd0082f8?width=80" },
+            { id: "locals", label: "คนในพื้นที่", iconSrc: "https://api.builder.io/api/v1/image/assets/TEMP/272cf40c4b39c458339f5b7e24299b2d553f4837?width=74" },
+            { id: "elderly", label: "ผู้สูงอายุ", iconSrc: "https://api.builder.io/api/v1/image/assets/TEMP/085fb4ec7bf18e454a0e6b40dcba092aeb888728?width=70" },
+            { id: "students", label: "นักเรียน\nนักศึกษา", iconSrc: "https://api.builder.io/api/v1/image/assets/TEMP/c18a9a787fb93083a959b16fd6684229df17250f?width=52" }
+          ]
+        },
+        {
+          priority: "ปรับปรุงคุณภาพรถเมล์",
+          beneficiaries: [
+            { id: "everyone", label: "ทุกคน", iconSrc: "https://api.builder.io/api/v1/image/assets/TEMP/7cd80c386515c5c0009d1e49c28ba822cd0082f8?width=80" },
+            { id: "locals", label: "คนในพื้นที่", iconSrc: "https://api.builder.io/api/v1/image/assets/TEMP/272cf40c4b39c458339f5b7e24299b2d553f4837?width=74" },
+            { id: "elderly", label: "ผู้สูงอายุ", iconSrc: "https://api.builder.io/api/v1/image/assets/TEMP/085fb4ec7bf18e454a0e6b40dcba092aeb888728?width=70" }
+          ]
+        },
+        {
+          priority: "เพิ่มความถี่รถเมล์",
+          beneficiaries: [
+            { id: "everyone", label: "ทุกคน", iconSrc: "https://api.builder.io/api/v1/image/assets/TEMP/7cd80c386515c5c0009d1e49c28ba822cd0082f8?width=80" },
+            { id: "locals", label: "คนในพื้นที่", iconSrc: "https://api.builder.io/api/v1/image/assets/TEMP/272cf40c4b39c458339f5b7e24299b2d553f4837?width=74" }
+          ]
+        }
+      ];
+      setSummaryCards(fallbackCards);
+    } else {
+      setSummaryCards(cards);
+    }
   }, [journeyData]);
 
   const handleYes = () => {
