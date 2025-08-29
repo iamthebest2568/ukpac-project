@@ -2,9 +2,10 @@
  * UK PACK - MN2 Mini-Game Flow Container
  * Manages the second and third steps of the Policy Designer mini-game
  * (beneficiaries selection + policy summary)
+ * Now shows one priority question per page for better UX
  */
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 
 // Internal step components
 import Step1_Beneficiaries from "./MN2/Step1_Beneficiaries";
@@ -19,65 +20,149 @@ interface Flow_MiniGame_MN2Props {
 
 const Flow_MiniGame_MN2 = ({ sessionID, onComplete, onBack, mn1Data }: Flow_MiniGame_MN2Props) => {
   const [currentStep, setCurrentStep] = useState<number>(1);
-  const [flowData, setFlowData] = useState<any>({});
+  const [flowData, setFlowData] = useState<any>({ beneficiarySelections: {} });
+
+  // Extract priorities from MN1 data
+  const priorities: string[] = useMemo(() => {
+    return mn1Data?.priorities?.selectedPriorities || [];
+  }, [mn1Data]);
+
+  // Calculate total steps: one for each priority + one for summary
+  const totalSteps = priorities.length + 1;
+  const isLastBeneficiaryStep = currentStep === priorities.length;
+  const isSummaryStep = currentStep === totalSteps;
+
+  console.log("=== Flow_MiniGame_MN2 Debug ===");
+  console.log("currentStep:", currentStep);
+  console.log("priorities:", priorities);
+  console.log("totalSteps:", totalSteps);
+  console.log("isLastBeneficiaryStep:", isLastBeneficiaryStep);
+  console.log("isSummaryStep:", isSummaryStep);
+  console.log("flowData:", flowData);
 
   const handleStepComplete = (stepData: any) => {
-    const updatedData = { ...flowData, ...stepData };
-    setFlowData(updatedData);
+    console.log("=== Step Complete ===");
+    console.log("stepData received:", stepData);
 
-    if (currentStep === 1) {
-      // Move to summary step
-      setCurrentStep(2);
-    } else if (currentStep === 2) {
+    if (isSummaryStep) {
       // Complete the entire flow
       const completeData = {
         ...mn1Data, // Include MN1 data
-        ...updatedData // Include MN2 data
+        beneficiaries: { selections: Object.values(flowData.beneficiarySelections) },
+        ...stepData // Include summary data
       };
+      console.log("Completing flow with:", completeData);
       onComplete(completeData);
+    } else {
+      // This is a beneficiary selection step
+      const currentPriority = priorities[currentStep - 1];
+      console.log("Processing beneficiary step for priority:", currentPriority);
+      
+      // Extract beneficiary selections from stepData
+      const beneficiaryData = stepData.beneficiaries?.selections?.[0] || 
+                            { priority: currentPriority, beneficiaries: [] };
+      
+      // Store this priority's beneficiary selections
+      const updatedFlowData = {
+        ...flowData,
+        beneficiarySelections: {
+          ...flowData.beneficiarySelections,
+          [currentPriority]: beneficiaryData
+        }
+      };
+      
+      console.log("Updated flowData:", updatedFlowData);
+      setFlowData(updatedFlowData);
+      
+      // Move to next step
+      setCurrentStep(currentStep + 1);
     }
   };
 
   const handleStepBack = () => {
-    if (currentStep === 2) {
-      setCurrentStep(1);
+    if (currentStep > 1) {
+      setCurrentStep(currentStep - 1);
     } else if (currentStep === 1 && onBack) {
       onBack();
     }
   };
 
   const renderCurrentStep = () => {
-    const combinedData = { ...mn1Data, ...flowData };
-
-    console.log("Flow_MiniGame_MN2 - currentStep:", currentStep);
-    console.log("Flow_MiniGame_MN2 - mn1Data:", mn1Data);
-    console.log("Flow_MiniGame_MN2 - flowData:", flowData);
-    console.log("Flow_MiniGame_MN2 - combinedData:", combinedData);
-
-    switch (currentStep) {
-      case 1:
-        return (
-          <Step1_Beneficiaries
-            sessionID={sessionID}
-            onNext={handleStepComplete}
-            onBack={handleStepBack}
-            mn1Data={mn1Data}
-            initialData={flowData.beneficiaries}
-          />
-        );
-      case 2:
-        return (
-          <Step2_Summary
-            sessionID={sessionID}
-            onNext={handleStepComplete}
-            onBack={handleStepBack}
-            journeyData={combinedData}
-          />
-        );
-      default:
-        return null;
+    if (isSummaryStep) {
+      // Prepare combined data for summary
+      const allSelections = Object.values(flowData.beneficiarySelections);
+      const combinedData = {
+        ...mn1Data,
+        beneficiaries: { selections: allSelections }
+      };
+      
+      console.log("Rendering summary with combinedData:", combinedData);
+      
+      return (
+        <Step2_Summary
+          sessionID={sessionID}
+          onNext={handleStepComplete}
+          onBack={handleStepBack}
+          journeyData={combinedData}
+        />
+      );
+    } else {
+      // This is a beneficiary selection step
+      const currentPriority = priorities[currentStep - 1];
+      const currentPriorityIndex = currentStep - 1;
+      const initialBeneficiaries = flowData.beneficiarySelections[currentPriority]?.beneficiaries || [];
+      
+      console.log("Rendering beneficiary step for:", currentPriority);
+      console.log("Step", currentStep, "of", priorities.length);
+      console.log("Initial beneficiaries:", initialBeneficiaries);
+      
+      return (
+        <Step1_Beneficiaries
+          sessionID={sessionID}
+          onNext={handleStepComplete}
+          onBack={handleStepBack}
+          currentPriority={currentPriority}
+          currentStep={currentStep}
+          totalPrioritySteps={priorities.length}
+          initialBeneficiaries={initialBeneficiaries}
+        />
+      );
     }
   };
+
+  // If no priorities found, show error
+  if (priorities.length === 0) {
+    return (
+      <div className="figma-style1-container">
+        <div className="figma-style1-content">
+          <div className="figma-style1-background">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F946833431d4b46a0bde1c7d1bc32f67a"
+              alt="กลุ่มผู้ได้รับประโยชน์"
+              className="figma-style1-background-image"
+            />
+            <div className="figma-style1-background-overlay" />
+          </div>
+          <div className="figma-style1-main">
+            <div className="figma-style1-content-area">
+              <div className="figma-style1-title-container">
+                <h1 className="figma-style1-title">ไม่พบข้อมูลจากขั้นตอนก่อนหน้า</h1>
+                <p className="text-white text-center mt-4">กรุณากลับไปเลือกนโยบายก่อน</p>
+              </div>
+              <div className="w-full max-w-[325px]">
+                <button
+                  onClick={onBack}
+                  className="figma-style1-button"
+                >
+                  <span className="figma-style1-button-text">กลับไปเลือกนโยบาย</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="flow-container">
