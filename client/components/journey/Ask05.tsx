@@ -1,125 +1,105 @@
-import { useState } from "react";
+/**
+ * Ask05 - Policy Suggestion Page
+ * Redesigned to match Ask04 Figma layout
+ */
+
+import { useState, useEffect } from "react";
 import { logEvent } from "../../services/dataLogger.js";
 
 interface Ask05Props {
   sessionID: string | null;
   onNavigate: (screenId: string, data?: any) => void;
+  journeyData: any;
 }
 
-const Ask05 = ({ sessionID, onNavigate }: Ask05Props) => {
+const Ask05 = ({ sessionID, onNavigate, journeyData }: Ask05Props) => {
   const [suggestion, setSuggestion] = useState("");
+  const [characterCount, setCharacterCount] = useState(0);
 
-  const handleNext = () => {
-    // Log the user's suggestion
+  useEffect(() => {
+    setCharacterCount(suggestion.trim().length);
+  }, [suggestion]);
+
+  const handleContinue = () => {
+    const data = { 
+      suggestion: suggestion.trim(),
+      type: "policy_suggestion_feedback"
+    };
+
+    // Log the policy suggestion
     logEvent({
-      event: "ASK05_SUBMIT",
+      event: "POLICY_SUGGESTION_SUBMITTED",
       payload: {
-        suggestion,
+        suggestion: suggestion.trim(),
+        suggestionLength: suggestion.trim().length,
         sessionID,
       },
     });
 
-    const data = { suggestion };
+    // Navigate to the next step
     onNavigate("fakeNews", data);
   };
 
   return (
-    <div className="min-h-screen bg-white flex justify-center">
-      <div className="w-full max-w-[390px] md:max-w-[420px] lg:max-w-[390px] min-h-screen bg-white overflow-hidden relative">
-        {/* Background Image with Overlay */}
-        <div className="absolute inset-0">
-          <img
-            src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F946833431d4b46a0bde1c7d1bc32f67a"
-            alt="แชร์ความคิดเห็นของคุณ"
-            className="w-full h-full object-cover object-center"
-            style={{ minWidth: "100%", aspectRatio: "2/3" }}
-          />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.90) 44.17%)",
-            }}
-          />
-        </div>
+    <div className="w-full max-w-[390px] min-h-screen bg-white overflow-hidden relative mx-auto">
+      {/* Background Image */}
+      <div className="absolute inset-0">
+        <img
+          src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F946833431d4b46a0bde1c7d1bc32f67a"
+          alt="Background"
+          className="w-full h-full object-cover object-center"
+        />
+      </div>
+      
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black bg-opacity-90"></div>
 
+      {/* Content */}
+      <div className="relative z-10 flex flex-col min-h-screen">
         {/* Main Content */}
-        <div className="relative z-10 flex flex-col min-h-screen">
-          {/* Content Area */}
-          <div className="flex-1 flex flex-col justify-end items-center px-6 md:px-8 pb-8 md:pb-12">
-            {/* Title */}
-            <div className="text-center mb-6 md:mb-8 max-w-[325px]">
-              <h1
-                className="text-white text-center font-kanit text-3xl font-normal leading-normal mb-4"
-                style={{ fontSize: "clamp(20px, 6vw, 24px)" }}
-              >
-                คุณคิดว่ารัฐควรทำอะไร
-                ที่จะทำให้นโยบายนี้เกิดขึ้นได้และเป็นประโยชน์ต่อประชาชนอย่างแท้จริง
-              </h1>
-              <p className="text-white text-center font-prompt text-base leading-relaxed">
-                ข้อเสนอแนะของคุณมีค่ามากสำหรับการพัฒนานโยบายให้ดีขึ้น
-              </p>
-            </div>
+        <div className="flex-1 px-[29px] pt-[165px] pb-8">
+          {/* Question Title */}
+          <div className="mb-[50px]">
+            <h1 className="text-white font-kanit text-[30px] font-normal leading-normal text-center">
+              คุณคิดว่ารัฐควรทำอะไร
+              ที่จะทำใ��้นโยบายนี้เกิดขึ้นได้และ
+              เป็นประโยชน์ต่อประชาชน
+              อย่างแท้จริง
+            </h1>
+          </div>
 
-            {/* Text Input Area */}
-            <div className="w-full max-w-[325px] mb-6">
-              <label
-                htmlFor="suggestion-input"
-                className="block text-white font-prompt text-base font-medium mb-2"
-              >
-                ข้อเสนอแนะของคุณ:
-              </label>
+          {/* Text Input Area */}
+          <div className="mb-[65px]">
+            <div className="relative">
               <textarea
-                id="suggestion-input"
                 value={suggestion}
                 onChange={(e) => setSuggestion(e.target.value)}
-                className="w-full h-32 rounded-[20px] bg-white border-[1.5px] border-black px-4 py-3 text-black font-prompt text-base placeholder-gray-500 resize-none focus:outline-none focus:ring-2 focus:ring-[#EFBA31]"
-                placeholder="พิมพ์��้อความของคุณที่นี่"
-                aria-describedby="suggestion-help"
-                rows={6}
+                placeholder="พิมพ์ข้อความของคุณที่นี้..."
+                className="w-full h-[290px] rounded-[10px] border border-[#E4E9F2] bg-white px-4 py-4 text-black font-prompt text-[16px] font-normal leading-relaxed resize-none focus:outline-none focus:ring-2 focus:ring-[#EFBA31] focus:border-transparent placeholder:text-[rgba(0,0,0,0.7)] placeholder:font-prompt placeholder:text-[16px] placeholder:font-light"
+                style={{
+                  fontFamily: 'Prompt, -apple-system, Roboto, Helvetica, sans-serif'
+                }}
               />
-              <div
-                id="suggestion-help"
-                className="text-white text-sm font-prompt mt-2"
-              >
-                แชร์ความคิดเห็น ข้อเสนอแนะ
-                หรือแนวทางที่คุณคิดว่าจะช่วยให้นโยบายนี้ประสบความสำเร็จ
-              </div>
-
-              {/* Character counter */}
-              <div className="text-right mt-1">
-                <span className="text-white text-sm">
-                  {suggestion.length} ตัวอักษร
-                </span>
+              {/* Character Count */}
+              <div className="text-right mt-2 text-white text-sm">
+                {characterCount} ตัวอักษร
               </div>
             </div>
+          </div>
 
-            {/* Submit Button */}
-            <div className="w-full max-w-[325px] mb-4">
-              <button
-                onClick={handleNext}
-                className="w-full h-[53px] rounded-[40px] bg-[#EFBA31] border-[1.5px] border-black flex items-center justify-center transition-all duration-200 hover:scale-105 hover:shadow-lg hover:bg-black active:bg-black group"
-                aria-describedby="next-button-description"
-              >
-                <span className="text-black text-center font-prompt text-lg font-medium leading-7 tracking-[0.4px] group-hover:text-[#EFBA31] group-active:text-[#EFBA31]">
-                  ไปต่อ
-                </span>
-              </button>
-
-              {suggestion.trim().length === 0 && (
-                <div
-                  id="next-button-description"
-                  className="text-center text-white text-sm mt-2"
-                >
-                  คุณสามารถข้ามขั้นตอนนี้ได้หากไม่มีข้อเสนอแนะเพิ่มเติม
-                </div>
-              )}
-
-              {suggestion.trim().length > 0 && (
-                <div className="text-center text-white text-sm mt-2">
-                  ขอบคุณสำหรับข้อเสนอแนะที่มีค่า!
-                </div>
-              )}
+          {/* Continue Button */}
+          <div className="w-full">
+            <button
+              onClick={handleContinue}
+              className="w-full max-w-[325px] mx-auto h-[52px] rounded-[40px] bg-[#EFBA31] border-[1.5px] border-black flex items-center justify-center transition-all duration-200 hover:scale-105"
+            >
+              <span className="text-black font-prompt text-[18px] font-medium leading-7 tracking-[0.4px]">
+                ไปต่อ
+              </span>
+            </button>
+            {/* Optional Skip Text */}
+            <div className="text-center text-white text-sm mt-2">
+              คุณสามารถข้ามขั้นตอนนี้ได้หากไม่มีข้อเสนอแนะเพิ่มเติม
             </div>
           </div>
         </div>
