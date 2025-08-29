@@ -85,7 +85,7 @@
   @apply w-full h-[53px] rounded-[40px] bg-[#EFBA31] border-[1.5px] border-black flex items-center justify-center transition-all duration-200 hover:scale-105 hover:shadow-lg hover:bg-black active:bg-black;
 }
 
-/* Secondary (dark) variant for figma-style1 buttons */
+/* Secondary (yellow) variant for figma-style1 buttons */
 .figma-style1-button--secondary {
   @apply w-full h-[53px] rounded-[40px] bg-[#EFBA31] border-[1.5px] border-black flex items-center justify-center transition-all duration-200 hover:scale-105 hover:shadow-lg hover:bg-black;
 }
@@ -96,7 +96,7 @@
 
 .figma-style1-button--secondary:hover .figma-style1-button-text,
 .figma-style1-button--secondary:active .figma-style1-button-text {
-  color: var(--figma-style1-primary);
+  color: #efba31;
 }
 
 .figma-style1-button-text {
