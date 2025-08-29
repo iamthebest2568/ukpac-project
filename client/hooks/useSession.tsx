@@ -50,14 +50,6 @@ export const useSession = (): UseSessionReturn => {
     });
   }, [searchParams]);
 
-  // Log flowData changes for debugging
-  useEffect(() => {
-    console.log("=== useSession flowData changed ===");
-    console.log("Current flowData:", flowData);
-    console.log("Page:", window.location.pathname);
-    console.log("=== End useSession flowData changed ===");
-  }, [flowData]);
-
   const navigateToPage = (path: string, data?: any) => {
     // Route translation for legacy compatibility
     const routeMap: Record<string, string> = {
