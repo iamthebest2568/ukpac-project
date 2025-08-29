@@ -73,8 +73,6 @@ const Step2_Summary = ({
       lookup[s.priority] = Array.isArray(s.beneficiaries) ? s.beneficiaries : [];
     });
 
-    console.log("Beneficiary lookup map:", lookup);
-
     // Create summary cards
     const cards: SummaryCard[] = prioritiesData.map((priority: string) => {
       const beneficiaryIds = lookup[priority] || [];
@@ -90,8 +88,6 @@ const Step2_Summary = ({
       };
     });
 
-    console.log("Final summary cards:", cards);
-    console.log("=== End Step2_Summary Data Extraction ===");
     setSummaryCards(cards);
   }, [journeyData]);
 
