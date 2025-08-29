@@ -32,13 +32,6 @@ const Flow_MiniGame_MN2 = ({ sessionID, onComplete, onBack, mn1Data }: Flow_Mini
   const isLastBeneficiaryStep = currentStep === priorities.length;
   const isSummaryStep = currentStep === totalSteps;
 
-  console.log("=== Flow_MiniGame_MN2 Debug ===");
-  console.log("currentStep:", currentStep);
-  console.log("priorities:", priorities);
-  console.log("totalSteps:", totalSteps);
-  console.log("isLastBeneficiaryStep:", isLastBeneficiaryStep);
-  console.log("isSummaryStep:", isSummaryStep);
-  console.log("flowData:", flowData);
 
   const handleStepComplete = (stepData: any) => {
     console.log("=== Step Complete ===");
