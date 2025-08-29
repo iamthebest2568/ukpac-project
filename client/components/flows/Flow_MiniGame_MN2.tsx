@@ -83,9 +83,7 @@ const Flow_MiniGame_MN2 = ({ sessionID, onComplete, onBack, mn1Data }: Flow_Mini
         ...mn1Data,
         beneficiaries: { selections: allSelections }
       };
-      
-      console.log("Rendering summary with combinedData:", combinedData);
-      
+
       return (
         <Step2_Summary
           sessionID={sessionID}
