@@ -23,7 +23,7 @@ const IntroPolicyThoughtsPage = () => {
       ariaLabel: "เลือกไม่เชื่อว่าแก้ปัญหาได้จริง"
     },
     {
-      text: "กังวัลค่าใช้จ่าย",
+      text: "กังว���ลค่าใช้จ่าย",
       onClick: () => handleChoice("กังวัลค่าใช้จ่าย"),
       ariaLabel: "เลือกกังวัลค่าใช้จ่าย"
     },
@@ -41,8 +41,9 @@ const IntroPolicyThoughtsPage = () => {
 
   return (
     <FigmaStyle1Layout
-      backgroundImage="https://api.builder.io/api/v1/image/assets/TEMP/3cfdc582d291da8313da83afa531f66c01c9c5a7?width=1132"
-      backgroundAlt="Policy thoughts background"
+      backgroundImage="/opening-compress.mp4"
+      backgroundAlt="Policy thoughts video background"
+      isVideo={true}
       title="คุณคิดเห็นอย่างไร
 กับนโยบายนี้"
       buttons={buttons}

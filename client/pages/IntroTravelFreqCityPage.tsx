@@ -46,8 +46,9 @@ const IntroTravelFreqCityPage = () => {
 
   return (
     <FigmaStyle1Layout
-      backgroundImage="https://api.builder.io/api/v1/image/assets/TEMP/6199baab2fbf2c0d1c0b2131243961bbff593cdf?width=1132"
-      backgroundAlt="Travel frequency background"
+      backgroundImage="/opening-compress.mp4"
+      backgroundAlt="Travel frequency video background"
+      isVideo={true}
       title="คุณเดินทางเข้าเมือง
 บ่อยแค่ไหน"
       buttons={buttons}
