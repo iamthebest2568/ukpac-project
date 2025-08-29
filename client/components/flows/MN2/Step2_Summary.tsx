@@ -142,58 +142,62 @@ const Step2_Summary = ({
                 </div>
 
                 {/* Beneficiary Icons */}
-                <div className="absolute top-12 left-0 right-0 px-2">
+                <div className="absolute top-10 left-0 right-0 px-3">
                   <div
-                    className={`grid gap-2 justify-center items-start place-items-center ${
-                      card.beneficiaries.length === 1
-                        ? 'grid-cols-1'
-                        : card.beneficiaries.length === 2
-                        ? 'grid-cols-2'
-                        : card.beneficiaries.length === 3
-                        ? 'grid-cols-3'
-                        : card.beneficiaries.length === 4
-                        ? 'grid-cols-2'
-                        : card.beneficiaries.length === 5
-                        ? 'grid-cols-3'
-                        : card.beneficiaries.length === 6
-                        ? 'grid-cols-3'
-                        : 'grid-cols-3'
+                    className={`flex flex-wrap justify-center items-start gap-x-3 gap-y-2 ${
+                      card.beneficiaries.length <= 3
+                        ? 'max-w-[280px]'
+                        : 'max-w-[320px]'
                     }`}
                     style={{
-                      maxWidth: '320px',
                       margin: '0 auto',
-                      minHeight: '90px'
+                      minHeight: '100px'
                     }}
                   >
                     {card.beneficiaries.map((beneficiary, beneficiaryIndex) => (
                       <div
                         key={beneficiaryIndex}
-                        className="flex flex-col items-center justify-start w-full"
+                        className="flex flex-col items-center justify-start"
                         style={{
-                          minHeight: '80px',
-                          maxWidth: card.beneficiaries.length <= 3 ? '90px' : '75px'
+                          minHeight: '85px',
+                          width: card.beneficiaries.length <= 3 ? '85px' : card.beneficiaries.length <= 4 ? '75px' : '65px'
                         }}
                       >
                         {/* Circular Icon Background */}
                         <div
-                          className={`rounded-full bg-[#EFBA31] flex items-center justify-center mb-1 relative flex-shrink-0 ${
-                            card.beneficiaries.length <= 3 ? 'w-[52px] h-[52px]' : 'w-[45px] h-[45px]'
+                          className={`rounded-full bg-[#EFBA31] flex items-center justify-center mb-2 relative flex-shrink-0 ${
+                            card.beneficiaries.length <= 3
+                              ? 'w-[55px] h-[55px]'
+                              : card.beneficiaries.length <= 4
+                              ? 'w-[50px] h-[50px]'
+                              : 'w-[45px] h-[45px]'
                           }`}
                         >
                           <img
                             src={beneficiary.iconSrc}
                             alt={beneficiary.label}
                             className={`object-contain ${
-                              card.beneficiaries.length <= 3 ? 'max-w-[35px] max-h-[30px]' : 'max-w-[30px] max-h-[26px]'
+                              card.beneficiaries.length <= 3
+                                ? 'max-w-[38px] max-h-[34px]'
+                                : card.beneficiaries.length <= 4
+                                ? 'max-w-[34px] max-h-[30px]'
+                                : 'max-w-[30px] max-h-[26px]'
                             }`}
                           />
                         </div>
                         {/* Label */}
                         <span
                           className={`text-[#EFBA31] font-prompt font-medium text-center leading-tight whitespace-pre-line break-words ${
-                            card.beneficiaries.length <= 3 ? 'text-[11px] max-w-[85px]' : 'text-[9px] max-w-[70px]'
+                            card.beneficiaries.length <= 3
+                              ? 'text-[12px]'
+                              : card.beneficiaries.length <= 4
+                              ? 'text-[11px]'
+                              : 'text-[10px]'
                           }`}
-                          style={{ lineHeight: '1.1' }}
+                          style={{
+                            lineHeight: '1.2',
+                            maxWidth: card.beneficiaries.length <= 3 ? '85px' : card.beneficiaries.length <= 4 ? '75px' : '65px'
+                          }}
                         >
                           {beneficiary.label}
                         </span>
