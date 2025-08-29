@@ -56,7 +56,7 @@ const Step1_Beneficiaries = ({
     },
     {
       id: "locals",
-      label: "คนในพื้นที่",
+      label: "คนใน���ื้นที่",
       iconSrc: "https://api.builder.io/api/v1/image/assets/TEMP/1e470dd8f9f7ac27485f56fba45554979acb2509?width=100"
     },
     {
@@ -103,6 +103,18 @@ const Step1_Beneficiaries = ({
   };
 
   const handleNext = () => {
+    console.log("=== Step1_Beneficiaries handleNext ===");
+    console.log("Received mn1Data:", mn1Data);
+    console.log("Priorities used:", priorities);
+    console.log("Current selections state:", selections);
+
+    const selectionsArray = priorities.map((p) => ({ priority: p, beneficiaries: selections[p] || [] }));
+    console.log("Selections array to send:", selectionsArray);
+
+    const data = { beneficiaries: { selections: selectionsArray } };
+    console.log("Final data object to send:", data);
+    console.log("=== End Step1_Beneficiaries handleNext ===");
+
     // Log the minigame completion
     logEvent({
       event: "MINIGAME_MN2_COMPLETE",
@@ -112,9 +124,6 @@ const Step1_Beneficiaries = ({
       },
     });
 
-    const selectionsArray = priorities.map((p) => ({ priority: p, beneficiaries: selections[p] || [] }));
-
-    const data = { beneficiaries: { selections: selectionsArray } };
     onNext(data);
   };
 
