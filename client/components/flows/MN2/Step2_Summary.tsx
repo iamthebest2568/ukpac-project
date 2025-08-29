@@ -148,7 +148,11 @@ const Step2_Summary = ({
                 {/* Beneficiary Icons */}
                 <div className="px-4 pb-2">
                   <div
-                    className={`flex flex-wrap justify-center items-start gap-x-3 gap-y-3 ${
+                    className={`${
+                      card.beneficiaries.length === 6
+                        ? 'grid grid-cols-3 gap-x-3 gap-y-4 max-w-[280px]'
+                        : 'flex flex-wrap justify-center items-start gap-x-3 gap-y-3'
+                    } ${
                       card.beneficiaries.length <= 3
                         ? 'max-w-[280px]'
                         : 'max-w-[320px]'
