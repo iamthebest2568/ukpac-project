@@ -1,13 +1,10 @@
 import FigmaStyle1Layout from "../components/layouts/FigmaStyle1Layout";
 import { useSession } from "../hooks/useSession";
-import { useState } from "react";
 
 const IntroGroupSelectionPage = () => {
   const { navigateToPage } = useSession();
-  const [selectedChoice, setSelectedChoice] = useState<string>("เด็ก"); // Pre-select "เด็ก" as shown in design
 
   const handleChoice = (choice: string) => {
-    setSelectedChoice(choice);
     // Add a small delay to show selection before navigating
     setTimeout(() => {
       navigateToPage("/intro-travel-mode-city");
@@ -19,11 +16,27 @@ const IntroGroupSelectionPage = () => {
     console.log("Replay clicked");
   };
 
-  const choices = [
-    { text: "คนพิการ" },
-    { text: "เด็ก" }, // Pre-selected as shown in Figma
-    { text: "ผู้สูงอายุ" },
-    { text: "อื่นๆ" }
+  const buttons = [
+    {
+      text: "คนพิการ",
+      onClick: () => handleChoice("คนพิการ"),
+      ariaLabel: "เลือกคนพิการ"
+    },
+    {
+      text: "เด็ก",
+      onClick: () => handleChoice("เด็ก"),
+      ariaLabel: "เลือกเด็��"
+    },
+    {
+      text: "ผู้สูงอายุ",
+      onClick: () => handleChoice("ผู้สูงอายุ"),
+      ariaLabel: "เลือกผู้สูงอายุ"
+    },
+    {
+      text: "อื่นๆ",
+      onClick: () => handleChoice("อื่นๆ"),
+      ariaLabel: "เลือกอื่นๆ"
+    }
   ];
 
   return (
@@ -32,12 +45,7 @@ const IntroGroupSelectionPage = () => {
       backgroundAlt="Group selection background"
       title="คุณมองว่าตัวเองเป็น
 คนกลุ่มไหนในเมืองนี้"
-      buttons={choices.map((choice) => ({
-        text: choice.text,
-        onClick: () => handleChoice(choice.text),
-        ariaLabel: `เลือก${choice.text}`,
-        isSelected: selectedChoice === choice.text
-      }))}
+      buttons={buttons}
       replayButton={{
         onClick: handleReplay,
         ariaLabel: "ดูอีกครั้ง"

@@ -1,13 +1,10 @@
 import FigmaStyle1Layout from "../components/layouts/FigmaStyle1Layout";
 import { useSession } from "../hooks/useSession";
-import { useState } from "react";
 
 const IntroReplyFriendPage = () => {
   const { navigateToPage } = useSession();
-  const [selectedChoice, setSelectedChoice] = useState<string>("อยากรู้อยู่พอดี"); // Pre-select as shown in design
 
   const handleChoice = (choice: string) => {
-    setSelectedChoice(choice);
     // Add a small delay to show selection before navigating
     setTimeout(() => {
       navigateToPage("/intro-policy-feel");
@@ -19,10 +16,22 @@ const IntroReplyFriendPage = () => {
     console.log("Replay clicked");
   };
 
-  const choices = [
-    { text: "ดูแล้ว" },
-    { text: "อยากรู้อยู่พอดี" }, // This should be pre-selected and appear as black button
-    { text: "ยังไม่ได้ดู" }
+  const buttons = [
+    {
+      text: "ดูแล้ว",
+      onClick: () => handleChoice("ดูแล้ว"),
+      ariaLabel: "เลือกดูแล้ว"
+    },
+    {
+      text: "อยากรู้อยู่พอดี",
+      onClick: () => handleChoice("อยากรู้อยู่พอดี"),
+      ariaLabel: "เลือกอยากรู้อยู่พอดี"
+    },
+    {
+      text: "ยังไม่ได้ดู",
+      onClick: () => handleChoice("ยังไม่ได้ดู"),
+      ariaLabel: "เลือกยังไม่ได้ดู"
+    }
   ];
 
   return (
@@ -31,12 +40,7 @@ const IntroReplyFriendPage = () => {
       backgroundAlt="Reply friend background"
       title="คุณจะตอบกลับเพื่อน
 ว่าอย่างไร"
-      buttons={choices.map((choice) => ({
-        text: choice.text,
-        onClick: () => handleChoice(choice.text),
-        ariaLabel: `เลือก${choice.text}`,
-        isSelected: selectedChoice === choice.text
-      }))}
+      buttons={buttons}
       replayButton={{
         onClick: handleReplay,
         ariaLabel: "ดูอีกครั้ง"

@@ -1,13 +1,10 @@
 import FigmaStyle1Layout from "../components/layouts/FigmaStyle1Layout";
 import { useSession } from "../hooks/useSession";
-import { useState } from "react";
 
 const IntroTravelModeCityPage = () => {
   const { navigateToPage } = useSession();
-  const [selectedChoice, setSelectedChoice] = useState<string>("อยู่ในพื้นที่ไม่ต้องเข้าเมือง"); // Pre-select as shown in design
 
   const handleChoice = (choice: string) => {
-    setSelectedChoice(choice);
     // Add a small delay to show selection before navigating
     setTimeout(() => {
       navigateToPage("/intro-travel-freq-city");
@@ -19,12 +16,32 @@ const IntroTravelModeCityPage = () => {
     console.log("Replay clicked");
   };
 
-  const choices = [
-    { text: "รถไฟฟ้า BTS / MRT" },
-    { text: "อยู่ในพื้นที่ไม่ต้องเข้าเมือง" }, // This should be pre-selected and appear as black button
-    { text: "รถยนต���" },
-    { text: "รถ รับ-ส่ง" },
-    { text: "รถประจำทาง" }
+  const buttons = [
+    {
+      text: "รถไฟฟ้า BTS / MRT",
+      onClick: () => handleChoice("รถไฟฟ้า BTS / MRT"),
+      ariaLabel: "เลือกรถไฟฟ้า BTS / MRT"
+    },
+    {
+      text: "อยู่ในพื้นที่ไม่ต้องเข้าเมือง",
+      onClick: () => handleChoice("อยู่ในพื้นที่ไม่ต้องเข้าเมือง"),
+      ariaLabel: "เลือกอยู่ในพื้นที่ไม่ต้องเข้าเมือง"
+    },
+    {
+      text: "รถยนต์",
+      onClick: () => handleChoice("รถยนต์"),
+      ariaLabel: "เลือกรถยนต์"
+    },
+    {
+      text: "รถ รับ-ส่ง",
+      onClick: () => handleChoice("รถ รับ-ส่ง"),
+      ariaLabel: "เลือกรถ รับ-ส่ง"
+    },
+    {
+      text: "รถประจำทาง",
+      onClick: () => handleChoice("รถประจำทาง"),
+      ariaLabel: "เลือกรถประจำทาง"
+    }
   ];
 
   return (
@@ -33,12 +50,7 @@ const IntroTravelModeCityPage = () => {
       backgroundAlt="Travel mode background"
       title="คุณเดินทางเข้าเมือง
 ด้วยวิธีไหน"
-      buttons={choices.map((choice) => ({
-        text: choice.text,
-        onClick: () => handleChoice(choice.text),
-        ariaLabel: `เลือก${choice.text}`,
-        isSelected: selectedChoice === choice.text
-      }))}
+      buttons={buttons}
       replayButton={{
         onClick: handleReplay,
         ariaLabel: "ดูอีกครั้ง"

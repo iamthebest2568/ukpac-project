@@ -1,13 +1,10 @@
 import FigmaStyle1Layout from "../components/layouts/FigmaStyle1Layout";
 import { useSession } from "../hooks/useSession";
-import { useState } from "react";
 
 const IntroPolicyThoughtsPage = () => {
   const { navigateToPage } = useSession();
-  const [selectedChoice, setSelectedChoice] = useState<string>("กังวัลค่าใช้จ่าย"); // Pre-select as shown in design
 
   const handleChoice = (choice: string) => {
-    setSelectedChoice(choice);
     // Add a small delay to show selection before navigating
     setTimeout(() => {
       navigateToPage("/intro-reply-friend");
@@ -19,11 +16,27 @@ const IntroPolicyThoughtsPage = () => {
     console.log("Replay clicked");
   };
 
-  const choices = [
-    { text: "ไม่เชื่อว่าแก้ปัญหาได้จริง" },
-    { text: "กังวัลค่าใช้จ่าย" }, // This should be pre-selected and appear as black button
-    { text: "ไม่อยากใช้เพราะไม่สะดวก" },
-    { text: "ยินดีจ่ายเพราะรถจะติดน้อยลง" }
+  const buttons = [
+    {
+      text: "ไม่เชื่อว่าแก้ปัญหาได้จริง",
+      onClick: () => handleChoice("ไม่เชื่อว่าแก้ปัญหาได้จริง"),
+      ariaLabel: "เลือกไม่เชื่อว่าแก้ปัญหาได้จริง"
+    },
+    {
+      text: "กังวัลค่าใช้จ่าย",
+      onClick: () => handleChoice("กังวัลค่าใช้จ่าย"),
+      ariaLabel: "เลือกกังวัลค่าใช้จ่าย"
+    },
+    {
+      text: "ไม่อยากใช้เพราะไม่สะดวก",
+      onClick: () => handleChoice("ไม่อยากใช้เพราะไม่สะดวก"),
+      ariaLabel: "เลือกไม่อยากใช้เพราะไม่สะดวก"
+    },
+    {
+      text: "ยินดีจ่ายเพราะรถจะติดน้อยลง",
+      onClick: () => handleChoice("ยินดีจ่ายเพราะรถจะติดน้อยลง"),
+      ariaLabel: "เลือกยินดีจ่ายเพราะรถจะติดน้อยลง"
+    }
   ];
 
   return (
@@ -32,12 +45,7 @@ const IntroPolicyThoughtsPage = () => {
       backgroundAlt="Policy thoughts background"
       title="คุณคิดเห็นอย่างไร
 กับนโยบายนี้"
-      buttons={choices.map((choice) => ({
-        text: choice.text,
-        onClick: () => handleChoice(choice.text),
-        ariaLabel: `เลือก${choice.text}`,
-        isSelected: selectedChoice === choice.text
-      }))}
+      buttons={buttons}
       replayButton={{
         onClick: handleReplay,
         ariaLabel: "ดูอีกครั้ง"
