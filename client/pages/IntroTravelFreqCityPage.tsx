@@ -1,44 +1,49 @@
 import FigmaStyle1Layout from "../components/layouts/FigmaStyle1Layout";
 import { useSession } from "../hooks/useSession";
+import { useState } from "react";
 
 const IntroTravelFreqCityPage = () => {
   const { navigateToPage } = useSession();
+  const [selectedChoice, setSelectedChoice] = useState<string>("ทุกวันธรรมดา"); // Pre-select as shown in design
 
-  const handleNext = () => {
-    navigateToPage("/intro-policy-thoughts");
+  const handleChoice = (choice: string) => {
+    setSelectedChoice(choice);
+    // Add a small delay to show selection before navigating
+    setTimeout(() => {
+      navigateToPage("/intro-policy-thoughts");
+    }, 300);
   };
 
-  const handleBack = () => {
-    navigateToPage("/intro-travel-mode-city");
+  const handleReplay = () => {
+    // Replay functionality - could replay video or audio content
+    console.log("Replay clicked");
   };
+
+  const choices = [
+    { text: "ทุกวัน", variant: "default" },
+    { text: "ทุกวันธรรมดา", variant: "dark" }, // Pre-selected as shown in Figma
+    { text: "สัปดาห์ละครั้ง", variant: "default" },
+    { text: "เดือนละครั้ง", variant: "default" },
+    { text: "ไม่ค่อยเข้าเมือง", variant: "default" }
+  ];
 
   return (
     <FigmaStyle1Layout
-      backgroundImage="https://cdn.builder.io/o/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Faf32686a3c3d417994a2e2311560fea3?alt=media&token=cd0a67ee-b882-4eaa-a103-6640da4da97e&apiKey=0eb7afe56fd645b8b4ca090471cef081"
+      backgroundImage="https://api.builder.io/api/v1/image/assets/TEMP/6199baab2fbf2c0d1c0b2131243961bbff593cdf?width=1132"
       backgroundAlt="Travel frequency background"
-      title="คุณเดินทางในเมืองบ่อยแค่ไหน?"
-      buttons={[
-        {
-          text: "ทุกวัน",
-          onClick: handleNext,
-          ariaLabel: "เลือกทุกวัน"
-        },
-        {
-          text: "สัปดาห์ละ 3-5 วัน",
-          onClick: handleNext,
-          ariaLabel: "เลือกสัปดาห์ละ 3-5 วัน"
-        },
-        {
-          text: "สัปดาห์ละ 1-2 วัน",
-          onClick: handleNext,
-          ariaLabel: "เลือกสัปดาห์ละ 1-2 วัน"
-        },
-        {
-          text: "เดือนละไม่กี่ครั้ง",
-          onClick: handleNext,
-          ariaLabel: "เลือกเดือนละไม่กี่ครั้ง"
-        }
-      ]}
+      title="คุณเดินทางเข้าเมือง
+บ่อยแค่ไหน"
+      buttons={choices.map((choice) => ({
+        text: choice.text,
+        onClick: () => handleChoice(choice.text),
+        ariaLabel: `เลือก${choice.text}`,
+        isSelected: selectedChoice === choice.text,
+        variant: choice.variant as "default" | "dark"
+      }))}
+      replayButton={{
+        onClick: handleReplay,
+        ariaLabel: "ดูอีกครั้ง"
+      }}
     />
   );
 };
