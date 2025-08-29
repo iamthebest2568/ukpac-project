@@ -1,6 +1,6 @@
 /**
  * UK PACK - MN3 Step 1: Budget Choice Selection
- * Cloned exactly from MN1 Step1_Priorities
+ * Carefully encoded Thai text
  */
 
 import { useState } from "react";
@@ -24,14 +24,14 @@ const Step1_Choice = ({
   const maxSelections = 3;
 
   const priorities = [
-    "ลดค่���โดยสารรถไฟฟ้า",
-    "ปรับปรุงคุณภาพรถเมล์",
+    "ลดค่าโดยสารรถไฟฟ้า",
+    "ปรับปรุงคุณภาพรถเมล���",
     "ตั๋วร่วม",
     "เพิ่มความถี่รถเมล์",
     "เพิ่มที่จอดรถ",
     "เพิ่มความถี่รถไฟฟ้า",
     "เพิ่ม Feeder ในซอย",
-  ];
+  ].map(text => text.normalize('NFC'));
 
   const handlePriorityToggle = (priority: string) => {
     setSelectedPriorities((prev) => {
