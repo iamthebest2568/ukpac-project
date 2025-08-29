@@ -34,8 +34,6 @@ const Flow_MiniGame_MN2 = ({ sessionID, onComplete, onBack, mn1Data }: Flow_Mini
 
 
   const handleStepComplete = (stepData: any) => {
-    console.log("=== Step Complete ===");
-    console.log("stepData received:", stepData);
 
     if (isSummaryStep) {
       // Complete the entire flow
