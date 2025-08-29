@@ -1,6 +1,6 @@
 /**
  * UK PACK - MN2 Step 1: Beneficiaries Selection
- * Moved from BeneficiaryGroups component
+ * Now shows one priority question per page for better UX
  */
 
 import { useState } from "react";
@@ -10,60 +10,34 @@ interface Step1_BeneficiariesProps {
   sessionID: string | null;
   onNext: (data: any) => void;
   onBack?: () => void;
-  initialData?: any;
-  mn1Data?: any;
+  currentPriority: string;
+  currentStep: number;
+  totalPrioritySteps: number;
+  initialBeneficiaries?: string[];
 }
 
 const Step1_Beneficiaries = ({
   sessionID,
   onNext,
   onBack,
-  initialData = {},
-  mn1Data,
+  currentPriority,
+  currentStep,
+  totalPrioritySteps,
+  initialBeneficiaries = [],
 }: Step1_BeneficiariesProps) => {
-  console.log("=== Step1_Beneficiaries Component Init ===");
-  console.log("Received mn1Data:", mn1Data);
-  console.log("Received initialData:", initialData);
+  console.log("=== Step1_Beneficiaries Single Priority ===");
+  console.log("currentPriority:", currentPriority);
+  console.log("currentStep:", currentStep);
+  console.log("totalPrioritySteps:", totalPrioritySteps);
+  console.log("initialBeneficiaries:", initialBeneficiaries);
 
-  // Prepare priorities from MN1. Expect mn1Data shape: { priorities: { selectedPriorities: string[] } }
-  const priorities: string[] =
-    mn1Data?.priorities?.selectedPriorities && mn1Data.priorities.selectedPriorities.length > 0
-      ? mn1Data.priorities.selectedPriorities
-      : [];
-
-  console.log("Final priorities to use:", priorities);
-
-  if (priorities.length === 0) {
-    console.warn("⚠️ No priorities found from MN1! User needs to go back and select priorities first.");
-  }
-
-  console.log("=== End Step1_Beneficiaries Component Init ===");
-
-  // selections per priority: Record<priority, string[]>
-  const [selections, setSelections] = useState<Record<string, string[]>>(() => {
-    // Initialize with any provided initialData
-    const init: Record<string, string[]> = {};
-    priorities.forEach((p) => {
-      init[p] = [];
-    });
-
-    if (initialData?.selections && Array.isArray(initialData.selections)) {
-      initialData.selections.forEach((s: any) => {
-        if (s?.priority) {
-          init[s.priority] = Array.isArray(s.beneficiaries) ? s.beneficiaries : [];
-        }
-      });
-    }
-
-    return init;
-  });
-
-  const maxSelections = 3;
+  const [selectedGroups, setSelectedGroups] = useState<string[]>(initialBeneficiaries);
+  const maxSelections = 6; // Allow up to 6 selections
 
   const beneficiaryGroups = [
-    {
-      id: "everyone",
-      label: "ทุกคน",
+    { 
+      id: "everyone", 
+      label: "ทุกคน", 
       iconSrc: "https://api.builder.io/api/v1/image/assets/TEMP/1a7aa898479a915b1d4d0ef1156c80bf95c372af?width=100"
     },
     {
@@ -93,85 +67,55 @@ const Step1_Beneficiaries = ({
     },
   ];
 
-  const handleGroupToggle = (priority: string, groupId: string) => {
-    setSelections((prev) => {
-      const prevForPriority = prev[priority] || [];
-      const isSelected = prevForPriority.includes(groupId);
+  const handleGroupToggle = (groupId: string) => {
+    setSelectedGroups((prev) => {
+      const isSelected = prev.includes(groupId);
 
       if (isSelected) {
-        return { ...prev, [priority]: prevForPriority.filter((g) => g !== groupId) };
+        // Remove if already selected
+        return prev.filter((g) => g !== groupId);
       } else {
-        if (prevForPriority.length < maxSelections) {
-          return { ...prev, [priority]: [...prevForPriority, groupId] };
+        // Add if not selected and under limit
+        if (prev.length < maxSelections) {
+          return [...prev, groupId];
         }
         return prev;
       }
     });
   };
 
-  const isSelectionDisabled = (priority: string, groupId: string) => {
-    const sel = selections[priority] || [];
-    return sel.length >= maxSelections && !sel.includes(groupId);
+  const isSelectionDisabled = (groupId: string) => {
+    return (
+      selectedGroups.length >= maxSelections &&
+      !selectedGroups.includes(groupId)
+    );
   };
 
   const handleNext = () => {
-    console.log("=== Step1_Beneficiaries handleNext ===");
-    console.log("Received mn1Data:", mn1Data);
-    console.log("Priorities used:", priorities);
-    console.log("Current selections state:", selections);
-
-    const selectionsArray = priorities.map((p) => ({ priority: p, beneficiaries: selections[p] || [] }));
-    console.log("Selections array to send:", selectionsArray);
-
+    console.log("=== Step1_Beneficiaries Single Priority handleNext ===");
+    console.log("currentPriority:", currentPriority);
+    console.log("selectedGroups:", selectedGroups);
+    
+    // Create selections array with this priority's beneficiaries
+    const selectionsArray = [{ priority: currentPriority, beneficiaries: selectedGroups }];
     const data = { beneficiaries: { selections: selectionsArray } };
-    console.log("Final data object to send:", data);
-    console.log("=== End Step1_Beneficiaries handleNext ===");
+    
+    console.log("Sending data:", data);
 
     // Log the minigame completion
     logEvent({
-      event: "MINIGAME_MN2_COMPLETE",
+      event: "MINIGAME_MN2_STEP_COMPLETE",
       payload: {
-        selections,
+        priority: currentPriority,
+        selectedGroups,
+        step: currentStep,
+        totalSteps: totalPrioritySteps,
         sessionID,
       },
     });
 
     onNext(data);
   };
-
-  // If no priorities found, show error message
-  if (priorities.length === 0) {
-    return (
-      <div className="figma-style1-container">
-        <div className="figma-style1-content">
-          <div className="figma-style1-background">
-            <img
-              src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F946833431d4b46a0bde1c7d1bc32f67a"
-              alt="กลุ่มผู้ได้รับประโยชน์"
-              className="figma-style1-background-image"
-            />
-            <div className="figma-style1-background-overlay" />
-          </div>
-          <div className="figma-style1-main">
-            <div className="figma-style1-content-area">
-              <div className="figma-style1-title-container">
-                <h1 className="figma-style1-title">ไม่พบข้อมูลจากขั้นตอนก่อนหน้า</h1>
-                <p className="text-white text-center mt-4">กรุณากลับไปเลือกนโยบายก่อน</p>
-              </div>
-              <div className="w-full max-w-[325px]">
-                <button
-                  onClick={onBack}
-                  className="figma-style1-button"
-                >
-                  <span className="figma-style1-button-text">กลับไปเลือกนโยบาย</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="figma-style1-container">
@@ -190,99 +134,154 @@ const Step1_Beneficiaries = ({
         <div className="figma-style1-main">
           {/* Content Area */}
           <div className="figma-style1-content-area">
-            {/* For each selected priority render a question block */}
-            {priorities.map((priority, idx) => (
-              <div key={priority} className="mb-8 w-full max-w-[334px]">
-                <div className="figma-style1-title-container mb-4">
-                  <h2 className="figma-style1-subtitle">{`คุณคิดว่าใครควรได้รับประโยชน์จาก ${priority} ?`}</h2>
-                </div>
+            {/* Step Indicator */}
+            <div className="text-center mb-4">
+              <p className="text-white font-prompt text-sm">
+                ขั้นตอนที่ {currentStep} จาก {totalPrioritySteps}
+              </p>
+            </div>
 
-                {/* Selection Grid - same layout as original */}
-                <div className="mb-4">
-                  <div className="flex justify-between items-start mb-4">
-                    {beneficiaryGroups.slice(0, 3).map((group) => {
-                      const isSelected = (selections[priority] || []).includes(group.id);
-                      const isDisabled = isSelectionDisabled(priority, group.id);
+            {/* Title with current priority */}
+            <div className="figma-style1-title-container mb-6">
+              <h1 className="figma-style1-title">
+                คุณคิดว่าใครควรได้รับประโยชน์จาก {currentPriority} ?
+              </h1>
+            </div>
 
-                      return (
-                        <div
-                          key={`${priority}-${group.id}`}
-                          className="flex flex-col items-center cursor-pointer transition-all duration-200 hover:scale-105"
-                          onClick={() => !isDisabled && handleGroupToggle(priority, group.id)}
-                          role="checkbox"
-                          aria-checked={isSelected}
-                          aria-disabled={isDisabled}
-                          tabIndex={isDisabled ? -1 : 0}
-                          onKeyDown={(e) => {
-                            if ((e.key === "Enter" || e.key === " ") && !isDisabled) {
-                              e.preventDefault();
-                              handleGroupToggle(priority, group.id);
-                            }
-                          }}
-                        >
-                          <div className={`w-[80px] h-[80px] rounded-full flex items-center justify-center mb-2 transition-all duration-200 ${
-                            isSelected ? "bg-black" : "bg-[#EFBA31]"
-                          }`}>
-                            <img src={group.iconSrc} alt={group.label} className="w-[50px] h-[50px] object-contain" style={{ filter: 'none' }} />
-                          </div>
-                          <span className={`font-prompt text-lg font-medium text-center ${isSelected ? 'text-black' : 'text-[#EFBA31]'}`}>
-                            {group.label}
-                          </span>
-                        </div>
-                      );
-                    })}
-                  </div>
+            {/* Selection Grid - Same layout as original */}
+            <div className="w-full max-w-[334px] mb-8">
+              {/* Top Row */}
+              <div className="flex justify-between items-start mb-8">
+                {beneficiaryGroups.slice(0, 3).map((group) => {
+                  const isSelected = selectedGroups.includes(group.id);
+                  const isDisabled = isSelectionDisabled(group.id);
 
-                  <div className="flex justify-between items-start">
-                    {beneficiaryGroups.slice(3, 6).map((group) => {
-                      const isSelected = (selections[priority] || []).includes(group.id);
-                      const isDisabled = isSelectionDisabled(priority, group.id);
-
-                      return (
-                        <div
-                          key={`${priority}-${group.id}`}
-                          className="flex flex-col items-center cursor-pointer transition-all duration-200 hover:scale-105"
-                          onClick={() => !isDisabled && handleGroupToggle(priority, group.id)}
-                          role="checkbox"
-                          aria-checked={isSelected}
-                          aria-disabled={isDisabled}
-                          tabIndex={isDisabled ? -1 : 0}
-                          onKeyDown={(e) => {
-                            if ((e.key === "Enter" || e.key === " ") && !isDisabled) {
-                              e.preventDefault();
-                              handleGroupToggle(priority, group.id);
-                            }
-                          }}
-                        >
-                          <div className={`w-[80px] h-[80px] rounded-full flex items-center justify-center mb-2 transition-all duration-200 ${
-                            isSelected ? "bg-black" : "bg-[#EFBA31]"
-                          }`}>
-                            <img src={group.iconSrc} alt={group.label} className="w-[50px] h-[50px] object-contain" style={{ filter: 'none' }} />
-                          </div>
-                          <span className={`font-prompt text-lg font-medium text-center ${isSelected ? 'text-black' : 'text-[#EFBA31]'}`}>
-                            {group.label}
-                          </span>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                {/* Small helper showing selected labels */}
-                <div className="text-center mb-2">
-                  <span className="text-sm text-white">เลือกแล้ว: {(selections[priority] || []).map((id) => beneficiaryGroups.find((g) => g.id === id)?.label).join(', ') || 'ยังไม่เลือก'}</span>
-                </div>
+                  return (
+                    <div
+                      key={group.id}
+                      className="flex flex-col items-center cursor-pointer transition-all duration-200 hover:scale-105"
+                      onClick={() => !isDisabled && handleGroupToggle(group.id)}
+                      role="checkbox"
+                      aria-checked={isSelected}
+                      aria-disabled={isDisabled}
+                      tabIndex={isDisabled ? -1 : 0}
+                      onKeyDown={(e) => {
+                        if ((e.key === "Enter" || e.key === " ") && !isDisabled) {
+                          e.preventDefault();
+                          handleGroupToggle(group.id);
+                        }
+                      }}
+                    >
+                      {/* Circular Icon Background */}
+                      <div className={`w-[80px] h-[80px] rounded-full flex items-center justify-center mb-2 transition-all duration-200 ${
+                        isSelected ? "bg-black" : "bg-[#EFBA31]"
+                      }`}>
+                        <img
+                          src={group.iconSrc}
+                          alt={group.label}
+                          className="w-[50px] h-[50px] object-contain mix-blend-normal opacity-100"
+                          style={{ filter: "none" }}
+                        />
+                      </div>
+                      {/* Label */}
+                      <span className={`font-prompt text-lg font-medium text-center transition-all duration-200 ${
+                        isSelected ? "text-black" : "text-[#EFBA31]"
+                      }`}>
+                        {group.label}
+                      </span>
+                    </div>
+                  );
+                })}
               </div>
-            ))}
+              
+              {/* Bottom Row */}
+              <div className="flex justify-between items-start">
+                {beneficiaryGroups.slice(3, 6).map((group) => {
+                  const isSelected = selectedGroups.includes(group.id);
+                  const isDisabled = isSelectionDisabled(group.id);
+
+                  return (
+                    <div
+                      key={group.id}
+                      className="flex flex-col items-center cursor-pointer transition-all duration-200 hover:scale-105"
+                      onClick={() => !isDisabled && handleGroupToggle(group.id)}
+                      role="checkbox"
+                      aria-checked={isSelected}
+                      aria-disabled={isDisabled}
+                      tabIndex={isDisabled ? -1 : 0}
+                      onKeyDown={(e) => {
+                        if ((e.key === "Enter" || e.key === " ") && !isDisabled) {
+                          e.preventDefault();
+                          handleGroupToggle(group.id);
+                        }
+                      }}
+                    >
+                      {/* Circular Icon Background */}
+                      <div className={`w-[80px] h-[80px] rounded-full flex items-center justify-center mb-2 transition-all duration-200 ${
+                        isSelected ? "bg-black" : "bg-[#EFBA31]"
+                      }`}>
+                        <img
+                          src={group.iconSrc}
+                          alt={group.label}
+                          className="w-[50px] h-[50px] object-contain mix-blend-normal opacity-100"
+                          style={{ filter: "none" }}
+                        />
+                      </div>
+                      {/* Label */}
+                      <span className={`font-prompt text-lg font-medium text-center transition-all duration-200 ${
+                        isSelected ? "text-black" : "text-[#EFBA31]"
+                      }`}>
+                        {group.label}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Selection Summary */}
+            <div className="text-center mb-6">
+              <p className="text-white font-prompt text-sm">
+                เลือกแล้ว: {selectedGroups.length} จาก {maxSelections} กลุ่ม
+              </p>
+              {selectedGroups.length > 0 && (
+                <p className="text-[#EFBA31] font-prompt text-xs mt-1">
+                  {selectedGroups.map((id) => beneficiaryGroups.find((g) => g.id === id)?.label).join(', ')}
+                </p>
+              )}
+            </div>
 
             {/* Submit Button */}
             <div className="w-full max-w-[325px]">
               <button
                 onClick={handleNext}
-                className={`w-full h-[53px] rounded-[40px] border-[1.5px] border-black flex items-center justify-center transition-all duration-200 figma-style1-button`}
+                disabled={selectedGroups.length === 0}
+                className={`w-full h-[53px] rounded-[40px] border-[1.5px] border-black flex items-center justify-center transition-all duration-200 ${
+                  selectedGroups.length === 0
+                    ? "bg-gray-400 cursor-not-allowed"
+                    : "figma-style1-button"
+                }`}
+                aria-describedby="next-button-description"
               >
-                <span className="figma-style1-button-text">ไปต่อ</span>
+                <span
+                  className={`figma-style1-button-text ${
+                    selectedGroups.length === 0
+                      ? "text-gray-600"
+                      : ""
+                  }`}
+                >
+                  {currentStep === totalPrioritySteps ? "ไปดูสรุป" : "ถัดไป"}
+                </span>
               </button>
+
+              {selectedGroups.length === 0 && (
+                <div
+                  id="next-button-description"
+                  className="text-center text-white text-sm mt-2"
+                >
+                  กรุณาเลือกอย่างน้อย 1 กลุ่มเพื่อดำเนินการต่อ
+                </div>
+              )}
             </div>
           </div>
         </div>
