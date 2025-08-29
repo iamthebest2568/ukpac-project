@@ -44,33 +44,93 @@ const FigmaStyle1Layout: React.FC<FigmaStyle1LayoutProps> = ({
   buttons,
   replayButton,
   className = "",
-  isVideo = false,
+  isVideo,
 }) => {
+  const [videoFailed, setVideoFailed] = React.useState(false);
+
+  const isVideoUrl = React.useMemo(
+    () => /\.(mp4|webm|ogg)(\?.*)?$/i.test(backgroundImage),
+    [backgroundImage]
+  );
+  const shouldUseVideo = !videoFailed && ((isVideo ?? isVideoUrl) === true);
+
+  const mediaErrorMessage = (code?: number) => {
+    switch (code) {
+      case 1:
+        return "MEDIA_ERR_ABORTED: fetching process aborted by user";
+      case 2:
+        return "MEDIA_ERR_NETWORK: error occurred when downloading";
+      case 3:
+        return "MEDIA_ERR_DECODE: error occurred when decoding";
+      case 4:
+        return "MEDIA_ERR_SRC_NOT_SUPPORTED: media source not supported";
+      default:
+        return "Unknown media error";
+    }
+  };
+
+  const handleVideoError = (
+    e: React.SyntheticEvent<HTMLVideoElement, Event>
+  ) => {
+    const video = e.currentTarget;
+    const err = video.error;
+    const details = {
+      src: video.currentSrc || video.src,
+      code: err?.code ?? null,
+      message: mediaErrorMessage(err?.code ?? undefined),
+      networkState: video.networkState,
+      readyState: video.readyState,
+    };
+    console.error("Video error details:", details, err || "");
+    setVideoFailed(true);
+  };
+
+  const handleLoadedData = (
+    e: React.SyntheticEvent<HTMLVideoElement, Event>
+  ) => {
+    const v = e.currentTarget;
+    setVideoFailed(false);
+    console.log("Video data loaded:", {
+      src: v.currentSrc || v.src,
+      videoWidth: v.videoWidth,
+      videoHeight: v.videoHeight,
+      readyState: v.readyState,
+    });
+  };
+
+  // Reset error state when source changes
+  React.useEffect(() => {
+    setVideoFailed(false);
+  }, [backgroundImage]);
+
   return (
     <div className={`figma-style1-container ${className}`}>
       <div className="figma-style1-content">
         {/* Background Image/Video with Overlay */}
         <div className="figma-style1-background">
-          {isVideo ? (
+          {shouldUseVideo ? (
             <video
+              key={backgroundImage}
               src={backgroundImage}
-              autoPlay={true}
-              loop={true}
-              muted={true}
-              playsInline={true}
+              autoPlay
+              loop
+              muted
+              playsInline
               controls={false}
               preload="auto"
+              crossOrigin="anonymous"
               className="figma-style1-background-image"
               style={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-                objectPosition: 'center'
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                objectPosition: "center",
               }}
-              onLoadStart={() => console.log('Video loading started')}
-              onCanPlay={() => console.log('Video can play')}
-              onError={(e) => console.error('Video error:', e)}
-              onLoadedData={() => console.log('Video data loaded')}
+              onLoadStart={() => console.log("Video loading started")}
+              onCanPlay={() => console.log("Video can play")}
+              onError={handleVideoError}
+              onStalled={() => console.warn("Video stalled")}
+              onLoadedData={handleLoadedData}
             />
           ) : (
             <img
@@ -131,9 +191,7 @@ const FigmaStyle1Layout: React.FC<FigmaStyle1LayoutProps> = ({
                       className={buttonClass}
                       aria-describedby={`button-description-${index}`}
                     >
-                      <span className={textClass}>
-                        {button.text}
-                      </span>
+                      <span className={textClass}>{button.text}</span>
                     </button>
                     {button.ariaLabel && (
                       <div
