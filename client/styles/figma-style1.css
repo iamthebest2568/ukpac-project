@@ -26,7 +26,17 @@
 .figma-style1-background-image {
   @apply w-full h-full object-cover object-center;
   min-width: 100%;
+}
+
+.figma-style1-background-image:not(video) {
   aspect-ratio: 2/3;
+}
+
+.figma-style1-background video {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
 }
 
 .figma-style1-background-overlay {
