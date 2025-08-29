@@ -7,12 +7,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // Import pages
-import DashboardIndex from "./pages/DashboardIndex";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
-import VideoIntroPage from "./pages/VideoIntroPage";
-import VideoIntroPageFixed from "./pages/VideoIntroPageFixed";
-import VideoIntroTest from "./pages/VideoIntroTest";
 
 // Journey pages
 import Ask01Page from "./pages/Ask01Page";
@@ -33,9 +29,6 @@ import FakeNewsPage from "./pages/FakeNewsPage";
 import SourceSelectionPage from "./pages/SourceSelectionPage";
 import BudgetPage from "./pages/BudgetPage";
 import EndScreenPage from "./pages/EndScreenPage";
-
-// Dashboard
-import DashboardApp from "./components/dashboard/DashboardApp";
 
 const queryClient = new QueryClient();
 
@@ -64,16 +57,8 @@ const App = () => (
         <Layout>
           <Routes>
             {/* Main pages */}
-            <Route path="/" element={<DashboardIndex />} />
+            <Route path="/" element={<Ask01Page />} />
             <Route path="/index" element={<Index />} />
-
-            {/* Video Intro */}
-            <Route path="/video-intro" element={<VideoIntroPageFixed />} />
-            <Route path="/video-intro-original" element={<VideoIntroPage />} />
-            <Route path="/video-intro-test" element={<VideoIntroTest />} />
-
-            {/* Dashboard */}
-            <Route path="/dashboard" element={<DashboardApp />} />
 
             {/* Survey journey pages */}
             <Route path="/ask01" element={<Ask01Page />} />
@@ -117,9 +102,6 @@ const App = () => (
             <Route path="/BudgetPage" element={<BudgetPage />} />
             <Route path="/EndSequencePage" element={<EndSequencePage />} />
             <Route path="/EndScreenPage" element={<EndScreenPage />} />
-            <Route path="/DashboardIndex" element={<DashboardIndex />} />
-            <Route path="/VideoIntroPage" element={<VideoIntroPage />} />
-
             {/* Legacy support - redirect old gameID URLs to new routes */}
             <Route path="/legacy" element={<LegacyRedirectHandler />} />
 
