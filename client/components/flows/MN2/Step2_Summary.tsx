@@ -142,40 +142,59 @@ const Step2_Summary = ({
                 </div>
 
                 {/* Beneficiary Icons */}
-                <div className="absolute top-12 left-0 right-0 px-4">
+                <div className="absolute top-12 left-0 right-0 px-2">
                   <div
-                    className={`grid gap-3 justify-center items-start ${
-                      card.beneficiaries.length <= 2
+                    className={`grid gap-2 justify-center items-start place-items-center ${
+                      card.beneficiaries.length === 1
+                        ? 'grid-cols-1'
+                        : card.beneficiaries.length === 2
                         ? 'grid-cols-2'
-                        : card.beneficiaries.length <= 3
+                        : card.beneficiaries.length === 3
                         ? 'grid-cols-3'
-                        : card.beneficiaries.length <= 4
+                        : card.beneficiaries.length === 4
                         ? 'grid-cols-2'
-                        : card.beneficiaries.length <= 6
+                        : card.beneficiaries.length === 5
+                        ? 'grid-cols-3'
+                        : card.beneficiaries.length === 6
                         ? 'grid-cols-3'
                         : 'grid-cols-3'
                     }`}
                     style={{
-                      maxWidth: '100%',
-                      margin: '0 auto'
+                      maxWidth: '320px',
+                      margin: '0 auto',
+                      minHeight: '90px'
                     }}
                   >
                     {card.beneficiaries.map((beneficiary, beneficiaryIndex) => (
                       <div
                         key={beneficiaryIndex}
-                        className="flex flex-col items-center justify-start"
-                        style={{ minHeight: '80px' }}
+                        className="flex flex-col items-center justify-start w-full"
+                        style={{
+                          minHeight: '80px',
+                          maxWidth: card.beneficiaries.length <= 3 ? '90px' : '75px'
+                        }}
                       >
                         {/* Circular Icon Background */}
-                        <div className="w-[50px] h-[50px] rounded-full bg-[#EFBA31] flex items-center justify-center mb-1 relative flex-shrink-0">
+                        <div
+                          className={`rounded-full bg-[#EFBA31] flex items-center justify-center mb-1 relative flex-shrink-0 ${
+                            card.beneficiaries.length <= 3 ? 'w-[52px] h-[52px]' : 'w-[45px] h-[45px]'
+                          }`}
+                        >
                           <img
                             src={beneficiary.iconSrc}
                             alt={beneficiary.label}
-                            className="max-w-[32px] max-h-[28px] object-contain"
+                            className={`object-contain ${
+                              card.beneficiaries.length <= 3 ? 'max-w-[35px] max-h-[30px]' : 'max-w-[30px] max-h-[26px]'
+                            }`}
                           />
                         </div>
                         {/* Label */}
-                        <span className="text-[#EFBA31] font-prompt text-[10px] font-medium text-center leading-3 whitespace-pre-line max-w-[70px] break-words">
+                        <span
+                          className={`text-[#EFBA31] font-prompt font-medium text-center leading-tight whitespace-pre-line break-words ${
+                            card.beneficiaries.length <= 3 ? 'text-[11px] max-w-[85px]' : 'text-[9px] max-w-[70px]'
+                          }`}
+                          style={{ lineHeight: '1.1' }}
+                        >
                           {beneficiary.label}
                         </span>
                       </div>
