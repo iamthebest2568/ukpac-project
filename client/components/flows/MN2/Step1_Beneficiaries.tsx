@@ -86,15 +86,9 @@ const Step1_Beneficiaries = ({
   };
 
   const handleNext = () => {
-    console.log("=== Step1_Beneficiaries Single Priority handleNext ===");
-    console.log("currentPriority:", currentPriority);
-    console.log("selectedGroups:", selectedGroups);
-    
     // Create selections array with this priority's beneficiaries
     const selectionsArray = [{ priority: currentPriority, beneficiaries: selectedGroups }];
     const data = { beneficiaries: { selections: selectionsArray } };
-    
-    console.log("Sending data:", data);
 
     // Log the minigame completion
     logEvent({
