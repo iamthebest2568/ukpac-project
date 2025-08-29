@@ -1,44 +1,49 @@
 import FigmaStyle1Layout from "../components/layouts/FigmaStyle1Layout";
 import { useSession } from "../hooks/useSession";
+import { useState } from "react";
 
 const IntroTravelModeCityPage = () => {
   const { navigateToPage } = useSession();
+  const [selectedChoice, setSelectedChoice] = useState<string>("อยู่ในพื้นที่ไม่ต้องเข้าเมือง"); // Pre-select as shown in design
 
-  const handleNext = () => {
-    navigateToPage("/intro-travel-freq-city");
+  const handleChoice = (choice: string) => {
+    setSelectedChoice(choice);
+    // Add a small delay to show selection before navigating
+    setTimeout(() => {
+      navigateToPage("/intro-travel-freq-city");
+    }, 300);
   };
 
-  const handleBack = () => {
-    navigateToPage("/intro-group-selection");
+  const handleReplay = () => {
+    // Replay functionality - could replay video or audio content
+    console.log("Replay clicked");
   };
+
+  const choices = [
+    { text: "รถไฟฟ้า BTS / MRT", variant: "default" },
+    { text: "อยู่ในพื้นที่ไม่ต้องเข้าเมือง", variant: "dark" }, // Pre-selected as shown in Figma
+    { text: "รถยนต์", variant: "default" },
+    { text: "รถ รับ-ส่ง", variant: "default" },
+    { text: "รถประจำทาง", variant: "default" }
+  ];
 
   return (
     <FigmaStyle1Layout
-      backgroundImage="https://cdn.builder.io/o/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Faf32686a3c3d417994a2e2311560fea3?alt=media&token=cd0a67ee-b882-4eaa-a103-6640da4da97e&apiKey=0eb7afe56fd645b8b4ca090471cef081"
+      backgroundImage="https://api.builder.io/api/v1/image/assets/TEMP/3cfdc582d291da8313da83afa531f66c01c9c5a7?width=1132"
       backgroundAlt="Travel mode background"
-      title="��ุณใช้การเดินทางแบบไหนในเมือง?"
-      buttons={[
-        {
-          text: "รถไฟฟ้า",
-          onClick: handleNext,
-          ariaLabel: "เลือกรถไฟฟ้า"
-        },
-        {
-          text: "รถเมล์",
-          onClick: handleNext,
-          ariaLabel: "เลือกรถเมล์"
-        },
-        {
-          text: "รถยนต์ส่วนตัว",
-          onClick: handleNext,
-          ariaLabel: "เลือกรถยนต์ส่วนตัว"
-        },
-        {
-          text: "จักรยานยนต์",
-          onClick: handleNext,
-          ariaLabel: "เลือกจักรยานยนต์"
-        }
-      ]}
+      title="คุณเดินทางเข้าเมือง
+ด้วยวิธีไหน"
+      buttons={choices.map((choice) => ({
+        text: choice.text,
+        onClick: () => handleChoice(choice.text),
+        ariaLabel: `เลือก${choice.text}`,
+        isSelected: selectedChoice === choice.text,
+        variant: choice.variant as "default" | "dark"
+      }))}
+      replayButton={{
+        onClick: handleReplay,
+        ariaLabel: "ดูอีกครั้ง"
+      }}
     />
   );
 };
