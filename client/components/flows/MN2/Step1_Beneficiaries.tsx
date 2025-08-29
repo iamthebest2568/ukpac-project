@@ -139,6 +139,40 @@ const Step1_Beneficiaries = ({
     onNext(data);
   };
 
+  // If no priorities found, show error message
+  if (priorities.length === 0) {
+    return (
+      <div className="figma-style1-container">
+        <div className="figma-style1-content">
+          <div className="figma-style1-background">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F946833431d4b46a0bde1c7d1bc32f67a"
+              alt="กลุ่มผู้ได้รับประโยชน์"
+              className="figma-style1-background-image"
+            />
+            <div className="figma-style1-background-overlay" />
+          </div>
+          <div className="figma-style1-main">
+            <div className="figma-style1-content-area">
+              <div className="figma-style1-title-container">
+                <h1 className="figma-style1-title">ไม่พบข้อมูลจากขั้นตอนก่อนหน้า</h1>
+                <p className="text-white text-center mt-4">กรุณากลับไปเลือกนโยบายก่อน</p>
+              </div>
+              <div className="w-full max-w-[325px]">
+                <button
+                  onClick={onBack}
+                  className="figma-style1-button"
+                >
+                  <span className="figma-style1-button-text">กลับไปเลือกนโยบาย</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="figma-style1-container">
       <div className="figma-style1-content">
@@ -160,7 +194,7 @@ const Step1_Beneficiaries = ({
             {priorities.map((priority, idx) => (
               <div key={priority} className="mb-8 w-full max-w-[334px]">
                 <div className="figma-style1-title-container mb-4">
-                  <h2 className="figma-style1-subtitle">{`คุณคิดว่าใคร��วรได้รับประโยชน์จาก ${priority} ?`}</h2>
+                  <h2 className="figma-style1-subtitle">{`คุณคิดว่าใครควรได้รับประโยชน์จาก ${priority} ?`}</h2>
                 </div>
 
                 {/* Selection Grid - same layout as original */}
