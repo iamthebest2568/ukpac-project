@@ -14,8 +14,9 @@ const IntroTravelFreqCityPage = () => {
 
   return (
     <FigmaStyle1Layout
-      backgroundImage="" // Will be replaced with video background
+      backgroundImage="https://cdn.builder.io/o/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Faf32686a3c3d417994a2e2311560fea3?alt=media&token=cd0a67ee-b882-4eaa-a103-6640da4da97e&apiKey=0eb7afe56fd645b8b4ca090471cef081"
       backgroundAlt="Travel frequency background"
+      isVideo={true}
       title="คุณเดินทางในเมืองบ่อยแค่ไหน?"
       buttons={[
         {
@@ -31,12 +32,12 @@ const IntroTravelFreqCityPage = () => {
         {
           text: "สัปดาห์ละ 1-2 วัน",
           onClick: handleNext,
-          ariaLabel: "เลือกสัปดาห์ละ 1-2 วัน"
+          ariaLabel: "เลือก���ัปดาห์ละ 1-2 วัน"
         },
         {
           text: "เดือนละไม่กี่ครั้ง",
           onClick: handleNext,
-          ariaLabel: "เลือกเดือนละไม่กี่���รั้ง"
+          ariaLabel: "เลือกเดือนละไม่กี่ครั้ง"
         }
       ]}
     />
