@@ -189,6 +189,8 @@ const Step2_Summary = ({
                                 ? 'max-w-[38px] max-h-[34px]'
                                 : card.beneficiaries.length <= 4
                                 ? 'max-w-[34px] max-h-[30px]'
+                                : card.beneficiaries.length === 6
+                                ? 'max-w-[36px] max-h-[32px]'
                                 : 'max-w-[30px] max-h-[26px]'
                             }`}
                           />
@@ -200,11 +202,13 @@ const Step2_Summary = ({
                               ? 'text-[12px]'
                               : card.beneficiaries.length <= 4
                               ? 'text-[11px]'
+                              : card.beneficiaries.length === 6
+                              ? 'text-[11px]'
                               : 'text-[10px]'
                           }`}
                           style={{
                             lineHeight: '1.2',
-                            maxWidth: card.beneficiaries.length <= 3 ? '85px' : card.beneficiaries.length <= 4 ? '75px' : '65px'
+                            maxWidth: card.beneficiaries.length <= 3 ? '85px' : card.beneficiaries.length <= 4 ? '75px' : card.beneficiaries.length === 6 ? '80px' : '65px'
                           }}
                         >
                           {beneficiary.label}
