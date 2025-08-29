@@ -50,8 +50,12 @@ const FigmaStyle1Layout: React.FC<FigmaStyle1LayoutProps> = ({
   replayButton,
   className = "",
   isVideo,
+  videoSegment,
+  onVideoSegmentComplete,
 }) => {
   const [videoFailed, setVideoFailed] = React.useState(false);
+  const [isPlayingSegment, setIsPlayingSegment] = React.useState(false);
+  const videoRef = React.useRef<HTMLVideoElement>(null);
 
   const isVideoUrl = React.useMemo(
     () => /\.(mp4|webm|ogg)(\?.*)?$/i.test(backgroundImage),
