@@ -266,7 +266,7 @@ const FigmaStyle1Layout: React.FC<FigmaStyle1LayoutProps> = ({
               {buttons.map((button, index) => (
                 <React.Fragment key={index}>
                   <button
-                    onClick={button.onClick}
+                    onClick={handleButtonClick(button.onClick)}
                     className="figma-style1-button"
                     aria-describedby={`button-description-${index}`}
                   >
