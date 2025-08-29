@@ -236,7 +236,7 @@ const FigmaStyle1Layout: React.FC<FigmaStyle1LayoutProps> = ({
           {replayButton && (
             <div className="figma-style1-header">
               <button
-                onClick={replayButton.onClick}
+                onClick={handleReplayClick}
                 className="figma-style1-replay-button"
                 aria-label={replayButton.ariaLabel || "ดูอีกครั้ง"}
               >
