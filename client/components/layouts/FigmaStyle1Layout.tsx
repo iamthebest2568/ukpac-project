@@ -22,6 +22,13 @@ interface FigmaStyle1LayoutProps {
   };
   /** Additional CSS classes for customization */
   className?: string;
+  /** Video segment configuration for button clicks */
+  videoSegment?: {
+    startTime: number;
+    endTime: number;
+  };
+  /** Callback when video segment playback completes */
+  onVideoSegmentComplete?: () => void;
 }
 
 /**
