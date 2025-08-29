@@ -34,7 +34,7 @@ const IntroWhoAreYouPage = () => {
     },
     {
       text: "ผู้ประกอบการที่มาขายของในพื้นที่",
-      onClick: () => handleChoice("ผู้ประกอบการที่มาขายของในพื้นที่"),
+      onClick: () => handleChoice("ผู้ประกอบการที่��าขายของในพื้นที่"),
       ariaLabel: "เลือกผู้ประกอบการที่มาขายของในพื้นที่"
     },
     {
@@ -51,10 +51,15 @@ const IntroWhoAreYouPage = () => {
 
   return (
     <FigmaStyle1Layout
-      backgroundImage="https://cdn.builder.io/o/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Faf32686a3c3d417994a2e2311560fea3?alt=media&token=cd0a67ee-b882-4eaa-a103-6640da4da97e&apiKey=0eb7afe56fd645b8b4ca090471cef081"
-      backgroundAlt="Who are you background"
+      backgroundImage="/opening-compress.mp4"
+      backgroundAlt="Who are you video background"
+      isVideo={true}
       title="คุณเป็นใครเป็นในมหานครนี้"
       buttons={buttons}
+      videoSegment={{
+        startTime: 0.7,
+        endTime: 0.15
+      }}
       replayButton={{
         onClick: handleReplay,
         ariaLabel: "ดูอีกครั้ง"
