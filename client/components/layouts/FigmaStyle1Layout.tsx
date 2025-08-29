@@ -47,13 +47,24 @@ const FigmaStyle1Layout: React.FC<FigmaStyle1LayoutProps> = ({
   return (
     <div className={`figma-style1-container ${className}`}>
       <div className="figma-style1-content">
-        {/* Background Image with Overlay */}
+        {/* Background Image/Video with Overlay */}
         <div className="figma-style1-background">
-          <img
-            src={backgroundImage}
-            alt={backgroundAlt}
-            className="figma-style1-background-image"
-          />
+          {isVideo ? (
+            <video
+              src={backgroundImage}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="figma-style1-background-image"
+            />
+          ) : (
+            <img
+              src={backgroundImage}
+              alt={backgroundAlt}
+              className="figma-style1-background-image"
+            />
+          )}
           <div className="figma-style1-background-overlay" />
         </div>
 
