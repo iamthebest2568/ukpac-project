@@ -21,11 +21,18 @@ const Step1_Beneficiaries = ({
   initialData = {},
   mn1Data,
 }: Step1_BeneficiariesProps) => {
+  console.log("=== Step1_Beneficiaries Component Init ===");
+  console.log("Received mn1Data:", mn1Data);
+  console.log("Received initialData:", initialData);
+
   // Prepare priorities from MN1. Expect mn1Data shape: { priorities: { selectedPriorities: string[] } }
   const priorities: string[] =
     mn1Data?.priorities?.selectedPriorities && mn1Data.priorities.selectedPriorities.length > 0
       ? mn1Data.priorities.selectedPriorities
       : ["ลดค่าโดยสารรถไฟฟ้า"];
+
+  console.log("Final priorities to use:", priorities);
+  console.log("=== End Step1_Beneficiaries Component Init ===");
 
   // selections per priority: Record<priority, string[]>
   const [selections, setSelections] = useState<Record<string, string[]>>(() => {
@@ -56,7 +63,7 @@ const Step1_Beneficiaries = ({
     },
     {
       id: "locals",
-      label: "คนใน���ื้นที่",
+      label: "คนในพื้นที่",
       iconSrc: "https://api.builder.io/api/v1/image/assets/TEMP/1e470dd8f9f7ac27485f56fba45554979acb2509?width=100"
     },
     {
