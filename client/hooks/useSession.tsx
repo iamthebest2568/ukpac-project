@@ -136,7 +136,7 @@ export const useSession = (): UseSessionReturn => {
     userJourneyData,
     flowData,
     setUserJourneyData,
-    setFlowData: debugSetFlowData,
+    setFlowData: enhancedSetFlowData,
     navigateToPage,
   };
 };
