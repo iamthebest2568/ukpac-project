@@ -142,6 +142,15 @@ const LegacyRedirectHandler = () => {
   const gameID = searchParams.get("gameID");
 
   const redirectMap: Record<string, string> = {
+    "intro-start": "/intro-start",
+    "intro-who-are-you": "/intro-who-are-you",
+    "intro-gender": "/intro-gender",
+    "intro-group-selection": "/intro-group-selection",
+    "intro-travel-mode-city": "/intro-travel-mode-city",
+    "intro-travel-freq-city": "/intro-travel-freq-city",
+    "intro-policy-thoughts": "/intro-policy-thoughts",
+    "intro-reply-friend": "/intro-reply-friend",
+    "intro-policy-feel": "/intro-policy-feel",
     ask01: "/ask01",
     ask02: "/ask02",
     ask02_2: "/ask02-2",
@@ -156,7 +165,7 @@ const LegacyRedirectHandler = () => {
     sourceSelection: "/source-selection",
     budget: "/budget",
     endScreen: "/end-screen",
-    index: "/ask01",
+    index: "/intro-start",
   };
 
   if (gameID && redirectMap[gameID]) {
