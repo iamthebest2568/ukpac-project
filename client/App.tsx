@@ -134,9 +134,7 @@ const LegacyRedirectHandler = () => {
     sourceSelection: "/source-selection",
     budget: "/budget",
     endScreen: "/end-screen",
-    dashboard: "/dashboard",
-    index: "/",
-    dashboardIndex: "/",
+    index: "/ask01",
   };
 
   if (gameID && redirectMap[gameID]) {
@@ -148,9 +146,9 @@ const LegacyRedirectHandler = () => {
     return <div>Redirecting...</div>;
   }
 
-  // If no valid gameID, redirect to home
-  window.location.replace("/");
-  return <div>Redirecting to home...</div>;
+  // If no valid gameID, redirect to first survey page
+  window.location.replace("/ask01");
+  return <div>Redirecting to survey...</div>;
 };
 
 export default App;
