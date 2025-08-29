@@ -48,7 +48,12 @@ const Flow_MiniGame_MN2 = ({ sessionID, onComplete, onBack, mn1Data }: Flow_Mini
 
   const renderCurrentStep = () => {
     const combinedData = { ...mn1Data, ...flowData };
-    
+
+    console.log("Flow_MiniGame_MN2 - currentStep:", currentStep);
+    console.log("Flow_MiniGame_MN2 - mn1Data:", mn1Data);
+    console.log("Flow_MiniGame_MN2 - flowData:", flowData);
+    console.log("Flow_MiniGame_MN2 - combinedData:", combinedData);
+
     switch (currentStep) {
       case 1:
         return (
