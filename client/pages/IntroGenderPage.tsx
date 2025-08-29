@@ -4,7 +4,7 @@ import { useState } from "react";
 
 const IntroGenderPage = () => {
   const { navigateToPage } = useSession();
-  const [selectedChoice, setSelectedChoice] = useState<string | null>(null);
+  const [selectedChoice, setSelectedChoice] = useState<string>("ผู้ชาย"); // Pre-select as shown in design
 
   const handleChoice = (choice: string) => {
     setSelectedChoice(choice);
@@ -20,9 +20,9 @@ const IntroGenderPage = () => {
   };
 
   const choices = [
-    { text: "ผู้หญิง", variant: "default" },
-    { text: "ผู้ชาย", variant: "dark" }, // Highlighted in Figma
-    { text: "เพศทางเลือก", variant: "default" }
+    { text: "ผู้หญิง" },
+    { text: "ผู้ชาย" }, // Pre-selected as shown in Figma
+    { text: "เพศทางเลือก" }
   ];
 
   return (
@@ -34,8 +34,7 @@ const IntroGenderPage = () => {
         text: choice.text,
         onClick: () => handleChoice(choice.text),
         ariaLabel: `เลือก${choice.text}`,
-        isSelected: selectedChoice === choice.text,
-        variant: choice.variant as "default" | "dark"
+        isSelected: selectedChoice === choice.text
       }))}
       replayButton={{
         onClick: handleReplay,

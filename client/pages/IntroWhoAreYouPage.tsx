@@ -4,7 +4,7 @@ import { useState } from "react";
 
 const IntroWhoAreYouPage = () => {
   const { navigateToPage } = useSession();
-  const [selectedChoice, setSelectedChoice] = useState<string | null>(null);
+  const [selectedChoice, setSelectedChoice] = useState<string>("ผู้อยู่อาศัยในพื้นที่"); // Pre-select as shown in design
 
   const handleChoice = (choice: string) => {
     setSelectedChoice(choice);
@@ -33,13 +33,11 @@ const IntroWhoAreYouPage = () => {
       backgroundImage="https://cdn.builder.io/o/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Faf32686a3c3d417994a2e2311560fea3?alt=media&token=cd0a67ee-b882-4eaa-a103-6640da4da97e&apiKey=0eb7afe56fd645b8b4ca090471cef081"
       backgroundAlt="Who are you background"
       title="คุณเป็นใครเป็นในมหานครนี้"
-      buttons={choices.map((choice, index) => ({
+      buttons={choices.map((choice) => ({
         text: choice,
         onClick: () => handleChoice(choice),
         ariaLabel: `เลือก${choice}`,
-        isSelected: selectedChoice === choice,
-        // Highlight the second option (ผู้อยู่อาศัยในพื้นที่) as shown in Figma
-        variant: index === 1 ? "dark" : "default"
+        isSelected: selectedChoice === choice
       }))}
       replayButton={{
         onClick: handleReplay,

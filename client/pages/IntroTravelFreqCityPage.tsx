@@ -20,11 +20,11 @@ const IntroTravelFreqCityPage = () => {
   };
 
   const choices = [
-    { text: "ทุกวัน", variant: "default" },
-    { text: "ทุกวันธรรมดา", variant: "dark" }, // Pre-selected as shown in Figma
-    { text: "สัปดาห์ละครั้ง", variant: "default" },
-    { text: "เดือนละครั้ง", variant: "default" },
-    { text: "ไม่ค่อยเข้าเมือง", variant: "default" }
+    { text: "ทุกวัน" },
+    { text: "ทุกวันธรรมดา" }, // Pre-selected as shown in Figma
+    { text: "สัปดาห์ละครั้ง" },
+    { text: "เ���ือนละครั้ง" },
+    { text: "ไม่ค่อยเข้าเมือง" }
   ];
 
   return (
@@ -37,8 +37,7 @@ const IntroTravelFreqCityPage = () => {
         text: choice.text,
         onClick: () => handleChoice(choice.text),
         ariaLabel: `เลือก${choice.text}`,
-        isSelected: selectedChoice === choice.text,
-        variant: choice.variant as "default" | "dark"
+        isSelected: selectedChoice === choice.text
       }))}
       replayButton={{
         onClick: handleReplay,

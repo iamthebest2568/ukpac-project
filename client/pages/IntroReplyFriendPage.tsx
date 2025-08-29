@@ -20,9 +20,9 @@ const IntroReplyFriendPage = () => {
   };
 
   const choices = [
-    { text: "ดูแล้ว", variant: "default" },
-    { text: "อยากรู้อยู่พอดี", variant: "dark" }, // Pre-selected as shown in Figma
-    { text: "ยังไม่ได้ดู", variant: "default" }
+    { text: "ดูแล้ว" },
+    { text: "อยากรู้อยู่พอดี" }, // Pre-selected as shown in Figma
+    { text: "ยังไม่ได้ดู" }
   ];
 
   return (
@@ -30,13 +30,12 @@ const IntroReplyFriendPage = () => {
       backgroundImage="https://api.builder.io/api/v1/image/assets/TEMP/419597ed0400b0cba84e4b50f1b9a2bb3217526c?width=956"
       backgroundAlt="Reply friend background"
       title="คุณจะตอบกลับเพื่อน
-ว่าอย่า��ไร"
+ว่าอย่างไร"
       buttons={choices.map((choice) => ({
         text: choice.text,
         onClick: () => handleChoice(choice.text),
         ariaLabel: `เลือก${choice.text}`,
-        isSelected: selectedChoice === choice.text,
-        variant: choice.variant as "default" | "dark"
+        isSelected: selectedChoice === choice.text
       }))}
       replayButton={{
         onClick: handleReplay,

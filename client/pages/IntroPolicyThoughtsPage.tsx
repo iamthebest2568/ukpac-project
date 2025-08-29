@@ -20,10 +20,10 @@ const IntroPolicyThoughtsPage = () => {
   };
 
   const choices = [
-    { text: "ไม่เชื่อว่าแก้ปัญหาได้จริง", variant: "default" },
-    { text: "กังวัลค่าใช้จ่าย", variant: "dark" }, // Pre-selected as shown in Figma
-    { text: "ไม่อยากใช้เพราะไม่สะดวก", variant: "default" },
-    { text: "ยินดีจ่ายเพราะรถจะติดน้อยลง", variant: "default" }
+    { text: "ไม่เชื่อว่าแก้ปัญหาได้จริง" },
+    { text: "กังวัลค่าใช้จ่าย" }, // Pre-selected as shown in Figma
+    { text: "ไม่อยากใช้เพราะไม่สะดวก" },
+    { text: "ยินดีจ่ายเพราะรถจะติดน้อยลง" }
   ];
 
   return (
@@ -36,12 +36,11 @@ const IntroPolicyThoughtsPage = () => {
         text: choice.text,
         onClick: () => handleChoice(choice.text),
         ariaLabel: `เลือก${choice.text}`,
-        isSelected: selectedChoice === choice.text,
-        variant: choice.variant as "default" | "dark"
+        isSelected: selectedChoice === choice.text
       }))}
       replayButton={{
         onClick: handleReplay,
-        ariaLabel: "ดูอีกครั้ง"
+        ariaLabel: "ด��อีกครั้ง"
       }}
     />
   );

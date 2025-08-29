@@ -20,11 +20,11 @@ const IntroTravelModeCityPage = () => {
   };
 
   const choices = [
-    { text: "รถไฟฟ้า BTS / MRT", variant: "default" },
-    { text: "อยู่ในพื้นที่ไม่ต้องเข้าเมือง", variant: "dark" }, // Pre-selected as shown in Figma
-    { text: "รถยนต์", variant: "default" },
-    { text: "รถ รับ-ส่ง", variant: "default" },
-    { text: "รถประจำทาง", variant: "default" }
+    { text: "รถไฟฟ้า BTS / MRT" },
+    { text: "อยู่ในพื้นที่ไม่ต้องเข้าเมือง" }, // Pre-selected as shown in Figma
+    { text: "รถยนต์" },
+    { text: "รถ รับ-ส่ง" },
+    { text: "รถประจำทาง" }
   ];
 
   return (
@@ -37,8 +37,7 @@ const IntroTravelModeCityPage = () => {
         text: choice.text,
         onClick: () => handleChoice(choice.text),
         ariaLabel: `เลือก${choice.text}`,
-        isSelected: selectedChoice === choice.text,
-        variant: choice.variant as "default" | "dark"
+        isSelected: selectedChoice === choice.text
       }))}
       replayButton={{
         onClick: handleReplay,

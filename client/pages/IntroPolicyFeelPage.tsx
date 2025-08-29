@@ -20,9 +20,9 @@ const IntroPolicyFeelPage = () => {
   };
 
   const choices = [
-    { text: "เห็นด้วย", variant: "default" },
-    { text: "เฉยๆ", variant: "dark" }, // Pre-selected as shown in Figma
-    { text: "ไม่เห็นด้วย", variant: "default" }
+    { text: "เห็นด้วย" },
+    { text: "เฉยๆ" }, // Pre-selected as shown in Figma
+    { text: "ไม่เห็นด้วย" }
   ];
 
   return (
@@ -34,8 +34,7 @@ const IntroPolicyFeelPage = () => {
         text: choice.text,
         onClick: () => handleChoice(choice.text),
         ariaLabel: `เลือก${choice.text}`,
-        isSelected: selectedChoice === choice.text,
-        variant: choice.variant as "default" | "dark"
+        isSelected: selectedChoice === choice.text
       }))}
       replayButton={{
         onClick: handleReplay,

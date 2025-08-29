@@ -20,10 +20,10 @@ const IntroGroupSelectionPage = () => {
   };
 
   const choices = [
-    { text: "คนพิการ", variant: "default" },
-    { text: "เด็ก", variant: "dark" }, // Pre-selected as shown in Figma
-    { text: "ผู้สูงอายุ", variant: "default" },
-    { text: "อื่นๆ", variant: "default" }
+    { text: "คนพิการ" },
+    { text: "เด็ก" }, // Pre-selected as shown in Figma
+    { text: "ผู้สูงอายุ" },
+    { text: "อื่นๆ" }
   ];
 
   return (
@@ -31,13 +31,12 @@ const IntroGroupSelectionPage = () => {
       backgroundImage="https://cdn.builder.io/o/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Faf32686a3c3d417994a2e2311560fea3?alt=media&token=cd0a67ee-b882-4eaa-a103-6640da4da97e&apiKey=0eb7afe56fd645b8b4ca090471cef081"
       backgroundAlt="Group selection background"
       title="คุณมองว่าตัวเองเป็น
-คนกลุ่���ไหนในเมืองนี้"
+คนกลุ่มไหนในเมืองนี้"
       buttons={choices.map((choice) => ({
         text: choice.text,
         onClick: () => handleChoice(choice.text),
         ariaLabel: `เลือก${choice.text}`,
-        isSelected: selectedChoice === choice.text,
-        variant: choice.variant as "default" | "dark"
+        isSelected: selectedChoice === choice.text
       }))}
       replayButton={{
         onClick: handleReplay,
