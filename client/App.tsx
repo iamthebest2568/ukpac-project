@@ -47,7 +47,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => (
       className="skip-link"
       aria-label="ข้ามไปยังเนื้อหาหลัก"
     >
-      ข้า��ไปยังเนื้อหาหลัก
+      ข้ามไปยังเนื้อหาหลัก
     </a>
     <main id="main-content" role="main">
       {children}
