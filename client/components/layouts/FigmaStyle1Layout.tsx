@@ -197,6 +197,7 @@ const FigmaStyle1Layout: React.FC<FigmaStyle1LayoutProps> = ({
         <div className="figma-style1-background">
           {shouldUseVideo ? (
             <video
+              ref={videoRef}
               key={backgroundImage}
               src={backgroundImage}
               autoPlay
