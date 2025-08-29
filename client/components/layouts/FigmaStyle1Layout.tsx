@@ -42,6 +42,7 @@ const FigmaStyle1Layout: React.FC<FigmaStyle1LayoutProps> = ({
   buttons,
   replayButton,
   className = "",
+  isVideo = false,
 }) => {
   return (
     <div className={`figma-style1-container ${className}`}>
