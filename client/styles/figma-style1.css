@@ -108,6 +108,20 @@
   color: #efba31;
 }
 
+/* Dark variant for figma-style1 buttons */
+.figma-style1-button--dark {
+  @apply w-full h-[53px] rounded-[40px] bg-black border-[1.5px] border-black flex items-center justify-center transition-all duration-200 hover:scale-105 hover:shadow-lg hover:bg-[#EFBA31];
+}
+
+.figma-style1-button-text--dark {
+  @apply text-[#EFBA31] text-center font-prompt text-lg font-medium leading-7 tracking-[0.4px];
+}
+
+.figma-style1-button--dark:hover .figma-style1-button-text--dark,
+.figma-style1-button--dark:active .figma-style1-button-text--dark {
+  color: #000000;
+}
+
 /* Replay Button System */
 .figma-style1-replay-button {
   @apply transition-all duration-200 hover:scale-105;
