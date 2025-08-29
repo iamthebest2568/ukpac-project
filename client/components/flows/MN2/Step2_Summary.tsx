@@ -14,7 +14,7 @@ interface Step2_SummaryProps {
 
 interface SummaryCard {
   priority: string;
-  beneficiaries: { label: string; iconSrc: string }[];
+  beneficiaries: { label: string; iconSrc: string; id: string }[];
 }
 
 const Step2_Summary = ({
@@ -54,39 +54,22 @@ const Step2_Summary = ({
   };
 
   useEffect(() => {
-    // Be flexible with incoming data shapes from different parts of the app.
+    console.log("Step2_Summary journeyData:", journeyData);
+    
+    // Extract priorities from several possible locations
     const prioritiesData: string[] =
       journeyData?.priorities?.selectedPriorities ||
       journeyData?.mn1?.priorities?.selectedPriorities ||
-      journeyData?.mn1?.selectedPriorities ||
-      journeyData?.selectedPriorities ||
       [];
 
+    // Extract beneficiary selections (per-priority)
     let beneficiariesSelections: { priority: string; beneficiaries: string[] }[] =
       journeyData?.beneficiaries?.selections ||
       journeyData?.mn2?.beneficiaries?.selections ||
-      journeyData?.mn2?.beneficiaries?.selectedGroups ||
-      journeyData?.beneficiaries?.selectedGroups ||
       [];
 
-    // If beneficiariesSelections is an array of ids (legacy: flat selectedGroups) convert to per-priority mapping
-    if (
-      Array.isArray(beneficiariesSelections) &&
-      beneficiariesSelections.length > 0 &&
-      typeof beneficiariesSelections[0] === "string"
-    ) {
-      const flatIds = beneficiariesSelections as unknown as string[];
-      beneficiariesSelections = prioritiesData.map((p) => ({ priority: p, beneficiaries: flatIds }));
-    }
-
-    if (
-      (journeyData?.beneficiaries?.selectedGroups && Array.isArray(journeyData.beneficiaries.selectedGroups)) &&
-      (!beneficiariesSelections || beneficiariesSelections.length === 0) &&
-      prioritiesData.length > 0
-    ) {
-      const flat = journeyData.beneficiaries.selectedGroups as string[];
-      beneficiariesSelections = prioritiesData.map((p) => ({ priority: p, beneficiaries: flat }));
-    }
+    console.log("Priorities:", prioritiesData);
+    console.log("Beneficiary Selections:", beneficiariesSelections);
 
     // Build a lookup map for beneficiaries by priority
     const lookup: Record<string, string[]> = {};
@@ -97,12 +80,11 @@ const Step2_Summary = ({
     // Create summary cards
     const cards: SummaryCard[] = prioritiesData.map((priority: string) => {
       const beneficiaryIds = lookup[priority] || [];
-      const beneficiaryObjects = beneficiaryIds.map((id: string) => 
-        (beneficiaryMapping as any)[id] || { 
-          label: id, 
-          iconSrc: "https://api.builder.io/api/v1/image/assets/TEMP/5a8e81b8e50e6e0ed69f435d1c09e3de070df984?width=82"
-        }
-      );
+      const beneficiaryObjects = beneficiaryIds.map((id: string) => ({
+        id,
+        label: (beneficiaryMapping as any)[id]?.label || id,
+        iconSrc: (beneficiaryMapping as any)[id]?.iconSrc || "https://api.builder.io/api/v1/image/assets/TEMP/5a8e81b8e50e6e0ed69f435d1c09e3de070df984?width=82"
+      }));
 
       return {
         priority,
@@ -110,6 +92,7 @@ const Step2_Summary = ({
       };
     });
 
+    console.log("Summary Cards:", cards);
     setSummaryCards(cards);
   }, [journeyData]);
 
@@ -119,7 +102,6 @@ const Step2_Summary = ({
   };
 
   const handleNo = () => {
-    const data = { summary: { summaryReviewed: true, summaryCards, confirmed: false } };
     if (onBack) {
       onBack();
     }
@@ -140,82 +122,85 @@ const Step2_Summary = ({
       <div className="absolute inset-0 bg-black bg-opacity-90"></div>
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col min-h-screen px-8 py-11">
-        {/* Header */}
-        <div className="text-center mb-6">
-          <h1 className="text-white font-kanit text-[28px] font-normal leading-normal">
-            นี้คือนโยบายที่คุณเสนอ
-          </h1>
-        </div>
+      <div className="relative z-10 flex flex-col min-h-screen">
+        {/* Results Section */}
+        <div className="pt-11 px-0 flex-1">
+          {/* Header */}
+          <div className="text-center mb-6">
+            <h1 className="text-white font-kanit text-[28px] font-normal leading-normal">
+              นี้คือนโยบายที่คุณเสนอ
+            </h1>
+          </div>
 
-        {/* Summary Cards */}
-        <div className="flex-1 space-y-4 mb-6">
-          {summaryCards.map((card, index) => (
-            <div
-              key={index}
-              className="relative w-full h-[155px] rounded-[10px] border-[1.5px] border-[#EFBA31]"
-            >
-              {/* Policy Name */}
-              <div className="absolute top-3 left-0 right-0">
-                <h3 className="text-[#EFBA31] font-kanit text-[18px] font-normal text-center leading-normal">
-                  {card.priority}
-                </h3>
-              </div>
+          {/* Summary Cards */}
+          <div className="px-[30px] space-y-4 mb-6">
+            {summaryCards.map((card, index) => (
+              <div
+                key={index}
+                className="relative w-full h-[155px] rounded-[10px] border-[1.5px] border-[#EFBA31] bg-transparent"
+              >
+                {/* Policy Name */}
+                <div className="absolute top-3 left-0 right-0">
+                  <h3 className="text-[#EFBA31] font-kanit text-[18px] font-normal text-center leading-normal">
+                    {card.priority}
+                  </h3>
+                </div>
 
-              {/* Beneficiary Icons */}
-              <div className="absolute top-12 left-0 right-0 flex justify-center gap-4 px-4">
-                {card.beneficiaries.map((beneficiary, beneficiaryIndex) => (
-                  <div
-                    key={beneficiaryIndex}
-                    className="flex flex-col items-center"
-                  >
-                    {/* Circular Icon Background */}
-                    <div className="w-[60px] h-[60px] rounded-full bg-[#EFBA31] flex items-center justify-center mb-1">
-                      <img
-                        src={beneficiary.iconSrc}
-                        alt={beneficiary.label}
-                        className="w-[40px] h-[29px] object-contain"
-                      />
+                {/* Beneficiary Icons */}
+                <div className="absolute top-12 left-0 right-0 flex justify-center items-start gap-4 px-4">
+                  {card.beneficiaries.map((beneficiary, beneficiaryIndex) => (
+                    <div
+                      key={beneficiaryIndex}
+                      className="flex flex-col items-center"
+                    >
+                      {/* Circular Icon Background */}
+                      <div className="w-[60px] h-[60px] rounded-full bg-[#EFBA31] flex items-center justify-center mb-1 relative">
+                        <img
+                          src={beneficiary.iconSrc}
+                          alt={beneficiary.label}
+                          className="max-w-[40px] max-h-[35px] object-contain"
+                        />
+                      </div>
+                      {/* Label */}
+                      <span className="text-[#EFBA31] font-prompt text-[12px] font-medium text-center leading-3 whitespace-pre-line max-w-[86px] -ml-3">
+                        {beneficiary.label}
+                      </span>
                     </div>
-                    {/* Label */}
-                    <span className="text-[#EFBA31] font-prompt text-[12px] font-medium text-center leading-3 whitespace-pre-line max-w-[86px]">
-                      {beneficiary.label}
-                    </span>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
 
-        {/* Question */}
-        <div className="text-center mb-6">
-          <h2 className="text-white font-kanit text-[28px] font-normal leading-normal">
-            คุณพอใจหรือไม่
-          </h2>
-        </div>
+          {/* Question */}
+          <div className="text-center mb-6 px-[29px]">
+            <h2 className="text-white font-kanit text-[28px] font-normal leading-normal">
+              คุณพอใจหรือไม่
+            </h2>
+          </div>
 
-        {/* Action Buttons */}
-        <div className="space-y-4">
-          {/* Yes Button */}
-          <button
-            onClick={handleYes}
-            className="w-full h-[52px] rounded-[40px] bg-[#EFBA31] border-[1.5px] border-black flex items-center justify-center transition-all duration-200 hover:scale-105"
-          >
-            <span className="text-black font-prompt text-[18px] font-medium leading-7 tracking-[0.4px]">
-              ใช่
-            </span>
-          </button>
+          {/* Action Buttons */}
+          <div className="px-8 space-y-4 pb-8">
+            {/* Yes Button */}
+            <button
+              onClick={handleYes}
+              className="w-full max-w-[325px] mx-auto h-[52px] rounded-[40px] bg-[#EFBA31] border-[1.5px] border-black flex items-center justify-center transition-all duration-200 hover:scale-105"
+            >
+              <span className="text-black font-prompt text-[18px] font-medium leading-7 tracking-[0.4px]">
+                ใช่
+              </span>
+            </button>
 
-          {/* No Button */}
-          <button
-            onClick={handleNo}
-            className="w-full h-[52px] rounded-[40px] bg-[#EFBA31] border-[1.5px] border-black flex items-center justify-center transition-all duration-200 hover:scale-105"
-          >
-            <span className="text-black font-prompt text-[18px] font-medium leading-7 tracking-[0.4px]">
-              ไม่ใช่
-            </span>
-          </button>
+            {/* No Button */}
+            <button
+              onClick={handleNo}
+              className="w-full max-w-[325px] mx-auto h-[52px] rounded-[40px] bg-[#EFBA31] border-[1.5px] border-black flex items-center justify-center transition-all duration-200 hover:scale-105"
+            >
+              <span className="text-black font-prompt text-[18px] font-medium leading-7 tracking-[0.4px]">
+                ไม่ใช่
+              </span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
