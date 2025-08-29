@@ -23,7 +23,7 @@ const IntroTravelFreqCityPage = () => {
     { text: "ทุกวัน" },
     { text: "ทุกวันธรรมดา" }, // Pre-selected as shown in Figma
     { text: "สัปดาห์ละครั้ง" },
-    { text: "เ���ือนละครั้ง" },
+    { text: "เดือนละครั้ง" },
     { text: "ไม่ค่อยเข้าเมือง" }
   ];
 
