@@ -54,13 +54,16 @@ const Step2_Summary = ({
   };
 
   useEffect(() => {
-    console.log("Step2_Summary journeyData:", journeyData);
-    
+    console.log("=== Step2_Summary Data Extraction ===");
+    console.log("Raw journeyData:", JSON.stringify(journeyData, null, 2));
+
     // Extract priorities from several possible locations
     const prioritiesData: string[] =
       journeyData?.priorities?.selectedPriorities ||
       journeyData?.mn1?.priorities?.selectedPriorities ||
       [];
+
+    console.log("Extracted priorities:", prioritiesData);
 
     // Extract beneficiary selections (per-priority)
     let beneficiariesSelections: { priority: string; beneficiaries: string[] }[] =
@@ -68,14 +71,32 @@ const Step2_Summary = ({
       journeyData?.mn2?.beneficiaries?.selections ||
       [];
 
-    console.log("Priorities:", prioritiesData);
-    console.log("Beneficiary Selections:", beneficiariesSelections);
+    console.log("Extracted beneficiary selections:", beneficiariesSelections);
+
+    // If no priorities found, try to see what's actually in the data
+    if (prioritiesData.length === 0) {
+      console.log("No priorities found. Available keys in journeyData:", Object.keys(journeyData || {}));
+      if (journeyData) {
+        Object.keys(journeyData).forEach(key => {
+          console.log(`journeyData.${key}:`, journeyData[key]);
+        });
+      }
+    }
+
+    // If no beneficiary selections found, try to see what's actually in the data
+    if (beneficiariesSelections.length === 0) {
+      console.log("No beneficiary selections found. Looking for beneficiary data in journeyData...");
+      console.log("journeyData.beneficiaries:", journeyData?.beneficiaries);
+      console.log("journeyData.mn2:", journeyData?.mn2);
+    }
 
     // Build a lookup map for beneficiaries by priority
     const lookup: Record<string, string[]> = {};
     beneficiariesSelections.forEach((s: any) => {
       lookup[s.priority] = Array.isArray(s.beneficiaries) ? s.beneficiaries : [];
     });
+
+    console.log("Beneficiary lookup map:", lookup);
 
     // Create summary cards
     const cards: SummaryCard[] = prioritiesData.map((priority: string) => {
@@ -92,7 +113,8 @@ const Step2_Summary = ({
       };
     });
 
-    console.log("Summary Cards:", cards);
+    console.log("Final summary cards:", cards);
+    console.log("=== End Step2_Summary Data Extraction ===");
     setSummaryCards(cards);
   }, [journeyData]);
 
