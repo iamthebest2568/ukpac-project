@@ -25,7 +25,7 @@ const Step1_Choice = ({
 
   const priorities = [
     "ลดค่าโดยสารรถไฟฟ้า",
-    "ปรับปรุงคุณภาพรถเมล์",
+    "ปรับปรุงคุณภาพรถเม���์",
     "ตั๋วร่วม",
     "เพิ่มความถี่รถเมล์",
     "เพิ่มที่จอดรถ",
@@ -104,133 +104,74 @@ const Step1_Choice = ({
             <div className="w-full max-w-[354px] mb-8">
               {/* Row 1 */}
               <div className="flex gap-2 mb-3">
-                <button
-                  className={`w-[163px] h-[41px] rounded-[40px] border transition-all duration-200 ${
-                    selectedPriorities.includes("ลดค่าโดยสารรถไฟฟ้า")
-                      ? "bg-black border-black"
-                      : isSelectionDisabled("ลดค่าโดยสารรถไฟฟ้า")
-                        ? "bg-gray-300 border-gray-400 cursor-not-allowed opacity-50"
-                        : "bg-[#EFBA31] border-black hover:bg-black hover:scale-105 group"
-                  }`}
-                  onClick={() => !isSelectionDisabled("ลดค่าโดยสารรถไฟฟ้า") && handlePriorityToggle("ลดค่าโดยสารรถไฟฟ้า")}
-                  disabled={isSelectionDisabled("ลดค่าโดยสารรถไฟฟ้า")}
-                >
-                  <span className={`figma-style1-button-text text-[15px] ${
-                    selectedPriorities.includes("ลดค่าโดยสารรถไฟฟ้า") ? "font-semibold text-[#EFBA31]" : "font-medium text-black group-hover:text-[#EFBA31]"
-                  }`} style={{ letterSpacing: "0.4px" }}>
-                    ลดค่าโดยส���รรถไฟฟ้า
-                  </span>
-                </button>
-                <button
-                  className={`w-[179px] h-[41px] rounded-[40px] border transition-all duration-200 ${
-                    selectedPriorities.includes("ปรับปรุงคุณภาพรถเมล์")
-                      ? "bg-black border-black"
-                      : isSelectionDisabled("ปรับปรุงคุณภาพรถเมล์")
-                        ? "bg-gray-300 border-gray-400 cursor-not-allowed opacity-50"
-                        : "bg-[#EFBA31] border-black hover:bg-black hover:scale-105 group"
-                  }`}
-                  onClick={() => !isSelectionDisabled("ปรับปรุงคุณภาพรถเมล์") && handlePriorityToggle("ปรับปรุงคุณภาพรถเมล์")}
-                  disabled={isSelectionDisabled("ปรับปรุงคุณภาพรถเมล์")}
-                >
-                  <span className={`figma-style1-button-text text-[15px] ${
-                    selectedPriorities.includes("ปรับปรุงคุณภาพรถเมล์") ? "font-semibold text-[#EFBA31]" : "font-medium text-black group-hover:text-[#EFBA31]"
-                  }`} style={{ letterSpacing: "0.4px" }}>
-                    ปรับปรุงคุณภาพรถเมล์
-                  </span>
-                </button>
+                {priorities.slice(0, 2).map((priority) => (
+                  <button
+                    key={priority}
+                    className={`flex-1 h-[41px] rounded-[40px] border transition-all duration-200 ${
+                      selectedPriorities.includes(priority)
+                        ? "bg-black border-black"
+                        : isSelectionDisabled(priority)
+                          ? "bg-gray-300 border-gray-400 cursor-not-allowed opacity-50"
+                          : "bg-[#EFBA31] border-black hover:bg-black hover:scale-105 group"
+                    }`}
+                    onClick={() => !isSelectionDisabled(priority) && handlePriorityToggle(priority)}
+                    disabled={isSelectionDisabled(priority)}
+                  >
+                    <span className={`figma-style1-button-text text-[15px] ${
+                      selectedPriorities.includes(priority) ? "font-semibold text-[#EFBA31]" : "font-medium text-black group-hover:text-[#EFBA31]"
+                    }`} style={{ letterSpacing: "0.4px" }}>
+                      {priority}
+                    </span>
+                  </button>
+                ))}
               </div>
 
               {/* Row 2 */}
               <div className="flex gap-2 mb-3">
-                <button
-                  className={`w-[75px] h-[41px] rounded-[40px] border transition-all duration-200 ${
-                    selectedPriorities.includes("ตั๋วร่วม")
-                      ? "bg-black border-black"
-                      : isSelectionDisabled("ตั๋วร่วม")
-                        ? "bg-gray-300 border-gray-400 cursor-not-allowed opacity-50"
-                        : "bg-[#EFBA31] border-black hover:bg-black hover:scale-105 group"
-                  }`}
-                  onClick={() => !isSelectionDisabled("ตั๋วร่วม") && handlePriorityToggle("ตั๋วร่วม")}
-                  disabled={isSelectionDisabled("ตั๋วร่วม")}
-                >
-                  <span className={`figma-style1-button-text text-[15px] ${
-                    selectedPriorities.includes("ตั๋วร่วม") ? "font-semibold text-[#EFBA31]" : "font-medium text-black group-hover:text-[#EFBA31]"
-                  }`} style={{ letterSpacing: "0.4px" }}>
-                    ตั๋วร่วม
-                  </span>
-                </button>
-                <button
-                  className={`w-[148px] h-[41px] rounded-[40px] border transition-all duration-200 ${
-                    selectedPriorities.includes("เพิ่มความถี่รถเมล์")
-                      ? "bg-black border-black"
-                      : isSelectionDisabled("เพิ่มความถี่รถเมล์")
-                        ? "bg-gray-300 border-gray-400 cursor-not-allowed opacity-50"
-                        : "bg-[#EFBA31] border-black hover:bg-black hover:scale-105 group"
-                  }`}
-                  onClick={() => !isSelectionDisabled("เพิ่มความถี่รถเมล์") && handlePriorityToggle("เพิ่มความถี่รถเมล์")}
-                  disabled={isSelectionDisabled("เพิ่มความถี่รถเมล์")}
-                >
-                  <span className={`figma-style1-button-text text-[15px] ${
-                    selectedPriorities.includes("เพิ่มความถี่รถเมล์") ? "font-semibold text-[#EFBA31]" : "font-medium text-black group-hover:text-[#EFBA31]"
-                  }`} style={{ letterSpacing: "0.4px" }}>
-                    เพิ่มความถี่รถเมล์
-                  </span>
-                </button>
-                <button
-                  className={`w-[110px] h-[41px] rounded-[40px] border transition-all duration-200 ${
-                    selectedPriorities.includes("เพิ่มที่จอดรถ")
-                      ? "bg-black border-black"
-                      : isSelectionDisabled("เพิ่มที่จอดรถ")
-                        ? "bg-gray-300 border-gray-400 cursor-not-allowed opacity-50"
-                        : "bg-[#EFBA31] border-black hover:bg-black hover:scale-105 group"
-                  }`}
-                  onClick={() => !isSelectionDisabled("เพิ่มที่จอดรถ") && handlePriorityToggle("เพิ่มที่จอดรถ")}
-                  disabled={isSelectionDisabled("เพิ่มที่จอดรถ")}
-                >
-                  <span className={`figma-style1-button-text text-[15px] ${
-                    selectedPriorities.includes("เพิ่มที่จอดรถ") ? "font-semibold text-[#EFBA31]" : "font-medium text-black group-hover:text-[#EFBA31]"
-                  }`} style={{ letterSpacing: "0.4px" }}>
-                    เพิ่มที่จอดรถ
-                  </span>
-                </button>
+                {priorities.slice(2, 5).map((priority) => (
+                  <button
+                    key={priority}
+                    className={`flex-1 h-[41px] rounded-[40px] border transition-all duration-200 ${
+                      selectedPriorities.includes(priority)
+                        ? "bg-black border-black"
+                        : isSelectionDisabled(priority)
+                          ? "bg-gray-300 border-gray-400 cursor-not-allowed opacity-50"
+                          : "bg-[#EFBA31] border-black hover:bg-black hover:scale-105 group"
+                    }`}
+                    onClick={() => !isSelectionDisabled(priority) && handlePriorityToggle(priority)}
+                    disabled={isSelectionDisabled(priority)}
+                  >
+                    <span className={`figma-style1-button-text text-[15px] ${
+                      selectedPriorities.includes(priority) ? "font-semibold text-[#EFBA31]" : "font-medium text-black group-hover:text-[#EFBA31]"
+                    }`} style={{ letterSpacing: "0.4px" }}>
+                      {priority}
+                    </span>
+                  </button>
+                ))}
               </div>
 
               {/* Row 3 */}
               <div className="flex gap-2">
-                <button
-                  className={`w-[163px] h-[41px] rounded-[40px] border transition-all duration-200 ${
-                    selectedPriorities.includes("เพิ่มความถี่รถไฟฟ้า")
-                      ? "bg-black border-black"
-                      : isSelectionDisabled("เพิ่มความถี่รถไฟฟ้า")
-                        ? "bg-gray-300 border-gray-400 cursor-not-allowed opacity-50"
-                        : "bg-[#EFBA31] border-black hover:bg-black hover:scale-105 group"
-                  }`}
-                  onClick={() => !isSelectionDisabled("เพิ่มความถี่รถไฟฟ้า") && handlePriorityToggle("เพิ่มความถี่รถไฟฟ้า")}
-                  disabled={isSelectionDisabled("เพิ่มความถี่รถไฟฟ้า")}
-                >
-                  <span className={`figma-style1-button-text text-[15px] ${
-                    selectedPriorities.includes("เพิ่มความถี่รถไฟฟ้า") ? "font-semibold text-[#EFBA31]" : "font-medium text-black group-hover:text-[#EFBA31]"
-                  }`} style={{ letterSpacing: "0.4px" }}>
-                    เพิ่มความถี่รถไฟฟ้า
-                  </span>
-                </button>
-                <button
-                  className={`w-[167px] h-[41px] rounded-[40px] border transition-all duration-200 ${
-                    selectedPriorities.includes("เพิ่ม Feeder ในซอย")
-                      ? "bg-black border-black"
-                      : isSelectionDisabled("เพิ่ม Feeder ในซอย")
-                        ? "bg-gray-300 border-gray-400 cursor-not-allowed opacity-50"
-                        : "bg-[#EFBA31] border-black hover:bg-black hover:scale-105 group"
-                  }`}
-                  onClick={() => !isSelectionDisabled("เพิ่ม Feeder ในซอย") && handlePriorityToggle("เพิ่ม Feeder ในซอย")}
-                  disabled={isSelectionDisabled("เพิ่ม Feeder ในซอย")}
-                >
-                  <span className={`figma-style1-button-text text-[15px] ${
-                    selectedPriorities.includes("เพิ่ม Feeder ในซอย") ? "font-semibold text-[#EFBA31]" : "font-medium text-black group-hover:text-[#EFBA31]"
-                  }`} style={{ letterSpacing: "0.4px" }}>
-                    เพิ่ม Feeder ในซอย
-                  </span>
-                </button>
+                {priorities.slice(5).map((priority) => (
+                  <button
+                    key={priority}
+                    className={`flex-1 h-[41px] rounded-[40px] border transition-all duration-200 ${
+                      selectedPriorities.includes(priority)
+                        ? "bg-black border-black"
+                        : isSelectionDisabled(priority)
+                          ? "bg-gray-300 border-gray-400 cursor-not-allowed opacity-50"
+                          : "bg-[#EFBA31] border-black hover:bg-black hover:scale-105 group"
+                    }`}
+                    onClick={() => !isSelectionDisabled(priority) && handlePriorityToggle(priority)}
+                    disabled={isSelectionDisabled(priority)}
+                  >
+                    <span className={`figma-style1-button-text text-[15px] ${
+                      selectedPriorities.includes(priority) ? "font-semibold text-[#EFBA31]" : "font-medium text-black group-hover:text-[#EFBA31]"
+                    }`} style={{ letterSpacing: "0.4px" }}>
+                      {priority}
+                    </span>
+                  </button>
+                ))}
               </div>
             </div>
 
