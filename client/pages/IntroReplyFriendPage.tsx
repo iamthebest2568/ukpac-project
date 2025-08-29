@@ -21,7 +21,7 @@ const IntroReplyFriendPage = () => {
 
   const choices = [
     { text: "ดูแล้ว" },
-    { text: "อยากรู้อยู่พอดี" }, // Pre-selected as shown in Figma
+    { text: "อยากรู้อยู่พอดี" }, // This should be pre-selected and appear as black button
     { text: "ยังไม่ได้ดู" }
   ];
 

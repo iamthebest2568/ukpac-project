@@ -21,7 +21,7 @@ const IntroGenderPage = () => {
 
   const choices = [
     { text: "ผู้หญิง" },
-    { text: "ผู้ชาย" }, // Pre-selected as shown in Figma
+    { text: "ผู้ชาย" }, // This should be pre-selected and appear as black button
     { text: "เพศทางเลือก" }
   ];
 

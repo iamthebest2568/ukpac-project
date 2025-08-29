@@ -21,7 +21,7 @@ const IntroPolicyFeelPage = () => {
 
   const choices = [
     { text: "เห็นด้วย" },
-    { text: "เฉยๆ" }, // Pre-selected as shown in Figma
+    { text: "เฉยๆ" }, // This should be pre-selected and appear as black button
     { text: "ไม่เห็นด้วย" }
   ];
 

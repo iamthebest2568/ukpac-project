@@ -21,8 +21,8 @@ const IntroTravelModeCityPage = () => {
 
   const choices = [
     { text: "รถไฟฟ้า BTS / MRT" },
-    { text: "อยู่ในพื้นที่ไม่ต้องเข้าเมือง" }, // Pre-selected as shown in Figma
-    { text: "รถยนต์" },
+    { text: "อยู่ในพื้นที่ไม่ต้องเข้าเมือง" }, // This should be pre-selected and appear as black button
+    { text: "รถยนต���" },
     { text: "รถ รับ-ส่ง" },
     { text: "รถประจำทาง" }
   ];

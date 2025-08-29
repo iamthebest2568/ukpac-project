@@ -21,7 +21,7 @@ const IntroPolicyThoughtsPage = () => {
 
   const choices = [
     { text: "ไม่เชื่อว่าแก้ปัญหาได้จริง" },
-    { text: "กังวัลค่าใช้จ่าย" }, // Pre-selected as shown in Figma
+    { text: "กังวัลค่าใช้จ่าย" }, // This should be pre-selected and appear as black button
     { text: "ไม่อยากใช้เพราะไม่สะดวก" },
     { text: "ยินดีจ่ายเพราะรถจะติดน้อยลง" }
   ];
@@ -40,7 +40,7 @@ const IntroPolicyThoughtsPage = () => {
       }))}
       replayButton={{
         onClick: handleReplay,
-        ariaLabel: "ด��อีกครั้ง"
+        ariaLabel: "ดูอีกครั้ง"
       }}
     />
   );
