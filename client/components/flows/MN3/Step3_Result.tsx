@@ -104,7 +104,7 @@ const Step3_Result = ({
     });
 
     const data = {
-      budget_step3_result: { budgetResultReviewed: true, satisfaction: "ไม่ใช่", resultSummary },
+      budget_step3_result: { budgetResultReviewed: true, satisfaction: "��ม่ใช่", resultSummary },
     };
 
     // Save flow data
@@ -122,14 +122,6 @@ const Step3_Result = ({
 
         {/* Main Content */}
         <div className="relative z-10 flex flex-col min-h-screen px-6 md:px-8">
-          {/* Top Icon */}
-          <div className="pt-3 pl-6">
-            <img
-              src="https://api.builder.io/api/v1/image/assets/TEMP/d272a5766f6a17caa21ba5ce7f22eb07040ff3db?width=94"
-              alt="Icon"
-              className="w-12 h-14"
-            />
-          </div>
 
           {/* Results Section */}
           <div className="flex-1 flex flex-col justify-center items-center text-center">
@@ -154,7 +146,7 @@ const Step3_Result = ({
 
             {/* Bottom Question */}
             <h2 className="text-white text-center font-kanit text-[28px] font-normal leading-normal mb-8 max-w-[331px]">
-              คุ��พอใจหรือไม่
+              คุณพอใจหรือไม่
             </h2>
           </div>
 
