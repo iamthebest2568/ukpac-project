@@ -16,8 +16,17 @@ export const useFlowNavigation = (): UseFlowNavigationReturn => {
   const { setFlowData, navigateToPage } = useSession();
 
   const handleMN1Complete = (data: any) => {
-    setFlowData((prev) => ({ ...prev, mn1: data }));
+    console.log("=== handleMN1Complete ===");
+    console.log("Received data from MN1:", data);
+    const newFlowData = { mn1: data };
+    console.log("Setting flowData to:", newFlowData);
+    setFlowData((prev) => {
+      const updated = { ...prev, mn1: data };
+      console.log("Updated flowData:", updated);
+      return updated;
+    });
     navigateToPage("/minigame-mn2");
+    console.log("=== End handleMN1Complete ===");
   };
 
   const handleMN2Complete = (data: any) => {
