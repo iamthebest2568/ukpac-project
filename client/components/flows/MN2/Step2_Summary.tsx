@@ -54,8 +54,6 @@ const Step2_Summary = ({
   };
 
   useEffect(() => {
-    console.log("=== Step2_Summary Data Extraction ===");
-    console.log("Raw journeyData:", JSON.stringify(journeyData, null, 2));
 
     // Extract priorities from several possible locations
     const prioritiesData: string[] =
