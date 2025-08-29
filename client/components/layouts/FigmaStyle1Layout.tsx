@@ -14,6 +14,8 @@ interface FigmaStyle1LayoutProps {
     text: string;
     onClick: () => void;
     ariaLabel?: string;
+    isSelected?: boolean;
+    variant?: "default" | "dark";
   }>;
   /** Optional replay button configuration */
   replayButton?: {
