@@ -112,6 +112,84 @@ const FigmaStyle1Layout: React.FC<FigmaStyle1LayoutProps> = ({
     setVideoFailed(false);
   }, [backgroundImage]);
 
+  // Video segment playback functions
+  const playVideoSegment = React.useCallback(() => {
+    if (!videoRef.current || !videoSegment || isPlayingSegment) return;
+
+    const video = videoRef.current;
+    setIsPlayingSegment(true);
+
+    // Handle special case where end time is before start time (scene cut)
+    const isReversed = videoSegment.endTime < videoSegment.startTime;
+
+    if (isReversed) {
+      // For reversed segments (like intro-who-are-you: 0.7s to 0.15s)
+      // Play from start to end time, then jump to start time and play to actual end
+      video.currentTime = videoSegment.endTime;
+      video.play();
+
+      const handleTimeUpdate = () => {
+        if (video.currentTime >= videoSegment.startTime) {
+          video.pause();
+          video.removeEventListener('timeupdate', handleTimeUpdate);
+          setIsPlayingSegment(false);
+          if (onVideoSegmentComplete) {
+            onVideoSegmentComplete();
+          }
+        }
+      };
+
+      video.addEventListener('timeupdate', handleTimeUpdate);
+    } else {
+      // Normal segment playback
+      video.currentTime = videoSegment.startTime;
+      video.play();
+
+      const handleTimeUpdate = () => {
+        if (video.currentTime >= videoSegment.endTime) {
+          video.pause();
+          video.removeEventListener('timeupdate', handleTimeUpdate);
+          setIsPlayingSegment(false);
+          if (onVideoSegmentComplete) {
+            onVideoSegmentComplete();
+          }
+        }
+      };
+
+      video.addEventListener('timeupdate', handleTimeUpdate);
+    }
+  }, [videoSegment, isPlayingSegment, onVideoSegmentComplete]);
+
+  const restartVideo = React.useCallback(() => {
+    if (!videoRef.current) return;
+
+    const video = videoRef.current;
+    video.currentTime = 0;
+    video.play();
+    setIsPlayingSegment(false);
+  }, []);
+
+  // Enhanced button click handler
+  const handleButtonClick = React.useCallback((originalOnClick: () => void) => {
+    return () => {
+      if (videoSegment && videoRef.current) {
+        playVideoSegment();
+        // Call original onClick after a short delay to allow video to play
+        setTimeout(originalOnClick, (Math.abs(videoSegment.endTime - videoSegment.startTime) * 1000) + 100);
+      } else {
+        originalOnClick();
+      }
+    };
+  }, [playVideoSegment, videoSegment]);
+
+  // Enhanced replay button handler
+  const handleReplayClick = React.useCallback(() => {
+    restartVideo();
+    if (replayButton?.onClick) {
+      replayButton.onClick();
+    }
+  }, [restartVideo, replayButton]);
+
   return (
     <div className={`figma-style1-container ${className}`}>
       <div className="figma-style1-content">
