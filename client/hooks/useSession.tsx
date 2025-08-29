@@ -116,11 +116,23 @@ export const useSession = (): UseSessionReturn => {
         console.log("Previous flowData:", prev);
         const result = data(prev);
         console.log("New flowData:", result);
+        // Persist to sessionStorage
+        try {
+          sessionStorage.setItem('flowData', JSON.stringify(result));
+        } catch (error) {
+          console.error('Error saving flowData to sessionStorage:', error);
+        }
         return result;
       });
     } else {
       console.log("Direct flowData set:", data);
       setFlowData(data);
+      // Persist to sessionStorage
+      try {
+        sessionStorage.setItem('flowData', JSON.stringify(data));
+      } catch (error) {
+        console.error('Error saving flowData to sessionStorage:', error);
+      }
     }
     console.log("=== End useSession setFlowData ===");
   };
