@@ -1,44 +1,48 @@
 import FigmaStyle1Layout from "../components/layouts/FigmaStyle1Layout";
 import { useSession } from "../hooks/useSession";
+import { useState } from "react";
 
 const IntroGroupSelectionPage = () => {
   const { navigateToPage } = useSession();
+  const [selectedChoice, setSelectedChoice] = useState<string>("เด็ก"); // Pre-select "เด็ก" as shown in design
 
-  const handleNext = () => {
-    navigateToPage("/intro-travel-mode-city");
+  const handleChoice = (choice: string) => {
+    setSelectedChoice(choice);
+    // Add a small delay to show selection before navigating
+    setTimeout(() => {
+      navigateToPage("/intro-travel-mode-city");
+    }, 300);
   };
 
-  const handleBack = () => {
-    navigateToPage("/intro-gender");
+  const handleReplay = () => {
+    // Replay functionality - could replay video or audio content
+    console.log("Replay clicked");
   };
+
+  const choices = [
+    { text: "คนพิการ", variant: "default" },
+    { text: "เด็ก", variant: "dark" }, // Pre-selected as shown in Figma
+    { text: "ผู้สูงอายุ", variant: "default" },
+    { text: "อื่นๆ", variant: "default" }
+  ];
 
   return (
     <FigmaStyle1Layout
       backgroundImage="https://cdn.builder.io/o/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Faf32686a3c3d417994a2e2311560fea3?alt=media&token=cd0a67ee-b882-4eaa-a103-6640da4da97e&apiKey=0eb7afe56fd645b8b4ca090471cef081"
       backgroundAlt="Group selection background"
-      title="คุณอยู่ในกลุ่มอายุไหน?"
-      buttons={[
-        {
-          text: "18-25 ���ี",
-          onClick: handleNext,
-          ariaLabel: "เลือกกลุ่มอายุ 18-25 ปี"
-        },
-        {
-          text: "26-35 ปี",
-          onClick: handleNext,
-          ariaLabel: "เลือกกลุ่มอายุ 26-35 ปี"
-        },
-        {
-          text: "36-45 ปี",
-          onClick: handleNext,
-          ariaLabel: "เลือกกลุ่มอายุ 36-45 ปี"
-        },
-        {
-          text: "46+ ปี",
-          onClick: handleNext,
-          ariaLabel: "เลือกกลุ่มอายุ 46+ ปี"
-        }
-      ]}
+      title="คุณมองว่าตัวเองเป็น
+คนกลุ่���ไหนในเมืองนี้"
+      buttons={choices.map((choice) => ({
+        text: choice.text,
+        onClick: () => handleChoice(choice.text),
+        ariaLabel: `เลือก${choice.text}`,
+        isSelected: selectedChoice === choice.text,
+        variant: choice.variant as "default" | "dark"
+      }))}
+      replayButton={{
+        onClick: handleReplay,
+        ariaLabel: "ดูอีกครั้ง"
+      }}
     />
   );
 };
