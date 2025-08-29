@@ -1,44 +1,46 @@
 import FigmaStyle1Layout from "../components/layouts/FigmaStyle1Layout";
 import { useSession } from "../hooks/useSession";
+import { useState } from "react";
 
 const IntroPolicyFeelPage = () => {
   const { navigateToPage } = useSession();
+  const [selectedChoice, setSelectedChoice] = useState<string>("เฉยๆ"); // Pre-select as shown in design
 
-  const handleFinish = () => {
-    navigateToPage("/ask01"); // Navigate to main survey
+  const handleChoice = (choice: string) => {
+    setSelectedChoice(choice);
+    // Add a small delay to show selection before navigating
+    setTimeout(() => {
+      navigateToPage("/ask01"); // Navigate to main survey
+    }, 300);
   };
 
-  const handleBack = () => {
-    navigateToPage("/intro-reply-friend");
+  const handleReplay = () => {
+    // Replay functionality - could replay video or audio content
+    console.log("Replay clicked");
   };
+
+  const choices = [
+    { text: "เห็นด้วย", variant: "default" },
+    { text: "เฉยๆ", variant: "dark" }, // Pre-selected as shown in Figma
+    { text: "ไม่เห็นด้วย", variant: "default" }
+  ];
 
   return (
     <FigmaStyle1Layout
-      backgroundImage="https://cdn.builder.io/o/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Faf32686a3c3d417994a2e2311560fea3?alt=media&token=cd0a67ee-b882-4eaa-a103-6640da4da97e&apiKey=0eb7afe56fd645b8b4ca090471cef081"
+      backgroundImage="https://api.builder.io/api/v1/image/assets/TEMP/3cfdc582d291da8313da83afa531f66c01c9c5a7?width=1132"
       backgroundAlt="Policy feel background"
-      title="คุณรู้สึกยังไงกับนโยบายปัจจุบัน?"
-      buttons={[
-        {
-          text: "พอใจ",
-          onClick: handleFinish,
-          ariaLabel: "เลือกพอใจ"
-        },
-        {
-          text: "ไม่พอใจ",
-          onClick: handleFinish,
-          ariaLabel: "เลือกไม่พอใจ"
-        },
-        {
-          text: "เฉยๆ",
-          onClick: handleFinish,
-          ariaLabel: "เลือกเฉยๆ"
-        },
-        {
-          text: "ไม่แน่ใจ",
-          onClick: handleFinish,
-          ariaLabel: "เลือกไม่แน่ใจ"
-        }
-      ]}
+      title="คุณรู้สึกอย่างไรกับนโยบายนี้"
+      buttons={choices.map((choice) => ({
+        text: choice.text,
+        onClick: () => handleChoice(choice.text),
+        ariaLabel: `เลือก${choice.text}`,
+        isSelected: selectedChoice === choice.text,
+        variant: choice.variant as "default" | "dark"
+      }))}
+      replayButton={{
+        onClick: handleReplay,
+        ariaLabel: "ดูอีกครั้ง"
+      }}
     />
   );
 };
