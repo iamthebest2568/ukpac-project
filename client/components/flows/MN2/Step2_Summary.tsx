@@ -176,6 +176,8 @@ const Step2_Summary = ({
                               ? 'w-[55px] h-[55px]'
                               : card.beneficiaries.length <= 4
                               ? 'w-[50px] h-[50px]'
+                              : card.beneficiaries.length === 6
+                              ? 'w-[52px] h-[52px]'
                               : 'w-[45px] h-[45px]'
                           }`}
                         >
