@@ -5,6 +5,7 @@
 
 import { useEffect, useState } from "react";
 import { logEvent } from "../../../services/dataLogger.js";
+import { useSession } from "../../../hooks/useSession";
 
 interface Step3_ResultProps {
   sessionID: string | null;
