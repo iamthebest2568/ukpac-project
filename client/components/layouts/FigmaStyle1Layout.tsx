@@ -52,11 +52,19 @@ const FigmaStyle1Layout: React.FC<FigmaStyle1LayoutProps> = ({
           {isVideo ? (
             <video
               src={backgroundImage}
-              autoPlay
-              loop
-              muted
-              playsInline
+              autoPlay={true}
+              loop={true}
+              muted={true}
+              playsInline={true}
+              controls={false}
+              preload="auto"
               className="figma-style1-background-image"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                objectPosition: 'center'
+              }}
             />
           ) : (
             <img
