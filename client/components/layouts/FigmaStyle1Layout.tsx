@@ -175,35 +175,25 @@ const FigmaStyle1Layout: React.FC<FigmaStyle1LayoutProps> = ({
 
             {/* Buttons */}
             <div className="figma-style1-button-container">
-              {buttons.map((button, index) => {
-                const isSelected = button.isSelected;
-                const buttonClass = isSelected
-                  ? "figma-style1-button figma-style1-button--dark"
-                  : "figma-style1-button";
-                const textClass = isSelected
-                  ? "figma-style1-button-text figma-style1-button-text--dark"
-                  : "figma-style1-button-text";
-
-                return (
-                  <React.Fragment key={index}>
-                    <button
-                      onClick={button.onClick}
-                      className={buttonClass}
-                      aria-describedby={`button-description-${index}`}
+              {buttons.map((button, index) => (
+                <React.Fragment key={index}>
+                  <button
+                    onClick={button.onClick}
+                    className="figma-style1-button"
+                    aria-describedby={`button-description-${index}`}
+                  >
+                    <span className="figma-style1-button-text">{button.text}</span>
+                  </button>
+                  {button.ariaLabel && (
+                    <div
+                      id={`button-description-${index}`}
+                      className="figma-style1-sr-only"
                     >
-                      <span className={textClass}>{button.text}</span>
-                    </button>
-                    {button.ariaLabel && (
-                      <div
-                        id={`button-description-${index}`}
-                        className="figma-style1-sr-only"
-                      >
-                        {button.ariaLabel}
-                      </div>
-                    )}
-                  </React.Fragment>
-                );
-              })}
+                      {button.ariaLabel}
+                    </div>
+                  )}
+                </React.Fragment>
+              ))}
             </div>
           </div>
         </div>
