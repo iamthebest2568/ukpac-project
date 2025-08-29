@@ -61,32 +61,11 @@ const Step2_Summary = ({
       journeyData?.mn1?.priorities?.selectedPriorities ||
       [];
 
-    console.log("Extracted priorities:", prioritiesData);
-
     // Extract beneficiary selections (per-priority)
     let beneficiariesSelections: { priority: string; beneficiaries: string[] }[] =
       journeyData?.beneficiaries?.selections ||
       journeyData?.mn2?.beneficiaries?.selections ||
       [];
-
-    console.log("Extracted beneficiary selections:", beneficiariesSelections);
-
-    // If no priorities found, try to see what's actually in the data
-    if (prioritiesData.length === 0) {
-      console.log("No priorities found. Available keys in journeyData:", Object.keys(journeyData || {}));
-      if (journeyData) {
-        Object.keys(journeyData).forEach(key => {
-          console.log(`journeyData.${key}:`, journeyData[key]);
-        });
-      }
-    }
-
-    // If no beneficiary selections found, try to see what's actually in the data
-    if (beneficiariesSelections.length === 0) {
-      console.log("No beneficiary selections found. Looking for beneficiary data in journeyData...");
-      console.log("journeyData.beneficiaries:", journeyData?.beneficiaries);
-      console.log("journeyData.mn2:", journeyData?.mn2);
-    }
 
     // Build a lookup map for beneficiaries by priority
     const lookup: Record<string, string[]> = {};
