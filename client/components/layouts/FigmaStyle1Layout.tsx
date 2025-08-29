@@ -176,11 +176,11 @@ const FigmaStyle1Layout: React.FC<FigmaStyle1LayoutProps> = ({
             {/* Buttons */}
             <div className="figma-style1-button-container">
               {buttons.map((button, index) => {
-                const isDark = button.variant === "dark";
-                const buttonClass = isDark
+                const isSelected = button.isSelected;
+                const buttonClass = isSelected
                   ? "figma-style1-button figma-style1-button--dark"
                   : "figma-style1-button";
-                const textClass = isDark
+                const textClass = isSelected
                   ? "figma-style1-button-text figma-style1-button-text--dark"
                   : "figma-style1-button-text";
 
