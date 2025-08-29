@@ -1,44 +1,48 @@
 import FigmaStyle1Layout from "../components/layouts/FigmaStyle1Layout";
 import { useSession } from "../hooks/useSession";
+import { useState } from "react";
 
 const IntroPolicyThoughtsPage = () => {
   const { navigateToPage } = useSession();
+  const [selectedChoice, setSelectedChoice] = useState<string>("กังวัลค่าใช้จ่าย"); // Pre-select as shown in design
 
-  const handleNext = () => {
-    navigateToPage("/intro-reply-friend");
+  const handleChoice = (choice: string) => {
+    setSelectedChoice(choice);
+    // Add a small delay to show selection before navigating
+    setTimeout(() => {
+      navigateToPage("/intro-reply-friend");
+    }, 300);
   };
 
-  const handleBack = () => {
-    navigateToPage("/intro-travel-freq-city");
+  const handleReplay = () => {
+    // Replay functionality - could replay video or audio content
+    console.log("Replay clicked");
   };
+
+  const choices = [
+    { text: "ไม่เชื่อว่าแก้ปัญหาได้จริง", variant: "default" },
+    { text: "กังวัลค่าใช้จ่าย", variant: "dark" }, // Pre-selected as shown in Figma
+    { text: "ไม่อยากใช้เพราะไม่สะดวก", variant: "default" },
+    { text: "ยินดีจ่ายเพราะรถจะติดน้อยลง", variant: "default" }
+  ];
 
   return (
     <FigmaStyle1Layout
-      backgroundImage="https://cdn.builder.io/o/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Faf32686a3c3d417994a2e2311560fea3?alt=media&token=cd0a67ee-b882-4eaa-a103-6640da4da97e&apiKey=0eb7afe56fd645b8b4ca090471cef081"
+      backgroundImage="https://api.builder.io/api/v1/image/assets/TEMP/3cfdc582d291da8313da83afa531f66c01c9c5a7?width=1132"
       backgroundAlt="Policy thoughts background"
-      title="คุณคิดยังไงกับนโยบายขนส่งสาธารณะ?"
-      buttons={[
-        {
-          text: "สนใจมาก",
-          onClick: handleNext,
-          ariaLabel: "เลือกสนใจมาก"
-        },
-        {
-          text: "สนใจปานกลาง",
-          onClick: handleNext,
-          ariaLabel: "เลือกสนใจปานกลาง"
-        },
-        {
-          text: "ไม่ค่อยสนใจ",
-          onClick: handleNext,
-          ariaLabel: "เลือกไม่ค่อยสนใจ"
-        },
-        {
-          text: "ไม่สนใจเลย",
-          onClick: handleNext,
-          ariaLabel: "เลือกไม่สนใจเลย"
-        }
-      ]}
+      title="คุณคิดเห็นอย่างไร
+กับนโยบายนี้"
+      buttons={choices.map((choice) => ({
+        text: choice.text,
+        onClick: () => handleChoice(choice.text),
+        ariaLabel: `เลือก${choice.text}`,
+        isSelected: selectedChoice === choice.text,
+        variant: choice.variant as "default" | "dark"
+      }))}
+      replayButton={{
+        onClick: handleReplay,
+        ariaLabel: "ดูอีกครั้ง"
+      }}
     />
   );
 };
