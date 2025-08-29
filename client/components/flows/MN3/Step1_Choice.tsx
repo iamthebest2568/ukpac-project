@@ -1,6 +1,6 @@
 /**
  * UK PACK - MN3 Step 1: Budget Choice Selection
- * Carefully encoded Thai text
+ * Carefully encoded Thai text with proper button sizing
  */
 
 import { useState } from "react";
@@ -24,14 +24,24 @@ const Step1_Choice = ({
   const maxSelections = 3;
 
   const priorities = [
-    "ลดค่าโดยสารรถไฟฟ้า",
-    "ปรับปรุงคุณภาพรถเมล���",
+    "��ดค่าโดยสารรถไฟฟ้า",
+    "ปรับปรุงคุณภาพรถเมล์",
     "ตั๋วร่วม",
     "เพิ่มความถี่รถเมล์",
     "เพิ่มที่จอดรถ",
     "เพิ่มความถี่รถไฟฟ้า",
     "เพิ่ม Feeder ในซอย",
-  ].map(text => text.normalize('NFC'));
+  ];
+
+  const buttonWidths = {
+    "ลดค่าโดยสารรถไฟฟ้า": "w-[163px]",
+    "ปรับปรุงคุณภาพรถเมล์": "w-[179px]",
+    "ตั๋วร่วม": "w-[75px]",
+    "เพิ่มความถี่รถเมล์": "w-[148px]",
+    "เพิ่มที่จอดรถ": "w-[110px]",
+    "เพิ่มความถี่รถไฟฟ้า": "w-[163px]",
+    "เพิ่ม Feeder ในซอย": "w-[167px]",
+  };
 
   const handlePriorityToggle = (priority: string) => {
     setSelectedPriorities((prev) => {
@@ -107,7 +117,7 @@ const Step1_Choice = ({
                 {priorities.slice(0, 2).map((priority) => (
                   <button
                     key={priority}
-                    className={`flex-1 h-[41px] rounded-[40px] border transition-all duration-200 ${
+                    className={`${buttonWidths[priority]} h-[41px] rounded-[40px] border transition-all duration-200 ${
                       selectedPriorities.includes(priority)
                         ? "bg-black border-black"
                         : isSelectionDisabled(priority)
@@ -131,7 +141,7 @@ const Step1_Choice = ({
                 {priorities.slice(2, 5).map((priority) => (
                   <button
                     key={priority}
-                    className={`flex-1 h-[41px] rounded-[40px] border transition-all duration-200 ${
+                    className={`${buttonWidths[priority]} h-[41px] rounded-[40px] border transition-all duration-200 ${
                       selectedPriorities.includes(priority)
                         ? "bg-black border-black"
                         : isSelectionDisabled(priority)
@@ -155,7 +165,7 @@ const Step1_Choice = ({
                 {priorities.slice(5).map((priority) => (
                   <button
                     key={priority}
-                    className={`flex-1 h-[41px] rounded-[40px] border transition-all duration-200 ${
+                    className={`${buttonWidths[priority]} h-[41px] rounded-[40px] border transition-all duration-200 ${
                       selectedPriorities.includes(priority)
                         ? "bg-black border-black"
                         : isSelectionDisabled(priority)
