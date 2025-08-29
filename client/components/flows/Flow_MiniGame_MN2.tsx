@@ -42,12 +42,10 @@ const Flow_MiniGame_MN2 = ({ sessionID, onComplete, onBack, mn1Data }: Flow_Mini
         beneficiaries: { selections: Object.values(flowData.beneficiarySelections) },
         ...stepData // Include summary data
       };
-      console.log("Completing flow with:", completeData);
       onComplete(completeData);
     } else {
       // This is a beneficiary selection step
       const currentPriority = priorities[currentStep - 1];
-      console.log("Processing beneficiary step for priority:", currentPriority);
       
       // Extract beneficiary selections from stepData
       const beneficiaryData = stepData.beneficiaries?.selections?.[0] || 
