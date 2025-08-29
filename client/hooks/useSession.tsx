@@ -108,14 +108,10 @@ export const useSession = (): UseSessionReturn => {
     navigate(fullPath);
   };
 
-  const debugSetFlowData = (data: any) => {
-    console.log("=== useSession setFlowData ===");
-    console.log("Setting flowData with:", data);
+  const enhancedSetFlowData = (data: any) => {
     if (typeof data === 'function') {
       setFlowData((prev) => {
-        console.log("Previous flowData:", prev);
         const result = data(prev);
-        console.log("New flowData:", result);
         // Persist to sessionStorage
         try {
           sessionStorage.setItem('flowData', JSON.stringify(result));
@@ -125,7 +121,6 @@ export const useSession = (): UseSessionReturn => {
         return result;
       });
     } else {
-      console.log("Direct flowData set:", data);
       setFlowData(data);
       // Persist to sessionStorage
       try {
@@ -134,7 +129,6 @@ export const useSession = (): UseSessionReturn => {
         console.error('Error saving flowData to sessionStorage:', error);
       }
     }
-    console.log("=== End useSession setFlowData ===");
   };
 
   return {
