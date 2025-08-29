@@ -11,6 +11,11 @@ const MiniGameMN2Page = () => {
   const { sessionID, navigateToPage, flowData } = useSession();
   const { handleMN2Complete } = useFlowNavigation();
 
+  console.log("=== MiniGameMN2Page ===");
+  console.log("flowData:", flowData);
+  console.log("flowData.mn1:", flowData.mn1);
+  console.log("=== End MiniGameMN2Page ===");
+
   return (
     <Flow_MiniGame_MN2
       sessionID={sessionID}
