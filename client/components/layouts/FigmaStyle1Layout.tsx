@@ -181,8 +181,7 @@ const FigmaStyle1Layout: React.FC<FigmaStyle1LayoutProps> = ({
           // Call original onClick after a short delay to allow video to play
           setTimeout(
             originalOnClick,
-            Math.abs(videoSegment.endTime - videoSegment.startTime) * 1000 +
-              100,
+            Math.abs(videoSegment.endTime - videoSegment.startTime) * 1000 + 100
           );
         } else {
           originalOnClick();
