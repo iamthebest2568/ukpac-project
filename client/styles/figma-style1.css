@@ -15,7 +15,7 @@
 }
 
 .figma-style1-content {
-  @apply w-full min-h-screen bg-white overflow-hidden relative;
+  @apply w-full min-h-screen bg-black overflow-hidden relative;
   /* Fluid responsive width that adapts to ALL device sizes */
   max-width: min(100vw, 390px);
 }
