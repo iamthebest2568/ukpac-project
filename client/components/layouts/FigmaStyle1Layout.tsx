@@ -258,7 +258,7 @@ const FigmaStyle1Layout: React.FC<FigmaStyle1LayoutProps> = ({
           )}
 
           {/* Content Area */}
-          <div className="figma-style1-content-area">
+          <div className={`figma-style1-content-area ${!title ? 'justify-center' : ''}`}>
             {/* Title */}
             {title && (
               <div className="figma-style1-title-container">
