@@ -67,9 +67,7 @@ export const useSession = (): UseSessionReturn => {
       sourceSelection: "/source-selection",
       budget: "/budget",
       endScreen: "/end-screen",
-      dashboard: "/dashboard",
       index: "/",
-      dashboardIndex: "/",
       priorities: "/minigame-mn1", // Legacy alias
       beneficiaries: "/minigame-mn2", // Legacy alias
     };
