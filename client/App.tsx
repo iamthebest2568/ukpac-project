@@ -60,7 +60,6 @@ const App = () => (
           <Routes>
             {/* Main entry */}
             <Route path="/" element={<IntroStartPage />} />
-            <Route path="/index" element={<Index />} />
 
             {/* Intro flow */}
             <Route path="/intro-start" element={<IntroStartPage />} />
