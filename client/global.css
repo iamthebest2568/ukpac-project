@@ -20,7 +20,7 @@
     --color-success: #10b981; /* Green for completed states */
     --color-warning: #f59e0b; /* Amber for attention states */
     --color-error: #ef4444; /* Red for error states */
-    --color-text-primary: #1f2937; /* Dark grey for primary text */
+    --color-text-primary: #ffffff; /* White for primary text on black background */
     --color-text-secondary: #6b7280; /* Medium grey for secondary text */
     --color-text-inverse: #ffffff; /* White text for dark backgrounds */
     --color-border: #e5e7eb; /* Light grey for borders */
