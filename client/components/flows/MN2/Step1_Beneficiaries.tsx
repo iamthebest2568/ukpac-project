@@ -162,7 +162,7 @@ const Step1_Beneficiaries = ({
                     >
                       {/* Circular Icon Background */}
                       <div className={`w-[80px] h-[80px] rounded-full flex items-center justify-center mb-2 transition-all duration-200 ${
-                        isSelected ? "bg-black" : "bg-[#EFBA31]"
+                        isSelected ? "bg-[#EFBA31]" : "bg-black"
                       }`}>
                         <img
                           src={group.iconSrc}
@@ -170,14 +170,14 @@ const Step1_Beneficiaries = ({
                           className="w-[50px] h-[50px] object-contain"
                           style={{
                             filter: isSelected
-                              ? "brightness(0) invert(1)" // White icons on black background
-                              : "brightness(0)" // Black icons on yellow background
+                              ? "brightness(0)" // Black icons on yellow background
+                              : "brightness(0) invert(1)" // White icons on black background
                           }}
                         />
                       </div>
                       {/* Label */}
                       <span className={`font-prompt text-lg font-medium text-center transition-all duration-200 ${
-                        isSelected ? "text-white" : "text-[#EFBA31]"
+                        isSelected ? "text-[#EFBA31]" : "text-white"
                       }`}>
                         {group.label}
                       </span>
