@@ -3,7 +3,7 @@
  * Now shows one priority question per page for better UX
  */
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { logEvent } from "../../../services/dataLogger.js";
 
 interface Step1_BeneficiariesProps {
