@@ -391,7 +391,7 @@
 
   .selection-checkbox-white:hover:not(.disabled) {
     border-color: var(--color-primary-action);
-    background-color: #fffbf0;
+    background-color: #1a1a1a;
     transform: translateY(-1px);
     box-shadow: var(--shadow-sm);
   }
