@@ -406,8 +406,8 @@
   .selection-checkbox-white.disabled {
     opacity: 0.4;
     cursor: not-allowed;
-    background-color: #f9fafb;
-    border-color: #e5e7eb;
+    background-color: #333333;
+    border-color: #555555;
   }
 
   .selection-checkbox-white .checkbox-icon {
