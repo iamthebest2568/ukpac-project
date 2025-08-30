@@ -412,18 +412,18 @@
 
   .selection-checkbox-white .checkbox-icon {
     @apply w-5 h-5 rounded border-2 mr-3 flex items-center justify-center flex-shrink-0;
-    border-color: var(--color-border);
-    background-color: var(--color-white-theme-bg);
+    border-color: #374151;
+    background-color: #000000;
   }
 
   .selection-checkbox-white.selected .checkbox-icon {
-    background-color: #000000;
-    border-color: #000000;
+    background-color: var(--color-primary-action);
+    border-color: var(--color-primary-action);
   }
 
   .selection-checkbox-white.disabled .checkbox-icon {
-    background-color: #f3f4f6;
-    border-color: #d1d5db;
+    background-color: #333333;
+    border-color: #555555;
   }
 
   /* Budget Display - Black Theme */
