@@ -61,7 +61,7 @@ const App = () => (
         <Layout>
           <Routes>
             {/* Main entry */}
-            <Route path="/" element={<IntroStartPageSimple />} />
+            <Route path="/" element={<UltraSimplePage />} />
             <Route path="/test" element={<TestPage />} />
 
             {/* Intro flow */}
