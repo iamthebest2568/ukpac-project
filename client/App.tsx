@@ -4,7 +4,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // Minimal set of pages (dashboard/backend removed)
 import NotFound from "./pages/NotFound";
@@ -60,7 +60,6 @@ const App = () => (
           <Routes>
             {/* Main entry */}
             <Route path="/" element={<IndexPage />} />
-            <Route path="/IntroStartPage" element={<Navigate to="/" replace />} />
             <Route path="/test" element={<TestPage />} />
 
             {/* Intro flow */}
