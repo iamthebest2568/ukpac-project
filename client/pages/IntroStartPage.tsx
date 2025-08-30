@@ -25,7 +25,7 @@ const IntroStartPage = () => {
 การเก็บค่าธรรมเนียม
 เพื่อแก้ไขปัญหาจราจร
 จะเป็นอย่างไร...` : ""}
-      buttons={[
+      buttons={showTitle ? [] : [
         {
           text: "เริ่มเล่น",
           onClick: handleStart,
