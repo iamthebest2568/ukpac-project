@@ -467,7 +467,7 @@
   }
 
   .polaroid-caption {
-    @apply text-center text-black font-medium;
+    @apply text-center text-white font-medium;
     font-family: "Kanit", sans-serif;
     font-size: clamp(11px, 2.5vw, 14px);
     margin-top: 6px;
