@@ -180,7 +180,7 @@
 
   /* Theme Enforcement */
   .theme-white {
-    background-color: var(--color-white-theme-bg);
+    background-color: #000000;
     color: var(--color-text-primary);
   }
 
