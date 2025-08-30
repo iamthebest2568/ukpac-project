@@ -8,6 +8,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // Minimal set of pages (dashboard/backend removed)
 import NotFound from "./pages/NotFound";
+import TestPage from "./TestPage";
 
 // Intro pages
 import IntroStartPage from "./pages/IntroStartPage";
