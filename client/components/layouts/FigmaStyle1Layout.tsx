@@ -260,9 +260,11 @@ const FigmaStyle1Layout: React.FC<FigmaStyle1LayoutProps> = ({
           {/* Content Area */}
           <div className="figma-style1-content-area">
             {/* Title */}
-            <div className="figma-style1-title-container">
-              <h1 className="figma-style1-title">{title}</h1>
-            </div>
+            {title && (
+              <div className="figma-style1-title-container">
+                <h1 className="figma-style1-title">{title}</h1>
+              </div>
+            )}
 
             {/* Buttons */}
             <div className="figma-style1-button-container">
