@@ -202,57 +202,6 @@ const FigmaStyle1Layout: React.FC<FigmaStyle1LayoutProps> = ({
 
   return (
     <div className={`figma-style1-container ${className}`}>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          position: "relative",
-          marginLeft: "20px",
-          width: "100%",
-          minHeight: "20px",
-          minWidth: "20px",
-        }}
-      >
-        <div
-          style={{
-            position: "relative",
-          }}
-        >
-          <video
-            autoPlay={true}
-            muted={true}
-            controls={false}
-            playsInline={true}
-            loop={true}
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              objectPosition: "center",
-              borderRadius: "1",
-              position: "relative",
-              display: "flex",
-              flexDirection: "column",
-              marginLeft: "20px",
-              minHeight: "20px",
-              minWidth: "20px",
-            }}
-          >
-            <source
-              type="video/mp4"
-              src="https://cdn.builder.io/o/assets%2FYJIGb4i01jvw0SRdL5Bt%2Fd27731a526464deba0016216f5f9e570%2Fcompressed?apiKey=YJIGb4i01jvw0SRdL5Bt&token=d27731a526464deba0016216f5f9e570&alt=media&optimized=true"
-            />
-          </video>
-          <div
-            style={{
-              width: "100%",
-              paddingTop: "70.04048582995948%",
-              pointerEvents: "none",
-              fontSize: "0",
-            }}
-          />
-        </div>
-      </div>
       <div className="figma-style1-content">
         {/* Background Image/Video with Overlay */}
         <div className="figma-style1-background">
