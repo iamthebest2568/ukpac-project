@@ -127,15 +127,46 @@
   @apply text-center mb-8 md:mb-12 max-w-[325px];
 }
 
-/* Button System */
+/* Button System - Fluid responsive */
 .figma-style1-button-container {
-  @apply w-full max-w-[325px] space-y-4;
+  @apply w-full space-y-4;
+  max-width: min(90vw, 325px);
+  padding: 0 min(5vw, 20px);
 }
 
-/* Tablet button optimization */
-@media (min-width: 768px) and (max-width: 1279px) {
+.figma-style1-button {
+  @apply w-full rounded-[40px] bg-[#EFBA31] border-[1.5px] border-black flex items-center justify-center transition-all duration-200 hover:scale-105 hover:shadow-lg hover:bg-black active:bg-black;
+  /* Fluid button height */
+  height: clamp(50px, 12vw, 58px);
+  min-height: 50px;
+}
+
+.figma-style1-button-text {
+  @apply text-black text-center font-prompt font-medium leading-7 tracking-[0.4px];
+  /* Fluid text size */
+  font-size: clamp(16px, 4vw, 20px);
+}
+
+/* Large phones optimization (iPhone 14 Plus, etc.) */
+@media (min-width: 376px) and (max-width: 430px) {
   .figma-style1-button-container {
-    @apply max-w-[400px] space-y-5;
+    max-width: min(85vw, 350px);
+  }
+}
+
+/* Small to medium tablets */
+@media (min-width: 431px) and (max-width: 768px) {
+  .figma-style1-button-container {
+    max-width: min(80vw, 380px);
+    @apply space-y-5;
+  }
+}
+
+/* Large tablets */
+@media (min-width: 769px) and (max-width: 1279px) {
+  .figma-style1-button-container {
+    max-width: min(75vw, 400px);
+    @apply space-y-5;
   }
 
   .figma-style1-button {
@@ -145,9 +176,21 @@
   .figma-style1-button-text {
     @apply text-xl;
   }
+}
 
-  .figma-style1-title {
-    font-size: clamp(28px, 5vw, 36px);
+/* Desktop - maintain original */
+@media (min-width: 1280px) {
+  .figma-style1-button-container {
+    @apply max-w-[325px] space-y-4;
+    padding: 0;
+  }
+
+  .figma-style1-button {
+    @apply h-[53px];
+  }
+
+  .figma-style1-button-text {
+    @apply text-lg;
   }
 }
 
