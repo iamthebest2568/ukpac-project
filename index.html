@@ -137,8 +137,14 @@
           p.textContent=msg;
           box.appendChild(p);
         }
-        window.addEventListener('error', function(e){ showErr('Error: '+ (e.message||e.error)); });
-        window.addEventListener('unhandledrejection', function(e){ showErr('Promise: '+ (e.reason && (e.reason.stack||e.reason.message||String(e.reason)))); });
+        window.addEventListener('error', function(e){
+          var loc = (e.filename? (' at '+e.filename+ (e.lineno?(':'+e.lineno+ (e.colno?(':'+e.colno):'')) : '')) : '');
+          showErr('Error: '+ (e.message||e.error) + loc);
+        });
+        window.addEventListener('unhandledrejection', function(e){
+          var r=e.reason; var msg=r && (r.stack||r.message||String(r));
+          showErr('Promise: '+ msg);
+        });
         showErr('Debug overlay active');
       })();
     </script>
