@@ -14,7 +14,6 @@ const IntroStartPage = () => {
     <FigmaStyle1Layout
       backgroundImage="/placeholder.svg"
       backgroundAlt="Intro background"
-      isVideo={false}
       title={`แล้วถ้าหากวันหนึ่งมี\nการเก็บค่าธรรมเนียม\nเพื่อแก้ไขปัญหาจราจร\nจะเป็นอย่างไร...`}
       buttons={[
         {

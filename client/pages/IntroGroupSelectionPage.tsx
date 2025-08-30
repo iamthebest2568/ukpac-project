@@ -28,7 +28,7 @@ const IntroGroupSelectionPage = () => {
       ariaLabel: "เลือกเด็��"
     },
     {
-      text: "ผู้สูงอายุ",
+      text: "ผู้สูงอ���ยุ",
       onClick: () => handleChoice("ผู้สูงอายุ"),
       ariaLabel: "เลือกผู้สูงอายุ"
     },
@@ -43,7 +43,6 @@ const IntroGroupSelectionPage = () => {
     <FigmaStyle1Layout
       backgroundImage="/placeholder.svg"
       backgroundAlt="Group selection background"
-      isVideo={false}
       title="คุณมองว่าตัวเองเป็น
 คนกลุ่มไหนในเมืองนี้"
       buttons={buttons}

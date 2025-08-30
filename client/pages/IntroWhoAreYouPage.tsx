@@ -34,7 +34,7 @@ const IntroWhoAreYouPage = () => {
     },
     {
       text: "ผู้ประกอบการที่มาขายของในพื้นที่",
-      onClick: () => handleChoice("ผู้ประกอบการที่��าขายของในพื้นที่"),
+      onClick: () => handleChoice("ผู���ประกอบการที่��าขายของในพื้นที่"),
       ariaLabel: "เลือกผู้ประกอบการที่มาขายของในพื้นที่"
     },
     {
@@ -53,7 +53,6 @@ const IntroWhoAreYouPage = () => {
     <FigmaStyle1Layout
       backgroundImage="/placeholder.svg"
       backgroundAlt="Who are you background"
-      isVideo={false}
       title="คุณเป็นใครเป็นในมหานครนี้"
       buttons={buttons}
       replayButton={{

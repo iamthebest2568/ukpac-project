@@ -38,7 +38,6 @@ const IntroGenderPage = () => {
     <FigmaStyle1Layout
       backgroundImage="/placeholder.svg"
       backgroundAlt="Gender selection background"
-      isVideo={false}
       title="เพศของคุณ"
       buttons={buttons}
       replayButton={{

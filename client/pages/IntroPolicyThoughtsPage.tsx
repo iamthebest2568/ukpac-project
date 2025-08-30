@@ -20,7 +20,7 @@ const IntroPolicyThoughtsPage = () => {
     {
       text: "ไม่เชื่อว่าแก้ปัญหาได้จริง",
       onClick: () => handleChoice("ไม่เชื่อว่าแก้ปัญหาได้จริง"),
-      ariaLabel: "เลือกไม่เชื่อว่าแก้ปัญหาได้จริง"
+      ariaLabel: "เลือกไม่เชื่��ว่าแก้ปัญหาได้จริง"
     },
     {
       text: "กังว���ลค่าใช้จ่าย",
@@ -43,7 +43,6 @@ const IntroPolicyThoughtsPage = () => {
     <FigmaStyle1Layout
       backgroundImage="/placeholder.svg"
       backgroundAlt="Policy thoughts background"
-      isVideo={false}
       title="คุณคิดเห็นอย่างไร
 กับนโยบายนี้"
       buttons={buttons}

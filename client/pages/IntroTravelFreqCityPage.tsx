@@ -40,7 +40,7 @@ const IntroTravelFreqCityPage = () => {
     {
       text: "ไม่ค่อยเข้าเมือง",
       onClick: () => handleChoice("ไม่ค่อยเข้าเมือง"),
-      ariaLabel: "เลือกไม่ค่อยเข้าเมือ���"
+      ariaLabel: "เลือกไม่ค่อยเข้าเมือง"
     }
   ];
 
@@ -48,7 +48,6 @@ const IntroTravelFreqCityPage = () => {
     <FigmaStyle1Layout
       backgroundImage="/placeholder.svg"
       backgroundAlt="Travel frequency background"
-      isVideo={false}
       title="คุณเดินทางเข้าเมือง
 บ่อยแค่ไหน"
       buttons={buttons}

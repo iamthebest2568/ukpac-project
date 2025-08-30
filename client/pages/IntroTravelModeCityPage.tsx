@@ -48,7 +48,6 @@ const IntroTravelModeCityPage = () => {
     <FigmaStyle1Layout
       backgroundImage="/placeholder.svg"
       backgroundAlt="Travel mode background"
-      isVideo={false}
       title="คุณเดินทางเข้าเมือง
 ด้วยวิธีไหน"
       buttons={buttons}
