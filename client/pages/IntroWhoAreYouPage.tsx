@@ -12,7 +12,7 @@ const IntroWhoAreYouPage = () => {
   };
 
   const handleReplay = () => {
-    // Replay functionality - could replay video or audio content
+    // Replay functionality
     console.log("Replay clicked");
   };
 
@@ -25,7 +25,7 @@ const IntroWhoAreYouPage = () => {
     {
       text: "ผู้อยู่อาศัยในพื้นที่",
       onClick: () => handleChoice("ผู้อยู่อาศัยในพื้นที่"),
-      ariaLabel: "เลือกผู้อยู่อาศัยในพื้นที่"
+      ariaLabel: "เลือกผู้อยู่อาศั���ในพื้นที่"
     },
     {
       text: "นักศึกษาที่เข้ามาเรียนในพื้นที่",
@@ -34,7 +34,7 @@ const IntroWhoAreYouPage = () => {
     },
     {
       text: "ผู้ประกอบการที่มาขายของในพื้นที่",
-      onClick: () => handleChoice("ผู���ประกอบการที่��าขายของในพื้นที่"),
+      onClick: () => handleChoice("ผู้ประกอบการที่��าขายของในพื้นที่"),
       ariaLabel: "เลือกผู้ประกอบการที่มาขายของในพื้นที่"
     },
     {
@@ -43,7 +43,7 @@ const IntroWhoAreYouPage = () => {
       ariaLabel: "เลือกผู้ปกครอ��ที่เข้ามาส่งลูกในพื้นที่"
     },
     {
-      text: "ผู้เข้ามาช๊อปปิ้ง กินข้าว",
+      text: "ผู้เข้ามาช๊อปปิ้ง กินข้า��",
       onClick: () => handleChoice("ผู้เข้ามาช๊อปปิ้ง กินข้าว"),
       ariaLabel: "เลือกผู้เข้ามาช๊อปปิ้ง กินข้าว"
     }

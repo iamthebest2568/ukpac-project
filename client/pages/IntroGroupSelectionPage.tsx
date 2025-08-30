@@ -12,7 +12,7 @@ const IntroGroupSelectionPage = () => {
   };
 
   const handleReplay = () => {
-    // Replay functionality - could replay video or audio content
+    // Replay functionality
     console.log("Replay clicked");
   };
 
@@ -28,7 +28,7 @@ const IntroGroupSelectionPage = () => {
       ariaLabel: "เลือกเด็��"
     },
     {
-      text: "ผู้สูงอ���ยุ",
+      text: "ผู้สูงอายุ",
       onClick: () => handleChoice("ผู้สูงอายุ"),
       ariaLabel: "เลือกผู้สูงอายุ"
     },

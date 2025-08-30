@@ -12,7 +12,7 @@ const IntroTravelFreqCityPage = () => {
   };
 
   const handleReplay = () => {
-    // Replay functionality - could replay video or audio content
+    // Replay functionality
     console.log("Replay clicked");
   };
 

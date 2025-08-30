@@ -12,7 +12,7 @@ const IntroTravelModeCityPage = () => {
   };
 
   const handleReplay = () => {
-    // Replay functionality - could replay video or audio content
+    // Replay functionality
     console.log("Replay clicked");
   };
 
@@ -23,7 +23,7 @@ const IntroTravelModeCityPage = () => {
       ariaLabel: "เลือกรถไฟฟ้า BTS / MRT"
     },
     {
-      text: "อยู่ในพื้นที่ไม่ต้องเข้าเมือง",
+      text: "อยู่ในพื้นที่ไม่ต้องเข้าเ���ือง",
       onClick: () => handleChoice("อยู่ในพื้นที่ไม่ต้องเข้าเมือง"),
       ariaLabel: "เลือกอยู่ในพื้นที่ไม่ต้องเข้าเมือง"
     },

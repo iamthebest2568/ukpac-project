@@ -12,7 +12,7 @@ const IntroPolicyThoughtsPage = () => {
   };
 
   const handleReplay = () => {
-    // Replay functionality - could replay video or audio content
+    // Replay functionality
     console.log("Replay clicked");
   };
 
@@ -20,7 +20,7 @@ const IntroPolicyThoughtsPage = () => {
     {
       text: "ไม่เชื่อว่าแก้ปัญหาได้จริง",
       onClick: () => handleChoice("ไม่เชื่อว่าแก้ปัญหาได้จริง"),
-      ariaLabel: "เลือกไม่เชื่��ว่าแก้ปัญหาได้จริง"
+      ariaLabel: "เลือกไม่เชื่อว่า���ก้ปัญหาได้จริง"
     },
     {
       text: "กังว���ลค่าใช้จ่าย",
@@ -48,7 +48,7 @@ const IntroPolicyThoughtsPage = () => {
       buttons={buttons}
       replayButton={{
         onClick: handleReplay,
-        ariaLabel: "ดูอีกครั้ง"
+        ariaLabel: "���ูอีกครั้ง"
       }}
     />
   );

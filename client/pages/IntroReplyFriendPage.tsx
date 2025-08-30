@@ -12,13 +12,13 @@ const IntroReplyFriendPage = () => {
   };
 
   const handleReplay = () => {
-    // Replay functionality - could replay video or audio content
+    // Replay functionality
     console.log("Replay clicked");
   };
 
   const buttons = [
     {
-      text: "ดูแล้ว",
+      text: "ดูแล���ว",
       onClick: () => handleChoice("ดูแล้ว"),
       ariaLabel: "เลือกดูแล้ว"
     },

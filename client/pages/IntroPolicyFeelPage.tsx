@@ -12,7 +12,7 @@ const IntroPolicyFeelPage = () => {
   };
 
   const handleReplay = () => {
-    // Replay functionality - could replay video or audio content
+    // Replay functionality
     console.log("Replay clicked");
   };
 
@@ -29,7 +29,7 @@ const IntroPolicyFeelPage = () => {
     },
     {
       text: "ไม่เห็นด้วย",
-      onClick: () => handleChoice("ไม่เห็นด้วย"),
+      onClick: () => handleChoice("��ม่เห็นด้วย"),
       ariaLabel: "เลือกไม่เห็นด้วย"
     }
   ];
