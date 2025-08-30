@@ -12,7 +12,6 @@ import TestPage from "./TestPage";
 
 // Intro pages
 import IntroStartPage from "./pages/IntroStartPage";
-import UltraSimplePage from "./pages/UltraSimplePage";
 import IntroWhoAreYouPage from "./pages/IntroWhoAreYouPage";
 import IntroGenderPage from "./pages/IntroGenderPage";
 import IntroGroupSelectionPage from "./pages/IntroGroupSelectionPage";
