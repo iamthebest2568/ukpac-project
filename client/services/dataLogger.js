@@ -85,9 +85,12 @@ export function logEvent(eventData) {
  */
 export function getLoggedEvents() {
   try {
-    return JSON.parse(localStorage.getItem('ukPackEvents')) || [];
+    const raw = localStorage.getItem('ukPackEvents');
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed : [];
   } catch (error) {
-    console.error('Failed to retrieve logged events:', error);
+    // Do not spam console with parse errors; fallback gracefully
     return [];
   }
 }
