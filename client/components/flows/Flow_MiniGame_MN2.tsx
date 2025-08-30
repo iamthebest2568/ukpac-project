@@ -18,7 +18,12 @@ interface Flow_MiniGame_MN2Props {
   mn1Data?: any; // Data from MN1 flow (selected priorities)
 }
 
-const Flow_MiniGame_MN2 = ({ sessionID, onComplete, onBack, mn1Data }: Flow_MiniGame_MN2Props) => {
+const Flow_MiniGame_MN2 = ({
+  sessionID,
+  onComplete,
+  onBack,
+  mn1Data,
+}: Flow_MiniGame_MN2Props) => {
   const [currentStep, setCurrentStep] = useState<number>(1);
   const [flowData, setFlowData] = useState<any>({ beneficiarySelections: {} });
 
@@ -32,34 +37,36 @@ const Flow_MiniGame_MN2 = ({ sessionID, onComplete, onBack, mn1Data }: Flow_Mini
   const isLastBeneficiaryStep = currentStep === priorities.length;
   const isSummaryStep = currentStep === totalSteps;
 
-
   const handleStepComplete = (stepData: any) => {
-
     if (isSummaryStep) {
       // Complete the entire flow
       const completeData = {
         ...mn1Data, // Include MN1 data
-        beneficiaries: { selections: Object.values(flowData.beneficiarySelections) },
-        ...stepData // Include summary data
+        beneficiaries: {
+          selections: Object.values(flowData.beneficiarySelections),
+        },
+        ...stepData, // Include summary data
       };
       onComplete(completeData);
     } else {
       // This is a beneficiary selection step
       const currentPriority = priorities[currentStep - 1];
-      
+
       // Extract beneficiary selections from stepData
-      const beneficiaryData = stepData.beneficiaries?.selections?.[0] || 
-                            { priority: currentPriority, beneficiaries: [] };
-      
+      const beneficiaryData = stepData.beneficiaries?.selections?.[0] || {
+        priority: currentPriority,
+        beneficiaries: [],
+      };
+
       // Store this priority's beneficiary selections
       const updatedFlowData = {
         ...flowData,
         beneficiarySelections: {
           ...flowData.beneficiarySelections,
-          [currentPriority]: beneficiaryData
-        }
+          [currentPriority]: beneficiaryData,
+        },
       };
-      
+
       setFlowData(updatedFlowData);
 
       // Move to next step
@@ -81,7 +88,7 @@ const Flow_MiniGame_MN2 = ({ sessionID, onComplete, onBack, mn1Data }: Flow_Mini
       const allSelections = Object.values(flowData.beneficiarySelections);
       const combinedData = {
         ...mn1Data,
-        beneficiaries: { selections: allSelections }
+        beneficiaries: { selections: allSelections },
       };
 
       return (
@@ -129,15 +136,18 @@ const Flow_MiniGame_MN2 = ({ sessionID, onComplete, onBack, mn1Data }: Flow_Mini
           <div className="figma-style1-main">
             <div className="figma-style1-content-area">
               <div className="figma-style1-title-container">
-                <h1 className="figma-style1-title">ไม่พบข้อมูลจากขั้นตอนก่อนหน้า</h1>
-                <p className="text-white text-center mt-4">กรุณากลับไปเลือกนโยบายก่อน</p>
+                <h1 className="figma-style1-title">
+                  ไม่พบข้อมูลจากขั้นตอนก่อนหน้า
+                </h1>
+                <p className="text-white text-center mt-4">
+                  กรุณากลับไปเลือกนโยบายก่อน
+                </p>
               </div>
               <div className="w-full max-w-[325px]">
-                <button
-                  onClick={onBack}
-                  className="figma-style1-button"
-                >
-                  <span className="figma-style1-button-text">กลับไปเลือกนโยบาย</span>
+                <button onClick={onBack} className="figma-style1-button">
+                  <span className="figma-style1-button-text">
+                    กลับไปเลือกนโยบาย
+                  </span>
                 </button>
               </div>
             </div>
@@ -147,11 +157,7 @@ const Flow_MiniGame_MN2 = ({ sessionID, onComplete, onBack, mn1Data }: Flow_Mini
     );
   }
 
-  return (
-    <div className="flow-container">
-      {renderCurrentStep()}
-    </div>
-  );
+  return <div className="flow-container">{renderCurrentStep()}</div>;
 };
 
 export default Flow_MiniGame_MN2;

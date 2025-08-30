@@ -25,7 +25,8 @@ const Step1_Beneficiaries = ({
   totalPrioritySteps,
   initialBeneficiaries = [],
 }: Step1_BeneficiariesProps) => {
-  const [selectedGroups, setSelectedGroups] = useState<string[]>(initialBeneficiaries);
+  const [selectedGroups, setSelectedGroups] =
+    useState<string[]>(initialBeneficiaries);
   const maxSelections = 6; // Allow up to 6 selections
 
   // Reset selectedGroups when initialBeneficiaries changes (for new steps)
@@ -34,35 +35,41 @@ const Step1_Beneficiaries = ({
   }, [initialBeneficiaries]);
 
   const beneficiaryGroups = [
-    { 
-      id: "everyone", 
-      label: "ทุกคน", 
-      iconSrc: "https://api.builder.io/api/v1/image/assets/TEMP/1a7aa898479a915b1d4d0ef1156c80bf95c372af?width=100"
+    {
+      id: "everyone",
+      label: "ทุกคน",
+      iconSrc:
+        "https://api.builder.io/api/v1/image/assets/TEMP/1a7aa898479a915b1d4d0ef1156c80bf95c372af?width=100",
     },
     {
       id: "locals",
       label: "คนในพื้นที่",
-      iconSrc: "https://api.builder.io/api/v1/image/assets/TEMP/1e470dd8f9f7ac27485f56fba45554979acb2509?width=100"
+      iconSrc:
+        "https://api.builder.io/api/v1/image/assets/TEMP/1e470dd8f9f7ac27485f56fba45554979acb2509?width=100",
     },
     {
       id: "elderly",
       label: "ผู้สูงอายุ",
-      iconSrc: "https://api.builder.io/api/v1/image/assets/TEMP/1b0a18f821ff070a939691646da69e792c28ce55?width=100"
+      iconSrc:
+        "https://api.builder.io/api/v1/image/assets/TEMP/1b0a18f821ff070a939691646da69e792c28ce55?width=100",
     },
     {
       id: "students",
       label: "นักเรียนนักศึกษา",
-      iconSrc: "https://api.builder.io/api/v1/image/assets/TEMP/054c6038c235112715becc476723cafe8d55d68f?width=74"
+      iconSrc:
+        "https://api.builder.io/api/v1/image/assets/TEMP/054c6038c235112715becc476723cafe8d55d68f?width=74",
     },
     {
       id: "disabled",
       label: "คนพิการ",
-      iconSrc: "https://api.builder.io/api/v1/image/assets/TEMP/9633f8bb6d0c953adb33a0769227522a310bb01f?width=88"
+      iconSrc:
+        "https://api.builder.io/api/v1/image/assets/TEMP/9633f8bb6d0c953adb33a0769227522a310bb01f?width=88",
     },
     {
       id: "other",
       label: "อื่นๆ",
-      iconSrc: "https://api.builder.io/api/v1/image/assets/TEMP/5a8e81b8e50e6e0ed69f435d1c09e3de070df984?width=82"
+      iconSrc:
+        "https://api.builder.io/api/v1/image/assets/TEMP/5a8e81b8e50e6e0ed69f435d1c09e3de070df984?width=82",
     },
   ];
 
@@ -92,7 +99,9 @@ const Step1_Beneficiaries = ({
 
   const handleNext = () => {
     // Create selections array with this priority's beneficiaries
-    const selectionsArray = [{ priority: currentPriority, beneficiaries: selectedGroups }];
+    const selectionsArray = [
+      { priority: currentPriority, beneficiaries: selectedGroups },
+    ];
     const data = { beneficiaries: { selections: selectionsArray } };
 
     // Log the minigame completion
@@ -159,16 +168,21 @@ const Step1_Beneficiaries = ({
                       aria-disabled={isDisabled}
                       tabIndex={isDisabled ? -1 : 0}
                       onKeyDown={(e) => {
-                        if ((e.key === "Enter" || e.key === " ") && !isDisabled) {
+                        if (
+                          (e.key === "Enter" || e.key === " ") &&
+                          !isDisabled
+                        ) {
                           e.preventDefault();
                           handleGroupToggle(group.id);
                         }
                       }}
                     >
                       {/* Circular Icon Background */}
-                      <div className={`w-[80px] h-[80px] rounded-full flex items-center justify-center mb-2 transition-all duration-200 ${
-                        isSelected ? "bg-[#EFBA31]" : "bg-black"
-                      }`}>
+                      <div
+                        className={`w-[80px] h-[80px] rounded-full flex items-center justify-center mb-2 transition-all duration-200 ${
+                          isSelected ? "bg-[#EFBA31]" : "bg-black"
+                        }`}
+                      >
                         <img
                           src={group.iconSrc}
                           alt={group.label}
@@ -176,21 +190,23 @@ const Step1_Beneficiaries = ({
                           style={{
                             filter: isSelected
                               ? "brightness(0)" // Black icons on yellow background
-                              : "brightness(0) invert(1)" // White icons on black background
+                              : "brightness(0) invert(1)", // White icons on black background
                           }}
                         />
                       </div>
                       {/* Label */}
-                      <span className={`font-prompt text-lg font-medium text-center transition-all duration-200 ${
-                        isSelected ? "text-[#EFBA31]" : "text-white"
-                      }`}>
+                      <span
+                        className={`font-prompt text-lg font-medium text-center transition-all duration-200 ${
+                          isSelected ? "text-[#EFBA31]" : "text-white"
+                        }`}
+                      >
                         {group.label}
                       </span>
                     </div>
                   );
                 })}
               </div>
-              
+
               {/* Bottom Row */}
               <div className="flex justify-between items-start">
                 {beneficiaryGroups.slice(3, 6).map((group) => {
@@ -207,16 +223,21 @@ const Step1_Beneficiaries = ({
                       aria-disabled={isDisabled}
                       tabIndex={isDisabled ? -1 : 0}
                       onKeyDown={(e) => {
-                        if ((e.key === "Enter" || e.key === " ") && !isDisabled) {
+                        if (
+                          (e.key === "Enter" || e.key === " ") &&
+                          !isDisabled
+                        ) {
                           e.preventDefault();
                           handleGroupToggle(group.id);
                         }
                       }}
                     >
                       {/* Circular Icon Background */}
-                      <div className={`w-[80px] h-[80px] rounded-full flex items-center justify-center mb-2 transition-all duration-200 ${
-                        isSelected ? "bg-[#EFBA31]" : "bg-black"
-                      }`}>
+                      <div
+                        className={`w-[80px] h-[80px] rounded-full flex items-center justify-center mb-2 transition-all duration-200 ${
+                          isSelected ? "bg-[#EFBA31]" : "bg-black"
+                        }`}
+                      >
                         <img
                           src={group.iconSrc}
                           alt={group.label}
@@ -224,14 +245,16 @@ const Step1_Beneficiaries = ({
                           style={{
                             filter: isSelected
                               ? "brightness(0)" // Black icons on yellow background
-                              : "brightness(0) invert(1)" // White icons on black background
+                              : "brightness(0) invert(1)", // White icons on black background
                           }}
                         />
                       </div>
                       {/* Label */}
-                      <span className={`font-prompt text-lg font-medium text-center transition-all duration-200 ${
-                        isSelected ? "text-[#EFBA31]" : "text-white"
-                      }`}>
+                      <span
+                        className={`font-prompt text-lg font-medium text-center transition-all duration-200 ${
+                          isSelected ? "text-[#EFBA31]" : "text-white"
+                        }`}
+                      >
                         {group.label}
                       </span>
                     </div>
@@ -247,7 +270,11 @@ const Step1_Beneficiaries = ({
               </p>
               {selectedGroups.length > 0 && (
                 <p className="text-[#EFBA31] font-prompt text-xs mt-1">
-                  {selectedGroups.map((id) => beneficiaryGroups.find((g) => g.id === id)?.label).join(', ')}
+                  {selectedGroups
+                    .map(
+                      (id) => beneficiaryGroups.find((g) => g.id === id)?.label,
+                    )
+                    .join(", ")}
                 </p>
               )}
             </div>
@@ -266,9 +293,7 @@ const Step1_Beneficiaries = ({
               >
                 <span
                   className={`figma-style1-button-text ${
-                    selectedGroups.length === 0
-                      ? "text-gray-600"
-                      : ""
+                    selectedGroups.length === 0 ? "text-gray-600" : ""
                   }`}
                 >
                   {currentStep === totalPrioritySteps ? "ไปดูสรุป" : "ถัดไป"}
