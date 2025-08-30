@@ -30,7 +30,7 @@ const FakeNewsTest = ({ sessionID, onNavigate }: FakeNewsTestProps) => {
   };
 
   const handleReplay = () => {
-    // Replay functionality - could be used to replay audio/video content
+    // Replay functionality
     logEvent({
       event: "FAKENEWS_REPLAY",
       payload: {
@@ -49,7 +49,7 @@ const FakeNewsTest = ({ sessionID, onNavigate }: FakeNewsTestProps) => {
     {
       text: "หาข่าวต่อ",
       onClick: () => handleAction("search"),
-      ariaLabel: "เลือกที่จะหาข้อมูลเพิ่มเติมเพื่อตรวจสอบความถูกต้อง",
+      ariaLabel: "เลือกที่จะ��าข้อมูลเพิ่มเติมเพื่อตรวจสอบความถูกต้อง",
     },
   ];
 
