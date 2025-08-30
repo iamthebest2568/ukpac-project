@@ -157,28 +157,31 @@ export function exportEventsAsCSV() {
 console.log('📊 UK PACK Data Logger initialized');
 console.log('🔧 Session ID:', getSessionID());
 
-// Listen for page visibility changes to log session events
-document.addEventListener('visibilitychange', () => {
-  if (document.visibilityState === 'hidden') {
-    logEvent({
-      event: 'SESSION_PAUSE',
-      payload: { reason: 'page_hidden' }
-    });
-  } else {
-    logEvent({
-      event: 'SESSION_RESUME',
-      payload: { reason: 'page_visible' }
-    });
-  }
-});
-
-// Log page load event
-window.addEventListener('load', () => {
-  logEvent({
-    event: 'PAGE_LOAD',
-    payload: { 
-      page: window.location.pathname,
-      referrer: document.referrer
+// Only run browser-specific code if we're in a browser environment
+if (typeof window !== 'undefined' && typeof document !== 'undefined') {
+  // Listen for page visibility changes to log session events
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden') {
+      logEvent({
+        event: 'SESSION_PAUSE',
+        payload: { reason: 'page_hidden' }
+      });
+    } else {
+      logEvent({
+        event: 'SESSION_RESUME',
+        payload: { reason: 'page_visible' }
+      });
     }
   });
-});
+
+  // Log page load event
+  window.addEventListener('load', () => {
+    logEvent({
+      event: 'PAGE_LOAD',
+      payload: {
+        page: window.location.pathname,
+        referrer: document.referrer
+      }
+    });
+  });
+}
