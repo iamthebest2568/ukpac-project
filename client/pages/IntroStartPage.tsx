@@ -1,10 +1,17 @@
+import React, { useState } from "react";
 import FigmaStyle1Layout from "../components/layouts/FigmaStyle1Layout";
 import { useSession } from "../hooks/useSession";
 
 const IntroStartPage = () => {
   const { navigateToPage } = useSession();
+  const [showTitle, setShowTitle] = useState(false);
 
   const handleStart = () => {
+    setShowTitle(true);
+    // Navigation will happen after video segment completes
+  };
+
+  const handleVideoSegmentComplete = () => {
     navigateToPage("/intro-who-are-you");
   };
 
