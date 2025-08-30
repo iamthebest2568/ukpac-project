@@ -26,9 +26,18 @@ function getSessionID() {
  */
 export function logEvent(eventData) {
   try {
-    // 1. Retrieve existing events from localStorage, or start a new array
-    const existingEvents = JSON.parse(localStorage.getItem('ukPackEvents')) || [];
-    
+    // 1. Retrieve existing events from localStorage, or start a new array (safe parse)
+    const raw = localStorage.getItem('ukPackEvents');
+    let existingEvents = [];
+    if (raw) {
+      try {
+        const parsed = JSON.parse(raw);
+        if (Array.isArray(parsed)) existingEvents = parsed;
+      } catch (_) {
+        existingEvents = [];
+      }
+    }
+
     // 2. Prepare the event with required metadata
     const enrichedEvent = {
       sessionID: getSessionID(),
