@@ -12,8 +12,6 @@ import TestPage from "./TestPage";
 
 // Intro pages
 import IntroStartPage from "./pages/IntroStartPage";
-import IntroStartPageSimple from "./pages/IntroStartPageSimple";
-import UltraSimplePage from "./pages/UltraSimplePage";
 import IntroWhoAreYouPage from "./pages/IntroWhoAreYouPage";
 import IntroGenderPage from "./pages/IntroGenderPage";
 import IntroGroupSelectionPage from "./pages/IntroGroupSelectionPage";
@@ -42,7 +40,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => (
     <a
       href="#main-content"
       className="skip-link"
-      aria-label="ข้ามไป��ังเนื้อหาหลัก"
+      aria-label="ข้ามไปยังเนื้อหาหลัก"
     >
       ข้ามไปยังเนื้อหาหลัก
     </a>
