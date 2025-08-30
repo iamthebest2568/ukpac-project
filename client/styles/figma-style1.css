@@ -309,47 +309,33 @@
   }
 }
 
-/* Enhanced tablet/desktop spacing */
-@media (min-width: 421px) and (max-width: 767px) {
-  .figma-style1-header {
-    @apply p-8;
-  }
-
+/* Device-specific fine-tuning for optimal UX */
+@media (max-width: 375px) {
   .figma-style1-content-area {
-    @apply pb-10 px-8;
-  }
-
-  .figma-style1-title-container {
-    @apply mb-10;
+    padding-bottom: min(6vh, 32px);
   }
 }
 
-/* Tablet spacing optimization */
-@media (min-width: 768px) and (max-width: 1279px) {
-  .figma-style1-header {
-    @apply p-12;
-  }
-
+@media (min-width: 376px) and (max-width: 430px) {
   .figma-style1-content-area {
-    @apply pb-16 px-10;
-  }
-
-  .figma-style1-title-container {
-    @apply mb-14;
+    padding-bottom: min(7vh, 40px);
   }
 }
 
-/* Large screen spacing (desktop) */
+@media (min-width: 769px) and (max-width: 1279px) {
+  .figma-style1-content-area {
+    padding-bottom: min(10vh, 64px);
+  }
+}
+
 @media (min-width: 1280px) {
   .figma-style1-header {
-    @apply p-10;
+    padding: 40px;
   }
 
   .figma-style1-content-area {
-    @apply pb-12 px-8;
-  }
-
-  .figma-style1-title-container {
-    @apply mb-12;
+    padding-left: 32px;
+    padding-right: 32px;
+    padding-bottom: 48px;
   }
 }
