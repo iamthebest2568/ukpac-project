@@ -3,6 +3,7 @@ import { useState } from "react";
 interface ThankYouScreenProps {
   sessionID: string | null;
   onNavigate: (gameId: string) => void;
+  journeyData?: any;
 }
 
 const ThankYouScreen = ({ sessionID, onNavigate }: ThankYouScreenProps) => {
