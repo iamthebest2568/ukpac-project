@@ -725,11 +725,11 @@
 
   /* Illustration Panels */
   .illustration-panel {
-    border: var(--border-width-medium) solid #000000;
+    border: var(--border-width-medium) solid #ffffff;
     border-radius: var(--border-radius-lg);
     padding: var(--space-lg);
     margin-bottom: var(--space-xl);
-    background-color: var(--color-white-theme-bg);
+    background-color: #000000;
     box-shadow: var(--shadow-sm);
     animation: fadeInUp 0.6s ease-out;
   }
