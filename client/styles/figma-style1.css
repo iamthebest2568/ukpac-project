@@ -15,7 +15,28 @@
 }
 
 .figma-style1-content {
-  @apply w-full max-w-[390px] md:max-w-[420px] lg:max-w-[390px] min-h-screen bg-white overflow-hidden relative;
+  @apply w-full max-w-[390px] min-h-screen bg-white overflow-hidden relative;
+}
+
+/* Tablet optimization */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .figma-style1-content {
+    @apply max-w-[480px];
+  }
+}
+
+/* Large tablet optimization */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .figma-style1-content {
+    @apply max-w-[520px];
+  }
+}
+
+/* Keep desktop as is - lg:max-w-[390px] equivalent for very large screens */
+@media (min-width: 1280px) {
+  .figma-style1-content {
+    @apply max-w-[390px];
+  }
 }
 
 /* Background System */
