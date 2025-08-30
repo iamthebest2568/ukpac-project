@@ -122,7 +122,7 @@
 
 /* Typography System - Fluid responsive */
 .figma-style1-title {
-  @apply text-white text-center font-kanit font-normal leading-normal;
+  @apply text-black text-center font-kanit font-normal leading-normal;
   /* Fluid font size that works on ALL devices */
   font-size: clamp(20px, 6vw, 36px);
   line-height: 1.2;
