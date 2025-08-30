@@ -203,7 +203,7 @@ const FigmaStyle1Layout: React.FC<FigmaStyle1LayoutProps> = ({
               ref={videoRef}
               key={backgroundImage}
               src={backgroundImage}
-              autoPlay
+              autoPlay={autoPlay}
               loop
               muted
               playsInline
