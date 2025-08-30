@@ -7,6 +7,8 @@ interface FigmaStyle1LayoutProps {
   backgroundAlt?: string;
   /** Whether the background is a video */
   isVideo?: boolean;
+  /** Whether video should autoplay (default: true) */
+  autoPlay?: boolean;
   /** Title text to display */
   title: string;
   /** Array of button configurations */
