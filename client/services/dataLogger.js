@@ -51,10 +51,7 @@ export function logEvent(eventData) {
     // 5. Also log to console for debugging (can be removed in production)
     console.log('📊 Event Logged:', enrichedEvent);
     
-    // 6. Trigger custom event for real-time dashboard updates
-    window.dispatchEvent(new CustomEvent('ukPackEventLogged', {
-      detail: enrichedEvent
-    }));
+    // Event logged successfully to localStorage
     
   } catch (error) {
     console.error('Failed to log event:', error);
