@@ -41,9 +41,9 @@ const IntroGroupSelectionPage = () => {
 
   return (
     <FigmaStyle1Layout
-      backgroundImage="/opening-compress.mp4"
-      backgroundAlt="Group selection video background"
-      isVideo={true}
+      backgroundImage="/placeholder.svg"
+      backgroundAlt="Group selection background"
+      isVideo={false}
       title="คุณมองว่าตัวเองเป็น
 คนกลุ่มไหนในเมืองนี้"
       buttons={buttons}

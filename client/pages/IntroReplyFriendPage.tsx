@@ -25,7 +25,7 @@ const IntroReplyFriendPage = () => {
     {
       text: "อยากรู้อยู่พอดี",
       onClick: () => handleChoice("อยากรู้อยู่พอดี"),
-      ariaLabel: "เลือกอยากรู้อยู่พอดี"
+      ariaLabel: "เลือกอยากร���้อยู่พอดี"
     },
     {
       text: "ยังไม่ได้ดู",
@@ -36,9 +36,9 @@ const IntroReplyFriendPage = () => {
 
   return (
     <FigmaStyle1Layout
-      backgroundImage="/opening-compress.mp4"
-      backgroundAlt="Reply friend video background"
-      isVideo={true}
+      backgroundImage="/placeholder.svg"
+      backgroundAlt="Reply friend background"
+      isVideo={false}
       title="คุณจะตอบกลับเพื่อน
 ว่าอย่างไร"
       buttons={buttons}

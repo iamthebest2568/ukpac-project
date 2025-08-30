@@ -51,15 +51,11 @@ const IntroWhoAreYouPage = () => {
 
   return (
     <FigmaStyle1Layout
-      backgroundImage="/opening-compress.mp4"
-      backgroundAlt="Who are you video background"
-      isVideo={true}
+      backgroundImage="/placeholder.svg"
+      backgroundAlt="Who are you background"
+      isVideo={false}
       title="คุณเป็นใครเป็นในมหานครนี้"
       buttons={buttons}
-      videoSegment={{
-        startTime: 0.7,
-        endTime: 0.15
-      }}
       replayButton={{
         onClick: handleReplay,
         ariaLabel: "ดูอีกครั้ง"

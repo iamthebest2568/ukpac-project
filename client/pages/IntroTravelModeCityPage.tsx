@@ -46,16 +46,12 @@ const IntroTravelModeCityPage = () => {
 
   return (
     <FigmaStyle1Layout
-      backgroundImage="/opening-compress.mp4"
-      backgroundAlt="Travel mode video background"
-      isVideo={true}
+      backgroundImage="/placeholder.svg"
+      backgroundAlt="Travel mode background"
+      isVideo={false}
       title="คุณเดินทางเข้าเมือง
 ด้วยวิธีไหน"
       buttons={buttons}
-      videoSegment={{
-        startTime: 0.18,
-        endTime: 0.23
-      }}
       replayButton={{
         onClick: handleReplay,
         ariaLabel: "ดูอีกครั้ง"

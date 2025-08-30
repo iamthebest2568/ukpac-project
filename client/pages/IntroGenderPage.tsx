@@ -36,15 +36,11 @@ const IntroGenderPage = () => {
 
   return (
     <FigmaStyle1Layout
-      backgroundImage="/opening-compress.mp4"
-      backgroundAlt="Gender selection video background"
-      isVideo={true}
+      backgroundImage="/placeholder.svg"
+      backgroundAlt="Gender selection background"
+      isVideo={false}
       title="เพศของคุณ"
       buttons={buttons}
-      videoSegment={{
-        startTime: 0.15,
-        endTime: 0.18
-      }}
       replayButton={{
         onClick: handleReplay,
         ariaLabel: "ดูอีกครั้ง"

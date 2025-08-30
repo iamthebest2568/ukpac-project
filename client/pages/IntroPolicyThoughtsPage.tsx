@@ -41,9 +41,9 @@ const IntroPolicyThoughtsPage = () => {
 
   return (
     <FigmaStyle1Layout
-      backgroundImage="/opening-compress.mp4"
-      backgroundAlt="Policy thoughts video background"
-      isVideo={true}
+      backgroundImage="/placeholder.svg"
+      backgroundAlt="Policy thoughts background"
+      isVideo={false}
       title="คุณคิดเห็นอย่างไร
 กับนโยบายนี้"
       buttons={buttons}
