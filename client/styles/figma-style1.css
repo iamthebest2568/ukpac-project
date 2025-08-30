@@ -80,16 +80,8 @@
   min-height: 100%;
 }
 
-.figma-style1-background-image:not(video) {
+.figma-style1-background-image {
   aspect-ratio: 2/3;
-}
-
-.figma-style1-background video {
-  width: 100% !important;
-  height: 100% !important;
-  min-height: 100vh !important;
-  object-fit: cover !important;
-  object-position: center !important;
 }
 
 /* Ensure full coverage on all devices */
