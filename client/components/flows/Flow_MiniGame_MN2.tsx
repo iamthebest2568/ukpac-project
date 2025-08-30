@@ -96,7 +96,8 @@ const Flow_MiniGame_MN2 = ({ sessionID, onComplete, onBack, mn1Data }: Flow_Mini
       // This is a beneficiary selection step
       const currentPriority = priorities[currentStep - 1];
       const currentPriorityIndex = currentStep - 1;
-      const initialBeneficiaries = flowData.beneficiarySelections[currentPriority]?.beneficiaries || [];
+      // Each step should start fresh with no pre-selected beneficiaries
+      const initialBeneficiaries: string[] = [];
 
       return (
         <Step1_Beneficiaries
