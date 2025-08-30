@@ -8,14 +8,30 @@ function generateSessionID() {
   return `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
 }
 
-// Get or create session ID
+// Get or create session ID (safe for iframes/private mode)
 function getSessionID() {
-  let sessionID = sessionStorage.getItem('ukPackSessionID');
-  if (!sessionID) {
-    sessionID = generateSessionID();
-    sessionStorage.setItem('ukPackSessionID', sessionID);
+  try {
+    if (typeof window === 'undefined') return generateSessionID();
+    if (!('sessionStorage' in window)) return generateSessionID();
+    let sessionID = null;
+    try {
+      sessionID = window.sessionStorage.getItem('ukPackSessionID');
+    } catch (_) {
+      // storage may be unavailable (3rd-party iframe, privacy mode)
+      return generateSessionID();
+    }
+    if (!sessionID) {
+      sessionID = generateSessionID();
+      try {
+        window.sessionStorage.setItem('ukPackSessionID', sessionID);
+      } catch (_) {
+        // ignore write failures
+      }
+    }
+    return sessionID;
+  } catch (_) {
+    return generateSessionID();
   }
-  return sessionID;
 }
 
 /**
@@ -54,8 +70,10 @@ export function logEvent(eventData) {
     // 3. Add the new event
     existingEvents.push(enrichedEvent);
     
-    // 4. Save the updated array back to localStorage
-    localStorage.setItem('ukPackEvents', JSON.stringify(existingEvents));
+    // 4. Save the updated array back to localStorage (tolerate failures)
+    try {
+      localStorage.setItem('ukPackEvents', JSON.stringify(existingEvents));
+    } catch (_) { /* ignore */ }
     
     // 5. Also log to console for debugging (can be removed in production)
     console.log('📊 Event Logged:', enrichedEvent);
@@ -67,14 +85,16 @@ export function logEvent(eventData) {
     
     // Fallback: try to clear corrupted data and retry once
     try {
-      localStorage.removeItem('ukPackEvents');
-      localStorage.setItem('ukPackEvents', JSON.stringify([{
-        sessionID: getSessionID(),
-        timestamp: new Date().toISOString(),
-        ...eventData
-      }]));
+      try { localStorage.removeItem('ukPackEvents'); } catch (_) {}
+      try {
+        localStorage.setItem('ukPackEvents', JSON.stringify([{
+          sessionID: getSessionID(),
+          timestamp: new Date().toISOString(),
+          ...eventData
+        }]));
+      } catch (_) {}
     } catch (retryError) {
-      console.error('Failed to log event even after cleanup:', retryError);
+      // swallow
     }
   }
 }
@@ -109,8 +129,8 @@ export function getCurrentSessionEvents() {
  * Clear all logged events (for testing/reset)
  */
 export function clearEventLogs() {
-  localStorage.removeItem('ukPackEvents');
-  sessionStorage.removeItem('ukPackSessionID');
+  try { localStorage.removeItem('ukPackEvents'); } catch (_) {}
+  try { sessionStorage.removeItem('ukPackSessionID'); } catch (_) {}
   console.log('🗑️ Event logs cleared');
 }
 
@@ -167,7 +187,6 @@ export function exportEventsAsCSV() {
 
 // Initialize logging service
 console.log('📊 UK PACK Data Logger initialized');
-console.log('🔧 Session ID:', getSessionID());
 
 // Only run browser-specific code if we're in a browser environment
 if (typeof window !== 'undefined' && typeof document !== 'undefined') {
