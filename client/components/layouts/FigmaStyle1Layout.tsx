@@ -1,14 +1,10 @@
 import React from "react";
 
 interface FigmaStyle1LayoutProps {
-  /** Background image URL or video URL */
+  /** Background image URL */
   backgroundImage: string;
   /** Alt text for background image */
   backgroundAlt?: string;
-  /** Whether the background is a video */
-  isVideo?: boolean;
-  /** Whether video should autoplay (default: true) */
-  autoPlay?: boolean;
   /** Title text to display */
   title: string;
   /** Array of button configurations */
@@ -24,13 +20,6 @@ interface FigmaStyle1LayoutProps {
   };
   /** Additional CSS classes for customization */
   className?: string;
-  /** Video segment configuration for button clicks */
-  videoSegment?: {
-    startTime: number;
-    endTime: number;
-  };
-  /** Callback when video segment playback completes */
-  onVideoSegmentComplete?: () => void;
 }
 
 /**
@@ -51,192 +40,17 @@ const FigmaStyle1Layout: React.FC<FigmaStyle1LayoutProps> = ({
   buttons,
   replayButton,
   className = "",
-  isVideo,
-  autoPlay = true,
-  videoSegment,
-  onVideoSegmentComplete,
 }) => {
-  const [videoFailed, setVideoFailed] = React.useState(false);
-  const [isPlayingSegment, setIsPlayingSegment] = React.useState(false);
-  const videoRef = React.useRef<HTMLVideoElement>(null);
-
-  const isVideoUrl = React.useMemo(
-    () => /\.(mp4|webm|ogg)(\?.*)?$/i.test(backgroundImage),
-    [backgroundImage],
-  );
-  const shouldUseVideo = !videoFailed && (isVideo ?? isVideoUrl) === true;
-
-  const mediaErrorMessage = (code?: number) => {
-    switch (code) {
-      case 1:
-        return "MEDIA_ERR_ABORTED: fetching process aborted by user";
-      case 2:
-        return "MEDIA_ERR_NETWORK: error occurred when downloading";
-      case 3:
-        return "MEDIA_ERR_DECODE: error occurred when decoding";
-      case 4:
-        return "MEDIA_ERR_SRC_NOT_SUPPORTED: media source not supported";
-      default:
-        return "Unknown media error";
-    }
-  };
-
-  const handleVideoError = (
-    e: React.SyntheticEvent<HTMLVideoElement, Event>,
-  ) => {
-    const video = e.currentTarget;
-    const err = video.error;
-    const details = {
-      src: video.currentSrc || video.src,
-      code: err?.code ?? null,
-      message: mediaErrorMessage(err?.code ?? undefined),
-      networkState: video.networkState,
-      readyState: video.readyState,
-    };
-    console.error("Video error details:", details, err || "");
-    setVideoFailed(true);
-  };
-
-  const handleLoadedData = (
-    e: React.SyntheticEvent<HTMLVideoElement, Event>,
-  ) => {
-    const v = e.currentTarget;
-    setVideoFailed(false);
-    console.log("Video data loaded:", {
-      src: v.currentSrc || v.src,
-      videoWidth: v.videoWidth,
-      videoHeight: v.videoHeight,
-      readyState: v.readyState,
-    });
-  };
-
-  // Reset error state when source changes
-  React.useEffect(() => {
-    setVideoFailed(false);
-  }, [backgroundImage]);
-
-  // Video segment playback functions
-  const playVideoSegment = React.useCallback(() => {
-    if (!videoRef.current || !videoSegment || isPlayingSegment) return;
-
-    const video = videoRef.current;
-    setIsPlayingSegment(true);
-
-    // Handle special case where end time is before start time (scene cut)
-    const isReversed = videoSegment.endTime < videoSegment.startTime;
-
-    if (isReversed) {
-      // For reversed segments (like intro-who-are-you: 0.7s to 0.15s)
-      // Play from start to end time, then jump to start time and play to actual end
-      video.currentTime = videoSegment.endTime;
-      video.play();
-
-      const handleTimeUpdate = () => {
-        if (video.currentTime >= videoSegment.startTime) {
-          video.pause();
-          video.removeEventListener("timeupdate", handleTimeUpdate);
-          setIsPlayingSegment(false);
-          if (onVideoSegmentComplete) {
-            onVideoSegmentComplete();
-          }
-        }
-      };
-
-      video.addEventListener("timeupdate", handleTimeUpdate);
-    } else {
-      // Normal segment playback
-      video.currentTime = videoSegment.startTime;
-      video.play();
-
-      const handleTimeUpdate = () => {
-        if (video.currentTime >= videoSegment.endTime) {
-          video.pause();
-          video.removeEventListener("timeupdate", handleTimeUpdate);
-          setIsPlayingSegment(false);
-          if (onVideoSegmentComplete) {
-            onVideoSegmentComplete();
-          }
-        }
-      };
-
-      video.addEventListener("timeupdate", handleTimeUpdate);
-    }
-  }, [videoSegment, isPlayingSegment, onVideoSegmentComplete]);
-
-  const restartVideo = React.useCallback(() => {
-    if (!videoRef.current) return;
-
-    const video = videoRef.current;
-    video.currentTime = 0;
-    video.play();
-    setIsPlayingSegment(false);
-  }, []);
-
-  // Enhanced button click handler
-  const handleButtonClick = React.useCallback(
-    (originalOnClick: () => void) => {
-      return () => {
-        if (videoSegment && videoRef.current) {
-          playVideoSegment();
-          // Call original onClick after a short delay to allow video to play
-          setTimeout(
-            originalOnClick,
-            Math.abs(videoSegment.endTime - videoSegment.startTime) * 1000 +
-              100,
-          );
-        } else {
-          originalOnClick();
-        }
-      };
-    },
-    [playVideoSegment, videoSegment],
-  );
-
-  // Enhanced replay button handler
-  const handleReplayClick = React.useCallback(() => {
-    restartVideo();
-    if (replayButton?.onClick) {
-      replayButton.onClick();
-    }
-  }, [restartVideo, replayButton]);
-
   return (
     <div className={`figma-style1-container ${className}`}>
       <div className="figma-style1-content">
-        {/* Background Image/Video with Overlay */}
+        {/* Background Image with Overlay */}
         <div className="figma-style1-background">
-          {shouldUseVideo ? (
-            <video
-              ref={videoRef}
-              key={backgroundImage}
-              src={backgroundImage}
-              autoPlay={autoPlay}
-              loop
-              muted
-              playsInline
-              controls={false}
-              preload="auto"
-              crossOrigin="anonymous"
-              className="figma-style1-background-image"
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                objectPosition: "center",
-              }}
-              onLoadStart={() => console.log("Video loading started")}
-              onCanPlay={() => console.log("Video can play")}
-              onError={handleVideoError}
-              onStalled={() => console.warn("Video stalled")}
-              onLoadedData={handleLoadedData}
-            />
-          ) : (
-            <img
-              src={backgroundImage}
-              alt={backgroundAlt}
-              className="figma-style1-background-image"
-            />
-          )}
+          <img
+            src={backgroundImage}
+            alt={backgroundAlt}
+            className="figma-style1-background-image"
+          />
           <div className="figma-style1-background-overlay" />
         </div>
 
@@ -246,7 +60,7 @@ const FigmaStyle1Layout: React.FC<FigmaStyle1LayoutProps> = ({
           {replayButton && (
             <div className="figma-style1-header">
               <button
-                onClick={handleReplayClick}
+                onClick={replayButton.onClick}
                 className="figma-style1-replay-button"
                 aria-label={replayButton.ariaLabel || "ดูอีกครั้ง"}
               >
@@ -291,7 +105,7 @@ const FigmaStyle1Layout: React.FC<FigmaStyle1LayoutProps> = ({
               {buttons.map((button, index) => (
                 <React.Fragment key={index}>
                   <button
-                    onClick={handleButtonClick(button.onClick)}
+                    onClick={button.onClick}
                     className="figma-style1-button"
                     aria-describedby={`button-description-${index}`}
                   >
