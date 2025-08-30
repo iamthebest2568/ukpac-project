@@ -21,7 +21,10 @@ const IntroStartPage = () => {
       backgroundAlt="Intro video background"
       isVideo={true}
       autoPlay={false}
-      title=""
+      title={showTitle ? `แล้วถ้าหากวันหนึ่งมี
+การเก็บค่าธรรมเนียม
+เพื่อแก้ไขปัญหาจราจร
+จะเป็นอย่างไร...` : ""}
       buttons={[
         {
           text: "เริ่มเล่น",
@@ -33,6 +36,7 @@ const IntroStartPage = () => {
         startTime: 0.0,
         endTime: 0.7
       }}
+      onVideoSegmentComplete={handleVideoSegmentComplete}
     />
   );
 };
