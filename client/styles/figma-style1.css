@@ -192,13 +192,44 @@
   }
 }
 
-@media (min-width: 421px) {
+/* Enhanced tablet/desktop spacing */
+@media (min-width: 421px) and (max-width: 767px) {
+  .figma-style1-header {
+    @apply p-8;
+  }
+
+  .figma-style1-content-area {
+    @apply pb-10 px-8;
+  }
+
+  .figma-style1-title-container {
+    @apply mb-10;
+  }
+}
+
+/* Tablet spacing optimization */
+@media (min-width: 768px) and (max-width: 1279px) {
+  .figma-style1-header {
+    @apply p-12;
+  }
+
+  .figma-style1-content-area {
+    @apply pb-16 px-10;
+  }
+
+  .figma-style1-title-container {
+    @apply mb-14;
+  }
+}
+
+/* Large screen spacing (desktop) */
+@media (min-width: 1280px) {
   .figma-style1-header {
     @apply p-10;
   }
 
   .figma-style1-content-area {
-    @apply pb-12;
+    @apply pb-12 px-8;
   }
 
   .figma-style1-title-container {
