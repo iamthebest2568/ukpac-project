@@ -177,7 +177,7 @@ const Step1_Beneficiaries = ({
                       </div>
                       {/* Label */}
                       <span className={`font-prompt text-lg font-medium text-center transition-all duration-200 ${
-                        isSelected ? "text-black" : "text-[#EFBA31]"
+                        isSelected ? "text-white" : "text-[#EFBA31]"
                       }`}>
                         {group.label}
                       </span>
