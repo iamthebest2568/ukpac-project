@@ -426,9 +426,9 @@
     border-color: #d1d5db;
   }
 
-  /* Budget Display - White Theme */
+  /* Budget Display - Black Theme */
   .budget-display-white {
-    @apply p-4 bg-gray-50 rounded-lg border border-gray-200 mb-6;
+    @apply p-4 bg-black rounded-lg border border-gray-600 mb-6;
   }
 
   .budget-display-white .budget-item {
