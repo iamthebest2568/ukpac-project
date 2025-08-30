@@ -6,7 +6,7 @@ const IntroStartPage = () => {
   const { navigateToPage } = useSession();
 
   const handleStart = () => {
-    // Direct navigation without video playback
+    // Direct navigation
     navigateToPage("/intro-who-are-you");
   };
 
