@@ -42,7 +42,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => (
     <a
       href="#main-content"
       className="skip-link"
-      aria-label="ข้ามไปยังเนื้อหาหลัก"
+      aria-label="ข้ามไป��ังเนื้อหาหลัก"
     >
       ข้ามไปยังเนื้อหาหลัก
     </a>
@@ -61,11 +61,10 @@ const App = () => (
         <Layout>
           <Routes>
             {/* Main entry */}
-            <Route path="/" element={<TestPage />} />
+            <Route path="/" element={<IntroStartPage />} />
             <Route path="/test" element={<TestPage />} />
 
             {/* Intro flow */}
-            <Route path="/intro-start" element={<IntroStartPage />} />
             <Route path="/intro-who-are-you" element={<IntroWhoAreYouPage />} />
             <Route path="/intro-gender" element={<IntroGenderPage />} />
             <Route path="/intro-group-selection" element={<IntroGroupSelectionPage />} />
