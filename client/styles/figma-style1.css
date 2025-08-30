@@ -105,7 +105,9 @@
 }
 
 .figma-style1-header {
-  @apply flex justify-start p-8 md:p-10;
+  @apply flex justify-start;
+  /* Fluid header padding */
+  padding: min(6vw, 40px);
 }
 
 .figma-style1-content-area {
