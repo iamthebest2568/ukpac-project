@@ -62,9 +62,9 @@ const FigmaStyle1Layout: React.FC<FigmaStyle1LayoutProps> = ({
 
   const isVideoUrl = React.useMemo(
     () => /\.(mp4|webm|ogg)(\?.*)?$/i.test(backgroundImage),
-    [backgroundImage]
+    [backgroundImage],
   );
-  const shouldUseVideo = !videoFailed && ((isVideo ?? isVideoUrl) === true);
+  const shouldUseVideo = !videoFailed && (isVideo ?? isVideoUrl) === true;
 
   const mediaErrorMessage = (code?: number) => {
     switch (code) {
@@ -82,7 +82,7 @@ const FigmaStyle1Layout: React.FC<FigmaStyle1LayoutProps> = ({
   };
 
   const handleVideoError = (
-    e: React.SyntheticEvent<HTMLVideoElement, Event>
+    e: React.SyntheticEvent<HTMLVideoElement, Event>,
   ) => {
     const video = e.currentTarget;
     const err = video.error;
@@ -98,7 +98,7 @@ const FigmaStyle1Layout: React.FC<FigmaStyle1LayoutProps> = ({
   };
 
   const handleLoadedData = (
-    e: React.SyntheticEvent<HTMLVideoElement, Event>
+    e: React.SyntheticEvent<HTMLVideoElement, Event>,
   ) => {
     const v = e.currentTarget;
     setVideoFailed(false);
@@ -134,7 +134,7 @@ const FigmaStyle1Layout: React.FC<FigmaStyle1LayoutProps> = ({
       const handleTimeUpdate = () => {
         if (video.currentTime >= videoSegment.startTime) {
           video.pause();
-          video.removeEventListener('timeupdate', handleTimeUpdate);
+          video.removeEventListener("timeupdate", handleTimeUpdate);
           setIsPlayingSegment(false);
           if (onVideoSegmentComplete) {
             onVideoSegmentComplete();
@@ -142,7 +142,7 @@ const FigmaStyle1Layout: React.FC<FigmaStyle1LayoutProps> = ({
         }
       };
 
-      video.addEventListener('timeupdate', handleTimeUpdate);
+      video.addEventListener("timeupdate", handleTimeUpdate);
     } else {
       // Normal segment playback
       video.currentTime = videoSegment.startTime;
@@ -151,7 +151,7 @@ const FigmaStyle1Layout: React.FC<FigmaStyle1LayoutProps> = ({
       const handleTimeUpdate = () => {
         if (video.currentTime >= videoSegment.endTime) {
           video.pause();
-          video.removeEventListener('timeupdate', handleTimeUpdate);
+          video.removeEventListener("timeupdate", handleTimeUpdate);
           setIsPlayingSegment(false);
           if (onVideoSegmentComplete) {
             onVideoSegmentComplete();
@@ -159,7 +159,7 @@ const FigmaStyle1Layout: React.FC<FigmaStyle1LayoutProps> = ({
         }
       };
 
-      video.addEventListener('timeupdate', handleTimeUpdate);
+      video.addEventListener("timeupdate", handleTimeUpdate);
     }
   }, [videoSegment, isPlayingSegment, onVideoSegmentComplete]);
 
@@ -173,17 +173,24 @@ const FigmaStyle1Layout: React.FC<FigmaStyle1LayoutProps> = ({
   }, []);
 
   // Enhanced button click handler
-  const handleButtonClick = React.useCallback((originalOnClick: () => void) => {
-    return () => {
-      if (videoSegment && videoRef.current) {
-        playVideoSegment();
-        // Call original onClick after a short delay to allow video to play
-        setTimeout(originalOnClick, (Math.abs(videoSegment.endTime - videoSegment.startTime) * 1000) + 100);
-      } else {
-        originalOnClick();
-      }
-    };
-  }, [playVideoSegment, videoSegment]);
+  const handleButtonClick = React.useCallback(
+    (originalOnClick: () => void) => {
+      return () => {
+        if (videoSegment && videoRef.current) {
+          playVideoSegment();
+          // Call original onClick after a short delay to allow video to play
+          setTimeout(
+            originalOnClick,
+            Math.abs(videoSegment.endTime - videoSegment.startTime) * 1000 +
+              100,
+          );
+        } else {
+          originalOnClick();
+        }
+      };
+    },
+    [playVideoSegment, videoSegment],
+  );
 
   // Enhanced replay button handler
   const handleReplayClick = React.useCallback(() => {
@@ -246,19 +253,32 @@ const FigmaStyle1Layout: React.FC<FigmaStyle1LayoutProps> = ({
                 <div className="flex flex-col items-center">
                   {/* Yellow Circle with Replay Icon */}
                   <div className="w-[50px] h-[50px] bg-[#EFBA31] rounded-full flex items-center justify-center mb-2 shadow-lg">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z" fill="black"/>
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"
+                        fill="black"
+                      />
                     </svg>
                   </div>
                   {/* Text */}
-                  <span className="text-black font-kanit text-sm font-medium">ดูอีกครั้ง</span>
+                  <span className="text-black font-kanit text-sm font-medium">
+                    ดูอีกครั้ง
+                  </span>
                 </div>
               </button>
             </div>
           )}
 
           {/* Content Area */}
-          <div className={`figma-style1-content-area ${!title ? 'justify-center' : ''}`}>
+          <div
+            className={`figma-style1-content-area ${!title ? "justify-center" : ""}`}
+          >
             {/* Title */}
             {title && (
               <div className="figma-style1-title-container">
@@ -275,7 +295,9 @@ const FigmaStyle1Layout: React.FC<FigmaStyle1LayoutProps> = ({
                     className="figma-style1-button"
                     aria-describedby={`button-description-${index}`}
                   >
-                    <span className="figma-style1-button-text">{button.text}</span>
+                    <span className="figma-style1-button-text">
+                      {button.text}
+                    </span>
                   </button>
                   {button.ariaLabel && (
                     <div

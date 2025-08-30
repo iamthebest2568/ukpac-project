@@ -21,20 +21,28 @@ const IntroStartPage = () => {
       backgroundAlt="Intro video background"
       isVideo={true}
       autoPlay={false}
-      title={showTitle ? `แล้วถ้าหากวันหนึ่งมี
+      title={
+        showTitle
+          ? `แล้วถ้าหากวันหนึ่งมี
 การเก็บค่าธรรมเนียม
 เพื่อแก้ไขปัญหาจราจร
-จะเป็นอย่างไร...` : ""}
-      buttons={showTitle ? [] : [
-        {
-          text: "เริ่มเล่น",
-          onClick: handleStart,
-          ariaLabel: "เริ่มเล่นเกม"
-        }
-      ]}
+จะเป็นอย่างไร...`
+          : ""
+      }
+      buttons={
+        showTitle
+          ? []
+          : [
+              {
+                text: "เริ่มเล่น",
+                onClick: handleStart,
+                ariaLabel: "เริ่มเล่นเกม",
+              },
+            ]
+      }
       videoSegment={{
         startTime: 0.0,
-        endTime: 0.7
+        endTime: 0.7,
       }}
       onVideoSegmentComplete={handleVideoSegmentComplete}
     />
