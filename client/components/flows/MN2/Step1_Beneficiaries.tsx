@@ -167,8 +167,12 @@ const Step1_Beneficiaries = ({
                         <img
                           src={group.iconSrc}
                           alt={group.label}
-                          className="w-[50px] h-[50px] object-contain mix-blend-normal opacity-100"
-                          style={{ filter: "none" }}
+                          className="w-[50px] h-[50px] object-contain"
+                          style={{
+                            filter: isSelected
+                              ? "brightness(0) invert(1)" // White icons on black background
+                              : "brightness(0)" // Black icons on yellow background
+                          }}
                         />
                       </div>
                       {/* Label */}
