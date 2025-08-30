@@ -9,7 +9,7 @@ import { logEvent } from "../../services/dataLogger.js";
 interface Ask05Props {
   sessionID: string | null;
   onNavigate: (screenId: string, data?: any) => void;
-  journeyData: any;
+  journeyData?: any;
 }
 
 const Ask05 = ({ sessionID, onNavigate, journeyData }: Ask05Props) => {
