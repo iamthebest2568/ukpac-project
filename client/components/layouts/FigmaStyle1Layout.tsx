@@ -52,6 +52,7 @@ const FigmaStyle1Layout: React.FC<FigmaStyle1LayoutProps> = ({
   replayButton,
   className = "",
   isVideo,
+  autoPlay = true,
   videoSegment,
   onVideoSegmentComplete,
 }) => {
