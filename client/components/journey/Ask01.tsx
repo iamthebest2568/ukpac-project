@@ -34,7 +34,7 @@ const Ask01 = ({ sessionID, onNavigate }: Ask01Props) => {
   };
 
   const handleReplay = () => {
-    // Replay functionality - could be used to replay audio/video content
+    // Replay functionality
     logEvent({
       event: "ASK01_REPLAY",
       payload: {
