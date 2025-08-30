@@ -11,7 +11,7 @@ interface SidebarProps {
   user: any;
 }
 
-const menuItems = [
+const menuItems: { id: DashboardSection; label: string; icon: string; description: string }[] = [
   {
     id: 'overview',
     label: 'Engagement Overview',
