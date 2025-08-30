@@ -20,18 +20,18 @@ const IntroGenderPage = () => {
     {
       text: "ผู้หญิง",
       onClick: () => handleChoice("ผู้หญิง"),
-      ariaLabel: "เลือกผู้หญิง"
+      ariaLabel: "เลือกผู้หญิง",
     },
     {
       text: "ผู้ชาย",
       onClick: () => handleChoice("ผู้ชาย"),
-      ariaLabel: "เลือกผู้ชาย"
+      ariaLabel: "เลือกผู้ชาย",
     },
     {
       text: "เพศทางเลือก",
       onClick: () => handleChoice("เพศทางเลือก"),
-      ariaLabel: "เลือกเพศทางเลือก"
-    }
+      ariaLabel: "เลือกเพศทางเลือก",
+    },
   ];
 
   return (
@@ -43,11 +43,11 @@ const IntroGenderPage = () => {
       buttons={buttons}
       videoSegment={{
         startTime: 0.15,
-        endTime: 0.18
+        endTime: 0.18,
       }}
       replayButton={{
         onClick: handleReplay,
-        ariaLabel: "ดูอีกครั้ง"
+        ariaLabel: "ดูอีกครั้ง",
       }}
     />
   );
