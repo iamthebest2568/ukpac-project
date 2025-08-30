@@ -16,7 +16,7 @@
     --color-primary-action: #ffd100; /* Bright yellow - PRIMARY ACTIONS ONLY */
     --color-secondary-action: #6c757d; /* Medium grey - SECONDARY ACTIONS ONLY */
     --color-dark-theme-bg: #0d1b2a; /* Dark navy - GAME SCREENS ONLY */
-    --color-white-theme-bg: #ffffff; /* White - NARRATIVE SCREENS ONLY */
+    --color-white-theme-bg: #000000; /* Black - NARRATIVE SCREENS ONLY */
     --color-success: #10b981; /* Green for completed states */
     --color-warning: #f59e0b; /* Amber for attention states */
     --color-error: #ef4444; /* Red for error states */
