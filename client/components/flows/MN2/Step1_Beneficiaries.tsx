@@ -28,6 +28,11 @@ const Step1_Beneficiaries = ({
   const [selectedGroups, setSelectedGroups] = useState<string[]>(initialBeneficiaries);
   const maxSelections = 6; // Allow up to 6 selections
 
+  // Reset selectedGroups when initialBeneficiaries changes (for new steps)
+  useEffect(() => {
+    setSelectedGroups(initialBeneficiaries);
+  }, [initialBeneficiaries]);
+
   const beneficiaryGroups = [
     { 
       id: "everyone", 
