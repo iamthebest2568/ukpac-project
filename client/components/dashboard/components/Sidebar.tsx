@@ -3,9 +3,11 @@
  * Navigation menu for different dashboard sections
  */
 
+type DashboardSection = 'overview' | 'deepdive' | 'endgame' | 'feedback' | 'trends';
+
 interface SidebarProps {
-  activeSection: string;
-  onSectionChange: (section: string) => void;
+  activeSection: DashboardSection;
+  onSectionChange: (section: DashboardSection) => void;
   user: any;
 }
 
