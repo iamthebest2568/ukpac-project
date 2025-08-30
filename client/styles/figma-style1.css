@@ -86,7 +86,6 @@
 
 /* Ensure full coverage on all devices */
 @media (orientation: landscape) and (max-height: 500px) {
-  .figma-style1-background video,
   .figma-style1-background-image {
     object-fit: cover;
     height: 100vh !important;
