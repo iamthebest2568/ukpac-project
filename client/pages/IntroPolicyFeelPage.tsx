@@ -36,9 +36,9 @@ const IntroPolicyFeelPage = () => {
 
   return (
     <FigmaStyle1Layout
-      backgroundImage="/opening-compress.mp4"
-      backgroundAlt="Policy feel video background"
-      isVideo={true}
+      backgroundImage="/placeholder.svg"
+      backgroundAlt="Policy feel background"
+      isVideo={false}
       title="คุณรู้สึกอย่างไรกับนโยบายนี้"
       buttons={buttons}
       replayButton={{

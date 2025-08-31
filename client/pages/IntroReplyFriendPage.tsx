@@ -36,9 +36,9 @@ const IntroReplyFriendPage = () => {
 
   return (
     <FigmaStyle1Layout
-      backgroundImage="/opening-compress.mp4"
-      backgroundAlt="Reply friend video background"
-      isVideo={true}
+      backgroundImage="/placeholder.svg"
+      backgroundAlt="Reply friend background"
+      isVideo={false}
       title="คุณจะตอบกลับเพื่อน
 ว่าอย่างไร"
       buttons={buttons}
