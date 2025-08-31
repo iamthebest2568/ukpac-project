@@ -28,7 +28,7 @@ const IntroPolicyThoughtsPage = () => {
       ariaLabel: "เลือกกังวัลค่าใช้จ่าย",
     },
     {
-      text: "ไม่อยากใช้เพราะไม่สะดวก",
+      text: "ไม่อ���ากใช้เพราะไม่สะดวก",
       onClick: () => handleChoice("ไม่อยากใช้เพราะไม่สะดวก"),
       ariaLabel: "เลือกไม่อยากใช้เพราะไม่สะดวก",
     },
@@ -41,9 +41,9 @@ const IntroPolicyThoughtsPage = () => {
 
   return (
     <FigmaStyle1Layout
-      backgroundImage="/opening-compress.mp4"
-      backgroundAlt="Policy thoughts video background"
-      isVideo={true}
+      backgroundImage="/placeholder.svg"
+      backgroundAlt="Policy thoughts background"
+      isVideo={false}
       title="คุณคิดเห็นอย่างไร
 กับนโยบายนี้"
       buttons={buttons}
