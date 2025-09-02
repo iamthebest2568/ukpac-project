@@ -70,7 +70,7 @@ export interface StatsResponse {
   choices: Array<{ name: string; count: number }>;
 }
 
-export async function computeStats(): Promise<StatsResponse> {
+export async function computeStats(fromISO?: string, toISO?: string): Promise<StatsResponse> {
   const supabaseUrl = process.env.SUPABASE_URL;
   const supabaseKey = process.env.SUPABASE_ANON_KEY;
   let events: VideoEvent[] = [];
