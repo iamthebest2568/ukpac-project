@@ -39,6 +39,12 @@ export default function UkDashboard() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  // Password gate
+  const expected = (import.meta as any).env?.VITE_DASHBOARD_PASSWORD as string | undefined;
+  const [authed, setAuthed] = useState<boolean>(() => sessionStorage.getItem("ukdash_authed") === "true");
+  const [pw, setPw] = useState("");
+  const [pwErr, setPwErr] = useState<string | null>(null);
+
   async function load() {
     try {
       setLoading(true);
@@ -55,15 +61,46 @@ export default function UkDashboard() {
   }
 
   useEffect(() => {
+    if (!authed) return;
     load();
     const id = setInterval(load, 5000);
     return () => clearInterval(id);
-  }, []);
+  }, [authed]);
 
   const COLORS = useMemo(() => ["#EFBA31", "#8884d8", "#82ca9d", "#ff7f50", "#00C49F", "#FFBB28", "#FF8042"], []);
 
   return (
     <div className="min-h-screen bg-[#0e0e0e] text-white font-[Prompt]">
+      {!authed && (
+        <div className="min-h-screen flex items-center justify-center p-4">
+          <div className="w-full max-w-sm bg-white/5 border border-white/10 rounded-xl p-5">
+            <div className="text-xl font-semibold mb-3">ป้อนรหัสผ่าน</div>
+            <div className="text-sm text-white/70 mb-4">หน้านี้ป้องกันด้วยรหัสผ่าน</div>
+            <input
+              type="password"
+              className="w-full rounded-md bg-black/40 border border-white/15 px-3 py-2 outline-none"
+              value={pw}
+              onChange={(e)=>setPw(e.target.value)}
+              placeholder="รหัสผ่าน"
+            />
+            {pwErr && <div className="text-red-400 text-sm mt-2">{pwErr}</div>}
+            <button
+              className="mt-4 w-full rounded-full bg-[#EFBA31] text-black font-medium px-5 py-2 border border-black"
+              onClick={() => {
+                if (!expected) { setPwErr("ยังไม่ได้ตั้งรหัสผ่าน (VITE_DASHBOARD_PASSWORD)"); return; }
+                if (pw === expected) {
+                  sessionStorage.setItem("ukdash_authed", "true");
+                  setAuthed(true);
+                  setPwErr(null);
+                } else {
+                  setPwErr("รหัสผ่านไม่ถูกต้อง");
+                }
+              }}
+            >เข้าสู่แดชบอร์ด</button>
+          </div>
+        </div>
+      )}
+      {authed && (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         <h1 className="text-2xl md:text-3xl font-semibold mb-6">แดชบอร์ดวิเคราะห์วิดีโอ</h1>
 
@@ -135,7 +172,7 @@ export default function UkDashboard() {
                     <tr className="text-left text-white/80">
                       <th className="py-2 pr-4">ชื่อฉาก</th>
                       <th className="py-2 pr-4">จำนวนครั้งที่ดู</th>
-                      <th className="py-2 pr-4">เวลาเฉลี่ยที่ใช้</th>
+                      <th className="py-2 pr-4">เวล���เฉลี่ยที่ใช้</th>
                       <th className="py-2 pr-4">อัตราการออกกลางคัน</th>
                     </tr>
                   </thead>
@@ -177,6 +214,7 @@ export default function UkDashboard() {
           </div>
         )}
       </div>
+      )}
     </div>
   );
 }
