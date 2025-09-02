@@ -29,6 +29,7 @@ const Ask05Page = lazy(() => import("./pages/Ask05Page"));
 const FakeNewsPage = lazy(() => import("./pages/FakeNewsPage"));
 const BudgetPage = lazy(() => import("./pages/BudgetPage"));
 const EndScreenPage = lazy(() => import("./pages/EndScreenPage"));
+const UkStornawayPage = lazy(() => import("./pages/UkStornawayPage"));
 
 // Layout component with accessibility features
 const Layout = ({ children }: { children: React.ReactNode }) => (
@@ -49,7 +50,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => (
 const App = () => (
   <BrowserRouter>
     <Layout>
-      <Suspense fallback={<div style={{color:'#fff',padding:20}}>กำลังโหลด...</div>}>
+      <Suspense fallback={<div style={{color:'#fff',padding:20}}>กำ��ังโหลด...</div>}>
         <Routes>
           {/* Main entry */}
           <Route path="/" element={<IndexPage />} />
@@ -75,6 +76,7 @@ const App = () => (
           <Route path="/fake-news" element={<FakeNewsPage />} />
           <Route path="/budget" element={<BudgetPage />} />
           <Route path="/end-screen" element={<EndScreenPage />} />
+          <Route path="/uk-stornaway" element={<UkStornawayPage />} />
 
           {/* Legacy alias routes (case/filename-based deep links) */}
           <Route path="/Ask01Page" element={<Navigate to="/ask01" replace />} />
