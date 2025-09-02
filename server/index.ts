@@ -33,13 +33,26 @@ export function createServer() {
     }
   });
 
-  // Aggregated stats
-  app.get("/api/video-stats", async (_req, res) => {
+  // Aggregated stats (optional date range)
+  app.get("/api/video-stats", async (req, res) => {
     try {
-      const stats = await computeStats();
+      const from = typeof req.query.from === "string" ? req.query.from : undefined;
+      const to = typeof req.query.to === "string" ? req.query.to : undefined;
+      const stats = await computeStats(from, to);
       res.status(200).json(stats);
     } catch (e: any) {
       res.status(500).json({ ok: false, error: e?.message || "failed to compute stats" });
+    }
+  });
+
+  // Recent events for dashboard
+  app.get("/api/video-events", async (req, res) => {
+    try {
+      const limit = req.query.limit ? Math.max(1, Math.min(500, Number(req.query.limit))) : 50;
+      const items = await listRecentEvents(limit);
+      res.status(200).json(items);
+    } catch (e: any) {
+      res.status(500).json({ ok: false, error: e?.message || "failed to list events" });
     }
   });
 
