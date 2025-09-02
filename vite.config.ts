@@ -18,6 +18,7 @@ export default defineConfig(({ mode }) => ({
   },
   optimizeDeps: {
     // Avoid generating a single huge deps chunk that some proxies truncate
+    include: ["recharts", "lodash", "lodash-es"],
     exclude: [
       "lucide-react",
       "three",
