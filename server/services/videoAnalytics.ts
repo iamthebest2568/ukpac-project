@@ -109,6 +109,19 @@ export async function computeStats(fromISO?: string, toISO?: string): Promise<St
       } catch {}
     }
   }
+  // Apply time range filters if provided
+  let filtered = events;
+  const fromTs = fromISO ? new Date(fromISO).getTime() : undefined;
+  const toTs = toISO ? new Date(toISO).getTime() : undefined;
+  if (fromTs || toTs) {
+    filtered = events.filter((e) => {
+      const t = new Date(e.timestamp).getTime();
+      if (Number.isNaN(t)) return false;
+      if (fromTs && t < fromTs) return false;
+      if (toTs && t > toTs) return false;
+      return true;
+    });
+  }
   // Group by session
   const sessionsMap = new Map<string, VideoEvent[]>();
   for (const ev of events) {
