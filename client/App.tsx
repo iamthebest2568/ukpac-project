@@ -52,7 +52,7 @@ const App = () => (
       <Suspense fallback={<div style={{color:'#fff',padding:20}}>กำลังโหลด...</div>}>
         <Routes>
           {/* Main entry */}
-          <Route path="/" element={<UltraSimplePage />} />
+          <Route path="/" element={<IndexPage />} />
           <Route path="/test" element={<TestPage />} />
 
           {/* Intro flow */}
