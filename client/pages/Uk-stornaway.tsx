@@ -49,7 +49,10 @@ export default function UkStornaway() {
   );
   const [status, setStatus] = useState("รอการโต้ตอบจากผู้ใช้…");
   const [sessionData, setSessionData] = useState<SessionData>({ sessionId, events: [] });
+  const eventsRef = useRef<CapturedEvent[]>([]);
+  const updateTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [showPopup, setShowPopup] = useState(false);
+  const popupRef = useRef<HTMLDivElement | null>(null);
 
   // Persist on every change
   useEffect(() => {
@@ -91,7 +94,7 @@ export default function UkStornaway() {
     function attachListeners() {
       if (!mounted || !iframeRef.current || readyRef.current) return;
       readyRef.current = true;
-      setStatus("API เชื่อมต่อสำเร็จ! กำลังรอการโต้ตอบ…");
+      setStatus("API เชื่อมต่อสำเร��จ! กำลังรอการโต้ตอบ…");
 
       const makeHandler = (eventName: string) => (ev: Event) => {
         if (ev.target !== iframeRef.current) return;
@@ -104,9 +107,30 @@ export default function UkStornaway() {
           variantName: detail.variantName ?? detail.name ?? detail.variant?.name,
           timestamp: new Date().toISOString(),
         };
-        setSessionData((prev) => ({ ...prev, events: [...prev.events, captured] }));
-        // also send to backend
-        sendToBackend(captured);
+        // throttle UI updates
+        if (eventsRef.current.length === 0) {
+          eventsRef.current = [...sessionData.events, captured];
+        } else {
+          eventsRef.current.push(captured);
+        }
+        if (!updateTimer.current) {
+          updateTimer.current = setTimeout(() => {
+            updateTimer.current = null;
+            setSessionData((prev) => ({ ...prev, events: [...eventsRef.current] }));
+          }, 250);
+        }
+        // send in background (beacon if available)
+        try {
+          const payload = { ...captured, sessionId } as any;
+          if (navigator.sendBeacon) {
+            const blob = new Blob([JSON.stringify(payload)], { type: "application/json" });
+            navigator.sendBeacon("/api/video-events", blob);
+          } else {
+            setTimeout(() => { sendToBackend(captured); }, 0);
+          }
+        } catch {
+          setTimeout(() => { sendToBackend(captured); }, 0);
+        }
 
         if (eventName === "sw.variant.start") {
           const vName = (captured.variantName || "").toString().trim().toLowerCase();
@@ -175,6 +199,9 @@ export default function UkStornaway() {
       };
     }
 
+    // Prefetch /ask01 route chunk for smoother popup
+    import("../pages/Ask01Page").catch(() => {});
+
     const cleanup = ensureScriptAndInit();
     return () => {
       mounted = false;
@@ -195,6 +222,8 @@ export default function UkStornaway() {
             title="ความลับในมือถือพ่อ - Interactive Video"
             className="absolute inset-0 w-full h-full"
             allow="autoplay; encrypted-media; clipboard-write; accelerometer; gyroscope; picture-in-picture; web-share; fullscreen"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
             allowFullScreen
           />
         </div>
@@ -222,14 +251,32 @@ export default function UkStornaway() {
       </div>
 
       {showPopup && (
-        <div className="fixed inset-0 z-[1000] bg-black/70 flex items-center justify-center p-4">
-          <div className="relative w-full max-w-3xl h-[80vh] bg-[#0f0f0f] border border-white/10 rounded-xl overflow-hidden shadow-2xl">
+        <div
+          className="fixed inset-0 z-[1000] bg-black/70 flex items-center justify-center p-4 transition-opacity duration-200"
+          role="dialog"
+          aria-modal="true"
+          aria-label="หน้าต่างป๊อปอัพแบบสอบถาม"
+          onKeyDown={(e) => {
+            if (e.key === "Escape") {
+              setShowPopup(false);
+              document.body.style.overflow = "";
+              try { playerRef.current?.play?.(); } catch {}
+            }
+          }}
+          onTransitionEnd={() => { /* no-op for now */ }}
+        >
+          <div
+            ref={popupRef}
+            className="relative w-full max-w-3xl h-[80vh] bg-[#0f0f0f] border border-white/10 rounded-xl overflow-hidden shadow-2xl transform transition-transform duration-200"
+            tabIndex={-1}
+          >
             <button
               onClick={() => {
                 setShowPopup(false);
+                document.body.style.overflow = "";
                 try { playerRef.current?.play?.(); } catch {}
               }}
-              className="absolute top-3 right-3 z-10 rounded-full bg-white/90 text-black px-3 py-1 text-sm font-medium hover:bg-white"
+              className="absolute top-3 right-3 z-10 rounded-full bg-white/90 text-black px-3 py-1 text-sm font-medium hover:bg-white focus:outline-none focus:ring-2 focus:ring-[#EFBA31]"
               aria-label="ปิดหน้าต่าง"
             >
               ปิด
