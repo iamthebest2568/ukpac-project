@@ -1,7 +1,7 @@
 import "./global.css";
 
 import React, { Suspense, lazy } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 // Minimal set of pages (dashboard/backend removed)
 const NotFound = lazy(() => import("./pages/NotFound"));
@@ -75,6 +75,24 @@ const App = () => (
           <Route path="/fake-news" element={<FakeNewsPage />} />
           <Route path="/budget" element={<BudgetPage />} />
           <Route path="/end-screen" element={<EndScreenPage />} />
+
+          {/* Legacy alias routes (case/filename-based deep links) */}
+          <Route path="/Ask01Page" element={<Navigate to="/ask01" replace />} />
+          <Route path="/Ask02Page" element={<Navigate to="/ask02" replace />} />
+          <Route path="/Ask04Page" element={<Navigate to="/ask04" replace />} />
+          <Route path="/Ask05Page" element={<Navigate to="/ask05" replace />} />
+          <Route path="/BudgetPage" element={<Navigate to="/budget" replace />} />
+          <Route path="/FakeNewsPage" element={<Navigate to="/fake-news" replace />} />
+          <Route path="/EndScreenPage" element={<Navigate to="/end-screen" replace />} />
+          <Route path="/IntroWhoAreYouPage" element={<Navigate to="/intro-who-are-you" replace />} />
+          <Route path="/IntroGenderPage" element={<Navigate to="/intro-gender" replace />} />
+          <Route path="/IntroGroupSelectionPage" element={<Navigate to="/intro-group-selection" replace />} />
+          <Route path="/IntroTravelModeCityPage" element={<Navigate to="/intro-travel-mode-city" replace />} />
+          <Route path="/IntroTravelFreqCityPage" element={<Navigate to="/intro-travel-freq-city" replace />} />
+          <Route path="/IntroPolicyThoughtsPage" element={<Navigate to="/intro-policy-thoughts" replace />} />
+          <Route path="/IntroReplyFriendPage" element={<Navigate to="/intro-reply-friend" replace />} />
+          <Route path="/IntroPolicyFeelPage" element={<Navigate to="/intro-policy-feel" replace />} />
+          <Route path="/UltraSimplePage" element={<Navigate to="/" replace />} />
 
           {/* 404 page */}
           <Route path="*" element={<NotFound />} />
