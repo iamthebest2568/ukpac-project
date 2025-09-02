@@ -34,10 +34,18 @@ function secondsToHuman(sec: number) {
   return `${m} นาที ${rem} วินาที`;
 }
 
+type VideoEvent = { sessionId: string; eventName: string; timestamp: string; choiceText?: string; variantId?: string | number; variantName?: string };
+
 export default function UkDashboard() {
   const [stats, setStats] = useState<StatsResponse | null>(null);
+  const [recent, setRecent] = useState<VideoEvent[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [lastUpdated, setLastUpdated] = useState<string>("");
+
+  const [from, setFrom] = useState<string>("");
+  const [to, setTo] = useState<string>("");
+  const [autoRefresh, setAutoRefresh] = useState<boolean>(true);
 
   // Password gate
   const expected = (import.meta as any).env?.VITE_DASHBOARD_PASSWORD as string | undefined;
@@ -48,11 +56,17 @@ export default function UkDashboard() {
   async function load() {
     try {
       setLoading(true);
-      const res = await fetch("/api/video-stats");
+      const qs = new URLSearchParams();
+      if (from) qs.set("from", from);
+      if (to) qs.set("to", to);
+      const res = await fetch(`/api/video-stats?${qs.toString()}`);
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const data: StatsResponse = await res.json();
       setStats(data);
+      const ev = await fetch(`/api/video-events?limit=50`);
+      if (ev.ok) setRecent(await ev.json());
       setError(null);
+      setLastUpdated(new Date().toLocaleString());
     } catch (e: any) {
       setError(e?.message || "โหลดข้อมูลล้มเหลว");
     } finally {
@@ -63,9 +77,10 @@ export default function UkDashboard() {
   useEffect(() => {
     if (!authed) return;
     load();
-    const id = setInterval(load, 5000);
-    return () => clearInterval(id);
-  }, [authed]);
+    let id: any;
+    if (autoRefresh) id = setInterval(load, 5000);
+    return () => id && clearInterval(id);
+  }, [authed, from, to, autoRefresh]);
 
   const COLORS = useMemo(() => ["#EFBA31", "#8884d8", "#82ca9d", "#ff7f50", "#00C49F", "#FFBB28", "#FF8042"], []);
 
@@ -101,8 +116,25 @@ export default function UkDashboard() {
         </div>
       )}
       {authed && (
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <h1 className="text-2xl md:text-3xl font-semibold mb-6">แดชบอร์ดวิเคราะห์วิดีโอ</h1>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+        <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+          <div>
+            <h1 className="text-2xl md:text-3xl font-semibold">แดชบอร์ดวิเคราะห์วิดีโอ</h1>
+            <div className="text-white/60 text-sm mt-1">อัปเดตล่าสุด: {lastUpdated || "-"}</div>
+          </div>
+          <div className="flex flex-wrap items-end gap-3">
+            <div className="flex items-center gap-2">
+              <label className="text-sm text-white/70">จาก</label>
+              <input type="date" className="rounded bg-black/40 border border-white/15 px-2 py-1" value={from} onChange={(e)=>setFrom(e.target.value)} />
+              <label className="text-sm text-white/70">ถึง</label>
+              <input type="date" className="rounded bg-black/40 border border-white/15 px-2 py-1" value={to} onChange={(e)=>setTo(e.target.value)} />
+            </div>
+            <button className="rounded-md bg.white/10 hover:bg-white/15 border border-white/15 px-3 py-2 text-sm" onClick={load}>รีเฟรช</button>
+            <label className="flex items-center gap-2 text-sm text-white/80">
+              <input type="checkbox" checked={autoRefresh} onChange={(e)=>setAutoRefresh(e.target.checked)} /> อัปเดตอัตโนมัติ
+            </label>
+          </div>
+        </div>
 
         {/* Summary cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
@@ -190,26 +222,48 @@ export default function UkDashboard() {
               </div>
             </Card>
 
+            {/* Recent events */}
+            <Card title="เหตุการณ์ล่าสุด">
+              <div className="overflow-auto">
+                <table className="min-w-full text-sm">
+                  <thead>
+                    <tr className="text-left text-white/80">
+                      <th className="py-2 pr-4">เวลา</th>
+                      <th className="py-2 pr-4">เซสชัน</th>
+                      <th className="py-2 pr-4">อีเวนต์</th>
+                      <th className="py-2 pr-4">ชื่อฉาก</th>
+                      <th className="py-2 pr-4">ตัวเลือก</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {recent.map((e, idx) => (
+                      <tr key={idx} className="border-t border-white/10">
+                        <td className="py-2 pr-4 whitespace-nowrap">{new Date(e.timestamp).toLocaleString()}</td>
+                        <td className="py-2 pr-4">{e.sessionId.slice(0, 10)}…</td>
+                        <td className="py-2 pr-4">{e.eventName}</td>
+                        <td className="py-2 pr-4">{e.variantName || "-"}</td>
+                        <td className="py-2 pr-4">{e.choiceText || "-"}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </Card>
+
             {/* Export */}
-            <div className="flex justify-end">
+            <div className="flex flex-wrap gap-3 justify-end">
               <button
-                className="rounded-full bg-[#EFBA31] text-black font-medium px-5 py-2 border border-black hover:scale-105 transition"
-                onClick={async () => {
-                  const res = await fetch("/api/video-stats");
-                  const data = await res.json();
-                  const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
-                  const url = URL.createObjectURL(blob);
-                  const a = document.createElement("a");
-                  a.href = url;
-                  a.download = "video-stats.json";
-                  document.body.appendChild(a);
-                  a.click();
-                  a.remove();
-                  URL.revokeObjectURL(url);
-                }}
-              >
-                ดาวน์โหลด CSV
-              </button>
+                className="rounded-full bg-[#EFBA31] text.black font-medium px-5 py-2 border border-black hover:scale-105 transition"
+                onClick={() => exportCsv("variants.csv", [["ชื่อฉาก","จำนวนครั้งที่ดู","เวลาเฉลี่ยที่ใช้(วินาที)","อัตราการออกกลางคัน(%)"], ... (stats?.variants||[]).map(v=>[v.name, v.count, Math.round(v.avgTimeSeconds), (v.dropoutRate*100).toFixed(1)])])}
+              >ดาวน์โหลด CSV (ฉาก)</button>
+              <button
+                className="rounded-full bg-[#EFBA31] text.black font-medium px-5 py-2 border border-black hover:scale-105 transition"
+                onClick={() => exportCsv("choices.csv", [["ตัวเลือก","จำนวน"], ... (stats?.choices||[]).map(c=>[c.name, c.count])])}
+              >ดาวน์โหลด CSV (การเลือก)</button>
+              <button
+                className="rounded-full bg-[#EFBA31] text.black font-medium px-5 py-2 border border-black hover:scale-105 transition"
+                onClick={() => exportCsv("plays_per_day.csv", [["วันที่","จำนวนการเล่น"], ... (stats?.timeseries||[]).map(t=>[t.date, t.plays])])}
+              >ดาวน์โหลด CSV (เล่นต่อวัน)</button>
             </div>
           </div>
         )}
@@ -217,6 +271,22 @@ export default function UkDashboard() {
       )}
     </div>
   );
+}
+
+function exportCsv(filename: string, rows: (string|number)[][]) {
+  const csv = rows.map(r => r.map(x => {
+    const s = String(x ?? "");
+    return /[",\n]/.test(s) ? '"' + s.replace(/"/g,'""') + '"' : s;
+  }).join(",")).join("\n");
+  const blob = new Blob(["\uFEFF" + csv], { type: "text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
 }
 
 function Card({ title, children }: { title: string; children: React.ReactNode }) {
