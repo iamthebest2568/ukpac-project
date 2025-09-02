@@ -50,7 +50,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => (
 const App = () => (
   <BrowserRouter>
     <Layout>
-      <Suspense fallback={<div style={{color:'#fff',padding:20}}>กำ��ังโหลด...</div>}>
+      <Suspense fallback={<div style={{color:'#fff',padding:20}}>กำลังโหลด...</div>}>
         <Routes>
           {/* Main entry */}
           <Route path="/" element={<IndexPage />} />
@@ -95,6 +95,7 @@ const App = () => (
           <Route path="/IntroReplyFriendPage" element={<Navigate to="/intro-reply-friend" replace />} />
           <Route path="/IntroPolicyFeelPage" element={<Navigate to="/intro-policy-feel" replace />} />
           <Route path="/UltraSimplePage" element={<Navigate to="/" replace />} />
+          <Route path="/UkStornawayPage" element={<Navigate to="/uk-stornaway" replace />} />
 
           {/* 404 page */}
           <Route path="*" element={<NotFound />} />
