@@ -1,4 +1,5 @@
 import fs from "node:fs";
+import fs from "node:fs";
 import path from "node:path";
 import { z } from "zod";
 import fetch from "node-fetch";
@@ -107,15 +108,6 @@ export async function computeStats(): Promise<StatsResponse> {
         }
       } catch {}
     }
-  }
-  for (const line of lines) {
-    try {
-      const j = JSON.parse(line);
-      if (j && j.sessionId && j.eventName) {
-        const ts = j.timestamp || new Date().toISOString();
-        events.push({ ...j, timestamp: ts });
-      }
-    } catch {}
   }
   // Group by session
   const sessionsMap = new Map<string, VideoEvent[]>();
