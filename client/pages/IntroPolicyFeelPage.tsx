@@ -20,18 +20,18 @@ const IntroPolicyFeelPage = () => {
     {
       text: "เห็นด้วย",
       onClick: () => handleChoice("เห็นด้วย"),
-      ariaLabel: "เลือกเห็นด้วย"
+      ariaLabel: "เลือกเห็นด้วย",
     },
     {
       text: "เฉยๆ",
       onClick: () => handleChoice("เฉยๆ"),
-      ariaLabel: "เลือกเฉยๆ"
+      ariaLabel: "เลือกเฉยๆ",
     },
     {
       text: "ไม่เห็นด้วย",
-      onClick: () => handleChoice("��ม่เห็นด้วย"),
-      ariaLabel: "เลือกไม่เห็นด้วย"
-    }
+      onClick: () => handleChoice("ไม่เห็นด้วย"),
+      ariaLabel: "เลือกไม่เห็นด้วย",
+    },
   ];
 
   return (
@@ -42,7 +42,7 @@ const IntroPolicyFeelPage = () => {
       buttons={buttons}
       replayButton={{
         onClick: handleReplay,
-        ariaLabel: "ดูอีกครั้ง"
+        ariaLabel: "ดูอีกครั้ง",
       }}
     />
   );

@@ -20,28 +20,28 @@ const IntroTravelModeCityPage = () => {
     {
       text: "รถไฟฟ้า BTS / MRT",
       onClick: () => handleChoice("รถไฟฟ้า BTS / MRT"),
-      ariaLabel: "เลือกรถไฟฟ้า BTS / MRT"
+      ariaLabel: "เลือกรถไฟฟ้า BTS / MRT",
     },
     {
       text: "อยู่ในพื้นที่ไม่ต้องเข้าเ���ือง",
       onClick: () => handleChoice("อยู่ในพื้นที่ไม่ต้องเข้าเมือง"),
-      ariaLabel: "เลือกอยู่ในพื้นที่ไม่ต้องเข้าเมือง"
+      ariaLabel: "เลือกอยู่ในพื้นที่ไม่ต้องเข้าเมือง",
     },
     {
       text: "รถยนต์",
       onClick: () => handleChoice("รถยนต์"),
-      ariaLabel: "เลือกรถยนต์"
+      ariaLabel: "เลือกรถยนต์",
     },
     {
       text: "รถ รับ-ส่ง",
       onClick: () => handleChoice("รถ รับ-ส่ง"),
-      ariaLabel: "เลือกรถ รับ-ส่ง"
+      ariaLabel: "เลือกรถ รับ-ส่ง",
     },
     {
       text: "รถประจำทาง",
       onClick: () => handleChoice("รถประจำทาง"),
-      ariaLabel: "เลือกรถประจำทาง"
-    }
+      ariaLabel: "เลือกรถประจำทาง",
+    },
   ];
 
   return (
@@ -53,7 +53,7 @@ const IntroTravelModeCityPage = () => {
       buttons={buttons}
       replayButton={{
         onClick: handleReplay,
-        ariaLabel: "ดูอีกครั้ง"
+        ariaLabel: "ดูอีกครั้ง",
       }}
     />
   );

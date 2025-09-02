@@ -24,10 +24,10 @@ export const useSession = (): UseSessionReturn => {
   const [flowData, setFlowData] = useState<any>(() => {
     // Initialize flowData from sessionStorage if available
     try {
-      const stored = sessionStorage.getItem('flowData');
+      const stored = sessionStorage.getItem("flowData");
       return stored ? JSON.parse(stored) : {};
     } catch (error) {
-      console.error('Error loading flowData from sessionStorage:', error);
+      console.error("Error loading flowData from sessionStorage:", error);
       return {};
     }
   });
@@ -105,14 +105,14 @@ export const useSession = (): UseSessionReturn => {
   };
 
   const enhancedSetFlowData = (data: any) => {
-    if (typeof data === 'function') {
+    if (typeof data === "function") {
       setFlowData((prev) => {
         const result = data(prev);
         // Persist to sessionStorage
         try {
-          sessionStorage.setItem('flowData', JSON.stringify(result));
+          sessionStorage.setItem("flowData", JSON.stringify(result));
         } catch (error) {
-          console.error('Error saving flowData to sessionStorage:', error);
+          console.error("Error saving flowData to sessionStorage:", error);
         }
         return result;
       });
@@ -120,9 +120,9 @@ export const useSession = (): UseSessionReturn => {
       setFlowData(data);
       // Persist to sessionStorage
       try {
-        sessionStorage.setItem('flowData', JSON.stringify(data));
+        sessionStorage.setItem("flowData", JSON.stringify(data));
       } catch (error) {
-        console.error('Error saving flowData to sessionStorage:', error);
+        console.error("Error saving flowData to sessionStorage:", error);
       }
     }
   };

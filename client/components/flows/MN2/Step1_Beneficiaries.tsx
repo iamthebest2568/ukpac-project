@@ -266,7 +266,7 @@ const Step1_Beneficiaries = ({
             {/* Selection Summary */}
             <div className="text-center mb-6">
               <p className="text-white font-prompt text-sm">
-                เลือกแล้ว: {selectedGroups.length} จาก {maxSelections} กลุ่ม
+                เ���ือกแล้ว: {selectedGroups.length} จาก {maxSelections} กลุ่ม
               </p>
               {selectedGroups.length > 0 && (
                 <p className="text-[#EFBA31] font-prompt text-xs mt-1">

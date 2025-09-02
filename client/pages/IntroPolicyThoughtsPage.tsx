@@ -20,23 +20,23 @@ const IntroPolicyThoughtsPage = () => {
     {
       text: "ไม่เชื่อว่าแก้ปัญหาได้จริง",
       onClick: () => handleChoice("ไม่เชื่อว่าแก้ปัญหาได้จริง"),
-      ariaLabel: "เลือกไม่เชื่อว่า���ก้ปัญหาได้จริง"
+      ariaLabel: "เลือกไม่เชื่อว่าแก้ปัญหาได้จริง",
     },
     {
       text: "กังว���ลค่าใช้จ่าย",
       onClick: () => handleChoice("กังวัลค่าใช้จ่าย"),
-      ariaLabel: "เลือกกังวัลค่าใช้จ่าย"
+      ariaLabel: "เลือกกังวัลค่าใช้จ่าย",
     },
     {
       text: "ไม่อยากใช้เพราะไม่สะดวก",
       onClick: () => handleChoice("ไม่อยากใช้เพราะไม่สะดวก"),
-      ariaLabel: "เลือกไม่อยากใช้เพราะไม่สะดวก"
+      ariaLabel: "เลือกไม่อยากใช้เพราะไม่สะดวก",
     },
     {
       text: "ยินดีจ่ายเพราะรถจะติดน้อยลง",
       onClick: () => handleChoice("ยินดีจ่ายเพราะรถจะติดน้อยลง"),
-      ariaLabel: "เลือกยินดีจ่ายเพราะรถจะติดน้อยลง"
-    }
+      ariaLabel: "เลือกยินดีจ่ายเพราะรถจะติดน้อยลง",
+    },
   ];
 
   return (
@@ -48,7 +48,7 @@ const IntroPolicyThoughtsPage = () => {
       buttons={buttons}
       replayButton={{
         onClick: handleReplay,
-        ariaLabel: "���ูอีกครั้ง"
+        ariaLabel: "ดูอีกครั้ง",
       }}
     />
   );
