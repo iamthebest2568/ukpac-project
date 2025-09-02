@@ -158,8 +158,8 @@ export default function UkStornaway() {
           <iframe
             ref={iframeRef}
             id="stornaway-player-1"
-            src="https://player.stornaway.io/watch/65676ab5"
-            title="ความลับในมือถือพ่อ - Interactive Video"
+            src="https://player.stornaway.io/embed/837c8504"
+            title="ความลับในมือถือ���่อ - Interactive Video"
             className="absolute inset-0 w-full h-full"
             allow="autoplay; encrypted-media; clipboard-write; accelerometer; gyroscope; picture-in-picture; web-share; fullscreen"
             allowFullScreen
