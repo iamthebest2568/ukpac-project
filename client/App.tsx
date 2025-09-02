@@ -81,6 +81,7 @@ const App = () => (
           <Route path="/Uk-stornaway" element={<UkStornaway />} />
           <Route path="/ukdashboard.html" element={<UkDashboard />} />
           <Route path="/uk-dashboard" element={<UkDashboard />} />
+          <Route path="/UkDashboard" element={<UkDashboard />} />
 
           {/* Legacy alias routes (case/filename-based deep links) */}
           <Route path="/Ask01Page" element={<Navigate to="/ask01" replace />} />
