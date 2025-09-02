@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { z } from "zod";
+import fetch from "node-fetch";
 
 export const EventSchema = z.object({
   sessionId: z.string(),
@@ -22,6 +23,35 @@ function ensureDir() {
 }
 
 export async function appendEvent(ev: VideoEvent) {
+  const supabaseUrl = process.env.SUPABASE_URL;
+  const supabaseKey = process.env.SUPABASE_ANON_KEY;
+  if (supabaseUrl && supabaseKey) {
+    // PostgREST insert
+    const res = await fetch(`${supabaseUrl}/rest/v1/video_events`, {
+      method: "POST",
+      headers: {
+        apikey: supabaseKey,
+        Authorization: `Bearer ${supabaseKey}`,
+        "Content-Type": "application/json",
+        Prefer: "return=minimal",
+      },
+      body: JSON.stringify({
+        session_id: ev.sessionId,
+        event_name: ev.eventName,
+        timestamp: ev.timestamp,
+        choice_text: ev.choiceText ?? null,
+        variant_id: (ev.variantId ?? null)?.toString() ?? null,
+        variant_name: ev.variantName ?? null,
+      }),
+    });
+    if (!res.ok) {
+      // fallback to file
+      ensureDir();
+      const line = JSON.stringify(ev) + "\n";
+      await fs.promises.appendFile(EVENTS_FILE, line, "utf8");
+    }
+    return;
+  }
   ensureDir();
   const line = JSON.stringify(ev) + "\n";
   await fs.promises.appendFile(EVENTS_FILE, line, "utf8");
@@ -40,15 +70,44 @@ export interface StatsResponse {
 }
 
 export async function computeStats(): Promise<StatsResponse> {
-  ensureDir();
-  let lines: string[] = [];
-  try {
-    const raw = await fs.promises.readFile(EVENTS_FILE, "utf8");
-    lines = raw.split(/\n+/).filter(Boolean);
-  } catch {
-    // no file yet
+  const supabaseUrl = process.env.SUPABASE_URL;
+  const supabaseKey = process.env.SUPABASE_ANON_KEY;
+  let events: VideoEvent[] = [];
+  if (supabaseUrl && supabaseKey) {
+    try {
+      const res = await fetch(`${supabaseUrl}/rest/v1/video_events?select=*`, {
+        headers: { apikey: supabaseKey, Authorization: `Bearer ${supabaseKey}` },
+      });
+      if (res.ok) {
+        const rows = await res.json();
+        events = (rows as any[]).map((r) => ({
+          sessionId: r.session_id,
+          eventName: r.event_name,
+          timestamp: r.timestamp,
+          choiceText: r.choice_text ?? undefined,
+          variantId: r.variant_id ?? undefined,
+          variantName: r.variant_name ?? undefined,
+        }));
+      }
+    } catch {}
   }
-  const events: VideoEvent[] = [];
+  if (events.length === 0) {
+    ensureDir();
+    let lines: string[] = [];
+    try {
+      const raw = await fs.promises.readFile(EVENTS_FILE, "utf8");
+      lines = raw.split(/\n+/).filter(Boolean);
+    } catch {}
+    for (const line of lines) {
+      try {
+        const j = JSON.parse(line);
+        if (j && j.sessionId && j.eventName) {
+          const ts = j.timestamp || new Date().toISOString();
+          events.push({ ...j, timestamp: ts });
+        }
+      } catch {}
+    }
+  }
   for (const line of lines) {
     try {
       const j = JSON.parse(line);
