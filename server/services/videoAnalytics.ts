@@ -124,7 +124,7 @@ export async function computeStats(fromISO?: string, toISO?: string): Promise<St
   }
   // Group by session
   const sessionsMap = new Map<string, VideoEvent[]>();
-  for (const ev of events) {
+  for (const ev of filtered) {
     const arr = sessionsMap.get(ev.sessionId) || [];
     arr.push(ev);
     sessionsMap.set(ev.sessionId, arr);
