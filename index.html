@@ -34,7 +34,7 @@
     <meta name="twitter:title" content="UK PACK - ร่วมพัฒนาเมืองไทย" />
     <meta
       name="twitter:description"
-      content="แบบสำรวจเชิงโต้ตอบเพื่อการพัฒนานโยบายสาธารณะที่ดีขึ้น"
+      content="แบบ���ำรวจเชิงโต้ตอบเพื่อการพัฒนานโยบายสาธารณะที่ดีขึ้น"
     />
 
     <!-- App Configuration -->
@@ -111,42 +111,6 @@
 
         applyFocusVisiblePolyfill();
       });
-    </script>
-    <script>
-      (function(){
-        function showErr(msg){
-          var box=document.getElementById('runtime-error-box');
-          if(!box){
-            box=document.createElement('div');
-            box.id='runtime-error-box';
-            box.style.position='fixed';
-            box.style.zIndex='999999';
-            box.style.left='0';
-            box.style.right='0';
-            box.style.bottom='0';
-            box.style.maxHeight='50vh';
-            box.style.overflow='auto';
-            box.style.background='#111';
-            box.style.color='#fdd835';
-            box.style.fontFamily='monospace';
-            box.style.fontSize='12px';
-            box.style.padding='12px';
-            document.body.appendChild(box);
-          }
-          var p=document.createElement('div');
-          p.textContent=msg;
-          box.appendChild(p);
-        }
-        window.addEventListener('error', function(e){
-          var loc = (e.filename? (' at '+e.filename+ (e.lineno?(':'+e.lineno+ (e.colno?(':'+e.colno):'')) : '')) : '');
-          showErr('Error: '+ (e.message||e.error) + loc);
-        });
-        window.addEventListener('unhandledrejection', function(e){
-          var r=e.reason; var msg=r && (r.stack||r.message||String(r));
-          showErr('Promise: '+ msg);
-        });
-        showErr('Debug overlay active');
-      })();
     </script>
   </body>
 </html>
