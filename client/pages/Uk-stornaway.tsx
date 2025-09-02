@@ -69,6 +69,19 @@ export default function UkStornaway() {
     };
   }, [sessionData, sessionId]);
 
+  // Helper to send event to backend
+  async function sendToBackend(ev: CapturedEvent) {
+    try {
+      await fetch("/api/video-events", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...ev, sessionId }),
+      });
+    } catch {
+      // ignore network errors in UI
+    }
+  }
+
   // Load API and attach listeners
   useEffect(() => {
     let mounted = true;
@@ -90,23 +103,34 @@ export default function UkStornaway() {
           timestamp: new Date().toISOString(),
         };
         setSessionData((prev) => ({ ...prev, events: [...prev.events, captured] }));
+        // also send to backend
+        sendToBackend(captured);
       };
 
       const storyStart = makeHandler("sw.story.start");
       const variantStart = makeHandler("sw.variant.start");
       const choiceSelected = makeHandler("sw.choice.selected");
       const storyEnd = makeHandler("sw.story.end");
+      const storyComplete = makeHandler("sw.story.complete");
+      const mediaPlay = makeHandler("sw.media.play");
+      const mediaPause = makeHandler("sw.media.pause");
 
       document.addEventListener("sw.story.start", storyStart as EventListener);
       document.addEventListener("sw.variant.start", variantStart as EventListener);
       document.addEventListener("sw.choice.selected", choiceSelected as EventListener);
       document.addEventListener("sw.story.end", storyEnd as EventListener);
+      document.addEventListener("sw.story.complete", storyComplete as EventListener);
+      document.addEventListener("sw.media.play", mediaPlay as EventListener);
+      document.addEventListener("sw.media.pause", mediaPause as EventListener);
 
       return () => {
         document.removeEventListener("sw.story.start", storyStart as EventListener);
         document.removeEventListener("sw.variant.start", variantStart as EventListener);
         document.removeEventListener("sw.choice.selected", choiceSelected as EventListener);
         document.removeEventListener("sw.story.end", storyEnd as EventListener);
+        document.removeEventListener("sw.story.complete", storyComplete as EventListener);
+        document.removeEventListener("sw.media.play", mediaPlay as EventListener);
+        document.removeEventListener("sw.media.pause", mediaPause as EventListener);
       };
     }
 
@@ -159,7 +183,7 @@ export default function UkStornaway() {
             ref={iframeRef}
             id="stornaway-player-1"
             src="https://player.stornaway.io/embed/837c8504"
-            title="ความลับในมือถือ���่อ - Interactive Video"
+            title="ความลับในมือถือพ่อ - Interactive Video"
             className="absolute inset-0 w-full h-full"
             allow="autoplay; encrypted-media; clipboard-write; accelerometer; gyroscope; picture-in-picture; web-share; fullscreen"
             allowFullScreen
