@@ -24,7 +24,6 @@ export default defineConfig(({ mode }) => ({
       "@react-three/drei",
       "@react-three/fiber",
       "framer-motion",
-      "recharts",
       "sonner",
       "@radix-ui/react-accordion",
       "@radix-ui/react-alert-dialog",
