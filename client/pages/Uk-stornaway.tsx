@@ -40,6 +40,7 @@ function writeSessions(sessions: SessionData[]) {
 
 export default function UkStornaway() {
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
+  const playerRef = useRef<any>(null);
   const orderRef = useRef(0);
   const readyRef = useRef(false);
   const sessionId = useMemo(
@@ -48,6 +49,7 @@ export default function UkStornaway() {
   );
   const [status, setStatus] = useState("รอการโต้ตอบจากผู้ใช้…");
   const [sessionData, setSessionData] = useState<SessionData>({ sessionId, events: [] });
+  const [showPopup, setShowPopup] = useState(false);
 
   // Persist on every change
   useEffect(() => {
@@ -105,6 +107,14 @@ export default function UkStornaway() {
         setSessionData((prev) => ({ ...prev, events: [...prev.events, captured] }));
         // also send to backend
         sendToBackend(captured);
+
+        if (eventName === "sw.variant.start") {
+          const vName = (captured.variantName || "").toString().trim().toLowerCase();
+          if (vName.includes("mini game 1")) {
+            try { playerRef.current?.pause?.(); } catch {}
+            setShowPopup(true);
+          }
+        }
       };
 
       const storyStart = makeHandler("sw.story.start");
@@ -138,10 +148,9 @@ export default function UkStornaway() {
       try {
         const g: any = (window as any).STORNAWAY;
         if (g && iframeRef.current) {
-          // Initialize player instance (even if not used later)
-          try { g.getPlayer(iframeRef.current); } catch {}
+          try { playerRef.current = g.getPlayer(iframeRef.current); } catch { playerRef.current = null; }
         }
-      } catch {}
+      } catch { playerRef.current = null; }
       return attachListeners();
     }
 
@@ -211,6 +220,24 @@ export default function UkStornaway() {
           <div className="mt-2 text-sm text-white/70">{status}</div>
         </div>
       </div>
+
+      {showPopup && (
+        <div className="fixed inset-0 z-[1000] bg-black/70 flex items-center justify-center p-4">
+          <div className="relative w-full max-w-3xl h-[80vh] bg-[#0f0f0f] border border-white/10 rounded-xl overflow-hidden shadow-2xl">
+            <button
+              onClick={() => {
+                setShowPopup(false);
+                try { playerRef.current?.play?.(); } catch {}
+              }}
+              className="absolute top-3 right-3 z-10 rounded-full bg-white/90 text-black px-3 py-1 text-sm font-medium hover:bg-white"
+              aria-label="ปิดหน้าต่าง"
+            >
+              ปิด
+            </button>
+            <iframe title="แบบสอบถาม - คำถามที่ 1" src="/ask01" className="w-full h-full bg-black" />
+          </div>
+        </div>
+      )}
     </div>
   );
 }
