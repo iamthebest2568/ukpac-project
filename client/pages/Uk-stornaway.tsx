@@ -204,7 +204,7 @@ export default function UkStornaway() {
           <h2 className="text-xl font-medium">แดชบอร์ดวิเคราะห์ข้อมูล</h2>
           <p className="text-sm text-white/70 mt-1">เข้าดูสถิติการใช้งานและบันทึกเหตุการณ์ของผู้ชมแบบเรียลไทม์</p>
           <button
-            onClick={() => window.open(`${window.location.origin}/ukdashboard.html`, "_blank", "noopener")}
+            onClick={() => window.open("https://0401efcf1cc14196acbc542ce39f187e-main.projects.builder.my/UkDashboard", "_blank", "noopener")}
             className="mt-3 inline-flex items-center justify-center rounded-full bg-[#EFBA31] text-black font-medium px-5 py-2 border border-black hover:scale-105 transition"
           >
             เปิดแดชบอร์ด
