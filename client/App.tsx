@@ -30,6 +30,7 @@ const FakeNewsPage = lazy(() => import("./pages/FakeNewsPage"));
 const BudgetPage = lazy(() => import("./pages/BudgetPage"));
 const EndScreenPage = lazy(() => import("./pages/EndScreenPage"));
 const UkStornaway = lazy(() => import("./pages/Uk-stornaway"));
+const UkDashboard = lazy(() => import("./pages/UkDashboard"));
 
 // Layout component with accessibility features
 const Layout = ({ children }: { children: React.ReactNode }) => (
@@ -78,6 +79,8 @@ const App = () => (
           <Route path="/end-screen" element={<EndScreenPage />} />
           <Route path="/uk-stornaway" element={<UkStornaway />} />
           <Route path="/Uk-stornaway" element={<UkStornaway />} />
+          <Route path="/ukdashboard.html" element={<UkDashboard />} />
+          <Route path="/uk-dashboard" element={<UkDashboard />} />
 
           {/* Legacy alias routes (case/filename-based deep links) */}
           <Route path="/Ask01Page" element={<Navigate to="/ask01" replace />} />
