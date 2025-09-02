@@ -2,6 +2,7 @@ import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import { handleDemo } from "./routes/demo";
+import { EventSchema, appendEvent, computeStats } from "./services/videoAnalytics";
 
 export function createServer() {
   const app = express();
@@ -18,6 +19,28 @@ export function createServer() {
   });
 
   app.get("/api/demo", handleDemo);
+
+  // Video analytics ingestion
+  app.post("/api/video-events", async (req, res) => {
+    try {
+      const parsed = EventSchema.parse(req.body);
+      const withTs = { ...parsed, timestamp: parsed.timestamp || new Date().toISOString() };
+      await appendEvent(withTs);
+      res.status(200).json({ ok: true });
+    } catch (e: any) {
+      res.status(400).json({ ok: false, error: e?.message || "invalid payload" });
+    }
+  });
+
+  // Aggregated stats
+  app.get("/api/video-stats", async (_req, res) => {
+    try {
+      const stats = await computeStats();
+      res.status(200).json(stats);
+    } catch (e: any) {
+      res.status(500).json({ ok: false, error: e?.message || "failed to compute stats" });
+    }
+  });
 
   return app;
 }
