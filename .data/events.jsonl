@@ -30,3 +30,7 @@
 {"sessionId":"session_1756822391142_60xuvb1","eventName":"sw.variant.start","timestamp":"2025-09-02T14:14:23.335Z","variantId":"6c6a890d","variantName":"mini game 1"}
 {"sessionId":"session_1756822391142_60xuvb1","eventName":"sw.variant.start","timestamp":"2025-09-02T14:14:24.678Z","variantId":"6c6a890d","variantName":"mini game 1"}
 {"sessionId":"session_1756822391142_60xuvb1","eventName":"sw.story.start","timestamp":"2025-09-02T14:14:24.677Z","variantId":"6c6a890d","variantName":"mini game 1"}
+{"sessionId":"session_1756820388600_wi748na","eventName":"sw.choice.selected","timestamp":"2025-09-02T14:15:26.665Z","variantId":"33dd8872","variantName":"Emotional Hurdle (อุปสรรคทางอารมณ์)"}
+{"sessionId":"session_1756820388600_wi748na","eventName":"sw.variant.start","timestamp":"2025-09-02T14:15:26.666Z","variantId":"6c6a890d","variantName":"mini game 1"}
+{"sessionId":"session_1756820388600_wi748na","eventName":"sw.story.start","timestamp":"2025-09-02T14:15:36.767Z","variantId":"6c6a890d","variantName":"mini game 1"}
+{"sessionId":"session_1756820388600_wi748na","eventName":"sw.variant.start","timestamp":"2025-09-02T14:15:36.768Z","variantId":"6c6a890d","variantName":"mini game 1"}

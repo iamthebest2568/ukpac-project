@@ -53,6 +53,7 @@ export default function UkStornaway() {
   const updateTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [showPopup, setShowPopup] = useState(false);
   const popupRef = useRef<HTMLDivElement | null>(null);
+  const hasShownPopupRef = useRef(false);
 
   // Persist on every change
   useEffect(() => {
@@ -135,6 +136,8 @@ export default function UkStornaway() {
         if (eventName === "sw.variant.start") {
           const vName = (captured.variantName || "").toString().trim().toLowerCase();
           if (vName.includes("mini game 1")) {
+            if (hasShownPopupRef.current) return;
+            hasShownPopupRef.current = true;
             try { playerRef.current?.pause?.(); } catch {}
             setShowPopup(true);
           }
@@ -209,6 +212,23 @@ export default function UkStornaway() {
     };
   }, []);
 
+  useEffect(() => {
+    let t: ReturnType<typeof setTimeout> | null = null;
+    if (showPopup) {
+      document.body.style.overflow = "hidden";
+      popupRef.current?.focus();
+    } else {
+      document.body.style.overflow = "";
+      t = setTimeout(() => {
+        try { playerRef.current?.play?.(); } catch {}
+      }, 150);
+    }
+    return () => {
+      if (t) clearTimeout(t);
+      document.body.style.overflow = "";
+    };
+  }, [showPopup]);
+
   return (
     <div className="min-h-screen bg-[#121212] text-white flex justify-center font-[Prompt]">
       <div className="w-full max-w-[800px] p-4 md:p-6 lg:p-8">
@@ -259,8 +279,6 @@ export default function UkStornaway() {
           onKeyDown={(e) => {
             if (e.key === "Escape") {
               setShowPopup(false);
-              document.body.style.overflow = "";
-              try { playerRef.current?.play?.(); } catch {}
             }
           }}
           onTransitionEnd={() => { /* no-op for now */ }}
@@ -273,10 +291,8 @@ export default function UkStornaway() {
             <button
               onClick={() => {
                 setShowPopup(false);
-                document.body.style.overflow = "";
-                try { playerRef.current?.play?.(); } catch {}
               }}
-              className="absolute top-3 right-3 z-10 rounded-full bg-white/90 text-black px-3 py-1 text-sm font-medium hover:bg-white focus:outline-none focus:ring-2 focus:ring-[#EFBA31]"
+              className="absolute top-3 right-3 z-20 rounded-full bg-white/90 text-black px-3 py-1 text-sm font-medium hover:bg-white focus:outline-none focus:ring-2 focus:ring-[#EFBA31]"
               aria-label="ปิดหน้าต่าง"
             >
               ปิด
