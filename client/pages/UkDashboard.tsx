@@ -21,13 +21,6 @@ type IngestStatus = {
   video: { count: number; lastTs: string | null };
 };
 
-function secondsToHuman(sec: number) {
-  const s = Math.round(sec);
-  const m = Math.floor(s / 60);
-  const rem = s % 60;
-  return `${m} นาที ${rem} วินาที`;
-}
-
 type VideoEvent = {
   sessionId: string;
   eventName: string;
@@ -347,7 +340,7 @@ export default function UkDashboard() {
                     </div>
                     <div className="md:col-span-2">
                       <div className="text-white/80 mb-2">
-                        Ask05: ความคิดเห็นล่าส���ด
+                        Ask05: ความคิดเห็นล่าสุด
                       </div>
                       <ul className="space-y-1 text-sm">
                         {(journey.ask05Samples || []).map(
@@ -439,7 +432,7 @@ export default function UkDashboard() {
               </Card>
 
               {/* Pie chart */}
-              <Card title="การเลือกของผู้ชม">
+              <Card title="การเลือกของผู้���ม">
                 <div className="w-full h-72">
                   <ResponsiveContainer width="100%" height="100%">
                     <PieChart>
@@ -609,7 +602,7 @@ export default function UkDashboard() {
                     ])
                   }
                 >
-                  ดาวน์โหลด CSV (รายบุคคล)
+                  ดาวน์โหลด CSV (รายบุคค���)
                 </button>
               </div>
             </div>
