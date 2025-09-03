@@ -1,4 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
+import { useSession } from "../hooks/useSession";
+import Ask01 from "../components/journey/Ask01";
 
 // Data models
 interface CapturedEvent {
@@ -41,6 +43,7 @@ function writeSessions(sessions: SessionData[]) {
 export default function UkStornaway() {
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
   const playerRef = useRef<any>(null);
+  const { sessionID, navigateToPage } = useSession();
   const orderRef = useRef(0);
   const readyRef = useRef(false);
   const sessionId = useMemo(
@@ -297,7 +300,16 @@ export default function UkStornaway() {
             >
               ปิด
             </button>
-            <iframe title="แบบสอบถาม - คำถามที่ 1" src="/ask01" className="w-full h-full bg-black" />
+            <div className="w-full h-full overflow-auto bg-black">
+              <Ask01
+                sessionID={sessionID}
+                onNavigate={(screenId, data) => {
+                  setShowPopup(false);
+                  // Navigate the main flow to keep full compatibility
+                  navigateToPage(screenId, data);
+                }}
+              />
+            </div>
           </div>
         </div>
       )}
