@@ -24,8 +24,6 @@ interface FigmaStyle1LayoutProps {
   className?: string;
   /** Optional img loading strategy */
   imageLoading?: "eager" | "lazy";
-  /** Optional fetch priority */
-  fetchPriority?: "high" | "low" | "auto";
 }
 
 /**
@@ -47,7 +45,6 @@ const FigmaStyle1Layout = ({
   replayButton,
   className = "",
   imageLoading = "lazy",
-  fetchPriority = "low",
 }) => {
   return (
     <div className={`figma-style1-container ${className}`}>
@@ -60,7 +57,6 @@ const FigmaStyle1Layout = ({
             className="figma-style1-background-image"
             loading={imageLoading}
             decoding="async"
-            fetchPriority={fetchPriority}
           />
           <div className="figma-style1-background-overlay" />
         </div>
