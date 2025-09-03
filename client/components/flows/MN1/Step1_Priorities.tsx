@@ -30,7 +30,7 @@ const Step1_Priorities = ({
     "เพิ่มความถี่รถเมล์",
     "เพิ่มที่จอดรถ",
     "เพิ่มความถี่รถไฟฟ้า",
-    "เพิ่ม Feeder ในซอย",
+    "เ��ิ่ม Feeder ในซอย",
   ];
 
   const handlePriorityToggle = (priority: string) => {
@@ -59,6 +59,10 @@ const Step1_Priorities = ({
         sessionID,
       },
     });
+    try {
+      const body = { sessionId: sessionID || (sessionStorage.getItem("ukPackSessionID") || ""), event: "MN1_COMPLETE", payload: { selectedPolicies: selectedPriorities } };
+      navigator.sendBeacon?.("/api/track", new Blob([JSON.stringify(body)], { type: "application/json" })) || fetch("/api/track", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+    } catch {}
 
     const data = { priorities: { selectedPriorities } };
     onNext(data);
@@ -96,7 +100,7 @@ const Step1_Priorities = ({
             {/* Subtitle */}
             <div className="text-center mb-6">
               <p className="text-white font-kanit text-lg font-normal">
-                ไม่เกิน 3 นโยบาย
+                ไม่��กิน 3 นโยบาย
               </p>
             </div>
 
@@ -116,7 +120,7 @@ const Step1_Priorities = ({
                   disabled={isSelectionDisabled("ลดค่าโดยสารรถไฟฟ้า")}
                 >
                   <span className={`figma-style1-button-text text-[15px] ${
-                    selectedPriorities.includes("ลดค่าโดยสารรถไฟฟ้า") ? "font-semibold text-[#EFBA31]" : "font-medium text-black group-hover:text-[#EFBA31]"
+                    selectedPriorities.includes("ลดค่าโ���ยสารรถไฟฟ้า") ? "font-semibold text-[#EFBA31]" : "font-medium text-black group-hover:text-[#EFBA31]"
                   }`} style={{ letterSpacing: "0.4px" }}>
                     ลดค่าโดยสารรถไฟฟ้า
                   </span>
@@ -206,7 +210,7 @@ const Step1_Priorities = ({
                         : "bg-[#EFBA31] border-black hover:bg-black hover:scale-105 group"
                   }`}
                   onClick={() => !isSelectionDisabled("เพิ่มความถี่รถไฟฟ้า") && handlePriorityToggle("เพิ่มความถี่รถไฟฟ้า")}
-                  disabled={isSelectionDisabled("เพิ่มความถี่รถไฟฟ้า")}
+                  disabled={isSelectionDisabled("เพิ่มความถี���รถไฟฟ้า")}
                 >
                   <span className={`figma-style1-button-text text-[15px] ${
                     selectedPriorities.includes("เพิ่มความถี่รถไฟฟ้า") ? "font-semibold text-[#EFBA31]" : "font-medium text-black group-hover:text-[#EFBA31]"
