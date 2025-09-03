@@ -19,7 +19,16 @@ export default defineConfig(({ mode }) => ({
   },
   optimizeDeps: {
     // Avoid generating a single huge deps chunk that some proxies truncate
-    include: ["recharts", "lodash", "lodash-es", "react/jsx-runtime", "react/jsx-dev-runtime"],
+    include: [
+      "recharts",
+      "lodash",
+      "lodash-es",
+      "react",
+      "react-dom",
+      "react-dom/client",
+      "react/jsx-runtime",
+      "react/jsx-dev-runtime",
+    ],
     exclude: [
       "lucide-react",
       "three",
