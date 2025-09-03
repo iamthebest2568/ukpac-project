@@ -607,6 +607,41 @@ export default function UkDashboard() {
                 >
                   ดาวน์โหลด CSV (เล่นต่อวัน)
                 </button>
+                <button
+                  className="rounded-full bg-[#EFBA31] text.black font-medium px-5 py-2 border border-black hover:scale-105 transition"
+                  onClick={() =>
+                    exportCsv("individual_sessions.csv", [
+                      [
+                        "sessionId",
+                        "firstSeen",
+                        "lastSeen",
+                        "introWho",
+                        "mn1Selected",
+                        "mn3BudgetTotal",
+                        "endDecision",
+                        "contacts",
+                        "ask05Comment",
+                        "ip",
+                        "userAgent",
+                      ],
+                      ...sessions.map((s) => [
+                        s.sessionId,
+                        s.firstSeen,
+                        s.lastSeen,
+                        s.introWho || "",
+                        (s.mn1Selected || []).join(" | "),
+                        s.mn3BudgetTotal ?? "",
+                        s.endDecision || "",
+                        s.contacts,
+                        s.ask05Comment || "",
+                        s.ip || "",
+                        s.userAgent || "",
+                      ]),
+                    ])
+                  }
+                >
+                  ดาวน์โหลด CSV (รายบุคคล)
+                </button>
               </div>
             </div>
           )}
