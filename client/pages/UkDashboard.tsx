@@ -21,14 +21,6 @@ type IngestStatus = {
   video: { count: number; lastTs: string | null };
 };
 
-type VideoEvent = {
-  sessionId: string;
-  eventName: string;
-  timestamp: string;
-  choiceText?: string;
-  variantId?: string | number;
-  variantName?: string;
-};
 
 export default function UkDashboard() {
   const [stats, setStats] = useState<StatsResponse | null>(null);
@@ -210,7 +202,7 @@ export default function UkDashboard() {
                 disabled={clearing}
                 title="ลบ events.jsonl และ app-events.jsonl ในเซิร์ฟเวอร์"
               >
-                {clearing ? "กำลังลบ..." : "ลบข้อมูลทั้งหมด"}
+                {clearing ? "กำลัง��บ..." : "ลบข้อมูลทั้งหมด"}
               </button>
               <label className="flex items-center gap-2 text-sm text-white/80">
                 <input
@@ -432,7 +424,7 @@ export default function UkDashboard() {
               </Card>
 
               {/* Pie chart */}
-              <Card title="การเลือกของผู้���ม">
+              <Card title="การเลือกของผู้ชม">
                 <div className="w-full h-72">
                   <ResponsiveContainer width="100%" height="100%">
                     <PieChart>
@@ -602,7 +594,7 @@ export default function UkDashboard() {
                     ])
                   }
                 >
-                  ดาวน์โหลด CSV (รายบุคค���)
+                  ดาวน์โหลด CSV (รายบุคคล)
                 </button>
               </div>
             </div>
