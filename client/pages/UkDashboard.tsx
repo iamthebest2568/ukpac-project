@@ -109,13 +109,19 @@ export default function UkDashboard() {
         fetch(`/api/ingest-status`),
       ]);
       if (jRes.status === "fulfilled" && jRes.value.ok) {
-        try { setJourney(await jRes.value.json()); } catch {}
+        try {
+          setJourney(await jRes.value.json());
+        } catch {}
       }
       if (ssRes.status === "fulfilled" && ssRes.value.ok) {
-        try { setSessions(await ssRes.value.json()); } catch {}
+        try {
+          setSessions(await ssRes.value.json());
+        } catch {}
       }
       if (stRes.status === "fulfilled" && stRes.value.ok) {
-        try { setIngest(await stRes.value.json()); } catch {}
+        try {
+          setIngest(await stRes.value.json());
+        } catch {}
       }
       setLastUpdated(new Date().toLocaleString());
     } catch (e: any) {

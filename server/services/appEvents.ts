@@ -119,7 +119,9 @@ export async function computeSessionSummaries(
           j.eventName === "sw.variant.start" ||
           (j.eventName === "sw.choice.selected" && j.variantName)
         ) {
-          const ts = new Date(j.timestamp || new Date().toISOString()).getTime();
+          const ts = new Date(
+            j.timestamp || new Date().toISOString(),
+          ).getTime();
           const name = (j.variantName || j.variantId || "").toString();
           const cur = variantBySession.get(j.sessionId);
           if (!cur || ts > cur.ts)
@@ -133,19 +135,31 @@ export async function computeSessionSummaries(
     const supabaseUrl = process.env.SUPABASE_URL as string | undefined;
     const supabaseKey = process.env.SUPABASE_ANON_KEY as string | undefined;
     if (supabaseUrl && supabaseKey) {
-      const params = new URLSearchParams({ select: "session_id,event_name,variant_name,variant_id,timestamp", order: "id.asc" });
-      const res = await fetch(`${supabaseUrl}/rest/v1/video_events?${params.toString()}`, {
-        headers: { apikey: supabaseKey, Authorization: `Bearer ${supabaseKey}` },
-      } as any);
+      const params = new URLSearchParams({
+        select: "session_id,event_name,variant_name,variant_id,timestamp",
+        order: "id.asc",
+      });
+      const res = await fetch(
+        `${supabaseUrl}/rest/v1/video_events?${params.toString()}`,
+        {
+          headers: {
+            apikey: supabaseKey,
+            Authorization: `Bearer ${supabaseKey}`,
+          },
+        } as any,
+      );
       if (res.ok) {
         const rows = (await res.json()) as any[];
         for (const r of rows) {
           if (!r) continue;
           if (
             r.event_name === "sw.variant.start" ||
-            (r.event_name === "sw.choice.selected" && (r.variant_name || r.variant_id))
+            (r.event_name === "sw.choice.selected" &&
+              (r.variant_name || r.variant_id))
           ) {
-            const ts = new Date(r.timestamp || new Date().toISOString()).getTime();
+            const ts = new Date(
+              r.timestamp || new Date().toISOString(),
+            ).getTime();
             const name = String(r.variant_name ?? r.variant_id ?? "");
             const sid = String(r.session_id ?? "");
             if (!sid) continue;
