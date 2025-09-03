@@ -1,4 +1,5 @@
 import fs from "node:fs";
+import fs from "node:fs";
 import path from "node:path";
 import { z } from "zod";
 
@@ -164,11 +165,12 @@ export async function computeSessionSummaries(
       }
       if (ev.event === "MN2_STEP") {
         const priority = (ev.payload?.priority || "").toString();
-        const groups: string[] = Array.isArray(ev.payload?.selectedGroups)
-          ? (ev.payload!.selectedGroups as any[]).map(
-              (g) => g?.toString?.() || String(g),
-            )
+        const raw = Array.isArray(ev.payload?.selectedGroups)
+          ? (ev.payload!.selectedGroups as any[])
           : [];
+        const groups: string[] = raw.map((x) =>
+          x === null || x === undefined ? "" : String(x),
+        );
         if (priority) mn2Selections[priority] = groups;
       }
       if (ev.event === "MN3_SELECT") {
