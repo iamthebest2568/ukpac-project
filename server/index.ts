@@ -121,19 +121,51 @@ export function createServer() {
     }
   });
 
-  // Clear local analytics data
+  // Clear analytics data: local files and Supabase (if configured)
   app.delete("/api/clear-data", async (_req, res) => {
     try {
       const DATA_DIR = process.env.DATA_DIR || path.join(process.cwd(), ".data");
       const files = ["events.jsonl", "app-events.jsonl"].map((f) =>
         path.join(DATA_DIR, f),
       );
+
+      // Remove local files
       await Promise.all(
         files.map((fp) => fs.promises.rm(fp, { force: true }).catch(() => {})),
       );
-      res
-        .status(200)
-        .json({ ok: true, cleared: files.map((f) => path.basename(f)) });
+
+      // Attempt to purge Supabase table if env provided
+      const supabaseUrl = process.env.SUPABASE_URL as string | undefined;
+      const supabaseKey = process.env.SUPABASE_ANON_KEY as string | undefined;
+      let supabaseDeleted = null as null | number;
+      if (supabaseUrl && supabaseKey) {
+        try {
+          const url = new URL(`${supabaseUrl}/rest/v1/video_events`);
+          url.searchParams.set("session_id", "not.is.null");
+          const resp = await fetch(url.toString(), {
+            method: "DELETE",
+            headers: {
+              apikey: supabaseKey,
+              Authorization: `Bearer ${supabaseKey}`,
+              Prefer: "return=representation",
+            },
+          });
+          if (resp.ok) {
+            const json = (await resp.json()) as any[];
+            supabaseDeleted = Array.isArray(json) ? json.length : 0;
+          } else {
+            supabaseDeleted = 0;
+          }
+        } catch {
+          supabaseDeleted = 0;
+        }
+      }
+
+      res.status(200).json({
+        ok: true,
+        cleared: files.map((f) => path.basename(f)),
+        supabaseDeleted,
+      });
     } catch (e: any) {
       res
         .status(500)
