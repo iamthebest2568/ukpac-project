@@ -6,10 +6,15 @@
 import Flow_EndSequence from "../components/flows/Flow_EndSequence";
 import { useSession } from "../hooks/useSession";
 import { useFlowNavigation } from "../hooks/useFlowNavigation";
+import { useEffect } from "react";
 
 const EndSequencePage = () => {
   const { sessionID, navigateToPage } = useSession();
   const { handleEndSequenceComplete } = useFlowNavigation();
+
+  useEffect(() => {
+    import("./EndScreenPage").catch(() => {});
+  }, []);
 
   return (
     <Flow_EndSequence
