@@ -88,17 +88,29 @@ export default function UkDashboard() {
       if (ss.ok) setSessions(await ss.json());
       const st = await fetch(`/api/ingest-status`);
       if (st.ok) setIngest(await st.json());
+      // Provide default stats so content renders even without video analytics
+      setStats({
+        totals: {
+          totalSessions: 0,
+          totalPlays: 0,
+          completionRate: 0,
+          avgSessionLengthSeconds: 0,
+        },
+        timeseries: [],
+        variants: [],
+        choices: [],
+      });
       setError(null);
       setLastUpdated(new Date().toLocaleString());
     } catch (e: any) {
-      setError(e?.message || "โหลดข้อมูลล้มเหลว");
+      setError(e?.message || "โหลดข้อมูลล้��เหลว");
     } finally {
       setLoading(false);
     }
   }
 
   async function clearData() {
-    if (!window.confirm("ลบข้อ���ูลทั้งหมดในเซิร์ฟเวอร์? การกระทำนี้ย้อนกลับไม่ได้")) {
+    if (!window.confirm("ลบข้อมูลทั้งหมดในเซิร์ฟเวอร์? การกระทำนี้ย้อนกลับไม่ได้")) {
       return;
     }
     try {
@@ -219,7 +231,7 @@ export default function UkDashboard() {
           </div>
 
 
-          {loading && <div className="text-white/80">กำลังโหลดข้อมูล...</div>}
+          {loading && <div className="text-white/80">กำลั��โหลดข้อมูล...</div>}
           {error && <div className="text-red-400">เกิดข้อผิดพลาด: {error}</div>}
 
           {stats && (
@@ -252,11 +264,11 @@ export default function UkDashboard() {
 
               {/* User Journey Summary */}
               {journey && (
-                <Card title="สรุปพฤติกรรมผู้ใ��้ (User Journey)">
+                <Card title="สรุปพฤติกรรมผู้ใช้ (User Journey)">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <div className="text-white/80 mb-2">
-                        Intro: คุณเป��นใคร
+                        Intro: คุณเป็นใคร
                       </div>
                       <ul className="space-y-1 text-sm">
                         {Object.entries(journey.introWho || {}).map(
@@ -472,7 +484,7 @@ export default function UkDashboard() {
                     <thead>
                       <tr className="text-left text-white/80">
                         <th className="py-2 pr-4">เวลา</th>
-                        <th className="py-2 pr-4">เซสชัน</th>
+                        <th className="py-2 pr-4">เซ��ชัน</th>
                         <th className="py-2 pr-4">อีเวนต์</th>
                         <th className="py-2 pr-4">ชื่อฉาก</th>
                         <th className="py-2 pr-4">ตัวเลือก</th>
@@ -529,7 +541,7 @@ export default function UkDashboard() {
                     ])
                   }
                 >
-                  ดาวน์โหล�� CSV (การเลือก)
+                  ดาวน์โหลด CSV (การเลือก)
                 </button>
                 <button
                   className="rounded-full bg-[#EFBA31] text.black font-medium px-5 py-2 border border-black hover:scale-105 transition"
