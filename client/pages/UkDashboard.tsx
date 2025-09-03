@@ -33,6 +33,25 @@ type StatsResponse = {
   choices: { name: string; count: number }[];
 };
 
+type SessionSummary = {
+  sessionId: string;
+  firstSeen: string;
+  lastSeen: string;
+  introWho?: string;
+  mn1Selected: string[];
+  mn3BudgetTotal?: number;
+  ask05Comment?: string;
+  endDecision?: string;
+  contacts: number;
+  ip?: string;
+  userAgent?: string;
+};
+
+type IngestStatus = {
+  app: { count: number; lastTs: string | null };
+  video: { count: number; lastTs: string | null };
+};
+
 function secondsToHuman(sec: number) {
   const s = Math.round(sec);
   const m = Math.floor(s / 60);
@@ -183,7 +202,7 @@ export default function UkDashboard() {
                 แดชบอร์ดวิเคราะห์วิดีโอ
               </h1>
               <div className="text-white/60 text-sm mt-1">
-                อัปเดตล่าสุด: {lastUpdated || "-"}
+                อัปเด��ล่าสุด: {lastUpdated || "-"}
               </div>
             </div>
             <div className="flex flex-wrap items-end gap-3">
