@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   LineChart,
   Line,
@@ -129,7 +129,7 @@ export default function UkDashboard() {
               <label className="text-sm text-white/70">ถึง</label>
               <input type="date" className="rounded bg-black/40 border border-white/15 px-2 py-1" value={to} onChange={(e)=>setTo(e.target.value)} />
             </div>
-            <button className="rounded-md bg.white/10 hover:bg-white/15 border border-white/15 px-3 py-2 text-sm" onClick={load}>รีเฟรช</button>
+            <button className="rounded-md bg.white/10 hover:bg-white/15 border border-white/15 px-3 py-2 text-sm" onClick={load}>ร��เฟรช</button>
             <label className="flex items-center gap-2 text-sm text-white/80">
               <input type="checkbox" checked={autoRefresh} onChange={(e)=>setAutoRefresh(e.target.checked)} /> อัปเดตอัตโนมัติ
             </label>
