@@ -125,7 +125,7 @@ export default function UkDashboard() {
       }
       setLastUpdated(new Date().toLocaleString());
     } catch (e: any) {
-      setError(e?.message || "โหลดข้อมูลล้มเหลว");
+      setError(e?.message || "โหลดข้อมู��ล้มเหลว");
     } finally {
       setLoading(false);
     }
@@ -134,7 +134,7 @@ export default function UkDashboard() {
   async function clearData() {
     if (
       !window.confirm(
-        "ลบข้อมูลทั้งหมดในเ��ิร์ฟเวอร์? การกระทำนี้ย้อนกลับไม���ได้",
+        "ลบข้อมูลทั้งหมดในเ��ิร์ฟเวอร์? การกระทำนี้ย้อนกลับไม่ได้",
       )
     ) {
       return;
@@ -182,7 +182,7 @@ export default function UkDashboard() {
       {!authed && (
         <div className="min-h-screen flex items-center justify-center p-4">
           <div className="w-full max-w-sm bg-white/5 border border-white/10 rounded-xl p-5">
-            <div className="text-xl font-semibold mb-3">ป้อนร��ัสผ่าน</div>
+            <div className="text-xl font-semibold mb-3">ป้อนรหัสผ่าน</div>
             <div className="text-sm text-white/70 mb-4">
               หน้านี้ป้องกันด้วยรหัสผ่าน
             </div>
@@ -210,7 +210,7 @@ export default function UkDashboard() {
                 }
               }}
             >
-              เข้���สู่แดชบอร์ด
+              เข้าสู่แดชบอร์ด
             </button>
           </div>
         </div>
@@ -318,7 +318,7 @@ export default function UkDashboard() {
                     </div>
                     <div>
                       <div className="text-white/80 mb-2">
-                        MN3: งบประมาณเฉลี่���
+                        MN3: งบประมาณเฉลี่ย
                       </div>
                       <ul className="space-y-1 text-sm">
                         {Object.entries(journey.mn3Budgets || {}).map(
@@ -420,7 +420,7 @@ export default function UkDashboard() {
                         "Profile",
                         "เมื่อได้ยินข่าวนี้ คุณคิดยังไง",
                         "Minigame 1: ตัวเลือกนโยบาย",
-                        "Minigame 2 : จับคู่",
+                        "Minigame 2 : จ��บคู่",
                         "Minigame 3 : นโยบายที่เลือก",
                         "Minigame 3 : เงินที่ใส่",
                         "ข้อคิดเห็นอื่นๆ",
@@ -493,11 +493,11 @@ export default function UkDashboard() {
 
       {detailOpen && (
         <div
-          className="fixed inset-0 bg-black/60 flex items-center justify-center z-50"
+          className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50"
           onClick={() => setDetailOpen(false)}
         >
           <div
-            className="bg-[#121212] border border-white/10 rounded-lg w-[90vw] max-w-3xl max-h-[80vh] overflow-auto p-4"
+            className="bg-gradient-to-b from-[#121214] to-[#0f0f10] border border-white/10 rounded-xl w-[92vw] max-w-4xl max-h-[80vh] overflow-auto p-5 shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between mb-2">
