@@ -5,10 +5,10 @@
 
 import { useState, lazy, Suspense } from "react";
 
-// Internal step components
-import Step1_Decision from "./EndSequence/Step1_Decision";
-import Step2_Form from "./EndSequence/Step2_Form";
-import Step3_ThankYou from "./EndSequence/Step3_ThankYou";
+// Internal step components (lazy to reduce initial JS)
+const Step1_Decision = lazy(() => import("./EndSequence/Step1_Decision"));
+const Step2_Form = lazy(() => import("./EndSequence/Step2_Form"));
+const Step3_ThankYou = lazy(() => import("./EndSequence/Step3_ThankYou"));
 
 interface Flow_EndSequenceProps {
   sessionID: string | null;
@@ -93,7 +93,9 @@ const Flow_EndSequence = ({ sessionID, onComplete, onBack }: Flow_EndSequencePro
 
   return (
     <div className="flow-container">
-      {renderCurrentStep()}
+      <Suspense fallback={<div style={{minHeight: '100vh'}} className="flex items-center justify-center text-white">กำลังโหลด...</div>}>
+        {renderCurrentStep()}
+      </Suspense>
     </div>
   );
 };
