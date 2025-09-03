@@ -7,7 +7,7 @@ const IntroWhoAreYouPage = () => {
   const handleChoice = (choice: string) => {
     // Add a small delay to show selection before navigating
     setTimeout(() => {
-      navigateToPage("/intro-gender");
+      navigateToPage("/uk-stornaway");
     }, 300);
   };
 
@@ -45,7 +45,7 @@ const IntroWhoAreYouPage = () => {
     {
       text: "ผู้เข้ามาช๊อปปิ้ง กินข้า��",
       onClick: () => handleChoice("ผู้เข้ามาช๊อปปิ้ง กินข้าว"),
-      ariaLabel: "เลือกผู้เข้ามาช๊อปปิ้ง กินข้าว",
+      ariaLabel: "เลือกผู้��ข้ามาช๊อปปิ้ง กินข้าว",
     },
   ];
 
