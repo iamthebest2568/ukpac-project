@@ -1,22 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { clearEventLogs } from "../services/dataLogger.js";
 
-type StatsResponse = {
-  totals: {
-    totalSessions: number;
-    totalPlays: number;
-    completionRate: number;
-    avgSessionLengthSeconds: number;
-  };
-  timeseries: { date: string; plays: number }[];
-  variants: {
-    name: string;
-    count: number;
-    avgTimeSeconds: number;
-    dropoutRate: number;
-  }[];
-  choices: { name: string; count: number }[];
-};
 
 type SessionSummary = {
   sessionId: string;
@@ -363,7 +347,7 @@ export default function UkDashboard() {
                     </div>
                     <div className="md:col-span-2">
                       <div className="text-white/80 mb-2">
-                        Ask05: ความคิดเห็นล่าสุด
+                        Ask05: ความคิดเห็นล่าส���ด
                       </div>
                       <ul className="space-y-1 text-sm">
                         {(journey.ask05Samples || []).map(
@@ -380,7 +364,7 @@ export default function UkDashboard() {
               )}
 
               {/* Per-user (individual) results */}
-              <Card title="ผลร���ยบุคคล (ล่าสุด)">
+              <Card title="ผลรายบุคคล (ล่าสุด)">
                 <div className="overflow-auto">
                   <table className="min-w-full text-sm">
                     <thead>
