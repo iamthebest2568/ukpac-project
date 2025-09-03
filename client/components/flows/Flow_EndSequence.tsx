@@ -3,7 +3,7 @@
  * Manages the final three screens of the reward and thank-you sequence
  */
 
-import { useState } from "react";
+import { useState, lazy, Suspense } from "react";
 
 // Internal step components
 import Step1_Decision from "./EndSequence/Step1_Decision";
