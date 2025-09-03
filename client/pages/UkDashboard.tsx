@@ -612,6 +612,47 @@ export default function UkDashboard() {
           )}
         </div>
       )}
+
+      {detailOpen && (
+        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50" onClick={() => setDetailOpen(false)}>
+          <div className="bg-[#121212] border border-white/10 rounded-lg w-[90vw] max-w-3xl max-h-[80vh] overflow-auto p-4" onClick={(e) => e.stopPropagation()}>
+            <div className="flex items-center justify-between mb-2">
+              <div className="text-lg font-medium">รายละเอียดเซสชัน: {detailSession?.slice(0, 12)}…</div>
+              <button className="text-white/70 hover:text-white" onClick={() => setDetailOpen(false)}>ปิด</button>
+            </div>
+            {!detailData && <div className="text-white/70 text-sm">กำลังโหลด...</div>}
+            {detailData && (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                <div>
+                  <div className="text-white/80 mb-1">App Events</div>
+                  <ul className="space-y-1">
+                    {detailData.appEvents.map((e, i) => (
+                      <li key={i} className="border-b border-white/10 py-1">
+                        <div className="text-white/60 text-xs">{new Date(e.timestamp).toLocaleString()}</div>
+                        <div className="font-medium">{e.event}</div>
+                        {e.payload && <pre className="text-xs whitespace-pre-wrap break-words text-white/70">{JSON.stringify(e.payload)}</pre>}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <div className="text-white/80 mb-1">Video Events</div>
+                  <ul className="space-y-1">
+                    {detailData.videoEvents.map((e, i) => (
+                      <li key={i} className="border-b border-white/10 py-1">
+                        <div className="text-white/60 text-xs">{new Date(e.timestamp).toLocaleString()}</div>
+                        <div className="font-medium">{e.eventName}</div>
+                        <div className="text-white/70 text-xs">{e.variantName || e.choiceText || "-"}</div>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }
