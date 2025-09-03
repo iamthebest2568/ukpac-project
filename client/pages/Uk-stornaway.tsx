@@ -57,6 +57,7 @@ export default function UkStornaway() {
   const [showPopup, setShowPopup] = useState(false);
   const popupRef = useRef<HTMLDivElement | null>(null);
   const hasShownPopupRef = useRef(false);
+  const [showLiveLog, setShowLiveLog] = useState(false);
 
   // Persist on every change
   useEffect(() => {
@@ -265,10 +266,20 @@ export default function UkStornaway() {
 
         {/* Live log */}
         <div className="mt-6">
-          <div className="text-lg font-medium mb-2">📝 ข้อมูลที่ถูกดักจับ (Live Log):</div>
-          <pre className="max-h-[300px] overflow-auto text-sm p-3 rounded bg-black/60 text-[#d6deeb]">
+          <div className="flex items-center justify-between mb-2">
+            <div className="text-lg font-medium">📝 ข้อมูลที่ถูกดักจับ (Live Log)</div>
+            <button
+              onClick={() => setShowLiveLog((v) => !v)}
+              className="text-sm px-3 py-1 rounded-full border border-white/20 hover:bg-white/10"
+            >
+              {showLiveLog ? "ซ่อน" : "แสดง"}
+            </button>
+          </div>
+          {showLiveLog && (
+            <pre className="max-h-[300px] overflow-auto text-sm p-3 rounded bg-black/60 text-[#d6deeb]">
 {JSON.stringify(sessionData, null, 2)}
-          </pre>
+            </pre>
+          )}
           <div className="mt-2 text-sm text-white/70">{status}</div>
         </div>
       </div>
