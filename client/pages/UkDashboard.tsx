@@ -23,8 +23,6 @@ type IngestStatus = {
 
 
 export default function UkDashboard() {
-  const [stats, setStats] = useState<StatsResponse | null>(null);
-  const [recent, setRecent] = useState<VideoEvent[]>([]);
   const [journey, setJourney] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -78,7 +76,7 @@ export default function UkDashboard() {
   }
 
   async function clearData() {
-    if (!window.confirm("ลบข้อมูลทั้งหมดในเซิร์ฟเวอร์? การกระทำนี้ย้อนกลับไม่ได้")) {
+    if (!window.confirm("ลบข้อมูลทั้งหมดในเซิร์ฟเวอร์? การกระทำนี��ย้อนกลับไม่ได้")) {
       return;
     }
     try {
@@ -202,7 +200,7 @@ export default function UkDashboard() {
                 disabled={clearing}
                 title="ลบ events.jsonl และ app-events.jsonl ในเซิร์ฟเวอร์"
               >
-                {clearing ? "กำลัง��บ..." : "ลบข้อมูลทั้งหมด"}
+                {clearing ? "กำลังลบ..." : "ลบข้อมูลทั้งหมด"}
               </button>
               <label className="flex items-center gap-2 text-sm text-white/80">
                 <input
@@ -459,7 +457,7 @@ export default function UkDashboard() {
                       <tr className="text-left text-white/80">
                         <th className="py-2 pr-4">ชื่อฉาก</th>
                         <th className="py-2 pr-4">จำนวนครั้งที่ดู</th>
-                        <th className="py-2 pr-4">เวล���เฉลี่ยที่ใช้</th>
+                        <th className="py-2 pr-4">เวล���เฉ���ี่ยที่ใช้</th>
                         <th className="py-2 pr-4">อัต��าการออกกลางคัน</th>
                       </tr>
                     </thead>
