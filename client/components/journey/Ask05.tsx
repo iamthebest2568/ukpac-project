@@ -36,6 +36,11 @@ const Ask05 = ({ sessionID, onNavigate, journeyData }: Ask05Props) => {
       },
     });
 
+    // Also track to server
+    try {
+      const body = { sessionId: sessionID || (sessionStorage.getItem("ukPackSessionID") || ""), event: "ASK05_COMMENT", payload: { comment: suggestion.trim() } };
+      navigator.sendBeacon?.("/api/track", new Blob([JSON.stringify(body)], { type: "application/json" })) || fetch("/api/track", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+    } catch {}
     // Navigate to the next step
     onNavigate("fakeNews", data);
   };
@@ -62,7 +67,7 @@ const Ask05 = ({ sessionID, onNavigate, journeyData }: Ask05Props) => {
           <div className="mb-[50px]">
             <h1 className="text-white font-kanit text-[30px] font-normal leading-normal text-center">
               คุณคิดว่ารัฐควรทำอะไร
-              ที่จะทำให้นโยบายนี้เกิดขึ้นได้และ
+              ที่จะทำให้น���ยบายนี้เกิดขึ้นได้และ
               เป็นประโยชน์ต่อประชาชน
               อย่างแท้จริง
             </h1>
