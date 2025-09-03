@@ -116,7 +116,8 @@ export async function computeSessionSummaries(
         const ts = new Date(j.timestamp || new Date().toISOString()).getTime();
         const name = (j.variantName || j.variantId || "").toString();
         const cur = variantBySession.get(j.sessionId);
-        if (!cur || ts > cur.ts) variantBySession.set(j.sessionId, { ts, name });
+        if (!cur || ts > cur.ts)
+          variantBySession.set(j.sessionId, { ts, name });
       } catch {}
     }
   } catch {}
@@ -164,7 +165,9 @@ export async function computeSessionSummaries(
       if (ev.event === "MN2_STEP") {
         const priority = (ev.payload?.priority || "").toString();
         const groups: string[] = Array.isArray(ev.payload?.selectedGroups)
-          ? (ev.payload!.selectedGroups as any[]).map((g) => g?.toString?.() || String(g))
+          ? (ev.payload!.selectedGroups as any[]).map(
+              (g) => g?.toString?.() || String(g),
+            )
           : [];
         if (priority) mn2Selections[priority] = groups;
       }
@@ -215,7 +218,9 @@ export async function computeSessionSummaries(
       lastSeen,
       introWho,
       mn1Selected,
-      mn2Selections: Object.keys(mn2Selections).length ? mn2Selections : undefined,
+      mn2Selections: Object.keys(mn2Selections).length
+        ? mn2Selections
+        : undefined,
       mn3Selected,
       mn3BudgetAllocation,
       mn3BudgetTotal,

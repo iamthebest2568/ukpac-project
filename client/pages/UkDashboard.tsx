@@ -119,7 +119,9 @@ export default function UkDashboard() {
 
   async function clearData() {
     if (
-      !window.confirm("ลบข้อมูลทั้งหมดในเ��ิร์ฟเวอร์? การกระทำนี้ย้อนกลับไม่ได้")
+      !window.confirm(
+        "ลบข้อมูลทั้งหมดในเ��ิร์ฟเวอร์? การกระทำนี้ย้อนกลับไม่ได้",
+      )
     ) {
       return;
     }
@@ -454,24 +456,30 @@ export default function UkDashboard() {
                         const mn3sel = (s.mn3Selected || []).join(" | ");
                         const mn3money = (() => {
                           const alloc = s.mn3BudgetAllocation || {};
-                          const order = s.mn3Selected && s.mn3Selected.length
-                            ? s.mn3Selected
-                            : Object.keys(alloc);
+                          const order =
+                            s.mn3Selected && s.mn3Selected.length
+                              ? s.mn3Selected
+                              : Object.keys(alloc);
                           const seen = new Set<string>();
                           const pairs: string[] = [];
                           for (const p of order) {
                             seen.add(p);
                             const val = (alloc as any)[p];
-                            pairs.push(`${p}: ${typeof val === "number" ? val : "-"}`);
+                            pairs.push(
+                              `${p}: ${typeof val === "number" ? val : "-"}`,
+                            );
                           }
                           for (const p of Object.keys(alloc)) {
                             if (seen.has(p)) continue;
                             const val = (alloc as any)[p];
-                            pairs.push(`${p}: ${typeof val === "number" ? val : "-"}`);
+                            pairs.push(
+                              `${p}: ${typeof val === "number" ? val : "-"}`,
+                            );
                           }
                           return pairs.join(" ; ");
                         })();
-                        const decision = s.endDecisionText || s.endDecision || "";
+                        const decision =
+                          s.endDecisionText || s.endDecision || "";
                         return [
                           s.ip || "",
                           s.firstSeen,
