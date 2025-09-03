@@ -272,7 +272,7 @@ export default function UkDashboard() {
               value={stats?.totals.totalPlays ?? 0}
             />
             <SummaryCard
-              title="อัตราการดูจ��"
+              title="อัตราการดูจบ"
               value={`${((stats?.totals.completionRate ?? 0) * 100).toFixed(1)}%`}
             />
             <SummaryCard
@@ -361,7 +361,7 @@ export default function UkDashboard() {
                     </div>
                     <div>
                       <div className="text-white/80 mb-2">
-                        MN3: งบประมาณเฉ��ี่ย
+                        MN3: งบประมาณเฉลี่ย
                       </div>
                       <ul className="space-y-1 text-sm">
                         {Object.entries(journey.mn3Budgets || {}).map(
@@ -394,6 +394,53 @@ export default function UkDashboard() {
                 </Card>
               )}
 
+              {/* Per-user (individual) results */}
+              <Card title="ผลรายบุคคล (ล่าสุด)">
+                <div className="overflow-auto">
+                  <table className="min-w-full text-sm">
+                    <thead>
+                      <tr className="text-left text-white/80">
+                        <th className="py-2 pr-4">เวลา</th>
+                        <th className="py-2 pr-4">Session</th>
+                        <th className="py-2 pr-4">Intro</th>
+                        <th className="py-2 pr-4">MN1</th>
+                        <th className="py-2 pr-4">ตัดสินใจ</th>
+                        <th className="py-2 pr-4">ติดต่อ</th>
+                        <th className="py-2 pr-4">ความคิดเห็น</th>
+                        <th className="py-2 pr-4">ดู</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {sessions.slice(0, 50).map((s) => (
+                        <tr key={s.sessionId} className="border-t border-white/10">
+                          <td className="py-2 pr-4 whitespace-nowrap">{new Date(s.lastSeen).toLocaleString()}</td>
+                          <td className="py-2 pr-4">{s.sessionId.slice(0, 10)}…</td>
+                          <td className="py-2 pr-4">{s.introWho || "-"}</td>
+                          <td className="py-2 pr-4">{s.mn1Selected?.join(", ") || "-"}</td>
+                          <td className="py-2 pr-4">{s.endDecision || "-"}</td>
+                          <td className="py-2 pr-4">{s.contacts || 0}</td>
+                          <td className="py-2 pr-4 truncate max-w-[240px]">{s.ask05Comment || "-"}</td>
+                          <td className="py-2 pr-4">
+                            <button
+                              className="text-xs rounded bg-white/10 hover:bg-white/20 px-2 py-1"
+                              onClick={async () => {
+                                setDetailSession(s.sessionId);
+                                setDetailOpen(true);
+                                setDetailData(null);
+                                const resp = await fetch(`/api/session/${s.sessionId}`);
+                                if (resp.ok) setDetailData(await resp.json());
+                              }}
+                            >
+                              รายละเอียด
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </Card>
+
               {/* Bar chart */}
               <Card title="ฉากที่ถูกดูมากที่สุด">
                 <div className="w-full h-72">
@@ -423,7 +470,7 @@ export default function UkDashboard() {
               </Card>
 
               {/* Pie chart */}
-              <Card title="การเลือกของผู้���ม">
+              <Card title="การเลือกของผู้ชม">
                 <div className="w-full h-72">
                   <ResponsiveContainer width="100%" height="100%">
                     <PieChart>
@@ -520,7 +567,7 @@ export default function UkDashboard() {
                     exportCsv("variants.csv", [
                       [
                         "ชื่อฉาก",
-                        "จำนวนครั้งที่ดู",
+                        "จำนว��ครั้งที่ดู",
                         "เวลาเฉล���่ยที่ใช้(วินาที)",
                         "อัตราการออกกลางคัน(%)",
                       ],
