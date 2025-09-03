@@ -1,6 +1,6 @@
 import React from "react";
 
-import React from 'react';
+import { memo } from 'react';
 
 interface FigmaStyle1LayoutProps {
   /** Background image URL */
@@ -35,7 +35,7 @@ interface FigmaStyle1LayoutProps {
  * - Optional enhanced replay button
  * - Accessibility support
  */
-const FigmaStyle1Layout: React.FC<FigmaStyle1LayoutProps> = ({
+const FigmaStyle1Layout = ({
   backgroundImage,
   backgroundAlt = "Background image",
   title,
@@ -107,7 +107,7 @@ const FigmaStyle1Layout: React.FC<FigmaStyle1LayoutProps> = ({
             {/* Buttons */}
             <div className="figma-style1-button-container">
               {buttons.map((button, index) => (
-                <React.Fragment key={index}>
+                <>
                   <button
                     onClick={button.onClick}
                     className="figma-style1-button"
@@ -125,7 +125,7 @@ const FigmaStyle1Layout: React.FC<FigmaStyle1LayoutProps> = ({
                       {button.ariaLabel}
                     </div>
                   )}
-                </React.Fragment>
+                </>
               ))}
             </div>
           </div>
@@ -135,4 +135,4 @@ const FigmaStyle1Layout: React.FC<FigmaStyle1LayoutProps> = ({
   );
 };
 
-export default React.memo(FigmaStyle1Layout);
+export default memo(FigmaStyle1Layout);
