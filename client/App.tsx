@@ -22,13 +22,20 @@ const IntroPolicyFeelPage = lazy(() => import("./pages/IntroPolicyFeelPage"));
 // Survey pages
 const Ask01Page = lazy(() => import("./pages/Ask01Page"));
 const Ask02Page = lazy(() => import("./pages/Ask02Page"));
+const Ask02_2Page = lazy(() => import("./pages/Ask02_2Page"));
 const Ask04Page = lazy(() => import("./pages/Ask04Page"));
+const Ask04BudgetPage = lazy(() => import("./pages/Ask04BudgetPage"));
 const Ask05Page = lazy(() => import("./pages/Ask05Page"));
 
 // Other needed pages
 const FakeNewsPage = lazy(() => import("./pages/FakeNewsPage"));
+const SourceSelectionPage = lazy(() => import("./pages/SourceSelectionPage"));
 const BudgetPage = lazy(() => import("./pages/BudgetPage"));
+const EndSequencePage = lazy(() => import("./pages/EndSequencePage"));
 const EndScreenPage = lazy(() => import("./pages/EndScreenPage"));
+const MiniGameMN1Page = lazy(() => import("./pages/MiniGameMN1Page"));
+const MiniGameMN2Page = lazy(() => import("./pages/MiniGameMN2Page"));
+const MiniGameMN3Page = lazy(() => import("./pages/MiniGameMN3Page"));
 const UkStornaway = lazy(() => import("./pages/Uk-stornaway"));
 const UkDashboard = lazy(() => import("./pages/UkDashboard"));
 
@@ -70,13 +77,20 @@ const App = () => (
           {/* Survey */}
           <Route path="/ask01" element={<Ask01Page />} />
           <Route path="/ask02" element={<Ask02Page />} />
+          <Route path="/ask02-2" element={<Ask02_2Page />} />
           <Route path="/ask04" element={<Ask04Page />} />
+          <Route path="/ask04-budget" element={<Ask04BudgetPage />} />
           <Route path="/ask05" element={<Ask05Page />} />
 
           {/* Other pages */}
           <Route path="/fake-news" element={<FakeNewsPage />} />
+          <Route path="/source-selection" element={<SourceSelectionPage />} />
           <Route path="/budget" element={<BudgetPage />} />
+          <Route path="/end-sequence" element={<EndSequencePage />} />
           <Route path="/end-screen" element={<EndScreenPage />} />
+          <Route path="/minigame-mn1" element={<MiniGameMN1Page />} />
+          <Route path="/minigame-mn2" element={<MiniGameMN2Page />} />
+          <Route path="/minigame-mn3" element={<MiniGameMN3Page />} />
           <Route path="/uk-stornaway" element={<UkStornaway />} />
           <Route path="/Uk-stornaway" element={<UkStornaway />} />
           <Route path="/ukdashboard.html" element={<UkDashboard />} />
