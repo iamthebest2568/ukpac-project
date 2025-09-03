@@ -104,7 +104,7 @@ export async function computeSessionSummaries(
     bySession.set(ev.sessionId, arr);
   }
 
-  // Also parse video events once to extract latest Stornaway selection per session
+  // Also parse video events once to extract the user's selected option per session
   const variantBySession = new Map<string, { ts: number; name: string }>();
   // 1) Local file fallback
   try {
@@ -115,7 +115,7 @@ export async function computeSessionSummaries(
       try {
         const j = JSON.parse(line);
         if (!j || !j.sessionId || !j.eventName) continue;
-        if (j.eventName === "sw.story.start" || j.eventName === "sw.choice.selected") {
+        if (j.eventName === "sw.choice.selected") {
           const ts = new Date(
             j.timestamp || new Date().toISOString(),
           ).getTime();
@@ -133,7 +133,7 @@ export async function computeSessionSummaries(
     const supabaseKey = process.env.SUPABASE_ANON_KEY as string | undefined;
     if (supabaseUrl && supabaseKey) {
       const params = new URLSearchParams({
-        select: "session_id,event_name,variant_name,variant_id,choice_text,timestamp",
+        select: "session_id,event_name,choice_text,timestamp",
         order: "id.asc",
       });
       const res = await fetch(
@@ -149,13 +149,13 @@ export async function computeSessionSummaries(
         const rows = (await res.json()) as any[];
         for (const r of rows) {
           if (!r) continue;
-          if (r.event_name === "sw.story.start" || r.event_name === "sw.choice.selected") {
+          if (r.event_name === "sw.choice.selected") {
             const ts = new Date(
               r.timestamp || new Date().toISOString(),
             ).getTime();
-            const name = String(r.choice_text ?? r.variant_name ?? r.variant_id ?? "");
+            const name = String(r.choice_text ?? "");
             const sid = String(r.session_id ?? "");
-            if (!sid) continue;
+            if (!sid || !name) continue;
             const cur = variantBySession.get(sid);
             if (!cur || ts > cur.ts) variantBySession.set(sid, { ts, name });
           }
@@ -419,11 +419,11 @@ export async function computeUserJourneyStats(
   // IP count
   const ips = new Set(appEvents.map((e) => e.ip).filter(Boolean) as string[]);
 
-  // Stornaway variants from video events (capture user-facing labels)
+  // Stornaway selections (count only explicit choices)
   const stornawayVariants: Record<string, number> = {};
   for (const ve of videoEvents) {
-    if (ve.eventName === "sw.story.start" || ve.eventName === "sw.choice.selected") {
-      const name = (ve.choiceText || ve.variantName || "").toString();
+    if (ve.eventName === "sw.choice.selected") {
+      const name = (ve.choiceText || "").toString();
       if (!name) continue;
       stornawayVariants[name] = (stornawayVariants[name] || 0) + 1;
     }
