@@ -47,10 +47,14 @@ export default function UkStornaway() {
   const { sessionID, navigateToPage } = useSession();
   const orderRef = useRef(0);
   const readyRef = useRef(false);
-  const sessionId = useMemo(
-    () => `session_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`,
-    [],
-  );
+  const sessionId = useMemo(() => {
+    try {
+      const sid = sessionStorage.getItem("ukPackSessionID");
+      if (sid) return sid;
+    } catch {}
+    if (sessionID) return sessionID;
+    return `session_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
+  }, [sessionID]);
   const [status, setStatus] = useState("รอการโต้ตอบจากผู้ใช้…");
   const [sessionData, setSessionData] = useState<SessionData>({
     sessionId,
@@ -365,7 +369,7 @@ export default function UkStornaway() {
           className="fixed inset-0 z-[1000] bg-black/70 flex items-center justify-center p-4 transition-opacity duration-200"
           role="dialog"
           aria-modal="true"
-          aria-label="หน้าต่างป๊อปอัพแบบสอบถาม"
+          aria-label="หน้���ต่างป๊อปอัพแบบสอบถาม"
           onKeyDown={(e) => {
             if (e.key === "Escape") {
               setShowPopup(false);
