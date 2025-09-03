@@ -4,9 +4,13 @@ import cors from "cors";
 import { handleDemo } from "./routes/demo";
 import { EventSchema, appendEvent, computeStats } from "./services/videoAnalytics";
 import { listRecentEvents } from "./services/videoAnalytics.extras";
+import { AppEventSchema, appendAppEvent, computeUserJourneyStats } from "./services/appEvents";
 
 export function createServer() {
   const app = express();
+
+  // Respect proxy headers for real IP
+  app.set("trust proxy", true);
 
   // Middleware
   app.use(cors());
@@ -33,6 +37,27 @@ export function createServer() {
     }
   });
 
+  // Generic app tracking endpoint
+  app.post("/api/track", async (req, res) => {
+    try {
+      const ua = String(req.headers["user-agent"] || "");
+      const ip = (req.headers["x-forwarded-for"] as string) || req.ip || "";
+      const page = String(req.headers["referer"] || "");
+      const parsed = AppEventSchema.parse(req.body);
+      const withMeta = {
+        ...parsed,
+        userAgent: parsed.userAgent || ua,
+        ip: parsed.ip || ip,
+        page: parsed.page || page,
+        timestamp: parsed.timestamp || new Date().toISOString(),
+      };
+      await appendAppEvent(withMeta);
+      res.status(200).json({ ok: true });
+    } catch (e: any) {
+      res.status(400).json({ ok: false, error: e?.message || "invalid payload" });
+    }
+  });
+
   // Aggregated stats (optional date range)
   app.get("/api/video-stats", async (req, res) => {
     try {
@@ -42,6 +67,17 @@ export function createServer() {
       res.status(200).json(stats);
     } catch (e: any) {
       res.status(500).json({ ok: false, error: e?.message || "failed to compute stats" });
+    }
+  });
+
+  // User journey stats
+  app.get("/api/user-journey-stats", async (_req, res) => {
+    try {
+      const recent = await listRecentEvents(2000);
+      const agg = await computeUserJourneyStats(recent);
+      res.status(200).json(agg);
+    } catch (e: any) {
+      res.status(500).json({ ok: false, error: e?.message || "failed to compute journey stats" });
     }
   });
 
