@@ -113,7 +113,7 @@ const Step3_ThankYou = ({ sessionID, onNext, onBack, journeyData }: Step3_ThankY
     } catch (e) {
       // Fallback: prompt
       // eslint-disable-next-line no-alert
-      alert('คัดลอกลิงก์ไม่สำเร็จ กรุณาคัดลอกด้วย��นเอง: ' + plainUrl);
+      alert('คัดลอกลิงก์ไม่สำเร็จ กรุณาคัดลอกด้วยตนเอง: ' + plainUrl);
     }
   };
 
@@ -167,13 +167,13 @@ const Step3_ThankYou = ({ sessionID, onNext, onBack, journeyData }: Step3_ThankY
 
                   <DialogContent className="p-6 bg-white rounded-lg">
                     <DialogTitle className="font-kanit text-lg text-black mb-3">แชร์เกมนี้</DialogTitle>
-                    <DialogDescription className="text-sm text-gray-600 mb-4">เลือกแพลตฟอร์มที���ต้องการแชร์</DialogDescription>
+                    <DialogDescription className="text-sm text-gray-600 mb-4">เลือกแพลตฟอร์มที่ต้องการแชร์</DialogDescription>
 
                     <div className="grid grid-cols-2 gap-3 mb-4">
                       <button className="figma-style1-button" onClick={handleShareFacebook} aria-label="แชร์ไปยัง Facebook">Facebook</button>
                       <button className="figma-style1-button" onClick={handleShareX} aria-label="แชร์ไปยัง X">X</button>
                       <button className="figma-style1-button" onClick={handleShareLine} aria-label="แชร์ไปยัง LINE">LINE</button>
-                      <button className="figma-style1-button" onClick={handleShareWhatsApp} aria-label="แ��ร์ไปยัง WhatsApp">WhatsApp</button>
+                      <button className="figma-style1-button" onClick={handleShareWhatsApp} aria-label="แชร์ไปยัง WhatsApp">WhatsApp</button>
                       <button className="figma-style1-button" onClick={handleShareMessenger} aria-label="แชร์ไปยัง Messenger">Messenger</button>
                       <button className="figma-style1-button" onClick={handleShareLinkedIn} aria-label="แชร์ไปยัง LinkedIn">LinkedIn</button>
                       <button className="figma-style1-button col-span-2" onClick={handleCopyLink} aria-label="คัดลอกลิงก์">{copied ? 'คัดลอกแล้ว' : 'คัดลอกลิงก์'}</button>
