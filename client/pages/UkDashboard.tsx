@@ -74,8 +74,6 @@ export default function UkDashboard() {
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       // Clear client-side stored logs/session id
       try { clearEventLogs(); } catch {}
-      setStats(null);
-      setRecent([]);
       setJourney(null);
       await load();
     } catch (e: any) {
@@ -508,9 +506,9 @@ export default function UkDashboard() {
                     exportCsv("variants.csv", [
                       [
                         "ชื่อฉาก",
-                        "จำนว��ครั้งท���่ดู",
+                        "จำนว��ครั้งที่ดู",
                         "เวลาเฉล���่ยที่ใช้(วินาที)",
-                        "อัตราการออกกลางคัน(%)",
+                        "อ���ตราการออกกลางคัน(%)",
                       ],
                       ...(stats?.variants || []).map((v) => [
                         v.name,
