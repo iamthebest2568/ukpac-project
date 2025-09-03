@@ -220,7 +220,7 @@ export default function UkDashboard() {
           <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
               <h1 className="text-3xl md:text-4xl font-semibold tracking-tight">
-                แดชบอร์ดวิเคราะห์วิดีโอ
+                แดชบอร์ดวิเคราะห���วิดีโอ
               </h1>
               <div className="text-white/70 text-sm mt-2">
                 อัปเดตล่าสุด: {lastUpdated || "-"}
@@ -269,86 +269,78 @@ export default function UkDashboard() {
 
           {stats && (
             <div className="space-y-6">
-              {/* User Journey Summary */}
+              {/* User Journey: Topics + Details */}
               {journey && (
-                <Card title="สรุปพฤติกรรมผ��้ใช้ (User Journey)">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <div className="text-white/80 mb-2">
-                        Intro: คุณเป็นใคร
-                      </div>
-                      <ul className="space-y-1 text-sm">
-                        {Object.entries(journey.introWho || {}).map(
-                          ([k, v]) => (
-                            <li key={k} className="flex justify-between">
-                              <span>{k}</span>
-                              <span className="text-white/70">{v as any}</span>
-                            </li>
-                          ),
-                        )}
-                      </ul>
-                    </div>
-                    <div>
-                      <div className="text-white/80 mb-2">
-                        Stornaway: ฉากที่เข้า
-                      </div>
-                      <ul className="space-y-1 text-sm">
-                        {Object.entries(journey.stornawayVariants || {})
-                          .slice(0, 8)
-                          .map(([k, v]) => (
+                <>
+                  <Card title="หัวข้อข้อมูล (Topics)">
+                    <ul className="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
+                      <li className="rounded-md border border-white/10 bg-white/5 p-3">Intro: คุณเป็นใคร</li>
+                      <li className="rounded-md border border-white/10 bg-white/5 p-3">Stornaway: ฉากที่เข้า</li>
+                      <li className="rounded-md border border-white/10 bg-white/5 p-3">MN1: นโยบายที่เลือก</li>
+                      <li className="rounded-md border border-white/10 bg-white/5 p-3">MN3: งบประมาณเฉลี่ย</li>
+                      <li className="rounded-md border border-white/10 bg-white/5 p-3 md:col-span-3">Ask05: ความคิดเห็นล่าสุด</li>
+                    </ul>
+                  </Card>
+
+                  <Card title="รายละเอียดข้อมูล (Details)">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <div className="text-white/80 mb-2">Intro: คุณเป็นใคร</div>
+                        <ul className="space-y-1 text-sm">
+                          {Object.entries(journey.introWho || {}).map(([k, v]) => (
                             <li key={k} className="flex justify-between">
                               <span>{k}</span>
                               <span className="text-white/70">{v as any}</span>
                             </li>
                           ))}
-                      </ul>
-                    </div>
-                    <div>
-                      <div className="text-white/80 mb-2">
-                        MN1: นโยบายที่เลือก
+                        </ul>
                       </div>
-                      <ul className="space-y-1 text-sm">
-                        {Object.entries(journey.mn1 || {}).map(([k, v]) => (
-                          <li key={k} className="flex justify-between">
-                            <span>{k}</span>
-                            <span className="text-white/70">{v as any}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div>
-                      <div className="text-white/80 mb-2">
-                        MN3: งบประมาณเฉลี่ย
+                      <div>
+                        <div className="text-white/80 mb-2">Stornaway: ฉากที่เข้า</div>
+                        <ul className="space-y-1 text-sm">
+                          {Object.entries(journey.stornawayVariants || {})
+                            .slice(0, 8)
+                            .map(([k, v]) => (
+                              <li key={k} className="flex justify-between">
+                                <span>{k}</span>
+                                <span className="text-white/70">{v as any}</span>
+                              </li>
+                            ))}
+                        </ul>
                       </div>
-                      <ul className="space-y-1 text-sm">
-                        {Object.entries(journey.mn3Budgets || {}).map(
-                          ([k, v]: any) => (
+                      <div>
+                        <div className="text-white/80 mb-2">MN1: นโยบายที่เลือก</div>
+                        <ul className="space-y-1 text-sm">
+                          {Object.entries(journey.mn1 || {}).map(([k, v]) => (
                             <li key={k} className="flex justify-between">
                               <span>{k}</span>
-                              <span className="text-white/70">
-                                {Math.round(v.avg)}
-                              </span>
+                              <span className="text-white/70">{v as any}</span>
                             </li>
-                          ),
-                        )}
-                      </ul>
-                    </div>
-                    <div className="md:col-span-2">
-                      <div className="text-white/80 mb-2">
-                        Ask05: ความคิดเห็นล่าสุด
+                          ))}
+                        </ul>
                       </div>
-                      <ul className="space-y-1 text-sm">
-                        {(journey.ask05Samples || []).map(
-                          (c: string, i: number) => (
-                            <li key={i} className="truncate">
-                              • {c}
+                      <div>
+                        <div className="text-white/80 mb-2">MN3: งบประมาณเฉลี่ย</div>
+                        <ul className="space-y-1 text-sm">
+                          {Object.entries(journey.mn3Budgets || {}).map(([k, v]: any) => (
+                            <li key={k} className="flex justify-between">
+                              <span>{k}</span>
+                              <span className="text-white/70">{Math.round(v.avg)}</span>
                             </li>
-                          ),
-                        )}
-                      </ul>
+                          ))}
+                        </ul>
+                      </div>
+                      <div className="md:col-span-2">
+                        <div className="text-white/80 mb-2">Ask05: ความคิดเห็นล่าสุด</div>
+                        <ul className="space-y-1 text-sm">
+                          {(journey.ask05Samples || []).map((c: string, i: number) => (
+                            <li key={i} className="truncate">• {c}</li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
-                  </div>
-                </Card>
+                  </Card>
+                </>
               )}
 
               {/* Per-user (individual) results */}
