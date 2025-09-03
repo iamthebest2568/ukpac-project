@@ -39,10 +39,17 @@ type SessionSummary = {
   lastSeen: string;
   introWho?: string;
   mn1Selected: string[];
+  mn2Selections?: Record<string, string[]>;
+  mn3Selected?: string[];
+  mn3BudgetAllocation?: Record<string, number>;
   mn3BudgetTotal?: number;
   ask05Comment?: string;
   endDecision?: string;
+  endDecisionText?: string;
+  contactName?: string;
+  contactPhone?: string;
   contacts: number;
+  stornawayVariantName?: string;
   ip?: string;
   userAgent?: string;
 };
@@ -112,7 +119,7 @@ export default function UkDashboard() {
 
   async function clearData() {
     if (
-      !window.confirm("ลบข้อมูลทั้งหมดในเซิร์ฟเวอร์? การกระทำนี้ย้อนกลับไม่ได้")
+      !window.confirm("ลบข้อมูลทั้งหมดในเ��ิร์ฟเวอร์? การกระทำนี้ย้อนกลับไม่ได้")
     ) {
       return;
     }
@@ -419,33 +426,67 @@ export default function UkDashboard() {
                 <button
                   className="rounded-full bg-[#EFBA31] text.black font-medium px-5 py-2 border border-black hover:scale-105 transition"
                   onClick={() =>
-                    exportCsv("individual_sessions.csv", [
+                    exportCsv("uk_export.csv", [
                       [
-                        "sessionId",
-                        "firstSeen",
-                        "lastSeen",
-                        "introWho",
-                        "mn1Selected",
-                        "mn3BudgetTotal",
-                        "endDecision",
-                        "contacts",
-                        "ask05Comment",
-                        "ip",
-                        "userAgent",
+                        "User",
+                        "Access Time",
+                        "Profile",
+                        "เมื่อได้ยินข่าวนี้ คุณคิดยังไง",
+                        "Minigame 1: ตัวเลือกนโยบาย",
+                        "Minigame 2 : จับคู่",
+                        "Minigame 3 : นโยบายที่เลือก",
+                        "Minigame 3 : เงินที่ใส่",
+                        "ข้อคิดเห็นอื่นๆ",
+                        "ลุ้นรางวัล",
+                        "ชื่อ",
+                        "เบอร์โทร",
                       ],
-                      ...sessions.map((s) => [
-                        s.sessionId,
-                        s.firstSeen,
-                        s.lastSeen,
-                        s.introWho || "",
-                        (s.mn1Selected || []).join(" | "),
-                        s.mn3BudgetTotal ?? "",
-                        s.endDecision || "",
-                        s.contacts,
-                        s.ask05Comment || "",
-                        s.ip || "",
-                        s.userAgent || "",
-                      ]),
+                      ...sessions.map((s) => {
+                        const mn2 = (() => {
+                          const m = s.mn2Selections || {};
+                          const mn1 = s.mn1Selected || [];
+                          const parts = mn1.map((p) => {
+                            const gs = Array.isArray(m[p]) ? m[p] : [];
+                            return `${p}: ${gs.length ? gs.join(" | ") : "-"}`;
+                          });
+                          return parts.join(" ; ");
+                        })();
+                        const mn3sel = (s.mn3Selected || []).join(" | ");
+                        const mn3money = (() => {
+                          const alloc = s.mn3BudgetAllocation || {};
+                          const order = s.mn3Selected && s.mn3Selected.length
+                            ? s.mn3Selected
+                            : Object.keys(alloc);
+                          const seen = new Set<string>();
+                          const pairs: string[] = [];
+                          for (const p of order) {
+                            seen.add(p);
+                            const val = (alloc as any)[p];
+                            pairs.push(`${p}: ${typeof val === "number" ? val : "-"}`);
+                          }
+                          for (const p of Object.keys(alloc)) {
+                            if (seen.has(p)) continue;
+                            const val = (alloc as any)[p];
+                            pairs.push(`${p}: ${typeof val === "number" ? val : "-"}`);
+                          }
+                          return pairs.join(" ; ");
+                        })();
+                        const decision = s.endDecisionText || s.endDecision || "";
+                        return [
+                          s.ip || "",
+                          s.firstSeen,
+                          s.introWho || "",
+                          s.stornawayVariantName || "",
+                          (s.mn1Selected || []).join(" | "),
+                          mn2,
+                          mn3sel,
+                          mn3money,
+                          s.ask05Comment || "",
+                          decision,
+                          s.contactName || "",
+                          s.contactPhone || "",
+                        ];
+                      }),
                     ])
                   }
                 >
