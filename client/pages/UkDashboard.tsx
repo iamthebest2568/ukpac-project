@@ -110,6 +110,10 @@ export default function UkDashboard() {
       if (ev.ok) setRecent(await ev.json());
       const j = await fetch(`/api/user-journey-stats`);
       if (j.ok) setJourney(await j.json());
+      const ss = await fetch(`/api/session-summaries?limit=100`);
+      if (ss.ok) setSessions(await ss.json());
+      const st = await fetch(`/api/ingest-status`);
+      if (st.ok) setIngest(await st.json());
       setError(null);
       setLastUpdated(new Date().toLocaleString());
     } catch (e: any) {
