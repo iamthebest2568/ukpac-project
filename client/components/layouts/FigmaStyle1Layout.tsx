@@ -1,6 +1,6 @@
 import React from "react";
 
-import { memo } from 'react';
+import { memo, Fragment } from 'react';
 
 interface FigmaStyle1LayoutProps {
   /** Background image URL */
@@ -107,7 +107,7 @@ const FigmaStyle1Layout = ({
             {/* Buttons */}
             <div className="figma-style1-button-container">
               {buttons.map((button, index) => (
-                <>
+                <Fragment key={index}>
                   <button
                     onClick={button.onClick}
                     className="figma-style1-button"
@@ -125,7 +125,7 @@ const FigmaStyle1Layout = ({
                       {button.ariaLabel}
                     </div>
                   )}
-                </>
+                </Fragment>
               ))}
             </div>
           </div>
