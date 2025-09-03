@@ -51,6 +51,109 @@ export async function readAllAppEvents(): Promise<AppEvent[]> {
   }
 }
 
+export async function getAppEventsBySession(sessionId: string): Promise<AppEvent[]> {
+  const all = await readAllAppEvents();
+  return all
+    .filter((e) => e.sessionId === sessionId)
+    .sort(
+      (a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime(),
+    );
+}
+
+export interface SessionSummary {
+  sessionId: string;
+  firstSeen: string;
+  lastSeen: string;
+  introWho?: string;
+  mn1Selected: string[];
+  mn3BudgetTotal?: number;
+  ask05Comment?: string;
+  endDecision?: string;
+  contacts: number;
+  ip?: string;
+  userAgent?: string;
+}
+
+export async function computeSessionSummaries(limit = 100): Promise<SessionSummary[]> {
+  const events = await readAllAppEvents();
+  const bySession = new Map<string, AppEvent[]>();
+  for (const ev of events) {
+    const arr = bySession.get(ev.sessionId) || [];
+    arr.push(ev);
+    bySession.set(ev.sessionId, arr);
+  }
+  const summaries: SessionSummary[] = [];
+  for (const [sid, arr] of bySession) {
+    arr.sort(
+      (a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime(),
+    );
+    const firstSeen = arr[0]?.timestamp || new Date().toISOString();
+    const lastSeen = arr[arr.length - 1]?.timestamp || firstSeen;
+    let introWho: string | undefined;
+    let mn1Selected: string[] = [];
+    let mn3BudgetTotal: number | undefined;
+    let ask05Comment: string | undefined;
+    let endDecision: string | undefined;
+    let contacts = 0;
+    let ip: string | undefined;
+    let userAgent: string | undefined;
+
+    for (const ev of arr) {
+      ip = ev.ip || ip;
+      userAgent = ev.userAgent || userAgent;
+      if (ev.event === "INTRO_WHO_CHOICE") {
+        const label = (
+          ev.payload?.choiceText || ev.payload?.choice || ""
+        ).toString();
+        if (label) introWho = label;
+      }
+      if (ev.event === "MN1_COMPLETE" || ev.event === "BUDGET_STEP1_COMPLETE") {
+        mn1Selected = Array.isArray(ev.payload?.selectedPolicies)
+          ? ev.payload!.selectedPolicies
+          : [];
+      }
+      if (ev.event === "MN3_BUDGET") {
+        const alloc = ev.payload?.budgetAllocation as
+          | Record<string, number>
+          | undefined;
+        if (alloc) {
+          mn3BudgetTotal = Object.values(alloc).reduce(
+            (a, b) => a + (Number(b) || 0),
+            0,
+          );
+        }
+      }
+      if (ev.event === "ASK05_COMMENT") {
+        const c = (ev.payload?.comment || "").toString();
+        if (c) ask05Comment = c;
+      }
+      if (ev.event === "ENDSEQ_DECISION") {
+        const choice = ev.payload?.choice as string | undefined;
+        if (choice) endDecision = choice;
+      }
+      if (ev.event === "ENDSEQ_CONTACT") {
+        contacts += 1;
+      }
+    }
+
+    summaries.push({
+      sessionId: sid,
+      firstSeen,
+      lastSeen,
+      introWho,
+      mn1Selected,
+      mn3BudgetTotal,
+      ask05Comment,
+      endDecision,
+      contacts,
+      ip,
+      userAgent,
+    });
+  }
+  summaries.sort((a, b) => (a.lastSeen < b.lastSeen ? 1 : -1));
+  return summaries.slice(0, Math.max(1, limit));
+}
+
 export interface UserJourneyStats {
   introWho: Record<string, number>;
   mn1: Record<string, number>;
