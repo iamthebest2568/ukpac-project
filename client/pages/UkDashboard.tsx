@@ -16,7 +16,6 @@ import {
 } from "recharts";
 import { clearEventLogs } from "../services/dataLogger.js";
 
-
 type StatsResponse = {
   totals: {
     totalSessions: number;
@@ -53,7 +52,6 @@ type IngestStatus = {
   video: { count: number; lastTs: string | null };
 };
 
-
 export default function UkDashboard() {
   const [stats, setStats] = useState<StatsResponse | null>(null);
   const [journey, setJourney] = useState<any>(null);
@@ -67,7 +65,10 @@ export default function UkDashboard() {
   const [ingest, setIngest] = useState<IngestStatus | null>(null);
   const [detailOpen, setDetailOpen] = useState(false);
   const [detailSession, setDetailSession] = useState<string | null>(null);
-  const [detailData, setDetailData] = useState<{ appEvents: any[]; videoEvents: any[] } | null>(null);
+  const [detailData, setDetailData] = useState<{
+    appEvents: any[];
+    videoEvents: any[];
+  } | null>(null);
 
   // Password gate
   const expected = (import.meta as any).env?.VITE_DASHBOARD_PASSWORD as
@@ -110,7 +111,9 @@ export default function UkDashboard() {
   }
 
   async function clearData() {
-    if (!window.confirm("ลบข้อมูลทั้งหมดในเซิร์ฟเวอร์? การกระทำนี้ย้อนกลับไม่ได้")) {
+    if (
+      !window.confirm("ลบข้อมูลทั้งหมดในเซิร์ฟเวอร์? การกระทำนี้ย้อนกลับไม่ได้")
+    ) {
       return;
     }
     try {
@@ -118,7 +121,9 @@ export default function UkDashboard() {
       const res = await fetch("/api/clear-data", { method: "DELETE" });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       // Clear client-side stored logs/session id
-      try { clearEventLogs(); } catch {}
+      try {
+        clearEventLogs();
+      } catch {}
       setJourney(null);
       await load();
     } catch (e: any) {
@@ -148,7 +153,6 @@ export default function UkDashboard() {
     if (autoRefresh) id = setInterval(load, 5000);
     return () => id && clearInterval(id);
   }, [authed, autoRefresh]);
-
 
   return (
     <div className="min-h-screen bg-[#0e0e0e] text-white font-[Prompt]">
@@ -200,7 +204,14 @@ export default function UkDashboard() {
               </div>
               {ingest && (
                 <div className="text-white/60 text-xs mt-1">
-                  การเก็บข้อมูล • App: {ingest.app.count} เหตุการณ์, ล่าสุด {ingest.app.lastTs ? new Date(ingest.app.lastTs).toLocaleString() : "-"} • วิดีโอ: {ingest.video.count} เหตุการณ์, ล่าสุด {ingest.video.lastTs ? new Date(ingest.video.lastTs).toLocaleString() : "-"}
+                  การเก็บข้อมูล • App: {ingest.app.count} เหตุการณ์, ล่าสุด{" "}
+                  {ingest.app.lastTs
+                    ? new Date(ingest.app.lastTs).toLocaleString()
+                    : "-"}{" "}
+                  • วิดีโอ: {ingest.video.count} เหตุการณ์, ล่าสุด{" "}
+                  {ingest.video.lastTs
+                    ? new Date(ingest.video.lastTs).toLocaleString()
+                    : "-"}
                 </div>
               )}
             </div>
@@ -229,7 +240,6 @@ export default function UkDashboard() {
               </label>
             </div>
           </div>
-
 
           {loading && <div className="text-white/80">กำลั��โหลดข้อมูล...</div>}
           {error && <div className="text-red-400">เกิดข้อผิดพลาด: {error}</div>}
@@ -362,14 +372,25 @@ export default function UkDashboard() {
                     </thead>
                     <tbody>
                       {sessions.slice(0, 50).map((s) => (
-                        <tr key={s.sessionId} className="border-t border-white/10">
-                          <td className="py-2 pr-4 whitespace-nowrap">{new Date(s.lastSeen).toLocaleString()}</td>
-                          <td className="py-2 pr-4">{s.sessionId.slice(0, 10)}…</td>
+                        <tr
+                          key={s.sessionId}
+                          className="border-t border-white/10"
+                        >
+                          <td className="py-2 pr-4 whitespace-nowrap">
+                            {new Date(s.lastSeen).toLocaleString()}
+                          </td>
+                          <td className="py-2 pr-4">
+                            {s.sessionId.slice(0, 10)}…
+                          </td>
                           <td className="py-2 pr-4">{s.introWho || "-"}</td>
-                          <td className="py-2 pr-4">{s.mn1Selected?.join(", ") || "-"}</td>
+                          <td className="py-2 pr-4">
+                            {s.mn1Selected?.join(", ") || "-"}
+                          </td>
                           <td className="py-2 pr-4">{s.endDecision || "-"}</td>
                           <td className="py-2 pr-4">{s.contacts || 0}</td>
-                          <td className="py-2 pr-4 truncate max-w-[240px]">{s.ask05Comment || "-"}</td>
+                          <td className="py-2 pr-4 truncate max-w-[240px]">
+                            {s.ask05Comment || "-"}
+                          </td>
                           <td className="py-2 pr-4">
                             <button
                               className="text-xs rounded bg-white/10 hover:bg-white/20 px-2 py-1"
@@ -377,7 +398,9 @@ export default function UkDashboard() {
                                 setDetailSession(s.sessionId);
                                 setDetailOpen(true);
                                 setDetailData(null);
-                                const resp = await fetch(`/api/session/${s.sessionId}`);
+                                const resp = await fetch(
+                                  `/api/session/${s.sessionId}`,
+                                );
                                 if (resp.ok) setDetailData(await resp.json());
                               }}
                             >
@@ -390,10 +413,6 @@ export default function UkDashboard() {
                   </table>
                 </div>
               </Card>
-
-
-
-
 
               {/* Export */}
               <div className="flex flex-wrap gap-3 justify-end">
@@ -439,13 +458,28 @@ export default function UkDashboard() {
       )}
 
       {detailOpen && (
-        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50" onClick={() => setDetailOpen(false)}>
-          <div className="bg-[#121212] border border-white/10 rounded-lg w-[90vw] max-w-3xl max-h-[80vh] overflow-auto p-4" onClick={(e) => e.stopPropagation()}>
+        <div
+          className="fixed inset-0 bg-black/60 flex items-center justify-center z-50"
+          onClick={() => setDetailOpen(false)}
+        >
+          <div
+            className="bg-[#121212] border border-white/10 rounded-lg w-[90vw] max-w-3xl max-h-[80vh] overflow-auto p-4"
+            onClick={(e) => e.stopPropagation()}
+          >
             <div className="flex items-center justify-between mb-2">
-              <div className="text-lg font-medium">รายละเอียดเซสชัน: {detailSession?.slice(0, 12)}…</div>
-              <button className="text-white/70 hover:text-white" onClick={() => setDetailOpen(false)}>ปิด</button>
+              <div className="text-lg font-medium">
+                รายละเอียดเซสชัน: {detailSession?.slice(0, 12)}…
+              </div>
+              <button
+                className="text-white/70 hover:text-white"
+                onClick={() => setDetailOpen(false)}
+              >
+                ปิด
+              </button>
             </div>
-            {!detailData && <div className="text-white/70 text-sm">กำลังโหลด...</div>}
+            {!detailData && (
+              <div className="text-white/70 text-sm">กำลังโหลด...</div>
+            )}
             {detailData && (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                 <div>
@@ -453,9 +487,15 @@ export default function UkDashboard() {
                   <ul className="space-y-1">
                     {detailData.appEvents.map((e, i) => (
                       <li key={i} className="border-b border-white/10 py-1">
-                        <div className="text-white/60 text-xs">{new Date(e.timestamp).toLocaleString()}</div>
+                        <div className="text-white/60 text-xs">
+                          {new Date(e.timestamp).toLocaleString()}
+                        </div>
                         <div className="font-medium">{e.event}</div>
-                        {e.payload && <pre className="text-xs whitespace-pre-wrap break-words text-white/70">{JSON.stringify(e.payload)}</pre>}
+                        {e.payload && (
+                          <pre className="text-xs whitespace-pre-wrap break-words text-white/70">
+                            {JSON.stringify(e.payload)}
+                          </pre>
+                        )}
                       </li>
                     ))}
                   </ul>
@@ -465,9 +505,13 @@ export default function UkDashboard() {
                   <ul className="space-y-1">
                     {detailData.videoEvents.map((e, i) => (
                       <li key={i} className="border-b border-white/10 py-1">
-                        <div className="text-white/60 text-xs">{new Date(e.timestamp).toLocaleString()}</div>
+                        <div className="text-white/60 text-xs">
+                          {new Date(e.timestamp).toLocaleString()}
+                        </div>
                         <div className="font-medium">{e.eventName}</div>
-                        <div className="text-white/70 text-xs">{e.variantName || e.choiceText || "-"}</div>
+                        <div className="text-white/70 text-xs">
+                          {e.variantName || e.choiceText || "-"}
+                        </div>
                       </li>
                     ))}
                   </ul>
@@ -477,7 +521,6 @@ export default function UkDashboard() {
           </div>
         </div>
       )}
-
     </div>
   );
 }

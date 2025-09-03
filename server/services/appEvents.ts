@@ -51,12 +51,15 @@ export async function readAllAppEvents(): Promise<AppEvent[]> {
   }
 }
 
-export async function getAppEventsBySession(sessionId: string): Promise<AppEvent[]> {
+export async function getAppEventsBySession(
+  sessionId: string,
+): Promise<AppEvent[]> {
   const all = await readAllAppEvents();
   return all
     .filter((e) => e.sessionId === sessionId)
     .sort(
-      (a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime(),
+      (a, b) =>
+        new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime(),
     );
 }
 
@@ -74,7 +77,9 @@ export interface SessionSummary {
   userAgent?: string;
 }
 
-export async function computeSessionSummaries(limit = 100): Promise<SessionSummary[]> {
+export async function computeSessionSummaries(
+  limit = 100,
+): Promise<SessionSummary[]> {
   const events = await readAllAppEvents();
   const bySession = new Map<string, AppEvent[]>();
   for (const ev of events) {
@@ -85,7 +90,8 @@ export async function computeSessionSummaries(limit = 100): Promise<SessionSumma
   const summaries: SessionSummary[] = [];
   for (const [sid, arr] of bySession) {
     arr.sort(
-      (a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime(),
+      (a, b) =>
+        new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime(),
     );
     const firstSeen = arr[0]?.timestamp || new Date().toISOString();
     const lastSeen = arr[arr.length - 1]?.timestamp || firstSeen;
@@ -103,7 +109,9 @@ export async function computeSessionSummaries(limit = 100): Promise<SessionSumma
       userAgent = ev.userAgent || userAgent;
       if (ev.event === "INTRO_WHO_CHOICE") {
         const label = (
-          ev.payload?.choiceText || ev.payload?.choice || ""
+          ev.payload?.choiceText ||
+          ev.payload?.choice ||
+          ""
         ).toString();
         if (label) introWho = label;
       }
@@ -154,7 +162,10 @@ export async function computeSessionSummaries(limit = 100): Promise<SessionSumma
   return summaries.slice(0, Math.max(1, limit));
 }
 
-export async function getAppIngestStatus(): Promise<{ count: number; lastTs: string | null }> {
+export async function getAppIngestStatus(): Promise<{
+  count: number;
+  lastTs: string | null;
+}> {
   const DATA_DIR = process.env.DATA_DIR || path.join(process.cwd(), ".data");
   const APP_EVENTS_FILE = path.join(DATA_DIR, "app-events.jsonl");
   try {

@@ -10,10 +10,20 @@ export async function listRecentEvents(limit = 50): Promise<VideoEvent[]> {
   const supabaseUrl = process.env.SUPABASE_URL as string | undefined;
   const supabaseKey = process.env.SUPABASE_ANON_KEY as string | undefined;
   if (supabaseUrl && supabaseKey) {
-    const params = new URLSearchParams({ select: "*", order: "id.desc", limit: String(limit) });
-    const res = await fetch(`${supabaseUrl}/rest/v1/video_events?${params.toString()}`, {
-      headers: { apikey: supabaseKey, Authorization: `Bearer ${supabaseKey}` },
+    const params = new URLSearchParams({
+      select: "*",
+      order: "id.desc",
+      limit: String(limit),
     });
+    const res = await fetch(
+      `${supabaseUrl}/rest/v1/video_events?${params.toString()}`,
+      {
+        headers: {
+          apikey: supabaseKey,
+          Authorization: `Bearer ${supabaseKey}`,
+        },
+      },
+    );
     if (res.ok) {
       const rows = await res.json();
       return (rows as any[]).map((r) => ({
@@ -26,7 +36,9 @@ export async function listRecentEvents(limit = 50): Promise<VideoEvent[]> {
       }));
     }
   }
-  try { fs.mkdirSync(DATA_DIR, { recursive: true }); } catch {}
+  try {
+    fs.mkdirSync(DATA_DIR, { recursive: true });
+  } catch {}
   let lines: string[] = [];
   try {
     const raw = await fs.promises.readFile(EVENTS_FILE, "utf8");
@@ -45,15 +57,23 @@ export async function listRecentEvents(limit = 50): Promise<VideoEvent[]> {
   return evs.reverse();
 }
 
-export async function listVideoEventsBySession(sessionId: string): Promise<VideoEvent[]> {
+export async function listVideoEventsBySession(
+  sessionId: string,
+): Promise<VideoEvent[]> {
   const supabaseUrl = process.env.SUPABASE_URL as string | undefined;
   const supabaseKey = process.env.SUPABASE_ANON_KEY as string | undefined;
   if (supabaseUrl && supabaseKey) {
     const params = new URLSearchParams({ select: "*", order: "id.asc" });
     params.append("session_id", `eq.${sessionId}`);
-    const res = await fetch(`${supabaseUrl}/rest/v1/video_events?${params.toString()}`, {
-      headers: { apikey: supabaseKey, Authorization: `Bearer ${supabaseKey}` },
-    });
+    const res = await fetch(
+      `${supabaseUrl}/rest/v1/video_events?${params.toString()}`,
+      {
+        headers: {
+          apikey: supabaseKey,
+          Authorization: `Bearer ${supabaseKey}`,
+        },
+      },
+    );
     if (res.ok) {
       const rows = await res.json();
       return (rows as any[]).map((r) => ({
@@ -66,7 +86,9 @@ export async function listVideoEventsBySession(sessionId: string): Promise<Video
       }));
     }
   }
-  try { fs.mkdirSync(DATA_DIR, { recursive: true }); } catch {}
+  try {
+    fs.mkdirSync(DATA_DIR, { recursive: true });
+  } catch {}
   let lines: string[] = [];
   try {
     const raw = await fs.promises.readFile(EVENTS_FILE, "utf8");
@@ -82,32 +104,50 @@ export async function listVideoEventsBySession(sessionId: string): Promise<Video
       }
     } catch {}
   }
-  evs.sort((a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime());
+  evs.sort(
+    (a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime(),
+  );
   return evs;
 }
 
-export async function getVideoIngestStatus(): Promise<{ count: number; lastTs: string | null }> {
+export async function getVideoIngestStatus(): Promise<{
+  count: number;
+  lastTs: string | null;
+}> {
   const supabaseUrl = process.env.SUPABASE_URL as string | undefined;
   const supabaseKey = process.env.SUPABASE_ANON_KEY as string | undefined;
   if (supabaseUrl && supabaseKey) {
-    const params = new URLSearchParams({ select: "*", order: "id.desc", limit: "1" });
-    const res = await fetch(`${supabaseUrl}/rest/v1/video_events?${params.toString()}`, {
-      headers: {
-        apikey: supabaseKey,
-        Authorization: `Bearer ${supabaseKey}`,
-        Prefer: "count=exact",
-        Range: "0-0",
-      } as any,
+    const params = new URLSearchParams({
+      select: "*",
+      order: "id.desc",
+      limit: "1",
     });
+    const res = await fetch(
+      `${supabaseUrl}/rest/v1/video_events?${params.toString()}`,
+      {
+        headers: {
+          apikey: supabaseKey,
+          Authorization: `Bearer ${supabaseKey}`,
+          Prefer: "count=exact",
+          Range: "0-0",
+        } as any,
+      },
+    );
     if (res.ok) {
       const cr = res.headers.get("content-range");
       const total = cr ? Number(cr.split("/")[1]) : NaN;
       const rows = await res.json();
-      const lastTs = Array.isArray(rows) && rows[0]?.timestamp ? rows[0].timestamp : null;
-      return { count: Number.isFinite(total) ? total : rows.length || 0, lastTs };
+      const lastTs =
+        Array.isArray(rows) && rows[0]?.timestamp ? rows[0].timestamp : null;
+      return {
+        count: Number.isFinite(total) ? total : rows.length || 0,
+        lastTs,
+      };
     }
   }
-  try { fs.mkdirSync(DATA_DIR, { recursive: true }); } catch {}
+  try {
+    fs.mkdirSync(DATA_DIR, { recursive: true });
+  } catch {}
   try {
     const raw = await fs.promises.readFile(EVENTS_FILE, "utf8");
     const lines = raw.split(/\n+/).filter(Boolean);

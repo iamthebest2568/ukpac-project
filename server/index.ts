@@ -10,7 +10,11 @@ import {
   appendEvent,
   computeStats,
 } from "./services/videoAnalytics";
-import { listRecentEvents, listVideoEventsBySession, getVideoIngestStatus } from "./services/videoAnalytics.extras";
+import {
+  listRecentEvents,
+  listVideoEventsBySession,
+  getVideoIngestStatus,
+} from "./services/videoAnalytics.extras";
 import {
   AppEventSchema,
   appendAppEvent,
@@ -101,12 +105,10 @@ export function createServer() {
       const agg = await computeUserJourneyStats(recent);
       res.status(200).json(agg);
     } catch (e: any) {
-      res
-        .status(500)
-        .json({
-          ok: false,
-          error: e?.message || "failed to compute journey stats",
-        });
+      res.status(500).json({
+        ok: false,
+        error: e?.message || "failed to compute journey stats",
+      });
     }
   });
 
@@ -121,7 +123,10 @@ export function createServer() {
     } catch (e: any) {
       res
         .status(500)
-        .json({ ok: false, error: e?.message || "failed to compute session summaries" });
+        .json({
+          ok: false,
+          error: e?.message || "failed to compute session summaries",
+        });
     }
   });
 
@@ -170,7 +175,8 @@ export function createServer() {
   // Clear analytics data: local files and Supabase (if configured)
   app.delete("/api/clear-data", async (_req, res) => {
     try {
-      const DATA_DIR = process.env.DATA_DIR || path.join(process.cwd(), ".data");
+      const DATA_DIR =
+        process.env.DATA_DIR || path.join(process.cwd(), ".data");
       const files = ["events.jsonl", "app-events.jsonl"].map((f) =>
         path.join(DATA_DIR, f),
       );
