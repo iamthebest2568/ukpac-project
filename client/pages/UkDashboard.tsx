@@ -253,43 +253,77 @@ export default function UkDashboard() {
                 <Card title="สรุปพฤติกรรมผู้ใช้ (User Journey)">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <div className="text-white/80 mb-2">Intro: คุณเป็นใคร</div>
+                      <div className="text-white/80 mb-2">
+                        Intro: คุณเป็นใคร
+                      </div>
                       <ul className="space-y-1 text-sm">
-                        {Object.entries(journey.introWho || {}).map(([k,v]) => (
-                          <li key={k} className="flex justify-between"><span>{k}</span><span className="text-white/70">{v as any}</span></li>
+                        {Object.entries(journey.introWho || {}).map(
+                          ([k, v]) => (
+                            <li key={k} className="flex justify-between">
+                              <span>{k}</span>
+                              <span className="text-white/70">{v as any}</span>
+                            </li>
+                          ),
+                        )}
+                      </ul>
+                    </div>
+                    <div>
+                      <div className="text-white/80 mb-2">
+                        Stornaway: ฉากที่เข้า
+                      </div>
+                      <ul className="space-y-1 text-sm">
+                        {Object.entries(journey.stornawayVariants || {})
+                          .slice(0, 8)
+                          .map(([k, v]) => (
+                            <li key={k} className="flex justify-between">
+                              <span>{k}</span>
+                              <span className="text-white/70">{v as any}</span>
+                            </li>
+                          ))}
+                      </ul>
+                    </div>
+                    <div>
+                      <div className="text-white/80 mb-2">
+                        MN1: นโยบายที่เลือก
+                      </div>
+                      <ul className="space-y-1 text-sm">
+                        {Object.entries(journey.mn1 || {}).map(([k, v]) => (
+                          <li key={k} className="flex justify-between">
+                            <span>{k}</span>
+                            <span className="text-white/70">{v as any}</span>
+                          </li>
                         ))}
                       </ul>
                     </div>
                     <div>
-                      <div className="text-white/80 mb-2">Stornaway: ฉากที่เข้า</div>
+                      <div className="text-white/80 mb-2">
+                        MN3: งบประมาณเฉลี่ย
+                      </div>
                       <ul className="space-y-1 text-sm">
-                        {Object.entries(journey.stornawayVariants || {}).slice(0,8).map(([k,v]) => (
-                          <li key={k} className="flex justify-between"><span>{k}</span><span className="text-white/70">{v as any}</span></li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div>
-                      <div className="text-white/80 mb-2">MN1: นโยบายที่เลือก</div>
-                      <ul className="space-y-1 text-sm">
-                        {Object.entries(journey.mn1 || {}).map(([k,v]) => (
-                          <li key={k} className="flex justify-between"><span>{k}</span><span className="text-white/70">{v as any}</span></li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div>
-                      <div className="text-white/80 mb-2">MN3: งบประมาณเฉลี่ย</div>
-                      <ul className="space-y-1 text-sm">
-                        {Object.entries(journey.mn3Budgets || {}).map(([k,v]: any) => (
-                          <li key={k} className="flex justify-between"><span>{k}</span><span className="text-white/70">{Math.round(v.avg)}</span></li>
-                        ))}
+                        {Object.entries(journey.mn3Budgets || {}).map(
+                          ([k, v]: any) => (
+                            <li key={k} className="flex justify-between">
+                              <span>{k}</span>
+                              <span className="text-white/70">
+                                {Math.round(v.avg)}
+                              </span>
+                            </li>
+                          ),
+                        )}
                       </ul>
                     </div>
                     <div className="md:col-span-2">
-                      <div className="text-white/80 mb-2">Ask05: ความคิดเห็นล่าสุด</div>
+                      <div className="text-white/80 mb-2">
+                        Ask05: ความคิดเห็นล่าสุด
+                      </div>
                       <ul className="space-y-1 text-sm">
-                        {(journey.ask05Samples || []).map((c: string, i: number) => (
-                          <li key={i} className="truncate">• {c}</li>
-                        ))}
+                        {(journey.ask05Samples || []).map(
+                          (c: string, i: number) => (
+                            <li key={i} className="truncate">
+                              • {c}
+                            </li>
+                          ),
+                        )}
                       </ul>
                     </div>
                   </div>

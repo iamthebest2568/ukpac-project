@@ -17,7 +17,9 @@ const DATA_DIR = process.env.DATA_DIR || path.join(process.cwd(), ".data");
 const APP_EVENTS_FILE = path.join(DATA_DIR, "app-events.jsonl");
 
 function ensureDir() {
-  try { fs.mkdirSync(DATA_DIR, { recursive: true }); } catch {}
+  try {
+    fs.mkdirSync(DATA_DIR, { recursive: true });
+  } catch {}
 }
 
 export async function appendAppEvent(ev: AppEvent) {
@@ -36,7 +38,10 @@ export async function readAllAppEvents(): Promise<AppEvent[]> {
       try {
         const j = JSON.parse(line);
         if (j && j.sessionId && j.event) {
-          events.push({ ...j, timestamp: j.timestamp || new Date().toISOString() });
+          events.push({
+            ...j,
+            timestamp: j.timestamp || new Date().toISOString(),
+          });
         }
       } catch {}
     }
@@ -58,14 +63,24 @@ export interface UserJourneyStats {
   ipCount: number;
 }
 
-export async function computeUserJourneyStats(videoEvents: Array<{ sessionId: string; eventName: string; variantName?: string }>): Promise<UserJourneyStats & { stornawayVariants: Record<string, number> }> {
+export async function computeUserJourneyStats(
+  videoEvents: Array<{
+    sessionId: string;
+    eventName: string;
+    variantName?: string;
+  }>,
+): Promise<UserJourneyStats & { stornawayVariants: Record<string, number> }> {
   const appEvents = await readAllAppEvents();
 
   // Intro
   const introWho: Record<string, number> = {};
   for (const ev of appEvents) {
     if (ev.event === "INTRO_WHO_CHOICE") {
-      const label = (ev.payload?.choiceText || ev.payload?.choice || "").toString();
+      const label = (
+        ev.payload?.choiceText ||
+        ev.payload?.choice ||
+        ""
+      ).toString();
       if (!label) continue;
       introWho[label] = (introWho[label] || 0) + 1;
     }
@@ -76,7 +91,9 @@ export async function computeUserJourneyStats(videoEvents: Array<{ sessionId: st
   const mn1BySession = new Map<string, string[]>();
   for (const ev of appEvents) {
     if (ev.event === "MN1_COMPLETE" || ev.event === "BUDGET_STEP1_COMPLETE") {
-      const arr: string[] = Array.isArray(ev.payload?.selectedPolicies) ? ev.payload!.selectedPolicies : [];
+      const arr: string[] = Array.isArray(ev.payload?.selectedPolicies)
+        ? ev.payload!.selectedPolicies
+        : [];
       mn1BySession.set(ev.sessionId, arr);
       for (const p of arr) mn1[p] = (mn1[p] || 0) + 1;
     }
@@ -87,23 +104,33 @@ export async function computeUserJourneyStats(videoEvents: Array<{ sessionId: st
   for (const ev of appEvents) {
     if (ev.event === "MN2_STEP") {
       const priority = ev.payload?.priority as string | undefined;
-      const groups: string[] = Array.isArray(ev.payload?.selectedGroups) ? ev.payload!.selectedGroups : [];
+      const groups: string[] = Array.isArray(ev.payload?.selectedGroups)
+        ? ev.payload!.selectedGroups
+        : [];
       if (!priority) continue;
       if (!mn2ByMn1[priority]) mn2ByMn1[priority] = {};
-      for (const g of groups) mn2ByMn1[priority][g] = (mn2ByMn1[priority][g] || 0) + 1;
+      for (const g of groups)
+        mn2ByMn1[priority][g] = (mn2ByMn1[priority][g] || 0) + 1;
     }
   }
 
   // MN3 selection and budgets
   const mn3Selection: Record<string, number> = {};
-  const mn3Budgets: Record<string, { total: number; count: number; avg: number }> = {};
+  const mn3Budgets: Record<
+    string,
+    { total: number; count: number; avg: number }
+  > = {};
   for (const ev of appEvents) {
     if (ev.event === "MN3_SELECT") {
-      const arr: string[] = Array.isArray(ev.payload?.selectedPolicies) ? ev.payload!.selectedPolicies : [];
+      const arr: string[] = Array.isArray(ev.payload?.selectedPolicies)
+        ? ev.payload!.selectedPolicies
+        : [];
       for (const p of arr) mn3Selection[p] = (mn3Selection[p] || 0) + 1;
     }
     if (ev.event === "MN3_BUDGET") {
-      const alloc = ev.payload?.budgetAllocation as Record<string, number> | undefined;
+      const alloc = ev.payload?.budgetAllocation as
+        | Record<string, number>
+        | undefined;
       if (alloc) {
         for (const [policy, amount] of Object.entries(alloc)) {
           const cur = mn3Budgets[policy] || { total: 0, count: 0, avg: 0 };
@@ -117,14 +144,20 @@ export async function computeUserJourneyStats(videoEvents: Array<{ sessionId: st
   }
 
   // Ask05 comments
-  const comments = appEvents.filter((e) => e.event === "ASK05_COMMENT").map((e) => (e.payload?.comment || "").toString()).filter(Boolean);
+  const comments = appEvents
+    .filter((e) => e.event === "ASK05_COMMENT")
+    .map((e) => (e.payload?.comment || "").toString())
+    .filter(Boolean);
 
   // End sequence
-  let participate = 0, decline = 0, contacts = 0;
+  let participate = 0,
+    decline = 0,
+    contacts = 0;
   for (const ev of appEvents) {
     if (ev.event === "ENDSEQ_DECISION") {
       const choice = ev.payload?.choice;
-      if (choice === "participate") participate += 1; else if (choice === "decline") decline += 1;
+      if (choice === "participate") participate += 1;
+      else if (choice === "decline") decline += 1;
     }
     if (ev.event === "ENDSEQ_CONTACT") contacts += 1;
   }

@@ -23,14 +23,17 @@ const Step2_Allocation = ({
   onBack,
   journeyData,
 }: Step2_AllocationProps) => {
-  const [budgetAllocation, setBudgetAllocation] = useState<BudgetAllocation>({});
+  const [budgetAllocation, setBudgetAllocation] = useState<BudgetAllocation>(
+    {},
+  );
   const [selectedPriorities, setSelectedPriorities] = useState<string[]>([]);
 
   const totalBudget = 100;
 
   useEffect(() => {
     // Get the selected priorities from Step1_Choice
-    const priorities = journeyData?.budget_step1_choice?.selectedPriorities || [];
+    const priorities =
+      journeyData?.budget_step1_choice?.selectedPriorities || [];
     setSelectedPriorities(priorities);
 
     // Initialize budget allocation with 0 for each selected priority
@@ -82,8 +85,20 @@ const Step2_Allocation = ({
       },
     };
     try {
-      const body = { sessionId: sessionID || (sessionStorage.getItem("ukPackSessionID") || ""), event: "MN3_BUDGET", payload: { budgetAllocation, allocatedBudget, selectedPriorities } };
-      navigator.sendBeacon?.("/api/track", new Blob([JSON.stringify(body)], { type: "application/json" })) || fetch("/api/track", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+      const body = {
+        sessionId: sessionID || sessionStorage.getItem("ukPackSessionID") || "",
+        event: "MN3_BUDGET",
+        payload: { budgetAllocation, allocatedBudget, selectedPriorities },
+      };
+      navigator.sendBeacon?.(
+        "/api/track",
+        new Blob([JSON.stringify(body)], { type: "application/json" }),
+      ) ||
+        fetch("/api/track", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body),
+        });
     } catch {}
     onNext(data);
   };
@@ -100,7 +115,7 @@ const Step2_Allocation = ({
           className="w-full h-full object-cover object-center"
         />
       </div>
-      
+
       {/* Overlay */}
       <div className="absolute inset-0 bg-black bg-opacity-90"></div>
 
@@ -128,7 +143,7 @@ const Step2_Allocation = ({
                   className="w-[47px] h-[55px]"
                 />
               </div>
-              
+
               {/* Budget Text */}
               <div className="absolute right-[30px] top-[8px]">
                 <div className="text-[#EFBA31] font-prompt text-[18px] font-medium text-center">
@@ -144,12 +159,15 @@ const Step2_Allocation = ({
           {/* Budget Allocation Items */}
           <div className="px-[41px] space-y-[25px] mb-[60px]">
             {selectedPriorities.map((priority, index) => (
-              <div key={priority} className="flex items-center justify-between w-[308px] h-[50px]">
+              <div
+                key={priority}
+                className="flex items-center justify-between w-[308px] h-[50px]"
+              >
                 {/* Priority Label */}
                 <div className="text-white font-prompt text-[20px] font-medium leading-normal tracking-[0.4px] flex-1">
                   {priority}
                 </div>
-                
+
                 {/* Budget Input */}
                 <div className="w-[80px] h-[50px] rounded-[10px] border border-[#E4E9F2] bg-white flex items-center justify-center">
                   <input
@@ -157,7 +175,9 @@ const Step2_Allocation = ({
                     min="0"
                     max={totalBudget}
                     value={budgetAllocation[priority] || 0}
-                    onChange={(e) => handleBudgetChange(priority, e.target.value)}
+                    onChange={(e) =>
+                      handleBudgetChange(priority, e.target.value)
+                    }
                     className="w-full h-full text-center text-black font-prompt text-[20px] font-medium leading-7 tracking-[0.4px] bg-transparent border-none outline-none"
                     placeholder="0"
                   />

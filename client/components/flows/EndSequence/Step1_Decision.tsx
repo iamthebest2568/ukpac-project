@@ -41,22 +41,43 @@ const Step1_Decision = ({
 
   // Define buttons for the FigmaStyle1Layout
   // Track to server
-  const trackDecision = (choice: "participate" | "decline", choiceText: string) => {
+  const trackDecision = (
+    choice: "participate" | "decline",
+    choiceText: string,
+  ) => {
     try {
-      const body = { sessionId: sessionID || (sessionStorage.getItem("ukPackSessionID") || ""), event: "ENDSEQ_DECISION", payload: { choice, choiceText } };
-      navigator.sendBeacon?.("/api/track", new Blob([JSON.stringify(body)], { type: "application/json" })) || fetch("/api/track", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+      const body = {
+        sessionId: sessionID || sessionStorage.getItem("ukPackSessionID") || "",
+        event: "ENDSEQ_DECISION",
+        payload: { choice, choiceText },
+      };
+      navigator.sendBeacon?.(
+        "/api/track",
+        new Blob([JSON.stringify(body)], { type: "application/json" }),
+      ) ||
+        fetch("/api/track", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body),
+        });
     } catch {}
   };
 
   const buttons = [
     {
       text: "ลุ้นรับรางวัล",
-      onClick: () => { trackDecision("participate", "ลุ้นรับรางวัล"); handleChoice("participate"); },
+      onClick: () => {
+        trackDecision("participate", "ลุ้นรับรางวัล");
+        handleChoice("participate");
+      },
       ariaLabel: "เข้าร่วมโครงการและกรอกข้อมูลเพื่อรับรางวัล",
     },
     {
       text: "ไม่",
-      onClick: () => { trackDecision("decline", "ไม่"); handleChoice("decline"); },
+      onClick: () => {
+        trackDecision("decline", "ไม่");
+        handleChoice("decline");
+      },
       ariaLabel: "ไม่เข้าร่วมโครงการรับรางวัล",
     },
   ];

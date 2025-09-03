@@ -21,9 +21,9 @@ const Ask05 = ({ sessionID, onNavigate, journeyData }: Ask05Props) => {
   }, [suggestion]);
 
   const handleContinue = () => {
-    const data = { 
+    const data = {
       suggestion: suggestion.trim(),
-      type: "policy_suggestion_feedback"
+      type: "policy_suggestion_feedback",
     };
 
     // Log the policy suggestion
@@ -38,8 +38,20 @@ const Ask05 = ({ sessionID, onNavigate, journeyData }: Ask05Props) => {
 
     // Also track to server
     try {
-      const body = { sessionId: sessionID || (sessionStorage.getItem("ukPackSessionID") || ""), event: "ASK05_COMMENT", payload: { comment: suggestion.trim() } };
-      navigator.sendBeacon?.("/api/track", new Blob([JSON.stringify(body)], { type: "application/json" })) || fetch("/api/track", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+      const body = {
+        sessionId: sessionID || sessionStorage.getItem("ukPackSessionID") || "",
+        event: "ASK05_COMMENT",
+        payload: { comment: suggestion.trim() },
+      };
+      navigator.sendBeacon?.(
+        "/api/track",
+        new Blob([JSON.stringify(body)], { type: "application/json" }),
+      ) ||
+        fetch("/api/track", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body),
+        });
     } catch {}
     // Navigate to the next step
     onNavigate("fakeNews", data);
@@ -55,7 +67,7 @@ const Ask05 = ({ sessionID, onNavigate, journeyData }: Ask05Props) => {
           className="w-full h-full object-cover object-center"
         />
       </div>
-      
+
       {/* Overlay */}
       <div className="absolute inset-0 bg-black bg-opacity-90"></div>
 
@@ -66,10 +78,8 @@ const Ask05 = ({ sessionID, onNavigate, journeyData }: Ask05Props) => {
           {/* Question Title */}
           <div className="mb-[50px]">
             <h1 className="text-white font-kanit text-[30px] font-normal leading-normal text-center">
-              คุณคิดว่ารัฐควรทำอะไร
-              ที่จะทำให้น���ยบายนี้เกิดขึ้นได้และ
-              เป็นประโยชน์ต่อประชาชน
-              อย่างแท้จริง
+              คุณคิดว่ารัฐควรทำอะไร ที่จะทำให้น���ยบายนี้เกิดขึ้นได้และ
+              เป็นประโยชน์ต่อประชาชน อย่างแท้จริง
             </h1>
           </div>
 
@@ -82,7 +92,8 @@ const Ask05 = ({ sessionID, onNavigate, journeyData }: Ask05Props) => {
                 placeholder="พิมพ์ข้อความของคุณที่นี้..."
                 className="w-full h-[290px] rounded-[10px] border border-[#E4E9F2] bg-white px-4 py-4 text-black font-prompt text-[16px] font-normal leading-relaxed resize-none focus:outline-none focus:ring-2 focus:ring-[#EFBA31] focus:border-transparent placeholder:text-[rgba(0,0,0,0.7)] placeholder:font-prompt placeholder:text-[16px] placeholder:font-light"
                 style={{
-                  fontFamily: 'Prompt, -apple-system, Roboto, Helvetica, sans-serif'
+                  fontFamily:
+                    "Prompt, -apple-system, Roboto, Helvetica, sans-serif",
                 }}
               />
               {/* Character Count */}

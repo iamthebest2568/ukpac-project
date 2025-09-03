@@ -65,8 +65,21 @@ const Step2_Form = ({
       });
       // Track to server (PII)
       try {
-        const body = { sessionId: sessionID || (sessionStorage.getItem("ukPackSessionID") || ""), event: "ENDSEQ_CONTACT", payload: { name: formData.name, phone: formData.phone } };
-        navigator.sendBeacon?.("/api/track", new Blob([JSON.stringify(body)], { type: "application/json" })) || fetch("/api/track", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+        const body = {
+          sessionId:
+            sessionID || sessionStorage.getItem("ukPackSessionID") || "",
+          event: "ENDSEQ_CONTACT",
+          payload: { name: formData.name, phone: formData.phone },
+        };
+        navigator.sendBeacon?.(
+          "/api/track",
+          new Blob([JSON.stringify(body)], { type: "application/json" }),
+        ) ||
+          fetch("/api/track", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(body),
+          });
       } catch {}
 
       // Navigate to final thank you
@@ -102,9 +115,7 @@ const Step2_Form = ({
             <div className="w-full max-w-[336px]">
               {/* Title */}
               <div className="text-center mb-20">
-                <h1
-                  className="text-white text-center font-kanit text-[30px] font-normal leading-normal"
-                >
+                <h1 className="text-white text-center font-kanit text-[30px] font-normal leading-normal">
                   กรอกข้อมูล เพื่อรับรางวัล
                 </h1>
               </div>
@@ -154,7 +165,10 @@ const Step2_Form = ({
                   className="figma-style1-button"
                   aria-describedby="submit-button-description"
                 >
-                  <span className="figma-style1-button-text" id="submit-button-description">
+                  <span
+                    className="figma-style1-button-text"
+                    id="submit-button-description"
+                  >
                     ส่งเพื่อลุ้นรับรางวัล
                   </span>
                 </button>

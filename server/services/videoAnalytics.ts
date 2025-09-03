@@ -70,18 +70,29 @@ export interface StatsResponse {
     avgSessionLengthSeconds: number;
   };
   timeseries: Array<{ date: string; plays: number }>;
-  variants: Array<{ name: string; count: number; avgTimeSeconds: number; dropoutRate: number }>;
+  variants: Array<{
+    name: string;
+    count: number;
+    avgTimeSeconds: number;
+    dropoutRate: number;
+  }>;
   choices: Array<{ name: string; count: number }>;
 }
 
-export async function computeStats(fromISO?: string, toISO?: string): Promise<StatsResponse> {
+export async function computeStats(
+  fromISO?: string,
+  toISO?: string,
+): Promise<StatsResponse> {
   const supabaseUrl = process.env.SUPABASE_URL;
   const supabaseKey = process.env.SUPABASE_ANON_KEY;
   let events: VideoEvent[] = [];
   if (supabaseUrl && supabaseKey) {
     try {
       const res = await fetch(`${supabaseUrl}/rest/v1/video_events?select=*`, {
-        headers: { apikey: supabaseKey, Authorization: `Bearer ${supabaseKey}` },
+        headers: {
+          apikey: supabaseKey,
+          Authorization: `Bearer ${supabaseKey}`,
+        },
       });
       if (res.ok) {
         const rows = await res.json();
@@ -144,10 +155,16 @@ export async function computeStats(fromISO?: string, toISO?: string): Promise<St
 
   for (const [sid, sess] of sessionsMap) {
     // sort by time
-    sess.sort((a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime());
+    sess.sort(
+      (a, b) =>
+        new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime(),
+    );
     const first = sess[0];
     const last = sess[sess.length - 1];
-    const dur = (new Date(last.timestamp).getTime() - new Date(first.timestamp).getTime()) / 1000;
+    const dur =
+      (new Date(last.timestamp).getTime() -
+        new Date(first.timestamp).getTime()) /
+      1000;
     if (isFinite(dur)) totalSessionDuration += Math.max(0, dur);
 
     for (const e of sess) {
@@ -156,7 +173,10 @@ export async function computeStats(fromISO?: string, toISO?: string): Promise<St
         const day = e.timestamp.slice(0, 10);
         playPerDay.set(day, (playPerDay.get(day) || 0) + 1);
       }
-      if (e.eventName === "sw.story.complete" || e.eventName === "sw.story.end") {
+      if (
+        e.eventName === "sw.story.complete" ||
+        e.eventName === "sw.story.end"
+      ) {
         completes += 1;
       }
       if (e.eventName === "sw.variant.start") {
@@ -176,7 +196,8 @@ export async function computeStats(fromISO?: string, toISO?: string): Promise<St
   }
 
   const completionRate = totalPlays > 0 ? completes / totalPlays : 0;
-  const avgSessionLengthSeconds = totalSessions > 0 ? totalSessionDuration / totalSessions : 0;
+  const avgSessionLengthSeconds =
+    totalSessions > 0 ? totalSessionDuration / totalSessions : 0;
 
   // Build arrays
   const timeseries = Array.from(playPerDay.entries())
@@ -187,17 +208,28 @@ export async function computeStats(fromISO?: string, toISO?: string): Promise<St
     .sort((a, b) => b[1] - a[1])
     .map(([name, count]) => {
       // approximate dropout per variant: sessions with variant start that did not complete story
-      const sessionsWithVariant = variantSessionStarts.get(name) || new Set<string>();
+      const sessionsWithVariant =
+        variantSessionStarts.get(name) || new Set<string>();
       let dropoutSessions = 0;
       for (const sid of sessionsWithVariant) {
         const sess = sessionsMap.get(sid) || [];
         const completed = sess.some(
-          (e) => e.eventName === "sw.story.complete" || e.eventName === "sw.story.end",
+          (e) =>
+            e.eventName === "sw.story.complete" ||
+            e.eventName === "sw.story.end",
         );
         if (!completed) dropoutSessions += 1;
       }
-      const dropoutRate = sessionsWithVariant.size > 0 ? dropoutSessions / sessionsWithVariant.size : 0;
-      return { name, count, avgTimeSeconds: avgSessionLengthSeconds, dropoutRate };
+      const dropoutRate =
+        sessionsWithVariant.size > 0
+          ? dropoutSessions / sessionsWithVariant.size
+          : 0;
+      return {
+        name,
+        count,
+        avgTimeSeconds: avgSessionLengthSeconds,
+        dropoutRate,
+      };
     });
 
   const choices = Array.from(choiceCounts.entries())
