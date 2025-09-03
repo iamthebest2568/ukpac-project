@@ -11,6 +11,10 @@ export const EventSchema = z.object({
   choiceText: z.string().optional(),
   variantId: z.union([z.string(), z.number()]).optional(),
   variantName: z.string().optional(),
+  page: z.string().optional(),
+  userAgent: z.string().optional(),
+  ip: z.string().optional(),
+  payload: z.record(z.any()).optional(),
 });
 export type VideoEvent = z.infer<typeof EventSchema> & { timestamp: string };
 
