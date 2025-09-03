@@ -59,6 +59,7 @@ export default function UkDashboard() {
   const [from, setFrom] = useState<string>("");
   const [to, setTo] = useState<string>("");
   const [autoRefresh, setAutoRefresh] = useState<boolean>(true);
+  const [clearing, setClearing] = useState<boolean>(false);
 
   // Password gate
   const expected = (import.meta as any).env?.VITE_DASHBOARD_PASSWORD as
@@ -90,6 +91,25 @@ export default function UkDashboard() {
       setError(e?.message || "โหลดข้อมูลล้มเหลว");
     } finally {
       setLoading(false);
+    }
+  }
+
+  async function clearData() {
+    if (!window.confirm("ลบข้อมูลทั้งหมดในเซิร์ฟเวอร์? การกระทำนี้ย้อนกลับไม่ได้")) {
+      return;
+    }
+    try {
+      setClearing(true);
+      const res = await fetch("/api/clear-data", { method: "DELETE" });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      setStats(null);
+      setRecent([]);
+      setJourney(null);
+      await load();
+    } catch (e: any) {
+      alert(e?.message || "ลบข้อมูลล้มเหลว");
+    } finally {
+      setClearing(false);
     }
   }
 
@@ -186,6 +206,14 @@ export default function UkDashboard() {
               >
                 ร��เฟรช
               </button>
+              <button
+                className="rounded-md bg-red-600/80 hover:bg-red-600 border border-red-500 px-3 py-2 text-sm"
+                onClick={clearData}
+                disabled={clearing}
+                title="ลบ events.jsonl และ app-events.jsonl ในเซิร์ฟเวอร์"
+              >
+                {clearing ? "กำลังลบ..." : "ลบข้อมูล"}
+              </button>
               <label className="flex items-center gap-2 text-sm text-white/80">
                 <input
                   type="checkbox"
@@ -250,7 +278,7 @@ export default function UkDashboard() {
 
               {/* User Journey Summary */}
               {journey && (
-                <Card title="สรุปพฤติกรรมผู้ใช้ (User Journey)">
+                <Card title="สรุปพฤติกรรม���ู้ใช้ (User Journey)">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <div className="text-white/80 mb-2">
