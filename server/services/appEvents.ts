@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import fs from "node:fs";
 import path from "node:path";
+import fetch from "node-fetch";
 import { z } from "zod";
 
 export const AppEventSchema = z.object({
@@ -105,6 +106,7 @@ export async function computeSessionSummaries(
 
   // Also parse video events once to extract latest Stornaway variant per session
   const variantBySession = new Map<string, { ts: number; name: string }>();
+  // 1) Local file fallback
   try {
     const videoFile = path.join(DATA_DIR, "events.jsonl");
     const raw = await fs.promises.readFile(videoFile, "utf8");
@@ -113,13 +115,45 @@ export async function computeSessionSummaries(
       try {
         const j = JSON.parse(line);
         if (!j || !j.sessionId || !j.eventName) continue;
-        if (j.eventName !== "sw.variant.start") continue;
-        const ts = new Date(j.timestamp || new Date().toISOString()).getTime();
-        const name = (j.variantName || j.variantId || "").toString();
-        const cur = variantBySession.get(j.sessionId);
-        if (!cur || ts > cur.ts)
-          variantBySession.set(j.sessionId, { ts, name });
+        if (
+          j.eventName === "sw.variant.start" ||
+          (j.eventName === "sw.choice.selected" && j.variantName)
+        ) {
+          const ts = new Date(j.timestamp || new Date().toISOString()).getTime();
+          const name = (j.variantName || j.variantId || "").toString();
+          const cur = variantBySession.get(j.sessionId);
+          if (!cur || ts > cur.ts)
+            variantBySession.set(j.sessionId, { ts, name });
+        }
       } catch {}
+    }
+  } catch {}
+  // 2) Supabase (if configured)
+  try {
+    const supabaseUrl = process.env.SUPABASE_URL as string | undefined;
+    const supabaseKey = process.env.SUPABASE_ANON_KEY as string | undefined;
+    if (supabaseUrl && supabaseKey) {
+      const params = new URLSearchParams({ select: "session_id,event_name,variant_name,variant_id,timestamp", order: "id.asc" });
+      const res = await fetch(`${supabaseUrl}/rest/v1/video_events?${params.toString()}`, {
+        headers: { apikey: supabaseKey, Authorization: `Bearer ${supabaseKey}` },
+      } as any);
+      if (res.ok) {
+        const rows = (await res.json()) as any[];
+        for (const r of rows) {
+          if (!r) continue;
+          if (
+            r.event_name === "sw.variant.start" ||
+            (r.event_name === "sw.choice.selected" && (r.variant_name || r.variant_id))
+          ) {
+            const ts = new Date(r.timestamp || new Date().toISOString()).getTime();
+            const name = String(r.variant_name ?? r.variant_id ?? "");
+            const sid = String(r.session_id ?? "");
+            if (!sid) continue;
+            const cur = variantBySession.get(sid);
+            if (!cur || ts > cur.ts) variantBySession.set(sid, { ts, name });
+          }
+        }
+      }
     }
   } catch {}
 
