@@ -253,7 +253,7 @@ export default function UkDashboard() {
                 disabled={clearing}
                 title="ลบ events.jsonl และ app-events.jsonl ในเซิร์ฟเวอร์"
               >
-                {clearing ? "กำลังลบ..." : "ลบข้อมูลทั้งหมด"}
+                {clearing ? "กำลังล��..." : "ลบข้อมูลทั้งหมด"}
               </button>
               <label className="flex items-center gap-2 text-sm text-white/80">
                 <input
@@ -269,7 +269,7 @@ export default function UkDashboard() {
           {firstLoad && loading && (
             <div className="text-white/80">กำลังโหลดข้อมูล...</div>
           )}
-          {error && <div className="text-red-400">เกิดข้อผิด���ลาด: {error}</div>}
+          {error && <div className="text-red-400">เกิดข้อผิดพลาด: {error}</div>}
 
           {stats && (
             <div className="space-y-6">
@@ -410,7 +410,7 @@ export default function UkDashboard() {
                         <div className="text-white/80 mb-2">ลุ้นรางวัล</div>
                         <ul className="space-y-1 text-sm">
                           <li className="flex justify-between"><span>เข้าร่วม</span><span className="text-white/70">{journey.endseq?.participate || 0}</span></li>
-                          <li className="flex justify-between"><span>ไม่เข้าร่���ม</span><span className="text-white/70">{journey.endseq?.decline || 0}</span></li>
+                          <li className="flex justify-between"><span>ไม่เข้าร่วม</span><span className="text-white/70">{journey.endseq?.decline || 0}</span></li>
                           <li className="flex justify-between"><span>กรอกข้อมูลติดต่อ</span><span className="text-white/70">{journey.endseq?.contacts || 0}</span></li>
                         </ul>
                       </div>
@@ -431,7 +431,7 @@ export default function UkDashboard() {
                         <th className="py-2 pr-4">MN1</th>
                         <th className="py-2 pr-4">ตัดสินใจ</th>
                         <th className="py-2 pr-4">ติดต่อ</th>
-                        <th className="py-2 pr-4">ควา���คิดเห็น</th>
+                        <th className="py-2 pr-4">ความคิดเห็น</th>
                         <th className="py-2 pr-4">ดู</th>
                       </tr>
                     </thead>
