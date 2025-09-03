@@ -41,7 +41,8 @@ export const useSession = (): UseSessionReturn => {
     } catch {
       sid = sessionIDParam || null;
     }
-    if (!sid) sid = `session_${Date.now()}_${Math.random().toString(36).slice(2,9)}`;
+    if (!sid)
+      sid = `session_${Date.now()}_${Math.random().toString(36).slice(2, 9)}`;
     setSessionID(sid);
     try {
       sessionStorage.setItem("ukPackSessionID", sid);

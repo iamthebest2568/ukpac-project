@@ -115,7 +115,11 @@ export default function UkStornaway() {
           order: ++orderRef.current,
           eventName,
           choiceText:
-            detail.choiceText ?? detail.text ?? detail.choice?.text ?? detail.choice?.label ?? detail.label,
+            detail.choiceText ??
+            detail.text ??
+            detail.choice?.text ??
+            detail.choice?.label ??
+            detail.label,
           variantId: detail.variantId ?? detail.id ?? detail.variant?.id,
           variantName:
             detail.variantName ?? detail.name ?? detail.variant?.name,

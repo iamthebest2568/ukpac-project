@@ -62,9 +62,15 @@ export async function readAllAppEvents(): Promise<AppEvent[]> {
   if (supabaseUrl && supabaseKey) {
     try {
       const params = new URLSearchParams({ select: "*", order: "id.asc" });
-      const res = await fetch(`${supabaseUrl}/rest/v1/app_events?${params.toString()}`, {
-        headers: { apikey: supabaseKey, Authorization: `Bearer ${supabaseKey}` },
-      } as any);
+      const res = await fetch(
+        `${supabaseUrl}/rest/v1/app_events?${params.toString()}`,
+        {
+          headers: {
+            apikey: supabaseKey,
+            Authorization: `Bearer ${supabaseKey}`,
+          },
+        } as any,
+      );
       if (res.ok) {
         const rows = (await res.json()) as any[];
         const events: AppEvent[] = rows.map((r) => ({
@@ -183,7 +189,12 @@ export async function computeSessionSummaries(
         if (startTs === undefined) continue;
         if (ts < startTs) continue;
         if (!firstChoiceAfterStory.has(j.sessionId)) {
-          const name = (j.choiceText || j.variantName || j.variantId || "").toString();
+          const name = (
+            j.choiceText ||
+            j.variantName ||
+            j.variantId ||
+            ""
+          ).toString();
           if (name) firstChoiceAfterStory.set(j.sessionId, { ts, name });
         }
       } catch {}
@@ -195,7 +206,8 @@ export async function computeSessionSummaries(
     const supabaseKey = process.env.SUPABASE_ANON_KEY as string | undefined;
     if (supabaseUrl && supabaseKey) {
       const params = new URLSearchParams({
-        select: "session_id,event_name,choice_text,variant_name,variant_id,timestamp",
+        select:
+          "session_id,event_name,choice_text,variant_name,variant_id,timestamp",
         order: "id.asc",
       });
       const res = await fetch(
@@ -212,7 +224,9 @@ export async function computeSessionSummaries(
         for (const r of rows) {
           const sid = String(r.session_id ?? "");
           if (!sid) continue;
-          const ts = new Date(r.timestamp || new Date().toISOString()).getTime();
+          const ts = new Date(
+            r.timestamp || new Date().toISOString(),
+          ).getTime();
           if (r.event_name === "sw.story.start") {
             const cur = firstStoryTs.get(sid);
             if (cur === undefined || ts < cur) firstStoryTs.set(sid, ts);
@@ -222,12 +236,16 @@ export async function computeSessionSummaries(
           const sid = String(r.session_id ?? "");
           if (!sid) continue;
           if (r.event_name !== "sw.choice.selected") continue;
-          const ts = new Date(r.timestamp || new Date().toISOString()).getTime();
+          const ts = new Date(
+            r.timestamp || new Date().toISOString(),
+          ).getTime();
           const startTs = firstStoryTs.get(sid);
           if (startTs === undefined) continue;
           if (ts < startTs) continue;
           if (!firstChoiceAfterStory.has(sid)) {
-            const name = String(r.choice_text ?? r.variant_name ?? r.variant_id ?? "");
+            const name = String(
+              r.choice_text ?? r.variant_name ?? r.variant_id ?? "",
+            );
             if (name) firstChoiceAfterStory.set(sid, { ts, name });
           }
         }
@@ -324,7 +342,8 @@ export async function computeSessionSummaries(
       }
     }
 
-    const stornawayVariantName = firstChoiceAfterStory.get(sid)?.name || undefined;
+    const stornawayVariantName =
+      firstChoiceAfterStory.get(sid)?.name || undefined;
 
     summaries.push({
       sessionId: sid,

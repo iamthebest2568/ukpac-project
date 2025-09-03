@@ -121,12 +121,10 @@ export function createServer() {
       const summaries = await computeSessionSummaries(limit);
       res.status(200).json(summaries);
     } catch (e: any) {
-      res
-        .status(500)
-        .json({
-          ok: false,
-          error: e?.message || "failed to compute session summaries",
-        });
+      res.status(500).json({
+        ok: false,
+        error: e?.message || "failed to compute session summaries",
+      });
     }
   });
 
@@ -189,7 +187,10 @@ export function createServer() {
       // Attempt to purge Supabase tables if env provided
       const supabaseUrl = process.env.SUPABASE_URL as string | undefined;
       const supabaseKey = process.env.SUPABASE_ANON_KEY as string | undefined;
-      let supabaseDeleted = null as null | { video_events: number; app_events: number };
+      let supabaseDeleted = null as null | {
+        video_events: number;
+        app_events: number;
+      };
       if (supabaseUrl && supabaseKey) {
         let videoDeleted = 0;
         let appDeleted = 0;
@@ -225,7 +226,10 @@ export function createServer() {
             appDeleted = Array.isArray(json) ? json.length : 0;
           }
         } catch {}
-        supabaseDeleted = { video_events: videoDeleted, app_events: appDeleted };
+        supabaseDeleted = {
+          video_events: videoDeleted,
+          app_events: appDeleted,
+        };
       }
 
       res.status(200).json({
