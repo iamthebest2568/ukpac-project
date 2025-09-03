@@ -80,6 +80,11 @@ export default function UkDashboard() {
   const [to, setTo] = useState<string>("");
   const [autoRefresh, setAutoRefresh] = useState<boolean>(true);
   const [clearing, setClearing] = useState<boolean>(false);
+  const [sessions, setSessions] = useState<SessionSummary[]>([]);
+  const [ingest, setIngest] = useState<IngestStatus | null>(null);
+  const [detailOpen, setDetailOpen] = useState(false);
+  const [detailSession, setDetailSession] = useState<string | null>(null);
+  const [detailData, setDetailData] = useState<{ appEvents: any[]; videoEvents: any[] } | null>(null);
 
   // Password gate
   const expected = (import.meta as any).env?.VITE_DASHBOARD_PASSWORD as
@@ -202,7 +207,7 @@ export default function UkDashboard() {
                 แดชบอร์ดวิเคราะห์วิดีโอ
               </h1>
               <div className="text-white/60 text-sm mt-1">
-                อัปเด��ล่าสุด: {lastUpdated || "-"}
+                อัปเดตล่าสุด: {lastUpdated || "-"}
               </div>
             </div>
             <div className="flex flex-wrap items-end gap-3">
