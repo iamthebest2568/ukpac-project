@@ -59,6 +59,7 @@ export const useSession = (): UseSessionReturn => {
       ask04: "/ask04",
       ask04_budget: "/ask04-budget",
       ask05: "/ask05",
+      uk_stornaway: "/uk-stornaway",
       Flow_MiniGame_MN1: "/minigame-mn1",
       Flow_MiniGame_MN2: "/minigame-mn2",
       Flow_MiniGame_MN3: "/minigame-mn3",
