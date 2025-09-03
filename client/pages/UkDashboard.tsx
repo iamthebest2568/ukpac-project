@@ -147,27 +147,11 @@ export default function UkDashboard() {
               )}
             </div>
             <div className="flex flex-wrap items-end gap-3">
-              <div className="flex items-center gap-2">
-                <label className="text-sm text-white/70">จาก</label>
-                <input
-                  type="date"
-                  className="rounded bg-black/40 border border-white/15 px-2 py-1"
-                  value={from}
-                  onChange={(e) => setFrom(e.target.value)}
-                />
-                <label className="text-sm text-white/70">ถึง</label>
-                <input
-                  type="date"
-                  className="rounded bg-black/40 border border-white/15 px-2 py-1"
-                  value={to}
-                  onChange={(e) => setTo(e.target.value)}
-                />
-              </div>
               <button
                 className="rounded-md bg.white/10 hover:bg-white/15 border border-white/15 px-3 py-2 text-sm"
                 onClick={load}
               >
-                ร��เฟรช
+                รีเฟรช
               </button>
               <button
                 className="rounded-md bg-red-600/80 hover:bg-red-600 border border-red-500 px-3 py-2 text-sm"
@@ -183,7 +167,7 @@ export default function UkDashboard() {
                   checked={autoRefresh}
                   onChange={(e) => setAutoRefresh(e.target.checked)}
                 />{" "}
-                อ��ปเดตอัตโนมัติ
+                อัปเดตอัตโนมัติ
               </label>
             </div>
           </div>
@@ -195,7 +179,7 @@ export default function UkDashboard() {
               value={stats?.totals.totalSessions ?? 0}
             />
             <SummaryCard
-              title="จำนวนการเล���นทั้งหมด"
+              title="จำนวนการเล่นทั้งหมด"
               value={stats?.totals.totalPlays ?? 0}
             />
             <SummaryCard
@@ -425,7 +409,7 @@ export default function UkDashboard() {
               </Card>
 
               {/* Table */}
-              <Card title="รายละเ���ียดฉาก">
+              <Card title="รายละเอียดฉาก">
                 <div className="overflow-auto">
                   <table className="min-w-full text-sm">
                     <thead>
