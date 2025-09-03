@@ -100,11 +100,17 @@ const App = () => (
           {/* Legacy alias routes (case/filename-based deep links) */}
           <Route path="/Ask01Page" element={<Navigate to="/ask01" replace />} />
           <Route path="/Ask02Page" element={<Navigate to="/ask02" replace />} />
+          <Route path="/Ask02_2Page" element={<Navigate to="/ask02-2" replace />} />
           <Route path="/Ask04Page" element={<Navigate to="/ask04" replace />} />
           <Route path="/Ask05Page" element={<Navigate to="/ask05" replace />} />
           <Route path="/BudgetPage" element={<Navigate to="/budget" replace />} />
           <Route path="/FakeNewsPage" element={<Navigate to="/fake-news" replace />} />
+          <Route path="/SourceSelectionPage" element={<Navigate to="/source-selection" replace />} />
+          <Route path="/EndSequencePage" element={<Navigate to="/end-sequence" replace />} />
           <Route path="/EndScreenPage" element={<Navigate to="/end-screen" replace />} />
+          <Route path="/MiniGameMN1Page" element={<Navigate to="/minigame-mn1" replace />} />
+          <Route path="/MiniGameMN2Page" element={<Navigate to="/minigame-mn2" replace />} />
+          <Route path="/MiniGameMN3Page" element={<Navigate to="/minigame-mn3" replace />} />
           <Route path="/IntroWhoAreYouPage" element={<Navigate to="/intro-who-are-you" replace />} />
           <Route path="/IntroGenderPage" element={<Navigate to="/intro-gender" replace />} />
           <Route path="/IntroGroupSelectionPage" element={<Navigate to="/intro-group-selection" replace />} />
