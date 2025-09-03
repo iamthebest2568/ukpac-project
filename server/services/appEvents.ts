@@ -154,9 +154,9 @@ export async function computeSessionSummaries(
     bySession.set(ev.sessionId, arr);
   }
 
-  // Also parse video events: prefer user's choice; fallback to story start label
-  const choiceBySession = new Map<string, { ts: number; name: string }>();
-  const storyBySession = new Map<string, { ts: number; name: string }>();
+  // Also parse video events: pick the first choice after the first story.start per session
+  const firstStoryTs = new Map<string, number>();
+  const firstChoiceAfterStory = new Map<string, { ts: number; name: string }>();
   // 1) Local file fallback
   try {
     const videoFile = path.join(DATA_DIR, "events.jsonl");
@@ -167,15 +167,24 @@ export async function computeSessionSummaries(
         const j = JSON.parse(line);
         if (!j || !j.sessionId || !j.eventName) continue;
         const ts = new Date(j.timestamp || new Date().toISOString()).getTime();
-        if (j.eventName === "sw.choice.selected") {
-          const name = (j.choiceText || j.variantName || j.variantId || "").toString();
-          const cur = choiceBySession.get(j.sessionId);
-          if (name && (!cur || ts > cur.ts)) choiceBySession.set(j.sessionId, { ts, name });
-        }
         if (j.eventName === "sw.story.start") {
+          const cur = firstStoryTs.get(j.sessionId);
+          if (cur === undefined || ts < cur) firstStoryTs.set(j.sessionId, ts);
+        }
+      } catch {}
+    }
+    for (const line of lines) {
+      try {
+        const j = JSON.parse(line);
+        if (!j || !j.sessionId || !j.eventName) continue;
+        if (j.eventName !== "sw.choice.selected") continue;
+        const ts = new Date(j.timestamp || new Date().toISOString()).getTime();
+        const startTs = firstStoryTs.get(j.sessionId);
+        if (startTs === undefined) continue;
+        if (ts < startTs) continue;
+        if (!firstChoiceAfterStory.has(j.sessionId)) {
           const name = (j.choiceText || j.variantName || j.variantId || "").toString();
-          const cur = storyBySession.get(j.sessionId);
-          if (name && (!cur || ts > cur.ts)) storyBySession.set(j.sessionId, { ts, name });
+          if (name) firstChoiceAfterStory.set(j.sessionId, { ts, name });
         }
       } catch {}
     }
@@ -204,15 +213,22 @@ export async function computeSessionSummaries(
           const sid = String(r.session_id ?? "");
           if (!sid) continue;
           const ts = new Date(r.timestamp || new Date().toISOString()).getTime();
-          if (r.event_name === "sw.choice.selected") {
-            const name = String(r.choice_text ?? r.variant_name ?? r.variant_id ?? "");
-            const cur = choiceBySession.get(sid);
-            if (name && (!cur || ts > cur.ts)) choiceBySession.set(sid, { ts, name });
-          }
           if (r.event_name === "sw.story.start") {
+            const cur = firstStoryTs.get(sid);
+            if (cur === undefined || ts < cur) firstStoryTs.set(sid, ts);
+          }
+        }
+        for (const r of rows) {
+          const sid = String(r.session_id ?? "");
+          if (!sid) continue;
+          if (r.event_name !== "sw.choice.selected") continue;
+          const ts = new Date(r.timestamp || new Date().toISOString()).getTime();
+          const startTs = firstStoryTs.get(sid);
+          if (startTs === undefined) continue;
+          if (ts < startTs) continue;
+          if (!firstChoiceAfterStory.has(sid)) {
             const name = String(r.choice_text ?? r.variant_name ?? r.variant_id ?? "");
-            const cur = storyBySession.get(sid);
-            if (name && (!cur || ts > cur.ts)) storyBySession.set(sid, { ts, name });
+            if (name) firstChoiceAfterStory.set(sid, { ts, name });
           }
         }
       }
@@ -308,8 +324,7 @@ export async function computeSessionSummaries(
       }
     }
 
-    const stornawayVariantName =
-      choiceBySession.get(sid)?.name || storyBySession.get(sid)?.name;
+    const stornawayVariantName = firstChoiceAfterStory.get(sid)?.name || undefined;
 
     summaries.push({
       sessionId: sid,
