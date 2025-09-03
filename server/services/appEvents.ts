@@ -154,8 +154,9 @@ export async function computeSessionSummaries(
     bySession.set(ev.sessionId, arr);
   }
 
-  // Also parse video events once to extract the user's selected option per session
-  const variantBySession = new Map<string, { ts: number; name: string }>();
+  // Also parse video events: prefer user's choice; fallback to story start label
+  const choiceBySession = new Map<string, { ts: number; name: string }>();
+  const storyBySession = new Map<string, { ts: number; name: string }>();
   // 1) Local file fallback
   try {
     const videoFile = path.join(DATA_DIR, "events.jsonl");
@@ -165,14 +166,16 @@ export async function computeSessionSummaries(
       try {
         const j = JSON.parse(line);
         if (!j || !j.sessionId || !j.eventName) continue;
+        const ts = new Date(j.timestamp || new Date().toISOString()).getTime();
         if (j.eventName === "sw.choice.selected") {
-          const ts = new Date(
-            j.timestamp || new Date().toISOString(),
-          ).getTime();
           const name = (j.choiceText || j.variantName || j.variantId || "").toString();
-          const cur = variantBySession.get(j.sessionId);
-          if (!cur || ts > cur.ts)
-            variantBySession.set(j.sessionId, { ts, name });
+          const cur = choiceBySession.get(j.sessionId);
+          if (name && (!cur || ts > cur.ts)) choiceBySession.set(j.sessionId, { ts, name });
+        }
+        if (j.eventName === "sw.story.start") {
+          const name = (j.choiceText || j.variantName || j.variantId || "").toString();
+          const cur = storyBySession.get(j.sessionId);
+          if (name && (!cur || ts > cur.ts)) storyBySession.set(j.sessionId, { ts, name });
         }
       } catch {}
     }
@@ -183,7 +186,7 @@ export async function computeSessionSummaries(
     const supabaseKey = process.env.SUPABASE_ANON_KEY as string | undefined;
     if (supabaseUrl && supabaseKey) {
       const params = new URLSearchParams({
-        select: "session_id,event_name,choice_text,timestamp",
+        select: "session_id,event_name,choice_text,variant_name,variant_id,timestamp",
         order: "id.asc",
       });
       const res = await fetch(
@@ -198,16 +201,18 @@ export async function computeSessionSummaries(
       if (res.ok) {
         const rows = (await res.json()) as any[];
         for (const r of rows) {
-          if (!r) continue;
+          const sid = String(r.session_id ?? "");
+          if (!sid) continue;
+          const ts = new Date(r.timestamp || new Date().toISOString()).getTime();
           if (r.event_name === "sw.choice.selected") {
-            const ts = new Date(
-              r.timestamp || new Date().toISOString(),
-            ).getTime();
-            const name = String(r.choice_text ?? "");
-            const sid = String(r.session_id ?? "");
-            if (!sid || !name) continue;
-            const cur = variantBySession.get(sid);
-            if (!cur || ts > cur.ts) variantBySession.set(sid, { ts, name });
+            const name = String(r.choice_text ?? r.variant_name ?? r.variant_id ?? "");
+            const cur = choiceBySession.get(sid);
+            if (name && (!cur || ts > cur.ts)) choiceBySession.set(sid, { ts, name });
+          }
+          if (r.event_name === "sw.story.start") {
+            const name = String(r.choice_text ?? r.variant_name ?? r.variant_id ?? "");
+            const cur = storyBySession.get(sid);
+            if (name && (!cur || ts > cur.ts)) storyBySession.set(sid, { ts, name });
           }
         }
       }
@@ -303,7 +308,8 @@ export async function computeSessionSummaries(
       }
     }
 
-    const stornawayVariantName = variantBySession.get(sid)?.name;
+    const stornawayVariantName =
+      choiceBySession.get(sid)?.name || storyBySession.get(sid)?.name;
 
     summaries.push({
       sessionId: sid,
