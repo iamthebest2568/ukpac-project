@@ -88,30 +88,38 @@ export default function UkDashboard() {
   const [pwErr, setPwErr] = useState<string | null>(null);
 
   async function load() {
+    setLoading(true);
+    // Always set default stats so UI renders even if APIs fail
+    setStats({
+      totals: {
+        totalSessions: 0,
+        totalPlays: 0,
+        completionRate: 0,
+        avgSessionLengthSeconds: 0,
+      },
+      timeseries: [],
+      variants: [],
+      choices: [],
+    });
+    setError(null);
     try {
-      setLoading(true);
-      const j = await fetch(`/api/user-journey-stats`);
-      if (j.ok) setJourney(await j.json());
-      const ss = await fetch(`/api/session-summaries?limit=100`);
-      if (ss.ok) setSessions(await ss.json());
-      const st = await fetch(`/api/ingest-status`);
-      if (st.ok) setIngest(await st.json());
-      // Provide default stats so content renders even without video analytics
-      setStats({
-        totals: {
-          totalSessions: 0,
-          totalPlays: 0,
-          completionRate: 0,
-          avgSessionLengthSeconds: 0,
-        },
-        timeseries: [],
-        variants: [],
-        choices: [],
-      });
-      setError(null);
+      const [jRes, ssRes, stRes] = await Promise.allSettled([
+        fetch(`/api/user-journey-stats`),
+        fetch(`/api/session-summaries?limit=100`),
+        fetch(`/api/ingest-status`),
+      ]);
+      if (jRes.status === "fulfilled" && jRes.value.ok) {
+        try { setJourney(await jRes.value.json()); } catch {}
+      }
+      if (ssRes.status === "fulfilled" && ssRes.value.ok) {
+        try { setSessions(await ssRes.value.json()); } catch {}
+      }
+      if (stRes.status === "fulfilled" && stRes.value.ok) {
+        try { setIngest(await stRes.value.json()); } catch {}
+      }
       setLastUpdated(new Date().toLocaleString());
     } catch (e: any) {
-      setError(e?.message || "โหลดข้อมูลล้��เหลว");
+      setError(e?.message || "โหลดข้อมูลล้มเหลว");
     } finally {
       setLoading(false);
     }
@@ -433,7 +441,7 @@ export default function UkDashboard() {
                         "User",
                         "Access Time",
                         "Profile",
-                        "เมื่อได้ยินข่าวนี้ คุณคิดยังไง",
+                        "เมื่อได้ยินข่า���นี้ คุณคิดยังไง",
                         "Minigame 1: ตัวเลือกนโยบาย",
                         "Minigame 2 : จับคู่",
                         "Minigame 3 : นโยบายที่เลือก",
@@ -517,7 +525,7 @@ export default function UkDashboard() {
           >
             <div className="flex items-center justify-between mb-2">
               <div className="text-lg font-medium">
-                รายละเอียดเซสชัน: {detailSession?.slice(0, 12)}…
+                รายละเอียด���ซสชัน: {detailSession?.slice(0, 12)}…
               </div>
               <button
                 className="text-white/70 hover:text-white"
