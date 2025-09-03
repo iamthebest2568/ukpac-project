@@ -89,7 +89,7 @@ export default function UkDashboard() {
     let id: any;
     if (autoRefresh) id = setInterval(load, 5000);
     return () => id && clearInterval(id);
-  }, [authed, from, to, autoRefresh]);
+  }, [authed, autoRefresh]);
 
   const COLORS = useMemo(
     () => [
@@ -345,7 +345,7 @@ export default function UkDashboard() {
                         <th className="py-2 pr-4">MN1</th>
                         <th className="py-2 pr-4">ตัดสินใจ</th>
                         <th className="py-2 pr-4">ติดต่อ</th>
-                        <th className="py-2 pr-4">ความคิดเห็น</th>
+                        <th className="py-2 pr-4">ควา��คิดเห็น</th>
                         <th className="py-2 pr-4">ดู</th>
                       </tr>
                     </thead>
@@ -508,7 +508,7 @@ export default function UkDashboard() {
                         "ชื่อฉาก",
                         "จำนว��ครั้งที่ดู",
                         "เวลาเฉล���่ยที่ใช้(วินาที)",
-                        "อ���ตราการออกกลางคัน(%)",
+                        "อัตราการออกกลางคัน(%)",
                       ],
                       ...(stats?.variants || []).map((v) => [
                         v.name,
