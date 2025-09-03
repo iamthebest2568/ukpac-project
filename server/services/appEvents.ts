@@ -69,10 +69,22 @@ export interface SessionSummary {
   lastSeen: string;
   introWho?: string;
   mn1Selected: string[];
+  // MN2 selections keyed by MN1 priority
+  mn2Selections?: Record<string, string[]>;
+  // MN3 selections and per-policy budget
+  mn3Selected?: string[];
+  mn3BudgetAllocation?: Record<string, number>;
   mn3BudgetTotal?: number;
   ask05Comment?: string;
   endDecision?: string;
+  endDecisionText?: string;
+  // End sequence contact details
+  contactName?: string;
+  contactPhone?: string;
   contacts: number;
+  // Stornaway variant
+  stornawayVariantName?: string;
+  // Meta
   ip?: string;
   userAgent?: string;
 }
@@ -81,12 +93,34 @@ export async function computeSessionSummaries(
   limit = 100,
 ): Promise<SessionSummary[]> {
   const events = await readAllAppEvents();
+
+  // Build per-session app events
   const bySession = new Map<string, AppEvent[]>();
   for (const ev of events) {
     const arr = bySession.get(ev.sessionId) || [];
     arr.push(ev);
     bySession.set(ev.sessionId, arr);
   }
+
+  // Also parse video events once to extract latest Stornaway variant per session
+  const variantBySession = new Map<string, { ts: number; name: string }>();
+  try {
+    const videoFile = path.join(DATA_DIR, "events.jsonl");
+    const raw = await fs.promises.readFile(videoFile, "utf8");
+    const lines = raw.split(/\n+/).filter(Boolean);
+    for (const line of lines) {
+      try {
+        const j = JSON.parse(line);
+        if (!j || !j.sessionId || !j.eventName) continue;
+        if (j.eventName !== "sw.variant.start") continue;
+        const ts = new Date(j.timestamp || new Date().toISOString()).getTime();
+        const name = (j.variantName || j.variantId || "").toString();
+        const cur = variantBySession.get(j.sessionId);
+        if (!cur || ts > cur.ts) variantBySession.set(j.sessionId, { ts, name });
+      } catch {}
+    }
+  } catch {}
+
   const summaries: SessionSummary[] = [];
   for (const [sid, arr] of bySession) {
     arr.sort(
@@ -95,11 +129,18 @@ export async function computeSessionSummaries(
     );
     const firstSeen = arr[0]?.timestamp || new Date().toISOString();
     const lastSeen = arr[arr.length - 1]?.timestamp || firstSeen;
+
     let introWho: string | undefined;
     let mn1Selected: string[] = [];
+    const mn2Selections: Record<string, string[]> = {};
+    let mn3Selected: string[] = [];
+    let mn3BudgetAllocation: Record<string, number> | undefined;
     let mn3BudgetTotal: number | undefined;
     let ask05Comment: string | undefined;
     let endDecision: string | undefined;
+    let endDecisionText: string | undefined;
+    let contactName: string | undefined;
+    let contactPhone: string | undefined;
     let contacts = 0;
     let ip: string | undefined;
     let userAgent: string | undefined;
@@ -120,12 +161,28 @@ export async function computeSessionSummaries(
           ? ev.payload!.selectedPolicies
           : [];
       }
+      if (ev.event === "MN2_STEP") {
+        const priority = (ev.payload?.priority || "").toString();
+        const groups: string[] = Array.isArray(ev.payload?.selectedGroups)
+          ? (ev.payload!.selectedGroups as any[]).map((g) => g?.toString?.() || String(g))
+          : [];
+        if (priority) mn2Selections[priority] = groups;
+      }
+      if (ev.event === "MN3_SELECT") {
+        mn3Selected = Array.isArray(ev.payload?.selectedPolicies)
+          ? ev.payload!.selectedPolicies
+          : [];
+      }
       if (ev.event === "MN3_BUDGET") {
         const alloc = ev.payload?.budgetAllocation as
           | Record<string, number>
           | undefined;
         if (alloc) {
-          mn3BudgetTotal = Object.values(alloc).reduce(
+          mn3BudgetAllocation = {};
+          for (const [k, v] of Object.entries(alloc)) {
+            mn3BudgetAllocation[k] = Number(v) || 0;
+          }
+          mn3BudgetTotal = Object.values(mn3BudgetAllocation).reduce(
             (a, b) => a + (Number(b) || 0),
             0,
           );
@@ -137,12 +194,20 @@ export async function computeSessionSummaries(
       }
       if (ev.event === "ENDSEQ_DECISION") {
         const choice = ev.payload?.choice as string | undefined;
+        const text = (ev.payload?.choiceText || "").toString();
         if (choice) endDecision = choice;
+        if (text) endDecisionText = text;
       }
       if (ev.event === "ENDSEQ_CONTACT") {
         contacts += 1;
+        const name = (ev.payload?.name || "").toString();
+        const phone = (ev.payload?.phone || "").toString();
+        if (name) contactName = name;
+        if (phone) contactPhone = phone;
       }
     }
+
+    const stornawayVariantName = variantBySession.get(sid)?.name;
 
     summaries.push({
       sessionId: sid,
@@ -150,10 +215,17 @@ export async function computeSessionSummaries(
       lastSeen,
       introWho,
       mn1Selected,
+      mn2Selections: Object.keys(mn2Selections).length ? mn2Selections : undefined,
+      mn3Selected,
+      mn3BudgetAllocation,
       mn3BudgetTotal,
       ask05Comment,
       endDecision,
+      endDecisionText,
+      contactName,
+      contactPhone,
       contacts,
+      stornawayVariantName,
       ip,
       userAgent,
     });
