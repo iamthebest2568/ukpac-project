@@ -49,15 +49,6 @@ export default function UkDashboard() {
   async function load() {
     try {
       setLoading(true);
-      const qs = new URLSearchParams();
-      if (from) qs.set("from", from);
-      if (to) qs.set("to", to);
-      const res = await fetch(`/api/video-stats?${qs.toString()}`);
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const data: StatsResponse = await res.json();
-      setStats(data);
-      const ev = await fetch(`/api/video-events?limit=50`);
-      if (ev.ok) setRecent(await ev.json());
       const j = await fetch(`/api/user-journey-stats`);
       if (j.ok) setJourney(await j.json());
       const ss = await fetch(`/api/session-summaries?limit=100`);
@@ -517,7 +508,7 @@ export default function UkDashboard() {
                     exportCsv("variants.csv", [
                       [
                         "ชื่อฉาก",
-                        "จำนว��ครั้งที่ดู",
+                        "จำนว��ครั้งท���่ดู",
                         "เวลาเฉล���่ยที่ใช้(วินาที)",
                         "อัตราการออกกลางคัน(%)",
                       ],
@@ -541,7 +532,7 @@ export default function UkDashboard() {
                     ])
                   }
                 >
-                  ดาวน์โหล��� CSV (การเลือก)
+                  ดาวน์โหลด CSV (การเลือก)
                 </button>
                 <button
                   className="rounded-full bg-[#EFBA31] text.black font-medium px-5 py-2 border border-black hover:scale-105 transition"
