@@ -25,7 +25,8 @@ function readSessions(): SessionData[] {
     if (!raw) return [];
     const parsed = JSON.parse(raw);
     if (Array.isArray(parsed)) return parsed as SessionData[];
-    if (parsed && Array.isArray(parsed.sessions)) return parsed.sessions as SessionData[];
+    if (parsed && Array.isArray(parsed.sessions))
+      return parsed.sessions as SessionData[];
     return [];
   } catch {
     return [];
@@ -51,7 +52,10 @@ export default function UkStornaway() {
     [],
   );
   const [status, setStatus] = useState("รอการโต้ตอบจากผู้ใช้…");
-  const [sessionData, setSessionData] = useState<SessionData>({ sessionId, events: [] });
+  const [sessionData, setSessionData] = useState<SessionData>({
+    sessionId,
+    events: [],
+  });
   const eventsRef = useRef<CapturedEvent[]>([]);
   const updateTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [showPopup, setShowPopup] = useState(false);
@@ -109,7 +113,8 @@ export default function UkStornaway() {
           eventName,
           choiceText: detail.choiceText ?? detail.text ?? detail.choice?.text,
           variantId: detail.variantId ?? detail.id ?? detail.variant?.id,
-          variantName: detail.variantName ?? detail.name ?? detail.variant?.name,
+          variantName:
+            detail.variantName ?? detail.name ?? detail.variant?.name,
           timestamp: new Date().toISOString(),
         };
         // throttle UI updates
@@ -121,28 +126,42 @@ export default function UkStornaway() {
         if (!updateTimer.current) {
           updateTimer.current = setTimeout(() => {
             updateTimer.current = null;
-            setSessionData((prev) => ({ ...prev, events: [...eventsRef.current] }));
+            setSessionData((prev) => ({
+              ...prev,
+              events: [...eventsRef.current],
+            }));
           }, 250);
         }
         // send in background (beacon if available)
         try {
           const payload = { ...captured, sessionId } as any;
           if (navigator.sendBeacon) {
-            const blob = new Blob([JSON.stringify(payload)], { type: "application/json" });
+            const blob = new Blob([JSON.stringify(payload)], {
+              type: "application/json",
+            });
             navigator.sendBeacon("/api/video-events", blob);
           } else {
-            setTimeout(() => { sendToBackend(captured); }, 0);
+            setTimeout(() => {
+              sendToBackend(captured);
+            }, 0);
           }
         } catch {
-          setTimeout(() => { sendToBackend(captured); }, 0);
+          setTimeout(() => {
+            sendToBackend(captured);
+          }, 0);
         }
 
         if (eventName === "sw.variant.start") {
-          const vName = (captured.variantName || "").toString().trim().toLowerCase();
+          const vName = (captured.variantName || "")
+            .toString()
+            .trim()
+            .toLowerCase();
           if (vName.includes("mini game 1")) {
             if (hasShownPopupRef.current) return;
             hasShownPopupRef.current = true;
-            try { playerRef.current?.pause?.(); } catch {}
+            try {
+              playerRef.current?.pause?.();
+            } catch {}
             setShowPopup(true);
           }
         }
@@ -157,21 +176,48 @@ export default function UkStornaway() {
       const mediaPause = makeHandler("sw.media.pause");
 
       document.addEventListener("sw.story.start", storyStart as EventListener);
-      document.addEventListener("sw.variant.start", variantStart as EventListener);
-      document.addEventListener("sw.choice.selected", choiceSelected as EventListener);
+      document.addEventListener(
+        "sw.variant.start",
+        variantStart as EventListener,
+      );
+      document.addEventListener(
+        "sw.choice.selected",
+        choiceSelected as EventListener,
+      );
       document.addEventListener("sw.story.end", storyEnd as EventListener);
-      document.addEventListener("sw.story.complete", storyComplete as EventListener);
+      document.addEventListener(
+        "sw.story.complete",
+        storyComplete as EventListener,
+      );
       document.addEventListener("sw.media.play", mediaPlay as EventListener);
       document.addEventListener("sw.media.pause", mediaPause as EventListener);
 
       return () => {
-        document.removeEventListener("sw.story.start", storyStart as EventListener);
-        document.removeEventListener("sw.variant.start", variantStart as EventListener);
-        document.removeEventListener("sw.choice.selected", choiceSelected as EventListener);
+        document.removeEventListener(
+          "sw.story.start",
+          storyStart as EventListener,
+        );
+        document.removeEventListener(
+          "sw.variant.start",
+          variantStart as EventListener,
+        );
+        document.removeEventListener(
+          "sw.choice.selected",
+          choiceSelected as EventListener,
+        );
         document.removeEventListener("sw.story.end", storyEnd as EventListener);
-        document.removeEventListener("sw.story.complete", storyComplete as EventListener);
-        document.removeEventListener("sw.media.play", mediaPlay as EventListener);
-        document.removeEventListener("sw.media.pause", mediaPause as EventListener);
+        document.removeEventListener(
+          "sw.story.complete",
+          storyComplete as EventListener,
+        );
+        document.removeEventListener(
+          "sw.media.play",
+          mediaPlay as EventListener,
+        );
+        document.removeEventListener(
+          "sw.media.pause",
+          mediaPause as EventListener,
+        );
       };
     }
 
@@ -179,21 +225,34 @@ export default function UkStornaway() {
       try {
         const g: any = (window as any).STORNAWAY;
         if (g && iframeRef.current) {
-          try { playerRef.current = g.getPlayer(iframeRef.current); } catch { playerRef.current = null; }
+          try {
+            playerRef.current = g.getPlayer(iframeRef.current);
+          } catch {
+            playerRef.current = null;
+          }
         }
-      } catch { playerRef.current = null; }
+      } catch {
+        playerRef.current = null;
+      }
       return attachListeners();
     }
 
     function ensureScriptAndInit() {
-      const existing = document.getElementById("stornaway-api-v1") as HTMLScriptElement | null;
+      const existing = document.getElementById(
+        "stornaway-api-v1",
+      ) as HTMLScriptElement | null;
       if (existing) {
         // If script already present and possibly loaded
         if ((window as any).STORNAWAY) {
           return initWithPlayer();
         }
-        existing.addEventListener("load", initWithPlayer as any, { once: true } as any);
-        return () => existing.removeEventListener("load", initWithPlayer as any);
+        existing.addEventListener(
+          "load",
+          initWithPlayer as any,
+          { once: true } as any,
+        );
+        return () =>
+          existing.removeEventListener("load", initWithPlayer as any);
       }
       const s = document.createElement("script");
       s.id = "stornaway-api-v1";
@@ -224,7 +283,9 @@ export default function UkStornaway() {
     } else {
       document.body.style.overflow = "";
       t = setTimeout(() => {
-        try { playerRef.current?.play?.(); } catch {}
+        try {
+          playerRef.current?.play?.();
+        } catch {}
       }, 150);
     }
     return () => {
@@ -236,9 +297,14 @@ export default function UkStornaway() {
   return (
     <div className="min-h-screen bg-[#121212] text-white flex justify-center font-[Prompt]">
       <div className="w-full max-w-[800px] p-4 md:p-6 lg:p-8">
-        <h1 className="text-2xl md:text-3xl font-semibold mb-4">Stornaway Interactive</h1>
+        <h1 className="text-2xl md:text-3xl font-semibold mb-4">
+          Stornaway Interactive
+        </h1>
         {/* 16:9 iframe container */}
-        <div className="relative w-full rounded-xl overflow-hidden bg-black shadow-lg" style={{ paddingBottom: "56.25%" }}>
+        <div
+          className="relative w-full rounded-xl overflow-hidden bg-black shadow-lg"
+          style={{ paddingBottom: "56.25%" }}
+        >
           <iframe
             ref={iframeRef}
             id="stornaway-player-1"
@@ -255,9 +321,17 @@ export default function UkStornaway() {
         {/* Dashboard card */}
         <div className="mt-6 rounded-lg border border-white/10 bg-white/5 p-4">
           <h2 className="text-xl font-medium">แดชบอร์ดวิเคราะห์ข้อมูล</h2>
-          <p className="text-sm text-white/70 mt-1">เข้าดูสถิติการใช้งานและบันทึกเหตุการณ์ของผู้ชมแบบเรียลไทม์</p>
+          <p className="text-sm text-white/70 mt-1">
+            เข้าดูสถิติการใช้งานและบันทึกเหตุการณ์ของผู้ชมแบบเรียลไทม์
+          </p>
           <button
-            onClick={() => window.open("https://0401efcf1cc14196acbc542ce39f187e-main.projects.builder.my/UkDashboard", "_blank", "noopener")}
+            onClick={() =>
+              window.open(
+                "https://0401efcf1cc14196acbc542ce39f187e-main.projects.builder.my/UkDashboard",
+                "_blank",
+                "noopener",
+              )
+            }
             className="mt-3 inline-flex items-center justify-center rounded-full bg-[#EFBA31] text-black font-medium px-5 py-2 border border-black hover:scale-105 transition"
           >
             เปิดแดชบอร์ด
@@ -267,7 +341,9 @@ export default function UkStornaway() {
         {/* Live log */}
         <div className="mt-6">
           <div className="flex items-center justify-between mb-2">
-            <div className="text-lg font-medium">📝 ข้อมูลที่ถูกดักจับ (Live Log)</div>
+            <div className="text-lg font-medium">
+              📝 ข้อมูลที่ถูกดักจับ (Live Log)
+            </div>
             <button
               onClick={() => setShowLiveLog((v) => !v)}
               className="text-sm px-3 py-1 rounded-full border border-white/20 hover:bg-white/10"
@@ -277,7 +353,7 @@ export default function UkStornaway() {
           </div>
           {showLiveLog && (
             <pre className="max-h-[300px] overflow-auto text-sm p-3 rounded bg-black/60 text-[#d6deeb]">
-{JSON.stringify(sessionData, null, 2)}
+              {JSON.stringify(sessionData, null, 2)}
             </pre>
           )}
           <div className="mt-2 text-sm text-white/70">{status}</div>
@@ -295,7 +371,9 @@ export default function UkStornaway() {
               setShowPopup(false);
             }
           }}
-          onTransitionEnd={() => { /* no-op for now */ }}
+          onTransitionEnd={() => {
+            /* no-op for now */
+          }}
         >
           <div
             ref={popupRef}

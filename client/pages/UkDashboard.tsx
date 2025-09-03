@@ -23,7 +23,12 @@ type StatsResponse = {
     avgSessionLengthSeconds: number;
   };
   timeseries: { date: string; plays: number }[];
-  variants: { name: string; count: number; avgTimeSeconds: number; dropoutRate: number }[];
+  variants: {
+    name: string;
+    count: number;
+    avgTimeSeconds: number;
+    dropoutRate: number;
+  }[];
   choices: { name: string; count: number }[];
 };
 
@@ -34,7 +39,14 @@ function secondsToHuman(sec: number) {
   return `${m} นาที ${rem} วินาที`;
 }
 
-type VideoEvent = { sessionId: string; eventName: string; timestamp: string; choiceText?: string; variantId?: string | number; variantName?: string };
+type VideoEvent = {
+  sessionId: string;
+  eventName: string;
+  timestamp: string;
+  choiceText?: string;
+  variantId?: string | number;
+  variantName?: string;
+};
 
 export default function UkDashboard() {
   const [stats, setStats] = useState<StatsResponse | null>(null);
@@ -48,8 +60,12 @@ export default function UkDashboard() {
   const [autoRefresh, setAutoRefresh] = useState<boolean>(true);
 
   // Password gate
-  const expected = (import.meta as any).env?.VITE_DASHBOARD_PASSWORD as string | undefined;
-  const [authed, setAuthed] = useState<boolean>(() => sessionStorage.getItem("ukdash_authed") === "true");
+  const expected = (import.meta as any).env?.VITE_DASHBOARD_PASSWORD as
+    | string
+    | undefined;
+  const [authed, setAuthed] = useState<boolean>(
+    () => sessionStorage.getItem("ukdash_authed") === "true",
+  );
   const [pw, setPw] = useState("");
   const [pwErr, setPwErr] = useState<string | null>(null);
 
@@ -82,7 +98,18 @@ export default function UkDashboard() {
     return () => id && clearInterval(id);
   }, [authed, from, to, autoRefresh]);
 
-  const COLORS = useMemo(() => ["#EFBA31", "#8884d8", "#82ca9d", "#ff7f50", "#00C49F", "#FFBB28", "#FF8042"], []);
+  const COLORS = useMemo(
+    () => [
+      "#EFBA31",
+      "#8884d8",
+      "#82ca9d",
+      "#ff7f50",
+      "#00C49F",
+      "#FFBB28",
+      "#FF8042",
+    ],
+    [],
+  );
 
   return (
     <div className="min-h-screen bg-[#0e0e0e] text-white font-[Prompt]">
@@ -90,19 +117,24 @@ export default function UkDashboard() {
         <div className="min-h-screen flex items-center justify-center p-4">
           <div className="w-full max-w-sm bg-white/5 border border-white/10 rounded-xl p-5">
             <div className="text-xl font-semibold mb-3">ป้อนรหัสผ่าน</div>
-            <div className="text-sm text-white/70 mb-4">หน้านี้ป้องกันด้วยรหัสผ่าน</div>
+            <div className="text-sm text-white/70 mb-4">
+              หน้านี้ป้องกันด้วยรหัสผ่าน
+            </div>
             <input
               type="password"
               className="w-full rounded-md bg-black/40 border border-white/15 px-3 py-2 outline-none"
               value={pw}
-              onChange={(e)=>setPw(e.target.value)}
+              onChange={(e) => setPw(e.target.value)}
               placeholder="รหัสผ่าน"
             />
             {pwErr && <div className="text-red-400 text-sm mt-2">{pwErr}</div>}
             <button
               className="mt-4 w-full rounded-full bg-[#EFBA31] text-black font-medium px-5 py-2 border border-black"
               onClick={() => {
-                if (!expected) { setPwErr("ยังไม่ได้ตั้งรหัสผ่าน (VITE_DASHBOARD_PASSWORD)"); return; }
+                if (!expected) {
+                  setPwErr("ยังไม่ได้ตั้งรหัสผ่าน (VITE_DASHBOARD_PASSWORD)");
+                  return;
+                }
                 if (pw === expected) {
                   sessionStorage.setItem("ukdash_authed", "true");
                   setAuthed(true);
@@ -111,173 +143,294 @@ export default function UkDashboard() {
                   setPwErr("รหัสผ่านไม่ถูกต้อง");
                 }
               }}
-            >เข้าสู่แดชบอร์ด</button>
+            >
+              เข้าสู่แดชบอร์ด
+            </button>
           </div>
         </div>
       )}
       {authed && (
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
-        <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-          <div>
-            <h1 className="text-2xl md:text-3xl font-semibold">แดชบอร์ดวิเคราะห์วิดีโอ</h1>
-            <div className="text-white/60 text-sm mt-1">อัปเดตล่าสุด: {lastUpdated || "-"}</div>
-          </div>
-          <div className="flex flex-wrap items-end gap-3">
-            <div className="flex items-center gap-2">
-              <label className="text-sm text-white/70">จาก</label>
-              <input type="date" className="rounded bg-black/40 border border-white/15 px-2 py-1" value={from} onChange={(e)=>setFrom(e.target.value)} />
-              <label className="text-sm text-white/70">ถึง</label>
-              <input type="date" className="rounded bg-black/40 border border-white/15 px-2 py-1" value={to} onChange={(e)=>setTo(e.target.value)} />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+          <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+            <div>
+              <h1 className="text-2xl md:text-3xl font-semibold">
+                แดชบอร์ดวิเคราะห์วิดีโอ
+              </h1>
+              <div className="text-white/60 text-sm mt-1">
+                อัปเดตล่าสุด: {lastUpdated || "-"}
+              </div>
             </div>
-            <button className="rounded-md bg.white/10 hover:bg-white/15 border border-white/15 px-3 py-2 text-sm" onClick={load}>ร��เฟรช</button>
-            <label className="flex items-center gap-2 text-sm text-white/80">
-              <input type="checkbox" checked={autoRefresh} onChange={(e)=>setAutoRefresh(e.target.checked)} /> อัปเดตอัตโนมัติ
-            </label>
+            <div className="flex flex-wrap items-end gap-3">
+              <div className="flex items-center gap-2">
+                <label className="text-sm text-white/70">จาก</label>
+                <input
+                  type="date"
+                  className="rounded bg-black/40 border border-white/15 px-2 py-1"
+                  value={from}
+                  onChange={(e) => setFrom(e.target.value)}
+                />
+                <label className="text-sm text-white/70">ถึง</label>
+                <input
+                  type="date"
+                  className="rounded bg-black/40 border border-white/15 px-2 py-1"
+                  value={to}
+                  onChange={(e) => setTo(e.target.value)}
+                />
+              </div>
+              <button
+                className="rounded-md bg.white/10 hover:bg-white/15 border border-white/15 px-3 py-2 text-sm"
+                onClick={load}
+              >
+                ร��เฟรช
+              </button>
+              <label className="flex items-center gap-2 text-sm text-white/80">
+                <input
+                  type="checkbox"
+                  checked={autoRefresh}
+                  onChange={(e) => setAutoRefresh(e.target.checked)}
+                />{" "}
+                อัปเดตอัตโนมัติ
+              </label>
+            </div>
           </div>
-        </div>
 
-        {/* Summary cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-          <SummaryCard title="จำนวนเซสชันทั้งหมด" value={stats?.totals.totalSessions ?? 0} />
-          <SummaryCard title="จำนวนการเล่นทั้งหมด" value={stats?.totals.totalPlays ?? 0} />
-          <SummaryCard title="อัตราการดูจบ" value={`${((stats?.totals.completionRate ?? 0) * 100).toFixed(1)}%`} />
-          <SummaryCard title="เวลาเฉลี่ยต่อเซสชัน" value={secondsToHuman(stats?.totals.avgSessionLengthSeconds ?? 0)} />
-        </div>
+          {/* Summary cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+            <SummaryCard
+              title="จำนวนเซสชันทั้งหมด"
+              value={stats?.totals.totalSessions ?? 0}
+            />
+            <SummaryCard
+              title="จำนวนการเล่นทั้งหมด"
+              value={stats?.totals.totalPlays ?? 0}
+            />
+            <SummaryCard
+              title="อัตราการดูจบ"
+              value={`${((stats?.totals.completionRate ?? 0) * 100).toFixed(1)}%`}
+            />
+            <SummaryCard
+              title="เวลาเฉลี่ยต่อเซสชัน"
+              value={secondsToHuman(stats?.totals.avgSessionLengthSeconds ?? 0)}
+            />
+          </div>
 
-        {loading && <div className="text-white/80">กำลังโหลดข้อมูล...</div>}
-        {error && <div className="text-red-400">เกิดข้อผิดพลาด: {error}</div>}
+          {loading && <div className="text-white/80">กำลังโหลดข้อมูล...</div>}
+          {error && <div className="text-red-400">เกิดข้อผิดพลาด: {error}</div>}
 
-        {stats && (
-          <div className="space-y-6">
-            {/* Line chart */}
-            <Card title="จำนวนการเล่นต่อวัน">
-              <div className="w-full h-64">
-                <ResponsiveContainer width="100%" height="100%">
-                  <LineChart data={stats.timeseries}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#333" />
-                    <XAxis dataKey="date" stroke="#aaa" />
-                    <YAxis stroke="#aaa" />
-                    <Tooltip contentStyle={{ background: "#111", border: "1px solid #333" }} />
-                    <Line type="monotone" dataKey="plays" stroke="#EFBA31" strokeWidth={2} dot={false} />
-                  </LineChart>
-                </ResponsiveContainer>
-              </div>
-            </Card>
+          {stats && (
+            <div className="space-y-6">
+              {/* Line chart */}
+              <Card title="จำนวนการเล่นต่อวัน">
+                <div className="w-full h-64">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <LineChart data={stats.timeseries}>
+                      <CartesianGrid strokeDasharray="3 3" stroke="#333" />
+                      <XAxis dataKey="date" stroke="#aaa" />
+                      <YAxis stroke="#aaa" />
+                      <Tooltip
+                        contentStyle={{
+                          background: "#111",
+                          border: "1px solid #333",
+                        }}
+                      />
+                      <Line
+                        type="monotone"
+                        dataKey="plays"
+                        stroke="#EFBA31"
+                        strokeWidth={2}
+                        dot={false}
+                      />
+                    </LineChart>
+                  </ResponsiveContainer>
+                </div>
+              </Card>
 
-            {/* Bar chart */}
-            <Card title="ฉากที่ถูกดูมากที่สุด">
-              <div className="w-full h-72">
-                <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={stats.variants.slice(0, 10)}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#333" />
-                    <XAxis dataKey="name" stroke="#aaa" hide={false} interval={0} angle={-15} textAnchor="end" height={60} />
-                    <YAxis stroke="#aaa" />
-                    <Tooltip contentStyle={{ background: "#111", border: "1px solid #333" }} />
-                    <Bar dataKey="count" fill="#82ca9d" />
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
-            </Card>
+              {/* Bar chart */}
+              <Card title="ฉากที่ถูกดูมากที่สุด">
+                <div className="w-full h-72">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <BarChart data={stats.variants.slice(0, 10)}>
+                      <CartesianGrid strokeDasharray="3 3" stroke="#333" />
+                      <XAxis
+                        dataKey="name"
+                        stroke="#aaa"
+                        hide={false}
+                        interval={0}
+                        angle={-15}
+                        textAnchor="end"
+                        height={60}
+                      />
+                      <YAxis stroke="#aaa" />
+                      <Tooltip
+                        contentStyle={{
+                          background: "#111",
+                          border: "1px solid #333",
+                        }}
+                      />
+                      <Bar dataKey="count" fill="#82ca9d" />
+                    </BarChart>
+                  </ResponsiveContainer>
+                </div>
+              </Card>
 
-            {/* Pie chart */}
-            <Card title="การเลือกของผู้ชม">
-              <div className="w-full h-72">
-                <ResponsiveContainer width="100%" height="100%">
-                  <PieChart>
-                    <Pie data={stats.choices} dataKey="count" nameKey="name" outerRadius={100} label>
-                      {stats.choices.map((_, idx) => (
-                        <Cell key={idx} fill={COLORS[idx % COLORS.length]} />
+              {/* Pie chart */}
+              <Card title="การเลือกของผู้ชม">
+                <div className="w-full h-72">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <PieChart>
+                      <Pie
+                        data={stats.choices}
+                        dataKey="count"
+                        nameKey="name"
+                        outerRadius={100}
+                        label
+                      >
+                        {stats.choices.map((_, idx) => (
+                          <Cell key={idx} fill={COLORS[idx % COLORS.length]} />
+                        ))}
+                      </Pie>
+                      <Legend />
+                      <Tooltip
+                        contentStyle={{
+                          background: "#111",
+                          border: "1px solid #333",
+                        }}
+                      />
+                    </PieChart>
+                  </ResponsiveContainer>
+                </div>
+              </Card>
+
+              {/* Table */}
+              <Card title="รายละเอียดฉาก">
+                <div className="overflow-auto">
+                  <table className="min-w-full text-sm">
+                    <thead>
+                      <tr className="text-left text-white/80">
+                        <th className="py-2 pr-4">ชื่อฉาก</th>
+                        <th className="py-2 pr-4">จำนวนครั้งที่ดู</th>
+                        <th className="py-2 pr-4">เวล���เฉลี่ยที่ใช้</th>
+                        <th className="py-2 pr-4">อัตราการออกกลางคัน</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {stats.variants.map((v) => (
+                        <tr key={v.name} className="border-t border-white/10">
+                          <td className="py-2 pr-4">{v.name}</td>
+                          <td className="py-2 pr-4">{v.count}</td>
+                          <td className="py-2 pr-4">
+                            {secondsToHuman(v.avgTimeSeconds)}
+                          </td>
+                          <td className="py-2 pr-4">
+                            {(v.dropoutRate * 100).toFixed(1)}%
+                          </td>
+                        </tr>
                       ))}
-                    </Pie>
-                    <Legend />
-                    <Tooltip contentStyle={{ background: "#111", border: "1px solid #333" }} />
-                  </PieChart>
-                </ResponsiveContainer>
-              </div>
-            </Card>
+                    </tbody>
+                  </table>
+                </div>
+              </Card>
 
-            {/* Table */}
-            <Card title="รายละเอียดฉาก">
-              <div className="overflow-auto">
-                <table className="min-w-full text-sm">
-                  <thead>
-                    <tr className="text-left text-white/80">
-                      <th className="py-2 pr-4">ชื่อฉาก</th>
-                      <th className="py-2 pr-4">จำนวนครั้งที่ดู</th>
-                      <th className="py-2 pr-4">เวล���เฉลี่ยที่ใช้</th>
-                      <th className="py-2 pr-4">อัตราการออกกลางคัน</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {stats.variants.map((v) => (
-                      <tr key={v.name} className="border-t border-white/10">
-                        <td className="py-2 pr-4">{v.name}</td>
-                        <td className="py-2 pr-4">{v.count}</td>
-                        <td className="py-2 pr-4">{secondsToHuman(v.avgTimeSeconds)}</td>
-                        <td className="py-2 pr-4">{(v.dropoutRate * 100).toFixed(1)}%</td>
+              {/* Recent events */}
+              <Card title="เหตุการณ์ล่าสุด">
+                <div className="overflow-auto">
+                  <table className="min-w-full text-sm">
+                    <thead>
+                      <tr className="text-left text-white/80">
+                        <th className="py-2 pr-4">เวลา</th>
+                        <th className="py-2 pr-4">เซสชัน</th>
+                        <th className="py-2 pr-4">อีเวนต์</th>
+                        <th className="py-2 pr-4">ชื่อฉาก</th>
+                        <th className="py-2 pr-4">ตัวเลือก</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </Card>
+                    </thead>
+                    <tbody>
+                      {recent.map((e, idx) => (
+                        <tr key={idx} className="border-t border-white/10">
+                          <td className="py-2 pr-4 whitespace-nowrap">
+                            {new Date(e.timestamp).toLocaleString()}
+                          </td>
+                          <td className="py-2 pr-4">
+                            {e.sessionId.slice(0, 10)}…
+                          </td>
+                          <td className="py-2 pr-4">{e.eventName}</td>
+                          <td className="py-2 pr-4">{e.variantName || "-"}</td>
+                          <td className="py-2 pr-4">{e.choiceText || "-"}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </Card>
 
-            {/* Recent events */}
-            <Card title="เหตุการณ์ล่าสุด">
-              <div className="overflow-auto">
-                <table className="min-w-full text-sm">
-                  <thead>
-                    <tr className="text-left text-white/80">
-                      <th className="py-2 pr-4">เวลา</th>
-                      <th className="py-2 pr-4">เซสชัน</th>
-                      <th className="py-2 pr-4">อีเวนต์</th>
-                      <th className="py-2 pr-4">ชื่อฉาก</th>
-                      <th className="py-2 pr-4">ตัวเลือก</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {recent.map((e, idx) => (
-                      <tr key={idx} className="border-t border-white/10">
-                        <td className="py-2 pr-4 whitespace-nowrap">{new Date(e.timestamp).toLocaleString()}</td>
-                        <td className="py-2 pr-4">{e.sessionId.slice(0, 10)}…</td>
-                        <td className="py-2 pr-4">{e.eventName}</td>
-                        <td className="py-2 pr-4">{e.variantName || "-"}</td>
-                        <td className="py-2 pr-4">{e.choiceText || "-"}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+              {/* Export */}
+              <div className="flex flex-wrap gap-3 justify-end">
+                <button
+                  className="rounded-full bg-[#EFBA31] text.black font-medium px-5 py-2 border border-black hover:scale-105 transition"
+                  onClick={() =>
+                    exportCsv("variants.csv", [
+                      [
+                        "ชื่อฉาก",
+                        "จำนวนครั้งที่ดู",
+                        "เวลาเฉลี่ยที่ใช้(วินาที)",
+                        "อัตราการออกกลางคัน(%)",
+                      ],
+                      ...(stats?.variants || []).map((v) => [
+                        v.name,
+                        v.count,
+                        Math.round(v.avgTimeSeconds),
+                        (v.dropoutRate * 100).toFixed(1),
+                      ]),
+                    ])
+                  }
+                >
+                  ดาวน์โหลด CSV (ฉาก)
+                </button>
+                <button
+                  className="rounded-full bg-[#EFBA31] text.black font-medium px-5 py-2 border border-black hover:scale-105 transition"
+                  onClick={() =>
+                    exportCsv("choices.csv", [
+                      ["ตัวเลือก", "จำนวน"],
+                      ...(stats?.choices || []).map((c) => [c.name, c.count]),
+                    ])
+                  }
+                >
+                  ดาวน์โหลด CSV (การเลือก)
+                </button>
+                <button
+                  className="rounded-full bg-[#EFBA31] text.black font-medium px-5 py-2 border border-black hover:scale-105 transition"
+                  onClick={() =>
+                    exportCsv("plays_per_day.csv", [
+                      ["วันที่", "จำนวนการเล่น"],
+                      ...(stats?.timeseries || []).map((t) => [
+                        t.date,
+                        t.plays,
+                      ]),
+                    ])
+                  }
+                >
+                  ดาวน์โหลด CSV (เล่นต่อวัน)
+                </button>
               </div>
-            </Card>
-
-            {/* Export */}
-            <div className="flex flex-wrap gap-3 justify-end">
-              <button
-                className="rounded-full bg-[#EFBA31] text.black font-medium px-5 py-2 border border-black hover:scale-105 transition"
-                onClick={() => exportCsv("variants.csv", [["ชื่อฉาก","จำนวนครั้งที่ดู","เวลาเฉลี่ยที่ใช้(วินาที)","อัตราการออกกลางคัน(%)"], ... (stats?.variants||[]).map(v=>[v.name, v.count, Math.round(v.avgTimeSeconds), (v.dropoutRate*100).toFixed(1)])])}
-              >ดาวน์โหลด CSV (ฉาก)</button>
-              <button
-                className="rounded-full bg-[#EFBA31] text.black font-medium px-5 py-2 border border-black hover:scale-105 transition"
-                onClick={() => exportCsv("choices.csv", [["ตัวเลือก","จำนวน"], ... (stats?.choices||[]).map(c=>[c.name, c.count])])}
-              >ดาวน์โหลด CSV (การเลือก)</button>
-              <button
-                className="rounded-full bg-[#EFBA31] text.black font-medium px-5 py-2 border border-black hover:scale-105 transition"
-                onClick={() => exportCsv("plays_per_day.csv", [["วันที่","จำนวนการเล่น"], ... (stats?.timeseries||[]).map(t=>[t.date, t.plays])])}
-              >ดาวน์โหลด CSV (เล่นต่อวัน)</button>
             </div>
-          </div>
-        )}
-      </div>
+          )}
+        </div>
       )}
     </div>
   );
 }
 
-function exportCsv(filename: string, rows: (string|number)[][]) {
-  const csv = rows.map(r => r.map(x => {
-    const s = String(x ?? "");
-    return /[",\n]/.test(s) ? '"' + s.replace(/"/g,'""') + '"' : s;
-  }).join(",")).join("\n");
+function exportCsv(filename: string, rows: (string | number)[][]) {
+  const csv = rows
+    .map((r) =>
+      r
+        .map((x) => {
+          const s = String(x ?? "");
+          return /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
+        })
+        .join(","),
+    )
+    .join("\n");
   const blob = new Blob(["\uFEFF" + csv], { type: "text/csv;charset=utf-8;" });
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
@@ -289,7 +442,13 @@ function exportCsv(filename: string, rows: (string|number)[][]) {
   URL.revokeObjectURL(url);
 }
 
-function Card({ title, children }: { title: string; children: React.ReactNode }) {
+function Card({
+  title,
+  children,
+}: {
+  title: string;
+  children: React.ReactNode;
+}) {
   return (
     <div className="bg-white/5 border border-white/10 rounded-lg p-4">
       <div className="text-lg font-medium mb-3">{title}</div>
@@ -298,7 +457,13 @@ function Card({ title, children }: { title: string; children: React.ReactNode })
   );
 }
 
-function SummaryCard({ title, value }: { title: string; value: React.ReactNode }) {
+function SummaryCard({
+  title,
+  value,
+}: {
+  title: string;
+  value: React.ReactNode;
+}) {
   return (
     <div className="bg-white/5 border border-white/10 rounded-lg p-4">
       <div className="text-sm text-white/70">{title}</div>
