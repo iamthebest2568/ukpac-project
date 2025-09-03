@@ -15,6 +15,7 @@ import {
   Legend,
 } from "recharts";
 import { clearEventLogs } from "../services/dataLogger.js";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 type StatsResponse = {
   totals: {
@@ -77,6 +78,8 @@ export default function UkDashboard() {
     appEvents: any[];
     videoEvents: any[];
   } | null>(null);
+
+  const clean = (x: any) => String(x ?? "").replace(/\uFFFD/g, "");
 
   // Password gate
   const expected = (import.meta as any).env?.VITE_DASHBOARD_PASSWORD as
@@ -233,7 +236,7 @@ export default function UkDashboard() {
                   {ingest.app.lastTs
                     ? new Date(ingest.app.lastTs).toLocaleString()
                     : "-"}{" "}
-                  • วิดีโอ: {ingest.video.count} เหตุการณ์, ล่าสุด{" "}
+                  • วิด��โอ: {ingest.video.count} เหตุการณ์, ล่าสุด{" "}
                   {ingest.video.lastTs
                     ? new Date(ingest.video.lastTs).toLocaleString()
                     : "-"}
@@ -253,7 +256,7 @@ export default function UkDashboard() {
                 disabled={clearing}
                 title="ลบ events.jsonl และ app-events.jsonl ในเซิร์ฟเวอร์"
               >
-                {clearing ? "กำลังล��..." : "ลบข้อมูลทั้งหมด"}
+                {clearing ? "กำลังลบ..." : "ลบข้อมูลทั้งหมด"}
               </button>
               <label className="flex items-center gap-2 text-sm text-white/80">
                 <input
@@ -267,41 +270,30 @@ export default function UkDashboard() {
           </div>
 
           {firstLoad && loading && (
-            <div className="text-white/80">กำลังโหลดข้อมูล...</div>
+            <div className="text-white/80">กำลังโหลดข้อม���ล...</div>
           )}
           {error && <div className="text-red-400">เกิดข้อผิดพลาด: {error}</div>}
 
           {stats && (
             <div className="space-y-6">
-              {/* User Journey: Topics + Details */}
+              {/* User Journey: Topics as accordion */}
               {journey && (
-                <>
-                  <Card title="หัวข้อข้อมูล (Topics)">
-                    <ul className="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
-                      <li className="rounded-md border border-white/10 bg-white/5 p-3">User</li>
-                      <li className="rounded-md border border-white/10 bg-white/5 p-3">Access Time</li>
-                      <li className="rounded-md border border-white/10 bg-white/5 p-3">Profile</li>
-                      <li className="rounded-md border border-white/10 bg-white/5 p-3">เมื่อได้ยินข่าวนี้ คุณคิดยังไง</li>
-                      <li className="rounded-md border border-white/10 bg-white/5 p-3">Minigame 1: ตัวเลือกนโยบาย</li>
-                      <li className="rounded-md border border-white/10 bg-white/5 p-3">Minigame 2 : จับคู่</li>
-                      <li className="rounded-md border border-white/10 bg-white/5 p-3">Minigame 3 : นโยบายที่เลือก</li>
-                      <li className="rounded-md border border-white/10 bg-white/5 p-3">Minigame 3 : เงินที่ใส่</li>
-                      <li className="rounded-md border border-white/10 bg-white/5 p-3">ข้อคิดเห็นอื่นๆ</li>
-                      <li className="rounded-md border border-white/10 bg-white/5 p-3">ลุ้นรางวัล</li>
-                    </ul>
-                  </Card>
-
-                  <Card title="รายละเอียดข้อมูล (Details)">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div>
-                        <div className="text-white/80 mb-2">User</div>
+                <Card title="หัวข้อข้อมูล (Topics)">
+                  <Accordion type="single" collapsible className="w-full" defaultValue="profile">
+                    {/* User */}
+                    <AccordionItem value="user">
+                      <AccordionTrigger>User</AccordionTrigger>
+                      <AccordionContent>
                         <ul className="space-y-1 text-sm">
                           <li className="flex justify-between"><span>ผู้ใช้ไม่ซ้ำ (IP)</span><span className="text-white/70">{journey.ipCount || 0}</span></li>
                           <li className="flex justify-between"><span>จำนวนเซสชัน</span><span className="text-white/70">{sessions.length}</span></li>
                         </ul>
-                      </div>
-                      <div>
-                        <div className="text-white/80 mb-2">Access Time</div>
+                      </AccordionContent>
+                    </AccordionItem>
+                    {/* Access Time */}
+                    <AccordionItem value="access">
+                      <AccordionTrigger>Access Time</AccordionTrigger>
+                      <AccordionContent>
                         <ul className="space-y-1 text-sm">
                           {(() => {
                             const times = sessions.map((s) => new Date(s.lastSeen).getTime());
@@ -315,108 +307,132 @@ export default function UkDashboard() {
                             );
                           })()}
                         </ul>
-                      </div>
-                      <div>
-                        <div className="text-white/80 mb-2">Profile</div>
+                      </AccordionContent>
+                    </AccordionItem>
+                    {/* Profile */}
+                    <AccordionItem value="profile">
+                      <AccordionTrigger>Profile</AccordionTrigger>
+                      <AccordionContent>
                         <ul className="space-y-1 text-sm">
                           {Object.entries(journey.introWho || {})
                             .sort((a: any, b: any) => (b[1] as number) - (a[1] as number))
                             .map(([k, v]) => (
                               <li key={k} className="flex justify-between">
-                                <span>{k}</span>
+                                <span>{clean(k)}</span>
                                 <span className="text-white/70">{v as any}</span>
                               </li>
                             ))}
                         </ul>
-                      </div>
-                      <div>
-                        <div className="text-white/80 mb-2">เมื่อได้ยินข่าวนี้ คุณคิดยังไง</div>
+                      </AccordionContent>
+                    </AccordionItem>
+                    {/* Stornaway choice */}
+                    <AccordionItem value="stornaway">
+                      <AccordionTrigger>เมื่อได้ยินข่าวนี้ คุณคิดยังไง</AccordionTrigger>
+                      <AccordionContent>
                         <ul className="space-y-1 text-sm">
                           {Object.entries(journey.stornawayVariants || {})
                             .sort((a: any, b: any) => (b[1] as number) - (a[1] as number))
                             .map(([k, v]) => (
                               <li key={k} className="flex justify-between">
-                                <span>{k}</span>
+                                <span>{clean(k)}</span>
                                 <span className="text-white/70">{v as any}</span>
                               </li>
                             ))}
                         </ul>
-                      </div>
-                      <div>
-                        <div className="text-white/80 mb-2">Minigame 1: ตัวเลือกนโยบาย</div>
+                      </AccordionContent>
+                    </AccordionItem>
+                    {/* MN1 */}
+                    <AccordionItem value="mn1">
+                      <AccordionTrigger>Minigame 1: ตัวเลือกนโยบาย</AccordionTrigger>
+                      <AccordionContent>
                         <ul className="space-y-1 text-sm">
                           {Object.entries(journey.mn1 || {})
                             .sort((a: any, b: any) => (b[1] as number) - (a[1] as number))
                             .map(([k, v]) => (
                               <li key={k} className="flex justify-between">
-                                <span>{k}</span>
+                                <span>{clean(k)}</span>
                                 <span className="text-white/70">{v as any}</span>
                               </li>
                             ))}
                         </ul>
-                      </div>
-                      <div>
-                        <div className="text-white/80 mb-2">Minigame 2 : จับคู่</div>
+                      </AccordionContent>
+                    </AccordionItem>
+                    {/* MN2 */}
+                    <AccordionItem value="mn2">
+                      <AccordionTrigger>Minigame 2 : จับคู่</AccordionTrigger>
+                      <AccordionContent>
                         <ul className="space-y-1 text-sm">
                           {Object.entries(journey.mn2ByMn1 || {})
                             .map(([priority, groups]: any) => (
                               <li key={priority} className="flex justify-between">
-                                <span>{priority}</span>
+                                <span>{clean(priority)}</span>
                                 <span className="text-white/70">
                                   {Object.entries(groups as Record<string, number>)
                                     .sort((a: any, b: any) => (b[1] as number) - (a[1] as number))
                                     .slice(0, 3)
-                                    .map(([g, c]) => `${g} (${c})`)
+                                    .map(([g, c]) => `${clean(g)} (${c})`)
                                     .join(" • ")}
                                 </span>
                               </li>
                             ))}
                         </ul>
-                      </div>
-                      <div>
-                        <div className="text-white/80 mb-2">Minigame 3 : นโยบายที่เลือก</div>
+                      </AccordionContent>
+                    </AccordionItem>
+                    {/* MN3 selected */}
+                    <AccordionItem value="mn3sel">
+                      <AccordionTrigger>Minigame 3 : นโยบายที่เลือก</AccordionTrigger>
+                      <AccordionContent>
                         <ul className="space-y-1 text-sm">
                           {Object.entries(journey.mn3Selection || {})
                             .sort((a: any, b: any) => (b[1] as number) - (a[1] as number))
                             .map(([k, v]) => (
                               <li key={k} className="flex justify-between">
-                                <span>{k}</span>
+                                <span>{clean(k)}</span>
                                 <span className="text-white/70">{v as any}</span>
                               </li>
                             ))}
                         </ul>
-                      </div>
-                      <div>
-                        <div className="text-white/80 mb-2">Minigame 3 : เงินที่ใส่</div>
+                      </AccordionContent>
+                    </AccordionItem>
+                    {/* MN3 money */}
+                    <AccordionItem value="mn3money">
+                      <AccordionTrigger>Minigame 3 : เงินที่ใส่</AccordionTrigger>
+                      <AccordionContent>
                         <ul className="space-y-1 text-sm">
                           {Object.entries(journey.mn3Budgets || {})
                             .map(([k, v]: any) => (
                               <li key={k} className="flex justify-between">
-                                <span>{k}</span>
+                                <span>{clean(k)}</span>
                                 <span className="text-white/70">{Math.round((v as any).avg)}</span>
                               </li>
                             ))}
                         </ul>
-                      </div>
-                      <div className="md:col-span-2">
-                        <div className="text-white/80 mb-2">ข้อคิดเห็นอื่นๆ</div>
+                      </AccordionContent>
+                    </AccordionItem>
+                    {/* Comments */}
+                    <AccordionItem value="comments">
+                      <AccordionTrigger>ข้อคิดเห็นอื่นๆ</AccordionTrigger>
+                      <AccordionContent>
                         <ul className="space-y-1 text-sm">
                           {(journey.ask05Samples || []).map((c: string, i: number) => (
-                            <li key={i} className="truncate">• {c}</li>
+                            <li key={i} className="truncate">• {clean(c)}</li>
                           ))}
                         </ul>
-                      </div>
-                      <div className="md:col-span-2">
-                        <div className="text-white/80 mb-2">ลุ้นรางวัล</div>
+                      </AccordionContent>
+                    </AccordionItem>
+                    {/* Rewards */}
+                    <AccordionItem value="reward">
+                      <AccordionTrigger>ลุ้นรางวัล</AccordionTrigger>
+                      <AccordionContent>
                         <ul className="space-y-1 text-sm">
                           <li className="flex justify-between"><span>เข้าร่วม</span><span className="text-white/70">{journey.endseq?.participate || 0}</span></li>
                           <li className="flex justify-between"><span>ไม่เข้าร่วม</span><span className="text-white/70">{journey.endseq?.decline || 0}</span></li>
                           <li className="flex justify-between"><span>กรอกข้อมูลติดต่อ</span><span className="text-white/70">{journey.endseq?.contacts || 0}</span></li>
                         </ul>
-                      </div>
-                    </div>
-                  </Card>
-                </>
+                      </AccordionContent>
+                    </AccordionItem>
+                  </Accordion>
+                </Card>
               )}
 
               {/* Per-user (individual) results */}
@@ -431,7 +447,7 @@ export default function UkDashboard() {
                         <th className="py-2 pr-4">MN1</th>
                         <th className="py-2 pr-4">ตัดสินใจ</th>
                         <th className="py-2 pr-4">ติดต่อ</th>
-                        <th className="py-2 pr-4">ความคิดเห็น</th>
+                        <th className="py-2 pr-4">ควา���คิดเห็น</th>
                         <th className="py-2 pr-4">ดู</th>
                       </tr>
                     </thead>
@@ -444,14 +460,14 @@ export default function UkDashboard() {
                           <td className="py-2 pr-4">
                             {s.sessionId.slice(0, 10)}…
                           </td>
-                          <td className="py-2 pr-4">{s.introWho || "-"}</td>
+                          <td className="py-2 pr-4">{clean(s.introWho) || "-"}</td>
                           <td className="py-2 pr-4">
                             {s.mn1Selected?.join(", ") || "-"}
                           </td>
                           <td className="py-2 pr-4">{s.endDecision || "-"}</td>
                           <td className="py-2 pr-4">{s.contacts || 0}</td>
                           <td className="py-2 pr-4 truncate max-w-[240px]">
-                            {s.ask05Comment || "-"}
+                            {clean(s.ask05Comment) || "-"}
                           </td>
                           <td className="py-2 pr-4">
                             <button
@@ -570,7 +586,7 @@ export default function UkDashboard() {
           >
             <div className="flex items-center justify-between mb-2">
               <div className="text-lg font-medium">
-                รายละเอียดเซสชัน: {detailSession?.slice(0, 12)}…
+                รายละเอีย���เซสชัน: {detailSession?.slice(0, 12)}…
               </div>
               <button
                 className="text-white/70 hover:text-white"
