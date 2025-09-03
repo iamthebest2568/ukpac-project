@@ -1,19 +1,4 @@
 import { useEffect, useMemo, useState } from "react";
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  Tooltip,
-  CartesianGrid,
-  ResponsiveContainer,
-  BarChart,
-  Bar,
-  PieChart,
-  Pie,
-  Cell,
-  Legend,
-} from "recharts";
 import { clearEventLogs } from "../services/dataLogger.js";
 
 type StatsResponse = {
@@ -395,7 +380,7 @@ export default function UkDashboard() {
               )}
 
               {/* Per-user (individual) results */}
-              <Card title="ผลรายบุคคล (ล่าสุด)">
+              <Card title="ผลร���ยบุคคล (ล่าสุด)">
                 <div className="overflow-auto">
                   <table className="min-w-full text-sm">
                     <thead>
