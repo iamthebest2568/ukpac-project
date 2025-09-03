@@ -269,35 +269,9 @@ export default function UkDashboard() {
 
           {stats && (
             <div className="space-y-6">
-              {/* Line chart */}
-              <Card title="จำนวนการเล่นต���อวัน">
-                <div className="w-full h-64">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <LineChart data={stats.timeseries}>
-                      <CartesianGrid strokeDasharray="3 3" stroke="#333" />
-                      <XAxis dataKey="date" stroke="#aaa" />
-                      <YAxis stroke="#aaa" />
-                      <Tooltip
-                        contentStyle={{
-                          background: "#111",
-                          border: "1px solid #333",
-                        }}
-                      />
-                      <Line
-                        type="monotone"
-                        dataKey="plays"
-                        stroke="#EFBA31"
-                        strokeWidth={2}
-                        dot={false}
-                      />
-                    </LineChart>
-                  </ResponsiveContainer>
-                </div>
-              </Card>
-
               {/* User Journey Summary */}
               {journey && (
-                <Card title="สรุปพฤติกรรมผู้ใช้ (User Journey)">
+                <Card title="สรุปพฤติกรรมผ��้ใช้ (User Journey)">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <div className="text-white/80 mb-2">
