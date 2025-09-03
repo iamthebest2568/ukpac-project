@@ -134,7 +134,7 @@ export default function UkDashboard() {
   async function clearData() {
     if (
       !window.confirm(
-        "ลบข้อมูลทั้งหมดในเ��ิร์ฟเวอร์? การกระทำนี้ย้อนกลับไม่ได้",
+        "ลบข้อมูลทั้งหมดในเ��ิร์ฟเวอร์? การกระทำนี้ย้อนกลับไม���ได้",
       )
     ) {
       return;
@@ -182,7 +182,7 @@ export default function UkDashboard() {
       {!authed && (
         <div className="min-h-screen flex items-center justify-center p-4">
           <div className="w-full max-w-sm bg-white/5 border border-white/10 rounded-xl p-5">
-            <div className="text-xl font-semibold mb-3">ป้อนรหัสผ่าน</div>
+            <div className="text-xl font-semibold mb-3">ป้อนร��ัสผ่าน</div>
             <div className="text-sm text-white/70 mb-4">
               หน้านี้ป้องกันด้วยรหัสผ่าน
             </div>
@@ -210,7 +210,7 @@ export default function UkDashboard() {
                 }
               }}
             >
-              เข้าสู่แดชบอร์ด
+              เข้���สู่แดชบอร์ด
             </button>
           </div>
         </div>
@@ -265,13 +265,13 @@ export default function UkDashboard() {
           </div>
 
           {loading && <div className="text-white/80">กำลั��โหลดข้อมูล...</div>}
-          {error && <div className="text-red-400">เกิดข้อผ��ดพลาด: {error}</div>}
+          {error && <div className="text-red-400">เกิดข้อผิดพลาด: {error}</div>}
 
           {stats && (
             <div className="space-y-6">
               {/* User Journey Summary */}
               {journey && (
-                <Card title="ส���ุปพฤติกรรมผ��้ใช้ (User Journey)">
+                <Card title="สรุปพฤติกรรมผ��้ใช้ (User Journey)">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <div className="text-white/80 mb-2">
@@ -318,7 +318,7 @@ export default function UkDashboard() {
                     </div>
                     <div>
                       <div className="text-white/80 mb-2">
-                        MN3: งบประมาณเฉลี่ย
+                        MN3: งบประมาณเฉลี่���
                       </div>
                       <ul className="space-y-1 text-sm">
                         {Object.entries(journey.mn3Budgets || {}).map(
@@ -411,7 +411,7 @@ export default function UkDashboard() {
               {/* Export */}
               <div className="flex flex-wrap gap-3 justify-end">
                 <button
-                  className="rounded-full bg-[#EFBA31] text.black font-medium px-5 py-2 border border-black hover:scale-105 transition"
+                  className="rounded-full bg-[#EFBA31] text-black font-medium px-5 py-2 border border-black hover:scale-105 transition shadow-sm"
                   onClick={() =>
                     exportCsv("uk_export.csv", [
                       [
@@ -426,7 +426,7 @@ export default function UkDashboard() {
                         "ข้อคิดเห็นอื่นๆ",
                         "ลุ้นรางวัล",
                         "ชื่อ",
-                        "เบอร์���ทร",
+                        "เบอร์โทร",
                       ],
                       ...sessions.map((s) => {
                         const mn2 = (() => {
