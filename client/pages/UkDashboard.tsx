@@ -15,7 +15,12 @@ import {
   Legend,
 } from "recharts";
 import { clearEventLogs } from "../services/dataLogger.js";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 type StatsResponse = {
   totals: {
@@ -138,9 +143,7 @@ export default function UkDashboard() {
 
   async function clearData() {
     if (
-      !window.confirm(
-        "ลบข้อมูลทั้งหมดในเซิร์ฟเวอร์? การกระทำนี้ย้อนกลับไม่ได้",
-      )
+      !window.confirm("ลบข้อมูลทั้งหมดในเซิร์ฟเวอร์? การกระทำนี้ย้อนกลับไม่ได้")
     ) {
       return;
     }
@@ -279,14 +282,29 @@ export default function UkDashboard() {
               {/* User Journey: Topics as accordion */}
               {journey && (
                 <Card title="หัวข้อข้อมูล (Topics)">
-                  <Accordion type="single" collapsible className="w-full" defaultValue="profile">
+                  <Accordion
+                    type="single"
+                    collapsible
+                    className="w-full"
+                    defaultValue="profile"
+                  >
                     {/* User */}
                     <AccordionItem value="user">
                       <AccordionTrigger>User</AccordionTrigger>
                       <AccordionContent>
                         <ul className="space-y-1 text-sm">
-                          <li className="flex justify-between"><span>ผู้ใช้ไม่ซ้ำ (IP)</span><span className="text-white/70">{journey.ipCount || 0}</span></li>
-                          <li className="flex justify-between"><span>จำนวนเซสชัน</span><span className="text-white/70">{sessions.length}</span></li>
+                          <li className="flex justify-between">
+                            <span>ผู้ใช้ไม่ซ้ำ (IP)</span>
+                            <span className="text-white/70">
+                              {journey.ipCount || 0}
+                            </span>
+                          </li>
+                          <li className="flex justify-between">
+                            <span>จำนวนเซสชัน</span>
+                            <span className="text-white/70">
+                              {sessions.length}
+                            </span>
+                          </li>
                         </ul>
                       </AccordionContent>
                     </AccordionItem>
@@ -296,13 +314,27 @@ export default function UkDashboard() {
                       <AccordionContent>
                         <ul className="space-y-1 text-sm">
                           {(() => {
-                            const times = sessions.map((s) => new Date(s.lastSeen).getTime());
-                            const min = times.length ? new Date(Math.min(...times)).toLocaleString() : "-";
-                            const max = times.length ? new Date(Math.max(...times)).toLocaleString() : "-";
+                            const times = sessions.map((s) =>
+                              new Date(s.lastSeen).getTime(),
+                            );
+                            const min = times.length
+                              ? new Date(Math.min(...times)).toLocaleString()
+                              : "-";
+                            const max = times.length
+                              ? new Date(Math.max(...times)).toLocaleString()
+                              : "-";
                             return (
                               <>
-                                <li className="flex justify-between"><span>ช่วงเวลา</span><span className="text-white/70">{min} – {max}</span></li>
-                                <li className="flex justify-between"><span>ล่าสุด</span><span className="text-white/70">{max}</span></li>
+                                <li className="flex justify-between">
+                                  <span>ช่วงเวลา</span>
+                                  <span className="text-white/70">
+                                    {min} – {max}
+                                  </span>
+                                </li>
+                                <li className="flex justify-between">
+                                  <span>ล่าสุด</span>
+                                  <span className="text-white/70">{max}</span>
+                                </li>
                               </>
                             );
                           })()}
@@ -315,11 +347,16 @@ export default function UkDashboard() {
                       <AccordionContent>
                         <ul className="space-y-1 text-sm">
                           {Object.entries(journey.introWho || {})
-                            .sort((a: any, b: any) => (b[1] as number) - (a[1] as number))
+                            .sort(
+                              (a: any, b: any) =>
+                                (b[1] as number) - (a[1] as number),
+                            )
                             .map(([k, v]) => (
                               <li key={k} className="flex justify-between">
                                 <span>{clean(k)}</span>
-                                <span className="text-white/70">{v as any}</span>
+                                <span className="text-white/70">
+                                  {v as any}
+                                </span>
                               </li>
                             ))}
                         </ul>
@@ -327,15 +364,22 @@ export default function UkDashboard() {
                     </AccordionItem>
                     {/* Stornaway choice */}
                     <AccordionItem value="stornaway">
-                      <AccordionTrigger>เมื่อได้ยินข่าวนี้ คุณคิดยังไง</AccordionTrigger>
+                      <AccordionTrigger>
+                        เมื่อได้ยินข่าวนี้ คุณคิดยังไง
+                      </AccordionTrigger>
                       <AccordionContent>
                         <ul className="space-y-1 text-sm">
                           {Object.entries(journey.stornawayVariants || {})
-                            .sort((a: any, b: any) => (b[1] as number) - (a[1] as number))
+                            .sort(
+                              (a: any, b: any) =>
+                                (b[1] as number) - (a[1] as number),
+                            )
                             .map(([k, v]) => (
                               <li key={k} className="flex justify-between">
                                 <span>{clean(k)}</span>
-                                <span className="text-white/70">{v as any}</span>
+                                <span className="text-white/70">
+                                  {v as any}
+                                </span>
                               </li>
                             ))}
                         </ul>
@@ -343,15 +387,22 @@ export default function UkDashboard() {
                     </AccordionItem>
                     {/* MN1 */}
                     <AccordionItem value="mn1">
-                      <AccordionTrigger>Minigame 1: ตัวเลือกนโยบาย</AccordionTrigger>
+                      <AccordionTrigger>
+                        Minigame 1: ตัวเลือกนโยบาย
+                      </AccordionTrigger>
                       <AccordionContent>
                         <ul className="space-y-1 text-sm">
                           {Object.entries(journey.mn1 || {})
-                            .sort((a: any, b: any) => (b[1] as number) - (a[1] as number))
+                            .sort(
+                              (a: any, b: any) =>
+                                (b[1] as number) - (a[1] as number),
+                            )
                             .map(([k, v]) => (
                               <li key={k} className="flex justify-between">
                                 <span>{clean(k)}</span>
-                                <span className="text-white/70">{v as any}</span>
+                                <span className="text-white/70">
+                                  {v as any}
+                                </span>
                               </li>
                             ))}
                         </ul>
@@ -362,33 +413,49 @@ export default function UkDashboard() {
                       <AccordionTrigger>Minigame 2 : จับคู่</AccordionTrigger>
                       <AccordionContent>
                         <ul className="space-y-1 text-sm">
-                          {Object.entries(journey.mn2ByMn1 || {})
-                            .map(([priority, groups]: any) => (
-                              <li key={priority} className="flex justify-between">
+                          {Object.entries(journey.mn2ByMn1 || {}).map(
+                            ([priority, groups]: any) => (
+                              <li
+                                key={priority}
+                                className="flex justify-between"
+                              >
                                 <span>{clean(priority)}</span>
                                 <span className="text-white/70">
-                                  {Object.entries(groups as Record<string, number>)
-                                    .sort((a: any, b: any) => (b[1] as number) - (a[1] as number))
+                                  {Object.entries(
+                                    groups as Record<string, number>,
+                                  )
+                                    .sort(
+                                      (a: any, b: any) =>
+                                        (b[1] as number) - (a[1] as number),
+                                    )
                                     .slice(0, 3)
                                     .map(([g, c]) => `${clean(g)} (${c})`)
                                     .join(" • ")}
                                 </span>
                               </li>
-                            ))}
+                            ),
+                          )}
                         </ul>
                       </AccordionContent>
                     </AccordionItem>
                     {/* MN3 selected */}
                     <AccordionItem value="mn3sel">
-                      <AccordionTrigger>Minigame 3 : นโยบายที่เลือก</AccordionTrigger>
+                      <AccordionTrigger>
+                        Minigame 3 : นโยบายที่เลือก
+                      </AccordionTrigger>
                       <AccordionContent>
                         <ul className="space-y-1 text-sm">
                           {Object.entries(journey.mn3Selection || {})
-                            .sort((a: any, b: any) => (b[1] as number) - (a[1] as number))
+                            .sort(
+                              (a: any, b: any) =>
+                                (b[1] as number) - (a[1] as number),
+                            )
                             .map(([k, v]) => (
                               <li key={k} className="flex justify-between">
                                 <span>{clean(k)}</span>
-                                <span className="text-white/70">{v as any}</span>
+                                <span className="text-white/70">
+                                  {v as any}
+                                </span>
                               </li>
                             ))}
                         </ul>
@@ -396,16 +463,21 @@ export default function UkDashboard() {
                     </AccordionItem>
                     {/* MN3 money */}
                     <AccordionItem value="mn3money">
-                      <AccordionTrigger>Minigame 3 : เงินที่ใส่</AccordionTrigger>
+                      <AccordionTrigger>
+                        Minigame 3 : เงินที่ใส่
+                      </AccordionTrigger>
                       <AccordionContent>
                         <ul className="space-y-1 text-sm">
-                          {Object.entries(journey.mn3Budgets || {})
-                            .map(([k, v]: any) => (
+                          {Object.entries(journey.mn3Budgets || {}).map(
+                            ([k, v]: any) => (
                               <li key={k} className="flex justify-between">
                                 <span>{clean(k)}</span>
-                                <span className="text-white/70">{Math.round((v as any).avg)}</span>
+                                <span className="text-white/70">
+                                  {Math.round((v as any).avg)}
+                                </span>
                               </li>
-                            ))}
+                            ),
+                          )}
                         </ul>
                       </AccordionContent>
                     </AccordionItem>
@@ -414,9 +486,13 @@ export default function UkDashboard() {
                       <AccordionTrigger>ข้อคิดเห็นอื่นๆ</AccordionTrigger>
                       <AccordionContent>
                         <ul className="space-y-1 text-sm">
-                          {(journey.ask05Samples || []).map((c: string, i: number) => (
-                            <li key={i} className="truncate">• {clean(c)}</li>
-                          ))}
+                          {(journey.ask05Samples || []).map(
+                            (c: string, i: number) => (
+                              <li key={i} className="truncate">
+                                • {clean(c)}
+                              </li>
+                            ),
+                          )}
                         </ul>
                       </AccordionContent>
                     </AccordionItem>
@@ -425,9 +501,24 @@ export default function UkDashboard() {
                       <AccordionTrigger>ลุ้นรางวัล</AccordionTrigger>
                       <AccordionContent>
                         <ul className="space-y-1 text-sm">
-                          <li className="flex justify-between"><span>เข้าร่วม</span><span className="text-white/70">{journey.endseq?.participate || 0}</span></li>
-                          <li className="flex justify-between"><span>ไม่เข้าร่วม</span><span className="text-white/70">{journey.endseq?.decline || 0}</span></li>
-                          <li className="flex justify-between"><span>กรอกข้อมูลติดต่อ</span><span className="text-white/70">{journey.endseq?.contacts || 0}</span></li>
+                          <li className="flex justify-between">
+                            <span>เข้าร่วม</span>
+                            <span className="text-white/70">
+                              {journey.endseq?.participate || 0}
+                            </span>
+                          </li>
+                          <li className="flex justify-between">
+                            <span>ไม่เข้าร่วม</span>
+                            <span className="text-white/70">
+                              {journey.endseq?.decline || 0}
+                            </span>
+                          </li>
+                          <li className="flex justify-between">
+                            <span>กรอกข้อมูลติดต่อ</span>
+                            <span className="text-white/70">
+                              {journey.endseq?.contacts || 0}
+                            </span>
+                          </li>
                         </ul>
                       </AccordionContent>
                     </AccordionItem>
@@ -460,7 +551,9 @@ export default function UkDashboard() {
                           <td className="py-2 pr-4">
                             {s.sessionId.slice(0, 10)}…
                           </td>
-                          <td className="py-2 pr-4">{clean(s.introWho) || "-"}</td>
+                          <td className="py-2 pr-4">
+                            {clean(s.introWho) || "-"}
+                          </td>
                           <td className="py-2 pr-4">
                             {s.mn1Selected?.join(", ") || "-"}
                           </td>
@@ -675,7 +768,9 @@ function Card({
   return (
     <section className="rounded-xl border border-white/10 bg-white/[0.05] backdrop-blur-sm shadow-sm">
       <header className="px-4 py-3 border-b border-white/10 flex items-center justify-between">
-        <h2 className="text-base md:text-lg font-semibold tracking-tight">{title}</h2>
+        <h2 className="text-base md:text-lg font-semibold tracking-tight">
+          {title}
+        </h2>
       </header>
       <div className="p-4 md:p-5">{children}</div>
     </section>
