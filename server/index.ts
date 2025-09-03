@@ -10,11 +10,14 @@ import {
   appendEvent,
   computeStats,
 } from "./services/videoAnalytics";
-import { listRecentEvents } from "./services/videoAnalytics.extras";
+import { listRecentEvents, listVideoEventsBySession, getVideoIngestStatus } from "./services/videoAnalytics.extras";
 import {
   AppEventSchema,
   appendAppEvent,
   computeUserJourneyStats,
+  computeSessionSummaries,
+  getAppEventsBySession,
+  getAppIngestStatus,
 } from "./services/appEvents";
 
 export function createServer() {
@@ -104,6 +107,48 @@ export function createServer() {
           ok: false,
           error: e?.message || "failed to compute journey stats",
         });
+    }
+  });
+
+  // Per-session summaries
+  app.get("/api/session-summaries", async (req, res) => {
+    try {
+      const limit = req.query.limit
+        ? Math.max(1, Math.min(500, Number(req.query.limit)))
+        : 100;
+      const summaries = await computeSessionSummaries(limit);
+      res.status(200).json(summaries);
+    } catch (e: any) {
+      res
+        .status(500)
+        .json({ ok: false, error: e?.message || "failed to compute session summaries" });
+    }
+  });
+
+  // Per-session detail
+  app.get("/api/session/:id", async (req, res) => {
+    try {
+      const id = req.params.id;
+      const appEvents = await getAppEventsBySession(id);
+      const videoEvents = await listVideoEventsBySession(id);
+      res.status(200).json({ appEvents, videoEvents });
+    } catch (e: any) {
+      res
+        .status(500)
+        .json({ ok: false, error: e?.message || "failed to load session" });
+    }
+  });
+
+  // Ingest status
+  app.get("/api/ingest-status", async (_req, res) => {
+    try {
+      const app = await getAppIngestStatus();
+      const video = await getVideoIngestStatus();
+      res.status(200).json({ app, video });
+    } catch (e: any) {
+      res
+        .status(500)
+        .json({ ok: false, error: e?.message || "failed to load status" });
     }
   });
 
