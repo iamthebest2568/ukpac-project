@@ -1,6 +1,38 @@
 import { useEffect, useMemo, useState } from "react";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  Tooltip,
+  CartesianGrid,
+  ResponsiveContainer,
+  BarChart,
+  Bar,
+  PieChart,
+  Pie,
+  Cell,
+  Legend,
+} from "recharts";
 import { clearEventLogs } from "../services/dataLogger.js";
 
+
+type StatsResponse = {
+  totals: {
+    totalSessions: number;
+    totalPlays: number;
+    completionRate: number;
+    avgSessionLengthSeconds: number;
+  };
+  timeseries: { date: string; plays: number }[];
+  variants: {
+    name: string;
+    count: number;
+    avgTimeSeconds: number;
+    dropoutRate: number;
+  }[];
+  choices: { name: string; count: number }[];
+};
 
 type SessionSummary = {
   sessionId: string;
@@ -23,6 +55,7 @@ type IngestStatus = {
 
 
 export default function UkDashboard() {
+  const [stats, setStats] = useState<StatsResponse | null>(null);
   const [journey, setJourney] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -65,7 +98,7 @@ export default function UkDashboard() {
   }
 
   async function clearData() {
-    if (!window.confirm("ลบข้อมูลทั้งหมดในเซิร์ฟเวอร์? การกระทำนี้ย้อนกลับไม่ได้")) {
+    if (!window.confirm("ลบข้อ���ูลทั้งหมดในเซิร์ฟเวอร์? การกระทำนี้ย้อนกลับไม่ได้")) {
       return;
     }
     try {
@@ -82,6 +115,19 @@ export default function UkDashboard() {
       setClearing(false);
     }
   }
+
+  const COLORS = useMemo(
+    () => [
+      "#EFBA31",
+      "#8884d8",
+      "#82ca9d",
+      "#ff7f50",
+      "#00C49F",
+      "#FFBB28",
+      "#FF8042",
+    ],
+    [],
+  );
 
   useEffect(() => {
     if (!authed) return;
@@ -206,11 +252,11 @@ export default function UkDashboard() {
 
               {/* User Journey Summary */}
               {journey && (
-                <Card title="สรุปพฤติกรรมผู้ใช้ (User Journey)">
+                <Card title="สรุปพฤติกรรมผู้ใ��้ (User Journey)">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <div className="text-white/80 mb-2">
-                        Intro: คุณเป็นใคร
+                        Intro: คุณเป��นใคร
                       </div>
                       <ul className="space-y-1 text-sm">
                         {Object.entries(journey.introWho || {}).map(
@@ -483,7 +529,7 @@ export default function UkDashboard() {
                     ])
                   }
                 >
-                  ดาวน์โหลด CSV (การเลือก)
+                  ดาวน์โหล�� CSV (การเลือก)
                 </button>
                 <button
                   className="rounded-full bg-[#EFBA31] text.black font-medium px-5 py-2 border border-black hover:scale-105 transition"
