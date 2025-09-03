@@ -1,5 +1,7 @@
 import React from "react";
 
+import React from 'react';
+
 interface FigmaStyle1LayoutProps {
   /** Background image URL */
   backgroundImage: string;
@@ -50,6 +52,8 @@ const FigmaStyle1Layout: React.FC<FigmaStyle1LayoutProps> = ({
             src={backgroundImage}
             alt={backgroundAlt}
             className="figma-style1-background-image"
+            loading="eager"
+            decoding="async"
           />
           <div className="figma-style1-background-overlay" />
         </div>
@@ -131,4 +135,4 @@ const FigmaStyle1Layout: React.FC<FigmaStyle1LayoutProps> = ({
   );
 };
 
-export default FigmaStyle1Layout;
+export default React.memo(FigmaStyle1Layout);
