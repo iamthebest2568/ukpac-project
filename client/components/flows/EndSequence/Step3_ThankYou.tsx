@@ -127,6 +127,9 @@ const Step3_ThankYou = ({ sessionID, onNext, onBack, journeyData }: Step3_ThankY
             alt="ขอบคุณสำหรับการมีส่วนร่วม"
             className="w-full h-full object-cover object-center"
             style={{ minWidth: '100%', aspectRatio: '2/3' }}
+            loading="lazy"
+            decoding="async"
+            fetchPriority="low"
           />
           <div
             className="absolute inset-0"
@@ -170,7 +173,7 @@ const Step3_ThankYou = ({ sessionID, onNext, onBack, journeyData }: Step3_ThankY
                       <button className="figma-style1-button" onClick={handleShareFacebook} aria-label="แชร์ไปยัง Facebook">Facebook</button>
                       <button className="figma-style1-button" onClick={handleShareX} aria-label="แชร์ไปยัง X">X</button>
                       <button className="figma-style1-button" onClick={handleShareLine} aria-label="แชร์ไปยัง LINE">LINE</button>
-                      <button className="figma-style1-button" onClick={handleShareWhatsApp} aria-label="แชร์ไปยัง WhatsApp">WhatsApp</button>
+                      <button className="figma-style1-button" onClick={handleShareWhatsApp} aria-label="แ��ร์ไปยัง WhatsApp">WhatsApp</button>
                       <button className="figma-style1-button" onClick={handleShareMessenger} aria-label="แชร์ไปยัง Messenger">Messenger</button>
                       <button className="figma-style1-button" onClick={handleShareLinkedIn} aria-label="แชร์ไปยัง LinkedIn">LinkedIn</button>
                       <button className="figma-style1-button col-span-2" onClick={handleCopyLink} aria-label="คัดลอกลิงก์">{copied ? 'คัดลอกแล้ว' : 'คัดลอกลิงก์'}</button>

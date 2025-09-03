@@ -13,7 +13,12 @@ const EndSequencePage = () => {
   const { handleEndSequenceComplete } = useFlowNavigation();
 
   useEffect(() => {
-    import("./EndScreenPage").catch(() => {});
+    const prefetch = () => import("./EndScreenPage").catch(() => {});
+    if (typeof (window as any).requestIdleCallback === "function") {
+      (window as any).requestIdleCallback(prefetch);
+    } else {
+      setTimeout(prefetch, 1500);
+    }
   }, []);
 
   return (

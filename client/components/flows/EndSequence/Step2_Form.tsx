@@ -98,6 +98,9 @@ const Step2_Form = ({
             alt="กรอกข้อมูลรับรางวัล"
             className="w-full h-full object-cover object-center"
             style={{ minWidth: "100%", aspectRatio: "2/3" }}
+            loading="lazy"
+            decoding="async"
+            fetchPriority="low"
           />
           <div
             className="absolute inset-0"
@@ -116,7 +119,7 @@ const Step2_Form = ({
               {/* Title */}
               <div className="text-center mb-20">
                 <h1 className="text-white text-center font-kanit text-[30px] font-normal leading-normal">
-                  กรอกข้อมูล เพื่อรับรางวัล
+                  กรอก��้อมูล เพื่อรับรางวัล
                 </h1>
               </div>
 
@@ -180,7 +183,7 @@ const Step2_Form = ({
                   aria-label="กลับไปก่อนหน้านี้"
                 >
                   <span className="figma-style1-button-text">
-                    กลับไปก่อนหน้านี้
+                    กลับไปก่อนหน้า��ี้
                   </span>
                 </button>
               </div>
