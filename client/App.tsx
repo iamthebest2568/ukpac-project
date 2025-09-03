@@ -1,6 +1,6 @@
 import "./global.css";
 
-import React, { Suspense, lazy } from "react";
+import { Suspense, lazy } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 // Minimal set of pages (dashboard/backend removed)
@@ -45,7 +45,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => (
     <a
       href="#main-content"
       className="skip-link"
-      aria-label="ข้ามไปยังเนื้อหาหลัก"
+      aria-label="ข้ามไปยังเนื้���หาหลัก"
     >
       ข้ามไปยังเนื้อหาหลัก
     </a>
