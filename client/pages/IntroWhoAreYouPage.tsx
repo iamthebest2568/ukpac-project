@@ -1,8 +1,14 @@
 import FigmaStyle1Layout from "../components/layouts/FigmaStyle1Layout";
 import { useSession } from "../hooks/useSession";
+import { useEffect } from "react";
 
 const IntroWhoAreYouPage = () => {
   const { navigateToPage } = useSession();
+
+  // Prefetch next screen chunk for smoother transition
+  useEffect(() => {
+    import("./Uk-stornaway").catch(() => {});
+  }, []);
 
   const handleChoice = (choice: string) => {
     // Add a small delay to show selection before navigating
@@ -25,7 +31,7 @@ const IntroWhoAreYouPage = () => {
     {
       text: "ผู้อยู่อาศัยในพื้นที่",
       onClick: () => handleChoice("ผู้อยู่อาศัยในพื้นที่"),
-      ariaLabel: "เลือกผู้อยู่อาศัยในพื้นที่",
+      ariaLabel: "เลือกผู้อยู��อาศัยในพื้นที่",
     },
     {
       text: "นักศึกษาที่เข้ามาเรียนในพื้นที่",
@@ -43,9 +49,9 @@ const IntroWhoAreYouPage = () => {
       ariaLabel: "เลือกผู้ปกครอ��ที่เข้ามาส่งลูกในพื้นที่",
     },
     {
-      text: "ผู้เข้ามาช๊อปปิ้ง กินข้า��",
+      text: "ผู้เข้ามาช๊อปปิ้ง ��ินข้า��",
       onClick: () => handleChoice("ผู้เข้ามาช๊อปปิ้ง กินข้าว"),
-      ariaLabel: "เลือกผู้��ข้ามาช๊อปปิ้ง กินข้าว",
+      ariaLabel: "เลือกผู้เข้ามาช๊อปปิ้ง กินข้าว",
     },
   ];
 
