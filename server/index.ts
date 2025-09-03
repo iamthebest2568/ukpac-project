@@ -186,15 +186,17 @@ export function createServer() {
         files.map((fp) => fs.promises.rm(fp, { force: true }).catch(() => {})),
       );
 
-      // Attempt to purge Supabase table if env provided
+      // Attempt to purge Supabase tables if env provided
       const supabaseUrl = process.env.SUPABASE_URL as string | undefined;
       const supabaseKey = process.env.SUPABASE_ANON_KEY as string | undefined;
-      let supabaseDeleted = null as null | number;
+      let supabaseDeleted = null as null | { video_events: number; app_events: number };
       if (supabaseUrl && supabaseKey) {
+        let videoDeleted = 0;
+        let appDeleted = 0;
         try {
-          const url = new URL(`${supabaseUrl}/rest/v1/video_events`);
-          url.searchParams.set("session_id", "not.is.null");
-          const resp = await fetch(url.toString(), {
+          const urlV = new URL(`${supabaseUrl}/rest/v1/video_events`);
+          urlV.searchParams.set("session_id", "not.is.null");
+          const respV = await fetch(urlV.toString(), {
             method: "DELETE",
             headers: {
               apikey: supabaseKey,
@@ -202,15 +204,28 @@ export function createServer() {
               Prefer: "return=representation",
             },
           });
-          if (resp.ok) {
-            const json = (await resp.json()) as any[];
-            supabaseDeleted = Array.isArray(json) ? json.length : 0;
-          } else {
-            supabaseDeleted = 0;
+          if (respV.ok) {
+            const json = (await respV.json()) as any[];
+            videoDeleted = Array.isArray(json) ? json.length : 0;
           }
-        } catch {
-          supabaseDeleted = 0;
-        }
+        } catch {}
+        try {
+          const urlA = new URL(`${supabaseUrl}/rest/v1/app_events`);
+          urlA.searchParams.set("session_id", "not.is.null");
+          const respA = await fetch(urlA.toString(), {
+            method: "DELETE",
+            headers: {
+              apikey: supabaseKey,
+              Authorization: `Bearer ${supabaseKey}`,
+              Prefer: "return=representation",
+            },
+          });
+          if (respA.ok) {
+            const json = (await respA.json()) as any[];
+            appDeleted = Array.isArray(json) ? json.length : 0;
+          }
+        } catch {}
+        supabaseDeleted = { video_events: videoDeleted, app_events: appDeleted };
       }
 
       res.status(200).json({
