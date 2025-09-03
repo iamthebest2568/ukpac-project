@@ -154,6 +154,26 @@ export async function computeSessionSummaries(limit = 100): Promise<SessionSumma
   return summaries.slice(0, Math.max(1, limit));
 }
 
+export async function getAppIngestStatus(): Promise<{ count: number; lastTs: string | null }> {
+  const DATA_DIR = process.env.DATA_DIR || path.join(process.cwd(), ".data");
+  const APP_EVENTS_FILE = path.join(DATA_DIR, "app-events.jsonl");
+  try {
+    const raw = await fs.promises.readFile(APP_EVENTS_FILE, "utf8");
+    const lines = raw.split(/\n+/).filter(Boolean);
+    const lastLine = lines[lines.length - 1];
+    let lastTs: string | null = null;
+    if (lastLine) {
+      try {
+        const j = JSON.parse(lastLine);
+        lastTs = j.timestamp || null;
+      } catch {}
+    }
+    return { count: lines.length, lastTs };
+  } catch {
+    return { count: 0, lastTs: null };
+  }
+}
+
 export interface UserJourneyStats {
   introWho: Record<string, number>;
   mn1: Record<string, number>;
