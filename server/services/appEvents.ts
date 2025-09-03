@@ -25,12 +25,62 @@ function ensureDir() {
 }
 
 export async function appendAppEvent(ev: AppEvent) {
+  const supabaseUrl = process.env.SUPABASE_URL as string | undefined;
+  const supabaseKey = process.env.SUPABASE_ANON_KEY as string | undefined;
+  if (supabaseUrl && supabaseKey) {
+    try {
+      const res = await fetch(`${supabaseUrl}/rest/v1/app_events`, {
+        method: "POST",
+        headers: {
+          apikey: supabaseKey,
+          Authorization: `Bearer ${supabaseKey}`,
+          "Content-Type": "application/json",
+          Prefer: "return=minimal",
+        },
+        body: JSON.stringify({
+          session_id: ev.sessionId,
+          event: ev.event,
+          timestamp: ev.timestamp,
+          page: ev.page ?? null,
+          payload: ev.payload ?? null,
+          user_agent: ev.userAgent ?? null,
+          ip: ev.ip ?? null,
+        }),
+      });
+      if (res.ok) return;
+    } catch {}
+  }
   ensureDir();
   const line = JSON.stringify(ev) + "\n";
   await fs.promises.appendFile(APP_EVENTS_FILE, line, "utf8");
 }
 
 export async function readAllAppEvents(): Promise<AppEvent[]> {
+  // Prefer Supabase if configured
+  const supabaseUrl = process.env.SUPABASE_URL as string | undefined;
+  const supabaseKey = process.env.SUPABASE_ANON_KEY as string | undefined;
+  if (supabaseUrl && supabaseKey) {
+    try {
+      const params = new URLSearchParams({ select: "*", order: "id.asc" });
+      const res = await fetch(`${supabaseUrl}/rest/v1/app_events?${params.toString()}`, {
+        headers: { apikey: supabaseKey, Authorization: `Bearer ${supabaseKey}` },
+      } as any);
+      if (res.ok) {
+        const rows = (await res.json()) as any[];
+        const events: AppEvent[] = rows.map((r) => ({
+          sessionId: r.session_id,
+          event: r.event,
+          timestamp: r.timestamp || new Date().toISOString(),
+          page: r.page ?? undefined,
+          payload: r.payload ?? undefined,
+          userAgent: r.user_agent ?? undefined,
+          ip: r.ip ?? undefined,
+        }));
+        return events;
+      }
+    } catch {}
+  }
+  // Fallback to local file
   ensureDir();
   try {
     const raw = await fs.promises.readFile(APP_EVENTS_FILE, "utf8");
