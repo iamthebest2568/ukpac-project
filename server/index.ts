@@ -1,6 +1,8 @@
 import "dotenv/config";
 import express from "express";
 import cors from "cors";
+import fs from "node:fs";
+import path from "node:path";
 import { handleDemo } from "./routes/demo";
 import {
   EventSchema,
@@ -116,6 +118,26 @@ export function createServer() {
       res
         .status(500)
         .json({ ok: false, error: e?.message || "failed to list events" });
+    }
+  });
+
+  // Clear local analytics data
+  app.delete("/api/clear-data", async (_req, res) => {
+    try {
+      const DATA_DIR = process.env.DATA_DIR || path.join(process.cwd(), ".data");
+      const files = ["events.jsonl", "app-events.jsonl"].map((f) =>
+        path.join(DATA_DIR, f),
+      );
+      await Promise.all(
+        files.map((fp) => fs.promises.rm(fp, { force: true }).catch(() => {})),
+      );
+      res
+        .status(200)
+        .json({ ok: true, cleared: files.map((f) => path.basename(f)) });
+    } catch (e: any) {
+      res
+        .status(500)
+        .json({ ok: false, error: e?.message || "failed to clear data" });
     }
   });
 
