@@ -3,6 +3,7 @@ import express from "express";
 import cors from "cors";
 import fs from "node:fs";
 import path from "node:path";
+import fetch from "node-fetch";
 import { handleDemo } from "./routes/demo";
 import {
   EventSchema,
