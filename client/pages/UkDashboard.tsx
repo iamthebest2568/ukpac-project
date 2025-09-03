@@ -441,7 +441,7 @@ export default function UkDashboard() {
                         "User",
                         "Access Time",
                         "Profile",
-                        "เมื่อได้ยินข่า���นี้ คุณคิดยังไง",
+                        "เมื่อได้ยินข่าวนี้ คุณคิดยังไง",
                         "Minigame 1: ตัวเลือกนโยบาย",
                         "Minigame 2 : จับคู่",
                         "Minigame 3 : นโยบายที่เลือก",
