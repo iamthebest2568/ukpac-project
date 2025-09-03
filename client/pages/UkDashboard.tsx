@@ -134,7 +134,7 @@ export default function UkDashboard() {
   async function clearData() {
     if (
       !window.confirm(
-        "ลบข้อมูลทั้งหมดในเ��ิร์ฟเวอร์? การกระทำ���ี้ย้อนกลับไม่ได้",
+        "ลบข้อมูลทั้งหมดในเ��ิร์ฟเวอร์? การกระทำนี้ย้อนกลับไม่ได้",
       )
     ) {
       return;
@@ -182,7 +182,7 @@ export default function UkDashboard() {
       {!authed && (
         <div className="min-h-screen flex items-center justify-center p-4">
           <div className="w-full max-w-sm bg-white/5 border border-white/10 rounded-xl p-5">
-            <div className="text-xl font-semibold mb-3">ป้อ���รหัสผ่าน</div>
+            <div className="text-xl font-semibold mb-3">ป้อนรหัสผ่าน</div>
             <div className="text-sm text-white/70 mb-4">
               หน้านี้ป้องกันด้วยรหัสผ่าน
             </div>
@@ -265,7 +265,7 @@ export default function UkDashboard() {
           </div>
 
           {loading && <div className="text-white/80">กำลั��โหลดข้อมูล...</div>}
-          {error && <div className="text-red-400">เกิดข้อผิดพลาด: {error}</div>}
+          {error && <div className="text-red-400">เกิดข้อ��ิดพลาด: {error}</div>}
 
           {stats && (
             <div className="space-y-6">
@@ -609,9 +609,9 @@ function SummaryCard({
   value: React.ReactNode;
 }) {
   return (
-    <div className="bg-white/5 border border-white/10 rounded-lg p-4">
+    <section className="rounded-xl border border-white/10 bg-white/[0.05] backdrop-blur-sm shadow-sm p-4">
       <div className="text-sm text-white/70">{title}</div>
       <div className="text-2xl font-semibold mt-1">{value}</div>
-    </div>
+    </section>
   );
 }
