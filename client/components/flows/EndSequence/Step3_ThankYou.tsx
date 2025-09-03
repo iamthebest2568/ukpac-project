@@ -129,7 +129,6 @@ const Step3_ThankYou = ({ sessionID, onNext, onBack, journeyData }: Step3_ThankY
             style={{ minWidth: '100%', aspectRatio: '2/3' }}
             loading="lazy"
             decoding="async"
-            fetchPriority="low"
           />
           <div
             className="absolute inset-0"
