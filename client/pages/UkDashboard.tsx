@@ -51,6 +51,7 @@ type VideoEvent = {
 export default function UkDashboard() {
   const [stats, setStats] = useState<StatsResponse | null>(null);
   const [recent, setRecent] = useState<VideoEvent[]>([]);
+  const [journey, setJourney] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [lastUpdated, setLastUpdated] = useState<string>("");
@@ -81,6 +82,8 @@ export default function UkDashboard() {
       setStats(data);
       const ev = await fetch(`/api/video-events?limit=50`);
       if (ev.ok) setRecent(await ev.json());
+      const j = await fetch(`/api/user-journey-stats`);
+      if (j.ok) setJourney(await j.json());
       setError(null);
       setLastUpdated(new Date().toLocaleString());
     } catch (e: any) {
@@ -189,7 +192,7 @@ export default function UkDashboard() {
                   checked={autoRefresh}
                   onChange={(e) => setAutoRefresh(e.target.checked)}
                 />{" "}
-                อัปเดตอัตโนมัติ
+                อ��ปเดตอัตโนมัติ
               </label>
             </div>
           </div>
@@ -244,6 +247,54 @@ export default function UkDashboard() {
                   </ResponsiveContainer>
                 </div>
               </Card>
+
+              {/* User Journey Summary */}
+              {journey && (
+                <Card title="สรุปพฤติกรรมผู้ใช้ (User Journey)">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <div className="text-white/80 mb-2">Intro: คุณเป็นใคร</div>
+                      <ul className="space-y-1 text-sm">
+                        {Object.entries(journey.introWho || {}).map(([k,v]) => (
+                          <li key={k} className="flex justify-between"><span>{k}</span><span className="text-white/70">{v as any}</span></li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div>
+                      <div className="text-white/80 mb-2">Stornaway: ฉากที่เข้า</div>
+                      <ul className="space-y-1 text-sm">
+                        {Object.entries(journey.stornawayVariants || {}).slice(0,8).map(([k,v]) => (
+                          <li key={k} className="flex justify-between"><span>{k}</span><span className="text-white/70">{v as any}</span></li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div>
+                      <div className="text-white/80 mb-2">MN1: นโยบายที่เลือก</div>
+                      <ul className="space-y-1 text-sm">
+                        {Object.entries(journey.mn1 || {}).map(([k,v]) => (
+                          <li key={k} className="flex justify-between"><span>{k}</span><span className="text-white/70">{v as any}</span></li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div>
+                      <div className="text-white/80 mb-2">MN3: งบประมาณเฉลี่ย</div>
+                      <ul className="space-y-1 text-sm">
+                        {Object.entries(journey.mn3Budgets || {}).map(([k,v]: any) => (
+                          <li key={k} className="flex justify-between"><span>{k}</span><span className="text-white/70">{Math.round(v.avg)}</span></li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div className="md:col-span-2">
+                      <div className="text-white/80 mb-2">Ask05: ความคิดเห็นล่าสุด</div>
+                      <ul className="space-y-1 text-sm">
+                        {(journey.ask05Samples || []).map((c: string, i: number) => (
+                          <li key={i} className="truncate">• {c}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </Card>
+              )}
 
               {/* Bar chart */}
               <Card title="ฉากที่ถูกดูมากที่สุด">
@@ -310,7 +361,7 @@ export default function UkDashboard() {
                         <th className="py-2 pr-4">ชื่อฉาก</th>
                         <th className="py-2 pr-4">จำนวนครั้งที่ดู</th>
                         <th className="py-2 pr-4">เวล���เฉลี่ยที่ใช้</th>
-                        <th className="py-2 pr-4">อัตราการออกกลางคัน</th>
+                        <th className="py-2 pr-4">อัต��าการออกกลางคัน</th>
                       </tr>
                     </thead>
                     <tbody>
