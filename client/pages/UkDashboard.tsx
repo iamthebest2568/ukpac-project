@@ -134,7 +134,7 @@ export default function UkDashboard() {
   async function clearData() {
     if (
       !window.confirm(
-        "ลบข้อมูลทั้งหมดในเ��ิร์ฟเวอร์? การกระทำนี้ย้อนกลับไม่ได้",
+        "ลบข้อมูลทั้งหมดในเ��ิร์ฟเวอร์? การกระทำ���ี้ย้อนกลับไม่ได้",
       )
     ) {
       return;
@@ -182,7 +182,7 @@ export default function UkDashboard() {
       {!authed && (
         <div className="min-h-screen flex items-center justify-center p-4">
           <div className="w-full max-w-sm bg-white/5 border border-white/10 rounded-xl p-5">
-            <div className="text-xl font-semibold mb-3">ป้อนรหัสผ่าน</div>
+            <div className="text-xl font-semibold mb-3">ป้อ���รหัสผ่าน</div>
             <div className="text-sm text-white/70 mb-4">
               หน้านี้ป้องกันด้วยรหัสผ่าน
             </div>
@@ -592,10 +592,12 @@ function Card({
   children: React.ReactNode;
 }) {
   return (
-    <div className="bg-white/5 border border-white/10 rounded-lg p-4">
-      <div className="text-lg font-medium mb-3">{title}</div>
-      {children}
-    </div>
+    <section className="rounded-xl border border-white/10 bg-white/[0.05] backdrop-blur-sm shadow-sm">
+      <header className="px-4 py-3 border-b border-white/10 flex items-center justify-between">
+        <h2 className="text-base md:text-lg font-semibold tracking-tight">{title}</h2>
+      </header>
+      <div className="p-4 md:p-5">{children}</div>
+    </section>
   );
 }
 
