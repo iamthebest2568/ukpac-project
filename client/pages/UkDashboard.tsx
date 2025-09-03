@@ -265,13 +265,13 @@ export default function UkDashboard() {
           </div>
 
           {loading && <div className="text-white/80">กำลั��โหลดข้อมูล...</div>}
-          {error && <div className="text-red-400">เกิดข้อผิดพลาด: {error}</div>}
+          {error && <div className="text-red-400">เกิดข้อผ��ดพลาด: {error}</div>}
 
           {stats && (
             <div className="space-y-6">
               {/* User Journey Summary */}
               {journey && (
-                <Card title="สรุปพฤติกรรมผ��้ใช้ (User Journey)">
+                <Card title="ส���ุปพฤติกรรมผ��้ใช้ (User Journey)">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <div className="text-white/80 mb-2">
@@ -354,8 +354,8 @@ export default function UkDashboard() {
               {/* Per-user (individual) results */}
               <Card title="ผลรายบุคคล (ล่าสุด)">
                 <div className="overflow-auto">
-                  <table className="min-w-full text-sm">
-                    <thead>
+                  <table className="min-w-full text-sm rounded-md overflow-hidden">
+                    <thead className="bg-white/5 backdrop-blur">
                       <tr className="text-left text-white/80">
                         <th className="py-2 pr-4">เวลา</th>
                         <th className="py-2 pr-4">Session</th>
@@ -367,12 +367,9 @@ export default function UkDashboard() {
                         <th className="py-2 pr-4">ดู</th>
                       </tr>
                     </thead>
-                    <tbody>
+                    <tbody className="divide-y divide-white/10">
                       {sessions.slice(0, 50).map((s) => (
-                        <tr
-                          key={s.sessionId}
-                          className="border-t border-white/10"
-                        >
+                        <tr key={s.sessionId}>
                           <td className="py-2 pr-4 whitespace-nowrap">
                             {new Date(s.lastSeen).toLocaleString()}
                           </td>
@@ -390,7 +387,7 @@ export default function UkDashboard() {
                           </td>
                           <td className="py-2 pr-4">
                             <button
-                              className="text-xs rounded bg-white/10 hover:bg-white/20 px-2 py-1"
+                              className="text-xs rounded bg-white/10 hover:bg-white/20 px-2 py-1 shadow-sm"
                               onClick={async () => {
                                 setDetailSession(s.sessionId);
                                 setDetailOpen(true);
@@ -429,7 +426,7 @@ export default function UkDashboard() {
                         "ข้อคิดเห็นอื่นๆ",
                         "ลุ้นรางวัล",
                         "ชื่อ",
-                        "เบอร์โทร",
+                        "เบอร์���ทร",
                       ],
                       ...sessions.map((s) => {
                         const mn2 = (() => {
