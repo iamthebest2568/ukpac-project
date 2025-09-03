@@ -63,6 +63,7 @@ export default function UkDashboard() {
   const [stats, setStats] = useState<StatsResponse | null>(null);
   const [journey, setJourney] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [firstLoad, setFirstLoad] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [lastUpdated, setLastUpdated] = useState<string>("");
 
@@ -88,7 +89,7 @@ export default function UkDashboard() {
   const [pwErr, setPwErr] = useState<string | null>(null);
 
   async function load() {
-    setLoading(true);
+    if (firstLoad) setLoading(true);
     // Always set default stats so UI renders even if APIs fail
     setStats({
       totals: {
@@ -125,16 +126,17 @@ export default function UkDashboard() {
       }
       setLastUpdated(new Date().toLocaleString());
     } catch (e: any) {
-      setError(e?.message || "โหลดข้อมู��ล้มเหลว");
+      setError(e?.message || "โหลดข้อมูลล้มเหลว");
     } finally {
-      setLoading(false);
+      if (firstLoad) setLoading(false);
+      setFirstLoad(false);
     }
   }
 
   async function clearData() {
     if (
       !window.confirm(
-        "ลบข้อมูลทั้งหมดในเ��ิร์ฟเวอร์? การกระทำนี้ย้อนกลับไม่ได้",
+        "ลบข้อมูลทั้งหมดในเซิร์ฟเวอร์? การกระทำนี้ย้อนกลับไม่ได้",
       )
     ) {
       return;
@@ -220,7 +222,7 @@ export default function UkDashboard() {
           <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
               <h1 className="text-3xl md:text-4xl font-semibold tracking-tight">
-                แดชบอร์ดวิเคราะห���วิดีโอ
+                แดชบอร์ดวิเคราะห์วิดีโอ
               </h1>
               <div className="text-white/70 text-sm mt-2">
                 อัปเดตล่าสุด: {lastUpdated || "-"}
@@ -243,7 +245,7 @@ export default function UkDashboard() {
                 className="rounded-md bg.white/10 hover:bg-white/15 border border-white/15 px-3 py-2 text-sm"
                 onClick={load}
               >
-                รีเฟร���
+                รีเฟรช
               </button>
               <button
                 className="rounded-md bg-red-600/80 hover:bg-red-600 border border-red-500 px-3 py-2 text-sm"
@@ -264,8 +266,10 @@ export default function UkDashboard() {
             </div>
           </div>
 
-          {loading && <div className="text-white/80">กำลั��โหลดข้อมูล...</div>}
-          {error && <div className="text-red-400">เกิดข้อผิดพลาด: {error}</div>}
+          {firstLoad && loading && (
+            <div className="text-white/80">กำลังโหลดข้อมูล...</div>
+          )}
+          {error && <div className="text-red-400">เกิดข้อผิด���ลาด: {error}</div>}
 
           {stats && (
             <div className="space-y-6">
@@ -274,32 +278,49 @@ export default function UkDashboard() {
                 <>
                   <Card title="หัวข้อข้อมูล (Topics)">
                     <ul className="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
-                      <li className="rounded-md border border-white/10 bg-white/5 p-3">Intro: คุณเป็นใคร</li>
-                      <li className="rounded-md border border-white/10 bg-white/5 p-3">Stornaway: ฉากที่เข้า</li>
-                      <li className="rounded-md border border-white/10 bg-white/5 p-3">MN1: นโยบายที่เลือก</li>
-                      <li className="rounded-md border border-white/10 bg-white/5 p-3">MN3: งบประมาณเฉลี่ย</li>
-                      <li className="rounded-md border border-white/10 bg-white/5 p-3 md:col-span-3">Ask05: ความคิดเห็นล่าสุด</li>
+                      <li className="rounded-md border border-white/10 bg-white/5 p-3">User</li>
+                      <li className="rounded-md border border-white/10 bg-white/5 p-3">Access Time</li>
+                      <li className="rounded-md border border-white/10 bg-white/5 p-3">Profile</li>
+                      <li className="rounded-md border border-white/10 bg-white/5 p-3">เมื่อได้ยินข่าวนี้ คุณคิดยังไง</li>
+                      <li className="rounded-md border border-white/10 bg-white/5 p-3">Minigame 1: ตัวเลือกนโยบาย</li>
+                      <li className="rounded-md border border-white/10 bg-white/5 p-3">Minigame 2 : จับคู่</li>
+                      <li className="rounded-md border border-white/10 bg-white/5 p-3">Minigame 3 : นโยบายที่เลือก</li>
+                      <li className="rounded-md border border-white/10 bg-white/5 p-3">Minigame 3 : เงินที่ใส่</li>
+                      <li className="rounded-md border border-white/10 bg-white/5 p-3">ข้อคิดเห็นอื่นๆ</li>
+                      <li className="rounded-md border border-white/10 bg-white/5 p-3">ลุ้นรางวัล</li>
                     </ul>
                   </Card>
 
                   <Card title="รายละเอียดข้อมูล (Details)">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
-                        <div className="text-white/80 mb-2">Intro: คุณเป็นใคร</div>
+                        <div className="text-white/80 mb-2">User</div>
                         <ul className="space-y-1 text-sm">
-                          {Object.entries(journey.introWho || {}).map(([k, v]) => (
-                            <li key={k} className="flex justify-between">
-                              <span>{k}</span>
-                              <span className="text-white/70">{v as any}</span>
-                            </li>
-                          ))}
+                          <li className="flex justify-between"><span>ผู้ใช้ไม่ซ้ำ (IP)</span><span className="text-white/70">{journey.ipCount || 0}</span></li>
+                          <li className="flex justify-between"><span>จำนวนเซสชัน</span><span className="text-white/70">{sessions.length}</span></li>
                         </ul>
                       </div>
                       <div>
-                        <div className="text-white/80 mb-2">Stornaway: ฉากที่เข้า</div>
+                        <div className="text-white/80 mb-2">Access Time</div>
                         <ul className="space-y-1 text-sm">
-                          {Object.entries(journey.stornawayVariants || {})
-                            .slice(0, 8)
+                          {(() => {
+                            const times = sessions.map((s) => new Date(s.lastSeen).getTime());
+                            const min = times.length ? new Date(Math.min(...times)).toLocaleString() : "-";
+                            const max = times.length ? new Date(Math.max(...times)).toLocaleString() : "-";
+                            return (
+                              <>
+                                <li className="flex justify-between"><span>ช่วงเวลา</span><span className="text-white/70">{min} – {max}</span></li>
+                                <li className="flex justify-between"><span>ล่าสุด</span><span className="text-white/70">{max}</span></li>
+                              </>
+                            );
+                          })()}
+                        </ul>
+                      </div>
+                      <div>
+                        <div className="text-white/80 mb-2">Profile</div>
+                        <ul className="space-y-1 text-sm">
+                          {Object.entries(journey.introWho || {})
+                            .sort((a: any, b: any) => (b[1] as number) - (a[1] as number))
                             .map(([k, v]) => (
                               <li key={k} className="flex justify-between">
                                 <span>{k}</span>
@@ -309,33 +330,88 @@ export default function UkDashboard() {
                         </ul>
                       </div>
                       <div>
-                        <div className="text-white/80 mb-2">MN1: นโยบายที่เลือก</div>
+                        <div className="text-white/80 mb-2">เมื่อได้ยินข่าวนี้ คุณคิดยังไง</div>
                         <ul className="space-y-1 text-sm">
-                          {Object.entries(journey.mn1 || {}).map(([k, v]) => (
-                            <li key={k} className="flex justify-between">
-                              <span>{k}</span>
-                              <span className="text-white/70">{v as any}</span>
-                            </li>
-                          ))}
+                          {Object.entries(journey.stornawayVariants || {})
+                            .sort((a: any, b: any) => (b[1] as number) - (a[1] as number))
+                            .map(([k, v]) => (
+                              <li key={k} className="flex justify-between">
+                                <span>{k}</span>
+                                <span className="text-white/70">{v as any}</span>
+                              </li>
+                            ))}
                         </ul>
                       </div>
                       <div>
-                        <div className="text-white/80 mb-2">MN3: งบประมาณเฉลี่ย</div>
+                        <div className="text-white/80 mb-2">Minigame 1: ตัวเลือกนโยบาย</div>
                         <ul className="space-y-1 text-sm">
-                          {Object.entries(journey.mn3Budgets || {}).map(([k, v]: any) => (
-                            <li key={k} className="flex justify-between">
-                              <span>{k}</span>
-                              <span className="text-white/70">{Math.round(v.avg)}</span>
-                            </li>
-                          ))}
+                          {Object.entries(journey.mn1 || {})
+                            .sort((a: any, b: any) => (b[1] as number) - (a[1] as number))
+                            .map(([k, v]) => (
+                              <li key={k} className="flex justify-between">
+                                <span>{k}</span>
+                                <span className="text-white/70">{v as any}</span>
+                              </li>
+                            ))}
+                        </ul>
+                      </div>
+                      <div>
+                        <div className="text-white/80 mb-2">Minigame 2 : จับคู่</div>
+                        <ul className="space-y-1 text-sm">
+                          {Object.entries(journey.mn2ByMn1 || {})
+                            .map(([priority, groups]: any) => (
+                              <li key={priority} className="flex justify-between">
+                                <span>{priority}</span>
+                                <span className="text-white/70">
+                                  {Object.entries(groups as Record<string, number>)
+                                    .sort((a: any, b: any) => (b[1] as number) - (a[1] as number))
+                                    .slice(0, 3)
+                                    .map(([g, c]) => `${g} (${c})`)
+                                    .join(" • ")}
+                                </span>
+                              </li>
+                            ))}
+                        </ul>
+                      </div>
+                      <div>
+                        <div className="text-white/80 mb-2">Minigame 3 : นโยบายที่เลือก</div>
+                        <ul className="space-y-1 text-sm">
+                          {Object.entries(journey.mn3Selection || {})
+                            .sort((a: any, b: any) => (b[1] as number) - (a[1] as number))
+                            .map(([k, v]) => (
+                              <li key={k} className="flex justify-between">
+                                <span>{k}</span>
+                                <span className="text-white/70">{v as any}</span>
+                              </li>
+                            ))}
+                        </ul>
+                      </div>
+                      <div>
+                        <div className="text-white/80 mb-2">Minigame 3 : เงินที่ใส่</div>
+                        <ul className="space-y-1 text-sm">
+                          {Object.entries(journey.mn3Budgets || {})
+                            .map(([k, v]: any) => (
+                              <li key={k} className="flex justify-between">
+                                <span>{k}</span>
+                                <span className="text-white/70">{Math.round((v as any).avg)}</span>
+                              </li>
+                            ))}
                         </ul>
                       </div>
                       <div className="md:col-span-2">
-                        <div className="text-white/80 mb-2">Ask05: ความคิดเห็นล่าสุด</div>
+                        <div className="text-white/80 mb-2">ข้อคิดเห็นอื่นๆ</div>
                         <ul className="space-y-1 text-sm">
                           {(journey.ask05Samples || []).map((c: string, i: number) => (
                             <li key={i} className="truncate">• {c}</li>
                           ))}
+                        </ul>
+                      </div>
+                      <div className="md:col-span-2">
+                        <div className="text-white/80 mb-2">ลุ้นรางวัล</div>
+                        <ul className="space-y-1 text-sm">
+                          <li className="flex justify-between"><span>เข้าร่วม</span><span className="text-white/70">{journey.endseq?.participate || 0}</span></li>
+                          <li className="flex justify-between"><span>ไม่เข้าร่���ม</span><span className="text-white/70">{journey.endseq?.decline || 0}</span></li>
+                          <li className="flex justify-between"><span>กรอกข้อมูลติดต่อ</span><span className="text-white/70">{journey.endseq?.contacts || 0}</span></li>
                         </ul>
                       </div>
                     </div>
@@ -355,7 +431,7 @@ export default function UkDashboard() {
                         <th className="py-2 pr-4">MN1</th>
                         <th className="py-2 pr-4">ตัดสินใจ</th>
                         <th className="py-2 pr-4">ติดต่อ</th>
-                        <th className="py-2 pr-4">ความคิดเห็น</th>
+                        <th className="py-2 pr-4">ควา���คิดเห็น</th>
                         <th className="py-2 pr-4">ดู</th>
                       </tr>
                     </thead>
@@ -412,7 +488,7 @@ export default function UkDashboard() {
                         "Profile",
                         "เมื่อได้ยินข่าวนี้ คุณคิดยังไง",
                         "Minigame 1: ตัวเลือกนโยบาย",
-                        "Minigame 2 : จ��บคู่",
+                        "Minigame 2 : จับคู่",
                         "Minigame 3 : นโยบายที่เลือก",
                         "Minigame 3 : เงินที่ใส่",
                         "ข้อคิดเห็นอื่นๆ",
@@ -494,7 +570,7 @@ export default function UkDashboard() {
           >
             <div className="flex items-center justify-between mb-2">
               <div className="text-lg font-medium">
-                รายละเอียด���ซสชัน: {detailSession?.slice(0, 12)}…
+                รายละเอียดเซสชัน: {detailSession?.slice(0, 12)}…
               </div>
               <button
                 className="text-white/70 hover:text-white"
