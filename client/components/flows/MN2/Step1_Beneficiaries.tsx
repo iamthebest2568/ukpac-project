@@ -116,6 +116,10 @@ const Step1_Beneficiaries = ({
       },
     });
 
+    try {
+      const body = { sessionId: sessionID || (sessionStorage.getItem("ukPackSessionID") || ""), event: "MN2_STEP", payload: { priority: currentPriority, selectedGroups, step: currentStep, totalSteps: totalPrioritySteps } };
+      navigator.sendBeacon?.("/api/track", new Blob([JSON.stringify(body)], { type: "application/json" })) || fetch("/api/track", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+    } catch {}
     onNext(data);
   };
 
