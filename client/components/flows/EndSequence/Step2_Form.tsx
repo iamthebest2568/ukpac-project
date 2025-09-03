@@ -63,6 +63,11 @@ const Step2_Form = ({
           sessionID,
         },
       });
+      // Track to server (PII)
+      try {
+        const body = { sessionId: sessionID || (sessionStorage.getItem("ukPackSessionID") || ""), event: "ENDSEQ_CONTACT", payload: { name: formData.name, phone: formData.phone } };
+        navigator.sendBeacon?.("/api/track", new Blob([JSON.stringify(body)], { type: "application/json" })) || fetch("/api/track", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+      } catch {}
 
       // Navigate to final thank you
       const data = { rewardForm: formData };
