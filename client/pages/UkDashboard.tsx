@@ -151,7 +151,7 @@ export default function UkDashboard() {
                 className="rounded-md bg.white/10 hover:bg-white/15 border border-white/15 px-3 py-2 text-sm"
                 onClick={load}
               >
-                รีเฟรช
+                รีเฟร���
               </button>
               <button
                 className="rounded-md bg-red-600/80 hover:bg-red-600 border border-red-500 px-3 py-2 text-sm"
@@ -172,25 +172,6 @@ export default function UkDashboard() {
             </div>
           </div>
 
-          {/* Summary cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-            <SummaryCard
-              title="จำนวนเซสชันทั้งหมด"
-              value={stats?.totals.totalSessions ?? 0}
-            />
-            <SummaryCard
-              title="จำนวนการเล่นทั้งหมด"
-              value={stats?.totals.totalPlays ?? 0}
-            />
-            <SummaryCard
-              title="อัตราการดูจบ"
-              value={`${((stats?.totals.completionRate ?? 0) * 100).toFixed(1)}%`}
-            />
-            <SummaryCard
-              title="เวลาเฉลี่ยต่อเซสชัน"
-              value={secondsToHuman(stats?.totals.avgSessionLengthSeconds ?? 0)}
-            />
-          </div>
 
           {loading && <div className="text-white/80">กำลังโหลดข้อมูล...</div>}
           {error && <div className="text-red-400">เกิดข้อผิดพลาด: {error}</div>}
@@ -478,7 +459,7 @@ export default function UkDashboard() {
                     exportCsv("variants.csv", [
                       [
                         "ชื่อฉาก",
-                        "จำนว��ครั้งที่ดู",
+                        "จำนว��ครั้งที่ด��",
                         "เวลาเฉล���่ยที่ใช้(วินาที)",
                         "อัตราการออกกลางคัน(%)",
                       ],
