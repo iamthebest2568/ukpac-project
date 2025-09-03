@@ -81,6 +81,10 @@ const Step2_Allocation = ({
         selectedPriorities,
       },
     };
+    try {
+      const body = { sessionId: sessionID || (sessionStorage.getItem("ukPackSessionID") || ""), event: "MN3_BUDGET", payload: { budgetAllocation, allocatedBudget, selectedPriorities } };
+      navigator.sendBeacon?.("/api/track", new Blob([JSON.stringify(body)], { type: "application/json" })) || fetch("/api/track", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+    } catch {}
     onNext(data);
   };
 
