@@ -419,11 +419,11 @@ export async function computeUserJourneyStats(
   // IP count
   const ips = new Set(appEvents.map((e) => e.ip).filter(Boolean) as string[]);
 
-  // Stornaway variants from video events
+  // Stornaway variants from video events (capture user-facing labels)
   const stornawayVariants: Record<string, number> = {};
   for (const ve of videoEvents) {
-    if (ve.eventName === "sw.variant.start") {
-      const name = ve.variantName || "";
+    if (ve.eventName === "sw.story.start" || ve.eventName === "sw.choice.selected") {
+      const name = (ve.choiceText || ve.variantName || "").toString();
       if (!name) continue;
       stornawayVariants[name] = (stornawayVariants[name] || 0) + 1;
     }
