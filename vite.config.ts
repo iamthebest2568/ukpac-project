@@ -1,6 +1,7 @@
 import { defineConfig, Plugin } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
+import { defineConfig, Plugin } from "vite";
 import { createServer } from "./server";
 
 // https://vitejs.dev/config/
@@ -18,7 +19,7 @@ export default defineConfig(({ mode }) => ({
   },
   optimizeDeps: {
     // Avoid generating a single huge deps chunk that some proxies truncate
-    include: ["recharts", "lodash", "lodash-es"],
+    include: ["recharts", "lodash", "lodash-es", "react/jsx-runtime", "react/jsx-dev-runtime"],
     exclude: [
       "lucide-react",
       "three",
@@ -61,6 +62,7 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./client"),
       "@shared": path.resolve(__dirname, "./shared"),
     },
+    dedupe: ["react", "react-dom"],
   },
 }));
 
