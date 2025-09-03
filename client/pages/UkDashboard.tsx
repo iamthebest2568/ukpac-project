@@ -14,6 +14,7 @@ import {
   Cell,
   Legend,
 } from "recharts";
+import { clearEventLogs } from "../services/dataLogger.js";
 
 type StatsResponse = {
   totals: {
@@ -102,6 +103,8 @@ export default function UkDashboard() {
       setClearing(true);
       const res = await fetch("/api/clear-data", { method: "DELETE" });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      // Clear client-side stored logs/session id
+      try { clearEventLogs(); } catch {}
       setStats(null);
       setRecent([]);
       setJourney(null);
@@ -212,7 +215,7 @@ export default function UkDashboard() {
                 disabled={clearing}
                 title="ลบ events.jsonl และ app-events.jsonl ในเซิร์ฟเวอร์"
               >
-                {clearing ? "กำลังลบ..." : "ลบข้อมูล"}
+                {clearing ? "กำลังลบ..." : "ลบข้อมูลทั้งหมด"}
               </button>
               <label className="flex items-center gap-2 text-sm text-white/80">
                 <input
@@ -251,7 +254,7 @@ export default function UkDashboard() {
           {stats && (
             <div className="space-y-6">
               {/* Line chart */}
-              <Card title="จำนวนการเล่นต่อวัน">
+              <Card title="จำนวนการเล่นต���อวัน">
                 <div className="w-full h-64">
                   <ResponsiveContainer width="100%" height="100%">
                     <LineChart data={stats.timeseries}>
@@ -278,7 +281,7 @@ export default function UkDashboard() {
 
               {/* User Journey Summary */}
               {journey && (
-                <Card title="สรุปพฤติกรรม���ู้ใช้ (User Journey)">
+                <Card title="สรุปพฤติกรรมผู้ใช้ (User Journey)">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <div className="text-white/80 mb-2">
@@ -485,7 +488,7 @@ export default function UkDashboard() {
                       [
                         "ชื่อฉาก",
                         "จำนวนครั้งที่ดู",
-                        "เวลาเฉลี่ยที่ใช้(วินาที)",
+                        "เวลาเฉล���่ยที่ใช้(วินาที)",
                         "อัตราการออกกลางคัน(%)",
                       ],
                       ...(stats?.variants || []).map((v) => [
