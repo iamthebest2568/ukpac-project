@@ -6,10 +6,15 @@
 import Flow_MiniGame_MN3 from "../components/flows/Flow_MiniGame_MN3";
 import { useSession } from "../hooks/useSession";
 import { useFlowNavigation } from "../hooks/useFlowNavigation";
+import { useEffect } from "react";
 
 const MiniGameMN3Page = () => {
   const { sessionID, navigateToPage } = useSession();
   const { handleMN3Complete } = useFlowNavigation();
+
+  useEffect(() => {
+    import("./Ask04BudgetPage").catch(() => {});
+  }, []);
 
   return (
     <Flow_MiniGame_MN3
