@@ -91,18 +91,6 @@ export default function UkDashboard() {
     return () => id && clearInterval(id);
   }, [authed, autoRefresh]);
 
-  const COLORS = useMemo(
-    () => [
-      "#EFBA31",
-      "#8884d8",
-      "#82ca9d",
-      "#ff7f50",
-      "#00C49F",
-      "#FFBB28",
-      "#FF8042",
-    ],
-    [],
-  );
 
   return (
     <div className="min-h-screen bg-[#0e0e0e] text-white font-[Prompt]">
@@ -207,7 +195,7 @@ export default function UkDashboard() {
               value={stats?.totals.totalSessions ?? 0}
             />
             <SummaryCard
-              title="จำนวนการเล่นทั้งหมด"
+              title="จำนวนการเล���นทั้งหมด"
               value={stats?.totals.totalPlays ?? 0}
             />
             <SummaryCard
@@ -345,7 +333,7 @@ export default function UkDashboard() {
                         <th className="py-2 pr-4">MN1</th>
                         <th className="py-2 pr-4">ตัดสินใจ</th>
                         <th className="py-2 pr-4">ติดต่อ</th>
-                        <th className="py-2 pr-4">ควา��คิดเห็น</th>
+                        <th className="py-2 pr-4">ความคิดเห็น</th>
                         <th className="py-2 pr-4">ดู</th>
                       </tr>
                     </thead>
@@ -437,7 +425,7 @@ export default function UkDashboard() {
               </Card>
 
               {/* Table */}
-              <Card title="รายละเอียดฉาก">
+              <Card title="รายละเ���ียดฉาก">
                 <div className="overflow-auto">
                   <table className="min-w-full text-sm">
                     <thead>
