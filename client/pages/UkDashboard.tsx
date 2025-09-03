@@ -178,7 +178,7 @@ export default function UkDashboard() {
   }, [authed, autoRefresh]);
 
   return (
-    <div className="min-h-screen bg-[#0e0e0e] text-white font-[Prompt]">
+    <div className="min-h-screen bg-gradient-to-b from-[#0a0a0b] to-[#111216] text-white font-[Prompt]">
       {!authed && (
         <div className="min-h-screen flex items-center justify-center p-4">
           <div className="w-full max-w-sm bg-white/5 border border-white/10 rounded-xl p-5">
@@ -265,7 +265,7 @@ export default function UkDashboard() {
           </div>
 
           {loading && <div className="text-white/80">กำลั��โหลดข้อมูล...</div>}
-          {error && <div className="text-red-400">เกิดข้อ��ิดพลาด: {error}</div>}
+          {error && <div className="text-red-400">เกิดข้อผิดพลาด: {error}</div>}
 
           {stats && (
             <div className="space-y-6">
