@@ -219,10 +219,10 @@ export default function UkDashboard() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
           <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
-              <h1 className="text-2xl md:text-3xl font-semibold">
+              <h1 className="text-3xl md:text-4xl font-semibold tracking-tight">
                 แดชบอร์ดวิเคราะห์วิดีโอ
               </h1>
-              <div className="text-white/60 text-sm mt-1">
+              <div className="text-white/70 text-sm mt-2">
                 อัปเดตล่าสุด: {lastUpdated || "-"}
               </div>
               {ingest && (
