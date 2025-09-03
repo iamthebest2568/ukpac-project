@@ -270,7 +270,7 @@ export default function UkDashboard() {
           </div>
 
           {firstLoad && loading && (
-            <div className="text-white/80">กำลังโหลดข้อม���ล...</div>
+            <div className="text-white/80">กำลังโหลดข้อมูล...</div>
           )}
           {error && <div className="text-red-400">เกิดข้อผิดพลาด: {error}</div>}
 
@@ -447,7 +447,7 @@ export default function UkDashboard() {
                         <th className="py-2 pr-4">MN1</th>
                         <th className="py-2 pr-4">ตัดสินใจ</th>
                         <th className="py-2 pr-4">ติดต่อ</th>
-                        <th className="py-2 pr-4">ควา���คิดเห็น</th>
+                        <th className="py-2 pr-4">ความคิดเห็น</th>
                         <th className="py-2 pr-4">ดู</th>
                       </tr>
                     </thead>
