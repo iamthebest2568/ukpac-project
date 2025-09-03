@@ -110,12 +110,12 @@ export default function UkStornaway() {
       setStatus("API เชื่อมต่อสำเร��จ! กำลังรอการโต้ตอบ…");
 
       const makeHandler = (eventName: string) => (ev: Event) => {
-        if (ev.target !== iframeRef.current) return;
         const detail: any = (ev as any).detail || {};
         const captured: CapturedEvent = {
           order: ++orderRef.current,
           eventName,
-          choiceText: detail.choiceText ?? detail.text ?? detail.choice?.text,
+          choiceText:
+            detail.choiceText ?? detail.text ?? detail.choice?.text ?? detail.choice?.label ?? detail.label,
           variantId: detail.variantId ?? detail.id ?? detail.variant?.id,
           variantName:
             detail.variantName ?? detail.name ?? detail.variant?.name,
@@ -369,7 +369,7 @@ export default function UkStornaway() {
           className="fixed inset-0 z-[1000] bg-black/70 flex items-center justify-center p-4 transition-opacity duration-200"
           role="dialog"
           aria-modal="true"
-          aria-label="หน้���ต่างป๊อปอัพแบบสอบถาม"
+          aria-label="ห��้าต่างป๊อปอัพแบบสอบถาม"
           onKeyDown={(e) => {
             if (e.key === "Escape") {
               setShowPopup(false);
