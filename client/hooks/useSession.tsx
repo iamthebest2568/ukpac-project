@@ -33,10 +33,19 @@ export const useSession = (): UseSessionReturn => {
   });
 
   useEffect(() => {
-    // Get or create session ID
+    // Get or create canonical session ID shared across all pages
     const sessionIDParam = searchParams.get("sessionID");
-    const newSessionID = sessionIDParam || `session_${Date.now()}`;
-    setSessionID(newSessionID);
+    let sid: string | null = null;
+    try {
+      sid = sessionIDParam || sessionStorage.getItem("ukPackSessionID");
+    } catch {
+      sid = sessionIDParam || null;
+    }
+    if (!sid) sid = `session_${Date.now()}_${Math.random().toString(36).slice(2,9)}`;
+    setSessionID(sid);
+    try {
+      sessionStorage.setItem("ukPackSessionID", sid);
+    } catch {}
 
     // Log page navigation
     logEvent({
@@ -45,7 +54,7 @@ export const useSession = (): UseSessionReturn => {
         page: window.location.pathname,
         url: window.location.href,
         referrer: document.referrer,
-        sessionID: newSessionID,
+        sessionID: sid,
       },
     });
   }, [searchParams]);
