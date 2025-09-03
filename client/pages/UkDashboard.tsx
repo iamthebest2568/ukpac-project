@@ -28,8 +28,6 @@ export default function UkDashboard() {
   const [error, setError] = useState<string | null>(null);
   const [lastUpdated, setLastUpdated] = useState<string>("");
 
-  const [from, setFrom] = useState<string>("");
-  const [to, setTo] = useState<string>("");
   const [autoRefresh, setAutoRefresh] = useState<boolean>(true);
   const [clearing, setClearing] = useState<boolean>(false);
   const [sessions, setSessions] = useState<SessionSummary[]>([]);
@@ -76,7 +74,7 @@ export default function UkDashboard() {
   }
 
   async function clearData() {
-    if (!window.confirm("ลบข้อมูลทั้งหมดในเซิร์ฟเวอร์? การกระทำนี��ย้อนกลับไม่ได้")) {
+    if (!window.confirm("ลบข้อมูลทั้งหมดในเซิร์ฟเวอร์? การกระทำนี้ย้อนกลับไม่ได้")) {
       return;
     }
     try {
@@ -457,7 +455,7 @@ export default function UkDashboard() {
                       <tr className="text-left text-white/80">
                         <th className="py-2 pr-4">ชื่อฉาก</th>
                         <th className="py-2 pr-4">จำนวนครั้งที่ดู</th>
-                        <th className="py-2 pr-4">เวล���เฉ���ี่ยที่ใช้</th>
+                        <th className="py-2 pr-4">เวล���เฉลี่ยที่ใช้</th>
                         <th className="py-2 pr-4">อัต��าการออกกลางคัน</th>
                       </tr>
                     </thead>
@@ -543,7 +541,7 @@ export default function UkDashboard() {
                     ])
                   }
                 >
-                  ดาวน์โหลด CSV (การเลือก)
+                  ดาวน์โหล��� CSV (การเลือก)
                 </button>
                 <button
                   className="rounded-full bg-[#EFBA31] text.black font-medium px-5 py-2 border border-black hover:scale-105 transition"
