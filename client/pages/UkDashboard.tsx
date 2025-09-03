@@ -213,6 +213,11 @@ export default function UkDashboard() {
               <div className="text-white/60 text-sm mt-1">
                 อัปเดตล่าสุด: {lastUpdated || "-"}
               </div>
+              {ingest && (
+                <div className="text-white/60 text-xs mt-1">
+                  การเก็บข้อมูล • App: {ingest.app.count} เหตุการณ์, ล่าสุด {ingest.app.lastTs ? new Date(ingest.app.lastTs).toLocaleString() : "-"} • วิดีโอ: {ingest.video.count} เหตุการณ์, ล่าสุด {ingest.video.lastTs ? new Date(ingest.video.lastTs).toLocaleString() : "-"}
+                </div>
+              )}
             </div>
             <div className="flex flex-wrap items-end gap-3">
               <div className="flex items-center gap-2">
@@ -267,7 +272,7 @@ export default function UkDashboard() {
               value={stats?.totals.totalPlays ?? 0}
             />
             <SummaryCard
-              title="อัตราการดูจบ"
+              title="อัตราการดูจ��"
               value={`${((stats?.totals.completionRate ?? 0) * 100).toFixed(1)}%`}
             />
             <SummaryCard
@@ -356,7 +361,7 @@ export default function UkDashboard() {
                     </div>
                     <div>
                       <div className="text-white/80 mb-2">
-                        MN3: งบประมาณเฉลี่ย
+                        MN3: งบประมาณเฉ��ี่ย
                       </div>
                       <ul className="space-y-1 text-sm">
                         {Object.entries(journey.mn3Budgets || {}).map(
@@ -418,7 +423,7 @@ export default function UkDashboard() {
               </Card>
 
               {/* Pie chart */}
-              <Card title="การเลือกของผู้ชม">
+              <Card title="การเลือกของผู้���ม">
                 <div className="w-full h-72">
                   <ResponsiveContainer width="100%" height="100%">
                     <PieChart>
