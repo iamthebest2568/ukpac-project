@@ -4,6 +4,14 @@ import path from "node:path";
 import fetch from "node-fetch";
 import { z } from "zod";
 
+const sanitizeThai = (text: any): any => {
+  if (typeof text !== "string") return text;
+  return text
+    .normalize("NFC")
+    .replace(/[\u0000-\u001F\u007F]/g, "")
+    .replace(/\uFFFD/g, "");
+};
+
 export const AppEventSchema = z.object({
   sessionId: z.string(),
   event: z.string(),
