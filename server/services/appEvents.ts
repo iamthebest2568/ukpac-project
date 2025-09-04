@@ -342,8 +342,8 @@ export async function computeSessionSummaries(
         if (c) ask05Comment = c;
       }
       if (ev.event === "ENDSEQ_DECISION") {
-        const choice = ev.payload?.choice as string | undefined;
-        const text = (ev.payload?.choiceText || "").toString();
+        const choice = sanitizeThai(ev.payload?.choice as string | undefined);
+        const text = sanitizeThai((ev.payload?.choiceText || "").toString());
         if (choice) endDecision = choice;
         if (text) endDecisionText = text;
       }
