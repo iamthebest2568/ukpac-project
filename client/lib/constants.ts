@@ -112,14 +112,14 @@ export const STATUS_MESSAGES = {
   SELECTION_COMPLETE: (count: number, max: number) =>
     `เลือกให้ครบ ${max} ข้อ (เลือกแล้ว ${count}/${max})`,
   SELECTION_LIMIT_REACHED: (max: number) =>
-    `คุณเลือกครบจำนวนแล้ว หากต้องการเลือกข้อใหม่ กรุณายกเลิกการเลือก���้อใดข้อหนึ่งก่อน`,
+    `คุณเลือกครบจำนวนแล้ว หากต้องการเลือกข้อใหม่ กรุณายกเลิกการเลือกข้อใดข้อหนึ่งก่อน`,
   BUDGET_OVER_LIMIT: (total: number) =>
     `งบประมาณเกินที่กำหนด! กรุณาปรับลดจำนวนให้อยู่ในงบประมาณ ${total} หน่วย`,
   BUDGET_REMAINING: (remaining: number) =>
     `คุณยังมีงบประมาณเหลือ ${remaining} หน่วย กรุณาจัดสรรให้ครบ`,
   BUDGET_COMPLETE: (total: number) =>
     `เยี่ยม! คุณจัดสรรงบประมาณครบ ${total} หน่วยแล้ว`,
-  INPUT_REQUIRED: "กรุณากรอกข้อความเพื่อดำเนินการต่อ",
+  INPUT_REQUIRED: "กรุณากรอกข้อความเพื่อดำเนินการต่��",
   ACCESSIBILITY_INFO:
     "แบบสำรวจนี้รองรับการใช้งานผ่านแป้นพิมพ์และโปรแกรมอ่านหน้าจอ",
 } as const;
