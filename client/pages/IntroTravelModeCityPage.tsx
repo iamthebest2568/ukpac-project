@@ -23,7 +23,7 @@ const IntroTravelModeCityPage = () => {
       ariaLabel: "เลือกรถไฟฟ้า BTS / MRT",
     },
     {
-      text: "อยู่ในพื้นที่ไม่ต้องเข้าเ���ือง",
+      text: "อยู่ในพื้นที่ไม่ต้องเข้าเมือง",
       onClick: () => handleChoice("อยู่ในพื้นที่ไม่ต้องเข้าเมือง"),
       ariaLabel: "เลือกอยู่ในพื้นที่ไม่ต้องเข้าเมือง",
     },
@@ -40,7 +40,7 @@ const IntroTravelModeCityPage = () => {
     {
       text: "รถประจำทาง",
       onClick: () => handleChoice("รถประจำทาง"),
-      ariaLabel: "เลือกรถประจำทาง",
+      ariaLabel: "เลือกรถป��ะจำทาง",
     },
   ];
 
