@@ -65,7 +65,6 @@ export default function UkStornaway() {
   const [showPopup, setShowPopup] = useState(false);
   const popupRef = useRef<HTMLDivElement | null>(null);
   const hasShownPopupRef = useRef(false);
-  const [showLiveLog, setShowLiveLog] = useState(false);
 
   // Persist on every change
   useEffect(() => {
@@ -107,7 +106,7 @@ export default function UkStornaway() {
     function attachListeners() {
       if (!mounted || !iframeRef.current || readyRef.current) return;
       readyRef.current = true;
-      setStatus("API เชื่อมต่อสำเร��จ! กำลังรอการโต้ตอบ…");
+      setStatus("API เชื่อมต่อสำเร็จ! กำลังรอการโต้ตอบ…");
 
       const makeHandler = (eventName: string) => (ev: Event) => {
         const detail: any = (ev as any).detail || {};
@@ -346,26 +345,8 @@ export default function UkStornaway() {
           </button>
         </div>
 
-        {/* Live log */}
-        <div className="mt-6">
-          <div className="flex items-center justify-between mb-2">
-            <div className="text-lg font-medium">
-              📝 ข้อมูลที่ถูกดักจับ (Live Log)
-            </div>
-            <button
-              onClick={() => setShowLiveLog((v) => !v)}
-              className="text-sm px-3 py-1 rounded-full border border-white/20 hover:bg-white/10"
-            >
-              {showLiveLog ? "ซ่อน" : "แสดง"}
-            </button>
-          </div>
-          {showLiveLog && (
-            <pre className="max-h-[300px] overflow-auto text-sm p-3 rounded bg-black/60 text-[#d6deeb]">
-              {JSON.stringify(sessionData, null, 2)}
-            </pre>
-          )}
-          <div className="mt-2 text-sm text-white/70">{status}</div>
-        </div>
+        {/* Status (no live log) */}
+        <div className="mt-6 text-sm text-white/70">สถานะ: {status}</div>
       </div>
 
       {showPopup && (
@@ -373,7 +354,7 @@ export default function UkStornaway() {
           className="fixed inset-0 z-[1000] bg-black/70 flex items-center justify-center p-4 transition-opacity duration-200"
           role="dialog"
           aria-modal="true"
-          aria-label="ห��้าต่างป๊อปอัพแบบสอบถาม"
+          aria-label="หน้าต่างป๊อปอัพแบบสอบถาม"
           onKeyDown={(e) => {
             if (e.key === "Escape") {
               setShowPopup(false);
@@ -393,7 +374,7 @@ export default function UkStornaway() {
                 setShowPopup(false);
               }}
               className="absolute top-3 right-3 z-20 rounded-full bg-white/90 text-black px-3 py-1 text-sm font-medium hover:bg-white focus:outline-none focus:ring-2 focus:ring-[#EFBA31]"
-              aria-label="ปิดหน้าต่าง"
+              aria-label="ปิดหน���าต่าง"
             >
               ปิด
             </button>
