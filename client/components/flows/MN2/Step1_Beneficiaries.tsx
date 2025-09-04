@@ -147,7 +147,7 @@ const Step1_Beneficiaries = ({
         <div className="figma-style1-background">
           <img
             src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F946833431d4b46a0bde1c7d1bc32f67a"
-            alt="��ลุ่มผู้ได้รับประโยชน์"
+            alt="กลุ่มผู้ได้รับประโยชน์"
             className="figma-style1-background-image"
           />
           <div className="figma-style1-background-overlay" />
@@ -317,7 +317,7 @@ const Step1_Beneficiaries = ({
                     selectedGroups.length === 0 ? "text-gray-600" : ""
                   }`}
                 >
-                  {currentStep === totalPrioritySteps ? "ไปดูสรุป" : "ถัดไป"}
+                  {currentStep === totalPrioritySteps ? "ไปด��สรุป" : "ถัดไป"}
                 </span>
               </button>
 
