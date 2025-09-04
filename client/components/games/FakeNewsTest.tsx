@@ -49,7 +49,7 @@ const FakeNewsTest = ({ sessionID, onNavigate }: FakeNewsTestProps) => {
     {
       text: "หาข่าวต่อ",
       onClick: () => handleAction("search"),
-      ariaLabel: "เลือกที่จะ��าข้อมูลเพิ่มเติมเพื่อตรวจสอบความถูกต้อง",
+      ariaLabel: "เลือกที่จะหาข้อมูลเพิ่มเติมเพื่อตรวจสอบความถูกต้อง",
     },
   ];
 
