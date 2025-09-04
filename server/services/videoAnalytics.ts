@@ -151,7 +151,7 @@ export async function computeStats(
   const variantStarts = new Map<string, number>();
   const variantSessionStarts = new Map<string, Set<string>>();
   const choiceCounts = new Map<string, number>();
-  let totalSessionDuration = 0;
+  // Duration metrics removed per requirements
 
   for (const [sid, sess] of sessionsMap) {
     // sort by time
@@ -159,13 +159,7 @@ export async function computeStats(
       (a, b) =>
         new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime(),
     );
-    const first = sess[0];
-    const last = sess[sess.length - 1];
-    const dur =
-      (new Date(last.timestamp).getTime() -
-        new Date(first.timestamp).getTime()) /
-      1000;
-    if (isFinite(dur)) totalSessionDuration += Math.max(0, dur);
+    // Removed session duration calculations (no playback length aggregation)
 
     for (const e of sess) {
       if (e.eventName === "sw.story.start") {
@@ -196,8 +190,7 @@ export async function computeStats(
   }
 
   const completionRate = totalPlays > 0 ? completes / totalPlays : 0;
-  const avgSessionLengthSeconds =
-    totalSessions > 0 ? totalSessionDuration / totalSessions : 0;
+  const avgSessionLengthSeconds = 0;
 
   // Build arrays
   const timeseries = Array.from(playPerDay.entries())
@@ -227,7 +220,7 @@ export async function computeStats(
       return {
         name,
         count,
-        avgTimeSeconds: avgSessionLengthSeconds,
+        avgTimeSeconds: 0,
         dropoutRate,
       };
     });
