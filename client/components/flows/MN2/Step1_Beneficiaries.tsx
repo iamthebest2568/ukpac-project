@@ -317,7 +317,7 @@ const Step1_Beneficiaries = ({
                     selectedGroups.length === 0 ? "text-gray-600" : ""
                   }`}
                 >
-                  {currentStep === totalPrioritySteps ? "ไปดูสร���ป" : "ถัดไป"}
+                  {currentStep === totalPrioritySteps ? "ไปดูสรุป" : "ถัดไป"}
                 </span>
               </button>
 
