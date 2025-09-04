@@ -77,8 +77,8 @@ const Ask05 = ({ sessionID, onNavigate, journeyData }: Ask05Props) => {
         <div className="flex-1 px-[29px] pt-[165px] pb-8">
           {/* Question Title */}
           <div className="mb-[50px]">
-            <h1 className="text-white font-kanit text-[30px] font-normal leading-normal text-center">
-              คุณคิดว่ารัฐควรทำอะไร ที่จะทำให้น���ยบายนี้เกิดขึ้นได้และ
+            <h1 className="text-white font-prompt text-[30px] font-normal leading-normal text-center">
+              คุณคิดว่ารัฐควรทำอะไร ที่จะทำให้นโยบายนี้เกิดขึ้นได้และ
               เป็นประโยชน์ต่อประชาชน อย่างแท้จริง
             </h1>
           </div>
