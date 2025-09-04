@@ -14,7 +14,7 @@ const ThankYouScreen = ({ sessionID, onNavigate }: ThankYouScreenProps) => {
         <div className="absolute inset-0">
           <img
             src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F946833431d4b46a0bde1c7d1bc32f67a"
-            alt="เม��องแห่งอนาคตที่สดใส"
+            alt="เมืองแห่งอนาคตที่สดใส"
             className="w-full h-full object-cover object-center"
             style={{ minWidth: "100%", aspectRatio: "2/3" }}
           />
@@ -39,7 +39,7 @@ const ThankYouScreen = ({ sessionID, onNavigate }: ThankYouScreenProps) => {
                 <div className="relative z-10 text-center">
                   <div className="text-5xl mb-2">🏙️</div>
                   <div className="text-lg mb-2">🚄</div>
-                  <div className="text-xs text-gray-600 font-prompt">เมืองแห่งอนาคตที่สด��ส</div>
+                  <div className="text-xs text-gray-600 font-prompt">เมืองแห่งอนาคตที่สดใส</div>
                 </div>
                 
                 {/* Modern buildings silhouette */}
@@ -72,7 +72,7 @@ const ThankYouScreen = ({ sessionID, onNavigate }: ThankYouScreenProps) => {
               </h1>
               
               <p className="text-white text-center font-prompt text-lg leading-relaxed">
-                ความคิดเห็นของคุณจะช่วยให้เราสร้างเมืองที่ดีขึ้นสำหรับทุกคน
+                ความคิดเห็นของคุณจะช่วยให้เราสร้างเม���องที่ดีขึ้นสำหรับทุกคน
               </p>
             </div>
 
