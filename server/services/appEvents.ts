@@ -349,8 +349,8 @@ export async function computeSessionSummaries(
       }
       if (ev.event === "ENDSEQ_CONTACT") {
         contacts += 1;
-        const name = (ev.payload?.name || "").toString();
-        const phone = (ev.payload?.phone || "").toString();
+        const name = sanitizeThai((ev.payload?.name || "").toString());
+        const phone = sanitizeThai((ev.payload?.phone || "").toString());
         if (name) contactName = name;
         if (phone) contactPhone = phone;
       }
