@@ -107,7 +107,7 @@ const Step1_Priorities = ({
             {/* Title */}
             <div className="figma-style1-title-container">
               <h1 className="figma-style1-title">
-                คุณคิดว่าควรใช้เงิน���ี่ได้จากการเก็บไปพัฒนาอะไร
+                คุณคิดว่าควรใช้เงินที่ได้จากการเก็บไปพัฒนาอะไร
               </h1>
             </div>
 
@@ -144,7 +144,7 @@ const Step1_Priorities = ({
                     }`}
                     style={{ letterSpacing: "0.4px" }}
                   >
-                    ลดค่าโดยสารรถไฟฟ้า
+                    ��ดค่าโดยสารรถไฟฟ้า
                   </span>
                 </button>
                 <button
