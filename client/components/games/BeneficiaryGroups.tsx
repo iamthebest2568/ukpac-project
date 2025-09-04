@@ -139,7 +139,7 @@ const BeneficiaryGroups = ({ sessionID, onNavigate }: BeneficiaryGroupsProps) =>
           
           {selectedGroups.length === 0 && (
             <div id="next-button-description" className="status-message info mt-4">
-              กรุณาเลือกอย่างน้อย 1 กลุ่มเพื่อดำเ��ินการต่อ
+              กรุณาเลือกอย่างน้อย 1 กลุ่มเพื่อดำเนินการต่อ
             </div>
           )}
         </div>
