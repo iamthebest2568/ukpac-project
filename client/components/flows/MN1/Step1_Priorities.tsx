@@ -27,10 +27,10 @@ const Step1_Priorities = ({
     "ลดค่าโดยสารรถไฟฟ้า",
     "ปรับปรุงคุณภาพรถเมล์",
     "ตั๋วร่วม",
-    "เพิ่มความถี่รถเมล์",
+    "เพิ่มความ���ี่รถเมล์",
     "เพิ่มที่จอดรถ",
     "เพิ่มความถี่รถไฟฟ้า",
-    "เ��ิ่ม Feeder ในซอย",
+    "เพิ่ม Feeder ในซอย",
   ];
 
   const handlePriorityToggle = (priority: string) => {
@@ -107,14 +107,14 @@ const Step1_Priorities = ({
             {/* Title */}
             <div className="figma-style1-title-container">
               <h1 className="figma-style1-title">
-                คุณคิดว่าควรใช้เงินที่ได้จากการเก็บไปพัฒนาอะไร
+                คุณคิดว่าควรใช้เงิน���ี่ได้จากการเก็บไปพัฒนาอะไร
               </h1>
             </div>
 
             {/* Subtitle */}
             <div className="text-center mb-6">
-              <p className="text-white font-kanit text-lg font-normal">
-                ไม่��กิน 3 นโยบาย
+              <p className="text-white font-prompt text-lg font-normal">
+                ไม่เกิน 3 นโยบาย
               </p>
             </div>
 
@@ -138,7 +138,7 @@ const Step1_Priorities = ({
                 >
                   <span
                     className={`figma-style1-button-text text-[15px] ${
-                      selectedPriorities.includes("ลดค่าโ���ยสารรถไฟฟ้า")
+                      selectedPriorities.includes("ลดค่าโดยสารรถไฟฟ้า")
                         ? "font-semibold text-[#EFBA31]"
                         : "font-medium text-black group-hover:text-[#EFBA31]"
                     }`}
@@ -223,7 +223,7 @@ const Step1_Priorities = ({
                     }`}
                     style={{ letterSpacing: "0.4px" }}
                   >
-                    เพิ่มความถี่รถเมล์
+                    เพิ่มความ��ี่รถเมล์
                   </span>
                 </button>
                 <button
