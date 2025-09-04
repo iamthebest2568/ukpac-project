@@ -235,11 +235,11 @@ export default function UkDashboard() {
               </div>
               {ingest && (
                 <div className="text-white/60 text-xs mt-1">
-                  การเก็��ข้อมูล • App: {ingest.app.count} เหตุการณ์, ล่าสุด{" "}
+                  การเก็บข้อมูล • App: {ingest.app.count} เหตุการณ์, ล่าสุด{" "}
                   {ingest.app.lastTs
                     ? new Date(ingest.app.lastTs).toLocaleString()
                     : "-"}{" "}
-                  • วิด��โอ: {ingest.video.count} เหตุการณ์, ล่าสุด{" "}
+                  • วิดีโอ: {ingest.video.count} เหตุการณ์, ล่าสุด{" "}
                   {ingest.video.lastTs
                     ? new Date(ingest.video.lastTs).toLocaleString()
                     : "-"}
@@ -365,7 +365,7 @@ export default function UkDashboard() {
                     {/* Stornaway choice */}
                     <AccordionItem value="stornaway">
                       <AccordionTrigger>
-                        เมื่อได้ยินข่าวนี้ คุณคิดยังไง
+                        เมื่อได้ย���นข่าวนี้ คุณคิดยังไง
                       </AccordionTrigger>
                       <AccordionContent>
                         <ul className="space-y-1 text-sm">
@@ -601,7 +601,7 @@ export default function UkDashboard() {
                         "Minigame 3 : นโยบายที่เลือก",
                         "Minigame 3 : เงินที่ใส่",
                         "ข้อคิดเห็นอื่นๆ",
-                        "ลุ้นรางวัล",
+                        "ลุ้นร���งวัล",
                         "ชื่อ",
                         "เบอร์โทร",
                       ],
