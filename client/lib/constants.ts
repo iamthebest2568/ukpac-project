@@ -108,7 +108,7 @@ export const ARIA_LABELS = {
 // Status messages for user feedback
 export const STATUS_MESSAGES = {
   SELECTION_REQUIRED: (min: number) =>
-    `กรุณาเลือกอย่างน้อย ${min} ข้อเพื่อดำเนินการต่อ`,
+    `กรุณาเลือกอย่างน้อย ${min} ข้อเพ���่อดำเนินการต่อ`,
   SELECTION_COMPLETE: (count: number, max: number) =>
     `เลือกให้ครบ ${max} ข้อ (เลือกแล้ว ${count}/${max})`,
   SELECTION_LIMIT_REACHED: (max: number) =>
@@ -121,7 +121,7 @@ export const STATUS_MESSAGES = {
     `เยี่ยม! คุณจัดสรรงบประมาณครบ ${total} หน่วยแล้ว`,
   INPUT_REQUIRED: "กรุณากรอกข้อความเพื่อดำเนินการต่อ",
   ACCESSIBILITY_INFO:
-    "แบบสำรวจนี้รองรับการใช้งานผ่านแป้นพิมพ์แ���ะโปรแกรมอ่านหน้าจอ",
+    "แบบสำรวจนี้รองรับการใช้งานผ่านแป���นพิมพ์และโปรแกรมอ่านหน้าจอ",
 } as const;
 
 // Validation rules
