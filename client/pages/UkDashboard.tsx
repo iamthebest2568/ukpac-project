@@ -84,7 +84,6 @@ export default function UkDashboard() {
     videoEvents: any[];
   } | null>(null);
 
-
   // Password gate
   const expected = (import.meta as any).env?.VITE_DASHBOARD_PASSWORD as
     | string
@@ -277,9 +276,7 @@ export default function UkDashboard() {
               aria-hidden="true"
             />
           )}
-          {error && (
-            <div className="text-red-400">เกิดข้อผิดพลาด: {error}</div>
-          )}
+          {error && <div className="text-red-400">เกิดข้อผิดพลาด: {error}</div>}
 
           {stats && (
             <div className="space-y-6">
@@ -433,7 +430,9 @@ export default function UkDashboard() {
                                         (b[1] as number) - (a[1] as number),
                                     )
                                     .slice(0, 3)
-                                    .map(([g, c]) => `${String(g ?? "")} (${c})`)
+                                    .map(
+                                      ([g, c]) => `${String(g ?? "")} (${c})`,
+                                    )
                                     .join(" • ")}
                                 </span>
                               </li>
@@ -555,16 +554,14 @@ export default function UkDashboard() {
                           <td className="py-2 pr-4">
                             {s.sessionId.slice(0, 10)}…
                           </td>
-                          <td className="py-2 pr-4">
-                            {(s.introWho ?? "")}
-                          </td>
+                          <td className="py-2 pr-4">{s.introWho ?? ""}</td>
                           <td className="py-2 pr-4">
                             {s.mn1Selected?.join(", ") || "-"}
                           </td>
                           <td className="py-2 pr-4">{s.endDecision || "-"}</td>
                           <td className="py-2 pr-4">{s.contacts || 0}</td>
                           <td className="py-2 pr-4 truncate max-w-[240px]">
-                            {(s.ask05Comment ?? "")}
+                            {s.ask05Comment ?? ""}
                           </td>
                           <td className="py-2 pr-4">
                             <button

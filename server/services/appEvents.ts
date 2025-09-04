@@ -59,11 +59,12 @@ export async function appendAppEvent(ev: AppEvent) {
     } catch {}
   }
   ensureDir();
-  const line = JSON.stringify({
-    ...ev,
-    page: sanitizeThai(ev.page),
-    userAgent: sanitizeThai(ev.userAgent),
-  }) + "\n";
+  const line =
+    JSON.stringify({
+      ...ev,
+      page: sanitizeThai(ev.page),
+      userAgent: sanitizeThai(ev.userAgent),
+    }) + "\n";
   await fs.promises.appendFile(APP_EVENTS_FILE, line, "utf8");
 }
 
@@ -295,11 +296,9 @@ export async function computeSessionSummaries(
       ip = ev.ip || ip;
       userAgent = ev.userAgent || userAgent;
       if (ev.event === "INTRO_WHO_CHOICE") {
-        const label = sanitizeThai((
-          ev.payload?.choiceText ||
-          ev.payload?.choice ||
-          ""
-        ).toString());
+        const label = sanitizeThai(
+          (ev.payload?.choiceText || ev.payload?.choice || "").toString(),
+        );
         if (label) introWho = label;
       }
       if (ev.event === "MN1_COMPLETE" || ev.event === "BUDGET_STEP1_COMPLETE") {
@@ -434,11 +433,9 @@ export async function computeUserJourneyStats(
   const introWho: Record<string, number> = {};
   for (const ev of appEvents) {
     if (ev.event === "INTRO_WHO_CHOICE") {
-      const label = sanitizeThai((
-        ev.payload?.choiceText ||
-        ev.payload?.choice ||
-        ""
-      ).toString());
+      const label = sanitizeThai(
+        (ev.payload?.choiceText || ev.payload?.choice || "").toString(),
+      );
       if (!label) continue;
       introWho[label] = (introWho[label] || 0) + 1;
     }

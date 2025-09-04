@@ -76,7 +76,6 @@ Individual game mechanics:
 - `BudgetAllocation.tsx` - Legacy budget game
 - `ThankYouScreen.tsx` - Completion screen
 
-
 ### 📁 `/services/` - Data Services
 
 - `dataLogger.js` - Event logging to localStorage
