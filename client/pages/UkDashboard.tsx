@@ -365,7 +365,7 @@ export default function UkDashboard() {
                     {/* Stornaway choice */}
                     <AccordionItem value="stornaway">
                       <AccordionTrigger>
-                        เมื่อได้ย���นข่าวนี้ คุณคิดยังไง
+                        เมื่อได้ยินข่าวนี้ คุณคิดยังไง
                       </AccordionTrigger>
                       <AccordionContent>
                         <ul className="space-y-1 text-sm">
@@ -388,7 +388,7 @@ export default function UkDashboard() {
                     {/* MN1 */}
                     <AccordionItem value="mn1">
                       <AccordionTrigger>
-                        Minigame 1: ต��วเลือกนโยบาย
+                        Minigame 1: ตัวเลือกนโยบาย
                       </AccordionTrigger>
                       <AccordionContent>
                         <ul className="space-y-1 text-sm">
@@ -441,7 +441,7 @@ export default function UkDashboard() {
                     {/* MN3 selected */}
                     <AccordionItem value="mn3sel">
                       <AccordionTrigger>
-                        Minigame 3 : นโยบ���ยที่เลือก
+                        Minigame 3 : นโยบายที่เลือก
                       </AccordionTrigger>
                       <AccordionContent>
                         <ul className="space-y-1 text-sm">
@@ -498,7 +498,7 @@ export default function UkDashboard() {
                     </AccordionItem>
                     {/* Rewards */}
                     <AccordionItem value="reward">
-                      <AccordionTrigger>ลุ้นรางวัล</AccordionTrigger>
+                      <AccordionTrigger>��ุ้นรางวัล</AccordionTrigger>
                       <AccordionContent>
                         <ul className="space-y-1 text-sm">
                           <li className="flex justify-between">
@@ -601,7 +601,7 @@ export default function UkDashboard() {
                         "Minigame 3 : นโยบายที่เลือก",
                         "Minigame 3 : เงินที่ใส่",
                         "ข้อคิดเห็นอื่นๆ",
-                        "ลุ้นร���งวัล",
+                        "ลุ้นรางวัล",
                         "ชื่อ",
                         "เบอร์โทร",
                       ],
@@ -679,7 +679,7 @@ export default function UkDashboard() {
           >
             <div className="flex items-center justify-between mb-2">
               <div className="text-lg font-medium">
-                รายละเอียดเซสชั���: {detailSession?.slice(0, 12)}…
+                รายละเอียดเซสชัน: {detailSession?.slice(0, 12)}…
               </div>
               <button
                 className="text-white/70 hover:text-white"
