@@ -527,7 +527,7 @@ export async function computeUserJourneyStats(
   const stornawayVariants: Record<string, number> = {};
   for (const ve of videoEvents) {
     if (ve.eventName === "sw.choice.selected") {
-      const name = (ve.choiceText || "").toString();
+      const name = sanitizeThai((ve.choiceText || "").toString());
       if (!name) continue;
       stornawayVariants[name] = (stornawayVariants[name] || 0) + 1;
     }
