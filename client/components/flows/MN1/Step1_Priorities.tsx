@@ -126,7 +126,7 @@ const Step1_Priorities = ({
                   className={`w-[163px] h-[41px] rounded-[40px] border transition-all duration-200 ${
                     selectedPriorities.includes("ลดค่าโดยสารรถไฟฟ้า")
                       ? "bg-black border-black"
-                      : isSelectionDisabled("ลดค่าโดยสารรถไฟฟ้า")
+                      : isSelectionDisabled("ลดค่าโด���สารรถไฟฟ้า")
                         ? "bg-gray-300 border-gray-400 cursor-not-allowed opacity-50"
                         : "bg-[#EFBA31] border-black hover:bg-black hover:scale-105 group"
                   }`}
@@ -192,7 +192,7 @@ const Step1_Priorities = ({
                 >
                   <span
                     className={`figma-style1-button-text text-[15px] ${
-                      selectedPriorities.includes("ตั๋ว���่วม")
+                      selectedPriorities.includes("ตั๋วร่วม")
                         ? "font-semibold text-[#EFBA31]"
                         : "font-medium text-black group-hover:text-[#EFBA31]"
                     }`}
@@ -238,7 +238,7 @@ const Step1_Priorities = ({
                     !isSelectionDisabled("เพิ่มที่จอดรถ") &&
                     handlePriorityToggle("เพิ่มที��จอดรถ")
                   }
-                  disabled={isSelectionDisabled("เพิ่มที่จอดรถ")}
+                  disabled={isSelectionDisabled("���พิ่มที่จอดรถ")}
                 >
                   <span
                     className={`figma-style1-button-text text-[15px] ${
