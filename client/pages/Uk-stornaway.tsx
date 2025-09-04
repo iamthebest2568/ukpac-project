@@ -345,8 +345,6 @@ export default function UkStornaway() {
           </button>
         </div>
 
-        {/* Status (no live log) */}
-        <div className="mt-6 text-sm text-white/70">สถานะ: {status}</div>
       </div>
 
       {showPopup && (
@@ -374,7 +372,7 @@ export default function UkStornaway() {
                 setShowPopup(false);
               }}
               className="absolute top-3 right-3 z-20 rounded-full bg-white/90 text-black px-3 py-1 text-sm font-medium hover:bg-white focus:outline-none focus:ring-2 focus:ring-[#EFBA31]"
-              aria-label="ปิดหน���าต่าง"
+              aria-label="ปิดหน้าต่าง"
             >
               ปิด
             </button>
