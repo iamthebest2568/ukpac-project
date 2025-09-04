@@ -108,7 +108,7 @@ export const ARIA_LABELS = {
 // Status messages for user feedback
 export const STATUS_MESSAGES = {
   SELECTION_REQUIRED: (min: number) =>
-    `กรุณาเลือกอย่างน้อย ${min} ข้อเพ���่อดำเนินการต่อ`,
+    `กรุณาเลือกอย่างน้อย ${min} ข้อเพื่อดำเนินการต่อ`,
   SELECTION_COMPLETE: (count: number, max: number) =>
     `เลือกให้ครบ ${max} ข้อ (เลือกแล้ว ${count}/${max})`,
   SELECTION_LIMIT_REACHED: (max: number) =>
