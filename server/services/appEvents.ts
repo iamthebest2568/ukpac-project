@@ -295,11 +295,11 @@ export async function computeSessionSummaries(
       ip = ev.ip || ip;
       userAgent = ev.userAgent || userAgent;
       if (ev.event === "INTRO_WHO_CHOICE") {
-        const label = (
+        const label = sanitizeThai((
           ev.payload?.choiceText ||
           ev.payload?.choice ||
           ""
-        ).toString();
+        ).toString());
         if (label) introWho = label;
       }
       if (ev.event === "MN1_COMPLETE" || ev.event === "BUDGET_STEP1_COMPLETE") {
