@@ -34,12 +34,12 @@ export async function listRecentEvents(limit = 50): Promise<VideoEvent[]> {
     if (res.ok) {
       const rows = await res.json();
       return (rows as any[]).map((r) => ({
-        sessionId: r.session_id,
-        eventName: r.event_name,
+        sessionId: sanitizeThai(String(r.session_id ?? "")),
+        eventName: sanitizeThai(String(r.event_name ?? "")),
         timestamp: r.timestamp,
-        choiceText: r.choice_text ?? undefined,
+        choiceText: sanitizeThai(r.choice_text ?? undefined),
         variantId: r.variant_id ?? undefined,
-        variantName: r.variant_name ?? undefined,
+        variantName: sanitizeThai(r.variant_name ?? undefined),
       }));
     }
   }
@@ -84,12 +84,12 @@ export async function listVideoEventsBySession(
     if (res.ok) {
       const rows = await res.json();
       return (rows as any[]).map((r) => ({
-        sessionId: r.session_id,
-        eventName: r.event_name,
+        sessionId: sanitizeThai(String(r.session_id ?? "")),
+        eventName: sanitizeThai(String(r.event_name ?? "")),
         timestamp: r.timestamp,
-        choiceText: r.choice_text ?? undefined,
+        choiceText: sanitizeThai(r.choice_text ?? undefined),
         variantId: r.variant_id ?? undefined,
-        variantName: r.variant_name ?? undefined,
+        variantName: sanitizeThai(r.variant_name ?? undefined),
       }));
     }
   }
