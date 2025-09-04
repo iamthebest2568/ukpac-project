@@ -469,15 +469,7 @@
 
   .polaroid-caption {
     @apply text-center text-white font-medium;
-    font-family:
-      "Prompt",
-      -apple-system,
-      BlinkMacSystemFont,
-      "Segoe UI",
-      Roboto,
-      Helvetica,
-      Arial,
-      sans-serif;
+    font-family: "Prompt" !important;
     font-size: clamp(11px, 2.5vw, 14px);
     margin-top: 6px;
     white-space: nowrap;
