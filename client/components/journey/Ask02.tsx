@@ -11,7 +11,7 @@ const Ask02 = ({ sessionID, onNavigate }: Ask02Props) => {
     const choiceText = {
       coverage: "นโยบายไม่ครอบคลุม",
       ineffective: "เก็บไปก็ไม่มีอะไรเกิดขึ้น",
-      other: "���ื่นๆ",
+      other: "อื่นๆ",
     }[choice];
 
     const data = { choice, choiceText };
