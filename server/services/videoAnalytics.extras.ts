@@ -4,6 +4,13 @@ import fetch from "node-fetch";
 import type { VideoEvent } from "./videoAnalytics";
 
 const DATA_DIR = process.env.DATA_DIR || path.join(process.cwd(), ".data");
+const sanitizeThai = (text: any): any => {
+  if (typeof text !== "string") return text;
+  return text
+    .normalize("NFC")
+    .replace(/[\u0000-\u001F\u007F]/g, "")
+    .replace(/\uFFFD/g, "");
+};
 const EVENTS_FILE = path.join(DATA_DIR, "events.jsonl");
 
 export async function listRecentEvents(limit = 50): Promise<VideoEvent[]> {
