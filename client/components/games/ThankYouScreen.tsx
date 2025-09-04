@@ -72,7 +72,7 @@ const ThankYouScreen = ({ sessionID, onNavigate }: ThankYouScreenProps) => {
               </h1>
               
               <p className="text-white text-center font-prompt text-lg leading-relaxed">
-                ความคิดเห็นของคุณจะช่วยให้เราสร้างเม���องที่ดีขึ้นสำหรับทุกคน
+                ความคิดเห็นของคุณจะช่วยให้เราสร้างเมืองที่ดีขึ้นสำหรั���ทุกคน
               </p>
             </div>
 
