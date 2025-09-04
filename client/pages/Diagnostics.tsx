@@ -6,7 +6,7 @@ const Diagnostics: React.FC = () => {
     <div className="min-h-screen bg-white text-black p-6 font-prompt">
       <h1 className="text-2xl mb-4">หน้าวินิจฉัยการแสดงผลภาษาไทย</h1>
       <p className="mb-6">ตัวอย่างข้อความ: {sample}</p>
-      <div className="text-sm text-gray-600">ถ้าเห็นสัญลักษณ์ � แสดงว่ามีปัญหารหัสอักขระ</div>
+      <div className="text-sm text-gray-600">หากพบตัวอักษรแปลกปลอม (U+FFFD) แสดงว่ามีปัญหารหัสอักขระ</div>
     </div>
   );
 };
