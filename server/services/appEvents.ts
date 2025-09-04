@@ -59,7 +59,11 @@ export async function appendAppEvent(ev: AppEvent) {
     } catch {}
   }
   ensureDir();
-  const line = JSON.stringify(ev) + "\n";
+  const line = JSON.stringify({
+    ...ev,
+    page: sanitizeThai(ev.page),
+    userAgent: sanitizeThai(ev.userAgent),
+  }) + "\n";
   await fs.promises.appendFile(APP_EVENTS_FILE, line, "utf8");
 }
 
