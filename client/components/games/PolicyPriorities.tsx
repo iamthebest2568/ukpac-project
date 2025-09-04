@@ -13,7 +13,7 @@ const PolicyPriorities = ({ sessionID, onNavigate }: PolicyPrioritiesProps) => {
     'ลดค่าโดยสารรถไฟฟ้า',
     'ปรับปรุงคุณภาพรถเมล์',
     'ตั๋วร่วม',
-    'เพิ่มความถี่รถเ��ล์',
+    'เพิ่มความถี่รถเมล์',
     'เพิ่มความถี่รถไฟฟ้า',
     'เพิ่มที่จอดรถ',
     'เพิ่ม feeder ในซอย'
@@ -75,7 +75,7 @@ const PolicyPriorities = ({ sessionID, onNavigate }: PolicyPrioritiesProps) => {
                 className="text-white text-center font-prompt text-3xl font-normal leading-normal mb-4"
                 style={{ fontSize: "clamp(24px, 7.5vw, 30px)" }}
               >
-                คุณคิดว่าควรใช้เงินที่ได้จากการเก็บไปพัฒนาอะไร
+                คุณคิดว่าควรใช้���งินที่ได้จากการเก็บไปพัฒนาอะไร
               </h1>
             </div>
             
@@ -159,7 +159,7 @@ const PolicyPriorities = ({ sessionID, onNavigate }: PolicyPrioritiesProps) => {
             {selectedPriorities.length >= maxSelections && (
               <div className="w-full max-w-[325px] mb-4 bg-yellow-500 bg-opacity-90 rounded-[15px] p-3">
                 <div className="text-black text-center text-sm font-prompt">
-                  คุณเลือกครบจำนวนแล้ว หากต้องการเลือกข้อใหม่ กรุณายกเลิกการเลือกข้อใดข้อหนึ่งก่อน
+                  คุณเลือกครบจำ���วนแล้ว หากต้องการเลือกข้อใหม่ กรุณายกเลิกการเลือกข้อใดข้อหนึ่งก่อน
                 </div>
               </div>
             )}
