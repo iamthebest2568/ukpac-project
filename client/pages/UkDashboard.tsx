@@ -191,7 +191,7 @@ export default function UkDashboard() {
           <div className="w-full max-w-sm bg-white/5 border border-white/10 rounded-xl p-5">
             <div className="text-xl font-semibold mb-3">ป้อนรหัสผ่าน</div>
             <div className="text-sm text-white/70 mb-4">
-              หน้า���ี้ป้องกันด้วยรหัสผ่าน
+              หน้านี้ป้องกันด้วยรหัสผ่าน
             </div>
             <input
               type="password"
