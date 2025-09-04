@@ -104,7 +104,7 @@ const Step3_Result = ({
     });
 
     const data = {
-      budget_step3_result: { budgetResultReviewed: true, satisfaction: "��ม่ใช่", resultSummary },
+      budget_step3_result: { budgetResultReviewed: true, satisfaction: "ไม่ใช่", resultSummary },
     };
 
     // Save flow data
@@ -126,12 +126,12 @@ const Step3_Result = ({
           {/* Results Section */}
           <div className="flex-1 flex flex-col justify-center items-center text-center">
             {/* Main Title */}
-            <h1 className="text-white text-center font-kanit text-[28px] font-normal leading-normal mb-2">
+            <h1 className="text-white text-center font-prompt text-[28px] font-normal leading-normal mb-2">
               จากงบประมาณของคุณ
             </h1>
 
             {/* Subtitle */}
-            <p className="text-white text-center font-kanit text-[18px] font-normal leading-normal mb-12 max-w-[331px]">
+            <p className="text-white text-center font-prompt text-[18px] font-normal leading-normal mb-12 max-w-[331px]">
               นี้คือสิ่งที่จะเกิดขึ้นในอนาคต
             </p>
 
@@ -145,7 +145,7 @@ const Step3_Result = ({
             </div>
 
             {/* Bottom Question */}
-            <h2 className="text-white text-center font-kanit text-[28px] font-normal leading-normal mb-8 max-w-[331px]">
+            <h2 className="text-white text-center font-prompt text-[28px] font-normal leading-normal mb-8 max-w-[331px]">
               คุณพอใจหรือไม่
             </h2>
           </div>

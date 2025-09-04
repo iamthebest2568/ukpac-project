@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap");
 @import "./styles/figma-style1.css";
 
 @tailwind base;
@@ -81,7 +79,7 @@
   }
 
   body {
-    font-family: "Kanit", sans-serif;
+    font-family: "Prompt", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     font-size: var(--font-size-body);
     font-weight: var(--font-weight-regular);
     line-height: var(--line-height-normal);
@@ -468,7 +466,7 @@
 
   .polaroid-caption {
     @apply text-center text-white font-medium;
-    font-family: "Kanit", sans-serif;
+    font-family: "Prompt", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     font-size: clamp(11px, 2.5vw, 14px);
     margin-top: 6px;
     white-space: nowrap;

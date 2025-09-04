@@ -13,9 +13,9 @@ const PolicyPriorities = ({ sessionID, onNavigate }: PolicyPrioritiesProps) => {
     'ลดค่าโดยสารรถไฟฟ้า',
     'ปรับปรุงคุณภาพรถเมล์',
     'ตั๋วร่วม',
-    'เพิ่มความถี่รถเมล์',
+    'เพิ่มความถี่รถเ��ล์',
     'เพิ่มความถี่รถไฟฟ้า',
-    'เ��ิ่มที่จอดรถ',
+    'เพิ่มที่จอดรถ',
     'เพิ่ม feeder ในซอย'
   ];
 
@@ -52,7 +52,7 @@ const PolicyPriorities = ({ sessionID, onNavigate }: PolicyPrioritiesProps) => {
         <div className="absolute inset-0">
           <img
             src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F946833431d4b46a0bde1c7d1bc32f67a"
-            alt="นโยบายการข��ส่ง"
+            alt="นโยบายการขนส่ง"
             className="w-full h-full object-cover object-center"
             style={{ minWidth: "100%", aspectRatio: "2/3" }}
           />
@@ -72,7 +72,7 @@ const PolicyPriorities = ({ sessionID, onNavigate }: PolicyPrioritiesProps) => {
             {/* Title */}
             <div className="text-center mb-6 md:mb-8 max-w-[325px]">
               <h1
-                className="text-white text-center font-kanit text-3xl font-normal leading-normal mb-4"
+                className="text-white text-center font-prompt text-3xl font-normal leading-normal mb-4"
                 style={{ fontSize: "clamp(24px, 7.5vw, 30px)" }}
               >
                 คุณคิดว่าควรใช้เงินที่ได้จากการเก็บไปพัฒนาอะไร
@@ -192,7 +192,7 @@ const PolicyPriorities = ({ sessionID, onNavigate }: PolicyPrioritiesProps) => {
                   id="next-button-description"
                   className="text-center text-white text-sm mt-2"
                 >
-                  กรุณาเลือกอย่าง��้อย 1 ข้อเพื่อดำเนินการต่อ
+                  กรุณาเลือกอย่างน้อย 1 ข้อเพื่อดำเนินการต่อ
                 </div>
               )}
             </div>

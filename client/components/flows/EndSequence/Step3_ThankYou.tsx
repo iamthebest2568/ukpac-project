@@ -146,7 +146,7 @@ const Step3_ThankYou = ({ sessionID, onNext, onBack, journeyData }: Step3_ThankY
             <div className="w-full max-w-[325px]">
               {/* Title */}
               <div className="text-center mb-6">
-                <h1 className="text-white text-center font-kanit text-[30px] font-normal leading-normal">
+                <h1 className="text-white text-center font-prompt text-[30px] font-normal leading-normal">
                   ขอบคุณที่ร่วมเป็นส่วนหนึ่ง<br />
                   ในการพัฒนาเมือง
                 </h1>
@@ -165,7 +165,7 @@ const Step3_ThankYou = ({ sessionID, onNext, onBack, journeyData }: Step3_ThankY
                   </DialogTrigger>
 
                   <DialogContent className="p-6 bg-white rounded-lg">
-                    <DialogTitle className="font-kanit text-lg text-black mb-3">แชร์เกมนี้</DialogTitle>
+                    <DialogTitle className="font-prompt text-lg text-black mb-3">แชร์เกมนี้</DialogTitle>
                     <DialogDescription className="text-sm text-gray-600 mb-4">เลือกแพลตฟอร์มที่ต้องการแชร์</DialogDescription>
 
                     <div className="grid grid-cols-2 gap-3 mb-4">

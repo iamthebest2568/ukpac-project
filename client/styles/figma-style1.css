@@ -122,14 +122,14 @@
 
 /* Typography System - Fluid responsive */
 .figma-style1-title {
-  @apply text-white text-center font-kanit font-normal leading-normal;
+  @apply text-white text-center font-prompt font-normal leading-normal;
   /* Fluid font size that works on ALL devices */
   font-size: clamp(20px, 6vw, 36px);
   line-height: 1.2;
 }
 
 .figma-style1-subtitle {
-  @apply text-white text-center font-kanit font-normal leading-normal;
+  @apply text-white text-center font-prompt font-normal leading-normal;
   font-size: clamp(18px, 5vw, 28px);
   line-height: 1.3;
 }

@@ -39,7 +39,7 @@ const ThankYouScreen = ({ sessionID, onNavigate }: ThankYouScreenProps) => {
                 <div className="relative z-10 text-center">
                   <div className="text-5xl mb-2">🏙️</div>
                   <div className="text-lg mb-2">🚄</div>
-                  <div className="text-xs text-gray-600 font-prompt">เมืองแห่งอนาคตที่สดใส</div>
+                  <div className="text-xs text-gray-600 font-prompt">เมืองแห่งอนาคตที่สด��ส</div>
                 </div>
                 
                 {/* Modern buildings silhouette */}
@@ -64,7 +64,7 @@ const ThankYouScreen = ({ sessionID, onNavigate }: ThankYouScreenProps) => {
             {/* Thank you message */}
             <div className="text-center mb-8 max-w-[325px]">
               <h1
-                className="text-white text-center font-kanit text-3xl font-normal leading-normal mb-6"
+                className="text-white text-center font-prompt text-3xl font-normal leading-normal mb-6"
                 style={{ fontSize: "clamp(24px, 7.5vw, 30px)" }}
               >
                 ขอบคุณที่ร่วมเป็นส่วนหนึ่ง<br />

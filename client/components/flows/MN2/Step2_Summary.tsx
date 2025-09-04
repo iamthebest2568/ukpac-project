@@ -122,7 +122,7 @@ const Step2_Summary = ({
         <div className="pt-11 px-0 flex-1">
           {/* Header */}
           <div className="text-center mb-6">
-            <h1 className="text-white font-kanit text-[28px] font-normal leading-normal">
+            <h1 className="text-white font-prompt text-[28px] font-normal leading-normal">
               นี้คือนโยบายที่คุณเสนอ
             </h1>
           </div>
@@ -140,7 +140,7 @@ const Step2_Summary = ({
               >
                 {/* Policy Name */}
                 <div className="pt-3 pb-2 px-4">
-                  <h3 className="text-[#EFBA31] font-kanit text-[18px] font-normal text-center leading-normal">
+                  <h3 className="text-[#EFBA31] font-prompt text-[18px] font-normal text-center leading-normal">
                     {card.priority}
                   </h3>
                 </div>
@@ -223,7 +223,7 @@ const Step2_Summary = ({
 
           {/* Question */}
           <div className="text-center mb-6 px-[29px]">
-            <h2 className="text-white font-kanit text-[28px] font-normal leading-normal">
+            <h2 className="text-white font-prompt text-[28px] font-normal leading-normal">
               คุณพอใจหรือไม่
             </h2>
           </div>

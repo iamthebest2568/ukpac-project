@@ -94,7 +94,7 @@ const BudgetAllocation = ({ sessionID, onNavigate }: BudgetAllocationProps) => {
             {/* Title */}
             <div className="text-center mb-6 md:mb-8 max-w-[325px]">
               <h1
-                className="text-white text-center font-kanit text-3xl font-normal leading-normal mb-4"
+                className="text-white text-center font-prompt text-3xl font-normal leading-normal mb-4"
                 style={{ fontSize: "clamp(24px, 7.5vw, 30px)" }}
               >
                 คุณจะให้งบประมาณแต่ละข้อเท่าไร

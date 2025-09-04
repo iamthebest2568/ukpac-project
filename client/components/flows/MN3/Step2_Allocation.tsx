@@ -125,7 +125,7 @@ const Step2_Allocation = ({
         <div className="pt-[210px] px-0 flex-1">
           {/* Title */}
           <div className="text-center mb-[30px] px-4">
-            <h1 className="text-white font-kanit text-[30px] font-normal leading-normal">
+            <h1 className="text-white font-prompt text-[30px] font-normal leading-normal">
               คุณจะให้งบประมาณ
               <br />
               แต่ละข้อเท่าไหร่

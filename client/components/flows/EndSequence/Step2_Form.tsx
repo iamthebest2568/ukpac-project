@@ -117,7 +117,7 @@ const Step2_Form = ({
             <div className="w-full max-w-[336px]">
               {/* Title */}
               <div className="text-center mb-20">
-                <h1 className="text-white text-center font-kanit text-[30px] font-normal leading-normal">
+                <h1 className="text-white text-center font-prompt text-[30px] font-normal leading-normal">
                   กรอกข้อมูล เพื่อรับรางวัล
                 </h1>
               </div>

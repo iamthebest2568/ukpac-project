@@ -116,7 +116,7 @@ const Step1_Choice = ({
             </div>
 
             <div className="text-center mb-6">
-              <p className="text-white font-kanit text-lg font-normal">
+              <p className="text-white font-prompt text-lg font-normal">
                 ไม่เกิน 3 นโยบาย
               </p>
             </div>
@@ -244,7 +244,7 @@ const Step1_Choice = ({
                   id="next-button-description"
                   className="text-center text-white text-sm mt-2"
                 >
-                  กรุณาเลือกอย่างน้อย 1 ข้อเพื่อดำเนินการต่อ
+                  กรุณาเลือกอย่างน้อย 1 ข้��เพื่อดำเนินการต่อ
                 </div>
               )}
             </div>

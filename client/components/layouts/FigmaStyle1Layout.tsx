@@ -88,7 +88,7 @@ const FigmaStyle1Layout = ({
                     </svg>
                   </div>
                   {/* Text */}
-                  <span className="text-black font-kanit text-sm font-medium">
+                  <span className="text-black font-prompt text-sm font-medium">
                     ดูอีกครั้ง
                   </span>
                 </div>
