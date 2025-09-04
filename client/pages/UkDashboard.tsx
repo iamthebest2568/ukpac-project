@@ -388,7 +388,7 @@ export default function UkDashboard() {
                     {/* MN1 */}
                     <AccordionItem value="mn1">
                       <AccordionTrigger>
-                        Minigame 1: ตัวเลือกนโยบาย
+                        Minigame 1: ต��วเลือกนโยบาย
                       </AccordionTrigger>
                       <AccordionContent>
                         <ul className="space-y-1 text-sm">
@@ -441,7 +441,7 @@ export default function UkDashboard() {
                     {/* MN3 selected */}
                     <AccordionItem value="mn3sel">
                       <AccordionTrigger>
-                        Minigame 3 : นโยบายที่เลือก
+                        Minigame 3 : นโยบ���ยที่เลือก
                       </AccordionTrigger>
                       <AccordionContent>
                         <ul className="space-y-1 text-sm">
@@ -679,7 +679,7 @@ export default function UkDashboard() {
           >
             <div className="flex items-center justify-between mb-2">
               <div className="text-lg font-medium">
-                รายละเอีย���เซสชัน: {detailSession?.slice(0, 12)}…
+                รายละเอียดเซสชั���: {detailSession?.slice(0, 12)}…
               </div>
               <button
                 className="text-white/70 hover:text-white"
