@@ -27,7 +27,7 @@ const Step1_Priorities = ({
     "ลดค่าโดยสารรถไฟฟ้า",
     "ปรับปรุงคุณภาพรถเมล์",
     "ตั๋วร่วม",
-    "เพิ่มความ���ี่รถเมล์",
+    "เพิ่มความถี่รถเมล์",
     "เพิ่มที่จอดรถ",
     "เพิ่มความถี่รถไฟฟ้า",
     "เพิ่ม Feeder ในซอย",
@@ -236,7 +236,7 @@ const Step1_Priorities = ({
                   }`}
                   onClick={() =>
                     !isSelectionDisabled("เพิ่มที่จอดรถ") &&
-                    handlePriorityToggle("เพิ่มที่จอดรถ")
+                    handlePriorityToggle("เพิ่มที��จอดรถ")
                   }
                   disabled={isSelectionDisabled("เพิ่มที่จอดรถ")}
                 >
