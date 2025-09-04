@@ -504,7 +504,7 @@ export async function computeUserJourneyStats(
   // Ask05 comments
   const comments = appEvents
     .filter((e) => e.event === "ASK05_COMMENT")
-    .map((e) => (e.payload?.comment || "").toString())
+    .map((e) => sanitizeThai((e.payload?.comment || "").toString()))
     .filter(Boolean);
 
   // End sequence
