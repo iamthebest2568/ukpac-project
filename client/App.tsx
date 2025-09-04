@@ -53,7 +53,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => (
     <a
       href="#main-content"
       className="skip-link"
-      aria-label="ข้ามไปยังเนื้���หาหลัก"
+      aria-label="ข้ามไปยังเนื้อหาหลัก"
     >
       ข้ามไปยังเนื้อหาหลัก
     </a>
