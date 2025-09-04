@@ -236,9 +236,9 @@ const Step1_Priorities = ({
                   }`}
                   onClick={() =>
                     !isSelectionDisabled("เพิ่มที่จอดรถ") &&
-                    handlePriorityToggle("เพิ่มที��จอดร��")
+                    handlePriorityToggle("เพิ่มที่จอดรถ")
                   }
-                  disabled={isSelectionDisabled("���พิ่มที่จอดรถ")}
+                  disabled={isSelectionDisabled("เพิ่มที่จอดรถ")}
                 >
                   <span
                     className={`figma-style1-button-text text-[15px] ${
@@ -257,7 +257,7 @@ const Step1_Priorities = ({
               <div className="flex gap-2">
                 <button
                   className={`w-[163px] h-[41px] rounded-[40px] border transition-all duration-200 ${
-                    selectedPriorities.includes("เพิ่มความถี่รถไฟฟ้า")
+                    selectedPriorities.includes("เพิ่มควา��ถี่รถไฟฟ้า")
                       ? "bg-black border-black"
                       : isSelectionDisabled("เพิ่มความถี่รถไฟฟ้า")
                         ? "bg-gray-300 border-gray-400 cursor-not-allowed opacity-50"
