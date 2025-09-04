@@ -16,7 +16,11 @@ interface Flow_EndSequenceProps {
   onBack?: () => void;
 }
 
-const Flow_EndSequence = ({ sessionID, onComplete, onBack }: Flow_EndSequenceProps) => {
+const Flow_EndSequence = ({
+  sessionID,
+  onComplete,
+  onBack,
+}: Flow_EndSequenceProps) => {
   const [currentStep, setCurrentStep] = useState<number>(1);
   const [flowData, setFlowData] = useState<any>({});
 
@@ -39,7 +43,7 @@ const Flow_EndSequence = ({ sessionID, onComplete, onBack }: Flow_EndSequencePro
 
     if (currentStep === 1) {
       // Check decision from Step1_Decision
-      if (stepData.rewardDecision?.choice === 'participate') {
+      if (stepData.rewardDecision?.choice === "participate") {
         // Move to form step
         setCurrentStep(2);
       } else {
@@ -58,7 +62,7 @@ const Flow_EndSequence = ({ sessionID, onComplete, onBack }: Flow_EndSequencePro
   const handleStepBack = () => {
     if (currentStep === 3) {
       // Check if we came from form or directly from decision
-      if (flowData.rewardDecision?.choice === 'participate') {
+      if (flowData.rewardDecision?.choice === "participate") {
         setCurrentStep(2);
       } else {
         setCurrentStep(1);
@@ -106,9 +110,7 @@ const Flow_EndSequence = ({ sessionID, onComplete, onBack }: Flow_EndSequencePro
 
   return (
     <div className="flow-container">
-      <Suspense fallback={null}>
-        {renderCurrentStep()}
-      </Suspense>
+      <Suspense fallback={null}>{renderCurrentStep()}</Suspense>
     </div>
   );
 };

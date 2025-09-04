@@ -29,34 +29,39 @@ const Step2_Summary = ({
 
   // Beneficiary mapping for icons and labels
   const beneficiaryMapping = {
-    everyone: { 
-      label: "ทุกคน", 
-      iconSrc: "https://api.builder.io/api/v1/image/assets/TEMP/7cd80c386515c5c0009d1e49c28ba822cd0082f8?width=80"
+    everyone: {
+      label: "ทุกคน",
+      iconSrc:
+        "https://api.builder.io/api/v1/image/assets/TEMP/7cd80c386515c5c0009d1e49c28ba822cd0082f8?width=80",
     },
-    locals: { 
-      label: "คนในพื้นที่", 
-      iconSrc: "https://api.builder.io/api/v1/image/assets/TEMP/272cf40c4b39c458339f5b7e24299b2d553f4837?width=74"
+    locals: {
+      label: "คนในพื้นที่",
+      iconSrc:
+        "https://api.builder.io/api/v1/image/assets/TEMP/272cf40c4b39c458339f5b7e24299b2d553f4837?width=74",
     },
-    elderly: { 
-      label: "ผู้สูงอายุ", 
-      iconSrc: "https://api.builder.io/api/v1/image/assets/TEMP/085fb4ec7bf18e454a0e6b40dcba092aeb888728?width=70"
+    elderly: {
+      label: "ผู้สูงอายุ",
+      iconSrc:
+        "https://api.builder.io/api/v1/image/assets/TEMP/085fb4ec7bf18e454a0e6b40dcba092aeb888728?width=70",
     },
-    students: { 
-      label: "นักเรียน\nนักศึกษา", 
-      iconSrc: "https://api.builder.io/api/v1/image/assets/TEMP/c18a9a787fb93083a959b16fd6684229df17250f?width=52"
+    students: {
+      label: "นักเรียน\nนักศึกษา",
+      iconSrc:
+        "https://api.builder.io/api/v1/image/assets/TEMP/c18a9a787fb93083a959b16fd6684229df17250f?width=52",
     },
-    disabled: { 
-      label: "คนพิการ", 
-      iconSrc: "https://api.builder.io/api/v1/image/assets/TEMP/9633f8bb6d0c953adb33a0769227522a310bb01f?width=88"
+    disabled: {
+      label: "คนพิการ",
+      iconSrc:
+        "https://api.builder.io/api/v1/image/assets/TEMP/9633f8bb6d0c953adb33a0769227522a310bb01f?width=88",
     },
-    other: { 
-      label: "อื่นๆ", 
-      iconSrc: "https://api.builder.io/api/v1/image/assets/TEMP/5a8e81b8e50e6e0ed69f435d1c09e3de070df984?width=82"
+    other: {
+      label: "อื่นๆ",
+      iconSrc:
+        "https://api.builder.io/api/v1/image/assets/TEMP/5a8e81b8e50e6e0ed69f435d1c09e3de070df984?width=82",
     },
   };
 
   useEffect(() => {
-
     // Extract priorities from several possible locations
     const prioritiesData: string[] =
       journeyData?.priorities?.selectedPriorities ||
@@ -64,7 +69,10 @@ const Step2_Summary = ({
       [];
 
     // Extract beneficiary selections (per-priority)
-    let beneficiariesSelections: { priority: string; beneficiaries: string[] }[] =
+    let beneficiariesSelections: {
+      priority: string;
+      beneficiaries: string[];
+    }[] =
       journeyData?.beneficiaries?.selections ||
       journeyData?.mn2?.beneficiaries?.selections ||
       [];
@@ -72,7 +80,9 @@ const Step2_Summary = ({
     // Build a lookup map for beneficiaries by priority
     const lookup: Record<string, string[]> = {};
     beneficiariesSelections.forEach((s: any) => {
-      lookup[s.priority] = Array.isArray(s.beneficiaries) ? s.beneficiaries : [];
+      lookup[s.priority] = Array.isArray(s.beneficiaries)
+        ? s.beneficiaries
+        : [];
     });
 
     // Create summary cards
@@ -81,7 +91,9 @@ const Step2_Summary = ({
       const beneficiaryObjects = beneficiaryIds.map((id: string) => ({
         id,
         label: (beneficiaryMapping as any)[id]?.label || id,
-        iconSrc: (beneficiaryMapping as any)[id]?.iconSrc || "https://api.builder.io/api/v1/image/assets/TEMP/5a8e81b8e50e6e0ed69f435d1c09e3de070df984?width=82"
+        iconSrc:
+          (beneficiaryMapping as any)[id]?.iconSrc ||
+          "https://api.builder.io/api/v1/image/assets/TEMP/5a8e81b8e50e6e0ed69f435d1c09e3de070df984?width=82",
       }));
 
       return {
@@ -94,12 +106,14 @@ const Step2_Summary = ({
   }, [journeyData]);
 
   const handleYes = () => {
-    const data = { summary: { summaryReviewed: true, summaryCards, confirmed: true } };
+    const data = {
+      summary: { summaryReviewed: true, summaryCards, confirmed: true },
+    };
     onNext(data);
   };
 
   const handleNo = () => {
-    navigateToPage('/ask04');
+    navigateToPage("/ask04");
   };
 
   return (
@@ -112,7 +126,7 @@ const Step2_Summary = ({
           className="w-full h-full object-cover object-center"
         />
       </div>
-      
+
       {/* Overlay */}
       <div className="absolute inset-0 bg-black bg-opacity-90"></div>
 
@@ -134,8 +148,8 @@ const Step2_Summary = ({
                 key={index}
                 className="w-full rounded-[10px] border-[1.5px] border-[#EFBA31] bg-transparent overflow-hidden"
                 style={{
-                  minHeight: 'auto',
-                  paddingBottom: '16px'
+                  minHeight: "auto",
+                  paddingBottom: "16px",
                 }}
               >
                 {/* Policy Name */}
@@ -150,15 +164,15 @@ const Step2_Summary = ({
                   <div
                     className={`${
                       card.beneficiaries.length === 6
-                        ? 'grid grid-cols-3 gap-x-3 gap-y-4 max-w-[280px]'
-                        : 'flex flex-wrap justify-center items-start gap-x-3 gap-y-3'
+                        ? "grid grid-cols-3 gap-x-3 gap-y-4 max-w-[280px]"
+                        : "flex flex-wrap justify-center items-start gap-x-3 gap-y-3"
                     } ${
                       card.beneficiaries.length <= 3
-                        ? 'max-w-[280px]'
-                        : 'max-w-[320px]'
+                        ? "max-w-[280px]"
+                        : "max-w-[320px]"
                     }`}
                     style={{
-                      margin: '0 auto'
+                      margin: "0 auto",
                     }}
                   >
                     {card.beneficiaries.map((beneficiary, beneficiaryIndex) => (
@@ -166,19 +180,26 @@ const Step2_Summary = ({
                         key={beneficiaryIndex}
                         className="flex flex-col items-center justify-start"
                         style={{
-                          width: card.beneficiaries.length <= 3 ? '85px' : card.beneficiaries.length <= 4 ? '75px' : card.beneficiaries.length === 6 ? '80px' : '65px'
+                          width:
+                            card.beneficiaries.length <= 3
+                              ? "85px"
+                              : card.beneficiaries.length <= 4
+                                ? "75px"
+                                : card.beneficiaries.length === 6
+                                  ? "80px"
+                                  : "65px",
                         }}
                       >
                         {/* Circular Icon Background */}
                         <div
                           className={`rounded-full bg-[#EFBA31] flex items-center justify-center mb-2 relative flex-shrink-0 ${
                             card.beneficiaries.length <= 3
-                              ? 'w-[55px] h-[55px]'
+                              ? "w-[55px] h-[55px]"
                               : card.beneficiaries.length <= 4
-                              ? 'w-[50px] h-[50px]'
-                              : card.beneficiaries.length === 6
-                              ? 'w-[52px] h-[52px]'
-                              : 'w-[45px] h-[45px]'
+                                ? "w-[50px] h-[50px]"
+                                : card.beneficiaries.length === 6
+                                  ? "w-[52px] h-[52px]"
+                                  : "w-[45px] h-[45px]"
                           }`}
                         >
                           <img
@@ -186,12 +207,12 @@ const Step2_Summary = ({
                             alt={beneficiary.label}
                             className={`object-contain ${
                               card.beneficiaries.length <= 3
-                                ? 'max-w-[38px] max-h-[34px]'
+                                ? "max-w-[38px] max-h-[34px]"
                                 : card.beneficiaries.length <= 4
-                                ? 'max-w-[34px] max-h-[30px]'
-                                : card.beneficiaries.length === 6
-                                ? 'max-w-[36px] max-h-[32px]'
-                                : 'max-w-[30px] max-h-[26px]'
+                                  ? "max-w-[34px] max-h-[30px]"
+                                  : card.beneficiaries.length === 6
+                                    ? "max-w-[36px] max-h-[32px]"
+                                    : "max-w-[30px] max-h-[26px]"
                             }`}
                           />
                         </div>
@@ -199,16 +220,23 @@ const Step2_Summary = ({
                         <span
                           className={`text-[#EFBA31] font-prompt font-medium text-center leading-tight whitespace-pre-line break-words ${
                             card.beneficiaries.length <= 3
-                              ? 'text-[12px]'
+                              ? "text-[12px]"
                               : card.beneficiaries.length <= 4
-                              ? 'text-[11px]'
-                              : card.beneficiaries.length === 6
-                              ? 'text-[11px]'
-                              : 'text-[10px]'
+                                ? "text-[11px]"
+                                : card.beneficiaries.length === 6
+                                  ? "text-[11px]"
+                                  : "text-[10px]"
                           }`}
                           style={{
-                            lineHeight: '1.2',
-                            maxWidth: card.beneficiaries.length <= 3 ? '85px' : card.beneficiaries.length <= 4 ? '75px' : card.beneficiaries.length === 6 ? '80px' : '65px'
+                            lineHeight: "1.2",
+                            maxWidth:
+                              card.beneficiaries.length <= 3
+                                ? "85px"
+                                : card.beneficiaries.length <= 4
+                                  ? "75px"
+                                  : card.beneficiaries.length === 6
+                                    ? "80px"
+                                    : "65px",
                           }}
                         >
                           {beneficiary.label}

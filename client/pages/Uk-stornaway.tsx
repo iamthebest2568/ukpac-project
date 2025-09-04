@@ -159,7 +159,11 @@ export default function UkStornaway() {
           if (!navigatedRef.current) {
             navigatedRef.current = true;
             setTimeout(() => {
-              navigateToPage("ask01", { from: "stornaway", choice: captured.choiceText, variant: captured.variantName });
+              navigateToPage("ask01", {
+                from: "stornaway",
+                choice: captured.choiceText,
+                variant: captured.variantName,
+              });
             }, 150);
           }
         }
@@ -273,7 +277,6 @@ export default function UkStornaway() {
     };
   }, []);
 
-
   return (
     <div className="min-h-screen bg-[#121212] text-white flex justify-center font-[Prompt]">
       <div className="w-full max-w-[800px] p-4 md:p-6 lg:p-8">
@@ -317,9 +320,7 @@ export default function UkStornaway() {
             เปิดแดชบอร์ด
           </button>
         </div>
-
       </div>
-
     </div>
   );
 }

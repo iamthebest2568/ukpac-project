@@ -5,29 +5,36 @@ const IntroStartPageSimple = () => {
   };
 
   return (
-    <div style={{
-      minHeight: "100vh",
-      backgroundColor: "#000",
-      color: "white",
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
-      alignItems: "center",
-      padding: "20px",
-      textAlign: "center"
-    }}>
-      <h1 style={{
-        fontSize: "24px",
-        marginBottom: "40px",
-        lineHeight: "1.4"
-      }}>
-        แล้วถ้าหากวันหนึ่งมี<br/>
-        การเก็บค่าธรรมเนียม<br/>
-        เพื่อแก้ไขปัญหาจราจร<br/>
+    <div
+      style={{
+        minHeight: "100vh",
+        backgroundColor: "#000",
+        color: "white",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        padding: "20px",
+        textAlign: "center",
+      }}
+    >
+      <h1
+        style={{
+          fontSize: "24px",
+          marginBottom: "40px",
+          lineHeight: "1.4",
+        }}
+      >
+        แล้วถ้าหากวันหนึ่งมี
+        <br />
+        การเก็บค่าธรรมเนียม
+        <br />
+        เพื่อแก้ไขปัญหาจราจร
+        <br />
         จะเป็นอย่างไร...
       </h1>
-      
-      <button 
+
+      <button
         onClick={handleStart}
         style={{
           backgroundColor: "#EFBA31",
@@ -38,7 +45,7 @@ const IntroStartPageSimple = () => {
           fontSize: "18px",
           fontWeight: "500",
           cursor: "pointer",
-          minWidth: "200px"
+          minWidth: "200px",
         }}
       >
         เริ่มเล่น

@@ -32,12 +32,12 @@ const Step3_Result = ({
 
   // Icons mapping for priorities
   const priorityIcons: { [key: string]: string } = {
-    "ลดค่าโดยสารรถไฟฟ้า": "🚇",
-    "ปรับปรุงคุณภาพรถเมล์": "🚌",
-    "ตั๋วร่วม": "🎫",
-    "เพิ่มความถี่รถเมล์": "🚍",
-    "เพิ่มความถี่รถไฟฟ้า": "🚊",
-    "เพิ่มที่จอดรถ": "🅿️",
+    ลดค่าโดยสารรถไฟฟ้า: "🚇",
+    ปรับปรุงคุณภาพรถเมล์: "🚌",
+    ตั๋วร่วม: "🎫",
+    เพิ่มความถี่รถเมล์: "🚍",
+    เพิ่มความถี่รถไฟฟ้า: "🚊",
+    เพิ่มที่จอดรถ: "🅿️",
     "เพิ่ม feeder ในซอย": "🚐",
   };
 
@@ -79,7 +79,11 @@ const Step3_Result = ({
     });
 
     const data = {
-      budget_step3_result: { budgetResultReviewed: true, satisfaction: "ใช่", resultSummary },
+      budget_step3_result: {
+        budgetResultReviewed: true,
+        satisfaction: "ใช่",
+        resultSummary,
+      },
     };
 
     // Save flow data
@@ -104,7 +108,11 @@ const Step3_Result = ({
     });
 
     const data = {
-      budget_step3_result: { budgetResultReviewed: true, satisfaction: "ไม่ใช่", resultSummary },
+      budget_step3_result: {
+        budgetResultReviewed: true,
+        satisfaction: "ไม่ใช่",
+        resultSummary,
+      },
     };
 
     // Save flow data
@@ -122,7 +130,6 @@ const Step3_Result = ({
 
         {/* Main Content */}
         <div className="relative z-10 flex flex-col min-h-screen px-6 md:px-8">
-
           {/* Results Section */}
           <div className="flex-1 flex flex-col justify-center items-center text-center">
             {/* Main Title */}

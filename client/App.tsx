@@ -93,152 +93,165 @@ const App = () => {
   }, []);
 
   return (
-  <BrowserRouter>
-    <Layout>
-      <Suspense
-        fallback={null}
-      >
-        <Routes>
-          {/* Main entry */}
-          <Route path="/" element={<IndexPage />} />
-          <Route path="/test" element={<TestPage />} />
+    <BrowserRouter>
+      <Layout>
+        <Suspense fallback={null}>
+          <Routes>
+            {/* Main entry */}
+            <Route path="/" element={<IndexPage />} />
+            <Route path="/test" element={<TestPage />} />
 
-          {/* Intro flow */}
-          <Route path="/intro-who-are-you" element={<IntroWhoAreYouPage />} />
-          <Route path="/intro-gender" element={<IntroGenderPage />} />
-          <Route
-            path="/intro-group-selection"
-            element={<IntroGroupSelectionPage />}
-          />
-          <Route
-            path="/intro-travel-mode-city"
-            element={<IntroTravelModeCityPage />}
-          />
-          <Route
-            path="/intro-travel-freq-city"
-            element={<IntroTravelFreqCityPage />}
-          />
-          <Route
-            path="/intro-policy-thoughts"
-            element={<IntroPolicyThoughtsPage />}
-          />
-          <Route
-            path="/intro-reply-friend"
-            element={<IntroReplyFriendPage />}
-          />
-          <Route path="/intro-policy-feel" element={<IntroPolicyFeelPage />} />
+            {/* Intro flow */}
+            <Route path="/intro-who-are-you" element={<IntroWhoAreYouPage />} />
+            <Route path="/intro-gender" element={<IntroGenderPage />} />
+            <Route
+              path="/intro-group-selection"
+              element={<IntroGroupSelectionPage />}
+            />
+            <Route
+              path="/intro-travel-mode-city"
+              element={<IntroTravelModeCityPage />}
+            />
+            <Route
+              path="/intro-travel-freq-city"
+              element={<IntroTravelFreqCityPage />}
+            />
+            <Route
+              path="/intro-policy-thoughts"
+              element={<IntroPolicyThoughtsPage />}
+            />
+            <Route
+              path="/intro-reply-friend"
+              element={<IntroReplyFriendPage />}
+            />
+            <Route
+              path="/intro-policy-feel"
+              element={<IntroPolicyFeelPage />}
+            />
 
-          {/* Survey */}
-          <Route path="/ask01" element={<Ask01Page />} />
-          <Route path="/ask02" element={<Ask02Page />} />
-          <Route path="/ask02-2" element={<Ask02_2Page />} />
-          <Route path="/ask04" element={<Ask04Page />} />
-          <Route path="/ask04-budget" element={<Ask04BudgetPage />} />
-          <Route path="/ask05" element={<Ask05Page />} />
+            {/* Survey */}
+            <Route path="/ask01" element={<Ask01Page />} />
+            <Route path="/ask02" element={<Ask02Page />} />
+            <Route path="/ask02-2" element={<Ask02_2Page />} />
+            <Route path="/ask04" element={<Ask04Page />} />
+            <Route path="/ask04-budget" element={<Ask04BudgetPage />} />
+            <Route path="/ask05" element={<Ask05Page />} />
 
-          {/* Other pages */}
-          <Route path="/fake-news" element={<FakeNewsPage />} />
-          <Route path="/source-selection" element={<SourceSelectionPage />} />
-          <Route path="/budget" element={<BudgetPage />} />
-          <Route path="/end-sequence" element={<EndSequencePage />} />
-          <Route path="/end-screen" element={<EndScreenPage />} />
-          <Route path="/minigame-mn1" element={<MiniGameMN1Page />} />
-          <Route path="/minigame-mn2" element={<MiniGameMN2Page />} />
-          <Route path="/minigame-mn3" element={<MiniGameMN3Page />} />
-          <Route path="/uk-stornaway" element={<UkStornaway />} />
-          <Route path="/Uk-stornaway" element={<UkStornaway />} />
-          <Route path="/ukdashboard.html" element={<UkDashboard />} />
-          <Route path="/uk-dashboard" element={<UkDashboard />} />
-          <Route path="/UkDashboard" element={<UkDashboard />} />
+            {/* Other pages */}
+            <Route path="/fake-news" element={<FakeNewsPage />} />
+            <Route path="/source-selection" element={<SourceSelectionPage />} />
+            <Route path="/budget" element={<BudgetPage />} />
+            <Route path="/end-sequence" element={<EndSequencePage />} />
+            <Route path="/end-screen" element={<EndScreenPage />} />
+            <Route path="/minigame-mn1" element={<MiniGameMN1Page />} />
+            <Route path="/minigame-mn2" element={<MiniGameMN2Page />} />
+            <Route path="/minigame-mn3" element={<MiniGameMN3Page />} />
+            <Route path="/uk-stornaway" element={<UkStornaway />} />
+            <Route path="/Uk-stornaway" element={<UkStornaway />} />
+            <Route path="/ukdashboard.html" element={<UkDashboard />} />
+            <Route path="/uk-dashboard" element={<UkDashboard />} />
+            <Route path="/UkDashboard" element={<UkDashboard />} />
 
-          {/* Legacy alias routes (case/filename-based deep links) */}
-          <Route path="/Ask01Page" element={<Navigate to="/ask01" replace />} />
-          <Route path="/Ask02Page" element={<Navigate to="/ask02" replace />} />
-          <Route
-            path="/Ask02_2Page"
-            element={<Navigate to="/ask02-2" replace />}
-          />
-          <Route path="/Ask04Page" element={<Navigate to="/ask04" replace />} />
-          <Route path="/Ask05Page" element={<Navigate to="/ask05" replace />} />
-          <Route
-            path="/BudgetPage"
-            element={<Navigate to="/budget" replace />}
-          />
-          <Route
-            path="/FakeNewsPage"
-            element={<Navigate to="/fake-news" replace />}
-          />
-          <Route
-            path="/SourceSelectionPage"
-            element={<Navigate to="/source-selection" replace />}
-          />
-          <Route
-            path="/EndSequencePage"
-            element={<Navigate to="/end-sequence" replace />}
-          />
-          <Route
-            path="/EndScreenPage"
-            element={<Navigate to="/end-screen" replace />}
-          />
-          <Route
-            path="/MiniGameMN1Page"
-            element={<Navigate to="/minigame-mn1" replace />}
-          />
-          <Route
-            path="/MiniGameMN2Page"
-            element={<Navigate to="/minigame-mn2" replace />}
-          />
-          <Route
-            path="/MiniGameMN3Page"
-            element={<Navigate to="/minigame-mn3" replace />}
-          />
-          <Route
-            path="/IntroWhoAreYouPage"
-            element={<Navigate to="/intro-who-are-you" replace />}
-          />
-          <Route
-            path="/IntroGenderPage"
-            element={<Navigate to="/intro-gender" replace />}
-          />
-          <Route
-            path="/IntroGroupSelectionPage"
-            element={<Navigate to="/intro-group-selection" replace />}
-          />
-          <Route
-            path="/IntroTravelModeCityPage"
-            element={<Navigate to="/intro-travel-mode-city" replace />}
-          />
-          <Route
-            path="/IntroTravelFreqCityPage"
-            element={<Navigate to="/intro-travel-freq-city" replace />}
-          />
-          <Route
-            path="/IntroPolicyThoughtsPage"
-            element={<Navigate to="/intro-policy-thoughts" replace />}
-          />
-          <Route
-            path="/IntroReplyFriendPage"
-            element={<Navigate to="/intro-reply-friend" replace />}
-          />
-          <Route
-            path="/IntroPolicyFeelPage"
-            element={<Navigate to="/intro-policy-feel" replace />}
-          />
-          <Route
-            path="/UltraSimplePage"
-            element={<Navigate to="/" replace />}
-          />
-          <Route
-            path="/UkStornawayPage"
-            element={<Navigate to="/uk-stornaway" replace />}
-          />
+            {/* Legacy alias routes (case/filename-based deep links) */}
+            <Route
+              path="/Ask01Page"
+              element={<Navigate to="/ask01" replace />}
+            />
+            <Route
+              path="/Ask02Page"
+              element={<Navigate to="/ask02" replace />}
+            />
+            <Route
+              path="/Ask02_2Page"
+              element={<Navigate to="/ask02-2" replace />}
+            />
+            <Route
+              path="/Ask04Page"
+              element={<Navigate to="/ask04" replace />}
+            />
+            <Route
+              path="/Ask05Page"
+              element={<Navigate to="/ask05" replace />}
+            />
+            <Route
+              path="/BudgetPage"
+              element={<Navigate to="/budget" replace />}
+            />
+            <Route
+              path="/FakeNewsPage"
+              element={<Navigate to="/fake-news" replace />}
+            />
+            <Route
+              path="/SourceSelectionPage"
+              element={<Navigate to="/source-selection" replace />}
+            />
+            <Route
+              path="/EndSequencePage"
+              element={<Navigate to="/end-sequence" replace />}
+            />
+            <Route
+              path="/EndScreenPage"
+              element={<Navigate to="/end-screen" replace />}
+            />
+            <Route
+              path="/MiniGameMN1Page"
+              element={<Navigate to="/minigame-mn1" replace />}
+            />
+            <Route
+              path="/MiniGameMN2Page"
+              element={<Navigate to="/minigame-mn2" replace />}
+            />
+            <Route
+              path="/MiniGameMN3Page"
+              element={<Navigate to="/minigame-mn3" replace />}
+            />
+            <Route
+              path="/IntroWhoAreYouPage"
+              element={<Navigate to="/intro-who-are-you" replace />}
+            />
+            <Route
+              path="/IntroGenderPage"
+              element={<Navigate to="/intro-gender" replace />}
+            />
+            <Route
+              path="/IntroGroupSelectionPage"
+              element={<Navigate to="/intro-group-selection" replace />}
+            />
+            <Route
+              path="/IntroTravelModeCityPage"
+              element={<Navigate to="/intro-travel-mode-city" replace />}
+            />
+            <Route
+              path="/IntroTravelFreqCityPage"
+              element={<Navigate to="/intro-travel-freq-city" replace />}
+            />
+            <Route
+              path="/IntroPolicyThoughtsPage"
+              element={<Navigate to="/intro-policy-thoughts" replace />}
+            />
+            <Route
+              path="/IntroReplyFriendPage"
+              element={<Navigate to="/intro-reply-friend" replace />}
+            />
+            <Route
+              path="/IntroPolicyFeelPage"
+              element={<Navigate to="/intro-policy-feel" replace />}
+            />
+            <Route
+              path="/UltraSimplePage"
+              element={<Navigate to="/" replace />}
+            />
+            <Route
+              path="/UkStornawayPage"
+              element={<Navigate to="/uk-stornaway" replace />}
+            />
 
-          {/* 404 page */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </Suspense>
-    </Layout>
-  </BrowserRouter>
+            {/* 404 page */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
+      </Layout>
+    </BrowserRouter>
   );
 };
 

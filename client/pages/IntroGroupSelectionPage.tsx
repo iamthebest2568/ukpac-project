@@ -20,23 +20,23 @@ const IntroGroupSelectionPage = () => {
     {
       text: "คนพิการ",
       onClick: () => handleChoice("คนพิการ"),
-      ariaLabel: "เลือกคนพิการ"
+      ariaLabel: "เลือกคนพิการ",
     },
     {
       text: "เด็ก",
       onClick: () => handleChoice("เด็ก"),
-      ariaLabel: "เลือกเด็ก"
+      ariaLabel: "เลือกเด็ก",
     },
     {
       text: "ผู้สูงอายุ",
       onClick: () => handleChoice("ผู้สูงอายุ"),
-      ariaLabel: "เลือกผู้สูงอายุ"
+      ariaLabel: "เลือกผู้สูงอายุ",
     },
     {
       text: "อื่นๆ",
       onClick: () => handleChoice("อื่นๆ"),
-      ariaLabel: "เลือกอื่นๆ"
-    }
+      ariaLabel: "เลือกอื่นๆ",
+    },
   ];
 
   return (
@@ -48,7 +48,7 @@ const IntroGroupSelectionPage = () => {
       buttons={buttons}
       replayButton={{
         onClick: handleReplay,
-        ariaLabel: "ดูอีกครั้ง"
+        ariaLabel: "ดูอีกครั้ง",
       }}
     />
   );

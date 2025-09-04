@@ -273,9 +273,14 @@ export default function UkDashboard() {
           </div>
 
           {firstLoad && loading && (
-            <div className="h-5 w-20 rounded bg-white/10 animate-pulse" aria-hidden="true" />
+            <div
+              className="h-5 w-20 rounded bg-white/10 animate-pulse"
+              aria-hidden="true"
+            />
           )}
-          {error && <div className="text-red-400">เกิดข้อ��ิดพลาด: {error}</div>}
+          {error && (
+            <div className="text-red-400">เกิดข้อ��ิดพลาด: {error}</div>
+          )}
 
           {stats && (
             <div className="space-y-6">
@@ -689,7 +694,10 @@ export default function UkDashboard() {
               </button>
             </div>
             {!detailData && (
-              <div className="h-4 w-16 rounded bg-white/10 animate-pulse" aria-hidden="true" />
+              <div
+                className="h-4 w-16 rounded bg-white/10 animate-pulse"
+                aria-hidden="true"
+              />
             )}
             {detailData && (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">

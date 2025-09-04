@@ -10,22 +10,22 @@ const PolicyPriorities = ({ sessionID, onNavigate }: PolicyPrioritiesProps) => {
   const maxSelections = 3;
 
   const priorities = [
-    'ลดค่าโดยสารรถไฟฟ้า',
-    'ปรับปรุงคุณภาพรถเมล์',
-    'ตั๋วร่วม',
-    'เพิ่มความถี่รถเมล์',
-    'เพิ่มความถี่รถไฟฟ้า',
-    'เพิ่มที่จอดรถ',
-    'เพิ่ม feeder ในซอย'
+    "ลดค่าโดยสารรถไฟฟ้า",
+    "ปรับปรุงคุณภาพรถเมล์",
+    "ตั๋วร่วม",
+    "เพิ่มความถี่รถเมล์",
+    "เพิ่มความถี่รถไฟฟ้า",
+    "เพิ่มที่จอดรถ",
+    "เพิ่ม feeder ในซอย",
   ];
 
   const handlePriorityToggle = (priority: string) => {
-    setSelectedPriorities(prev => {
+    setSelectedPriorities((prev) => {
       const isSelected = prev.includes(priority);
-      
+
       if (isSelected) {
         // Remove if already selected
-        return prev.filter(p => p !== priority);
+        return prev.filter((p) => p !== priority);
       } else {
         // Add if not selected and under limit
         if (prev.length < maxSelections) {
@@ -38,11 +38,14 @@ const PolicyPriorities = ({ sessionID, onNavigate }: PolicyPrioritiesProps) => {
 
   const handleNext = () => {
     const data = { selectedPriorities };
-    onNavigate('beneficiaries', data);
+    onNavigate("beneficiaries", data);
   };
 
   const isSelectionDisabled = (priority: string) => {
-    return selectedPriorities.length >= maxSelections && !selectedPriorities.includes(priority);
+    return (
+      selectedPriorities.length >= maxSelections &&
+      !selectedPriorities.includes(priority)
+    );
   };
 
   return (
@@ -78,7 +81,7 @@ const PolicyPriorities = ({ sessionID, onNavigate }: PolicyPrioritiesProps) => {
                 คุณคิดว่าควรใช้เงินที่ได้จากการเก็บไปพัฒนาอะไร
               </h1>
             </div>
-            
+
             {/* Selection Counter */}
             <div className="w-full max-w-[325px] mb-4 bg-black bg-opacity-50 rounded-[15px] p-3">
               <div className="text-white text-center font-prompt text-sm">
@@ -106,13 +109,15 @@ const PolicyPriorities = ({ sessionID, onNavigate }: PolicyPrioritiesProps) => {
                           ? "bg-gray-400 border-gray-500 cursor-not-allowed opacity-50"
                           : "bg-white border-black hover:bg-gray-100"
                     }`}
-                    onClick={() => !isDisabled && handlePriorityToggle(priority)}
+                    onClick={() =>
+                      !isDisabled && handlePriorityToggle(priority)
+                    }
                     role="checkbox"
                     aria-checked={isSelected}
                     aria-disabled={isDisabled}
                     tabIndex={isDisabled ? -1 : 0}
                     onKeyDown={(e) => {
-                      if ((e.key === 'Enter' || e.key === ' ') && !isDisabled) {
+                      if ((e.key === "Enter" || e.key === " ") && !isDisabled) {
                         e.preventDefault();
                         handlePriorityToggle(priority);
                       }
@@ -159,7 +164,8 @@ const PolicyPriorities = ({ sessionID, onNavigate }: PolicyPrioritiesProps) => {
             {selectedPriorities.length >= maxSelections && (
               <div className="w-full max-w-[325px] mb-4 bg-yellow-500 bg-opacity-90 rounded-[15px] p-3">
                 <div className="text-black text-center text-sm font-prompt">
-                  คุณเลือกครบจำนวนแล้ว หากต้องการเลือกข้อใหม่ กรุณายกเลิกการเลือกข้อใดข้อหนึ่งก่อน
+                  คุณเลือกครบจำนวนแล้ว หากต้องการเลือกข้อใหม่
+                  กรุณายกเลิกการเลือกข้อใดข้อหนึ่งก่อน
                 </div>
               </div>
             )}

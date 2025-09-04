@@ -31,7 +31,6 @@ const ThankYouScreen = ({ sessionID, onNavigate }: ThankYouScreenProps) => {
         <div className="relative z-10 flex flex-col min-h-screen">
           {/* Content Area */}
           <div className="flex-1 flex flex-col justify-end items-center px-6 md:px-8 pb-8 md:pb-12">
-            
             {/* Illustration Panel - Bright optimistic city skyline */}
             <div className="w-full max-w-[325px] mb-8">
               <div className="bg-gradient-to-t from-blue-100 to-sky-200 rounded-[20px] border-[1.5px] border-black p-6 relative overflow-hidden h-40 flex items-center justify-center">
@@ -39,9 +38,11 @@ const ThankYouScreen = ({ sessionID, onNavigate }: ThankYouScreenProps) => {
                 <div className="relative z-10 text-center">
                   <div className="text-5xl mb-2">🏙️</div>
                   <div className="text-lg mb-2">🚄</div>
-                  <div className="text-xs text-gray-600 font-prompt">เมืองแห่งอนาคตที่สดใส</div>
+                  <div className="text-xs text-gray-600 font-prompt">
+                    เมืองแห่งอนาคตที่สดใส
+                  </div>
                 </div>
-                
+
                 {/* Modern buildings silhouette */}
                 <div className="absolute bottom-0 left-0 right-0 h-12">
                   <div className="flex justify-center space-x-1 h-full items-end">
@@ -67,10 +68,11 @@ const ThankYouScreen = ({ sessionID, onNavigate }: ThankYouScreenProps) => {
                 className="text-white text-center font-prompt text-3xl font-normal leading-normal mb-6"
                 style={{ fontSize: "clamp(24px, 7.5vw, 30px)" }}
               >
-                ขอบคุณที่ร่วมเป็นส่วนหนึ่ง<br />
+                ขอบคุณที่ร่วมเป็นส่วนหนึ่ง
+                <br />
                 ในการพัฒนาเมืองนี้ให้ดีขึ้น
               </h1>
-              
+
               <p className="text-white text-center font-prompt text-lg leading-relaxed">
                 ความคิดเห็นของคุณจะช่วยให้เราสร้างเมืองที่ดีขึ้นสำหรับทุกคน
               </p>
@@ -81,7 +83,7 @@ const ThankYouScreen = ({ sessionID, onNavigate }: ThankYouScreenProps) => {
               <button
                 onClick={() => {
                   // Placeholder - could navigate to rewards or sharing
-                  console.log('Share data clicked');
+                  console.log("Share data clicked");
                 }}
                 className="w-full h-[53px] rounded-[40px] bg-[#EFBA31] border-[1.5px] border-black flex items-center justify-center transition-all duration-200 hover:scale-105 hover:shadow-lg hover:bg-black active:bg-black group"
               >
@@ -89,11 +91,11 @@ const ThankYouScreen = ({ sessionID, onNavigate }: ThankYouScreenProps) => {
                   แชร์ข้อมูลต่อ
                 </span>
               </button>
-              
+
               <button
                 onClick={() => {
                   // Placeholder - could navigate to rewards system
-                  console.log('Get reward clicked');
+                  console.log("Get reward clicked");
                 }}
                 className="w-full h-[53px] rounded-[40px] bg-white border-[1.5px] border-black flex items-center justify-center transition-all duration-200 hover:scale-105 hover:shadow-lg hover:bg-black active:bg-black group"
               >
