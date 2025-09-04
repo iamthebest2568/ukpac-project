@@ -86,13 +86,13 @@ export async function readAllAppEvents(): Promise<AppEvent[]> {
       if (res.ok) {
         const rows = (await res.json()) as any[];
         const events: AppEvent[] = rows.map((r) => ({
-          sessionId: r.session_id,
-          event: r.event,
+          sessionId: sanitizeThai(String(r.session_id ?? "")),
+          event: sanitizeThai(String(r.event ?? "")),
           timestamp: r.timestamp || new Date().toISOString(),
-          page: r.page ?? undefined,
+          page: sanitizeThai(r.page ?? undefined),
           payload: r.payload ?? undefined,
-          userAgent: r.user_agent ?? undefined,
-          ip: r.ip ?? undefined,
+          userAgent: sanitizeThai(r.user_agent ?? undefined),
+          ip: sanitizeThai(r.ip ?? undefined),
         }));
         return events;
       }
