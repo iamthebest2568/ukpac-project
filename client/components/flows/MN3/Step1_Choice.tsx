@@ -244,7 +244,7 @@ const Step1_Choice = ({
                   id="next-button-description"
                   className="text-center text-white text-sm mt-2"
                 >
-                  กรุณาเลือกอย่างน้อย 1 ข้��เพื่อดำเนินการต่อ
+                  กรุณาเลือกอย่างน้อย 1 ข้อเพื่อดำเนินการต่อ
                 </div>
               )}
             </div>
