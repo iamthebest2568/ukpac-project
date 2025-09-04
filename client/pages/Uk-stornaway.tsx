@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useSession } from "../hooks/useSession";
-import Ask01 from "../components/journey/Ask01";
 
 // Data models
 interface CapturedEvent {
@@ -44,6 +43,7 @@ function writeSessions(sessions: SessionData[]) {
 export default function UkStornaway() {
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
   const playerRef = useRef<any>(null);
+  const navigatedRef = useRef(false);
   const { sessionID, navigateToPage } = useSession();
   const orderRef = useRef(0);
   const readyRef = useRef(false);
@@ -62,9 +62,6 @@ export default function UkStornaway() {
   });
   const eventsRef = useRef<CapturedEvent[]>([]);
   const updateTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const [showPopup, setShowPopup] = useState(false);
-  const popupRef = useRef<HTMLDivElement | null>(null);
-  const hasShownPopupRef = useRef(false);
 
   // Persist on every change
   useEffect(() => {
@@ -158,18 +155,12 @@ export default function UkStornaway() {
           }, 0);
         }
 
-        if (eventName === "sw.variant.start") {
-          const vName = (captured.variantName || "")
-            .toString()
-            .trim()
-            .toLowerCase();
-          if (vName.includes("mini game 1")) {
-            if (hasShownPopupRef.current) return;
-            hasShownPopupRef.current = true;
-            try {
-              playerRef.current?.pause?.();
-            } catch {}
-            setShowPopup(true);
+        if (eventName === "sw.choice.selected") {
+          if (!navigatedRef.current) {
+            navigatedRef.current = true;
+            setTimeout(() => {
+              navigateToPage("ask01", { from: "stornaway", choice: captured.choiceText, variant: captured.variantName });
+            }, 150);
           }
         }
       };
@@ -282,24 +273,6 @@ export default function UkStornaway() {
     };
   }, []);
 
-  useEffect(() => {
-    let t: ReturnType<typeof setTimeout> | null = null;
-    if (showPopup) {
-      document.body.style.overflow = "hidden";
-      popupRef.current?.focus();
-    } else {
-      document.body.style.overflow = "";
-      t = setTimeout(() => {
-        try {
-          playerRef.current?.play?.();
-        } catch {}
-      }, 150);
-    }
-    return () => {
-      if (t) clearTimeout(t);
-      document.body.style.overflow = "";
-    };
-  }, [showPopup]);
 
   return (
     <div className="min-h-screen bg-[#121212] text-white flex justify-center font-[Prompt]">
@@ -347,48 +320,6 @@ export default function UkStornaway() {
 
       </div>
 
-      {showPopup && (
-        <div
-          className="fixed inset-0 z-[1000] bg-black/70 flex items-center justify-center p-4 transition-opacity duration-200"
-          role="dialog"
-          aria-modal="true"
-          aria-label="หน้าต่างป๊อปอัพแบบสอบถาม"
-          onKeyDown={(e) => {
-            if (e.key === "Escape") {
-              setShowPopup(false);
-            }
-          }}
-          onTransitionEnd={() => {
-            /* no-op for now */
-          }}
-        >
-          <div
-            ref={popupRef}
-            className="relative w-full max-w-3xl h-[80vh] bg-[#0f0f0f] border border-white/10 rounded-xl overflow-hidden shadow-2xl transform transition-transform duration-200"
-            tabIndex={-1}
-          >
-            <button
-              onClick={() => {
-                setShowPopup(false);
-              }}
-              className="absolute top-3 right-3 z-20 rounded-full bg-white/90 text-black px-3 py-1 text-sm font-medium hover:bg-white focus:outline-none focus:ring-2 focus:ring-[#EFBA31]"
-              aria-label="ปิดหน้าต่าง"
-            >
-              ปิด
-            </button>
-            <div className="w-full h-full overflow-auto bg-black">
-              <Ask01
-                sessionID={sessionID}
-                onNavigate={(screenId, data) => {
-                  setShowPopup(false);
-                  // Navigate the main flow to keep full compatibility
-                  navigateToPage(screenId, data);
-                }}
-              />
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
