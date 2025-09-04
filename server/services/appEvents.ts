@@ -338,7 +338,7 @@ export async function computeSessionSummaries(
         }
       }
       if (ev.event === "ASK05_COMMENT") {
-        const c = (ev.payload?.comment || "").toString();
+        const c = sanitizeThai((ev.payload?.comment || "").toString());
         if (c) ask05Comment = c;
       }
       if (ev.event === "ENDSEQ_DECISION") {
