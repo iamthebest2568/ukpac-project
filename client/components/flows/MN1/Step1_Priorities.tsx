@@ -144,7 +144,7 @@ const Step1_Priorities = ({
                     }`}
                     style={{ letterSpacing: "0.4px" }}
                   >
-                    ��ดค่าโดยสารรถไฟฟ้า
+                    ลดค่าโดยสารรถไฟฟ้า
                   </span>
                 </button>
                 <button
@@ -192,7 +192,7 @@ const Step1_Priorities = ({
                 >
                   <span
                     className={`figma-style1-button-text text-[15px] ${
-                      selectedPriorities.includes("ตั๋วร่วม")
+                      selectedPriorities.includes("ตั๋ว��่วม")
                         ? "font-semibold text-[#EFBA31]"
                         : "font-medium text-black group-hover:text-[#EFBA31]"
                     }`}
@@ -223,7 +223,7 @@ const Step1_Priorities = ({
                     }`}
                     style={{ letterSpacing: "0.4px" }}
                   >
-                    เพิ่มความ��ี่รถเมล์
+                    เพิ่มความถี่รถเมล์
                   </span>
                 </button>
                 <button
@@ -236,7 +236,7 @@ const Step1_Priorities = ({
                   }`}
                   onClick={() =>
                     !isSelectionDisabled("เพิ่มที่จอดรถ") &&
-                    handlePriorityToggle("เพิ่มที��จอดรถ")
+                    handlePriorityToggle("เพิ่มที����จอดรถ")
                   }
                   disabled={isSelectionDisabled("เพิ่มที่จอดรถ")}
                 >
