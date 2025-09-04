@@ -192,7 +192,7 @@ const Step1_Priorities = ({
                 >
                   <span
                     className={`figma-style1-button-text text-[15px] ${
-                      selectedPriorities.includes("ตั๋ว��่วม")
+                      selectedPriorities.includes("ตั๋ว���่วม")
                         ? "font-semibold text-[#EFBA31]"
                         : "font-medium text-black group-hover:text-[#EFBA31]"
                     }`}
@@ -236,7 +236,7 @@ const Step1_Priorities = ({
                   }`}
                   onClick={() =>
                     !isSelectionDisabled("เพิ่มที่จอดรถ") &&
-                    handlePriorityToggle("เพิ่มที����จอดรถ")
+                    handlePriorityToggle("เพิ่มที��จอดรถ")
                   }
                   disabled={isSelectionDisabled("เพิ่มที่จอดรถ")}
                 >
@@ -267,7 +267,7 @@ const Step1_Priorities = ({
                     !isSelectionDisabled("เพิ่มความถี่รถไฟฟ้า") &&
                     handlePriorityToggle("เพิ่มความถี่รถไฟฟ้า")
                   }
-                  disabled={isSelectionDisabled("เพิ่มความถี���รถไฟฟ้า")}
+                  disabled={isSelectionDisabled("เพิ่มความถี่รถไฟฟ้า")}
                 >
                   <span
                     className={`figma-style1-button-text text-[15px] ${
