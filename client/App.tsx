@@ -46,6 +46,7 @@ const MiniGameMN2Page = lazy(() => import("./pages/MiniGameMN2Page"));
 const MiniGameMN3Page = lazy(() => import("./pages/MiniGameMN3Page"));
 const UkStornaway = lazy(() => import("./pages/Uk-stornaway"));
 const UkDashboard = lazy(() => import("./pages/UkDashboard"));
+const Diagnostics = lazy(() => import("./pages/Diagnostics"));
 
 // Layout component with accessibility features
 const Layout = ({ children }: { children: React.ReactNode }) => (
@@ -151,6 +152,7 @@ const App = () => {
             <Route path="/ukdashboard.html" element={<UkDashboard />} />
             <Route path="/uk-dashboard" element={<UkDashboard />} />
             <Route path="/UkDashboard" element={<UkDashboard />} />
+            <Route path="/diagnostics" element={<Diagnostics />} />
 
             {/* Legacy alias routes (case/filename-based deep links) */}
             <Route

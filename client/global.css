@@ -78,16 +78,11 @@
     box-sizing: border-box;
   }
 
+  html, body, * {
+    font-family: "Prompt" !important;
+  }
+
   body {
-    font-family:
-      "Prompt",
-      -apple-system,
-      BlinkMacSystemFont,
-      "Segoe UI",
-      Roboto,
-      Helvetica,
-      Arial,
-      sans-serif;
     font-size: var(--font-size-body);
     font-weight: var(--font-weight-regular);
     line-height: var(--line-height-normal);

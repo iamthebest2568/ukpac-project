@@ -4,6 +4,14 @@ import path from "node:path";
 import { z } from "zod";
 import fetch from "node-fetch";
 
+const sanitizeThai = (text: any): any => {
+  if (typeof text !== "string") return text;
+  return text
+    .normalize("NFC")
+    .replace(/[\u0000-\u001F\u007F]/g, "")
+    .replace(/\uFFFD/g, "");
+};
+
 export const EventSchema = z.object({
   sessionId: z.string(),
   eventName: z.string(),
@@ -41,12 +49,12 @@ export async function appendEvent(ev: VideoEvent) {
         Prefer: "return=minimal",
       },
       body: JSON.stringify({
-        session_id: ev.sessionId,
-        event_name: ev.eventName,
+        session_id: sanitizeThai(ev.sessionId),
+        event_name: sanitizeThai(ev.eventName),
         timestamp: ev.timestamp,
-        choice_text: ev.choiceText ?? null,
+        choice_text: sanitizeThai(ev.choiceText ?? null),
         variant_id: (ev.variantId ?? null)?.toString() ?? null,
-        variant_name: ev.variantName ?? null,
+        variant_name: sanitizeThai(ev.variantName ?? null),
       }),
     });
     if (!res.ok) {
@@ -97,12 +105,12 @@ export async function computeStats(
       if (res.ok) {
         const rows = await res.json();
         events = (rows as any[]).map((r) => ({
-          sessionId: r.session_id,
-          eventName: r.event_name,
+          sessionId: sanitizeThai(String(r.session_id ?? "")),
+          eventName: sanitizeThai(String(r.event_name ?? "")),
           timestamp: r.timestamp,
-          choiceText: r.choice_text ?? undefined,
+          choiceText: sanitizeThai(r.choice_text ?? undefined),
           variantId: r.variant_id ?? undefined,
-          variantName: r.variant_name ?? undefined,
+          variantName: sanitizeThai(r.variant_name ?? undefined),
         }));
       }
     } catch {}

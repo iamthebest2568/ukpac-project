@@ -92,8 +92,7 @@ const Ask05 = ({ sessionID, onNavigate, journeyData }: Ask05Props) => {
                 placeholder="พิมพ์ข้อความของคุณที่นี้..."
                 className="w-full h-[290px] rounded-[10px] border border-[#E4E9F2] bg-white px-4 py-4 text-black font-prompt text-[16px] font-normal leading-relaxed resize-none focus:outline-none focus:ring-2 focus:ring-[#EFBA31] focus:border-transparent placeholder:text-[rgba(0,0,0,0.7)] placeholder:font-prompt placeholder:text-[16px] placeholder:font-light"
                 style={{
-                  fontFamily:
-                    "Prompt, -apple-system, Roboto, Helvetica, sans-serif",
+                  fontFamily: "Prompt",
                 }}
               />
               {/* Character Count */}

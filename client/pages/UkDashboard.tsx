@@ -84,7 +84,6 @@ export default function UkDashboard() {
     videoEvents: any[];
   } | null>(null);
 
-  const clean = (x: any) => String(x ?? "").replace(/\uFFFD/g, "");
 
   // Password gate
   const expected = (import.meta as any).env?.VITE_DASHBOARD_PASSWORD as
@@ -192,7 +191,7 @@ export default function UkDashboard() {
           <div className="w-full max-w-sm bg-white/5 border border-white/10 rounded-xl p-5">
             <div className="text-xl font-semibold mb-3">ป้อนรหัสผ่าน</div>
             <div className="text-sm text-white/70 mb-4">
-              ��น้านี้ป้องกันด้วยรหัสผ่าน
+              หน้า���ี้ป้องกันด้วยรหัสผ่าน
             </div>
             <input
               type="password"
@@ -279,7 +278,7 @@ export default function UkDashboard() {
             />
           )}
           {error && (
-            <div className="text-red-400">เกิดข้อ��ิดพลาด: {error}</div>
+            <div className="text-red-400">เกิดข้อผิดพลาด: {error}</div>
           )}
 
           {stats && (
@@ -358,7 +357,7 @@ export default function UkDashboard() {
                             )
                             .map(([k, v]) => (
                               <li key={k} className="flex justify-between">
-                                <span>{clean(k)}</span>
+                                <span>{String(k ?? "")}</span>
                                 <span className="text-white/70">
                                   {v as any}
                                 </span>
@@ -381,7 +380,7 @@ export default function UkDashboard() {
                             )
                             .map(([k, v]) => (
                               <li key={k} className="flex justify-between">
-                                <span>{clean(k)}</span>
+                                <span>{String(k ?? "")}</span>
                                 <span className="text-white/70">
                                   {v as any}
                                 </span>
@@ -404,7 +403,7 @@ export default function UkDashboard() {
                             )
                             .map(([k, v]) => (
                               <li key={k} className="flex justify-between">
-                                <span>{clean(k)}</span>
+                                <span>{String(k ?? "")}</span>
                                 <span className="text-white/70">
                                   {v as any}
                                 </span>
@@ -434,7 +433,7 @@ export default function UkDashboard() {
                                         (b[1] as number) - (a[1] as number),
                                     )
                                     .slice(0, 3)
-                                    .map(([g, c]) => `${clean(g)} (${c})`)
+                                    .map(([g, c]) => `${String(g ?? "")} (${c})`)
                                     .join(" • ")}
                                 </span>
                               </li>
@@ -457,7 +456,7 @@ export default function UkDashboard() {
                             )
                             .map(([k, v]) => (
                               <li key={k} className="flex justify-between">
-                                <span>{clean(k)}</span>
+                                <span>{String(k ?? "")}</span>
                                 <span className="text-white/70">
                                   {v as any}
                                 </span>
@@ -476,7 +475,7 @@ export default function UkDashboard() {
                           {Object.entries(journey.mn3Budgets || {}).map(
                             ([k, v]: any) => (
                               <li key={k} className="flex justify-between">
-                                <span>{clean(k)}</span>
+                                <span>{String(k ?? "")}</span>
                                 <span className="text-white/70">
                                   {Math.round((v as any).avg)}
                                 </span>
@@ -494,7 +493,7 @@ export default function UkDashboard() {
                           {(journey.ask05Samples || []).map(
                             (c: string, i: number) => (
                               <li key={i} className="truncate">
-                                • {clean(c)}
+                                • {String(c ?? "")}
                               </li>
                             ),
                           )}
@@ -557,7 +556,7 @@ export default function UkDashboard() {
                             {s.sessionId.slice(0, 10)}…
                           </td>
                           <td className="py-2 pr-4">
-                            {clean(s.introWho) || "-"}
+                            {(s.introWho ?? "")}
                           </td>
                           <td className="py-2 pr-4">
                             {s.mn1Selected?.join(", ") || "-"}
@@ -565,7 +564,7 @@ export default function UkDashboard() {
                           <td className="py-2 pr-4">{s.endDecision || "-"}</td>
                           <td className="py-2 pr-4">{s.contacts || 0}</td>
                           <td className="py-2 pr-4 truncate max-w-[240px]">
-                            {clean(s.ask05Comment) || "-"}
+                            {(s.ask05Comment ?? "")}
                           </td>
                           <td className="py-2 pr-4">
                             <button
