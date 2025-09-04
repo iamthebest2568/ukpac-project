@@ -284,7 +284,7 @@ const Step1_Priorities = ({
                   className={`w-[167px] h-[41px] rounded-[40px] border transition-all duration-200 ${
                     selectedPriorities.includes("เพิ่ม Feeder ในซอย")
                       ? "bg-black border-black"
-                      : isSelectionDisabled("เพิ่��� Feeder ในซอย")
+                      : isSelectionDisabled("เพิ่ม Feeder ในซอย")
                         ? "bg-gray-300 border-gray-400 cursor-not-allowed opacity-50"
                         : "bg-[#EFBA31] border-black hover:bg-black hover:scale-105 group"
                   }`}
