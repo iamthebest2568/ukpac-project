@@ -110,6 +110,8 @@ export async function readAllAppEvents(): Promise<AppEvent[]> {
         if (j && j.sessionId && j.event) {
           events.push({
             ...j,
+            page: sanitizeThai(j.page),
+            userAgent: sanitizeThai(j.userAgent),
             timestamp: j.timestamp || new Date().toISOString(),
           });
         }
