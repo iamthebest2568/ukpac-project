@@ -192,7 +192,7 @@ export default function UkDashboard() {
           <div className="w-full max-w-sm bg-white/5 border border-white/10 rounded-xl p-5">
             <div className="text-xl font-semibold mb-3">ป้อนรหัสผ่าน</div>
             <div className="text-sm text-white/70 mb-4">
-              หน้านี้ป้องกันด้วยรหัสผ่าน
+              ��น้านี้ป้องกันด้วยรหัสผ่าน
             </div>
             <input
               type="password"
@@ -275,7 +275,7 @@ export default function UkDashboard() {
           {firstLoad && loading && (
             <div className="h-5 w-20 rounded bg-white/10 animate-pulse" aria-hidden="true" />
           )}
-          {error && <div className="text-red-400">เกิดข้อผิดพลาด: {error}</div>}
+          {error && <div className="text-red-400">เกิดข้อ��ิดพลาด: {error}</div>}
 
           {stats && (
             <div className="space-y-6">
@@ -498,7 +498,7 @@ export default function UkDashboard() {
                     </AccordionItem>
                     {/* Rewards */}
                     <AccordionItem value="reward">
-                      <AccordionTrigger>��ุ้นรางวัล</AccordionTrigger>
+                      <AccordionTrigger>ลุ้นรางวัล</AccordionTrigger>
                       <AccordionContent>
                         <ul className="space-y-1 text-sm">
                           <li className="flex justify-between">
