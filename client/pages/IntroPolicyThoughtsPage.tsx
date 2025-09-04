@@ -23,9 +23,9 @@ const IntroPolicyThoughtsPage = () => {
       ariaLabel: "เลือกไม่เชื่อว่าแก้ปัญหาได้จริง",
     },
     {
-      text: "กังว���ลค่าใช้จ่าย",
-      onClick: () => handleChoice("กังวัลค่าใช้จ่าย"),
-      ariaLabel: "เลือกกังวัลค่าใช้จ่าย",
+      text: "กังวลค่าใช้จ่าย",
+      onClick: () => handleChoice("กังวลค่าใช้จ่าย"),
+      ariaLabel: "เลือกกังวลค่าใช้จ่าย",
     },
     {
       text: "ไม่อยากใช้เพราะไม่สะดวก",
