@@ -3,7 +3,7 @@
  * Manages the final three screens of the reward and thank-you sequence
  */
 
-import { useState, lazy, Suspense } from "react";
+import { useState, lazy, Suspense, useEffect } from "react";
 
 // Internal step components (lazy to reduce initial JS)
 const Step1_Decision = lazy(() => import("./EndSequence/Step1_Decision"));
@@ -19,6 +19,19 @@ interface Flow_EndSequenceProps {
 const Flow_EndSequence = ({ sessionID, onComplete, onBack }: Flow_EndSequenceProps) => {
   const [currentStep, setCurrentStep] = useState<number>(1);
   const [flowData, setFlowData] = useState<any>({});
+
+  useEffect(() => {
+    const preload = () => {
+      import("./EndSequence/Step1_Decision").catch(() => {});
+      import("./EndSequence/Step2_Form").catch(() => {});
+      import("./EndSequence/Step3_ThankYou").catch(() => {});
+    };
+    if (typeof (window as any).requestIdleCallback === "function") {
+      (window as any).requestIdleCallback(preload);
+    } else {
+      setTimeout(preload, 300);
+    }
+  }, []);
 
   const handleStepComplete = (stepData: any) => {
     const updatedData = { ...flowData, ...stepData };
@@ -93,7 +106,7 @@ const Flow_EndSequence = ({ sessionID, onComplete, onBack }: Flow_EndSequencePro
 
   return (
     <div className="flow-container">
-      <Suspense fallback={<div style={{minHeight: '100vh'}} className="flex items-center justify-center text-white">กำลังโหลด...</div>}>
+      <Suspense fallback={null}>
         {renderCurrentStep()}
       </Suspense>
     </div>
