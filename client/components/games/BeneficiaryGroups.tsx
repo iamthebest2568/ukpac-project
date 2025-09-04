@@ -117,7 +117,7 @@ const BeneficiaryGroups = ({ sessionID, onNavigate }: BeneficiaryGroupsProps) =>
         {/* Progress indicator */}
         <div className="progress-container">
           <div className="progress-dots">
-            <div className="progress-dot completed" aria-label="ขั้นตอนที่ 1 เสร็จ���ิ้น"></div>
+            <div className="progress-dot completed" aria-label="ขั้นตอนที่ 1 เสร็จสิ้น"></div>
             <div className="progress-dot completed" aria-label="ขั้นตอนที่ 2 เสร็จสิ้น"></div>
             <div className="progress-dot completed" aria-label="ขั้นตอนที่ 3 เสร็จสิ้น"></div>
             <div className="progress-dot active" aria-label="ขั้นตอนที่ 4 กำลังดำเนินการ"></div>
@@ -139,7 +139,7 @@ const BeneficiaryGroups = ({ sessionID, onNavigate }: BeneficiaryGroupsProps) =>
           
           {selectedGroups.length === 0 && (
             <div id="next-button-description" className="status-message info mt-4">
-              กรุณาเลือกอย่างน้อย 1 กลุ่มเพื่อดำเนินการต่อ
+              กรุณาเลือกอย่างน้อย 1 กลุ่มเพื่อดำเ��ินการต่อ
             </div>
           )}
         </div>
