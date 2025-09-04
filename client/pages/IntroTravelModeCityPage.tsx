@@ -40,7 +40,7 @@ const IntroTravelModeCityPage = () => {
     {
       text: "รถประจำทาง",
       onClick: () => handleChoice("รถประจำทาง"),
-      ariaLabel: "เลือกรถป��ะจำทาง",
+      ariaLabel: "เลือกรถประจำทาง",
     },
   ];
 
