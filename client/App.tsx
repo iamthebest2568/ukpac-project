@@ -1,6 +1,6 @@
 import "./global.css";
 
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, useEffect } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 // Minimal set of pages (dashboard/backend removed)
@@ -63,13 +63,40 @@ const Layout = ({ children }: { children: React.ReactNode }) => (
   </div>
 );
 
-const App = () => (
+const App = () => {
+  useEffect(() => {
+    const preload = () => {
+      const tasks = [
+        import("./pages/Ask01Page"),
+        import("./pages/Ask02Page"),
+        import("./pages/Ask02_2Page"),
+        import("./pages/Ask04Page"),
+        import("./pages/Ask04BudgetPage"),
+        import("./pages/Ask05Page"),
+        import("./pages/FakeNewsPage"),
+        import("./pages/SourceSelectionPage"),
+        import("./pages/BudgetPage"),
+        import("./pages/EndSequencePage"),
+        import("./pages/EndScreenPage"),
+        import("./pages/MiniGameMN1Page"),
+        import("./pages/MiniGameMN2Page"),
+        import("./pages/MiniGameMN3Page"),
+        import("./pages/Uk-stornaway"),
+      ];
+      Promise.allSettled(tasks);
+    };
+    if (typeof (window as any).requestIdleCallback === "function") {
+      (window as any).requestIdleCallback(preload);
+    } else {
+      setTimeout(preload, 1000);
+    }
+  }, []);
+
+  return (
   <BrowserRouter>
     <Layout>
       <Suspense
-        fallback={
-          <div style={{ color: "#fff", padding: 20 }}>กำลังโหลด...</div>
-        }
+        fallback={null}
       >
         <Routes>
           {/* Main entry */}
@@ -212,6 +239,7 @@ const App = () => (
       </Suspense>
     </Layout>
   </BrowserRouter>
-);
+  );
+};
 
 export default App;
