@@ -235,7 +235,7 @@ export default function UkDashboard() {
               </div>
               {ingest && (
                 <div className="text-white/60 text-xs mt-1">
-                  การเก็บข้อมูล • App: {ingest.app.count} เหตุการณ์, ล่าสุด{" "}
+                  การเก็��ข้อมูล • App: {ingest.app.count} เหตุการณ์, ล่าสุด{" "}
                   {ingest.app.lastTs
                     ? new Date(ingest.app.lastTs).toLocaleString()
                     : "-"}{" "}
@@ -273,7 +273,7 @@ export default function UkDashboard() {
           </div>
 
           {firstLoad && loading && (
-            <div className="text-white/80">กำลังโหลดข้อมูล...</div>
+            <div className="h-5 w-20 rounded bg-white/10 animate-pulse" aria-hidden="true" />
           )}
           {error && <div className="text-red-400">เกิดข้อผิดพลาด: {error}</div>}
 
@@ -689,7 +689,7 @@ export default function UkDashboard() {
               </button>
             </div>
             {!detailData && (
-              <div className="text-white/70 text-sm">กำลังโหลด...</div>
+              <div className="h-4 w-16 rounded bg-white/10 animate-pulse" aria-hidden="true" />
             )}
             {detailData && (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
