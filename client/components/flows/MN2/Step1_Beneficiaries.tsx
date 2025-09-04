@@ -55,7 +55,7 @@ const Step1_Beneficiaries = ({
     },
     {
       id: "students",
-      label: "น���กเรียนนักศึกษา",
+      label: "นักเรียนนักศึกษา",
       iconSrc:
         "https://api.builder.io/api/v1/image/assets/TEMP/054c6038c235112715becc476723cafe8d55d68f?width=74",
     },
@@ -317,7 +317,7 @@ const Step1_Beneficiaries = ({
                     selectedGroups.length === 0 ? "text-gray-600" : ""
                   }`}
                 >
-                  {currentStep === totalPrioritySteps ? "ไปดูสรุป" : "ถัดไป"}
+                  {currentStep === totalPrioritySteps ? "ไปดูสร���ป" : "ถัดไป"}
                 </span>
               </button>
 
