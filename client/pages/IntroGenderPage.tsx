@@ -29,7 +29,7 @@ const IntroGenderPage = () => {
     },
     {
       text: "เพศทางเลือก",
-      onClick: () => handleChoice("เพศ���างเลือก"),
+      onClick: () => handleChoice("เพศทางเลือก"),
       ariaLabel: "เลือกเพศทางเลือก",
     },
   ];
