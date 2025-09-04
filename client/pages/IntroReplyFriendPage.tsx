@@ -18,7 +18,7 @@ const IntroReplyFriendPage = () => {
 
   const buttons = [
     {
-      text: "ดูแล���ว",
+      text: "ดูแล้ว",
       onClick: () => handleChoice("ดูแล้ว"),
       ariaLabel: "เลือกดูแล้ว",
     },
