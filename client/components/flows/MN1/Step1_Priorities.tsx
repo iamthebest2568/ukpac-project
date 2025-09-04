@@ -126,7 +126,7 @@ const Step1_Priorities = ({
                   className={`w-[163px] h-[41px] rounded-[40px] border transition-all duration-200 ${
                     selectedPriorities.includes("ลดค่าโดยสารรถไฟฟ้า")
                       ? "bg-black border-black"
-                      : isSelectionDisabled("ลดค่าโด���สารรถไฟฟ้า")
+                      : isSelectionDisabled("ลดค่าโดยสารรถไฟฟ้า")
                         ? "bg-gray-300 border-gray-400 cursor-not-allowed opacity-50"
                         : "bg-[#EFBA31] border-black hover:bg-black hover:scale-105 group"
                   }`}
@@ -236,7 +236,7 @@ const Step1_Priorities = ({
                   }`}
                   onClick={() =>
                     !isSelectionDisabled("เพิ่มที่จอดรถ") &&
-                    handlePriorityToggle("เพิ่มที��จอดรถ")
+                    handlePriorityToggle("เพิ่มที��จอดร��")
                   }
                   disabled={isSelectionDisabled("���พิ่มที่จอดรถ")}
                 >
