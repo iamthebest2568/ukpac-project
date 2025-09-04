@@ -236,7 +236,7 @@ const Step1_Priorities = ({
                   }`}
                   onClick={() =>
                     !isSelectionDisabled("เพิ่มที่จอดรถ") &&
-                    handlePriorityToggle("เพิ��มที่จอดรถ")
+                    handlePriorityToggle("เพิ่มที่จอดรถ")
                   }
                   disabled={isSelectionDisabled("เพิ่มที่จอดรถ")}
                 >
@@ -284,7 +284,7 @@ const Step1_Priorities = ({
                   className={`w-[167px] h-[41px] rounded-[40px] border transition-all duration-200 ${
                     selectedPriorities.includes("เพิ่ม Feeder ในซอย")
                       ? "bg-black border-black"
-                      : isSelectionDisabled("เพิ่ม Feeder ในซอย")
+                      : isSelectionDisabled("เพิ่��� Feeder ในซอย")
                         ? "bg-gray-300 border-gray-400 cursor-not-allowed opacity-50"
                         : "bg-[#EFBA31] border-black hover:bg-black hover:scale-105 group"
                   }`}
