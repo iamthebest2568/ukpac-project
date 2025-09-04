@@ -25,7 +25,7 @@ const IntroGroupSelectionPage = () => {
     {
       text: "เด็ก",
       onClick: () => handleChoice("เด็ก"),
-      ariaLabel: "เลือกเด็��"
+      ariaLabel: "เลือกเด็ก"
     },
     {
       text: "ผู้สูงอายุ",
