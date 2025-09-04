@@ -55,7 +55,7 @@ const Step1_Beneficiaries = ({
     },
     {
       id: "students",
-      label: "นักเรียนนักศึกษา",
+      label: "น���กเรียนนักศึกษา",
       iconSrc:
         "https://api.builder.io/api/v1/image/assets/TEMP/054c6038c235112715becc476723cafe8d55d68f?width=74",
     },
@@ -287,7 +287,7 @@ const Step1_Beneficiaries = ({
             {/* Selection Summary */}
             <div className="text-center mb-6">
               <p className="text-white font-prompt text-sm">
-                เ���ือกแล้ว: {selectedGroups.length} จาก {maxSelections} กลุ่ม
+                เลือกแล้ว: {selectedGroups.length} จาก {maxSelections} กลุ่ม
               </p>
               {selectedGroups.length > 0 && (
                 <p className="text-[#EFBA31] font-prompt text-xs mt-1">
@@ -317,7 +317,7 @@ const Step1_Beneficiaries = ({
                     selectedGroups.length === 0 ? "text-gray-600" : ""
                   }`}
                 >
-                  {currentStep === totalPrioritySteps ? "ไปด��สรุป" : "ถัดไป"}
+                  {currentStep === totalPrioritySteps ? "ไปดูสรุป" : "ถัดไป"}
                 </span>
               </button>
 
