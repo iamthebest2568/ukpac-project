@@ -423,7 +423,7 @@ export default function UkDashboard() {
                                 key={priority}
                                 className="flex justify-between"
                               >
-                                <span>{clean(priority)}</span>
+                                <span>{String(priority ?? "")}</span>
                                 <span className="text-white/70">
                                   {Object.entries(
                                     groups as Record<string, number>,
@@ -600,7 +600,7 @@ export default function UkDashboard() {
                         "Access Time",
                         "Profile",
                         "เมื่อได้ยินข่าวนี้ คุณคิดยังไง",
-                        "Minigame 1: ตัวเลือกนโยบาย",
+                        "Minigame 1: ตั���เลือกนโยบาย",
                         "Minigame 2 : จับคู่",
                         "Minigame 3 : นโยบายที่เลือก",
                         "Minigame 3 : เงินที่ใส่",
