@@ -76,20 +76,10 @@ Individual game mechanics:
 - `BudgetAllocation.tsx` - Legacy budget game
 - `ThankYouScreen.tsx` - Completion screen
 
-#### Dashboard Components (`/dashboard/`)
-
-Analytics and admin interface:
-
-- `DashboardApp.tsx` - Main dashboard container
-- `LoginPage.tsx` - Authentication
-- `Dashboard.tsx` - Main dashboard view
-- `WorkingDashboard.tsx` - Simplified dashboard implementation
 
 ### 📁 `/services/` - Data Services
 
 - `dataLogger.js` - Event logging to localStorage
-- `/data/realTimeDashboardService.js` - Dashboard data processing
-- `/data/dashboardService.js` - Dashboard utilities
 
 ## Routing Structure
 
