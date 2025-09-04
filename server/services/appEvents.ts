@@ -434,11 +434,11 @@ export async function computeUserJourneyStats(
   const introWho: Record<string, number> = {};
   for (const ev of appEvents) {
     if (ev.event === "INTRO_WHO_CHOICE") {
-      const label = (
+      const label = sanitizeThai((
         ev.payload?.choiceText ||
         ev.payload?.choice ||
         ""
-      ).toString();
+      ).toString());
       if (!label) continue;
       introWho[label] = (introWho[label] || 0) + 1;
     }
