@@ -7,9 +7,13 @@ import BudgetAllocation from "../components/games/BudgetAllocation";
 import { useSession } from "../hooks/useSession";
 
 const BudgetPage = () => {
-  const { sessionID, navigateToPage } = useSession();
+  const { sessionID, navigateToPage, userJourneyData } = useSession();
 
-  return <BudgetAllocation sessionID={sessionID} onNavigate={navigateToPage} />;
+  return <BudgetAllocation
+    sessionID={sessionID}
+    onNavigate={navigateToPage}
+    journeyData={userJourneyData}
+  />;
 };
 
 export default BudgetPage;
