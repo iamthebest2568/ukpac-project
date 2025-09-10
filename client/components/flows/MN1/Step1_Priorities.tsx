@@ -1,6 +1,6 @@
 /**
  * UK PACK - MN1 Step 1: Priorities Selection
- * Completely redesigned to match new Figma specifications
+ * Redesigned to match exact Figma specifications
  */
 
 import { useState } from "react";
@@ -32,6 +32,17 @@ const Step1_Priorities = ({
     "เพิ่มความถี่รถไฟฟ้า",
     "เพิ่ม Feeder ในซอย",
   ];
+
+  // Define the default colors for each button based on Figma
+  const getDefaultButtonColor = (priority: string) => {
+    switch (priority) {
+      case "ปรับปรุงคุณภาพรถเมล์":
+      case "เพิ่มความถี่รถเมล์":
+        return "#FFE000"; // Yellow by default
+      default:
+        return "#E9E9E9"; // Gray by default
+    }
+  };
 
   const handlePriorityToggle = (priority: string) => {
     setSelectedPriorities((prev) => {
@@ -69,6 +80,24 @@ const Step1_Priorities = ({
 
   const isSelectionDisabled = (priority: string) =>
     selectedPriorities.length >= maxSelections && !selectedPriorities.includes(priority);
+
+  const getButtonClasses = (priority: string) => {
+    const isSelected = selectedPriorities.includes(priority);
+    const isDisabled = isSelectionDisabled(priority);
+    const defaultColor = getDefaultButtonColor(priority);
+    
+    if (isDisabled) {
+      return "bg-gray-300 cursor-not-allowed opacity-50";
+    }
+    
+    if (isSelected) {
+      // When selected, switch colors: yellow becomes gray, gray becomes yellow
+      return defaultColor === "#FFE000" ? "bg-[#E9E9E9] hover:bg-[#FFE000]" : "bg-[#FFE000] hover:bg-[#E9E9E9]";
+    }
+    
+    // Default state
+    return defaultColor === "#FFE000" ? "bg-[#FFE000] hover:bg-[#E9E9E9]" : "bg-[#E9E9E9] hover:bg-[#FFE000]";
+  };
 
   return (
     <div className="min-h-screen bg-white flex flex-col items-center justify-center px-4 py-8 relative overflow-hidden">
@@ -115,18 +144,12 @@ const Step1_Priorities = ({
           </p>
         </div>
 
-        {/* Options Grid */}
+        {/* Options Grid - Exact Figma Layout */}
         <div className="w-full max-w-[984px] mb-16 px-4">
-          {/* Row 1 */}
+          {/* Row 1: ลดค่าโดยสารรถไฟฟ้า (gray), ปรับปรุงคุณภาพรถเมล์ (yellow) */}
           <div className="flex flex-wrap gap-[19px] mb-6 justify-center lg:justify-start">
             <button
-              className={`rounded-[40px] border-0 transition-all duration-200 flex items-center justify-center ${
-                selectedPriorities.includes("ลดค่าโดยสารรถไฟฟ้า")
-                  ? "bg-[#FFE000]"
-                  : isSelectionDisabled("ลดค่าโดยสารรถไฟฟ้า")
-                    ? "bg-gray-300 cursor-not-allowed opacity-50"
-                    : "bg-[#E9E9E9] hover:bg-[#FFE000]"
-              }`}
+              className={`rounded-[40px] border-0 transition-all duration-200 flex items-center justify-center ${getButtonClasses("ลดค่าโดยสารรถไฟฟ้า")}`}
               style={{
                 width: "min(465px, 45vw)",
                 height: "clamp(60px, 8.3vw, 90px)",
@@ -150,13 +173,7 @@ const Step1_Priorities = ({
               </span>
             </button>
             <button
-              className={`rounded-[40px] border-0 transition-all duration-200 flex items-center justify-center ${
-                selectedPriorities.includes("ปรับปรุงคุณภาพรถเมล์")
-                  ? "bg-[#E9E9E9]"
-                  : isSelectionDisabled("ปรับปรุงคุณภาพรถเมล์")
-                    ? "bg-gray-300 cursor-not-allowed opacity-50"
-                    : "bg-[#FFE000] hover:bg-[#E9E9E9]"
-              }`}
+              className={`rounded-[40px] border-0 transition-all duration-200 flex items-center justify-center ${getButtonClasses("ปรับปรุงคุณภาพรถเมล์")}`}
               style={{
                 width: "min(500px, 47vw)",
                 height: "clamp(60px, 8.3vw, 90px)",
@@ -181,16 +198,10 @@ const Step1_Priorities = ({
             </button>
           </div>
 
-          {/* Row 2 */}
+          {/* Row 2: ตั๋วร่วม (gray), เพิ่มความถี่รถเมล์ (yellow), เพิ่มที่จอดรถ (gray) */}
           <div className="flex flex-wrap gap-[19px] mb-6 justify-center lg:justify-start">
             <button
-              className={`rounded-[40px] border-0 transition-all duration-200 flex items-center justify-center ${
-                selectedPriorities.includes("ตั๋วร่วม")
-                  ? "bg-[#FFE000]"
-                  : isSelectionDisabled("ตั๋วร่วม")
-                    ? "bg-gray-300 cursor-not-allowed opacity-50"
-                    : "bg-[#E9E9E9] hover:bg-[#FFE000]"
-              }`}
+              className={`rounded-[40px] border-0 transition-all duration-200 flex items-center justify-center ${getButtonClasses("ตั๋วร่วม")}`}
               style={{
                 width: "min(248px, 23vw)",
                 height: "clamp(60px, 8.3vw, 90px)",
@@ -211,13 +222,7 @@ const Step1_Priorities = ({
               </span>
             </button>
             <button
-              className={`rounded-[40px] border-0 transition-all duration-200 flex items-center justify-center ${
-                selectedPriorities.includes("เพิ่มความถี���รถเมล์")
-                  ? "bg-[#E9E9E9]"
-                  : isSelectionDisabled("เพิ่มความถี่รถเมล์")
-                    ? "bg-gray-300 cursor-not-allowed opacity-50"
-                    : "bg-[#FFE000] hover:bg-[#E9E9E9]"
-              }`}
+              className={`rounded-[40px] border-0 transition-all duration-200 flex items-center justify-center ${getButtonClasses("เพิ่มความถี่รถเมล์")}`}
               style={{
                 width: "min(385px, 36vw)",
                 height: "clamp(60px, 8.3vw, 90px)",
@@ -241,13 +246,7 @@ const Step1_Priorities = ({
               </span>
             </button>
             <button
-              className={`rounded-[40px] border-0 transition-all duration-200 flex items-center justify-center ${
-                selectedPriorities.includes("เพิ่มที่จอดรถ")
-                  ? "bg-[#FFE000]"
-                  : isSelectionDisabled("เพิ่มที่จอดรถ")
-                    ? "bg-gray-300 cursor-not-allowed opacity-50"
-                    : "bg-[#E9E9E9] hover:bg-[#FFE000]"
-              }`}
+              className={`rounded-[40px] border-0 transition-all duration-200 flex items-center justify-center ${getButtonClasses("เพิ่มที่จอดรถ")}`}
               style={{
                 width: "min(293px, 27vw)",
                 height: "clamp(60px, 8.3vw, 90px)",
@@ -272,16 +271,10 @@ const Step1_Priorities = ({
             </button>
           </div>
 
-          {/* Row 3 */}
+          {/* Row 3: เพิ่มความถี่รถไฟฟ้า (gray), เพิ่ม Feeder ในซอย (gray) */}
           <div className="flex flex-wrap gap-[19px] justify-center lg:justify-start">
             <button
-              className={`rounded-[40px] border-0 transition-all duration-200 flex items-center justify-center ${
-                selectedPriorities.includes("เพิ่มความถี่รถไฟฟ้า")
-                  ? "bg-[#FFE000]"
-                  : isSelectionDisabled("เพิ่มความถี่รถไฟฟ้า")
-                    ? "bg-gray-300 cursor-not-allowed opacity-50"
-                    : "bg-[#E9E9E9] hover:bg-[#FFE000]"
-              }`}
+              className={`rounded-[40px] border-0 transition-all duration-200 flex items-center justify-center ${getButtonClasses("เพิ่มความถี่รถไฟฟ้า")}`}
               style={{
                 width: "min(465px, 45vw)",
                 height: "clamp(60px, 8.3vw, 90px)",
@@ -305,13 +298,7 @@ const Step1_Priorities = ({
               </span>
             </button>
             <button
-              className={`rounded-[40px] border-0 transition-all duration-200 flex items-center justify-center ${
-                selectedPriorities.includes("เพิ่ม Feeder ในซอย")
-                  ? "bg-[#FFE000]"
-                  : isSelectionDisabled("เพิ่ม Feeder ในซอย")
-                    ? "bg-gray-300 cursor-not-allowed opacity-50"
-                    : "bg-[#E9E9E9] hover:bg-[#FFE000]"
-              }`}
+              className={`rounded-[40px] border-0 transition-all duration-200 flex items-center justify-center ${getButtonClasses("เพิ่ม Feeder ในซอย")}`}
               style={{
                 width: "min(480px, 46vw)",
                 height: "clamp(60px, 8.3vw, 90px)",
@@ -319,7 +306,7 @@ const Step1_Priorities = ({
               }}
               onClick={() =>
                 !isSelectionDisabled("เพิ่ม Feeder ในซอย") &&
-                handlePriorityToggle("เพิ่ม Feeder ในซอย")
+                handlePriorityToggle("เพิ่ม Feeder ในซอ��")
               }
               disabled={isSelectionDisabled("เพิ่ม Feeder ในซอย")}
             >
