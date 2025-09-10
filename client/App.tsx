@@ -172,6 +172,10 @@ const App = () => {
               element={<Navigate to="/ask04" replace />}
             />
             <Route
+              path="/Ask04BudgetPage"
+              element={<Navigate to="/ask04-budget" replace />}
+            />
+            <Route
               path="/Ask05Page"
               element={<Navigate to="/ask05" replace />}
             />
