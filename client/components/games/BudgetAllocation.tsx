@@ -1,11 +1,17 @@
+/**
+ * Budget Allocation Component
+ * Completely redesigned to match new Figma specifications
+ */
+
 import { useState, useEffect } from "react";
 
 interface BudgetAllocationProps {
   sessionID: string | null;
   onNavigate: (screenId: string, data?: any) => void;
+  journeyData?: any;
 }
 
-const BudgetAllocation = ({ sessionID, onNavigate }: BudgetAllocationProps) => {
+const BudgetAllocation = ({ sessionID, onNavigate, journeyData }: BudgetAllocationProps) => {
   const [budgetAllocation, setBudgetAllocation] = useState({
     trainDiscount: 0,
     busQuality: 0,
@@ -19,37 +25,39 @@ const BudgetAllocation = ({ sessionID, onNavigate }: BudgetAllocationProps) => {
     budgetAllocation.parking;
   const remainingBudget = totalBudget - allocatedBudget;
 
-  const budgetItems = [
-    {
-      key: "trainDiscount",
-      label: "ลดค่าโดยสารรถไฟฟ้า",
-      description: "การให้ส่วนลดค่าโดยสารระบบรถไฟฟ้า",
-      icon: "🚇",
-    },
-    {
-      key: "busQuality",
-      label: "ปรับปรุงคุณภาพรถเมล์",
-      description: "การปรับปรุงและพัฒนาคุณภาพรถโดยสารประจำทาง",
-      icon: "🚌",
-    },
-    {
-      key: "parking",
-      label: "ที่จอดรถ",
-      description: "การจัดหาและพัฒนาพื้นที่จอดรถ",
-      icon: "🅿️",
-    },
+  // Get selected priorities from journey data for display
+  const selectedPriorities = journeyData?.priorities?.selectedPriorities || [
+    "ลดค่าโดยสารรถไฟฟ้า",
+    "ปรับปรุงคุณภาพรถเมล์", 
+    "ที่จอดรถ"
   ];
 
-  const handleBudgetChange = (
-    key: keyof typeof budgetAllocation,
-    value: string,
-  ) => {
+  const budgetItemsMapping = {
+    "ลดค่าโดยสารรถไฟฟ้า": { key: "trainDiscount", defaultValue: 50 },
+    "ปรับปรุงคุณภาพรถเมล์": { key: "busQuality", defaultValue: 30 },
+    "ปรับคุณภาพรถเมล์": { key: "busQuality", defaultValue: 30 },
+    "ที่จอดรถ": { key: "parking", defaultValue: 20 },
+    "เพิ่มที่จอดรถ": { key: "parking", defaultValue: 20 },
+  };
+
+  // Initialize budget with default values
+  useEffect(() => {
+    const initialBudget = { trainDiscount: 0, busQuality: 0, parking: 0 };
+    selectedPriorities.forEach((priority: string, index: number) => {
+      const mapping = budgetItemsMapping[priority as keyof typeof budgetItemsMapping];
+      if (mapping) {
+        initialBudget[mapping.key as keyof typeof initialBudget] = mapping.defaultValue;
+      }
+    });
+    setBudgetAllocation(initialBudget);
+  }, []);
+
+  const handleBudgetChange = (key: keyof typeof budgetAllocation, value: string) => {
     const numValue = parseInt(value) || 0;
     const currentTotal = Object.entries(budgetAllocation)
       .filter(([k]) => k !== key)
       .reduce((sum, [, v]) => sum + v, 0);
 
-    // Ensure the new value doesn't exceed remaining budget
     const maxAllowable = totalBudget - currentTotal;
     const finalValue = Math.min(Math.max(0, numValue), maxAllowable);
 
@@ -65,244 +73,195 @@ const BudgetAllocation = ({ sessionID, onNavigate }: BudgetAllocationProps) => {
   };
 
   const isComplete = allocatedBudget === totalBudget;
-  const isOverBudget = allocatedBudget > totalBudget;
 
   return (
-    <div className="min-h-screen bg-white flex justify-center">
-      <div className="w-full max-w-[390px] md:max-w-[420px] lg:max-w-[390px] min-h-screen bg-white overflow-hidden relative">
-        {/* Background Image with Overlay */}
-        <div className="absolute inset-0">
-          <img
-            src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F946833431d4b46a0bde1c7d1bc32f67a"
-            alt="งบประมาณการขนส่ง"
-            className="w-full h-full object-cover object-center"
-            style={{ minWidth: "100%", aspectRatio: "2/3" }}
-          />
-          <div
-            className="absolute inset-0"
+    <div className="min-h-screen bg-white flex flex-col relative overflow-hidden">
+      {/* Background with curved blue bottom */}
+      <div className="absolute inset-0">
+        {/* Blue background */}
+        <div className="absolute inset-0 bg-[#04D9F9]" />
+        {/* White curved top section */}
+        <div
+          className="absolute top-0 left-0 right-0 bg-white"
+          style={{
+            height: "clamp(1400px, 80vh, 1680px)",
+            borderBottomLeftRadius: "clamp(300px, 40vw, 800px)",
+            borderBottomRightRadius: "clamp(300px, 40vw, 800px)",
+          }}
+        />
+      </div>
+
+      {/* Main Content */}
+      <div className="relative z-10 w-full max-w-[1080px] mx-auto px-4 py-8">
+        {/* Title */}
+        <div className="text-center mb-12">
+          <h1
+            className="font-prompt font-bold text-center"
             style={{
-              background:
-                "linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.90) 44.17%)",
+              color: "#000D59",
+              fontSize: "clamp(24px, 5.6vw, 60px)",
+              fontWeight: 700,
+              lineHeight: "normal"
             }}
-          />
+          >
+            คุณจะให้งบประมาณแต่ละข้อเท่าไหร่
+          </h1>
         </div>
 
-        {/* Main Content */}
-        <div className="relative z-10 flex flex-col min-h-screen">
-          {/* Content Area */}
-          <div className="flex-1 flex flex-col justify-end items-center px-6 md:px-8 pb-8 md:pb-12">
-            {/* Title */}
-            <div className="text-center mb-6 md:mb-8 max-w-[325px]">
-              <h1
-                className="text-white text-center font-prompt text-3xl font-normal leading-normal mb-4"
-                style={{ fontSize: "clamp(24px, 7.5vw, 30px)" }}
-              >
-                คุณจะให้งบประมาณแต่ละข้อเท่าไร
-              </h1>
+        {/* Budget Summary Card */}
+        <div className="w-full max-w-[903px] mx-auto mb-12">
+          <div
+            className="rounded-[20px] bg-[#FFE000] p-8 flex items-center"
+            style={{
+              height: "clamp(200px, 25vw, 280px)"
+            }}
+          >
+            {/* Coin Icon */}
+            <div className="flex-shrink-0 mr-8">
+              <img
+                src="https://api.builder.io/api/v1/image/assets/TEMP/1d47ef39c86b6e96b386f3aefd8abc162945bed3?width=270"
+                alt="Budget icon"
+                className="object-contain"
+                style={{
+                  width: "clamp(80px, 12.5vw, 135px)",
+                  height: "clamp(95px, 15vw, 159px)"
+                }}
+              />
             </div>
-
-            {/* Budget Status Display */}
-            <div className="w-full max-w-[325px] mb-6 bg-black bg-opacity-50 rounded-[20px] p-4">
-              <div className="text-white text-center">
-                <div className="text-lg font-prompt mb-2">
-                  งบทั้งหมด:{" "}
-                  <span className="text-[#EFBA31] font-medium">
-                    {totalBudget} บาท
-                  </span>
-                </div>
-                <div
-                  className={`text-base font-prompt ${
-                    remainingBudget < 0
-                      ? "text-red-400"
-                      : remainingBudget > 0
-                        ? "text-yellow-400"
-                        : "text-green-400"
-                  }`}
-                >
-                  งบที่เหลือ: {remainingBudget} บาท
-                </div>
-
-                {/* Visual progress bar */}
-                <div className="mt-3">
-                  <div className="w-full bg-gray-600 rounded-full h-3">
-                    <div
-                      className={`h-3 rounded-full transition-all duration-300 ${
-                        isOverBudget
-                          ? "bg-red-500"
-                          : allocatedBudget === totalBudget
-                            ? "bg-green-500"
-                            : "bg-[#EFBA31]"
-                      }`}
-                      style={{
-                        width: `${Math.min((allocatedBudget / totalBudget) * 100, 100)}%`,
-                      }}
-                      role="progressbar"
-                      aria-valuenow={allocatedBudget}
-                      aria-valuemin={0}
-                      aria-valuemax={totalBudget}
-                      aria-label={`ใช้งบประมาณไปแล้ว ${allocatedBudget} จาก ${totalBudget} บาท`}
-                    ></div>
-                  </div>
-                  <div className="text-white text-sm mt-2 text-center">
-                    ใช้งบประมาณ{" "}
-                    {((allocatedBudget / totalBudget) * 100).toFixed(1)}%
-                  </div>
-                </div>
+            
+            {/* Budget Text */}
+            <div className="flex-1 text-right">
+              <div
+                className="font-prompt font-bold text-center mb-2"
+                style={{
+                  color: "#000D59",
+                  fontSize: "clamp(24px, 4.6vw, 50px)",
+                  fontWeight: 700,
+                  letterSpacing: "0.4px"
+                }}
+              >
+                งบทั้งหมด
+              </div>
+              <div
+                className="font-prompt font-bold text-center"
+                style={{
+                  color: "#000D59",
+                  fontSize: "clamp(50px, 9.3vw, 100px)",
+                  fontWeight: 700,
+                  letterSpacing: "0.4px"
+                }}
+              >
+                {totalBudget}
               </div>
             </div>
+          </div>
+        </div>
 
-            {/* Budget Items */}
-            <div className="w-full max-w-[325px] space-y-4 mb-6">
-              {budgetItems.map((item) => (
-                <div
-                  key={item.key}
-                  className="bg-black bg-opacity-50 rounded-[20px] p-4"
-                >
-                  <div className="flex items-center justify-between mb-3">
-                    <div className="flex items-center">
-                      <span
-                        className="text-2xl mr-3"
-                        role="img"
-                        aria-label={item.description}
-                      >
-                        {item.icon}
-                      </span>
-                      <div>
-                        <label
-                          htmlFor={`budget-${item.key}`}
-                          className="text-white font-prompt text-base font-medium block"
-                        >
-                          {item.label}
-                        </label>
-                        <div className="text-white text-sm opacity-80">
-                          {item.description}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+        {/* Budget Allocation Rows */}
+        <div className="w-full max-w-[903px] mx-auto space-y-8 mb-16">
+          {selectedPriorities.map((priority: string, index: number) => {
+            const mapping = budgetItemsMapping[priority as keyof typeof budgetItemsMapping];
+            if (!mapping) return null;
 
-                  <div className="flex items-center space-x-3">
+            return (
+              <div key={priority} className="flex items-center justify-between">
+                {/* Policy Name */}
+                <div className="flex-1">
+                  <h3
+                    className="font-prompt font-bold"
+                    style={{
+                      color: "#000D59",
+                      fontSize: "clamp(24px, 4.6vw, 50px)",
+                      fontWeight: 700,
+                      letterSpacing: "0.4px"
+                    }}
+                  >
+                    {priority}
+                  </h3>
+                </div>
+
+                {/* Budget Input Box */}
+                <div className="ml-8">
+                  <div
+                    className="rounded-[20px] border-[5px] border-[#000D59] bg-white flex items-center justify-center"
+                    style={{
+                      width: "clamp(150px, 19vw, 205px)",
+                      height: "clamp(100px, 12vw, 130px)"
+                    }}
+                  >
                     <input
-                      id={`budget-${item.key}`}
                       type="number"
                       min="0"
                       max={totalBudget}
-                      value={
-                        budgetAllocation[
-                          item.key as keyof typeof budgetAllocation
-                        ]
-                      }
+                      value={budgetAllocation[mapping.key as keyof typeof budgetAllocation]}
                       onChange={(e) =>
                         handleBudgetChange(
-                          item.key as keyof typeof budgetAllocation,
+                          mapping.key as keyof typeof budgetAllocation,
                           e.target.value,
                         )
                       }
-                      className="w-20 h-10 rounded-[10px] bg-white border-[1.5px] border-black text-center text-black font-prompt text-base focus:outline-none focus:ring-2 focus:ring-[#EFBA31]"
-                      placeholder="0"
-                      aria-describedby={`budget-${item.key}-description`}
+                      className="w-full h-full bg-transparent text-center font-prompt font-bold border-none outline-none"
+                      style={{
+                        color: "#000D59",
+                        fontSize: "clamp(35px, 6.5vw, 70px)",
+                        fontWeight: 700,
+                        letterSpacing: "0.4px"
+                      }}
                     />
-                    <span className="text-white font-prompt text-base">
-                      บาท
-                    </span>
-
-                    {/* Visual indicator of allocation percentage */}
-                    <div className="flex-1 bg-gray-600 rounded-full h-2 ml-4">
-                      <div
-                        className="h-2 bg-[#EFBA31] rounded-full transition-all duration-300"
-                        style={{
-                          width: `${(budgetAllocation[item.key as keyof typeof budgetAllocation] / totalBudget) * 100}%`,
-                        }}
-                      ></div>
-                    </div>
-                    <span className="text-white text-sm w-12 text-right">
-                      {(
-                        (budgetAllocation[
-                          item.key as keyof typeof budgetAllocation
-                        ] /
-                          totalBudget) *
-                        100
-                      ).toFixed(0)}
-                      %
-                    </span>
-                  </div>
-
-                  <div
-                    id={`budget-${item.key}-description`}
-                    className="text-white text-sm mt-2 opacity-80"
-                  >
-                    จัดสรร:{" "}
-                    {
-                      budgetAllocation[
-                        item.key as keyof typeof budgetAllocation
-                      ]
-                    }{" "}
-                    บาท
                   </div>
                 </div>
-              ))}
-            </div>
-
-            {/* Status Messages */}
-            {isOverBudget && (
-              <div className="w-full max-w-[325px] mb-4 bg-red-500 bg-opacity-90 rounded-[15px] p-3">
-                <div className="text-white text-center text-sm font-prompt">
-                  <strong>งบประมาณเกินที่กำหนด!</strong>{" "}
-                  กรุณาปรับลดจำนวนให้อยู่ในงบประมาณ {totalBudget} บาท
-                </div>
               </div>
-            )}
+            );
+          })}
+        </div>
 
-            {remainingBudget > 0 && remainingBudget < totalBudget && (
-              <div className="w-full max-w-[325px] mb-4 bg-yellow-500 bg-opacity-90 rounded-[15px] p-3">
-                <div className="text-black text-center text-sm font-prompt">
-                  คุณยังมีงบประมาณเหลือ <strong>{remainingBudget} บาท</strong>{" "}
-                  กรุณาจัดสรรให้ครบ
-                </div>
-              </div>
-            )}
-
-            {isComplete && (
-              <div className="w-full max-w-[325px] mb-4 bg-green-500 bg-opacity-90 rounded-[15px] p-3">
-                <div className="text-white text-center text-sm font-prompt">
-                  <strong>เยี่ยม!</strong> คุณจัดสรรงบประมาณครบ {totalBudget}{" "}
-                  บาทแล้ว
-                </div>
-              </div>
-            )}
-
-            {/* Submit Button */}
-            <div className="w-full max-w-[325px]">
-              <button
-                onClick={handleNext}
-                disabled={!isComplete}
-                className={`w-full h-[53px] rounded-[40px] border-[1.5px] border-black flex items-center justify-center transition-all duration-200 ${
-                  !isComplete
-                    ? "bg-gray-400 cursor-not-allowed"
-                    : "bg-[#EFBA31] hover:scale-105 hover:shadow-lg hover:bg-black active:bg-black group"
-                }`}
-                aria-describedby="next-button-description"
+        {/* Continue Button */}
+        <div className="w-full max-w-[1154px] mx-auto">
+          <div className="relative">
+            <div
+              className="rounded-[50px] bg-[#FFE000] mx-auto"
+              style={{
+                width: "min(845px, 85vw)",
+                height: "clamp(80px, 10.9vw, 118px)"
+              }}
+            />
+            <button
+              onClick={handleNext}
+              disabled={!isComplete}
+              className={`absolute inset-0 w-full transition-all duration-200 flex items-center justify-center ${
+                !isComplete
+                  ? "cursor-not-allowed opacity-50"
+                  : "hover:scale-105"
+              }`}
+              style={{
+                background: "transparent",
+                border: "none",
+                height: "clamp(80px, 10.9vw, 118px)"
+              }}
+            >
+              <span
+                className="font-prompt text-black text-center font-normal px-4"
+                style={{
+                  fontSize: "clamp(24px, 4.6vw, 50px)",
+                  fontWeight: 400,
+                  letterSpacing: "0.4px"
+                }}
               >
-                <span
-                  className={`text-center font-prompt text-lg font-medium leading-7 tracking-[0.4px] ${
-                    !isComplete
-                      ? "text-gray-600"
-                      : "text-black group-hover:text-[#EFBA31] group-active:text-[#EFBA31]"
-                  }`}
-                >
-                  ไปต่อ
-                </span>
-              </button>
+                ไปต่อ
+              </span>
+            </button>
 
-              {!isComplete && (
-                <div
-                  id="next-button-description"
-                  className="text-center text-white text-sm mt-2"
-                >
-                  กรุณาจัดสรรงบประมาณให้ครบ {totalBudget} บาทเพื่อดำเนินการต่อ
-                </div>
-              )}
-            </div>
+            {!isComplete && (
+              <div
+                className="text-center mt-4"
+                style={{
+                  color: "#000D59",
+                  fontSize: "clamp(14px, 2.8vw, 18px)"
+                }}
+              >
+                กรุณาจัดสรรงบประมาณให้ครบ {totalBudget} เพื่อดำเนินการต่อ
+              </div>
+            )}
           </div>
         </div>
       </div>
