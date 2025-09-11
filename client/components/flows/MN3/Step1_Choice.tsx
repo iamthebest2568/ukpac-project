@@ -143,83 +143,76 @@ const Step1_Choice = ({
 
           {/* Button Grid - Matching Figma Layout Exactly */}
           <div className="w-full max-w-[984px] mb-8">
-            {/* Row 1: Two buttons */}
-            <div className="flex gap-[19px] mb-6 justify-center">
+            {/* Row 1: Two buttons - responsive, wrap on small screens */}
+            <div className="flex flex-wrap gap-4 sm:gap-[19px] mb-6 justify-center">
               <button
                 onClick={() => !isSelectionDisabled(priorityList[0]) && handlePriorityToggle(priorityList[0])}
                 disabled={isSelectionDisabled(priorityList[0])}
-                className={`h-[90px] rounded-[40px] border transition-all duration-200 ${getButtonColor(priorityList[0])}`}
-                style={{ width: '465px' }}
+                className={`h-[90px] rounded-[40px] border transition-all duration-200 ${getButtonColor(priorityList[0])} w-full sm:w-[465px]`}
               >
-                <span className={`font-prompt text-[40px] ${getTextColor(priorityList[0])}`} style={{ letterSpacing: '0.4px' }}>
+                <span className={`font-prompt text-[clamp(20px,4.4vw,40px)] ${getTextColor(priorityList[0])}`} style={{ letterSpacing: '0.4px' }}>
                   {priorityList[0]}
                 </span>
               </button>
               <button
                 onClick={() => !isSelectionDisabled(priorityList[1]) && handlePriorityToggle(priorityList[1])}
                 disabled={isSelectionDisabled(priorityList[1])}
-                className={`h-[90px] rounded-[40px] border transition-all duration-200 ${getButtonColor(priorityList[1])}`}
-                style={{ width: '500px' }}
+                className={`h-[90px] rounded-[40px] border transition-all duration-200 ${getButtonColor(priorityList[1])} w-full sm:w-[500px]`}
               >
-                <span className={`font-prompt text-[40px] ${getTextColor(priorityList[1])}`} style={{ letterSpacing: '0.4px' }}>
+                <span className={`font-prompt text-[clamp(20px,4.4vw,40px)] ${getTextColor(priorityList[1])}`} style={{ letterSpacing: '0.4px' }}>
                   {priorityList[1]}
                 </span>
               </button>
             </div>
 
             {/* Row 2: Three buttons */}
-            <div className="flex gap-[29px] mb-6 justify-center">
+            <div className="flex flex-wrap gap-4 sm:gap-[29px] mb-6 justify-center">
               <button
                 onClick={() => !isSelectionDisabled(priorityList[2]) && handlePriorityToggle(priorityList[2])}
                 disabled={isSelectionDisabled(priorityList[2])}
-                className={`h-[90px] rounded-[40px] border transition-all duration-200 ${getButtonColor(priorityList[2])}`}
-                style={{ width: '248px' }}
+                className={`h-[90px] rounded-[40px] border transition-all duration-200 ${getButtonColor(priorityList[2])} w-full sm:w-[248px]`}
               >
-                <span className={`font-prompt text-[40px] ${getTextColor(priorityList[2])}`} style={{ letterSpacing: '0.4px' }}>
+                <span className={`font-prompt text-[clamp(20px,4.4vw,40px)] ${getTextColor(priorityList[2])}`} style={{ letterSpacing: '0.4px' }}>
                   {priorityList[2]}
                 </span>
               </button>
               <button
                 onClick={() => !isSelectionDisabled(priorityList[3]) && handlePriorityToggle(priorityList[3])}
                 disabled={isSelectionDisabled(priorityList[3])}
-                className={`h-[90px] rounded-[40px] border transition-all duration-200 ${getButtonColor(priorityList[3])}`}
-                style={{ width: '385px' }}
+                className={`h-[90px] rounded-[40px] border transition-all duration-200 ${getButtonColor(priorityList[3])} w-full sm:w-[385px]`}
               >
-                <span className={`font-prompt text-[40px] ${getTextColor(priorityList[3])}`} style={{ letterSpacing: '0.4px' }}>
+                <span className={`font-prompt text-[clamp(20px,4.4vw,40px)] ${getTextColor(priorityList[3])}`} style={{ letterSpacing: '0.4px' }}>
                   {priorityList[3]}
                 </span>
               </button>
               <button
                 onClick={() => !isSelectionDisabled(priorityList[4]) && handlePriorityToggle(priorityList[4])}
                 disabled={isSelectionDisabled(priorityList[4])}
-                className={`h-[90px] rounded-[40px] border transition-all duration-200 ${getButtonColor(priorityList[4])}`}
-                style={{ width: '293px' }}
+                className={`h-[90px] rounded-[40px] border transition-all duration-200 ${getButtonColor(priorityList[4])} w-full sm:w-[293px]`}
               >
-                <span className={`font-prompt text-[40px] ${getTextColor(priorityList[4])}`} style={{ letterSpacing: '0.4px' }}>
+                <span className={`font-prompt text-[clamp(20px,4.4vw,40px)] ${getTextColor(priorityList[4])}`} style={{ letterSpacing: '0.4px' }}>
                   {priorityList[4]}
                 </span>
               </button>
             </div>
 
             {/* Row 3: Two buttons */}
-            <div className="flex gap-[38px] justify-center">
+            <div className="flex flex-wrap gap-4 sm:gap-[38px] justify-center">
               <button
                 onClick={() => !isSelectionDisabled(priorityList[5]) && handlePriorityToggle(priorityList[5])}
                 disabled={isSelectionDisabled(priorityList[5])}
-                className={`h-[90px] rounded-[40px] border transition-all duration-200 ${getButtonColor(priorityList[5])}`}
-                style={{ width: '465px' }}
+                className={`h-[90px] rounded-[40px] border transition-all duration-200 ${getButtonColor(priorityList[5])} w-full sm:w-[465px]`}
               >
-                <span className={`font-prompt text-[40px] ${getTextColor(priorityList[5])}`} style={{ letterSpacing: '0.4px' }}>
+                <span className={`font-prompt text-[clamp(20px,4.4vw,40px)] ${getTextColor(priorityList[5])}`} style={{ letterSpacing: '0.4px' }}>
                   {priorityList[5]}
                 </span>
               </button>
               <button
                 onClick={() => !isSelectionDisabled(priorityList[6]) && handlePriorityToggle(priorityList[6])}
                 disabled={isSelectionDisabled(priorityList[6])}
-                className={`h-[90px] rounded-[40px] border transition-all duration-200 ${getButtonColor(priorityList[6])}`}
-                style={{ width: '480px' }}
+                className={`h-[90px] rounded-[40px] border transition-all duration-200 ${getButtonColor(priorityList[6])} w-full sm:w-[480px]`}
               >
-                <span className={`font-prompt text-[40px] ${getTextColor(priorityList[6])}`} style={{ letterSpacing: '0.4px' }}>
+                <span className={`font-prompt text-[clamp(20px,4.4vw,40px)] ${getTextColor(priorityList[6])}`} style={{ letterSpacing: '0.4px' }}>
                   {priorityList[6]}
                 </span>
               </button>
