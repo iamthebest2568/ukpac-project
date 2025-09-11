@@ -24,11 +24,30 @@ const SourceSelection = ({ sessionID, onNavigate }: SourceSelectionProps) => {
     onNavigate('Flow_EndSequence', data);
   };
 
-  // Define buttons for the FigmaStyle1Layout
+  const handleReplay = () => {
+    // Log replay action
+    logEvent({
+      event: 'SOURCE_SELECTION_REPLAY',
+      payload: {
+        sessionID
+      }
+    });
+    
+    // Could potentially navigate back or replay video content
+    // For now, just log the action
+    console.log('Replay button clicked');
+  };
+
+  // Define buttons for the FigmaStyle1Layout - exactly matching Figma design
   const buttons = [
     {
-      text: "ข้อมูลจาก สนข.",
-      onClick: () => handleSourceChoice('government_data', 'ข้อมูลจาก สนข.'),
+      text: "ช่องข่าว",
+      onClick: () => handleSourceChoice('news_channel', 'ช่องข่าว'),
+      ariaLabel: "เลือกช่องข่าว"
+    },
+    {
+      text: "ข้อมูลจากสนข.",
+      onClick: () => handleSourceChoice('government_data', 'ข้อมูลจากสนข.'),
       ariaLabel: "เลือกข้อมูลจากสำนักงานคณะกรรมการกำกับการขนส่งทางบก"
     },
     {
@@ -37,18 +56,25 @@ const SourceSelection = ({ sessionID, onNavigate }: SourceSelectionProps) => {
       ariaLabel: "เลือกป้ายประกาศข้างทาง"
     },
     {
-      text: "อื่นๆ",
-      onClick: () => handleSourceChoice('other', 'อื่นๆ'),
-      ariaLabel: "เลือกแหล่งข้อมูลอื่นๆ"
+      text: "Youtube",
+      onClick: () => handleSourceChoice('youtube', 'Youtube'),
+      ariaLabel: "เลือก Youtube"
     }
   ];
 
+  const replayButton = {
+    onClick: handleReplay,
+    ariaLabel: "ดูอีกครั้ง"
+  };
+
   return (
     <FigmaStyle1Layout
-      backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F946833431d4b46a0bde1c7d1bc32f67a"
-      backgroundAlt="เลือกแหล่งข่าวที่เชื่อถือได้"
-      title="คุณจะติดตามข่าว หรือเชื่อจากแหล่งข่าวไหน"
+      backgroundImage="https://api.builder.io/api/v1/image/assets/TEMP/fb97aecf4ea38e54de1b5ff07717ce3f3d3923dd?width=2160"
+      backgroundAlt="รถไฟใต้ดินและป้ายข่าว"
+      title="คุณจะติดตามข่าว หรือ เชื่อจากแหล่งข่าวไหน"
       buttons={buttons}
+      replayButton={replayButton}
+      className="source-selection-page"
     />
   );
 };
