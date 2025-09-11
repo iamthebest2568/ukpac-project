@@ -78,7 +78,7 @@ const FigmaStyle1Layout = ({
               >
                 <div className="flex flex-col items-center">
                   {/* Yellow Circle with Replay Icon */}
-                  <div className="w-[50px] h-[50px] bg-[#EFBA31] rounded-full flex items-center justify-center mb-2 shadow-lg">
+                  <div className="w-[50px] h-[50px] rounded-full flex items-center justify-center mb-2 shadow-lg" style={{backgroundColor: '#FFE000'}}>
                     <svg
                       width="24"
                       height="24"
