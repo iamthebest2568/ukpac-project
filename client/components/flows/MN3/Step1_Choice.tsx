@@ -112,11 +112,11 @@ const Step1_Choice = ({
   };
 
   return (
-    <div className="min-h-screen bg-white relative overflow-hidden">
+    <div className="figma-canvas bg-white relative">
       {/* Content Container - exactly matching Figma layout */}
-      <div className="relative z-20 min-h-screen flex flex-col" style={{ width: '100vw', maxWidth: '1080px', margin: '0 auto' }}>
+      <div className="relative z-20 flex flex-col w-full h-full" style={{ width: '100%', maxWidth: 1080, margin: '0 auto' }}>
         {/* Main Content Area - positioned exactly as in Figma */}
-        <div className="flex-1 flex flex-col justify-center items-center" style={{ paddingTop: '532px', paddingBottom: '190px', paddingLeft: '48px', paddingRight: '48px' }}>
+        <div className="flex-1 flex flex-col justify-center items-center" style={{ paddingTop: '27.7%', paddingBottom: '9.9%', paddingLeft: '4.44%', paddingRight: '4.44%' }}>
           
           {/* Title Section - positioned at top:1021px in Figma */}
           <div className="text-center w-full mb-8">
@@ -145,16 +145,16 @@ const Step1_Choice = ({
           </div>
 
           {/* Button Grid Container - exactly matching Figma positions */}
-          <div className="relative w-full" style={{ maxWidth: '984px', height: '318px', marginBottom: '60px', marginTop: '60px' }}>
+          <div className="relative w-full max-w-full" style={{ width: '91.11%', height: '16.56%', marginBottom: '3.125%', marginTop: '3.125%' }}>
             
             {/* Row 1: choice_1 and choice_2 */}
-            <div className="absolute" style={{ top: '0px', left: '0px', width: '984px' }}>
+            <div style={{ position: 'absolute', top: '0%', left: '0%', width: '100%', height: '28.3%' }}>
               {/* choice_1: ลดค่าโดยสารรถไฟฟ้า */}
               <button
                 onClick={() => !isSelectionDisabled(priorityList[0]) && handlePriorityToggle(priorityList[0])}
                 disabled={isSelectionDisabled(priorityList[0])}
-                className={`absolute h-[90px] rounded-[40px] border transition-all duration-200 ${getButtonColor(priorityList[0])}`}
-                style={{ width: '465px', left: '0px', top: '0px' }}
+                className={`absolute rounded-[4.6296rem] border transition-all duration-200 ${getButtonColor(priorityList[0])}`}
+                style={{ width: '47.26%', left: '0%', top: '0%', height: '100%' }}
               >
                 <span 
                   className={`font-prompt ${getTextColor(priorityList[0])}`} 
@@ -168,8 +168,8 @@ const Step1_Choice = ({
               <button
                 onClick={() => !isSelectionDisabled(priorityList[1]) && handlePriorityToggle(priorityList[1])}
                 disabled={isSelectionDisabled(priorityList[1])}
-                className={`absolute h-[90px] rounded-[40px] border transition-all duration-200 ${getButtonColor(priorityList[1])}`}
-                style={{ width: '500px', left: '484px', top: '0px' }}
+                className={`absolute rounded-[4.6296rem] border transition-all duration-200 ${getButtonColor(priorityList[1])}`}
+                style={{ width: '50.81%', left: '49.19%', top: '0%', height: '100%' }}
               >
                 <span 
                   className={`font-prompt ${getTextColor(priorityList[1])}`} 
@@ -181,13 +181,13 @@ const Step1_Choice = ({
             </div>
 
             {/* Row 2: choice_3, choice_4, choice_5 */}
-            <div className="absolute" style={{ top: '114px', left: '0px', width: '984px' }}>
+            <div style={{ position: 'absolute', top: '35.85%', left: '0%', width: '100%', height: '28.3%' }}>
               {/* choice_3: ตั๋วร่วม */}
               <button
                 onClick={() => !isSelectionDisabled(priorityList[2]) && handlePriorityToggle(priorityList[2])}
                 disabled={isSelectionDisabled(priorityList[2])}
-                className={`absolute h-[90px] rounded-[40px] border transition-all duration-200 ${getButtonColor(priorityList[2])}`}
-                style={{ width: '248px', left: '0px', top: '0px' }}
+                className={`absolute rounded-[4.6296rem] border transition-all duration-200 ${getButtonColor(priorityList[2])}`}
+                style={{ width: '25.2%', left: '0%', top: '0%', height: '100%' }}
               >
                 <span 
                   className={`font-prompt ${getTextColor(priorityList[2])}`} 
@@ -201,8 +201,8 @@ const Step1_Choice = ({
               <button
                 onClick={() => !isSelectionDisabled(priorityList[3]) && handlePriorityToggle(priorityList[3])}
                 disabled={isSelectionDisabled(priorityList[3])}
-                className={`absolute h-[90px] rounded-[40px] border transition-all duration-200 ${getButtonColor(priorityList[3])}`}
-                style={{ width: '385px', left: '277px', top: '0px' }}
+                className={`absolute rounded-[4.6296rem] border transition-all duration-200 ${getButtonColor(priorityList[3])}`}
+                style={{ width: '39.11%', left: '28.15%', top: '0%', height: '100%' }}
               >
                 <span 
                   className={`font-prompt ${getTextColor(priorityList[3])}`} 
@@ -216,8 +216,8 @@ const Step1_Choice = ({
               <button
                 onClick={() => !isSelectionDisabled(priorityList[4]) && handlePriorityToggle(priorityList[4])}
                 disabled={isSelectionDisabled(priorityList[4])}
-                className={`absolute h-[90px] rounded-[40px] border transition-all duration-200 ${getButtonColor(priorityList[4])}`}
-                style={{ width: '293px', left: '691px', top: '0px' }}
+                className={`absolute rounded-[4.6296rem] border transition-all duration-200 ${getButtonColor(priorityList[4])}`}
+                style={{ width: '29.78%', left: '70.24%', top: '0%', height: '100%' }}
               >
                 <span 
                   className={`font-prompt ${getTextColor(priorityList[4])}`} 
@@ -229,13 +229,13 @@ const Step1_Choice = ({
             </div>
 
             {/* Row 3: choice_6, choice_7 */}
-            <div className="absolute" style={{ top: '228px', left: '0px', width: '984px' }}>
+            <div style={{ position: 'absolute', top: '71.7%', left: '0%', width: '100%', height: '28.3%' }}>
               {/* choice_6: เพิ่มความถี่รถไฟฟ้า */}
               <button
                 onClick={() => !isSelectionDisabled(priorityList[5]) && handlePriorityToggle(priorityList[5])}
                 disabled={isSelectionDisabled(priorityList[5])}
-                className={`absolute h-[90px] rounded-[40px] border transition-all duration-200 ${getButtonColor(priorityList[5])}`}
-                style={{ width: '465px', left: '0px', top: '0px' }}
+                className={`absolute rounded-[4.6296rem] border transition-all duration-200 ${getButtonColor(priorityList[5])}`}
+                style={{ width: '47.26%', left: '0%', top: '0%', height: '100%' }}
               >
                 <span 
                   className={`font-prompt ${getTextColor(priorityList[5])}`} 
@@ -249,8 +249,8 @@ const Step1_Choice = ({
               <button
                 onClick={() => !isSelectionDisabled(priorityList[6]) && handlePriorityToggle(priorityList[6])}
                 disabled={isSelectionDisabled(priorityList[6])}
-                className={`absolute h-[90px] rounded-[40px] border transition-all duration-200 ${getButtonColor(priorityList[6])}`}
-                style={{ width: '480px', left: '503px', top: '0px' }}
+                className={`absolute rounded-[4.6296rem] border transition-all duration-200 ${getButtonColor(priorityList[6])}`}
+                style={{ width: '48.78%', left: '51.13%', top: '0%', height: '100%' }}
               >
                 <span 
                   className={`font-prompt ${getTextColor(priorityList[6])}`} 
