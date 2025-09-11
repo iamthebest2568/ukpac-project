@@ -159,15 +159,19 @@ export default function UkStornaway() {
         }
 
         if (eventName === "sw.choice.selected") {
-          if (!navigatedRef.current) {
-            navigatedRef.current = true;
-            setTimeout(() => {
-              navigateToPage("ask01", {
-                from: "stornaway",
-                choice: captured.choiceText,
-                variant: captured.variantName,
-              });
-            }, 150);
+          // Choices should be handled inside the Stornaway video.
+          // Prevent navigating away from this page when a choice is selected.
+          if (!preventExternalNavigation) {
+            if (!navigatedRef.current) {
+              navigatedRef.current = true;
+              setTimeout(() => {
+                navigateToPage("ask01", {
+                  from: "stornaway",
+                  choice: captured.choiceText,
+                  variant: captured.variantName,
+                });
+              }, 150);
+            }
           }
         }
       };
