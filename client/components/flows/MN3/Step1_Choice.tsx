@@ -1,6 +1,6 @@
 /**
  * UK PACK - MN3 Step 1: Budget Choice Selection
- * Redesigned to match Figma design exactly
+ * Redesigned to match Figma design exactly - clean white background
  */
 
 import { useState } from "react";
@@ -106,37 +106,17 @@ const Step1_Choice = ({
 
   const getTextColor = (priority: string) => {
     if (selectedPriorities.includes(priority)) {
-      return "font-semibold text-[#FFE000]";
+      return "font-bold text-[#FFE000]";
     }
-    return "font-semibold text-black group-hover:text-[#FFE000]";
+    return "font-bold text-black group-hover:text-[#FFE000]";
   };
 
   return (
     <div className="min-h-screen bg-white relative overflow-hidden">
-      {/* Background Image */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src="https://api.builder.io/api/v1/image/assets/TEMP/3b287c4c812ae9bc78f9c5a8da49d3845fd1887f?width=2158"
-          alt="Transportation scene"
-          className="w-full h-full object-cover object-center"
-        />
-      </div>
-
-      {/* White Curved Overlay - positioned at top with bottom curve */}
-      <svg
-        className="absolute top-0 left-0 w-full z-10"
-        viewBox="0 0 1000 520"
-        preserveAspectRatio="none"
-        style={{ height: '52%' }}
-        aria-hidden="true"
-      >
-        <path d="M0,0 L1000,0 L1000,380 C750,460 250,460 0,380 Z" fill="#FFFFFF" />
-      </svg>
-
       {/* Content */}
       <div className="relative z-20 min-h-screen flex flex-col">
         {/* Main Content Area */}
-        <div className="flex-1 flex flex-col justify-center items-center px-6 pt-8 pb-24">
+        <div className="flex-1 flex flex-col justify-center items-center px-6 pt-16 pb-24">
           
           {/* Title Section */}
           <div className="text-center mb-8 max-w-4xl">
