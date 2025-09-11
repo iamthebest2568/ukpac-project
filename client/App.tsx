@@ -45,7 +45,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => (
       className="skip-link"
       aria-label="ข้ามไปยังเนื้อหาหลัก"
     >
-      ข้ามไปยังเนื้อหาหลัก
+      ข้ามไปยังเ��ื้อหาหลัก
     </a>
     <main id="main-content" role="main">
       {children}
@@ -93,21 +93,73 @@ const App = () => {
               <Route path="/test" element={<TestPage />} />
 
               {/* Survey (Ask01 removed) */}
-              <Route path="/ask02" element={<Ask02Page />} />
-              <Route path="/ask02-2" element={<Ask02_2Page />} />
-              <Route path="/ask04" element={<Ask04Page />} />
-              <Route path="/ask04-budget" element={<Ask04BudgetPage />} />
-              <Route path="/ask05" element={<Ask05Page />} />
+              <Route path="/ask02" element={
+                <Suspense fallback={<AskSkeleton />}>
+                  <Ask02Page />
+                </Suspense>
+              } />
+              <Route path="/ask02-2" element={
+                <Suspense fallback={<AskSkeleton />}>
+                  <Ask02_2Page />
+                </Suspense>
+              } />
+              <Route path="/ask04" element={
+                <Suspense fallback={<AskSkeleton />}>
+                  <Ask04Page />
+                </Suspense>
+              } />
+              <Route path="/ask04-budget" element={
+                <Suspense fallback={<AskSkeleton />}>
+                  <Ask04BudgetPage />
+                </Suspense>
+              } />
+              <Route path="/ask05" element={
+                <Suspense fallback={<AskSkeleton />}>
+                  <Ask05Page />
+                </Suspense>
+              } />
 
               {/* Other pages */}
-              <Route path="/fake-news" element={<FakeNewsPage />} />
-              <Route path="/source-selection" element={<SourceSelectionPage />} />
-              <Route path="/budget" element={<BudgetPage />} />
-              <Route path="/end-sequence" element={<EndSequencePage />} />
-              <Route path="/end-screen" element={<EndScreenPage />} />
-              <Route path="/minigame-mn1" element={<MiniGameMN1Page />} />
-              <Route path="/minigame-mn2" element={<MiniGameMN2Page />} />
-              <Route path="/minigame-mn3" element={<MiniGameMN3Page />} />
+              <Route path="/fake-news" element={
+                <Suspense fallback={<FakeNewsSkeleton />}>
+                  <FakeNewsPage />
+                </Suspense>
+              } />
+              <Route path="/source-selection" element={
+                <Suspense fallback={<SourceSelectionSkeleton />}>
+                  <SourceSelectionPage />
+                </Suspense>
+              } />
+              <Route path="/budget" element={
+                <Suspense fallback={<BudgetSkeleton />}>
+                  <BudgetPage />
+                </Suspense>
+              } />
+              <Route path="/end-sequence" element={
+                <Suspense fallback={<EndSequenceSkeleton />}>
+                  <EndSequencePage />
+                </Suspense>
+              } />
+              <Route path="/end-screen" element={
+                <Suspense fallback={<EndScreenSkeleton />}>
+                  <EndScreenPage />
+                </Suspense>
+              } />
+              <Route path="/minigame-mn1" element={
+                <Suspense fallback={<MN3Skeleton />}>
+                  <MiniGameMN1Page />
+                </Suspense>
+              } />
+              <Route path="/minigame-mn2" element={
+                <Suspense fallback={<MN3Skeleton />}>
+                  <MiniGameMN2Page />
+                </Suspense>
+              } />
+              <Route path="/minigame-mn3" element={
+                <Suspense fallback={<MN3Skeleton />}>
+                  <MiniGameMN3Page />
+                </Suspense>
+              } />
               <Route path="/uk-stornaway" element={<UkStornaway />} />
               <Route path="/Uk-stornaway" element={<UkStornaway />} />
               <Route path="/ukdashboard.html" element={<UkDashboard />} />
