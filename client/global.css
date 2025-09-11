@@ -168,13 +168,28 @@
 
 @layer base {
   /* Layout System - Mobile-first responsive container */
+  /* Global application container: fluid on mobile, capped at 1080px on large screens */
   .app-container {
     width: 100%;
-    max-width: 420px;
+    max-width: 1080px;
     margin: 0 auto;
     padding: 0 var(--space-sm);
     min-height: 100vh;
     box-sizing: border-box;
+  }
+
+  /* Utility for Figma-based canvas components that rely on a 1080x1920 baseline */
+  .figma-canvas {
+    width: 100%;
+    max-width: 1080px;
+    aspect-ratio: 1080 / 1920;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Prevent any horizontal overflow across the app */
+  html, body {
+    overflow-x: hidden;
   }
 
   /* Small mobile devices (320px and below) */
