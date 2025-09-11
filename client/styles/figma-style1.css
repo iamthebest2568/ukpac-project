@@ -75,9 +75,11 @@
 }
 
 .figma-style1-background-image {
-  @apply w-full h-full object-cover object-center;
+  @apply w-full h-full object-cover;
   min-width: 100%;
   min-height: 100%;
+  /* Ensure the focal point matches the Figma composition (top-centered) */
+  object-position: top center;
 }
 
 .figma-style1-background-image {
@@ -101,9 +103,38 @@
   );
 }
 
-/* Blue overlay for source selection page */
+/* Blue overlay for source selection page - curved top like Figma */
 .figma-style1-background-overlay--blue {
-  background: #04D9F9 !important;
+  background: var(--figma-style1-blue-overlay, #04D9F9) !important;
+  /* Position the blue overlay at the bottom and shape the top edge to match the Figma arc */
+  top: auto !important;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 62%;
+  border-top-left-radius: 800px;
+  border-top-right-radius: 800px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  /* place between bg image and content */
+  z-index: 1;
+}
+
+/* Slight adjustments for very small and very large screens */
+@media (max-width: 375px) {
+  .figma-style1-background-overlay--blue {
+    height: 60%;
+    border-top-left-radius: 480px;
+    border-top-right-radius: 480px;
+  }
+}
+
+@media (min-width: 768px) {
+  .figma-style1-background-overlay--blue {
+    height: 58%;
+    border-top-left-radius: 1200px;
+    border-top-right-radius: 1200px;
+  }
 }
 
 /* Main Content Layout */
