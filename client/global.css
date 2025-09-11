@@ -276,6 +276,24 @@
     }
   }
 
+  /* Desktop: fixed 1080x1920 phone-frame centered */
+  @media (min-width: 1081px) {
+    .app-container, .main-app-container {
+      width: 1080px !important;
+      height: 1920px !important;
+      margin: 40px auto !important; /* center with vertical spacing */
+      border-radius: 40px;
+      box-shadow: 0 0 30px rgba(0,0,0,0.5);
+      overflow: visible !important; /* allow the page to scroll if frame is taller than viewport */
+      display: block !important; /* undo mobile flex behavior for frame visuals */
+    }
+
+    /* Allow body scrolling on desktop so users can scroll to see the full frame */
+    body {
+      overflow-y: auto;
+    }
+  }
+
   /* Theme Enforcement */
   .theme-white {
     background-color: #000000;
