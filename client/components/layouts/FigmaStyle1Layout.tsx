@@ -70,7 +70,7 @@ const FigmaStyle1Layout = ({
               preserveAspectRatio="none"
               aria-hidden="true"
             >
-              <path d="M0,150 C150,60 350,240 500,150 C650,60 850,240 1000,150 L1000,600 L0,600 Z" fill="#04D9F9" />
+              <path d="M0,200 C250,60 750,60 1000,200 L1000,600 L0,600 Z" fill="#04D9F9" />
             </svg>
           ) : (
             <div className={`figma-style1-background-overlay ${isSourceSelection ? 'figma-style1-background-overlay--blue' : ''}`} />
