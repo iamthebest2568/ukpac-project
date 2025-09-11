@@ -1,6 +1,6 @@
 /**
  * UK PACK - MN3 Step 1: Budget Choice Selection
- * Redesigned to match Figma design exactly - clean white background
+ * Rebuilt to exactly match Figma design (1080x1920) - pixel perfect
  */
 
 import { useState } from "react";
@@ -23,7 +23,7 @@ const Step1_Choice = ({
     useState<string[]>(initialData);
   const maxSelections = 3;
 
-  // Define priorities with explicit UTF-8 encoding - matching Figma design
+  // Define priorities exactly as in Figma design
   const priorityList = [
     "ลดค่าโดยสารรถไฟฟ้า",
     "ปรับปรุงคุณภาพรถเมล์", 
@@ -87,8 +87,8 @@ const Step1_Choice = ({
 
   // Define which buttons should be yellow by default (from Figma design)
   const defaultYellowButtons = new Set([
-    "ปรับปรุงคุณภาพรถเมล์",
-    "เพิ่มความถี่รถเมล์"
+    "ปรับปรุงคุณภาพรถเมล์",  // choice_2
+    "เพิ่มความถี่รถเมล์"      // choice_4
   ]);
 
   const getButtonColor = (priority: string) => {
@@ -113,19 +113,20 @@ const Step1_Choice = ({
 
   return (
     <div className="min-h-screen bg-white relative overflow-hidden">
-      {/* Content */}
-      <div className="relative z-20 min-h-screen flex flex-col">
-        {/* Main Content Area */}
-        <div className="flex-1 flex flex-col justify-center items-center px-6 pt-16 pb-24">
+      {/* Content Container - exactly matching Figma layout */}
+      <div className="relative z-20 min-h-screen flex flex-col" style={{ width: '100vw', maxWidth: '1080px', margin: '0 auto' }}>
+        {/* Main Content Area - positioned exactly as in Figma */}
+        <div className="flex-1 flex flex-col justify-center items-center" style={{ paddingTop: '532px', paddingBottom: '190px', paddingLeft: '48px', paddingRight: '48px' }}>
           
-          {/* Title Section */}
-          <div className="text-center mb-8 max-w-4xl">
+          {/* Title Section - positioned at top:1021px in Figma */}
+          <div className="text-center w-full mb-8">
             <h1 
               className="font-prompt font-bold text-center leading-normal mb-4"
               style={{ 
                 color: '#000D59',
-                fontSize: 'clamp(32px, 7.4vw, 80px)',
-                lineHeight: '1.1'
+                fontSize: '80px',
+                lineHeight: 'normal',
+                fontWeight: 700
               }}
             >
               คุณคิดว่าควรใช้เงินที่ได้<br />จากการเก็บไปพัฒนาอะไร
@@ -134,119 +135,172 @@ const Step1_Choice = ({
               className="font-prompt font-bold text-center"
               style={{ 
                 color: '#000D59',
-                fontSize: 'clamp(20px, 3.7vw, 40px)'
+                fontSize: '40px',
+                fontWeight: 700,
+                marginTop: '0px'
               }}
             >
               ไม่เกิน 3 นโยบาย
             </p>
           </div>
 
-          {/* Button Grid - Matching Figma Layout Exactly */}
-          <div className="w-full max-w-[984px] mb-8">
-            {/* Row 1: Two buttons - responsive, wrap on small screens */}
-            <div className="flex flex-wrap gap-4 sm:gap-[19px] mb-6 justify-center">
+          {/* Button Grid Container - exactly matching Figma positions */}
+          <div className="relative w-full" style={{ maxWidth: '984px', height: '318px', marginBottom: '60px', marginTop: '60px' }}>
+            
+            {/* Row 1: choice_1 and choice_2 */}
+            <div className="absolute" style={{ top: '0px', left: '0px', width: '984px' }}>
+              {/* choice_1: ลดค่าโดยสารรถไฟฟ้า */}
               <button
                 onClick={() => !isSelectionDisabled(priorityList[0]) && handlePriorityToggle(priorityList[0])}
                 disabled={isSelectionDisabled(priorityList[0])}
-                className={`h-[90px] rounded-[40px] border transition-all duration-200 ${getButtonColor(priorityList[0])} w-full sm:w-[465px]`}
+                className={`absolute h-[90px] rounded-[40px] border transition-all duration-200 ${getButtonColor(priorityList[0])}`}
+                style={{ width: '465px', left: '0px', top: '0px' }}
               >
-                <span className={`font-prompt text-[clamp(20px,4.4vw,40px)] ${getTextColor(priorityList[0])}`} style={{ letterSpacing: '0.4px' }}>
+                <span 
+                  className={`font-prompt ${getTextColor(priorityList[0])}`} 
+                  style={{ fontSize: '40px', letterSpacing: '0.4px', fontWeight: 700 }}
+                >
                   {priorityList[0]}
                 </span>
               </button>
+              
+              {/* choice_2: ปรับปรุงคุณภาพรถเมล์ */}
               <button
                 onClick={() => !isSelectionDisabled(priorityList[1]) && handlePriorityToggle(priorityList[1])}
                 disabled={isSelectionDisabled(priorityList[1])}
-                className={`h-[90px] rounded-[40px] border transition-all duration-200 ${getButtonColor(priorityList[1])} w-full sm:w-[500px]`}
+                className={`absolute h-[90px] rounded-[40px] border transition-all duration-200 ${getButtonColor(priorityList[1])}`}
+                style={{ width: '500px', left: '484px', top: '0px' }}
               >
-                <span className={`font-prompt text-[clamp(20px,4.4vw,40px)] ${getTextColor(priorityList[1])}`} style={{ letterSpacing: '0.4px' }}>
+                <span 
+                  className={`font-prompt ${getTextColor(priorityList[1])}`} 
+                  style={{ fontSize: '40px', letterSpacing: '0.4px', fontWeight: 700 }}
+                >
                   {priorityList[1]}
                 </span>
               </button>
             </div>
 
-            {/* Row 2: Three buttons */}
-            <div className="flex flex-wrap gap-4 sm:gap-[29px] mb-6 justify-center">
+            {/* Row 2: choice_3, choice_4, choice_5 */}
+            <div className="absolute" style={{ top: '114px', left: '0px', width: '984px' }}>
+              {/* choice_3: ตั๋วร่วม */}
               <button
                 onClick={() => !isSelectionDisabled(priorityList[2]) && handlePriorityToggle(priorityList[2])}
                 disabled={isSelectionDisabled(priorityList[2])}
-                className={`h-[90px] rounded-[40px] border transition-all duration-200 ${getButtonColor(priorityList[2])} w-full sm:w-[248px]`}
+                className={`absolute h-[90px] rounded-[40px] border transition-all duration-200 ${getButtonColor(priorityList[2])}`}
+                style={{ width: '248px', left: '0px', top: '0px' }}
               >
-                <span className={`font-prompt text-[clamp(20px,4.4vw,40px)] ${getTextColor(priorityList[2])}`} style={{ letterSpacing: '0.4px' }}>
+                <span 
+                  className={`font-prompt ${getTextColor(priorityList[2])}`} 
+                  style={{ fontSize: '40px', letterSpacing: '0.4px', fontWeight: 700 }}
+                >
                   {priorityList[2]}
                 </span>
               </button>
+              
+              {/* choice_4: เพิ่มความถี่รถเมล์ */}
               <button
                 onClick={() => !isSelectionDisabled(priorityList[3]) && handlePriorityToggle(priorityList[3])}
                 disabled={isSelectionDisabled(priorityList[3])}
-                className={`h-[90px] rounded-[40px] border transition-all duration-200 ${getButtonColor(priorityList[3])} w-full sm:w-[385px]`}
+                className={`absolute h-[90px] rounded-[40px] border transition-all duration-200 ${getButtonColor(priorityList[3])}`}
+                style={{ width: '385px', left: '277px', top: '0px' }}
               >
-                <span className={`font-prompt text-[clamp(20px,4.4vw,40px)] ${getTextColor(priorityList[3])}`} style={{ letterSpacing: '0.4px' }}>
+                <span 
+                  className={`font-prompt ${getTextColor(priorityList[3])}`} 
+                  style={{ fontSize: '40px', letterSpacing: '0.4px', fontWeight: 700 }}
+                >
                   {priorityList[3]}
                 </span>
               </button>
+              
+              {/* choice_5: เพิ่มที่จอดรถ */}
               <button
                 onClick={() => !isSelectionDisabled(priorityList[4]) && handlePriorityToggle(priorityList[4])}
                 disabled={isSelectionDisabled(priorityList[4])}
-                className={`h-[90px] rounded-[40px] border transition-all duration-200 ${getButtonColor(priorityList[4])} w-full sm:w-[293px]`}
+                className={`absolute h-[90px] rounded-[40px] border transition-all duration-200 ${getButtonColor(priorityList[4])}`}
+                style={{ width: '293px', left: '691px', top: '0px' }}
               >
-                <span className={`font-prompt text-[clamp(20px,4.4vw,40px)] ${getTextColor(priorityList[4])}`} style={{ letterSpacing: '0.4px' }}>
+                <span 
+                  className={`font-prompt ${getTextColor(priorityList[4])}`} 
+                  style={{ fontSize: '40px', letterSpacing: '0.4px', fontWeight: 700 }}
+                >
                   {priorityList[4]}
                 </span>
               </button>
             </div>
 
-            {/* Row 3: Two buttons */}
-            <div className="flex flex-wrap gap-4 sm:gap-[38px] justify-center">
+            {/* Row 3: choice_6, choice_7 */}
+            <div className="absolute" style={{ top: '228px', left: '0px', width: '984px' }}>
+              {/* choice_6: เพิ่มความถี่รถไฟฟ้า */}
               <button
                 onClick={() => !isSelectionDisabled(priorityList[5]) && handlePriorityToggle(priorityList[5])}
                 disabled={isSelectionDisabled(priorityList[5])}
-                className={`h-[90px] rounded-[40px] border transition-all duration-200 ${getButtonColor(priorityList[5])} w-full sm:w-[465px]`}
+                className={`absolute h-[90px] rounded-[40px] border transition-all duration-200 ${getButtonColor(priorityList[5])}`}
+                style={{ width: '465px', left: '0px', top: '0px' }}
               >
-                <span className={`font-prompt text-[clamp(20px,4.4vw,40px)] ${getTextColor(priorityList[5])}`} style={{ letterSpacing: '0.4px' }}>
+                <span 
+                  className={`font-prompt ${getTextColor(priorityList[5])}`} 
+                  style={{ fontSize: '40px', letterSpacing: '0.4px', fontWeight: 700 }}
+                >
                   {priorityList[5]}
                 </span>
               </button>
+              
+              {/* choice_7: เพิ่ม Feeder ในซอย */}
               <button
                 onClick={() => !isSelectionDisabled(priorityList[6]) && handlePriorityToggle(priorityList[6])}
                 disabled={isSelectionDisabled(priorityList[6])}
-                className={`h-[90px] rounded-[40px] border transition-all duration-200 ${getButtonColor(priorityList[6])} w-full sm:w-[480px]`}
+                className={`absolute h-[90px] rounded-[40px] border transition-all duration-200 ${getButtonColor(priorityList[6])}`}
+                style={{ width: '480px', left: '503px', top: '0px' }}
               >
-                <span className={`font-prompt text-[clamp(20px,4.4vw,40px)] ${getTextColor(priorityList[6])}`} style={{ letterSpacing: '0.4px' }}>
+                <span 
+                  className={`font-prompt ${getTextColor(priorityList[6])}`} 
+                  style={{ fontSize: '40px', letterSpacing: '0.4px', fontWeight: 700 }}
+                >
                   {priorityList[6]}
                 </span>
               </button>
             </div>
           </div>
 
-          {/* Continue Button */}
-          <div className="w-full max-w-[845px]">
-            <button
-              onClick={handleNext}
-              disabled={selectedPriorities.length === 0}
-              className={`w-full h-[118px] rounded-[50px] border-[1.5px] border-black flex items-center justify-center transition-all duration-200 ${
-                selectedPriorities.length === 0
-                  ? "bg-gray-400 cursor-not-allowed"
-                  : "bg-[#FFE000] hover:bg-black hover:scale-105 group"
-              }`}
-              aria-describedby="next-button-description"
-            >
-              <span
-                className={`font-prompt text-[50px] font-normal ${
-                  selectedPriorities.length === 0 
-                    ? "text-gray-600" 
-                    : "text-black group-hover:text-[#FFE000]"
+          {/* Continue Button - positioned at top:1749px in Figma */}
+          <div className="w-full flex justify-center">
+            <div className="relative" style={{ width: '1154px', height: '118px' }}>
+              <button
+                onClick={handleNext}
+                disabled={selectedPriorities.length === 0}
+                className={`absolute h-[118px] rounded-[50px] border-[1.5px] border-black flex items-center justify-center transition-all duration-200 ${
+                  selectedPriorities.length === 0
+                    ? "bg-gray-400 cursor-not-allowed"
+                    : "bg-[#FFE000] hover:bg-black hover:scale-105 group"
                 }`}
-                style={{ letterSpacing: '0.4px' }}
+                style={{ width: '845px', left: '155px', top: '0px' }}
+                aria-describedby="next-button-description"
               >
-                ไปต่อ
-              </span>
-            </button>
+                <span
+                  className={`font-prompt ${
+                    selectedPriorities.length === 0 
+                      ? "text-gray-600" 
+                      : "text-black group-hover:text-[#FFE000]"
+                  }`}
+                  style={{ fontSize: '50px', fontWeight: 400, letterSpacing: '0.4px' }}
+                >
+                  ไปต่อ
+                </span>
+              </button>
+            </div>
 
             {selectedPriorities.length === 0 && (
               <div
                 id="next-button-description"
-                className="text-center text-[#000D59] text-lg mt-4 font-prompt"
+                className="absolute text-center font-prompt"
+                style={{ 
+                  color: '#000D59', 
+                  fontSize: '18px',
+                  top: '100%',
+                  left: '50%',
+                  transform: 'translateX(-50%)',
+                  marginTop: '16px'
+                }}
               >
                 กรุณาเลือกอย่างน้อย 1 ข้อเพื่อดำเนินการต่อ
               </div>
