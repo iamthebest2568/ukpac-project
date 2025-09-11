@@ -78,95 +78,98 @@ const App = () => {
   return (
     <BrowserRouter>
       <Layout>
-        <Suspense fallback={null}>
-          <Routes>
-            {/* Main entry */}
-            <Route path="/" element={<IndexPage />} />
-            <Route path="/test" element={<TestPage />} />
+        <Suspense fallback={<SuspenseFallback />}>
+          {/* Smooth client-side route transitions without changing logic */}
+          <RouteTransition>
+            <Routes>
+              {/* Main entry */}
+              <Route path="/" element={<IndexPage />} />
+              <Route path="/test" element={<TestPage />} />
 
-            {/* Survey (Ask01 removed) */}
-            <Route path="/ask02" element={<Ask02Page />} />
-            <Route path="/ask02-2" element={<Ask02_2Page />} />
-            <Route path="/ask04" element={<Ask04Page />} />
-            <Route path="/ask04-budget" element={<Ask04BudgetPage />} />
-            <Route path="/ask05" element={<Ask05Page />} />
+              {/* Survey (Ask01 removed) */}
+              <Route path="/ask02" element={<Ask02Page />} />
+              <Route path="/ask02-2" element={<Ask02_2Page />} />
+              <Route path="/ask04" element={<Ask04Page />} />
+              <Route path="/ask04-budget" element={<Ask04BudgetPage />} />
+              <Route path="/ask05" element={<Ask05Page />} />
 
-            {/* Other pages */}
-            <Route path="/fake-news" element={<FakeNewsPage />} />
-            <Route path="/source-selection" element={<SourceSelectionPage />} />
-            <Route path="/budget" element={<BudgetPage />} />
-            <Route path="/end-sequence" element={<EndSequencePage />} />
-            <Route path="/end-screen" element={<EndScreenPage />} />
-            <Route path="/minigame-mn1" element={<MiniGameMN1Page />} />
-            <Route path="/minigame-mn2" element={<MiniGameMN2Page />} />
-            <Route path="/minigame-mn3" element={<MiniGameMN3Page />} />
-            <Route path="/uk-stornaway" element={<UkStornaway />} />
-            <Route path="/Uk-stornaway" element={<UkStornaway />} />
-            <Route path="/ukdashboard.html" element={<UkDashboard />} />
-            <Route path="/uk-dashboard" element={<UkDashboard />} />
-            <Route path="/UkDashboard" element={<UkDashboard />} />
+              {/* Other pages */}
+              <Route path="/fake-news" element={<FakeNewsPage />} />
+              <Route path="/source-selection" element={<SourceSelectionPage />} />
+              <Route path="/budget" element={<BudgetPage />} />
+              <Route path="/end-sequence" element={<EndSequencePage />} />
+              <Route path="/end-screen" element={<EndScreenPage />} />
+              <Route path="/minigame-mn1" element={<MiniGameMN1Page />} />
+              <Route path="/minigame-mn2" element={<MiniGameMN2Page />} />
+              <Route path="/minigame-mn3" element={<MiniGameMN3Page />} />
+              <Route path="/uk-stornaway" element={<UkStornaway />} />
+              <Route path="/Uk-stornaway" element={<UkStornaway />} />
+              <Route path="/ukdashboard.html" element={<UkDashboard />} />
+              <Route path="/uk-dashboard" element={<UkDashboard />} />
+              <Route path="/UkDashboard" element={<UkDashboard />} />
 
-            {/* Legacy alias routes (cleaned) */}
-            <Route
-              path="/Ask02Page"
-              element={<Navigate to="/ask02" replace />}
-            />
-            <Route
-              path="/Ask02_2Page"
-              element={<Navigate to="/ask02-2" replace />}
-            />
-            <Route
-              path="/Ask04Page"
-              element={<Navigate to="/ask04" replace />}
-            />
-            <Route
-              path="/Ask04BudgetPage"
-              element={<Navigate to="/ask04-budget" replace />}
-            />
-            <Route
-              path="/Ask05Page"
-              element={<Navigate to="/ask05" replace />}
-            />
-            <Route
-              path="/BudgetPage"
-              element={<Navigate to="/budget" replace />}
-            />
-            <Route
-              path="/FakeNewsPage"
-              element={<Navigate to="/fake-news" replace />}
-            />
-            <Route
-              path="/SourceSelectionPage"
-              element={<Navigate to="/source-selection" replace />}
-            />
-            <Route
-              path="/EndSequencePage"
-              element={<Navigate to="/end-sequence" replace />}
-            />
-            <Route
-              path="/EndScreenPage"
-              element={<Navigate to="/end-screen" replace />}
-            />
-            <Route
-              path="/MiniGameMN1Page"
-              element={<Navigate to="/minigame-mn1" replace />}
-            />
-            <Route
-              path="/MiniGameMN2Page"
-              element={<Navigate to="/minigame-mn2" replace />}
-            />
-            <Route
-              path="/MiniGameMN3Page"
-              element={<Navigate to="/minigame-mn3" replace />}
-            />
-            <Route
-              path="/UkStornawayPage"
-              element={<Navigate to="/uk-stornaway" replace />}
-            />
+              {/* Legacy alias routes (cleaned) */}
+              <Route
+                path="/Ask02Page"
+                element={<Navigate to="/ask02" replace />}
+              />
+              <Route
+                path="/Ask02_2Page"
+                element={<Navigate to="/ask02-2" replace />}
+              />
+              <Route
+                path="/Ask04Page"
+                element={<Navigate to="/ask04" replace />}
+              />
+              <Route
+                path="/Ask04BudgetPage"
+                element={<Navigate to="/ask04-budget" replace />}
+              />
+              <Route
+                path="/Ask05Page"
+                element={<Navigate to="/ask05" replace />}
+              />
+              <Route
+                path="/BudgetPage"
+                element={<Navigate to="/budget" replace />}
+              />
+              <Route
+                path="/FakeNewsPage"
+                element={<Navigate to="/fake-news" replace />}
+              />
+              <Route
+                path="/SourceSelectionPage"
+                element={<Navigate to="/source-selection" replace />}
+              />
+              <Route
+                path="/EndSequencePage"
+                element={<Navigate to="/end-sequence" replace />}
+              />
+              <Route
+                path="/EndScreenPage"
+                element={<Navigate to="/end-screen" replace />}
+              />
+              <Route
+                path="/MiniGameMN1Page"
+                element={<Navigate to="/minigame-mn1" replace />}
+              />
+              <Route
+                path="/MiniGameMN2Page"
+                element={<Navigate to="/minigame-mn2" replace />}
+              />
+              <Route
+                path="/MiniGameMN3Page"
+                element={<Navigate to="/minigame-mn3" replace />}
+              />
+              <Route
+                path="/UkStornawayPage"
+                element={<Navigate to="/uk-stornaway" replace />}
+              />
 
-            {/* 404 page */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+              {/* 404 page */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </RouteTransition>
         </Suspense>
       </Layout>
     </BrowserRouter>
