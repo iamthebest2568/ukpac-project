@@ -24,6 +24,8 @@ interface FigmaStyle1LayoutProps {
   className?: string;
   /** Optional img loading strategy */
   imageLoading?: "eager" | "lazy";
+  /** Optional blue overlay for source selection style */
+  useBlueOverlay?: boolean;
 }
 
 /**
@@ -45,7 +47,10 @@ const FigmaStyle1Layout = ({
   replayButton,
   className = "",
   imageLoading = "lazy",
+  useBlueOverlay = false,
 }) => {
+  // Determine if this is the source selection page
+  const isSourceSelection = className?.includes('source-selection-page');
   return (
     <div className={`figma-style1-container ${className}`}>
       <div className="figma-style1-content">
@@ -58,7 +63,7 @@ const FigmaStyle1Layout = ({
             loading={imageLoading}
             decoding="async"
           />
-          <div className="figma-style1-background-overlay" />
+          <div className={`figma-style1-background-overlay ${isSourceSelection ? 'figma-style1-background-overlay--blue' : ''}`} />
         </div>
 
         {/* Main Content */}
@@ -103,7 +108,7 @@ const FigmaStyle1Layout = ({
             {/* Title */}
             {title && (
               <div className="figma-style1-title-container">
-                <h1 className="figma-style1-title">{title}</h1>
+                <h1 className={`figma-style1-title ${isSourceSelection ? 'figma-style1-title--black' : ''}`}>{title}</h1>
               </div>
             )}
 
