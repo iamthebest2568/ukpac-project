@@ -40,14 +40,11 @@ const FakeNewsTest = ({ sessionID, onNavigate }: FakeNewsTestProps) => {
 
   return (
     <div
-      className="relative w-full flex flex-col justify-center items-center"
+      className="figma-canvas relative w-full flex flex-col justify-center items-center"
       style={{
-        width: '100%',
-        maxWidth: 1080,
-        aspectRatio: '1080 / 1920',
         background: '#04D9F9',
-        position: 'relative',
-        overflow: 'hidden'
+        height: '100%',
+        width: '100%'
       }}
     >
       {/* Main content container matching Figma positioning (percent-based for responsiveness) */}
