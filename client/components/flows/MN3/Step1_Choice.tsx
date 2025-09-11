@@ -264,7 +264,7 @@ const Step1_Choice = ({
 
           {/* Continue Button - positioned at top:1749px in Figma */}
           <div className="w-full flex justify-center">
-            <div className="relative" style={{ width: '1154px', height: '118px' }}>
+            <div className="relative w-full flex justify-center" style={{ width: '100%', maxWidth: '1154px', height: '6.15%' }}>
               <button
                 onClick={handleNext}
                 disabled={selectedPriorities.length === 0}
