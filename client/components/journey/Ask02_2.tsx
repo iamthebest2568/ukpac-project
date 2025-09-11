@@ -30,11 +30,24 @@ const Ask02_2 = ({ sessionID, onNavigate }: Ask02_2Props) => {
 
   return (
     <div className="figma-style1-container ask02-2-page">
-      {/* Blue Background - matching Figma */}
-      <div 
-        className="absolute inset-0"
-        style={{ background: '#04D9F9' }}
-      />
+      {/* Background Image with Wave Overlay (match SourceSelection) */}
+      <div className="figma-style1-background">
+        <img
+          src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Feb2f14480a1349a6bc6b76594e26c7b5?format=webp&width=2160"
+          alt="background"
+          className="figma-style1-background-image"
+          loading="eager"
+          decoding="async"
+        />
+        <svg
+          className="figma-style1-wave-overlay"
+          viewBox="0 0 1000 600"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
+          <path d="M0,200 C250,60 750,60 1000,200 L1000,600 L0,600 Z" fill="#04D9F9" />
+        </svg>
+      </div>
 
       {/* Content Container */}
       <div className="figma-style1-content relative z-10 flex flex-col w-full h-full" style={{ width: '100%', maxWidth: 1080, margin: '0 auto' }}>
