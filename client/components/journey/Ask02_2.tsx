@@ -37,7 +37,7 @@ const Ask02_2 = ({ sessionID, onNavigate }: Ask02_2Props) => {
       />
 
       {/* Content Container */}
-      <div className="relative z-10 flex flex-col w-full h-full" style={{ width: '100%', maxWidth: 1080, margin: '0 auto' }}>
+      <div className="figma-style1-content relative z-10 flex flex-col w-full h-full" style={{ width: '100%', maxWidth: 1080, margin: '0 auto' }}>
         
         {/* Title Section - positioned as in Figma */}
         <div className="flex flex-col items-center justify-start" style={{ paddingTop: '8.9%' }}>
