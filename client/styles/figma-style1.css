@@ -253,12 +253,14 @@
 }
 
 .figma-style1-button {
-  @apply w-full h-[53px] rounded-[40px] bg-[#EFBA31] border-[1.5px] border-black flex items-center justify-center transition-all duration-200 hover:scale-105 hover:shadow-lg hover:bg-black active:bg-black;
+  @apply w-full h-[53px] rounded-[40px] border-[1.5px] border-black flex items-center justify-center transition-all duration-200 hover:scale-105 hover:shadow-lg hover:bg-black active:bg-black;
+  background-color: #FFE000;
 }
 
 /* Secondary (yellow) variant for figma-style1 buttons */
 .figma-style1-button--secondary {
-  @apply w-full h-[53px] rounded-[40px] bg-[#EFBA31] border-[1.5px] border-black flex items-center justify-center transition-all duration-200 hover:scale-105 hover:shadow-lg hover:bg-black;
+  @apply w-full h-[53px] rounded-[40px] border-[1.5px] border-black flex items-center justify-center transition-all duration-200 hover:scale-105 hover:shadow-lg hover:bg-black;
+  background-color: #FFE000;
 }
 
 .figma-style1-button--secondary .figma-style1-button-text {
@@ -267,7 +269,7 @@
 
 .figma-style1-button--secondary:hover .figma-style1-button-text,
 .figma-style1-button--secondary:active .figma-style1-button-text {
-  color: #efba31;
+  color: #FFE000;
 }
 
 .figma-style1-button-text {
@@ -276,16 +278,22 @@
 
 .figma-style1-button:hover .figma-style1-button-text,
 .figma-style1-button:active .figma-style1-button-text {
-  color: #efba31;
+  color: #FFE000;
 }
 
 /* Dark variant for figma-style1 buttons */
 .figma-style1-button--dark {
-  @apply w-full h-[53px] rounded-[40px] bg-black border-[1.5px] border-black flex items-center justify-center transition-all duration-200 hover:scale-105 hover:shadow-lg hover:bg-[#EFBA31];
+  @apply w-full h-[53px] rounded-[40px] bg-black border-[1.5px] border-black flex items-center justify-center transition-all duration-200 hover:scale-105 hover:shadow-lg;
+  background-color: black;
+}
+
+.figma-style1-button--dark:hover {
+  background-color: #FFE000;
 }
 
 .figma-style1-button-text--dark {
-  @apply text-[#EFBA31] text-center font-prompt text-lg font-medium leading-7 tracking-[0.4px];
+  @apply text-center font-prompt text-lg font-medium leading-7 tracking-[0.4px];
+  color: #FFE000;
 }
 
 .figma-style1-button--dark:hover .figma-style1-button-text--dark,
@@ -309,11 +317,12 @@
 
 /* Color Palette Variables for figma-style1 */
 :root {
-  --figma-style1-primary: #efba31;
+  --figma-style1-primary: #FFE000;
   --figma-style1-text-dark: #000000;
   --figma-style1-text-light: #ffffff;
   --figma-style1-overlay-start: rgba(0, 0, 0, 0);
   --figma-style1-overlay-end: rgba(0, 0, 0, 0.9);
+  --figma-style1-blue-overlay: #04D9F9;
 }
 
 /* Enhanced small screen support */
