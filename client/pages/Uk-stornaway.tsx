@@ -278,20 +278,20 @@ export default function UkStornaway() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#121212] text-white flex justify-center font-[Prompt]">
+    <div className="min-h-screen bg-white text-[#000D59] flex justify-center font-[Prompt]">
       <div className="w-full max-w-[800px] p-4 md:p-6 lg:p-8">
         <h1 className="text-2xl md:text-3xl font-semibold mb-4">
           Stornaway Interactive
         </h1>
-        {/* 16:9 iframe container */}
+        {/* Vertical iframe container */}
         <div
           className="relative w-full rounded-xl overflow-hidden bg-black shadow-lg"
-          style={{ paddingBottom: "56.25%" }}
+          style={{ paddingBottom: "177.78%" }}
         >
           <iframe
             ref={iframeRef}
             id="stornaway-player-1"
-            src="https://player.stornaway.io/embed/837c8504"
+            src="https://player.stornaway.io/embed/e9fb79bb"
             title="ความลับในมือถือพ่อ - Interactive Video"
             className="absolute inset-0 w-full h-full"
             allow="autoplay; encrypted-media; clipboard-write; accelerometer; gyroscope; picture-in-picture; web-share; fullscreen"
@@ -299,26 +299,6 @@ export default function UkStornaway() {
             referrerPolicy="no-referrer-when-downgrade"
             allowFullScreen
           />
-        </div>
-
-        {/* Dashboard card */}
-        <div className="mt-6 rounded-lg border border-white/10 bg-white/5 p-4">
-          <h2 className="text-xl font-medium">แดชบอร์ดวิเคราะห์ข้อมูล</h2>
-          <p className="text-sm text-white/70 mt-1">
-            เข้าดูสถิติการใช้งานและบันทึกเหตุการณ์ของผู้ชมแบบเรียลไทม์
-          </p>
-          <button
-            onClick={() =>
-              window.open(
-                "https://0401efcf1cc14196acbc542ce39f187e-main.projects.builder.my/UkDashboard",
-                "_blank",
-                "noopener",
-              )
-            }
-            className="mt-3 inline-flex items-center justify-center rounded-full bg-[#EFBA31] text-black font-medium px-5 py-2 border border-black hover:scale-105 transition"
-          >
-            เปิดแดชบอร์ด
-          </button>
         </div>
       </div>
     </div>
