@@ -45,6 +45,9 @@ export default function UkStornaway() {
   const playerRef = useRef<any>(null);
   const navigatedRef = useRef(false);
   const { sessionID, navigateToPage } = useSession();
+  // Prevent automatic navigation from video choices to other app pages.
+  // Choices remain within the video; navigation will be enabled later if needed.
+  const preventExternalNavigation = true;
   const orderRef = useRef(0);
   const readyRef = useRef(false);
   const sessionId = useMemo(() => {
