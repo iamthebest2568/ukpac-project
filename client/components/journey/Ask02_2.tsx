@@ -1,3 +1,8 @@
+/**
+ * Ask02_2 - Text Input Page
+ * Full-bleed implementation matching Figma design with blue background and text input
+ */
+
 import { useState } from "react";
 import { logEvent } from "../../services/dataLogger.js";
 
@@ -24,109 +29,112 @@ const Ask02_2 = ({ sessionID, onNavigate }: Ask02_2Props) => {
   };
 
   return (
-    <div className="min-h-screen bg-white flex justify-center">
-      <div className="w-full max-w-[390px] md:max-w-[420px] lg:max-w-[390px] min-h-screen bg-white overflow-hidden relative">
-        {/* Background Image with Overlay */}
-        <div className="absolute inset-0">
-          <img
-            src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F946833431d4b46a0bde1c7d1bc32f67a"
-            alt="บุคคลกำลังคิด"
-            className="w-full h-full object-cover object-center"
-            style={{ minWidth: "100%", aspectRatio: "2/3" }}
-          />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.90) 44.17%)",
+    <div className="figma-canvas bg-white relative">
+      {/* Blue Background - matching Figma */}
+      <div 
+        className="absolute inset-0"
+        style={{ background: '#04D9F9' }}
+      />
+
+      {/* Content Container */}
+      <div className="relative z-10 flex flex-col w-full h-full" style={{ width: '100%', maxWidth: 1080, margin: '0 auto' }}>
+        
+        {/* Title Section - positioned as in Figma */}
+        <div className="flex flex-col items-center justify-start" style={{ paddingTop: '8.9%' }}>
+          <h1 
+            className="font-prompt font-bold text-center leading-normal"
+            style={{ 
+              color: '#000D59',
+              fontSize: 'clamp(24px, 5.5vw, 60px)',
+              fontWeight: 600,
+              lineHeight: 'normal',
+              width: '100%',
+              maxWidth: '90%'
             }}
-          />
+          >
+            อื่นๆ คืออะไรช่วยบอกเราหน่อยได้ไหม
+          </h1>
         </div>
 
-        {/* Main Content */}
-        <div className="relative z-10 flex flex-col min-h-screen">
-          {/* Content Area */}
-          <div className="flex-1 flex flex-col justify-end items-center px-6 md:px-8 pb-8 md:pb-12">
-            {/* Title */}
-            <div className="text-center mb-6 md:mb-8 max-w-[325px]">
-              <h1
-                className="text-white text-center font-prompt text-3xl font-normal leading-normal mb-4"
-                style={{ fontSize: "clamp(24px, 7.5vw, 30px)" }}
-              >
-                อื่นๆ คืออะไร
-                <br />
-                ช่วยบอกเราหน่อยได้ไหม
-              </h1>
-              <p className="text-white text-center font-prompt text-base leading-relaxed">
-                ความคิดเห็นของคุณมีความสำคัญมากต่อการพัฒนานโยบาย
-              </p>
-            </div>
-
-            {/* Text Input Area */}
-            <div className="w-full max-w-[325px] mb-6">
-              <textarea
-                value={textInput}
-                onChange={(e) => setTextInput(e.target.value)}
-                placeholder="กรุณาแบ่งปันความคิดเห็นของคุณ..."
-                className="w-full h-32 rounded-[20px] bg-white border-[1.5px] border-black px-4 py-3 text-black font-prompt text-base placeholder-gray-500 resize-none focus:outline-none focus:ring-2 focus:ring-[#EFBA31]"
-                rows={4}
-                aria-describedby="character-count"
-              />
-              <div
-                id="character-count"
-                className="text-right text-white text-sm mt-2"
-              >
-                {textInput.length} ตัวอักษร
-              </div>
-            </div>
-
-            {/* Submit Button */}
-            <div className="w-full max-w-[325px] mb-4">
-              <button
-                onClick={handleNext}
-                disabled={textInput.trim().length === 0}
-                className={`w-full h-[53px] rounded-[40px] border-[1.5px] border-black flex items-center justify-center transition-all duration-200 ${
-                  textInput.trim().length === 0
-                    ? "bg-gray-400 cursor-not-allowed"
-                    : "bg-[#EFBA31] hover:scale-105 hover:shadow-lg hover:bg-black active:bg-black group"
-                }`}
-                aria-describedby="next-button-description"
-              >
-                <span
-                  className={`text-center font-prompt text-lg font-medium leading-7 tracking-[0.4px] ${
-                    textInput.trim().length === 0
-                      ? "text-gray-600"
-                      : "text-black group-hover:text-[#EFBA31] group-active:text-[#EFBA31]"
-                  }`}
-                >
-                  ไปต่อ
-                </span>
-              </button>
-
-              {textInput.trim().length === 0 && (
-                <div
-                  id="next-button-description"
-                  className="text-center text-white text-sm mt-2"
-                >
-                  กรุณากรอกข้อความเพื่อดำเนินการต่อ
-                </div>
-              )}
-            </div>
-
-            {/* Tips */}
-            <div className="w-full max-w-[325px] text-center">
-              <h4 className="text-white font-prompt text-base font-medium mb-2">
-                💡 ตัวอย่างความคิดเห็นที่เป็นประโยชน์:
-              </h4>
-              <ul className="text-white text-sm font-prompt space-y-1 text-left">
-                <li>• กังวลเรื่องผลกระทบต่อผู้มีรายได้น้อย</li>
-                <li>• เห็นว่าควรมีระบบขนส่งสาธารณะที่ดีกว่าก่อน</li>
-                <li>• ต้องการให้มีการศึกษาผลกระทบเพิ่มเติม</li>
-                <li>• มีข้อเสนอแนะแนวทางเชิงนโยบาย</li>
-              </ul>
-            </div>
+        {/* Text Input Section - positioned as in Figma */}
+        <div className="flex-1 flex flex-col items-center justify-center" style={{ paddingTop: '4%', paddingBottom: '20%' }}>
+          <div 
+            className="relative bg-white rounded-[20px] border-[5px] flex items-start justify-center p-6"
+            style={{
+              borderColor: '#000D59',
+              width: '82.4%', // 890/1080
+              height: '40.625%', // 780/1920
+              maxWidth: '890px',
+              maxHeight: '780px'
+            }}
+          >
+            <textarea
+              value={textInput}
+              onChange={(e) => setTextInput(e.target.value)}
+              placeholder="พิมพ์ข้อความของคุณที่นี่..."
+              className="w-full h-full bg-transparent border-none outline-none resize-none font-prompt text-center placeholder-gray-500"
+              style={{
+                fontSize: 'clamp(16px, 3.7vw, 40px)',
+                fontWeight: 300,
+                color: 'rgba(0, 0, 0, 0.7)',
+                lineHeight: '1.2'
+              }}
+              rows={8}
+            />
           </div>
         </div>
+
+        {/* Continue Button - positioned at bottom as in Figma */}
+        <div className="w-full flex justify-center items-end" style={{ paddingBottom: '8.9%' }}>
+          <div className="relative flex justify-center" style={{ width: '78.2%', maxWidth: '845px' }}>
+            <button
+              onClick={handleNext}
+              disabled={textInput.trim().length === 0}
+              className={`w-full rounded-[50px] flex items-center justify-center transition-all duration-200 ${
+                textInput.trim().length === 0
+                  ? "bg-gray-400 cursor-not-allowed"
+                  : "bg-[#FFE000] hover:scale-105 hover:shadow-lg hover:bg-black active:bg-black group"
+              }`}
+              style={{ 
+                height: 'clamp(50px, 6.1vw, 118px)',
+                minHeight: '50px'
+              }}
+            >
+              <span 
+                className={`font-prompt text-center ${
+                  textInput.trim().length === 0
+                    ? "text-gray-600"
+                    : "text-black group-hover:text-[#FFE000] group-active:text-[#FFE000]"
+                }`}
+                style={{ 
+                  fontSize: 'clamp(18px, 4.6vw, 50px)',
+                  fontWeight: 400,
+                  letterSpacing: '0.4px',
+                  lineHeight: 'normal'
+                }}
+              >
+                ไปต่อ
+              </span>
+            </button>
+          </div>
+
+          {textInput.trim().length === 0 && (
+            <div 
+              className="absolute text-center font-prompt"
+              style={{ 
+                color: '#000D59', 
+                fontSize: 'clamp(12px, 1.67vw, 18px)',
+                top: '100%',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                marginTop: '16px'
+              }}
+            >
+              กรุณากรอกข้อความเพ���่อดำเนินการต่อ
+            </div>
+          )}
+        </div>
+
       </div>
     </div>
   );
