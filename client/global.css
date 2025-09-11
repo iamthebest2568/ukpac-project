@@ -212,8 +212,39 @@
   }
 
   /* Prevent any horizontal overflow across the app */
-  html, body {
+  html, body, #root {
     overflow-x: hidden;
+    height: 100%;
+  }
+
+  /* Normalize utility classes that assume full viewport height when inside app-container
+     Many components use Tailwind's min-h-screen/h-screen which conflict with our full-screen
+     app-container. Override them so children size relative to the app container instead. */
+  .app-container .min-h-screen {
+    min-height: 0 !important;
+    height: 100% !important;
+  }
+
+  .app-container .h-screen {
+    height: 100% !important;
+  }
+
+  /* Disable internal scrolling utilities inside the app container to enforce single-scrollless layout */
+  .app-container .overflow-y-auto,
+  .app-container .overflow-auto,
+  .app-container .overflow-scroll {
+    overflow: hidden !important;
+  }
+
+  /* Ensure any direct full-height children fill available space and can flex properly */
+  .app-container > * {
+    min-height: 0;
+    height: 100%;
+  }
+
+  /* Backstop: avoid unexpected body scroll when children exceed container */
+  body {
+    overflow-y: hidden;
   }
 
   /* Small mobile devices (320px and below) */
