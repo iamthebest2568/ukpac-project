@@ -32,6 +32,12 @@ const UkStornaway = lazy(() => import("./pages/Uk-stornaway"));
 const UkDashboard = lazy(() => import("./pages/UkDashboard"));
 
 // Layout component with accessibility features
+import FakeNewsSkeleton from './components/shared/skeletons/FakeNewsSkeleton';
+import SourceSelectionSkeleton from './components/shared/skeletons/SourceSelectionSkeleton';
+import MN3Skeleton from './components/shared/skeletons/MN3Skeleton';
+import BudgetSkeleton from './components/shared/skeletons/BudgetSkeleton';
+import AskSkeleton from './components/shared/skeletons/AskSkeleton';
+import EndSequenceSkeleton, { EndScreenSkeleton } from './components/shared/skeletons/EndSkeletons';
 const Layout = ({ children }: { children: React.ReactNode }) => (
   <div className="min-h-screen">
     <a
