@@ -26,17 +26,6 @@ root.render(
 );
 
 // Dev-only scanner for U+FFFD occurrences
-import { initNetworkThrottle } from './dev/networkThrottle';
-
-// Initialize dev network throttling when in DEV
-if ((import.meta as any).env && (import.meta as any).env.DEV) {
-  try {
-    initNetworkThrottle({ latency: 800, jitter: 300, enableByDefault: false });
-  } catch (e) {
-    // ignore
-  }
-}
-
 if (import.meta.env && (import.meta as any).env.DEV) {
   setTimeout(() => {
     const nodes = Array.from(document.querySelectorAll("*"));
