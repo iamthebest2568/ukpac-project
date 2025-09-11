@@ -106,34 +106,39 @@
 /* Blue overlay for source selection page - lower curve (convex bottom edge) */
 .figma-style1-background-overlay--blue {
   background: var(--figma-style1-blue-overlay, #04D9F9) !important;
-  /* Position the blue overlay at the top and shape the bottom edge to match the Figma lower arc */
-  top: 0 !important;
-  left: 0;
-  right: 0;
-  height: 62%;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  border-bottom-left-radius: 800px;
-  border-bottom-right-radius: 800px;
-  /* Ensure it sits above the background image but below content */
+  /* fallback if needed */
   z-index: 2;
   pointer-events: none;
 }
 
+/* S-shaped wave overlay SVG */
+.figma-style1-wave-overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 62%;
+  z-index: 5; /* below content (content z-10) */
+  pointer-events: none;
+  display: block;
+}
+
+.figma-style1-wave-overlay path {
+  /* Ensure sharp edges and crisp rendering */
+  shape-rendering: geometricPrecision;
+}
+
 /* Slight adjustments for very small and very large screens */
 @media (max-width: 375px) {
-  .figma-style1-background-overlay--blue {
+  .figma-style1-wave-overlay {
     height: 60%;
-    border-bottom-left-radius: 480px;
-    border-bottom-right-radius: 480px;
   }
 }
 
 @media (min-width: 768px) {
-  .figma-style1-background-overlay--blue {
+  .figma-style1-wave-overlay {
     height: 58%;
-    border-bottom-left-radius: 1200px;
-    border-bottom-right-radius: 1200px;
   }
 }
 
