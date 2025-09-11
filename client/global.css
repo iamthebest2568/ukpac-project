@@ -205,10 +205,16 @@
   /* Utility for Figma-based canvas components that rely on a 1080x1920 baseline */
   .figma-canvas {
     width: 100%;
+    height: 100%;
     max-width: 1080px;
-    aspect-ratio: 1080 / 1920;
+    max-height: 100%;
+    margin: 0 auto;
     position: relative;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
   /* Prevent any horizontal overflow across the app */
