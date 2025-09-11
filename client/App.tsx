@@ -160,11 +160,31 @@ const App = () => {
                   <MiniGameMN3Page />
                 </Suspense>
               } />
-              <Route path="/uk-stornaway" element={<UkStornaway />} />
-              <Route path="/Uk-stornaway" element={<UkStornaway />} />
-              <Route path="/ukdashboard.html" element={<UkDashboard />} />
-              <Route path="/uk-dashboard" element={<UkDashboard />} />
-              <Route path="/UkDashboard" element={<UkDashboard />} />
+              <Route path="/uk-stornaway" element={
+                <Suspense fallback={<SuspenseFallback />}>
+                  <UkStornaway />
+                </Suspense>
+              } />
+              <Route path="/Uk-stornaway" element={
+                <Suspense fallback={<SuspenseFallback />}>
+                  <UkStornaway />
+                </Suspense>
+              } />
+              <Route path="/ukdashboard.html" element={
+                <Suspense fallback={<SuspenseFallback />}>
+                  <UkDashboard />
+                </Suspense>
+              } />
+              <Route path="/uk-dashboard" element={
+                <Suspense fallback={<SuspenseFallback />}>
+                  <UkDashboard />
+                </Suspense>
+              } />
+              <Route path="/UkDashboard" element={
+                <Suspense fallback={<SuspenseFallback />}>
+                  <UkDashboard />
+                </Suspense>
+              } />
 
               {/* Legacy alias routes (cleaned) */}
               <Route
