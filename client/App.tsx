@@ -1,6 +1,8 @@
 import "./global.css";
 
 import { Suspense, lazy, useEffect } from "react";
+import RouteTransition from "./components/shared/RouteTransition";
+import SuspenseFallback from "./components/shared/SuspenseFallback";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 // Minimal set of pages (dashboard/backend removed)
