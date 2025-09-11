@@ -30,127 +30,90 @@ const Ask02_2 = ({ sessionID, onNavigate }: Ask02_2Props) => {
   };
 
   return (
-    <div className="figma-style1-container ask02-2-page">
-      {/* Background Image with Wave Overlay (match SourceSelection) */}
-      <div className="figma-style1-background">
-        <img
-          src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Feb2f14480a1349a6bc6b76594e26c7b5?format=webp&width=2160"
-          alt="background"
-          className="figma-style1-background-image"
-          loading="eager"
-          decoding="async"
-        />
-        <svg
-          className="figma-style1-wave-overlay"
-          viewBox="0 0 1000 600"
-          preserveAspectRatio="none"
-          aria-hidden="true"
+    <FigmaStyle1Layout
+      backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Feb2f14480a1349a6bc6b76594e26c7b5?format=webp&width=2160"
+      title="อื่นๆ คืออะไรช่วยบอกเราหน่อยได้ไหม"
+      className="source-selection-page ask02-2-page"
+      imageLoading="eager"
+    >
+      {/* Children: custom content identical to previous implementation but rendered inside layout */}
+      <div className="flex-1 flex flex-col items-center justify-center" style={{ paddingTop: '4%', paddingBottom: '20%' }}>
+        <div
+          className="relative bg-white rounded-[20px] border-[5px] flex items-start justify-center p-6"
+          style={{
+            borderColor: '#000D59',
+            width: '82.4%', // 890/1080
+            height: '40.625%', // 780/1920
+            maxWidth: '890px',
+            maxHeight: '780px'
+          }}
         >
-          <path d="M0,200 C250,60 750,60 1000,200 L1000,600 L0,600 Z" fill="#04D9F9" />
-        </svg>
-      </div>
-
-      {/* Content Container */}
-      <div className="figma-style1-content relative z-10 flex flex-col w-full h-full" style={{ width: '100%', maxWidth: 1080, margin: '0 auto' }}>
-        
-        {/* Title Section - positioned as in Figma */}
-        <div className="flex flex-col items-center justify-start" style={{ paddingTop: '8.9%' }}>
-          <h1 
-            className="font-prompt font-bold text-center leading-normal"
-            style={{ 
-              color: '#000D59',
-              fontSize: 'clamp(24px, 5.5vw, 60px)',
-              fontWeight: 600,
-              lineHeight: 'normal',
-              width: '100%',
-              maxWidth: '90%'
-            }}
-          >
-            อื่นๆ คืออะไรช่วยบอกเราหน่อยได้ไหม
-          </h1>
-        </div>
-
-        {/* Text Input Section - positioned as in Figma */}
-        <div className="flex-1 flex flex-col items-center justify-center" style={{ paddingTop: '4%', paddingBottom: '20%' }}>
-          <div 
-            className="relative bg-white rounded-[20px] border-[5px] flex items-start justify-center p-6"
+          <textarea
+            value={textInput}
+            onChange={(e) => setTextInput(e.target.value)}
+            placeholder="พิมพ์ข้อความของคุณที่นี่..."
+            className="w-full h-full bg-transparent border-none outline-none resize-none font-prompt text-center placeholder-gray-500"
             style={{
-              borderColor: '#000D59',
-              width: '82.4%', // 890/1080
-              height: '40.625%', // 780/1920
-              maxWidth: '890px',
-              maxHeight: '780px'
+              fontSize: 'clamp(16px, 3.7vw, 40px)',
+              fontWeight: 300,
+              color: 'rgba(0, 0, 0, 0.7)',
+              lineHeight: '1.2'
+            }}
+            rows={8}
+          />
+        </div>
+      </div>
+
+      <div className="w-full flex justify-center items-end" style={{ paddingBottom: '8.9%' }}>
+        <div className="relative flex justify-center" style={{ width: '78.2%', maxWidth: '845px' }}>
+          <button
+            onClick={handleNext}
+            disabled={textInput.trim().length === 0}
+            className={`w-full rounded-[50px] flex items-center justify-center transition-all duration-200 ${
+              textInput.trim().length === 0
+                ? "bg-gray-400 cursor-not-allowed"
+                : "bg-[#FFE000] hover:scale-105 hover:shadow-lg hover:bg-black active:bg-black group"
+            }`}
+            style={{
+              height: 'clamp(50px, 6.1vw, 118px)',
+              minHeight: '50px'
             }}
           >
-            <textarea
-              value={textInput}
-              onChange={(e) => setTextInput(e.target.value)}
-              placeholder="พิมพ์ข้อความของคุณที่นี่..."
-              className="w-full h-full bg-transparent border-none outline-none resize-none font-prompt text-center placeholder-gray-500"
-              style={{
-                fontSize: 'clamp(16px, 3.7vw, 40px)',
-                fontWeight: 300,
-                color: 'rgba(0, 0, 0, 0.7)',
-                lineHeight: '1.2'
-              }}
-              rows={8}
-            />
-          </div>
-        </div>
-
-        {/* Continue Button - positioned at bottom as in Figma */}
-        <div className="w-full flex justify-center items-end" style={{ paddingBottom: '8.9%' }}>
-          <div className="relative flex justify-center" style={{ width: '78.2%', maxWidth: '845px' }}>
-            <button
-              onClick={handleNext}
-              disabled={textInput.trim().length === 0}
-              className={`w-full rounded-[50px] flex items-center justify-center transition-all duration-200 ${
+            <span
+              className={`font-prompt text-center ${
                 textInput.trim().length === 0
-                  ? "bg-gray-400 cursor-not-allowed"
-                  : "bg-[#FFE000] hover:scale-105 hover:shadow-lg hover:bg-black active:bg-black group"
+                  ? "text-gray-600"
+                  : "text-black group-hover:text-[#FFE000] group-active:text-[#FFE000]"
               }`}
-              style={{ 
-                height: 'clamp(50px, 6.1vw, 118px)',
-                minHeight: '50px'
+              style={{
+                fontSize: 'clamp(18px, 4.6vw, 50px)',
+                fontWeight: 400,
+                letterSpacing: '0.4px',
+                lineHeight: 'normal'
               }}
             >
-              <span 
-                className={`font-prompt text-center ${
-                  textInput.trim().length === 0
-                    ? "text-gray-600"
-                    : "text-black group-hover:text-[#FFE000] group-active:text-[#FFE000]"
-                }`}
-                style={{ 
-                  fontSize: 'clamp(18px, 4.6vw, 50px)',
-                  fontWeight: 400,
-                  letterSpacing: '0.4px',
-                  lineHeight: 'normal'
-                }}
-              >
-                ไปต่อ
-              </span>
-            </button>
-          </div>
-
-          {textInput.trim().length === 0 && (
-            <div 
-              className="absolute text-center font-prompt"
-              style={{ 
-                color: '#000D59', 
-                fontSize: 'clamp(12px, 1.67vw, 18px)',
-                top: '100%',
-                left: '50%',
-                transform: 'translateX(-50%)',
-                marginTop: '16px'
-              }}
-            >
-              กรุณากรอกข้อความเพ���่อดำเนินการต่อ
-            </div>
-          )}
+              ไปต่อ
+            </span>
+          </button>
         </div>
 
+        {textInput.trim().length === 0 && (
+          <div
+            className="absolute text-center font-prompt"
+            style={{
+              color: '#000D59',
+              fontSize: 'clamp(12px, 1.67vw, 18px)',
+              top: '100%',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              marginTop: '16px'
+            }}
+          >
+            กรุณากรอกข้อความเพื่อดำเนินการต่อ
+          </div>
+        )}
       </div>
-    </div>
+    </FigmaStyle1Layout>
   );
 };
 
