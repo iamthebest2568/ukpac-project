@@ -1,5 +1,4 @@
 import { logEvent } from "../../services/dataLogger.js";
-import FigmaStyle1Layout from "../layouts/FigmaStyle1Layout";
 
 interface FakeNewsTestProps {
   sessionID: string | null;
@@ -39,36 +38,96 @@ const FakeNewsTest = ({ sessionID, onNavigate }: FakeNewsTestProps) => {
     });
   };
 
-  // Define buttons for the FigmaStyle1Layout
-  const buttons = [
-    {
-      text: "ไม่ทำอะไร ถึงเวลาก็รู้เอง",
-      onClick: () => handleAction("ignore"),
-      ariaLabel: "เลือกที่จะไม่ดำเนินการใดๆ และรอดูผลลัพธ์",
-    },
-    {
-      text: "หาข่าวต่อ",
-      onClick: () => handleAction("search"),
-      ariaLabel: "เลือกที่จะหาข้อมูลเพิ่มเติมเพื่อตรวจสอบความถูกต้อง",
-    },
-  ];
-
   return (
-    <FigmaStyle1Layout
-      backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F946833431d4b46a0bde1c7d1bc32f67a"
-      backgroundAlt="รถไฟในเมืองยามค่ำคืน"
-      title={`ตอนนี้มีข้อมูลที่ขัดแย้งกัน
-ของนโยบาย เช่นบ้างก็
-บอกว่าเก็บ 20 บ้างก็ 80
-บ้างก็บอกไปว่า ไม่เก็บ
-รถ 4 ที่นั่ง บ้างก็เก็บหมด
-คุณคิดว่าจะทำอย่างไร`}
-      buttons={buttons}
-      replayButton={{
-        onClick: handleReplay,
-        ariaLabel: "ดูอีกครั้ง",
-      }}
-    />
+    <div className="min-h-screen bg-white relative overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src="https://api.builder.io/api/v1/image/assets/TEMP/0842afec566676b980dab55ae09fcdf365869e23?width=2158"
+          alt="Transportation scene"
+          className="w-full h-full object-cover object-center"
+        />
+      </div>
+
+      {/* White Curved Overlay - positioned at top with bottom curve */}
+      <svg
+        className="absolute top-0 left-0 w-full z-10"
+        viewBox="0 0 1000 577"
+        preserveAspectRatio="none"
+        style={{ height: '57.7%' }}
+        aria-hidden="true"
+      >
+        <path d="M0,0 L1000,0 L1000,437 C750,517 250,517 0,437 Z" fill="#FFFFFF" />
+      </svg>
+
+      {/* Blue Background - bottom half */}
+      <div 
+        className="absolute bottom-0 left-0 w-full z-10"
+        style={{ 
+          height: '42.3%',
+          background: '#04D9F9'
+        }}
+      />
+
+      {/* Content */}
+      <div className="relative z-20 min-h-screen flex flex-col">
+        {/* Main Content Area */}
+        <div className="flex-1 flex flex-col justify-center items-center px-6 pt-8 pb-24">
+          
+          {/* Title Section - positioned in blue area */}
+          <div className="text-center mb-8 max-w-4xl mt-auto">
+            <h1 
+              className="font-prompt font-bold text-center leading-normal mb-8"
+              style={{ 
+                color: '#000000',
+                fontSize: 'clamp(24px, 5.6vw, 60px)',
+                lineHeight: '1.2'
+              }}
+            >
+              ตอนนี้มีข้อมูลที่ขัดแย้งกันของนโยบาย<br />
+              เช่น บ้างก็บอกว่าเก็บ 20 บ้างก็ 80<br />
+              บ้างก็บอกไปว่าไม่เก็บรถ 4 ที่นั่ง<br />
+              บ้างก็เก็บหมดคุณคิดว่าจะทำอย่างไร
+            </h1>
+          </div>
+
+          {/* Button Section */}
+          <div className="w-full max-w-[874px] space-y-6">
+            {/* Button 1 */}
+            <button
+              onClick={() => handleAction("ignore")}
+              className="w-full h-[118px] rounded-[50px] border transition-all duration-200 bg-[#FFE000] border-black hover:bg-black hover:scale-105 group flex items-center justify-center"
+            >
+              <span 
+                className="font-prompt font-normal text-black group-hover:text-[#FFE000] text-center"
+                style={{ 
+                  fontSize: 'clamp(20px, 4.6vw, 50px)',
+                  letterSpacing: '0.4px'
+                }}
+              >
+                ไม่ทำอะไร ถึงเวลาก็รู้เอง
+              </span>
+            </button>
+
+            {/* Button 2 */}
+            <button
+              onClick={() => handleAction("search")}
+              className="w-full h-[118px] rounded-[50px] border transition-all duration-200 bg-[#FFE000] border-black hover:bg-black hover:scale-105 group flex items-center justify-center"
+            >
+              <span 
+                className="font-prompt font-normal text-black group-hover:text-[#FFE000] text-center"
+                style={{ 
+                  fontSize: 'clamp(20px, 4.6vw, 50px)',
+                  letterSpacing: '0.4px'
+                }}
+              >
+                หาข่าวต่อ
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 
