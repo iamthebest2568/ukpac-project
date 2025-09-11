@@ -29,7 +29,7 @@ const Ask02_2 = ({ sessionID, onNavigate }: Ask02_2Props) => {
   };
 
   return (
-    <div className="figma-canvas bg-white relative">
+    <div className="figma-style1-container ask02-2-page">
       {/* Blue Background - matching Figma */}
       <div 
         className="absolute inset-0"
