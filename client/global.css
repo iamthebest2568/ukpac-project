@@ -169,13 +169,37 @@
 @layer base {
   /* Layout System - Mobile-first responsive container */
   /* Global application container: fluid on mobile, capped at 1080px on large screens */
+  /* Global application container: fluid on mobile, capped at 1080px on large screens */
   .app-container {
     width: 100%;
     max-width: 1080px;
     margin: 0 auto;
     padding: 0 var(--space-sm);
-    min-height: 100vh;
+    min-height: 100vh; /* safe fallback */
+    height: 100vh; /* force full viewport height */
+    display: flex; /* layout children vertically */
+    flex-direction: column;
+    overflow: hidden; /* disable scrolling on container */
     box-sizing: border-box;
+  }
+
+  /* Main content area inside the app container should grow to fill vertical space */
+  #main-content {
+    width: 100%;
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    min-height: 0; /* allow children to shrink properly */
+    overflow: hidden;
+  }
+
+  /* Ensure the immediate route/content wrapper fills available space and doesn't cause overflow */
+  #main-content > * {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
   }
 
   /* Utility for Figma-based canvas components that rely on a 1080x1920 baseline */
