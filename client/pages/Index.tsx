@@ -6,7 +6,7 @@ const IndexPage = () => {
   const { navigateToPage } = useSession();
 
   const handleStart = () => {
-    navigateToPage("/intro-who-are-you");
+    navigateToPage("/ask02");
   };
 
   return (
