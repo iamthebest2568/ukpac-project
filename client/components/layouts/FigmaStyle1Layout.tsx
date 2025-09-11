@@ -50,7 +50,8 @@ const FigmaStyle1Layout = ({
   className = "",
   imageLoading = "lazy",
   useBlueOverlay = false,
-}) => {
+  children,
+}: FigmaStyle1LayoutProps) => {
   // Determine if this is the source selection page
   const isSourceSelection = className?.includes('source-selection-page');
   return (
