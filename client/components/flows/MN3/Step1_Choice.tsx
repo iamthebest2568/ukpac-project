@@ -30,7 +30,7 @@ const Step1_Choice = ({
     "ตั๋วร่วม",
     "เพิ่มความถี่รถเมล์",
     "เพิ่มที่จอดรถ",
-    "เพิ่มความถี่รถไฟฟ้า",
+    "เพิ่มความถี��รถไฟฟ้า",
     "เพิ่ม Feeder ในซอย",
   ];
 
@@ -268,12 +268,11 @@ const Step1_Choice = ({
               <button
                 onClick={handleNext}
                 disabled={selectedPriorities.length === 0}
-                className={`absolute h-[118px] rounded-[50px] border-[1.5px] border-black flex items-center justify-center transition-all duration-200 ${
+                className={`w-3/4 h-full rounded-[2.5rem] border-[1.5px] border-black flex items-center justify-center transition-all duration-200 ${
                   selectedPriorities.length === 0
                     ? "bg-gray-400 cursor-not-allowed"
                     : "bg-[#FFE000] hover:bg-black hover:scale-105 group"
                 }`}
-                style={{ width: '845px', left: '155px', top: '0px' }}
                 aria-describedby="next-button-description"
               >
                 <span
