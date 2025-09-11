@@ -1,0 +1,22 @@
+import React from 'react';
+
+export const EndSequenceSkeleton: React.FC = () => (
+  <div className="min-h-screen flex items-center justify-center p-6 bg-white">
+    <div className="w-full max-w-[800px]">
+      <div className="h-40 bg-gray-100 rounded mb-6 animate-pulse" />
+      <div className="h-6 bg-gray-200 rounded mb-3 animate-pulse w-2/3" />
+      <div className="mt-6 h-48 bg-gray-100 rounded animate-pulse" />
+    </div>
+  </div>
+);
+
+export const EndScreenSkeleton: React.FC = () => (
+  <div className="min-h-screen flex items-center justify-center p-6 bg-white">
+    <div className="w-full max-w-[600px] text-center">
+      <div className="h-32 bg-gray-100 rounded mb-6 animate-pulse mx-auto" />
+      <div className="h-6 bg-gray-200 rounded mb-3 animate-pulse w-1/2 mx-auto" />
+    </div>
+  </div>
+);
+
+export default EndSequenceSkeleton;
