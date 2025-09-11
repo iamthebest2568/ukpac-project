@@ -39,92 +39,116 @@ const FakeNewsTest = ({ sessionID, onNavigate }: FakeNewsTestProps) => {
   };
 
   return (
-    <div className="min-h-screen bg-white relative overflow-hidden">
-      {/* Background Image */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src="https://api.builder.io/api/v1/image/assets/TEMP/0842afec566676b980dab55ae09fcdf365869e23?width=2158"
-          alt="Transportation scene"
-          className="w-full h-full object-cover object-center"
-        />
+    <div 
+      className="relative w-full h-screen flex flex-col justify-center items-center"
+      style={{ 
+        width: '1080px',
+        height: '1920px', 
+        background: '#04D9F9'
+      }}
+    >
+      {/* Main content container matching Figma positioning */}
+      <div className="absolute w-full flex flex-col items-center" style={{ top: '1170px' }}>
+        {/* Title text - exactly matching Figma specs */}
+        <div 
+          className="text-center mb-8"
+          style={{ 
+            width: '1080px',
+            height: '364px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}
+        >
+          <h1 
+            className="font-prompt text-center leading-normal"
+            style={{ 
+              color: '#000000',
+              fontSize: '60px',
+              fontWeight: 600,
+              lineHeight: 'normal',
+              width: '100%'
+            }}
+          >
+            ตอนนี้มีข้อมูลที่ขัดแย้งกันของนโยบาย<br />
+            เช่น บ้างก็บอกว่าเก็บ 20 บ้างก็ 80<br />
+            บ้างก็บอกไปว่าไม่เก็บรถ 4 ที่นั่ง<br />
+            บ้างก็เก็บหมดคุณคิดว่าจะทำอย่างไร
+          </h1>
+        </div>
       </div>
 
-      {/* White Curved Overlay - positioned at top with bottom curve */}
-      <svg
-        className="absolute top-0 left-0 w-full z-10"
-        viewBox="0 0 1000 577"
-        preserveAspectRatio="none"
-        style={{ height: '57.7%' }}
-        aria-hidden="true"
-      >
-        <path d="M0,0 L1000,0 L1000,437 C750,517 250,517 0,437 Z" fill="#FFFFFF" />
-      </svg>
-
-      {/* Blue Background - bottom half */}
+      {/* Button container - positioned exactly as in Figma */}
       <div 
-        className="absolute bottom-0 left-0 w-full z-10"
+        className="absolute flex flex-col"
         style={{ 
-          height: '42.3%',
-          background: '#04D9F9'
+          width: '874px',
+          height: '266px',
+          left: '103px',
+          top: '1594px',
+          gap: '30px'
         }}
-      />
-
-      {/* Content */}
-      <div className="relative z-20 min-h-screen flex flex-col">
-        {/* Main Content Area */}
-        <div className="flex-1 flex flex-col justify-center items-center px-6 pt-8 pb-24">
-          
-          {/* Title Section - positioned in blue area */}
-          <div className="text-center mb-8 max-w-4xl mt-auto">
-            <h1 
-              className="font-prompt font-bold text-center leading-normal mb-8"
+      >
+        {/* Button 1: ไม่ทำอะไร ถึงเวลาก็รู้เอง */}
+        <div className="relative" style={{ width: '874px', height: '118px' }}>
+          <button
+            onClick={() => handleAction("ignore")}
+            className="absolute transition-all duration-200 hover:scale-105 hover:shadow-lg flex items-center justify-center"
+            style={{
+              width: '845px',
+              height: '118px',
+              left: '14px',
+              top: '0px',
+              borderRadius: '50px',
+              background: '#FFE000',
+              border: 'none',
+              cursor: 'pointer'
+            }}
+          >
+            <span 
+              className="font-prompt text-center"
               style={{ 
                 color: '#000000',
-                fontSize: 'clamp(24px, 5.6vw, 60px)',
-                lineHeight: '1.2'
+                fontSize: '50px',
+                fontWeight: 400,
+                letterSpacing: '0.4px',
+                lineHeight: 'normal'
               }}
             >
-              ตอนนี้มีข้อมูลที่ขัดแย้งกันของนโยบาย<br />
-              เช่น บ้างก็บอกว่าเก็บ 20 บ้างก็ 80<br />
-              บ้างก็บอกไปว่าไม่เก็บรถ 4 ที่นั่ง<br />
-              บ้างก็เก็บหมดคุณคิดว่าจะทำอย่างไร
-            </h1>
-          </div>
+              ไม่ทำอะไร ถึงเวลาก็รู้เอง
+            </span>
+          </button>
+        </div>
 
-          {/* Button Section */}
-          <div className="w-full max-w-[874px] space-y-6">
-            {/* Button 1 */}
-            <button
-              onClick={() => handleAction("ignore")}
-              className="w-full h-[118px] rounded-[50px] border transition-all duration-200 bg-[#FFE000] border-black hover:bg-black hover:scale-105 group flex items-center justify-center"
+        {/* Button 2: หาข่าวต่อ */}
+        <div className="relative" style={{ width: '874px', height: '118px' }}>
+          <button
+            onClick={() => handleAction("search")}
+            className="absolute transition-all duration-200 hover:scale-105 hover:shadow-lg flex items-center justify-center"
+            style={{
+              width: '845px',
+              height: '118px',
+              left: '14px',
+              top: '0px',
+              borderRadius: '50px',
+              background: '#FFE000',
+              border: 'none',
+              cursor: 'pointer'
+            }}
+          >
+            <span 
+              className="font-prompt text-center"
+              style={{ 
+                color: '#000000',
+                fontSize: '50px',
+                fontWeight: 400,
+                letterSpacing: '0.4px',
+                lineHeight: 'normal'
+              }}
             >
-              <span 
-                className="font-prompt font-normal text-black group-hover:text-[#FFE000] text-center"
-                style={{ 
-                  fontSize: 'clamp(20px, 4.6vw, 50px)',
-                  letterSpacing: '0.4px'
-                }}
-              >
-                ไม่ทำอะไร ถึงเวลาก็รู้เอง
-              </span>
-            </button>
-
-            {/* Button 2 */}
-            <button
-              onClick={() => handleAction("search")}
-              className="w-full h-[118px] rounded-[50px] border transition-all duration-200 bg-[#FFE000] border-black hover:bg-black hover:scale-105 group flex items-center justify-center"
-            >
-              <span 
-                className="font-prompt font-normal text-black group-hover:text-[#FFE000] text-center"
-                style={{ 
-                  fontSize: 'clamp(20px, 4.6vw, 50px)',
-                  letterSpacing: '0.4px'
-                }}
-              >
-                หาข่าวต่อ
-              </span>
-            </button>
-          </div>
+              หาข่าวต่อ
+            </span>
+          </button>
         </div>
       </div>
     </div>
