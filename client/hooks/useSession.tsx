@@ -63,7 +63,7 @@ export const useSession = (): UseSessionReturn => {
   const navigateToPage = (path: string, data?: any) => {
     // Route translation for legacy compatibility
     const routeMap: Record<string, string> = {
-      ask01: "/ask01",
+      ask01: "/ask02",
       ask02: "/ask02",
       ask02_2: "/ask02-2",
       ask04: "/ask04",
