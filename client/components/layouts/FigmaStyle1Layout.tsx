@@ -8,9 +8,9 @@ interface FigmaStyle1LayoutProps {
   /** Alt text for background image */
   backgroundAlt?: string;
   /** Title text to display */
-  title: string;
+  title?: string;
   /** Array of button configurations */
-  buttons: Array<{
+  buttons?: Array<{
     text: string;
     onClick: () => void;
     ariaLabel?: string;
@@ -26,6 +26,8 @@ interface FigmaStyle1LayoutProps {
   imageLoading?: "eager" | "lazy";
   /** Optional blue overlay for source selection style */
   useBlueOverlay?: boolean;
+  /** Optional children to render custom content inside the layout */
+  children?: React.ReactNode;
 }
 
 /**
