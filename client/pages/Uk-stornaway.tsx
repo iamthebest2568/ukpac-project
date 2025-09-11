@@ -274,8 +274,6 @@ export default function UkStornaway() {
       };
     }
 
-    // Prefetch /ask01 route chunk for smoother popup
-    import("../pages/Ask01Page").catch(() => {});
 
     const cleanup = ensureScriptAndInit();
     return () => {
