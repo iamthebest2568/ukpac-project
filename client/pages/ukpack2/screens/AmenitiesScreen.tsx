@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import CustomizationScreen from '../components/CustomizationScreen';
 import SelectionCard from '../components/SelectionCard';
 import CtaButton from '../components/CtaButton';
+import ProgressDots from '../components/ProgressDots';
 
 const IconAir = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -62,7 +63,7 @@ const AMENITIES = [
   { key: 'plug', label: 'ปลั๊กไฟ', icon: <IconPlug /> },
   { key: 'tv', label: 'ทีวี', icon: <IconTv /> },
   { key: 'cup', label: 'ที่วางแก้ว', icon: <IconCup /> },
-  { key: 'cam', label: 'กล้องวงจรปิด', icon: <IconCam /> },
+  { key: 'cam', label: 'กล้องวงจรปิ��', icon: <IconCam /> },
 ];
 
 const AmenitiesScreen: React.FC = () => {
