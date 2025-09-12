@@ -31,5 +31,3 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({ title, childr
 };
 
 export default CustomizationScreen;
-
-export default CustomizationScreen;
