@@ -97,6 +97,7 @@ const App = () => {
               <Route path="/" element={<IndexPage />} />
               <Route path="/ukpack1" element={<Navigate to="/ukpack1/ask02" replace />} />
               <Route path="/ukpack2" element={<AmenitiesScreen />} />
+              <Route path="/project2/chassis" element={<ChassisScreen />} />
               <Route path="/test" element={<TestPage />} />
 
               {/* Survey (Ask01 removed) */}
