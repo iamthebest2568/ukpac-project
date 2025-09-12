@@ -10,7 +10,7 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 const TestPage = lazy(() => import("./TestPage"));
 
 // Main entry
-const IndexPage = lazy(() => import("./pages/ukpack1/Index"));
+const IndexPage = lazy(() => import("./pages/Index"));
 
 // Survey pages (Ask01 removed)
 const Ask02Page = lazy(() => import("./pages/ukpack1/Ask02Page"));
