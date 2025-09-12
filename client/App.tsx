@@ -105,6 +105,7 @@ const App = () => {
               <Route path="/ukpack2/seating" element={<SeatingScreen />} />
               <Route path="/ukpack2/payment" element={<PaymentScreen />} />
               <Route path="/ukpack2/doors" element={<DoorScreen />} />
+              <Route path="/ukpack2/design" element={<DesignScreen />} />
               <Route path="/test" element={<TestPage />} />
 
               {/* Survey (Ask01 removed) */}
