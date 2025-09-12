@@ -4,12 +4,18 @@ interface CustomizationScreenProps {
   title: string;
   children?: React.ReactNode;
   footerContent?: React.ReactNode;
+  onBack?: () => void;
 }
 
-const CustomizationScreen: React.FC<CustomizationScreenProps> = ({ title, children, footerContent }) => {
+const CustomizationScreen: React.FC<CustomizationScreenProps> = ({ title, children, footerContent, onBack }) => {
   return (
     <div className="min-h-screen flex flex-col bg-[#000d59] text-white">
-      <header className="px-6 py-4 border-b border-[#081042]">
+      <header className="px-6 py-4 border-b border-[#081042] flex items-center gap-4">
+        {onBack && (
+          <button onClick={onBack} aria-label="Back" className="p-2 rounded-md bg-white/5 text-white">
+            ←
+          </button>
+        )}
         <h1 className="text-2xl font-prompt font-semibold">{title}</h1>
       </header>
 
@@ -23,5 +29,7 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({ title, childr
     </div>
   );
 };
+
+export default CustomizationScreen;
 
 export default CustomizationScreen;
