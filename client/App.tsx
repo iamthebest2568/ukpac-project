@@ -4,6 +4,7 @@ import { Suspense, lazy, useEffect } from "react";
 import RouteTransition from "./components/shared/RouteTransition";
 import SuspenseFallback from "./components/shared/SuspenseFallback";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BusDesignProvider } from "./pages/ukpack2/context/BusDesignContext";
 
 // Minimal set of pages (dashboard/backend removed)
 const NotFound = lazy(() => import("./pages/NotFound"));
@@ -104,7 +105,8 @@ const App = () => {
         <Suspense fallback={<SuspenseFallback />}>
           {/* Smooth client-side route transitions without changing logic */}
           <RouteTransition>
-            <Routes>
+            <BusDesignProvider>
+              <Routes>
               {/* Main entry */}
               <Route path="/" element={<IndexPage />} />
               <Route path="/ukpack1" element={<Navigate to="/ukpack1/ask02" replace />} />
@@ -279,6 +281,7 @@ const App = () => {
               {/* 404 page */}
               <Route path="*" element={<NotFound />} />
             </Routes>
+            </BusDesignProvider>
           </RouteTransition>
         </Suspense>
       </Layout>
