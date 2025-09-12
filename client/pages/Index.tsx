@@ -25,7 +25,7 @@ const IndexPage = () => {
                   role="button"
                   tabIndex={0}
                   data-card-id={`card-${i}`}
-                  aria-label={`Card ${i} (แก้ไขเนื้อหาและลิงก์ภายหลัง)`}
+                  aria-label={`Card ${i} (แก้ไข���นื้อหาและลิงก์ภายหลัง)`}
                   className="group cursor-pointer rounded-lg border border-gray-200 bg-white shadow-sm hover:shadow-md focus:shadow-md transition p-6 flex flex-col items-start gap-4"
                   onClick={() => {
                     // eslint-disable-next-line no-console
@@ -38,9 +38,6 @@ const IndexPage = () => {
                     }
                   }}
                 >
-                  {i === 1 && (
-                    <a href="/ask02" className="absolute inset-0 z-10" aria-label="Open Mini game 1" />
-                  )}
 
                   <div className="flex items-center justify-center w-full">
                     <div className="w-full h-40 md:h-48 bg-gray-50 rounded-md flex items-center justify-center text-gray-300">
