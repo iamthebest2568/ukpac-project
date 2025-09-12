@@ -1,5 +1,6 @@
 import React from "react";
 import { useSession } from "../hooks/useSession";
+import { Link } from "react-router-dom";
 
 const IndexPage = () => {
   const { navigateToPage } = useSession();
@@ -48,7 +49,7 @@ const IndexPage = () => {
 
                 <div className="w-full">
                   <h2 className="font-prompt font-semibold text-[#000D59] text-xl">Card {i}</h2>
-                  <p className="mt-2 text-sm text-gray-600">คำอธิบายสั้น ๆ ของการ์ดนี้ — แก้ไขเนื้อหาและลิงก์ภายหลัง</p>
+                  <p className="mt-2 text-sm text-gray-600">คำอธ��บายสั้น ๆ ของการ์ดนี้ — แก้ไขเนื้อหาและลิงก์ภายหลัง</p>
                 </div>
 
                 <div className="mt-auto w-full flex justify-end">
