@@ -133,143 +133,116 @@ const Step3_ThankYou = ({
   };
 
   return (
-    <div className="min-h-screen bg-white flex justify-center">
-      <div className="w-full max-w-[390px] md:max-w-[420px] lg:max-w-[390px] min-h-screen bg-white overflow-hidden relative">
-        {/* Background Image with Overlay */}
-        <div className="absolute inset-0">
-          <img
-            src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F946833431d4b46a0bde1c7d1bc32f67a"
-            alt="ขอบคุณสำหรับการมีส่วนร่วม"
-            className="w-full h-full object-cover object-center"
-            style={{ minWidth: "100%", aspectRatio: "2/3" }}
-            loading="lazy"
-            decoding="async"
-          />
-          <div
-            className="absolute inset-0"
-            style={{
-              background: "rgba(0, 0, 0, 0.90)",
-            }}
-          />
-        </div>
+    <FigmaStyle1Layout
+      backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Feb2f14480a1349a6bc6b76594e26c7b5?format=webp&width=2160"
+      backgroundAlt="ขอบคุณสำหรับการมีส่วนร่วม"
+      title={`ขอบคุณที่ร่วมเป็นส่วนหนึ่ง\nในการพัฒนาเมือง`}
+      className="source-selection-page endseq-thankyou-page"
+      imageLoading="eager"
+    >
+      <div className="flex-1 flex flex-col justify-center items-center px-8" style={{ paddingTop: '4%', paddingBottom: '18%' }}>
+        <div className="w-full max-w-[325px] text-center">
+          <p className="font-prompt text-[#000D59] mb-6" style={{ fontSize: 'clamp(16px, 3.8vw, 18px)' }}>
+            เราจะประกาศรางวัลทาง xxxxxxxxxxxxxxxxxx วันที่ xxxx xxxxx xxxx
+          </p>
 
-        {/* Main Content */}
-        <div className="relative z-10 flex flex-col min-h-screen">
-          {/* Content Area */}
-          <div className="flex-1 flex flex-col justify-center items-center px-8">
-            {/* Content Container */}
-            <div className="w-full max-w-[325px]">
-              {/* Title */}
-              <div className="text-center mb-6">
-                <h1 className="text-white text-center font-prompt text-[30px] font-normal leading-normal">
-                  ขอบคุณที่ร่วมเป็นส่วนหนึ่ง
-                  <br />
-                  ในการพัฒนาเมือง
-                </h1>
-                <p className="text-white text-center font-prompt mt-4">
-                  เราจะประกาศรางวัลทาง xxxxxxxxxxxxxxxxxx วันที่ xxxx xxxxx xxxx
-                </p>
-              </div>
-
-              {/* Share Trigger Button (opens popup) */}
-              <div className="mb-4">
-                <Dialog>
-                  <DialogTrigger asChild>
-                    <button
-                      className="figma-style1-button"
-                      aria-label="เปิดหน้าต่างแชร์"
-                    >
-                      <span className="figma-style1-button-text">
-                        แชร์เกมนี้ให้เพื่อน
-                      </span>
-                    </button>
-                  </DialogTrigger>
-
-                  <DialogContent className="p-6 bg-white rounded-lg">
-                    <DialogTitle className="font-prompt text-lg text-black mb-3">
-                      แชร์เกมนี้
-                    </DialogTitle>
-                    <DialogDescription className="text-sm text-gray-600 mb-4">
-                      เลือกแพลตฟอร์มที่ต้องการแชร์
-                    </DialogDescription>
-
-                    <div className="grid grid-cols-2 gap-3 mb-4">
-                      <button
-                        className="figma-style1-button"
-                        onClick={handleShareFacebook}
-                        aria-label="แชร์ไปยัง Facebook"
-                      >
-                        Facebook
-                      </button>
-                      <button
-                        className="figma-style1-button"
-                        onClick={handleShareX}
-                        aria-label="แชร์ไปยัง X"
-                      >
-                        X
-                      </button>
-                      <button
-                        className="figma-style1-button"
-                        onClick={handleShareLine}
-                        aria-label="แชร์ไปยัง LINE"
-                      >
-                        LINE
-                      </button>
-                      <button
-                        className="figma-style1-button"
-                        onClick={handleShareWhatsApp}
-                        aria-label="แชร์ไปยัง WhatsApp"
-                      >
-                        WhatsApp
-                      </button>
-                      <button
-                        className="figma-style1-button"
-                        onClick={handleShareMessenger}
-                        aria-label="แชร์ไปยัง Messenger"
-                      >
-                        Messenger
-                      </button>
-                      <button
-                        className="figma-style1-button"
-                        onClick={handleShareLinkedIn}
-                        aria-label="แชร์ไปยัง LinkedIn"
-                      >
-                        LinkedIn
-                      </button>
-                      <button
-                        className="figma-style1-button col-span-2"
-                        onClick={handleCopyLink}
-                        aria-label="คัดลอกลิงก์"
-                      >
-                        {copied ? "คัดลอกแล้ว" : "คัดลอกลิงก์"}
-                      </button>
-                    </div>
-
-                    <div className="mt-2">
-                      <DialogClose asChild>
-                        <button className="figma-style1-button--secondary w-full">
-                          <span className="figma-style1-button-text">ปิด</span>
-                        </button>
-                      </DialogClose>
-                    </div>
-                  </DialogContent>
-                </Dialog>
-              </div>
-
-              {/* Finish Button */}
-              <div>
+          {/* Share Trigger Button (opens popup) */}
+          <div className="mb-4">
+            <Dialog>
+              <DialogTrigger asChild>
                 <button
-                  onClick={handleFinish}
-                  className="figma-style1-button--secondary"
+                  className="figma-style1-button"
+                  aria-label="เปิดหน้าต่างแชร์"
                 >
-                  <span className="figma-style1-button-text">จบเกม</span>
+                  <span className="figma-style1-button-text">
+                    แชร์เกมนี้ให้เพื่อน
+                  </span>
                 </button>
-              </div>
-            </div>
+              </DialogTrigger>
+
+              <DialogContent className="p-6 bg-white rounded-lg">
+                <DialogTitle className="font-prompt text-lg text-black mb-3">
+                  แชร์เกมนี้
+                </DialogTitle>
+                <DialogDescription className="text-sm text-gray-600 mb-4">
+                  เลือกแพลตฟอร์มที่ต้องการแชร์
+                </DialogDescription>
+
+                <div className="grid grid-cols-2 gap-3 mb-4">
+                  <button
+                    className="figma-style1-button"
+                    onClick={handleShareFacebook}
+                    aria-label="แชร์ไปยัง Facebook"
+                  >
+                    Facebook
+                  </button>
+                  <button
+                    className="figma-style1-button"
+                    onClick={handleShareX}
+                    aria-label="แชร์ไปยัง X"
+                  >
+                    X
+                  </button>
+                  <button
+                    className="figma-style1-button"
+                    onClick={handleShareLine}
+                    aria-label="แชร์ไปยัง LINE"
+                  >
+                    LINE
+                  </button>
+                  <button
+                    className="figma-style1-button"
+                    onClick={handleShareWhatsApp}
+                    aria-label="แชร์ไปยัง WhatsApp"
+                  >
+                    WhatsApp
+                  </button>
+                  <button
+                    className="figma-style1-button"
+                    onClick={handleShareMessenger}
+                    aria-label="แชร์ไปยัง Messenger"
+                  >
+                    Messenger
+                  </button>
+                  <button
+                    className="figma-style1-button"
+                    onClick={handleShareLinkedIn}
+                    aria-label="แชร์ไปยัง LinkedIn"
+                  >
+                    LinkedIn
+                  </button>
+                  <button
+                    className="figma-style1-button col-span-2"
+                    onClick={handleCopyLink}
+                    aria-label="คัดลอกลิงก์"
+                  >
+                    {copied ? "คัดลอกแล้ว" : "คัดลอกลิงก์"}
+                  </button>
+                </div>
+
+                <div className="mt-2">
+                  <DialogClose asChild>
+                    <button className="figma-style1-button--secondary w-full">
+                      <span className="figma-style1-button-text">ปิด</span>
+                    </button>
+                  </DialogClose>
+                </div>
+              </DialogContent>
+            </Dialog>
+          </div>
+
+          {/* Finish Button */}
+          <div>
+            <button
+              onClick={handleFinish}
+              className="figma-style1-button--secondary"
+            >
+              <span className="figma-style1-button-text">จบเกม</span>
+            </button>
           </div>
         </div>
       </div>
-    </div>
+    </FigmaStyle1Layout>
   );
 };
 
