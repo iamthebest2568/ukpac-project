@@ -33,7 +33,7 @@ const DoorScreen: React.FC = () => {
   return (
     <CustomizationScreen
       title="ปรับแต่งรถเมล์ของคุณ"
-      footerContent={<div className="flex justify-end"><CtaButton text="ถัดไป" onClick={() => console.log('doors next', { doorChoice, hasRamp, highLow })} /></div>}
+      footerContent={<div className="flex justify-end"><CtaButton text="ถัดไป" onClick={() => navigate('/ukpack2/design')} /></div>}
     >
       <div className="space-y-6">
         <div className="flex items-center justify-center">
