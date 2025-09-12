@@ -93,74 +93,188 @@ const Step2_Form = ({
     <FigmaStyle1Layout
       backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Feb2f14480a1349a6bc6b76594e26c7b5?format=webp&width=2160"
       backgroundAlt="กรอกข้อมูลรับรางวัล"
-      title="กรอกข้อมูล เพื่อรับรางวัล"
       className="source-selection-page endseq-form-page"
       imageLoading="eager"
     >
-      {/* Form Container */}
-      <div className="flex-1 flex flex-col justify-center items-center px-6 md:px-8" style={{ paddingTop: '4%', paddingBottom: '18%' }}>
-        <div className="w-full max-w-[336px]">
-          {/* Form Section */}
-          <div className="space-y-5 mb-12">
-            {/* Name Input */}
-            <div>
+      {/* Title positioned as in Figma */}
+      <div className="absolute w-full text-center" style={{ top: '59.7%' }}>
+        <h1
+          className="font-prompt text-center leading-normal"
+          style={{
+            color: '#000D59',
+            fontSize: 'clamp(24px, 5.6vw, 60px)',
+            fontWeight: 700,
+            lineHeight: 'normal'
+          }}
+        >
+          กรอกข้อมูล เพื่อรับรางวัล
+        </h1>
+      </div>
+
+      {/* Form inputs positioned as in Figma */}
+      <div className="absolute w-full flex flex-col items-center" style={{ top: '66.4%' }}>
+        <div className="flex flex-col" style={{ width: '82.4%', maxWidth: '890px', gap: 'clamp(20px, 1.56vw, 30px)' }}>
+          {/* Name Input with icon and divider */}
+          <div className="relative">
+            <div
+              className="bg-white border-[5px] rounded-[20px] flex items-center"
+              style={{
+                borderColor: errors.name ? '#ef4444' : '#000D59',
+                height: 'clamp(60px, 5.9vw, 114px)',
+                width: '100%'
+              }}
+            >
+              {/* Person Icon */}
+              <div className="flex items-center justify-center" style={{ width: 'clamp(60px, 5.6vw, 108px)' }}>
+                <img
+                  src="https://api.builder.io/api/v1/image/assets/TEMP/43c5afa8ad1bbf3282039603c53e3f49565612bc?width=120"
+                  alt=""
+                  style={{
+                    width: 'clamp(30px, 2.8vw, 60px)',
+                    height: 'clamp(32px, 2.9vw, 63px)'
+                  }}
+                />
+              </div>
+
+              {/* Vertical Divider */}
+              <div
+                className="bg-[#000D59]"
+                style={{
+                  width: '5px',
+                  height: 'clamp(41px, 3.8vw, 82px)',
+                  margin: '0 clamp(10px, 1vw, 20px)'
+                }}
+              />
+
+              {/* Input */}
               <input
                 id="name"
                 type="text"
                 value={formData.name}
                 onChange={(e) => handleInputChange("name", e.target.value)}
-                className={`w-full h-[50px] rounded-[10px] bg-white border ${errors.name ? "border-red-500" : "border-[#E4E9F2]"} px-4 text-black font-prompt text-base placeholder-gray-400 focus:outline-none focus:border-[#EFBA31]`}
-                placeholder="ชื่อ"
+                className="flex-1 bg-transparent border-none outline-none font-prompt placeholder-gray-500"
+                placeholder="ชื่อ-นามสกุล"
+                style={{
+                  fontSize: 'clamp(16px, 3.7vw, 40px)',
+                  fontWeight: 300,
+                  color: 'rgba(0, 0, 0, 0.7)',
+                  paddingRight: 'clamp(10px, 1vw, 20px)'
+                }}
               />
-              {errors.name && (
-                <div className="text-red-400 text-sm mt-1 ml-2">
-                  {errors.name}
-                </div>
-              )}
             </div>
+            {errors.name && (
+              <div className="text-red-400 text-sm mt-1 ml-2">
+                {errors.name}
+              </div>
+            )}
+          </div>
 
-            {/* Phone Input */}
-            <div>
+          {/* Phone Input with icon and divider */}
+          <div className="relative">
+            <div
+              className="bg-white border-[5px] rounded-[20px] flex items-center"
+              style={{
+                borderColor: errors.phone ? '#ef4444' : '#000D59',
+                height: 'clamp(60px, 5.9vw, 114px)',
+                width: '100%'
+              }}
+            >
+              {/* Phone Icon */}
+              <div className="flex items-center justify-center" style={{ width: 'clamp(60px, 5.6vw, 108px)' }}>
+                <img
+                  src="https://api.builder.io/api/v1/image/assets/TEMP/3350235bd026037b65d1706334d2624c4ede799b?width=78"
+                  alt=""
+                  style={{
+                    width: 'clamp(20px, 1.8vw, 39px)',
+                    height: 'clamp(35px, 3.2vw, 69px)'
+                  }}
+                />
+              </div>
+
+              {/* Vertical Divider */}
+              <div
+                className="bg-[#000D59]"
+                style={{
+                  width: '5px',
+                  height: 'clamp(41px, 3.8vw, 82px)',
+                  margin: '0 clamp(10px, 1vw, 20px)'
+                }}
+              />
+
+              {/* Input */}
               <input
                 id="phone"
                 type="tel"
                 value={formData.phone}
                 onChange={(e) => handleInputChange("phone", e.target.value)}
-                className={`w-full h-[50px] rounded-[10px] bg-white border ${errors.phone ? "border-red-500" : "border-[#E4E9F2]"} px-4 text-black font-prompt text-base placeholder-gray-400 focus:outline-none focus:border-[#EFBA31]`}
+                className="flex-1 bg-transparent border-none outline-none font-prompt placeholder-gray-500"
                 placeholder="เบอร์โทรศัพท์"
+                style={{
+                  fontSize: 'clamp(16px, 3.7vw, 40px)',
+                  fontWeight: 300,
+                  color: 'rgba(0, 0, 0, 0.7)',
+                  paddingRight: 'clamp(10px, 1vw, 20px)'
+                }}
               />
-              {errors.phone && (
-                <div className="text-red-400 text-sm mt-1 ml-2">
-                  {errors.phone}
-                </div>
-              )}
             </div>
+            {errors.phone && (
+              <div className="text-red-400 text-sm mt-1 ml-2">
+                {errors.phone}
+              </div>
+            )}
           </div>
+        </div>
+      </div>
 
-          {/* Buttons */}
-          <div className="space-y-4">
-            {/* Submit Button */}
+      {/* Buttons positioned as in Figma */}
+      <div className="absolute w-full flex flex-col items-center" style={{ top: '83%' }}>
+        <div className="flex flex-col" style={{ width: '80.9%', maxWidth: '874px', gap: 'clamp(20px, 1.56vw, 30px)' }}>
+          <div className="relative flex justify-center">
             <button
               onClick={handleNext}
-              className="figma-style1-button"
-              aria-describedby="submit-button-description"
+              className="transition-all duration-200 bg-[#FFE000] hover:scale-105 hover:shadow-lg hover:bg-black active:bg-black group flex items-center justify-center"
+              style={{
+                width: 'clamp(300px, 78.2vw, 845px)',
+                height: 'clamp(50px, 6.1vw, 118px)',
+                borderRadius: '50px',
+                border: 'none'
+              }}
             >
               <span
-                className="figma-style1-button-text"
-                id="submit-button-description"
+                className="font-prompt text-center text-black group-hover:text-[#FFE000] group-active:text-[#FFE000]"
+                style={{
+                  fontSize: 'clamp(18px, 4.6vw, 50px)',
+                  fontWeight: 400,
+                  letterSpacing: '0.4px',
+                  lineHeight: 'normal'
+                }}
               >
-                ส่งเพื่อลุ้นรับรางวัล
+                ลุ้นรับรางวัล
               </span>
             </button>
+          </div>
 
-            {/* Back Button */}
+          <div className="relative flex justify-center">
             <button
               onClick={onBack}
-              className="figma-style1-button--secondary"
-              aria-label="กลับไปก่อนหน้านี้"
+              className="transition-all duration-200 bg-[#FFE000] hover:scale-105 hover:shadow-lg hover:bg-black active:bg-black group flex items-center justify-center"
+              style={{
+                width: 'clamp(300px, 78.2vw, 845px)',
+                height: 'clamp(50px, 6.1vw, 118px)',
+                borderRadius: '50px',
+                border: 'none'
+              }}
             >
-              <span className="figma-style1-button-text">
-                กลับไปก่อนหน้านี้
+              <span
+                className="font-prompt text-center text-black group-hover:text-[#FFE000] group-active:text-[#FFE000]"
+                style={{
+                  fontSize: 'clamp(18px, 4.6vw, 50px)',
+                  fontWeight: 400,
+                  letterSpacing: '0.4px',
+                  lineHeight: 'normal'
+                }}
+              >
+                ไม่
               </span>
             </button>
           </div>
