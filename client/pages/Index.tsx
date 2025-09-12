@@ -25,7 +25,7 @@ const IndexPage = () => {
                   role="button"
                   tabIndex={0}
                   data-card-id={`card-${i}`}
-                  aria-label={`Card ${i} (แก้ไข���นื้อหาและลิงก์ภายหลัง)`}
+                  aria-label={`Card ${i} (แก้ไขเนื้อหาและลิงก์ภายหลัง)`}
                   className="group cursor-pointer rounded-lg border border-gray-200 bg-white shadow-sm hover:shadow-md focus:shadow-md transition p-6 flex flex-col items-start gap-4"
                   onClick={() => {
                     // eslint-disable-next-line no-console
@@ -47,7 +47,7 @@ const IndexPage = () => {
 
                   <div className="w-full">
                     <h2 className="font-prompt font-semibold text-[#000D59] text-xl">Card {i}</h2>
-                    <p className="mt-2 text-sm text-gray-600">{i === 1 ? 'Link to Mini game 1' : 'คำอธิบายสั้น ๆ ของการ์ดนี้ — แก้ไขเนื้อหาและลิงก์ภายหลัง'}</p>
+                    <p className="mt-2 text-sm text-gray-600">{i === 1 ? 'Link to Mini game 1' : i === 2 ? 'Link to Game Bus' : 'คำอธิบายสั้น ๆ ของการ์ดนี้ — แก้ไขเนื้อหาและลิงก์ภายหลัง'}</p>
                   </div>
 
                   <div className="mt-auto w-full flex justify-end">
@@ -56,14 +56,24 @@ const IndexPage = () => {
                 </div>
               );
 
-              // Wrap the first card in a router Link so it navigates client-side
-              return i === 1 ? (
-                <Link key={i} to="/ukpack1/ask02" aria-label="Open Mini game 1">
-                  {card}
-                </Link>
-              ) : (
-                <div key={i}>{card}</div>
-              );
+              // Wrap the first and second card in a router Link so they navigate client-side
+              if (i === 1) {
+                return (
+                  <Link key={i} to="/ukpack1/ask02" aria-label="Open Mini game 1">
+                    {card}
+                  </Link>
+                );
+              }
+
+              if (i === 2) {
+                return (
+                  <Link key={i} to="/ukpack2" aria-label="Open Game Bus">
+                    {card}
+                  </Link>
+                );
+              }
+
+              return <div key={i}>{card}</div>;
             })}
           </div>
         </main>
