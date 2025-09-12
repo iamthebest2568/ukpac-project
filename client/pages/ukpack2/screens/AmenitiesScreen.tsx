@@ -80,7 +80,11 @@ const AmenitiesScreen: React.FC = () => {
       <div className="space-y-6">
         <div className="w-full h-48 bg-[#081042] rounded-md flex items-center justify-center text-sm text-gray-300">Bus image preview</div>
 
-        <div className="w-full h-8 bg-[#081042] rounded-md flex items-center justify-center text-sm text-gray-300">Progress: [Step 3 of 5]</div>
+        <div className="w-full flex items-center justify-center">
+          <div className="bg-transparent rounded-md p-2">
+            <ProgressDots total={5} active={3} />
+          </div>
+        </div>
 
         <h2 className="text-xl font-prompt font-semibold">ความสะดวกสบาย</h2>
 
