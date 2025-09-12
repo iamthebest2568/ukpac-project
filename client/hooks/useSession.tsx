@@ -102,7 +102,13 @@ export const useSession = (): UseSessionReturn => {
     }
 
     // Translate legacy routes to new paths
-    const newPath = routeMap[path] || path;
+    let newPath = routeMap[path] || path;
+
+    // If the path is absolute and not already under /ukpack1, prefix it so all internal navigation
+    // points to the ukpack1 project paths.
+    if (typeof newPath === 'string' && newPath.startsWith('/') && !newPath.startsWith('/ukpack1')) {
+      newPath = `/ukpack1${newPath}`;
+    }
 
     // Navigate with session ID
     const searchParams = new URLSearchParams();
