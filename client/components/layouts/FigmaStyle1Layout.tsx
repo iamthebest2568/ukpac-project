@@ -119,18 +119,18 @@ const FigmaStyle1Layout = ({
           <div
             className={`figma-style1-content-area ${!title ? "justify-center" : ""}`}
           >
+            {/* Title (always rendered if provided) */}
+            {title && (
+              <div className="figma-style1-title-container">
+                <h1 className={`figma-style1-title ${isSourceSelection ? 'figma-style1-title--black' : ''}`}>{title}</h1>
+              </div>
+            )}
+
             {/* If children are provided, render them (useful for custom screens) */}
             {children ? (
               <>{children}</>
             ) : (
               <>
-                {/* Title */}
-                {title && (
-                  <div className="figma-style1-title-container">
-                    <h1 className={`figma-style1-title ${isSourceSelection ? 'figma-style1-title--black' : ''}`}>{title}</h1>
-                  </div>
-                )}
-
                 {/* Buttons */}
                 <div className="figma-style1-button-container">
                   {buttons?.map((button, index) => (
