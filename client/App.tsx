@@ -40,6 +40,10 @@ const SummaryScreen = lazy(() => import("./pages/ukpack2/screens/SummaryScreen")
 const FeedbackScreen = lazy(() => import("./pages/ukpack2/screens/FeedbackScreen"));
 const InfoScreen = lazy(() => import("./pages/ukpack2/screens/InfoScreen"));
 const SubmitScreen = lazy(() => import("./pages/ukpack2/screens/SubmitScreen"));
+const ThankYouScreen = lazy(() => import("./pages/ukpack2/screens/ThankYouScreen"));
+const FormScreen = lazy(() => import("./pages/ukpack2/screens/FormScreen"));
+const ConfirmationScreen = lazy(() => import("./pages/ukpack2/screens/ConfirmationScreen"));
+const EndScreen = lazy(() => import("./pages/ukpack2/screens/EndScreen"));
 
 // Layout component with accessibility features
 import FakeNewsSkeleton from './components/shared/skeletons/FakeNewsSkeleton';
@@ -57,7 +61,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => (
         className="skip-link sr-only focus:not-sr-only absolute top-2 left-2 z-50 bg-yellow-400 text-black px-2 py-1 rounded"
         aria-label="ข้ามไปยังเนื้อหาหลัก"
       >
-        ข้ามไปยังเนื้อหาหลัก
+        ข���ามไปยังเนื้อหาหลัก
       </a>
       <main id="main-content" role="main" className="w-full">
         {children}
