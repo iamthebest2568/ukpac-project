@@ -47,7 +47,7 @@ const IndexPage = () => {
 
                   <div className="w-full">
                     <h2 className="font-prompt font-semibold text-[#000D59] text-xl">Card {i}</h2>
-                    <p className="mt-2 text-sm text-gray-600">{i === 1 ? 'Link to Mini game 1' : i === 2 ? 'Link to Game Bus' : 'คำอธิบายสั้น ๆ ของการ์ดนี้ — แก้ไขเนื้อหาและลิงก์ภายหลัง'}</p>
+                    <p className="mt-2 text-sm text-gray-600">{i === 1 ? 'Link to ukpack1' : i === 2 ? 'Link to Game Bus' : 'คำอธิบายสั้น ๆ ของการ์ดนี้ — แก้ไขเนื้อหาและลิงก์ภายหลัง'}</p>
                   </div>
 
                   <div className="mt-auto w-full flex justify-end">
@@ -59,7 +59,7 @@ const IndexPage = () => {
               // Wrap the first and second card in a router Link so they navigate client-side
               if (i === 1) {
                 return (
-                  <Link key={i} to="/ukpack1/ask02" aria-label="Open Mini game 1">
+                  <Link key={i} to="/ukpack1" aria-label="Open ukpack1">
                     {card}
                   </Link>
                 );
