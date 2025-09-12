@@ -10,11 +10,18 @@ const SubmitScreen: React.FC = () => {
   const [route, setRoute] = useState('');
   const [area, setArea] = useState('');
 
-  const handleFinish = () => {
+  const { state, submitDesignToFirebase } = useBusDesign();
+
+  const handleFinish = async () => {
     try {
       const submitData = { interval, route, area };
       sessionStorage.setItem('design.submit', JSON.stringify(submitData));
-    } catch (e) {}
+      // also merge into context state.serviceInfo
+      // call firebase submission
+      await submitDesignToFirebase({ ...state, serviceInfo: { routeName: route, area, frequency: interval } });
+    } catch (e) {
+      // ignore
+    }
     navigate('/ukpack2/thank-you');
   };
 
