@@ -227,8 +227,8 @@ const Step2_Form = ({
       </div>
 
       {/* Buttons positioned as in Figma */}
-      <div className="absolute w-full flex flex-col items-center" style={{ top: '86%' }}>
-        <div className="flex flex-col" style={{ width: '80.9%', maxWidth: '874px', gap: 'clamp(20px, 1.56vw, 30px)' }}>
+      <div className="absolute w-full flex flex-col items-center" style={{ top: '84%', paddingBottom: '2.5rem' }}>
+        <div className="flex flex-col" style={{ width: '80.9%', maxWidth: '874px', gap: 'clamp(22px, 2.2vw, 36px)' }}>
           <div className="relative flex justify-center">
             <button
               onClick={handleNext}
