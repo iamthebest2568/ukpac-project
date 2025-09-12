@@ -1,0 +1,78 @@
+import React, { useState } from 'react';
+import CustomizationScreen from '../../ukpack2/components/CustomizationScreen';
+import SelectionCard from '../../ukpack2/components/SelectionCard';
+import CtaButton from '../../ukpack2/components/CtaButton';
+import ProgressDots from '../../ukpack2/components/ProgressDots';
+
+const IconCash = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="2" y="7" width="20" height="10" rx="2" stroke="currentColor" strokeWidth="1.5" />
+    <path d="M12 10v4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+  </svg>
+);
+const IconScan = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="3" y="3" width="7" height="7" stroke="currentColor" strokeWidth="1.5" />
+    <rect x="14" y="14" width="7" height="7" stroke="currentColor" strokeWidth="1.5" />
+    <path d="M21 3v4M3 21v-4M21 21v-4M3 3v4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+  </svg>
+);
+const IconTap = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="2" y="6" width="20" height="12" rx="2" stroke="currentColor" strokeWidth="1.5" />
+    <path d="M7 3v3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+  </svg>
+);
+const IconQr = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="3" y="3" width="6" height="6" stroke="currentColor" strokeWidth="1.5" />
+    <rect x="15" y="3" width="6" height="6" stroke="currentColor" strokeWidth="1.5" />
+    <rect x="3" y="15" width="6" height="6" stroke="currentColor" strokeWidth="1.5" />
+  </svg>
+);
+
+const OPTIONS = [
+  { key: 'cash', label: 'เงินสด', icon: <IconCash /> },
+  { key: 'scan', label: 'สแกนจ่าย', icon: <IconScan /> },
+  { key: 'tap', label: 'แตะบัตร', icon: <IconTap /> },
+  { key: 'qr', label: 'QR/สแกน', icon: <IconQr /> },
+];
+
+const PaymentScreen: React.FC = () => {
+  const [selected, setSelected] = useState<string[]>(['เงินสด']);
+
+  const toggle = (label: string) => {
+    setSelected((prev) => (prev.includes(label) ? prev.filter((l) => l !== label) : [...prev, label]));
+  };
+
+  return (
+    <CustomizationScreen
+      title="ปรับแต่งรถเมล์ของคุณ"
+      footerContent={<div className="flex justify-end"><CtaButton text="ถัดไป" onClick={() => console.log('payment next', selected)} /></div>}
+    >
+      <div className="space-y-6">
+        <div className="flex items-center justify-center">
+          <ProgressDots total={5} currentStep={4} />
+        </div>
+
+        <div className="w-full h-48 bg-[#081042] rounded-md flex items-center justify-center text-sm text-gray-300">Bus image preview</div>
+
+        <h2 className="text-xl font-prompt font-semibold">การจ่ายเงิน</h2>
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {OPTIONS.map((o) => (
+            <SelectionCard
+              key={o.key}
+              icon={o.icon}
+              label={o.label}
+              isSelected={selected.includes(o.label)}
+              onClick={() => toggle(o.label)}
+            />
+          ))}
+        </div>
+      </div>
+    </CustomizationScreen>
+  );
+};
+
+export default PaymentScreen;
