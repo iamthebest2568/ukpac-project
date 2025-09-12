@@ -93,9 +93,9 @@ const App = () => {
           <RouteTransition>
             <Routes>
               {/* Main entry */}
-              <Route path="/ukpack1" element={<IndexPage />} />
+              <Route path="/" element={<IndexPage />} />
+              <Route path="/ukpack1" element={<Navigate to="/ukpack1/ask02" replace />} />
               <Route path="/ukpack2" element={<AmenitiesScreen />} />
-              <Route path="/" element={<Navigate to="/ukpack1" replace />} />
               <Route path="/test" element={<TestPage />} />
 
               {/* Survey (Ask01 removed) */}
