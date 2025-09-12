@@ -112,8 +112,8 @@ const Step2_Form = ({
       </div>
 
       {/* Form inputs positioned as in Figma */}
-      <div className="absolute w-full flex flex-col items-center" style={{ top: '66.4%' }}>
-        <div className="flex flex-col" style={{ width: '82.4%', maxWidth: '890px', gap: 'clamp(20px, 1.56vw, 30px)' }}>
+      <div className="absolute w-full flex flex-col items-center" style={{ top: '64.5%' }}>
+        <div className="flex flex-col" style={{ width: '82.4%', maxWidth: '890px', gap: 'clamp(20px, 1.56vw, 30px)', marginBottom: '2.5rem' }}>
           {/* Name Input with icon and divider */}
           <div className="relative">
             <div
@@ -227,7 +227,7 @@ const Step2_Form = ({
       </div>
 
       {/* Buttons positioned as in Figma */}
-      <div className="absolute w-full flex flex-col items-center" style={{ top: '83%' }}>
+      <div className="absolute w-full flex flex-col items-center" style={{ top: '86%' }}>
         <div className="flex flex-col" style={{ width: '80.9%', maxWidth: '874px', gap: 'clamp(20px, 1.56vw, 30px)' }}>
           <div className="relative flex justify-center">
             <button
