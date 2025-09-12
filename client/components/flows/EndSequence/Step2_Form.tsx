@@ -5,6 +5,7 @@
 
 import { useState } from "react";
 import { logEvent } from "../../../services/dataLogger.js";
+import FigmaStyle1Layout from "../../layouts/FigmaStyle1Layout";
 
 interface Step2_FormProps {
   sessionID: string | null;
