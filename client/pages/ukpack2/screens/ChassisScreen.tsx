@@ -46,6 +46,7 @@ const OPTIONS = [
 const ChassisScreen: React.FC = () => {
   const navigate = useNavigate();
   const [selected, setSelected] = useState<string>(OPTIONS[0].key);
+  const [isExitModalOpen, setExitModalOpen] = useState(false);
 
   const handleNext = () => {
     try {
@@ -56,29 +57,45 @@ const ChassisScreen: React.FC = () => {
     navigate('/ukpack2/seating');
   };
 
-  return (
-    <CustomizationScreen
-      title="ปรับแต่ง��ถเมล์ของคุณ"
-      footerContent={<div className="flex justify-end"><CtaButton text="ถัดไป" onClick={handleNext} /></div>}
-    >
-      <div className="space-y-6">
-        <div className="flex items-center justify-center">
-          <ProgressDots total={5} currentStep={1} />
-        </div>
+  const confirmExit = () => {
+    setExitModalOpen(false);
+    navigate('/');
+  };
 
-        <div className="grid grid-cols-2 gap-4">
-          {OPTIONS.map((o) => (
-            <SelectionCard
-              key={o.key}
-              icon={o.icon}
-              label={o.label}
-              isSelected={selected === o.key}
-              onClick={() => setSelected(o.key)}
-            />
-          ))}
+  return (
+    <>
+      <CustomizationScreen
+        title="ปรับแต่งรถเมล์ของคุณ"
+        onBack={() => setExitModalOpen(true)}
+        footerContent={<div className="flex justify-end"><CtaButton text="ถัดไป" onClick={handleNext} /></div>}
+      >
+        <div className="space-y-6">
+          <div className="flex items-center justify-center">
+            <ProgressDots total={5} currentStep={1} />
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            {OPTIONS.map((o) => (
+              <SelectionCard
+                key={o.key}
+                icon={o.icon}
+                label={o.label}
+                isSelected={selected === o.key}
+                onClick={() => setSelected(o.key)}
+              />
+            ))}
+          </div>
         </div>
-      </div>
-    </CustomizationScreen>
+      </CustomizationScreen>
+
+      <ConfirmModal
+        isOpen={isExitModalOpen}
+        title="ออกจากหน้าจอ"
+        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
+        onConfirm={confirmExit}
+        onCancel={() => setExitModalOpen(false)}
+      />
+    </>
   );
 };
 
