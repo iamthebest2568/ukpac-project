@@ -14,12 +14,20 @@ const SeatingScreen: React.FC = () => {
   const [childElderSeats, setChildElderSeats] = useState<number>(2);
   const [standingPlaces, setStandingPlaces] = useState<number>(10);
 
+  const handleNext = () => {
+    try {
+      const seating = { totalSeats, specialSeats, childElderSeats, standingPlaces };
+      sessionStorage.setItem('design.seating', JSON.stringify(seating));
+    } catch (e) {}
+    navigate('/ukpack2/amenities');
+  };
+
   return (
     <CustomizationScreen
       title="ปรับแต่งรถเมล์ของคุณ"
       footerContent={
         <div className="flex justify-end">
-          <CtaButton text="ถัดไป" onClick={() => navigate('/ukpack2/amenities')} />
+          <CtaButton text="ถัดไป" onClick={handleNext} />
         </div>
       }
     >

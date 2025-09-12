@@ -76,10 +76,17 @@ const AmenitiesScreen: React.FC = () => {
     setSelected((prev) => (prev.includes(label) ? prev.filter((l) => l !== label) : [...prev, label]));
   };
 
+  const handleNext = () => {
+    try {
+      sessionStorage.setItem('design.amenities', JSON.stringify(selected));
+    } catch (e) {}
+    navigate('/ukpack2/payment');
+  };
+
   return (
     <CustomizationScreen
       title="ปรับแต่งรถเมล์ของคุณ"
-      footerContent={<div className="flex justify-end"><CtaButton text="ถัดไป" onClick={() => navigate('/ukpack2/payment')} /></div>}
+      footerContent={<div className="flex justify-end"><CtaButton text="ถัดไป" onClick={handleNext} /></div>}
     >
       <div className="space-y-6">
         <div className="w-full h-48 bg-[#081042] rounded-md flex items-center justify-center text-sm text-gray-300">Bus image preview</div>

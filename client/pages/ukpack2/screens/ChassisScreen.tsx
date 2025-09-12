@@ -43,12 +43,22 @@ const OPTIONS = [
 ];
 
 const ChassisScreen: React.FC = () => {
+  const navigate = require('react-router-dom').useNavigate();
   const [selected, setSelected] = useState<string>(OPTIONS[0].key);
+
+  const handleNext = () => {
+    try {
+      sessionStorage.setItem('design.chassis', selected);
+    } catch (e) {
+      // ignore
+    }
+    navigate('/ukpack2/seating');
+  };
 
   return (
     <CustomizationScreen
-      title="ปรับแต่งรถเมล์ของคุณ"
-      footerContent={<div className="flex justify-end"><CtaButton text="ถัดไป" onClick={() => console.log('next chassis', selected)} /></div>}
+      title="ปรับแต่ง��ถเมล์ของคุณ"
+      footerContent={<div className="flex justify-end"><CtaButton text="ถัดไป" onClick={handleNext} /></div>}
     >
       <div className="space-y-6">
         <div className="flex items-center justify-center">

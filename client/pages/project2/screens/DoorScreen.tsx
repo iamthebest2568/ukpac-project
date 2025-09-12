@@ -30,10 +30,17 @@ const DoorScreen: React.FC = () => {
   const [hasRamp, setHasRamp] = useState<boolean>(false);
   const [highLow, setHighLow] = useState<boolean>(false);
 
+  const handleNext = () => {
+    try {
+      sessionStorage.setItem('design.doors', JSON.stringify({ doorChoice, hasRamp, highLow }));
+    } catch (e) {}
+    navigate('/ukpack2/design');
+  };
+
   return (
     <CustomizationScreen
       title="ปรับแต่งรถเมล์ของคุณ"
-      footerContent={<div className="flex justify-end"><CtaButton text="ถัดไป" onClick={() => navigate('/ukpack2/design')} /></div>}
+      footerContent={<div className="flex justify-end"><CtaButton text="ถัดไป" onClick={handleNext} /></div>}
     >
       <div className="space-y-6">
         <div className="flex items-center justify-center">

@@ -24,10 +24,18 @@ const DesignScreen: React.FC = () => {
   const [color, setColor] = useState<string>(DEFAULT_COLORS[0]);
   const [slogan, setSlogan] = useState<string>('');
 
+  const handleFinish = () => {
+    try {
+      sessionStorage.setItem('design.color', color);
+      sessionStorage.setItem('design.slogan', slogan);
+    } catch (e) {}
+    navigate('/ukpack2/summary');
+  };
+
   return (
     <CustomizationScreen
       title="ปรับแต่งรถเมล์ของคุณ"
-      footerContent={<div className="flex justify-end"><CtaButton text="ออกแบบเสร็จแล้ว" onClick={() => console.log('design finished', { color, slogan })} /></div>}
+      footerContent={<div className="flex justify-end"><CtaButton text="ออกแบบเสร็จแล้ว" onClick={handleFinish} /></div>}
     >
       <div className="space-y-6">
         <div className="w-full h-72 rounded-md flex items-center justify-center" style={{ backgroundColor: color }}>

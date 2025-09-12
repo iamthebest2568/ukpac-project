@@ -48,10 +48,17 @@ const PaymentScreen: React.FC = () => {
     setSelected((prev) => (prev.includes(label) ? prev.filter((l) => l !== label) : [...prev, label]));
   };
 
+  const handleNext = () => {
+    try {
+      sessionStorage.setItem('design.payment', JSON.stringify(selected));
+    } catch (e) {}
+    navigate('/ukpack2/doors');
+  };
+
   return (
     <CustomizationScreen
       title="ปรับแต่งรถเมล์ของคุณ"
-      footerContent={<div className="flex justify-end"><CtaButton text="ถัดไป" onClick={() => navigate('/ukpack2/doors')} /></div>}
+      footerContent={<div className="flex justify-end"><CtaButton text="ถัดไป" onClick={handleNext} /></div>}
     >
       <div className="space-y-6">
         <div className="flex items-center justify-center">
