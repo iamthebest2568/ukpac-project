@@ -31,6 +31,7 @@ const MiniGameMN3Page = lazy(() => import("./pages/ukpack1/MiniGameMN3Page"));
 const UkStornaway = lazy(() => import("./pages/ukpack1/Uk-stornaway"));
 const UkDashboard = lazy(() => import("./pages/ukpack1/UkDashboard"));
 const AmenitiesScreen = lazy(() => import("./pages/ukpack2/screens/AmenitiesScreen"));
+const ChassisScreen = lazy(() => import("./pages/project2/screens/ChassisScreen"));
 
 // Layout component with accessibility features
 import FakeNewsSkeleton from './components/shared/skeletons/FakeNewsSkeleton';
