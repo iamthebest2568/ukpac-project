@@ -30,6 +30,7 @@ const MiniGameMN2Page = lazy(() => import("./pages/ukpack1/MiniGameMN2Page"));
 const MiniGameMN3Page = lazy(() => import("./pages/ukpack1/MiniGameMN3Page"));
 const UkStornaway = lazy(() => import("./pages/ukpack1/Uk-stornaway"));
 const UkDashboard = lazy(() => import("./pages/ukpack1/UkDashboard"));
+const AmenitiesScreen = lazy(() => import("./pages/ukpack2/screens/AmenitiesScreen"));
 
 // Layout component with accessibility features
 import FakeNewsSkeleton from './components/shared/skeletons/FakeNewsSkeleton';
@@ -93,6 +94,7 @@ const App = () => {
             <Routes>
               {/* Main entry */}
               <Route path="/ukpack1" element={<IndexPage />} />
+              <Route path="/ukpack2" element={<AmenitiesScreen />} />
               <Route path="/" element={<Navigate to="/ukpack1" replace />} />
               <Route path="/test" element={<TestPage />} />
 
