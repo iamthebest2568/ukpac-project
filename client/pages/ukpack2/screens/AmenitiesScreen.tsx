@@ -66,7 +66,10 @@ const AMENITIES = [
   { key: 'cam', label: 'กล้องวงจรปิ��', icon: <IconCam /> },
 ];
 
+import { useNavigate } from 'react-router-dom';
+
 const AmenitiesScreen: React.FC = () => {
+  const navigate = useNavigate();
   const [selected, setSelected] = useState<string[]>(['แอร์']);
 
   const toggle = (label: string) => {
@@ -76,7 +79,7 @@ const AmenitiesScreen: React.FC = () => {
   return (
     <CustomizationScreen
       title="ปรับแต่งรถเมล์ของคุณ"
-      footerContent={<div className="flex justify-end"><CtaButton text="ถัดไป" onClick={() => console.log('next', selected)} /></div>}
+      footerContent={<div className="flex justify-end"><CtaButton text="ถัดไป" onClick={() => navigate('/ukpack2/payment')} /></div>}
     >
       <div className="space-y-6">
         <div className="w-full h-48 bg-[#081042] rounded-md flex items-center justify-center text-sm text-gray-300">Bus image preview</div>
