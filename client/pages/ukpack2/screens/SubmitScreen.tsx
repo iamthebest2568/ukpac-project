@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CustomizationScreen from '../components/CustomizationScreen';
 import CtaButton from '../components/CtaButton';
+import { useBusDesign } from '../context/BusDesignContext';
 
 const SubmitScreen: React.FC = () => {
   const navigate = useNavigate();
