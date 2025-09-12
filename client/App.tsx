@@ -35,6 +35,7 @@ const ChassisScreen = lazy(() => import("./pages/ukpack2/screens/ChassisScreen")
 const SeatingScreen = lazy(() => import("./pages/project2/screens/SeatingScreen"));
 const PaymentScreen = lazy(() => import("./pages/project2/screens/PaymentScreen"));
 const DoorScreen = lazy(() => import("./pages/project2/screens/DoorScreen"));
+const DesignScreen = lazy(() => import("./pages/project2/screens/DesignScreen"));
 
 // Layout component with accessibility features
 import FakeNewsSkeleton from './components/shared/skeletons/FakeNewsSkeleton';
