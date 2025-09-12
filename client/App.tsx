@@ -103,6 +103,7 @@ const App = () => {
               <Route path="/ukpack2/chassis" element={<ChassisScreen />} />
               <Route path="/ukpack2/seating" element={<SeatingScreen />} />
               <Route path="/ukpack2/payment" element={<PaymentScreen />} />
+              <Route path="/ukpack2/doors" element={<DoorScreen />} />
               <Route path="/test" element={<TestPage />} />
 
               {/* Survey (Ask01 removed) */}
