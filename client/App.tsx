@@ -38,6 +38,8 @@ const DoorScreen = lazy(() => import("./pages/ukpack2/screens/DoorScreen"));
 const DesignScreen = lazy(() => import("./pages/ukpack2/screens/DesignScreen"));
 const SummaryScreen = lazy(() => import("./pages/ukpack2/screens/SummaryScreen"));
 const FeedbackScreen = lazy(() => import("./pages/ukpack2/screens/FeedbackScreen"));
+const InfoScreen = lazy(() => import("./pages/ukpack2/screens/InfoScreen"));
+const SubmitScreen = lazy(() => import("./pages/ukpack2/screens/SubmitScreen"));
 
 // Layout component with accessibility features
 import FakeNewsSkeleton from './components/shared/skeletons/FakeNewsSkeleton';
