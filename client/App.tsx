@@ -32,12 +32,12 @@ const UkStornaway = lazy(() => import("./pages/ukpack1/Uk-stornaway"));
 const UkDashboard = lazy(() => import("./pages/ukpack1/UkDashboard"));
 const AmenitiesScreen = lazy(() => import("./pages/ukpack2/screens/AmenitiesScreen"));
 const ChassisScreen = lazy(() => import("./pages/ukpack2/screens/ChassisScreen"));
-const SeatingScreen = lazy(() => import("./pages/project2/screens/SeatingScreen"));
-const PaymentScreen = lazy(() => import("./pages/project2/screens/PaymentScreen"));
-const DoorScreen = lazy(() => import("./pages/project2/screens/DoorScreen"));
-const DesignScreen = lazy(() => import("./pages/project2/screens/DesignScreen"));
-const SummaryScreen = lazy(() => import("./pages/project2/screens/SummaryScreen"));
-const FeedbackScreen = lazy(() => import("./pages/project2/screens/FeedbackScreen"));
+const SeatingScreen = lazy(() => import("./pages/ukpack2/screens/SeatingScreen"));
+const PaymentScreen = lazy(() => import("./pages/ukpack2/screens/PaymentScreen"));
+const DoorScreen = lazy(() => import("./pages/ukpack2/screens/DoorScreen"));
+const DesignScreen = lazy(() => import("./pages/ukpack2/screens/DesignScreen"));
+const SummaryScreen = lazy(() => import("./pages/ukpack2/screens/SummaryScreen"));
+const FeedbackScreen = lazy(() => import("./pages/ukpack2/screens/FeedbackScreen"));
 
 // Layout component with accessibility features
 import FakeNewsSkeleton from './components/shared/skeletons/FakeNewsSkeleton';
