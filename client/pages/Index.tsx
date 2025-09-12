@@ -58,7 +58,7 @@ const IndexPage = () => {
 
               // Wrap the first card in a router Link so it navigates client-side
               return i === 1 ? (
-                <Link key={i} to="/ask02" aria-label="Open Mini game 1">
+                <Link key={i} to="/ukpack1/ask02" aria-label="Open Mini game 1">
                   {card}
                 </Link>
               ) : (
