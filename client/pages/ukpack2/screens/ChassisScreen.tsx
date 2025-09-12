@@ -4,6 +4,7 @@ import CustomizationScreen from '../../ukpack2/components/CustomizationScreen';
 import SelectionCard from '../../ukpack2/components/SelectionCard';
 import CtaButton from '../../ukpack2/components/CtaButton';
 import ProgressDots from '../../ukpack2/components/ProgressDots';
+import ConfirmModal from '../components/ConfirmModal';
 
 const IconSmall = () => (
   <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
