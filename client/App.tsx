@@ -32,6 +32,7 @@ const UkStornaway = lazy(() => import("./pages/ukpack1/Uk-stornaway"));
 const UkDashboard = lazy(() => import("./pages/ukpack1/UkDashboard"));
 const AmenitiesScreen = lazy(() => import("./pages/ukpack2/screens/AmenitiesScreen"));
 const ChassisScreen = lazy(() => import("./pages/ukpack2/screens/ChassisScreen"));
+const SeatingScreen = lazy(() => import("./pages/project2/screens/SeatingScreen"));
 
 // Layout component with accessibility features
 import FakeNewsSkeleton from './components/shared/skeletons/FakeNewsSkeleton';
