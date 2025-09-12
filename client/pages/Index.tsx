@@ -41,6 +41,9 @@ const IndexPage = () => {
                   }
                 }}
               >
+                {i === 1 && (
+                  <a href="/ask02" className="absolute inset-0 z-10" aria-label="Open Mini game 1" />
+                )}
                 <div className="flex items-center justify-center w-full">
                   <div className="w-full h-40 md:h-48 bg-gray-50 rounded-md flex items-center justify-center text-gray-300">
                     <span className="text-lg">Preview Area</span>
