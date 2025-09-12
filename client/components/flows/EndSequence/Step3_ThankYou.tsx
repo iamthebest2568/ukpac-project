@@ -137,25 +137,63 @@ const Step3_ThankYou = ({
     <FigmaStyle1Layout
       backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Feb2f14480a1349a6bc6b76594e26c7b5?format=webp&width=2160"
       backgroundAlt="ขอบคุณสำหรับการมีส่วนร่วม"
-      title={`ขอบคุณที่ร่วมเป็นส่วนหนึ่ง\nในการพัฒนาเมือง`}
       className="source-selection-page endseq-thankyou-page"
       imageLoading="eager"
     >
-      <div className="flex-1 flex flex-col justify-center items-center px-8" style={{ paddingTop: '4%', paddingBottom: '18%' }}>
-        <div className="w-full max-w-[325px] text-center">
-          <p className="font-prompt text-[#000D59] mb-6" style={{ fontSize: 'clamp(16px, 3.8vw, 18px)' }}>
-            เราจะประกาศรางวัลทาง xxxxxxxxxxxxxxxxxx วันที่ xxxx xxxxx xxxx
-          </p>
+      {/* Title positioned as in Figma */}
+      <div className="absolute w-full text-center" style={{ top: '47.5%' }}>
+        <h1 className="font-prompt text-center leading-normal" style={{ color: '#000D59', fontWeight: 700, lineHeight: 'normal' }}>
+          <span style={{ fontSize: 'clamp(28px, 6.5vw, 70px)' }}>ขอบคุณ</span>
+          <span style={{ fontSize: 'clamp(24px, 5.6vw, 60px)' }}>ที่ร่วมเป็นส่วนหนึ่ง<br />ในการพัฒนาเมือง</span>
+        </h1>
+      </div>
 
-          {/* Share Trigger Button (opens popup) */}
-          <div className="mb-4">
+      {/* Announcement section with yellow background */}
+      <div className="absolute w-full flex flex-col items-center" style={{ top: '57%' }}>
+        <div className="relative flex items-center justify-center" style={{ width: '75.1%', maxWidth: '811px', height: 'clamp(200px, 24.6vw, 473px)' }}>
+          {/* Yellow background image */}
+          <img
+            src="https://api.builder.io/api/v1/image/assets/TEMP/e2b1791c9c56554c16de656934f22c2f3ec4bdf7?width=1622"
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{ borderRadius: '40px' }}
+          />
+
+          {/* Announcement text */}
+          <div className="relative z-10 text-center px-4">
+            <h2 className="font-prompt text-center leading-normal" style={{ color: '#000D59', fontWeight: 700, lineHeight: 'normal' }}>
+              <span style={{ fontSize: 'clamp(28px, 6.5vw, 70px)' }}>เราจะประกาศรางวัล<br /></span>
+              <span style={{ fontSize: 'clamp(24px, 5.6vw, 60px)' }}>ทาง xxxxxxxxxxx<br />วันที่ xx xxxx xxxx</span>
+            </h2>
+          </div>
+        </div>
+      </div>
+
+      {/* Buttons positioned as in Figma */}
+      <div className="absolute w-full flex flex-col items-center" style={{ top: '83%' }}>
+        <div className="flex flex-col" style={{ width: '80.9%', maxWidth: '874px', gap: 'clamp(20px, 1.56vw, 30px)' }}>
+          <div className="relative flex justify-center">
             <Dialog>
               <DialogTrigger asChild>
                 <button
-                  className="figma-style1-button"
+                  className="transition-all duration-200 bg-[#FFE000] hover:scale-105 hover:shadow-lg hover:bg-black active:bg-black group flex items-center justify-center"
+                  style={{
+                    width: 'clamp(300px, 78.2vw, 845px)',
+                    height: 'clamp(50px, 6.1vw, 118px)',
+                    borderRadius: '50px',
+                    border: 'none'
+                  }}
                   aria-label="เปิดหน้าต่างแชร์"
                 >
-                  <span className="figma-style1-button-text">
+                  <span
+                    className="font-prompt text-center text-black group-hover:text-[#FFE000] group-active:text-[#FFE000]"
+                    style={{
+                      fontSize: 'clamp(18px, 4.6vw, 50px)',
+                      fontWeight: 400,
+                      letterSpacing: '0.4px',
+                      lineHeight: 'normal'
+                    }}
+                  >
                     แชร์เกมนี้ให้เพื่อน
                   </span>
                 </button>
@@ -232,13 +270,28 @@ const Step3_ThankYou = ({
             </Dialog>
           </div>
 
-          {/* Finish Button */}
-          <div>
+          <div className="relative flex justify-center">
             <button
               onClick={handleFinish}
-              className="figma-style1-button--secondary"
+              className="transition-all duration-200 bg-[#FFE000] hover:scale-105 hover:shadow-lg hover:bg-black active:bg-black group flex items-center justify-center"
+              style={{
+                width: 'clamp(300px, 78.2vw, 845px)',
+                height: 'clamp(50px, 6.1vw, 118px)',
+                borderRadius: '50px',
+                border: 'none'
+              }}
             >
-              <span className="figma-style1-button-text">จบเกม</span>
+              <span
+                className="font-prompt text-center text-black group-hover:text-[#FFE000] group-active:text-[#FFE000]"
+                style={{
+                  fontSize: 'clamp(18px, 4.6vw, 50px)',
+                  fontWeight: 400,
+                  letterSpacing: '0.4px',
+                  lineHeight: 'normal'
+                }}
+              >
+                จบเกม
+              </span>
             </button>
           </div>
         </div>
