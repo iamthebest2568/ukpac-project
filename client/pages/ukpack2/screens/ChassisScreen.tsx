@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import CustomizationScreen from '../../ukpack2/components/CustomizationScreen';
 import SelectionCard from '../../ukpack2/components/SelectionCard';
 import CtaButton from '../../ukpack2/components/CtaButton';
@@ -43,7 +44,7 @@ const OPTIONS = [
 ];
 
 const ChassisScreen: React.FC = () => {
-  const navigate = require('react-router-dom').useNavigate();
+  const navigate = useNavigate();
   const [selected, setSelected] = useState<string>(OPTIONS[0].key);
 
   const handleNext = () => {
