@@ -38,7 +38,10 @@ const OPTIONS = [
   { key: 'qr', label: 'QR/สแกน', icon: <IconQr /> },
 ];
 
+import { useNavigate } from 'react-router-dom';
+
 const PaymentScreen: React.FC = () => {
+  const navigate = useNavigate();
   const [selected, setSelected] = useState<string[]>(['เงินสด']);
 
   const toggle = (label: string) => {
@@ -48,7 +51,7 @@ const PaymentScreen: React.FC = () => {
   return (
     <CustomizationScreen
       title="ปรับแต่งรถเมล์ของคุณ"
-      footerContent={<div className="flex justify-end"><CtaButton text="ถัดไป" onClick={() => console.log('payment next', selected)} /></div>}
+      footerContent={<div className="flex justify-end"><CtaButton text="ถัดไป" onClick={() => navigate('/ukpack2/doors')} /></div>}
     >
       <div className="space-y-6">
         <div className="flex items-center justify-center">
