@@ -266,18 +266,20 @@
 
 /* Button System - Fluid responsive */
 .figma-style1-button-container {
-  /* Buttons in grid row 2 - perfectly centered to match title */
-  grid-row: 2;
-  width: 100%;
-  max-width: min(90vw, 380px);
-  margin: 0 auto;
-  /* Symmetric padding for perfect centering */
-  padding: 20px 5vw env(safe-area-inset-bottom, 20px) 5vw;
+  /* Precise centering using fixed positioning */
+  position: fixed;
+  bottom: env(safe-area-inset-bottom, 20px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 40px); /* Account for safe margins */
+  max-width: 380px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   gap: clamp(12px, 3vh, 20px);
   flex-shrink: 0;
   z-index: 20;
+  box-sizing: border-box;
 }
 
 .figma-style1-button {
