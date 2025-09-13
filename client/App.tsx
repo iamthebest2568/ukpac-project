@@ -31,6 +31,7 @@ const MiniGameMN2Page = lazy(() => import("./pages/ukpack1/MiniGameMN2Page"));
 const MiniGameMN3Page = lazy(() => import("./pages/ukpack1/MiniGameMN3Page"));
 const UkStornaway = lazy(() => import("./pages/ukpack1/Uk-stornaway"));
 const UkDashboard = lazy(() => import("./pages/ukpack1/UkDashboard"));
+const SplashScreen = lazy(() => import("./pages/ukpack2/screens/SplashScreen"));
 const AmenitiesScreen = lazy(() => import("./pages/ukpack2/screens/AmenitiesScreen"));
 const ChassisScreen = lazy(() => import("./pages/ukpack2/screens/ChassisScreen"));
 const SeatingScreen = lazy(() => import("./pages/ukpack2/screens/SeatingScreen"));
@@ -110,7 +111,7 @@ const App = () => {
               {/* Main entry */}
               <Route path="/" element={<IndexPage />} />
               <Route path="/ukpack1" element={<Navigate to="/ukpack1/ask02" replace />} />
-              <Route path="/ukpack2" element={<AmenitiesScreen />} />
+              <Route path="/ukpack2" element={<SplashScreen />} />
               <Route path="/ukpack2/chassis" element={<ChassisScreen />} />
               <Route path="/ukpack2/seating" element={<SeatingScreen />} />
               <Route path="/ukpack2/payment" element={<PaymentScreen />} />
