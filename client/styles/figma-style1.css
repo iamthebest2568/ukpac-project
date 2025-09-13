@@ -182,19 +182,18 @@
 }
 
 .figma-style1-content-area {
-  /* Content area uses flex layout and can scroll inside the main scroll container */
+  /* Content area uses full height minus space for fixed buttons */
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  /* Move content up slightly to reveal more of the image */
-  transform: translateY(-6vh);
-  /* Fluid padding that scales with device. Reduced extra bottom padding now that buttons are raised */
+  /* Ensure content stays above fixed buttons */
   padding-left: min(6vw, 32px);
   padding-right: min(6vw, 32px);
-  padding-bottom: calc(min(8vh, 48px) + 56px);
+  padding-bottom: 140px; /* Fixed space for buttons */
   overflow: visible;
+  min-height: 0; /* Allow shrinking */
 }
 
 /* Typography System - Fluid responsive */
