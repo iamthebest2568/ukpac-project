@@ -169,14 +169,14 @@
 
 /* Main Content Layout */
 .figma-style1-main {
-  /* Main content sits above the background and must fit single viewport (no scrolling) */
+  /* Main content layer - full viewport with proper responsive layout */
   position: relative;
   z-index: 10;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: 1fr auto;
   height: 100vh;
-  overflow: hidden; /* prevent scrolling */
-  justify-content: center;
+  overflow: hidden;
+  align-items: end;
 }
 
 .figma-style1-header {
