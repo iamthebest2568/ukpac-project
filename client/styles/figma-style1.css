@@ -244,19 +244,21 @@
 }
 
 .figma-style1-title-container {
-  /* Precise centering using absolute positioning */
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: calc(100% - 40px); /* Account for safe margins */
+  /* Original flex layout but with precise horizontal centering */
+  width: 100%;
   max-width: 380px;
+  margin: 0 auto;
+  flex-shrink: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 0 20px;
-  box-sizing: border-box;
+  /* Zero horizontal padding to avoid any offset */
+  padding: 0;
+  /* Ensure perfect centering */
+  position: relative;
+  left: 0;
+  right: 0;
 }
 
 /* Simplified responsive rules work better with the new grid system */
