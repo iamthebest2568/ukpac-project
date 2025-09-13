@@ -28,7 +28,7 @@
 }
 
 .figma-style1-content {
-  @apply w-full min-h-screen bg-black overflow-hidden relative;
+  @apply w-full min-h-screen bg-transparent overflow-hidden relative;
   /* Full-bleed on mobile: ensure it uses entire viewport width */
   width: calc(100% + 2 * var(--space-sm)) !important;
   max-width: calc(100% + 2 * var(--space-sm)) !important;
