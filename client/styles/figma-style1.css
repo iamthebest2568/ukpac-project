@@ -305,10 +305,12 @@
 
 .figma-style1-button {
   @apply w-full rounded-[40px] border-[1.5px] border-black flex items-center justify-center transition-all duration-200 hover:scale-105 hover:shadow-lg hover:bg-black active:bg-black;
-  /* Fluid button height */
-  height: clamp(50px, 12vw, 58px);
-  min-height: 50px;
+  /* Responsive height that ensures tappability */
+  height: clamp(44px, 10vh, 60px);
+  min-height: 44px;
+  max-height: 60px;
   background-color: #FFE000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .figma-style1-button-text {
