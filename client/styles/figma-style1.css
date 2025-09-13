@@ -245,21 +245,16 @@
 }
 
 .figma-style1-title-container {
-  /* Original flex layout but with precise horizontal centering */
+  /* Simple centering layout */
   width: 100%;
   max-width: 380px;
   margin: 0 auto;
-  flex-shrink: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  /* Zero horizontal padding to avoid any offset */
-  padding: 0;
-  /* Ensure perfect centering */
-  position: relative;
-  left: 0;
-  right: 0;
+  padding: 0 20px;
+  box-sizing: border-box;
 }
 
 /* Simplified responsive rules work better with the new grid system */
