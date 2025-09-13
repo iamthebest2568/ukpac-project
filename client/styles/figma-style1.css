@@ -169,13 +169,14 @@
 
 /* Main Content Layout */
 .figma-style1-main {
-  /* Main content layer - container for absolutely positioned content */
+  /* Main content layer - back to grid layout but with better centering */
   position: relative;
   z-index: 10;
-  width: 100%;
+  display: grid;
+  grid-template-rows: 1fr auto;
   height: 100vh;
   overflow: hidden;
-  display: block;
+  align-items: end;
 }
 
 .figma-style1-header {
