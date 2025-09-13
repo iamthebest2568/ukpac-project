@@ -186,18 +186,16 @@
 }
 
 .figma-style1-content-area {
-  /* Content area uses full height minus space for fixed buttons */
-  flex: 1 1 auto;
+  /* Content takes available space above buttons with responsive centering */
+  grid-row: 1;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
-  /* Ensure content stays above fixed buttons */
-  padding-left: min(6vw, 32px);
-  padding-right: min(6vw, 32px);
-  padding-bottom: 140px; /* Fixed space for buttons */
-  overflow: visible;
-  min-height: 0; /* Allow shrinking */
+  text-align: center;
+  padding: env(safe-area-inset-top, 20px) min(6vw, 32px) 20px;
+  min-height: 0;
+  overflow: hidden;
 }
 
 /* Typography System - Fluid responsive */
