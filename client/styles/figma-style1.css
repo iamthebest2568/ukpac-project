@@ -518,3 +518,13 @@
 .figma-style1-button-text {
   text-align: center !important;
 }
+
+/* MN2 Summary page: remove local overlays and use global background */
+.mn2-summary-page {
+  background: transparent !important;
+  min-height: 100% !important;
+  height: 100% !important;
+}
+.mn2-summary-page > .absolute.inset-0 { /* blue + white curved overlays */
+  display: none !important;
+}
