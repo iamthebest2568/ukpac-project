@@ -91,16 +91,15 @@
 }
 
 .figma-style1-background-image {
-  @apply w-full h-full object-cover;
-  min-width: 100%;
-  min-height: 100%;
-  /* Ensure the focal point matches the Figma composition (top-centered) */
-  object-position: top center;
+  width: 100%;
+  height: auto;
+  max-height: 100vh;
+  object-fit: contain; /* show full composition without cropping */
+  object-position: center top; /* prioritize top-center focal area */
+  display: block;
 }
 
-.figma-style1-background-image {
-  aspect-ratio: 2/3;
-}
+/* Remove strict aspect-ratio so image can scale naturally */
 
 /* Ensure full coverage on all devices */
 @media (orientation: landscape) and (max-height: 500px) {
