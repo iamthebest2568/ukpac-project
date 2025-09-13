@@ -474,3 +474,21 @@
 /* Removed global app-container overrides - let global.css handle them normally */
 
 /* Cleaned up device-specific rules - using simplified responsive system above */
+
+/* Final compatibility rules: ensure figma-style1 works within app-container */
+.app-container .figma-style1-container {
+  flex: none !important; /* Don't let app-container flex affect us */
+  min-height: 100vh !important; /* Ensure full viewport height */
+}
+
+/* Ensure figma-style1 content doesn't get affected by app-container rules */
+.figma-style1-container .min-h-screen,
+.figma-style1-container .h-screen {
+  min-height: 100vh !important;
+  height: 100vh !important;
+}
+
+/* Ensure our overflow settings work */
+.figma-style1-container .overflow-hidden {
+  overflow: hidden !important;
+}
