@@ -431,12 +431,6 @@
   .figma-style1-button-text {
     font-size: 13px !important;
   }
-
-  .figma-style1-title-container,
-  .figma-style1-button-container {
-    width: calc(100% - 20px); /* Less margin on tiny screens */
-    padding: 10px;
-  }
 }
 
 /* Simplified full-bleed for single-screen responsive layout */
