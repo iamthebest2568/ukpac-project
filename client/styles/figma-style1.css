@@ -524,6 +524,18 @@
   background: transparent !important;
   min-height: 100% !important;
   height: 100% !important;
+  position: relative;
+  overflow: hidden;
+}
+.mn2-summary-page::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background-image: url("https://api.builder.io/api/v1/image/assets/TEMP/1ca30c44dc55682aa7c0c1273799b2f3f61b5c99?width=2160");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
 }
 .mn2-summary-page > .absolute.inset-0 { /* blue + white curved overlays */
   display: none !important;
