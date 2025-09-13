@@ -209,6 +209,12 @@
   color: var(--figma-style1-text-dark) !important;
 }
 
+/* On fake-news page, when buttons are hovered (background becomes black), make text white for contrast */
+.fake-news-page .figma-style1-button:hover .figma-style1-button-text,
+.fake-news-page .figma-style1-button:active .figma-style1-button-text {
+  color: #ffffff !important;
+}
+
 .figma-style1-subtitle {
   @apply text-white text-center font-prompt font-normal leading-normal;
   font-size: clamp(18px, 5vw, 28px);
