@@ -355,9 +355,7 @@
   color: #FFE000;
 }
 
-.figma-style1-button-text {
-  @apply text-black text-center font-prompt text-lg font-medium leading-7 tracking-[0.4px];
-}
+/* Removed duplicate - using responsive definition above */
 
 .figma-style1-button:hover .figma-style1-button-text,
 .figma-style1-button:active .figma-style1-button-text {
