@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import React, { useState } from 'react';
 import CustomizationScreen from '../components/CustomizationScreen';
 import ProgressDots from '../components/ProgressDots';
 import SelectionCard from '../components/SelectionCard';
@@ -78,7 +77,7 @@ const SeatingScreen: React.FC = () => {
           </div>
 
           <div className="flex items-center justify-between">
-            <div className="text-white font-sarabun">จำนวนที่ยืน</div>
+            <div className="text-white font-sarabun">จำ��วนที่ยืน</div>
             <NumericalStepper value={standingPlaces} onChange={setStandingPlaces} min={0} max={200} />
           </div>
         </div>
