@@ -42,8 +42,9 @@ const FakeNewsTest = ({ sessionID, onNavigate }: FakeNewsTestProps) => {
 
   return (
     <FigmaStyle1Layout
-      backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Feb2f14480a1349a6bc6b76594e26c7b5?format=webp&width=2160"
-      title="ตอนนี้มีข้อมูลที่ขัดแย้งกันของนโยบายเช่น บ้างก็บอกว่าเก็บ 20 บ้างก็ 80 บ้างก็บอกไปว่าไม่เก็บรถ 4 ที่นั่ง บ้างก็เก็บหมดคุณคิดว่าจะทำอย่างไร"
+      backgroundImage="https://api.builder.io/api/v1/image/assets/TEMP/1ca30c44dc55682aa7c0c1273799b2f3f61b5c99?width=2160"
+      title="ตอนนี้มีข้อมูลที่ขัดแย้งกันของนโยบาย
+เช่น บ้างก็บอกว่าเก็บ 20 บ้างก็ 80 บ้างก็บอกไปว่าไม่เก็บรถ 4 ที่นั่ง บ้างก็เก็บหมดคุณคิดว่าจะทำอย่างไร"
       buttons={buttons}
       className="source-selection-page fake-news-page"
       imageLoading="eager"
