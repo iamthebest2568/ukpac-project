@@ -87,8 +87,10 @@
 
 /* Background System */
 .figma-style1-background {
-  position: absolute;
+  /* Keep the background image fixed to the viewport so it doesn't move between pages */
+  position: fixed;
   inset: 0;
+  z-index: 0;
   /* match the predominant color of the image so 'contain' gaps blend */
   background-color: #00d5f9;
   display: flex;
@@ -165,7 +167,13 @@
 
 /* Main Content Layout */
 .figma-style1-main {
-  @apply relative z-10 flex flex-col min-h-screen;
+  /* Main content sits above the fixed background and is scrollable */
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: auto;
 }
 
 .figma-style1-header {
@@ -175,11 +183,17 @@
 }
 
 .figma-style1-content-area {
-  @apply flex-1 flex flex-col justify-end items-center;
-  /* Fluid padding that scales with device */
+  /* Content area uses flex layout and can scroll inside the main scroll container */
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  /* Fluid padding that scales with device. Add extra bottom padding to avoid overlap with sticky buttons */
   padding-left: min(6vw, 32px);
   padding-right: min(6vw, 32px);
-  padding-bottom: min(8vh, 48px);
+  padding-bottom: calc(min(8vh, 48px) + 84px);
+  overflow: visible;
 }
 
 /* Typography System - Fluid responsive */
@@ -265,6 +279,13 @@
   @apply w-full space-y-4;
   max-width: min(90vw, 325px);
   padding: 0 min(5vw, 20px);
+  /* Keep buttons visible: sticky to the bottom of the main scroll area */
+  position: sticky;
+  bottom: env(safe-area-inset-bottom, 16px);
+  z-index: 20;
+  margin-left: auto;
+  margin-right: auto;
+  flex-shrink: 0;
 }
 
 .figma-style1-button {
