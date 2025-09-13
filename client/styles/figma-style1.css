@@ -238,11 +238,15 @@
 }
 
 .figma-style1-title-container {
-  @apply text-center;
-  max-width: min(90vw, 350px);
-  padding: 0 min(5vw, 20px);
-  margin-bottom: clamp(16px, 4vh, 32px);
-  flex-shrink: 1; /* Allow title to shrink if needed */
+  /* Responsive title container that scales with viewport */
+  width: 100%;
+  max-width: min(90vw, 400px);
+  margin: 0 auto;
+  flex-shrink: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
 }
 
 /* Device-specific title optimizations */
