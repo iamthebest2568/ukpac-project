@@ -284,19 +284,17 @@
 
 /* Button System - Fluid responsive */
 .figma-style1-button-container {
-  /* Fixed positioning ensures buttons never disappear from screen */
-  position: fixed;
-  bottom: env(safe-area-inset-bottom, 20px);
-  left: 50%;
-  transform: translateX(-50%);
+  /* Buttons in grid row 2 - always visible at bottom */
+  grid-row: 2;
   width: 100%;
-  max-width: min(90vw, 325px);
-  padding: 0 min(5vw, 20px);
-  z-index: 20;
+  max-width: min(90vw, 360px);
+  margin: 0 auto;
+  padding: 20px min(5vw, 20px) env(safe-area-inset-bottom, 20px);
   display: flex;
   flex-direction: column;
-  gap: 16px; /* space-y-4 equivalent */
+  gap: clamp(12px, 3vh, 20px);
   flex-shrink: 0;
+  z-index: 20;
 }
 
 .figma-style1-button {
