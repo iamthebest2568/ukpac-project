@@ -493,3 +493,17 @@
   height: 100vh !important;
   overflow: hidden !important;
 }
+
+/* Ensure perfect centering - override any global.css interference */
+.figma-style1-title-container,
+.figma-style1-button-container {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center !important;
+}
+
+.figma-style1-content-area {
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+}
