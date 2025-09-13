@@ -338,10 +338,7 @@
   }
 }
 
-.figma-style1-button {
-  @apply w-full h-[53px] rounded-[40px] border-[1.5px] border-black flex items-center justify-center transition-all duration-200 hover:scale-105 hover:shadow-lg hover:bg-black active:bg-black;
-  background-color: #FFE000;
-}
+/* Removed duplicate - using responsive definition above */
 
 /* Secondary (yellow) variant for figma-style1 buttons */
 .figma-style1-button--secondary {
