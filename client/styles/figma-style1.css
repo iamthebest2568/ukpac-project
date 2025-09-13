@@ -247,17 +247,19 @@
 }
 
 .figma-style1-title-container {
-  /* Responsive title container with consistent max-width */
-  width: 100%;
-  max-width: min(90vw, 380px);
-  margin: 0 auto;
-  flex-shrink: 1;
+  /* Precise centering using absolute positioning */
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: calc(100% - 40px); /* Account for safe margins */
+  max-width: 380px;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 0;
-  /* Ensure perfect centering */
-  padding: 0;
+  text-align: center;
+  padding: 0 20px;
+  box-sizing: border-box;
 }
 
 /* Simplified responsive rules work better with the new grid system */
