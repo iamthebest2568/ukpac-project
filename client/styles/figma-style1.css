@@ -265,20 +265,22 @@
 
 /* Button System - Fluid responsive */
 .figma-style1-button-container {
-  /* Precise centering using fixed positioning */
-  position: fixed;
-  bottom: env(safe-area-inset-bottom, 20px);
-  left: 50%;
-  transform: translateX(-50%);
-  width: calc(100% - 40px); /* Account for safe margins */
+  /* Original grid layout but with precise horizontal centering */
+  grid-row: 2;
+  width: 100%;
   max-width: 380px;
-  padding: 20px;
+  margin: 0 auto;
+  /* Zero horizontal padding to avoid any offset */
+  padding: 20px 0 env(safe-area-inset-bottom, 20px) 0;
   display: flex;
   flex-direction: column;
   gap: clamp(12px, 3vh, 20px);
   flex-shrink: 0;
   z-index: 20;
-  box-sizing: border-box;
+  /* Ensure perfect centering */
+  position: relative;
+  left: 0;
+  right: 0;
 }
 
 .figma-style1-button {
