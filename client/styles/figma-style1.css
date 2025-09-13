@@ -525,7 +525,9 @@
   min-height: 100% !important;
   height: 100% !important;
   position: relative;
-  overflow: hidden;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: env(safe-area-inset-bottom, 16px);
 }
 .mn2-summary-page::before {
   content: "";
@@ -539,4 +541,14 @@
 }
 .mn2-summary-page > .absolute.inset-0 { /* blue + white curved overlays */
   display: none !important;
+}
+/* Compact spacing so more cards fit */
+.mn2-summary-page .space-y-6 {
+  row-gap: clamp(10px, 2.5vw, 16px) !important;
+  margin-bottom: clamp(12px, 4vw, 24px) !important;
+}
+/* Tighter card box sizing on small screens */
+.mn2-summary-page [class*="max-w-[903px]"] {
+  min-height: clamp(160px, 22vw, 300px) !important;
+  padding: clamp(12px, 2.5vw, 20px) !important;
 }
