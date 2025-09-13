@@ -114,6 +114,7 @@ const App = () => {
               <Route path="/ukpack2" element={<SplashScreen />} />
               <Route path="/ukpack2/chassis" element={<ChassisScreen />} />
               <Route path="/ukpack2/seating" element={<SeatingScreen />} />
+              <Route path="/ukpack2/amenities" element={<AmenitiesScreen />} />
               <Route path="/ukpack2/payment" element={<PaymentScreen />} />
               <Route path="/ukpack2/doors" element={<DoorScreen />} />
               <Route path="/ukpack2/design" element={<DesignScreen />} />
