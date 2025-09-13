@@ -262,12 +262,13 @@
 
 /* Button System - Fluid responsive */
 .figma-style1-button-container {
-  /* Buttons in grid row 2 - always visible at bottom */
+  /* Buttons in grid row 2 - perfectly centered to match title */
   grid-row: 2;
   width: 100%;
-  max-width: min(90vw, 360px);
+  max-width: min(90vw, 380px);
   margin: 0 auto;
-  padding: 20px min(5vw, 20px) env(safe-area-inset-bottom, 20px);
+  /* Symmetric padding for perfect centering */
+  padding: 20px 5vw env(safe-area-inset-bottom, 20px) 5vw;
   display: flex;
   flex-direction: column;
   gap: clamp(12px, 3vh, 20px);
