@@ -196,6 +196,19 @@
   font-weight: 600;
 }
 
+/* Ensure specific pages (like fake-news) use black title to match Figma */
+.figma-style1-container.fake-news-page .figma-style1-title,
+.figma-style1-container .fake-news-page .figma-style1-title,
+.fake-news-page .figma-style1-title {
+  color: var(--figma-style1-text-dark) !important;
+  font-weight: 700 !important;
+}
+
+/* Ensure button container text remains black on fake-news */
+.fake-news-page .figma-style1-button-text {
+  color: var(--figma-style1-text-dark) !important;
+}
+
 .figma-style1-subtitle {
   @apply text-white text-center font-prompt font-normal leading-normal;
   font-size: clamp(18px, 5vw, 28px);
