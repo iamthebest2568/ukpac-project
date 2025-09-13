@@ -245,15 +245,17 @@
 }
 
 .figma-style1-title-container {
-  /* Responsive title container that scales with viewport */
+  /* Responsive title container with consistent max-width */
   width: 100%;
-  max-width: min(90vw, 400px);
+  max-width: min(90vw, 380px);
   margin: 0 auto;
   flex-shrink: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 0;
+  /* Ensure perfect centering */
+  padding: 0;
 }
 
 /* Simplified responsive rules work better with the new grid system */
