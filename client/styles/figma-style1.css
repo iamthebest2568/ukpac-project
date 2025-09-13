@@ -186,14 +186,15 @@
 }
 
 .figma-style1-content-area {
-  /* Content takes available space above buttons with responsive centering */
+  /* Content takes available space above buttons with perfect centering */
   grid-row: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: env(safe-area-inset-top, 20px) min(6vw, 32px) 20px;
+  /* Symmetric padding for perfect centering */
+  padding: env(safe-area-inset-top, 20px) 5vw 20px 5vw;
   min-height: 0;
   overflow: hidden;
 }
