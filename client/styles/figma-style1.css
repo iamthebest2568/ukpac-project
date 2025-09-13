@@ -22,9 +22,6 @@
   padding: 0 !important;
   margin: 0 !important;
   width: 100% !important;
-  /* Offset the app-container horizontal padding so content becomes full-bleed */
-  margin-left: calc(-1 * var(--space-sm));
-  margin-right: calc(-1 * var(--space-sm));
 }
 
 .figma-style1-content {
