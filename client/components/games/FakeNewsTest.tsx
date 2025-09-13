@@ -46,7 +46,7 @@ const FakeNewsTest = ({ sessionID, onNavigate }: FakeNewsTestProps) => {
       title="ตอนนี้มีข้อมูลที่ขัดแย้งกันของนโยบาย
 เช่น บ้างก็บอกว่าเก็บ 20 บ้างก็ 80 บ้างก็บอกไปว่าไม่เก็บรถ 4 ที่นั่ง บ้างก็เก็บหมดคุณคิดว่าจะทำอย่างไร"
       buttons={buttons}
-      className="source-selection-page fake-news-page"
+      className="fake-news-page"
       imageLoading="eager"
     />
   );
