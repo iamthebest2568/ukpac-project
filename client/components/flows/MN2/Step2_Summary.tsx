@@ -108,7 +108,7 @@ const Step2_Summary = ({
   };
 
   return (
-    <div className="min-h-screen bg-white flex flex-col relative overflow-hidden">
+    <div className="mn2-summary-page min-h-screen bg-white flex flex-col relative overflow-hidden">
       {/* Background with curved blue bottom */}
       <div className="absolute inset-0">
         {/* Blue background */}
