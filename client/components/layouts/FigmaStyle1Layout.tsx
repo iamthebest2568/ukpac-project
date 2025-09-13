@@ -66,18 +66,20 @@ const FigmaStyle1Layout = ({
             loading={imageLoading}
             decoding="async"
           />
-          {isSourceSelection ? (
-            <svg
-              className="figma-style1-wave-overlay"
-              viewBox="0 0 1000 600"
-              preserveAspectRatio="none"
-              aria-hidden="true"
-            >
-              <path d="M0,200 C250,60 750,60 1000,200 L1000,600 L0,600 Z" fill="#04D9F9" />
-            </svg>
-          ) : (
-            <div className={`figma-style1-background-overlay ${isSourceSelection ? 'figma-style1-background-overlay--blue' : ''}`} />
-          )}
+          {(isSourceSelection || useBlueOverlay) ? (
+            isSourceSelection ? (
+              <svg
+                className="figma-style1-wave-overlay"
+                viewBox="0 0 1000 600"
+                preserveAspectRatio="none"
+                aria-hidden="true"
+              >
+                <path d="M0,200 C250,60 750,60 1000,200 L1000,600 L0,600 Z" fill="#04D9F9" />
+              </svg>
+            ) : (
+              <div className={`figma-style1-background-overlay figma-style1-background-overlay--blue`} />
+            )
+          ) : null}
         </div>
 
         {/* Main Content */}
