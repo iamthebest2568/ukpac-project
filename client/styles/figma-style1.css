@@ -473,6 +473,11 @@
 
   .figma-style1-button-container {
     padding: 0 4vw;
+    bottom: 12px; /* Smaller bottom margin on tiny screens */
+  }
+
+  .figma-style1-content-area {
+    padding-bottom: 120px; /* Reduce space for buttons on small screens */
   }
 }
 
