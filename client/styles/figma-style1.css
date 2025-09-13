@@ -314,9 +314,12 @@
 }
 
 .figma-style1-button-text {
-  @apply text-black text-center font-prompt font-medium leading-7 tracking-[0.4px];
-  /* Fluid text size */
-  font-size: clamp(16px, 4vw, 20px);
+  @apply text-black text-center font-prompt font-medium;
+  /* Responsive text size that's readable on all devices */
+  font-size: clamp(14px, 3.5vw, 18px);
+  line-height: 1.3;
+  letter-spacing: 0.2px;
+  word-wrap: break-word;
 }
 
 /* Large phones optimization (iPhone 14 Plus, etc.) */
