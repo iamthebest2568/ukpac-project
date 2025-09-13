@@ -87,19 +87,25 @@
 
 /* Background System */
 .figma-style1-background {
-  @apply absolute inset-0;
+  position: absolute;
+  inset: 0;
+  /* match the predominant color of the image so 'contain' gaps blend */
+  background-color: #00d5f9;
+  display: flex;
+  align-items: flex-start; /* keep image top-aligned */
+  justify-content: center;
 }
 
 .figma-style1-background-image {
-  width: 100%;
-  height: auto;
-  max-height: 100vh;
+  /* Make the image scale to fit the viewport while preserving the full composition */
+  width: auto;
+  height: 100vh; /* ensure it fills the mobile viewport height */
+  max-width: 100%;
   object-fit: contain; /* show full composition without cropping */
-  object-position: center top; /* prioritize top-center focal area */
+  object-position: top center; /* prioritize top-center focal area */
   display: block;
 }
 
-/* Remove strict aspect-ratio so image can scale naturally */
 
 /* Ensure full coverage on all devices */
 @media (orientation: landscape) and (max-height: 500px) {
