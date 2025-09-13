@@ -87,14 +87,13 @@
 
 /* Background System */
 .figma-style1-background {
-  /* Keep the background image fixed to the viewport so it doesn't move between pages */
+  /* Background fills the viewport; image will be allowed to crop (cover) */
   position: fixed;
   inset: 0;
   z-index: 0;
-  /* match the predominant color of the image so 'contain' gaps blend */
   background-color: #00d5f9;
   display: flex;
-  align-items: flex-start; /* keep image top-aligned */
+  align-items: center;
   justify-content: center;
 }
 
