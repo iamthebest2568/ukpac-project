@@ -481,14 +481,11 @@
   min-height: 100vh !important; /* Ensure full viewport height */
 }
 
-/* Ensure figma-style1 content doesn't get affected by app-container rules */
-.figma-style1-container .min-h-screen,
-.figma-style1-container .h-screen {
+/* Override any global.css interference without targeting Tailwind classes directly */
+.figma-style1-container,
+.figma-style1-content,
+.figma-style1-main {
   min-height: 100vh !important;
   height: 100vh !important;
-}
-
-/* Ensure our overflow settings work */
-.figma-style1-container .overflow-hidden {
   overflow: hidden !important;
 }
