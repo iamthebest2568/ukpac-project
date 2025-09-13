@@ -469,28 +469,7 @@
   width: 100vw !important;
 }
 
-/* Revert to framed 1080x1920 view on wider screens (desktop) */
-@media (min-width: 1081px) {
-  .figma-style1-container,
-  .figma-style1-container .figma-style1-content {
-    position: static !important;
-    width: 1080px !important;
-    max-width: 1080px !important;
-    height: auto !important;
-    left: auto !important;
-    top: auto !important;
-    transform: none !important;
-    z-index: auto !important;
-    margin: 40px auto !important;
-    border-radius: 40px !important;
-    box-shadow: 0 0 30px rgba(0,0,0,0.5) !important;
-  }
-
-  .app-container > .figma-style1-container {
-    max-width: 1080px !important;
-    width: 1080px !important;
-  }
-}
+/* Simplified desktop handling - let the responsive grid system work */
 
 /* Removed global app-container overrides - let global.css handle them normally */
 
