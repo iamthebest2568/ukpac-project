@@ -501,4 +501,25 @@
   overflow: hidden !important;
 }
 
-/* Absolute positioning ensures perfect centering regardless of global styles */
+/* Ensure perfect horizontal centering - override any global.css interference */
+.figma-style1-title-container,
+.figma-style1-button-container {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center !important;
+  /* Force symmetric margins */
+  box-sizing: border-box !important;
+}
+
+.figma-style1-content-area {
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+}
+
+/* Ensure buttons themselves are centered */
+.figma-style1-button {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center !important;
+}
