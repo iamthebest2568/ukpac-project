@@ -189,7 +189,7 @@ const BudgetAllocation = ({ sessionID, onNavigate }: BudgetAllocationProps) => {
                   aria-valuenow={allocatedBudget}
                   aria-valuemin={0}
                   aria-valuemax={totalBudget}
-                  aria-label={`ใ��้งบประมาณไปแล้ว ${allocatedBudget} จาก ${totalBudget} บาท`}
+                  aria-label={`ใช้งบประมาณไปแล้ว ${allocatedBudget} จาก ${totalBudget} บาท`}
                 ></div>
               </div>
               <div className="text-sm mt-2 text-center" style={{ color: "#000D59" }}>
@@ -278,7 +278,7 @@ const BudgetAllocation = ({ sessionID, onNavigate }: BudgetAllocationProps) => {
           {isComplete && (
             <div className="mb-4 bg-green-500 bg-opacity-90 rounded-[15px] p-3">
               <div className="text-white text-center text-sm font-prompt">
-                <strong>เยี่ยม!</strong> คุณจัดสรรงบประมาณครบ {totalBudget}{" "}
+                <strong>เ��ี่ยม!</strong> คุณจัดสรรงบประมาณครบ {totalBudget}{" "}
                 บาทแล้ว
               </div>
             </div>
