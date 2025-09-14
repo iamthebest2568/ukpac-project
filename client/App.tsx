@@ -3,7 +3,7 @@ import "./global.css";
 import { Suspense, lazy, useEffect } from "react";
 import RouteTransition from "./components/shared/RouteTransition";
 import SuspenseFallback from "./components/shared/SuspenseFallback";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { BusDesignProvider } from "./pages/ukpack2/context/BusDesignContext";
 
 // Minimal set of pages (dashboard/backend removed)
@@ -56,23 +56,36 @@ import MN3Skeleton from './components/shared/skeletons/MN3Skeleton';
 import BudgetSkeleton from './components/shared/skeletons/BudgetSkeleton';
 import AskSkeleton from './components/shared/skeletons/AskSkeleton';
 import EndSequenceSkeleton, { EndScreenSkeleton } from './components/shared/skeletons/EndSkeletons';
-const Layout = ({ children }: { children: React.ReactNode }) => (
-  <div className="min-h-screen flex justify-center bg-[#2a2a2a]">
-    {/* Fixed 1080px mobile-first container */}
-    <div className="app-container bg-white relative" style={{ width: '100%', maxWidth: 1080 }}>
-      <a
-        href="#main-content"
-        className="skip-link sr-only focus:not-sr-only absolute top-2 left-2 z-50 bg-yellow-400 text-black px-2 py-1 rounded"
-        aria-label="ข้ามไปยังเนื้อหาหลัก"
-      >
-        ข้ามไปยังเนื้อหาหลัก
-      </a>
-      <main id="main-content" role="main" className="w-full">
-        {children}
-      </main>
+const Layout = ({ children }: { children: React.ReactNode }) => {
+  const location = useLocation();
+  const isDashboard = /^\/ukpack1\/(uk-dashboard|ukdashboard\.html|UkDashboard)$/.test(location.pathname);
+  if (isDashboard) {
+    return (
+      <div className="min-h-screen w-screen bg-[#0b0b0b] text-white">
+        <main id="main-content" role="main" className="w-full min-h-screen overflow-auto">
+          {children}
+        </main>
+      </div>
+    );
+  }
+  return (
+    <div className="min-h-screen flex justify-center bg-[#2a2a2a]">
+      {/* Fixed 1080px mobile-first container */}
+      <div className="app-container bg-white relative" style={{ width: '100%', maxWidth: 1080 }}>
+        <a
+          href="#main-content"
+          className="skip-link sr-only focus:not-sr-only absolute top-2 left-2 z-50 bg-yellow-400 text-black px-2 py-1 rounded"
+          aria-label="ข้ามไปยั���เนื้อหาหลัก"
+        >
+          ข้ามไปยังเนื้อหาหลัก
+        </a>
+        <main id="main-content" role="main" className="w-full">
+          {children}
+        </main>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 const App = () => {
   useEffect(() => {
