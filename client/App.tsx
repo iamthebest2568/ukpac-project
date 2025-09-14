@@ -31,6 +31,8 @@ const MiniGameMN2Page = lazy(() => import("./pages/ukpack1/MiniGameMN2Page"));
 const MiniGameMN3Page = lazy(() => import("./pages/ukpack1/MiniGameMN3Page"));
 const UkStornaway = lazy(() => import("./pages/ukpack1/Uk-stornaway"));
 const UkDashboard = lazy(() => import("./pages/ukpack1/UkDashboard"));
+const ReasonOther01Page = lazy(() => import("./pages/ukpack1/ReasonOther01Page"));
+const WhatDoYouTravelByPage = lazy(() => import("./pages/ukpack1/WhatDoYouTravelByPage"));
 const SplashScreen = lazy(() => import("./pages/ukpack2/screens/SplashScreen"));
 const AmenitiesScreen = lazy(() => import("./pages/ukpack2/screens/AmenitiesScreen"));
 const ChassisScreen = lazy(() => import("./pages/ukpack2/screens/ChassisScreen"));
@@ -204,6 +206,16 @@ const App = () => {
               <Route path="/ukpack1/Uk-stornaway" element={
                 <Suspense fallback={<SuspenseFallback />}>
                   <UkStornaway />
+                </Suspense>
+              } />
+              <Route path="/ukpack1/reason-other-01" element={
+                <Suspense fallback={<SuspenseFallback />}>
+                  <ReasonOther01Page />
+                </Suspense>
+              } />
+              <Route path="/ukpack1/what-do-you-travel-by" element={
+                <Suspense fallback={<SuspenseFallback />}>
+                  <WhatDoYouTravelByPage />
                 </Suspense>
               } />
               <Route path="/ukpack1/ukdashboard.html" element={

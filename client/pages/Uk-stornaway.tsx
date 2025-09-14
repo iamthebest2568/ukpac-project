@@ -102,6 +102,9 @@ export default function UkStornaway() {
   // Load API and attach listeners
   useEffect(() => {
     let mounted = true;
+    // Prefetch next pages for instant navigation
+    import("../pages/ukpack1/ReasonOther01Page").catch(() => {});
+    import("../pages/ukpack1/WhatDoYouTravelByPage").catch(() => {});
 
     function attachListeners() {
       if (!mounted || !iframeRef.current || readyRef.current) return;
@@ -194,6 +197,15 @@ export default function UkStornaway() {
               navigatedRef.current = true;
               setTimeout(() => {
                 navigateToPage("fakeNews", { from: "stornaway", choice: token });
+              }, 50);
+            }
+            return;
+          }
+          if (token === "ไปต่อ") {
+            if (!navigatedRef.current) {
+              navigatedRef.current = true;
+              setTimeout(() => {
+                navigateToPage("reason_other_01", { from: "stornaway", choice: token });
               }, 50);
             }
             return;

@@ -81,6 +81,8 @@ export const useSession = (): UseSessionReturn => {
       index: "/",
       priorities: "/minigame-mn1", // Legacy alias
       beneficiaries: "/minigame-mn2", // Legacy alias
+      reason_other_01: "/reason-other-01",
+      what_do_you_travel_by: "/what-do-you-travel-by",
     };
 
     if (data) {
