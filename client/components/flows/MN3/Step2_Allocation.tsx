@@ -106,7 +106,7 @@ const Step2_Allocation = ({
   const isComplete = allocatedBudget === totalBudget;
 
   return (
-    <div className="w-full max-w-[390px] min-h-screen bg-white overflow-hidden relative mx-auto">
+    <div className="w-full min-h-screen bg-white overflow-hidden relative mx-auto" style={{maxWidth: 1080}}>
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
@@ -122,7 +122,7 @@ const Step2_Allocation = ({
       {/* Content */}
       <div className="relative z-10 flex flex-col min-h-screen">
         {/* Main Content */}
-        <div className="pt-[210px] px-0 flex-1">
+        <div className="pt-[210px] px-0 flex-1" style={{width: '100%', maxWidth: 1080, margin: '0 auto'}}>
           {/* Title */}
           <div className="text-center mb-[30px] px-4">
             <h1 className="text-white font-prompt text-[30px] font-normal leading-normal">
@@ -134,7 +134,7 @@ const Step2_Allocation = ({
 
           {/* Budget Display Box */}
           <div className="mx-[30px] mb-[30px]">
-            <div className="w-[331px] h-[80px] rounded-[10px] border-[1.5px] border-[#EFBA31] bg-transparent relative">
+            <div className="max-w-[890px] w-full h-[80px] rounded-[10px] border-[1.5px] border-[#EFBA31] bg-transparent relative">
               {/* Coin Icon */}
               <div className="absolute left-[30px] top-[12px]">
                 <img
@@ -157,11 +157,11 @@ const Step2_Allocation = ({
           </div>
 
           {/* Budget Allocation Items */}
-          <div className="px-[41px] space-y-[25px] mb-[60px]">
+          <div className="px-[41px] space-y-[25px] mb-[60px]" style={{maxWidth: 890, margin: '0 auto'}}>
             {selectedPriorities.map((priority, index) => (
               <div
                 key={priority}
-                className="flex items-center justify-between w-[308px] h-[50px]"
+                className="flex items-center justify-between w-full max-w-[890px] h-[50px]"
               >
                 {/* Priority Label */}
                 <div className="text-white font-prompt text-[20px] font-medium leading-normal tracking-[0.4px] flex-1">
