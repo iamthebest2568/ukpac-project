@@ -1,6 +1,6 @@
 /**
  * UK PACK - MN3 Step 1: Budget Choice Selection
- * Rebuilt to exactly match Figma design (1080x1920) - pixel perfect
+ * Updated to match Figma design exactly with blue background and responsive layout
  */
 
 import { useState } from "react";
@@ -112,199 +112,263 @@ const Step1_Choice = ({
   };
 
   return (
-    <div className="figma-canvas bg-white relative">
-      {/* Content Container - exactly matching Figma layout */}
-      <div className="relative z-20 flex flex-col w-full h-full" style={{ width: '100%', maxWidth: 1080, margin: '0 auto' }}>
-        {/* Main Content Area - positioned exactly as in Figma */}
-        <div className="flex-1 flex flex-col justify-center items-center" style={{ paddingTop: '27.7%', paddingBottom: '9.9%', paddingLeft: '4.44%', paddingRight: '4.44%' }}>
+    <div className="w-full min-h-screen bg-[#04D9F9] flex flex-col items-center justify-center relative" style={{ maxWidth: 1080, margin: '0 auto' }}>
+      {/* Main Content Container */}
+      <div className="w-full px-4 py-8 flex flex-col items-center justify-center space-y-8">
+        
+        {/* Title Section */}
+        <div className="text-center w-full max-w-4xl">
+          <h1 
+            className="font-prompt font-bold text-center leading-normal mb-4"
+            style={{ 
+              color: '#000D59',
+              fontSize: 'clamp(32px, 7.4vw, 80px)',
+              lineHeight: 'normal',
+              fontWeight: 700
+            }}
+          >
+            คุณคิดว่าควรใช้เงินที่ได้<br />
+            จากการเก็บไปพัฒนาอะไร
+          </h1>
+          <p 
+            className="font-prompt font-bold text-center"
+            style={{ 
+              color: '#000D59',
+              fontSize: 'clamp(18px, 3.7vw, 40px)',
+              fontWeight: 700,
+              marginTop: '0px'
+            }}
+          >
+            ไม่เกิน 3 นโยบาย
+          </p>
+        </div>
+
+        {/* Button Grid - Responsive Layout */}
+        <div className="w-full max-w-5xl space-y-4">
           
-          {/* Title Section - positioned at top:1021px in Figma */}
-          <div className="text-center w-full mb-8">
-            <h1 
-              className="font-prompt font-bold text-center leading-normal mb-4"
+          {/* Row 1: choice_1 and choice_2 */}
+          <div className="flex gap-4 justify-center">
+            {/* choice_1: ลดค่าโดยสารรถไฟฟ้า */}
+            <button
+              onClick={() => !isSelectionDisabled(priorityList[0]) && handlePriorityToggle(priorityList[0])}
+              disabled={isSelectionDisabled(priorityList[0])}
+              className={`rounded-[40px] border transition-all duration-200 flex items-center justify-center ${getButtonColor(priorityList[0])}`}
               style={{ 
-                color: '#000D59',
-                fontSize: '80px',
-                lineHeight: 'normal',
-                fontWeight: 700
+                width: 'clamp(200px, 43vw, 465px)', 
+                height: 'clamp(60px, 8.3vw, 90px)',
+                minWidth: '200px'
               }}
             >
-              คุณคิดว่าควรใช้เงินที่ได้<br />จากการเก็บไปพัฒนาอะไร
-            </h1>
-            <p 
-              className="font-prompt font-bold text-center"
-              style={{ 
-                color: '#000D59',
-                fontSize: '40px',
-                fontWeight: 700,
-                marginTop: '0px'
-              }}
-            >
-              ไม่เกิน 3 นโยบาย
-            </p>
-          </div>
-
-          {/* Button Grid Container - exactly matching Figma positions */}
-          <div className="relative w-full max-w-full" style={{ width: '91.11%', height: '16.56%', marginBottom: '3.125%', marginTop: '3.125%' }}>
-            
-            {/* Row 1: choice_1 and choice_2 */}
-            <div style={{ position: 'absolute', top: '0%', left: '0%', width: '100%', height: '28.3%' }}>
-              {/* choice_1: ลดค่าโดยสารรถไฟฟ้า */}
-              <button
-                onClick={() => !isSelectionDisabled(priorityList[0]) && handlePriorityToggle(priorityList[0])}
-                disabled={isSelectionDisabled(priorityList[0])}
-                className={`absolute rounded-[4.6296rem] border transition-all duration-200 ${getButtonColor(priorityList[0])}`}
-                style={{ width: '47.26%', left: '0%', top: '0%', height: '100%' }}
-              >
-                <span 
-                  className={`font-prompt ${getTextColor(priorityList[0])}`} 
-                  style={{ fontSize: '40px', letterSpacing: '0.4px', fontWeight: 700 }}
-                >
-                  {priorityList[0]}
-                </span>
-              </button>
-              
-              {/* choice_2: ปรับปรุงคุณภาพรถเมล์ */}
-              <button
-                onClick={() => !isSelectionDisabled(priorityList[1]) && handlePriorityToggle(priorityList[1])}
-                disabled={isSelectionDisabled(priorityList[1])}
-                className={`absolute rounded-[4.6296rem] border transition-all duration-200 ${getButtonColor(priorityList[1])}`}
-                style={{ width: '50.81%', left: '49.19%', top: '0%', height: '100%' }}
-              >
-                <span 
-                  className={`font-prompt ${getTextColor(priorityList[1])}`} 
-                  style={{ fontSize: '40px', letterSpacing: '0.4px', fontWeight: 700 }}
-                >
-                  {priorityList[1]}
-                </span>
-              </button>
-            </div>
-
-            {/* Row 2: choice_3, choice_4, choice_5 */}
-            <div style={{ position: 'absolute', top: '35.85%', left: '0%', width: '100%', height: '28.3%' }}>
-              {/* choice_3: ตั๋วร่วม */}
-              <button
-                onClick={() => !isSelectionDisabled(priorityList[2]) && handlePriorityToggle(priorityList[2])}
-                disabled={isSelectionDisabled(priorityList[2])}
-                className={`absolute rounded-[4.6296rem] border transition-all duration-200 ${getButtonColor(priorityList[2])}`}
-                style={{ width: '25.2%', left: '0%', top: '0%', height: '100%' }}
-              >
-                <span 
-                  className={`font-prompt ${getTextColor(priorityList[2])}`} 
-                  style={{ fontSize: '40px', letterSpacing: '0.4px', fontWeight: 700 }}
-                >
-                  {priorityList[2]}
-                </span>
-              </button>
-              
-              {/* choice_4: เพิ่มความถี่รถเมล์ */}
-              <button
-                onClick={() => !isSelectionDisabled(priorityList[3]) && handlePriorityToggle(priorityList[3])}
-                disabled={isSelectionDisabled(priorityList[3])}
-                className={`absolute rounded-[4.6296rem] border transition-all duration-200 ${getButtonColor(priorityList[3])}`}
-                style={{ width: '39.11%', left: '28.15%', top: '0%', height: '100%' }}
-              >
-                <span 
-                  className={`font-prompt ${getTextColor(priorityList[3])}`} 
-                  style={{ fontSize: '40px', letterSpacing: '0.4px', fontWeight: 700 }}
-                >
-                  {priorityList[3]}
-                </span>
-              </button>
-              
-              {/* choice_5: เพิ่มที่จอดรถ */}
-              <button
-                onClick={() => !isSelectionDisabled(priorityList[4]) && handlePriorityToggle(priorityList[4])}
-                disabled={isSelectionDisabled(priorityList[4])}
-                className={`absolute rounded-[4.6296rem] border transition-all duration-200 ${getButtonColor(priorityList[4])}`}
-                style={{ width: '29.78%', left: '70.24%', top: '0%', height: '100%' }}
-              >
-                <span 
-                  className={`font-prompt ${getTextColor(priorityList[4])}`} 
-                  style={{ fontSize: '40px', letterSpacing: '0.4px', fontWeight: 700 }}
-                >
-                  {priorityList[4]}
-                </span>
-              </button>
-            </div>
-
-            {/* Row 3: choice_6, choice_7 */}
-            <div style={{ position: 'absolute', top: '71.7%', left: '0%', width: '100%', height: '28.3%' }}>
-              {/* choice_6: เพิ่มความถี่รถไฟฟ้า */}
-              <button
-                onClick={() => !isSelectionDisabled(priorityList[5]) && handlePriorityToggle(priorityList[5])}
-                disabled={isSelectionDisabled(priorityList[5])}
-                className={`absolute rounded-[4.6296rem] border transition-all duration-200 ${getButtonColor(priorityList[5])}`}
-                style={{ width: '47.26%', left: '0%', top: '0%', height: '100%' }}
-              >
-                <span 
-                  className={`font-prompt ${getTextColor(priorityList[5])}`} 
-                  style={{ fontSize: '40px', letterSpacing: '0.4px', fontWeight: 700 }}
-                >
-                  {priorityList[5]}
-                </span>
-              </button>
-              
-              {/* choice_7: เพิ่ม Feeder ในซอย */}
-              <button
-                onClick={() => !isSelectionDisabled(priorityList[6]) && handlePriorityToggle(priorityList[6])}
-                disabled={isSelectionDisabled(priorityList[6])}
-                className={`absolute rounded-[4.6296rem] border transition-all duration-200 ${getButtonColor(priorityList[6])}`}
-                style={{ width: '48.78%', left: '51.13%', top: '0%', height: '100%' }}
-              >
-                <span 
-                  className={`font-prompt ${getTextColor(priorityList[6])}`} 
-                  style={{ fontSize: '40px', letterSpacing: '0.4px', fontWeight: 700 }}
-                >
-                  {priorityList[6]}
-                </span>
-              </button>
-            </div>
-          </div>
-
-          {/* Continue Button - positioned at top:1749px in Figma */}
-          <div className="w-full flex justify-center">
-            <div className="relative w-full flex justify-center" style={{ width: '100%', maxWidth: '1154px', height: '6.15%' }}>
-              <button
-                onClick={handleNext}
-                disabled={selectedPriorities.length === 0}
-                className={`w-3/4 h-full rounded-[2.5rem] border-[1.5px] border-black flex items-center justify-center transition-all duration-200 ${
-                  selectedPriorities.length === 0
-                    ? "bg-gray-400 cursor-not-allowed"
-                    : "bg-[#FFE000] hover:bg-black hover:scale-105 group"
-                }`}
-                aria-describedby="next-button-description"
-              >
-                <span
-                  className={`font-prompt ${
-                    selectedPriorities.length === 0 
-                      ? "text-gray-600" 
-                      : "text-black group-hover:text-[#FFE000]"
-                  }`}
-                  style={{ fontSize: '50px', fontWeight: 400, letterSpacing: '0.4px' }}
-                >
-                  ไปต่อ
-                </span>
-              </button>
-            </div>
-
-            {selectedPriorities.length === 0 && (
-              <div
-                id="next-button-description"
-                className="absolute text-center font-prompt"
+              <span 
+                className={`font-prompt ${getTextColor(priorityList[0])}`} 
                 style={{ 
-                  color: '#000D59', 
-                  fontSize: '18px',
-                  top: '100%',
-                  left: '50%',
-                  transform: 'translateX(-50%)',
-                  marginTop: '16px'
+                  fontSize: 'clamp(16px, 3.7vw, 40px)', 
+                  letterSpacing: '0.4px', 
+                  fontWeight: 700,
+                  textAlign: 'center'
                 }}
               >
-                กรุณาเลือกอย่างน้อย 1 ข้อเพื่อดำเนินการต่อ
-              </div>
-            )}
+                {priorityList[0]}
+              </span>
+            </button>
+            
+            {/* choice_2: ปรับปรุงคุณภาพรถเมล์ */}
+            <button
+              onClick={() => !isSelectionDisabled(priorityList[1]) && handlePriorityToggle(priorityList[1])}
+              disabled={isSelectionDisabled(priorityList[1])}
+              className={`rounded-[40px] border transition-all duration-200 flex items-center justify-center ${getButtonColor(priorityList[1])}`}
+              style={{ 
+                width: 'clamp(220px, 46vw, 500px)', 
+                height: 'clamp(60px, 8.3vw, 90px)',
+                minWidth: '220px'
+              }}
+            >
+              <span 
+                className={`font-prompt ${getTextColor(priorityList[1])}`} 
+                style={{ 
+                  fontSize: 'clamp(16px, 3.7vw, 40px)', 
+                  letterSpacing: '0.4px', 
+                  fontWeight: 700,
+                  textAlign: 'center'
+                }}
+              >
+                {priorityList[1]}
+              </span>
+            </button>
           </div>
+
+          {/* Row 2: choice_3, choice_4, choice_5 */}
+          <div className="flex gap-4 justify-center flex-wrap">
+            {/* choice_3: ตั๋วร่วม */}
+            <button
+              onClick={() => !isSelectionDisabled(priorityList[2]) && handlePriorityToggle(priorityList[2])}
+              disabled={isSelectionDisabled(priorityList[2])}
+              className={`rounded-[40px] border transition-all duration-200 flex items-center justify-center ${getButtonColor(priorityList[2])}`}
+              style={{ 
+                width: 'clamp(120px, 23vw, 248px)', 
+                height: 'clamp(60px, 8.3vw, 90px)',
+                minWidth: '120px'
+              }}
+            >
+              <span 
+                className={`font-prompt ${getTextColor(priorityList[2])}`} 
+                style={{ 
+                  fontSize: 'clamp(16px, 3.7vw, 40px)', 
+                  letterSpacing: '0.4px', 
+                  fontWeight: 700,
+                  textAlign: 'center'
+                }}
+              >
+                {priorityList[2]}
+              </span>
+            </button>
+            
+            {/* choice_4: เพิ่มความถี่รถเมล์ */}
+            <button
+              onClick={() => !isSelectionDisabled(priorityList[3]) && handlePriorityToggle(priorityList[3])}
+              disabled={isSelectionDisabled(priorityList[3])}
+              className={`rounded-[40px] border transition-all duration-200 flex items-center justify-center ${getButtonColor(priorityList[3])}`}
+              style={{ 
+                width: 'clamp(180px, 35.6vw, 385px)', 
+                height: 'clamp(60px, 8.3vw, 90px)',
+                minWidth: '180px'
+              }}
+            >
+              <span 
+                className={`font-prompt ${getTextColor(priorityList[3])}`} 
+                style={{ 
+                  fontSize: 'clamp(16px, 3.7vw, 40px)', 
+                  letterSpacing: '0.4px', 
+                  fontWeight: 700,
+                  textAlign: 'center'
+                }}
+              >
+                {priorityList[3]}
+              </span>
+            </button>
+            
+            {/* choice_5: เพิ่มที่จอดรถ */}
+            <button
+              onClick={() => !isSelectionDisabled(priorityList[4]) && handlePriorityToggle(priorityList[4])}
+              disabled={isSelectionDisabled(priorityList[4])}
+              className={`rounded-[40px] border transition-all duration-200 flex items-center justify-center ${getButtonColor(priorityList[4])}`}
+              style={{ 
+                width: 'clamp(140px, 27vw, 293px)', 
+                height: 'clamp(60px, 8.3vw, 90px)',
+                minWidth: '140px'
+              }}
+            >
+              <span 
+                className={`font-prompt ${getTextColor(priorityList[4])}`} 
+                style={{ 
+                  fontSize: 'clamp(16px, 3.7vw, 40px)', 
+                  letterSpacing: '0.4px', 
+                  fontWeight: 700,
+                  textAlign: 'center'
+                }}
+              >
+                {priorityList[4]}
+              </span>
+            </button>
+          </div>
+
+          {/* Row 3: choice_6, choice_7 */}
+          <div className="flex gap-4 justify-center">
+            {/* choice_6: เพิ่มความถี่รถไฟฟ้า */}
+            <button
+              onClick={() => !isSelectionDisabled(priorityList[5]) && handlePriorityToggle(priorityList[5])}
+              disabled={isSelectionDisabled(priorityList[5])}
+              className={`rounded-[40px] border transition-all duration-200 flex items-center justify-center ${getButtonColor(priorityList[5])}`}
+              style={{ 
+                width: 'clamp(200px, 43vw, 465px)', 
+                height: 'clamp(60px, 8.3vw, 90px)',
+                minWidth: '200px'
+              }}
+            >
+              <span 
+                className={`font-prompt ${getTextColor(priorityList[5])}`} 
+                style={{ 
+                  fontSize: 'clamp(16px, 3.7vw, 40px)', 
+                  letterSpacing: '0.4px', 
+                  fontWeight: 700,
+                  textAlign: 'center'
+                }}
+              >
+                {priorityList[5]}
+              </span>
+            </button>
+            
+            {/* choice_7: เพิ่ม Feeder ในซอย */}
+            <button
+              onClick={() => !isSelectionDisabled(priorityList[6]) && handlePriorityToggle(priorityList[6])}
+              disabled={isSelectionDisabled(priorityList[6])}
+              className={`rounded-[40px] border transition-all duration-200 flex items-center justify-center ${getButtonColor(priorityList[6])}`}
+              style={{ 
+                width: 'clamp(220px, 44.4vw, 480px)', 
+                height: 'clamp(60px, 8.3vw, 90px)',
+                minWidth: '220px'
+              }}
+            >
+              <span 
+                className={`font-prompt ${getTextColor(priorityList[6])}`} 
+                style={{ 
+                  fontSize: 'clamp(16px, 3.7vw, 40px)', 
+                  letterSpacing: '0.4px', 
+                  fontWeight: 700,
+                  textAlign: 'center'
+                }}
+              >
+                {priorityList[6]}
+              </span>
+            </button>
+          </div>
+        </div>
+
+        {/* Continue Button */}
+        <div className="w-full flex flex-col items-center space-y-4 mt-8">
+          <button
+            onClick={handleNext}
+            disabled={selectedPriorities.length === 0}
+            className={`rounded-[50px] border-none flex items-center justify-center transition-all duration-200 ${
+              selectedPriorities.length === 0
+                ? "bg-gray-400 cursor-not-allowed"
+                : "bg-[#FFE000] hover:bg-black hover:scale-105 group"
+            }`}
+            style={{
+              width: 'clamp(300px, 78vw, 845px)',
+              height: 'clamp(50px, 10.9vw, 118px)',
+              opacity: selectedPriorities.length === 0 ? 0.5 : 1
+            }}
+            aria-describedby="next-button-description"
+          >
+            <span
+              className={`font-prompt ${
+                selectedPriorities.length === 0 
+                  ? "text-gray-600" 
+                  : "text-black group-hover:text-[#FFE000]"
+              }`}
+              style={{ 
+                fontSize: 'clamp(18px, 4.6vw, 50px)', 
+                fontWeight: 400, 
+                letterSpacing: '0.4px' 
+              }}
+            >
+              ไปต่อ
+            </span>
+          </button>
+
+          {selectedPriorities.length === 0 && (
+            <div
+              id="next-button-description"
+              className="text-center font-prompt"
+              style={{ 
+                color: '#000D59', 
+                fontSize: 'clamp(14px, 2.8vw, 18px)'
+              }}
+            >
+              กรุณาเลือกอย่างน้อย 1 ข้อเพื่อดำเนินการต่อ
+            </div>
+          )}
         </div>
       </div>
     </div>
