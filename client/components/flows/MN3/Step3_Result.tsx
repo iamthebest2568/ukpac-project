@@ -32,7 +32,7 @@ const Step3_Result = ({
 
   // Icons mapping for priorities
   const priorityIcons: { [key: string]: string } = {
-    ลดค่าโดยสารรถไฟฟ้า: "🚇",
+    ลดค่าโ��ยสารรถไฟฟ้า: "🚇",
     ปรับปรุงคุณภาพรถเมล์: "🚌",
     ตั๋วร่วม: "🎫",
     เพิ่มความถี่รถเมล์: "🚍",
@@ -124,12 +124,12 @@ const Step3_Result = ({
 
   return (
     <div className="min-h-screen bg-white flex justify-center">
-      <div className="w-full max-w-[390px] md:max-w-[420px] lg:max-w-[390px] min-h-screen bg-white overflow-hidden relative">
+      <div className="w-full min-h-screen bg-white overflow-hidden relative" style={{maxWidth: 1080}}>
         {/* Background with Dark Overlay */}
         <div className="absolute inset-0 bg-black bg-opacity-90" />
 
         {/* Main Content */}
-        <div className="relative z-10 flex flex-col min-h-screen px-6 md:px-8">
+        <div className="relative z-10 flex flex-col min-h-screen px-6 md:px-8" style={{width: '100%', maxWidth: 1080, margin: '0 auto'}}>
           {/* Results Section */}
           <div className="flex-1 flex flex-col justify-center items-center text-center">
             {/* Main Title */}
