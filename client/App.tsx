@@ -292,6 +292,16 @@ const App = () => {
                 element={<Navigate to="/ukpack1/uk-stornaway" replace />}
                 />
 
+              {/* Legacy dashboard aliases */}
+              <Route
+                path="/ukdashboard"
+                element={<Navigate to="/ukpack1/uk-dashboard" replace />}
+              />
+              <Route
+                path="/UkDashboard"
+                element={<Navigate to="/ukpack1/uk-dashboard" replace />}
+              />
+
               {/* 404 page */}
               <Route path="*" element={<NotFound />} />
             </Routes>
