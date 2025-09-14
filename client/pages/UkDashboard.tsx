@@ -52,7 +52,7 @@ type SessionSummary = {
   keyMessage1?: string; // Key message 1
   mn1Selected: string[]; // ลำดับความสำคัญของประเด็น
   mn2Selections?: Record<string, string[]>; // กลุ่มเป้าหมายที่ควรได้รับสิทธิ์
-  mn3Selected?: string[]; // ประเด็นนโยบายที่ผู้ใช้เลือก
+  mn3Selected?: string[]; // ประเด็นนโยบาย���ี่ผู้ใช้เลือก
   mn3BudgetAllocation?: Record<string, number>; // การจัดสรรงบประมาณ
   mn3BudgetTotal?: number;
   satisfactionLevel?: string; // ระดับความพึงพอใจ
@@ -250,7 +250,7 @@ export default function UkDashboard() {
         </div>
       )}
       {authed && (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+        <div className="w-full px-3 sm:px-4 md:px-6 lg:px-8 py-4 space-y-5">
           <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
               <h1 className="text-3xl md:text-4xl font-semibold tracking-tight">
@@ -706,7 +706,7 @@ export default function UkDashboard() {
                       "Time Stamp แรก",
                       "แชร์ให้เพื่อนไหม (ครั้งแรก)",
                       "Time Stamp ล่าสุด",
-                      "แชร์ให้เพื่อนไหม (เคยแชร��ไหม)",
+                      "แชร์ให้เพื่อนไหม (เคยแชร์ไหม)",
                     ]);
                     const perRows = sessions.map((s) => {
                       const mn2 = (() => {
