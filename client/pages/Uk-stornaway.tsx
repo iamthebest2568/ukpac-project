@@ -161,12 +161,30 @@ export default function UkStornaway() {
         if (eventName === "sw.choice.selected") {
           // Allow in-app navigation for special choices/tokens
           const token = (captured.choiceText || captured.variantName || "").trim();
-          // 1) Explicit mapping for Thai label "อื่น ๆ"
+          // 1) Explicit mappings for Thai labels
           if (token === "อื่น ๆ") {
             if (!navigatedRef.current) {
               navigatedRef.current = true;
               setTimeout(() => {
                 navigateToPage("ask02_2", { from: "stornaway", choice: token });
+              }, 50);
+            }
+            return;
+          }
+          if (token === "นโยบายไม่ครอบคลุม") {
+            if (!navigatedRef.current) {
+              navigatedRef.current = true;
+              setTimeout(() => {
+                navigateToPage("Flow_MiniGame_MN1", { from: "stornaway", choice: token });
+              }, 50);
+            }
+            return;
+          }
+          if (token === "เก็บไปก็ไม่มีอะไรเกิดขึ้น") {
+            if (!navigatedRef.current) {
+              navigatedRef.current = true;
+              setTimeout(() => {
+                navigateToPage("Flow_MiniGame_MN3", { from: "stornaway", choice: token });
               }, 50);
             }
             return;
