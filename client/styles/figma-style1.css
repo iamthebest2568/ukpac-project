@@ -534,8 +534,10 @@
   min-height: 100% !important;
   height: 100% !important;
   position: relative;
-  overflow: hidden !important;
-  padding-bottom: env(safe-area-inset-bottom, 10px);
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  padding-bottom: env(safe-area-inset-bottom, 16px);
 }
 .mn2-summary-page::before {
   content: "";
@@ -594,3 +596,5 @@
 /* Reduce bottom margins to save vertical space */
 .mn2-summary-page .mb-12 { margin-bottom: clamp(8px, 2vw, 12px) !important; }
 .mn2-summary-page .mb-8 { margin-bottom: clamp(6px, 2vw, 10px) !important; }
+/* Ensure inner content has bottom padding so buttons are reachable */
+.mn2-summary-page .z-10 { padding-bottom: clamp(16px, 10vh, 140px) !important; }
