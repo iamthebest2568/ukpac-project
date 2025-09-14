@@ -28,7 +28,7 @@ const EndSequencePage = lazy(() => import("./pages/ukpack1/EndSequencePage"));
 const EndScreenPage = lazy(() => import("./pages/ukpack1/EndScreenPage"));
 const MiniGameMN1Page = lazy(() => import("./pages/ukpack1/MiniGameMN1Page"));
 const MiniGameMN2Page = lazy(() => import("./pages/ukpack1/MiniGameMN2Page"));
-const MiniGameMN3Page = lazy(() => import("./pages/ukpack1/MiniGameMN3Page"));
+const MiniGameMN3Page = lazy(() => import("./pages/MiniGameMN3Page"));
 const UkStornaway = lazy(() => import("./pages/ukpack1/Uk-stornaway"));
 const UkDashboard = lazy(() => import("./pages/ukpack1/UkDashboard"));
 const ReasonOther01Page = lazy(() => import("./pages/ukpack1/ReasonOther01Page"));
