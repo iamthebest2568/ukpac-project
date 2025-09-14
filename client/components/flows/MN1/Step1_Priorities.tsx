@@ -87,7 +87,7 @@ const Step1_Priorities = ({
 
   return (
     <FigmaStyle1Layout
-      backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fa17ac45be8274b3c8c01eb99b6390ffc?format=webp&width=2160"
+      backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fa7f27d75c92b4bc1aee01a749a8a496a?format=webp&width=800"
       className="minigame-mn1-page"
       imageLoading="eager"
     >
@@ -150,7 +150,7 @@ const Step1_Priorities = ({
                 opacity: isSelectionDisabled("ลดค่าโดยสารรถไฟฟ้า") ? 0.5 : 1
               }}
               onClick={() =>
-                !isSelectionDisabled("ลดค่าโดยสารรถไฟฟ้า") &&
+                !isSelectionDisabled("ลดค��าโดยสารรถไฟฟ้า") &&
                 handlePriorityToggle("���ดค่าโดยสารรถไฟฟ้า")
               }
               disabled={isSelectionDisabled("ลดค่าโดยสารรถไฟฟ้า")}
@@ -202,7 +202,7 @@ const Step1_Priorities = ({
                 width: '23%', // 248/1080
                 height: 'clamp(60px, 4.7vw, 90px)',
                 backgroundColor: getButtonColor("ตั๋วร่วม"),
-                opacity: isSelectionDisabled("ตั๋วร่วม") ? 0.5 : 1
+                opacity: isSelectionDisabled("ตั๋วร่���ม") ? 0.5 : 1
               }}
               onClick={() => !isSelectionDisabled("ตั๋���ร่วม") && handlePriorityToggle("ตั๋วร่วม")}
               disabled={isSelectionDisabled("ตั๋วร่วม")}
@@ -229,7 +229,7 @@ const Step1_Priorities = ({
               }}
               onClick={() =>
                 !isSelectionDisabled("เพิ่มความถี่รถเมล์") &&
-                handlePriorityToggle("เพิ่มความถี่รถเมล์")
+                handlePriorityToggle("เพิ่ม��วามถี่รถเมล์")
               }
               disabled={isSelectionDisabled("���พิ่มความถี่รถเมล์")}
             >
@@ -257,7 +257,7 @@ const Step1_Priorities = ({
                 !isSelectionDisabled("เพิ่มที่จอดรถ") &&
                 handlePriorityToggle("เพิ่มที่จอดรถ")
               }
-              disabled={isSelectionDisabled("เพิ่มที่จอดรถ")}
+              disabled={isSelectionDisabled("เพิ���มที่จอดรถ")}
             >
               <span
                 className="font-prompt text-black text-center"
