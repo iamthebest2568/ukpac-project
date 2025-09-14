@@ -535,6 +535,7 @@
   height: 100% !important;
   position: relative;
   overflow-y: auto !important;
+  overflow-x: hidden !important;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
   padding-bottom: env(safe-area-inset-bottom, 16px);
@@ -548,9 +549,15 @@
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
+  pointer-events: none;
 }
 .mn2-summary-page > .absolute.inset-0 { /* blue + white curved overlays */
   display: none !important;
+  pointer-events: none !important;
+}
+/* Fallback: disable any absolute overlay inside just in case */
+.mn2-summary-page .absolute.inset-0 {
+  pointer-events: none !important;
 }
 /* Compact spacing so more cards fit */
 .mn2-summary-page .space-y-6 {
@@ -597,4 +604,4 @@
 .mn2-summary-page .mb-12 { margin-bottom: clamp(8px, 2vw, 12px) !important; }
 .mn2-summary-page .mb-8 { margin-bottom: clamp(6px, 2vw, 10px) !important; }
 /* Ensure inner content has bottom padding so buttons are reachable */
-.mn2-summary-page .z-10 { padding-bottom: clamp(16px, 10vh, 140px) !important; }
+.mn2-summary-page .z-10 { padding-bottom: clamp(16px, 10vh, 140px) !important; position: relative; z-index: 10; }
