@@ -122,7 +122,7 @@ const Step2_Allocation = ({
       {/* Content */}
       <div className="relative z-10 flex flex-col min-h-screen">
         {/* Main Content */}
-        <div className="flex-1 pt-16 sm:pt-24 md:pt-36 lg:pt-[210px] px-4 sm:px-6" style={{width: '100%', maxWidth: 1080, margin: '0 auto'}}>
+        <div className="flex-1 pt-16 sm:pt-24 md:pt-36 lg:pt-[210px] pb-28 sm:pb-32 px-4 sm:px-6" style={{width: '100%', maxWidth: 1080, margin: '0 auto'}}>
           {/* Title */}
           <div className="text-center mb-[30px] px-4">
             <h1
@@ -184,31 +184,32 @@ const Step2_Allocation = ({
             ))}
           </div>
 
-          {/* Continue Button */}
-          <div className="px-4 sm:px-6 pb-8">
-            <button
-              onClick={handleNext}
-              disabled={!isComplete}
-              className={`w-full max-w-[325px] mx-auto h-[52px] rounded-[40px] border-[1.5px] border-black flex items-center justify-center transition-all duration-200 ${
-                !isComplete
-                  ? "bg-gray-400 cursor-not-allowed"
-                  : "bg-[#EFBA31] hover:scale-105"
-              }`}
-            >
-              <span
-                className={`text-center font-prompt text-[18px] font-medium leading-7 tracking-[0.4px] ${
-                  !isComplete ? "text-gray-600" : "text-black"
+          {/* Continue Button - Sticky Footer */}
+          <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full z-20 px-4 sm:px-6 pb-4">
+            <div className="mx-auto" style={{ maxWidth: 1080 }}>
+              <button
+                onClick={handleNext}
+                disabled={!isComplete}
+                className={`w-full max-w-[325px] mx-auto h-[52px] rounded-[40px] border-[1.5px] border-black flex items-center justify-center transition-all duration-200 ${
+                  !isComplete
+                    ? "bg-gray-400 cursor-not-allowed"
+                    : "bg-[#EFBA31] hover:scale-105"
                 }`}
               >
-                ไปต่อ
-              </span>
-            </button>
-
-            {!isComplete && (
-              <div className="text-center text-white text-sm mt-2">
-                กรุณาจัดสรรงบประมาณให้ครบ {totalBudget} หน่วยเพื่อดำเนินการต่อ
-              </div>
-            )}
+                <span
+                  className={`text-center font-prompt text-[18px] font-medium leading-7 tracking-[0.4px] ${
+                    !isComplete ? "text-gray-600" : "text-black"
+                  }`}
+                >
+                  ไปต่อ
+                </span>
+              </button>
+              {!isComplete && (
+                <div className="text-center text-white text-sm mt-2">
+                  กรุณาจัดสรรงบประมาณให้ครบ {totalBudget} หน่วยเพื่อดำเนินการต่อ
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
