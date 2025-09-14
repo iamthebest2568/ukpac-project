@@ -212,7 +212,7 @@ export default function UkDashboard() {
   }, [authed, autoRefresh]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#0a0a0b] to-[#111216] text-white font-[Prompt]">
+    <div className="min-h-screen overflow-y-auto bg-gradient-to-b from-[#0a0a0b] to-[#111216] text-white font-[Prompt]">
       {!authed && (
         <div className="min-h-screen flex items-center justify-center p-4">
           <div className="w-full max-w-sm bg-white/5 border border-white/10 rounded-xl p-5">
@@ -706,7 +706,7 @@ export default function UkDashboard() {
                       "Time Stamp แรก",
                       "แชร์ให้เพื่อนไหม (ครั้งแรก)",
                       "Time Stamp ล่าสุด",
-                      "แชร์ให้เพื่อนไหม (เคยแชร์ไหม)",
+                      "แชร์ให้เพื่อนไหม (เคยแชร��ไหม)",
                     ]);
                     const perRows = sessions.map((s) => {
                       const mn2 = (() => {
