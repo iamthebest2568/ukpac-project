@@ -283,29 +283,18 @@ export default function UkStornaway() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white text-[#000D59] flex justify-center font-[Prompt]">
-      <div className="w-full max-w-[800px] p-4 md:p-6 lg:p-8">
-        <h1 className="text-2xl md:text-3xl font-semibold mb-4">
-          Stornaway Interactive
-        </h1>
-        {/* Vertical iframe container */}
-        <div
-          className="relative w-full rounded-xl overflow-hidden bg-black shadow-lg"
-          style={{ paddingBottom: "177.78%" }}
-        >
-          <iframe
-            ref={iframeRef}
-            id="stornaway-player-1"
-            src="https://player.stornaway.io/embed/e9fb79bb"
-            title="ความลับในมือถือพ่อ - Interactive Video"
-            className="absolute inset-0 w-full h-full"
-            allow="autoplay; encrypted-media; clipboard-write; accelerometer; gyroscope; picture-in-picture; web-share; fullscreen"
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            allowFullScreen
-          />
-        </div>
-      </div>
+    <div className="fixed inset-0 w-screen h-screen bg-black">
+      <iframe
+        ref={iframeRef}
+        id="stornaway-player-1"
+        src="https://player.stornaway.io/embed/e9fb79bb"
+        title="Stornaway Interactive Video"
+        className="absolute inset-0 w-full h-full"
+        allow="autoplay; encrypted-media; clipboard-write; accelerometer; gyroscope; picture-in-picture; web-share; fullscreen"
+        loading="eager"
+        referrerPolicy="no-referrer-when-downgrade"
+        allowFullScreen
+      />
     </div>
   );
 }
