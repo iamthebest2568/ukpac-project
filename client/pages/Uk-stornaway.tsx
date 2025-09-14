@@ -189,6 +189,15 @@ export default function UkStornaway() {
             }
             return;
           }
+          if (token === "เห็นด้วย") {
+            if (!navigatedRef.current) {
+              navigatedRef.current = true;
+              setTimeout(() => {
+                navigateToPage("fakeNews", { from: "stornaway", choice: token });
+              }, 50);
+            }
+            return;
+          }
           // 2) Generic route token support, e.g. "route:ask02_2" or "route:/ukpack1/ask02-2"
           const m = token.match(/^route:\s*(.+)$/i);
           if (m && m[1]) {
