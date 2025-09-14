@@ -43,7 +43,7 @@ const Step2_Summary = ({
       iconSrc: "https://api.builder.io/api/v1/image/assets/TEMP/a8a5176ee5947e2d351bcf255e32cb057477ac56?width=100",
     },
     students: {
-      label: "นักเรียน\n���ักศึกษา",
+      label: "นักเรียน/นักศึกษา",
       iconSrc: "https://api.builder.io/api/v1/image/assets/TEMP/c7725aab330bcb8ed4f1c73461ddfdbe0270b371?width=118",
     },
     disabled: {
