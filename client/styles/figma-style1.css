@@ -552,3 +552,27 @@
   min-height: clamp(160px, 22vw, 300px) !important;
   padding: clamp(12px, 2.5vw, 20px) !important;
 }
+/* Force 3-column icon grid to save space */
+.mn2-summary-page .grid.justify-items-center.items-center {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: clamp(8px, 2.5vw, 16px) !important;
+}
+/* Slightly smaller icon circles */
+.mn2-summary-page svg[viewBox="0 0 133 133"] {
+  width: clamp(70px, 10vw, 110px) !important;
+  height: clamp(70px, 10vw, 110px) !important;
+}
+/* Icon image inside circle */
+.mn2-summary-page .grid.justify-items-center.items-center img {
+  max-width: clamp(32px, 5vw, 64px) !important;
+  max-height: clamp(28px, 4.5vw, 58px) !important;
+}
+/* Beneficiary label text */
+.mn2-summary-page .grid.justify-items-center.items-center span {
+  font-size: clamp(12px, 2vw, 22px) !important;
+  line-height: 1.2 !important;
+}
+/* Title spacing */
+.mn2-summary-page h1 {
+  margin-bottom: clamp(8px, 2.5vw, 16px) !important;
+}
