@@ -322,75 +322,6 @@ export default function UkDashboard() {
                 />
               </div>
 
-              {/* Charts */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                <Card title="แนวโน้มการเล่น (รายวัน)">
-                  <div className="w-full h-[260px] md:h-[320px]">
-                    <ResponsiveContainer width="100%" height="100%">
-                      <LineChart data={(stats.timeseries || []).map(d => ({ ...d, plays: Number(d.plays || 0) }))} margin={{ top: 8, right: 16, left: -16, bottom: 8 }}>
-                        <CartesianGrid strokeDasharray="3 3" stroke="#ffffff22" />
-                        <XAxis dataKey="date" stroke="#bbb" tick={{ fontSize: 12 }} />
-                        <YAxis stroke="#bbb" tick={{ fontSize: 12 }} allowDecimals={false} />
-                        <Tooltip contentStyle={{ background: "#151517", border: "1px solid #2a2a2a", color: "#fff" }} />
-                        <Line type="monotone" dataKey="plays" stroke="#EFBA31" strokeWidth={2} dot={false} />
-                      </LineChart>
-                    </ResponsiveContainer>
-                  </div>
-                  <div className="flex justify-end mt-3">
-                    <button
-                      className="text-xs rounded bg-white/10 hover:bg-white/20 px-2 py-1"
-                      onClick={() => exportCsv("uk_stats_timeseries.csv", [["date","plays"], ...stats.timeseries.map(t => [t.date, t.plays])])}
-                    >
-                      ดาวน์โหลด CSV (Timeseries)
-                    </button>
-                  </div>
-                </Card>
-
-                <Card title="เริ่มฉาก (Variants)">
-                  <div className="w-full h-[260px] md:h-[320px]">
-                    <ResponsiveContainer width="100%" height="100%">
-                      <BarChart data={(stats.variants || []).slice(0, 10)} margin={{ top: 8, right: 16, left: -16, bottom: 8 }}>
-                        <CartesianGrid strokeDasharray="3 3" stroke="#ffffff22" />
-                        <XAxis dataKey="name" stroke="#bbb" tick={{ fontSize: 11 }} interval={0} angle={-20} height={60} />
-                        <YAxis stroke="#bbb" tick={{ fontSize: 12 }} allowDecimals={false} />
-                        <Tooltip contentStyle={{ background: "#151517", border: "1px solid #2a2a2a", color: "#fff" }} />
-                        <Bar dataKey="count" fill="#82ca9d" />
-                      </BarChart>
-                    </ResponsiveContainer>
-                  </div>
-                  <div className="flex justify-end mt-3 gap-2">
-                    <button
-                      className="text-xs rounded bg-white/10 hover:bg-white/20 px-2 py-1"
-                      onClick={() => exportCsv("uk_stats_variants.csv", [["variant","count","dropout_percent"], ...stats.variants.map(v => [v.name, v.count, Math.round((v.dropoutRate||0)*100)])])}
-                    >
-                      ดาวน์โหลด CSV (Variants)
-                    </button>
-                  </div>
-                </Card>
-
-                <Card title="ตัวเลือก (Choices)">
-                  <div className="w-full h-[260px] md:h-[320px]">
-                    <ResponsiveContainer width="100%" height="100%">
-                      <PieChart>
-                        <Tooltip contentStyle={{ background: "#151517", border: "1px solid #2a2a2a", color: "#fff" }} />
-                        <Pie data={(stats.choices || []).slice(0, 8)} dataKey="count" nameKey="name" cx="50%" cy="50%" outerRadius={90} label>
-                          {stats.choices.slice(0, 8).map((_, i) => (
-                            <Cell key={i} fill={["#EFBA31","#8884d8","#82ca9d","#ff7f50","#00C49F","#FFBB28","#FF8042","#6ee7b7"][i % 8]} />
-                          ))}
-                        </Pie>
-                      </PieChart>
-                    </ResponsiveContainer>
-                  </div>
-                  <div className="flex justify-end mt-3">
-                    <button
-                      className="text-xs rounded bg-white/10 hover:bg-white/20 px-2 py-1"
-                      onClick={() => exportCsv("uk_stats_choices.csv", [["choice","count"], ...stats.choices.map(c => [c.name, c.count])])}
-                    >
-                      ดาวน์โหลด CSV (Choices)
-                    </button>
-                  </div>
-                </Card>
-              </div>
 
               {/* Charts */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -675,7 +606,7 @@ export default function UkDashboard() {
                             </span>
                           </li>
                           <li className="flex justify-between">
-                            <span>กรอกข้อมูลติดต่อ</span>
+                            <span>กรอ��ข้อมูลติดต่อ</span>
                             <span className="text-white/70">
                               {journey.endseq?.contacts || 0}
                             </span>
@@ -699,7 +630,7 @@ export default function UkDashboard() {
                         <th className="py-2 pr-4">MN1</th>
                         <th className="py-2 pr-4">ตัดสินใจ</th>
                         <th className="py-2 pr-4">ติดต่อ</th>
-                        <th className="py-2 pr-4">ความคิดเห็น</th>
+                        <th className="py-2 pr-4">ความคิดเห���น</th>
                         <th className="py-2 pr-4">ดู</th>
                       </tr>
                     </thead>
@@ -770,7 +701,7 @@ export default function UkDashboard() {
                       "User",
                       "Access Time",
                       "Profile",
-                      "เมื่อได้ยินข่าวนี้ คุณคิดยังไง",
+                      "เมื่��ได้ยินข่าวนี้ คุณคิดยังไง",
                       "Minigame 1: ตัวเลือกนโยบาย",
                       "Minigame 2 : จับคู่",
                       "Minigame 3 : นโยบายที่เลือก",
