@@ -139,7 +139,7 @@ const Step1_Priorities = ({
       {/* Options Grid positioned as in Figma */}
       <div className="absolute w-full flex flex-col items-center" style={{ top: '71.4%' }}>
         <div className="flex flex-col" style={{ width: '91.1%', maxWidth: '984px', gap: 'clamp(16px, 1.2vw, 24px)' }}>
-          {/* Row 1: ลดค่าโดยสารรถไฟฟ้า (gray), ปรับปรุงคุณภาพรถเมล์ (yellow) */}
+          {/* Row 1: ลดค่าโดยสารรถไฟฟ้า (gray), ปรับปรุงคุณภาพรถเมล�� (yellow) */}
           <div className="flex" style={{ gap: 'clamp(16px, 1.8vw, 19px)' }}>
             <button
               className="transition-all duration-200 flex items-center justify-center rounded-[40px] border-0"
@@ -150,8 +150,8 @@ const Step1_Priorities = ({
                 opacity: isSelectionDisabled("ลดค่าโดยสารรถไฟฟ้า") ? 0.5 : 1
               }}
               onClick={() =>
-                !isSelectionDisabled("ลดค��าโดยสารรถไฟฟ้า") &&
-                handlePriorityToggle("���ดค่าโดยสารรถไฟฟ้า")
+                !isSelectionDisabled("ลดค่าโดยสารรถไฟฟ้า") &&
+                handlePriorityToggle("ลดค่าโดยสารรถไฟฟ้า")
               }
               disabled={isSelectionDisabled("ลดค่าโดยสารรถไฟฟ้า")}
             >
@@ -177,7 +177,7 @@ const Step1_Priorities = ({
               }}
               onClick={() =>
                 !isSelectionDisabled("ปรับปรุงคุณภาพรถเมล์") &&
-                handlePriorityToggle("ปรับปรุงคุณภาพ��ถเมล์")
+                handlePriorityToggle("ปรับปรุงคุณภาพรถเมล์")
               }
               disabled={isSelectionDisabled("ปรับปรุงคุณภาพรถเมล์")}
             >
@@ -202,9 +202,9 @@ const Step1_Priorities = ({
                 width: '23%', // 248/1080
                 height: 'clamp(60px, 4.7vw, 90px)',
                 backgroundColor: getButtonColor("ตั๋วร่วม"),
-                opacity: isSelectionDisabled("ตั๋วร่���ม") ? 0.5 : 1
+                opacity: isSelectionDisabled("ตั๋วร่วม") ? 0.5 : 1
               }}
-              onClick={() => !isSelectionDisabled("ตั๋���ร่วม") && handlePriorityToggle("ตั๋วร่วม")}
+              onClick={() => !isSelectionDisabled("ตั๋วร่วม") && handlePriorityToggle("ตั๋วร่วม")}
               disabled={isSelectionDisabled("ตั๋วร่วม")}
             >
               <span
@@ -229,9 +229,9 @@ const Step1_Priorities = ({
               }}
               onClick={() =>
                 !isSelectionDisabled("เพิ่มความถี่รถเมล์") &&
-                handlePriorityToggle("เพิ่ม��วามถี่รถเมล์")
+                handlePriorityToggle("เพิ่มความถี่รถเมล์")
               }
-              disabled={isSelectionDisabled("���พิ่มความถี่รถเมล์")}
+              disabled={isSelectionDisabled("เพิ่มความถี่รถเมล์")}
             >
               <span
                 className="font-prompt text-black text-center"
@@ -257,7 +257,7 @@ const Step1_Priorities = ({
                 !isSelectionDisabled("เพิ่มที่จอดรถ") &&
                 handlePriorityToggle("เพิ่มที่จอดรถ")
               }
-              disabled={isSelectionDisabled("เพิ���มที่จอดรถ")}
+              disabled={isSelectionDisabled("เพิ่มที่จอดรถ")}
             >
               <span
                 className="font-prompt text-black text-center"
@@ -367,7 +367,7 @@ const Step1_Priorities = ({
               fontSize: 'clamp(14px, 2.8vw, 18px)'
             }}
           >
-            กรุณาเลือกอย่างน้อย 1 ข้อเพื่อดำเนินการต่อ
+            กรุณาเลือกอย่างน้อย 1 ข้อเพื่อดำเนินการ���่อ
           </div>
         )}
       </div>
