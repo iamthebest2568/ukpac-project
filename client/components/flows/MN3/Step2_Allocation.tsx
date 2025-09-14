@@ -117,7 +117,7 @@ const Step2_Allocation = ({
       </div>
 
       {/* Overlay */}
-      <div className="absolute inset-0 bg-black bg-opacity-90"></div>
+      <div className="absolute inset-0 bg-black bg-opacity-90 pointer-events-none"></div>
 
       {/* Content */}
       <div className="relative z-10 flex flex-col min-h-screen">
@@ -185,7 +185,7 @@ const Step2_Allocation = ({
           </div>
 
           {/* Continue Button - Sticky Footer */}
-          <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full z-20 px-4 sm:px-6 pb-4">
+          <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full z-50 px-4 sm:px-6 pb-4">
             <div className="mx-auto" style={{ maxWidth: 1080 }}>
               <button
                 onClick={handleNext}
