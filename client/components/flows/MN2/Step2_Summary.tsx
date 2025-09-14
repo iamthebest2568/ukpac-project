@@ -262,13 +262,13 @@ const Step2_Summary = ({
               lineHeight: "normal"
             }}
           >
-            คุณพอใ��หรือไม่
+            คุณพอใจหรือไม่
           </h2>
         </div>
 
-        {/* Action Buttons - Responsive */}
+        {/* Satisfaction Buttons - Responsive */}
         <div className="w-full max-w-[874px] mx-auto space-y-4">
-          {/* Share Game Button */}
+          {/* Yes (ใช่) */}
           <div className="relative">
             <div
               className="rounded-[50px] bg-[#FFE000] mx-auto"
@@ -278,7 +278,13 @@ const Step2_Summary = ({
               }}
             />
             <button
-              onClick={handleShareGame}
+              onClick={() => {
+                logEvent({
+                  event: "SATISFACTION_CHOICE",
+                  payload: { choice: "พอใจ", path: "MN1_MN2", sessionID },
+                });
+                navigateToPage("/fake-news");
+              }}
               className="absolute inset-0 w-full transition-all duration-200 hover:scale-105 flex items-center justify-center"
               style={{
                 background: "transparent",
@@ -294,12 +300,12 @@ const Step2_Summary = ({
                   letterSpacing: "0.4px"
                 }}
               >
-                แชร์เกมนี้ให้เพื่อน
+                ใช่
               </span>
             </button>
           </div>
 
-          {/* End Game Button */}
+          {/* No (ไม่ใช่) */}
           <div className="relative">
             <div
               className="rounded-[50px] bg-[#FFE000] mx-auto"
@@ -309,7 +315,13 @@ const Step2_Summary = ({
               }}
             />
             <button
-              onClick={handleEndGame}
+              onClick={() => {
+                logEvent({
+                  event: "SATISFACTION_CHOICE",
+                  payload: { choice: "ไม่พอใ��", path: "MN1_MN2", sessionID },
+                });
+                navigateToPage("/ask05");
+              }}
               className="absolute inset-0 w-full transition-all duration-200 hover:scale-105 flex items-center justify-center"
               style={{
                 background: "transparent",
@@ -325,7 +337,7 @@ const Step2_Summary = ({
                   letterSpacing: "0.4px"
                 }}
               >
-                จบเกม
+                ไม่ใช่
               </span>
             </button>
           </div>
