@@ -77,7 +77,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           className="skip-link sr-only focus:not-sr-only absolute top-2 left-2 z-50 bg-yellow-400 text-black px-2 py-1 rounded"
           aria-label="ข้ามไปยั���เนื้อหาหลัก"
         >
-          ข้ามไปยังเนื้อหาหลัก
+          ข้ามไป��ังเนื้อหาหลัก
         </a>
         <main id="main-content" role="main" className="w-full">
           {children}
@@ -304,6 +304,15 @@ const App = () => {
                 path="/UkStornawayPage"
                 element={<Navigate to="/ukpack1/uk-stornaway" replace />}
                 />
+              {/* Root-level legacy aliases for Stornaway */}
+              <Route
+                path="/Uk-stornaway"
+                element={<Navigate to="/ukpack1/uk-stornaway" replace />}
+              />
+              <Route
+                path="/uk-stornaway"
+                element={<Navigate to="/ukpack1/uk-stornaway" replace />}
+              />
               {/* Legacy aliases for ReasonOther01 */}
               <Route
                 path="/ukpack1/ReasonOther01Page"
