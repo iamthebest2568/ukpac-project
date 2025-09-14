@@ -125,7 +125,10 @@ const Step2_Allocation = ({
         <div className="pt-[210px] px-0 flex-1" style={{width: '100%', maxWidth: 1080, margin: '0 auto'}}>
           {/* Title */}
           <div className="text-center mb-[30px] px-4">
-            <h1 className="text-white font-prompt text-[30px] font-normal leading-normal">
+            <h1
+              className="text-white font-prompt font-normal leading-normal"
+              style={{ fontSize: "clamp(20px, 5.2vw, 30px)" }}
+            >
               คุณจะให้งบประมาณ
               <br />
               แต่ละข้อเท่าไหร่
