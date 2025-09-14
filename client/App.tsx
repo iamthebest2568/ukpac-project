@@ -304,6 +304,15 @@ const App = () => {
                 path="/UkStornawayPage"
                 element={<Navigate to="/ukpack1/uk-stornaway" replace />}
                 />
+              {/* Legacy aliases for ReasonOther01 */}
+              <Route
+                path="/ukpack1/ReasonOther01Page"
+                element={<Navigate to="/ukpack1/reason-other-01" replace />}
+              />
+              <Route
+                path="/ReasonOther01Page"
+                element={<Navigate to="/ukpack1/reason-other-01" replace />}
+              />
 
               {/* Legacy dashboard aliases */}
               <Route
