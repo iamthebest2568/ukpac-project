@@ -313,6 +313,15 @@ const App = () => {
                 path="/ReasonOther01Page"
                 element={<Navigate to="/ukpack1/reason-other-01" replace />}
               />
+              {/* Legacy aliases for WhatDoYouTravelBy */}
+              <Route
+                path="/ukpack1/WhatDoYouTravelByPage"
+                element={<Navigate to="/ukpack1/what-do-you-travel-by" replace />}
+              />
+              <Route
+                path="/WhatDoYouTravelByPage"
+                element={<Navigate to="/ukpack1/what-do-you-travel-by" replace />}
+              />
 
               {/* Legacy dashboard aliases */}
               <Route
