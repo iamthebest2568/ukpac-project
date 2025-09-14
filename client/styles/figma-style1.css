@@ -531,14 +531,16 @@
 /* MN2 Summary page: remove local overlays and use global background */
 .mn2-summary-page {
   background: transparent !important;
-  min-height: 100% !important;
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100% !important;
   height: 100% !important;
-  position: relative;
   overflow-y: auto !important;
   overflow-x: hidden !important;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
   padding-bottom: env(safe-area-inset-bottom, 16px);
+  z-index: 1;
 }
 .mn2-summary-page::before {
   content: "";
