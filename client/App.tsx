@@ -309,6 +309,10 @@ const App = () => {
                 element={<Navigate to="/ukpack1/minigame-mn3" replace />}
                 />
               <Route
+                path="/ukpack1/MiniGameMN3Page"
+                element={<Navigate to="/ukpack1/minigame-mn3" replace />}
+                />
+              <Route
                 path="/UkStornawayPage"
                 element={<Navigate to="/ukpack1/uk-stornaway" replace />}
                 />
