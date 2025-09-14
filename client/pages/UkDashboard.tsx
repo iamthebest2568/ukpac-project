@@ -556,7 +556,7 @@ export default function UkDashboard() {
                     {/* MN3 money */}
                     <AccordionItem value="mn3money">
                       <AccordionTrigger>
-                        Minigame 3 : เงินที่ใส่
+                        Minigame 3 : เงินที��ใส่
                       </AccordionTrigger>
                       <AccordionContent>
                         <ul className="space-y-1 text-sm">
@@ -681,35 +681,32 @@ export default function UkDashboard() {
                   className="rounded-full bg-[#EFBA31] text-black font-medium px-5 py-2 border border-black hover:scale-105 transition shadow-sm"
                   onClick={() => {
                     const rows: (string | number)[][] = [];
-                    // Totals
-                    rows.push(["Totals"], ["metric","value"], ["totalSessions", stats.totals.totalSessions], ["totalPlays", stats.totals.totalPlays], ["completionRate", `${Math.round((stats.totals.completionRate||0)*100)}%`], ["avgSessionLengthSeconds", stats.totals.avgSessionLengthSeconds]);
-                    rows.push([""]);
-                    // Timeseries
-                    const tsRows = (stats.timeseries || []).map(t => [t.date, t.plays]);
-                    rows.push(["Timeseries"], ["date","plays"], ...tsRows);
-                    rows.push([""]);
-                    // Variants
-                    const varRows = (stats.variants || []).map(v => [v.name, v.count, Math.round((v.dropoutRate||0)*100)]);
-                    rows.push(["Variants"], ["variant","count","dropout_percent"], ...varRows);
-                    rows.push([""]);
-                    // Choices
-                    const choiceRows = (stats.choices || []).map(c => [c.name, c.count]);
-                    rows.push(["Choices"], ["choice","count"], ...choiceRows);
-                    rows.push([""]);
-                    // Per-user details (legacy format)
-                    rows.push(["PerUser"], [
-                      "User",
+                    // Unified header and rows per requirement
+                    rows.push([
+                      "User (IP Address)",
                       "Access Time",
-                      "Profile",
-                      "เมื่��ได้ยินข่าวนี้ คุณคิดยังไง",
-                      "Minigame 1: ตัวเลือกนโยบาย",
-                      "Minigame 2 : จับคู่",
-                      "Minigame 3 : นโยบายที่เลือก",
-                      "Minigame 3 : เงินที่ใส่",
-                      "ข้อคิดเห็นอื่นๆ",
-                      "ลุ้นรางวัล",
+                      "บทบาทในการเดินทางเข้าเมือง",
+                      "ยานพาหนะที่ใช้",
+                      "Key message 1",
+                      "ระดับความคิดเห็น",
+                      "เหตุผลหลัก (ASK02)",
+                      "เหตุผลในการไม่เห็นด้วยหรือกลางๆ",
+                      "คำอธิบายเพิ่มเติม",
+                      "ประเด็นนโยบายที่ผู้ใช้เลือก",
+                      "นโยบาย - กลุ่มเป้าหมายที่ควรได้รับสิทธิ์",
+                      "ลำดับความสำคัญของประเด็น",
+                      "การจัดสรรงบประมาณระหว่างนโยบาย",
+                      "ระดับความพึงพอใจ",
+                      "ข้อเสนอเพิ่มเติมต่อรัฐ",
+                      "การตอบสนองต่อข่าวปล���ม",
+                      "แหล่งข่าวที่ผู้ใช้เลือก",
+                      "การเข้าร่วมลุ้นรางวัล",
                       "ชื่อ",
-                      "เบอร์โทร",
+                      "เบอร์โทรศัพท์",
+                      "Time Stamp แรก",
+                      "แชร์ให้เพื่อนไหม (ครั้งแรก)",
+                      "Time Stamp ล่าสุด",
+                      "แชร์ให้เพื่อนไหม (เคยแชร์ไหม)",
                     ]);
                     const perRows = sessions.map((s) => {
                       const mn2 = (() => {
@@ -721,7 +718,6 @@ export default function UkDashboard() {
                         });
                         return parts.join(" ; ");
                       })();
-                      const mn3sel = (s.mn3Selected || []).join(" | ");
                       const mn3money = (() => {
                         const alloc = s.mn3BudgetAllocation || {};
                         const order = s.mn3Selected && s.mn3Selected.length ? s.mn3Selected : Object.keys(alloc);
@@ -744,15 +740,27 @@ export default function UkDashboard() {
                         s.ip || "",
                         s.firstSeen,
                         s.introWho || "",
-                        s.stornawayVariantName || "",
-                        (s.mn1Selected || []).join(" | "),
+                        s.travelMethod || "",
+                        s.keyMessage1 || s.stornawayVariantName || "",
+                        s.opinionLevel || "",
+                        s.ask02Choice || "",
+                        s.ask02CustomReason || "",
+                        s.reasonOther01 || "",
+                        (s.mn3Selected || []).join(" | "),
                         mn2,
-                        mn3sel,
+                        (s.mn1Selected || []).join(" | "),
                         mn3money,
+                        s.satisfactionLevel || "",
                         s.ask05Comment || "",
+                        s.fakeNewsResponse || "",
+                        s.sourceSelected || "",
                         decision,
                         s.contactName || "",
                         s.contactPhone || "",
+                        s.shareFirstTs || "",
+                        s.shareCount && s.shareCount > 0 ? "ใช่" : "ไม่",
+                        s.shareLastTs || "",
+                        s.shareCount && s.shareCount > 0 ? "ใช่" : "ไม่",
                       ];
                     });
                     rows.push(...perRows);
