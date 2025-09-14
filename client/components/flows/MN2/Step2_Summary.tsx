@@ -5,6 +5,7 @@
 
 import { useEffect, useState } from "react";
 import { useSession } from "../../../hooks/useSession";
+import { logEvent } from "../../../services/dataLogger.js";
 
 interface Step2_SummaryProps {
   sessionID: string | null;
@@ -261,7 +262,7 @@ const Step2_Summary = ({
               lineHeight: "normal"
             }}
           >
-            คุณพอใจหรือไม่
+            คุณพอใ��หรือไม่
           </h2>
         </div>
 
