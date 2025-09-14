@@ -110,10 +110,11 @@ export default function UkDashboard() {
     });
     setError(null);
     try {
-      const [jRes, ssRes, stRes] = await Promise.allSettled([
+      const [jRes, ssRes, stRes, vsRes] = await Promise.allSettled([
         fetch(`/api/user-journey-stats`),
         fetch(`/api/session-summaries?limit=100`),
         fetch(`/api/ingest-status`),
+        fetch(`/api/video-stats`),
       ]);
       if (jRes.status === "fulfilled" && jRes.value.ok) {
         try {
@@ -128,6 +129,11 @@ export default function UkDashboard() {
       if (stRes.status === "fulfilled" && stRes.value.ok) {
         try {
           setIngest(await stRes.value.json());
+        } catch {}
+      }
+      if (vsRes.status === "fulfilled" && vsRes.value.ok) {
+        try {
+          setStats(await vsRes.value.json());
         } catch {}
       }
       setLastUpdated(new Date().toLocaleString());
@@ -190,7 +196,7 @@ export default function UkDashboard() {
           <div className="w-full max-w-sm bg-white/5 border border-white/10 rounded-xl p-5">
             <div className="text-xl font-semibold mb-3">ป้อนรหัสผ่าน</div>
             <div className="text-sm text-white/70 mb-4">
-              หน้านี้ป้องกันด้วยรหัสผ่าน
+              หน้านี้ป้องกันด้วยรหัสผ��าน
             </div>
             <input
               type="password"
@@ -280,6 +286,20 @@ export default function UkDashboard() {
 
           {stats && (
             <div className="space-y-6">
+              {/* Totals summary */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                <SummaryCard title="Sessions" value={stats.totals.totalSessions} />
+                <SummaryCard title="Plays" value={stats.totals.totalPlays} />
+                <SummaryCard
+                  title="Completion"
+                  value={`${Math.round((stats.totals.completionRate || 0) * 100)}%`}
+                />
+                <SummaryCard
+                  title="Avg Session (s)"
+                  value={Math.round(stats.totals.avgSessionLengthSeconds || 0)}
+                />
+              </div>
+
               {/* User Journey: Topics as accordion */}
               {journey && (
                 <Card title="หัวข้อข้อมูล (Topics)">
