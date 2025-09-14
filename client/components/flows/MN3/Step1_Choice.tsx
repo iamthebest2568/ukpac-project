@@ -114,7 +114,7 @@ const Step1_Choice = ({
   return (
     <div className="w-full min-h-screen bg-[#04D9F9] flex flex-col items-center justify-center relative" style={{ maxWidth: 1080, margin: '0 auto' }}>
       {/* Main Content Container */}
-      <div className="w-full px-4 py-8 flex flex-col items-center justify-center space-y-8">
+      <div className="w-full px-4 pt-8 pb-28 md:pb-36 flex flex-col items-center justify-center space-y-8">
         
         {/* Title Section */}
         <div className="text-center w-full max-w-4xl">
@@ -324,51 +324,52 @@ const Step1_Choice = ({
           </div>
         </div>
 
-        {/* Continue Button */}
-        <div className="w-full flex flex-col items-center space-y-4 mt-8">
-          <button
-            onClick={handleNext}
-            disabled={selectedPriorities.length === 0}
-            className={`rounded-[50px] border-none flex items-center justify-center transition-all duration-200 ${
-              selectedPriorities.length === 0
-                ? "bg-gray-400 cursor-not-allowed"
-                : "bg-[#FFE000] hover:bg-black hover:scale-105 group"
-            }`}
-            style={{
-              width: 'clamp(300px, 78vw, 845px)',
-              height: 'clamp(50px, 10.9vw, 118px)',
-              opacity: selectedPriorities.length === 0 ? 0.5 : 1
-            }}
-            aria-describedby="next-button-description"
-          >
-            <span
-              className={`font-prompt ${
-                selectedPriorities.length === 0 
-                  ? "text-gray-600" 
-                  : "text-black group-hover:text-[#FFE000]"
+        {/* Continue Button - Sticky Footer */}
+        <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full z-20 px-4 pb-4">
+          <div className="mx-auto flex flex-col items-center space-y-2" style={{ maxWidth: 1080 }}>
+            <button
+              onClick={handleNext}
+              disabled={selectedPriorities.length === 0}
+              className={`rounded-[50px] border-none flex items-center justify-center transition-all duration-200 ${
+                selectedPriorities.length === 0
+                  ? "bg-gray-400 cursor-not-allowed"
+                  : "bg-[#FFE000] hover:bg-black hover:scale-105 group"
               }`}
-              style={{ 
-                fontSize: 'clamp(18px, 4.6vw, 50px)', 
-                fontWeight: 400, 
-                letterSpacing: '0.4px' 
+              style={{
+                width: 'clamp(300px, 78vw, 845px)',
+                height: 'clamp(50px, 10.9vw, 118px)',
+                opacity: selectedPriorities.length === 0 ? 0.5 : 1
               }}
+              aria-describedby="next-button-description"
             >
-              ไปต่อ
-            </span>
-          </button>
-
-          {selectedPriorities.length === 0 && (
-            <div
-              id="next-button-description"
-              className="text-center font-prompt"
-              style={{ 
-                color: '#000D59', 
-                fontSize: 'clamp(14px, 2.8vw, 18px)'
-              }}
-            >
-              กรุณาเลือกอย่างน้อย 1 ข้อเพื่อดำเนินการต่อ
-            </div>
-          )}
+              <span
+                className={`font-prompt ${
+                  selectedPriorities.length === 0
+                    ? "text-gray-600"
+                    : "text-black group-hover:text-[#FFE000]"
+                }`}
+                style={{
+                  fontSize: 'clamp(18px, 4.6vw, 50px)',
+                  fontWeight: 400,
+                  letterSpacing: '0.4px'
+                }}
+              >
+                ไปต่อ
+              </span>
+            </button>
+            {selectedPriorities.length === 0 && (
+              <div
+                id="next-button-description"
+                className="text-center font-prompt"
+                style={{
+                  color: '#000D59',
+                  fontSize: 'clamp(14px, 2.8vw, 18px)'
+                }}
+              >
+                กรุณาเลือกอย่างน้อย 1 ข้อเพื่อดำเนินการต่อ
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
