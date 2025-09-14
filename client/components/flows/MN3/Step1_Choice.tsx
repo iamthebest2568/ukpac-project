@@ -325,7 +325,7 @@ const Step1_Choice = ({
         </div>
 
         {/* Continue Button - Sticky Footer */}
-        <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full z-20 px-4 pb-4">
+        <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full z-50 px-4 pb-4">
           <div className="mx-auto flex flex-col items-center space-y-2" style={{ maxWidth: 1080 }}>
             <button
               onClick={handleNext}
