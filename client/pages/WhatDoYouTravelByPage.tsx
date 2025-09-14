@@ -1,16 +1,19 @@
 import { useState } from "react";
 import FigmaStyle1Layout from "../components/layouts/FigmaStyle1Layout";
 import { useSession } from "../hooks/useSession";
+import { logEvent } from "../services/dataLogger.js";
 
 export default function WhatDoYouTravelByPage() {
   const { navigateToPage, sessionID } = useSession();
   const [textInput, setTextInput] = useState("");
 
   const handleContinue = () => {
+    // Log explicit travel method
+    logEvent({ event: "TRAVEL_METHOD", payload: { method: textInput, sessionID } });
     navigateToPage("ask05", {
       from: "what_do_you_travel_by",
       sessionID,
-      travelMethod: textInput
+      travelMethod: textInput,
     });
   };
 
