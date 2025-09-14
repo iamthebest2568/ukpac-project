@@ -1,16 +1,22 @@
 import { useState } from "react";
 import FigmaStyle1Layout from "../components/layouts/FigmaStyle1Layout";
 import { useSession } from "../hooks/useSession";
+import { logEvent } from "../services/dataLogger.js";
 
 export default function ReasonOther01Page() {
   const { navigateToPage, sessionID } = useSession();
   const [textInput, setTextInput] = useState("");
 
   const handleContinue = () => {
+    // Log explicit reason text
+    logEvent({
+      event: "REASON_OTHER_01",
+      payload: { text: textInput, sessionID },
+    });
     navigateToPage("what_do_you_travel_by", {
       from: "reason_other_01",
       sessionID,
-      userInput: textInput
+      userInput: textInput,
     });
   };
 
