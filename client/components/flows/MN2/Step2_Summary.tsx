@@ -43,7 +43,7 @@ const Step2_Summary = ({
       iconSrc: "https://api.builder.io/api/v1/image/assets/TEMP/a8a5176ee5947e2d351bcf255e32cb057477ac56?width=100",
     },
     students: {
-      label: "นักเรียน\nนักศึกษา",
+      label: "นักเรียน\n���ักศึกษา",
       iconSrc: "https://api.builder.io/api/v1/image/assets/TEMP/c7725aab330bcb8ed4f1c73461ddfdbe0270b371?width=118",
     },
     disabled: {
@@ -269,78 +269,60 @@ const Step2_Summary = ({
         {/* Satisfaction Buttons - Responsive */}
         <div className="w-full max-w-[874px] mx-auto space-y-4">
           {/* Yes (ใช่) */}
-          <div className="relative">
-            <div
-              className="rounded-[50px] bg-[#FFE000] mx-auto"
+          <button
+            onClick={() => {
+              logEvent({
+                event: "SATISFACTION_CHOICE",
+                payload: { choice: "พอใจ", path: "MN1_MN2", sessionID },
+              });
+              navigateToPage("/fake-news");
+            }}
+            aria-label="พอใจกับผลลัพธ์ที่ได้จากการตอบคำถาม"
+            className="block rounded-[50px] bg-[#FFE000] mx-auto transition-all duration-200 hover:scale-105 flex items-center justify-center"
+            style={{
+              width: "min(845px, 85vw)",
+              height: "clamp(60px, 8vw, 118px)"
+            }}
+          >
+            <span
+              className="font-prompt text-black text-center font-normal px-4"
               style={{
-                width: "min(845px, 85vw)",
-                height: "clamp(60px, 8vw, 118px)"
-              }}
-            />
-            <button
-              onClick={() => {
-                logEvent({
-                  event: "SATISFACTION_CHOICE",
-                  payload: { choice: "พอใจ", path: "MN1_MN2", sessionID },
-                });
-                navigateToPage("/fake-news");
-              }}
-              className="absolute inset-0 w-full transition-all duration-200 hover:scale-105 flex items-center justify-center"
-              style={{
-                background: "transparent",
-                border: "none",
-                height: "clamp(60px, 8vw, 118px)"
+                fontSize: "clamp(16px, 3.5vw, 50px)",
+                fontWeight: 400,
+                letterSpacing: "0.4px"
               }}
             >
-              <span
-                className="font-prompt text-black text-center font-normal px-4"
-                style={{
-                  fontSize: "clamp(16px, 3.5vw, 50px)",
-                  fontWeight: 400,
-                  letterSpacing: "0.4px"
-                }}
-              >
-                ใช่
-              </span>
-            </button>
-          </div>
+              ใช่
+            </span>
+          </button>
 
           {/* No (ไม่ใช่) */}
-          <div className="relative">
-            <div
-              className="rounded-[50px] bg-[#FFE000] mx-auto"
+          <button
+            onClick={() => {
+              logEvent({
+                event: "SATISFACTION_CHOICE",
+                payload: { choice: "ไม่พอใจ", path: "MN1_MN2", sessionID },
+              });
+              navigateToPage("/ask05");
+            }}
+            aria-label="ไม่พอใจกับผลลัพธ์และต้องการให้ข้อเสนอแนะ"
+            className="block rounded-[50px] bg-[#FFE000] mx-auto transition-all duration-200 hover:scale-105 flex items-center justify-center"
+            style={{
+              width: "min(845px, 85vw)",
+              height: "clamp(60px, 8vw, 118px)"
+            }}
+          >
+            <span
+              className="font-prompt text-black text-center font-normal px-4"
               style={{
-                width: "min(845px, 85vw)",
-                height: "clamp(60px, 8vw, 118px)"
-              }}
-            />
-            <button
-              onClick={() => {
-                logEvent({
-                  event: "SATISFACTION_CHOICE",
-                  payload: { choice: "ไม่พอใ��", path: "MN1_MN2", sessionID },
-                });
-                navigateToPage("/ask05");
-              }}
-              className="absolute inset-0 w-full transition-all duration-200 hover:scale-105 flex items-center justify-center"
-              style={{
-                background: "transparent",
-                border: "none",
-                height: "clamp(60px, 8vw, 118px)"
+                fontSize: "clamp(16px, 3.5vw, 50px)",
+                fontWeight: 400,
+                letterSpacing: "0.4px"
               }}
             >
-              <span
-                className="font-prompt text-black text-center font-normal px-4"
-                style={{
-                  fontSize: "clamp(16px, 3.5vw, 50px)",
-                  fontWeight: 400,
-                  letterSpacing: "0.4px"
-                }}
-              >
-                ไม่ใช่
-              </span>
-            </button>
-          </div>
+              ไม่ใช่
+            </span>
+          </button>
         </div>
       </div>
     </div>
