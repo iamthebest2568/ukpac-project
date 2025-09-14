@@ -1,9 +1,9 @@
 /**
  * Ask05 - Policy Suggestion Page
- * Updated to match Figma design with FigmaStyle1Layout
+ * Restyled to match the new Figma-style pages while preserving existing content and flow
  */
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { logEvent } from "../../services/dataLogger.js";
 import FigmaStyle1Layout from "../layouts/FigmaStyle1Layout";
 
@@ -13,7 +13,7 @@ interface Ask05Props {
   journeyData?: any;
 }
 
-const Ask05 = ({ sessionID, onNavigate, journeyData }: Ask05Props) => {
+const Ask05 = ({ sessionID, onNavigate }: Ask05Props) => {
   const [suggestion, setSuggestion] = useState("");
 
   const handleContinue = () => {
@@ -49,69 +49,89 @@ const Ask05 = ({ sessionID, onNavigate, journeyData }: Ask05Props) => {
           body: JSON.stringify(body),
         });
     } catch {}
+
     // Navigate to the next step
     onNavigate("fakeNews", data);
   };
 
   return (
     <FigmaStyle1Layout
-      backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Feb2f14480a1349a6bc6b76594e26c7b5?format=webp&width=2160"
-      title="คุณคิดว่ารัฐควรทำอะไรที่จะทำให้นโยบายนี้เกิดขึ้นได้และเป็นประโยชน์ต่อประชาชนอย่างแท้จริง"
-      className="source-selection-page ask05-page"
+      backgroundImage="https://api.builder.io/api/v1/image/assets/TEMP/1ca30c44dc55682aa7c0c1273799b2f3f61b5c99?width=2160"
+      className="ask05-page"
       imageLoading="eager"
     >
-      {/* Content matching Figma design */}
-      <div className="flex-1 flex flex-col items-center justify-center" style={{ paddingTop: '4%', paddingBottom: '20%' }}>
-        {/* Text Input Box */}
-        <div
-          className="relative bg-white rounded-[20px] border-[5px] flex items-start justify-center p-6"
-          style={{
-            borderColor: '#000D59',
-            width: '82.4%', // 890/1080
-            height: '40.625%', // 780/1920
-            maxWidth: '890px',
-            maxHeight: '780px'
-          }}
-        >
-          <textarea
-            value={suggestion}
-            onChange={(e) => setSuggestion(e.target.value)}
-            placeholder="พิมพ์ข้อความของคุณที่นี่..."
-            className="w-full h-full bg-transparent border-none outline-none resize-none font-prompt text-center placeholder-gray-500"
+      {/* Content matching the new pages' structure */}
+      <div className="flex flex-col items-center justify-center h-full w-full max-w-[1080px] mx-auto px-4 py-6">
+        {/* Title */}
+        <div className="text-center mb-8">
+          <h1
+            className="font-prompt font-bold text-center"
             style={{
-              fontSize: 'clamp(16px, 3.7vw, 40px)',
-              fontWeight: 300,
-              color: 'rgba(0, 0, 0, 0.7)',
-              lineHeight: '1.2'
-            }}
-            rows={8}
-          />
-        </div>
-      </div>
-
-      {/* Button at bottom */}
-      <div className="w-full flex justify-center items-end" style={{ paddingBottom: '8.9%' }}>
-        <div className="relative flex justify-center" style={{ width: '78.2%', maxWidth: '845px' }}>
-          <button
-            onClick={handleContinue}
-            className="w-full rounded-[50px] flex items-center justify-center transition-all duration-200 bg-[#FFE000] hover:scale-105 hover:shadow-lg hover:bg-black active:bg-black group"
-            style={{
-              height: 'clamp(50px, 6.1vw, 118px)',
-              minHeight: '50px'
+              color: "#000D59",
+              fontSize: "clamp(24px, 5.6vw, 60px)",
+              fontWeight: 700,
+              lineHeight: "normal",
             }}
           >
-            <span
-              className="font-prompt text-center text-black group-hover:text-[#FFE000] group-active:text-[#FFE000]"
+            คุณคิดว่ารัฐควรทำอะไรที่จะทำให้นโยบายนี้เกิดขึ้นได้และเป็นประโยชน์ต่อประชาชนอย่างแท้จริง
+          </h1>
+        </div>
+
+        {/* Text Input Box */}
+        <div className="w-full max-w-[890px] mb-12">
+          <div
+            className="relative w-full rounded-[20px] border-[5px] border-[#000D59] bg-white"
+            style={{
+              minHeight: "clamp(400px, 40vh, 780px)",
+              padding: "clamp(16px, 3vw, 24px)",
+            }}
+          >
+            <textarea
+              value={suggestion}
+              onChange={(e) => setSuggestion(e.target.value)}
+              placeholder="พิมพ์ข้อความของคุณที่นี่..."
+              className="w-full h-full resize-none border-none outline-none font-prompt bg-transparent"
               style={{
-                fontSize: 'clamp(18px, 4.6vw, 50px)',
+                fontSize: "clamp(16px, 3.7vw, 40px)",
                 fontWeight: 400,
-                letterSpacing: '0.4px',
-                lineHeight: 'normal'
+                minHeight: "clamp(350px, 35vh, 720px)",
+                color: suggestion ? "#000" : "rgba(0, 0, 0, 0.7)",
+              }}
+            />
+          </div>
+        </div>
+
+        {/* Continue Button */}
+        <div className="w-full max-w-[845px]">
+          <div className="relative">
+            <div
+              className="rounded-[50px] bg-[#FFE000] mx-auto"
+              style={{
+                width: "min(845px, 85vw)",
+                height: "clamp(60px, 8vw, 118px)",
+              }}
+            />
+            <button
+              onClick={handleContinue}
+              className="absolute inset-0 w-full transition-all duration-200 hover:scale-105 flex items-center justify-center"
+              style={{
+                background: "transparent",
+                border: "none",
+                height: "clamp(60px, 8vw, 118px)",
               }}
             >
-              ไปต่อ
-            </span>
-          </button>
+              <span
+                className="font-prompt text-black text-center font-normal px-4"
+                style={{
+                  fontSize: "clamp(16px, 3.5vw, 50px)",
+                  fontWeight: 400,
+                  letterSpacing: "0.4px",
+                }}
+              >
+                ไปต่อ
+              </span>
+            </button>
+          </div>
         </div>
       </div>
     </FigmaStyle1Layout>
