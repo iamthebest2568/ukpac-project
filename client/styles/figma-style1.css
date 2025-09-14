@@ -558,8 +558,18 @@
   pointer-events: none !important;
 }
 /* Fallback: disable any absolute overlay inside just in case */
-.mn2-summary-page .absolute.inset-0 {
+.mn2-summary-page .absolute.inset-0,
+.mn2-summary-page .absolute[style*="inset: 0"],
+.mn2-summary-page .absolute[style*="inset:0"],
+.mn2-summary-page .absolute[style*="top: 0"][style*="left: 0"][style*="right: 0"] {
+  display: none !important;
   pointer-events: none !important;
+}
+/* Keep critical bottom question section visible */
+.mn2-summary-page .text-center.mb-8,
+.mn2-summary-page [class*="max-w-[874px]"] {
+  position: relative !important;
+  z-index: 2 !important;
 }
 /* Compact spacing so more cards fit */
 .mn2-summary-page .space-y-6 {
