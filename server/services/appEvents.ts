@@ -140,16 +140,25 @@ export interface SessionSummary {
   sessionId: string;
   firstSeen: string;
   lastSeen: string;
-  introWho?: string;
-  mn1Selected: string[];
+  introWho?: string; // บทบาทในการเดินทางเข้าเมือง
+  travelMethod?: string; // ���านพาหนะที่ใช้
+  opinionLevel?: string; // ระดับความคิดเห็น (เห็นด้วย/กลางๆ/ไม่เห็นด้วย)
+  ask02Choice?: string; // เหตุผลหลัก
+  ask02CustomReason?: string; // เหตุผลเพิ่มเติม (พิมพ์เอง)
+  reasonOther01?: string; // คำอธิบายเพิ่มเติม
+  keyMessage1?: string; // Key message 1 (จาก Stornaway)
+  mn1Selected: string[]; // ลำดับความสำคัญของประเด็น
   // MN2 selections keyed by MN1 priority
-  mn2Selections?: Record<string, string[]>;
+  mn2Selections?: Record<string, string[]>; // กลุ่มเป้าหมายที่ควรได้รับสิทธิ์
   // MN3 selections and per-policy budget
-  mn3Selected?: string[];
-  mn3BudgetAllocation?: Record<string, number>;
+  mn3Selected?: string[]; // ประเด็นนโยบายที่ผู้ใช้เลือก
+  mn3BudgetAllocation?: Record<string, number>; // การจัดสรรงบประมาณ
   mn3BudgetTotal?: number;
-  ask05Comment?: string;
-  endDecision?: string;
+  satisfactionLevel?: string; // ระดับความพึงพอใจ
+  ask05Comment?: string; // ข้อเสนอเพิ่มเติมต่อรัฐ
+  fakeNewsResponse?: string; // การตอบสนองต่อข่าวปลอม
+  sourceSelected?: string; // แหล่งข่าวที่ผู้ใช้เลือก
+  endDecision?: string; // การเข้าร่วมลุ้นรางวัล
   endDecisionText?: string;
   // End sequence contact details
   contactName?: string;
@@ -157,6 +166,10 @@ export interface SessionSummary {
   contacts: number;
   // Stornaway variant
   stornawayVariantName?: string;
+  // Share
+  shareCount?: number;
+  shareFirstTs?: string | null;
+  shareLastTs?: string | null;
   // Meta
   ip?: string;
   userAgent?: string;
@@ -278,17 +291,29 @@ export async function computeSessionSummaries(
     const lastSeen = arr[arr.length - 1]?.timestamp || firstSeen;
 
     let introWho: string | undefined;
+    let travelMethod: string | undefined;
+    let opinionLevel: string | undefined;
+    let ask02Choice: string | undefined;
+    let ask02CustomReason: string | undefined;
+    let reasonOther01: string | undefined;
+    let keyMessage1: string | undefined;
     let mn1Selected: string[] = [];
     const mn2Selections: Record<string, string[]> = {};
     let mn3Selected: string[] = [];
     let mn3BudgetAllocation: Record<string, number> | undefined;
     let mn3BudgetTotal: number | undefined;
+    let satisfactionLevel: string | undefined;
     let ask05Comment: string | undefined;
+    let fakeNewsResponse: string | undefined;
+    let sourceSelected: string | undefined;
     let endDecision: string | undefined;
     let endDecisionText: string | undefined;
     let contactName: string | undefined;
     let contactPhone: string | undefined;
     let contacts = 0;
+    let shareCount = 0;
+    let shareFirstTs: string | null = null;
+    let shareLastTs: string | null = null;
     let ip: string | undefined;
     let userAgent: string | undefined;
 
@@ -300,6 +325,30 @@ export async function computeSessionSummaries(
           (ev.payload?.choiceText || ev.payload?.choice || "").toString(),
         );
         if (label) introWho = label;
+      }
+      if (ev.event === "ASK01_CHOICE") {
+        const choice = sanitizeThai(
+          (ev.payload?.choice || ev.payload?.choiceText || "").toString(),
+        );
+        if (choice) opinionLevel = choice;
+      }
+      if (ev.event === "ASK02_CHOICE") {
+        const reason = sanitizeThai(
+          (ev.payload?.choice || ev.payload?.choiceText || "").toString(),
+        );
+        if (reason) ask02Choice = reason;
+      }
+      if (ev.event === "ASK02_2_SUBMIT") {
+        const txt = sanitizeThai((ev.payload?.customReason || "").toString());
+        if (txt) ask02CustomReason = txt;
+      }
+      if (ev.event === "REASON_OTHER_01") {
+        const txt = sanitizeThai((ev.payload?.text || "").toString());
+        if (txt) reasonOther01 = txt;
+      }
+      if (ev.event === "TRAVEL_METHOD") {
+        const txt = sanitizeThai((ev.payload?.method || "").toString());
+        if (txt) travelMethod = txt;
       }
       if (ev.event === "MN1_COMPLETE" || ev.event === "BUDGET_STEP1_COMPLETE") {
         mn1Selected = Array.isArray(ev.payload?.selectedPolicies)
@@ -336,9 +385,21 @@ export async function computeSessionSummaries(
           );
         }
       }
+      if (ev.event === "SATISFACTION_CHOICE") {
+        const txt = sanitizeThai((ev.payload?.choice || "").toString());
+        if (txt) satisfactionLevel = txt;
+      }
       if (ev.event === "ASK05_COMMENT") {
         const c = sanitizeThai((ev.payload?.comment || "").toString());
         if (c) ask05Comment = c;
+      }
+      if (ev.event === "FAKENEWS_CHOICE") {
+        const ch = (ev.payload?.choice || "").toString();
+        fakeNewsResponse = ch === "search" ? "หาทางต่อ" : ch === "ignore" ? "ไม่ทำอะไร" : undefined;
+      }
+      if (ev.event === "SOURCE_SELECTION") {
+        const src = sanitizeThai((ev.payload?.source || ev.payload?.sourceLabel || "").toString());
+        if (src) sourceSelected = src;
       }
       if (ev.event === "ENDSEQ_DECISION") {
         const choice = sanitizeThai(ev.payload?.choice as string | undefined);
@@ -353,16 +414,28 @@ export async function computeSessionSummaries(
         if (name) contactName = name;
         if (phone) contactPhone = phone;
       }
+      if (ev.event === "SHARE") {
+        shareCount += 1;
+        if (!shareFirstTs) shareFirstTs = ev.timestamp;
+        shareLastTs = ev.timestamp;
+      }
     }
 
     const stornawayVariantName =
       firstChoiceAfterStory.get(sid)?.name || undefined;
+    keyMessage1 = keyMessage1 || stornawayVariantName;
 
     summaries.push({
       sessionId: sid,
       firstSeen,
       lastSeen,
       introWho,
+      travelMethod,
+      opinionLevel,
+      ask02Choice,
+      ask02CustomReason,
+      reasonOther01,
+      keyMessage1,
       mn1Selected,
       mn2Selections: Object.keys(mn2Selections).length
         ? mn2Selections
@@ -370,13 +443,19 @@ export async function computeSessionSummaries(
       mn3Selected,
       mn3BudgetAllocation,
       mn3BudgetTotal,
+      satisfactionLevel,
       ask05Comment,
+      fakeNewsResponse,
+      sourceSelected,
       endDecision,
       endDecisionText,
       contactName,
       contactPhone,
       contacts,
       stornawayVariantName,
+      shareCount,
+      shareFirstTs,
+      shareLastTs,
       ip,
       userAgent,
     });
