@@ -5,7 +5,6 @@
 
 import { useEffect, useState } from "react";
 import { logEvent } from "../../../services/dataLogger.js";
-import { useSession } from "../../../hooks/useSession";
 
 interface Step3_ResultProps {
   sessionID: string | null;
@@ -28,7 +27,7 @@ const Step3_Result = ({
   journeyData,
 }: Step3_ResultProps) => {
   const [resultSummary, setResultSummary] = useState<ResultSummary[]>([]);
-  const { navigateToPage, setFlowData } = useSession();
+  // Standalone: no global navigation or session-side effects here
 
   // Icons mapping for priorities
   const priorityIcons: { [key: string]: string } = {
@@ -86,11 +85,8 @@ const Step3_Result = ({
       },
     };
 
-    // Save flow data
-    setFlowData((prev) => ({ ...prev, mn3: { ...journeyData, ...data } }));
-
-    // Navigate to FakeNewsPage for satisfied users
-    navigateToPage("/fake-news");
+    // Standalone: finish via onNext without navigating away
+    onNext(data);
   };
 
   const handleNo = () => {
@@ -115,11 +111,8 @@ const Step3_Result = ({
       },
     };
 
-    // Save flow data
-    setFlowData((prev) => ({ ...prev, mn3: { ...journeyData, ...data } }));
-
-    // Navigate to Ask05Page for unsatisfied users
-    navigateToPage("/ask05");
+    // Standalone: finish via onNext without navigating away
+    onNext(data);
   };
 
   return (
