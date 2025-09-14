@@ -159,8 +159,31 @@ export default function UkStornaway() {
         }
 
         if (eventName === "sw.choice.selected") {
-          // Choices should be handled inside the Stornaway video.
-          // Prevent navigating away from this page when a choice is selected.
+          // Allow in-app navigation for special choices/tokens
+          const token = (captured.choiceText || captured.variantName || "").trim();
+          // 1) Explicit mapping for Thai label "อื่น ๆ"
+          if (token === "อื่น ๆ") {
+            if (!navigatedRef.current) {
+              navigatedRef.current = true;
+              setTimeout(() => {
+                navigateToPage("ask02_2", { from: "stornaway", choice: token });
+              }, 50);
+            }
+            return;
+          }
+          // 2) Generic route token support, e.g. "route:ask02_2" or "route:/ukpack1/ask02-2"
+          const m = token.match(/^route:\s*(.+)$/i);
+          if (m && m[1]) {
+            const route = m[1].trim();
+            if (!navigatedRef.current) {
+              navigatedRef.current = true;
+              setTimeout(() => {
+                navigateToPage(route, { from: "stornaway", choice: token });
+              }, 50);
+            }
+            return;
+          }
+          // Otherwise, do not navigate away (stay inside the video)
           if (!preventExternalNavigation) {
             if (!navigatedRef.current) {
               navigatedRef.current = true;
