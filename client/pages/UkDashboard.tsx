@@ -84,6 +84,16 @@ export default function UkDashboard() {
     videoEvents: any[];
   } | null>(null);
 
+  // Responsive helpers for charts/labels
+  const [winW, setWinW] = useState<number>(
+    typeof window !== "undefined" ? window.innerWidth : 1024,
+  );
+  useEffect(() => {
+    const onResize = () => setWinW(window.innerWidth);
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
   // Password gate
   const expected = (import.meta as any).env?.VITE_DASHBOARD_PASSWORD as
     | string
@@ -263,7 +273,7 @@ export default function UkDashboard() {
                 disabled={clearing}
                 title="ลบ events.jsonl และ app-events.jsonl ในเซิร์ฟเวอร์"
               >
-                {clearing ? "กำลังลบ..." : "ลบข้อมูลทั้งหมด"}
+                {clearing ? "กำลังลบ..." : "ลบข้อมูลทั้ง��มด"}
               </button>
               <label className="flex items-center gap-2 text-sm text-white/80">
                 <input
@@ -366,6 +376,52 @@ export default function UkDashboard() {
                     >
                       ดาวน์โหลด CSV (Choices)
                     </button>
+                  </div>
+                </Card>
+              </div>
+
+              {/* Charts */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                <Card title="แนวโน้มการเล่น (รายวัน)">
+                  <div className="w-full h-[240px] md:h-[320px] min-w-0">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <LineChart data={(stats.timeseries || []).map(d => ({ ...d, plays: Number(d.plays || 0) }))} margin={{ top: 8, right: 12, left: -8, bottom: 8 }}>
+                        <CartesianGrid strokeDasharray="3 3" stroke="#ffffff22" />
+                        <XAxis dataKey="date" stroke="#bbb" tick={{ fontSize: winW < 640 ? 10 : 12 }} hide={winW < 380} />
+                        <YAxis stroke="#bbb" tick={{ fontSize: winW < 640 ? 10 : 12 }} allowDecimals={false} />
+                        <Tooltip contentStyle={{ background: "#151517", border: "1px solid #2a2a2a", color: "#fff" }} />
+                        <Line type="monotone" dataKey="plays" stroke="#EFBA31" strokeWidth={2} dot={false} />
+                      </LineChart>
+                    </ResponsiveContainer>
+                  </div>
+                </Card>
+
+                <Card title="เริ่มฉาก (Variants)">
+                  <div className="w-full h-[260px] md:h-[320px] min-w-0">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <BarChart data={(stats.variants || []).slice(0, 10)} margin={{ top: 8, right: 12, left: -8, bottom: 8 }}>
+                        <CartesianGrid strokeDasharray="3 3" stroke="#ffffff22" />
+                        <XAxis dataKey="name" stroke="#bbb" tick={{ fontSize: winW < 640 ? 10 : 11 }} interval={0} angle={winW < 640 ? 0 : -20} height={winW < 640 ? 40 : 60} />
+                        <YAxis stroke="#bbb" tick={{ fontSize: winW < 640 ? 10 : 12 }} allowDecimals={false} />
+                        <Tooltip contentStyle={{ background: "#151517", border: "1px solid #2a2a2a", color: "#fff" }} />
+                        <Bar dataKey="count" fill="#82ca9d" />
+                      </BarChart>
+                    </ResponsiveContainer>
+                  </div>
+                </Card>
+
+                <Card title="ตัวเลือก (Choices)">
+                  <div className="w-full h-[260px] md:h-[320px] min-w-0">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <PieChart>
+                        <Tooltip contentStyle={{ background: "#151517", border: "1px solid #2a2a2a", color: "#fff" }} />
+                        <Pie data={(stats.choices || []).slice(0, 8)} dataKey="count" nameKey="name" cx="50%" cy="50%" outerRadius={winW < 640 ? 70 : 90} label={winW >= 480}>
+                          {stats.choices.slice(0, 8).map((_, i) => (
+                            <Cell key={i} fill={["#EFBA31","#8884d8","#82ca9d","#ff7f50","#00C49F","#FFBB28","#FF8042","#6ee7b7"][i % 8]} />
+                          ))}
+                        </Pie>
+                      </PieChart>
+                    </ResponsiveContainer>
                   </div>
                 </Card>
               </div>
@@ -621,7 +677,7 @@ export default function UkDashboard() {
 
               {/* Per-user (individual) results */}
               <Card title="ผลรายบุคคล (ล่าสุด)">
-                <div className="overflow-auto">
+                <div className="overflow-x-auto">
                   <table className="min-w-full text-sm rounded-md overflow-hidden">
                     <thead className="bg-white/5 backdrop-blur">
                       <tr className="text-left text-white/80">
@@ -679,91 +735,89 @@ export default function UkDashboard() {
               {/* Export */}
               <div className="flex flex-wrap gap-3 justify-end">
                 <button
-                  className="rounded-full bg-white/10 hover:bg-white/20 border border-white/20 px-3 py-2 text-sm"
-                  onClick={() => exportJson("uk_stats.json", stats)}
-                >
-                  ดาวน์โหลด JSON (Stats)
-                </button>
-                <button
-                  className="rounded-full bg-white/10 hover:bg-white/20 border border-white/20 px-3 py-2 text-sm"
-                  onClick={() => exportCsv("uk_stats_totals.csv", [["metric","value"],["totalSessions",stats.totals.totalSessions],["totalPlays",stats.totals.totalPlays],["completionRate",Math.round((stats.totals.completionRate||0)*100)+"%"],["avgSessionLengthSeconds",stats.totals.avgSessionLengthSeconds]])}
-                >
-                  ดาวน์โหลด CSV (Totals)
-                </button>
-                <button
                   className="rounded-full bg-[#EFBA31] text-black font-medium px-5 py-2 border border-black hover:scale-105 transition shadow-sm"
-                  onClick={() =>
-                    exportCsv("uk_export.csv", [
-                      [
-                        "User",
-                        "Access Time",
-                        "Profile",
-                        "เมื่อได้ยินข่าวนี้ คุณคิดยังไง",
-                        "Minigame 1: ตั���เลือกนโยบาย",
-                        "Minigame 2 : จับคู่",
-                        "Minigame 3 : นโยบายที่เลือก",
-                        "Minigame 3 : เงินที่ใส่",
-                        "ข้อคิดเห็นอื่นๆ",
-                        "ลุ้นรางวัล",
-                        "ชื่อ",
-                        "เบอร์โทร",
-                      ],
-                      ...sessions.map((s) => {
-                        const mn2 = (() => {
-                          const m = s.mn2Selections || {};
-                          const mn1 = s.mn1Selected || [];
-                          const parts = mn1.map((p) => {
-                            const gs = Array.isArray(m[p]) ? m[p] : [];
-                            return `${p}: ${gs.length ? gs.join(" | ") : "-"}`;
-                          });
-                          return parts.join(" ; ");
-                        })();
-                        const mn3sel = (s.mn3Selected || []).join(" | ");
-                        const mn3money = (() => {
-                          const alloc = s.mn3BudgetAllocation || {};
-                          const order =
-                            s.mn3Selected && s.mn3Selected.length
-                              ? s.mn3Selected
-                              : Object.keys(alloc);
-                          const seen = new Set<string>();
-                          const pairs: string[] = [];
-                          for (const p of order) {
-                            seen.add(p);
-                            const val = (alloc as any)[p];
-                            pairs.push(
-                              `${p}: ${typeof val === "number" ? val : "-"}`,
-                            );
-                          }
-                          for (const p of Object.keys(alloc)) {
-                            if (seen.has(p)) continue;
-                            const val = (alloc as any)[p];
-                            pairs.push(
-                              `${p}: ${typeof val === "number" ? val : "-"}`,
-                            );
-                          }
-                          return pairs.join(" ; ");
-                        })();
-                        const decision =
-                          s.endDecisionText || s.endDecision || "";
-                        return [
-                          s.ip || "",
-                          s.firstSeen,
-                          s.introWho || "",
-                          s.stornawayVariantName || "",
-                          (s.mn1Selected || []).join(" | "),
-                          mn2,
-                          mn3sel,
-                          mn3money,
-                          s.ask05Comment || "",
-                          decision,
-                          s.contactName || "",
-                          s.contactPhone || "",
-                        ];
-                      }),
-                    ])
-                  }
+                  onClick={() => {
+                    const rows: (string | number)[][] = [];
+                    // Totals
+                    rows.push(["Totals"], ["metric","value"], ["totalSessions", stats.totals.totalSessions], ["totalPlays", stats.totals.totalPlays], ["completionRate", `${Math.round((stats.totals.completionRate||0)*100)}%`], ["avgSessionLengthSeconds", stats.totals.avgSessionLengthSeconds]);
+                    rows.push([""]);
+                    // Timeseries
+                    const tsRows = (stats.timeseries || []).map(t => [t.date, t.plays]);
+                    rows.push(["Timeseries"], ["date","plays"], ...tsRows);
+                    rows.push([""]);
+                    // Variants
+                    const varRows = (stats.variants || []).map(v => [v.name, v.count, Math.round((v.dropoutRate||0)*100)]);
+                    rows.push(["Variants"], ["variant","count","dropout_percent"], ...varRows);
+                    rows.push([""]);
+                    // Choices
+                    const choiceRows = (stats.choices || []).map(c => [c.name, c.count]);
+                    rows.push(["Choices"], ["choice","count"], ...choiceRows);
+                    rows.push([""]);
+                    // Per-user details (legacy format)
+                    rows.push(["PerUser"], [
+                      "User",
+                      "Access Time",
+                      "Profile",
+                      "เมื่อได้ยินข่าวนี้ คุณคิดยังไง",
+                      "Minigame 1: ตัวเลือกนโยบาย",
+                      "Minigame 2 : จับคู่",
+                      "Minigame 3 : นโยบายที่เลือก",
+                      "Minigame 3 : เงินที่ใส่",
+                      "ข้อคิดเห็นอื่น��",
+                      "ลุ้นรางวัล",
+                      "ชื่อ",
+                      "เบอร์โทร",
+                    ]);
+                    const perRows = sessions.map((s) => {
+                      const mn2 = (() => {
+                        const m = s.mn2Selections || {};
+                        const mn1 = s.mn1Selected || [];
+                        const parts = mn1.map((p) => {
+                          const gs = Array.isArray(m[p]) ? m[p] : [];
+                          return `${p}: ${gs.length ? gs.join(" | ") : "-"}`;
+                        });
+                        return parts.join(" ; ");
+                      })();
+                      const mn3sel = (s.mn3Selected || []).join(" | ");
+                      const mn3money = (() => {
+                        const alloc = s.mn3BudgetAllocation || {};
+                        const order = s.mn3Selected && s.mn3Selected.length ? s.mn3Selected : Object.keys(alloc);
+                        const seen = new Set<string>();
+                        const pairs: string[] = [];
+                        for (const p of order) {
+                          seen.add(p);
+                          const val = (alloc as any)[p];
+                          pairs.push(`${p}: ${typeof val === "number" ? val : "-"}`);
+                        }
+                        for (const p of Object.keys(alloc)) {
+                          if (seen.has(p)) continue;
+                          const val = (alloc as any)[p];
+                          pairs.push(`${p}: ${typeof val === "number" ? val : "-"}`);
+                        }
+                        return pairs.join(" ; ");
+                      })();
+                      const decision = s.endDecisionText || s.endDecision || "";
+                      return [
+                        s.ip || "",
+                        s.firstSeen,
+                        s.introWho || "",
+                        s.stornawayVariantName || "",
+                        (s.mn1Selected || []).join(" | "),
+                        mn2,
+                        mn3sel,
+                        mn3money,
+                        s.ask05Comment || "",
+                        decision,
+                        s.contactName || "",
+                        s.contactPhone || "",
+                      ];
+                    });
+                    rows.push(...perRows);
+
+                    exportCsv("uk_export_all.csv", rows);
+                  }}
                 >
-                  ดาวน์โหลด CSV (รายบุคคล)
+                  ดาวน์โหลด CSV (สรุปรวม)
                 </button>
               </div>
             </div>
