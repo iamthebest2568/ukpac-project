@@ -43,19 +43,31 @@ type SessionSummary = {
   sessionId: string;
   firstSeen: string;
   lastSeen: string;
-  introWho?: string;
-  mn1Selected: string[];
-  mn2Selections?: Record<string, string[]>;
-  mn3Selected?: string[];
-  mn3BudgetAllocation?: Record<string, number>;
+  introWho?: string; // บทบาทในการเดินทางเข้าเมือง
+  travelMethod?: string; // ยานพาหนะที่ใช้
+  opinionLevel?: string; // ระดับความคิดเห็น
+  ask02Choice?: string; // เหตุผลหลัก
+  ask02CustomReason?: string; // เหตุผลพิมพ์เอง
+  reasonOther01?: string; // คำอธิบายเพิ่มเติม
+  keyMessage1?: string; // Key message 1
+  mn1Selected: string[]; // ลำดับความสำคัญของประเด็น
+  mn2Selections?: Record<string, string[]>; // กลุ่มเป้าหมายที่ควรได้รับสิทธิ์
+  mn3Selected?: string[]; // ประเด็นนโยบายที่ผู้ใช้เลือก
+  mn3BudgetAllocation?: Record<string, number>; // การจัดสรรงบประมาณ
   mn3BudgetTotal?: number;
-  ask05Comment?: string;
-  endDecision?: string;
+  satisfactionLevel?: string; // ระดับความพึงพอใจ
+  ask05Comment?: string; // ข้อเสนอเพิ่มเติมต่อรัฐ
+  fakeNewsResponse?: string; // การตอบสนองต่อข่าวปลอม
+  sourceSelected?: string; // แหล่งข่าวที่ผู้���ช้เลือก
+  endDecision?: string; // การเข้าร่วมลุ้นรางวัล
   endDecisionText?: string;
   contactName?: string;
   contactPhone?: string;
   contacts: number;
   stornawayVariantName?: string;
+  shareCount?: number;
+  shareFirstTs?: string | null;
+  shareLastTs?: string | null;
   ip?: string;
   userAgent?: string;
 };
@@ -273,7 +285,7 @@ export default function UkDashboard() {
                 disabled={clearing}
                 title="ลบ events.jsonl และ app-events.jsonl ในเซิร์ฟเวอร์"
               >
-                {clearing ? "กำลังลบ..." : "ลบข้อมูลทั้ง��มด"}
+                {clearing ? "กำลังลบ..." : "ลบข้อมูลทั้งหมด"}
               </button>
               <label className="flex items-center gap-2 text-sm text-white/80">
                 <input
@@ -292,7 +304,7 @@ export default function UkDashboard() {
               aria-hidden="true"
             />
           )}
-          {error && <div className="text-red-400">เกิดข้อผิดพลาด: {error}</div>}
+          {error && <div className="text-red-400">เกิดข้อผิดพล��ด: {error}</div>}
 
           {stats && (
             <div className="space-y-6">
@@ -763,7 +775,7 @@ export default function UkDashboard() {
                       "Minigame 2 : จับคู่",
                       "Minigame 3 : นโยบายที่เลือก",
                       "Minigame 3 : เงินที่ใส่",
-                      "ข้อคิดเห็นอื่น��",
+                      "ข้อคิดเห็นอื่นๆ",
                       "ลุ้นรางวัล",
                       "ชื่อ",
                       "เบอร์โทร",
