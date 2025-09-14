@@ -110,7 +110,7 @@ const App = () => {
               <Routes>
               {/* Main entry */}
               <Route path="/" element={<IndexPage />} />
-              <Route path="/ukpack1" element={<Navigate to="/ukpack1/ask02" replace />} />
+              <Route path="/ukpack1" element={<Navigate to="/ukpack1/uk-stornaway" replace />} />
               <Route path="/ukpack2" element={<SplashScreen />} />
               <Route path="/ukpack2/chassis" element={<ChassisScreen />} />
               <Route path="/ukpack2/seating" element={<SeatingScreen />} />
