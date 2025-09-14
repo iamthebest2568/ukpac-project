@@ -581,6 +581,15 @@
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   }
 }
+/* Make the route wrapper not clip when this page is active */
+#main-content > .flow-container:has(.mn2-summary-page) {
+  overflow: visible !important;
+}
+/* Keep the bottom question section above any backgrounds */
+.mn2-summary-page .text-center.mb-8 {
+  position: relative;
+  z-index: 11;
+}
 /* Slightly smaller icon circles */
 .mn2-summary-page svg[viewBox="0 0 133 133"] {
   width: clamp(60px, 9vw, 100px) !important;
@@ -609,4 +618,4 @@
 .mn2-summary-page .mb-12 { margin-bottom: clamp(8px, 2vw, 12px) !important; }
 .mn2-summary-page .mb-8 { margin-bottom: clamp(6px, 2vw, 10px) !important; }
 /* Ensure inner content has bottom padding so buttons are reachable */
-.mn2-summary-page .z-10 { padding-bottom: clamp(16px, 10vh, 140px) !important; position: relative; z-index: 10; }
+.mn2-summary-page .z-10 { padding-bottom: clamp(16px, 10vh, 140px) !important; position: relative; z-index: 10; pointer-events: auto; }
