@@ -56,7 +56,7 @@ const Ask05 = ({ sessionID, onNavigate }: Ask05Props) => {
 
   return (
     <FigmaStyle1Layout
-      backgroundImage="https://api.builder.io/api/v1/image/assets/TEMP/1ca30c44dc55682aa7c0c1273799b2f3f61b5c99?width=2160"
+      backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F2027d04252804378a79493387966cef1?format=webp&width=800"
       className="ask05-page"
       imageLoading="eager"
     >
@@ -73,7 +73,7 @@ const Ask05 = ({ sessionID, onNavigate }: Ask05Props) => {
               lineHeight: "normal",
             }}
           >
-            คุณคิดว่ารัฐควรทำอะไรที่จะทำให้นโยบายนี้เกิดขึ้นได้และเป็นประโยชน์ต่อประชาชนอย่างแท้จริง
+            คุณคิดว่ารัฐค��รทำอะไรที่จะทำให้นโยบายนี้เกิดขึ้นได้และเป็นประโยชน์ต่อประชาชนอย่างแท้จริง
           </h1>
         </div>
 
