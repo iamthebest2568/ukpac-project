@@ -424,6 +424,10 @@ const App = () => {
                   element={<Navigate to="/ukpack1/budget" replace />}
                 />
                 <Route
+                  path="/ukpack1/BudgetPage"
+                  element={<Navigate to="/ukpack1/budget" replace />}
+                />
+                <Route
                   path="/FakeNewsPage"
                   element={<Navigate to="/ukpack1/fake-news" replace />}
                 />
