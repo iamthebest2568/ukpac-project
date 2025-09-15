@@ -285,7 +285,7 @@ export default function UkDashboard() {
                 disabled={clearing}
                 title="ลบ events.jsonl และ app-events.jsonl ในเซิร์ฟเวอร์"
               >
-                {clearing ? "กำลังลบ..." : "ลบข้อมูลทั้��หมด"}
+                {clearing ? "กำลังลบ..." : "ลบข้อมูลทั้งหมด"}
               </button>
               <label className="flex items-center gap-2 text-sm text-white/80">
                 <input
@@ -325,7 +325,7 @@ export default function UkDashboard() {
 
               {/* Charts */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                <Card title="แนวโน้มการเล่น (รายวัน)">
+                <Card title="แ��วโน้มการเล่น (รายวัน)">
                   <div className="w-full h-[240px] md:h-[320px] min-w-0">
                     <ResponsiveContainer width="100%" height="100%">
                       <LineChart data={(stats.timeseries || []).map(d => ({ ...d, plays: Number(d.plays || 0) }))} margin={{ top: 8, right: 12, left: -8, bottom: 8 }}>
@@ -390,7 +390,7 @@ export default function UkDashboard() {
                             </span>
                           </li>
                           <li className="flex justify-between">
-                            <span>จำนวนเซสชัน</span>
+                            <span>จ��นวนเซสชัน</span>
                             <span className="text-white/70">
                               {sessions.length}
                             </span>
@@ -416,7 +416,7 @@ export default function UkDashboard() {
                             return (
                               <>
                                 <li className="flex justify-between">
-                                  <span>ช่วงเวลา</span>
+                                  <span>ช่วงเ��ลา</span>
                                   <span className="text-white/70">
                                     {min} – {max}
                                   </span>
