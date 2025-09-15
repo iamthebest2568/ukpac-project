@@ -151,7 +151,7 @@ const PaymentScreen: React.FC = () => {
       title="ปรับแต่งรถเมล์ของคุณ"
       theme="light"
       footerContent={
-        <div className="flex justify-end">
+        <div className="flex justify-center">
           <CtaButton text="ถัดไป" onClick={handleNext} />
         </div>
       }
