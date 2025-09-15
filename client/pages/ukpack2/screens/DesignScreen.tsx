@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CustomizationScreen from '../components/CustomizationScreen';
 import ColorPalette from '../components/ColorPalette';
@@ -49,7 +50,7 @@ const DesignScreen: React.FC = () => {
           <h2 className="text-xl font-prompt font-semibold text-[#003366] mt-2">ออกแบบสี</h2>
           <ColorPalette colors={DEFAULT_COLORS} selectedColor={color} onColorSelect={setColor} />
 
-          <h2 className="text-xl font-prompt font-semibold text-[#003366] mt-2">ลักษณะพิเศษของรถคุณ</h2>
+          <h2 className="text-xl font-prompt font-semibold text-[#003366] mt-2">ลักษณะพิเศ��ของรถคุณ</h2>
           <div>
             <input
               type="text"
