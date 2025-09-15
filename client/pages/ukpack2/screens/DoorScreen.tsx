@@ -360,7 +360,7 @@ const DoorScreen: React.FC = () => {
             />
             <SelectionCard
               icon={<IconHighLow />}
-              label={"ประตูฉ��กเฉิน"}
+              label={"ประตูฉุกเฉิน"}
               isSelected={selectedOption === "emergency"}
               onClick={() => setSelectedOption("emergency")}
               variant="light"
