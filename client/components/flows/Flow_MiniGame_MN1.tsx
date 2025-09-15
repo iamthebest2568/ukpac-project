@@ -5,13 +5,6 @@
 
 import { useState } from "react";
 
-/**
- * UK PACK - MN1 Mini-Game Flow Container
- * Manages the first step of the Policy Designer mini-game (priorities selection)
- */
-
-import { useState } from "react";
-
 // Internal step components
 import Step1_Priorities from "./MN1/Step1_Priorities";
 
