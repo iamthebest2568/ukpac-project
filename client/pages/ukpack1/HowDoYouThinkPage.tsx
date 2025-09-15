@@ -56,8 +56,8 @@ const HowDoYouThinkPage = () => {
       <div 
         className="relative w-full flex-shrink-0"
         style={{ 
-          height: 'clamp(400px, 49vw, 530px)',
-          borderRadius: '0 0 400px 400px',
+          height: 'clamp(260px, 38vw, 420px)',
+          borderRadius: '0',
           overflow: 'hidden',
           background: 'transparent'
         }}
