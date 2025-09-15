@@ -15,7 +15,6 @@ const SplashScreen: React.FC = () => {
             <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fd0f51cc217ab444f85054abef8272035?format=webp&width=800" alt="รถเมล์ในฝัน" className="max-h-72 w-auto mx-auto object-contain" />
           </div>
 
-          <h1 className="mt-6 text-4xl md:text-5xl font-prompt font-bold text-white">รถเมล์ในฝัน</h1>
         </div>
       </div>
 
