@@ -297,6 +297,27 @@
   z-index: 2;
 }
 
+/* Fixed content block pinned to the bottom of the viewport */
+.mn3-content {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: env(safe-area-inset-bottom, 28px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 0 16px;
+  z-index: 3; /* above background but behind any modals */
+  pointer-events: auto;
+}
+
+/* Ensure the mn3-button-grid doesn't overflow horizontally */
+.mn3-content .mn3-button-grid {
+  width: 100%;
+  max-width: 980px;
+}
+
 
 .mn3-continue-button:hover {
   transform: scale(1.05);
