@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import CustomizationScreen from '../components/CustomizationScreen';
 import SelectionCard from '../components/SelectionCard';
 import CtaButton from '../components/CtaButton';
+import StepTabs from "../components/StepTabs";
 
 const IconDoor = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -42,6 +43,7 @@ const DoorScreen: React.FC = () => {
       footerContent={<div className="flex justify-end"><CtaButton text="ถัดไป" onClick={handleNext} /></div>}
     >
       <div className="space-y-6">
+        <StepTabs active={5} />
         <div className="w-full h-48 bg-[#081042] rounded-md flex items-center justify-center text-sm text-gray-300">Bus image preview</div>
 
         <h2 className="text-xl font-prompt font-semibold">ประตู</h2>

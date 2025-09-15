@@ -8,6 +8,7 @@ import NumericalStepper from "../components/NumericalStepper";
 import ConfirmModal from "../components/ConfirmModal";
 import ErrorModal from "../components/ErrorModal";
 import { useBusDesign } from "../context/BusDesignContext";
+import StepTabs from "../components/StepTabs";
 
 const SeatingScreen: React.FC = () => {
   const navigate = useNavigate();
@@ -60,6 +61,7 @@ const SeatingScreen: React.FC = () => {
         }
       >
         <div className="space-y-6">
+          <StepTabs active={2} />
           <div className="w-full h-48 bg-[#081042] rounded-md flex items-center justify-center text-sm text-gray-300">
             Top-down seat map preview
           </div>
@@ -117,14 +119,14 @@ const SeatingScreen: React.FC = () => {
       <ConfirmModal
         isOpen={isExitModalOpen}
         title="ออกจากหน้าจอ"
-        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปล���ของคุณจะไม่ถูกบันทึก"
+        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
         onConfirm={() => navigate("/")}
         onCancel={() => setExitModalOpen(false)}
       />
 
       <ErrorModal
         isOpen={isErrorModalOpen}
-        title="ความจุเกิน"
+        title="ความ���ุเกิน"
         message={`จำนวนที่นั่งทั้งหมดเกินความจุสูงสุดของรถ (${maxCapacity}) กรุณาตรวจสอบ`}
         onClose={() => setErrorModalOpen(false)}
       />
