@@ -146,7 +146,7 @@ const Step1_Beneficiaries = ({
         {/* Background Image with Overlay */}
         <div className="figma-style1-background">
           <img
-            src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F946833431d4b46a0bde1c7d1bc32f67a"
+            src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F4fdd077f1518431db26544246a442903?format=webp&width=800"
             alt="กลุ่มผู้ได้รับประโยชน์"
             className="figma-style1-background-image"
           />
