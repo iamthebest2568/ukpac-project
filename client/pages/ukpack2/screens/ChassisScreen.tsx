@@ -9,8 +9,8 @@ import ConfirmModal from '../components/ConfirmModal';
 
 const IconSmall = () => (
   <img
-    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe13eae8033b0437d89897a8d33932e7b?format=webp&width=360"
-    alt="รถเมล์ขนาดเล็ก 16-30 ที่นั่ง"
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F5ea1b3d990e44d49aa5441bc3a4b3bcc?format=webp&width=360"
+    alt="รถ���มล์ขนาดเล็ก 16-30 ที่นั่ง"
     className="max-h-12 w-auto object-contain select-none"
     decoding="async"
     loading="eager"
@@ -91,7 +91,7 @@ const ChassisScreen: React.FC = () => {
           <div className="flex flex-col items-center mt-2">
             <div className="text-white">
               <img
-                src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe13eae8033b0437d89897a8d33932e7b?format=webp&width=800"
+                src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F5ea1b3d990e44d49aa5441bc3a4b3bcc?format=webp&width=800"
                 alt="รถเมล์ขนาดเล็ก 16-30 ที่นั่ง"
                 className="h-40 w-auto select-none"
                 decoding="async"
