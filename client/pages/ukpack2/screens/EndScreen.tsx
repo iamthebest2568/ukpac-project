@@ -4,6 +4,7 @@ import CustomizationScreen from "../components/CustomizationScreen";
 import SecondaryButton from "../components/SecondaryButton";
 import CtaButton from "../components/CtaButton";
 import ShareModal from "../components/ShareModal";
+import { clearDesignStorage } from "../utils/clearDesign";
 
 const EndScreen: React.FC = () => {
   const navigate = useNavigate();
@@ -15,7 +16,15 @@ const EndScreen: React.FC = () => {
         title="ขอบคุณ"
         footerContent={
           <div className="flex justify-center">
-            <CtaButton text="จบเกม" onClick={() => navigate("/ukpack2")} />
+            <CtaButton
+              text="จบเกม"
+              onClick={() => {
+                try {
+                  clearDesignStorage();
+                } catch (e) {}
+                navigate("/ukpack2");
+              }}
+            />
             <SecondaryButton
               text="แชร์เกมนี้กับเพื่อน"
               onClick={() => setShareOpen(true)}
