@@ -91,8 +91,11 @@ const Step1_Choice = ({
     "เพิ่มความถี่รถเมล์"      // choice_4
   ]);
 
-  const getButtonClasses = (priority: string) => {
+  const getButtonClasses = (priority: string, index: number) => {
     let classes = "mn3-policy-button";
+
+    // Add specific width class based on button position
+    classes += ` mn3-policy-button--choice-${index + 1}`;
 
     if (selectedPriorities.includes(priority)) {
       classes += " mn3-policy-button--selected";
@@ -108,7 +111,7 @@ const Step1_Choice = ({
       key={priority}
       onClick={() => !isSelectionDisabled(priority) && handlePriorityToggle(priority)}
       disabled={isSelectionDisabled(priority)}
-      className={getButtonClasses(priority)}
+      className={getButtonClasses(priority, index)}
       aria-label={`เลือกนโยบาย: ${priority}`}
     >
       <span className="mn3-button-text">
@@ -122,27 +125,33 @@ const Step1_Choice = ({
       {/* Main Content Container */}
       <div className="w-full px-4 pt-8 pb-32 flex flex-col items-center justify-start space-y-8">
         
-        {/* Title Section */}
-        <div className="text-center w-full max-w-4xl px-4">
+        {/* Title Section - Exact Figma styling */}
+        <div className="text-center w-full max-w-none px-4">
           <h1
-            className="font-prompt font-bold text-center leading-normal mb-4"
+            className="font-prompt text-center leading-normal mb-4"
             style={{
               color: '#000D59',
-              fontSize: 'clamp(32px, 7.4vw, 80px)',
+              fontSize: 'clamp(48px, 7.4vw, 80px)',
               lineHeight: 'normal',
-              fontWeight: 700
+              fontWeight: 700,
+              width: '100%',
+              maxWidth: '1080px',
+              margin: '0 auto 16px auto'
             }}
           >
             คุณคิดว่าควรใช้เงินที่ได้<br />
             จากการเก็บไปพัฒนาอะไร
           </h1>
           <p
-            className="font-prompt font-bold text-center"
+            className="font-prompt text-center"
             style={{
               color: '#000D59',
-              fontSize: 'clamp(18px, 3.7vw, 40px)',
+              fontSize: 'clamp(24px, 3.7vw, 40px)',
               fontWeight: 700,
-              marginTop: '0px'
+              lineHeight: 'normal',
+              width: '100%',
+              maxWidth: '1080px',
+              margin: '0 auto'
             }}
           >
             ไม่เกิน 3 นโยบาย
