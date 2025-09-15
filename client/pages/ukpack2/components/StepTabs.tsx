@@ -4,7 +4,7 @@ interface StepTabsProps {
   active: number; // 1-based index
 }
 
-const iconCommon = "w-7 h-7";
+const iconCommon = "w-5 h-5 md:w-7 md:h-7";
 
 const BusIcon = ({ active }: { active: boolean }) => (
   <svg
@@ -158,7 +158,7 @@ const TAB_FRAME =
 const StepTabs: React.FC<StepTabsProps> = ({ active }) => {
   const tabs = [BusIcon, DeckIcon, ChairIcon, TvIcon, ReceiptIcon];
   return (
-    <div className="flex justify-around items-center mb-4">
+    <div className="flex flex-wrap justify-center items-center gap-2 mb-4">
       {tabs.map((Icon, idx) => {
         const isActive = idx + 1 === active;
         const commonClasses = `text-center py-2`;
@@ -168,7 +168,7 @@ const StepTabs: React.FC<StepTabsProps> = ({ active }) => {
             className={commonClasses}
             aria-current={isActive ? "step" : undefined}
           >
-            <div className="relative w-16 h-10 flex items-center justify-center select-none">
+            <div className="relative w-12 h-8 md:w-16 md:h-10 flex items-center justify-center select-none">
               <img
                 src={TAB_FRAME}
                 alt={isActive ? "กรอบแท็บ (แอคทีฟ)" : "กรอบแท็บ"}
@@ -181,7 +181,7 @@ const StepTabs: React.FC<StepTabsProps> = ({ active }) => {
                 <img
                   src={TAB1_ICON}
                   alt={isActive ? "โครงรถ (แท็บปัจจุบัน)" : "โครงรถ"}
-                  className={`w-7 h-7 ${isActive ? "" : "grayscale opacity-60"}`}
+                  className={`w-5 h-5 md:w-7 md:h-7 ${isActive ? "" : "grayscale opacity-60"}`}
                   decoding="async"
                   loading="eager"
                 />
@@ -189,7 +189,7 @@ const StepTabs: React.FC<StepTabsProps> = ({ active }) => {
                 <img
                   src={TAB2_ICON}
                   alt={isActive ? "แท็บที่ 2 (แอคทีฟ)" : "แท็บที่ 2"}
-                  className={`w-7 h-7 ${isActive ? "" : "grayscale opacity-60"}`}
+                  className={`w-5 h-5 md:w-7 md:h-7 ${isActive ? "" : "grayscale opacity-60"}`}
                   decoding="async"
                   loading="eager"
                 />
@@ -197,7 +197,7 @@ const StepTabs: React.FC<StepTabsProps> = ({ active }) => {
                 <img
                   src={TAB3_ICON}
                   alt={isActive ? "แท็บที่ 3 (แอคทีฟ)" : "แท็บที่ 3"}
-                  className={`w-7 h-7 ${isActive ? "" : "grayscale opacity-60"}`}
+                  className={`w-5 h-5 md:w-7 md:h-7 ${isActive ? "" : "grayscale opacity-60"}`}
                   decoding="async"
                   loading="eager"
                 />
@@ -205,7 +205,7 @@ const StepTabs: React.FC<StepTabsProps> = ({ active }) => {
                 <img
                   src={TAB4_ICON}
                   alt={isActive ? "แท็บที่ 4 (แอคทีฟ)" : "แท็บที่ 4"}
-                  className={`w-7 h-7 ${isActive ? "" : "grayscale opacity-60"}`}
+                  className={`w-5 h-5 md:w-7 md:h-7 ${isActive ? "" : "grayscale opacity-60"}`}
                   decoding="async"
                   loading="eager"
                 />
@@ -213,7 +213,7 @@ const StepTabs: React.FC<StepTabsProps> = ({ active }) => {
                 <img
                   src={TAB5_ICON}
                   alt={isActive ? "แท็บที่ 5 (แอคทีฟ)" : "แท็บที่ 5"}
-                  className={`w-7 h-7 ${isActive ? "" : "grayscale opacity-60"}`}
+                  className={`w-5 h-5 md:w-7 md:h-7 ${isActive ? "" : "grayscale opacity-60"}`}
                   decoding="async"
                   loading="eager"
                 />
