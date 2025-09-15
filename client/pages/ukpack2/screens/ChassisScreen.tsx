@@ -1,10 +1,18 @@
 import React, { useState, useMemo } from "react";
+import React, { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import CustomizationScreen from "../../ukpack2/components/CustomizationScreen";
 import SelectionCard from "../../ukpack2/components/SelectionCard";
 import CtaButton from "../../ukpack2/components/CtaButton";
 import StepTabs from "../../ukpack2/components/StepTabs";
 import ConfirmModal from "../components/ConfirmModal";
+
+const AMENITIES_ICON_SMALL = {
+  "แอร์": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fee1c18a935564e92bb49991fac3b76df?format=webp&width=800",
+  "พัดลม": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe01792ee89e240808ed47d8576b55d71?format=webp&width=800",
+  "ที่นั่งพิเศษ": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F93439b2533284cdf914fc93cafa1cf26?format=webp&width=800",
+  "ที่จับ/ราวยืนที่ปลอดภัย": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb0789bfd1100472f8351704764607d31?format=webp&width=800",
+};
 
 const IconSmall = () => (
   <img
@@ -95,7 +103,7 @@ const ChassisScreen: React.FC = () => {
   return (
     <>
       <CustomizationScreen
-        title="ปรับแต่งรถเมล์ของคุณ"
+        title="ปรับแต่งรถเมล์ของคุ���"
         theme="light"
         footerContent={
           <div className="flex justify-center">
