@@ -138,22 +138,9 @@ const Step1_Choice = ({
               margin: '0 auto 16px auto'
             }}
           >
-            คุณคิดว่าค���รใช้เงินที่ได้<br />
+            คุณคิดว่าควรใช้เงินที่ได้<br />
             จากการเก็บไปพัฒนาอะไร
           </h1>
-          <p
-            className="font-prompt text-center"
-            style={{
-              color: '#000D59',
-              fontSize: 'clamp(16px, 3vw, 24px)',
-              fontWeight: 600,
-              lineHeight: 'normal',
-              width: '100%',
-              margin: '0 auto'
-            }}
-          >
-            ไม่เกิน 3 นโยบาย
-          </p>
         </div>
 
         {/* Policy Options - Improved Grid Layout */}
