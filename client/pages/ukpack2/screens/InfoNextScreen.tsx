@@ -66,10 +66,6 @@ const InfoNextScreen: React.FC = () => {
   return (
     <div className="min-h-screen bg-white text-black py-8 px-4">
       <div className="max-w-4xl mx-auto">
-        <header className="mb-6 text-center">
-          <h1 className="text-3xl font-prompt font-semibold">รู้หรือไม่!</h1>
-          <p className="mt-2 text-sm text-gray-600">นี่คือรถเมล์ในฝันของคุณ</p>
-        </header>
 
         <SummaryDetails />
 
