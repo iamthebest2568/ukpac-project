@@ -58,54 +58,57 @@ const HowDoYouThinkPage = () => {
         className="flex-1 flex flex-col items-center justify-end px-4 py-8 pb-12"
         style={{ background: 'transparent', minHeight: 'auto' }}
       >
-        {/* Question Text */}
-        <div className="text-center mb-6 max-w-4xl">
-          <h1 
-            className="font-prompt text-black text-center leading-normal"
-            style={{
-              fontSize: 'clamp(32px, 7.4vw, 80px)',
-              fontWeight: 600,
-              lineHeight: 'normal'
-            }}
-          >
-            จากข้อความ���ังกล่าว<br />
-            คุณมีความคิดเห็นอย่างไร
-          </h1>
-        </div>
-
-        {/* Options */}
-        <div className="flex flex-col items-center gap-6 w-full max-w-4xl">
-          {[
-            { key: "agree", text: "เห็นด้วย" },
-            { key: "neutral", text: "เฉยๆ" },
-            { key: "disagree", text: "ไม่เห็นด้วย" }
-          ].map((option) => (
-            <button
-              key={option.key}
-              onClick={() => handleOptionSelect(option.key)}
-              className="w-full max-w-[845px] transition-all duration-200 hover:scale-105 hover:shadow-lg active:scale-95 flex items-center justify-center"
+        {/* Bottom-aligned content box */}
+        <div className="w-full max-w-4xl px-4" style={{ paddingBottom: 'env(safe-area-inset-bottom,24px)' }}>
+          <div className="text-center mb-4">
+            <h1
+              className="font-prompt text-black text-center leading-tight"
               style={{
-                height: 'clamp(60px, 11vw, 119px)',
-                borderRadius: '50px',
-                background: '#FFE000',
-                border: 'none',
-                cursor: 'pointer'
+                fontSize: 'clamp(24px, 5.2vw, 56px)',
+                fontWeight: 600,
+                lineHeight: '1.05'
               }}
-              aria-label={`เลือก: ${option.text}`}
             >
-              <span
-                className="font-prompt text-black text-center"
+              จากข้อความดังกล่าว<br />
+              คุณมีความคิดเห็นอย่างไร
+            </h1>
+          </div>
+
+          {/* Options stacked and balanced */}
+          <div className="flex flex-col items-center gap-4 w-full">
+            {[
+              { key: "agree", text: "เห็นด้วย" },
+              { key: "neutral", text: "เฉยๆ" },
+              { key: "disagree", text: "ไม่เห็นด้วย" }
+            ].map((option) => (
+              <button
+                key={option.key}
+                onClick={() => handleOptionSelect(option.key)}
+                className="w-full max-w-[845px] transition-all duration-150 hover:scale-102 active:scale-98 flex items-center justify-center"
                 style={{
-                  fontSize: 'clamp(20px, 4.6vw, 50px)',
-                  fontWeight: 400,
-                  letterSpacing: '0.4px',
-                  lineHeight: 'normal'
+                  height: 'clamp(56px, 9vw, 96px)',
+                  borderRadius: '999px',
+                  background: '#FFE000',
+                  border: 'none',
+                  cursor: 'pointer',
+                  boxShadow: '0 6px 18px rgba(0,0,0,0.08)'
                 }}
+                aria-label={`เลือก: ${option.text}`}
               >
-                {option.text}
-              </span>
-            </button>
-          ))}
+                <span
+                  className="font-prompt text-black text-center"
+                  style={{
+                    fontSize: 'clamp(18px, 3.8vw, 34px)',
+                    fontWeight: 500,
+                    letterSpacing: '0.4px',
+                    lineHeight: '1'
+                  }}
+                >
+                  {option.text}
+                </span>
+              </button>
+            ))}
+          </div>
         </div>
       </div>
     </div>
