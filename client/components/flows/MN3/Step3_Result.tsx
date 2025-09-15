@@ -149,27 +149,6 @@ const Step3_Result = ({ sessionID, onNext, onBack, journeyData }: Step3_ResultPr
 
   const backgroundImage = "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F733fd61d7f8e4a3ebfc2f76078fff7ee?format=webp&width=1500";
 
-  // Prepare pie segments and legend
-  const colors = ['#00C853', '#FFE000', '#FF5252', '#6ee7b7', '#8884d8'];
-  const totalAllocated = resultSummary.reduce((s, r) => s + (Number(r.allocation) || 0), 0) || 100;
-  const segments = resultSummary.map((r, i) => ({
-    color: colors[i] || '#ccc',
-    percent: Math.round(((Number(r.allocation) || 0) / totalAllocated) * 100),
-    label: r.priority,
-  }));
-
-  // Build conic-gradient stops (use cumulative percentages)
-  let cum = 0;
-  const stops = segments.map((s) => {
-    const start = cum;
-    cum += s.percent;
-    return `${s.color} ${start}% ${cum}%`;
-  }).join(', ');
-
-  const pieStyle: React.CSSProperties = {
-    background: segments.length ? `conic-gradient(${stops}, rgba(0,0,0,0) ${cum}% 100%)` : 'none',
-  };
-
   return (
     <FigmaStyle1Layout
       backgroundImage={backgroundImage}
@@ -184,50 +163,29 @@ const Step3_Result = ({ sessionID, onNext, onBack, journeyData }: Step3_ResultPr
         </h1>
       </div>
 
-      {/* Responsive grid: left = summary list, right = visual summary */}
-      <div className="mn3-summary-grid w-full px-4 mb-4">
-        <div className="mn3-summary-grid-left">
-          {resultSummary && resultSummary.length > 0 ? (
-            resultSummary.map((item, idx) => {
-              const colorClass = idx === 0 ? 'mn3-summary-card--green' : idx === 1 ? 'mn3-summary-card--yellow' : 'mn3-summary-card--red';
-              return (
-                <div key={item.priority} className={`mn3-summary-card ${colorClass} mb-3`}>
-                  <div className="mn3-summary-card-left">
-                    <div className="mn3-summary-icon" aria-hidden>
-                      {item.icon}
-                    </div>
-                  </div>
-                  <div className="mn3-summary-card-body">
-                    <div className="mn3-summary-card-title">{item.priority}</div>
-                    <div className="mn3-summary-card-meta">
-                      <span className="mn3-summary-amount">{item.allocation}</span>
-                      <span className="mn3-summary-percent"> ({Math.round(item.percentage)}%)</span>
-                    </div>
-                    <div className="mn3-summary-bar-wrap">
-                      <div className="mn3-summary-bar" style={{ width: `${Math.max(4, item.percentage)}%` }} />
-                    </div>
+      {/* Result summary list (icon-focused, no charts) */}
+      <div className="mn3-summary-list w-full px-4 mb-4">
+        {resultSummary && resultSummary.length > 0 ? (
+          resultSummary.map((item, idx) => {
+            const colorClass = idx === 0 ? 'mn3-summary-card--green' : idx === 1 ? 'mn3-summary-card--yellow' : 'mn3-summary-card--red';
+            return (
+              <div key={item.priority} className={`mn3-summary-card ${colorClass} mb-3`}>
+                <div className="mn3-summary-card-left">
+                  <div className="mn3-summary-icon" aria-hidden>
+                    {item.icon}
                   </div>
                 </div>
-              );
-            })
-          ) : null}
-        </div>
-
-        <aside className="mn3-summary-grid-right">
-          <div className="mn3-result-pie" style={pieStyle} aria-hidden />
-
-          <div className="mn3-result-legend">
-            {segments.map((s, i) => (
-              <div key={i} className="mn3-legend-row">
-                <span className="mn3-legend-swatch" style={{ background: s.color }} />
-                <span className="mn3-legend-label">{s.label || 'อื่นๆ'}</span>
-                <span className="mn3-legend-value">{s.percent}%</span>
+                <div className="mn3-summary-card-body">
+                  <div className="mn3-summary-card-title">{item.priority}</div>
+                  <div className="mn3-summary-card-meta">
+                    <span className="mn3-summary-amount">{item.allocation}</span>
+                    <span className="mn3-summary-percent"> ({Math.round(item.percentage)}%)</span>
+                  </div>
+                </div>
               </div>
-            ))}
-            {/* Total */}
-            <div className="mn3-legend-total">ทั้งหมด: {totalAllocated}</div>
-          </div>
-        </aside>
+            );
+          })
+        ) : null}
       </div>
 
       <div className="text-center w-full max-w-none px-4 mb-6">
