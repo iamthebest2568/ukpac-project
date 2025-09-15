@@ -38,7 +38,7 @@ const FeedbackSkipScreen: React.FC = () => {
       </div>
     }>
       <div className="py-6 px-4">
-        <h2 className="text-xl font-prompt font-semibold text-[#001a73]">ขอบคุณสำหรับความคิดเห็น��องคุณ</h2>
+        <h2 className="text-xl font-prompt font-semibold text-[#001a73]">ขอบคุณสำหรับความคิดเห็นของคุณ</h2>
         <p className="mt-3 text-sm text-gray-700">คุณสามารถแชร์เกมนี้กับเพื่อนหรือจบเกมได้ตามต้องการ</p>
       </div>
     </CustomizationScreen>
