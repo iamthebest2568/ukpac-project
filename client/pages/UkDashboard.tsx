@@ -606,7 +606,7 @@ export default function UkDashboard() {
                             </span>
                           </li>
                           <li className="flex justify-between">
-                            <span>กรอกข้อมูลติดต่อ</span>
+                            <span>ก��อกข้อมูลติดต่อ</span>
                             <span className="text-white/70">
                               {journey.endseq?.contacts || 0}
                             </span>
@@ -630,7 +630,7 @@ export default function UkDashboard() {
                         <th className="py-2 pr-4">MN1</th>
                         <th className="py-2 pr-4">ตัดสินใจ</th>
                         <th className="py-2 pr-4">ติดต่อ</th>
-                        <th className="py-2 pr-4">ความคิดเห็น</th>
+                        <th className="py-2 pr-4">ความคิด���ห็น</th>
                         <th className="py-2 pr-4">ดู</th>
                       </tr>
                     </thead>
@@ -696,8 +696,8 @@ export default function UkDashboard() {
                       "นโยบาย - กลุ่มเป้าหมายที่ควรได้รับสิทธิ์",
                       "ลำดับความสำคัญของประเด็น",
                       "การจัดสรรงบประมาณระหว่างนโยบาย",
-                      "���ะดับความพึงพอใจ",
-                      "ข้อเสนอเพ���่มเติ���ต่อรัฐ",
+                      "ระดับความพึงพอใจ",
+                      "ข้อเสนอเพิ่มเติมต่อรัฐ",
                       "การตอบสนองต่อข่าวปลอม",
                       "แหล่งข่าวที่ผู้ใช้เลือก",
                       "การเข้าร่วมลุ้นรางวัล",
