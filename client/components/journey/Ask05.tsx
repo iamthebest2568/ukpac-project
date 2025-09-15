@@ -78,7 +78,7 @@ const Ask05 = ({ sessionID, onNavigate }: Ask05Props) => {
         </div>
 
         {/* Text Input Box */}
-        <div className="w-full max-w-[890px] mb-12">
+        <div className="w-full max-w-[890px] mb-8">
           <div
             className="relative w-full rounded-[20px] border-[5px] border-[#000D59] bg-white"
             style={{
