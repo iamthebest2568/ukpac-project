@@ -59,7 +59,7 @@ const HowDoYouThinkPage = () => {
           height: 'clamp(400px, 49vw, 530px)',
           borderRadius: '0 0 400px 400px',
           overflow: 'hidden',
-          background: '#FFF'
+          background: 'transparent'
         }}
       >
         <div className="absolute inset-0 flex items-center justify-center">
