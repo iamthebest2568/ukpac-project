@@ -54,6 +54,7 @@ const Ask04 = ({ sessionID, onNavigate, journeyData }: Ask04Props) => {
       backgroundAlt="ผลลัพธ์จากการตอบคำถาม"
       title={`คุณพอใจผลลัพธ์ที่เกิดขึ้นหรือไม่?
 พิจารณาจากการตอบคำถามและกิจกรรมต่างๆ ที่ผ่านมา`}
+      className="ask04-page"
       buttons={buttons}
     />
   );
