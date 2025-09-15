@@ -4,6 +4,7 @@ import CustomizationScreen from '../../ukpack2/components/CustomizationScreen';
 import SelectionCard from '../../ukpack2/components/SelectionCard';
 import CtaButton from '../../ukpack2/components/CtaButton';
 import ProgressDots from '../../ukpack2/components/ProgressDots';
+import StepTabs from '../../ukpack2/components/StepTabs';
 import ConfirmModal from '../components/ConfirmModal';
 
 const IconSmall = () => (
@@ -123,7 +124,7 @@ const ChassisScreen: React.FC = () => {
       <ConfirmModal
         isOpen={isExitModalOpen}
         title="ออกจากหน้าจอ"
-        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันท��ก"
+        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
         onConfirm={confirmExit}
         onCancel={() => setExitModalOpen(false)}
       />
