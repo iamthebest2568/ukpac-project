@@ -83,20 +83,13 @@ const ChassisScreen: React.FC = () => {
           {/* Hero bus illustration */}
           <div className="flex flex-col items-center mt-2">
             <div className="text-white">
-              <svg width="240" height="160" viewBox="0 0 240 160" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <ellipse cx="120" cy="138" rx="100" ry="14" fill="#00D5F9"/>
-                <path d="M206 22 l6 10 h-8 l6 10 l-8-6 l-8 6 l6-10 h-8 l6-10 l2 8 z" fill="#FFE000"/>
-                <rect x="30" y="50" width="180" height="64" rx="6" stroke="#051650" strokeWidth="6"/>
-                <rect x="44" y="62" width="36" height="22" rx="3" stroke="#051650" strokeWidth="5"/>
-                <rect x="84" y="62" width="36" height="22" rx="3" stroke="#051650" strokeWidth="5"/>
-                <rect x="124" y="62" width="36" height="22" rx="3" stroke="#051650" strokeWidth="5"/>
-                <rect x="164" y="62" width="32" height="22" rx="3" stroke="#051650" strokeWidth="5"/>
-                <rect x="190" y="74" width="8" height="26" fill="#051650"/>
-                <circle cx="76" cy="126" r="16" stroke="#051650" strokeWidth="6" fill="none"/>
-                <circle cx="76" cy="126" r="8" fill="#051650"/>
-                <circle cx="174" cy="126" r="16" stroke="#051650" strokeWidth="6" fill="none"/>
-                <circle cx="174" cy="126" r="8" fill="#051650"/>
-              </svg>
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe13eae8033b0437d89897a8d33932e7b?format=webp&width=800"
+                alt="รถเมล์ขนาดเล็ก 16-30 ที่นั่ง"
+                className="h-40 w-auto select-none"
+                decoding="async"
+                loading="eager"
+              />
             </div>
             <p className="mt-2 font-prompt font-semibold text-[#001a73] text-center">
               รถที่ใช้งาน : {selectedLabel}
@@ -123,7 +116,7 @@ const ChassisScreen: React.FC = () => {
 
       <ConfirmModal
         isOpen={isExitModalOpen}
-        title="ออกจากหน้าจอ"
+        title="อ���กจากหน้าจอ"
         message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
         onConfirm={confirmExit}
         onCancel={() => setExitModalOpen(false)}
