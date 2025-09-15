@@ -63,7 +63,7 @@ const Ask05 = ({ sessionID, onNavigate }: Ask05Props) => {
       {/* Content matching the new pages' structure */}
       <div className="flex flex-col items-center justify-start h-full w-full max-w-[1080px] mx-auto px-4 pt-6 pb-8">
         {/* Title */}
-        <div className="text-center mb-8">
+        <div className="text-center mb-4 mt-2 w-full">
           <h1
             className="font-prompt font-bold text-center"
             style={{
