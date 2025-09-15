@@ -83,7 +83,6 @@ const SeatingScreen: React.FC = () => {
     <>
       <CustomizationScreen
         title="ปรับแต่งรถเมล์ของคุณ"
-        onBack={() => setExitModalOpen(true)}
         theme="light"
         footerContent={
           <div className="flex justify-center">
