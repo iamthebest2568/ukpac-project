@@ -715,6 +715,43 @@
   .mn3-summary-bar-wrap { height: 12px; }
 }
 
+/* Grid layout for summary + visual */
+.mn3-summary-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 20px;
+  align-items: start;
+  max-width: 980px;
+  margin: 0 auto 12px auto;
+}
+
+.mn3-summary-grid-left { display: flex; flex-direction: column; gap: 12px; }
+
+.mn3-summary-grid-right { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+
+.mn3-result-pie {
+  width: 220px;
+  height: 220px;
+  border-radius: 999px;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.08);
+  display: block;
+  margin-bottom: 8px;
+}
+
+.mn3-result-legend { width: 100%; max-width: 320px; display: flex; flex-direction: column; gap: 8px; }
+
+.mn3-legend-row { display: flex; align-items: center; gap: 10px; justify-content: space-between; }
+.mn3-legend-swatch { width: 18px; height: 18px; border-radius: 4px; display: inline-block; flex: 0 0 18px; }
+.mn3-legend-label { flex: 1 1 auto; color: #222; font-weight: 600; }
+.mn3-legend-value { color: #444; font-weight: 700; }
+
+.mn3-legend-total { margin-top: 8px; font-weight: 700; color: #000D59; text-align: center; }
+
+@media (max-width: 860px) {
+  .mn3-summary-grid { grid-template-columns: 1fr; }
+  .mn3-result-pie { width: 180px; height: 180px; }
+}
+
 /* Ensure MN3 policy buttons keep their selected (black) appearance even after unified overrides */
 .app-container .mn3-policy-button.mn3-policy-button--selected,
 .app-container .mn3-policy-button--selected {
