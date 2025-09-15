@@ -17,11 +17,13 @@ const IconSmall = () => (
   />
 );
 const IconMedium = () => (
-  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="1" y="5" width="22" height="12" rx="2" stroke="currentColor" strokeWidth="1.5" />
-    <circle cx="6" cy="18" r="1.5" fill="currentColor" />
-    <circle cx="18" cy="18" r="1.5" fill="currentColor" />
-  </svg>
+  <img
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fab8ddd78f9a0478bb27f5818928665f3?format=webp&width=360"
+    alt="รถเมล์ขนาดกลาง 31-40 ที่นั่ง"
+    className="max-h-12 w-auto object-contain select-none"
+    decoding="async"
+    loading="eager"
+  />
 );
 const IconLarge = () => (
   <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
