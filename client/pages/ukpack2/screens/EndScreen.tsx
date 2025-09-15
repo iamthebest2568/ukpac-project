@@ -13,7 +13,7 @@ const EndScreen: React.FC = () => {
   return (
     <>
       <CustomizationScreen
-        title="ขอบคุณ"
+        title=""
         theme="light"
       >
         <div className="space-y-6">
@@ -34,8 +34,9 @@ const EndScreen: React.FC = () => {
               className="w-full h-auto max-w-[420px] mt-2"
             />
           </div>
-          <div className="flex justify-center gap-3 pt-2">
+          <div className="flex flex-col items-stretch gap-3 pt-2 w-full max-w-sm mx-auto">
             <CtaButton
+              className="w-full"
               text="จบเกม"
               onClick={() => {
                 try {
@@ -45,6 +46,7 @@ const EndScreen: React.FC = () => {
               }}
             />
             <SecondaryButton
+              className="w-full"
               text="แชร์เกมนี้กับเพื่อน"
               onClick={() => setShareOpen(true)}
             />
