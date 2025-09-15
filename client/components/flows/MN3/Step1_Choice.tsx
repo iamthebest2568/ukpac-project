@@ -198,11 +198,11 @@ const Step1_Choice = ({
             <button
               onClick={() => !isSelectionDisabled(priorityList[2]) && handlePriorityToggle(priorityList[2])}
               disabled={isSelectionDisabled(priorityList[2])}
-              className={`rounded-[40px] border transition-all duration-200 flex items-center justify-center ${getButtonColor(priorityList[2])}`}
-              style={{ 
-                width: 'clamp(120px, 23vw, 248px)', 
-                height: 'clamp(60px, 8.3vw, 90px)',
-                minWidth: '120px'
+              className={getButtonClasses(priorityList[2])}
+              style={{
+                backgroundColor: getButtonColor(priorityList[2]),
+                minWidth: 'clamp(120px, 23vw, 248px)',
+                border: '2px solid #000'
               }}
             >
               <span 
@@ -222,11 +222,11 @@ const Step1_Choice = ({
             <button
               onClick={() => !isSelectionDisabled(priorityList[3]) && handlePriorityToggle(priorityList[3])}
               disabled={isSelectionDisabled(priorityList[3])}
-              className={`rounded-[40px] border transition-all duration-200 flex items-center justify-center ${getButtonColor(priorityList[3])}`}
-              style={{ 
-                width: 'clamp(180px, 35.6vw, 385px)', 
-                height: 'clamp(60px, 8.3vw, 90px)',
-                minWidth: '180px'
+              className={getButtonClasses(priorityList[3])}
+              style={{
+                backgroundColor: getButtonColor(priorityList[3]),
+                minWidth: 'clamp(180px, 35.6vw, 385px)',
+                border: '2px solid #000'
               }}
             >
               <span 
@@ -246,11 +246,11 @@ const Step1_Choice = ({
             <button
               onClick={() => !isSelectionDisabled(priorityList[4]) && handlePriorityToggle(priorityList[4])}
               disabled={isSelectionDisabled(priorityList[4])}
-              className={`rounded-[40px] border transition-all duration-200 flex items-center justify-center ${getButtonColor(priorityList[4])}`}
-              style={{ 
-                width: 'clamp(140px, 27vw, 293px)', 
-                height: 'clamp(60px, 8.3vw, 90px)',
-                minWidth: '140px'
+              className={getButtonClasses(priorityList[4])}
+              style={{
+                backgroundColor: getButtonColor(priorityList[4]),
+                minWidth: 'clamp(140px, 27vw, 293px)',
+                border: '2px solid #000'
               }}
             >
               <span 
