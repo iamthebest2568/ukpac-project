@@ -542,21 +542,42 @@
   pointer-events: none;
 }
 
-/* Content container for result page - ensure content flows and buttons remain visible */
+/* Ensure Step3 uses the figma grid layout and content scrolls when needed */
+.mn3-result-bg.figma-style1-main {
+  display: grid !important;
+  grid-template-rows: 1fr auto !important; /* content / buttons */
+  min-height: 100vh;
+  align-items: stretch;
+}
+
+/* Content container for result page - placed in grid row 1 and scrollable */
 .mn3-result-content {
+  grid-row: 1;
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* push buttons to bottom but still in flow */
+  justify-content: center; /* center content within available space */
   align-items: center;
   gap: 16px;
-  padding: 24px 16px 24px 16px;
-  margin: 4vh auto;
+  padding: 20px 16px 16px 16px;
+  margin: 0 auto; /* remove large vertical margins that made content float */
   width: 100%;
-  min-height: calc(100vh - 40px);
+  min-height: 0; /* allow proper scrolling inside grid */
   max-width: 980px;
   box-sizing: border-box;
   z-index: 2;
+  overflow-y: auto; /* allow scrolling when content is tall */
+}
+
+/* Ensure button container sits in the second row of the grid */
+.figma-style1-button-container {
+  grid-row: 2;
+  align-self: center;
+  width: 100%;
+  max-width: 380px;
+  padding: 16px 12px env(safe-area-inset-bottom, 16px) 12px;
+  box-sizing: border-box;
+  z-index: 3;
 }
 
 /* Transport illustration image */
