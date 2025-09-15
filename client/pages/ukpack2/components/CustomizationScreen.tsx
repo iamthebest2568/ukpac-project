@@ -17,7 +17,11 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({ title, childr
         </div>
       </header>
 
-      <div className="flex-1 overflow-auto px-6 py-6">{children}</div>
+      <div className="flex-1 overflow-auto px-6 py-6">
+        <div className={`max-w-4xl w-full mx-auto rounded-lg p-6 ${isLight ? 'bg-white border border-gray-200' : 'bg-transparent border border-[#081042]'}`}>
+          {children}
+        </div>
+      </div>
 
       <footer className="mt-auto">
         <div className="bg-[#00d5f9] rounded-t-3xl p-6 drop-shadow-lg">
