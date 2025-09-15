@@ -20,7 +20,7 @@ const SelectionCard: React.FC<SelectionCardProps> = ({
       ? "bg-[#ffe000] text-[#003366] border-transparent font-semibold"
       : "bg-[#ffe000] text-black border-transparent"
     : variant === "light"
-      ? "bg-white text-[#003366] border border-[#e5e7eb]"
+      ? "bg-white text-[#003366] border border-gray-400"
       : "bg-transparent text-white border border-[#081042]";
 
   return (
