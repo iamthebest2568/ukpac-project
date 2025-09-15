@@ -73,7 +73,7 @@ const Ask05 = ({ sessionID, onNavigate }: Ask05Props) => {
               lineHeight: "normal",
             }}
           >
-            คุณคิดว่ารัฐค��รทำอะไรที่จะทำให้นโยบายนี้เกิดขึ้นได้และเป็นประโยชน์ต่อประชาชนอย่างแท้จริง
+            คุณคิดว่ารัฐควรทำอะไรที่จะทำให้นโยบายนี้เกิดขึ้นได้และเป็นประโยชน์ต่อประชาชนอย่างแท้จริง
           </h1>
         </div>
 
@@ -82,8 +82,8 @@ const Ask05 = ({ sessionID, onNavigate }: Ask05Props) => {
           <div
             className="relative w-full rounded-[20px] border-[5px] border-[#000D59] bg-white"
             style={{
-              minHeight: "clamp(400px, 40vh, 780px)",
-              padding: "clamp(16px, 3vw, 24px)",
+              minHeight: "clamp(220px, 30vh, 420px)",
+              padding: "clamp(12px, 2.2vw, 20px)",
             }}
           >
             <textarea
