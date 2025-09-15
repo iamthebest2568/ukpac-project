@@ -127,13 +127,14 @@ const SCAN_ICON = 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8
 const SCAN2_ICON = 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F56620e798eb94153b2390271f30d0dae?format=webp&width=800';
 const TOUCH_ICON = 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fdb2e47a586b841d1af014e9196f3c411?format=webp&width=800';
 const MONTHLY_ICON = 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fca6467eff0c74a77a8e5757f25a24e41?format=webp&width=800';
+const BUS_EMPLOY_ICON = 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F41c089c5dd4b448993c4e02c02cdf7ac?format=webp&width=800';
 
 const OPTIONS = [
   { key: "cash", label: "เงินสด", icon: <IconCash /> },
   { key: "scan", label: "สแกนจ่าย", icon: <IconScan /> },
   { key: "scan2", label: "สแกนจ่าย 2", icon: null },
   { key: "tap", label: "แตะบัตร", icon: <IconTap /> },
-  { key: "qr", label: "QR/สแกน", icon: <IconQr /> },
+  { key: "qr", label: "กระเป๋ารถเมล์", icon: <IconQr /> },
   { key: "monthly", label: "ตั๋วรายเดือน/รอบ", icon: null },
 ];
 
