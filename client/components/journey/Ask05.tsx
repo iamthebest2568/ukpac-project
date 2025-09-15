@@ -61,7 +61,7 @@ const Ask05 = ({ sessionID, onNavigate }: Ask05Props) => {
       imageLoading="eager"
     >
       {/* Content matching the new pages' structure */}
-      <div className="flex flex-col items-center justify-center h-full w-full max-w-[1080px] mx-auto px-4 py-6">
+      <div className="flex flex-col items-center justify-start h-full w-full max-w-[1080px] mx-auto px-4 pt-6 pb-8">
         {/* Title */}
         <div className="text-center mb-8">
           <h1
