@@ -73,7 +73,7 @@ const ChassisScreen: React.FC = () => {
       <CustomizationScreen
         title="ปรับแต่งรถเมล์ของคุณ"
         onBack={() => setExitModalOpen(true)}
-        footerContent={<div className="flex justify-end"><CtaButton text="ถัดไป" onClick={handleNext} /></div>}
+        footerContent={<div className="flex justify-center"><CtaButton text="ถัดไป" onClick={handleNext} /></div>}
       >
         <div className="space-y-6">
           <div className="flex items-center justify-center">
