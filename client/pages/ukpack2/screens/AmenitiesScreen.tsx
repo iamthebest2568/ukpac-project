@@ -22,21 +22,13 @@ const IconFan = () => (
   />
 );
 const IconSeat = () => (
-  <svg
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <rect x="4" y="7" width="16" height="6" rx="2" fill="currentColor" />
-    <path
-      d="M6 13v4M18 13v4"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-    />
-  </svg>
+  <img
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F93439b2533284cdf914fc93cafa1cf26?format=webp&width=800"
+    alt="หน้าต่างเปิดได้"
+    className="h-8 w-8 object-contain select-none"
+    decoding="async"
+    loading="eager"
+  />
 );
 const IconWifi = () => (
   <svg
