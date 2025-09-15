@@ -203,11 +203,11 @@ const Step3_ThankYou = ({
                 </button>
               </DialogTrigger>
 
-              <DialogContent className="p-6 bg-white rounded-lg max-w-md mx-auto max-h-[80vh] overflow-y-auto">
-                <DialogTitle className="font-prompt text-lg text-black mb-3">
-                  แชร์เกมนี้
+              <DialogContent className="p-4 sm:p-6 bg-white rounded-lg max-w-md mx-auto max-h-[85vh] overflow-y-auto border border-gray-200">
+                <DialogTitle className="font-prompt text-lg sm:text-xl text-black mb-3 text-center">
+                  แชร์เกมนี้ให้เพื่อน
                 </DialogTitle>
-                <DialogDescription className="text-sm text-gray-600 mb-4">
+                <DialogDescription className="text-sm text-gray-600 mb-4 text-center">
                   เลือกแพลตฟอร์มที่ต้องการแชร์
                 </DialogDescription>
 
