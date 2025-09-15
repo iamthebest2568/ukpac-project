@@ -34,7 +34,7 @@ const IconSeat = () => (
 const IconWifi = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb0789bfd1100472f8351704764607d31?format=webp&width=800"
-    alt="ที่จับ/รา��ยืน"
+    alt="ที่จับ/ราวยืน"
     className="h-8 w-8 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -127,9 +127,9 @@ const AmenitiesScreen: React.FC = () => {
 
   // Selected chassis preview (reusing mapping from SeatingScreen)
   const CHASSIS_LABELS: Record<string, string> = {
-    small: 'รถเมล์ขน���ดเล็ก 16–30 ที่นั่ง',
+    small: 'รถเมล์ขนาดเล็ก 16–30 ที่นั่ง',
     medium: 'รถเมล์ขนาดกลาง 31–40 ที่นั่ง',
-    large: 'รถเมล์ขนาดใหญ่ 41–50 ที่นั่���',
+    large: 'รถเมล์ขนาดใหญ่ 41–50 ที่นั่ง',
     extra: 'รถเมล์รุ่นพิเศษ 51+ ที่นั่ง',
   };
   const HERO_IMAGE: Record<string, string> = {
@@ -152,7 +152,7 @@ const AmenitiesScreen: React.FC = () => {
 
   return (
     <CustomizationScreen
-      title="ปรั���แต่งรถเมล์ของคุณ"
+      title="ปรับแต่งรถเมล์ของคุณ"
       theme="light"
       footerContent={
         <div className="flex justify-center">
@@ -172,7 +172,7 @@ const AmenitiesScreen: React.FC = () => {
             />
           ) : (
             <div className="w-full h-48 bg-[#081042] rounded-md flex items-center justify-center text-sm text-gray-300">
-              Bus image preview (ภาพสำหรับรุ่นนี้จะถูกเพิ่มภา���หลัง)
+              Bus image preview (ภาพสำหรับรุ่นนี้จะถูกเพิ่มภายหลัง)
             </div>
           )}
           <p className="mt-1 font-prompt font-semibold text-[#001a73] text-center">
