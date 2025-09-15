@@ -24,6 +24,15 @@ const DesignScreen: React.FC = () => {
   const navigate = useNavigate();
   const [color, setColor] = useState<string>(DEFAULT_COLORS[0]);
   const [slogan, setSlogan] = useState<string>('');
+  const [showTextarea, setShowTextarea] = useState<boolean>(false);
+  const [sloganDraft, setSloganDraft] = useState<string>('');
+  const textareaRef = useRef<HTMLTextAreaElement | null>(null);
+
+  useEffect(() => {
+    if (showTextarea) {
+      setTimeout(() => textareaRef.current?.focus(), 0);
+    }
+  }, [showTextarea]);
 
   const handleFinish = () => {
     try {
@@ -84,14 +93,14 @@ const DesignScreen: React.FC = () => {
               value={slogan}
               readOnly
               onClick={() => { setSloganDraft(slogan); setShowTextarea(true); }}
-              placeholder="พิมพ์ คุณสมบัติพิเศษ"
+              placeholder="พิมพ์ คุณส���บัติพิเศษ"
               className="w-full rounded-md px-4 py-2 bg-white border border-[#e5e7eb] text-[#003366] placeholder-gray-400 cursor-text"
             />
 
             {showTextarea && (
               <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
                 <div className="bg-white rounded-lg p-4 max-w-lg w-full mx-4">
-                  <h3 className="text-lg font-prompt font-semibold text-[#000d59]">ลักษณะพิเศษอื่น��</h3>
+                  <h3 className="text-lg font-prompt font-semibold text-[#000d59]">ลักษณะพิเศษอื่นๆ</h3>
                   <textarea
                     ref={textareaRef}
                     value={sloganDraft}
