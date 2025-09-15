@@ -18,10 +18,11 @@ const FeedbackSkipScreen: React.FC = () => {
       <CustomizationScreen
         title=""
         theme="light"
+        footerBgImage={'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F7e994bb254cb408c86bed190e97b659e?format=webp&width=1600'}
         footerContent={
-          <div className="flex justify-center">
-            <SecondaryButton text="แชร์เกมนี้ให้เพื่อน" onClick={() => setShareOpen(true)} />
-            <CtaButton text="จบเกม" onClick={handleEnd} />
+          <div className="flex flex-col items-stretch gap-3 w-full max-w-sm mx-auto">
+            <SecondaryButton className="w-full" text="แชร์เกมนี้ให้เพื่อน" onClick={() => setShareOpen(true)} />
+            <CtaButton className="w-full" text="จบเกม" onClick={handleEnd} />
           </div>
         }
       >
