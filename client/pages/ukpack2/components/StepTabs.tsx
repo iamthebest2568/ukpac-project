@@ -47,6 +47,7 @@ const TAB1_ICON = 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8
 const TAB2_ICON = 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb01ce26924af40298818d01f9f981186?format=webp&width=800';
 const TAB3_ICON = 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc3da8ccecbee48069923b34ed1e086b4?format=webp&width=800';
 const TAB4_ICON = 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F3acdda301a6447e0b773a57c42341e4d?format=webp&width=800';
+const TAB5_ICON = 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe14dc248d0bf42c6930f536febc17543?format=webp&width=800';
 
 const StepTabs: React.FC<StepTabsProps> = ({ active }) => {
   const tabs = [BusIcon, DeckIcon, ChairIcon, TvIcon, ReceiptIcon];
@@ -68,7 +69,7 @@ const StepTabs: React.FC<StepTabsProps> = ({ active }) => {
             ) : idx === 1 ? (
               <img
                 src={TAB2_ICON}
-                alt={isActive ? 'แท็บที่ 2 (แอคทีฟ)' : 'แท็บที่ 2'}
+                alt={isActive ? 'แท็บที่ 2 (แอคทีฟ)' : 'แท็บ��ี่ 2'}
                 className={`w-7 h-7 ${isActive ? '' : 'grayscale opacity-60'}`}
                 decoding="async"
                 loading="eager"
@@ -92,7 +93,7 @@ const StepTabs: React.FC<StepTabsProps> = ({ active }) => {
             ) : idx === 4 ? (
               <img
                 src={TAB5_ICON}
-                alt={isActive ? 'แท็���ที่ 5 (แอคทีฟ)' : 'แท็บที่ 5'}
+                alt={isActive ? 'แท็บที่ 5 (แอคทีฟ)' : 'แท็บที่ 5'}
                 className={`w-7 h-7 ${isActive ? '' : 'grayscale opacity-60'}`}
                 decoding="async"
                 loading="eager"
