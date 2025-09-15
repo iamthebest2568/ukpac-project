@@ -61,7 +61,7 @@ const Step2_Form = ({ sessionID, onNext, onBack, initialData }: Step2_FormProps)
 
   return (
     <FigmaStyle1Layout
-      backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Feb2f14480a1349a6bc6b76594e26c7b5?format=webp&width=2160"
+      backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F72c08d8e97114844b8bcc40584d9d5e8?format=webp&width=800"
       backgroundAlt="กรอกข้อมูลรับรางวัล"
       className="source-selection-page endseq-form-page"
       imageLoading="eager"
