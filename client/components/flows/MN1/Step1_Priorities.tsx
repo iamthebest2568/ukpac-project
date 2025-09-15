@@ -172,7 +172,7 @@ const Step1_Priorities = ({
               style={{
                 width: '46.3%', // 500/1080
                 height: 'clamp(60px, 4.7vw, 90px)',
-                backgroundColor: getButtonColor("ปรับปรุงคุณภาพรถ���มล์"),
+                backgroundColor: getButtonColor("ปรับปรุงคุณภาพรถเมล์"),
                 opacity: isSelectionDisabled("ปรับปรุงคุณภาพรถเมล์") ? 0.5 : 1
               }}
               onClick={() =>
@@ -228,7 +228,7 @@ const Step1_Priorities = ({
                 opacity: isSelectionDisabled("เพิ่มความถี่รถเมล์") ? 0.5 : 1
               }}
               onClick={() =>
-                !isSelectionDisabled("เพิ่มความถี่รถเมล์") &&
+                !isSelectionDisabled("เพิ่��ความถี่รถเมล์") &&
                 handlePriorityToggle("เพิ่มความถี่รถเมล์")
               }
               disabled={isSelectionDisabled("เพิ่มความถี่รถเมล์")}
@@ -255,7 +255,7 @@ const Step1_Priorities = ({
               }}
               onClick={() =>
                 !isSelectionDisabled("เพิ่มที่จอดรถ") &&
-                handlePriorityToggle("เพิ่มที่จอดรถ")
+                handlePriorityToggle("เพิ่มท���่จอดรถ")
               }
               disabled={isSelectionDisabled("เพิ่มที่จอดรถ")}
             >
@@ -283,7 +283,7 @@ const Step1_Priorities = ({
                 opacity: isSelectionDisabled("เพิ่มความถี่รถไฟฟ้า") ? 0.5 : 1
               }}
               onClick={() =>
-                !isSelectionDisabled("เพิ่มความถี่รถไฟฟ้���") &&
+                !isSelectionDisabled("เพิ่มความถี่รถไฟฟ้า") &&
                 handlePriorityToggle("เพิ่มความถี่รถไฟฟ้า")
               }
               disabled={isSelectionDisabled("เพิ่มความถี่รถไฟฟ้า")}
