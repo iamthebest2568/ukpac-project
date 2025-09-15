@@ -33,12 +33,15 @@ const EndScreen: React.FC = () => {
         }
       >
         <div className="space-y-6">
-          <div className="w-full h-64 bg-white rounded-md flex items-center justify-center text-[#000d59]">
-            Main illustration placeholder
+          <div className="w-full flex justify-center">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc36f7d2aca87432f90a5a36fb28b97ed?format=webp&width=1600"
+              alt="ภาพขอบคุณ"
+              className="w-full h-auto max-w-[720px]"
+            />
           </div>
-          <p className="text-white font-sarabun">
-            ขอบคุณที่เข้าร่วม ถึงแม้คุณจะไม่ได้ร่วมลุ้นรางวัล
-            คุณก็ช่วยออกแบบรถเมล์ให้ชุมชนได้ดีขึ้น
+          <p className="text-white font-prompt font-semibold text-center">
+            ขอบคุณ ที่ร่วมเป็นส่วนหนึ่งในการพัฒนาเมือง
           </p>
         </div>
       </CustomizationScreen>
