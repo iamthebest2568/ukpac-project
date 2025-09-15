@@ -309,7 +309,7 @@ const App = () => {
               />
               <Route
                 path="/MiniGameMN01Page"
-                element={<Navigate to="/ukpack1/minigame-mn01" replace />}
+                element={<Navigate to="/ukpack1/minigame-mn1" replace />}
                 />
               <Route
                 path="/MiniGameMN1Page"
