@@ -1,6 +1,6 @@
 /**
  * UK PACK - MN3 Step 3: Budget Result Display
- * Moved from BudgetStep3Result component
+ * Updated to match Figma design exactly
  */
 
 import { useEffect, useState } from "react";
@@ -27,7 +27,6 @@ const Step3_Result = ({
   journeyData,
 }: Step3_ResultProps) => {
   const [resultSummary, setResultSummary] = useState<ResultSummary[]>([]);
-  // Standalone: no global navigation or session-side effects here
 
   // Icons mapping for priorities
   const priorityIcons: { [key: string]: string } = {
@@ -85,7 +84,24 @@ const Step3_Result = ({
       },
     };
 
-    // Standalone: finish via onNext without navigating away
+    // Try beacon logging
+    try {
+      const body = {
+        sessionId: sessionID || sessionStorage.getItem("ukPackSessionID") || "",
+        event: "MN3_RESULT",
+        payload: { satisfaction: "ใช่", resultSummary },
+      };
+      navigator.sendBeacon?.(
+        "/api/track",
+        new Blob([JSON.stringify(body)], { type: "application/json" }),
+      ) ||
+        fetch("/api/track", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body),
+        });
+    } catch {}
+
     onNext(data);
   };
 
@@ -111,67 +127,91 @@ const Step3_Result = ({
       },
     };
 
-    // Standalone: finish via onNext without navigating away
+    // Try beacon logging
+    try {
+      const body = {
+        sessionId: sessionID || sessionStorage.getItem("ukPackSessionID") || "",
+        event: "MN3_RESULT",
+        payload: { satisfaction: "ไม่ใช่", resultSummary },
+      };
+      navigator.sendBeacon?.(
+        "/api/track",
+        new Blob([JSON.stringify(body)], { type: "application/json" }),
+      ) ||
+        fetch("/api/track", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body),
+        });
+    } catch {}
+
     onNext(data);
   };
 
   return (
-    <div className="min-h-screen bg-white flex justify-center">
-      <div className="w-full min-h-screen bg-white overflow-hidden relative" style={{maxWidth: 1080}}>
-        {/* Background with Dark Overlay */}
-        <div className="absolute inset-0 bg-black bg-opacity-90" />
+    <div className="w-full min-h-screen mn3-result-bg flex flex-col items-center justify-start relative">
+      <div className="mn3-result-content">
+        {/* Title Section */}
+        <div className="text-center w-full max-w-none px-4 mb-6">
+          <h1
+            className="font-prompt text-center leading-normal"
+            style={{
+              color: '#000D59',
+              fontSize: 'clamp(28px, 5.5vw, 60px)',
+              lineHeight: '1.2',
+              fontWeight: 700,
+              width: '100%',
+              margin: '0 auto'
+            }}
+          >
+            จากงบประมาณของคุณ<br />
+            นี้คือสิ่งที่จะเกิดขึ้นในอนาคต
+          </h1>
+        </div>
 
-        {/* Main Content */}
-        <div className="relative z-10 flex flex-col min-h-screen px-6 md:px-8" style={{width: '100%', maxWidth: 1080, margin: '0 auto'}}>
-          {/* Results Section */}
-          <div className="flex-1 flex flex-col justify-center items-center text-center">
-            {/* Main Title */}
-            <h1 className="text-white text-center font-prompt text-[28px] font-normal leading-normal mb-2">
-              จากงบประมาณของคุณ
-            </h1>
+        {/* Transport Illustration */}
+        <div className="w-full px-4 mb-8 flex justify-center">
+          <img
+            src="https://api.builder.io/api/v1/image/assets/TEMP/40ffac7fde4a30bb13050c151fbeed8c7c4fae41?width=1500"
+            alt="Transport policy outcomes illustration"
+            className="mn3-result-image"
+          />
+        </div>
 
-            {/* Subtitle */}
-            <p className="text-white text-center font-prompt text-[18px] font-normal leading-normal mb-12 max-w-[331px]">
-              นี้คือสิ่งที่จะเกิดขึ้นในอนาคต
-            </p>
+        {/* Question Section */}
+        <div className="text-center w-full max-w-none px-4 mb-8">
+          <h2
+            className="font-prompt text-center leading-normal"
+            style={{
+              color: '#000D59',
+              fontSize: 'clamp(28px, 5.5vw, 60px)',
+              lineHeight: '1.2',
+              fontWeight: 700,
+              width: '100%',
+              margin: '0 auto'
+            }}
+          >
+            คุณพอใจหรือไม่
+          </h2>
+        </div>
 
-            {/* Transport Illustrations */}
-            <div className="mb-12 flex justify-center">
-              <img
-                src="https://api.builder.io/api/v1/image/assets/TEMP/c3165024d0e414e91040c5ce97f7d9961e2dbcdc?width=678"
-                alt="Transport illustrations"
-                className="w-[339px] h-[389px] object-contain"
-              />
-            </div>
-
-            {/* Bottom Question */}
-            <h2 className="text-white text-center font-prompt text-[28px] font-normal leading-normal mb-8 max-w-[331px]">
-              คุณพอใจหรือไม่
-            </h2>
-          </div>
-
-          {/* Bottom Buttons */}
-          <div className="pb-8 space-y-4">
-            {/* Yes Button */}
-            <button
-              onClick={handleYes}
-              className="w-full max-w-[325px] mx-auto h-[52px] rounded-[40px] bg-[#EFBA31] border-[1.5px] border-black flex items-center justify-center transition-all duration-200 hover:scale-105 hover:shadow-lg"
-            >
-              <span className="text-black text-center font-prompt text-[18px] font-medium leading-7 tracking-[0.4px]">
-                ใช่
-              </span>
-            </button>
-
-            {/* No Button */}
-            <button
-              onClick={handleNo}
-              className="w-full max-w-[325px] mx-auto h-[52px] rounded-[40px] bg-[#EFBA31] border-[1.5px] border-black flex items-center justify-center transition-all duration-200 hover:scale-105 hover:shadow-lg"
-            >
-              <span className="text-black text-center font-prompt text-[18px] font-medium leading-7 tracking-[0.4px]">
-                ไม่ใช่
-              </span>
-            </button>
-          </div>
+        {/* Response Buttons */}
+        <div className="w-full px-4 flex flex-col items-center gap-4">
+          <button
+            onClick={handleYes}
+            className="mn3-result-button"
+            aria-label="ตอบใช่ - พอใจกับผลลัพธ์"
+          >
+            ใช่
+          </button>
+          
+          <button
+            onClick={handleNo}
+            className="mn3-result-button"
+            aria-label="ตอบไม่ใช่ - ไม่พอใจกับผลลัพธ์"
+          >
+            ไม่ใช่
+          </button>
         </div>
       </div>
     </div>
