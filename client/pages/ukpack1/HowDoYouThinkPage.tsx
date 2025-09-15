@@ -91,7 +91,7 @@ const HowDoYouThinkPage = () => {
             <h1
               className="font-prompt text-black text-center leading-tight"
               style={{
-                fontSize: "clamp(24px, 5.2vw, 56px)",
+                fontSize: "clamp(22px, 4.8vw, 52px)",
                 fontWeight: 600,
                 lineHeight: "1.05",
               }}
