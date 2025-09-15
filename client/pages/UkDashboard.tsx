@@ -51,9 +51,9 @@ type SessionSummary = {
   reasonOther01?: string; // คำอธิบายเพิ่มเติม
   keyMessage1?: string; // Key message 1
   mn1Selected: string[]; // ลำดับความสำคัญของประเด็น
-  mn2Selections?: Record<string, string[]>; // กลุ่มเป้าหมายที่ควรได้ร���บสิทธิ์
+  mn2Selections?: Record<string, string[]>; // กลุ่มเป้าหมายที่ควรได้รับสิทธิ์
   mn3Selected?: string[]; // ประเด็นนโยบายที่ผู้ใช้เลือก
-  mn3BudgetAllocation?: Record<string, number>; // การจัด���รรงบปร���มาณ
+  mn3BudgetAllocation?: Record<string, number>; // การจัด���รรงบ���ร���มาณ
   mn3BudgetTotal?: number;
   satisfactionLevel?: string; // ระดับความพึงพอใจ
   ask05Comment?: string; // ข้อเสนอเพิ่มเติมต่อรัฐ
