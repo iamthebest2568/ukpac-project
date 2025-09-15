@@ -61,6 +61,7 @@ const FormScreen: React.FC = () => {
   const [phone, setPhone] = useState("");
 
   const submit = () => {
+    logEvent({ event: "FORM_SUBMIT", payload: { name, phone, page: "/ukpack2/form" } });
     try {
       sessionStorage.setItem("design.entry", JSON.stringify({ name, phone }));
     } catch (e) {}
@@ -68,6 +69,7 @@ const FormScreen: React.FC = () => {
   };
 
   const skip = () => {
+    logEvent({ event: "FORM_SKIP", payload: { page: "/ukpack2/form" } });
     navigate("/ukpack2/end");
   };
 
@@ -87,14 +89,14 @@ const FormScreen: React.FC = () => {
           <img
             src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F33272924342744429f8155587f834f20?format=webp&width=800"
             alt="รถเมล์ในฝัน"
-            className="block max-w-[520px] w-4/5 md:w-2/3 h-auto object-contain"
+            className="block max-w-[360px] w-1/2 md:w-1/2 h-auto object-contain"
           />
         </div>
         <div className="w-full flex justify-center">
           <img
             src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe788f24196524b1daad2340de622d2d6?format=webp&width=800"
             alt="ภาพรถเมล์"
-            className="block max-w-[520px] w-4/5 md:w-2/3 h-auto object-contain"
+            className="block max-w-[360px] w-1/2 md:w-1/2 h-auto object-contain"
           />
         </div>
 
@@ -109,6 +111,7 @@ const FormScreen: React.FC = () => {
               placeholder="ชื่อ-นามสกุล"
               value={name}
               onChange={(e) => setName(e.target.value)}
+onBlur={() => logEvent({ event: "FORM_NAME_BLUR", payload: { nameLen: name.length } })}
             />
           </div>
         </div>
@@ -124,6 +127,7 @@ const FormScreen: React.FC = () => {
               placeholder="เบอร์โทรศัพท์"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
+onBlur={() => logEvent({ event: "FORM_PHONE_BLUR", payload: { phoneLen: phone.length } })}
               type="tel"
             />
           </div>
