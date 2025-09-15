@@ -16,7 +16,7 @@ const FeedbackSkipScreen: React.FC = () => {
   return (
     <>
       <CustomizationScreen
-        title="ขอบคุณ"
+        title=""
         theme="light"
         footerContent={
           <div className="flex justify-center">
@@ -25,9 +25,12 @@ const FeedbackSkipScreen: React.FC = () => {
           </div>
         }
       >
-        <div className="py-6 px-4">
-          <h2 className="text-xl font-prompt font-semibold text-[#001a73]">ขอบคุณสำหรับความคิดเห็นของคุณ</h2>
-          <p className="mt-3 text-sm text-gray-700">คุณสามารถแชร์เกมนี้กับเพื่อนหรือจบเกมได้ตามต้องการ</p>
+        <div className="py-4 px-4 flex justify-center">
+          <img
+            src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fa3d7b58f82e946aaa6790206de94e35d?format=webp&width=800"
+            alt="รถเมล์ในฝัน กรุงเทพเคลื่อนที่ได้"
+            className="h-16 md:h-20 w-auto"
+          />
         </div>
       </CustomizationScreen>
 
