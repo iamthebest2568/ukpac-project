@@ -141,7 +141,7 @@ export interface SessionSummary {
   firstSeen: string;
   lastSeen: string;
   introWho?: string; // บทบาทในการเดินทางเข้าเมือง
-  travelMethod?: string; // ���านพาหนะที่ใช้
+  travelMethod?: string; // ยานพาหนะที่ใช้
   opinionLevel?: string; // ระดับความคิดเห็น (เห็นด้วย/กลางๆ/ไม่เห็นด้วย)
   ask02Choice?: string; // เหตุผลหลัก
   ask02CustomReason?: string; // เหตุผลเพิ่มเติม (พิมพ์เอง)
@@ -149,7 +149,7 @@ export interface SessionSummary {
   keyMessage1?: string; // Key message 1 (จาก Stornaway)
   mn1Selected: string[]; // ลำดับความสำคัญของประเด็น
   // MN2 selections keyed by MN1 priority
-  mn2Selections?: Record<string, string[]>; // กลุ่มเป้าหมายที่ควรได้รับสิทธิ์
+  mn2Selections?: Record<string, string[]>; // กลุ่มเป้าหมายที่ควรได้รั��สิทธิ์
   // MN3 selections and per-policy budget
   mn3Selected?: string[]; // ประเด็นนโยบายที่ผู้ใช้เลือก
   mn3BudgetAllocation?: Record<string, number>; // การจัดสรรงบประมาณ
