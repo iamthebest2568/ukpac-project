@@ -5,14 +5,16 @@ interface CustomizationScreenProps {
   children?: React.ReactNode;
   footerContent?: React.ReactNode;
   onBack?: () => void;
+  theme?: 'dark' | 'light';
 }
 
-const CustomizationScreen: React.FC<CustomizationScreenProps> = ({ title, children, footerContent, onBack }) => {
+const CustomizationScreen: React.FC<CustomizationScreenProps> = ({ title, children, footerContent, onBack, theme = 'dark' }) => {
+  const isLight = theme === 'light';
   return (
-    <div className="min-h-screen flex flex-col bg-[#000d59] text-white">
+    <div className={`min-h-screen flex flex-col ${isLight ? 'bg-white text-black' : 'bg-[#000d59] text-white'}`}>
       <header className="px-6 py-4 border-b border-[#081042] flex items-center gap-4">
         {onBack && (
-          <button onClick={onBack} aria-label="Back" className="p-2 rounded-md bg-white/5 text-white">
+          <button onClick={onBack} aria-label="Back" className={`p-2 rounded-md ${isLight ? 'bg-black/5 text-black' : 'bg-white/5 text-white'}`}>
             ←
           </button>
         )}
