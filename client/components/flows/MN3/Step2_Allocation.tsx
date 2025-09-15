@@ -33,19 +33,10 @@ const Step2_Allocation = ({
     const priorities = journeyData?.budget_step1_choice?.selectedPriorities || [];
     setSelectedPriorities(priorities);
 
-    // Initialize budget allocation with equal distribution
+    // Initialize budget allocation with zeros (user will enter values)
     const initialAllocation: BudgetAllocation = {};
-    const equalAmount = Math.floor(totalBudget / priorities.length);
-    let remaining = totalBudget;
-    
-    priorities.forEach((priority: string, index: number) => {
-      if (index === priorities.length - 1) {
-        // Give remaining to last item to ensure total = 100
-        initialAllocation[priority] = remaining;
-      } else {
-        initialAllocation[priority] = equalAmount;
-        remaining -= equalAmount;
-      }
+    priorities.forEach((priority: string) => {
+      initialAllocation[priority] = 0;
     });
     setBudgetAllocation(initialAllocation);
   }, [journeyData]);
@@ -198,7 +189,7 @@ const Step2_Allocation = ({
                   padding: '8px'
                 }}
               >
-                กรุณาจัดสรรงบประมาณให้ครบ {totalBudget} หน่วยเพื่อดำเนินการต่อ
+                ��รุณาจัดสรรงบประมาณให้ครบ {totalBudget} หน่วยเพื่อดำเนินการต่อ
               </div>
             )}
           </div>
