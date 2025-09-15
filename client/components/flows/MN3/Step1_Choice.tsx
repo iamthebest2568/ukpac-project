@@ -25,7 +25,7 @@ const Step1_Choice = ({
 
   // Define priorities exactly as in Figma design
   const priorityList = [
-    "ลดค่าโดยสารรถไฟฟ้า",
+    "ลดค่��โดยสารรถไฟฟ้า",
     "ปรับปรุงคุณภาพรถเมล์", 
     "ตั๋วร่วม",
     "เพิ่มความถี่รถเมล์",
@@ -125,14 +125,14 @@ const Step1_Choice = ({
       {/* Main Content Container */}
       <div className="w-full px-4 pt-8 pb-32 flex flex-col items-center justify-start space-y-8">
         
-        {/* Title Section - Exact Figma styling */}
+        {/* Title Section - Optimized for mobile readability */}
         <div className="text-center w-full max-w-none px-4">
           <h1
             className="font-prompt text-center leading-normal mb-4"
             style={{
               color: '#000D59',
-              fontSize: 'clamp(48px, 7.4vw, 80px)',
-              lineHeight: 'normal',
+              fontSize: 'clamp(24px, 6vw, 48px)',
+              lineHeight: '1.2',
               fontWeight: 700,
               width: '100%',
               maxWidth: '1080px',
@@ -140,14 +140,14 @@ const Step1_Choice = ({
             }}
           >
             คุณคิดว่าควรใช้เงินที่ได้<br />
-            จากการเก็บไปพัฒนาอะไร
+            จากการเก็บไปพัฒนา���ะไร
           </h1>
           <p
             className="font-prompt text-center"
             style={{
               color: '#000D59',
-              fontSize: 'clamp(24px, 3.7vw, 40px)',
-              fontWeight: 700,
+              fontSize: 'clamp(16px, 3vw, 24px)',
+              fontWeight: 600,
               lineHeight: 'normal',
               width: '100%',
               maxWidth: '1080px',
