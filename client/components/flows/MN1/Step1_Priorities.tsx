@@ -152,7 +152,7 @@ const Step1_Priorities = ({
             gap: "clamp(16px, 1.2vw, 24px)",
           }}
         >
-          {/* Row 1: ลดค่าโดยสารรถไฟฟ้า (gray), ปรับปรุงคุณภาพรถเมล์ (yellow) */}
+          {/* Row 1: ลดค่าโด���สารรถไฟฟ้า (gray), ปรับปรุงคุณภาพรถเมล์ (yellow) */}
           <div className="flex" style={{ gap: "clamp(16px, 1.8vw, 19px)" }}>
             <button
               className="transition-all duration-200 flex items-center justify-center rounded-[40px] border-0"
@@ -202,12 +202,12 @@ const Step1_Priorities = ({
                   letterSpacing: "0.4px",
                 }}
               >
-                ปรับปรุงคุณภาพรถเมล์
+                ��รับปรุงคุณภาพรถเมล์
               </span>
             </button>
           </div>
 
-          {/* Row 2: ตั๋วร่วม (gray), เพิ่มความถี่รถเมล์ (yellow), เพิ่มที่จอดรถ (gray) */}
+          {/* Row 2: ตั๋วร่วม (gray), เพิ่มความ��ี่รถเมล์ (yellow), เพิ่มที่จอดรถ (gray) */}
           <div className="flex" style={{ gap: "clamp(16px, 1.8vw, 19px)" }}>
             <button
               className="transition-all duration-200 flex items-center justify-center rounded-[40px] border-0"
@@ -244,7 +244,7 @@ const Step1_Priorities = ({
                 opacity: isSelectionDisabled("เพิ่มความถี่รถเมล์") ? 0.5 : 1,
               }}
               onClick={() =>
-                !isSelectionDisabled("เพิ่��ความถี่รถเมล์") &&
+                !isSelectionDisabled("เพิ่มความถี่รถเมล์") &&
                 handlePriorityToggle("เพิ่มความถี่รถเมล์")
               }
               disabled={isSelectionDisabled("เพิ่มความถี่รถเมล์")}
@@ -271,7 +271,7 @@ const Step1_Priorities = ({
               }}
               onClick={() =>
                 !isSelectionDisabled("เพิ่มที่จอดรถ") &&
-                handlePriorityToggle("เพิ่มท���่จอดรถ")
+                handlePriorityToggle("เพิ่มที่จอดรถ")
               }
               disabled={isSelectionDisabled("เพิ่มที่จอดรถ")}
             >
