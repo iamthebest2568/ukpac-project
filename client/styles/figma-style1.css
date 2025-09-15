@@ -1216,3 +1216,48 @@ body[data-dialog-open] {
   color: #000 !important;
   font-weight: 700 !important;
 }
+
+/* Ask02_2: title top, textarea center, button bottom (desktop/tablet) */
+@media (min-width: 768px) {
+  .ask02-2-page .figma-style1-content-area {
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 100% !important;
+  }
+  .ask02-2-page .ask02-2-content {
+    margin-top: auto !important;
+    margin-bottom: auto !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    padding: 0 16px !important;
+  }
+  .ask02-2-page .ask02-2-textarea-box {
+    min-height: clamp(260px, 32vh, 460px);
+    padding: clamp(12px, 2.2vw, 20px);
+  }
+  .ask02-2-page .figma-style1-button-container { margin-top: auto !important; }
+}
+
+/* Ask02_2: same positioning for mobile */
+@media (max-width: 767px) {
+  .ask02-2-page .figma-style1-content-area {
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 100% !important;
+  }
+  .ask02-2-page .ask02-2-content {
+    margin-top: auto !important;
+    margin-bottom: auto !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    padding: 0 16px !important;
+  }
+  .ask02-2-page .figma-style1-button-container {
+    margin-top: auto !important;
+    padding-bottom: env(safe-area-inset-bottom, 16px) !important;
+  }
+}
