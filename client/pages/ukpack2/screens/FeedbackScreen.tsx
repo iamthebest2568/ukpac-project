@@ -41,15 +41,13 @@ const FeedbackScreen: React.FC = () => {
         className="rounded-t-3xl p-6 bg-no-repeat bg-top bg-cover w-screen"
         style={{
           backgroundImage:
-            "url('https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F7e994bb254cb408c86bed190e97b659e?format=webp&width=1600')",
-          marginLeft: 'calc(50% - 50vw)',
-          marginRight: 'calc(50% - 50vw)'
+            "url('https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F7e994bb254cb408c86bed190e97b659e?format=webp&width=1600')"
         }}
       >
         <div className="max-w-4xl mx-auto flex items-center justify-center">
           <div className="flex flex-col items-stretch gap-3 w-full max-w-sm">
             <SecondaryButton className="w-full" text="ส่งความคิดเห็น" onClick={submit} />
-            <CtaButton className="w-full" text="��้าม" onClick={skip} />
+            <CtaButton className="w-full" text="ข้าม" onClick={skip} />
           </div>
         </div>
       </footer>
