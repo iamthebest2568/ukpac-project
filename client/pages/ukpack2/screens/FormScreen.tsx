@@ -54,7 +54,7 @@ const FormScreen: React.FC = () => {
 
   return (
     <CustomizationScreen
-      title="กรอกข้อมูล เพื่อรับรางวัล"
+      title=""
       theme="light"
       footerContent={
         <div className="space-y-4">
@@ -73,14 +73,21 @@ const FormScreen: React.FC = () => {
         </div>
       }
     >
-      <div className="max-w-4xl mx-auto pt-8 space-y-6">
-        {/* Name Field */}
+      <div className="max-w-4xl mx-auto pt-4 space-y-6">
+        <div className="w-full flex justify-center">
+          <img
+            src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F33272924342744429f8155587f834f20?format=webp&width=800"
+            alt="รถเมล์ในฝัน"
+            className="block max-w-[520px] w-4/5 md:w-2/3 h-auto object-contain"
+          />
+        </div>
+
+        {/* Name Field (no inner divider line) */}
         <div className="relative">
           <div className="flex items-center w-full h-28 border-[5px] border-[#000D59] rounded-[20px] bg-white">
             <div className="flex items-center justify-center w-20 h-full">
               <IconPerson />
             </div>
-            <div className="w-[5px] h-20 bg-[#000D59] mx-4"></div>
             <input
               className="flex-1 h-full bg-transparent border-none outline-none text-black placeholder-gray-500 font-prompt text-2xl md:text-3xl lg:text-4xl font-light px-4"
               placeholder="ชื่อ-นามสกุล"
@@ -90,13 +97,12 @@ const FormScreen: React.FC = () => {
           </div>
         </div>
 
-        {/* Phone Field */}
+        {/* Phone Field (no inner divider line) */}
         <div className="relative">
           <div className="flex items-center w-full h-28 border-[5px] border-[#000D59] rounded-[20px] bg-white">
             <div className="flex items-center justify-center w-20 h-full">
               <IconPhone />
             </div>
-            <div className="w-[5px] h-20 bg-[#000D59] mx-4"></div>
             <input
               className="flex-1 h-full bg-transparent border-none outline-none text-black placeholder-gray-500 font-prompt text-2xl md:text-3xl lg:text-4xl font-light px-4"
               placeholder="เบอร์โทรศัพท์"
