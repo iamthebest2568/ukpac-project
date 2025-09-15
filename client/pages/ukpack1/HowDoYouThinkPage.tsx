@@ -106,7 +106,7 @@ const HowDoYouThinkPage = () => {
           <div className="flex flex-col items-center gap-4 w-full">
             {[
               { key: "agree", text: "เห็นด้วย" },
-              { key: "neutral", text: "เฉยๆ" },
+              { key: "neutral", text: "เฉย ๆ" },
               { key: "disagree", text: "ไม่เห็นด้วย" },
             ].map((option) => (
               <button
