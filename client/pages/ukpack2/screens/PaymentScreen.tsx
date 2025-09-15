@@ -122,12 +122,18 @@ const IconQr = () => (
   </svg>
 );
 
-const MONEY_ICON = 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fbc8b22cedfbb4640a702f724881f196d?format=webp&width=800';
-const SCAN_ICON = 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb8992da4be824b339d3df5f0a076ed93?format=webp&width=800';
-const SCAN2_ICON = 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F56620e798eb94153b2390271f30d0dae?format=webp&width=800';
-const TOUCH_ICON = 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fdb2e47a586b841d1af014e9196f3c411?format=webp&width=800';
-const MONTHLY_ICON = 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fca6467eff0c74a77a8e5757f25a24e41?format=webp&width=800';
-const BUS_EMPLOY_ICON = 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F41c089c5dd4b448993c4e02c02cdf7ac?format=webp&width=800';
+const MONEY_ICON =
+  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fbc8b22cedfbb4640a702f724881f196d?format=webp&width=800";
+const SCAN_ICON =
+  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb8992da4be824b339d3df5f0a076ed93?format=webp&width=800";
+const SCAN2_ICON =
+  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F56620e798eb94153b2390271f30d0dae?format=webp&width=800";
+const TOUCH_ICON =
+  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fdb2e47a586b841d1af014e9196f3c411?format=webp&width=800";
+const MONTHLY_ICON =
+  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fca6467eff0c74a77a8e5757f25a24e41?format=webp&width=800";
+const BUS_EMPLOY_ICON =
+  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F41c089c5dd4b448993c4e02c02cdf7ac?format=webp&width=800";
 
 const OPTIONS = [
   { key: "cash", label: "เงินสด", icon: <IconCash /> },
@@ -170,93 +176,110 @@ const PaymentScreen: React.FC = () => {
           {/* show selected hero bus image from chassis selection */}
           {(() => {
             const CHASSIS_LABELS: Record<string, string> = {
-              small: 'รถเมล์ขนาดเล็ก 16–30 ที่นั่ง',
-              medium: 'รถเมล์ขนาดกลาง 31–40 ที่นั่ง',
-              large: 'รถเมล์ขนาดใหญ่ 41-50 ที่นั่ง',
-              extra: 'รถเมล์รุ่นพิเศษ 51+ ที่นั่ง',
+              small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
+              medium: "รถเมล์ขนาดกลาง 31–40 ที่นั่ง",
+              large: "รถเมล์ขนาดใหญ่ 41-50 ที่นั่ง",
+              extra: "รถเมล์รุ่นพิเศษ 51+ ที่นั่ง",
             };
             const HERO_IMAGE: Record<string, string> = {
-              small: 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F5ea1b3d990e44d49aa5441bc3a4b3bcc?format=webp&width=800',
-              medium: 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fab8ddd78f9a0478bb27f5818928665f3?format=webp&width=800',
-              large: 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fefc1e1ed3bcb4769b51d1544d43b3b5f?format=webp&width=800',
-              extra: 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9a8a7536ced24db19a65409fbba1c6b6?format=webp&width=800',
+              small:
+                "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F5ea1b3d990e44d49aa5441bc3a4b3bcc?format=webp&width=800",
+              medium:
+                "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fab8ddd78f9a0478bb27f5818928665f3?format=webp&width=800",
+              large:
+                "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fefc1e1ed3bcb4769b51d1544d43b3b5f?format=webp&width=800",
+              extra:
+                "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9a8a7536ced24db19a65409fbba1c6b6?format=webp&width=800",
             };
-            let selected = 'medium';
+            let selected = "medium";
             try {
-              const saved = sessionStorage.getItem('design.chassis');
+              const saved = sessionStorage.getItem("design.chassis");
               if (saved) selected = saved;
             } catch (e) {}
-            const label = CHASSIS_LABELS[selected] || '';
+            const label = CHASSIS_LABELS[selected] || "";
             const img = HERO_IMAGE[selected];
             return img ? (
               <>
-                <img src={img} alt={`ภาพรถ - ${label}`} className="h-48 w-auto object-contain select-none" decoding="async" loading="eager" />
-                <p className="mt-1 font-prompt font-semibold text-[#001a73] text-center">รถที่ใช้งาน : {label}</p>
+                <img
+                  src={img}
+                  alt={`ภาพรถ - ${label}`}
+                  className="h-48 w-auto object-contain select-none"
+                  decoding="async"
+                  loading="eager"
+                />
+                <p className="mt-1 font-prompt font-semibold text-[#001a73] text-center">
+                  รถที่ใช้งาน : {label}
+                </p>
               </>
             ) : (
-              <div className="w-full h-48 bg-[#081042] rounded-md flex items-center justify-center text-sm text-gray-300">Bus image preview</div>
+              <div className="w-full h-48 bg-[#081042] rounded-md flex items-center justify-center text-sm text-gray-300">
+                Bus image preview
+              </div>
             );
           })()}
         </div>
         <div className="bg-white rounded-t-3xl -mt-2 p-4">
           <StepTabs active={4} />
 
-          <h2 className="text-xl font-prompt font-semibold text-[#003366] mt-2">การจ่ายเงิน</h2>
+          <h2 className="text-xl font-prompt font-semibold text-[#003366] mt-2">
+            การจ่ายเงิน
+          </h2>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {OPTIONS.map((o) => {
               const isSel = selected.includes(o.label);
-              const iconNode = o.key === 'cash' ? (
-                <img
-                  src={MONEY_ICON}
-                  alt={o.label}
-                  className={`h-8 w-8 object-contain select-none ${isSel ? '' : 'grayscale opacity-60'}`}
-                  decoding="async"
-                  loading="eager"
-                />
-              ) : o.key === 'scan' ? (
-                <img
-                  src={SCAN_ICON}
-                  alt={o.label}
-                  className={`h-8 w-8 object-contain select-none ${isSel ? '' : 'grayscale opacity-60'}`}
-                  decoding="async"
-                  loading="eager"
-                />
-              ) : o.key === 'scan2' ? (
-                <img
-                  src={SCAN2_ICON}
-                  alt={o.label}
-                  className={`h-8 w-8 object-contain select-none ${isSel ? '' : 'grayscale opacity-60'}`}
-                  decoding="async"
-                  loading="eager"
-                />
-              ) : o.key === 'tap' ? (
-                <img
-                  src={TOUCH_ICON}
-                  alt={o.label}
-                  className={`h-8 w-8 object-contain select-none ${isSel ? '' : 'grayscale opacity-60'}`}
-                  decoding="async"
-                  loading="eager"
-                />
-              ) : o.key === 'qr' ? (
-                <img
-                  src={BUS_EMPLOY_ICON}
-                  alt={o.label}
-                  className={`h-8 w-8 object-contain select-none ${isSel ? '' : 'grayscale opacity-60'}`}
-                  decoding="async"
-                  loading="eager"
-                />
-              ) : o.key === 'monthly' ? (
-                <img
-                  src={MONTHLY_ICON}
-                  alt={o.label}
-                  className={`h-8 w-8 object-contain select-none ${isSel ? '' : 'grayscale opacity-60'}`}
-                  decoding="async"
-                  loading="eager"
-                />
-              ) : (
-                o.icon
-              );
+              const iconNode =
+                o.key === "cash" ? (
+                  <img
+                    src={MONEY_ICON}
+                    alt={o.label}
+                    className={`h-8 w-8 object-contain select-none ${isSel ? "" : "grayscale opacity-60"}`}
+                    decoding="async"
+                    loading="eager"
+                  />
+                ) : o.key === "scan" ? (
+                  <img
+                    src={SCAN_ICON}
+                    alt={o.label}
+                    className={`h-8 w-8 object-contain select-none ${isSel ? "" : "grayscale opacity-60"}`}
+                    decoding="async"
+                    loading="eager"
+                  />
+                ) : o.key === "scan2" ? (
+                  <img
+                    src={SCAN2_ICON}
+                    alt={o.label}
+                    className={`h-8 w-8 object-contain select-none ${isSel ? "" : "grayscale opacity-60"}`}
+                    decoding="async"
+                    loading="eager"
+                  />
+                ) : o.key === "tap" ? (
+                  <img
+                    src={TOUCH_ICON}
+                    alt={o.label}
+                    className={`h-8 w-8 object-contain select-none ${isSel ? "" : "grayscale opacity-60"}`}
+                    decoding="async"
+                    loading="eager"
+                  />
+                ) : o.key === "qr" ? (
+                  <img
+                    src={BUS_EMPLOY_ICON}
+                    alt={o.label}
+                    className={`h-8 w-8 object-contain select-none ${isSel ? "" : "grayscale opacity-60"}`}
+                    decoding="async"
+                    loading="eager"
+                  />
+                ) : o.key === "monthly" ? (
+                  <img
+                    src={MONTHLY_ICON}
+                    alt={o.label}
+                    className={`h-8 w-8 object-contain select-none ${isSel ? "" : "grayscale opacity-60"}`}
+                    decoding="async"
+                    loading="eager"
+                  />
+                ) : (
+                  o.icon
+                );
               return (
                 <SelectionCard
                   key={o.key}

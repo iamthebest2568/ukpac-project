@@ -16,7 +16,10 @@ const InfoScreen: React.FC = () => {
         theme="light"
         footerContent={
           <div className="flex justify-center">
-            <CtaButton text="ไปต่อ" onClick={() => navigate("/ukpack2/info-next")} />
+            <CtaButton
+              text="ไปต่อ"
+              onClick={() => navigate("/ukpack2/info-next")}
+            />
           </div>
         }
       >
@@ -32,9 +35,7 @@ const InfoScreen: React.FC = () => {
               ผู้ใช้สามารถเลือกรูปแบบการชำระเงินและสิ่งอำนวยความสะดวกที่ต้องการ
               เพื่อให้รถเมล์ตอบโจทย์การใช้งานของชุมชนได้ดีที่สุด.
             </p>
-            <p>
-              (เนื้อหาเพิ่มเติมสามารถปรับจาก CMS ภายหลัง)
-            </p>
+            <p>(เนื้อหาเพิ่มเติมสามารถปรับจาก CMS ภายหลัง)</p>
           </div>
         </div>
       </CustomizationScreen>
@@ -43,7 +44,7 @@ const InfoScreen: React.FC = () => {
         isOpen={isExitModalOpen}
         title="ออกจากหน้าจอ"
         message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
-        onConfirm={() => navigate('/')}
+        onConfirm={() => navigate("/")}
         onCancel={() => setExitModalOpen(false)}
       />
     </>

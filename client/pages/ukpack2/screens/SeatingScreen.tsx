@@ -28,22 +28,26 @@ const SeatingScreen: React.FC = () => {
   const currentChassis = state.chassis || "medium";
 
   const CHASSIS_LABELS: Record<string, string> = {
-    small: 'รถเมล์ขนาดเล็ก 16–30 ที่นั่ง',
-    medium: 'รถเมล์ขนาดกลาง 31–40 ที่นั่ง',
-    large: 'รถเมล์ขนาดใหญ่ 41–50 ที่นั่ง',
-    extra: 'รถเมล์รุ่นพิเศษ 51+ ที่นั่ง',
+    small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
+    medium: "รถเมล์ขนาดกลาง 31–40 ที่นั่ง",
+    large: "รถเมล์ขนาดใหญ่ 41–50 ที่นั่ง",
+    extra: "รถเมล์รุ่นพิเศษ 51+ ที่นั่ง",
   };
 
   const TOPDOWN_IMAGE: Record<string, string | undefined> = {
-    small: 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9ab4a85f41e64448b6ce79942def8a26?format=webp&width=800',
-    medium: 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Ff5741ea88d0b4d94a8cc687f16501d5c?format=webp&width=800',
-    large: 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F2f4b32b5e79d4f20ba02c9d2ac0c9835?format=webp&width=800',
-    extra: 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F48d410fc189e450d8a6da8ed130f71a7?format=webp&width=800',
+    small:
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9ab4a85f41e64448b6ce79942def8a26?format=webp&width=800",
+    medium:
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Ff5741ea88d0b4d94a8cc687f16501d5c?format=webp&width=800",
+    large:
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F2f4b32b5e79d4f20ba02c9d2ac0c9835?format=webp&width=800",
+    extra:
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F48d410fc189e450d8a6da8ed130f71a7?format=webp&width=800",
   };
 
   const selectedChassis = React.useMemo(() => {
     try {
-      const saved = sessionStorage.getItem('design.chassis');
+      const saved = sessionStorage.getItem("design.chassis");
       return (saved || currentChassis) as keyof typeof CHASSIS_LABELS;
     } catch {
       return currentChassis as keyof typeof CHASSIS_LABELS;
@@ -55,7 +59,7 @@ const SeatingScreen: React.FC = () => {
     setTotalSeats(maxCapacity);
   }, [maxCapacity]);
 
-  const selectedLabel = CHASSIS_LABELS[selectedChassis] || '';
+  const selectedLabel = CHASSIS_LABELS[selectedChassis] || "";
   const selectedTopdown = TOPDOWN_IMAGE[selectedChassis];
 
   const handleNext = () => {
@@ -113,12 +117,21 @@ const SeatingScreen: React.FC = () => {
             <StepTabs active={2} />
             <div className="space-y-2 mt-2">
               <div className="flex items-center justify-between">
-                <div className="text-[#003366] font-sarabun">จำนวนที่นั่งทั้งหมด</div>
+                <div className="text-[#003366] font-sarabun">
+                  จำนวนที่นั่งทั้งหมด
+                </div>
                 <input
                   type="number"
                   placeholder="พิมพ์"
                   value={totalSeats}
-                  onChange={(e) => handleTotalSeatsChange(Math.min(maxCapacity, Math.max(0, parseInt(e.target.value || '0', 10))))}
+                  onChange={(e) =>
+                    handleTotalSeatsChange(
+                      Math.min(
+                        maxCapacity,
+                        Math.max(0, parseInt(e.target.value || "0", 10)),
+                      ),
+                    )
+                  }
                   className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-md text-[#003366] bg-white text-right"
                   min={0}
                   max={maxCapacity}
@@ -130,7 +143,14 @@ const SeatingScreen: React.FC = () => {
                 <input
                   type="number"
                   value={pregnantSeats}
-                  onChange={(e) => setPregnantSeats(Math.min(maxCapacity, Math.max(0, parseInt(e.target.value || '0', 10))))}
+                  onChange={(e) =>
+                    setPregnantSeats(
+                      Math.min(
+                        maxCapacity,
+                        Math.max(0, parseInt(e.target.value || "0", 10)),
+                      ),
+                    )
+                  }
                   className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-md text-[#003366] bg-white text-right"
                   min={0}
                   max={maxCapacity}
@@ -138,11 +158,20 @@ const SeatingScreen: React.FC = () => {
               </div>
 
               <div className="flex items-center justify-between">
-                <div className="text-[#003366] font-sarabun">เด็ก / ผู้สูงอายุ</div>
+                <div className="text-[#003366] font-sarabun">
+                  เด็ก / ผู้สูงอายุ
+                </div>
                 <input
                   type="number"
                   value={childElderSeats}
-                  onChange={(e) => setChildElderSeats(Math.min(maxCapacity, Math.max(0, parseInt(e.target.value || '0', 10))))}
+                  onChange={(e) =>
+                    setChildElderSeats(
+                      Math.min(
+                        maxCapacity,
+                        Math.max(0, parseInt(e.target.value || "0", 10)),
+                      ),
+                    )
+                  }
                   className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-md text-[#003366] bg-white text-right"
                   min={0}
                   max={maxCapacity}
@@ -154,7 +183,14 @@ const SeatingScreen: React.FC = () => {
                 <input
                   type="number"
                   value={monkSeats}
-                  onChange={(e) => setMonkSeats(Math.min(maxCapacity, Math.max(0, parseInt(e.target.value || '0', 10))))}
+                  onChange={(e) =>
+                    setMonkSeats(
+                      Math.min(
+                        maxCapacity,
+                        Math.max(0, parseInt(e.target.value || "0", 10)),
+                      ),
+                    )
+                  }
                   className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-md text-[#003366] bg-white text-right"
                   min={0}
                   max={maxCapacity}
@@ -162,11 +198,20 @@ const SeatingScreen: React.FC = () => {
               </div>
 
               <div className="flex items-center justify-between">
-                <div className="text-[#003366] font-sarabun">พื้นที่สำหรับรถเข็น/จักรยาน</div>
+                <div className="text-[#003366] font-sarabun">
+                  พื้นที่สำหรับรถเข็น/จักรยาน
+                </div>
                 <input
                   type="number"
                   value={wheelchairBikeSpaces}
-                  onChange={(e) => setWheelchairBikeSpaces(Math.min(maxCapacity, Math.max(0, parseInt(e.target.value || '0', 10))))}
+                  onChange={(e) =>
+                    setWheelchairBikeSpaces(
+                      Math.min(
+                        maxCapacity,
+                        Math.max(0, parseInt(e.target.value || "0", 10)),
+                      ),
+                    )
+                  }
                   className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-md text-[#003366] bg-white text-right"
                   min={0}
                   max={maxCapacity}

@@ -127,26 +127,30 @@ const AmenitiesScreen: React.FC = () => {
 
   // Selected chassis preview (reusing mapping from SeatingScreen)
   const CHASSIS_LABELS: Record<string, string> = {
-    small: 'รถเมล์ขนาดเล็ก 16–30 ที่นั่ง',
-    medium: 'รถเมล์ขนาดกลาง 31–40 ที่นั่ง',
-    large: 'รถเมล์ขนาดใหญ่ 41–50 ที่นั่ง',
-    extra: 'รถเมล์รุ่นพิเศษ 51+ ที่นั่ง',
+    small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
+    medium: "รถเมล์ขนาดกลาง 31–40 ที่นั่ง",
+    large: "รถเมล์ขนาดใหญ่ 41–50 ที่นั่ง",
+    extra: "รถเมล์รุ่นพิเศษ 51+ ที่นั่ง",
   };
   const HERO_IMAGE: Record<string, string> = {
-    small: 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F5ea1b3d990e44d49aa5441bc3a4b3bcc?format=webp&width=800',
-    medium: 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fab8ddd78f9a0478bb27f5818928665f3?format=webp&width=800',
-    large: 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fefc1e1ed3bcb4769b51d1544d43b3b5f?format=webp&width=800',
-    extra: 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9a8a7536ced24db19a65409fbba1c6b6?format=webp&width=800',
+    small:
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F5ea1b3d990e44d49aa5441bc3a4b3bcc?format=webp&width=800",
+    medium:
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fab8ddd78f9a0478bb27f5818928665f3?format=webp&width=800",
+    large:
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fefc1e1ed3bcb4769b51d1544d43b3b5f?format=webp&width=800",
+    extra:
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9a8a7536ced24db19a65409fbba1c6b6?format=webp&width=800",
   };
   const selectedChassis = (() => {
     try {
-      const saved = sessionStorage.getItem('design.chassis');
-      return (saved || 'medium') as keyof typeof CHASSIS_LABELS;
+      const saved = sessionStorage.getItem("design.chassis");
+      return (saved || "medium") as keyof typeof CHASSIS_LABELS;
     } catch {
-      return 'medium' as const;
+      return "medium" as const;
     }
   })();
-  const selectedLabel = CHASSIS_LABELS[selectedChassis] || '';
+  const selectedLabel = CHASSIS_LABELS[selectedChassis] || "";
   const selectedBusImage = HERO_IMAGE[selectedChassis];
   const [isExitModalOpen, setExitModalOpen] = useState(false);
 
@@ -182,7 +186,9 @@ const AmenitiesScreen: React.FC = () => {
         <div className="bg-white rounded-t-3xl -mt-2 p-4">
           <StepTabs active={3} />
 
-          <h2 className="text-xl font-prompt font-semibold text-[#003366] mt-2">ความสะดวกสบาย</h2>
+          <h2 className="text-xl font-prompt font-semibold text-[#003366] mt-2">
+            ความสะดวกสบาย
+          </h2>
 
           <div className="grid grid-cols-4 gap-4">
             {AMENITIES.map((a) => (

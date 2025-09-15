@@ -71,9 +71,13 @@ const FeedbackScreen = lazy(
   () => import("./pages/ukpack2/screens/FeedbackScreen"),
 );
 const InfoScreen = lazy(() => import("./pages/ukpack2/screens/InfoScreen"));
-const InfoNextScreen = lazy(() => import("./pages/ukpack2/screens/InfoNextScreen"));
+const InfoNextScreen = lazy(
+  () => import("./pages/ukpack2/screens/InfoNextScreen"),
+);
 const SubmitScreen = lazy(() => import("./pages/ukpack2/screens/SubmitScreen"));
-const FeedbackSkipScreen = lazy(() => import("./pages/ukpack2/screens/FeedbackSkipScreen"));
+const FeedbackSkipScreen = lazy(
+  () => import("./pages/ukpack2/screens/FeedbackSkipScreen"),
+);
 const ThankYouScreen = lazy(
   () => import("./pages/ukpack2/screens/ThankYouScreen"),
 );
@@ -195,7 +199,10 @@ const App = () => {
                 <Route path="/ukpack2/info" element={<InfoScreen />} />
                 <Route path="/ukpack2/info-next" element={<InfoNextScreen />} />
                 <Route path="/ukpack2/feedback" element={<FeedbackScreen />} />
-                <Route path="/ukpack2/feedback-skip" element={<FeedbackSkipScreen />} />
+                <Route
+                  path="/ukpack2/feedback-skip"
+                  element={<FeedbackSkipScreen />}
+                />
                 <Route path="/ukpack2/submit" element={<SubmitScreen />} />
                 <Route path="/ukpack2/thank-you" element={<ThankYouScreen />} />
                 <Route path="/ukpack2/form" element={<FormScreen />} />

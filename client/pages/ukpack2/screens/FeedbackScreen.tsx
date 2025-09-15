@@ -1,28 +1,30 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import SecondaryButton from '../components/SecondaryButton';
-import CtaButton from '../components/CtaButton';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import SecondaryButton from "../components/SecondaryButton";
+import CtaButton from "../components/CtaButton";
 
 const FeedbackScreen: React.FC = () => {
   const navigate = useNavigate();
-  const [feedback, setFeedback] = useState<string>('');
+  const [feedback, setFeedback] = useState<string>("");
 
   const submit = () => {
     try {
-      sessionStorage.setItem('design.feedback', feedback);
+      sessionStorage.setItem("design.feedback", feedback);
     } catch (e) {}
-    navigate('/ukpack2/thank-you');
+    navigate("/ukpack2/thank-you");
   };
 
   const skip = () => {
-    navigate('/ukpack2/feedback-skip');
+    navigate("/ukpack2/feedback-skip");
   };
 
   return (
     <div className="min-h-screen bg-white text-[#000d59] flex flex-col">
       <div className="max-w-4xl w-full mx-auto px-4 py-8 flex-1">
         <header className="mb-6">
-          <h1 className="text-2xl font-prompt font-semibold">บอกเราหน่อยทำไมถึงไม่แน่ใจ</h1>
+          <h1 className="text-2xl font-prompt font-semibold">
+            บอกเราหน่อยทำไมถึงไม่แน่ใจ
+          </h1>
         </header>
 
         <main>

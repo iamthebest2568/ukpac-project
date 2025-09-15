@@ -1,6 +1,8 @@
-import React from 'react';
+import React from "react";
 
-const InfoBubbleCard: React.FC<{ children?: React.ReactNode }> = ({ children }) => {
+const InfoBubbleCard: React.FC<{ children?: React.ReactNode }> = ({
+  children,
+}) => {
   return (
     <div className="relative max-w-4xl mx-auto">
       <div className="bg-gray-100 text-[#001a73] rounded-xl p-5 shadow-sm">
