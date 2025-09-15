@@ -160,7 +160,7 @@ export default function UkDashboard() {
       }
       setLastUpdated(new Date().toLocaleString());
     } catch (e: any) {
-      setError(e?.message || "โหลดข้อมูลล้มเห���ว");
+      setError(e?.message || "โหลดข้อมูลล้มเหลว");
     } finally {
       if (firstLoad) setLoading(false);
       setFirstLoad(false);
@@ -232,7 +232,7 @@ export default function UkDashboard() {
               className="mt-4 w-full rounded-full bg-[#EFBA31] text-black font-medium px-5 py-2 border border-black"
               onClick={() => {
                 if (!expected) {
-                  setPwErr("ยังไม่ได้ตั้งรหัสผ่าน (VITE_DASHBOARD_PASSWORD)");
+                  setPwErr("ยังไม่ได้ตั้งรห��สผ่าน (VITE_DASHBOARD_PASSWORD)");
                   return;
                 }
                 if (pw === expected) {
@@ -768,7 +768,7 @@ export default function UkDashboard() {
                     exportCsv("uk_export_all.csv", rows);
                   }}
                 >
-                  ดาวน์โหลด CSV (สรุปรวม)
+                  ดาวน์โหลด CSV (ส���ุปรวม)
                 </button>
               </div>
             </div>
