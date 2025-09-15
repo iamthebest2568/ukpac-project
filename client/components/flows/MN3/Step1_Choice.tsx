@@ -25,7 +25,7 @@ const Step1_Choice = ({
 
   // Define priorities exactly as in Figma design
   const priorityList = [
-    "ลดค่��โดยสารรถไฟฟ้า",
+    "ลดค่าโดยสารรถไฟฟ���า",
     "ปรับปรุงคุณภาพรถเมล์", 
     "ตั๋วร่วม",
     "เพิ่มความถี่รถเมล์",
@@ -140,7 +140,7 @@ const Step1_Choice = ({
             }}
           >
             คุณคิดว่าควรใช้เงินที่ได้<br />
-            จากการเก็บไปพัฒนา���ะไร
+            จากการเก็บไปพัฒนาอะไร
           </h1>
           <p
             className="font-prompt text-center"
@@ -183,7 +183,7 @@ const Step1_Choice = ({
         {/* Continue Button - Fixed Footer */}
         <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full z-50 px-4 pb-4">
           <div className="mx-auto flex flex-col items-center space-y-2" style={{ maxWidth: 1080 }}>
-            {selectedPriorities.length > 0 ? (
+            {selectedPriorities.length > 0 && (
               <button
                 onClick={handleNext}
                 className="mn3-continue-button"
@@ -191,20 +191,6 @@ const Step1_Choice = ({
               >
                 ไปต่อ
               </button>
-            ) : (
-              <div
-                className="text-center"
-                style={{
-                  color: '#000D59',
-                  fontSize: 'clamp(14px, 3.5vw, 18px)',
-                  fontFamily: 'Prompt',
-                  fontWeight: 500,
-                  maxWidth: '400px',
-                  padding: '16px'
-                }}
-              >
-                กรุณาเลือกอย่างน้อย 1 ข้อเพื่อดำเนินการต่อ
-              </div>
             )}
           </div>
         </div>
