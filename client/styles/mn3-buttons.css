@@ -93,22 +93,21 @@
   background-color: #333;
 }
 
-/* Button text styling - optimized for mobile readability */
+/* Button text styling - optimized for mobile readability with no wrapping */
 .mn3-button-text {
   font-family: 'Prompt', sans-serif;
   font-weight: 600; /* Slightly reduced weight */
-  font-size: clamp(14px, 3.5vw, 24px); /* Reduced from 40px max to 24px */
+  font-size: clamp(12px, 3vw, 20px); /* Slightly smaller to fit better */
   line-height: 1.2;
-  letter-spacing: 0.2px;
+  letter-spacing: 0.1px;
   color: #000;
   text-align: center;
-  word-wrap: break-word;
-  hyphens: auto;
   margin: 0;
   padding: 0;
-  white-space: nowrap;
+  white-space: nowrap !important; /* Force no wrapping */
   overflow: hidden;
   text-overflow: ellipsis;
+  word-break: keep-all; /* Prevent breaking within words */
 }
 
 /* Selected button text */
@@ -217,43 +216,50 @@
   }
 }
 
-/* Specific button widths matching Figma design */
+/* Specific button widths - increased minimums to prevent text wrapping */
 /* Row 1: choice_1 (465px) and choice_2 (500px) */
 .mn3-policy-button--choice-1 {
-  flex: 0 0 clamp(280px, 43vw, 465px);
+  flex: 0 0 clamp(200px, 43vw, 465px); /* Increased min from 280px to 200px */
   max-width: 465px;
+  min-width: 200px;
 }
 
 .mn3-policy-button--choice-2 {
-  flex: 0 0 clamp(300px, 46.3vw, 500px);
+  flex: 0 0 clamp(220px, 46.3vw, 500px); /* Increased min from 300px to 220px */
   max-width: 500px;
+  min-width: 220px;
 }
 
 /* Row 2: choice_3 (248px), choice_4 (385px), choice_5 (293px) */
 .mn3-policy-button--choice-3 {
-  flex: 0 0 clamp(150px, 23vw, 248px);
+  flex: 0 0 clamp(100px, 23vw, 248px); /* Increased min from 150px to 100px */
   max-width: 248px;
+  min-width: 100px;
 }
 
 .mn3-policy-button--choice-4 {
-  flex: 0 0 clamp(230px, 35.6vw, 385px);
+  flex: 0 0 clamp(180px, 35.6vw, 385px); /* Increased min from 230px to 180px */
   max-width: 385px;
+  min-width: 180px;
 }
 
 .mn3-policy-button--choice-5 {
-  flex: 0 0 clamp(180px, 27.1vw, 293px);
+  flex: 0 0 clamp(140px, 27.1vw, 293px); /* Increased min from 180px to 140px */
   max-width: 293px;
+  min-width: 140px;
 }
 
 /* Row 3: choice_6 (465px) and choice_7 (480px) */
 .mn3-policy-button--choice-6 {
-  flex: 0 0 clamp(280px, 43vw, 465px);
+  flex: 0 0 clamp(200px, 43vw, 465px); /* Increased min from 280px to 200px */
   max-width: 465px;
+  min-width: 200px;
 }
 
 .mn3-policy-button--choice-7 {
-  flex: 0 0 clamp(290px, 44.4vw, 480px);
+  flex: 0 0 clamp(210px, 44.4vw, 480px); /* Increased min from 290px to 210px */
   max-width: 480px;
+  min-width: 210px;
 }
 
 /* Ensure proper alignment in flex containers */
