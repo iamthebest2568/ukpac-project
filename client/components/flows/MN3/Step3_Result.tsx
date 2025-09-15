@@ -195,22 +195,14 @@ const Step3_Result = ({
           </h2>
         </div>
 
-        {/* Response Buttons */}
-        <div className="w-full px-4 flex flex-col items-center gap-4">
-          <button
-            onClick={handleYes}
-            className="mn3-result-button"
-            aria-label="ตอบใช่ - พอใจกับผลลัพธ์"
-          >
-            ใช่
+        {/* Response Buttons - use design-system button classes for consistent appearance */}
+        <div className="figma-style1-button-container">
+          <button onClick={handleYes} className="figma-style1-button" aria-label="ตอบใช่ - พอใจกับผลลัพธ์">
+            <span className="figma-style1-button-text">ใช่</span>
           </button>
-          
-          <button
-            onClick={handleNo}
-            className="mn3-result-button"
-            aria-label="ตอบไม่ใช่ - ไม่พอใจกับผลลัพธ์"
-          >
-            ไม่ใช่
+
+          <button onClick={handleNo} className="figma-style1-button" aria-label="ตอบไม่ใช่ - ไม่พอใจกับผลลัพธ์">
+            <span className="figma-style1-button-text">ไม่ใช่</span>
           </button>
         </div>
       </div>
