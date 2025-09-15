@@ -52,17 +52,13 @@ const HowDoYouThinkPage = () => {
 
   return (
     <div className="w-full min-h-screen relative bg-white flex flex-col" style={{ maxWidth: 1080, margin: "0 auto" }}>
-      {/* Background Section - White curved top with train image */}
-      {/* Removed top image per request. Add small spacer for visual breathing room */}
-      <div style={{ height: '24px' }} />
-
-      {/* Blue Background Section with Question and Options */}
+      {/* Content Section positioned at bottom */}
       <div
-        className="flex-1 flex flex-col items-center justify-start px-4 py-8"
+        className="flex-1 flex flex-col items-center justify-end px-4 py-8 pb-12"
         style={{ background: '#FFFFFF', minHeight: 'auto' }}
       >
         {/* Question Text */}
-        <div className="text-center mt-6 mb-8 max-w-4xl">
+        <div className="text-center mb-6 max-w-4xl">
           <h1 
             className="font-prompt text-black text-center leading-normal"
             style={{
