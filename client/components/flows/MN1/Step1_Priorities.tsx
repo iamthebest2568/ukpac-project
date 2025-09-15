@@ -228,7 +228,7 @@ const Step1_Priorities = ({
                 opacity: isSelectionDisabled("เพิ่มความถี่รถเมล์") ? 0.5 : 1
               }}
               onClick={() =>
-                !isSelectionDisabled("เพิ่��ความถี่รถเมล์") &&
+                !isSelectionDisabled("เพิ่มความถี่รถเม���์") &&
                 handlePriorityToggle("เพิ่มความถี่รถเมล์")
               }
               disabled={isSelectionDisabled("เพิ่มความถี่รถเมล์")}
@@ -283,7 +283,7 @@ const Step1_Priorities = ({
                 opacity: isSelectionDisabled("เพิ่มความถี่รถไฟฟ้า") ? 0.5 : 1
               }}
               onClick={() =>
-                !isSelectionDisabled("เพิ่มความถี่รถไฟฟ้า") &&
+                !isSelectionDisabled("เพิ่มควา���ถี่รถไฟฟ้า") &&
                 handlePriorityToggle("เพิ่มความถี่รถไฟฟ้า")
               }
               disabled={isSelectionDisabled("เพิ่มความถี่รถไฟฟ้า")}
