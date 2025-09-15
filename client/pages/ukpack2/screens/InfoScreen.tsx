@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import CustomizationScreen from "../components/CustomizationScreen";
 import CtaButton from "../components/CtaButton";
+import ConfirmModal from "../components/ConfirmModal";
 
 const InfoScreen: React.FC = () => {
   const navigate = useNavigate();
