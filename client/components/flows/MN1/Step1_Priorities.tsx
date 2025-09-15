@@ -117,7 +117,7 @@ const Step1_Priorities = ({
             lineHeight: 'normal'
           }}
         >
-          คุณคิดว่าควรใช้เงินที่ได้<br />จากก��รเก็บไปพัฒนาอะไร
+          คุณคิดว่าควรใช้เงินที่ได้<br />จากการเก็บไปพัฒนาอะไร
         </h1>
       </div>
 
@@ -283,7 +283,7 @@ const Step1_Priorities = ({
                 opacity: isSelectionDisabled("เพิ่มความถี่รถไฟฟ้า") ? 0.5 : 1
               }}
               onClick={() =>
-                !isSelectionDisabled("เพิ่มความถี่รถไฟฟ้า") &&
+                !isSelectionDisabled("เพิ่มความถี่รถไฟฟ้���") &&
                 handlePriorityToggle("เพิ่มความถี่รถไฟฟ้า")
               }
               disabled={isSelectionDisabled("เพิ่มความถี่รถไฟฟ้า")}
