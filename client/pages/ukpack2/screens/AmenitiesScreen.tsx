@@ -185,7 +185,7 @@ const IconCam = () => (
 
 const AMENITIES = [
   { key: "air", label: "แอร์", icon: <IconAir /> },
-  { key: "fan", label: "พัดลม", icon: <IconFan /> },
+  { key: "fan", label: "พัด��ม", icon: <IconFan /> },
   { key: "seat", label: "ที่นั่งพิเศษ", icon: <IconSeat /> },
   { key: "wifi", label: "Wi-Fi", icon: <IconWifi /> },
   { key: "plug", label: "ปลั๊กไฟ", icon: <IconPlug /> },
@@ -219,7 +219,7 @@ const AmenitiesScreen: React.FC = () => {
       title="ปรั���แต่งรถเมล์ของคุณ"
       theme="light"
       footerContent={
-        <div className="flex justify-end">
+        <div className="flex justify-center">
           <CtaButton text="ถัดไป" onClick={handleNext} />
         </div>
       }
