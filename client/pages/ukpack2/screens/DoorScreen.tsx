@@ -44,13 +44,27 @@ const IconHighLow = () => (
 
 const DoorScreen: React.FC = () => {
   const navigate = useNavigate();
-  const [doorChoice, setDoorChoice] = useState<'1' | '2'>('1');
-  const [hasRamp, setHasRamp] = useState<boolean>(false);
-  const [highLow, setHighLow] = useState<boolean>(false);
+  const [selectedOption, setSelectedOption] = useState<string>(() => {
+    try {
+      const raw = sessionStorage.getItem('design.doors');
+      if (!raw) return '1';
+      const parsed = JSON.parse(raw);
+      if (typeof parsed === 'string') return parsed;
+      if (parsed && typeof parsed === 'object') {
+        if (parsed.doorChoice) return parsed.doorChoice as string;
+        if (parsed.hasRamp) return 'ramp';
+        if (parsed.highLow) return 'emergency';
+      }
+    } catch (e) {
+      // ignore
+    }
+    return '1';
+  });
 
   const handleNext = () => {
     try {
-      sessionStorage.setItem('design.doors', JSON.stringify({ doorChoice, hasRamp, highLow }));
+      // store single selected option (string) for doors
+      sessionStorage.setItem('design.doors', JSON.stringify(selectedOption));
     } catch (e) {}
     navigate('/ukpack2/design');
   };
