@@ -53,7 +53,7 @@ type SessionSummary = {
   mn1Selected: string[]; // ลำดับความสำคัญของประเด็น
   mn2Selections?: Record<string, string[]>; // กลุ่มเป้าหมายที่ควรได้ร���บสิทธิ์
   mn3Selected?: string[]; // ประเด็นนโยบายที่ผู้ใช้เลือก
-  mn3BudgetAllocation?: Record<string, number>; // การจัด���รรงบประมาณ
+  mn3BudgetAllocation?: Record<string, number>; // การจัด���รรงบปร���มาณ
   mn3BudgetTotal?: number;
   satisfactionLevel?: string; // ระดับความพึงพอใจ
   ask05Comment?: string; // ข้อเสนอเพิ่มเติมต่อรัฐ
@@ -325,7 +325,7 @@ export default function UkDashboard() {
 
               {/* Charts */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                <Card title="แนวโน้มการเล่น (รายวัน)">
+                <Card title="แนวโน้มการเล่น (รายวั���)">
                   <div className="w-full h-[240px] md:h-[320px] min-w-0">
                     <ResponsiveContainer width="100%" height="100%">
                       <LineChart data={(stats.timeseries || []).map(d => ({ ...d, plays: Number(d.plays || 0) }))} margin={{ top: 8, right: 12, left: -8, bottom: 8 }}>
@@ -698,7 +698,7 @@ export default function UkDashboard() {
                       "การจัดสรรงบประมาณระหว่างนโยบาย",
                       "ระดับความพึงพอใจ",
                       "ข้อเสนอเพิ่มเติมต่อรัฐ",
-                      "การตอบสนองต่อข่าวปลอม",
+                      "การตอบสนองต่อข่า��ปลอม",
                       "แหล่งข่าวที่ผู้ใช้เลือก",
                       "การเข้าร่วมลุ้นรางวัล",
                       "ชื่อ",
@@ -768,7 +768,7 @@ export default function UkDashboard() {
                     exportCsv("uk_export_all.csv", rows);
                   }}
                 >
-                  ดาวน์โหลด CSV (��รุปรวม)
+                  ดาวน์โหลด CSV (สรุปรวม)
                 </button>
               </div>
             </div>
