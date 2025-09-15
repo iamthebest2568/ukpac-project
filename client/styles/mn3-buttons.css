@@ -19,8 +19,8 @@
 .mn3-button-row {
   display: flex;
   flex-wrap: nowrap;
-  gap: clamp(8px, 1.5vw, 12px); /* Reduced gap between buttons */
-  justify-content: space-between; /* Distribute evenly */
+  gap: 8px; /* smaller fixed gap to reduce spacing */
+  justify-content: center; /* center rows so gaps remain consistent */
   align-items: stretch;
   width: 100%;
 }
@@ -28,29 +28,30 @@
 /* Individual MN3 policy button - optimized for content */
 .mn3-policy-button {
   /* Base styling */
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 30px; /* Smaller border radius */
+  border-radius: 26px; /* Slightly smaller */
   border: none;
   background-color: #E9E9E9;
   box-shadow: none;
-  transition: all 0.2s ease;
+  transition: all 0.12s ease;
   cursor: pointer;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
 
-  /* Smaller height for better fit */
-  height: clamp(40px, 6vw, 60px);
-  min-height: 40px;
+  /* Height optimized */
+  height: clamp(36px, 6vw, 52px);
+  min-height: 36px;
 
-  /* Flexible width that adapts to content */
-  flex: 1;
+  /* Use intrinsic sizing so buttons don't stretch and gaps stay small */
+  flex: 0 1 auto;
   min-width: 0;
 
-  /* Reduced padding */
-  padding: 0 clamp(8px, 1.5vw, 16px);
+  /* Reduced padding to fit text */
+  padding: 6px 12px;
   box-sizing: border-box;
+  white-space: normal;
 }
 
 /* Yellow variant (for specific buttons like ปรับปรุงคุณภาพรถเมล์, เพิ่มความถี่รถเมล์) */
@@ -93,21 +94,22 @@
   background-color: #333;
 }
 
-/* Button text styling - smaller and adaptive */
+/* Button text styling - readable and not truncated */
 .mn3-button-text {
   font-family: 'Prompt', sans-serif;
-  font-weight: 500;
-  font-size: clamp(10px, 2.8vw, 16px); /* Smaller font size */
-  line-height: 1.1;
+  font-weight: 600;
+  font-size: clamp(12px, 2.6vw, 16px);
+  line-height: 1.15;
   letter-spacing: 0px;
   color: #000;
   text-align: center;
   margin: 0;
-  padding: 0;
-  white-space: nowrap !important;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  word-break: keep-all;
+  padding: 4px 2px; /* small padding inside button */
+  white-space: normal; /* allow wrapping for long texts */
+  overflow-wrap: anywhere; /* allow breaks for Thai */
+  word-break: break-word;
+  overflow: visible;
+  text-overflow: clip;
 }
 
 /* Selected button text */
@@ -118,54 +120,57 @@
 /* Mobile-specific optimizations */
 @media (max-width: 375px) {
   .mn3-button-grid {
-    gap: clamp(12px, 3vw, 16px);
-    padding: clamp(12px, 3vw, 16px);
+    gap: 12px;
+    padding: 10px;
   }
-  
+
   .mn3-button-row {
-    gap: clamp(8px, 2vw, 12px);
+    gap: 8px;
   }
-  
+
   .mn3-policy-button {
-    min-width: clamp(100px, 28vw, 140px);
-    padding: 0 clamp(12px, 3vw, 16px);
+    min-width: 72px; /* allow small buttons but enough for short labels */
+    padding: 6px 8px;
+    height: clamp(34px, 6vw, 46px);
   }
-  
+
   .mn3-button-text {
-    font-size: clamp(12px, 3.2vw, 14px);
+    font-size: clamp(11px, 2.6vw, 14px);
+    padding: 2px 4px;
   }
 }
 
 /* Large mobile and small tablet */
 @media (min-width: 376px) and (max-width: 768px) {
   .mn3-button-grid {
-    max-width: min(90vw, 700px);
+    max-width: 95%;
   }
-  
+
   .mn3-policy-button {
-    min-width: clamp(140px, 30vw, 220px);
+    min-width: 96px; /* smaller min to avoid truncation */
+    padding: 6px 12px;
   }
 }
 
 /* Tablet and larger */
 @media (min-width: 769px) {
   .mn3-button-grid {
-    max-width: min(85vw, 900px);
-    gap: clamp(20px, 3vw, 28px);
+    max-width: 95%;
+    gap: clamp(16px, 2vw, 24px);
   }
-  
+
   .mn3-button-row {
-    gap: clamp(16px, 2vw, 20px);
+    gap: 12px;
   }
-  
+
   .mn3-policy-button {
-    height: clamp(50px, 8vh, 65px);
-    min-width: clamp(160px, 25vw, 250px);
-    padding: 0 clamp(20px, 3vw, 28px);
+    height: clamp(44px, 6vh, 60px);
+    min-width: 120px; /* reduced min-width */
+    padding: 8px 16px;
   }
-  
+
   .mn3-button-text {
-    font-size: clamp(16px, 2.5vw, 20px);
+    font-size: clamp(14px, 1.8vw, 18px);
   }
 }
 
