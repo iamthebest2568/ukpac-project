@@ -75,7 +75,7 @@ const HowDoYouThinkPage = () => {
       {/* Blue Background Section with Question and Options */}
       <div
         className="flex-1 flex flex-col items-center justify-start px-4 py-8"
-        style={{ background: '#04D9F9', minHeight: '60vh' }}
+        style={{ background: '#FFFFFF', minHeight: 'auto' }}
       >
         {/* Question Text */}
         <div className="text-center mt-6 mb-8 max-w-4xl">
