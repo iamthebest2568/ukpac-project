@@ -75,31 +75,33 @@ const Ask05 = ({ sessionID, onNavigate }: Ask05Props) => {
               lineHeight: "normal",
             }}
           >
-            คุณคิดว่ารัฐควรทำอะไรที่จะทำให้นโยบายนี้เกิดขึ้นได้และเป็นประโยชน์ต่อประชาชนอย่างแท��จริง
+            คุณคิดว่ารัฐควรท���อะไรที่จะทำให้นโยบายนี้เกิดขึ้นได้และเป็นประโยชน์ต่อประชาชนอย่างแท้จริง
           </h1>
         </div>
 
         {/* Text Input Box */}
-        <div className="w-full max-w-[890px] mb-8">
-          <div
-            className="relative w-full rounded-[20px] border-[5px] border-[#000D59] bg-white"
-            style={{
-              minHeight: "clamp(220px, 30vh, 420px)",
-              padding: "clamp(12px, 2.2vw, 20px)",
-            }}
-          >
-            <textarea
-              value={suggestion}
-              onChange={(e) => setSuggestion(e.target.value)}
-              placeholder="พิมพ์ข้อความของคุณที่นี่..."
-              className="w-full h-full resize-none border-none outline-none font-prompt bg-transparent"
+        <div className="flex-1 flex items-center justify-center w-full">
+          <div className="w-full max-w-[890px]">
+            <div
+              className="relative w-full rounded-[20px] border-[5px] border-[#000D59] bg-white"
               style={{
-                fontSize: "clamp(16px, 3.7vw, 40px)",
-                fontWeight: 400,
-                minHeight: "clamp(160px, 20vh, 360px)",
-                color: suggestion ? "#000" : "rgba(0, 0, 0, 0.7)",
+                minHeight: "clamp(220px, 30vh, 420px)",
+                padding: "clamp(12px, 2.2vw, 20px)",
               }}
-            />
+            >
+              <textarea
+                value={suggestion}
+                onChange={(e) => setSuggestion(e.target.value)}
+                placeholder="พิมพ์ข้อความของคุณที่นี่..."
+                className="w-full h-full resize-none border-none outline-none font-prompt bg-transparent"
+                style={{
+                  fontSize: "clamp(16px, 3.7vw, 40px)",
+                  fontWeight: 400,
+                  minHeight: "clamp(160px, 20vh, 360px)",
+                  color: suggestion ? "#000" : "rgba(0, 0, 0, 0.7)",
+                }}
+              />
+            </div>
           </div>
         </div>
 
