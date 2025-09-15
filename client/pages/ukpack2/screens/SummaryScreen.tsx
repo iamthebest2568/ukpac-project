@@ -130,7 +130,7 @@ const SummaryScreen: React.FC = () => {
           <div className="bg-[#00d5f9] rounded-t-3xl p-6 drop-shadow-lg mt-8">
             <div className="max-w-4xl mx-auto flex items-center justify-center gap-3">
                 <SecondaryButton text="กลับไปแก้ไข" onClick={() => navigate('/ukpack2/design')} />
-                <CtaButton text="ออกแบบเสร็���แล้ว" onClick={() => navigate('/ukpack2/info')} />
+                <CtaButton text="ออกแบบเสร็จแล้ว" onClick={() => navigate('/ukpack2/info')} />
             </div>
           </div>
         </footer>
