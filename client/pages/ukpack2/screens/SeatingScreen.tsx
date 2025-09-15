@@ -85,8 +85,23 @@ const SeatingScreen: React.FC = () => {
         }
       >
         <div className="space-y-6">
-          <div className="w-full h-48 bg-[#081042] rounded-md flex items-center justify-center text-sm text-gray-300">
-            Top-down seat map preview
+          <div className="w-full rounded-md flex flex-col items-center justify-center gap-2">
+            {selectedTopdown ? (
+              <img
+                src={selectedTopdown}
+                alt={`ผังที่นั่งมุมมองบน - ${selectedLabel}`}
+                className="h-48 w-auto object-contain select-none"
+                decoding="async"
+                loading="eager"
+              />
+            ) : (
+              <div className="w-full h-48 bg-[#081042] rounded-md flex items-center justify-center text-sm text-gray-300">
+                Top-down seat map preview (ภาพสำหรับรุ่นนี้จะถูกเพิ่มภายหลัง)
+              </div>
+            )}
+            <p className="mt-1 font-prompt font-semibold text-[#001a73] text-center">
+              รถที่ใช้งาน : {selectedLabel}
+            </p>
           </div>
           <div className="bg-white rounded-t-3xl -mt-2 p-4">
             <StepTabs active={2} />
@@ -162,7 +177,7 @@ const SeatingScreen: React.FC = () => {
       <ErrorModal
         isOpen={isErrorModalOpen}
         title="ความจุเกิน"
-        message={`จำนวนที่นั่งทั้งหมดเกินความจุสูงสุดของ��ถ (${maxCapacity}) กรุณาตรวจสอบ`}
+        message={`จำนวนที่นั่งทั้งหมดเกินความจุสูงสุดของรถ (${maxCapacity}) กรุณาตรวจสอบ`}
         onClose={() => setErrorModalOpen(false)}
       />
     </>
