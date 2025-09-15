@@ -78,7 +78,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           className="skip-link sr-only focus:not-sr-only absolute top-2 left-2 z-50 bg-yellow-400 text-black px-2 py-1 rounded touch-target"
           aria-label="ข้ามไปยังเนื้อหาหลัก"
         >
-          ข้ามไปยังเนื้อหาหลัก
+          ข้ามไปยัง���นื้อหาหลัก
         </a>
         <main id="main-content" role="main" className="w-full responsive-content">
           {children}
@@ -205,7 +205,7 @@ const App = () => {
               } />
               <Route path="/ukpack1/minigame-mn1" element={
                 <Suspense fallback={<MN3Skeleton />}>
-                  <MiniGameMN01Page />
+                  <MiniGameMN1Page />
                 </Suspense>
               } />
               <Route path="/ukpack1/minigame-mn2" element={
