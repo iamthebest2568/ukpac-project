@@ -154,19 +154,19 @@ const Step2_Allocation = ({
           </div>
 
           {/* Budget Allocation Items */}
-          <div className="px-4 sm:px-6 space-y-4 sm:space-y-6 mb-10" style={{maxWidth: 890, margin: '0 auto'}}>
+          <div className="responsive-padding-md responsive-spacing-lg" style={{maxWidth: 890, margin: '0 auto'}}>
             {selectedPriorities.map((priority, index) => (
               <div
                 key={priority}
-                className="grid grid-cols-[1fr_auto] items-center gap-3 w-full max-w-[890px]"
+                className="flex items-center justify-between gap-4 responsive-spacing-md w-full"
               >
                 {/* Priority Label */}
-                <div className="text-white font-prompt text-[16px] sm:text-[20px] font-medium leading-normal tracking-[0.4px]">
+                <div className="text-body text-body-white font-medium flex-1">
                   {priority}
                 </div>
 
                 {/* Budget Input */}
-                <div className="w-[72px] sm:w-[80px] h-[44px] sm:h-[50px] rounded-[10px] border border-[#E4E9F2] bg-white flex items-center justify-center">
+                <div className="flex-shrink-0">
                   <input
                     type="number"
                     min="0"
@@ -175,7 +175,13 @@ const Step2_Allocation = ({
                     onChange={(e) =>
                       handleBudgetChange(priority, e.target.value)
                     }
-                    className="w-full h-full text-center text-black font-prompt text-[16px] sm:text-[20px] font-medium leading-7 tracking-[0.4px] bg-transparent border-none outline-none"
+                    className="input-field text-center"
+                    style={{
+                      width: 'clamp(60px, 15vw, 80px)',
+                      height: 'clamp(44px, 10vw, 60px)',
+                      fontSize: 'clamp(14px, 4vw, 18px)',
+                      maxWidth: '80px'
+                    }}
                     placeholder="0"
                   />
                 </div>
