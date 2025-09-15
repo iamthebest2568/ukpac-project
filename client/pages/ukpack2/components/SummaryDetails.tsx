@@ -17,7 +17,7 @@ const displayDoor = (raw: any) => {
         : raw.doorChoice === "2"
           ? "2 ประตู"
           : String(raw.doorChoice);
-    if (raw.hasRamp) return "ทางลาดสำหรับรถเข็น/ผู้พิการ";
+    if (raw.hasRamp) return "ทางลาดสำหรับรถเข็น/��ู้พิการ";
     if (raw.highLow) return "ประตูฉุกเฉิน";
   }
   return String(raw);
@@ -108,76 +108,38 @@ const SummaryDetails: React.FC = () => {
       )}
 
       <div className="bg-[#e6e7e8] rounded-lg p-4 text-sm text-gray-800 shadow-sm">
-        <div className="grid gap-4">
-          <div className="flex items-center justify-between">
-            <div className="text-xs text-gray-500">รูปแบบรถ</div>
-            <div className="font-sarabun font-semibold text-sm text-right ml-4">
-              {chassisLabel}
-            </div>
+        <div className="flex flex-col gap-3">
+
+          <div className="flex items-start gap-3">
+            <div className="w-36 text-xs text-gray-500">รูปแบบรถ</div>
+            <div className="flex-1 font-sarabun font-semibold text-sm break-words">{chassisLabel}</div>
           </div>
 
-          <div className="flex items-center justify-between">
-            <div className="text-xs text-gray-500">ที่นั่ง</div>
-            <div className="font-sarabun font-semibold text-sm text-right ml-4">
-              {data.seating
-                ? typeof data.seating === "object"
-                  ? data.seating.totalSeats
-                  : String(data.seating)
-                : "-"}
-            </div>
+          <div className="flex items-start gap-3">
+            <div className="w-36 text-xs text-gray-500">ที่นั่ง</div>
+            <div className="flex-1 font-sarabun font-semibold text-sm break-words">{data.seating ? (typeof data.seating === 'object' ? data.seating.totalSeats : String(data.seating)) : '-'}</div>
           </div>
 
-          <div className="flex items-center justify-between">
-            <div className="text-xs text-gray-500">การจ่ายเงิน</div>
-            <div className="font-sarabun font-semibold text-sm text-right ml-4">
-              {data.payment
-                ? Array.isArray(data.payment)
-                  ? data.payment.join(", ")
-                  : String(data.payment)
-                : "-"}
-            </div>
+          <div className="flex items-start gap-3">
+            <div className="w-36 text-xs text-gray-500">การจ่ายเงิน</div>
+            <div className="flex-1 font-sarabun font-semibold text-sm break-words">{data.payment ? (Array.isArray(data.payment) ? data.payment.join(', ') : String(data.payment)) : '-'}</div>
           </div>
 
-          <div className="flex items-center justify-between">
-            <div className="text-xs text-gray-500">ความสะดวก</div>
-            <div className="font-sarabun font-semibold text-sm text-right ml-4">
-              {data.amenities
-                ? Array.isArray(data.amenities)
-                  ? data.amenities.join(", ")
-                  : String(data.amenities)
-                : "-"}
-            </div>
+          <div className="flex items-start gap-3">
+            <div className="w-36 text-xs text-gray-500">ความสะดวก</div>
+            <div className="flex-1 font-sarabun font-semibold text-sm break-words">{data.amenities ? (Array.isArray(data.amenities) ? data.amenities.join(', ') : String(data.amenities)) : '-'}</div>
           </div>
 
-          <div className="flex items-center justify-between">
-            <div className="text-xs text-gray-500">ทางขึ้น</div>
-            <div className="font-sarabun font-semibold text-sm text-right ml-4">
-              {data.doors
-                ? typeof data.doors === "string"
-                  ? displayDoor(data.doors)
-                  : typeof data.doors === "object"
-                    ? data.doors.doorChoice
-                      ? data.doors.doorChoice === "1"
-                        ? "1 ประตู"
-                        : data.doors.doorChoice === "2"
-                          ? "2 ประตู"
-                          : String(data.doors.doorChoice)
-                      : data.doors.hasRamp
-                        ? "ทางลาดสำหรับรถเข็น/ผู้พิการ"
-                        : data.doors.highLow
-                          ? "ประตูฉุกเฉิน"
-                          : JSON.stringify(data.doors)
-                    : String(data.doors)
-                : "-"}
-            </div>
+          <div className="flex items-start gap-3">
+            <div className="w-36 text-xs text-gray-500">ทางขึ้น</div>
+            <div className="flex-1 font-sarabun font-semibold text-sm break-words">{data.doors ? (typeof data.doors === 'string' ? displayDoor(data.doors) : (typeof data.doors === 'object' ? (data.doors.doorChoice ? (data.doors.doorChoice === '1' ? '1 ประตู' : data.doors.doorChoice === '2' ? '2 ประตู' : String(data.doors.doorChoice)) : (data.doors.hasRamp ? 'ทางลา��สำหรับรถเข็น/ผู้พิการ' : data.doors.highLow ? 'ประตูฉุกเฉิน' : JSON.stringify(data.doors))) : String(data.doors))) : '-'}</div>
           </div>
 
-          <div className="flex items-center justify-between">
-            <div className="text-xs text-gray-500">ลักษณะพิเศษ</div>
-            <div className="font-sarabun font-semibold text-sm text-right ml-4">
-              {data.slogan || "-"}{" "}
-            </div>
+          <div className="flex items-start gap-3">
+            <div className="w-36 text-xs text-gray-500">ลักษณะพิเศษ</div>
+            <div className="flex-1 font-sarabun font-semibold text-sm break-words">{data.slogan || '-'}</div>
           </div>
+
         </div>
       </div>
     </>
