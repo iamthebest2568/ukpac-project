@@ -31,14 +31,14 @@ const FeedbackSkipScreen: React.FC = () => {
             <img
               src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fa3d7b58f82e946aaa6790206de94e35d?format=webp&width=1600"
               alt="รถเมล์ในฝัน กรุงเทพเคลื่อนที่ได้"
-              className="w-full h-auto"
+              className="w-full h-auto max-w-[520px] md:max-w-[640px]"
             />
           </div>
-          <div className="mt-3 flex justify-center">
+          <div className="mt-4 flex justify-center">
             <img
               src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fafa2d580a7624e59b0a5a37f7b8264f0?format=webp&width=1600"
               alt="ภาพประกอบรถเมล์"
-              className="w-full h-auto"
+              className="w-full h-auto max-w-[420px] md:max-w-[520px]"
             />
           </div>
         </div>
