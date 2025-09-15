@@ -18,9 +18,9 @@
 /* Individual row container */
 .mn3-button-row {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: clamp(12px, 3vw, 16px);
-  justify-content: center;
+  justify-content: space-between;
   align-items: stretch;
   width: 100%;
 }
@@ -39,17 +39,16 @@
   cursor: pointer;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
-  
+
   /* Consistent height matching fake-news */
   height: clamp(44px, 10vh, 60px);
   min-height: 44px;
   max-height: 60px;
-  
-  /* Auto-width with constraints */
-  flex: 0 1 auto;
-  min-width: clamp(120px, 25vw, 200px);
-  max-width: clamp(280px, 80vw, 500px);
-  
+
+  /* Equal width within each row */
+  flex: 1;
+  min-width: 0;
+
   /* Consistent padding */
   padding: 0 clamp(16px, 4vw, 24px);
   box-sizing: border-box;
