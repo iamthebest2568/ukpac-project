@@ -1163,12 +1163,14 @@ body[data-dialog-open] {
 
 /* Mobile: Ask05 positioning (title top, textarea center, button bottom) */
 @media (max-width: 767px) {
-  .ask05-page .figma-style1-content-area {
+  .ask05-page .figma-style1-content-area,
+  .what-do-you-travel-by-page .figma-style1-content-area {
     display: flex !important;
     flex-direction: column !important;
     min-height: 100% !important;
   }
-  .ask05-page .ask05-content {
+  .ask05-page .ask05-content,
+  .what-do-you-travel-by-page .wdytb-content {
     margin-top: auto !important;
     margin-bottom: auto !important;
     display: flex !important;
@@ -1177,8 +1179,40 @@ body[data-dialog-open] {
     width: 100% !important;
     padding: 0 16px !important;
   }
-  .ask05-page .figma-style1-button-container {
+  .ask05-page .figma-style1-button-container,
+  .what-do-you-travel-by-page .figma-style1-button-container {
     margin-top: auto !important;
     padding-bottom: env(safe-area-inset-bottom, 16px) !important;
   }
+}
+
+/* Desktop/Tablet: WhatDoYouTravelBy positioning and sizing */
+@media (min-width: 768px) {
+  .what-do-you-travel-by-page .wdytb-content {
+    width: 100%;
+    max-width: min(92vw, 900px);
+    margin: auto;
+    padding: 16px 20px;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  .what-do-you-travel-by-page .wdytb-textarea-box {
+    min-height: clamp(260px, 32vh, 460px);
+    padding: clamp(12px, 2.2vw, 20px);
+  }
+  .what-do-you-travel-by-page .figma-style1-content-area {
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 100% !important;
+  }
+  .what-do-you-travel-by-page .figma-style1-button-container {
+    margin-top: auto !important;
+  }
+}
+
+/* Ensure black title on white background */
+.what-do-you-travel-by-page .figma-style1-title {
+  color: #000 !important;
+  font-weight: 700 !important;
 }
