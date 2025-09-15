@@ -87,13 +87,15 @@ const SubmitScreen: React.FC = () => {
         <div className="space-y-6">
           {heroImg ? (
             <div className="flex flex-col items-center">
-              <img
-                src={heroImg}
-                alt={`ภาพรถ - ${chassisLabel}`}
-                className="h-56 w-auto object-contain select-none"
-                decoding="async"
-                loading="eager"
-              />
+              <HeroWithShadow>
+                <img
+                  src={heroImg}
+                  alt={`ภาพรถ - ${chassisLabel}`}
+                  className="h-56 w-auto object-contain select-none"
+                  decoding="async"
+                  loading="eager"
+                />
+              </HeroWithShadow>
               <p className="mt-2 font-prompt font-semibold text-[#001a73] text-center">
                 รถที่เลือก : {chassisLabel}
               </p>
@@ -144,7 +146,7 @@ const SubmitScreen: React.FC = () => {
       <ConfirmModal
         isOpen={isExitModalOpen}
         title="ออกจากหน้าจอ"
-        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
+        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูก���ันทึก"
         onConfirm={() => navigate("/")}
         onCancel={() => setExitModalOpen(false)}
       />
