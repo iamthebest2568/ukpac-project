@@ -51,7 +51,7 @@ type SessionSummary = {
   reasonOther01?: string; // คำอธิบายเพิ่มเติม
   keyMessage1?: string; // Key message 1
   mn1Selected: string[]; // ลำดับความสำคัญของประเด็น
-  mn2Selections?: Record<string, string[]>; // กลุ่มเป้าหมายที่ควรได้รับสิทธิ์
+  mn2Selections?: Record<string, string[]>; // กลุ่มเป้าหมายที่ควรได้ร���บสิทธิ์
   mn3Selected?: string[]; // ประเด็นนโยบายที่ผู้ใช้เลือก
   mn3BudgetAllocation?: Record<string, number>; // การจัด���รรงบประมาณ
   mn3BudgetTotal?: number;
@@ -261,7 +261,7 @@ export default function UkDashboard() {
               </div>
               {ingest && (
                 <div className="text-white/60 text-xs mt-1">
-                  การเก็บข้อมูล • App: {ingest.app.count} เหตุการณ์, ล่าสุด{" "}
+                  การเก็บข้อมูล • App: {ingest.app.count} เหตุก��รณ์, ล่าสุด{" "}
                   {ingest.app.lastTs
                     ? new Date(ingest.app.lastTs).toLocaleString()
                     : "-"}{" "}
@@ -698,7 +698,7 @@ export default function UkDashboard() {
                       "การจัดสรรงบประมาณระหว่างนโยบาย",
                       "ระดับความพึงพอใจ",
                       "ข้อเสนอเพิ่มเติมต่อรัฐ",
-                      "การตอบสนอง��่อข่าวปลอม",
+                      "การตอบสนองต่อข่าวปลอม",
                       "แหล่งข่าวที่ผู้ใช้เลือก",
                       "การเข้าร่วมลุ้นรางวัล",
                       "ชื่อ",
@@ -768,7 +768,7 @@ export default function UkDashboard() {
                     exportCsv("uk_export_all.csv", rows);
                   }}
                 >
-                  ดาวน์โหลด CSV (สรุปรวม)
+                  ดาวน์โหลด CSV (��รุปรวม)
                 </button>
               </div>
             </div>
