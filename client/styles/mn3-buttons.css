@@ -61,9 +61,33 @@
 
 /* Selected state */
 .mn3-policy-button--selected {
-  background-color: #000;
-  color: #FFE000;
+  background-color: #000 !important;
+  color: #FFE000 !important;
 }
+
+/* Non-selected buttons should always appear yellow by default */
+.mn3-policy-button:not(.mn3-policy-button--selected) {
+  background-color: #FFE000 !important;
+  color: #000 !important;
+}
+
+/* Disabled but not selected - show muted yellow */
+.mn3-policy-button:disabled:not(.mn3-policy-button--selected) {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Hover behavior - selected becomes slightly lighter, non-selected hover -> black bg */
+.mn3-policy-button:hover:not(:disabled) {
+  background-color: #000 !important;
+  color: #FFE000 !important;
+  transform: scale(1.03);
+}
+
+.mn3-policy-button--selected:hover:not(:disabled) {
+  background-color: #111 !important;
+}
+
 
 /* Disabled state */
 .mn3-policy-button:disabled {
