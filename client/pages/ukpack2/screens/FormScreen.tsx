@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CustomizationScreen from "../components/CustomizationScreen";
+import CtaButton from "../components/CtaButton";
+import SecondaryButton from "../components/SecondaryButton";
 
 const IconPerson = () => (
   <svg
