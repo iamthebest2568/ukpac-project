@@ -40,42 +40,49 @@ const DoorScreen: React.FC = () => {
   return (
     <CustomizationScreen
       title="ปรับแต่งรถเมล์ของคุณ"
+      theme="light"
       footerContent={<div className="flex justify-end"><CtaButton text="ถัดไป" onClick={handleNext} /></div>}
     >
       <div className="space-y-6">
-        <StepTabs active={5} />
-        <div className="w-full h-48 bg-[#081042] rounded-md flex items-center justify-center text-sm text-gray-300">Bus image preview</div>
+        <div className="bg-white rounded-t-3xl -mt-2 p-4">
+          <StepTabs active={5} />
+          <div className="w-full h-48 bg-[#081042] rounded-md flex items-center justify-center text-sm text-gray-300">Bus image preview</div>
 
-        <h2 className="text-xl font-prompt font-semibold">ประตู</h2>
+          <h2 className="text-xl font-prompt font-semibold text-[#003366] mt-2">ประตู</h2>
 
-        <div className="grid grid-cols-2 gap-4">
-          {/* Radio group for 1 or 2 doors */}
-          <SelectionCard
-            icon={<IconDoor />}
-            label={'1 ประตู'}
-            isSelected={doorChoice === '1'}
-            onClick={() => setDoorChoice('1')}
-          />
-          <SelectionCard
-            icon={<IconDoor />}
-            label={'2 ประตู'}
-            isSelected={doorChoice === '2'}
-            onClick={() => setDoorChoice('2')}
-          />
+          <div className="grid grid-cols-2 gap-4">
+            {/* Radio group for 1 or 2 doors */}
+            <SelectionCard
+              icon={<IconDoor />}
+              label={'1 ประตู'}
+              isSelected={doorChoice === '1'}
+              onClick={() => setDoorChoice('1')}
+              variant="light"
+            />
+            <SelectionCard
+              icon={<IconDoor />}
+              label={'2 ประตู'}
+              isSelected={doorChoice === '2'}
+              onClick={() => setDoorChoice('2')}
+              variant="light"
+            />
 
-          {/* Independent toggles */}
-          <SelectionCard
-            icon={<IconRamp />}
-            label={'ทางลาดสำหรับรถเข็น/ผู้พิการ'}
-            isSelected={hasRamp}
-            onClick={() => setHasRamp((s) => !s)}
-          />
-          <SelectionCard
-            icon={<IconHighLow />}
-            label={'ประตูสูง/ต่ำ'}
-            isSelected={highLow}
-            onClick={() => setHighLow((s) => !s)}
-          />
+            {/* Independent toggles */}
+            <SelectionCard
+              icon={<IconRamp />}
+              label={'ทางลาดสำหรับรถเข็น/ผู้พิการ'}
+              isSelected={hasRamp}
+              onClick={() => setHasRamp((s) => !s)}
+              variant="light"
+            />
+            <SelectionCard
+              icon={<IconHighLow />}
+              label={'ประตูสูง/ต่ำ'}
+              isSelected={highLow}
+              onClick={() => setHighLow((s) => !ส)}
+              variant="light"
+            />
+          </div>
         </div>
       </div>
     </CustomizationScreen>
