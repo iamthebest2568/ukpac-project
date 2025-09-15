@@ -293,7 +293,7 @@ export default function UkDashboard() {
                   checked={autoRefresh}
                   onChange={(e) => setAutoRefresh(e.target.checked)}
                 />{" "}
-                อัปเด���อัตโนมัติ
+                อัปเดตอัตโนมัติ
               </label>
             </div>
           </div>
