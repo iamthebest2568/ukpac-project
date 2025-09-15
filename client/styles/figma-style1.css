@@ -214,7 +214,8 @@
 /* Make Ask04 and Ask04Budget titles black to improve readability on their backgrounds */
 .ask04-page .figma-style1-title,
 .ask04-budget-page .figma-style1-title,
-.ask05-page .figma-style1-title {
+.ask05-page .figma-style1-title,
+.ask02-page .figma-style1-title {
   color: #000 !important;
   font-weight: 700 !important;
 }
