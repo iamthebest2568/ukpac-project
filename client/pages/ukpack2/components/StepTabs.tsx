@@ -158,10 +158,10 @@ const TAB_FRAME =
 const StepTabs: React.FC<StepTabsProps> = ({ active }) => {
   const tabs = [BusIcon, DeckIcon, ChairIcon, TvIcon, ReceiptIcon];
   return (
-    <div className="flex flex-wrap justify-center items-center gap-2 mb-4">
+    <div className="flex flex-nowrap overflow-x-auto justify-start md:justify-around items-center gap-2 mb-4 -mx-2 px-2">
       {tabs.map((Icon, idx) => {
         const isActive = idx + 1 === active;
-        const commonClasses = `text-center py-2`;
+        const commonClasses = `text-center py-2 flex-shrink-0`;
         return (
           <div
             key={idx}
