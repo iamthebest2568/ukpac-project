@@ -205,7 +205,8 @@ export default function UkStornaway() {
             if (!navigatedRef.current) {
               navigatedRef.current = true;
               setTimeout(() => {
-                navigateToPage("reason_other_01", { from: "stornaway", choice: token });
+                // Navigate first to the opinion page, then the opinion page will continue to the next step
+                navigateToPage("/how-do-you-think", { from: "stornaway", choice: token });
               }, 50);
             }
             return;
