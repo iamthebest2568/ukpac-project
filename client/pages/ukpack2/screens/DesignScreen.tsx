@@ -46,14 +46,14 @@ const DesignScreen: React.FC = () => {
     <CustomizationScreen
       title="ปรับแต่งรถเมล์ของคุณ"
       theme="light"
-      footerContent={<div className="flex justify-center"><CtaButton text="��อกแบบเสร็จแล้ว" onClick={handleFinish} /></div>}
+      footerContent={<div className="flex justify-center"><CtaButton text="ออกแบบเสร็จแล้ว" onClick={handleFinish} /></div>}
     >
       <div className="space-y-6">
         <div className="w-full rounded-md flex flex-col items-center justify-center gap-2">
           {(() => {
             const CHASSIS_LABELS: Record<string, string> = {
-              small: 'รถเมล์ข���าดเล็ก 16–30 ที่นั่ง',
-              medium: 'รถเมล์ขนาดกลาง 31–40 ที่นั่ง',
+              small: 'รถเมล์ขนาดเล็ก 16–30 ที่นั่ง',
+              medium: 'รถเมล์ขนาดกลาง 31–40 ��ี่นั่ง',
               large: 'รถเมล์ขนาดใหญ่ 41-50 ที่นั่ง',
               extra: 'รถเมล์รุ่นพิเศษ 51+ ที่นั่ง',
             };
@@ -72,7 +72,7 @@ const DesignScreen: React.FC = () => {
             const img = HERO_IMAGE[selected];
             return img ? (
               <>
-                <img src={img} alt={`ภาพรถ - ${label}`} className="h-72 w-auto object-contain select-none" decoding="async" loading="eager" />
+                <img src={img} alt={`ภาพ���ถ - ${label}`} className="h-72 w-auto object-contain select-none" decoding="async" loading="eager" />
                 <p className="mt-1 font-prompt font-semibold text-[#001a73] text-center">รถที่ใช้งาน : {label}</p>
               </>
             ) : (
@@ -86,7 +86,7 @@ const DesignScreen: React.FC = () => {
           <h2 className="text-xl font-prompt font-semibold text-[#003366] mt-2">ออกแบบสี</h2>
           <ColorPalette colors={DEFAULT_COLORS} selectedColor={color} onColorSelect={setColor} />
 
-          <h2 className="text-xl font-prompt font-semibold text-[#003366] mt-2">ลักษณะพิเศษ��ื่น ๆ ของรถคุณ</h2>
+          <h2 className="text-xl font-prompt font-semibold text-[#003366] mt-2">ลักษณะพิเศษอื่น ๆ ของรถคุณ</h2>
           <div>
             <input
               type="text"
