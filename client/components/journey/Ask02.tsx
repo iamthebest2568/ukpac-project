@@ -38,7 +38,7 @@ const Ask02 = ({ sessionID, onNavigate }: Ask02Props) => {
   // Define buttons for the FigmaStyle1Layout
   const buttons = [
     {
-      text: "นโยบายไม่ครอบคลุม",
+      text: "นโยบา���ไม่ครอบคลุม",
       onClick: () => handleChoice("coverage"),
       ariaLabel: "เห็นว่านโยบายยังไม่ครอบคลุมประเด็นสำคัญ",
     },
@@ -56,7 +56,7 @@ const Ask02 = ({ sessionID, onNavigate }: Ask02Props) => {
 
   return (
     <FigmaStyle1Layout
-      backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F946833431d4b46a0bde1c7d1bc32f67a"
+      backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F5117e49b26df4728a78a17199af7ae9c?format=webp&width=800"
       backgroundAlt="บุคคลกำลังคิดบนบันไดเลื่อน"
       title={`ทำไมคุณถึงรู้สึกแบบนั้น?
 ช่วยเล่าให้เราฟังหน่อยว่าเหตุผลของคุณคืออะไร`}
