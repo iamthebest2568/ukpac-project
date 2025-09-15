@@ -18,7 +18,7 @@ const IconDoor1 = () => (
 const IconDoor2 = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F19aa75bc89c544e28a2d10840108af23?format=webp&width=800"
-    alt="ประตู 2"
+    alt="ป���ะตู 2"
     className="h-8 w-8 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -108,13 +108,15 @@ const DoorScreen: React.FC = () => {
             const img = HERO_IMAGE[selected];
             return img ? (
               <>
-                <img
-                  src={img}
-                  alt={`ภาพรถ - ${label}`}
-                  className="h-48 w-auto object-contain select-none"
-                  decoding="async"
-                  loading="eager"
-                />
+                <HeroWithShadow>
+                  <img
+                    src={img}
+                    alt={`ภาพรถ - ${label}`}
+                    className="h-48 w-auto object-contain select-none"
+                    decoding="async"
+                    loading="eager"
+                  />
+                </HeroWithShadow>
                 <p className="mt-1 font-prompt font-semibold text-[#001a73] text-center">
                   รถที่ใช้งาน : {label}
                 </p>
