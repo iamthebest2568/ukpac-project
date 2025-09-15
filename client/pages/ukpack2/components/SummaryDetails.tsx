@@ -44,7 +44,7 @@ const displayDoor = (raw: any) => {
 };
 
 const CHASSIS_LABELS: Record<string, string> = {
-  small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
+  small: "รถเมล์ขนาดเล็ก 16���30 ที่นั่ง",
   medium: "รถเมล์ขนาดกลาง 31–40 ที่นั่ง",
   large: "รถเมล์ขนาดใหญ่ 41-50 ที่นั่ง",
   extra: "รถเมล์รุ���นพิเศษ 51+ ที่นั่ง",
@@ -180,7 +180,6 @@ const SummaryDetails: React.FC = () => {
           </div>
 
         </div>
-        <p className="mt-4 font-prompt font-bold text-[#003366] text-center">ถ้ามีรถประจำทางแบบนี้คุณคิดว่าจะใช้บริการหรือไม่</p>
       </div>
     </>
   );

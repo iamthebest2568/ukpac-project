@@ -33,7 +33,7 @@ const InfoNextScreen: React.FC = () => {
 
   const CHASSIS_LABELS: Record<string, string> = {
     small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
-    medium: "รถเมล์ขนาดกลาง 31–40 ท���่นั่ง",
+    medium: "รถเมล์ขนาดกลาง 31–40 ที่นั่ง",
     large: "รถเมล์ขนาดใหญ่ 41-50 ที่นั่ง",
     extra: "รถเมล์รุ่นพิเศษ 51+ ที่นั่ง",
   };
@@ -75,6 +75,8 @@ const InfoNextScreen: React.FC = () => {
         </div>
 
         <SummaryDetails />
+
+        <p className="mt-4 font-prompt font-bold text-[#003366] text-center">ถ้ามีรถประจำทางแบบนี้คุณคิดว่าจะใช้บริการหรือไม่</p>
 
         <footer className="mt-6">
           <div className="bg-[#00d5f9] rounded-t-3xl p-6 drop-shadow-lg">
