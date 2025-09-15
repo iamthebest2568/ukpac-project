@@ -53,24 +53,8 @@ const HowDoYouThinkPage = () => {
   return (
     <div className="w-full min-h-screen relative bg-white flex flex-col" style={{ maxWidth: 1080, margin: "0 auto" }}>
       {/* Background Section - White curved top with train image */}
-      <div 
-        className="relative w-full flex-shrink-0"
-        style={{ 
-          height: 'clamp(260px, 38vw, 420px)',
-          borderRadius: '0',
-          overflow: 'hidden',
-          background: 'transparent'
-        }}
-      >
-        <div className="absolute inset-0 flex items-center justify-center">
-          <img
-            src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F6d4ecad8056e45b0b7375a0e5a009530?format=webp&width=800"
-            alt="Transportation background"
-            className="w-full h-full object-cover"
-            style={{ aspectRatio: "9/16" }}
-          />
-        </div>
-      </div>
+      {/* Removed top image per request. Add small spacer for visual breathing room */}
+      <div style={{ height: '24px' }} />
 
       {/* Blue Background Section with Question and Options */}
       <div
@@ -87,7 +71,7 @@ const HowDoYouThinkPage = () => {
               lineHeight: 'normal'
             }}
           >
-            จากข้อความดังกล่าว<br />
+            จากข้อความ���ังกล่าว<br />
             คุณมีความคิดเห็นอย่างไร
           </h1>
         </div>
