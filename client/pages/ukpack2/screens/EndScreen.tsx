@@ -34,6 +34,21 @@ const EndScreen: React.FC = () => {
               className="w-full h-auto max-w-[420px] mt-2"
             />
           </div>
+          <div className="flex justify-center gap-3 pt-2">
+            <CtaButton
+              text="จบเกม"
+              onClick={() => {
+                try {
+                  clearDesignStorage();
+                } catch (e) {}
+                navigate("/ukpack2");
+              }}
+            />
+            <SecondaryButton
+              text="แชร์เกมนี้กับเพื่อน"
+              onClick={() => setShareOpen(true)}
+            />
+          </div>
         </div>
       </CustomizationScreen>
 
