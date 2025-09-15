@@ -32,7 +32,7 @@ const Ask02_2 = ({ sessionID, onNavigate }: Ask02_2Props) => {
   return (
     <FigmaStyle1Layout
       backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F463cb2fbbefd410cac31721ec26e22e5?format=webp&width=800"
-      title="คุณคิดว่ารัฐควรทำอะไ��ที่จะทำให้นโยบายนี้เกิดขึ้นได้และเป็นประโยชน์ต่อประชาชนอย่างแท้จริง"
+      title="คุณคิดว่ารัฐควรทำอะไรที่จะทำให้นโยบายนี้เกิดขึ้นได้และเป็นประโยชน์ต่อประชาชนอย่างแท้จริง"
       className="source-selection-page ask02-2-page"
       imageLoading="eager"
     >
