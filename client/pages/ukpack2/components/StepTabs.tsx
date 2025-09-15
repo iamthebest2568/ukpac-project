@@ -46,6 +46,7 @@ const ReceiptIcon = ({ active }: { active: boolean }) => (
 const TAB1_ICON = 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F334e1ba542cd4c8b9ae5a2d3218aade1?format=webp&width=256';
 const TAB2_ICON = 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb01ce26924af40298818d01f9f981186?format=webp&width=800';
 const TAB3_ICON = 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc3da8ccecbee48069923b34ed1e086b4?format=webp&width=800';
+const TAB4_ICON = 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F3acdda301a6447e0b773a57c42341e4d?format=webp&width=800';
 
 const StepTabs: React.FC<StepTabsProps> = ({ active }) => {
   const tabs = [BusIcon, DeckIcon, ChairIcon, TvIcon, ReceiptIcon];
