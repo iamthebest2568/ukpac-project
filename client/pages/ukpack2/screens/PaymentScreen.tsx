@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import CustomizationScreen from "../components/CustomizationScreen";
 import SelectionCard from "../components/SelectionCard";
 import CtaButton from "../components/CtaButton";
+import HeroWithShadow from "../components/HeroWithShadow";
 import { useNavigate } from "react-router-dom";
 import StepTabs from "../components/StepTabs";
 
