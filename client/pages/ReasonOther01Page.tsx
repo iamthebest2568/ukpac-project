@@ -48,8 +48,8 @@ export default function ReasonOther01Page() {
           <div
             className="relative w-full rounded-[20px] border-[5px] border-[#000D59] bg-white"
             style={{
-              minHeight: "clamp(400px, 40vh, 780px)",
-              padding: "clamp(16px, 3vw, 24px)"
+              minHeight: "clamp(320px, 35vh, 560px)",
+              padding: "clamp(20px, 4vw, 32px)"
             }}
           >
             <textarea
@@ -58,10 +58,16 @@ export default function ReasonOther01Page() {
               placeholder="พิมพ์ข้อความของคุณที่นี้..."
               className="w-full h-full resize-none border-none outline-none font-prompt text-black bg-transparent"
               style={{
-                fontSize: "clamp(16px, 3.7vw, 40px)",
+                padding: "clamp(12px, 2.5vw, 24px)",
+                fontSize: "clamp(16px, 3.2vw, 36px)",
                 fontWeight: 400,
-                minHeight: "clamp(350px, 35vh, 720px)",
-                color: textInput ? "#000" : "rgba(0, 0, 0, 0.7)"
+                minHeight: "clamp(260px, 30vh, 480px)",
+                color: textInput ? "#000" : "rgba(0, 0, 0, 0.7)",
+                boxSizing: "border-box",
+                lineHeight: 1.4,
+                verticalAlign: "top",
+                display: "block",
+                overflow: "auto"
               }}
             />
           </div>
