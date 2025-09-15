@@ -109,7 +109,13 @@ const Step1_Choice = ({
   const renderPolicyButton = (priority: string, index: number) => (
     <button
       key={priority}
-      onClick={() => !isSelectionDisabled(priority) && handlePriorityToggle(priority)}
+      onPointerUp={() => !isSelectionDisabled(priority) && handlePriorityToggle(priority)}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          if (!isSelectionDisabled(priority)) handlePriorityToggle(priority);
+        }
+      }}
       disabled={isSelectionDisabled(priority)}
       className={getButtonClasses(priority, index)}
       aria-label={`เลือกนโยบาย: ${priority}`}
@@ -171,7 +177,7 @@ const Step1_Choice = ({
             <button
               onClick={handleNext}
               className="mn3-continue-button"
-              aria-label="ดำเนินก��รต่อไปยังขั้นตอนถัดไป"
+              aria-label="ดำเนินการต่อไปยังขั้นตอนถัดไป"
             >
               ไปต่อ
             </button>
