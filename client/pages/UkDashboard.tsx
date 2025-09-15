@@ -257,7 +257,7 @@ export default function UkDashboard() {
                 แดชบอร์ดวิเคราะห์วิดีโอ
               </h1>
               <div className="text-white/70 text-sm mt-2">
-                อัปเดต���่าสุด: {lastUpdated || "-"}
+                อัปเดตล่าสุด: {lastUpdated || "-"}
               </div>
               {ingest && (
                 <div className="text-white/60 text-xs mt-1">
@@ -285,7 +285,7 @@ export default function UkDashboard() {
                 disabled={clearing}
                 title="ลบ events.jsonl และ app-events.jsonl ในเซิร์ฟเวอร์"
               >
-                {clearing ? "กำลังลบ..." : "ลบข้อมูลทั้งหมด"}
+                {clearing ? "กำลังลบ..." : "ลบข้อมูลทั้��หมด"}
               </button>
               <label className="flex items-center gap-2 text-sm text-white/80">
                 <input
@@ -665,7 +665,7 @@ export default function UkDashboard() {
                                 if (resp.ok) setDetailData(await resp.json());
                               }}
                             >
-                              รา��ละเอียด
+                              รายละเอียด
                             </button>
                           </td>
                         </tr>
@@ -693,9 +693,9 @@ export default function UkDashboard() {
                       "เหตุผลในการไม่เห็นด้วยหรือกลางๆ",
                       "คำอธิบายเพิ่มเติม",
                       "ประเด็นนโยบายที่ผู้ใช้เลือก",
-                      "นโยบาย - กลุ่มเป้าหมายที่ควรได้รั���สิทธิ์",
+                      "นโยบาย - กลุ่มเป้าหมายที่ควรได้รับสิทธิ์",
                       "ลำดับความสำคัญของประเด็น",
-                      "การจัดสรรงบประมาณระหว่างนโยบาย",
+                      "การจ��ดสรรงบประมาณระหว่างนโยบาย",
                       "ระดับความพึงพอใจ",
                       "ข้อเสนอเพิ่มเติมต่อรัฐ",
                       "การตอบสนองต่อข่าวปลอม",
