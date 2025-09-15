@@ -302,16 +302,20 @@
   position: fixed !important;
   left: 0 !important;
   right: 0 !important;
-  bottom: env(safe-area-inset-bottom, 28px) !important;
+  bottom: 0 !important; /* align to visual viewport bottom */
   display: flex !important;
   flex-direction: column !important;
+  justify-content: flex-end !important; /* push content to bottom */
   align-items: center !important;
   gap: 12px !important;
-  padding: 0 16px !important;
+  padding: 0 16px 16px 16px !important;
   z-index: 99999 !important; /* ensure on top of other UI */
   pointer-events: auto !important;
   transform: none !important;
   backface-visibility: hidden !important;
+  max-height: 100vh !important; /* ensure not taller than viewport */
+  overflow-y: auto !important; /* allow scrolling if content exceeds viewport */
+  -webkit-overflow-scrolling: touch !important;
 }
 
 /* Ensure the mn3-button-grid doesn't overflow horizontally */
@@ -329,6 +333,11 @@
 /* Keep background behind fixed content */
 .mn3-page-bg::before {
   z-index: 0 !important;
+}
+
+/* Add small bottom margin to button grid so continue button doesn't overlap */
+.mn3-content .mn3-button-grid {
+  margin-bottom: 8px;
 }
 
 
