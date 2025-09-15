@@ -325,7 +325,7 @@ export default function UkDashboard() {
 
               {/* Charts */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                <Card title="แ��วโน้มการเล่น (รายวัน)">
+                <Card title="แนวโน้มการเล่น (รายวัน)">
                   <div className="w-full h-[240px] md:h-[320px] min-w-0">
                     <ResponsiveContainer width="100%" height="100%">
                       <LineChart data={(stats.timeseries || []).map(d => ({ ...d, plays: Number(d.plays || 0) }))} margin={{ top: 8, right: 12, left: -8, bottom: 8 }}>
@@ -390,7 +390,7 @@ export default function UkDashboard() {
                             </span>
                           </li>
                           <li className="flex justify-between">
-                            <span>จ��นวนเซสชัน</span>
+                            <span>จำนวนเซสชัน</span>
                             <span className="text-white/70">
                               {sessions.length}
                             </span>
@@ -416,7 +416,7 @@ export default function UkDashboard() {
                             return (
                               <>
                                 <li className="flex justify-between">
-                                  <span>ช่วงเ��ลา</span>
+                                  <span>ช่วงเวลา</span>
                                   <span className="text-white/70">
                                     {min} – {max}
                                   </span>
@@ -575,7 +575,7 @@ export default function UkDashboard() {
                     </AccordionItem>
                     {/* Comments */}
                     <AccordionItem value="comments">
-                      <AccordionTrigger>ข้อคิดเห็นอื่นๆ</AccordionTrigger>
+                      <AccordionTrigger>ข้���คิดเห็นอื่นๆ</AccordionTrigger>
                       <AccordionContent>
                         <ul className="space-y-1 text-sm">
                           {(journey.ask05Samples || []).map(
@@ -600,7 +600,7 @@ export default function UkDashboard() {
                             </span>
                           </li>
                           <li className="flex justify-between">
-                            <span>ไม่เข้าร่วม</span>
+                            <span>ไม��เข้าร่วม</span>
                             <span className="text-white/70">
                               {journey.endseq?.decline || 0}
                             </span>
@@ -695,9 +695,9 @@ export default function UkDashboard() {
                       "ประเด็นนโยบายที่ผู้ใช้เลือก",
                       "นโยบาย - กลุ่มเป้าหมายที่ควรได้รับสิทธิ์",
                       "ลำดับความสำคัญของประเด็น",
-                      "การจ��ดสรรงบประมาณระหว่างนโยบาย",
+                      "การจัดสรรงบประมาณระหว่างนโยบาย",
                       "ระดับความพึงพอใจ",
-                      "ข้อเสนอเพิ่มเติมต่อรัฐ",
+                      "ข้อเสนอเพ���่มเติมต่อรัฐ",
                       "การตอบสนองต่อข่าวปลอม",
                       "แหล่งข่าวที่ผู้ใช้เลือก",
                       "การเข้าร่วมลุ้นรางวัล",
