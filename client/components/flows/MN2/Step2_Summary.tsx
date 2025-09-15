@@ -285,7 +285,7 @@ const Step2_Summary = ({
             }}
           >
             <span
-              className="font-prompt text-black text-center font-normal px-4"
+              className="font-prompt text-center font-normal px-4"
               style={{
                 fontSize: "clamp(16px, 3.5vw, 50px)",
                 fontWeight: 400,
@@ -313,7 +313,7 @@ const Step2_Summary = ({
             }}
           >
             <span
-              className="font-prompt text-black text-center font-normal px-4"
+              className="font-prompt text-center font-normal px-4"
               style={{
                 fontSize: "clamp(16px, 3.5vw, 50px)",
                 fontWeight: 400,
