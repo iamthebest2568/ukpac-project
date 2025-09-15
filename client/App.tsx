@@ -190,7 +190,6 @@ const App = () => {
                 <Route path="/ukpack2/design" element={<DesignScreen />} />
                 <Route path="/ukpack2/summary" element={<SummaryScreen />} />
                 <Route path="/ukpack2/feedback" element={<FeedbackScreen />} />
-                <Route path="/ukpack2/info" element={<InfoScreen />} />
                 <Route path="/ukpack2/submit" element={<SubmitScreen />} />
                 <Route path="/ukpack2/thank-you" element={<ThankYouScreen />} />
                 <Route path="/ukpack2/form" element={<FormScreen />} />
