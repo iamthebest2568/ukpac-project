@@ -14,7 +14,7 @@ interface Step2_AllocationProps {
 }
 
 interface BudgetAllocation {
-  [key: string]: number;
+  [key: string]: number | string;
 }
 
 const Step2_Allocation = ({
