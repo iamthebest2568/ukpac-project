@@ -58,6 +58,7 @@ const HERO_IMAGE: Record<string, string> = {
   extra: 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9a8a7536ced24db19a65409fbba1c6b6?format=webp&width=800',
 };
 const HERO_SHADOW = 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb1e30b1544304677996b179fc27ae5c7?format=webp&width=800';
+const HERO_STAR = 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F026572d6e36d487bbb4798f7dd20d4a3?format=webp&width=256';
 
 const ChassisScreen: React.FC = () => {
   const navigate = useNavigate();
@@ -88,7 +89,7 @@ const ChassisScreen: React.FC = () => {
         title="ปรับแต่งรถเมล์ของคุณ"
         onBack={() => setExitModalOpen(true)}
         theme="light"
-        footerContent={<div className="flex justify-center"><CtaButton text="ถ��ดไป" onClick={handleNext} /></div>}
+        footerContent={<div className="flex justify-center"><CtaButton text="ถัดไป" onClick={handleNext} /></div>}
       >
         <div className="space-y-6">
           <div className="flex items-center justify-center">
@@ -98,26 +99,36 @@ const ChassisScreen: React.FC = () => {
           {/* Hero bus illustration with shadow overlay */}
           <div className="flex flex-col items-center mt-2">
             <div className="relative w-full flex items-center justify-center" style={{ minHeight: '160px' }}>
-              {/* shadow + star overlay */}
+              {/* shadow only */}
               <img
                 src={HERO_SHADOW}
-                alt="เงารถและสัญลักษณ์"
+                alt="เงารถ"
                 className="absolute bottom-0 w-[72%] max-w-[420px] pointer-events-none select-none"
                 decoding="async"
                 loading="eager"
                 aria-hidden="true"
               />
-              {/* bus image based on selection */}
-              <img
-                src={HERO_IMAGE[selected]}
-                alt={selectedLabel}
-                className="relative h-40 w-auto object-contain select-none"
-                decoding="async"
-                loading="eager"
-              />
+              {/* bus + star overlay inside same box for precise alignment */}
+              <div className="relative w-[72%] max-w-[420px]">
+                <img
+                  src={HERO_IMAGE[selected]}
+                  alt={selectedLabel}
+                  className="w-full h-auto object-contain select-none"
+                  decoding="async"
+                  loading="eager"
+                />
+                <img
+                  src={HERO_STAR}
+                  alt="สัญลักษณ์ดาว"
+                  className="absolute -top-2 -right-2 w-5 h-5 pointer-events-none select-none"
+                  decoding="async"
+                  loading="eager"
+                  aria-hidden="true"
+                />
+              </div>
             </div>
             <p className="mt-2 font-prompt font-semibold text-[#001a73] text-center">
-              รถที่ใช้���าน : {selectedLabel}
+              รถที่ใช้งาน : {selectedLabel}
             </p>
           </div>
 
