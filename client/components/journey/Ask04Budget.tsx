@@ -14,7 +14,7 @@ const Ask04Budget = ({
 }: Ask04BudgetProps) => {
   const handleChoice = (choice: "satisfied" | "unsatisfied") => {
     const choiceText = {
-      satisfied: "พอใจ",
+      satisfied: "พอ��จ",
       unsatisfied: "ไม่พอใจ",
     }[choice];
 
@@ -58,6 +58,7 @@ const Ask04Budget = ({
       backgroundAlt="ผลลัพธ์จากการตอบคำถาม"
       title={`คุณพอใจผลที่เกิดขึ้นหรือไม่
 พิจารณาจากการตอบคำถามและกิจกรรมต่างๆ ที่ผ่านมา`}
+      className="ask04-budget-page"
       buttons={buttons}
     />
   );
