@@ -128,7 +128,7 @@ const AMENITIES = [
   { key: "air", label: "แอร์", icon: <IconAir /> },
   { key: "fan", label: "พัดลม", icon: <IconFan /> },
   { key: "seat", label: "ที่นั่งพิเศษ", icon: <IconSeat /> },
-  { key: "wifi", label: "Wi-Fi", icon: <IconWifi /> },
+  { key: "wifi", label: "ที่จับ/ราวยืนที่ปลอดภัย", icon: <IconWifi /> },
   { key: "plug", label: "ช่องชาร์จมือถือ/USB", icon: <IconPlug /> },
   { key: "tv", label: "ทีวี", icon: <IconTv /> },
   { key: "cup", label: "ที่วางแก้ว", icon: <IconCup /> },
