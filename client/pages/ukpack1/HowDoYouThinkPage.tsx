@@ -55,7 +55,7 @@ const HowDoYouThinkPage = () => {
       {/* Content Section positioned at bottom */}
       <div
         className="flex-1 flex flex-col items-center justify-end px-4 py-8 pb-12"
-        style={{ background: '#FFFFFF', minHeight: 'auto' }}
+        style={{ background: 'transparent', minHeight: 'auto' }}
       >
         {/* Question Text */}
         <div className="text-center mb-6 max-w-4xl">
