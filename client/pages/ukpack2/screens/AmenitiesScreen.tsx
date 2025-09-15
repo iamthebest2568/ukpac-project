@@ -168,13 +168,15 @@ const AmenitiesScreen: React.FC = () => {
       <div className="space-y-6">
         <div className="w-full rounded-md flex flex-col items-center justify-center gap-2">
           {selectedBusImage ? (
-            <img
-              src={selectedBusImage}
-              alt={`ภาพรถ - ${selectedLabel}`}
-              className="h-48 w-auto object-contain select-none"
-              decoding="async"
-              loading="eager"
-            />
+            <HeroWithShadow>
+              <img
+                src={selectedBusImage}
+                alt={`ภาพรถ - ${selectedLabel}`}
+                className="h-48 w-auto object-contain select-none"
+                decoding="async"
+                loading="eager"
+              />
+            </HeroWithShadow>
           ) : (
             <div className="w-full h-48 bg-[#081042] rounded-md flex items-center justify-center text-sm text-gray-300">
               Bus image preview (ภาพสำหรับรุ่นนี้จะถูกเพิ่มภายหลัง)
