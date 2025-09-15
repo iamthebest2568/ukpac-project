@@ -5,7 +5,7 @@ const displayDoor = (raw: any) => {
   if (typeof raw === 'string') {
     if (raw === '1') return '1 ประตู';
     if (raw === '2') return '2 ประตู';
-    if (raw === 'ramp') return 'ทางลาดสำหรับรถเข็น/ผู้พิการ';
+    if (raw === 'ramp') return 'ทางลาดสำหรับร��เข็น/ผู้พิการ';
     if (raw === 'emergency') return 'ประตูฉุกเฉิน';
     return raw;
   }
@@ -69,7 +69,7 @@ const SummaryDetails: React.FC = () => {
       {heroImg && (
         <div className="flex flex-col items-center mb-6">
           <img src={heroImg} alt={`ภาพรถ - ${chassisLabel}`} className="h-64 w-auto object-contain select-none" decoding="async" loading="eager" />
-          <p className="mt-2 font-prompt font-semibold text-[#001a73] text-center">รถที่เลื���ก : {chassisLabel}</p>
+          <p className="mt-2 font-prompt font-semibold text-[#001a73] text-center">รถที่เลือก : {chassisLabel}</p>
         </div>
       )}
 
