@@ -73,7 +73,7 @@ const SourceSelection = ({ sessionID, onNavigate }: SourceSelectionProps) => {
       backgroundAlt="รถไฟใต้ดินและป้ายข่าว"
       title="คุณจะติดตามข่าว หรือ เชื่อจากแหล่งข่าวไหน"
       buttons={buttons}
-      className="source-selection-page"
+      className="source-selection-page source-selection-root"
     />
   );
 };
