@@ -120,7 +120,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           className="skip-link sr-only focus:not-sr-only absolute top-2 left-2 z-50 bg-yellow-400 text-black px-2 py-1 rounded touch-target"
           aria-label="ข้ามไปยังเนื้อหาหลัก"
         >
-          ข้ามไปยังเนื้อหาหลัก
+          ข้ามไปยังเนื้อหาหลั���
         </a>
         <main
           id="main-content"
@@ -189,6 +189,8 @@ const App = () => {
                 <Route path="/ukpack2/doors" element={<DoorScreen />} />
                 <Route path="/ukpack2/design" element={<DesignScreen />} />
                 <Route path="/ukpack2/summary" element={<SummaryScreen />} />
+                {/* Redirect legacy /ukpack2/info to summary */}
+                <Route path="/ukpack2/info" element={<Navigate to="/ukpack2/summary" replace />} />
                 <Route path="/ukpack2/feedback" element={<FeedbackScreen />} />
                 <Route path="/ukpack2/submit" element={<SubmitScreen />} />
                 <Route path="/ukpack2/thank-you" element={<ThankYouScreen />} />
