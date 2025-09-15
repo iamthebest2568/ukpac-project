@@ -60,8 +60,10 @@ const Ask05 = ({ sessionID, onNavigate }: Ask05Props) => {
       className="ask05-page"
       imageLoading="eager"
     >
+      {/* page-specific override: align content area to top for this page */}
+      <style>{`.ask05-page .figma-style1-content-area { justify-content: flex-start !important; padding-top: 12px; } .ask05-page .figma-style1-background { background-position: center top !important; }`}</style>
       {/* Content matching the new pages' structure */}
-      <div className="flex flex-col items-center justify-start h-full w-full max-w-[1080px] mx-auto px-4 pt-6 pb-8">
+      <div className="flex flex-col items-center justify-start h-full w-full max-w-[1080px] mx-auto px-4 pt-2 pb-8">
         {/* Title */}
         <div className="text-center mb-4 mt-2 w-full">
           <h1
