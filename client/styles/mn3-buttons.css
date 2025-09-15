@@ -33,7 +33,7 @@
   justify-content: center;
   border-radius: 26px; /* Slightly smaller */
   border: none;
-  background-color: #E9E9E9;
+  background-color: #FFE000; /* default to yellow for all buttons */
   box-shadow: none;
   transition: all 0.12s ease;
   cursor: pointer;
