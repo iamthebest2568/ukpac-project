@@ -49,8 +49,8 @@ const SummaryScreen: React.FC = () => {
             <div className="max-w-4xl mx-auto flex items-center justify-between gap-4">
               <div className="text-[#000d59] font-sarabun">ถ้ามีรถประจำทางแบบนี้คุณคิดว่าจะใช้บริการหรือไม่</div>
               <div className="flex items-center gap-3">
-                <SecondaryButton text="ใช้บริการแน่นอน" onClick={() => navigate('/ukpack2/info')} />
-                <CtaButton text="ไม่แน่ใจ" onClick={() => navigate('/ukpack2/info')} />
+                <SecondaryButton text="กลับไปแก้ไข" onClick={() => navigate('/ukpack2/design')} />
+                <CtaButton text="ออกแบบเสร็จแล้ว" onClick={() => navigate('/ukpack2/info')} />
               </div>
             </div>
           </div>
