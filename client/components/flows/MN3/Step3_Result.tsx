@@ -130,7 +130,7 @@ const Step3_Result = ({ sessionID, onNext, onBack, journeyData }: Step3_ResultPr
     onNext(data);
   };
 
-  const backgroundImage = "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F44cf16d8ccf64321b16d01722cbc8356?format=webp&width=1500";
+  const backgroundImage = "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F733fd61d7f8e4a3ebfc2f76078fff7ee?format=webp&width=1500";
 
   return (
     <FigmaStyle1Layout
