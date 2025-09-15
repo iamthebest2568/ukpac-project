@@ -8,7 +8,7 @@ interface Props {
   containerClassName?: string;
 }
 
-const HeroWithShadow: React.FC<Props> = ({ children, shadowClassName = 'absolute bottom-0 left-1/2 transform -translate-x-1/2 w-4/5 max-w-[420px] pointer-events-none select-none z-0', containerClassName = 'relative w-full max-w-[420px] z-10' }) => {
+const HeroWithShadow: React.FC<Props> = ({ children, shadowClassName = 'absolute bottom-3 left-1/2 transform -translate-x-1/2 w-4/5 max-w-[420px] pointer-events-none select-none z-0', containerClassName = 'relative w-full max-w-[420px] z-10' }) => {
   return (
     <div className="relative w-full flex items-end justify-center" style={{ minHeight: 120 }}>
       <img src={SHADOW_URL} alt="เงารถ" className={shadowClassName} decoding="async" loading="eager" aria-hidden="true" />
