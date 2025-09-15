@@ -71,7 +71,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="min-h-screen flex justify-center bg-[#2a2a2a]">
       {/* Fixed 1080px mobile-first container */}
-      <div className="app-container bg-white relative" style={{ width: '100%', maxWidth: 1080 }}>
+      <div className="app-container bg-white relative responsive-container safe-top safe-bottom" style={{ width: '100%', maxWidth: 1080 }}>
         <a
           href="#main-content"
           className="skip-link sr-only focus:not-sr-only absolute top-2 left-2 z-50 bg-yellow-400 text-black px-2 py-1 rounded"
