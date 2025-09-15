@@ -122,13 +122,57 @@ const DesignScreen: React.FC = () => {
             return img ? (
               <>
                 <HeroWithShadow>
-                  <img
-                    src={img}
-                    alt={`ภาพรถ - ${label}`}
-                    className="h-72 w-auto object-contain select-none"
-                    decoding="async"
-                    loading="eager"
-                  />
+                  <div className="relative">
+                    {/* color tint overlay + selected amenities/payments */}
+                    {(() => {
+                      const amenities = (() => { try { const raw = sessionStorage.getItem('design.amenities'); return raw ? JSON.parse(raw) as string[] : []; } catch { return [] as string[]; } })();
+                      const payments = (() => { try { const raw = sessionStorage.getItem('design.payment'); return raw ? JSON.parse(raw) as string[] : []; } catch { return [] as string[]; } })();
+                      const doorsRaw = (() => { try { const raw = sessionStorage.getItem('design.doors'); return raw ? (JSON.parse(raw) as any) : raw ? String(raw) : null; } catch { return sessionStorage.getItem('design.doors'); } })();
+                      const overlayLabels: string[] = [...(amenities||[]), ...(payments||[])];
+                      if (doorsRaw) overlayLabels.push(typeof doorsRaw === 'string' ? doorsRaw : doorsRaw.doorChoice || (doorsRaw.hasRamp ? 'ramp' : doorsRaw.highLow ? 'emergency' : ''));
+
+                      return (
+                        <>
+                          {/* tint overlay */}
+                          {color && (
+                            <div
+                              aria-hidden="true"
+                              className="absolute inset-0 pointer-events-none rounded-md"
+                              style={{
+                                backgroundImage: `url(${color})`,
+                                backgroundSize: 'cover',
+                                mixBlendMode: 'multiply',
+                                opacity: 0.9,
+                              }}
+                            />
+                          )}
+
+                          {/* small icons row */}
+                          {overlayLabels.length > 0 && (
+                            <div className="absolute left-1/2 transform -translate-x-1/2 -top-4 flex flex-wrap justify-center gap-2 z-20 max-w-[80%]">
+                              {overlayLabels.map((lab, i) => {
+                                if (AMENITIES_ICON_MAP[lab]) return (
+                                  <div key={`${lab}-${i}`} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center">{AMENITIES_ICON_MAP[lab]}</div>
+                                );
+                                if (lab === 'เงินสด') return <div key={lab+i} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center"><img src={MONEY_ICON} alt={lab} className="h-5 w-5 object-contain"/></div>;
+                                if (lab === 'สแกนจ่าย') return <div key={lab+i} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center"><img src={SCAN_ICON} alt={lab} className="h-5 w-5 object-contain"/></div>;
+                                if (lab === '1' || lab === '2' || lab === 'ramp' || lab === 'emergency') return <div key={lab+i} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center text-xs">{String(lab)}</div>;
+                                return <div key={lab+i} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center text-xs">?</div>;
+                              })}
+                            </div>
+                          )}
+                        </>
+                      );
+                    })()}
+
+                    <img
+                      src={img}
+                      alt={`ภาพรถ - ${label}`}
+                      className="h-72 w-auto object-contain select-none relative z-10"
+                      decoding="async"
+                      loading="eager"
+                    />
+                  </div>
                 </HeroWithShadow>
                 <p className="mt-1 font-prompt font-semibold text-[#001a73] text-center">
                   รถที่ใช้งาน : {label}
