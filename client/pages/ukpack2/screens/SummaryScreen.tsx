@@ -36,6 +36,7 @@ const SummaryScreen: React.FC = () => {
     large: "รถเมล์ขนาดใหญ่ 41-50 ที่นั่ง",
     extra: "รถเมล์รุ่นพิเศษ 51+ ที่นั่ง",
   };
+
   const HERO_IMAGE: Record<string, string> = {
     small:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F5ea1b3d990e44d49aa5441bc3a4b3bcc?format=webp&width=800",
@@ -67,7 +68,7 @@ const SummaryScreen: React.FC = () => {
     if (typeof raw === "string") {
       if (raw === "1") return "1 ประตู";
       if (raw === "2") return "2 ประตู";
-      if (raw === "ramp") return "���างลาดสำหรับรถ��ข็น/ผู้พิการ";
+      if (raw === "ramp") return "ทางลาดสำหรับรถเข็น/ผู้พิการ";
       if (raw === "emergency") return "ประตูฉุกเฉิน";
       return raw;
     }
@@ -76,8 +77,8 @@ const SummaryScreen: React.FC = () => {
         return raw.doorChoice === "1"
           ? "1 ประตู"
           : raw.doorChoice === "2"
-            ? "2 ประตู"
-            : String(raw.doorChoice);
+          ? "2 ประตู"
+          : String(raw.doorChoice);
       if (raw.hasRamp) return "ทางลาดสำหรับรถเข็น/ผู้พิการ";
       if (raw.highLow) return "ประตูฉุกเฉิน";
     }
@@ -85,35 +86,39 @@ const SummaryScreen: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-white text-black py-8 px-4">
-      <div className="max-w-4xl mx-auto">
+    <div className="min-h-screen bg-white text-black py-8 px-0">
+      <div className="max-w-4xl mx-auto px-4">
         <header className="mb-6 text-center">
           <h1 className="text-3xl font-prompt font-semibold">ปรับแต่งรถเมล์ของคุณ</h1>
-          <p className="mt-2 text-sm text-white/80">นี่คือรถเมล์ในฝันของคุณ</p>
+          <p className="mt-2 text-sm text-gray-700">นี่คือรถเมล์ในฝันของคุณ</p>
         </header>
 
         <SummaryDetails />
+      </div>
 
-        <footer className="mt-6">
-          <div className="bg-[#00d5f9] rounded-t-3xl p-6 drop-shadow-lg -mx-4 px-4">
-            <div className="max-w-4xl mx-auto flex items-center justify-center gap-4 flex-nowrap">
-              <div className="flex-shrink-0">
+      <footer className="mt-6 w-full">
+        <div className="w-full bg-[#00d5f9] drop-shadow-lg rounded-t-3xl">
+          <div className="max-w-4xl mx-auto px-4">
+            <div className="rounded-t-3xl p-6 flex items-center justify-center gap-4">
+              <div className="flex-1 min-w-0">
                 <SecondaryButton
                   text="กลับไปแก้ไข"
                   onClick={() => navigate("/ukpack2/design")}
+                  className="w-full"
                 />
               </div>
 
-              <div className="flex-shrink-0">
+              <div className="flex-1 min-w-0">
                 <CtaButton
                   text="ออกแบบเสร็จแล้ว"
                   onClick={() => navigate("/ukpack2/info")}
+                  className="w-full"
                 />
               </div>
             </div>
           </div>
-        </footer>
-      </div>
+        </div>
+      </footer>
     </div>
   );
 };
