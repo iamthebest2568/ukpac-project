@@ -10,7 +10,7 @@ const Ask02 = ({ sessionID, onNavigate }: Ask02Props) => {
   const handleChoice = (choice: "coverage" | "ineffective" | "other") => {
     const choiceText = {
       coverage: "นโยบายไม่ครอบคลุม",
-      ineffective: "เก็บไปก็ไม่มีอะไรเกิดขึ้น",
+      ineffective: "เก็บไ��ก็ไม่มีอะไรเกิดขึ้น",
       other: "อื่นๆ",
     }[choice];
 
@@ -38,7 +38,7 @@ const Ask02 = ({ sessionID, onNavigate }: Ask02Props) => {
   // Define buttons for the FigmaStyle1Layout
   const buttons = [
     {
-      text: "นโยบา���ไม่ครอบคลุม",
+      text: "นโยบายไม่ครอบคลุม",
       onClick: () => handleChoice("coverage"),
       ariaLabel: "เห็นว่านโยบายยังไม่ครอบคลุมประเด็นสำคัญ",
     },
