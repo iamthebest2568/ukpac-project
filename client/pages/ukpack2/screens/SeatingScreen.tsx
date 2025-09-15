@@ -37,6 +37,7 @@ const SeatingScreen: React.FC = () => {
 
   const TOPDOWN_IMAGE: Record<string, string | undefined> = {
     small: 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9ab4a85f41e64448b6ce79942def8a26?format=webp&width=800',
+    medium: 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Ff5741ea88d0b4d94a8cc687f16501d5c?format=webp&width=800',
     large: 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F2f4b32b5e79d4f20ba02c9d2ac0c9835?format=webp&width=800',
   };
 
@@ -97,7 +98,7 @@ const SeatingScreen: React.FC = () => {
               />
             ) : (
               <div className="w-full h-48 bg-[#081042] rounded-md flex items-center justify-center text-sm text-gray-300">
-                Top-down seat map preview (ภาพสำหรับรุ่น��ี้จะถูกเพิ่มภายหลัง)
+                Top-down seat map preview (ภาพสำหรับรุ่นนี้จะถูกเพิ่มภายหลัง)
               </div>
             )}
             <p className="mt-1 font-prompt font-semibold text-[#001a73] text-center">
