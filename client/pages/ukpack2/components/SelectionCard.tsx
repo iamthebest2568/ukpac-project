@@ -21,7 +21,7 @@ const SelectionCard: React.FC<SelectionCardProps> = ({ icon, label, isSelected =
     <button
       type="button"
       onClick={onClick}
-      className={`flex flex-col items-center justify-center p-4 rounded-lg ${base} focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#ffe000] transition-colors`}
+      className={`flex flex-col items-center justify-center p-4 rounded-2xl ${base} focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#ffe000] transition-colors`}
       aria-pressed={isSelected}
     >
       <div className={`h-12 mb-2 flex items-center justify-center ${isSelected ? (variant === 'light' ? 'text-[#003366]' : 'text-black') : (variant === 'light' ? 'text-[#003366]' : 'text-white')}`}>
