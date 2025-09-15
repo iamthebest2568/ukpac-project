@@ -14,7 +14,7 @@ const Ask04Budget = ({
 }: Ask04BudgetProps) => {
   const handleChoice = (choice: "satisfied" | "unsatisfied") => {
     const choiceText = {
-      satisfied: "พอ��จ",
+      satisfied: "พอใจ",
       unsatisfied: "ไม่พอใจ",
     }[choice];
 
@@ -56,7 +56,7 @@ const Ask04Budget = ({
     <FigmaStyle1Layout
       backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8ba1913a4cf14a5f94abc17994701220?format=webp&width=800"
       backgroundAlt="ผลลัพธ์จากการตอบคำถาม"
-      title={`คุณพอใจผลที่เกิดขึ้นหรือไม่
+      title={`คุณพอใจผลที่เกิด��ึ้นหรือไม่
 พิจารณาจากการตอบคำถามและกิจกรรมต่างๆ ที่ผ่านมา`}
       className="ask04-budget-page"
       buttons={buttons}
