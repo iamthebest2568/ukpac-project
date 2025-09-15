@@ -100,7 +100,7 @@ const AMENITIES = [
   { key: "wifi", label: "ที่จับ/ราวยืนที่ปลอดภัย", icon: <IconWifi /> },
   { key: "plug", label: "ช่องชาร์จมือถือ/USB", icon: <IconPlug /> },
   { key: "tv", label: "Wi‑Fi ฟรี", icon: <IconTv /> },
-  { key: "cup", label: "ที่วางแก้ว", icon: <IconCup /> },
+  { key: "cup", label: "ระบบประกาศบอกป้าย(เสียง/จอ)", icon: <IconCup /> },
   { key: "cam", label: "กล้องวงจรปิด", icon: <IconCam /> },
 ];
 
