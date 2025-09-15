@@ -63,7 +63,7 @@ const SubmitScreen: React.FC = () => {
 
   return (
     <>
-      <CustomizationScreen title="ปรับแต่งรถเมล์ของคุณ" theme="light" onBack={() => setExitModalOpen(true)} footerContent={<div className="flex justify-center"><CtaButton text="ออกแบบเสร็จแล้ว" onClick={handleFinish} /></div>}>
+      <CustomizationScreen title="ปรับแต่งรถเมล์ของคุณ" theme="light" footerContent={<div className="flex justify-center"><CtaButton text="ออกแบบเสร็จแล้ว" onClick={handleFinish} /></div>}>
         <div className="space-y-6">
           {heroImg ? (
             <div className="flex flex-col items-center">
@@ -112,7 +112,7 @@ const SubmitScreen: React.FC = () => {
       <ConfirmModal
         isOpen={isExitModalOpen}
         title="ออกจากหน้าจอ"
-        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
+        message="คุณแน่ใจหรือไม��ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
         onConfirm={() => navigate('/')}
         onCancel={() => setExitModalOpen(false)}
       />
