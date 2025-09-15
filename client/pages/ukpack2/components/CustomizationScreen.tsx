@@ -24,11 +24,13 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
         </div>
       </header>
 
-      <div className="flex-1 overflow-auto px-6 py-6">{children}</div>
+      <div className="flex-1 overflow-auto px-6 py-6 pb-28">{children}</div>
 
-      <footer className="mt-auto">
+      <footer className="fixed bottom-0 left-0 w-full z-40">
         <div className="bg-[#00d5f9] rounded-t-3xl p-6 drop-shadow-lg">
-          <div className="max-w-4xl mx-auto">{footerContent}</div>
+          <div className="max-w-4xl mx-auto px-6" style={{ paddingBottom: 'env(safe-area-inset-bottom, 1rem)' }}>
+            {footerContent}
+          </div>
         </div>
       </footer>
     </div>
