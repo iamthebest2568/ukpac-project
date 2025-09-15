@@ -33,7 +33,7 @@ const IconSeat = () => (
 const IconWifi = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb0789bfd1100472f8351704764607d31?format=webp&width=800"
-    alt="ที่จับ/ราวยืน"
+    alt="ที่จับ/รา��ยืน"
     className="h-8 w-8 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -96,7 +96,7 @@ const IconCam = () => (
 const AMENITIES = [
   { key: "air", label: "แอร์", icon: <IconAir /> },
   { key: "fan", label: "พัดลม", icon: <IconFan /> },
-  { key: "seat", label: "ที���นั่งพิเศษ", icon: <IconSeat /> },
+  { key: "seat", label: "ที่นั่งพิเศษ", icon: <IconSeat /> },
   { key: "wifi", label: "ที่จับ/ราวยืนที่ปลอดภัย", icon: <IconWifi /> },
   { key: "plug", label: "ช่องชาร์จมือถือ/USB", icon: <IconPlug /> },
   { key: "tv", label: "Wi‑Fi ฟรี", icon: <IconTv /> },
@@ -126,7 +126,7 @@ const AmenitiesScreen: React.FC = () => {
 
   // Selected chassis preview (reusing mapping from SeatingScreen)
   const CHASSIS_LABELS: Record<string, string> = {
-    small: 'รถเมล์ขนาดเ���็ก 16–30 ที่นั่ง',
+    small: 'รถเมล์ขนาดเล็ก 16–30 ที่นั่ง',
     medium: 'รถเมล์ขนาดกลาง 31–40 ที่นั่ง',
     large: 'รถเมล์ขนาดใหญ่ 41–50 ที่นั่���',
     extra: 'รถเมล์รุ่นพิเศษ 51+ ที่นั่ง',
@@ -160,10 +160,10 @@ const AmenitiesScreen: React.FC = () => {
     >
       <div className="space-y-6">
         <div className="w-full rounded-md flex flex-col items-center justify-center gap-2">
-          {selectedTopdown ? (
+          {selectedBusImage ? (
             <img
-              src={selectedTopdown}
-              alt={`ผังที่นั่งมุมมองบน - ${selectedLabel}`}
+              src={selectedBusImage}
+              alt={`ภาพรถ - ${selectedLabel}`}
               className="h-48 w-auto object-contain select-none"
               decoding="async"
               loading="eager"
