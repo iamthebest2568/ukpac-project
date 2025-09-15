@@ -85,7 +85,7 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   "ที่จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
   "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
-  "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
+  "ระบบประกาศบอกป้าย(เสียง/จ��)": <IconCup />,
   "กล้องวงจรปิด": <IconCamSmall />,
 };
 
@@ -202,16 +202,119 @@ const DoorScreen: React.FC = () => {
             } catch (e) {}
             const label = CHASSIS_LABELS[selected] || "";
             const img = HERO_IMAGE[selected];
+
+            // read previous selections
+            const amenitiesFromStorage = (() => {
+              try {
+                const raw = sessionStorage.getItem("design.amenities");
+                return raw ? (JSON.parse(raw) as string[]) : [];
+              } catch {
+                return [] as string[];
+              }
+            })();
+            const paymentsFromStorage = (() => {
+              try {
+                const raw = sessionStorage.getItem("design.payment");
+                return raw ? (JSON.parse(raw) as string[]) : [];
+              } catch {
+                return [] as string[];
+              }
+            })();
+
+            // build overlay labels: amenities + payments + current door selection
+            const overlayLabels = [...(amenitiesFromStorage || []), ...(paymentsFromStorage || [])];
+            if (selectedOption) overlayLabels.push(selectedOption);
+
+            const renderOverlayIcon = (label: string, idx: number) => {
+              // amenities
+              if (AMENITIES_ICON_MAP[label]) {
+                return (
+                  <div key={`${label}-${idx}`} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center">
+                    {AMENITIES_ICON_MAP[label]}
+                  </div>
+                );
+              }
+
+              // payment labels
+              if (label === "เงินสด") return (
+                <div key={`${label}-${idx}`} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center">
+                  <img src={MONEY_ICON} alt={label} className="h-5 w-5 object-contain" />
+                </div>
+              );
+              if (label === "สแกนจ่าย") return (
+                <div key={`${label}-${idx}`} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center">
+                  <img src={SCAN_ICON} alt={label} className="h-5 w-5 object-contain" />
+                </div>
+              );
+              if (label === "สแกนจ่าย 2") return (
+                <div key={`${label}-${idx}`} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center">
+                  <img src={SCAN2_ICON} alt={label} className="h-5 w-5 object-contain" />
+                </div>
+              );
+              if (label === "แตะบัตร") return (
+                <div key={`${label}-${idx}`} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center">
+                  <img src={TOUCH_ICON} alt={label} className="h-5 w-5 object-contain" />
+                </div>
+              );
+              if (label === "กระเป๋ารถเมล์") return (
+                <div key={`${label}-${idx}`} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center">
+                  <img src={BUS_EMPLOY_ICON} alt={label} className="h-5 w-5 object-contain" />
+                </div>
+              );
+              if (label === "ตั๋วรายเดือน/รอบ") return (
+                <div key={`${label}-${idx}`} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center">
+                  <img src={MONTHLY_ICON} alt={label} className="h-5 w-5 object-contain" />
+                </div>
+              );
+
+              // door option keys
+              if (label === "1") return (
+                <div key={`${label}-${idx}`} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center">
+                  <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F64fd535257924608b5904905f56ec3a2?format=webp&width=800" alt="1 ประตู" className="h-5 w-5 object-contain" />
+                </div>
+              );
+              if (label === "2") return (
+                <div key={`${label}-${idx}`} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center">
+                  <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F19aa75bc89c544e28a2d10840108af23?format=webp&width=800" alt="2 ประตู" className="h-5 w-5 object-contain" />
+                </div>
+              );
+              if (label === "ramp") return (
+                <div key={`${label}-${idx}`} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center">
+                  <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F38de4d577fa346a985827c9da650fd69?format=webp&width=800" alt="ทางลาด" className="h-5 w-5 object-contain" />
+                </div>
+              );
+              if (label === "emergency") return (
+                <div key={`${label}-${idx}`} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center">
+                  <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F0a17fe8444b34725b19cc5a62c0da84b?format=webp&width=800" alt="ประตูฉุกเฉิน" className="h-5 w-5 object-contain" />
+                </div>
+              );
+
+              return (
+                <div key={`${label}-${idx}`} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center text-xs">
+                  ?
+                </div>
+              );
+            };
+
             return img ? (
               <>
                 <HeroWithShadow>
-                  <img
-                    src={img}
-                    alt={`ภาพรถ - ${label}`}
-                    className="h-48 w-auto object-contain select-none"
-                    decoding="async"
-                    loading="eager"
-                  />
+                  <div className="relative">
+                    {/* overlay */}
+                    {overlayLabels.length > 0 && (
+                      <div className="absolute left-1/2 transform -translate-x-1/2 -top-4 flex flex-wrap justify-center gap-2 z-20 max-w-[80%]">
+                        {overlayLabels.map((lab, i) => renderOverlayIcon(lab, i))}
+                      </div>
+                    )}
+
+                    <img
+                      src={img}
+                      alt={`ภาพรถ - ${label}`}
+                      className="h-48 w-auto object-contain select-none"
+                      decoding="async"
+                      loading="eager"
+                    />
+                  </div>
                 </HeroWithShadow>
                 <p className="mt-1 font-prompt font-semibold text-[#001a73] text-center">
                   รถที่ใช้งาน : {label}
