@@ -218,8 +218,8 @@ export default function UkStornaway() {
             if (!navigatedRef.current) {
               navigatedRef.current = true;
               setTimeout(() => {
-                // Navigate first to the opinion page, then the opinion page will continue to the next step
-                navigateToPage("/how-do-you-think", {
+                // Navigate first to travel method page, then continue to opinion page from there
+                navigateToPage("/what-do-you-travel-by", {
                   from: "stornaway",
                   choice: token,
                 });
