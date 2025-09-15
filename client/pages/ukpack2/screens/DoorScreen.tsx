@@ -114,7 +114,7 @@ const IconDoor1 = () => (
 const IconDoor2 = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F19aa75bc89c544e28a2d10840108af23?format=webp&width=800"
-    alt="ป���ะตู 2"
+    alt="ประตู 2"
     className="h-8 w-8 object-contain select-none"
     decoding="async"
     loading="eager"
