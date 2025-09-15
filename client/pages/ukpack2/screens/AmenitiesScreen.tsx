@@ -6,7 +6,7 @@ import CtaButton from "../components/CtaButton";
 const IconAir = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fee1c18a935564e92bb49991fac3b76df?format=webp&width=800"
-    alt="แอร��"
+    alt="แอร์"
     className="h-8 w-8 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -58,28 +58,13 @@ const IconTv = () => (
   />
 );
 const IconCup = () => (
-  <svg
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M6 8h10v6a4 4 0 0 1-4 4H10a4 4 0 0 1-4-4V8z"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-    <path
-      d="M16 10h2a2 2 0 0 1 0 4h-2"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
+  <img
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe903bdf27bab4175824c159bc19a02ba?format=webp&width=800"
+    alt="ระบบประกาศบอกป้าย(เสียง/จอ)"
+    className="h-8 w-8 object-contain select-none"
+    decoding="async"
+    loading="eager"
+  />
 );
 const IconCam = () => (
   <svg
@@ -185,7 +170,7 @@ const AmenitiesScreen: React.FC = () => {
             />
           ) : (
             <div className="w-full h-48 bg-[#081042] rounded-md flex items-center justify-center text-sm text-gray-300">
-              Bus image preview (ภาพสำหรับรุ่นนี้จะ��ูกเพิ่มภายหลัง)
+              Bus image preview (ภาพสำหรับรุ่นนี้จะถูกเพิ่มภายหลัง)
             </div>
           )}
           <p className="mt-1 font-prompt font-semibold text-[#001a73] text-center">
