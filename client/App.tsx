@@ -79,7 +79,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         >
           ข้ามไปยังเนื้อหาหลัก
         </a>
-        <main id="main-content" role="main" className="w-full">
+        <main id="main-content" role="main" className="w-full responsive-content">
           {children}
         </main>
       </div>
