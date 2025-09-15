@@ -198,6 +198,11 @@ const App = () => {
                   <EndScreenPage />
                 </Suspense>
               } />
+              <Route path="/ukpack1/minigame-mn01" element={
+                <Suspense fallback={<MN3Skeleton />}>
+                  <MiniGameMN01Page />
+                </Suspense>
+              } />
               <Route path="/ukpack1/minigame-mn1" element={
                 <Suspense fallback={<MN3Skeleton />}>
                   <MiniGameMN1Page />
