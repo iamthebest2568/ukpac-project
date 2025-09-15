@@ -87,7 +87,7 @@ const SeatingScreen: React.FC = () => {
       <ConfirmModal
         isOpen={isExitModalOpen}
         title="ออกจากหน้าจอ"
-        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
+        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของค��ณจะไม่ถูกบันทึก"
         onConfirm={() => navigate('/')}
         onCancel={() => setExitModalOpen(false)}
       />
@@ -95,7 +95,7 @@ const SeatingScreen: React.FC = () => {
       <ErrorModal
         isOpen={isErrorModalOpen}
         title="ความจุเกิน"
-        message={`จำนวนที่นั่งทั้งหมดเกินความจ���สูงสุดของรถ (${maxCapacity}) กรุณาตรวจสอบ` }
+        message={`จำนวนที่นั่งทั้งหมดเกินความจุสูงสุดของรถ (${maxCapacity}) กรุณาตรวจสอบ`}
         onClose={() => setErrorModalOpen(false)}
       />
     </>
