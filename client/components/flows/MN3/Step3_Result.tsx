@@ -26,7 +26,7 @@ const Step3_Result = ({ sessionID, onNext, onBack, journeyData }: Step3_ResultPr
 
   const priorityIcons: { [key: string]: string } = {
     ลดค่าโดยสารรถไฟฟ้า: "🚇",
-    ปร���บปรุงคุณภาพรถเมล์: "🚌",
+    ปรับปรุงคุณภาพรถเมล์: "🚌",
     ตั๋วร่วม: "🎫",
     เพิ่มความถี่รถเมล์: "🚍",
     เพิ่มความถี่รถไฟฟ้า: "🚊",
@@ -57,7 +57,7 @@ const Step3_Result = ({ sessionID, onNext, onBack, journeyData }: Step3_ResultPr
         top3Choices: journeyData?.budget_step1_choice?.top3BudgetChoices || [],
         budgetAllocation: journeyData?.budget_step2_allocation?.budgetAllocation || {},
         resultSummary,
-        satisfaction: "ใ���่",
+        satisfaction: "ใช่",
         sessionID,
       },
     });
@@ -138,7 +138,7 @@ const Step3_Result = ({ sessionID, onNext, onBack, journeyData }: Step3_ResultPr
       title={"จากงบประมาณของคุณ\nนี้คือสิ่งที่จะเกิดขึ้นในอนาคต"}
       buttons={[
         { text: "ใช่", onClick: handleYes, ariaLabel: "ตอบใช่ - พอใจกับผลลัพธ์" },
-        { text: "ไม่ใช่", onClick: handleNo, ariaLabel: "ตอบไม่ใช่ - ไม่พอใจกับผลลัพธ���" },
+        { text: "ไม่ใช่", onClick: handleNo, ariaLabel: "ตอบไม่ใช่ - ไม่พอใจกับผลลัพธ์" },
       ]}
       className="mn3-result-page"
       useBlueOverlay={false}
