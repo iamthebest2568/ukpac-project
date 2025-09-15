@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CustomizationScreen from "../components/CustomizationScreen";
 import SelectionCard from "../components/SelectionCard";
 import CtaButton from "../components/CtaButton";
@@ -123,6 +124,108 @@ const IconQr = () => (
   </svg>
 );
 
+// Amenity icons (same assets as AmenitiesScreen)
+const IconAir = () => (
+  <img
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fee1c18a935564e92bb49991fac3b76df?format=webp&width=800"
+    alt="แอร์"
+    className="h-6 w-6 object-contain select-none"
+    decoding="async"
+    loading="eager"
+  />
+);
+const IconFan = () => (
+  <img
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe01792ee89e240808ed47d8576b55d71?format=webp&width=800"
+    alt="พัดลม"
+    className="h-6 w-6 object-contain select-none"
+    decoding="async"
+    loading="eager"
+  />
+);
+const IconSeat = () => (
+  <img
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F93439b2533284cdf914fc93cafa1cf26?format=webp&width=800"
+    alt="ที่นั่งพิเศษ"
+    className="h-6 w-6 object-contain select-none"
+    decoding="async"
+    loading="eager"
+  />
+);
+const IconWifi = () => (
+  <img
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb0789bfd1100472f8351704764607d31?format=webp&width=800"
+    alt="ที่จับ/ราวยืน"
+    className="h-6 w-6 object-contain select-none"
+    decoding="async"
+    loading="eager"
+  />
+);
+const IconPlug = () => (
+  <img
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F09a78e31a3de44e98772b0eef382af6f?format=webp&width=800"
+    alt="ช่องชาร์จมือถือ/USB"
+    className="h-6 w-6 object-contain select-none"
+    decoding="async"
+    loading="eager"
+  />
+);
+const IconTv = () => (
+  <img
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fcb0cbf9ef6764e2d9e6f06e87827f5e9?format=webp&width=800"
+    alt="Wi‑Fi ฟรี"
+    className="h-6 w-6 object-contain select-none"
+    decoding="async"
+    loading="eager"
+  />
+);
+const IconCup = () => (
+  <img
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe903bdf27bab4175824c159bc19a02ba?format=webp&width=800"
+    alt="ระบบประกาศบอกป้าย(เสียง/จอ)"
+    className="h-6 w-6 object-contain select-none"
+    decoding="async"
+    loading="eager"
+  />
+);
+const IconCam = () => (
+  <svg
+    width="18"
+    height="18"
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <rect
+      x="3"
+      y="7"
+      width="14"
+      height="10"
+      rx="2"
+      stroke="currentColor"
+      strokeWidth="2"
+    />
+    <path
+      d="M19 8l2-2v10l-2-2"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
+const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
+  "แอร์": <IconAir />,
+  "พัดลม": <IconFan />,
+  "ที่นั่งพิเศษ": <IconSeat />,
+  "ที่จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
+  "ช่องชาร์จมือถือ/USB": <IconPlug />,
+  "Wi‑Fi ฟรี": <IconTv />,
+  "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
+  "กล้องวงจรปิด": <IconCam />,
+};
+
 const MONEY_ICON =
   "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fbc8b22cedfbb4640a702f724881f196d?format=webp&width=800";
 const SCAN_ICON =
@@ -174,7 +277,7 @@ const PaymentScreen: React.FC = () => {
     >
       <div className="space-y-6">
         <div className="w-full rounded-md flex flex-col items-center justify-center gap-2">
-          {/* show selected hero bus image from chassis selection */}
+          {/* show selected hero bus image from chassis selection with overlays from previous steps */}
           {(() => {
             const CHASSIS_LABELS: Record<string, string> = {
               small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
@@ -192,23 +295,100 @@ const PaymentScreen: React.FC = () => {
               extra:
                 "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9a8a7536ced24db19a65409fbba1c6b6?format=webp&width=800",
             };
-            let selected = "medium";
+            let selectedChassis = "medium";
             try {
               const saved = sessionStorage.getItem("design.chassis");
-              if (saved) selected = saved;
+              if (saved) selectedChassis = saved;
             } catch (e) {}
-            const label = CHASSIS_LABELS[selected] || "";
-            const img = HERO_IMAGE[selected];
+            const label = CHASSIS_LABELS[selectedChassis] || "";
+            const img = HERO_IMAGE[selectedChassis];
+
+            // read selected amenities from sessionStorage
+            const [amenitiesFromStorage] = (() => {
+              try {
+                const raw = sessionStorage.getItem("design.amenities");
+                return raw ? [JSON.parse(raw) as string[]] : [[] as string[]];
+              } catch {
+                return [[] as string[]];
+              }
+            })();
+
+            // combine amenities + payment selections for overlay
+            const overlayLabels: string[] = [...(amenitiesFromStorage || []), ...(selected || [])];
+
+            const renderOverlayIcon = (label: string, idx: number) => {
+              // check amenities map first
+              if (AMENITIES_ICON_MAP[label]) {
+                return (
+                  <div key={`${label}-${idx}`} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center">
+                    {AMENITIES_ICON_MAP[label]}
+                  </div>
+                );
+              }
+              // fallback to payment options
+              const opt = OPTIONS.find((o) => o.label === label);
+              if (!opt) return (
+                <div key={`${label}-${idx}`} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center text-xs">
+                  ?
+                </div>
+              );
+              if (opt.key === "cash") return (
+                <div key={`${label}-${idx}`} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center">
+                  <img src={MONEY_ICON} alt={label} className="h-5 w-5 object-contain" />
+                </div>
+              );
+              if (opt.key === "scan") return (
+                <div key={`${label}-${idx}`} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center">
+                  <img src={SCAN_ICON} alt={label} className="h-5 w-5 object-contain" />
+                </div>
+              );
+              if (opt.key === "scan2") return (
+                <div key={`${label}-${idx}`} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center">
+                  <img src={SCAN2_ICON} alt={label} className="h-5 w-5 object-contain" />
+                </div>
+              );
+              if (opt.key === "tap") return (
+                <div key={`${label}-${idx}`} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center">
+                  <img src={TOUCH_ICON} alt={label} className="h-5 w-5 object-contain" />
+                </div>
+              );
+              if (opt.key === "qr") return (
+                <div key={`${label}-${idx}`} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center">
+                  <img src={BUS_EMPLOY_ICON} alt={label} className="h-5 w-5 object-contain" />
+                </div>
+              );
+              if (opt.key === "monthly") return (
+                <div key={`${label}-${idx}`} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center">
+                  <img src={MONTHLY_ICON} alt={label} className="h-5 w-5 object-contain" />
+                </div>
+              );
+              // default to provided icon node
+              return (
+                <div key={`${label}-${idx}`} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center">
+                  {opt.icon}
+                </div>
+              );
+            };
+
             return img ? (
               <>
-                    <HeroWithShadow>
-                  <img
-                    src={img}
-                    alt={`ภาพรถ - ${label}`}
-                    className="h-48 w-auto object-contain select-none"
-                    decoding="async"
-                    loading="eager"
-                  />
+                <HeroWithShadow>
+                  <div className="relative">
+                    {/* overlay */}
+                    {overlayLabels.length > 0 && (
+                      <div className="absolute left-1/2 transform -translate-x-1/2 -top-4 flex flex-wrap justify-center gap-2 z-20 max-w-[80%]">
+                        {overlayLabels.map((label, i) => renderOverlayIcon(label, i))}
+                      </div>
+                    )}
+
+                    <img
+                      src={img}
+                      alt={`ภาพรถ - ${label}`}
+                      className="h-48 w-auto object-contain select-none"
+                      decoding="async"
+                      loading="eager"
+                    />
+                  </div>
                 </HeroWithShadow>
                 <p className="mt-1 font-prompt font-semibold text-[#001a73] text-center">
                   รถที่ใช้งาน : {label}
