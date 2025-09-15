@@ -273,11 +273,11 @@ const Step1_Choice = ({
             <button
               onClick={() => !isSelectionDisabled(priorityList[5]) && handlePriorityToggle(priorityList[5])}
               disabled={isSelectionDisabled(priorityList[5])}
-              className={`rounded-[40px] border transition-all duration-200 flex items-center justify-center ${getButtonColor(priorityList[5])}`}
-              style={{ 
-                width: 'clamp(200px, 43vw, 465px)', 
-                height: 'clamp(60px, 8.3vw, 90px)',
-                minWidth: '200px'
+              className={getButtonClasses(priorityList[5])}
+              style={{
+                backgroundColor: getButtonColor(priorityList[5]),
+                minWidth: 'clamp(200px, 43vw, 465px)',
+                border: '2px solid #000'
               }}
             >
               <span 
@@ -297,11 +297,11 @@ const Step1_Choice = ({
             <button
               onClick={() => !isSelectionDisabled(priorityList[6]) && handlePriorityToggle(priorityList[6])}
               disabled={isSelectionDisabled(priorityList[6])}
-              className={`rounded-[40px] border transition-all duration-200 flex items-center justify-center ${getButtonColor(priorityList[6])}`}
-              style={{ 
-                width: 'clamp(220px, 44.4vw, 480px)', 
-                height: 'clamp(60px, 8.3vw, 90px)',
-                minWidth: '220px'
+              className={getButtonClasses(priorityList[6])}
+              style={{
+                backgroundColor: getButtonColor(priorityList[6]),
+                minWidth: 'clamp(220px, 44.4vw, 480px)',
+                border: '2px solid #000'
               }}
             >
               <span 
