@@ -188,6 +188,7 @@ const App = () => {
                   element={<Navigate to="/ukpack1/uk-stornaway" replace />}
                 />
                 <Route path="/ukpack2" element={<SplashScreen />} />
+                <Route path="/ukpack2/dashboard" element={<UkPack2Dashboard />} />
                 <Route path="/ukpack2/chassis" element={<ChassisScreen />} />
                 <Route path="/ukpack2/seating" element={<SeatingScreen />} />
                 <Route
