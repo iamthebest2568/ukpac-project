@@ -33,7 +33,7 @@ const InfoNextScreen: React.FC = () => {
 
   const CHASSIS_LABELS: Record<string, string> = {
     small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
-    medium: "รถเมล์ขนาดกลาง 31–40 ที่นั่ง",
+    medium: "รถเมล์ขนาดกลาง 31–40 ท���่นั่ง",
     large: "รถเมล์ขนาดใหญ่ 41-50 ที่นั่ง",
     extra: "รถเมล์รุ่นพิเศษ 51+ ที่นั่ง",
   };
@@ -66,6 +66,13 @@ const InfoNextScreen: React.FC = () => {
   return (
     <div className="min-h-screen bg-white text-black py-8 px-4">
       <div className="max-w-4xl mx-auto">
+        <div className="mb-6 flex justify-center">
+          <img
+            src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F6ae44b82429e406e837c47f4ec6aa5f4?format=webp&width=800"
+            alt="เสร็จแล้ว! นี่คือรถเมล์ในฝันของคุณ"
+            className="h-16 md:h-20 w-auto"
+          />
+        </div>
 
         <SummaryDetails />
 
