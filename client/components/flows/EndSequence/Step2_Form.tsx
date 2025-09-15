@@ -79,7 +79,7 @@ const Step2_Form = ({ sessionID, onNext, onBack, initialData }: Step2_FormProps)
                 <img src="https://api.builder.io/api/v1/image/assets/TEMP/43c5afa8ad1bbf3282039603c53e3f49565612bc?width=120" alt="" style={{ width: 'clamp(30px,2.8vw,60px)', height: 'clamp(32px,2.9vw,63px)' }} />
               </div>
               <div style={{ width: '5px', height: 'clamp(41px,3.8vw,82px)', background: '#000D59', margin: '0 clamp(10px,1vw,20px)' }} />
-              <input id="name" type="text" value={formData.name} onChange={(e) => handleInputChange('name', e.target.value)} placeholder="ชื่อ-นามสกุล" className="flex-1 bg-transparent border-none outline-none font-prompt" style={{ fontSize: 'clamp(16px,3.7vw,40px)', paddingRight: 'clamp(10px,1vw,20px)' }} />
+              <input id="name" type="text" value={formData.name} onChange={(e) => handleInputChange('name', e.target.value)} placeholder="ชื่อ-นามสกุล" className="flex-1 bg-transparent border-none outline-none font-prompt text-black placeholder-gray-500" style={{ fontSize: 'clamp(16px,3.7vw,40px)', paddingRight: 'clamp(10px,1vw,20px)', color: '#000' }} />
             </div>
             {errors.name && <div className="text-red-400 text-sm mt-2">{errors.name}</div>}
           </div>
@@ -91,7 +91,7 @@ const Step2_Form = ({ sessionID, onNext, onBack, initialData }: Step2_FormProps)
                 <img src="https://api.builder.io/api/v1/image/assets/TEMP/3350235bd026037b65d1706334d2624c4ede799b?width=78" alt="" style={{ width: 'clamp(20px,1.8vw,39px)', height: 'clamp(35px,3.2vw,69px)' }} />
               </div>
               <div style={{ width: '5px', height: 'clamp(41px,3.8vw,82px)', background: '#000D59', margin: '0 clamp(10px,1vw,20px)' }} />
-              <input id="phone" type="tel" value={formData.phone} onChange={(e) => handleInputChange('phone', e.target.value)} placeholder="เบอร์โทรศัพท์" className="flex-1 bg-transparent border-none outline-none font-prompt" style={{ fontSize: 'clamp(16px,3.7vw,40px)', paddingRight: 'clamp(10px,1vw,20px)' }} />
+              <input id="phone" type="tel" value={formData.phone} onChange={(e) => handleInputChange('phone', e.target.value)} placeholder="เบอร��โทรศัพท์" className="flex-1 bg-transparent border-none outline-none font-prompt" style={{ fontSize: 'clamp(16px,3.7vw,40px)', paddingRight: 'clamp(10px,1vw,20px)' }} />
             </div>
             {errors.phone && <div className="text-red-400 text-sm mt-2">{errors.phone}</div>}
           </div>
