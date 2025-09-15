@@ -92,7 +92,7 @@ const SummaryScreen: React.FC = () => {
           )}
         </div>
 
-        <div className="bg-white rounded-lg p-4 text-sm text-gray-800 shadow-sm">
+        <div className="bg-[#e6e7e8] rounded-lg p-4 text-sm text-gray-800 shadow-sm">
           <div className="grid gap-4">
             <div>
               <div className="text-xs text-gray-500">รูปแบบรถ</div>
