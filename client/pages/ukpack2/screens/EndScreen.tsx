@@ -29,8 +29,8 @@ const EndScreen: React.FC = () => {
           </p>
           <div className="w-full flex justify-center">
             <img
-              src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F82c90d874bf3491baf4f370102aa49f7?format=webp&width=800"
-              alt="ประกาศรางวัล"
+              src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F3d54db27cd9f49bf946e4a1ed5688fb3?format=webp&width=800"
+              alt="เราจะประกาศรางวัล"
               className="w-full h-auto max-w-[420px] mt-2"
             />
           </div>
@@ -47,7 +47,7 @@ const EndScreen: React.FC = () => {
             />
             <SecondaryButton
               className="w-full"
-              text="แชร์เกมนี้กับเพื่อน"
+              text="แชร์เกมนี้ก��บเพื่อน"
               onClick={() => setShareOpen(true)}
             />
           </div>
