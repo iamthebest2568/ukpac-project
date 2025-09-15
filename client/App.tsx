@@ -74,7 +74,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       <div className="app-container bg-white relative responsive-container safe-top safe-bottom" style={{ width: '100%', maxWidth: 1080 }}>
         <a
           href="#main-content"
-          className="skip-link sr-only focus:not-sr-only absolute top-2 left-2 z-50 bg-yellow-400 text-black px-2 py-1 rounded"
+          className="skip-link sr-only focus:not-sr-only absolute top-2 left-2 z-50 bg-yellow-400 text-black px-2 py-1 rounded touch-target"
           aria-label="ข้ามไปยั���เนื้อหาหลัก"
         >
           ข้ามไปยังเนื้อหาหลัก
