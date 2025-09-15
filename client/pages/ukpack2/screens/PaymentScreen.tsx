@@ -166,8 +166,37 @@ const PaymentScreen: React.FC = () => {
       }
     >
       <div className="space-y-6">
-        <div className="w-full h-48 bg-[#081042] rounded-md flex items-center justify-center text-sm text-gray-300">
-          Bus image preview
+        <div className="w-full rounded-md flex flex-col items-center justify-center gap-2">
+          {/* show selected hero bus image from chassis selection */}
+          {(() => {
+            const CHASSIS_LABELS: Record<string, string> = {
+              small: 'รถเมล์ขนาดเล็ก 16–30 ที่นั่ง',
+              medium: 'รถเมล์ขนาดกลาง 31–40 ที่นั่ง',
+              large: 'รถเมล์ขนาดใหญ่ 41-50 ที่นั่ง',
+              extra: 'รถเมล์รุ่นพิเ���ษ 51+ ที่นั่ง',
+            };
+            const HERO_IMAGE: Record<string, string> = {
+              small: 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F5ea1b3d990e44d49aa5441bc3a4b3bcc?format=webp&width=800',
+              medium: 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fab8ddd78f9a0478bb27f5818928665f3?format=webp&width=800',
+              large: 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fefc1e1ed3bcb4769b51d1544d43b3b5f?format=webp&width=800',
+              extra: 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9a8a7536ced24db19a65409fbba1c6b6?format=webp&width=800',
+            };
+            let selected = 'medium';
+            try {
+              const saved = sessionStorage.getItem('design.chassis');
+              if (saved) selected = saved;
+            } catch (e) {}
+            const label = CHASSIS_LABELS[selected] || '';
+            const img = HERO_IMAGE[selected];
+            return img ? (
+              <>
+                <img src={img} alt={`ภาพรถ - ${label}`} className="h-48 w-auto object-contain select-none" decoding="async" loading="eager" />
+                <p className="mt-1 font-prompt font-semibold text-[#001a73] text-center">รถที่ใช้งาน : {label}</p>
+              </>
+            ) : (
+              <div className="w-full h-48 bg-[#081042] rounded-md flex items-center justify-center text-sm text-gray-300">Bus image preview</div>
+            );
+          })()}
         </div>
         <div className="bg-white rounded-t-3xl -mt-2 p-4">
           <StepTabs active={4} />
