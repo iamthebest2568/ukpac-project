@@ -13,3 +13,9 @@
   from = "/api/*"
   status = 200
   to = "/.netlify/functions/api/:splat"
+
+# SPA fallback to support direct deep links like /ukpack2/*
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
