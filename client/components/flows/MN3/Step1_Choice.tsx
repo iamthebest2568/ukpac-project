@@ -91,36 +91,31 @@ const Step1_Choice = ({
     "เพิ่มความถี่รถเมล์"      // choice_4
   ]);
 
-  const getButtonColor = (priority: string) => {
-    if (selectedPriorities.includes(priority)) {
-      return "#000000"; // Black when selected
-    }
-    if (isSelectionDisabled(priority)) {
-      return "#d1d5db"; // Gray when disabled
-    }
-    if (defaultYellowButtons.has(priority)) {
-      return "#FFE000"; // Yellow by default
-    }
-    return "#E9E9E9"; // Light gray by default
-  };
-
   const getButtonClasses = (priority: string) => {
-    const baseClasses = "option-btn transition-all duration-200 hover:scale-105";
+    let classes = "mn3-policy-button";
+
     if (selectedPriorities.includes(priority)) {
-      return `${baseClasses} bg-black border-black`;
+      classes += " mn3-policy-button--selected";
+    } else if (defaultYellowButtons.has(priority)) {
+      classes += " mn3-policy-button--yellow";
     }
-    if (isSelectionDisabled(priority)) {
-      return `${baseClasses} opacity-50 cursor-not-allowed`;
-    }
-    return `${baseClasses} hover:bg-black group`;
+
+    return classes;
   };
 
-  const getTextColor = (priority: string) => {
-    if (selectedPriorities.includes(priority)) {
-      return "#FFE000"; // Yellow text when selected
-    }
-    return "#000000"; // Black text by default
-  };
+  const renderPolicyButton = (priority: string, index: number) => (
+    <button
+      key={priority}
+      onClick={() => !isSelectionDisabled(priority) && handlePriorityToggle(priority)}
+      disabled={isSelectionDisabled(priority)}
+      className={getButtonClasses(priority)}
+      aria-label={`เลือกนโยบาย: ${priority}`}
+    >
+      <span className="mn3-button-text">
+        {priority}
+      </span>
+    </button>
+  );
 
   return (
     <div className="w-full min-h-screen bg-[#04D9F9] flex flex-col items-center justify-center relative" style={{ maxWidth: 1080, margin: '0 auto' }}>
@@ -128,239 +123,82 @@ const Step1_Choice = ({
       <div className="w-full px-4 pt-8 pb-32 flex flex-col items-center justify-start space-y-8">
         
         {/* Title Section */}
-        <div className="text-center w-full responsive-padding-md">
-          <h1 className="heading-xl responsive-spacing-sm">
+        <div className="text-center w-full max-w-4xl px-4">
+          <h1
+            className="font-prompt font-bold text-center leading-normal mb-4"
+            style={{
+              color: '#000D59',
+              fontSize: 'clamp(32px, 7.4vw, 80px)',
+              lineHeight: 'normal',
+              fontWeight: 700
+            }}
+          >
             คุณคิดว่าควรใช้เงินที่ได้<br />
             จากการเก็บไปพัฒนาอะไร
           </h1>
-          <p className="heading-sm">
+          <p
+            className="font-prompt font-bold text-center"
+            style={{
+              color: '#000D59',
+              fontSize: 'clamp(18px, 3.7vw, 40px)',
+              fontWeight: 700,
+              marginTop: '0px'
+            }}
+          >
             ไม่เกิน 3 นโยบาย
           </p>
         </div>
 
-        {/* Button Grid - Responsive Layout */}
-        <div className="w-full max-w-5xl space-y-4">
-          
-          {/* Row 1: choice_1 and choice_2 */}
-          <div className="flex gap-4 justify-center flex-wrap">
-            {/* choice_1: ลดค่าโดยสารรถไฟฟ้า */}
-            <button
-              onClick={() => !isSelectionDisabled(priorityList[0]) && handlePriorityToggle(priorityList[0])}
-              disabled={isSelectionDisabled(priorityList[0])}
-              className={getButtonClasses(priorityList[0])}
-              style={{
-                backgroundColor: getButtonColor(priorityList[0]),
-                minWidth: 'clamp(180px, 40vw, 465px)',
-                border: '2px solid #000'
-              }}
-            >
-              <span
-                className="font-prompt font-bold group-hover:text-[#FFE000]"
-                style={{
-                  fontSize: 'clamp(16px, 3.7vw, 40px)',
-                  letterSpacing: '0.4px',
-                  fontWeight: 700,
-                  textAlign: 'center',
-                  color: getTextColor(priorityList[0])
-                }}
-              >
-                {priorityList[0]}
-              </span>
-            </button>
-            
-            {/* choice_2: ปรับปรุงคุณภาพรถเมล์ */}
-            <button
-              onClick={() => !isSelectionDisabled(priorityList[1]) && handlePriorityToggle(priorityList[1])}
-              disabled={isSelectionDisabled(priorityList[1])}
-              className={getButtonClasses(priorityList[1])}
-              style={{
-                backgroundColor: getButtonColor(priorityList[1]),
-                minWidth: 'clamp(200px, 43vw, 500px)',
-                border: '2px solid #000'
-              }}
-            >
-              <span
-                className="font-prompt font-bold group-hover:text-[#FFE000]"
-                style={{
-                  fontSize: 'clamp(16px, 3.7vw, 40px)',
-                  letterSpacing: '0.4px',
-                  fontWeight: 700,
-                  textAlign: 'center',
-                  color: getTextColor(priorityList[1])
-                }}
-              >
-                {priorityList[1]}
-              </span>
-            </button>
+        {/* Policy Options - Improved Grid Layout */}
+        <div className="mn3-button-grid">
+          {/* Row 1: Two longer options */}
+          <div className="mn3-button-row">
+            {renderPolicyButton(priorityList[0], 0)}
+            {renderPolicyButton(priorityList[1], 1)}
           </div>
 
-          {/* Row 2: choice_3, choice_4, choice_5 */}
-          <div className="flex gap-4 justify-center flex-wrap">
-            {/* choice_3: ตั๋วร่วม */}
-            <button
-              onClick={() => !isSelectionDisabled(priorityList[2]) && handlePriorityToggle(priorityList[2])}
-              disabled={isSelectionDisabled(priorityList[2])}
-              className={getButtonClasses(priorityList[2])}
-              style={{
-                backgroundColor: getButtonColor(priorityList[2]),
-                minWidth: 'clamp(120px, 23vw, 248px)',
-                border: '2px solid #000'
-              }}
-            >
-              <span
-                className="font-prompt font-bold group-hover:text-[#FFE000]"
-                style={{
-                  fontSize: 'clamp(16px, 3.7vw, 40px)',
-                  letterSpacing: '0.4px',
-                  fontWeight: 700,
-                  textAlign: 'center',
-                  color: getTextColor(priorityList[2])
-                }}
-              >
-                {priorityList[2]}
-              </span>
-            </button>
-            
-            {/* choice_4: เพิ่มความถี่รถเมล์ */}
-            <button
-              onClick={() => !isSelectionDisabled(priorityList[3]) && handlePriorityToggle(priorityList[3])}
-              disabled={isSelectionDisabled(priorityList[3])}
-              className={getButtonClasses(priorityList[3])}
-              style={{
-                backgroundColor: getButtonColor(priorityList[3]),
-                minWidth: 'clamp(180px, 35.6vw, 385px)',
-                border: '2px solid #000'
-              }}
-            >
-              <span
-                className="font-prompt font-bold group-hover:text-[#FFE000]"
-                style={{
-                  fontSize: 'clamp(16px, 3.7vw, 40px)',
-                  letterSpacing: '0.4px',
-                  fontWeight: 700,
-                  textAlign: 'center',
-                  color: getTextColor(priorityList[3])
-                }}
-              >
-                {priorityList[3]}
-              </span>
-            </button>
-            
-            {/* choice_5: เพิ่มที่จอดรถ */}
-            <button
-              onClick={() => !isSelectionDisabled(priorityList[4]) && handlePriorityToggle(priorityList[4])}
-              disabled={isSelectionDisabled(priorityList[4])}
-              className={getButtonClasses(priorityList[4])}
-              style={{
-                backgroundColor: getButtonColor(priorityList[4]),
-                minWidth: 'clamp(140px, 27vw, 293px)',
-                border: '2px solid #000'
-              }}
-            >
-              <span
-                className="font-prompt font-bold group-hover:text-[#FFE000]"
-                style={{
-                  fontSize: 'clamp(16px, 3.7vw, 40px)',
-                  letterSpacing: '0.4px',
-                  fontWeight: 700,
-                  textAlign: 'center',
-                  color: getTextColor(priorityList[4])
-                }}
-              >
-                {priorityList[4]}
-              </span>
-            </button>
+          {/* Row 2: Three medium/short options */}
+          <div className="mn3-button-row">
+            {renderPolicyButton(priorityList[2], 2)}
+            {renderPolicyButton(priorityList[3], 3)}
+            {renderPolicyButton(priorityList[4], 4)}
           </div>
 
-          {/* Row 3: choice_6, choice_7 */}
-          <div className="flex gap-4 justify-center flex-wrap">
-            {/* choice_6: เพิ่มความถี่รถไฟฟ้า */}
-            <button
-              onClick={() => !isSelectionDisabled(priorityList[5]) && handlePriorityToggle(priorityList[5])}
-              disabled={isSelectionDisabled(priorityList[5])}
-              className={getButtonClasses(priorityList[5])}
-              style={{
-                backgroundColor: getButtonColor(priorityList[5]),
-                minWidth: 'clamp(200px, 43vw, 465px)',
-                border: '2px solid #000'
-              }}
-            >
-              <span
-                className="font-prompt font-bold group-hover:text-[#FFE000]"
-                style={{
-                  fontSize: 'clamp(16px, 3.7vw, 40px)',
-                  letterSpacing: '0.4px',
-                  fontWeight: 700,
-                  textAlign: 'center',
-                  color: getTextColor(priorityList[5])
-                }}
-              >
-                {priorityList[5]}
-              </span>
-            </button>
-            
-            {/* choice_7: เพิ่ม Feeder ในซอย */}
-            <button
-              onClick={() => !isSelectionDisabled(priorityList[6]) && handlePriorityToggle(priorityList[6])}
-              disabled={isSelectionDisabled(priorityList[6])}
-              className={getButtonClasses(priorityList[6])}
-              style={{
-                backgroundColor: getButtonColor(priorityList[6]),
-                minWidth: 'clamp(220px, 44.4vw, 480px)',
-                border: '2px solid #000'
-              }}
-            >
-              <span
-                className="font-prompt font-bold group-hover:text-[#FFE000]"
-                style={{
-                  fontSize: 'clamp(16px, 3.7vw, 40px)',
-                  letterSpacing: '0.4px',
-                  fontWeight: 700,
-                  textAlign: 'center',
-                  color: getTextColor(priorityList[6])
-                }}
-              >
-                {priorityList[6]}
-              </span>
-            </button>
+          {/* Row 3: Two longer options */}
+          <div className="mn3-button-row">
+            {renderPolicyButton(priorityList[5], 5)}
+            {renderPolicyButton(priorityList[6], 6)}
           </div>
         </div>
 
         {/* Continue Button - Fixed Footer */}
-        {selectedPriorities.length > 0 ? (
-          <div className="fixed-footer">
-            <div className="btn-container">
+        <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full z-50 px-4 pb-4">
+          <div className="mx-auto flex flex-col items-center space-y-2" style={{ maxWidth: 1080 }}>
+            {selectedPriorities.length > 0 ? (
               <button
                 onClick={handleNext}
-                className="btn-large"
-                style={{
-                  backgroundColor: '#FFE000',
-                  color: '#000',
-                  border: 'none'
-                }}
-                aria-label="ดำเนิน��ารต่อไปยังขั้นตอนถัดไป"
+                className="mn3-continue-button"
+                aria-label="ดำเนินการต่อไปยังขั้นตอนถัดไป"
               >
                 ไปต่อ
               </button>
-            </div>
-          </div>
-        ) : (
-          <div className="fixed-footer">
-            <div className="btn-container">
+            ) : (
               <div
-                className="text-center responsive-padding-md"
+                className="text-center"
                 style={{
                   color: '#000D59',
                   fontSize: 'clamp(14px, 3.5vw, 18px)',
                   fontFamily: 'Prompt',
-                  fontWeight: 500
+                  fontWeight: 500,
+                  maxWidth: '400px',
+                  padding: '16px'
                 }}
               >
                 กรุณาเลือกอย่างน้อย 1 ข้อเพื่อดำเนินการต่อ
               </div>
-            </div>
+            )}
           </div>
-        )}
+        </div>
       </div>
     </div>
   );
