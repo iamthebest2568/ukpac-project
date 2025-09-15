@@ -74,10 +74,12 @@ const InfoNextScreen: React.FC = () => {
         </div>
 
         <footer className="mt-6">
-          <div className="bg-[#00d5f9] rounded-t-3xl p-6 drop-shadow-lg mt-8">
-            <div className="max-w-4xl mx-auto flex items-center justify-center gap-3">
-              <SecondaryButton text="ใช้บริการแน่นอน" onClick={() => navigate('/ukpack2/thank-you')} />
-              <CtaButton text="ไม่แน่ใจ" onClick={() => navigate('/ukpack2/feedback')} />
+          <div className="bg-[#00d5f9] rounded-t-3xl p-6 drop-shadow-lg">
+            <div className="max-w-4xl mx-auto flex items-center justify-center">
+              <div className="flex items-center gap-3">
+                <SecondaryButton text="ใช้บริการแน่นอน" onClick={() => navigate('/ukpack2/thank-you')} />
+                <CtaButton text="ไม่แน่ใจ" onClick={() => navigate('/ukpack2/feedback')} />
+              </div>
             </div>
           </div>
         </footer>
