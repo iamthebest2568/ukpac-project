@@ -117,7 +117,7 @@ const Step1_Priorities = ({
             lineHeight: 'normal'
           }}
         >
-          คุณคิดว่าควรใช้เงินที่ได้<br />จากการเก็บไปพัฒนาอะไร
+          คุณคิดว่าควรใช้เงินที่ได้<br />จากการเก็บไป��ัฒนาอะไร
         </h1>
       </div>
 
@@ -176,7 +176,7 @@ const Step1_Priorities = ({
                 opacity: isSelectionDisabled("ปรับปรุงคุณภาพร���เมล์") ? 0.5 : 1
               }}
               onClick={() =>
-                !isSelectionDisabled("ปรับปรุ���คุณภาพรถเมล์") &&
+                !isSelectionDisabled("ปรับปรุงคุณภาพรถเมล์") &&
                 handlePriorityToggle("ปรับปรุงคุณภาพรถเมล์")
               }
               disabled={isSelectionDisabled("ปรับปรุงคุณภาพรถเมล์")}
@@ -367,7 +367,7 @@ const Step1_Priorities = ({
               fontSize: 'clamp(14px, 2.8vw, 18px)'
             }}
           >
-            กรุณาเลือกอย่างน้อย 1 ข้อเพื่อดำเนิ��การต่อ
+            กรุณาเลือกอย่างน้อย 1 ข้อเพื่อดำเนินการต่อ
           </div>
         )}
       </div>
