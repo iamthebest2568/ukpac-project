@@ -176,14 +176,18 @@ const Step3_ThankYou = ({
             <Dialog>
               <DialogTrigger asChild>
                 <button
-                  className="transition-all duration-200 bg-[#FFE000] hover:scale-105 hover:shadow-lg hover:bg-black active:bg-black group flex items-center justify-center"
+                  className="transition-all duration-200 bg-[#FFE000] hover:scale-105 hover:shadow-lg hover:bg-black active:bg-black group flex items-center justify-center touch-target"
                   style={{
                     width: 'clamp(300px, 78.2vw, 845px)',
                     height: 'clamp(50px, 6.1vw, 118px)',
                     borderRadius: '50px',
-                    border: 'none'
+                    border: 'none',
+                    cursor: 'pointer',
+                    userSelect: 'none'
                   }}
-                  aria-label="เปิดหน้าต่างแชร์"
+                  aria-label="เปิดหน้าต่างแชร์เกมนี้ให้เพื่อน"
+                  aria-haspopup="dialog"
+                  type="button"
                 >
                   <span
                     className="font-prompt text-center text-black group-hover:text-[#FFE000] group-active:text-[#FFE000]"
@@ -204,7 +208,7 @@ const Step3_ThankYou = ({
                   แชร์เกมนี้
                 </DialogTitle>
                 <DialogDescription className="text-sm text-gray-600 mb-4">
-                  เลือกแพลตฟอร์มที่ต้องกา��แชร์
+                  เลือกแพลตฟอร์มที่ต้องการแชร์
                 </DialogDescription>
 
                 <div className="grid grid-cols-2 gap-3 mb-4">
@@ -252,7 +256,7 @@ const Step3_ThankYou = ({
                     className="btn-primary text-sm py-3 px-4 rounded-lg transition-all duration-200 hover:scale-105"
                     style={{ backgroundColor: '#FFE000', color: '#000', border: '1px solid #000' }}
                     onClick={handleShareLinkedIn}
-                    aria-label="แชร���ไปยัง LinkedIn"
+                    aria-label="แชร์ไปยัง LinkedIn"
                   >
                     LinkedIn
                   </button>
