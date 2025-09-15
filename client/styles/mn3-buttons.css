@@ -364,6 +364,186 @@
   margin-bottom: 8px;
 }
 
+/* ========================================
+   MN3 Step 2: Budget Allocation Styles
+   ======================================== */
+
+/* Content container for allocation page */
+.mn3-allocation-content {
+  position: fixed !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: calc(env(safe-area-inset-bottom, 16px) + 30px) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-end !important;
+  align-items: center !important;
+  gap: 16px !important;
+  padding: 0 16px 16px 16px !important;
+  z-index: 99999 !important;
+  pointer-events: auto !important;
+  max-height: 100vh !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+
+/* Budget display box matching Figma */
+.mn3-budget-display {
+  background-color: #FFE000;
+  border-radius: clamp(16px, 2vw, 20px);
+  padding: clamp(16px, 4vw, 24px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: clamp(320px, 83.6vw, 903px);
+  margin: 0 auto;
+  gap: clamp(12px, 3vw, 20px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Budget icon styling */
+.mn3-budget-icon {
+  width: clamp(60px, 12.5vw, 135px);
+  height: clamp(70px, 14.7vw, 159px);
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+/* Budget text container */
+.mn3-budget-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(4px, 1vw, 8px);
+}
+
+/* Budget label text */
+.mn3-budget-label {
+  font-family: 'Prompt', sans-serif;
+  font-weight: 700;
+  font-size: clamp(24px, 4.6vw, 50px);
+  color: #000D59;
+  text-align: center;
+  line-height: normal;
+  letter-spacing: 0.4px;
+}
+
+/* Budget amount text */
+.mn3-budget-amount {
+  font-family: 'Prompt', sans-serif;
+  font-weight: 700;
+  font-size: clamp(48px, 9.3vw, 100px);
+  color: #000D59;
+  text-align: center;
+  line-height: normal;
+  letter-spacing: 0.4px;
+}
+
+/* Allocation items list */
+.mn3-allocation-list {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 3vw, 24px);
+  width: 100%;
+  max-width: clamp(320px, 83.6vw, 903px);
+  margin: 0 auto;
+}
+
+/* Individual allocation item row */
+.mn3-allocation-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(12px, 3vw, 20px);
+  width: 100%;
+}
+
+/* Priority label text */
+.mn3-allocation-label {
+  font-family: 'Prompt', sans-serif;
+  font-weight: 700;
+  font-size: clamp(18px, 4.6vw, 50px);
+  color: #000D59;
+  line-height: normal;
+  letter-spacing: 0.4px;
+  flex: 1;
+  text-align: left;
+}
+
+/* Input container */
+.mn3-allocation-input-container {
+  flex-shrink: 0;
+}
+
+/* Budget input field styling */
+.mn3-allocation-input {
+  width: clamp(120px, 19vw, 205px);
+  height: clamp(80px, 12vw, 130px);
+  border: 5px solid #000D59;
+  border-radius: clamp(16px, 2vw, 20px);
+  background-color: transparent;
+  font-family: 'Prompt', sans-serif;
+  font-weight: 700;
+  font-size: clamp(32px, 6.5vw, 70px);
+  color: #000D59;
+  text-align: center;
+  line-height: normal;
+  letter-spacing: 0.4px;
+  outline: none;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.mn3-allocation-input:focus {
+  border-color: #FFE000;
+  box-shadow: 0 0 0 3px rgba(255, 224, 0, 0.3);
+}
+
+.mn3-allocation-input::-webkit-outer-spin-button,
+.mn3-allocation-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.mn3-allocation-input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 480px) {
+  .mn3-allocation-content {
+    gap: 12px !important;
+    padding: 0 12px 12px 12px !important;
+  }
+
+  .mn3-budget-display {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+    padding: 16px;
+  }
+
+  .mn3-budget-text {
+    order: -1;
+  }
+
+  .mn3-allocation-item {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .mn3-allocation-label {
+    text-align: center;
+  }
+
+  .mn3-allocation-input-container {
+    display: flex;
+    justify-content: center;
+  }
+}
+
 
 .mn3-continue-button:hover {
   transform: scale(1.05);
