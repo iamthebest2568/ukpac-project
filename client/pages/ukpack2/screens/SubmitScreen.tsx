@@ -9,6 +9,7 @@ const SubmitScreen: React.FC = () => {
   const [interval, setInterval] = useState('');
   const [route, setRoute] = useState('');
   const [area, setArea] = useState('');
+  const [isExitModalOpen, setExitModalOpen] = useState(false);
 
   const { state, dispatch, submitDesignToFirebase } = useBusDesign() as any;
 
@@ -73,7 +74,7 @@ const SubmitScreen: React.FC = () => {
 
         <div className="space-y-4">
           <div className="flex items-center gap-3">
-            <label className="w-36 text-sm text-[#003366]">รถจะมาทุกๆ</label>
+            <label className="w-36 text-sm text-[#003366]">ร���จะมาทุกๆ</label>
             <input
               type="text"
               value={interval}
