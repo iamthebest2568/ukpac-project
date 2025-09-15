@@ -5,6 +5,7 @@ import PrivacyModal from '../components/PrivacyModal';
 
 const SplashScreen: React.FC = () => {
   const navigate = useNavigate();
+  const [showPrivacy, setShowPrivacy] = useState(false);
 
   return (
     <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#e9f9ff' }}>
