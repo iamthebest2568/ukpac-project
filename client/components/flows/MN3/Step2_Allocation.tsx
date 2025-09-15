@@ -114,7 +114,7 @@ const Step2_Allocation = ({
   const isComplete = allocatedBudget === totalBudget;
 
   return (
-    <div className="w-full min-h-screen mn3-page-bg flex flex-col items-center justify-start relative">
+    <div className="w-full min-h-screen mn3-allocation-bg flex flex-col items-center justify-start relative">
       <div className="mn3-allocation-content">
         {/* Title Section */}
         <div className="text-center w-full max-w-none px-4 mb-6">
