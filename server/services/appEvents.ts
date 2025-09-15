@@ -140,7 +140,7 @@ export interface SessionSummary {
   sessionId: string;
   firstSeen: string;
   lastSeen: string;
-  introWho?: string; // บทบาทในการเดินทางเข้���เมือง
+  introWho?: string; // บทบาทในการเดินทางเข้าเมือง
   travelMethod?: string; // ยานพาหนะที่ใช้
   opinionLevel?: string; // ระดับความคิดเห็น (เห็นด้วย/กลางๆ/ไม่เห็นด้วย)
   ask02Choice?: string; // เหตุผลหลัก
