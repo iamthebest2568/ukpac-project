@@ -5,7 +5,7 @@ const displayDoor = (raw: any) => {
   if (typeof raw === 'string') {
     if (raw === '1') return '1 ประตู';
     if (raw === '2') return '2 ประตู';
-    if (raw === 'ramp') return 'ทางลาดสำหรับร��เข็น/ผู้พิการ';
+    if (raw === 'ramp') return 'ทางลาดสำหรับรถเข็น/ผู้พิการ';
     if (raw === 'emergency') return 'ประตูฉุกเฉิน';
     return raw;
   }
@@ -97,7 +97,7 @@ const SummaryDetails: React.FC = () => {
 
           <div className="flex items-center justify-between">
             <div className="text-xs text-gray-500">ทางขึ้น</div>
-            <div className="font-sarabun font-semibold text-sm text-right ml-4">{data.doors ? (typeof data.doors === 'string' ? displayDoor(data.doors) : (typeof data.doors === 'object' ? (data.doors.doorChoice ? (data.doors.doorChoice === '1' ? '1 ประตู' : data.doors.doorChoice === '2' ? '2 ประตู' : String(data.doors.doorChoice)) : (data.doors.hasRamp ? 'ทางลาดสำหรับรถเข็น/ผู้พิการ' : data.doors.highLow ? 'ประตูฉุกเฉิน' : JSON.stringify(data.doors))) : String(data.doors))) : '-'}</div>
+            <div className="font-sarabun font-semibold text-sm text-right ml-4">{data.doors ? (typeof data.doors === 'string' ? displayDoor(data.doors) : (typeof data.doors === 'object' ? (data.doors.doorChoice ? (data.doors.doorChoice === '1' ? '1 ประตู' : data.doors.doorChoice === '2' ? '2 ประตู' : String(data.doors.doorChoice)) : (data.doors.hasRamp ? 'ทางลาดสำหรับร���เข็น/ผู้พิการ' : data.doors.highLow ? 'ประตูฉุกเฉิน' : JSON.stringify(data.doors))) : String(data.doors))) : '-'}</div>
           </div>
 
           <div className="flex items-center justify-between">
