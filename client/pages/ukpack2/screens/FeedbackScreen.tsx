@@ -36,8 +36,7 @@ const FeedbackScreen: React.FC = () => {
       </div>
 
       <footer className="bg-[#00d5f9] rounded-t-3xl p-6">
-        <div className="max-w-4xl mx-auto flex items-center justify-between">
-          <div className="text-[#000d59] font-sarabun">ขอบคุณที่ส่งความคิดเห็น</div>
+        <div className="max-w-4xl mx-auto flex items-center justify-center">
           <div className="flex items-center gap-3">
             <SecondaryButton text="ส่งความคิดเห็น" onClick={submit} />
             <CtaButton text="ข้าม" onClick={skip} />
