@@ -261,11 +261,11 @@ export default function UkDashboard() {
               </div>
               {ingest && (
                 <div className="text-white/60 text-xs mt-1">
-                  การเก็บข้อมูล • App: {ingest.app.count} เหตุก��รณ์, ล่าสุด{" "}
+                  การเก็บข้อมูล • App: {ingest.app.count} เหตุการณ์, ล่าสุด{" "}
                   {ingest.app.lastTs
                     ? new Date(ingest.app.lastTs).toLocaleString()
                     : "-"}{" "}
-                  • วิดีโอ: {ingest.video.count} เหตุการณ์, ล่าสุด{" "}
+                  • วิดีโอ: {ingest.video.count} เหตุการณ���, ล่าสุด{" "}
                   {ingest.video.lastTs
                     ? new Date(ingest.video.lastTs).toLocaleString()
                     : "-"}
@@ -293,7 +293,7 @@ export default function UkDashboard() {
                   checked={autoRefresh}
                   onChange={(e) => setAutoRefresh(e.target.checked)}
                 />{" "}
-                อัปเดตอัตโนมัติ
+                อัปเดตอัต���นมัติ
               </label>
             </div>
           </div>
