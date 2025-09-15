@@ -102,16 +102,20 @@ const ChassisScreen: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-4 mt-4">
-            {OPTIONS.map((o) => (
-              <SelectionCard
-                key={o.key}
-                icon={o.icon}
-                label={o.label}
-                isSelected={selected === o.key}
-                onClick={() => setSelected(o.key)}
-              />
-            ))}
+          {/* White content area with tabs + cards */}
+          <div className="bg-white rounded-t-3xl -mt-2 p-4">
+            <StepTabs active={1} />
+            <div className="grid grid-cols-2 gap-4 mt-2">
+              {OPTIONS.map((o) => (
+                <SelectionCard
+                  key={o.key}
+                  icon={o.icon}
+                  label={o.label}
+                  isSelected={selected === o.key}
+                  onClick={() => setSelected(o.key)}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </CustomizationScreen>
@@ -119,7 +123,7 @@ const ChassisScreen: React.FC = () => {
       <ConfirmModal
         isOpen={isExitModalOpen}
         title="ออกจากหน้าจอ"
-        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
+        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันท��ก"
         onConfirm={confirmExit}
         onCancel={() => setExitModalOpen(false)}
       />
