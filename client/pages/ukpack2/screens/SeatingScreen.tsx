@@ -28,6 +28,29 @@ const SeatingScreen: React.FC = () => {
   const currentChassis = state.chassis || "medium";
   const maxCapacity = maxByChassis[currentChassis] ?? 50;
 
+  const CHASSIS_LABELS: Record<string, string> = {
+    small: 'รถเมล์ขนาดเล็ก 16–30 ที่นั่ง',
+    medium: 'รถเมล์ขนาดกลาง 31–40 ที่นั่ง',
+    large: 'รถเมล์ขนาดใหญ่ 41–50 ที่นั่ง',
+    extra: 'รถเมล์รุ่นพิเศษ 51+ ที่นั่ง',
+  };
+
+  const TOPDOWN_IMAGE: Record<string, string | undefined> = {
+    small: 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9ab4a85f41e64448b6ce79942def8a26?format=webp&width=800',
+  };
+
+  const selectedChassis = React.useMemo(() => {
+    try {
+      const saved = sessionStorage.getItem('design.chassis');
+      return (saved || currentChassis) as keyof typeof CHASSIS_LABELS;
+    } catch {
+      return currentChassis as keyof typeof CHASSIS_LABELS;
+    }
+  }, [currentChassis]);
+
+  const selectedLabel = CHASSIS_LABELS[selectedChassis] || '';
+  const selectedTopdown = TOPDOWN_IMAGE[selectedChassis];
+
   const handleNext = () => {
     try {
       const seating = {
@@ -139,7 +162,7 @@ const SeatingScreen: React.FC = () => {
       <ErrorModal
         isOpen={isErrorModalOpen}
         title="ความจุเกิน"
-        message={`จำนวนที่นั่งทั้งหมดเกินความจุสูงสุดของรถ (${maxCapacity}) กรุณาตรวจสอบ`}
+        message={`จำนวนที่นั่งทั้งหมดเกินความจุสูงสุดของ��ถ (${maxCapacity}) กรุณาตรวจสอบ`}
         onClose={() => setErrorModalOpen(false)}
       />
     </>
