@@ -81,6 +81,30 @@ const StepTabs: React.FC<StepTabsProps> = ({ active }) => {
                 decoding="async"
                 loading="eager"
               />
+            ) : idx === 1 ? (
+              <img
+                src={TAB2_ICON}
+                alt={isActive ? 'แท็บที่ 2 (แอคทีฟ)' : 'แท็บที่ 2'}
+                className={`w-7 h-7 ${isActive ? '' : 'grayscale opacity-60'}`}
+                decoding="async"
+                loading="eager"
+              />
+            ) : idx === 2 ? (
+              <img
+                src={TAB3_ICON}
+                alt={isActive ? 'แท็บที่ 3 (แอคทีฟ)' : 'แท็บที่ 3'}
+                className={`w-7 h-7 ${isActive ? '' : 'grayscale opacity-60'}`}
+                decoding="async"
+                loading="eager"
+              />
+            ) : idx === 3 ? (
+              <img
+                src={TAB4_ICON}
+                alt={isActive ? 'แท็บที่ 4 (แอคทีฟ)' : 'แท็บที่ 4'}
+                className={`w-7 h-7 ${isActive ? '' : 'grayscale opacity-60'}`}
+                decoding="async"
+                loading="eager"
+              />
             ) : (
               <Icon active={isActive} />
             )}
