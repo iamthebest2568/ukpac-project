@@ -108,12 +108,12 @@ const SubmitScreen: React.FC = () => {
 
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <label className="w-36 text-sm text-[#003366]">รถจะมาทุกๆ</label>
+              <label className="w-36 text-sm text-[#003366]">รถจะมา���ุกๆ</label>
               <input
                 type="text"
                 value={interval}
                 onChange={(e) => setInterval(e.target.value)}
-                className="flex-1 rounded-md px-3 py-2 border border-[#07204a]"
+                className="flex-1 rounded-md px-3 py-1.5 md:py-2 border border-[#07204a] h-10 md:h-auto"
               />
               <span className="w-12 text-sm text-[#003366]">นาที</span>
             </div>
@@ -124,7 +124,7 @@ const SubmitScreen: React.FC = () => {
                 type="text"
                 value={route}
                 onChange={(e) => setRoute(e.target.value)}
-                className="flex-1 rounded-md px-3 py-2 border border-[#07204a]"
+                className="flex-1 rounded-md px-3 py-1.5 md:py-2 border border-[#07204a] h-10 md:h-auto"
               />
             </div>
 
@@ -136,7 +136,7 @@ const SubmitScreen: React.FC = () => {
                 type="text"
                 value={area}
                 onChange={(e) => setArea(e.target.value)}
-                className="flex-1 rounded-md px-3 py-2 border border-[#07204a]"
+                className="flex-1 rounded-md px-3 py-1.5 md:py-2 border border-[#07204a] h-10 md:h-auto"
               />
             </div>
           </div>
