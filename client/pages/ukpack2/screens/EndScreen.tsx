@@ -38,7 +38,7 @@ const EndScreen: React.FC = () => {
         isOpen={isShareOpen}
         onClose={() => setShareOpen(false)}
         shareUrl={window.location.origin + '/ukpack2'}
-        shareText={encodeURIComponent('ผม/ฉันได้ออกแบบรถเมล์ในฝัน ลองดูสิ')}
+        shareText={'ผม/ฉันได้ออกแบบรถเมล์ในฝัน ลองดูสิ'}
       />
     </>
   );
