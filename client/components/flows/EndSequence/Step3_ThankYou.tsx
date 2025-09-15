@@ -199,70 +199,80 @@ const Step3_ThankYou = ({
                 </button>
               </DialogTrigger>
 
-              <DialogContent className="p-6 bg-white rounded-lg">
+              <DialogContent className="p-6 bg-white rounded-lg max-w-md mx-auto max-h-[80vh] overflow-y-auto">
                 <DialogTitle className="font-prompt text-lg text-black mb-3">
                   แชร์เกมนี้
                 </DialogTitle>
                 <DialogDescription className="text-sm text-gray-600 mb-4">
-                  เลือกแพลตฟอร์มที่ต้องการแชร์
+                  เลือกแพลตฟอร์มที่ต้องกา��แชร์
                 </DialogDescription>
 
                 <div className="grid grid-cols-2 gap-3 mb-4">
                   <button
-                    className="figma-style1-button"
+                    className="btn-primary text-sm py-3 px-4 rounded-lg transition-all duration-200 hover:scale-105"
+                    style={{ backgroundColor: '#FFE000', color: '#000', border: '1px solid #000' }}
                     onClick={handleShareFacebook}
                     aria-label="แชร์ไปยัง Facebook"
                   >
                     Facebook
                   </button>
                   <button
-                    className="figma-style1-button"
+                    className="btn-primary text-sm py-3 px-4 rounded-lg transition-all duration-200 hover:scale-105"
+                    style={{ backgroundColor: '#FFE000', color: '#000', border: '1px solid #000' }}
                     onClick={handleShareX}
                     aria-label="แชร์ไปยัง X"
                   >
                     X
                   </button>
                   <button
-                    className="figma-style1-button"
+                    className="btn-primary text-sm py-3 px-4 rounded-lg transition-all duration-200 hover:scale-105"
+                    style={{ backgroundColor: '#FFE000', color: '#000', border: '1px solid #000' }}
                     onClick={handleShareLine}
                     aria-label="แชร์ไปยัง LINE"
                   >
                     LINE
                   </button>
                   <button
-                    className="figma-style1-button"
+                    className="btn-primary text-sm py-3 px-4 rounded-lg transition-all duration-200 hover:scale-105"
+                    style={{ backgroundColor: '#FFE000', color: '#000', border: '1px solid #000' }}
                     onClick={handleShareWhatsApp}
                     aria-label="แชร์ไปยัง WhatsApp"
                   >
                     WhatsApp
                   </button>
                   <button
-                    className="figma-style1-button"
+                    className="btn-primary text-sm py-3 px-4 rounded-lg transition-all duration-200 hover:scale-105"
+                    style={{ backgroundColor: '#FFE000', color: '#000', border: '1px solid #000' }}
                     onClick={handleShareMessenger}
                     aria-label="แชร์ไปยัง Messenger"
                   >
                     Messenger
                   </button>
                   <button
-                    className="figma-style1-button"
+                    className="btn-primary text-sm py-3 px-4 rounded-lg transition-all duration-200 hover:scale-105"
+                    style={{ backgroundColor: '#FFE000', color: '#000', border: '1px solid #000' }}
                     onClick={handleShareLinkedIn}
-                    aria-label="แชร์ไปยัง LinkedIn"
+                    aria-label="แชร���ไปยัง LinkedIn"
                   >
                     LinkedIn
                   </button>
                   <button
-                    className="figma-style1-button col-span-2"
+                    className="btn-primary text-sm py-3 px-4 rounded-lg transition-all duration-200 hover:scale-105 col-span-2"
+                    style={{ backgroundColor: copied ? '#10b981' : '#FFE000', color: '#000', border: '1px solid #000' }}
                     onClick={handleCopyLink}
                     aria-label="คัดลอกลิงก์"
                   >
-                    {copied ? "คัดลอกแล้ว" : "คัดลอกลิงก์"}
+                    {copied ? "คัดลอกแล้ว ✓" : "คัดลอกลิงก์"}
                   </button>
                 </div>
 
                 <div className="mt-2">
                   <DialogClose asChild>
-                    <button className="figma-style1-button--secondary w-full">
-                      <span className="figma-style1-button-text">ปิด</span>
+                    <button
+                      className="btn-secondary w-full py-3 px-4 rounded-lg transition-all duration-200 hover:scale-105"
+                      style={{ backgroundColor: '#E9E9E9', color: '#000', border: '1px solid #000' }}
+                    >
+                      ปิด
                     </button>
                   </DialogClose>
                 </div>
