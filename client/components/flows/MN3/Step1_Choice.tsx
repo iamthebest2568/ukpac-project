@@ -25,7 +25,7 @@ const Step1_Choice = ({
 
   // Define priorities exactly as in Figma design
   const priorityList = [
-    "ลดค่าโดยสารรถไฟฟ���า",
+    "ลดค่าโดยสารรถไฟฟ้า",
     "ปรับปรุงคุณภาพรถเมล์", 
     "ตั๋วร่วม",
     "เพิ่มความถี่รถเมล์",
@@ -121,7 +121,7 @@ const Step1_Choice = ({
   );
 
   return (
-    <div className="w-full min-h-screen bg-[#04D9F9] flex flex-col items-center justify-center relative" style={{ maxWidth: 1080, margin: '0 auto' }}>
+    <div className="w-full min-h-screen bg-[#04D9F9] flex flex-col items-center justify-center relative">
       {/* Main Content Container */}
       <div className="w-full px-4 pt-8 pb-32 flex flex-col items-center justify-start space-y-8">
         
@@ -135,7 +135,6 @@ const Step1_Choice = ({
               lineHeight: '1.2',
               fontWeight: 700,
               width: '100%',
-              maxWidth: '1080px',
               margin: '0 auto 16px auto'
             }}
           >
@@ -150,7 +149,6 @@ const Step1_Choice = ({
               fontWeight: 600,
               lineHeight: 'normal',
               width: '100%',
-              maxWidth: '1080px',
               margin: '0 auto'
             }}
           >
@@ -182,7 +180,7 @@ const Step1_Choice = ({
 
         {/* Continue Button - Fixed Footer */}
         <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full z-50 px-4 pb-4">
-          <div className="mx-auto flex flex-col items-center space-y-2" style={{ maxWidth: 1080 }}>
+          <div className="mx-auto flex flex-col items-center space-y-2">
             {selectedPriorities.length > 0 && (
               <button
                 onClick={handleNext}
