@@ -44,9 +44,9 @@ const DoorScreen: React.FC = () => {
       footerContent={<div className="flex justify-center"><CtaButton text="ถัดไป" onClick={handleNext} /></div>}
     >
       <div className="space-y-6">
+        <div className="w-full h-48 bg-[#081042] rounded-md flex items-center justify-center text-sm text-gray-300">Bus image preview</div>
         <div className="bg-white rounded-t-3xl -mt-2 p-4">
           <StepTabs active={5} />
-          <div className="w-full h-48 bg-[#081042] rounded-md flex items-center justify-center text-sm text-gray-300">Bus image preview</div>
 
           <h2 className="text-xl font-prompt font-semibold text-[#003366] mt-2">ประตู</h2>
 
