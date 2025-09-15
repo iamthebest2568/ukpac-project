@@ -36,92 +36,48 @@ const Ask02_2 = ({ sessionID, onNavigate }: Ask02_2Props) => {
       className="source-selection-page ask02-2-page"
       imageLoading="eager"
     >
-      {/* Children: custom content identical to previous implementation but rendered inside layout */}
-      <div
-        className="flex-1 flex flex-col items-center justify-center"
-        style={{ paddingTop: "4%", paddingBottom: "20%" }}
-      >
-        <div
-          className="relative bg-white rounded-[20px] border-[5px] flex items-start justify-center p-6"
-          style={{
-            borderColor: "#000D59",
-            width: "82.4%", // 890/1080
-            height: "40.625%", // 780/1920
-            maxWidth: "890px",
-            maxHeight: "780px",
-          }}
-        >
-          <textarea
-            value={textInput}
-            onChange={(e) => setTextInput(e.target.value)}
-            placeholder="พิมพ์ข้อความของคุณที่นี่..."
-            className="w-full h-full bg-transparent border-none outline-none resize-none font-prompt text-center placeholder-gray-500"
-            style={{
-              fontSize: "clamp(16px, 3.7vw, 40px)",
-              fontWeight: 300,
-              color: "rgba(0, 0, 0, 0.7)",
-              lineHeight: "1.2",
-            }}
-            rows={8}
-          />
-        </div>
-      </div>
-
-      <div
-        className="w-full flex justify-center items-end"
-        style={{ paddingBottom: "8.9%" }}
-      >
-        <div
-          className="relative flex justify-center"
-          style={{ width: "78.2%", maxWidth: "845px" }}
-        >
-          <button
-            onClick={handleNext}
-            disabled={textInput.trim().length === 0}
-            className={`w-full rounded-[50px] flex items-center justify-center transition-all duration-200 ${
-              textInput.trim().length === 0
-                ? "bg-gray-400 cursor-not-allowed"
-                : "bg-[#FFE000] hover:scale-105 hover:shadow-lg hover:bg-black active:bg-black group"
-            }`}
-            style={{
-              height: "clamp(50px, 6.1vw, 118px)",
-              minHeight: "50px",
-            }}
-          >
-            <span
-              className={`font-prompt text-center ${
-                textInput.trim().length === 0
-                  ? "text-gray-600"
-                  : "text-black group-hover:text-[#FFE000] group-active:text-[#FFE000]"
-              }`}
-              style={{
-                fontSize: "clamp(18px, 4.6vw, 50px)",
-                fontWeight: 400,
-                letterSpacing: "0.4px",
-                lineHeight: "normal",
-              }}
-            >
-              ไปต่อ
-            </span>
-          </button>
-        </div>
-
-        {textInput.trim().length === 0 && (
+      <div className="ask02-2-content">
+        <div className="w-full max-w-[890px] mx-auto">
           <div
-            className="absolute text-center font-prompt"
+            className="ask02-2-textarea-box relative w-full rounded-[20px] border-[5px] border-[#000D59] bg-white"
             style={{
-              color: "#000D59",
-              fontSize: "clamp(12px, 1.67vw, 18px)",
-              top: "100%",
-              left: "50%",
-              transform: "translateX(-50%)",
-              marginTop: "16px",
+              minHeight: "clamp(220px, 30vh, 420px)",
+              padding: "clamp(12px, 2.2vw, 20px)",
             }}
           >
-            กรุณากรอกข้อความเพื่อดำเนินการต่อ
+            <textarea
+              value={textInput}
+              onChange={(e) => setTextInput(e.target.value)}
+              placeholder="พิมพ์ข้อความของคุณที่นี่..."
+              className="w-full h-full resize-none border-none outline-none font-prompt bg-transparent"
+              style={{
+                fontSize: "clamp(16px, 3.7vw, 40px)",
+                fontWeight: 400,
+                minHeight: "clamp(160px, 20vh, 360px)",
+                color: "#000",
+                lineHeight: 1.3,
+              }}
+            />
           </div>
-        )}
+        </div>
       </div>
+
+      <div className="figma-style1-button-container">
+        <button
+          onClick={handleNext}
+          className="figma-style1-button"
+          disabled={textInput.trim().length === 0}
+          aria-disabled={textInput.trim().length === 0}
+        >
+          <span className="figma-style1-button-text">ไปต่อ</span>
+        </button>
+      </div>
+
+      {textInput.trim().length === 0 && (
+        <div className="text-center font-prompt mt-2" style={{ color: "#000D59", fontSize: "14px" }}>
+          กรุณากรอกข้อความเพื่อดำเนินการต่อ
+        </div>
+      )}
     </FigmaStyle1Layout>
   );
 };
