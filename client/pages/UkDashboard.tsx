@@ -53,7 +53,7 @@ type SessionSummary = {
   mn1Selected: string[]; // ลำดับความสำคัญของประเด็น
   mn2Selections?: Record<string, string[]>; // กลุ่มเป้าหมายที่ควรได้รับสิทธิ์
   mn3Selected?: string[]; // ประเด็นนโยบายที่ผู้ใช้เลือก
-  mn3BudgetAllocation?: Record<string, number>; // การจัดส���รงบประมาณ
+  mn3BudgetAllocation?: Record<string, number>; // การจัดสรรงบประมาณ
   mn3BudgetTotal?: number;
   satisfactionLevel?: string; // ระดับความพึงพอใจ
   ask05Comment?: string; // ข้อเสนอเพิ่มเติมต่อรัฐ
@@ -257,7 +257,7 @@ export default function UkDashboard() {
                 แดชบอร์ดวิเคราะห์วิดีโอ
               </h1>
               <div className="text-white/70 text-sm mt-2">
-                อัปเดตล่าสุด: {lastUpdated || "-"}
+                อัปเดต���่าสุด: {lastUpdated || "-"}
               </div>
               {ingest && (
                 <div className="text-white/60 text-xs mt-1">
@@ -325,7 +325,7 @@ export default function UkDashboard() {
 
               {/* Charts */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                <Card title="แนวโน้มการเล่น (���ายวัน)">
+                <Card title="แนวโน้มการเล่น (รายวัน)">
                   <div className="w-full h-[240px] md:h-[320px] min-w-0">
                     <ResponsiveContainer width="100%" height="100%">
                       <LineChart data={(stats.timeseries || []).map(d => ({ ...d, plays: Number(d.plays || 0) }))} margin={{ top: 8, right: 12, left: -8, bottom: 8 }}>
@@ -665,7 +665,7 @@ export default function UkDashboard() {
                                 if (resp.ok) setDetailData(await resp.json());
                               }}
                             >
-                              รายละเอียด
+                              รา��ละเอียด
                             </button>
                           </td>
                         </tr>
@@ -693,12 +693,12 @@ export default function UkDashboard() {
                       "เหตุผลในการไม่เห็นด้วยหรือกลางๆ",
                       "คำอธิบายเพิ่มเติม",
                       "ประเด็นนโยบายที่ผู้ใช้เลือก",
-                      "นโยบาย - กลุ่มเป้าหมายที่ควรได้รับสิทธิ์",
+                      "นโยบาย - กลุ่มเป้าหมายที่ควรได้รั���สิทธิ์",
                       "ลำดับความสำคัญของประเด็น",
                       "การจัดสรรงบประมาณระหว่างนโยบาย",
                       "ระดับความพึงพอใจ",
                       "ข้อเสนอเพิ่มเติมต่อรัฐ",
-                      "การตอบสนองต��อข่าวปลอม",
+                      "การตอบสนองต่อข่าวปลอม",
                       "แหล่งข่าวที่ผู้ใช้เลือก",
                       "การเข้าร่วมลุ้นรางวัล",
                       "ชื่อ",
