@@ -22,7 +22,7 @@ export default function ReasonOther01Page() {
 
   return (
     <FigmaStyle1Layout
-      backgroundImage="https://api.builder.io/api/v1/image/assets/TEMP/1ca30c44dc55682aa7c0c1273799b2f3f61b5c99?width=2160"
+      backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc904086ef11f4e0d80cf30aad554f788?format=webp&width=800"
       className="reason-other-01-page"
       imageLoading="eager"
     >
