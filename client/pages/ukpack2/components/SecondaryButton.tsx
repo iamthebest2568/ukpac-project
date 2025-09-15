@@ -12,7 +12,7 @@ const SecondaryButton: React.FC<SecondaryButtonProps> = ({ text, onClick, classN
       type="button"
       onClick={onClick}
       className={
-        `bg-[#000d59] text-white border border-white rounded-full px-5 py-2 inline-flex items-center justify-center shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#000d59] font-prompt font-semibold ${className}`
+        `bg-[#ffe000] text-black rounded-full px-5 py-2 inline-flex items-center justify-center shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#000d59] hover:bg-[#000d59] hover:text-white transition-colors font-prompt font-semibold ${className}`
       }
     >
       {text}
