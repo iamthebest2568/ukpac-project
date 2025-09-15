@@ -201,13 +201,15 @@ const PaymentScreen: React.FC = () => {
             const img = HERO_IMAGE[selected];
             return img ? (
               <>
-                <img
-                  src={img}
-                  alt={`ภาพรถ - ${label}`}
-                  className="h-48 w-auto object-contain select-none"
-                  decoding="async"
-                  loading="eager"
-                />
+                    <HeroWithShadow>
+                  <img
+                    src={img}
+                    alt={`ภาพรถ - ${label}`}
+                    className="h-48 w-auto object-contain select-none"
+                    decoding="async"
+                    loading="eager"
+                  />
+                </HeroWithShadow>
                 <p className="mt-1 font-prompt font-semibold text-[#001a73] text-center">
                   รถที่ใช้งาน : {label}
                 </p>
