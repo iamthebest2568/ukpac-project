@@ -84,7 +84,7 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   "ที่จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
   "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
-  "ระบบประกาศบอกป้าย(เสียง/จ��)": <IconCup />,
+  "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
   "กล้องวงจรปิด": <IconCamSmall />,
 };
 
@@ -245,7 +245,7 @@ const DoorScreen: React.FC = () => {
                   <img src={SCAN_ICON} alt={label} className="h-5 w-5 object-contain" />
                 </div>
               );
-              if (label === "สแกนจ่าย 2") return (
+              if (label === "ส��กนจ่าย 2") return (
                 <div key={`${label}-${idx}`} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center">
                   <img src={SCAN2_ICON} alt={label} className="h-5 w-5 object-contain" />
                 </div>
