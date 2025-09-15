@@ -38,7 +38,7 @@ const FeedbackChoiceModal: React.FC<Props> = ({
               onChooseNotSure();
               onClose();
             }}
-            className="flex-1 px-4 py-2 rounded-md bg-gray-200 text-[#001a73] font-prompt"
+            className="flex-1 px-4 py-2 rounded-md bg-[#ffe000] text-black hover:bg-[#000d59] hover:text-white transition-colors font-prompt"
           >
             ไม่แน่ใจ
           </button>
