@@ -534,7 +534,10 @@
   content: "";
   position: fixed;
   inset: 0;
-  background-color: #04D9F9;
+  background-image: url('https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F44cf16d8ccf64321b16d01722cbc8356?format=webp&width=1500');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
   z-index: 0;
   pointer-events: none;
 }
