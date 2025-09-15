@@ -12,7 +12,14 @@ const IconPerson = () => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <circle cx="30" cy="20" r="12" stroke="#000D59" strokeWidth="3" fill="none" />
+    <circle
+      cx="30"
+      cy="20"
+      r="12"
+      stroke="#000D59"
+      strokeWidth="3"
+      fill="none"
+    />
     <path
       d="M8 55c3-12 15-18 22-18s19 6 22 18"
       stroke="#000D59"
@@ -32,7 +39,16 @@ const IconPhone = () => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <rect x="3" y="3" width="33" height="63" rx="8" stroke="#000D59" strokeWidth="3" fill="none" />
+    <rect
+      x="3"
+      y="3"
+      width="33"
+      height="63"
+      rx="8"
+      stroke="#000D59"
+      strokeWidth="3"
+      fill="none"
+    />
     <circle cx="19.5" cy="58" r="3" fill="#000D59" />
     <rect x="14" y="8" width="11" height="2" rx="1" fill="#000D59" />
   </svg>
