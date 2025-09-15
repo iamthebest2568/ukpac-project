@@ -255,6 +255,11 @@ const App = () => {
                   <UkDashboard />
                 </Suspense>
               } />
+              <Route path="/ukpack1/how-do-you-think" element={
+                <Suspense fallback={<AskSkeleton />}>
+                  <HowDoYouThinkPage />
+                </Suspense>
+              } />
 
               {/* Legacy alias routes (cleaned) */}
               <Route
