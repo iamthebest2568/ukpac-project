@@ -1,4 +1,5 @@
 import React from "react";
+import HeroWithShadow from "./HeroWithShadow";
 
 const displayDoor = (raw: any) => {
   if (!raw) return "-";
@@ -12,7 +13,7 @@ const displayDoor = (raw: any) => {
   if (typeof raw === "object") {
     if (raw.doorChoice)
       return raw.doorChoice === "1"
-        ? "1 ประตู"
+        ? "1 ��ระตู"
         : raw.doorChoice === "2"
           ? "2 ประตู"
           : String(raw.doorChoice);
@@ -91,13 +92,15 @@ const SummaryDetails: React.FC = () => {
     <>
       {heroImg && (
         <div className="flex flex-col items-center mb-6">
-          <img
-            src={heroImg}
-            alt={`ภาพรถ - ${chassisLabel}`}
-            className="h-64 w-auto object-contain select-none"
-            decoding="async"
-            loading="eager"
-          />
+          <HeroWithShadow>
+            <img
+              src={heroImg}
+              alt={`ภาพรถ - ${chassisLabel}`}
+              className="h-64 w-auto object-contain select-none"
+              decoding="async"
+              loading="eager"
+            />
+          </HeroWithShadow>
           <p className="mt-2 font-prompt font-semibold text-[#001a73] text-center">
             รถที่เลือก : {chassisLabel}
           </p>
