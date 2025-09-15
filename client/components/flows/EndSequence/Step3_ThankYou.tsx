@@ -167,53 +167,9 @@ const Step3_ThankYou = ({
                     color: "#000",
                     border: "1px solid #000",
                   }}
-                  onClick={handleShareX}
-                >
-                  X
-                </button>
-                <button
-                  className="btn-primary"
-                  style={{
-                    backgroundColor: "#FFE000",
-                    color: "#000",
-                    border: "1px solid #000",
-                  }}
                   onClick={handleShareLine}
                 >
                   LINE
-                </button>
-                <button
-                  className="btn-primary"
-                  style={{
-                    backgroundColor: "#FFE000",
-                    color: "#000",
-                    border: "1px solid #000",
-                  }}
-                  onClick={handleShareWhatsApp}
-                >
-                  WhatsApp
-                </button>
-                <button
-                  className="btn-primary"
-                  style={{
-                    backgroundColor: "#FFE000",
-                    color: "#000",
-                    border: "1px solid #000",
-                  }}
-                  onClick={handleShareLinkedIn}
-                >
-                  LinkedIn
-                </button>
-                <button
-                  className="btn-primary col-span-2"
-                  style={{
-                    backgroundColor: copied ? "#10b981" : "#FFE000",
-                    color: "#000",
-                    border: "1px solid #000",
-                  }}
-                  onClick={handleCopyLink}
-                >
-                  {copied ? "คัดลอกแล้ว ✓" : "คัดลอกลิงก์"}
                 </button>
               </div>
 
