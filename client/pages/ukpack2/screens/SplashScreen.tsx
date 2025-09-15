@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CtaButton from '../components/CtaButton';
+import PrivacyModal from '../components/PrivacyModal';
 
 const SplashScreen: React.FC = () => {
   const navigate = useNavigate();
