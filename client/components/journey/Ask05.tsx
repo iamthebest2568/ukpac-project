@@ -3,7 +3,7 @@
  * Restyled to match the new Figma-style pages while preserving existing content and flow
  */
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { logEvent } from "../../services/dataLogger.js";
 import FigmaStyle1Layout from "../layouts/FigmaStyle1Layout";
 
