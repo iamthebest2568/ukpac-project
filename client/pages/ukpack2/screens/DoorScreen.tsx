@@ -41,7 +41,7 @@ const DoorScreen: React.FC = () => {
     <CustomizationScreen
       title="ปรับแต่งรถเมล์ของคุณ"
       theme="light"
-      footerContent={<div className="flex justify-end"><CtaButton text="ถัดไป" onClick={handleNext} /></div>}
+      footerContent={<div className="flex justify-center"><CtaButton text="ถัดไป" onClick={handleNext} /></div>}
     >
       <div className="space-y-6">
         <div className="bg-white rounded-t-3xl -mt-2 p-4">
