@@ -4,6 +4,7 @@ import CustomizationScreen from "../components/CustomizationScreen";
 import CtaButton from "../components/CtaButton";
 import { useBusDesign } from "../context/BusDesignContext";
 import ConfirmModal from "../components/ConfirmModal";
+import HeroWithShadow from "../components/HeroWithShadow";
 
 const SubmitScreen: React.FC = () => {
   const navigate = useNavigate();
