@@ -35,7 +35,7 @@ const IconQr = () => (
 const OPTIONS = [
   { key: 'cash', label: 'เงินสด', icon: <IconCash /> },
   { key: 'scan', label: 'สแกนจ่าย', icon: <IconScan /> },
-  { key: 'tap', label: 'แตะบั���ร', icon: <IconTap /> },
+  { key: 'tap', label: 'แตะบัตร', icon: <IconTap /> },
   { key: 'qr', label: 'QR/สแกน', icon: <IconQr /> },
 ];
 

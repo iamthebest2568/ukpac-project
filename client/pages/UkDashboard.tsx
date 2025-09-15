@@ -52,13 +52,13 @@ type SessionSummary = {
   keyMessage1?: string; // Key message 1
   mn1Selected: string[]; // ลำดับความสำคัญของประเด็น
   mn2Selections?: Record<string, string[]>; // กลุ่มเป้าหมายที่ควรได้รับสิทธิ์
-  mn3Selected?: string[]; // ประเด็นนโยบาย���ี่ผู้ใช้เลือก
+  mn3Selected?: string[]; // ประเด็นนโยบายที่ผู้ใช้เลือก
   mn3BudgetAllocation?: Record<string, number>; // การจัดสรรงบประมาณ
   mn3BudgetTotal?: number;
   satisfactionLevel?: string; // ระดับความพึงพอใจ
   ask05Comment?: string; // ข้อเสนอเพิ่มเติมต่อรัฐ
   fakeNewsResponse?: string; // การตอบสนองต่อข่าวปลอม
-  sourceSelected?: string; // แหล่งข่าวที่ผู้���ช้เลือก
+  sourceSelected?: string; // แหล่งข่าวที่ผู้ใช้เลือก
   endDecision?: string; // การเข้าร่วมลุ้นรางวัล
   endDecisionText?: string;
   contactName?: string;
@@ -218,7 +218,7 @@ export default function UkDashboard() {
           <div className="w-full max-w-sm bg-white/5 border border-white/10 rounded-xl p-5">
             <div className="text-xl font-semibold mb-3">ป้อนรหัสผ่าน</div>
             <div className="text-sm text-white/70 mb-4">
-              หน้านี้ป้องกันด้วยรหัสผ��าน
+              หน้านี้ป้องกันด้วยรหัสผ่าน
             </div>
             <input
               type="password"
@@ -265,7 +265,7 @@ export default function UkDashboard() {
                   {ingest.app.lastTs
                     ? new Date(ingest.app.lastTs).toLocaleString()
                     : "-"}{" "}
-                  • วิดีโอ: {ingest.video.count} เหตุการณ์, ล่าสุด{" "}
+                  • วิดีโอ: {ingest.video.count} เหตุการณ์, ล่าส��ด{" "}
                   {ingest.video.lastTs
                     ? new Date(ingest.video.lastTs).toLocaleString()
                     : "-"}
@@ -304,7 +304,7 @@ export default function UkDashboard() {
               aria-hidden="true"
             />
           )}
-          {error && <div className="text-red-400">เกิดข้อผิดพล��ด: {error}</div>}
+          {error && <div className="text-red-400">เกิดข้อผิดพลาด: {error}</div>}
 
           {stats && (
             <div className="space-y-6">
@@ -556,7 +556,7 @@ export default function UkDashboard() {
                     {/* MN3 money */}
                     <AccordionItem value="mn3money">
                       <AccordionTrigger>
-                        Minigame 3 : เงินที��ใส่
+                        Minigame 3 : เงินที่ใส่
                       </AccordionTrigger>
                       <AccordionContent>
                         <ul className="space-y-1 text-sm">
@@ -606,7 +606,7 @@ export default function UkDashboard() {
                             </span>
                           </li>
                           <li className="flex justify-between">
-                            <span>กรอ��ข้อมูลติดต่อ</span>
+                            <span>กรอกข้อมูลติดต่อ</span>
                             <span className="text-white/70">
                               {journey.endseq?.contacts || 0}
                             </span>
@@ -630,7 +630,7 @@ export default function UkDashboard() {
                         <th className="py-2 pr-4">MN1</th>
                         <th className="py-2 pr-4">ตัดสินใจ</th>
                         <th className="py-2 pr-4">ติดต่อ</th>
-                        <th className="py-2 pr-4">ความคิดเห���น</th>
+                        <th className="py-2 pr-4">ความคิดเห็น</th>
                         <th className="py-2 pr-4">ดู</th>
                       </tr>
                     </thead>
@@ -698,7 +698,7 @@ export default function UkDashboard() {
                       "การจัดสรรงบประมาณระหว่างนโยบาย",
                       "ระดับความพึงพอใจ",
                       "ข้อเสนอเพิ่มเติมต่อรัฐ",
-                      "การตอบสนองต่อข่าวปล���ม",
+                      "การตอบสนองต่อข่าวปลอม",
                       "แหล่งข่าวที่ผู้ใช้เลือก",
                       "การเข้าร่วมลุ้นรางวัล",
                       "ชื่อ",

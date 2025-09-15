@@ -28,7 +28,7 @@ const Step1_Priorities = ({
   const getDefaultButtonColor = (priority: string) => {
     switch (priority) {
       case "ปรับปรุงคุณภาพรถเมล์":
-      case "เพิ่มความถี่รถเมล์":
+      case "เพิ่มความถี่รถเม���์":
         return "#FFE000"; // Yellow by default in Figma
       default:
         return "#E9E9E9"; // Gray by default in Figma
@@ -139,7 +139,7 @@ const Step1_Priorities = ({
       {/* Options Grid positioned as in Figma */}
       <div className="absolute w-full flex flex-col items-center" style={{ top: '71.4%' }}>
         <div className="flex flex-col" style={{ width: '91.1%', maxWidth: '984px', gap: 'clamp(16px, 1.2vw, 24px)' }}>
-          {/* Row 1: ลดค่าโดยสารรถไฟฟ้า (gray), ปรับปรุงคุณภาพรถเมล�� (yellow) */}
+          {/* Row 1: ลดค่าโดยสารรถไฟฟ้า (gray), ปรับปรุงคุณภาพรถเมล์ (yellow) */}
           <div className="flex" style={{ gap: 'clamp(16px, 1.8vw, 19px)' }}>
             <button
               className="transition-all duration-200 flex items-center justify-center rounded-[40px] border-0"
@@ -367,7 +367,7 @@ const Step1_Priorities = ({
               fontSize: 'clamp(14px, 2.8vw, 18px)'
             }}
           >
-            กรุณาเลือกอย่างน้อย 1 ข้อเพื่อดำเนินการ���่อ
+            กรุณาเลือกอย่างน้อย 1 ข้อเพื่อดำเนินการต่อ
           </div>
         )}
       </div>

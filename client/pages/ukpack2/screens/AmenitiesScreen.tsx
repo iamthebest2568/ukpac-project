@@ -63,7 +63,7 @@ const AMENITIES = [
   { key: 'plug', label: 'ปลั๊กไฟ', icon: <IconPlug /> },
   { key: 'tv', label: 'ทีวี', icon: <IconTv /> },
   { key: 'cup', label: 'ที่วางแก้ว', icon: <IconCup /> },
-  { key: 'cam', label: 'กล้องวงจรปิ��', icon: <IconCam /> },
+  { key: 'cam', label: 'กล้องวงจรปิด', icon: <IconCam /> },
 ];
 
 import { useNavigate } from 'react-router-dom';

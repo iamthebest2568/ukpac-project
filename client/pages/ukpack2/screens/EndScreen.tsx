@@ -14,7 +14,7 @@ const EndScreen: React.FC = () => {
     >
       <div className="space-y-6">
         <div className="w-full h-64 bg-white rounded-md flex items-center justify-center text-[#000d59]">Main illustration placeholder</div>
-        <p className="text-white font-sarabun">ขอบคุณที่เข���าร่วม ถึงแม้คุณจะไม่ได้ร่วมลุ้นรางวัล คุณก็ช่วยออกแบบรถเมล์ให้ชุมชนได้ดีขึ้น</p>
+        <p className="text-white font-sarabun">ขอบคุณที่เข้าร่วม ถึงแม้คุณจะไม่ได้ร่วมลุ้นรางวัล คุณก็ช่วยออกแบบรถเมล์ให้ชุมชนได้ดีขึ้น</p>
       </div>
     </CustomizationScreen>
   );
