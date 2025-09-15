@@ -275,7 +275,7 @@
 
 /* Background image for MN3 page - using Ask02 image */
 .mn3-page-bg {
-  background-image: linear-gradient(rgba(4,217,249,0.85), rgba(4,217,249,0.85)), url('https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fa06918f51a344c55898963662beae09b?format=webp&width=800');
+  background-image: url('https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fa06918f51a344c55898963662beae09b?format=webp&width=800');
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
