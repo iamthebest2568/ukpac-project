@@ -14,7 +14,7 @@ const EndScreen: React.FC = () => {
         <div className="flex justify-center">
           <CtaButton text="จบเกม" onClick={() => navigate("/ukpack2")} />
           <SecondaryButton
-            text="แชร์เกมน���้กับเพื่อน"
+            text="แชร์เกมนี้กับเพื่อน"
             onClick={() => console.log("share")}
           />
         </div>
