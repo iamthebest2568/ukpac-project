@@ -25,7 +25,7 @@ const SplashScreen: React.FC = () => {
             <CtaButton text="เริ่มออกแบบ" onClick={() => navigate('/ukpack2/chassis')} />
           </div>
           <div className="mt-6 text-sm text-[#07204a]">
-            <button type="button" onClick={() => setShowPrivacy(true)} className="underline">นโยบายแ��ะความเป็นส่วนตัว</button>
+            <button type="button" onClick={() => setShowPrivacy(true)} className="underline">นโยบายและความเป็นส่วนตัว</button>
           </div>
         </div>
       </div>
