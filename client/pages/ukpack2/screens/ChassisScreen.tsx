@@ -9,9 +9,9 @@ import ConfirmModal from '../components/ConfirmModal';
 
 const IconSmall = () => (
   <img
-    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe13eae8033b0437d89897a8d33932e7b?format=webp&width=240"
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe13eae8033b0437d89897a8d33932e7b?format=webp&width=360"
     alt="รถเมล์ขนาดเล็ก 16-30 ที่นั่ง"
-    className="h-12 w-auto select-none"
+    className="max-h-12 w-auto object-contain select-none"
     decoding="async"
     loading="eager"
   />
@@ -44,7 +44,7 @@ const OPTIONS = [
   { key: 'small', label: 'รถเมล์ขนาดเล็ก 16-30 ที่นั่ง', icon: <IconSmall /> },
   { key: 'medium', label: 'รถเมล์ขนาดกลาง 31-40 ที่นั่ง', icon: <IconMedium /> },
   { key: 'large', label: 'รถเมล์ขนาดใหญ่ 41-50 ที่นั่ง', icon: <IconLarge /> },
-  { key: 'extra', label: 'รถเมล์รุ่นพิเศษ 51+ ที่น��่ง', icon: <IconExtra /> },
+  { key: 'extra', label: 'รถเมล์รุ่นพิเศษ 51+ ที่นั่ง', icon: <IconExtra /> },
 ];
 
 const ChassisScreen: React.FC = () => {
