@@ -88,7 +88,7 @@ const Step1_Choice = ({
   // Define which buttons should be yellow by default (from Figma design)
   const defaultYellowButtons = new Set([
     "ปรับปรุงคุณภาพรถเมล์",  // choice_2
-    "เพิ่มความถี่รถเมล์"      // choice_4
+    "เพิ่��ความถี่รถเมล์"      // choice_4
   ]);
 
   const getButtonColor = (priority: string) => {
@@ -114,49 +114,32 @@ const Step1_Choice = ({
   return (
     <div className="w-full min-h-screen bg-[#04D9F9] flex flex-col items-center justify-center relative" style={{ maxWidth: 1080, margin: '0 auto' }}>
       {/* Main Content Container */}
-      <div className="w-full px-4 pt-8 pb-28 md:pb-36 flex flex-col items-center justify-center space-y-8">
+      <div className="responsive-content flex-col-center responsive-spacing-lg">
         
         {/* Title Section */}
-        <div className="text-center w-full max-w-4xl">
-          <h1 
-            className="font-prompt font-bold text-center leading-normal mb-4"
-            style={{ 
-              color: '#000D59',
-              fontSize: 'clamp(32px, 7.4vw, 80px)',
-              lineHeight: 'normal',
-              fontWeight: 700
-            }}
-          >
+        <div className="text-center w-full responsive-padding-md">
+          <h1 className="heading-xl responsive-spacing-sm">
             คุณคิดว่าควรใช้เงินที่ได้<br />
             จากการเก็บไปพัฒนาอะไร
           </h1>
-          <p 
-            className="font-prompt font-bold text-center"
-            style={{ 
-              color: '#000D59',
-              fontSize: 'clamp(18px, 3.7vw, 40px)',
-              fontWeight: 700,
-              marginTop: '0px'
-            }}
-          >
+          <p className="heading-sm">
             ไม่เกิน 3 นโยบาย
           </p>
         </div>
 
         {/* Button Grid - Responsive Layout */}
-        <div className="w-full max-w-5xl space-y-4">
+        <div className="option-grid">
           
           {/* Row 1: choice_1 and choice_2 */}
-          <div className="flex gap-4 justify-center flex-wrap">
+          <div className="option-row">
             {/* choice_1: ลดค่าโดยสารรถไฟฟ้า */}
             <button
               onClick={() => !isSelectionDisabled(priorityList[0]) && handlePriorityToggle(priorityList[0])}
               disabled={isSelectionDisabled(priorityList[0])}
-              className={`rounded-[40px] border transition-all duration-200 flex items-center justify-center ${getButtonColor(priorityList[0])}`}
-              style={{ 
-                width: 'clamp(200px, 43vw, 465px)', 
-                height: 'clamp(60px, 8.3vw, 90px)',
-                minWidth: '200px'
+              className={`option-btn ${defaultYellowButtons.has(priorityList[0]) ? 'option-btn--yellow' : 'option-btn--gray'} ${selectedPriorities.includes(priorityList[0]) ? 'selected' : ''}`}
+              style={{
+                backgroundColor: getButtonColor(priorityList[0]),
+                minWidth: 'clamp(180px, 40vw, 465px)'
               }}
             >
               <span 
@@ -176,11 +159,10 @@ const Step1_Choice = ({
             <button
               onClick={() => !isSelectionDisabled(priorityList[1]) && handlePriorityToggle(priorityList[1])}
               disabled={isSelectionDisabled(priorityList[1])}
-              className={`rounded-[40px] border transition-all duration-200 flex items-center justify-center ${getButtonColor(priorityList[1])}`}
-              style={{ 
-                width: 'clamp(220px, 46vw, 500px)', 
-                height: 'clamp(60px, 8.3vw, 90px)',
-                minWidth: '220px'
+              className={`option-btn ${defaultYellowButtons.has(priorityList[1]) ? 'option-btn--yellow' : 'option-btn--gray'} ${selectedPriorities.includes(priorityList[1]) ? 'selected' : ''}`}
+              style={{
+                backgroundColor: getButtonColor(priorityList[1]),
+                minWidth: 'clamp(200px, 43vw, 500px)'
               }}
             >
               <span 
@@ -324,47 +306,22 @@ const Step1_Choice = ({
           </div>
         </div>
 
-        {/* Continue Button - Sticky Footer */}
-        <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full z-50 px-4 pb-4">
-          <div className="mx-auto flex flex-col items-center space-y-2" style={{ maxWidth: 1080 }}>
+        {/* Continue Button - Fixed Footer */}
+        <div className="fixed-footer">
+          <div className="btn-container">
             <button
               onClick={handleNext}
               disabled={selectedPriorities.length === 0}
-              className={`rounded-[50px] border-none flex items-center justify-center transition-all duration-200 ${
-                selectedPriorities.length === 0
-                  ? "bg-gray-400 cursor-not-allowed"
-                  : "bg-[#FFE000] hover:bg-black hover:scale-105 group"
-              }`}
-              style={{
-                width: 'clamp(300px, 78vw, 845px)',
-                height: 'clamp(50px, 10.9vw, 118px)',
-                opacity: selectedPriorities.length === 0 ? 0.5 : 1
-              }}
+              className="btn-large"
               aria-describedby="next-button-description"
             >
-              <span
-                className={`font-prompt ${
-                  selectedPriorities.length === 0
-                    ? "text-gray-600"
-                    : "text-black group-hover:text-[#FFE000]"
-                }`}
-                style={{
-                  fontSize: 'clamp(18px, 4.6vw, 50px)',
-                  fontWeight: 400,
-                  letterSpacing: '0.4px'
-                }}
-              >
-                ไปต่อ
-              </span>
+              ไปต่อ
             </button>
             {selectedPriorities.length === 0 && (
               <div
                 id="next-button-description"
-                className="text-center font-prompt"
-                style={{
-                  color: '#000D59',
-                  fontSize: 'clamp(14px, 2.8vw, 18px)'
-                }}
+                className="text-subtitle text-center"
+                style={{ color: '#000D59' }}
               >
                 กรุณาเลือกอย่างน้อย 1 ข้อเพื่อดำเนินการต่อ
               </div>
