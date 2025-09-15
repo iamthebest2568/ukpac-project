@@ -51,7 +51,7 @@ type SessionSummary = {
   reasonOther01?: string; // คำอธิบายเพิ่มเติม
   keyMessage1?: string; // Key message 1
   mn1Selected: string[]; // ลำดับความสำคัญของประเด็น
-  mn2Selections?: Record<string, string[]>; // กลุ่มเป้าหมายที่ควรได้รับสิทธิ์
+  mn2Selections?: Record<string, string[]>; // กลุ่มเป้าหมา���ที่ควรได้รับสิทธิ์
   mn3Selected?: string[]; // ประเด็นนโยบายที่ผู้ใช้เลือก
   mn3BudgetAllocation?: Record<string, number>; // การจัดสรรงบประมาณ
   mn3BudgetTotal?: number;
@@ -325,7 +325,7 @@ export default function UkDashboard() {
 
               {/* Charts */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                <Card title="แนวโน้มการเล่น (รายวั���)">
+                <Card title="แนวโน้มการเล่น (รายวัน)">
                   <div className="w-full h-[240px] md:h-[320px] min-w-0">
                     <ResponsiveContainer width="100%" height="100%">
                       <LineChart data={(stats.timeseries || []).map(d => ({ ...d, plays: Number(d.plays || 0) }))} margin={{ top: 8, right: 12, left: -8, bottom: 8 }}>
@@ -575,7 +575,7 @@ export default function UkDashboard() {
                     </AccordionItem>
                     {/* Comments */}
                     <AccordionItem value="comments">
-                      <AccordionTrigger>ข้อคิดเห็นอื่��ๆ</AccordionTrigger>
+                      <AccordionTrigger>ข้อคิดเห็นอื่นๆ</AccordionTrigger>
                       <AccordionContent>
                         <ul className="space-y-1 text-sm">
                           {(journey.ask05Samples || []).map(
