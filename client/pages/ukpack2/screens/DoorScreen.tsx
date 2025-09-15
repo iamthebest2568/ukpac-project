@@ -79,7 +79,7 @@ const DoorScreen: React.FC = () => {
               icon={<IconHighLow />}
               label={'ประตูสูง/ต่ำ'}
               isSelected={highLow}
-              onClick={() => setHighLow((s) => !ส)}
+              onClick={() => setHighLow((s) => !s)}
               variant="light"
             />
           </div>
