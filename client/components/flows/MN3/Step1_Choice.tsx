@@ -142,7 +142,7 @@ const Step1_Choice = ({
         <div className="w-full max-w-5xl space-y-4">
           
           {/* Row 1: choice_1 and choice_2 */}
-          <div className="option-row">
+          <div className="flex gap-4 justify-center flex-wrap">
             {/* choice_1: ลดค่าโดยสารรถไฟฟ้า */}
             <button
               onClick={() => !isSelectionDisabled(priorityList[0]) && handlePriorityToggle(priorityList[0])}
@@ -195,7 +195,7 @@ const Step1_Choice = ({
           </div>
 
           {/* Row 2: choice_3, choice_4, choice_5 */}
-          <div className="option-row">
+          <div className="flex gap-4 justify-center flex-wrap">
             {/* choice_3: ตั๋วร่วม */}
             <button
               onClick={() => !isSelectionDisabled(priorityList[2]) && handlePriorityToggle(priorityList[2])}
@@ -273,7 +273,7 @@ const Step1_Choice = ({
           </div>
 
           {/* Row 3: choice_6, choice_7 */}
-          <div className="option-row">
+          <div className="flex gap-4 justify-center flex-wrap">
             {/* choice_6: เพิ่มความถี่รถไฟฟ้า */}
             <button
               onClick={() => !isSelectionDisabled(priorityList[5]) && handlePriorityToggle(priorityList[5])}
@@ -338,7 +338,7 @@ const Step1_Choice = ({
                   color: '#000',
                   border: 'none'
                 }}
-                aria-label="ดำเนินการต่อไปยังขั้นตอนถัดไป"
+                aria-label="ดำเนิน��ารต่อไปยังขั้นตอนถัดไป"
               >
                 ไปต่อ
               </button>
