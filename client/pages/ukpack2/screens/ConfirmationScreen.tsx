@@ -26,7 +26,7 @@ const ConfirmationScreen: React.FC = () => {
       >
         <div className="space-y-4">
           <div className="bg-[#ffe000] text-[#000d59] rounded-md p-4">
-            <p className="font-prompt font-semibold">คุณได้ลงท��เบียนเพื่อเข้าร่วมลุ้นรางวัล 300 บาทแล้ว</p>
+            <p className="font-prompt font-semibold">คุณได้ลงทะเบียนเพื่อเข้าร่วมลุ้นรางวัล 300 บาทแล้ว</p>
             <p className="font-sarabun">ประกาศผลและการติดต่อจะส่งทางเบอร์โทรที่ให้ไว้ หากมีคำถาม สามารถติดต่อทีมงานได้</p>
           </div>
         </div>

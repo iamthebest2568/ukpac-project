@@ -34,7 +34,7 @@ const IconMedium = () => (
 const IconLarge = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fefc1e1ed3bcb4769b51d1544d43b3b5f?format=webp&width=360"
-    alt="รถเมล์ขนาดใหญ่ 41–50 ที่นั่ง"
+    alt="รถเมล์ขนาดใหญ่ 41–50 ที่น��่ง"
     className="max-h-12 w-auto object-contain select-none -translate-y-0.5"
     decoding="async"
     loading="eager"
@@ -58,7 +58,7 @@ const OPTIONS = [
     icon: <IconMedium />,
   },
   { key: "large", label: "รถเมล์ขนาดใหญ่ 41-50 ที่นั่ง", icon: <IconLarge /> },
-  { key: "extra", label: "รถเมล��รุ่นพิเศษ 51+ ที่นั่ง", icon: <IconExtra /> },
+  { key: "extra", label: "รถเมล์รุ่นพิเศษ 51+ ที่นั่ง", icon: <IconExtra /> },
 ];
 
 const HERO_IMAGE: Record<string, string> = {

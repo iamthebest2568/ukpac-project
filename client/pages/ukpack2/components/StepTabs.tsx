@@ -188,7 +188,7 @@ const StepTabs: React.FC<StepTabsProps> = ({ active }) => {
               ) : idx === 1 ? (
                 <img
                   src={TAB2_ICON}
-                  alt={isActive ? "แท็บที่ 2 (แอคที��)" : "แท็บที่ 2"}
+                  alt={isActive ? "แท็บที่ 2 (แอคทีฟ)" : "แท็บที่ 2"}
                   className={`w-5 h-5 md:w-7 md:h-7 max-w-full ${isActive ? "" : "grayscale opacity-60"}`}
                   decoding="async"
                   loading="eager"

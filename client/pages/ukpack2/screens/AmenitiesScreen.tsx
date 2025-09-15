@@ -98,8 +98,8 @@ const AMENITIES = [
   { key: "air", label: "แอร์", icon: <IconAir /> },
   { key: "fan", label: "พัดลม", icon: <IconFan /> },
   { key: "seat", label: "ที่นั่งพิเศษ", icon: <IconSeat /> },
-  { key: "wifi", label: "ที่จับ/ราวยืนที่ปลอดภัย", icon: <IconWifi /> },
-  { key: "plug", label: "ช่องชาร์จ��ือถือ/USB", icon: <IconPlug /> },
+  { key: "wifi", label: "ที่���ับ/ราวยืนที่ปลอดภัย", icon: <IconWifi /> },
+  { key: "plug", label: "ช่องชาร์จมือถือ/USB", icon: <IconPlug /> },
   { key: "tv", label: "Wi‑Fi ฟรี", icon: <IconTv /> },
   { key: "cup", label: "ระบบประกาศบอกป้าย(เสียง/จอ)", icon: <IconCup /> },
   { key: "cam", label: "กล้องวงจรปิด", icon: <IconCam /> },
@@ -128,9 +128,9 @@ const AmenitiesScreen: React.FC = () => {
 
   // Selected chassis preview (reusing mapping from SeatingScreen)
   const CHASSIS_LABELS: Record<string, string> = {
-    small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
+    small: "รถเมล์ขนาดเล็ก 16–30 ที่น��่ง",
     medium: "รถเมล์ขนาดกลาง 31–40 ที่นั่ง",
-    large: "รถเมล์ขน���ดใหญ่ 41–50 ที่นั่ง",
+    large: "รถเมล์ขนาดใหญ่ 41–50 ที่นั่ง",
     extra: "รถเมล์รุ่นพิเศษ 51+ ที่นั่ง",
   };
   const HERO_IMAGE: Record<string, string> = {
