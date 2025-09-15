@@ -79,50 +79,51 @@ const DesignScreen: React.FC = () => {
             );
           })()}
         </div>
-        <div className="bg-white rounded-t-3xl -mt-2 p-4">
+        <div className="max-w-4xl w-full mx-auto">
+          <div className="bg-white rounded-lg p-6 border border-gray-200">
+            <h2 className="text-xl font-prompt font-semibold text-[#003366] mt-2">ออกแบบสี</h2>
+            <ColorPalette colors={DEFAULT_COLORS} selectedColor={color} onColorSelect={setColor} />
 
-          <h2 className="text-xl font-prompt font-semibold text-[#003366] mt-2">ออกแบบสี</h2>
-          <ColorPalette colors={DEFAULT_COLORS} selectedColor={color} onColorSelect={setColor} />
+            <h2 className="text-xl font-prompt font-semibold text-[#003366] mt-4">ลักษณะพิเศษอื่น ๆ ของรถคุณ</h2>
+            <div>
+              <input
+                type="text"
+                value={slogan}
+                readOnly
+                onClick={() => { setSloganDraft(slogan); setShowTextarea(true); }}
+                placeholder="พิมพ์ คุณสมบัติพิเศษ"
+                className="w-full rounded-md px-4 py-2 bg-white border border-[#e5e7eb] text-[#003366] placeholder-gray-400 cursor-text"
+              />
 
-          <h2 className="text-xl font-prompt font-semibold text-[#003366] mt-2">ลักษณะพิเศษอื่น ๆ ของรถคุณ</h2>
-          <div>
-            <input
-              type="text"
-              value={slogan}
-              readOnly
-              onClick={() => { setSloganDraft(slogan); setShowTextarea(true); }}
-              placeholder="พิมพ์ คุณสมบัติพิเศษ"
-              className="w-full rounded-md px-4 py-2 bg-white border border-[#e5e7eb] text-[#003366] placeholder-gray-400 cursor-text"
-            />
-
-            {showTextarea && (
-              <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-                <div className="bg-white rounded-lg p-4 max-w-lg w-full mx-4">
-                  <h3 className="text-lg font-prompt font-semibold text-[#000d59]">ลักษณะพิเศษอื่นๆ</h3>
-                  <textarea
-                    ref={textareaRef}
-                    value={sloganDraft}
-                    onChange={(e) => setSloganDraft(e.target.value)}
-                    placeholder="พิมพ์คุณสมบัติพิเศษอื่นๆ ของรถเมล์ในฝันของ��ุณ"
-                    className="mt-3 w-full h-36 p-3 border rounded-md text-sm resize-none"
-                  />
-                  <div className="mt-3 flex justify-end gap-2">
-                    <button
-                      onClick={() => setShowTextarea(false)}
-                      className="px-4 py-2 rounded-md bg-gray-200"
-                    >
-                      ยกเลิก
-                    </button>
-                    <button
-                      onClick={() => { setSlogan(sloganDraft); setShowTextarea(false); }}
-                      className="px-4 py-2 rounded-md bg-[#000d59] text-white"
-                    >
-                      บันทึก
-                    </button>
+              {showTextarea && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+                  <div className="bg-white rounded-lg p-4 max-w-lg w-full mx-4">
+                    <h3 className="text-lg font-prompt font-semibold text-[#000d59]">ลักษณะพิเศษอื่นๆ</h3>
+                    <textarea
+                      ref={textareaRef}
+                      value={sloganDraft}
+                      onChange={(e) => setSloganDraft(e.target.value)}
+                      placeholder="พิมพ์คุณสมบัติพิเศษอื่นๆ ของรถเมล์ในฝันของคุณ"
+                      className="mt-3 w-full h-36 p-3 border rounded-md text-sm resize-none"
+                    />
+                    <div className="mt-3 flex justify-end gap-2">
+                      <button
+                        onClick={() => setShowTextarea(false)}
+                        className="px-4 py-2 rounded-md bg-gray-200"
+                      >
+                        ยกเลิก
+                      </button>
+                      <button
+                        onClick={() => { setSlogan(sloganDraft); setShowTextarea(false); }}
+                        className="px-4 py-2 rounded-md bg-[#000d59] text-white"
+                      >
+                        บันทึก
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            )}
+              )}
+            </div>
           </div>
         </div>
       </div>
