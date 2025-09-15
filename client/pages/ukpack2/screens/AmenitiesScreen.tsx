@@ -205,7 +205,7 @@ const AmenitiesScreen: React.FC = () => {
             รถที่ใช้งาน : {selectedLabel}
           </p>
         </div>
-        <div className="bg-white rounded-t-3xl -mt-2 p-4">
+        <div className="bg-white rounded-2xl -mt-2 p-4 border border-gray-400">
           <StepTabs active={3} />
 
           <h2 className="text-xl font-prompt font-semibold text-[#003366] mt-2">
