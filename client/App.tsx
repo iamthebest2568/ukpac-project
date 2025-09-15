@@ -70,6 +70,7 @@ const SummaryScreen = lazy(
 const FeedbackScreen = lazy(
   () => import("./pages/ukpack2/screens/FeedbackScreen"),
 );
+const InfoScreen = lazy(() => import("./pages/ukpack2/screens/InfoScreen"));
 const SubmitScreen = lazy(() => import("./pages/ukpack2/screens/SubmitScreen"));
 const ThankYouScreen = lazy(
   () => import("./pages/ukpack2/screens/ThankYouScreen"),
