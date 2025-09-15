@@ -80,7 +80,6 @@ const DesignScreen: React.FC = () => {
           })()}
         </div>
         <div className="bg-white rounded-t-3xl -mt-2 p-4">
-          <StepTabs active={0} />
 
           <h2 className="text-xl font-prompt font-semibold text-[#003366] mt-2">ออกแบบสี</h2>
           <ColorPalette colors={DEFAULT_COLORS} selectedColor={color} onColorSelect={setColor} />
@@ -104,7 +103,7 @@ const DesignScreen: React.FC = () => {
                     ref={textareaRef}
                     value={sloganDraft}
                     onChange={(e) => setSloganDraft(e.target.value)}
-                    placeholder="พิมพ์คุณสมบัติพิเศษอื่นๆ ของรถเมล์ในฝันของคุณ"
+                    placeholder="พิมพ์คุณสมบัติพิเศษอื่นๆ ของรถเมล์ในฝันของ��ุณ"
                     className="mt-3 w-full h-36 p-3 border rounded-md text-sm resize-none"
                   />
                   <div className="mt-3 flex justify-end gap-2">
