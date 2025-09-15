@@ -79,7 +79,7 @@ const HowDoYouThinkPage = () => {
       />
       {/* Content Section positioned at bottom */}
       <div
-        className="flex-1 flex flex-col items-center justify-end px-4 py-8 pb-12"
+        className="flex-1 flex flex-col items-center justify-end px-4 py-8 pb-12 relative z-10"
         style={{ background: "transparent", minHeight: "auto" }}
       >
         {/* Bottom-aligned content box */}
