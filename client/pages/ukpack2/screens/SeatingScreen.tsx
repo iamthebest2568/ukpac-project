@@ -3,8 +3,6 @@ import { useNavigate } from "react-router-dom";
 import CustomizationScreen from "../components/CustomizationScreen";
 import SelectionCard from "../components/SelectionCard";
 import CtaButton from "../components/CtaButton";
-import SecondaryButton from "../components/SecondaryButton";
-import NumericalStepper from "../components/NumericalStepper";
 import ConfirmModal from "../components/ConfirmModal";
 import ErrorModal from "../components/ErrorModal";
 import { useBusDesign } from "../context/BusDesignContext";
@@ -14,9 +12,10 @@ const SeatingScreen: React.FC = () => {
   const navigate = useNavigate();
   const { state } = useBusDesign();
   const [totalSeats, setTotalSeats] = useState<number>(40);
-  const [specialSeats, setSpecialSeats] = useState<number>(4);
-  const [childElderSeats, setChildElderSeats] = useState<number>(2);
-  const [standingPlaces, setStandingPlaces] = useState<number>(10);
+  const [pregnantSeats, setPregnantSeats] = useState<number>(0);
+  const [childElderSeats, setChildElderSeats] = useState<number>(0);
+  const [monkSeats, setMonkSeats] = useState<number>(0);
+  const [wheelchairBikeSpaces, setWheelchairBikeSpaces] = useState<number>(0);
   const [isExitModalOpen, setExitModalOpen] = useState(false);
   const [isErrorModalOpen, setErrorModalOpen] = useState(false);
 
@@ -33,9 +32,10 @@ const SeatingScreen: React.FC = () => {
     try {
       const seating = {
         totalSeats,
-        specialSeats,
+        pregnantSeats,
         childElderSeats,
-        standingPlaces,
+        monkSeats,
+        wheelchairBikeSpaces,
       };
       sessionStorage.setItem("design.seating", JSON.stringify(seating));
     } catch (e) {}
@@ -70,47 +70,57 @@ const SeatingScreen: React.FC = () => {
             <div className="space-y-4 mt-2">
               <div className="flex items-center justify-between">
                 <div className="text-[#003366] font-sarabun">จำนวนที่นั่งทั้งหมด</div>
-                <div className="flex items-center gap-2">
-                  <NumericalStepper
-                    value={totalSeats}
-                    onChange={handleTotalSeatsChange}
-                    min={0}
-                    max={200}
-                  />
-                  <SecondaryButton
-                    text="พิมพ์"
-                    onClick={() => console.log("print", totalSeats)}
-                  />
-                </div>
+                <input
+                  type="number"
+                  placeholder="พิมพ์"
+                  value={totalSeats}
+                  onChange={(e) => handleTotalSeatsChange(Math.max(0, parseInt(e.target.value || '0', 10)))}
+                  className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-md text-[#003366] bg-white text-right"
+                  min={0}
+                />
               </div>
 
               <div className="flex items-center justify-between">
-                <div className="text-[#003366] font-sarabun">จำนวนที่นั่งพิเศษ</div>
-                <NumericalStepper
-                  value={specialSeats}
-                  onChange={setSpecialSeats}
+                <div className="text-[#003366] font-sarabun">สตรีมีครรภ์</div>
+                <input
+                  type="number"
+                  value={pregnantSeats}
+                  onChange={(e) => setPregnantSeats(Math.max(0, parseInt(e.target.value || '0', 10)))}
+                  className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-md text-[#003366] bg-white text-right"
                   min={0}
-                  max={50}
                 />
               </div>
 
               <div className="flex items-center justify-between">
                 <div className="text-[#003366] font-sarabun">เด็ก / ผู้สูงอายุ</div>
-                <NumericalStepper
+                <input
+                  type="number"
                   value={childElderSeats}
-                  onChange={setChildElderSeats}
+                  onChange={(e) => setChildElderSeats(Math.max(0, parseInt(e.target.value || '0', 10)))}
+                  className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-md text-[#003366] bg-white text-right"
                   min={0}
-                  max={50}
                 />
               </div>
 
               <div className="flex items-center justify-between">
-                <div className="text-[#003366] font-sarabun">จำนวนที่ยืน</div>
-                <NumericalStepper
-                  value={standingPlaces}
-                  onChange={setStandingPlaces}
+                <div className="text-[#003366] font-sarabun">พระภิกษุสงฆ์</div>
+                <input
+                  type="number"
+                  value={monkSeats}
+                  onChange={(e) => setMonkSeats(Math.max(0, parseInt(e.target.value || '0', 10)))}
+                  className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-md text-[#003366] bg-white text-right"
                   min={0}
-                  max={200}
+                />
+              </div>
+
+              <div className="flex items-center justify-between">
+                <div className="text-[#003366] font-sarabun">พื้นที่สำหรับรถเข็น/จักรยาน</div>
+                <input
+                  type="number"
+                  value={wheelchairBikeSpaces}
+                  onChange={(e) => setWheelchairBikeSpaces(Math.max(0, parseInt(e.target.value || '0', 10)))}
+                  className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-md text-[#003366] bg-white text-right"
+                  min={0}
                 />
               </div>
             </div>
