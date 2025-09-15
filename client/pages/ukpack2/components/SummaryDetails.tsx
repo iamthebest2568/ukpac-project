@@ -2,7 +2,7 @@ import React from "react";
 import HeroWithShadow from "./HeroWithShadow";
 
 const IconAir = () => <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fee1c18a935564e92bb49991fac3b76df?format=webp&width=800" alt="แอร์" className="h-6 w-6 object-contain select-none"/>;
-const IconFan = () => <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe01792ee89e240808ed47d8576b55d71?format=webp&width=800" alt="พัด���ม" className="h-6 w-6 object-contain select-none"/>;
+const IconFan = () => <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe01792ee89e240808ed47d8576b55d71?format=webp&width=800" alt="พัดลม" className="h-6 w-6 object-contain select-none"/>;
 const IconSeat = () => <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F93439b2533284cdf914fc93cafa1cf26?format=webp&width=800" alt="ที่นั่งพิเศษ" className="h-6 w-6 object-contain select-none"/>;
 const IconWifi = () => <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb0789bfd1100472f8351704764607d31?format=webp&width=800" alt="ที่จับ/ราวยืน" className="h-6 w-6 object-contain select-none"/>;
 const IconPlug = () => <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F09a78e31a3de44e98772b0eef382af6f?format=webp&width=800" alt="ช่องชาร์จมือถือ/USB" className="h-6 w-6 object-contain select-none"/>;
@@ -33,7 +33,7 @@ const displayDoor = (raw: any) => {
   if (typeof raw === "object") {
     if (raw.doorChoice)
       return raw.doorChoice === "1"
-        ? "1 ��ระตู"
+        ? "1 ประตู"
         : raw.doorChoice === "2"
           ? "2 ประตู"
           : String(raw.doorChoice);
