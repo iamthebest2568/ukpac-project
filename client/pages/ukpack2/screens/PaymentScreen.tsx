@@ -124,15 +124,17 @@ const IconQr = () => (
 
 const MONEY_ICON = 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fbc8b22cedfbb4640a702f724881f196d?format=webp&width=800';
 const SCAN_ICON = 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb8992da4be824b339d3df5f0a076ed93?format=webp&width=800';
+const SCAN2_ICON = 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F56620e798eb94153b2390271f30d0dae?format=webp&width=800';
 const TOUCH_ICON = 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fdb2e47a586b841d1af014e9196f3c411?format=webp&width=800';
 const MONTHLY_ICON = 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fca6467eff0c74a77a8e5757f25a24e41?format=webp&width=800';
 
 const OPTIONS = [
   { key: "cash", label: "เงินสด", icon: <IconCash /> },
   { key: "scan", label: "สแกนจ่าย", icon: <IconScan /> },
+  { key: "scan2", label: "สแกนจ่าย 2", icon: null },
   { key: "tap", label: "แตะบัตร", icon: <IconTap /> },
   { key: "qr", label: "QR/สแกน", icon: <IconQr /> },
-  { key: "monthly", label: "��ั๋วรายเดือน/รอบ", icon: null },
+  { key: "monthly", label: "ตั๋วรายเดือน/รอบ", icon: null },
 ];
 
 const PaymentScreen: React.FC = () => {
@@ -185,6 +187,14 @@ const PaymentScreen: React.FC = () => {
               ) : o.key === 'scan' ? (
                 <img
                   src={SCAN_ICON}
+                  alt={o.label}
+                  className={`h-8 w-8 object-contain select-none ${isSel ? '' : 'grayscale opacity-60'}`}
+                  decoding="async"
+                  loading="eager"
+                />
+              ) : o.key === 'scan2' ? (
+                <img
+                  src={SCAN2_ICON}
                   alt={o.label}
                   className={`h-8 w-8 object-contain select-none ${isSel ? '' : 'grayscale opacity-60'}`}
                   decoding="async"
