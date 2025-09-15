@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 interface ColorPaletteProps {
   colors: string[];
@@ -6,111 +6,31 @@ interface ColorPaletteProps {
   onColorSelect: (color: string) => void;
 }
 
-const SWATCH_SIZE = 48; // px
-const GAP = 12; // px
-const COLS = 6;
-
-const ColorPalette: React.FC<ColorPaletteProps> = ({
-  colors,
-  selectedColor,
-  onColorSelect,
-}) => {
-  const rows = Math.ceil(colors.length / COLS);
-  const width = COLS * SWATCH_SIZE + (COLS - 1) * GAP;
-  const height = rows * SWATCH_SIZE + (rows - 1) * GAP;
-
-  const handleKey = (e: React.KeyboardEvent, color: string) => {
-    if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-      onColorSelect(color);
-    }
-  };
-
+const ColorPalette: React.FC<ColorPaletteProps> = ({ colors, selectedColor, onColorSelect }) => {
   return (
-    <div className="overflow-hidden">
-      <svg
-        viewBox={`0 0 ${width} ${height}`}
-        role="list"
-        aria-label="Color palette"
-        style={{ width: '100%', maxWidth: `${width}px`, height: 'auto', display: 'block' }}
-      >
-        {colors.map((c, idx) => {
-          const col = idx % COLS;
-          const row = Math.floor(idx / COLS);
-          const x = col * (SWATCH_SIZE + GAP);
-          const y = row * (SWATCH_SIZE + GAP);
-          const isSelected =
-            c.toLowerCase() === (selectedColor || "").toLowerCase();
+    <div className="w-full">
+      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
+        {colors.map((c) => {
+          const isSelected = c.toLowerCase() === (selectedColor || '').toLowerCase();
+          const isImage = c.startsWith('http');
           return (
-            <g key={c} transform={`translate(${x}, ${y})`}>
-              {c.startsWith("http") ? (
-                <>
-                  <image
-                    href={c}
-                    x={0}
-                    y={0}
-                    width={SWATCH_SIZE}
-                    height={SWATCH_SIZE}
-                    preserveAspectRatio="xMidYMid slice"
-                    role="button"
-                    tabIndex={0}
-                    aria-pressed={isSelected}
-                    onClick={() => onColorSelect(c)}
-                    onKeyDown={(e) => handleKey(e, c)}
-                  />
-                  {isSelected && (
-                    <rect
-                      x={-4}
-                      y={-4}
-                      width={SWATCH_SIZE + 8}
-                      height={SWATCH_SIZE + 8}
-                      rx={14}
-                      ry={14}
-                      fill="none"
-                      stroke="#ffd874"
-                      strokeWidth={3}
-                      pointerEvents="none"
-                    />
-                  )}
-                </>
+            <button
+              key={c}
+              type="button"
+              onClick={() => onColorSelect(c)}
+              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onColorSelect(c); } }}
+              aria-pressed={isSelected}
+              className={`relative w-full aspect-square rounded-lg overflow-hidden flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2 ${isSelected ? 'ring-4 ring-[#ffd874]' : ''}`}
+            >
+              {isImage ? (
+                <img src={c} alt="color swatch" className="w-full h-full object-cover" />
               ) : (
-                <>
-                  <rect
-                    x={0}
-                    y={0}
-                    width={SWATCH_SIZE}
-                    height={SWATCH_SIZE}
-                    rx={12}
-                    ry={12}
-                    fill={c}
-                    stroke={isSelected ? "#ffffff" : "rgba(0,0,0,0.08)"}
-                    strokeWidth={isSelected ? 3 : 1}
-                    role="button"
-                    tabIndex={0}
-                    aria-pressed={isSelected}
-                    onClick={() => onColorSelect(c)}
-                    onKeyDown={(e) => handleKey(e, c)}
-                  />
-                  {isSelected && (
-                    <rect
-                      x={-4}
-                      y={-4}
-                      width={SWATCH_SIZE + 8}
-                      height={SWATCH_SIZE + 8}
-                      rx={14}
-                      ry={14}
-                      fill="none"
-                      stroke="#ffd874"
-                      strokeWidth={3}
-                      pointerEvents="none"
-                    />
-                  )}
-                </>
+                <span className="w-full h-full block" style={{ background: c }} />
               )}
-            </g>
+            </button>
           );
         })}
-      </svg>
+      </div>
     </div>
   );
 };
