@@ -166,7 +166,7 @@ const ChassisScreen: React.FC = () => {
           </div>
 
           {/* White content area with tabs + cards */}
-          <div className="bg-white rounded-t-3xl -mt-2 p-4">
+          <div className="bg-white rounded-2xl -mt-2 p-4 border border-gray-400">
             <StepTabs active={1} />
             <div className="grid grid-cols-2 gap-4 mt-2">
               {OPTIONS.map((o) => (
