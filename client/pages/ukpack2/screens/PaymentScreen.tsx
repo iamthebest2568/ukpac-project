@@ -168,16 +168,30 @@ const PaymentScreen: React.FC = () => {
           <h2 className="text-xl font-prompt font-semibold text-[#003366] mt-2">การจ่ายเงิน</h2>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {OPTIONS.map((o) => (
-              <SelectionCard
-                key={o.key}
-                icon={o.icon}
-                label={o.label}
-                isSelected={selected.includes(o.label)}
-                onClick={() => toggle(o.label)}
-                variant="light"
-              />
-            ))}
+            {OPTIONS.map((o) => {
+              const isSel = selected.includes(o.label);
+              const iconNode = o.key === 'cash' ? (
+                <img
+                  src={MONEY_ICON}
+                  alt={o.label}
+                  className={`h-8 w-8 object-contain select-none ${isSel ? '' : 'grayscale opacity-60'}`}
+                  decoding="async"
+                  loading="eager"
+                />
+              ) : (
+                o.icon
+              );
+              return (
+                <SelectionCard
+                  key={o.key}
+                  icon={iconNode}
+                  label={o.label}
+                  isSelected={isSel}
+                  onClick={() => toggle(o.label)}
+                  variant="light"
+                />
+              );
+            })}
           </div>
         </div>
       </div>
