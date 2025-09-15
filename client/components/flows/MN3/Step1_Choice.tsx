@@ -139,7 +139,7 @@ const Step1_Choice = ({
         </div>
 
         {/* Button Grid - Responsive Layout */}
-        <div className="option-grid">
+        <div className="w-full max-w-5xl space-y-4">
           
           {/* Row 1: choice_1 and choice_2 */}
           <div className="option-row">
