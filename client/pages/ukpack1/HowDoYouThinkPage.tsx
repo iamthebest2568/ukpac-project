@@ -67,7 +67,7 @@ const HowDoYouThinkPage = () => {
   return (
     <div className="w-full min-h-screen relative bg-white flex flex-col">
       <div
-        className="fixed inset-0 -z-10"
+        className="fixed inset-0 z-0 pointer-events-none"
         style={{
           backgroundImage:
             'url("https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F53ba6df55d54475a8cd5ad290966b955?format=webp&width=800")',
@@ -98,7 +98,7 @@ const HowDoYouThinkPage = () => {
             >
               จากนโยบายที่คุณฟังเมื่อสักครู่
               <br />
-              คุณมีความคิดเห็นอย่���งไร
+              คุณมีความคิดเห็นอย่างไร
             </h1>
           </div>
 
