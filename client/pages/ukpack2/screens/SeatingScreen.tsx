@@ -98,13 +98,30 @@ const SeatingScreen: React.FC = () => {
         <div className="space-y-6">
           <div className="w-full rounded-md flex flex-col items-center justify-center gap-2">
             {selectedTopdown ? (
-              <img
-                src={selectedTopdown}
-                alt={`ผังที่นั่งมุมมองบน - ${selectedLabel}`}
-                className="h-48 w-auto object-contain select-none"
-                decoding="async"
-                loading="eager"
-              />
+              <div className="relative">
+                {(() => {
+                  const amenities = (() => { try { const raw = sessionStorage.getItem('design.amenities'); return raw ? JSON.parse(raw) as string[] : []; } catch { return [] as string[]; } })();
+                  const payments = (() => { try { const raw = sessionStorage.getItem('design.payment'); return raw ? JSON.parse(raw) as string[] : []; } catch { return [] as string[]; } })();
+                  const overlay = [...(amenities||[]), ...(payments||[])];
+                  return overlay.length > 0 ? (
+                    <div className="absolute left-1/2 transform -translate-x-1/2 -top-4 flex flex-wrap justify-center gap-2 z-20 max-w-[80%]">
+                      {overlay.map((lab, i) => (
+                        <div key={`${lab}-${i}`} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center">
+                          <div className="text-xs">{lab}</div>
+                        </div>
+                      ))}
+                    </div>
+                  ) : null;
+                })()}
+
+                <img
+                  src={selectedTopdown}
+                  alt={`ผังที่นั่งมุมมองบน - ${selectedLabel}`}
+                  className="h-48 w-auto object-contain select-none"
+                  decoding="async"
+                  loading="eager"
+                />
+              </div>
             ) : (
               <div className="w-full h-48 bg-[#081042] rounded-md flex items-center justify-center text-sm text-gray-300">
                 Top-down seat map preview (ภาพสำหรับรุ่นนี้จะถูกเพิ่มภายหลัง)
