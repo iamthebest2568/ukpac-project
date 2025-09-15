@@ -277,7 +277,7 @@ export default function UkDashboard() {
                 className="rounded-md bg.white/10 hover:bg-white/15 border border-white/15 px-3 py-2 text-sm"
                 onClick={load}
               >
-                ���ีเฟรช
+                รีเฟรช
               </button>
               <button
                 className="rounded-md bg-red-600/80 hover:bg-red-600 border border-red-500 px-3 py-2 text-sm"
@@ -327,7 +327,7 @@ export default function UkDashboard() {
 
               {/* Charts */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                <Card title="แนวโน้มการ��ล่น (รายวัน)">
+                <Card title="แนวโน้มการ�����่น (รายวัน)">
                   <div className="w-full h-[240px] md:h-[320px] min-w-0">
                     <ResponsiveContainer width="100%" height="100%">
                       <LineChart
@@ -768,23 +768,23 @@ export default function UkDashboard() {
                     rows.push([
                       "User",
                       "Access Time",
-                      "ทำไมคุณถึงต้องเข้าเมืองบ่อย ๆ ?",
+                      "ทำไมคุณถึงต้องเข้าเมืองบ่อย �� ?",
                       "คุณใช้รถแบบไหนเดินทางเข้าเมือง ?",
                       "คุณคิดเห็นอย่างไรกับนโยบายนี้ ?",
                       "จากข้อความข้างต้น คุณมีความคิดเห็นอย่างไร (เห็นด้วย/กลางๆ/ไม่เห็นด้วย)",
-                      "ทำไมค���ณถึงคิดอย่างนั้น (นโยบายไม่ครอบคลุม / เก็บไปก็ไม่มีอะไรดีขึ้น / อื่นๆ)",
+                      "ทำไมคุณถึงคิดอย่างนั้น (นโยบายไม่ครอบคลุม / เก็บไปก็ไม่มีอะไรดีขึ้น / อื่นๆ)",
                       "อธิบายอื่น ๆ ที่ช่วยอธิบายความคิดเห็น",
                       "บอกเราหน่อยว่าคุณเดินทางเข้าเมืองด้วยวิธีการใดบ่อยที่สุด",
                       "จากนโยบายที่คุณฟังเมื่อสักครู่ คุณมีความคิดเห็นอย่างไร",
-                      "คุณคิดว่านโยบายปัจจุบัน ควรปรับเปลี่ยนประเด็นอะไรบ้าง (ลดค่าโดยสาร, ปรับปรุงคุณภาพ, ขึ้นราคา, เพิ่มขบวน, เพิ่มความถี่ ฯลฯ)",
-                      "คุณคิดว่าใครควรได้รับการลดค่าโดยสารรถไฟฟ้าบ้าง (ทุกคน, ผู้สูงอายุ, นักเรียน, คนทำง��น ฯลฯ)",
+                      "คุณคิดว่านโยบายปัจจุบัน ควรปร��บเปลี่ยนประเด็นอะไรบ้าง (ลดค่าโดยสาร, ปรับปรุงคุณภาพ, ขึ้นราคา, เพิ่มขบวน, เพิ่มความถี่ ฯลฯ)",
+                      "คุณคิดว่าใครควรได้รับการลดค่าโดยสารรถไฟฟ้าบ้าง (ทุกคน, ผู้สูงอายุ, นักเรียน, คนทำงาน ฯลฯ)",
                       "คุณคิดว่าควรใช้เงินที่ได้จากการเก็บไปพัฒนาอะไร ก่อน 3 อันดับแรก",
                       "คุณจะให้งบประมาณแต่ละข้อเท่าไร (งบทั้งหมด 100)",
                       "คุณพอใจกับผลลัพธ์ที่เกิดขึ้นหรือไม่ (พอใจ / ไม่พอใจ)",
-                      "คุณคิดว่ารัฐควรทำอะไรที่จะทำให้นโยบายนี้เกิดขึ้นได้จริง และเป็นประโยชน์ต่อประชาชนอย่างแท้จริง",
+                      "คุณคิดว่ารัฐควรทำอะไรที่จะทำให้นโยบายนี้เกิดขึ้นได้จริง และเป็นประโยชน์ต่อประชาชนอย่��งแท้จริง",
                       "ตอนนี้มีข้อมูลที่ผิดพลาด เช่น ข่าวปลอมเกี่ยวกับนโยบาย คุณคิดว่าอย่างไร",
                       "คุณจะติดตามข่าว หรือเชื่อจากแหล่งไหนมากที่สุด",
-                      "ขอบคุณที่ร่วมเป็นส่วน��นึ่ง → ต้องการลุ้นรับรางวัลหรือไม่",
+                      "ขอบคุณที่ร่วมเป็นส่วนหนึ่ง → ต้องการลุ้นรับรางวัลหรือไม่",
                       "กรอกข้อมูลเพื่อลุ้นรางวัล (ชื่อ)",
                       "กรอกข้อมูลเพื่อลุ้นรางวัล (เบอร์โทร)",
                       "Time Stamp (First)",
@@ -829,18 +829,19 @@ export default function UkDashboard() {
                       })();
                       const decision = s.endDecisionText || s.endDecision || "";
                       return [
-                        s.ip || "",
-                        s.firstSeen,
+                        s.sessionId || "",
+                        s.firstSeen || "",
                         s.introWho || "",
                         s.travelMethod || "",
-                        s.keyMessage1 || s.stornawayVariantName || "",
+                        s.opinionLevel || "",
                         s.opinionLevel || "",
                         s.ask02Choice || "",
-                        s.ask02CustomReason || "",
-                        s.reasonOther01 || "",
-                        (s.mn3Selected || []).join(" | "),
-                        mn2,
+                        [s.ask02CustomReason, s.reasonOther01].filter(Boolean).join(" | ") || "",
+                        s.travelMethod || "",
+                        s.opinionLevel || "",
                         (s.mn1Selected || []).join(" | "),
+                        mn2,
+                        (s.mn3Selected || []).join(" | "),
                         mn3money,
                         s.satisfactionLevel || "",
                         s.ask05Comment || "",
@@ -849,10 +850,11 @@ export default function UkDashboard() {
                         decision,
                         s.contactName || "",
                         s.contactPhone || "",
+                        s.firstSeen || "",
                         s.shareFirstTs || "",
+                        s.lastSeen || "",
                         s.shareCount && s.shareCount > 0 ? "ใช่" : "ไม่",
-                        s.shareLastTs || "",
-                        s.shareCount && s.shareCount > 0 ? "ใช่" : "ไม่",
+                        s.sessionId || "",
                       ];
                     });
                     rows.push(...perRows);
