@@ -173,7 +173,7 @@ const Step1_Priorities = ({
                 width: '46.3%', // 500/1080
                 height: 'clamp(60px, 4.7vw, 90px)',
                 backgroundColor: getButtonColor("ปรับปรุงคุณภาพรถเมล์"),
-                opacity: isSelectionDisabled("ปรับปรุงคุณภาพร���เมล์") ? 0.5 : 1
+                opacity: isSelectionDisabled("ปรับปรุงคุณภาพรถเมล์") ? 0.5 : 1
               }}
               onClick={() =>
                 !isSelectionDisabled("ปรับปรุงคุณภาพรถเมล์") &&
@@ -228,7 +228,7 @@ const Step1_Priorities = ({
                 opacity: isSelectionDisabled("เพิ่มความถี่รถเมล์") ? 0.5 : 1
               }}
               onClick={() =>
-                !isSelectionDisabled("เพิ่มความถี่รถเมล์") &&
+                !isSelectionDisabled("เพิ่มควา��ถี่รถเมล์") &&
                 handlePriorityToggle("เพิ่มความถี่รถเมล์")
               }
               disabled={isSelectionDisabled("เพิ่มความถี่รถเมล์")}
@@ -255,7 +255,7 @@ const Step1_Priorities = ({
               }}
               onClick={() =>
                 !isSelectionDisabled("เพิ่มที่จอดรถ") &&
-                handlePriorityToggle("เพิ่มที่จอดรถ")
+                handlePriorityToggle("เพิ่มที่จอ���รถ")
               }
               disabled={isSelectionDisabled("เพิ่มที่จอดรถ")}
             >
@@ -283,7 +283,7 @@ const Step1_Priorities = ({
                 opacity: isSelectionDisabled("เพิ่มความถี่รถไฟฟ้า") ? 0.5 : 1
               }}
               onClick={() =>
-                !isSelectionDisabled("เพิ่มความถี่รถไฟฟ้า") &&
+                !isSelectionDisabled("เพ��่มความถี่รถไฟฟ้า") &&
                 handlePriorityToggle("เพิ่มความถี่รถไฟฟ้า")
               }
               disabled={isSelectionDisabled("เพิ่มความถี่รถไฟฟ้า")}
@@ -310,7 +310,7 @@ const Step1_Priorities = ({
               }}
               onClick={() =>
                 !isSelectionDisabled("เพิ่ม Feeder ในซอย") &&
-                handlePriorityToggle("เพิ่ม Feeder ในซอย")
+                handlePriorityToggle("เ���ิ่ม Feeder ในซอย")
               }
               disabled={isSelectionDisabled("เพิ่ม Feeder ในซอย")}
             >
