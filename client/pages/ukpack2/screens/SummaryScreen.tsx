@@ -67,7 +67,7 @@ const SummaryScreen: React.FC = () => {
     if (typeof raw === "string") {
       if (raw === "1") return "1 ประตู";
       if (raw === "2") return "2 ประตู";
-      if (raw === "ramp") return "ทางลาดสำหรับรถเข็น/ผู้พิการ";
+      if (raw === "ramp") return "���างลาดสำหรับรถเข็น/ผู้พิการ";
       if (raw === "emergency") return "ประตูฉุกเฉิน";
       return raw;
     }
@@ -88,7 +88,7 @@ const SummaryScreen: React.FC = () => {
     <div className="min-h-screen bg-white text-black py-8 px-4">
       <div className="max-w-4xl mx-auto">
         <header className="mb-6 text-center">
-          <h1 className="text-3xl font-prompt font-semibold">เสร็จแล้ว!</h1>
+          <h1 className="text-3xl font-prompt font-semibold">ปรับแต่งรถเมล์ของคุณ</h1>
           <p className="mt-2 text-sm text-white/80">นี่คือรถเมล์ในฝันของคุณ</p>
         </header>
 
