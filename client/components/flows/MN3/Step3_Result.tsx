@@ -23,6 +23,7 @@ interface ResultSummary {
 }
 
 const Step3_Result = ({ sessionID, onNext, onBack, journeyData }: Step3_ResultProps) => {
+  const navigate = useNavigate();
   const [resultSummary, setResultSummary] = useState<ResultSummary[]>([]);
 
   const priorityIcons: { [key: string]: string } = {
