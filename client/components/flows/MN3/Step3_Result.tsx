@@ -200,7 +200,7 @@ const Step3_Result = ({ sessionID, onNext, onBack, journeyData }: Step3_ResultPr
         <button
           onClick={handleYes}
           className={`figma-style1-button ${selected === 'yes' ? 'figma-style1-button--selected' : ''}`}
-          aria-label="ตอบ��ช่ - พอใจกับผลลัพธ์"
+          aria-label="ตอบใช่ - พอใจกับผลลัพธ์"
           aria-pressed={selected === 'yes'}
         >
           <span className="figma-style1-button-text">ใช่</span>
@@ -212,7 +212,7 @@ const Step3_Result = ({ sessionID, onNext, onBack, journeyData }: Step3_ResultPr
           aria-label="ตอบไม่ใช่ - ไม่พอใจกับผลลัพธ์"
           aria-pressed={selected === 'no'}
         >
-          <span className="figma-style1-button-text">���ม่ใช่</span>
+          <span className="figma-style1-button-text">ไม่ใช่</span>
         </button>
       </div>
     </FigmaStyle1Layout>
