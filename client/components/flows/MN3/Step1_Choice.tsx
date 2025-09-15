@@ -121,7 +121,7 @@ const Step1_Choice = ({
   );
 
   return (
-    <div className="w-full min-h-screen mn3-page-bg flex flex-col items-center justify-center relative">
+    <div className="w-full min-h-screen mn3-page-bg flex flex-col items-center justify-start relative">
       {/* Main Content Container */}
       <div className="w-full px-4 pt-6 pb-40 flex flex-col items-center justify-end space-y-6 flex-1">
         
