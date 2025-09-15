@@ -28,9 +28,9 @@ const FeedbackSkipScreen: React.FC = () => {
         <div className="py-4 px-4">
           <div className="flex justify-center">
             <img
-              src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fa3d7b58f82e946aaa6790206de94e35d?format=webp&width=800"
+              src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fa3d7b58f82e946aaa6790206de94e35d?format=webp&width=1600"
               alt="รถเมล์ในฝัน กรุงเทพเคลื่อนที่ได้"
-              className="h-16 md:h-20 w-auto"
+              className="w-full h-auto"
             />
           </div>
           <div className="mt-3 flex justify-center">
