@@ -52,7 +52,7 @@ type SessionSummary = {
   keyMessage1?: string; // Key message 1
   mn1Selected: string[]; // ลำดับความสำคัญของประเด็น
   mn2Selections?: Record<string, string[]>; // กลุ่มเป้าหมายที่ควรได้รับสิทธิ์
-  mn3Selected?: string[]; // ประเด็นนโยบายที่ผู้ใช้เลือก
+  mn3Selected?: string[]; // ประเด็นนโยบา���ที่ผู้ใช้เลือก
   mn3BudgetAllocation?: Record<string, number>; // การจัดสรรงบประมาณ
   mn3BudgetTotal?: number;
   satisfactionLevel?: string; // ระดับความพึงพอใจ
@@ -232,7 +232,7 @@ export default function UkDashboard() {
               className="mt-4 w-full rounded-full bg-[#EFBA31] text-black font-medium px-5 py-2 border border-black"
               onClick={() => {
                 if (!expected) {
-                  setPwErr("ยังไม่ได้ตั้งรห��สผ่าน (VITE_DASHBOARD_PASSWORD)");
+                  setPwErr("ยังไม่ได้ตั้งรหัสผ่าน (VITE_DASHBOARD_PASSWORD)");
                   return;
                 }
                 if (pw === expected) {
@@ -293,7 +293,7 @@ export default function UkDashboard() {
                   checked={autoRefresh}
                   onChange={(e) => setAutoRefresh(e.target.checked)}
                 />{" "}
-                อัปเดตอัต���นมัติ
+                อัปเดตอัตโนมัติ
               </label>
             </div>
           </div>
@@ -697,7 +697,7 @@ export default function UkDashboard() {
                       "ลำดับความสำคัญของประเด็น",
                       "การจัดสรรงบประมาณระหว่างนโยบาย",
                       "ระดับความพึงพอใจ",
-                      "ข้อเสนอเพิ่มเติมต่อรัฐ",
+                      "ข้��เสนอเพิ่มเติมต่อรัฐ",
                       "การตอบสนองต่อข่าวปลอม",
                       "แหล่งข่าวที่ผู้ใช้เลือก",
                       "การเข้าร่วมลุ้นรางวัล",
@@ -768,7 +768,7 @@ export default function UkDashboard() {
                     exportCsv("uk_export_all.csv", rows);
                   }}
                 >
-                  ดาวน์โหลด CSV (ส���ุปรวม)
+                  ดาวน์โหลด CSV (สรุปรวม)
                 </button>
               </div>
             </div>
