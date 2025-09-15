@@ -40,23 +40,13 @@ const IconWifi = () => (
   />
 );
 const IconPlug = () => (
-  <svg
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <rect x="7" y="3" width="4" height="8" rx="1" fill="currentColor" />
-    <rect x="13" y="3" width="4" height="8" rx="1" fill="currentColor" />
-    <path
-      d="M8 11v6a4 4 0 0 0 8 0v-6"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
+  <img
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F09a78e31a3de44e98772b0eef382af6f?format=webp&width=800"
+    alt="ช่องชาร์จมือถือ/USB"
+    className="h-8 w-8 object-contain select-none"
+    decoding="async"
+    loading="eager"
+  />
 );
 const IconTv = () => (
   <svg
