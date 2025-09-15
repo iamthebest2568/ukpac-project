@@ -189,7 +189,7 @@ const BudgetAllocation = ({ sessionID, onNavigate }: BudgetAllocationProps) => {
                   aria-valuenow={allocatedBudget}
                   aria-valuemin={0}
                   aria-valuemax={totalBudget}
-                  aria-label={`ใช้งบประมาณ��ปแล้ว ${allocatedBudget} จาก ${totalBudget} บาท`}
+                  aria-label={`ใช้งบประมาณไปแล้ว ${allocatedBudget} จาก ${totalBudget} บาท` }
                 ></div>
               </div>
               <div className="text-sm mt-2 text-center" style={{ color: "#000D59" }}>
