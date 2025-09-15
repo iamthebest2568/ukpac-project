@@ -6,7 +6,7 @@ import CtaButton from "../components/CtaButton";
 const IconAir = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fee1c18a935564e92bb49991fac3b76df?format=webp&width=800"
-    alt="แอร์"
+    alt="แอร��"
     className="h-8 w-8 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -24,7 +24,7 @@ const IconFan = () => (
 const IconSeat = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F93439b2533284cdf914fc93cafa1cf26?format=webp&width=800"
-    alt="หน้าต่างเปิด���ด้"
+    alt="หน้าต่างเปิดได้"
     className="h-8 w-8 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -114,7 +114,7 @@ const AMENITIES = [
   { key: "seat", label: "ที่นั่งพิเศษ", icon: <IconSeat /> },
   { key: "wifi", label: "ที่จับ/ราวยืนที่ปลอดภัย", icon: <IconWifi /> },
   { key: "plug", label: "ช่องชาร์จมือถือ/USB", icon: <IconPlug /> },
-  { key: "tv", label: "ทีวี", icon: <IconTv /> },
+  { key: "tv", label: "Wi‑Fi ฟรี", icon: <IconTv /> },
   { key: "cup", label: "ที่วางแก้ว", icon: <IconCup /> },
   { key: "cam", label: "กล้องวงจรปิด", icon: <IconCam /> },
 ];
@@ -185,7 +185,7 @@ const AmenitiesScreen: React.FC = () => {
             />
           ) : (
             <div className="w-full h-48 bg-[#081042] rounded-md flex items-center justify-center text-sm text-gray-300">
-              Bus image preview (ภาพสำหรับรุ่นนี้จะถูกเพิ่มภายหลัง)
+              Bus image preview (ภาพสำหรับรุ่นนี้จะ��ูกเพิ่มภายหลัง)
             </div>
           )}
           <p className="mt-1 font-prompt font-semibold text-[#001a73] text-center">
