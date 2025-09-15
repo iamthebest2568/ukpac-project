@@ -190,8 +190,7 @@ const App = () => {
                 <Route path="/ukpack2/doors" element={<DoorScreen />} />
                 <Route path="/ukpack2/design" element={<DesignScreen />} />
                 <Route path="/ukpack2/summary" element={<SummaryScreen />} />
-                {/* Redirect legacy /ukpack2/info to summary */}
-                <Route path="/ukpack2/info" element={<Navigate to="/ukpack2/summary" replace />} />
+                <Route path="/ukpack2/info" element={<InfoScreen />} />
                 <Route path="/ukpack2/feedback" element={<FeedbackScreen />} />
                 <Route path="/ukpack2/submit" element={<SubmitScreen />} />
                 <Route path="/ukpack2/thank-you" element={<ThankYouScreen />} />
