@@ -122,7 +122,7 @@ const Step3_Result = ({
     const data = {
       budget_step3_result: {
         budgetResultReviewed: true,
-        satisfaction: "ไม่ใช่",
+        satisfaction: "ไ���่ใช่",
         resultSummary,
       },
     };
@@ -180,10 +180,9 @@ const Step3_Result = ({
         {/* Question Section */}
         <div className="text-center w-full max-w-none px-4 mb-8">
           <h2
-            className="font-prompt text-center leading-normal"
+            className="font-prompt text-center leading-normal mn3-result-subtitle"
             style={{
               color: '#000D59',
-              fontSize: 'clamp(28px, 5.5vw, 60px)',
               lineHeight: '1.2',
               fontWeight: 700,
               width: '100%',
