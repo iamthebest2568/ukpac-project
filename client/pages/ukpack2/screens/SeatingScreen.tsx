@@ -99,7 +99,7 @@ const SeatingScreen: React.FC = () => {
                 <div className="text-[#003366] font-sarabun">เด็ก / ผู้สูงอายุ</div>
                 <NumericalStepper
                   value={childElderSeats}
-                  onChange={setChildEelderSeats}
+                  onChange={setChildElderSeats}
                   min={0}
                   max={50}
                 />
