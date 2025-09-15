@@ -179,6 +179,14 @@ const PaymentScreen: React.FC = () => {
                   decoding="async"
                   loading="eager"
                 />
+              ) : o.key === 'scan' ? (
+                <img
+                  src={SCAN_ICON}
+                  alt={o.label}
+                  className={`h-8 w-8 object-contain select-none ${isSel ? '' : 'grayscale opacity-60'}`}
+                  decoding="async"
+                  loading="eager"
+                />
               ) : (
                 o.icon
               );
