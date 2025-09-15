@@ -54,7 +54,7 @@ const Ask04Budget = ({
 
   return (
     <FigmaStyle1Layout
-      backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F946833431d4b46a0bde1c7d1bc32f67a"
+      backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8ba1913a4cf14a5f94abc17994701220?format=webp&width=800"
       backgroundAlt="ผลลัพธ์จากการตอบคำถาม"
       title={`คุณพอใจผลที่เกิดขึ้นหรือไม่
 พิจารณาจากการตอบคำถามและกิจกรรมต่างๆ ที่ผ่านมา`}
