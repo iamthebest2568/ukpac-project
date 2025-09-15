@@ -561,19 +561,31 @@
 
 /* Transport illustration image */
 .mn3-result-image {
-  width: clamp(300px, 69.4vw, 750px);
+  width: clamp(300px, 60vw, 750px);
   height: auto;
   max-width: 750px;
+  max-height: 50vh; /* constrain height so content doesn't push buttons off-screen */
   object-fit: contain;
   aspect-ratio: 750/861;
 }
 
+/* Result page titles controlled by CSS for consistent responsive behavior */
+.mn3-result-title {
+  font-size: clamp(20px, 4.2vw, 40px);
+  max-width: 760px;
+}
+
+.mn3-result-subtitle {
+  font-size: clamp(16px, 3.6vw, 32px);
+  max-width: 760px;
+}
+
 /* Result page buttons (Yes/No) */
 .mn3-result-button {
-  width: clamp(320px, 78.3vw, 845px);
-  height: clamp(80px, 10.9vw, 118px);
+  width: min(420px, 86vw);
+  height: clamp(52px, 9.5vw, 72px);
   background-color: #FFE000;
-  border-radius: clamp(25px, 4.6vw, 50px);
+  border-radius: 40px;
   border: none;
   display: flex;
   align-items: center;
@@ -583,11 +595,19 @@
 
   font-family: 'Prompt', sans-serif;
   font-weight: 400;
-  font-size: clamp(28px, 4.6vw, 50px);
+  font-size: clamp(16px, 2.6vw, 20px);
   color: #000;
   line-height: normal;
   letter-spacing: 0.4px;
   text-align: center;
+}
+
+/* Limit excessive scaling on very large screens */
+@media (min-width: 1400px) {
+  .mn3-result-title { font-size: 36px; }
+  .mn3-result-subtitle { font-size: 28px; }
+  .mn3-result-image { max-height: 48vh; }
+  .mn3-result-button { width: 380px; height: 64px; }
 }
 
 .mn3-result-button:hover {
