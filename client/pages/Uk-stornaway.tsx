@@ -173,7 +173,7 @@ export default function UkStornaway() {
             if (!navigatedRef.current) {
               navigatedRef.current = true;
               setTimeout(() => {
-                navigateToPage("ask02_2", { from: "stornaway", choice: token });
+                navigateToPage("ask02", { from: "stornaway", choice: token });
               }, 50);
             }
             return;
@@ -214,7 +214,7 @@ export default function UkStornaway() {
             }
             return;
           }
-          if (token === "ไปต่อ") {
+          if (token === "ไปต่อ" || token === "ไปต่อ.") {
             if (!navigatedRef.current) {
               navigatedRef.current = true;
               setTimeout(() => {
@@ -227,18 +227,7 @@ export default function UkStornaway() {
             }
             return;
           }
-          // 2) Generic route token support, e.g. "route:ask02_2" or "route:/ukpack1/ask02-2"
-          const m = token.match(/^route:\s*(.+)$/i);
-          if (m && m[1]) {
-            const route = m[1].trim();
-            if (!navigatedRef.current) {
-              navigatedRef.current = true;
-              setTimeout(() => {
-                navigateToPage(route, { from: "stornaway", choice: token });
-              }, 50);
-            }
-            return;
-          }
+          // Route tokens disabled per request
           // Otherwise, do not navigate away (stay inside the video)
           if (!preventExternalNavigation) {
             if (!navigatedRef.current) {
