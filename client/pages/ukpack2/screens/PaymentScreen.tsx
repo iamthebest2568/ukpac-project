@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import React, { useEffect, useState } from "react";
 import CustomizationScreen from "../components/CustomizationScreen";
 import SelectionCard from "../components/SelectionCard";
