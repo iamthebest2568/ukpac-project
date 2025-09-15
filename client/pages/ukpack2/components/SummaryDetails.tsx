@@ -4,7 +4,7 @@ import HeroWithShadow from "./HeroWithShadow";
 const IconAir = () => <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fee1c18a935564e92bb49991fac3b76df?format=webp&width=800" alt="แอร์" className="h-6 w-6 object-contain select-none"/>;
 const IconFan = () => <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe01792ee89e240808ed47d8576b55d71?format=webp&width=800" alt="พัดลม" className="h-6 w-6 object-contain select-none"/>;
 const IconSeat = () => <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F93439b2533284cdf914fc93cafa1cf26?format=webp&width=800" alt="ที่นั่งพิเศษ" className="h-6 w-6 object-contain select-none"/>;
-const IconWifi = () => <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb0789bfd1100472f8351704764607d31?format=webp&width=800" alt="ที่จับ/ราวยืน" className="h-6 w-6 object-contain select-none"/>;
+const IconWifi = () => <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb0789bfd1100472f8351704764607d31?format=webp&width=800" alt="ที่จับ/��าวยืน" className="h-6 w-6 object-contain select-none"/>;
 const IconPlug = () => <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F09a78e31a3de44e98772b0eef382af6f?format=webp&width=800" alt="ช่องชาร์จมือถือ/USB" className="h-6 w-6 object-contain select-none"/>;
 const IconTv = () => <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fcb0cbf9ef6764e2d9e6f06e87827f5e9?format=webp&width=800" alt="Wi‑Fi ฟรี" className="h-6 w-6 object-contain select-none"/>;
 const IconCup = () => <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe903bdf27bab4175824c159bc19a02ba?format=webp&width=800" alt="ระบบประกาศ" className="h-6 w-6 object-contain select-none"/>;
@@ -140,7 +140,7 @@ const SummaryDetails: React.FC = () => {
               />
             </div>
           </HeroWithShadow>
-          <p className="mt-2 font-prompt font-semibold text-[#001a73] text-center">
+          <p className="mt-2 font-prompt font-semibold text-sm text-[#003366] text-center">
             รถที่เลือก : {chassisLabel}
           </p>
         </div>
@@ -150,33 +150,33 @@ const SummaryDetails: React.FC = () => {
         <div className="flex flex-col gap-3">
 
           <div className="flex items-start gap-3">
-            <div className="w-36 text-xs text-gray-500">รูปแบบรถ</div>
-            <div className="flex-1 font-sarabun font-semibold text-sm break-words">{chassisLabel}</div>
+            <div className="w-28 md:w-36 text-sm text-[#003366] truncate">รูปแบบรถ</div>
+            <div className="flex-1 font-sarabun font-semibold text-sm text-[#003366] break-words">{chassisLabel}</div>
           </div>
 
           <div className="flex items-start gap-3">
-            <div className="w-36 text-xs text-gray-500">ที่นั่ง</div>
-            <div className="flex-1 font-sarabun font-semibold text-sm break-words">{data.seating ? (typeof data.seating === 'object' ? data.seating.totalSeats : String(data.seating)) : '-'}</div>
+            <div className="w-28 md:w-36 text-sm text-[#003366] truncate">ที่นั่ง</div>
+            <div className="flex-1 font-sarabun font-semibold text-sm text-[#003366] break-words">{data.seating ? (typeof data.seating === 'object' ? data.seating.totalSeats : String(data.seating)) : '-'}</div>
           </div>
 
           <div className="flex items-start gap-3">
-            <div className="w-36 text-xs text-gray-500">การจ่ายเงิน</div>
-            <div className="flex-1 font-sarabun font-semibold text-sm break-words">{data.payment ? (Array.isArray(data.payment) ? data.payment.join(', ') : String(data.payment)) : '-'}</div>
+            <div className="w-28 md:w-36 text-sm text-[#003366] truncate">การจ่ายเงิน</div>
+            <div className="flex-1 font-sarabun font-semibold text-sm text-[#003366] break-words">{data.payment ? (Array.isArray(data.payment) ? data.payment.join(', ') : String(data.payment)) : '-'}</div>
           </div>
 
           <div className="flex items-start gap-3">
-            <div className="w-36 text-xs text-gray-500">ความสะดวก</div>
-            <div className="flex-1 font-sarabun font-semibold text-sm break-words">{data.amenities ? (Array.isArray(data.amenities) ? data.amenities.join(', ') : String(data.amenities)) : '-'}</div>
+            <div className="w-28 md:w-36 text-sm text-[#003366] truncate">ความสะดวก</div>
+            <div className="flex-1 font-sarabun font-semibold text-sm text-[#003366] break-words">{data.amenities ? (Array.isArray(data.amenities) ? data.amenities.join(', ') : String(data.amenities)) : '-'}</div>
           </div>
 
           <div className="flex items-start gap-3">
-            <div className="w-36 text-xs text-gray-500">ทางขึ้น</div>
-            <div className="flex-1 font-sarabun font-semibold text-sm break-words">{data.doors ? (typeof data.doors === 'string' ? displayDoor(data.doors) : (typeof data.doors === 'object' ? (data.doors.doorChoice ? (data.doors.doorChoice === '1' ? '1 ประตู' : data.doors.doorChoice === '2' ? '2 ประตู' : String(data.doors.doorChoice)) : (data.doors.hasRamp ? 'ทางลา��สำหรับรถเข็น/ผู้พิการ' : data.doors.highLow ? 'ประตูฉุกเฉิน' : JSON.stringify(data.doors))) : String(data.doors))) : '-'}</div>
+            <div className="w-28 md:w-36 text-sm text-[#003366] truncate">ทางขึ้น</div>
+            <div className="flex-1 font-sarabun font-semibold text-sm text-[#003366] break-words">{data.doors ? (typeof data.doors === 'string' ? displayDoor(data.doors) : (typeof data.doors === 'object' ? (data.doors.doorChoice ? (data.doors.doorChoice === '1' ? '1 ประตู' : data.doors.doorChoice === '2' ? '2 ประตู' : String(data.doors.doorChoice)) : (data.doors.hasRamp ? 'ทางลาดสำหรับรถเข็น/ผู้พิการ' : data.doors.highLow ? 'ประตูฉุกเฉิน' : JSON.stringify(data.doors))) : String(data.doors))) : '-'}</div>
           </div>
 
           <div className="flex items-start gap-3">
-            <div className="w-36 text-xs text-gray-500">ลักษณะพิเศษ</div>
-            <div className="flex-1 font-sarabun font-semibold text-sm break-words">{data.slogan || '-'}</div>
+            <div className="w-28 md:w-36 text-sm text-[#003366] truncate">ลักษณะพิเศษ</div>
+            <div className="flex-1 font-sarabun font-semibold text-sm text-[#003366] break-words">{data.slogan || '-'}</div>
           </div>
 
         </div>
