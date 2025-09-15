@@ -43,15 +43,28 @@ const ReceiptIcon = ({ active }: { active: boolean }) => (
   </svg>
 );
 
+const TAB1_ICON = 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F334e1ba542cd4c8b9ae5a2d3218aade1?format=webp&width=256';
+
 const StepTabs: React.FC<StepTabsProps> = ({ active }) => {
   const tabs = [BusIcon, DeckIcon, ChairIcon, TvIcon, ReceiptIcon];
   return (
     <div className="flex justify-around items-center border-b border-[#e5e7eb] mb-4">
       {tabs.map((Icon, idx) => {
         const isActive = idx + 1 === active;
+        const commonClasses = `text-center py-2 ${isActive ? 'border-b-2 border-[#003366] text-[#003366]' : 'text-[#9CA3AF]'}`;
         return (
-          <div key={idx} className={`text-center py-2 ${isActive ? 'border-b-2 border-[#003366] text-[#003366]' : 'text-[#9CA3AF]'}`} aria-current={isActive ? 'step' : undefined}>
-            <Icon active={isActive} />
+          <div key={idx} className={commonClasses} aria-current={isActive ? 'step' : undefined}>
+            {idx === 0 ? (
+              <img
+                src={TAB1_ICON}
+                alt={isActive ? 'โครงรถ (แท็บปัจจุบัน)' : 'โครงรถ'}
+                className={`w-7 h-7 ${isActive ? '' : 'grayscale opacity-60'}`}
+                decoding="async"
+                loading="eager"
+              />
+            ) : (
+              <Icon active={isActive} />
+            )}
           </div>
         );
       })}
