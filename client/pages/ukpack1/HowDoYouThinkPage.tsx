@@ -46,7 +46,8 @@ const HowDoYouThinkPage = () => {
 
     // Navigate to next page after a short delay
     setTimeout(() => {
-      navigateToPage("/ask05");
+      // After opinion page, continue to travel-by question
+      navigateToPage("/what-do-you-travel-by");
     }, 300);
   };
 
