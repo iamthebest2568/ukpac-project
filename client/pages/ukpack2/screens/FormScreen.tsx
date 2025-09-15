@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import CustomizationScreen from "../components/CustomizationScreen";
 import CtaButton from "../components/CtaButton";
 import SecondaryButton from "../components/SecondaryButton";
+import { logEvent } from "../../../services/dataLogger.js";
 
 const IconPerson = () => (
   <svg
