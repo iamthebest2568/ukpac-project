@@ -28,7 +28,7 @@ const Step1_Priorities = ({
   const getDefaultButtonColor = (priority: string) => {
     switch (priority) {
       case "ปรับปรุงคุณภาพรถเมล์":
-      case "เพ���่มความถี่รถเมล์":
+      case "เพิ่มความถี่รถเมล์":
         return "#FFE000"; // Yellow by default in Figma
       default:
         return "#E9E9E9"; // Gray by default in Figma
@@ -228,7 +228,7 @@ const Step1_Priorities = ({
                 opacity: isSelectionDisabled("เพิ่มความถี่รถเมล์") ? 0.5 : 1
               }}
               onClick={() =>
-                !isSelectionDisabled("เพิ่มความถี่รถเมล์") &&
+                !isSelectionDisabled("เพิ่มความถี่���ถเมล์") &&
                 handlePriorityToggle("เพิ่มความถี่รถเมล์")
               }
               disabled={isSelectionDisabled("เพิ่มความถี่รถเมล์")}
@@ -283,7 +283,7 @@ const Step1_Priorities = ({
                 opacity: isSelectionDisabled("เพิ่มความถี่รถไฟฟ้า") ? 0.5 : 1
               }}
               onClick={() =>
-                !isSelectionDisabled("เพิ่มความถี่รถไฟฟ้า") &&
+                !isSelectionDisabled("เพิ่มค���ามถี่รถไฟฟ้า") &&
                 handlePriorityToggle("เพิ่มความถี่รถไฟฟ้า")
               }
               disabled={isSelectionDisabled("เพิ่มความถี่รถไฟฟ้า")}
