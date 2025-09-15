@@ -94,34 +94,34 @@ const SummaryScreen: React.FC = () => {
 
         <div className="bg-[#e6e7e8] rounded-lg p-4 text-sm text-gray-800 shadow-sm">
           <div className="grid gap-4">
-            <div>
+            <div className="flex items-center justify-between">
               <div className="text-xs text-gray-500">รูปแบบรถ</div>
-              <div className="font-sarabun font-semibold text-sm">{chassisLabel}</div>
+              <div className="font-sarabun font-semibold text-sm text-right ml-4">{chassisLabel}</div>
             </div>
 
-            <div>
+            <div className="flex items-center justify-between">
               <div className="text-xs text-gray-500">ที่นั่ง</div>
-              <div className="font-sarabun font-semibold text-sm">{designData.seating ? (typeof designData.seating === 'object' ? designData.seating.totalSeats : String(designData.seating)) : '-'}</div>
+              <div className="font-sarabun font-semibold text-sm text-right ml-4">{designData.seating ? (typeof designData.seating === 'object' ? designData.seating.totalSeats : String(designData.seating)) : '-'}</div>
             </div>
 
-            <div>
+            <div className="flex items-center justify-between">
               <div className="text-xs text-gray-500">การจ่ายเงิน</div>
-              <div className="font-sarabun font-semibold text-sm">{designData.payment ? (Array.isArray(designData.payment) ? designData.payment.join(', ') : String(designData.payment)) : '-'}</div>
+              <div className="font-sarabun font-semibold text-sm text-right ml-4">{designData.payment ? (Array.isArray(designData.payment) ? designData.payment.join(', ') : String(designData.payment)) : '-'}</div>
             </div>
 
-            <div>
+            <div className="flex items-center justify-between">
               <div className="text-xs text-gray-500">ความสะดวก</div>
-              <div className="font-sarabun font-semibold text-sm">{designData.amenities ? (Array.isArray(designData.amenities) ? designData.amenities.join(', ') : String(designData.amenities)) : '-'}</div>
+              <div className="font-sarabun font-semibold text-sm text-right ml-4">{designData.amenities ? (Array.isArray(designData.amenities) ? designData.amenities.join(', ') : String(designData.amenities)) : '-'}</div>
             </div>
 
-            <div>
+            <div className="flex items-center justify-between">
               <div className="text-xs text-gray-500">ทางขึ้น</div>
-              <div className="font-sarabun font-semibold text-sm">{designData.doors ? (typeof designData.doors === 'string' ? displayDoor(designData.doors) : String(designData.doors)) : '-'}</div>
+              <div className="font-sarabun font-semibold text-sm text-right ml-4">{designData.doors ? (typeof designData.doors === 'string' ? displayDoor(designData.doors) : String(designData.doors)) : '-'}</div>
             </div>
 
-            <div>
+            <div className="flex items-center justify-between">
               <div className="text-xs text-gray-500">ลักษณะพิเศษ</div>
-              <div className="font-sarabun font-semibold text-sm">{designData.slogan || designData.exterior?.customText || '-'}</div>
+              <div className="font-sarabun font-semibold text-sm text-right ml-4">{designData.slogan || designData.exterior?.customText || '-'}</div>
             </div>
           </div>
         </div>
