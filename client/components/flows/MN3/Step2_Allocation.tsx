@@ -41,16 +41,24 @@ const Step2_Allocation = ({
     setBudgetAllocation(initialAllocation);
   }, [journeyData]);
 
+  // Sum allocations treating empty strings as 0
   const allocatedBudget = Object.values(budgetAllocation).reduce(
-    (sum, value) => sum + value,
+    (sum, value) => sum + (Number(value) || 0),
     0,
   );
 
   const handleBudgetChange = (priority: string, value: string) => {
-    const numValue = parseInt(value) || 0;
+    // Allow empty string while typing
+    if (value === '') {
+      setBudgetAllocation((prev) => ({ ...prev, [priority]: '' }));
+      return;
+    }
+
+    const numValue = parseInt(value || '0', 10) || 0;
+
     const currentTotal = Object.entries(budgetAllocation)
       .filter(([key]) => key !== priority)
-      .reduce((sum, [, v]) => sum + v, 0);
+      .reduce((sum, [, v]) => sum + (Number(v) || 0), 0);
 
     // Ensure the new value doesn't exceed remaining budget
     const maxAllowable = totalBudget - currentTotal;
@@ -152,8 +160,20 @@ const Step2_Allocation = ({
                     type="number"
                     min="0"
                     max={totalBudget}
-                    value={budgetAllocation[priority] || 0}
+                    value={budgetAllocation[priority] !== undefined ? budgetAllocation[priority] : 0}
                     onChange={(e) => handleBudgetChange(priority, e.target.value)}
+                    onFocus={() => {
+                      const current = budgetAllocation[priority];
+                      if (current === 0 || current === '0') {
+                        setBudgetAllocation((prev) => ({ ...prev, [priority]: '' }));
+                      }
+                    }}
+                    onBlur={() => {
+                      const current = budgetAllocation[priority];
+                      if (current === '' || current === undefined) {
+                        setBudgetAllocation((prev) => ({ ...prev, [priority]: 0 }));
+                      }
+                    }}
                     className="mn3-allocation-input"
                   />
                 </div>
