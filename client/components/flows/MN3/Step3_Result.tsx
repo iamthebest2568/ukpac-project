@@ -161,7 +161,18 @@ const Step3_Result = ({ sessionID, onNext, onBack, journeyData }: Step3_ResultPr
 
       {/* Question subtitle */}
       <div className="text-center w-full max-w-none px-4 mb-6">
-        <h2 className="figma-style1-subtitle" style={{ color: '#000D59' }}>คุณพอใจหรือ��ม่</h2>
+        <h2 className="figma-style1-subtitle" style={{ color: '#000D59' }}>คุณพอใจหรือไม่</h2>
+      </div>
+
+      {/* Buttons included in children so they show when custom children are used */}
+      <div className="figma-style1-button-container">
+        <button onClick={handleYes} className="figma-style1-button" aria-label="ตอบใช่ - พอใจกับผลลัพธ์">
+          <span className="figma-style1-button-text">ใช่</span>
+        </button>
+
+        <button onClick={handleNo} className="figma-style1-button" aria-label="ตอบไม่ใช่ - ไม่พอใจกับผลลัพธ์">
+          <span className="figma-style1-button-text">ไม่ใช่</span>
+        </button>
       </div>
     </FigmaStyle1Layout>
   );
