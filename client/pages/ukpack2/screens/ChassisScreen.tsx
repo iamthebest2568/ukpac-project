@@ -5,6 +5,7 @@ import SelectionCard from '../../ukpack2/components/SelectionCard';
 import CtaButton from '../../ukpack2/components/CtaButton';
 import ProgressDots from '../../ukpack2/components/ProgressDots';
 import ConfirmModal from '../components/ConfirmModal';
+import { useState, useMemo } from 'react';
 
 const IconSmall = () => (
   <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -47,6 +48,10 @@ const OPTIONS = [
 const ChassisScreen: React.FC = () => {
   const navigate = useNavigate();
   const [selected, setSelected] = useState<string>(OPTIONS[0].key);
+  const selectedLabel = useMemo(() => {
+    const found = OPTIONS.find(o => o.key === selected)?.label || '';
+    return found.replace(/(\d+)-(\d+)/, '$1–$2');
+  }, [selected]);
   const [isExitModalOpen, setExitModalOpen] = useState(false);
 
   const handleNext = () => {
@@ -75,7 +80,30 @@ const ChassisScreen: React.FC = () => {
             <ProgressDots total={5} currentStep={1} />
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          {/* Hero bus illustration */}
+          <div className="flex flex-col items-center mt-2">
+            <div className="text-white">
+              <svg width="240" height="160" viewBox="0 0 240 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="120" cy="138" rx="100" ry="14" fill="#00D5F9"/>
+                <path d="M206 22 l6 10 h-8 l6 10 l-8-6 l-8 6 l6-10 h-8 l6-10 l2 8 z" fill="#FFE000"/>
+                <rect x="30" y="50" width="180" height="64" rx="6" stroke="#051650" strokeWidth="6"/>
+                <rect x="44" y="62" width="36" height="22" rx="3" stroke="#051650" strokeWidth="5"/>
+                <rect x="84" y="62" width="36" height="22" rx="3" stroke="#051650" strokeWidth="5"/>
+                <rect x="124" y="62" width="36" height="22" rx="3" stroke="#051650" strokeWidth="5"/>
+                <rect x="164" y="62" width="32" height="22" rx="3" stroke="#051650" strokeWidth="5"/>
+                <rect x="190" y="74" width="8" height="26" fill="#051650"/>
+                <circle cx="76" cy="126" r="16" stroke="#051650" strokeWidth="6" fill="none"/>
+                <circle cx="76" cy="126" r="8" fill="#051650"/>
+                <circle cx="174" cy="126" r="16" stroke="#051650" strokeWidth="6" fill="none"/>
+                <circle cx="174" cy="126" r="8" fill="#051650"/>
+              </svg>
+            </div>
+            <p className="mt-2 font-prompt font-semibold text-[#001a73] text-center">
+              รถที่ใช้งาน : {selectedLabel}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4 mt-4">
             {OPTIONS.map((o) => (
               <SelectionCard
                 key={o.key}
