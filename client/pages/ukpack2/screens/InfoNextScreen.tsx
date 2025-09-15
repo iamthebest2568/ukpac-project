@@ -62,16 +62,7 @@ const InfoNextScreen: React.FC = () => {
           <p className="mt-2 text-sm text-gray-600">นี่คือรถเมล์ในฝันของคุณ</p>
         </header>
 
-        {heroImg && (
-          <div className="flex flex-col items-center mb-6">
-            <img src={heroImg} alt={`ภาพรถ - ${chassisLabel}`} className="h-64 w-auto object-contain select-none" decoding="async" loading="eager" />
-            <p className="mt-2 font-prompt font-semibold text-[#001a73] text-center">รถที่เลือก : {chassisLabel}</p>
-          </div>
-        )}
-
-        <div className="mb-6">
-          <SummaryCard designData={designData} />
-        </div>
+        <SummaryDetails />
 
         <footer className="mt-6">
           <div className="bg-[#00d5f9] rounded-t-3xl p-6 drop-shadow-lg">
