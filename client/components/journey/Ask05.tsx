@@ -94,7 +94,7 @@ const Ask05 = ({ sessionID, onNavigate }: Ask05Props) => {
               style={{
                 fontSize: "clamp(16px, 3.7vw, 40px)",
                 fontWeight: 400,
-                minHeight: "clamp(350px, 35vh, 720px)",
+                minHeight: "clamp(160px, 20vh, 360px)",
                 color: suggestion ? "#000" : "rgba(0, 0, 0, 0.7)",
               }}
             />
