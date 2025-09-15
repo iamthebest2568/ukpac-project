@@ -131,36 +131,34 @@ const SubmitScreen: React.FC = () => {
           </h2>
 
           <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              <label className="w-36 text-sm text-[#003366]">รถจะมาทุกๆ</label>
+            <div className="flex items-center gap-3 min-w-0">
+              <label className="w-28 md:w-36 text-sm text-[#003366] truncate">รถจะมาทุกๆ</label>
               <input
                 type="text"
                 value={interval}
                 onChange={(e) => setInterval(e.target.value)}
-                className="flex-1 rounded-md px-3 py-1.5 md:py-2 border border-[#07204a] h-10 md:h-auto"
+                className="flex-1 min-w-0 max-w-[220px] md:max-w-none rounded-lg px-3 py-1.5 md:py-2 border border-[#07204a] h-9 md:h-auto"
               />
               <span className="w-12 text-sm text-[#003366]">นาที</span>
             </div>
 
-            <div className="flex items-center gap-3">
-              <label className="w-36 text-sm text-[#003366]">สายรถเมล์</label>
+            <div className="flex items-center gap-3 min-w-0">
+              <label className="w-28 md:w-36 text-sm text-[#003366] truncate">สายรถเมล์</label>
               <input
                 type="text"
                 value={route}
                 onChange={(e) => setRoute(e.target.value)}
-                className="flex-1 rounded-md px-3 py-1.5 md:py-2 border border-[#07204a] h-10 md:h-auto"
+                className="flex-1 min-w-0 max-w-[220px] md:max-w-none rounded-lg px-3 py-1.5 md:py-2 border border-[#07204a] h-9 md:h-auto"
               />
             </div>
 
-            <div className="flex items-center gap-3">
-              <label className="w-36 text-sm text-[#003366]">
-                พื้นที่ที่วิ่ง
-              </label>
+            <div className="flex items-center gap-3 min-w-0">
+              <label className="w-28 md:w-36 text-sm text-[#003366] truncate">พื้นที่ที่วิ่ง</label>
               <input
                 type="text"
                 value={area}
                 onChange={(e) => setArea(e.target.value)}
-                className="flex-1 rounded-md px-3 py-1.5 md:py-2 border border-[#07204a] h-10 md:h-auto"
+                className="flex-1 min-w-0 max-w-[220px] md:max-w-none rounded-lg px-3 py-1.5 md:py-2 border border-[#07204a] h-9 md:h-auto"
               />
             </div>
           </div>
@@ -170,7 +168,7 @@ const SubmitScreen: React.FC = () => {
       <ConfirmModal
         isOpen={isExitModalOpen}
         title="ออกจากหน้าจอ"
-        message="คุณแน่ใจหรือไม่ว่าต้องกา��ออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
+        message="ค��ณแน่ใจหรือไม่ว่าต้องกา��ออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
         onConfirm={() => navigate("/")}
         onCancel={() => setExitModalOpen(false)}
       />
