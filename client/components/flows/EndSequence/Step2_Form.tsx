@@ -100,7 +100,7 @@ const Step2_Form = ({ sessionID, onNext, onBack, initialData }: Step2_FormProps)
 
         <div className="mt-8 flex flex-col items-center gap-3">
           <button onClick={handleNext} className="btn-large">ลุ้นรับรางวัล</button>
-          <button onClick={onBack} className="btn-large">ไม่</button>
+          <button onClick={() => onNext({ rewardForm: null })} className="btn-large">ไม่</button>
         </div>
       </div>
     </FigmaStyle1Layout>
