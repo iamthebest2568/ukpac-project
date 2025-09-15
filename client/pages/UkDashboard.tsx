@@ -52,7 +52,7 @@ type SessionSummary = {
   keyMessage1?: string; // Key message 1
   mn1Selected: string[]; // ลำดับความสำคัญของประเด็น
   mn2Selections?: Record<string, string[]>; // กลุ่มเป้าหมายที่ควรได้รับสิทธิ์
-  mn3Selected?: string[]; // ประเด็นนโ���บายที่ผู้ใช้เลือก
+  mn3Selected?: string[]; // ประเด็นนโยบายที่ผู้ใช้เลือก
   mn3BudgetAllocation?: Record<string, number>; // การจัดสรรงบประมาณ
   mn3BudgetTotal?: number;
   satisfactionLevel?: string; // ระดับความพึงพอใจ
@@ -160,7 +160,7 @@ export default function UkDashboard() {
       }
       setLastUpdated(new Date().toLocaleString());
     } catch (e: any) {
-      setError(e?.message || "โหลดข้อมูลล้มเหลว");
+      setError(e?.message || "โหลดข้อมูลล้มเห���ว");
     } finally {
       if (firstLoad) setLoading(false);
       setFirstLoad(false);
@@ -265,7 +265,7 @@ export default function UkDashboard() {
                   {ingest.app.lastTs
                     ? new Date(ingest.app.lastTs).toLocaleString()
                     : "-"}{" "}
-                  • วิดีโอ: {ingest.video.count} เหตุการณ���, ล่าสุด{" "}
+                  • วิดีโอ: {ingest.video.count} เหตุการณ์, ล่าสุด{" "}
                   {ingest.video.lastTs
                     ? new Date(ingest.video.lastTs).toLocaleString()
                     : "-"}
@@ -575,7 +575,7 @@ export default function UkDashboard() {
                     </AccordionItem>
                     {/* Comments */}
                     <AccordionItem value="comments">
-                      <AccordionTrigger>ข้อคิดเห็นอื่นๆ</AccordionTrigger>
+                      <AccordionTrigger>ข้อคิดเห็น��ื่นๆ</AccordionTrigger>
                       <AccordionContent>
                         <ul className="space-y-1 text-sm">
                           {(journey.ask05Samples || []).map(
@@ -696,7 +696,7 @@ export default function UkDashboard() {
                       "นโยบาย - กลุ่มเป้าหมายที่ควรได้รับสิทธิ์",
                       "ลำดับความสำคัญของประเด็น",
                       "การจัดสรรงบประมาณระหว่างนโยบาย",
-                      "ระดับความพึง��อใจ",
+                      "ระดับความพึงพอใจ",
                       "ข้อเสนอเพิ่มเติมต่อรัฐ",
                       "การตอบสนองต่อข่าวปลอม",
                       "แหล่งข่าวที่ผู้ใช้เลือก",
