@@ -23,16 +23,15 @@ const SeatingScreen: React.FC = () => {
     small: 30,
     medium: 40,
     large: 50,
-    extra: 70,
+    extra: 51,
   };
   const currentChassis = state.chassis || "medium";
-  const maxCapacity = maxByChassis[currentChassis] ?? 50;
 
   const CHASSIS_LABELS: Record<string, string> = {
     small: 'รถเมล์ขนาดเล็ก 16–30 ที่นั่ง',
     medium: 'รถเมล์ขนาดกลาง 31–40 ที่นั่ง',
     large: 'รถเมล์ขนาดใหญ่ 41–50 ที่นั่ง',
-    extra: 'รถเมล์รุ่นพิเศษ 51+ ที่นั่ง',
+    extra: 'รถเมล์รุ่นพิเ���ษ 51+ ที่นั่ง',
   };
 
   const TOPDOWN_IMAGE: Record<string, string | undefined> = {
@@ -50,6 +49,11 @@ const SeatingScreen: React.FC = () => {
       return currentChassis as keyof typeof CHASSIS_LABELS;
     }
   }, [currentChassis]);
+
+  const maxCapacity = maxByChassis[selectedChassis] ?? 50;
+  React.useEffect(() => {
+    setTotalSeats(maxCapacity);
+  }, [maxCapacity]);
 
   const selectedLabel = CHASSIS_LABELS[selectedChassis] || '';
   const selectedTopdown = TOPDOWN_IMAGE[selectedChassis];
@@ -115,9 +119,10 @@ const SeatingScreen: React.FC = () => {
                   type="number"
                   placeholder="พิมพ์"
                   value={totalSeats}
-                  onChange={(e) => handleTotalSeatsChange(Math.max(0, parseInt(e.target.value || '0', 10)))}
+                  onChange={(e) => handleTotalSeatsChange(Math.min(maxCapacity, Math.max(0, parseInt(e.target.value || '0', 10))))}
                   className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-md text-[#003366] bg-white text-right"
                   min={0}
+                  max={maxCapacity}
                 />
               </div>
 
@@ -126,9 +131,10 @@ const SeatingScreen: React.FC = () => {
                 <input
                   type="number"
                   value={pregnantSeats}
-                  onChange={(e) => setPregnantSeats(Math.max(0, parseInt(e.target.value || '0', 10)))}
+                  onChange={(e) => setPregnantSeats(Math.min(maxCapacity, Math.max(0, parseInt(e.target.value || '0', 10))))}
                   className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-md text-[#003366] bg-white text-right"
                   min={0}
+                  max={maxCapacity}
                 />
               </div>
 
@@ -137,9 +143,10 @@ const SeatingScreen: React.FC = () => {
                 <input
                   type="number"
                   value={childElderSeats}
-                  onChange={(e) => setChildElderSeats(Math.max(0, parseInt(e.target.value || '0', 10)))}
+                  onChange={(e) => setChildElderSeats(Math.min(maxCapacity, Math.max(0, parseInt(e.target.value || '0', 10))))}
                   className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-md text-[#003366] bg-white text-right"
                   min={0}
+                  max={maxCapacity}
                 />
               </div>
 
@@ -148,9 +155,10 @@ const SeatingScreen: React.FC = () => {
                 <input
                   type="number"
                   value={monkSeats}
-                  onChange={(e) => setMonkSeats(Math.max(0, parseInt(e.target.value || '0', 10)))}
+                  onChange={(e) => setMonkSeats(Math.min(maxCapacity, Math.max(0, parseInt(e.target.value || '0', 10))))}
                   className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-md text-[#003366] bg-white text-right"
                   min={0}
+                  max={maxCapacity}
                 />
               </div>
 
@@ -159,9 +167,10 @@ const SeatingScreen: React.FC = () => {
                 <input
                   type="number"
                   value={wheelchairBikeSpaces}
-                  onChange={(e) => setWheelchairBikeSpaces(Math.max(0, parseInt(e.target.value || '0', 10)))}
+                  onChange={(e) => setWheelchairBikeSpaces(Math.min(maxCapacity, Math.max(0, parseInt(e.target.value || '0', 10))))}
                   className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-md text-[#003366] bg-white text-right"
                   min={0}
+                  max={maxCapacity}
                 />
               </div>
             </div>
@@ -172,7 +181,7 @@ const SeatingScreen: React.FC = () => {
       <ConfirmModal
         isOpen={isExitModalOpen}
         title="ออก���ากหน้าจอ"
-        message="คุ��แน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
+        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ย���แปลงของคุณจะไม่ถูกบันทึก"
         onConfirm={() => navigate("/")}
         onCancel={() => setExitModalOpen(false)}
       />
