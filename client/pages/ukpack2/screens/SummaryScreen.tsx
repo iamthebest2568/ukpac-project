@@ -75,7 +75,39 @@ const SummaryScreen: React.FC = () => {
           )}
         </div>
 
-        <SummaryCard designData={designData} />
+        <div className="bg-white rounded-lg p-4 text-sm text-gray-800 shadow-sm">
+          <div className="grid gap-4">
+            <div>
+              <div className="text-xs text-gray-500">รูปแบบรถ</div>
+              <div className="font-sarabun font-semibold text-sm">{chassisLabel}</div>
+            </div>
+
+            <div>
+              <div className="text-xs text-gray-500">ที่นั่ง</div>
+              <div className="font-sarabun font-semibold text-sm">{designData.seating ? (typeof designData.seating === 'object' ? designData.seating.totalSeats : String(designData.seating)) : '-'}</div>
+            </div>
+
+            <div>
+              <div className="text-xs text-gray-500">การจ่ายเงิน</div>
+              <div className="font-sarabun font-semibold text-sm">{designData.payment ? (Array.isArray(designData.payment) ? designData.payment.join(', ') : String(designData.payment)) : '-'}</div>
+            </div>
+
+            <div>
+              <div className="text-xs text-gray-500">ความสะดวก</div>
+              <div className="font-sarabun font-semibold text-sm">{designData.amenities ? (Array.isArray(designData.amenities) ? designData.amenities.join(', ') : String(designData.amenities)) : '-'}</div>
+            </div>
+
+            <div>
+              <div className="text-xs text-gray-500">ทางขึ้น</div>
+              <div className="font-sarabun font-semibold text-sm">{designData.doors ? (typeof designData.doors === 'string' ? displayDoor(designData.doors) : String(designData.doors)) : '-'}</div>
+            </div>
+
+            <div>
+              <div className="text-xs text-gray-500">ลักษณะพิเศษ</div>
+              <div className="font-sarabun font-semibold text-sm">{designData.slogan || designData.exterior?.customText || '-'}</div>
+            </div>
+          </div>
+        </div>
 
         <footer className="mt-6">
           <div className="bg-[#00d5f9] rounded-t-3xl p-6 drop-shadow-lg mt-8">
