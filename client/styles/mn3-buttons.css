@@ -3,53 +3,53 @@
  * Consistent with fake-news page styling but optimized for policy option grid layout
  */
 
-/* Main button container for MN3 - responsive grid layout matching Figma */
+/* Main button container for MN3 - responsive grid layout */
 .mn3-button-grid {
   width: 100%;
-  max-width: min(91%, 984px); /* Match Figma width of 984px */
+  max-width: 95%; /* Increased to 95% for more space */
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: clamp(19px, 2.4vw, 24px); /* Match Figma 24px gap between rows */
-  padding: 0;
+  gap: clamp(12px, 2vw, 20px); /* Reduced gap for more space */
+  padding: 0 10px; /* Added small padding */
   box-sizing: border-box;
 }
 
-/* Individual row container matching Figma layout */
+/* Individual row container */
 .mn3-button-row {
   display: flex;
   flex-wrap: nowrap;
-  gap: clamp(19px, 1.75vw, 19px); /* Match Figma 19px gap between buttons */
-  justify-content: flex-start;
+  gap: clamp(8px, 1.5vw, 12px); /* Reduced gap between buttons */
+  justify-content: space-between; /* Distribute evenly */
   align-items: stretch;
   width: 100%;
 }
 
-/* Individual MN3 policy button - exact Figma styling */
+/* Individual MN3 policy button - optimized for content */
 .mn3-policy-button {
-  /* Base styling matching Figma design */
+  /* Base styling */
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 40px;
-  border: none; /* Figma design has no border */
-  background-color: #E9E9E9; /* Default gray from Figma */
-  box-shadow: none; /* Figma design has no shadow */
+  border-radius: 30px; /* Smaller border radius */
+  border: none;
+  background-color: #E9E9E9;
+  box-shadow: none;
   transition: all 0.2s ease;
   cursor: pointer;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
 
-  /* Height matching Figma (90px) with responsive scaling */
-  height: clamp(60px, 8.33vw, 90px);
-  min-height: 60px;
+  /* Smaller height for better fit */
+  height: clamp(40px, 6vw, 60px);
+  min-height: 40px;
 
-  /* Flexible width based on content and available space */
-  flex: 0 1 auto;
+  /* Flexible width that adapts to content */
+  flex: 1;
   min-width: 0;
 
-  /* Padding for text spacing */
-  padding: 0 clamp(12px, 2vw, 20px);
+  /* Reduced padding */
+  padding: 0 clamp(8px, 1.5vw, 16px);
   box-sizing: border-box;
 }
 
@@ -93,21 +93,21 @@
   background-color: #333;
 }
 
-/* Button text styling - optimized for mobile readability with no wrapping */
+/* Button text styling - smaller and adaptive */
 .mn3-button-text {
   font-family: 'Prompt', sans-serif;
-  font-weight: 600; /* Slightly reduced weight */
-  font-size: clamp(12px, 3vw, 20px); /* Slightly smaller to fit better */
-  line-height: 1.2;
-  letter-spacing: 0.1px;
+  font-weight: 500;
+  font-size: clamp(10px, 2.8vw, 16px); /* Smaller font size */
+  line-height: 1.1;
+  letter-spacing: 0px;
   color: #000;
   text-align: center;
   margin: 0;
   padding: 0;
-  white-space: nowrap !important; /* Force no wrapping */
+  white-space: nowrap !important;
   overflow: hidden;
   text-overflow: ellipsis;
-  word-break: keep-all; /* Prevent breaking within words */
+  word-break: keep-all;
 }
 
 /* Selected button text */
@@ -216,50 +216,17 @@
   }
 }
 
-/* Specific button widths - increased minimums to prevent text wrapping */
-/* Row 1: choice_1 (465px) and choice_2 (500px) */
-.mn3-policy-button--choice-1 {
-  flex: 0 0 clamp(200px, 43vw, 465px); /* Increased min from 280px to 200px */
-  max-width: 465px;
-  min-width: 200px;
-}
+/* Remove specific width constraints - let buttons size themselves based on content and available space */
+/* All buttons will use the base flex: 1 sizing from .mn3-policy-button */
 
-.mn3-policy-button--choice-2 {
-  flex: 0 0 clamp(220px, 46.3vw, 500px); /* Increased min from 300px to 220px */
-  max-width: 500px;
-  min-width: 220px;
-}
-
-/* Row 2: choice_3 (248px), choice_4 (385px), choice_5 (293px) */
-.mn3-policy-button--choice-3 {
-  flex: 0 0 clamp(100px, 23vw, 248px); /* Increased min from 150px to 100px */
-  max-width: 248px;
-  min-width: 100px;
-}
-
-.mn3-policy-button--choice-4 {
-  flex: 0 0 clamp(180px, 35.6vw, 385px); /* Increased min from 230px to 180px */
-  max-width: 385px;
-  min-width: 180px;
-}
-
-.mn3-policy-button--choice-5 {
-  flex: 0 0 clamp(140px, 27.1vw, 293px); /* Increased min from 180px to 140px */
-  max-width: 293px;
-  min-width: 140px;
-}
-
-/* Row 3: choice_6 (465px) and choice_7 (480px) */
-.mn3-policy-button--choice-6 {
-  flex: 0 0 clamp(200px, 43vw, 465px); /* Increased min from 280px to 200px */
-  max-width: 465px;
-  min-width: 200px;
-}
-
-.mn3-policy-button--choice-7 {
-  flex: 0 0 clamp(210px, 44.4vw, 480px); /* Increased min from 290px to 210px */
-  max-width: 480px;
-  min-width: 210px;
+/* Optional: Add small adjustments for very specific cases if needed */
+@media (max-width: 480px) {
+  .mn3-policy-button {
+    font-size: clamp(10px, 2.5vw, 14px);
+    height: clamp(35px, 5vw, 50px);
+    min-height: 35px;
+    padding: 0 clamp(6px, 1vw, 12px);
+  }
 }
 
 /* Ensure proper alignment in flex containers */
