@@ -44,10 +44,15 @@ const HowDoYouThinkPage = () => {
         });
     } catch {}
 
-    // Navigate to next page after a short delay
+    // Navigate to next page after a short delay based on selection
     setTimeout(() => {
-      // After opinion page, continue to travel-by question
-      navigateToPage("/what-do-you-travel-by");
+      if (option === 'agree') {
+        // If user agrees, go to fake news flow
+        navigateToPage('fakeNews', { from: 'how_do_you_think', selectedOption: option, sessionID });
+      } else {
+        // For neutral or disagree, go to Ask02 (next survey question)
+        navigateToPage('ask02', { from: 'how_do_you_think', selectedOption: option, sessionID });
+      }
     }, 300);
   };
 
