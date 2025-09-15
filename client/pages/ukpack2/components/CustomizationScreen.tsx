@@ -12,13 +12,13 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({ title, childr
   const isLight = theme === 'light';
   return (
     <div className={`min-h-screen flex flex-col ${isLight ? 'bg-white text-black' : 'bg-[#000d59] text-white'}`}>
-      <header className="px-6 py-4 border-b border-[#081042] flex items-center gap-4">
+      <header className="px-6 py-4 border-b border-[#081042] flex items-center gap-4 relative">
         {onBack && (
           <button onClick={onBack} aria-label="Back" className={`p-2 rounded-md ${isLight ? 'bg-black/5 text-black' : 'bg-white/5 text-white'}`}>
             ←
           </button>
         )}
-        <h1 className="text-2xl font-prompt font-semibold">{title}</h1>
+        <h1 className="text-2xl font-prompt font-semibold absolute left-1/2 transform -translate-x-1/2">{title}</h1>
       </header>
 
       <div className="flex-1 overflow-auto px-6 py-6">{children}</div>
