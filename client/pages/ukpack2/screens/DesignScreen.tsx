@@ -53,7 +53,7 @@ const DesignScreen: React.FC = () => {
           {(() => {
             const CHASSIS_LABELS: Record<string, string> = {
               small: 'รถเมล์ขนาดเล็ก 16–30 ที่นั่ง',
-              medium: 'รถเมล์ขนาดกลาง 31–40 ��ี่นั่ง',
+              medium: 'รถ���มล์ขนาดกลาง 31–40 ที่นั่ง',
               large: 'รถเมล์ขนาดใหญ่ 41-50 ที่นั่ง',
               extra: 'รถเมล์รุ่นพิเศษ 51+ ที่นั่ง',
             };
@@ -72,7 +72,7 @@ const DesignScreen: React.FC = () => {
             const img = HERO_IMAGE[selected];
             return img ? (
               <>
-                <img src={img} alt={`ภาพ���ถ - ${label}`} className="h-72 w-auto object-contain select-none" decoding="async" loading="eager" />
+                <img src={img} alt={`ภาพรถ - ${label}`} className="h-72 w-auto object-contain select-none" decoding="async" loading="eager" />
                 <p className="mt-1 font-prompt font-semibold text-[#001a73] text-center">รถที่ใช้งาน : {label}</p>
               </>
             ) : (
