@@ -13,7 +13,7 @@ const ThankYouScreen: React.FC = () => {
       footerContent={
         <div className="flex justify-end gap-3">
           <SecondaryButton text="ลุ้นรับรางวัล" onClick={() => navigate('/ukpack2/form')} />
-          <CtaButton text="ไม่ลุ้นรับรางวัล" onClick={() => navigate('/ukpack2/end')} />
+          <CtaButton text="ไม่ลุ้นรับรางวัล" onClick={() => navigate('/ukpack2/feedback-skip')} />
         </div>
       }
     >
