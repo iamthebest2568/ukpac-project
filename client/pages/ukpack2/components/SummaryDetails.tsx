@@ -97,7 +97,7 @@ const SummaryDetails: React.FC = () => {
 
           <div className="flex items-center justify-between">
             <div className="text-xs text-gray-500">ทางขึ้น</div>
-            <div className="font-sarabun font-semibold text-sm text-right ml-4">{data.doors ? (typeof data.doors === 'string' ? displayDoor(data.doors) : (typeof data.doors === 'object' ? (data.doors.doorChoice ? (data.doors.doorChoice === '1' ? '1 ประตู' : data.doors.doorChoice === '2' ? '2 ประตู' : String(data.doors.doorChoice)) : (data.doors.hasRamp ? 'ทางลาดสำหรับร���เข็น/ผู้พิการ' : data.doors.highLow ? 'ประตูฉุกเฉิน' : JSON.stringify(data.doors))) : String(data.doors))) : '-'}</div>
+            <div className="font-sarabun font-semibold text-sm text-right ml-4">{data.doors ? (typeof data.doors === 'string' ? displayDoor(data.doors) : (typeof data.doors === 'object' ? (data.doors.doorChoice ? (data.doors.doorChoice === '1' ? '1 ประตู' : data.doors.doorChoice === '2' ? '2 ประตู' : String(data.doors.doorChoice)) : (data.doors.hasRamp ? 'ทางลาดสำหรับรถเข็น/ผู้พิการ' : data.doors.highLow ? 'ประตูฉุกเฉิน' : JSON.stringify(data.doors))) : String(data.doors))) : '-'}</div>
           </div>
 
           <div className="flex items-center justify-between">
