@@ -35,7 +35,7 @@ const FormScreen: React.FC = () => {
   return (
     <CustomizationScreen
       title="รถเมล์ในฝัน"
-      footerContent={<div className="flex justify-end gap-3"><SecondaryButton text="ลุ้นรับรางวัล" onClick={submit} /><CtaButton text="ไม่ลุ้นรับรางวัล" onClick={skip} /></div>}
+      footerContent={<div className="flex justify-center"><SecondaryButton text="ลุ้นรับรางวัล" onClick={submit} /><CtaButton text="ไม่ลุ้นรับรางวัล" onClick={skip} /></div>}
     >
       <div className="space-y-6">
         <div className="flex items-center gap-3">

@@ -12,7 +12,7 @@ const ThankYouScreen: React.FC = () => {
       title="ขอบคุณ"
       theme="light"
       footerContent={
-        <div className="flex justify-center gap-4">
+        <div className="flex justify-center">
           <SecondaryButton text="ลุ้นรับรางวัล" onClick={() => navigate('/ukpack2/form')} />
           <CtaButton text="ไม่ลุ้นรับรางวัล" onClick={() => navigate('/ukpack2/feedback-skip')} />
         </div>

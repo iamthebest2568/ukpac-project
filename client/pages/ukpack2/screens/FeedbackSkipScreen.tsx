@@ -15,7 +15,7 @@ const FeedbackSkipScreen: React.FC = () => {
     try {
       const shareData = {
         title: 'ลองออกแบบรถเมล์กับฉัน',
-        text: 'ผม/ฉันได้ออกแบบรถเมล์ในฝัน ลองดูสิ',
+        text: 'ผม/ฉันได้ออกแบบรถเมล์��นฝัน ลองดูสิ',
         url: window.location.origin + '/ukpack2',
       };
       if ((navigator as any).share) {
@@ -32,7 +32,7 @@ const FeedbackSkipScreen: React.FC = () => {
 
   return (
     <CustomizationScreen title="ขอบคุณ" theme="light" footerContent={
-      <div className="flex justify-center gap-3">
+      <div className="flex justify-center">
         <SecondaryButton text="แชร์เกมนี้ให้เพื่อน" onClick={handleShare} />
         <CtaButton text="จบเกม" onClick={handleEnd} />
       </div>

@@ -10,7 +10,7 @@ const ConfirmationScreen: React.FC = () => {
   return (
     <CustomizationScreen
       title="ขอบคุณ"
-      footerContent={<div className="flex justify-end gap-3"><CtaButton text="จบเกม" onClick={() => navigate('/ukpack2')} /><SecondaryButton text="แชร์เกมนี้กับเพื่อน" onClick={() => console.log('share')} /></div>}
+      footerContent={<div className="flex justify-center"><CtaButton text="จบเกม" onClick={() => navigate('/ukpack2')} /><SecondaryButton text="แชร์เกมนี้กับเพื่อน" onClick={() => console.log('share')} /></div>}
     >
       <div className="space-y-4">
         <div className="bg-[#ffe000] text-[#000d59] rounded-md p-4">

@@ -11,10 +11,10 @@ const EndScreen: React.FC = () => {
     <CustomizationScreen
       title="ขอบคุณ"
       footerContent={
-        <div className="flex justify-end gap-3">
+        <div className="flex justify-center">
           <CtaButton text="จบเกม" onClick={() => navigate("/ukpack2")} />
           <SecondaryButton
-            text="แชร์เกมนี้กับเพื่อน"
+            text="แชร์เกมน���้กับเพื่อน"
             onClick={() => console.log("share")}
           />
         </div>
