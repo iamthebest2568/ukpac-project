@@ -228,7 +228,7 @@ const Step1_Priorities = ({
                 opacity: isSelectionDisabled("เพิ่มความถี่รถเมล์") ? 0.5 : 1
               }}
               onClick={() =>
-                !isSelectionDisabled("เพิ่มความถี่���ถเมล์") &&
+                !isSelectionDisabled("เพิ่มความถี่รถเมล์") &&
                 handlePriorityToggle("เพิ่มความถี่รถเมล์")
               }
               disabled={isSelectionDisabled("เพิ่มความถี่รถเมล์")}
@@ -272,7 +272,7 @@ const Step1_Priorities = ({
             </button>
           </div>
 
-          {/* Row 3: เพิ่มความถี่รถไฟฟ้า (gray), เพิ่ม Feeder ในซอย (gray) */}
+          {/* Row 3: เพิ่มความ��ี่รถไฟฟ้า (gray), เพิ่ม Feeder ในซอย (gray) */}
           <div className="flex" style={{ gap: 'clamp(16px, 1.8vw, 19px)' }}>
             <button
               className="transition-all duration-200 flex items-center justify-center rounded-[40px] border-0"
@@ -283,7 +283,7 @@ const Step1_Priorities = ({
                 opacity: isSelectionDisabled("เพิ่มความถี่รถไฟฟ้า") ? 0.5 : 1
               }}
               onClick={() =>
-                !isSelectionDisabled("เพิ่มค���ามถี่รถไฟฟ้า") &&
+                !isSelectionDisabled("เพิ่มความถี่รถไฟฟ้า") &&
                 handlePriorityToggle("เพิ่มความถี่รถไฟฟ้า")
               }
               disabled={isSelectionDisabled("เพิ่มความถี่รถไฟฟ้า")}
