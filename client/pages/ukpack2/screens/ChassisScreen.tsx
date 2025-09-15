@@ -57,7 +57,7 @@ const HERO_IMAGE: Record<string, string> = {
   large: 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fefc1e1ed3bcb4769b51d1544d43b3b5f?format=webp&width=800',
   extra: 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9a8a7536ced24db19a65409fbba1c6b6?format=webp&width=800',
 };
-const HERO_SHADOW = 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F5d019f9b1daa4e399fe3eae894317266?format=webp&width=800';
+const HERO_SHADOW = 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb1e30b1544304677996b179fc27ae5c7?format=webp&width=800';
 
 const ChassisScreen: React.FC = () => {
   const navigate = useNavigate();
@@ -88,7 +88,7 @@ const ChassisScreen: React.FC = () => {
         title="ปรับแต่งรถเมล์ของคุณ"
         onBack={() => setExitModalOpen(true)}
         theme="light"
-        footerContent={<div className="flex justify-center"><CtaButton text="ถัดไป" onClick={handleNext} /></div>}
+        footerContent={<div className="flex justify-center"><CtaButton text="ถ��ดไป" onClick={handleNext} /></div>}
       >
         <div className="space-y-6">
           <div className="flex items-center justify-center">
@@ -117,7 +117,7 @@ const ChassisScreen: React.FC = () => {
               />
             </div>
             <p className="mt-2 font-prompt font-semibold text-[#001a73] text-center">
-              รถที่ใช้งาน : {selectedLabel}
+              รถที่ใช้���าน : {selectedLabel}
             </p>
           </div>
 
