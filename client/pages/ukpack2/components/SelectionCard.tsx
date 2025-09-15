@@ -11,7 +11,7 @@ interface SelectionCardProps {
 const SelectionCard: React.FC<SelectionCardProps> = ({ icon, label, isSelected = false, onClick, variant = 'dark' }) => {
   const base = isSelected
     ? (variant === 'light'
-        ? 'bg-white text-[#003366] border-2 border-[#003366] shadow-sm'
+        ? 'bg-[#ffe000] text-[#003366] border-transparent font-semibold'
         : 'bg-[#ffe000] text-black border-transparent')
     : (variant === 'light'
         ? 'bg-white text-[#003366] border border-[#e5e7eb]'
