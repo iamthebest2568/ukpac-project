@@ -473,6 +473,80 @@
 /* Cleaned up device-specific rules - using simplified responsive system above */
 
 /* Final compatibility rules: ensure figma-style1 works within app-container */
+
+/* ===================================================================
+   UKPACK1 - Unified button appearance
+   Make all primary and secondary buttons across the ukpack1 pages share
+   the same visual style as the "ไปต่อ" button in minigame-mn1.
+   Only visual appearance is changed (background / text / hover / border)
+   max-width, layout and per-page sizing rules are preserved.
+   =================================================================== */
+
+/* Target common button classes used across ukpack1 pages */
+.app-container .figma-style1-button,
+.app-container .btn-large,
+.app-container .btn-primary,
+.app-container .mn3-policy-button,
+.app-container .mn3-continue-button,
+.app-container .figma-style1-button--secondary,
+.app-container .figma-style1-button--dark {
+  /* Visual base to match mn3 continue button */
+  background-color: #FFE000 !important; /* yellow base */
+  color: #000 !important; /* black text by default */
+  border: none !important; /* remove visible border */
+  box-shadow: none !important; /* no extra shadow by default */
+  border-radius: 40px !important; /* consistent rounded corners */
+  font-weight: 500 !important;
+  transition: all 0.18s ease !important;
+}
+
+/* Hover / active states: become black with white text, no border */
+.app-container .figma-style1-button:hover,
+.app-container .btn-large:hover,
+.app-container .btn-primary:hover,
+.app-container .mn3-policy-button:hover,
+.app-container .mn3-continue-button:hover,
+.app-container .figma-style1-button--secondary:hover,
+.app-container .figma-style1-button--dark:hover {
+  background-color: #000 !important;
+  color: #fff !important;
+  transform: scale(1.03) !important;
+}
+
+.app-container .figma-style1-button:active,
+.app-container .btn-large:active,
+.app-container .btn-primary:active,
+.app-container .mn3-policy-button:active,
+.app-container .mn3-continue-button:active,
+.app-container .figma-style1-button--secondary:active,
+.app-container .figma-style1-button--dark:active {
+  transform: scale(0.98) !important;
+}
+
+/* Disabled state should simply reduce opacity */
+.app-container .figma-style1-button:disabled,
+.app-container .btn-large:disabled,
+.app-container .btn-primary:disabled,
+.app-container .mn3-policy-button:disabled,
+.app-container .mn3-continue-button:disabled,
+.app-container .figma-style1-button--secondary:disabled,
+.app-container .figma-style1-button--dark:disabled {
+  opacity: 0.5 !important;
+  cursor: not-allowed !important;
+  transform: none !important;
+}
+
+/* Ensure text contrast and prevent border bleed for small variations */
+.app-container .figma-style1-button .figma-style1-button-text,
+.app-container .btn-large span,
+.app-container .mn3-policy-button .mn3-button-text {
+  color: inherit !important;
+}
+
+/* Keep per-page max-width and sizing intact (these rules only change visuals) */
+/* End unified button appearance */
+
+/* Final compatibility rules: ensure figma-style1 works within app-container */
 .app-container .figma-style1-container {
   flex: none !important; /* Don't let app-container flex affect us */
   min-height: 100vh !important; /* Ensure full viewport height */
