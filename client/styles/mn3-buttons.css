@@ -520,6 +520,81 @@
   -moz-appearance: textfield;
 }
 
+/* ========================================
+   MN3 Step 3: Result Display Styles
+   ======================================== */
+
+/* Result page background (cyan as per Figma) */
+.mn3-result-bg {
+  position: relative;
+  background-color: #04D9F9;
+}
+
+.mn3-result-bg::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-color: #04D9F9;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Content container for result page */
+.mn3-result-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 16px;
+  padding: 24px 16px 48px 16px;
+  margin: 6vh auto;
+  width: 100%;
+  max-width: 980px;
+  box-sizing: border-box;
+  z-index: 2;
+}
+
+/* Transport illustration image */
+.mn3-result-image {
+  width: clamp(300px, 69.4vw, 750px);
+  height: auto;
+  max-width: 750px;
+  object-fit: contain;
+  aspect-ratio: 750/861;
+}
+
+/* Result page buttons (Yes/No) */
+.mn3-result-button {
+  width: clamp(320px, 78.3vw, 845px);
+  height: clamp(80px, 10.9vw, 118px);
+  background-color: #FFE000;
+  border-radius: clamp(25px, 4.6vw, 50px);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  cursor: pointer;
+
+  font-family: 'Prompt', sans-serif;
+  font-weight: 400;
+  font-size: clamp(28px, 4.6vw, 50px);
+  color: #000;
+  line-height: normal;
+  letter-spacing: 0.4px;
+  text-align: center;
+}
+
+.mn3-result-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.mn3-result-button:active {
+  transform: scale(0.98);
+}
+
 /* Mobile responsive adjustments */
 @media (max-width: 480px) {
   /* Keep layout consistent with larger devices: labels left, inputs right */
@@ -566,6 +641,23 @@
     height: clamp(48px, 9vw, 72px);
     font-size: clamp(18px, 5vw, 28px);
     border-width: 3px;
+  }
+
+  /* Result page mobile adjustments */
+  .mn3-result-content {
+    gap: 12px;
+    padding: 12px 12px 24px 12px;
+    margin: 2vh auto;
+  }
+
+  .mn3-result-image {
+    width: clamp(280px, 85vw, 400px);
+  }
+
+  .mn3-result-button {
+    width: clamp(280px, 85vw, 400px);
+    height: clamp(60px, 12vw, 80px);
+    font-size: clamp(20px, 6vw, 32px);
   }
 }
 
