@@ -265,7 +265,7 @@ export default function UkDashboard() {
                   {ingest.app.lastTs
                     ? new Date(ingest.app.lastTs).toLocaleString()
                     : "-"}{" "}
-                  • วิดีโอ: {ingest.video.count} เหตุการณ์, ล่าส��ด{" "}
+                  • วิดีโอ: {ingest.video.count} เหตุ���ารณ์, ล่าสุด{" "}
                   {ingest.video.lastTs
                     ? new Date(ingest.video.lastTs).toLocaleString()
                     : "-"}
@@ -293,7 +293,7 @@ export default function UkDashboard() {
                   checked={autoRefresh}
                   onChange={(e) => setAutoRefresh(e.target.checked)}
                 />{" "}
-                อัปเดตอัตโนมัติ
+                อัปเด���อัตโนมัติ
               </label>
             </div>
           </div>
