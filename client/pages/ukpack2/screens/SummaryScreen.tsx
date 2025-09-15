@@ -54,6 +54,23 @@ const SummaryScreen: React.FC = () => {
   const chassisLabel = CHASSIS_LABELS[selected] || '';
   const heroImg = HERO_IMAGE[selected];
 
+  function displayDoor(raw: any) {
+    if (!raw) return '-';
+    if (typeof raw === 'string') {
+      if (raw === '1') return '1 ประตู';
+      if (raw === '2') return '2 ประตู';
+      if (raw === 'ramp') return 'ทางลาดสำหรับรถเข็น/ผู้พิการ';
+      if (raw === 'emergency') return 'ประตูฉุกเฉิน';
+      return raw;
+    }
+    if (typeof raw === 'object') {
+      if (raw.doorChoice) return raw.doorChoice === '1' ? '1 ประตู' : raw.doorChoice === '2' ? '2 ประตู' : String(raw.doorChoice);
+      if (raw.hasRamp) return 'ทางลาดสำหรับรถเข็น/ผู้พิการ';
+      if (raw.highLow) return 'ประตูฉุกเฉิน';
+    }
+    return String(raw);
+  }
+
   return (
     <div className="min-h-screen bg-[#000d59] text-white py-8 px-4">
       <div className="max-w-4xl mx-auto">
