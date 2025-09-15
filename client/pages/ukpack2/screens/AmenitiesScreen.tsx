@@ -4,26 +4,13 @@ import SelectionCard from "../components/SelectionCard";
 import CtaButton from "../components/CtaButton";
 
 const IconAir = () => (
-  <svg
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M3 12h18"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-    />
-    <path
-      d="M6 8h12"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-    />
-  </svg>
+  <img
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fd13935b2b3d1477d93a22385d58ac532?format=webp&width=800"
+    alt="แอร์"
+    className="h-8 w-8 object-contain select-none"
+    decoding="async"
+    loading="eager"
+  />
 );
 const IconFan = () => (
   <svg
@@ -185,7 +172,7 @@ const IconCam = () => (
 
 const AMENITIES = [
   { key: "air", label: "แอร์", icon: <IconAir /> },
-  { key: "fan", label: "พัด��ม", icon: <IconFan /> },
+  { key: "fan", label: "พัดลม", icon: <IconFan /> },
   { key: "seat", label: "ที่นั่งพิเศษ", icon: <IconSeat /> },
   { key: "wifi", label: "Wi-Fi", icon: <IconWifi /> },
   { key: "plug", label: "ปลั๊กไฟ", icon: <IconPlug /> },
