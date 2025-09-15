@@ -63,51 +63,61 @@ const SubmitScreen: React.FC = () => {
   const heroImg = HERO_IMAGE[selectedChassis];
 
   return (
-    <CustomizationScreen title="ปรับแต่งรถเมล์ของคุณ" theme="light" footerContent={<div className="flex justify-center"><CtaButton text="ออกแบบเสร็จแล้ว" onClick={handleFinish} /></div>}>
-      <div className="space-y-6">
-        {heroImg ? (
-          <div className="flex flex-col items-center">
-            <img src={heroImg} alt={`ภาพรถ - ${chassisLabel}`} className="h-56 w-auto object-contain select-none" decoding="async" loading="eager" />
-            <p className="mt-2 font-prompt font-semibold text-[#001a73] text-center">รถที่เลือก : {chassisLabel}</p>
-          </div>
-        ) : null}
+    <>
+      <CustomizationScreen title="ปรับแต่งรถเมล์ของคุณ" theme="light" onBack={() => setExitModalOpen(true)} footerContent={<div className="flex justify-center"><CtaButton text="ออกแบบเสร็จแล้ว" onClick={handleFinish} /></div>}>
+        <div className="space-y-6">
+          {heroImg ? (
+            <div className="flex flex-col items-center">
+              <img src={heroImg} alt={`ภาพรถ - ${chassisLabel}`} className="h-56 w-auto object-contain select-none" decoding="async" loading="eager" />
+              <p className="mt-2 font-prompt font-semibold text-[#001a73] text-center">รถที่เลือก : {chassisLabel}</p>
+            </div>
+          ) : null}
 
-        <h2 className="text-lg font-prompt font-semibold text-[#003366] mt-2">การบริการของรถเมล์</h2>
+          <h2 className="text-lg font-prompt font-semibold text-[#003366] mt-2">การบริการของรถเมล์</h2>
 
-        <div className="space-y-4">
-          <div className="flex items-center gap-3">
-            <label className="w-36 text-sm text-[#003366]">ร���จะมาทุกๆ</label>
-            <input
-              type="text"
-              value={interval}
-              onChange={(e) => setInterval(e.target.value)}
-              className="flex-1 rounded-md px-3 py-2 border border-[#07204a]"
-            />
-            <span className="w-12 text-sm text-[#003366]">นาที</span>
-          </div>
+          <div className="space-y-4">
+            <div className="flex items-center gap-3">
+              <label className="w-36 text-sm text-[#003366]">รถจะมาทุกๆ</label>
+              <input
+                type="text"
+                value={interval}
+                onChange={(e) => setInterval(e.target.value)}
+                className="flex-1 rounded-md px-3 py-2 border border-[#07204a]"
+              />
+              <span className="w-12 text-sm text-[#003366]">นาที</span>
+            </div>
 
-          <div className="flex items-center gap-3">
-            <label className="w-36 text-sm text-[#003366]">สายรถเมล์</label>
-            <input
-              type="text"
-              value={route}
-              onChange={(e) => setRoute(e.target.value)}
-              className="flex-1 rounded-md px-3 py-2 border border-[#07204a]"
-            />
-          </div>
+            <div className="flex items-center gap-3">
+              <label className="w-36 text-sm text-[#003366]">สายรถเมล์</label>
+              <input
+                type="text"
+                value={route}
+                onChange={(e) => setRoute(e.target.value)}
+                className="flex-1 rounded-md px-3 py-2 border border-[#07204a]"
+              />
+            </div>
 
-          <div className="flex items-center gap-3">
-            <label className="w-36 text-sm text-[#003366]">พื้นที่ที่วิ่ง</label>
-            <input
-              type="text"
-              value={area}
-              onChange={(e) => setArea(e.target.value)}
-              className="flex-1 rounded-md px-3 py-2 border border-[#07204a]"
-            />
+            <div className="flex items-center gap-3">
+              <label className="w-36 text-sm text-[#003366]">พื้นที่ที่วิ่ง</label>
+              <input
+                type="text"
+                value={area}
+                onChange={(e) => setArea(e.target.value)}
+                className="flex-1 rounded-md px-3 py-2 border border-[#07204a]"
+              />
+            </div>
           </div>
         </div>
-      </div>
-    </CustomizationScreen>
+      </CustomizationScreen>
+
+      <ConfirmModal
+        isOpen={isExitModalOpen}
+        title="ออกจากหน้าจอ"
+        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
+        onConfirm={() => navigate('/')}
+        onCancel={() => setExitModalOpen(false)}
+      />
+    </>
   );
 };
 
