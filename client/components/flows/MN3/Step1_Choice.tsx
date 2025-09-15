@@ -87,7 +87,7 @@ const Step1_Choice = ({
 
   // Define which buttons should be yellow by default (from Figma design)
   const defaultYellowButtons = new Set([
-    "ป��ับปรุงคุณภาพรถเมล์",  // choice_2
+    "ปรับปรุงคุณภาพรถเมล์",  // choice_2
     "เพิ่มความถี่รถเมล์"      // choice_4
   ]);
 
@@ -123,7 +123,7 @@ const Step1_Choice = ({
   return (
     <div className="w-full min-h-screen mn3-page-bg flex flex-col items-center justify-start relative">
       {/* Main Content Container */}
-      <div className="w-full px-4 flex flex-col items-center justify-end space-y-6 flex-1 pb-20">
+      <div className="mn3-content">
         
         {/* Title Section - Optimized for mobile readability */}
         <div className="text-center w-full max-w-none px-4">
@@ -138,7 +138,7 @@ const Step1_Choice = ({
               margin: '0 auto 16px auto'
             }}
           >
-            คุณคิดว่าควรใช้เงินที่ได้<br />
+            คุณคิดว่าค���รใช้เงินที่ได้<br />
             จากการเก็บไปพัฒนาอะไร
           </h1>
           <p
