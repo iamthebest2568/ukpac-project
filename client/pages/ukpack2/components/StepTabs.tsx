@@ -53,55 +53,65 @@ const TAB_FRAME = 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8
 const StepTabs: React.FC<StepTabsProps> = ({ active }) => {
   const tabs = [BusIcon, DeckIcon, ChairIcon, TvIcon, ReceiptIcon];
   return (
-    <div className="flex justify-around items-center border-b border-[#e5e7eb] mb-4">
+    <div className="flex justify-around items-center mb-4">
       {tabs.map((Icon, idx) => {
         const isActive = idx + 1 === active;
-        const commonClasses = `text-center py-2 ${isActive ? 'border-b-2 border-[#003366] text-[#003366]' : 'text-[#9CA3AF]'}`;
+        const commonClasses = `text-center py-2`;
         return (
           <div key={idx} className={commonClasses} aria-current={isActive ? 'step' : undefined}>
-            {idx === 0 ? (
+            <div className="relative w-16 h-10 flex items-center justify-center select-none">
               <img
-                src={TAB1_ICON}
-                alt={isActive ? 'โครงรถ (แท็บปัจจุบัน)' : 'โครงรถ'}
-                className={`w-7 h-7 ${isActive ? '' : 'grayscale opacity-60'}`}
+                src={TAB_FRAME}
+                alt={isActive ? 'กรอบแท็บ (แอคทีฟ)' : 'กรอบแท็บ'}
+                className={`absolute inset-0 w-full h-full object-contain pointer-events-none ${isActive ? '' : 'grayscale opacity-60'}`}
                 decoding="async"
                 loading="eager"
+                aria-hidden={!isActive}
               />
-            ) : idx === 1 ? (
-              <img
-                src={TAB2_ICON}
-                alt={isActive ? 'แท็บที่ 2 (แอคทีฟ)' : 'แท็บที่ 2'}
-                className={`w-7 h-7 ${isActive ? '' : 'grayscale opacity-60'}`}
-                decoding="async"
-                loading="eager"
-              />
-            ) : idx === 2 ? (
-              <img
-                src={TAB3_ICON}
-                alt={isActive ? 'แท็บที่ 3 (แอคทีฟ)' : 'แท็บที่ 3'}
-                className={`w-7 h-7 ${isActive ? '' : 'grayscale opacity-60'}`}
-                decoding="async"
-                loading="eager"
-              />
-            ) : idx === 3 ? (
-              <img
-                src={TAB4_ICON}
-                alt={isActive ? 'แท็บที่ 4 (แอคทีฟ)' : 'แท็บที่ 4'}
-                className={`w-7 h-7 ${isActive ? '' : 'grayscale opacity-60'}`}
-                decoding="async"
-                loading="eager"
-              />
-            ) : idx === 4 ? (
-              <img
-                src={TAB5_ICON}
-                alt={isActive ? 'แท็บที่ 5 (แอคทีฟ)' : 'แท็บที่ 5'}
-                className={`w-7 h-7 ${isActive ? '' : 'grayscale opacity-60'}`}
-                decoding="async"
-                loading="eager"
-              />
-            ) : (
-              <Icon active={isActive} />
-            )}
+              {idx === 0 ? (
+                <img
+                  src={TAB1_ICON}
+                  alt={isActive ? 'โครงรถ (แท็บปัจจุบัน)' : 'โครงรถ'}
+                  className={`w-7 h-7 ${isActive ? '' : 'grayscale opacity-60'}`}
+                  decoding="async"
+                  loading="eager"
+                />
+              ) : idx === 1 ? (
+                <img
+                  src={TAB2_ICON}
+                  alt={isActive ? 'แท็บที่ 2 (แอคทีฟ)' : 'แท็บที่ 2'}
+                  className={`w-7 h-7 ${isActive ? '' : 'grayscale opacity-60'}`}
+                  decoding="async"
+                  loading="eager"
+                />
+              ) : idx === 2 ? (
+                <img
+                  src={TAB3_ICON}
+                  alt={isActive ? 'แท็บที่ 3 (แอคทีฟ)' : 'แท็บที่ 3'}
+                  className={`w-7 h-7 ${isActive ? '' : 'grayscale opacity-60'}`}
+                  decoding="async"
+                  loading="eager"
+                />
+              ) : idx === 3 ? (
+                <img
+                  src={TAB4_ICON}
+                  alt={isActive ? 'แท็บที่ 4 (แอคทีฟ)' : 'แท็บที่ 4'}
+                  className={`w-7 h-7 ${isActive ? '' : 'grayscale opacity-60'}`}
+                  decoding="async"
+                  loading="eager"
+                />
+              ) : idx === 4 ? (
+                <img
+                  src={TAB5_ICON}
+                  alt={isActive ? 'แท็บที่ 5 (แอคทีฟ)' : 'แท็บที่ 5'}
+                  className={`w-7 h-7 ${isActive ? '' : 'grayscale opacity-60'}`}
+                  decoding="async"
+                  loading="eager"
+                />
+              ) : (
+                <Icon active={isActive} />
+              )}
+            </div>
           </div>
         );
       })}
