@@ -125,7 +125,7 @@ const Step1_Choice = ({
   return (
     <div className="w-full min-h-screen bg-[#04D9F9] flex flex-col items-center justify-center relative" style={{ maxWidth: 1080, margin: '0 auto' }}>
       {/* Main Content Container */}
-      <div className="responsive-content flex-col-center responsive-spacing-lg">
+      <div className="w-full px-4 pt-8 pb-32 flex flex-col items-center justify-start space-y-8">
         
         {/* Title Section */}
         <div className="text-center w-full responsive-padding-md">
