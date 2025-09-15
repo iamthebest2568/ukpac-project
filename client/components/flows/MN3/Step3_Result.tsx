@@ -154,10 +154,9 @@ const Step3_Result = ({
         {/* Title Section */}
         <div className="text-center w-full max-w-none px-4 mb-6">
           <h1
-            className="font-prompt text-center leading-normal"
+            className="font-prompt text-center leading-normal mn3-result-title"
             style={{
               color: '#000D59',
-              fontSize: 'clamp(28px, 5.5vw, 60px)',
               lineHeight: '1.2',
               fontWeight: 700,
               width: '100%',
