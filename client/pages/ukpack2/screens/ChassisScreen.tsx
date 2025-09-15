@@ -1,5 +1,4 @@
 import React, { useState, useMemo } from "react";
-import React, { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import CustomizationScreen from "../../ukpack2/components/CustomizationScreen";
 import SelectionCard from "../../ukpack2/components/SelectionCard";

@@ -1,5 +1,4 @@
 import React from "react";
-import React from "react";
 import HeroWithShadow from "./HeroWithShadow";
 
 const IconAir = () => <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fee1c18a935564e92bb49991fac3b76df?format=webp&width=800" alt="แอร์" className="h-6 w-6 object-contain select-none"/>;
@@ -48,7 +47,7 @@ const CHASSIS_LABELS: Record<string, string> = {
   small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
   medium: "รถเมล์ขนาดกลาง 31–40 ที่นั่ง",
   large: "รถเมล์ขนาดใหญ่ 41-50 ที่นั่ง",
-  extra: "รถเมล์รุ่นพิเศษ 51+ ที่นั่ง",
+  extra: "รถเมล์รุ���นพิเศษ 51+ ที่นั่ง",
 };
 
 const HERO_IMAGE: Record<string, string> = {
