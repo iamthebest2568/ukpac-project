@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import CustomizationScreen from '../../ukpack2/components/CustomizationScreen';
 import SelectionCard from '../../ukpack2/components/SelectionCard';
 import CtaButton from '../../ukpack2/components/CtaButton';
-import ProgressDots from '../../ukpack2/components/ProgressDots';
 import StepTabs from '../../ukpack2/components/StepTabs';
 import ConfirmModal from '../components/ConfirmModal';
 
@@ -28,7 +27,7 @@ const IconMedium = () => (
 const IconLarge = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fefc1e1ed3bcb4769b51d1544d43b3b5f?format=webp&width=360"
-    alt="รถเมล์ขนาดใหญ่ 41–50 ที่นั่ง"
+    alt="รถเม���์ขนาดใหญ่ 41–50 ที่นั่ง"
     className="max-h-12 w-auto object-contain select-none -translate-y-0.5"
     decoding="async"
     loading="eager"
@@ -92,10 +91,6 @@ const ChassisScreen: React.FC = () => {
         footerContent={<div className="flex justify-center"><CtaButton text="ถัดไป" onClick={handleNext} /></div>}
       >
         <div className="space-y-6">
-          <div className="flex items-center justify-center">
-            <ProgressDots total={5} currentStep={1} />
-          </div>
-
           {/* Hero bus illustration with shadow overlay */}
           <div className="flex flex-col items-center mt-2">
             <div className="relative w-full flex items-center justify-center" style={{ minHeight: '160px' }}>
