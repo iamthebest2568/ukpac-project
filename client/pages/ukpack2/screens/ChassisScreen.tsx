@@ -27,8 +27,8 @@ const IconMedium = () => (
 );
 const IconLarge = () => (
   <img
-    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F92ef2eb82c874bfc9ad295c39ea04286?format=webp&width=360"
-    alt="รถเมล์ขนาดใหญ่ 41-50 ที่นั่ง"
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fefc1e1ed3bcb4769b51d1544d43b3b5f?format=webp&width=360"
+    alt="รถเมล์ขนาดใหญ่ 41–50 ที่นั่ง"
     className="max-h-12 w-auto object-contain select-none"
     decoding="async"
     loading="eager"
@@ -55,7 +55,7 @@ const ChassisScreen: React.FC = () => {
   const [selected, setSelected] = useState<string>(OPTIONS[0].key);
   const selectedLabel = useMemo(() => {
     const found = OPTIONS.find(o => o.key === selected)?.label || '';
-    return found.replace(/(\d+)-(\d+)/, '$1–$2');
+    return found.replace(/(\d+)-(\d+)/, '$1���$2');
   }, [selected]);
   const [isExitModalOpen, setExitModalOpen] = useState(false);
 
