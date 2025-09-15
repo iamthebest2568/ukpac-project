@@ -6,18 +6,18 @@ import CtaButton from '../components/CtaButton';
 import StepTabs from "../components/StepTabs";
 
 const DEFAULT_COLORS = [
-  '#000d59', // primary dark blue
-  '#ffffff', // white
-  '#00d5f9', // accent cyan
-  '#ffe000', // accent yellow
-  '#0a1b3a',
-  '#07204a',
-  '#1b3b6f',
-  '#2b6f8f',
-  '#ffb400',
-  '#ffd874',
-  '#e6f9ff',
-  '#dbeafe',
+  'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F5456dc0212c14ba6a327d537ceed405e?format=webp&width=800', // c1
+  'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F60613c947767482aa9d75e7414cdf10a?format=webp&width=800', // c2
+  'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F257808683b104f7fb4c3d4ba712b4ef0?format=webp&width=800', // c3
+  'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc1540ee8e580442bbcfe1c7cbf7ca0ca?format=webp&width=800', // c4
+  'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F31b9a82b697a46a6b5b14e32002472d8?format=webp&width=800', // c5
+  'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fcae7472130bc47f09f28af725a944548?format=webp&width=800', // c6
+  'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F117b0cdb42744374a5999f03625d56aa?format=webp&width=800', // c7
+  'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fee9ba92b67734653865abb9c651119d6?format=webp&width=800', // c8
+  'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Ffae13b859b7c45eba3e49272be7622d2?format=webp&width=800', // c9
+  'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9ba49f215d7d4abca6a601bdee2d7bd5?format=webp&width=800', // c10
+  'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F30bc6908a9fc4a9e96afd58e5885af1b?format=webp&width=800', // c11
+  'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F321fa0e9571a4e34b5fe6beffc1fbbed?format=webp&width=800', // c12
 ];
 
 const DesignScreen: React.FC = () => {
@@ -77,7 +77,7 @@ const DesignScreen: React.FC = () => {
           <h2 className="text-xl font-prompt font-semibold text-[#003366] mt-2">ออกแบบสี</h2>
           <ColorPalette colors={DEFAULT_COLORS} selectedColor={color} onColorSelect={setColor} />
 
-          <h2 className="text-xl font-prompt font-semibold text-[#003366] mt-2">ลักษณะพิเศษอื่น ๆ ของรถคุณ</h2>
+          <h2 className="text-xl font-prompt font-semibold text-[#003366] mt-2">ลักษณะพิเศษ��ื่น ๆ ของรถคุณ</h2>
           <div>
             <input
               type="text"
