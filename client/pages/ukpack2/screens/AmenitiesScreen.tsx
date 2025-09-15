@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import CustomizationScreen from "../components/CustomizationScreen";
 import SelectionCard from "../components/SelectionCard";
 import CtaButton from "../components/CtaButton";
-import ProgressDots from "../components/ProgressDots";
 
 const IconAir = () => (
   <svg
@@ -216,7 +215,7 @@ const AmenitiesScreen: React.FC = () => {
 
   return (
     <CustomizationScreen
-      title="ปรับแต่งรถเมล์ของคุณ"
+      title="ปรั���แต่งรถเมล์ของคุณ"
       footerContent={
         <div className="flex justify-end">
           <CtaButton text="ถัดไป" onClick={handleNext} />
@@ -226,12 +225,6 @@ const AmenitiesScreen: React.FC = () => {
       <div className="space-y-6">
         <div className="w-full h-48 bg-[#081042] rounded-md flex items-center justify-center text-sm text-gray-300">
           Bus image preview
-        </div>
-
-        <div className="w-full flex items-center justify-center">
-          <div className="bg-transparent rounded-md p-2">
-            <ProgressDots total={5} active={3} />
-          </div>
         </div>
 
         <h2 className="text-xl font-prompt font-semibold">ความสะดวกสบาย</h2>

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import CustomizationScreen from "../components/CustomizationScreen";
 import SelectionCard from "../components/SelectionCard";
 import CtaButton from "../components/CtaButton";
-import ProgressDots from "../components/ProgressDots";
 import { useNavigate } from "react-router-dom";
 
 const IconCash = () => (
@@ -156,10 +155,6 @@ const PaymentScreen: React.FC = () => {
       }
     >
       <div className="space-y-6">
-        <div className="flex items-center justify-center">
-          <ProgressDots total={5} currentStep={4} />
-        </div>
-
         <div className="w-full h-48 bg-[#081042] rounded-md flex items-center justify-center text-sm text-gray-300">
           Bus image preview
         </div>

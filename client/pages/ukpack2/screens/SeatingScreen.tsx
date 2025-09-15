@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CustomizationScreen from "../components/CustomizationScreen";
-import ProgressDots from "../components/ProgressDots";
 import SelectionCard from "../components/SelectionCard";
 import CtaButton from "../components/CtaButton";
 import SecondaryButton from "../components/SecondaryButton";
@@ -61,10 +60,6 @@ const SeatingScreen: React.FC = () => {
         }
       >
         <div className="space-y-6">
-          <div className="flex items-center justify-center">
-            <ProgressDots total={5} currentStep={2} />
-          </div>
-
           <div className="w-full h-48 bg-[#081042] rounded-md flex items-center justify-center text-sm text-gray-300">
             Top-down seat map preview
           </div>
@@ -122,7 +117,7 @@ const SeatingScreen: React.FC = () => {
       <ConfirmModal
         isOpen={isExitModalOpen}
         title="ออกจากหน้าจอ"
-        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
+        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปล���ของคุณจะไม่ถูกบันทึก"
         onConfirm={() => navigate("/")}
         onCancel={() => setExitModalOpen(false)}
       />
