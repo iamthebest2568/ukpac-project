@@ -307,7 +307,7 @@
   content: "";
   position: fixed;
   inset: 0;
-  background-image: url('https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F367f151282c94192a12cfd43c25fa87e?format=webp&width=800');
+  background-image: url('https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fa06918f51a344c55898963662beae09b?format=webp&width=800');
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -315,8 +315,21 @@
   pointer-events: none; /* allow clicks through to the UI */
 }
 
+/* Allocation step-specific background (user-provided) */
+.mn3-allocation-bg::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url('https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F367f151282c94192a12cfd43c25fa87e?format=webp&width=800');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  z-index: 0;
+  pointer-events: none;
+}
+
 /* Ensure direct children render above the fixed background */
-.mn3-page-bg > * {
+.mn3-page-bg > *, .mn3-allocation-bg > * {
   position: relative;
   z-index: 2;
 }
@@ -355,7 +368,8 @@
 }
 
 /* Keep background behind fixed content */
-.mn3-page-bg::before {
+.mn3-page-bg::before,
+.mn3-allocation-bg::before {
   z-index: 0 !important;
 }
 
