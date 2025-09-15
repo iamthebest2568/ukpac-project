@@ -180,6 +180,7 @@ const SummaryDetails: React.FC = () => {
           </div>
 
         </div>
+        <p className="mt-4 font-prompt font-bold text-[#003366] text-center">ถ้ามีรถประจำทางแบบนี้คุณคิดว่าจะใช้บริการหรือไม่</p>
       </div>
     </>
   );
