@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import SummaryCard from '../components/SummaryCard';
+import SummaryDetails from '../components/SummaryDetails';
 import SecondaryButton from '../components/SecondaryButton';
 import CtaButton from '../components/CtaButton';
 
@@ -32,7 +32,7 @@ const SummaryScreen: React.FC = () => {
 
   const CHASSIS_LABELS: Record<string, string> = {
     small: 'รถเมล์ขนาดเล็ก 16–30 ที่นั่ง',
-    medium: 'รถเมล์ขนาดกลาง 31–40 ที่นั่ง',
+    medium: 'รถเมล์ขนา���กลาง 31–40 ที่นั่ง',
     large: 'รถเมล์ขนาดใหญ่ 41-50 ที่นั่ง',
     extra: 'รถเมล์รุ่นพิเศษ 51+ ที่นั่ง',
   };
