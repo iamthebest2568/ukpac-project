@@ -148,6 +148,7 @@ const AmenitiesScreen: React.FC = () => {
   })();
   const selectedLabel = CHASSIS_LABELS[selectedChassis] || '';
   const selectedBusImage = HERO_IMAGE[selectedChassis];
+  const [isExitModalOpen, setExitModalOpen] = useState(false);
 
   return (
     <CustomizationScreen
@@ -171,7 +172,7 @@ const AmenitiesScreen: React.FC = () => {
             />
           ) : (
             <div className="w-full h-48 bg-[#081042] rounded-md flex items-center justify-center text-sm text-gray-300">
-              Bus image preview (ภาพสำหรับรุ่นนี้จะถูกเพิ่มภายหลัง)
+              Bus image preview (ภาพสำหรับรุ่นนี้จะถูกเพิ่มภา���หลัง)
             </div>
           )}
           <p className="mt-1 font-prompt font-semibold text-[#001a73] text-center">
