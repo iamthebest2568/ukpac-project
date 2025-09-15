@@ -104,6 +104,7 @@ const App = () => {
         import("./pages/ukpack1/EndScreenPage"),
         import("./pages/ukpack1/MiniGameMN1Page"),
         import("./pages/ukpack1/MiniGameMN2Page"),
+        import("./pages/ukpack1/MiniGameMN01Page"),
         import("./pages/ukpack1/MiniGameMN3Page"),
         import("./pages/ukpack1/Uk-stornaway"),
       ];
