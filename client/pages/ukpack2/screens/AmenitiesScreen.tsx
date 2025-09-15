@@ -31,32 +31,13 @@ const IconSeat = () => (
   />
 );
 const IconWifi = () => (
-  <svg
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M2 8c6-5 16-5 20 0"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-    />
-    <path
-      d="M6 12c4-3 8-3 12 0"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-    />
-    <path
-      d="M10 16c1-1 3-1 4 0"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-    />
-  </svg>
+  <img
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb0789bfd1100472f8351704764607d31?format=webp&width=800"
+    alt="ที่จับ/ราวยืน"
+    className="h-8 w-8 object-contain select-none"
+    decoding="async"
+    loading="eager"
+  />
 );
 const IconPlug = () => (
   <svg
