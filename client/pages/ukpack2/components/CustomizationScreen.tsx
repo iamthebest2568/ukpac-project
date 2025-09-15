@@ -48,11 +48,13 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
     <div
       className={`min-h-screen flex flex-col ${isLight ? "bg-white text-black" : "bg-[#000d59] text-white"}`}
     >
-      <header className="px-6 border-b border-[#081042] flex items-center justify-center h-16">
-        <div className="max-w-4xl w-full flex items-center justify-center">
-          <h1 className="text-2xl font-prompt font-semibold">{title}</h1>
-        </div>
-      </header>
+      {title?.trim() ? (
+        <header className="px-6 border-b border-[#081042] flex items-center justify-center h-16">
+          <div className="max-w-4xl w-full flex items-center justify-center">
+            <h1 className="text-2xl font-prompt font-semibold">{title}</h1>
+          </div>
+        </header>
+      ) : null}
 
       <div
         ref={contentRef}
