@@ -24,10 +24,13 @@ const IconDoor2 = () => (
   />
 );
 const IconRamp = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M3 20h18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-    <path d="M7 16l4-8 4 6 2-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
+  <img
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F38de4d577fa346a985827c9da650fd69?format=webp&width=800"
+    alt="ทางสำหรับร���เข็น/ผู้พิการ"
+    className="h-8 w-8 object-contain select-none"
+    decoding="async"
+    loading="eager"
+  />
 );
 const IconHighLow = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -51,7 +54,7 @@ const DoorScreen: React.FC = () => {
 
   return (
     <CustomizationScreen
-      title="ปรับแต่งรถเมล์ของค���ณ"
+      title="ปรับแต่งรถเมล์ของคุณ"
       theme="light"
       footerContent={<div className="flex justify-center"><CtaButton text="ถัดไป" onClick={handleNext} /></div>}
     >
