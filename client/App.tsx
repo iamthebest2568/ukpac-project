@@ -34,6 +34,7 @@ const UkStornaway = lazy(() => import("./pages/ukpack1/Uk-stornaway"));
 const UkDashboard = lazy(() => import("./pages/ukpack1/UkDashboard"));
 const ReasonOther01Page = lazy(() => import("./pages/ukpack1/ReasonOther01Page"));
 const WhatDoYouTravelByPage = lazy(() => import("./pages/ukpack1/WhatDoYouTravelByPage"));
+const HowDoYouThinkPage = lazy(() => import("./pages/ukpack1/HowDoYouThinkPage"));
 const SplashScreen = lazy(() => import("./pages/ukpack2/screens/SplashScreen"));
 const AmenitiesScreen = lazy(() => import("./pages/ukpack2/screens/AmenitiesScreen"));
 const ChassisScreen = lazy(() => import("./pages/ukpack2/screens/ChassisScreen"));
@@ -106,6 +107,7 @@ const App = () => {
         import("./pages/ukpack1/MiniGameMN2Page"),
         import("./pages/ukpack1/MiniGameMN01Page"),
         import("./pages/ukpack1/MiniGameMN3Page"),
+        import("./pages/ukpack1/HowDoYouThinkPage"),
         import("./pages/ukpack1/Uk-stornaway"),
       ];
       Promise.allSettled(tasks);
