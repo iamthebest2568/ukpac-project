@@ -15,23 +15,6 @@ const EndScreen: React.FC = () => {
       <CustomizationScreen
         title="ขอบคุณ"
         theme="light"
-        footerContent={
-          <div className="flex justify-center">
-            <CtaButton
-              text="จบเกม"
-              onClick={() => {
-                try {
-                  clearDesignStorage();
-                } catch (e) {}
-                navigate("/ukpack2");
-              }}
-            />
-            <SecondaryButton
-              text="แชร์เกมนี้กับเพื่อน"
-              onClick={() => setShareOpen(true)}
-            />
-          </div>
-        }
       >
         <div className="space-y-6">
           <div className="w-full flex justify-center">
