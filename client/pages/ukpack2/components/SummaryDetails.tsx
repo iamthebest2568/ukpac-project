@@ -27,7 +27,7 @@ const displayDoor = (raw: any) => {
     if (raw === "1") return "1 ประตู";
     if (raw === "2") return "2 ประตู";
     if (raw === "ramp") return "ทางลาดสำหรับรถเข็น/ผู้พิการ";
-    if (raw === "emergency") return "��ระตูฉุกเฉิน";
+    if (raw === "emergency") return "ประตูฉุกเฉิน";
     return raw;
   }
   if (typeof raw === "object") {
@@ -44,7 +44,7 @@ const displayDoor = (raw: any) => {
 };
 
 const CHASSIS_LABELS: Record<string, string> = {
-  small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
+  small: "รถเมล์��นาดเล็ก 16–30 ที่นั่ง",
   medium: "รถเมล์ขนาดกลาง 31–40 ที่นั่ง",
   large: "รถเมล์ขนาดใหญ่ 41-50 ที่นั่ง",
   extra: "รถเมล์รุ่นพิเศษ 51+ ที่นั่ง",
