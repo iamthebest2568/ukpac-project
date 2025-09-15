@@ -31,7 +31,7 @@ const Step1_Choice = ({
     "เพิ่มความถี่รถเมล์",
     "เพิ่มที่จอดรถ",
     "เพิ่มความถี่รถไฟฟ้า",
-    "เพิ่ม Feeder ในซอย",
+    "���พิ่ม Feeder ในซอย",
   ];
 
   const handlePriorityToggle = (priority: string) => {
@@ -154,13 +154,14 @@ const Step1_Choice = ({
                 border: '2px solid #000'
               }}
             >
-              <span 
-                className={`font-prompt ${getTextColor(priorityList[0])}`} 
-                style={{ 
-                  fontSize: 'clamp(16px, 3.7vw, 40px)', 
-                  letterSpacing: '0.4px', 
+              <span
+                className="font-prompt font-bold group-hover:text-[#FFE000]"
+                style={{
+                  fontSize: 'clamp(16px, 3.7vw, 40px)',
+                  letterSpacing: '0.4px',
                   fontWeight: 700,
-                  textAlign: 'center'
+                  textAlign: 'center',
+                  color: getTextColor(priorityList[0])
                 }}
               >
                 {priorityList[0]}
@@ -178,13 +179,14 @@ const Step1_Choice = ({
                 border: '2px solid #000'
               }}
             >
-              <span 
-                className={`font-prompt ${getTextColor(priorityList[1])}`} 
-                style={{ 
-                  fontSize: 'clamp(16px, 3.7vw, 40px)', 
-                  letterSpacing: '0.4px', 
+              <span
+                className="font-prompt font-bold group-hover:text-[#FFE000]"
+                style={{
+                  fontSize: 'clamp(16px, 3.7vw, 40px)',
+                  letterSpacing: '0.4px',
                   fontWeight: 700,
-                  textAlign: 'center'
+                  textAlign: 'center',
+                  color: getTextColor(priorityList[1])
                 }}
               >
                 {priorityList[1]}
@@ -205,13 +207,14 @@ const Step1_Choice = ({
                 border: '2px solid #000'
               }}
             >
-              <span 
-                className={`font-prompt ${getTextColor(priorityList[2])}`} 
-                style={{ 
-                  fontSize: 'clamp(16px, 3.7vw, 40px)', 
-                  letterSpacing: '0.4px', 
+              <span
+                className="font-prompt font-bold group-hover:text-[#FFE000]"
+                style={{
+                  fontSize: 'clamp(16px, 3.7vw, 40px)',
+                  letterSpacing: '0.4px',
                   fontWeight: 700,
-                  textAlign: 'center'
+                  textAlign: 'center',
+                  color: getTextColor(priorityList[2])
                 }}
               >
                 {priorityList[2]}
@@ -229,13 +232,14 @@ const Step1_Choice = ({
                 border: '2px solid #000'
               }}
             >
-              <span 
-                className={`font-prompt ${getTextColor(priorityList[3])}`} 
-                style={{ 
-                  fontSize: 'clamp(16px, 3.7vw, 40px)', 
-                  letterSpacing: '0.4px', 
+              <span
+                className="font-prompt font-bold group-hover:text-[#FFE000]"
+                style={{
+                  fontSize: 'clamp(16px, 3.7vw, 40px)',
+                  letterSpacing: '0.4px',
                   fontWeight: 700,
-                  textAlign: 'center'
+                  textAlign: 'center',
+                  color: getTextColor(priorityList[3])
                 }}
               >
                 {priorityList[3]}
@@ -253,13 +257,14 @@ const Step1_Choice = ({
                 border: '2px solid #000'
               }}
             >
-              <span 
-                className={`font-prompt ${getTextColor(priorityList[4])}`} 
-                style={{ 
-                  fontSize: 'clamp(16px, 3.7vw, 40px)', 
-                  letterSpacing: '0.4px', 
+              <span
+                className="font-prompt font-bold group-hover:text-[#FFE000]"
+                style={{
+                  fontSize: 'clamp(16px, 3.7vw, 40px)',
+                  letterSpacing: '0.4px',
                   fontWeight: 700,
-                  textAlign: 'center'
+                  textAlign: 'center',
+                  color: getTextColor(priorityList[4])
                 }}
               >
                 {priorityList[4]}
@@ -280,13 +285,14 @@ const Step1_Choice = ({
                 border: '2px solid #000'
               }}
             >
-              <span 
-                className={`font-prompt ${getTextColor(priorityList[5])}`} 
-                style={{ 
-                  fontSize: 'clamp(16px, 3.7vw, 40px)', 
-                  letterSpacing: '0.4px', 
+              <span
+                className="font-prompt font-bold group-hover:text-[#FFE000]"
+                style={{
+                  fontSize: 'clamp(16px, 3.7vw, 40px)',
+                  letterSpacing: '0.4px',
                   fontWeight: 700,
-                  textAlign: 'center'
+                  textAlign: 'center',
+                  color: getTextColor(priorityList[5])
                 }}
               >
                 {priorityList[5]}
@@ -304,13 +310,14 @@ const Step1_Choice = ({
                 border: '2px solid #000'
               }}
             >
-              <span 
-                className={`font-prompt ${getTextColor(priorityList[6])}`} 
-                style={{ 
-                  fontSize: 'clamp(16px, 3.7vw, 40px)', 
-                  letterSpacing: '0.4px', 
+              <span
+                className="font-prompt font-bold group-hover:text-[#FFE000]"
+                style={{
+                  fontSize: 'clamp(16px, 3.7vw, 40px)',
+                  letterSpacing: '0.4px',
                   fontWeight: 700,
-                  textAlign: 'center'
+                  textAlign: 'center',
+                  color: getTextColor(priorityList[6])
                 }}
               >
                 {priorityList[6]}
