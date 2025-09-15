@@ -28,7 +28,7 @@ const IconFan = () => (
 const IconSeat = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F93439b2533284cdf914fc93cafa1cf26?format=webp&width=800"
-    alt="ที่นั่งพิเศษ"
+    alt="ที่นั่งพ��เศษ"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -64,7 +64,7 @@ const IconTv = () => (
 const IconCup = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe903bdf27bab4175824c159bc19a02ba?format=webp&width=800"
-    alt="ระบบประกาศบอกป้าย(เสียง/จอ)"
+    alt="ระ��บประกาศบอกป้าย(เสียง/จอ)"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -326,7 +326,7 @@ const DoorScreen: React.FC = () => {
             );
           })()}
         </div>
-        <div className="bg-white rounded-t-3xl -mt-2 p-4">
+        <div className="bg-white rounded-2xl -mt-2 p-4 border border-gray-400">
           <StepTabs active={5} />
 
           <h2 className="text-xl font-prompt font-semibold text-[#003366] mt-2">
