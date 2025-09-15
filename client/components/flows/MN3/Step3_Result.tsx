@@ -30,7 +30,7 @@ const Step3_Result = ({ sessionID, onNext, onBack, journeyData }: Step3_ResultPr
   const priorityIcons: { [key: string]: string } = {
     ลดค่าโดยสารรถไฟฟ้า: "🚇",
     ปรับปรุงคุณภาพรถเมล์: "🚌",
-    ตั๋วร่วม: "🎫",
+    ต��๋วร่วม: "🎫",
     เพิ่มความถี่รถเมล์: "🚍",
     เพิ่มความถี่รถไฟฟ้า: "🚊",
     เพิ่มที่จอดรถ: "🅿️",
@@ -191,13 +191,6 @@ const Step3_Result = ({ sessionID, onNext, onBack, journeyData }: Step3_ResultPr
         ) : null}
       </div>
 
-      <div className="w-full px-4 mb-6 flex justify-center">
-        <img
-          src="https://api.builder.io/api/v1/image/assets/TEMP/40ffac7fde4a30bb13050c151fbeed8c7c4fae41?width=1500"
-          alt="Transport policy outcomes illustration"
-          className="mn3-result-image"
-        />
-      </div>
 
       <div className="text-center w-full max-w-none px-4 mb-6">
         <h2 className="figma-style1-subtitle" style={{ color: '#000D59' }}>คุณพอใจหรือไม่</h2>
@@ -219,7 +212,7 @@ const Step3_Result = ({ sessionID, onNext, onBack, journeyData }: Step3_ResultPr
           aria-label="ตอบไม่ใช่ - ไม่พอใจกับผลลัพธ์"
           aria-pressed={selected === 'no'}
         >
-          <span className="figma-style1-button-text">ไม่ใช่</span>
+          <span className="figma-style1-button-text">���ม่ใช่</span>
         </button>
       </div>
     </FigmaStyle1Layout>
