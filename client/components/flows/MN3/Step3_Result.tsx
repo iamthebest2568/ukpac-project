@@ -163,6 +163,34 @@ const Step3_Result = ({ sessionID, onNext, onBack, journeyData }: Step3_ResultPr
         </h1>
       </div>
 
+      {/* Result summary cards */}
+      <div className="mn3-summary-list w-full px-4 mb-4">
+        {resultSummary && resultSummary.length > 0 ? (
+          resultSummary.map((item, idx) => {
+            const colorClass = idx === 0 ? 'mn3-summary-card--green' : idx === 1 ? 'mn3-summary-card--yellow' : 'mn3-summary-card--red';
+            return (
+              <div key={item.priority} className={`mn3-summary-card ${colorClass} mb-3`}>
+                <div className="mn3-summary-card-left">
+                  <div className="mn3-summary-icon" aria-hidden>
+                    {item.icon}
+                  </div>
+                </div>
+                <div className="mn3-summary-card-body">
+                  <div className="mn3-summary-card-title">{item.priority}</div>
+                  <div className="mn3-summary-card-meta">
+                    <span className="mn3-summary-amount">{item.allocation}</span>
+                    <span className="mn3-summary-percent"> ({Math.round(item.percentage)}%)</span>
+                  </div>
+                  <div className="mn3-summary-bar-wrap">
+                    <div className="mn3-summary-bar" style={{ width: `${Math.max(4, item.percentage)}%` }} />
+                  </div>
+                </div>
+              </div>
+            );
+          })
+        ) : null}
+      </div>
+
       <div className="w-full px-4 mb-6 flex justify-center">
         <img
           src="https://api.builder.io/api/v1/image/assets/TEMP/40ffac7fde4a30bb13050c151fbeed8c7c4fae41?width=1500"
