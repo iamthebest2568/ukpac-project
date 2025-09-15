@@ -58,15 +58,21 @@ const FigmaStyle1Layout = ({
     <div className={`figma-style1-container ${className}`}>
       <div className="figma-style1-content">
         {/* Background Image (overlay only rendered when useBlueOverlay is true) */}
-        <div className="figma-style1-background" style={{ backgroundImage: `url(${backgroundImage})` }}>
+        <div
+          className="figma-style1-background"
+          style={backgroundImage ? { backgroundImage: `url(${backgroundImage})` } : undefined}
+        >
           {/* backgroundImage is set via inline style for per-page backgrounds; img kept for accessibility/tools but hidden via CSS by default */}
-          <img
-            src={backgroundImage}
-            alt={backgroundAlt}
-            className="figma-style1-background-image"
-            loading={imageLoading}
-            decoding="async"
-          />
+          {backgroundImage ? (
+            <img
+              src={backgroundImage}
+              alt={backgroundAlt}
+              className="figma-style1-background-image"
+              loading={imageLoading}
+              decoding="async"
+            />
+          ) : null}
+
           {useBlueOverlay ? (
             <div className={`figma-style1-background-overlay figma-style1-background-overlay--blue`} />
           ) : null}
