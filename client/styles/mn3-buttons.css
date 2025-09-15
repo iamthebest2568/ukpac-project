@@ -93,13 +93,13 @@
   background-color: #333;
 }
 
-/* Button text styling - exact Figma specifications */
+/* Button text styling - optimized for mobile readability */
 .mn3-button-text {
   font-family: 'Prompt', sans-serif;
-  font-weight: 700; /* Bold weight as in Figma (font-weight:600 in design) */
-  font-size: clamp(24px, 3.7vw, 40px); /* Match Figma 40px font size */
-  line-height: normal;
-  letter-spacing: 0.4px; /* Match Figma letter-spacing */
+  font-weight: 600; /* Slightly reduced weight */
+  font-size: clamp(14px, 3.5vw, 24px); /* Reduced from 40px max to 24px */
+  line-height: 1.2;
+  letter-spacing: 0.2px;
   color: #000;
   text-align: center;
   word-wrap: break-word;
@@ -268,16 +268,16 @@
   word-break: break-word;
 }
 
-/* Continue button styling - exact Figma specifications */
+/* Continue button styling - optimized for mobile readability */
 .mn3-continue-button {
   width: 100%;
-  max-width: clamp(500px, 78.2vw, 845px); /* Match Figma 845px width */
-  height: clamp(80px, 10.9vw, 118px); /* Match Figma 118px height */
-  min-height: 80px;
-  border-radius: 50px; /* Match Figma border-radius */
-  border: none; /* Figma design has no border */
+  max-width: clamp(300px, 85vw, 600px); /* Reduced max width */
+  height: clamp(50px, 8vw, 80px); /* Reduced height */
+  min-height: 50px;
+  border-radius: 40px; /* Slightly reduced border-radius */
+  border: none;
   background-color: #FFE000;
-  box-shadow: none; /* Figma design has no shadow */
+  box-shadow: none;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -285,10 +285,10 @@
   cursor: pointer;
   margin: 0 auto;
   font-family: 'Prompt', sans-serif;
-  font-weight: 400; /* Match Figma font-weight:400 */
-  font-size: clamp(30px, 4.6vw, 50px); /* Match Figma 50px font size */
+  font-weight: 500;
+  font-size: clamp(16px, 4vw, 28px); /* Reduced from 50px max to 28px */
   line-height: normal;
-  letter-spacing: 0.4px; /* Match Figma letter-spacing */
+  letter-spacing: 0.2px;
   color: #000;
   text-align: center;
   user-select: none;
