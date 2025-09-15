@@ -93,15 +93,26 @@ const Step1_Choice = ({
 
   const getButtonColor = (priority: string) => {
     if (selectedPriorities.includes(priority)) {
-      return "bg-black border-black";
+      return "#000000"; // Black when selected
     }
     if (isSelectionDisabled(priority)) {
-      return "bg-gray-300 border-gray-400 cursor-not-allowed opacity-50";
+      return "#d1d5db"; // Gray when disabled
     }
     if (defaultYellowButtons.has(priority)) {
-      return "bg-[#FFE000] border-black hover:bg-black hover:scale-105 group";
+      return "#FFE000"; // Yellow by default
     }
-    return "bg-[#E9E9E9] border-black hover:bg-black hover:scale-105 group";
+    return "#E9E9E9"; // Light gray by default
+  };
+
+  const getButtonClasses = (priority: string) => {
+    const baseClasses = "option-btn transition-all duration-200 hover:scale-105";
+    if (selectedPriorities.includes(priority)) {
+      return `${baseClasses} bg-black border-black`;
+    }
+    if (isSelectionDisabled(priority)) {
+      return `${baseClasses} opacity-50 cursor-not-allowed`;
+    }
+    return `${baseClasses} hover:bg-black group`;
   };
 
   const getTextColor = (priority: string) => {
@@ -136,10 +147,11 @@ const Step1_Choice = ({
             <button
               onClick={() => !isSelectionDisabled(priorityList[0]) && handlePriorityToggle(priorityList[0])}
               disabled={isSelectionDisabled(priorityList[0])}
-              className={`option-btn ${defaultYellowButtons.has(priorityList[0]) ? 'option-btn--yellow' : 'option-btn--gray'} ${selectedPriorities.includes(priorityList[0]) ? 'selected' : ''}`}
+              className={getButtonClasses(priorityList[0])}
               style={{
                 backgroundColor: getButtonColor(priorityList[0]),
-                minWidth: 'clamp(180px, 40vw, 465px)'
+                minWidth: 'clamp(180px, 40vw, 465px)',
+                border: '2px solid #000'
               }}
             >
               <span 
@@ -159,10 +171,11 @@ const Step1_Choice = ({
             <button
               onClick={() => !isSelectionDisabled(priorityList[1]) && handlePriorityToggle(priorityList[1])}
               disabled={isSelectionDisabled(priorityList[1])}
-              className={`option-btn ${defaultYellowButtons.has(priorityList[1]) ? 'option-btn--yellow' : 'option-btn--gray'} ${selectedPriorities.includes(priorityList[1]) ? 'selected' : ''}`}
+              className={getButtonClasses(priorityList[1])}
               style={{
                 backgroundColor: getButtonColor(priorityList[1]),
-                minWidth: 'clamp(200px, 43vw, 500px)'
+                minWidth: 'clamp(200px, 43vw, 500px)',
+                border: '2px solid #000'
               }}
             >
               <span 
