@@ -38,7 +38,7 @@ const ShareModal: React.FC<Props> = ({ isOpen, onClose, shareUrl, shareText }) =
         <div className="mt-4 flex flex-col gap-3">
           <button
             onClick={handleFacebook}
-            className="w-full inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md bg-[#1877F2] text-white font-semibold"
+            className="w-full inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md bg-[#ffe000] text-black font-semibold hover:bg-[#000d59] hover:text-white transition-colors"
             aria-label="Share to Facebook"
           >
             แชร์ไปยัง Facebook
