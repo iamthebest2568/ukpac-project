@@ -176,7 +176,7 @@ const Step1_Priorities = ({
                 opacity: isSelectionDisabled("ปรับปรุงคุณภาพร���เมล์") ? 0.5 : 1
               }}
               onClick={() =>
-                !isSelectionDisabled("ปรับปรุงคุณภาพรถเมล์") &&
+                !isSelectionDisabled("ปรับปรุ���คุณภาพรถเมล์") &&
                 handlePriorityToggle("ปรับปรุงคุณภาพรถเมล์")
               }
               disabled={isSelectionDisabled("ปรับปรุงคุณภาพรถเมล์")}
@@ -272,7 +272,7 @@ const Step1_Priorities = ({
             </button>
           </div>
 
-          {/* Row 3: เพิ่มความถี่รถไฟฟ้า (gray), เพิ่ม Feeder ใน��อย (gray) */}
+          {/* Row 3: เพิ่มความถี่รถไฟฟ้า (gray), เพิ่ม Feeder ในซอย (gray) */}
           <div className="flex" style={{ gap: 'clamp(16px, 1.8vw, 19px)' }}>
             <button
               className="transition-all duration-200 flex items-center justify-center rounded-[40px] border-0"
