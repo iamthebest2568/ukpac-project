@@ -54,6 +54,7 @@ const SeatingScreen: React.FC = () => {
       <CustomizationScreen
         title="ปรับแต่งรถเมล์ของคุณ"
         onBack={() => setExitModalOpen(true)}
+        theme="light"
         footerContent={
           <div className="flex justify-end">
             <CtaButton text="ถัดไป" onClick={handleNext} />
@@ -61,56 +62,58 @@ const SeatingScreen: React.FC = () => {
         }
       >
         <div className="space-y-6">
-          <StepTabs active={2} />
-          <div className="w-full h-48 bg-[#081042] rounded-md flex items-center justify-center text-sm text-gray-300">
-            Top-down seat map preview
-          </div>
+          <div className="bg-white rounded-t-3xl -mt-2 p-4">
+            <StepTabs active={2} />
+            <div className="w-full h-48 bg-[#081042] rounded-md flex items-center justify-center text-sm text-gray-300">
+              Top-down seat map preview
+            </div>
 
-          <div className="space-y-4">
-            <div className="flex items-center justify-between">
-              <div className="text-white font-sarabun">จำนวนที่นั่งทั้งหมด</div>
-              <div className="flex items-center gap-2">
+            <div className="space-y-4 mt-2">
+              <div className="flex items-center justify-between">
+                <div className="text-[#003366] font-sarabun">จำนวนที่นั่งทั้งหมด</div>
+                <div className="flex items-center gap-2">
+                  <NumericalStepper
+                    value={totalSeats}
+                    onChange={handleTotalSeatsChange}
+                    min={0}
+                    max={200}
+                  />
+                  <SecondaryButton
+                    text="พิมพ์"
+                    onClick={() => console.log("print", totalSeats)}
+                  />
+                </div>
+              </div>
+
+              <div className="flex items-center justify-between">
+                <div className="text-[#003366] font-sarabun">จำนวนที่นั่งพิเศษ</div>
                 <NumericalStepper
-                  value={totalSeats}
-                  onChange={handleTotalSeatsChange}
+                  value={specialSeats}
+                  onChange={setSpecialSeats}
+                  min={0}
+                  max={50}
+                />
+              </div>
+
+              <div className="flex items-center justify-between">
+                <div className="text-[#003366] font-sarabun">เด็ก / ผู้สูงอายุ</div>
+                <NumericalStepper
+                  value={childElderSeats}
+                  onChange={setChildEelderSeats}
+                  min={0}
+                  max={50}
+                />
+              </div>
+
+              <div className="flex items-center justify-between">
+                <div className="text-[#003366] font-sarabun">จำนวนที่ยืน</div>
+                <NumericalStepper
+                  value={standingPlaces}
+                  onChange={setStandingPlaces}
                   min={0}
                   max={200}
                 />
-                <SecondaryButton
-                  text="พิมพ์"
-                  onClick={() => console.log("print", totalSeats)}
-                />
               </div>
-            </div>
-
-            <div className="flex items-center justify-between">
-              <div className="text-white font-sarabun">จำนวนที่นั่งพิเศษ</div>
-              <NumericalStepper
-                value={specialSeats}
-                onChange={setSpecialSeats}
-                min={0}
-                max={50}
-              />
-            </div>
-
-            <div className="flex items-center justify-between">
-              <div className="text-white font-sarabun">เด็ก / ผู้สูงอายุ</div>
-              <NumericalStepper
-                value={childElderSeats}
-                onChange={setChildElderSeats}
-                min={0}
-                max={50}
-              />
-            </div>
-
-            <div className="flex items-center justify-between">
-              <div className="text-white font-sarabun">จำนวนที่ยืน</div>
-              <NumericalStepper
-                value={standingPlaces}
-                onChange={setStandingPlaces}
-                min={0}
-                max={200}
-              />
             </div>
           </div>
         </div>
@@ -126,7 +129,7 @@ const SeatingScreen: React.FC = () => {
 
       <ErrorModal
         isOpen={isErrorModalOpen}
-        title="ความ���ุเกิน"
+        title="ความจุเกิน"
         message={`จำนวนที่นั่งทั้งหมดเกินความจุสูงสุดของรถ (${maxCapacity}) กรุณาตรวจสอบ`}
         onClose={() => setErrorModalOpen(false)}
       />
