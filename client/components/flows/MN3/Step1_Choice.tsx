@@ -88,7 +88,7 @@ const Step1_Choice = ({
   // Define which buttons should be yellow by default (from Figma design)
   const defaultYellowButtons = new Set([
     "ปรับปรุงคุณภาพรถเมล์",  // choice_2
-    "เพิ่��ความถี่รถเมล์"      // choice_4
+    "เพิ่มความถี่รถเมล์"      // choice_4
   ]);
 
   const getButtonColor = (priority: string) => {
@@ -180,7 +180,7 @@ const Step1_Choice = ({
           </div>
 
           {/* Row 2: choice_3, choice_4, choice_5 */}
-          <div className="flex gap-4 justify-center flex-wrap">
+          <div className="option-row">
             {/* choice_3: ตั๋วร่วม */}
             <button
               onClick={() => !isSelectionDisabled(priorityList[2]) && handlePriorityToggle(priorityList[2])}
@@ -255,7 +255,7 @@ const Step1_Choice = ({
           </div>
 
           {/* Row 3: choice_6, choice_7 */}
-          <div className="flex gap-4 justify-center flex-wrap">
+          <div className="option-row">
             {/* choice_6: เพิ่มความถี่รถไฟฟ้า */}
             <button
               onClick={() => !isSelectionDisabled(priorityList[5]) && handlePriorityToggle(priorityList[5])}
