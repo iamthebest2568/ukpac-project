@@ -149,8 +149,8 @@ const Step3_Result = ({
   };
 
   return (
-    <div className="w-full min-h-screen mn3-result-bg flex flex-col items-center justify-start relative">
-      <div className="mn3-result-content">
+    <div className="w-full min-h-screen mn3-result-bg figma-style1-main relative">
+      <div className="mn3-result-content figma-style1-content-area">
         {/* Title Section */}
         <div className="text-center w-full max-w-none px-4 mb-6">
           <h1
@@ -165,7 +165,7 @@ const Step3_Result = ({
             }}
           >
             จากงบประมาณของคุณ<br />
-            นี้คือสิ่งที่จะเกิดขึ้นในอนาคต
+            นี้คือสิ่งที่��ะเกิดขึ้นในอนาคต
           </h1>
         </div>
 
@@ -194,17 +194,17 @@ const Step3_Result = ({
             คุณพอใจหรือไม่
           </h2>
         </div>
+      </div>
 
-        {/* Response Buttons - use design-system button classes for consistent appearance */}
-        <div className="figma-style1-button-container">
-          <button onClick={handleYes} className="figma-style1-button" aria-label="ตอบใช่ - พอใจกับผลลัพธ์">
-            <span className="figma-style1-button-text">ใช่</span>
-          </button>
+      {/* Buttons anchored to bottom using design-system container */}
+      <div className="figma-style1-button-container">
+        <button onClick={handleYes} className="figma-style1-button" aria-label="ตอบใช่ - พอใจกับผลลัพธ์">
+          <span className="figma-style1-button-text">ใช่</span>
+        </button>
 
-          <button onClick={handleNo} className="figma-style1-button" aria-label="ตอบไม่ใช่ - ไม่พอใจกับผลลัพธ์">
-            <span className="figma-style1-button-text">ไม่ใช่</span>
-          </button>
-        </div>
+        <button onClick={handleNo} className="figma-style1-button" aria-label="ตอบไม่ใช่ - ไม่พอใจกับผลลัพธ์">
+          <span className="figma-style1-button-text">ไม่ใช่</span>
+        </button>
       </div>
     </div>
   );
