@@ -1,10 +1,18 @@
 import React, { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CustomizationScreen from "../components/CustomizationScreen";
 import CtaButton from "../components/CtaButton";
 import { useBusDesign } from "../context/BusDesignContext";
 import ConfirmModal from "../components/ConfirmModal";
 import HeroWithShadow from "../components/HeroWithShadow";
+
+const MONEY_ICON = "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fbc8b22cedfbb4640a702f724881f196d?format=webp&width=800";
+const SCAN_ICON = "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb8992da4be824b339d3df5f0a076ed93?format=webp&width=800";
+const SCAN2_ICON = "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F56620e798eb94153b2390271f30d0dae?format=webp&width=800";
+const TOUCH_ICON = "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fdb2e47a586b841d1af014e9196f3c411?format=webp&width=800";
+const MONTHLY_ICON = "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fca6467eff0c74a77a8e5757f25a24e41?format=webp&width=800";
+const BUS_EMPLOY_ICON = "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F41c089c5dd4b448993c4e02c02cdf7ac?format=webp&width=800";
 
 const SubmitScreen: React.FC = () => {
   const navigate = useNavigate();
