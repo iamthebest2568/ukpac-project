@@ -600,6 +600,24 @@
 
 /* End selected state styles */
 
+/* Ensure MN3 policy buttons keep their selected (black) appearance even after unified overrides */
+.app-container .mn3-policy-button.mn3-policy-button--selected,
+.app-container .mn3-policy-button--selected {
+  background-color: #000 !important;
+  color: #FFE000 !important;
+}
+
+.app-container .mn3-policy-button.mn3-policy-button--selected .mn3-button-text,
+.app-container .mn3-policy-button--selected .mn3-button-text {
+  color: #FFE000 !important;
+}
+
+/* Slightly darker hover for an already selected MN3 policy button */
+.app-container .mn3-policy-button.mn3-policy-button--selected:hover,
+.app-container .mn3-policy-button--selected:hover {
+  background-color: #111 !important;
+}
+
 /* Final compatibility rules: ensure figma-style1 works within app-container */
 .app-container .figma-style1-container {
   flex: none !important; /* Don't let app-container flex affect us */
