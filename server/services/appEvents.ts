@@ -140,7 +140,7 @@ export interface SessionSummary {
   sessionId: string;
   firstSeen: string;
   lastSeen: string;
-  introWho?: string; // บทบาทในการเดินทางเข้าเมือง
+  introWho?: string; // บทบาทในการเดินทางเข้���เมือง
   travelMethod?: string; // ยานพาหนะที่ใช้
   opinionLevel?: string; // ระดับความคิดเห็น (เห็นด้วย/กลางๆ/ไม่เห็นด้วย)
   ask02Choice?: string; // เหตุผลหลัก
@@ -155,7 +155,7 @@ export interface SessionSummary {
   mn3BudgetAllocation?: Record<string, number>; // การจัดสรรงบประมาณ
   mn3BudgetTotal?: number;
   satisfactionLevel?: string; // ระดับความพึงพอใจ
-  ask05Comment?: string; // ข้อเ���นอเพิ่มเติมต่อรัฐ
+  ask05Comment?: string; // ข้อเสนอเพิ่มเติมต่อรัฐ
   fakeNewsResponse?: string; // การตอบสนองต่อข่าวปลอม
   sourceSelected?: string; // แหล่งข่าวที่ผู้ใช้เลือก
   endDecision?: string; // การเข้าร่วมลุ้นรางวัล
