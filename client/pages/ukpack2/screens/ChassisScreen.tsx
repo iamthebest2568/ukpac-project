@@ -44,7 +44,7 @@ const OPTIONS = [
   { key: 'small', label: 'รถเมล์ขนาดเล็ก 16-30 ที่นั่ง', icon: <IconSmall /> },
   { key: 'medium', label: 'รถเมล์ขนาดกลาง 31-40 ที่นั่ง', icon: <IconMedium /> },
   { key: 'large', label: 'รถเมล์ขนาดใหญ่ 41-50 ที่นั่ง', icon: <IconLarge /> },
-  { key: 'extra', label: 'รถเมล์รุ่นพิเศษ 51+ ที่นั่ง', icon: <IconExtra /> },
+  { key: 'extra', label: 'รถเมล์รุ่นพิเศษ 51+ ที่น��่ง', icon: <IconExtra /> },
 ];
 
 const ChassisScreen: React.FC = () => {
@@ -75,6 +75,7 @@ const ChassisScreen: React.FC = () => {
       <CustomizationScreen
         title="ปรับแต่งรถเมล์ของคุณ"
         onBack={() => setExitModalOpen(true)}
+        theme="light"
         footerContent={<div className="flex justify-center"><CtaButton text="ถัดไป" onClick={handleNext} /></div>}
       >
         <div className="space-y-6">
