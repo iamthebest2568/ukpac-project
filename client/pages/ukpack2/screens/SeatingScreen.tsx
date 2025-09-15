@@ -77,7 +77,7 @@ const SeatingScreen: React.FC = () => {
           </div>
 
           <div className="flex items-center justify-between">
-            <div className="text-white font-sarabun">จำนวนที่ยืน</div>
+            <div className="text-white font-sarabun">จำนวน���ี่ยืน</div>
             <NumericalStepper value={standingPlaces} onChange={setStandingPlaces} min={0} max={200} />
           </div>
         </div>
@@ -87,7 +87,7 @@ const SeatingScreen: React.FC = () => {
       <ConfirmModal
         isOpen={isExitModalOpen}
         title="ออกจากหน้าจอ"
-        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถ���กบันทึก"
+        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
         onConfirm={() => navigate('/')}
         onCancel={() => setExitModalOpen(false)}
       />
