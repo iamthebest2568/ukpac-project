@@ -1,42 +1,38 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CustomizationScreen from "../components/CustomizationScreen";
-import SecondaryButton from "../components/SecondaryButton";
-import CtaButton from "../components/CtaButton";
 
-const IconName = () => (
+const IconPerson = () => (
   <svg
-    width="18"
-    height="18"
-    viewBox="0 0 24 24"
+    width="60"
+    height="63"
+    viewBox="0 0 60 63"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <circle cx="12" cy="8" r="3" stroke="currentColor" strokeWidth="1.5" />
+    <circle cx="30" cy="20" r="12" stroke="#000D59" strokeWidth="3" fill="none" />
     <path
-      d="M4 20c1.5-4 6-6 8-6s6.5 2 8 6"
-      stroke="currentColor"
-      strokeWidth="1.5"
+      d="M8 55c3-12 15-18 22-18s19 6 22 18"
+      stroke="#000D59"
+      strokeWidth="3"
       strokeLinecap="round"
       strokeLinejoin="round"
+      fill="none"
     />
   </svg>
 );
+
 const IconPhone = () => (
   <svg
-    width="18"
-    height="18"
-    viewBox="0 0 24 24"
+    width="39"
+    height="69"
+    viewBox="0 0 39 69"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <path
-      d="M22 16.92v3a2 2 0 0 1-2.18 2A19 19 0 0 1 3 5.18 2 2 0 0 1 5 3h3a2 2 0 0 1 2 1.72c.12 1.05.47 2.07 1.03 3"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
+    <rect x="3" y="3" width="33" height="63" rx="8" stroke="#000D59" strokeWidth="3" fill="none" />
+    <circle cx="19.5" cy="58" r="3" fill="#000D59" />
+    <rect x="14" y="8" width="11" height="2" rx="1" fill="#000D59" />
   </svg>
 );
 
@@ -58,37 +54,57 @@ const FormScreen: React.FC = () => {
 
   return (
     <CustomizationScreen
-      title="รถเมล์ในฝัน"
+      title="กรอกข้อมูล เพื่อรับรางวัล"
+      theme="light"
       footerContent={
-        <div className="flex justify-center">
-          <SecondaryButton text="ลุ้นรับรางวัล" onClick={submit} />
-          <CtaButton text="ไม่ลุ้นรับรางวัล" onClick={skip} />
+        <div className="space-y-4">
+          <button
+            onClick={submit}
+            className="w-full bg-[#FFE000] text-black text-center font-prompt text-3xl md:text-4xl lg:text-5xl font-normal py-4 px-6 rounded-full border-none cursor-pointer transition-all duration-200 hover:bg-[#E6C700] active:scale-98"
+          >
+            ลุ้นรับรางวัล
+          </button>
+          <button
+            onClick={skip}
+            className="w-full bg-[#FFE000] text-black text-center font-prompt text-3xl md:text-4xl lg:text-5xl font-normal py-4 px-6 rounded-full border-none cursor-pointer transition-all duration-200 hover:bg-[#E6C700] active:scale-98"
+          >
+            ไม่
+          </button>
         </div>
       }
     >
-      <div className="space-y-6">
-        <div className="flex items-center gap-3">
-          <div className="p-2 bg-white/5 rounded-md">
-            <IconName />
+      <div className="max-w-4xl mx-auto pt-8 space-y-6">
+        {/* Name Field */}
+        <div className="relative">
+          <div className="flex items-center w-full h-28 border-[5px] border-[#000D59] rounded-[20px] bg-white">
+            <div className="flex items-center justify-center w-20 h-full">
+              <IconPerson />
+            </div>
+            <div className="w-[5px] h-20 bg-[#000D59] mx-4"></div>
+            <input
+              className="flex-1 h-full bg-transparent border-none outline-none text-black placeholder-gray-500 font-prompt text-2xl md:text-3xl lg:text-4xl font-light px-4"
+              placeholder="ชื่อ-นามสกุล"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
           </div>
-          <input
-            className="flex-1 rounded-md px-3 py-2 bg-transparent border border-[#07204a] text-white"
-            placeholder="ชื่อ-นามสกุล"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
         </div>
 
-        <div className="flex items-center gap-3">
-          <div className="p-2 bg-white/5 rounded-md">
-            <IconPhone />
+        {/* Phone Field */}
+        <div className="relative">
+          <div className="flex items-center w-full h-28 border-[5px] border-[#000D59] rounded-[20px] bg-white">
+            <div className="flex items-center justify-center w-20 h-full">
+              <IconPhone />
+            </div>
+            <div className="w-[5px] h-20 bg-[#000D59] mx-4"></div>
+            <input
+              className="flex-1 h-full bg-transparent border-none outline-none text-black placeholder-gray-500 font-prompt text-2xl md:text-3xl lg:text-4xl font-light px-4"
+              placeholder="เบอร์โทรศัพท์"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              type="tel"
+            />
           </div>
-          <input
-            className="flex-1 rounded-md px-3 py-2 bg-transparent border border-[#07204a] text-white"
-            placeholder="เบอร์โทร"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-          />
         </div>
       </div>
     </CustomizationScreen>
