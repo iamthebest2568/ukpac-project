@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import CustomizationScreen from "../components/CustomizationScreen";
 import ColorPalette from "../components/ColorPalette";
 import CtaButton from "../components/CtaButton";
+import HeroWithShadow from "../components/HeroWithShadow";
 
 const DEFAULT_COLORS = [
   "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F5456dc0212c14ba6a327d537ceed405e?format=webp&width=800", // c1
