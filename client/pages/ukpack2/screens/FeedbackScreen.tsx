@@ -11,11 +11,11 @@ const FeedbackScreen: React.FC = () => {
     try {
       sessionStorage.setItem('design.feedback', feedback);
     } catch (e) {}
-    navigate('/ukpack2/info');
+    navigate('/ukpack2/thank-you');
   };
 
   const skip = () => {
-    navigate('/ukpack2/info');
+    navigate('/ukpack2/thank-you');
   };
 
   return (
