@@ -32,7 +32,7 @@ const SummaryScreen: React.FC = () => {
 
   const CHASSIS_LABELS: Record<string, string> = {
     small: 'รถเมล์ขนาดเล็ก 16–30 ที่นั่ง',
-    medium: 'รถเมล์ขนา���กลาง 31–40 ที่นั่ง',
+    medium: 'รถเมล์ขนาดกลาง 31–40 ที่นั่ง',
     large: 'รถเมล์ขนาดใหญ่ 41-50 ที่นั่ง',
     extra: 'รถเมล์รุ่นพิเศษ 51+ ที่นั่ง',
   };
@@ -79,52 +79,7 @@ const SummaryScreen: React.FC = () => {
           <p className="mt-2 text-sm text-white/80">นี่คือรถเมล์ในฝันของคุณ</p>
         </header>
 
-        <div className="w-full h-64 rounded-md mb-6 flex items-center justify-center">
-          {heroImg ? (
-            <div className="flex flex-col items-center">
-              <img src={heroImg} alt={`ภาพรถ - ${chassisLabel}`} className="h-64 w-auto object-contain select-none" decoding="async" loading="eager" />
-              <p className="mt-2 font-prompt font-semibold text-[#001a73] text-center">รถที่เลือก : {chassisLabel}</p>
-            </div>
-          ) : (
-            <div className="w-full h-64 rounded-md mb-6 flex items-center justify-center" style={{ backgroundColor: designData.color || '#081042' }}>
-              <div className="text-white">Final bus preview</div>
-            </div>
-          )}
-        </div>
-
-        <div className="bg-[#e6e7e8] rounded-lg p-4 text-sm text-gray-800 shadow-sm">
-          <div className="grid gap-4">
-            <div className="flex items-center justify-between">
-              <div className="text-xs text-gray-500">รูปแบบรถ</div>
-              <div className="font-sarabun font-semibold text-sm text-right ml-4">{chassisLabel}</div>
-            </div>
-
-            <div className="flex items-center justify-between">
-              <div className="text-xs text-gray-500">ที่นั่ง</div>
-              <div className="font-sarabun font-semibold text-sm text-right ml-4">{designData.seating ? (typeof designData.seating === 'object' ? designData.seating.totalSeats : String(designData.seating)) : '-'}</div>
-            </div>
-
-            <div className="flex items-center justify-between">
-              <div className="text-xs text-gray-500">การจ่ายเงิน</div>
-              <div className="font-sarabun font-semibold text-sm text-right ml-4">{designData.payment ? (Array.isArray(designData.payment) ? designData.payment.join(', ') : String(designData.payment)) : '-'}</div>
-            </div>
-
-            <div className="flex items-center justify-between">
-              <div className="text-xs text-gray-500">ความสะดวก</div>
-              <div className="font-sarabun font-semibold text-sm text-right ml-4">{designData.amenities ? (Array.isArray(designData.amenities) ? designData.amenities.join(', ') : String(designData.amenities)) : '-'}</div>
-            </div>
-
-            <div className="flex items-center justify-between">
-              <div className="text-xs text-gray-500">ทางขึ้น</div>
-              <div className="font-sarabun font-semibold text-sm text-right ml-4">{designData.doors ? (typeof designData.doors === 'string' ? displayDoor(designData.doors) : String(designData.doors)) : '-'}</div>
-            </div>
-
-            <div className="flex items-center justify-between">
-              <div className="text-xs text-gray-500">ลักษณะพิเศษ</div>
-              <div className="font-sarabun font-semibold text-sm text-right ml-4">{designData.slogan || designData.exterior?.customText || '-'}</div>
-            </div>
-          </div>
-        </div>
+        <SummaryDetails />
 
         <footer className="mt-6">
           <div className="bg-[#00d5f9] rounded-t-3xl p-6 drop-shadow-lg">
