@@ -30,7 +30,7 @@ const Step3_Result = ({ sessionID, onNext, onBack, journeyData }: Step3_ResultPr
   const priorityIcons: { [key: string]: string } = {
     ลดค่าโดยสารรถไฟฟ้า: "🚇",
     ปรับปรุงคุณภาพรถเมล์: "🚌",
-    ต��๋วร่วม: "🎫",
+    ตั๋วร่วม: "🎫",
     เพิ่มความถี่รถเมล์: "🚍",
     เพิ่มความถี่รถไฟฟ้า: "🚊",
     เพิ่มที่จอดรถ: "🅿️",
@@ -200,7 +200,7 @@ const Step3_Result = ({ sessionID, onNext, onBack, journeyData }: Step3_ResultPr
         <button
           onClick={handleYes}
           className={`figma-style1-button ${selected === 'yes' ? 'figma-style1-button--selected' : ''}`}
-          aria-label="ตอบใช่ - พอใจกับผลลัพธ์"
+          aria-label="ตอบ��ช่ - พอใจกับผลลัพธ์"
           aria-pressed={selected === 'yes'}
         >
           <span className="figma-style1-button-text">ใช่</span>
