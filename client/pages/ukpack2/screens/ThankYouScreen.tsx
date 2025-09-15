@@ -10,19 +10,19 @@ const ThankYouScreen: React.FC = () => {
   return (
     <CustomizationScreen
       title="ขอบคุณ"
+      theme="light"
       footerContent={
-        <div className="flex justify-end gap-3">
+        <div className="flex justify-center gap-4">
           <SecondaryButton text="ลุ้นรับรางวัล" onClick={() => navigate('/ukpack2/form')} />
           <CtaButton text="ไม่ลุ้นรับรางวัล" onClick={() => navigate('/ukpack2/feedback-skip')} />
         </div>
       }
     >
-      <div className="space-y-4">
-        <h2 className="text-xl font-prompt font-semibold text-[#ffe000]">ที่ร่วมสร้างสรรค์รถเมล์</h2>
-        <p className="font-sarabun text-white">
-          ขอบคุณสำหรับการออกแบบรถเมล์ของคุณ! ตอนนี้คุณมีโอกาสเข้าร่วมลุ้นรางวัล มูลค่า 300 บาท โดยการลงทะเบียนข้อมูลการติดต่อของคุณ
-          หรือข้ามการลุ้นรับรางวัลได้ทันที
-        </p>
+      <div className="max-w-2xl mx-auto py-8 px-6 text-center">
+        <div className="inline-block bg-white border border-gray-100 rounded-xl p-6 shadow-md">
+          <h2 className="text-2xl font-prompt font-bold text-[#001a73]">ขอบคุณที่ร่วมสร้างสรรค์รถเมล์</h2>
+          <p className="mt-3 font-sarabun text-gray-700">ขอบคุณสำหรับการออกแบบรถเมล์ของคุณ! คุณสามารถลงทะเบียนเพื่อเข้าร่วมลุ้นรางวัลมูลค่า 300 บาท หรือเลือกที่จะไม่ลุ้นรางวัลและดำเนินการต่อ</p>
+        </div>
       </div>
     </CustomizationScreen>
   );
