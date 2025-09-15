@@ -139,7 +139,7 @@ const Step1_Priorities = ({
       {/* Options Grid positioned as in Figma */}
       <div className="absolute w-full flex flex-col items-center" style={{ top: '71.4%' }}>
         <div className="flex flex-col" style={{ width: '91.1%', maxWidth: '984px', gap: 'clamp(16px, 1.2vw, 24px)' }}>
-          {/* Row 1: ลด��่าโดยสารรถไฟฟ้า (gray), ปรับปรุงคุณภาพรถเมล์ (yellow) */}
+          {/* Row 1: ลดค่าโดยสารรถไฟฟ้า (gray), ปรับปรุงคุณภาพรถเมล์ (yellow) */}
           <div className="flex" style={{ gap: 'clamp(16px, 1.8vw, 19px)' }}>
             <button
               className="transition-all duration-200 flex items-center justify-center rounded-[40px] border-0"
@@ -173,7 +173,7 @@ const Step1_Priorities = ({
                 width: '46.3%', // 500/1080
                 height: 'clamp(60px, 4.7vw, 90px)',
                 backgroundColor: getButtonColor("ปรับปรุงคุณภาพรถเมล์"),
-                opacity: isSelectionDisabled("ปรับปรุงคุณภาพรถเมล์") ? 0.5 : 1
+                opacity: isSelectionDisabled("ปรับปรุงคุณภาพร���เมล์") ? 0.5 : 1
               }}
               onClick={() =>
                 !isSelectionDisabled("ปรับปรุงคุณภาพรถเมล์") &&
