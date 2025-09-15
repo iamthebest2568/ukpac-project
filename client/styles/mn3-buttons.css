@@ -368,23 +368,19 @@
    MN3 Step 2: Budget Allocation Styles
    ======================================== */
 
-/* Content container for allocation page */
+/* Content container for allocation page - centered to match Figma layout */
 .mn3-allocation-content {
-  position: fixed !important;
-  left: 0 !important;
-  right: 0 !important;
-  bottom: calc(env(safe-area-inset-bottom, 16px) + 30px) !important;
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: flex-end !important;
-  align-items: center !important;
-  gap: 16px !important;
-  padding: 0 16px 16px 16px !important;
-  z-index: 99999 !important;
-  pointer-events: auto !important;
-  max-height: 100vh !important;
-  overflow-y: auto !important;
-  -webkit-overflow-scrolling: touch !important;
+  position: relative; /* allow normal document flow so page centers correctly */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* start from top to match Figma spacing */
+  align-items: center;
+  gap: 16px;
+  padding: 24px 16px 48px 16px; /* generous top/bottom padding for spacing */
+  margin: 6vh auto; /* center vertically with viewport-aware margin */
+  width: 100%;
+  max-width: 980px; /* constrain to same width used for other mn3 content */
+  box-sizing: border-box;
 }
 
 /* Budget display box matching Figma */
