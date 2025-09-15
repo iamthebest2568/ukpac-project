@@ -216,7 +216,8 @@ const AmenitiesScreen: React.FC = () => {
 
   return (
     <CustomizationScreen
-      title="ปรั���แ��่งรถเมล์ของคุณ"
+      title="ปรั���แต่งรถเมล์ของคุณ"
+      theme="light"
       footerContent={
         <div className="flex justify-end">
           <CtaButton text="ถัดไป" onClick={handleNext} />
@@ -224,23 +225,26 @@ const AmenitiesScreen: React.FC = () => {
       }
     >
       <div className="space-y-6">
-        <StepTabs active={3} />
-        <div className="w-full h-48 bg-[#081042] rounded-md flex items-center justify-center text-sm text-gray-300">
-          Bus image preview
-        </div>
+        <div className="bg-white rounded-t-3xl -mt-2 p-4">
+          <StepTabs active={3} />
+          <div className="w-full h-48 bg-[#081042] rounded-md flex items-center justify-center text-sm text-gray-300">
+            Bus image preview
+          </div>
 
-        <h2 className="text-xl font-prompt font-semibold">ความสะดวกสบาย</h2>
+          <h2 className="text-xl font-prompt font-semibold text-[#003366] mt-2">ความสะดวกสบาย</h2>
 
-        <div className="grid grid-cols-4 gap-4">
-          {AMENITIES.map((a) => (
-            <SelectionCard
-              key={a.key}
-              icon={a.icon}
-              label={a.label}
-              isSelected={selected.includes(a.label)}
-              onClick={() => toggle(a.label)}
-            />
-          ))}
+          <div className="grid grid-cols-4 gap-4">
+            {AMENITIES.map((a) => (
+              <SelectionCard
+                key={a.key}
+                icon={a.icon}
+                label={a.label}
+                isSelected={selected.includes(a.label)}
+                onClick={() => toggle(a.label)}
+                variant="light"
+              />
+            ))}
+          </div>
         </div>
       </div>
     </CustomizationScreen>
