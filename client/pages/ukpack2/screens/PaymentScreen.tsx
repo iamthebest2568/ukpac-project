@@ -149,6 +149,7 @@ const PaymentScreen: React.FC = () => {
   return (
     <CustomizationScreen
       title="ปรับแต่งรถเมล์ของคุณ"
+      theme="light"
       footerContent={
         <div className="flex justify-end">
           <CtaButton text="ถัดไป" onClick={handleNext} />
@@ -156,23 +157,26 @@ const PaymentScreen: React.FC = () => {
       }
     >
       <div className="space-y-6">
-        <StepTabs active={4} />
-        <div className="w-full h-48 bg-[#081042] rounded-md flex items-center justify-center text-sm text-gray-300">
-          Bus image preview
-        </div>
+        <div className="bg-white rounded-t-3xl -mt-2 p-4">
+          <StepTabs active={4} />
+          <div className="w-full h-48 bg-[#081042] rounded-md flex items-center justify-center text-sm text-gray-300">
+            Bus image preview
+          </div>
 
-        <h2 className="text-xl font-prompt font-semibold">การจ่ายเงิน</h2>
+          <h2 className="text-xl font-prompt font-semibold text-[#003366] mt-2">การจ่ายเงิน</h2>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {OPTIONS.map((o) => (
-            <SelectionCard
-              key={o.key}
-              icon={o.icon}
-              label={o.label}
-              isSelected={selected.includes(o.label)}
-              onClick={() => toggle(o.label)}
-            />
-          ))}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {OPTIONS.map((o) => (
+              <SelectionCard
+                key={o.key}
+                icon={o.icon}
+                label={o.label}
+                isSelected={selected.includes(o.label)}
+                onClick={() => toggle(o.label)}
+                variant="light"
+              />
+            ))}
+          </div>
         </div>
       </div>
     </CustomizationScreen>
