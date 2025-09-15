@@ -20,9 +20,9 @@ const SplashScreen: React.FC = () => {
 
       <div className="w-full" style={{ backgroundColor: '#00d5f9', borderTopLeftRadius: '48% 12%', borderTopRightRadius: '48% 12%' }}>
         <div className="max-w-3xl mx-auto py-8 px-6 text-center">
-          <p className="text-[#002038] text-lg mb-6">รถเมล์ในฝันที่คุณอยากขึ้นทุกวัน จะมีหน้าตาอย่างไร?</p>
+          <p className="text-[#002038] text-lg mb-6 font-semibold">รถเมล์ในฝันที่คุณอยากขึ้นทุกวัน จะมีหน้าตาอย่างไร?</p>
           <div className="flex justify-center">
-            <CtaButton text="เริ่มออกแบบ" onClick={() => navigate('/ukpack2/chassis')} />
+            <CtaButton text="เริ���มออกแบบ" onClick={() => navigate('/ukpack2/chassis')} />
           </div>
           <div className="mt-6 text-sm text-[#07204a]">
             <a href="#" className="underline">นโยบายและความเป็นส่วนตัว</a>
