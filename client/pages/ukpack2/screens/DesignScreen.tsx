@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import CustomizationScreen from '../components/CustomizationScreen';
 import ColorPalette from '../components/ColorPalette';
 import CtaButton from '../components/CtaButton';
+import StepTabs from "../components/StepTabs";
 
 const DEFAULT_COLORS = [
   '#000d59', // primary dark blue
@@ -35,25 +36,29 @@ const DesignScreen: React.FC = () => {
   return (
     <CustomizationScreen
       title="ปรับแต่งรถเมล์ของคุณ"
-      footerContent={<div className="flex justify-end"><CtaButton text="ออกแบบเสร็จแล้ว" onClick={handleFinish} /></div>}
+      theme="light"
+      footerContent={<div className="flex justify-center"><CtaButton text="ออกแบบเสร็จแล้ว" onClick={handleFinish} /></div>}
     >
       <div className="space-y-6">
         <div className="w-full h-72 rounded-md flex items-center justify-center" style={{ backgroundColor: color }}>
           <div className="text-white font-prompt text-xl">Bus preview (color applied)</div>
         </div>
+        <div className="bg-white rounded-t-3xl -mt-2 p-4">
+          <StepTabs active={0} />
 
-        <h2 className="text-xl font-prompt font-semibold">ออกแบบสี</h2>
-        <ColorPalette colors={DEFAULT_COLORS} selectedColor={color} onColorSelect={setColor} />
+          <h2 className="text-xl font-prompt font-semibold text-[#003366] mt-2">ออกแบบสี</h2>
+          <ColorPalette colors={DEFAULT_COLORS} selectedColor={color} onColorSelect={setColor} />
 
-        <h2 className="text-xl font-prompt font-semibold">ลักษณะพิเศษของรถคุณ</h2>
-        <div>
-          <input
-            type="text"
-            value={slogan}
-            onChange={(e) => setSlogan(e.target.value)}
-            placeholder="พิมพ์คำขวัญของคุณที่นี่"
-            className="w-full rounded-md px-4 py-2 bg-transparent border border-[#07204a] text-white placeholder-gray-300"
-          />
+          <h2 className="text-xl font-prompt font-semibold text-[#003366] mt-2">ลักษณะพิเศษของรถคุณ</h2>
+          <div>
+            <input
+              type="text"
+              value={slogan}
+              onChange={(e) => setSlogan(e.target.value)}
+              placeholder="พิมพ์คำขวัญของคุณที่นี่"
+              className="w-full rounded-md px-4 py-2 bg-white border border-[#e5e7eb] text-[#003366] placeholder-gray-400"
+            />
+          </div>
         </div>
       </div>
     </CustomizationScreen>
