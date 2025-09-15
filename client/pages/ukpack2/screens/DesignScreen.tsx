@@ -39,14 +39,14 @@ const DesignScreen: React.FC = () => {
       sessionStorage.setItem('design.color', color);
       sessionStorage.setItem('design.slogan', slogan);
     } catch (e) {}
-    navigate('/ukpack2/summary');
+    navigate('/ukpack2/submit');
   };
 
   return (
     <CustomizationScreen
       title="ปรับแต่งรถเมล์ของคุณ"
       theme="light"
-      footerContent={<div className="flex justify-center"><CtaButton text="ออกแบบเสร็จแล้ว" onClick={handleFinish} /></div>}
+      footerContent={<div className="flex justify-center"><CtaButton text="��อกแบบเสร็จแล้ว" onClick={handleFinish} /></div>}
     >
       <div className="space-y-6">
         <div className="w-full rounded-md flex flex-col items-center justify-center gap-2">
