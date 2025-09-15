@@ -115,12 +115,13 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       </div>
     );
   }
+  const isFullBleed = location.pathname.startsWith("/ukpack2/feedback");
   return (
-    <div className="min-h-screen flex justify-center bg-[#2a2a2a]">
+    <div className={`min-h-screen flex justify-center bg-[#2a2a2a] ${isFullBleed ? 'full-bleed-page' : ''}`}>
       {/* Fixed 1080px mobile-first container */}
       <div
         className="app-container bg-white relative responsive-container safe-top safe-bottom"
-        style={{ width: "100%", maxWidth: 1080 }}
+        style={isFullBleed ? { width: "100%", padding: 0 } : { width: "100%", maxWidth: 1080 }}
       >
         <a
           href="#main-content"
