@@ -108,7 +108,7 @@ const SeatingScreen: React.FC = () => {
           </div>
           <div className="bg-white rounded-t-3xl -mt-2 p-4">
             <StepTabs active={2} />
-            <div className="space-y-4 mt-2">
+            <div className="space-y-2 mt-2">
               <div className="flex items-center justify-between">
                 <div className="text-[#003366] font-sarabun">จำนวนที่นั่งทั้งหมด</div>
                 <input
@@ -172,7 +172,7 @@ const SeatingScreen: React.FC = () => {
       <ConfirmModal
         isOpen={isExitModalOpen}
         title="ออก���ากหน้าจอ"
-        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
+        message="คุ��แน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
         onConfirm={() => navigate("/")}
         onCancel={() => setExitModalOpen(false)}
       />
