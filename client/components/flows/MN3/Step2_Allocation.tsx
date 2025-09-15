@@ -106,29 +106,22 @@ const Step2_Allocation = ({
   const isComplete = allocatedBudget === totalBudget;
 
   return (
-    <div className="w-full min-h-screen bg-white overflow-hidden relative mx-auto" style={{maxWidth: 1080}}>
+    <div className="responsive-container minigame-layout">
       {/* Background Image */}
-      <div className="absolute inset-0">
-        <img
-          src="https://api.builder.io/api/v1/image/assets/TEMP/800ce747c7dddce8b9f8a83f983aeec3551ce472?width=956"
-          alt="Background"
-          className="w-full h-full object-cover object-center"
-        />
-      </div>
+      <div className="bg-responsive" style={{
+        backgroundImage: 'url(https://api.builder.io/api/v1/image/assets/TEMP/800ce747c7dddce8b9f8a83f983aeec3551ce472?width=956)'
+      }}></div>
 
       {/* Overlay */}
-      <div className="absolute inset-0 bg-black bg-opacity-90 pointer-events-none"></div>
+      <div className="bg-overlay bg-overlay--dark"></div>
 
       {/* Content */}
       <div className="relative z-10 flex flex-col min-h-screen">
         {/* Main Content */}
-        <div className="flex-1 pt-16 sm:pt-24 md:pt-36 lg:pt-[210px] pb-28 sm:pb-32 px-4 sm:px-6" style={{width: '100%', maxWidth: 1080, margin: '0 auto'}}>
+        <div className="content-area responsive-padding-lg">
           {/* Title */}
-          <div className="text-center mb-[30px] px-4">
-            <h1
-              className="text-white font-prompt font-normal leading-normal"
-              style={{ fontSize: "clamp(20px, 5.2vw, 30px)" }}
-            >
+          <div className="text-center responsive-padding-md">
+            <h1 className="heading-md heading-md-white responsive-spacing-md">
               คุณจะให้งบประมาณ
               <br />
               แต่ละข้อเท่าไหร่
@@ -136,20 +129,26 @@ const Step2_Allocation = ({
           </div>
 
           {/* Budget Display Box */}
-          <div className="px-4 sm:px-6 mb-6">
-            <div className="max-w-[890px] w-full mx-auto rounded-[10px] border-[1.5px] border-[#EFBA31] bg-transparent flex items-center justify-between gap-4 py-2 sm:py-3 px-4">
-              <div className="flex items-center gap-3">
-                <img
-                  src="https://api.builder.io/api/v1/image/assets/TEMP/d272a5766f6a17caa21ba5ce7f22eb07040ff3db?width=94"
-                  alt="Budget Icon"
-                  className="w-[36px] h-[42px] sm:w-[47px] sm:h-[55px]"
-                />
-                <div className="text-[#EFBA31] font-prompt text-[14px] sm:text-[18px] font-medium">
-                  งบทั้งหมด
+          <div className="responsive-padding-md">
+            <div className="budget-display" style={{
+              backgroundColor: 'transparent',
+              borderColor: '#EFBA31',
+              color: '#EFBA31'
+            }}>
+              <div className="flex items-center justify-between gap-4">
+                <div className="flex items-center responsive-spacing-sm">
+                  <img
+                    src="https://api.builder.io/api/v1/image/assets/TEMP/d272a5766f6a17caa21ba5ce7f22eb07040ff3db?width=94"
+                    alt="Budget Icon"
+                    className="w-[clamp(36px, 8vw, 55px)] h-[clamp(42px, 9vw, 65px)]"
+                  />
+                  <div className="text-body font-medium" style={{ color: '#EFBA31' }}>
+                    งบทั้งหมด
+                  </div>
                 </div>
-              </div>
-              <div className="text-[#EFBA31] font-prompt text-[28px] sm:text-[40px] font-bold leading-none">
-                100
+                <div className="heading-lg font-bold" style={{ color: '#EFBA31' }}>
+                  100
+                </div>
               </div>
             </div>
           </div>
@@ -184,28 +183,22 @@ const Step2_Allocation = ({
             ))}
           </div>
 
-          {/* Continue Button - Sticky Footer */}
-          <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full z-50 px-4 sm:px-6 pb-4">
-            <div className="mx-auto" style={{ maxWidth: 1080 }}>
+          {/* Continue Button - Fixed Footer */}
+          <div className="fixed-footer">
+            <div className="btn-container">
               <button
                 onClick={handleNext}
                 disabled={!isComplete}
-                className={`w-full max-w-[325px] mx-auto h-[52px] rounded-[40px] border-[1.5px] border-black flex items-center justify-center transition-all duration-200 ${
-                  !isComplete
-                    ? "bg-gray-400 cursor-not-allowed"
-                    : "bg-[#EFBA31] hover:scale-105"
-                }`}
+                className="btn-primary"
+                style={{
+                  backgroundColor: !isComplete ? '#ccc' : '#EFBA31',
+                  color: !isComplete ? '#666' : '#000'
+                }}
               >
-                <span
-                  className={`text-center font-prompt text-[18px] font-medium leading-7 tracking-[0.4px] ${
-                    !isComplete ? "text-gray-600" : "text-black"
-                  }`}
-                >
-                  ไปต่อ
-                </span>
+                ไปต่อ
               </button>
               {!isComplete && (
-                <div className="text-center text-white text-sm mt-2">
+                <div className="text-body text-body-white text-center responsive-spacing-xs">
                   กรุณาจัดสรรงบประมาณให้ครบ {totalBudget} หน่วยเพื่อดำเนินการต่อ
                 </div>
               )}
