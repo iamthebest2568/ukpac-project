@@ -96,7 +96,7 @@ const IconCam = () => (
 const AMENITIES = [
   { key: "air", label: "แอร์", icon: <IconAir /> },
   { key: "fan", label: "พัดลม", icon: <IconFan /> },
-  { key: "seat", label: "ที่นั่งพิเศษ", icon: <IconSeat /> },
+  { key: "seat", label: "ที���นั่งพิเศษ", icon: <IconSeat /> },
   { key: "wifi", label: "ที่จับ/ราวยืนที่ปลอดภัย", icon: <IconWifi /> },
   { key: "plug", label: "ช่องชาร์จมือถือ/USB", icon: <IconPlug /> },
   { key: "tv", label: "Wi‑Fi ฟรี", icon: <IconTv /> },
@@ -126,16 +126,16 @@ const AmenitiesScreen: React.FC = () => {
 
   // Selected chassis preview (reusing mapping from SeatingScreen)
   const CHASSIS_LABELS: Record<string, string> = {
-    small: 'รถเมล์ขนาดเล็ก 16–30 ที่นั่ง',
+    small: 'รถเมล์ขนาดเ���็ก 16–30 ที่นั่ง',
     medium: 'รถเมล์ขนาดกลาง 31–40 ที่นั่ง',
     large: 'รถเมล์ขนาดใหญ่ 41–50 ที่นั่���',
     extra: 'รถเมล์รุ่นพิเศษ 51+ ที่นั่ง',
   };
-  const TOPDOWN_IMAGE: Record<string, string | undefined> = {
-    small: 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9ab4a85f41e64448b6ce79942def8a26?format=webp&width=800',
-    medium: 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Ff5741ea88d0b4d94a8cc687f16501d5c?format=webp&width=800',
-    large: 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F2f4b32b5e79d4f20ba02c9d2ac0c9835?format=webp&width=800',
-    extra: 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F48d410fc189e450d8a6da8ed130f71a7?format=webp&width=800',
+  const HERO_IMAGE: Record<string, string> = {
+    small: 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F5ea1b3d990e44d49aa5441bc3a4b3bcc?format=webp&width=800',
+    medium: 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fab8ddd78f9a0478bb27f5818928665f3?format=webp&width=800',
+    large: 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fefc1e1ed3bcb4769b51d1544d43b3b5f?format=webp&width=800',
+    extra: 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9a8a7536ced24db19a65409fbba1c6b6?format=webp&width=800',
   };
   const selectedChassis = (() => {
     try {
@@ -146,7 +146,7 @@ const AmenitiesScreen: React.FC = () => {
     }
   })();
   const selectedLabel = CHASSIS_LABELS[selectedChassis] || '';
-  const selectedTopdown = TOPDOWN_IMAGE[selectedChassis];
+  const selectedBusImage = HERO_IMAGE[selectedChassis];
 
   return (
     <CustomizationScreen
