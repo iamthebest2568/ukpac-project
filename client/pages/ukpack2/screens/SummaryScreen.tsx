@@ -67,7 +67,7 @@ const SummaryScreen: React.FC = () => {
     if (typeof raw === "string") {
       if (raw === "1") return "1 ประตู";
       if (raw === "2") return "2 ประตู";
-      if (raw === "ramp") return "���างลาดสำหรับรถเข็น/ผู้พิการ";
+      if (raw === "ramp") return "���างลาดสำหรับรถ��ข็น/ผู้พิการ";
       if (raw === "emergency") return "ประตูฉุกเฉิน";
       return raw;
     }
@@ -95,16 +95,21 @@ const SummaryScreen: React.FC = () => {
         <SummaryDetails />
 
         <footer className="mt-6">
-          <div className="bg-[#00d5f9] rounded-t-3xl p-6 drop-shadow-lg">
-            <div className="max-w-4xl mx-auto flex items-center justify-center">
-              <SecondaryButton
-                text="กลับไปแก้ไข"
-                onClick={() => navigate("/ukpack2/design")}
-              />
-              <CtaButton
-                text="ออกแบบเสร็จแล้ว"
-                onClick={() => navigate("/ukpack2/info")}
-              />
+          <div className="bg-[#00d5f9] rounded-t-3xl p-6 drop-shadow-lg -mx-4 px-4">
+            <div className="max-w-4xl mx-auto flex items-center justify-center gap-4 flex-nowrap">
+              <div className="flex-shrink-0">
+                <SecondaryButton
+                  text="กลับไปแก้ไข"
+                  onClick={() => navigate("/ukpack2/design")}
+                />
+              </div>
+
+              <div className="flex-shrink-0">
+                <CtaButton
+                  text="ออกแบบเสร็จแล้ว"
+                  onClick={() => navigate("/ukpack2/info")}
+                />
+              </div>
             </div>
           </div>
         </footer>
