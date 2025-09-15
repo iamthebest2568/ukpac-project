@@ -7,7 +7,7 @@ const IconSeat = () => <img src="https://cdn.builder.io/api/v1/image/assets%2F0e
 const IconWifi = () => <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb0789bfd1100472f8351704764607d31?format=webp&width=800" alt="ที่จับ/ราวยืน" className="h-6 w-6 object-contain select-none"/>;
 const IconPlug = () => <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F09a78e31a3de44e98772b0eef382af6f?format=webp&width=800" alt="ช่องชาร์จมือถือ/USB" className="h-6 w-6 object-contain select-none"/>;
 const IconTv = () => <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fcb0cbf9ef6764e2d9e6f06e87827f5e9?format=webp&width=800" alt="Wi‑Fi ฟรี" className="h-6 w-6 object-contain select-none"/>;
-const IconCup = () => <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe903bdf27bab4175824c159bc19a02ba?format=webp&width=800" alt="ระบบป��ะกาศ" className="h-6 w-6 object-contain select-none"/>;
+const IconCup = () => <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe903bdf27bab4175824c159bc19a02ba?format=webp&width=800" alt="ระบบประกาศ" className="h-6 w-6 object-contain select-none"/>;
 const IconCamSmall = () => <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="7" width="14" height="10" rx="2" stroke="currentColor" strokeWidth="2"/><path d="M19 8l2-2v10l-2-2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>;
 
 const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
@@ -141,7 +141,7 @@ const SummaryDetails: React.FC = () => {
             </div>
           </HeroWithShadow>
           <p className="mt-2 font-prompt font-semibold text-sm text-[#003366] text-center">
-            รถที่เลื��ก : {chassisLabel}
+            รถที่เลือก : {chassisLabel}
           </p>
         </div>
       )}
