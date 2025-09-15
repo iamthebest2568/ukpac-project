@@ -1,10 +1,11 @@
 /**
  * UK PACK - MN3 Step 3: Budget Result Display
- * Updated to match Figma design exactly
+ * Refactored to use FigmaStyle1Layout for consistent behavior
  */
 
 import { useEffect, useState } from "react";
 import { logEvent } from "../../../services/dataLogger.js";
+import FigmaStyle1Layout from "../../layouts/FigmaStyle1Layout";
 
 interface Step3_ResultProps {
   sessionID: string | null;
@@ -20,18 +21,12 @@ interface ResultSummary {
   icon: string;
 }
 
-const Step3_Result = ({
-  sessionID,
-  onNext,
-  onBack,
-  journeyData,
-}: Step3_ResultProps) => {
+const Step3_Result = ({ sessionID, onNext, onBack, journeyData }: Step3_ResultProps) => {
   const [resultSummary, setResultSummary] = useState<ResultSummary[]>([]);
 
-  // Icons mapping for priorities
   const priorityIcons: { [key: string]: string } = {
     ลดค่าโดยสารรถไฟฟ้า: "🚇",
-    ปรับปรุงคุณภาพรถเมล์: "🚌",
+    ปร���บปรุงคุณภาพรถเมล์: "🚌",
     ตั๋วร่วม: "🎫",
     เพิ่มความถี่รถเมล์: "🚍",
     เพิ่มความถี่รถไฟฟ้า: "🚊",
@@ -40,38 +35,29 @@ const Step3_Result = ({
   };
 
   useEffect(() => {
-    // Get data from the previous step
-    const allocationData =
-      journeyData?.budget_step2_allocation?.budgetAllocation || {};
-    const selectedPriorities =
-      journeyData?.budget_step2_allocation?.selectedPriorities || [];
+    const allocationData = journeyData?.budget_step2_allocation?.budgetAllocation || {};
+    const selectedPriorities = journeyData?.budget_step2_allocation?.selectedPriorities || [];
     const totalBudget = 100;
 
-    // Create summary with percentages
-    const summary: ResultSummary[] = selectedPriorities.map(
-      (priority: string) => ({
-        priority,
-        allocation: allocationData[priority] || 0,
-        percentage: ((allocationData[priority] || 0) / totalBudget) * 100,
-        icon: priorityIcons[priority] || "📋",
-      }),
-    );
+    const summary: ResultSummary[] = selectedPriorities.map((priority: string) => ({
+      priority,
+      allocation: allocationData[priority] || 0,
+      percentage: ((allocationData[priority] || 0) / totalBudget) * 100,
+      icon: priorityIcons[priority] || "📋",
+    }));
 
-    // Sort by allocation amount (highest first)
     summary.sort((a, b) => b.allocation - a.allocation);
     setResultSummary(summary);
   }, [journeyData]);
 
   const handleYes = () => {
-    // Log the complete MN3 minigame with satisfaction = Yes
     logEvent({
       event: "MINIGAME_MN3_COMPLETE",
       payload: {
         top3Choices: journeyData?.budget_step1_choice?.top3BudgetChoices || [],
-        budgetAllocation:
-          journeyData?.budget_step2_allocation?.budgetAllocation || {},
+        budgetAllocation: journeyData?.budget_step2_allocation?.budgetAllocation || {},
         resultSummary,
-        satisfaction: "ใช่",
+        satisfaction: "ใ���่",
         sessionID,
       },
     });
@@ -84,7 +70,6 @@ const Step3_Result = ({
       },
     };
 
-    // Try beacon logging
     try {
       const body = {
         sessionId: sessionID || sessionStorage.getItem("ukPackSessionID") || "",
@@ -106,13 +91,11 @@ const Step3_Result = ({
   };
 
   const handleNo = () => {
-    // Log the complete MN3 minigame with satisfaction = No
     logEvent({
       event: "MINIGAME_MN3_COMPLETE",
       payload: {
         top3Choices: journeyData?.budget_step1_choice?.top3BudgetChoices || [],
-        budgetAllocation:
-          journeyData?.budget_step2_allocation?.budgetAllocation || {},
+        budgetAllocation: journeyData?.budget_step2_allocation?.budgetAllocation || {},
         resultSummary,
         satisfaction: "ไม่ใช่",
         sessionID,
@@ -122,12 +105,11 @@ const Step3_Result = ({
     const data = {
       budget_step3_result: {
         budgetResultReviewed: true,
-        satisfaction: "ไ���่ใช่",
+        satisfaction: "ไม่ใช่",
         resultSummary,
       },
     };
 
-    // Try beacon logging
     try {
       const body = {
         sessionId: sessionID || sessionStorage.getItem("ukPackSessionID") || "",
@@ -148,62 +130,33 @@ const Step3_Result = ({
     onNext(data);
   };
 
+  const backgroundImage = "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F44cf16d8ccf64321b16d01722cbc8356?format=webp&width=1500";
+
   return (
-    <div className="w-full min-h-screen mn3-result-bg figma-style1-main relative">
-      <div className="mn3-result-content figma-style1-content-area">
-        {/* Title Section */}
-        <div className="text-center w-full max-w-none px-4 mb-6">
-          <h1
-            className="font-prompt text-center leading-normal mn3-result-title"
-            style={{
-              color: '#000D59',
-              lineHeight: '1.2',
-              fontWeight: 700,
-              width: '100%',
-              margin: '0 auto'
-            }}
-          >
-            จากงบประมาณของคุณ<br />
-            นี้คือสิ่งที่จะเกิดขึ้นในอนาคต
-          </h1>
-        </div>
-
-        {/* Transport Illustration */}
-        <div className="w-full px-4 mb-8 flex justify-center">
-          <img
-            src="https://api.builder.io/api/v1/image/assets/TEMP/40ffac7fde4a30bb13050c151fbeed8c7c4fae41?width=1500"
-            alt="Transport policy outcomes illustration"
-            className="mn3-result-image"
-          />
-        </div>
-
-        {/* Question Section */}
-        <div className="text-center w-full max-w-none px-4 mb-8">
-          <h2
-            className="font-prompt text-center leading-normal mn3-result-subtitle"
-            style={{
-              color: '#000D59',
-              lineHeight: '1.2',
-              fontWeight: 700,
-              width: '100%',
-              margin: '0 auto'
-            }}
-          >
-            คุณพอใจหรือไม่
-          </h2>
-        </div>
-        {/* Response Buttons - use design-system button classes for consistent appearance */}
-        <div className="figma-style1-button-container">
-          <button onClick={handleYes} className="figma-style1-button" aria-label="ตอบใช่ - พอใจกับผลลัพธ์">
-            <span className="figma-style1-button-text">ใช่</span>
-          </button>
-
-          <button onClick={handleNo} className="figma-style1-button" aria-label="ตอบไม่ใช่ - ไม่พอใจกับผลลัพธ์">
-            <span className="figma-style1-button-text">ไม่ใช่</span>
-          </button>
-        </div>
+    <FigmaStyle1Layout
+      backgroundImage={backgroundImage}
+      title={"จากงบประมาณของคุณ\nนี้คือสิ่งที่จะเกิดขึ้นในอนาคต"}
+      buttons={[
+        { text: "ใช่", onClick: handleYes, ariaLabel: "ตอบใช่ - พอใจกับผลลัพธ์" },
+        { text: "ไม่ใช่", onClick: handleNo, ariaLabel: "ตอบไม่ใช่ - ไม่พอใจกับผลลัพธ���" },
+      ]}
+      className="mn3-result-page"
+      useBlueOverlay={false}
+    >
+      {/* Illustration */}
+      <div className="w-full px-4 mb-8 flex justify-center">
+        <img
+          src="https://api.builder.io/api/v1/image/assets/TEMP/40ffac7fde4a30bb13050c151fbeed8c7c4fae41?width=1500"
+          alt="Transport policy outcomes illustration"
+          className="mn3-result-image"
+        />
       </div>
-    </div>
+
+      {/* Question subtitle */}
+      <div className="text-center w-full max-w-none px-4 mb-8">
+        <h2 className="font-prompt text-center leading-normal mn3-result-subtitle">คุณพอใจหรือไม่</h2>
+      </div>
+    </FigmaStyle1Layout>
   );
 };
 
