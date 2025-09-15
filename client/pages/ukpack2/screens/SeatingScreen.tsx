@@ -77,7 +77,7 @@ const SeatingScreen: React.FC = () => {
           </div>
 
           <div className="flex items-center justify-between">
-            <div className="text-white font-sarabun">จำนวน���ี่ยืน</div>
+            <div className="text-white font-sarabun">จำนวนที่ยืน</div>
             <NumericalStepper value={standingPlaces} onChange={setStandingPlaces} min={0} max={200} />
           </div>
         </div>
@@ -95,7 +95,7 @@ const SeatingScreen: React.FC = () => {
       <ErrorModal
         isOpen={isErrorModalOpen}
         title="ความจุเกิน"
-        message={`จำนวนที่นั่งทั้งหมดเกินความจุสูงสุดของรถ (${maxCapacity}) กรุณาตรวจสอบ` }
+        message={`จำนวนที่นั่งทั้งหมดเกินความจ���สูงสุดของรถ (${maxCapacity}) กรุณาตรวจสอบ` }
         onClose={() => setErrorModalOpen(false)}
       />
     </>
