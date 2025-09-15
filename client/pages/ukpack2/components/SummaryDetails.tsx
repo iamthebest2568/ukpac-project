@@ -16,7 +16,7 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   "พัดลม": <IconFan />,
   "ที่นั่งพิเศษ": <IconSeat />,
   "ที่จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
-  "��่องชาร์จมือถือ/USB": <IconPlug />,
+  "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
   "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
   "กล้องวงจรปิด": <IconCamSmall />,
@@ -27,7 +27,7 @@ const displayDoor = (raw: any) => {
   if (typeof raw === "string") {
     if (raw === "1") return "1 ประตู";
     if (raw === "2") return "2 ประตู";
-    if (raw === "ramp") return "ทางลาดสำหรับรถเข็น/ผู้พิการ";
+    if (raw === "ramp") return "ทางลาดสำหรับรถเข็���/ผู้พิการ";
     if (raw === "emergency") return "ประตูฉุกเฉิน";
     return raw;
   }
@@ -114,13 +114,32 @@ const SummaryDetails: React.FC = () => {
       {heroImg && (
         <div className="flex flex-col items-center mb-6">
           <HeroWithShadow>
-            <img
-              src={heroImg}
-              alt={`ภาพรถ - ${chassisLabel}`}
-              className="h-64 w-auto object-contain select-none"
-              decoding="async"
-              loading="eager"
-            />
+            <div className="relative">
+              {(() => {
+                const amenities = (() => { try { const raw = sessionStorage.getItem('design.amenities'); return raw ? JSON.parse(raw) as string[] : []; } catch { return [] as string[]; } })();
+                const payments = (() => { try { const raw = sessionStorage.getItem('design.payment'); return raw ? JSON.parse(raw) as string[] : []; } catch { return [] as string[]; } })();
+                const doorsRaw = (() => { try { const raw = sessionStorage.getItem('design.doors'); return raw ? (JSON.parse(raw) as any) : raw ? String(raw) : null; } catch { return sessionStorage.getItem('design.doors'); } })();
+                const overlayLabels: string[] = [...(amenities||[]), ...(payments||[])];
+                if (doorsRaw) overlayLabels.push(typeof doorsRaw === 'string' ? doorsRaw : doorsRaw.doorChoice || (doorsRaw.hasRamp ? 'ramp' : doorsRaw.highLow ? 'emergency' : ''));
+                return overlayLabels.length > 0 ? (
+                  <div className="absolute left-1/2 transform -translate-x-1/2 -top-4 flex flex-wrap justify-center gap-2 z-20 max-w-[80%]">
+                    {overlayLabels.map((lab, i) => (
+                      <div key={`${lab}-${i}`} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center">
+                        {AMENITIES_ICON_MAP[lab] || <div className="text-xs">{String(lab)}</div>}
+                      </div>
+                    ))}
+                  </div>
+                ) : null;
+              })()}
+
+              <img
+                src={heroImg}
+                alt={`ภาพรถ - ${chassisLabel}`}
+                className="h-64 w-auto object-contain select-none"
+                decoding="async"
+                loading="eager"
+              />
+            </div>
           </HeroWithShadow>
           <p className="mt-2 font-prompt font-semibold text-[#001a73] text-center">
             รถที่เลือก : {chassisLabel}
