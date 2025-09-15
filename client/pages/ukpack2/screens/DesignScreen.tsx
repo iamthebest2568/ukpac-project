@@ -83,7 +83,7 @@ const DesignScreen: React.FC = () => {
               type="text"
               value={slogan}
               onChange={(e) => setSlogan(e.target.value)}
-              placeholder="พิมพ์คำขวัญของคุณที่นี่"
+              placeholder="พิมพ์ คุณสมบัติพิเศษ"
               className="w-full rounded-md px-4 py-2 bg-white border border-[#e5e7eb] text-[#003366] placeholder-gray-400"
             />
           </div>
