@@ -6,8 +6,8 @@ import SecondaryButton from "../components/SecondaryButton";
 
 const IconPerson = () => (
   <svg
-    width="60"
-    height="63"
+    width="40"
+    height="40"
     viewBox="0 0 60 63"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -26,8 +26,8 @@ const IconPerson = () => (
 
 const IconPhone = () => (
   <svg
-    width="39"
-    height="69"
+    width="28"
+    height="48"
     viewBox="0 0 39 69"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -65,7 +65,7 @@ const FormScreen: React.FC = () => {
         </div>
       }
     >
-      <div className="max-w-4xl mx-auto pt-4 space-y-6">
+      <div className="max-w-xl mx-auto pt-4 space-y-5">
         <div className="w-full flex justify-center">
           <img
             src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F33272924342744429f8155587f834f20?format=webp&width=800"
@@ -76,12 +76,12 @@ const FormScreen: React.FC = () => {
 
         {/* Name Field (no inner divider line) */}
         <div className="relative">
-          <div className="flex items-center w-full h-28 border-[5px] border-[#000D59] rounded-[20px] bg-white">
-            <div className="flex items-center justify-center w-20 h-full">
+          <div className="flex items-center w-full h-16 md:h-20 border-[5px] border-[#000D59] rounded-[20px] bg-white">
+            <div className="flex items-center justify-center w-14 md:w-16 h-full">
               <IconPerson />
             </div>
             <input
-              className="flex-1 h-full bg-transparent border-none outline-none text-black placeholder-gray-500 font-prompt text-2xl md:text-3xl lg:text-4xl font-light px-4"
+              className="flex-1 h-full bg-transparent border-none outline-none text-black placeholder-gray-500 font-prompt text-lg md:text-xl font-light px-4"
               placeholder="ชื่อ-นามสกุล"
               value={name}
               onChange={(e) => setName(e.target.value)}
@@ -91,12 +91,12 @@ const FormScreen: React.FC = () => {
 
         {/* Phone Field (no inner divider line) */}
         <div className="relative">
-          <div className="flex items-center w-full h-28 border-[5px] border-[#000D59] rounded-[20px] bg-white">
-            <div className="flex items-center justify-center w-20 h-full">
+          <div className="flex items-center w-full h-16 md:h-20 border-[5px] border-[#000D59] rounded-[20px] bg-white">
+            <div className="flex items-center justify-center w-14 md:w-16 h-full">
               <IconPhone />
             </div>
             <input
-              className="flex-1 h-full bg-transparent border-none outline-none text-black placeholder-gray-500 font-prompt text-2xl md:text-3xl lg:text-4xl font-light px-4"
+              className="flex-1 h-full bg-transparent border-none outline-none text-black placeholder-gray-500 font-prompt text-lg md:text-xl font-light px-4"
               placeholder="เบอร์โทรศัพท์"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
