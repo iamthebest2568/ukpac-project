@@ -1238,6 +1238,10 @@ body[data-dialog-open] {
     min-height: clamp(260px, 32vh, 460px);
     padding: clamp(12px, 2.2vw, 20px);
   }
+  /* Slightly lower the title on desktop/tablet */
+  .ask02-2-page .figma-style1-title-container {
+    margin-top: clamp(12px, 4vh, 40px) !important;
+  }
   .ask02-2-page .figma-style1-button-container { margin-top: auto !important; }
 }
 
@@ -1256,6 +1260,10 @@ body[data-dialog-open] {
     justify-content: center !important;
     width: 100% !important;
     padding: 0 16px !important;
+  }
+  /* Slightly lower the title on mobile */
+  .ask02-2-page .figma-style1-title-container {
+    margin-top: clamp(10px, 3.5vh, 28px) !important;
   }
   .ask02-2-page .figma-style1-button-container {
     margin-top: auto !important;
