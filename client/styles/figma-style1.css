@@ -92,7 +92,7 @@
   position: fixed;
   inset: 0;
   z-index: 0;
-  background-color: #00d5f9;
+  background-color: var(--figma-style1-bg-fill, #04D9F9);
   background-image: url("https://api.builder.io/api/v1/image/assets/TEMP/1ca30c44dc55682aa7c0c1273799b2f3f61b5c99?width=2160");
   background-size: cover;
   background-position: center center;
@@ -883,14 +883,14 @@ body[data-dialog-open] {
    - Fill side space with matching color variable
    - Keep mobile (default cover) untouched
    ================================================ */
-:root { --figma-style1-bg-fill: #00d5f9; }
+:root { --figma-style1-bg-fill: #04D9F9; }
 
 @media (min-width: 768px) {
   .figma-style1-background {
     background-size: contain !important;
     background-position: center center !important;
     background-repeat: no-repeat !important;
-    background-color: var(--figma-style1-bg-fill, #00d5f9) !important;
+    background-color: var(--figma-style1-bg-fill, #04D9F9) !important;
   }
 
   /* Balance content on larger screens without affecting mobile */
@@ -906,6 +906,17 @@ body[data-dialog-open] {
 
   .figma-style1-button-container {
     padding-bottom: clamp(16px, 4vh, 32px) !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .mn2-summary-page::before,
+  .mn3-page-bg::before,
+  .mn3-allocation-bg::before {
+    background-size: contain !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    background-color: var(--figma-style1-bg-fill, #04D9F9) !important;
   }
 }
 
