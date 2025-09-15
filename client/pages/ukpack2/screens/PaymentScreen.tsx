@@ -132,7 +132,7 @@ const OPTIONS = [
   { key: "scan", label: "สแกนจ่าย", icon: <IconScan /> },
   { key: "tap", label: "แตะบัตร", icon: <IconTap /> },
   { key: "qr", label: "QR/สแกน", icon: <IconQr /> },
-  { key: "monthly", label: "ตั๋วรายเดือน/รอบ", icon: null },
+  { key: "monthly", label: "��ั๋วรายเดือน/รอบ", icon: null },
 ];
 
 const PaymentScreen: React.FC = () => {
@@ -193,6 +193,14 @@ const PaymentScreen: React.FC = () => {
               ) : o.key === 'tap' ? (
                 <img
                   src={TOUCH_ICON}
+                  alt={o.label}
+                  className={`h-8 w-8 object-contain select-none ${isSel ? '' : 'grayscale opacity-60'}`}
+                  decoding="async"
+                  loading="eager"
+                />
+              ) : o.key === 'monthly' ? (
+                <img
+                  src={MONTHLY_ICON}
                   alt={o.label}
                   className={`h-8 w-8 object-contain select-none ${isSel ? '' : 'grayscale opacity-60'}`}
                   decoding="async"
