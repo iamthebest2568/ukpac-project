@@ -209,6 +209,14 @@ const PaymentScreen: React.FC = () => {
                   decoding="async"
                   loading="eager"
                 />
+              ) : o.key === 'qr' ? (
+                <img
+                  src={BUS_EMPLOY_ICON}
+                  alt={o.label}
+                  className={`h-8 w-8 object-contain select-none ${isSel ? '' : 'grayscale opacity-60'}`}
+                  decoding="async"
+                  loading="eager"
+                />
               ) : o.key === 'monthly' ? (
                 <img
                   src={MONTHLY_ICON}
