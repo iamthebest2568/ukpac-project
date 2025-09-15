@@ -179,7 +179,7 @@ const Step2_Allocation = ({
               ไปต่อ
             </button>
             {!isComplete && (
-              <div 
+              <div
                 className="text-center font-prompt"
                 style={{
                   color: '#000D59',
@@ -189,7 +189,7 @@ const Step2_Allocation = ({
                   padding: '8px'
                 }}
               >
-                ��รุณาจัดสรรงบประมาณให้ครบ {totalBudget} หน่วยเพื่อดำเนินการต่อ
+                กรุณาจัดสรรงบประมาณให้ครบ {totalBudget} หน่วยเพื่อดำเนินการต่อ
               </div>
             )}
           </div>
