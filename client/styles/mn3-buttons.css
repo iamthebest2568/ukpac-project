@@ -601,18 +601,18 @@
 
 /* Mobile responsive adjustments */
 @media (max-width: 480px) {
-  /* Keep layout consistent with larger devices: labels left, inputs right */
+  /* Allocation page - tighter spacing and smaller type to fit */
   .mn3-allocation-content {
-    gap: 12px;
-    padding: 12px 12px 24px 12px;
+    gap: 8px;
+    padding: 10px 10px 14px 10px;
     margin: 0 auto;
   }
 
   .mn3-budget-display {
     flex-direction: row;
     text-align: left;
-    gap: 12px;
-    padding: 12px;
+    gap: 8px;
+    padding: 10px;
     align-items: center;
   }
 
@@ -621,16 +621,24 @@
     align-items: flex-start;
   }
 
+  .mn3-budget-label {
+    font-size: clamp(14px, 3.2vw, 20px);
+  }
+
+  .mn3-budget-amount {
+    font-size: clamp(28px, 7vw, 44px);
+  }
+
   .mn3-allocation-item {
     flex-direction: row;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     justify-content: space-between;
   }
 
   .mn3-allocation-label {
     text-align: left;
-    font-size: clamp(14px, 3.5vw, 20px);
+    font-size: clamp(13px, 3.2vw, 18px);
     flex: 1;
   }
 
@@ -641,27 +649,46 @@
   }
 
   .mn3-allocation-input {
-    width: clamp(80px, 18vw, 140px);
-    height: clamp(48px, 9vw, 72px);
-    font-size: clamp(18px, 5vw, 28px);
+    width: clamp(70px, 22vw, 120px);
+    height: clamp(44px, 10vw, 64px);
+    font-size: clamp(16px, 4.5vw, 24px);
     border-width: 3px;
   }
 
-  /* Result page mobile adjustments */
+  /* Result page mobile adjustments: make text smaller and allow scrolling */
   .mn3-result-content {
-    gap: 12px;
-    padding: 12px 12px 24px 12px;
+    gap: 10px;
+    padding: 10px 12px 18px 12px;
     margin: 2vh auto;
+    min-height: auto;
+    max-height: calc(100vh - 20px);
+    overflow-y: auto; /* allow content to scroll on small screens */
+  }
+
+  .mn3-result-content h1,
+  .mn3-result-content h2 {
+    font-size: clamp(18px, 6.5vw, 28px) !important;
+    line-height: 1.1;
   }
 
   .mn3-result-image {
-    width: clamp(280px, 85vw, 400px);
+    width: clamp(220px, 70vw, 360px);
+    max-height: 40vh;
+    object-fit: contain;
   }
 
   .mn3-result-button {
-    width: clamp(280px, 85vw, 400px);
-    height: clamp(60px, 12vw, 80px);
-    font-size: clamp(20px, 6vw, 32px);
+    width: clamp(260px, 86vw, 360px);
+    height: clamp(52px, 11vw, 72px);
+    font-size: clamp(18px, 5.5vw, 28px);
+  }
+
+  /* Keep design-system buttons accessible when scrolling without being fixed */
+  .figma-style1-button-container {
+    position: sticky;
+    bottom: env(safe-area-inset-bottom, 12px);
+    padding-bottom: env(safe-area-inset-bottom, 12px);
+    background: linear-gradient(to top, rgba(4,217,249,0.02), rgba(4,217,249,0));
   }
 }
 
