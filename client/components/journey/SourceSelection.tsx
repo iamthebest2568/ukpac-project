@@ -48,7 +48,7 @@ const SourceSelection = ({ sessionID, onNavigate }: SourceSelectionProps) => {
     {
       text: "ข้อมูลจากสนข.",
       onClick: () => handleSourceChoice('government_data', 'ข้อมูลจากสนข.'),
-      ariaLabel: "เลือกข้อมูลจากสำนักงานคณะกรรมการกำกับการขนส่งทางบก"
+      ariaLabel: "เลือ��ข้อมูลจากสำนักงานคณะกรรมการกำกับการขนส่งทางบก"
     },
     {
       text: "ป้ายประกาศข้างทาง",
@@ -69,7 +69,7 @@ const SourceSelection = ({ sessionID, onNavigate }: SourceSelectionProps) => {
 
   return (
     <FigmaStyle1Layout
-      backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Feb2f14480a1349a6bc6b76594e26c7b5?format=webp&width=2160"
+      backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F960218265f754592a3de9137a87be996?format=webp&width=800"
       backgroundAlt="รถไฟใต้ดินและป้ายข่าว"
       title="คุณจะติดตามข่าว หรือ เชื่อจากแหล่งข่าวไหน"
       buttons={buttons}
