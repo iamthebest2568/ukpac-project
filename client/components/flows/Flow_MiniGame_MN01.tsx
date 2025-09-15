@@ -13,12 +13,24 @@ interface Flow_MiniGame_MN01Props {
 }
 
 const Flow_MiniGame_MN01 = ({ sessionID, onComplete, onBack }: Flow_MiniGame_MN01Props) => {
-  // Render only the first step (choice) and delegate completion immediately to onComplete
+  // Adapt MN01 step output to the expected MN1 shape so downstream flows (MN2) receive priorities
+  const handleStep1Complete = (stepData: any) => {
+    // Accept multiple possible shapes from Step1_Choice
+    const selectedPriorities =
+      stepData?.budget_step1_choice?.selectedPriorities ||
+      stepData?.selectedPriorities ||
+      stepData?.priorities?.selectedPriorities ||
+      [];
+
+    const mapped = { priorities: { selectedPriorities } };
+    onComplete(mapped);
+  };
+
   return (
     <div className="flow-container">
       <Step1_Choice
         sessionID={sessionID}
-        onNext={onComplete}
+        onNext={handleStep1Complete}
         onBack={onBack}
       />
     </div>
