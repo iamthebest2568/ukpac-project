@@ -31,7 +31,7 @@ const Step1_Choice = ({
     "เพิ่มความถี่รถเมล์",
     "เพิ่มที่จอดรถ",
     "เพิ่มความถี่รถไฟฟ้า",
-    "���พิ่ม Feeder ในซอย",
+    "เพิ่ม Feeder ในซอย",
   ];
 
   const handlePriorityToggle = (priority: string) => {
@@ -327,27 +327,40 @@ const Step1_Choice = ({
         </div>
 
         {/* Continue Button - Fixed Footer */}
-        <div className="fixed-footer">
-          <div className="btn-container">
-            <button
-              onClick={handleNext}
-              disabled={selectedPriorities.length === 0}
-              className="btn-large"
-              aria-describedby="next-button-description"
-            >
-              ไปต่อ
-            </button>
-            {selectedPriorities.length === 0 && (
+        {selectedPriorities.length > 0 ? (
+          <div className="fixed-footer">
+            <div className="btn-container">
+              <button
+                onClick={handleNext}
+                className="btn-large"
+                style={{
+                  backgroundColor: '#FFE000',
+                  color: '#000',
+                  border: 'none'
+                }}
+                aria-label="ดำเนินการต่อไปยังขั้นตอนถัดไป"
+              >
+                ไปต่อ
+              </button>
+            </div>
+          </div>
+        ) : (
+          <div className="fixed-footer">
+            <div className="btn-container">
               <div
-                id="next-button-description"
-                className="text-subtitle text-center"
-                style={{ color: '#000D59' }}
+                className="text-center responsive-padding-md"
+                style={{
+                  color: '#000D59',
+                  fontSize: 'clamp(14px, 3.5vw, 18px)',
+                  fontFamily: 'Prompt',
+                  fontWeight: 500
+                }}
               >
                 กรุณาเลือกอย่างน้อย 1 ข้อเพื่อดำเนินการต่อ
               </div>
-            )}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
