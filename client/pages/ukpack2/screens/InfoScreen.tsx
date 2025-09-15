@@ -14,7 +14,6 @@ const InfoScreen: React.FC = () => {
       <CustomizationScreen
         title="รู้หรือไม่!"
         theme="light"
-        onBack={() => setExitModalOpen(true)}
         footerContent={
           <div className="flex justify-center">
             <CtaButton text="ไปต่อ" onClick={() => navigate("/ukpack2/info-next")} />
@@ -29,7 +28,7 @@ const InfoScreen: React.FC = () => {
               โดยมีเส้นทางที่ยืดหยุ่นและสามารถปรับให้เข้ากับความต้องการของผู้ใช้
               บริการนี้ส่งเสริมการเข้าถึง
               การเดินทางที่ปลอดภัยและสะดวกสบายสำหรับทุกคน
-              รวมถึงผู้สูงอายุและผู้พิการ
+              รวมถึงผู��สูงอายุและผู้พิการ
               ผู้ใช้สามารถเลือกรูปแบบการชำระเงินและสิ่งอำนวยความสะดวกที่ต้องการ
               เพื่อให้รถเมล์ตอบโจทย์การใช้งานของชุมชนได้ดีที่สุด.
             </p>
