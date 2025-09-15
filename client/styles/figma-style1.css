@@ -1160,3 +1160,25 @@ body[data-dialog-open] {
   z-index: 10;
   pointer-events: auto;
 }
+
+/* Mobile: Ask05 positioning (title top, textarea center, button bottom) */
+@media (max-width: 767px) {
+  .ask05-page .figma-style1-content-area {
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 100% !important;
+  }
+  .ask05-page .ask05-content {
+    margin-top: auto !important;
+    margin-bottom: auto !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    padding: 0 16px !important;
+  }
+  .ask05-page .figma-style1-button-container {
+    margin-top: auto !important;
+    padding-bottom: env(safe-area-inset-bottom, 16px) !important;
+  }
+}
