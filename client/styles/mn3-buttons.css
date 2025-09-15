@@ -217,6 +217,45 @@
   }
 }
 
+/* Specific button widths matching Figma design */
+/* Row 1: choice_1 (465px) and choice_2 (500px) */
+.mn3-policy-button--choice-1 {
+  flex: 0 0 clamp(280px, 43vw, 465px);
+  max-width: 465px;
+}
+
+.mn3-policy-button--choice-2 {
+  flex: 0 0 clamp(300px, 46.3vw, 500px);
+  max-width: 500px;
+}
+
+/* Row 2: choice_3 (248px), choice_4 (385px), choice_5 (293px) */
+.mn3-policy-button--choice-3 {
+  flex: 0 0 clamp(150px, 23vw, 248px);
+  max-width: 248px;
+}
+
+.mn3-policy-button--choice-4 {
+  flex: 0 0 clamp(230px, 35.6vw, 385px);
+  max-width: 385px;
+}
+
+.mn3-policy-button--choice-5 {
+  flex: 0 0 clamp(180px, 27.1vw, 293px);
+  max-width: 293px;
+}
+
+/* Row 3: choice_6 (465px) and choice_7 (480px) */
+.mn3-policy-button--choice-6 {
+  flex: 0 0 clamp(280px, 43vw, 465px);
+  max-width: 465px;
+}
+
+.mn3-policy-button--choice-7 {
+  flex: 0 0 clamp(290px, 44.4vw, 480px);
+  max-width: 480px;
+}
+
 /* Ensure proper alignment in flex containers */
 .mn3-button-row > .mn3-policy-button {
   flex-grow: 0;
