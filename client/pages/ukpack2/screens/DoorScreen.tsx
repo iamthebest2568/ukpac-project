@@ -117,31 +117,31 @@ const DoorScreen: React.FC = () => {
             <SelectionCard
               icon={<IconDoor1 />}
               label={'1 ประตู'}
-              isSelected={doorChoice === '1'}
-              onClick={() => setDoorChoice('1')}
+              isSelected={selectedOption === '1'}
+              onClick={() => setSelectedOption('1')}
               variant="light"
             />
             <SelectionCard
               icon={<IconDoor2 />}
               label={'2 ประตู'}
-              isSelected={doorChoice === '2'}
-              onClick={() => setDoorChoice('2')}
+              isSelected={selectedOption === '2'}
+              onClick={() => setSelectedOption('2')}
               variant="light"
             />
 
-            {/* Independent toggles */}
+            {/* Single-choice options */}
             <SelectionCard
               icon={<IconRamp />}
               label={'ทางลาดสำหรับรถเข็น/ผู้พิการ'}
-              isSelected={hasRamp}
-              onClick={() => setHasRamp((s) => !s)}
+              isSelected={selectedOption === 'ramp'}
+              onClick={() => setSelectedOption('ramp')}
               variant="light"
             />
             <SelectionCard
               icon={<IconHighLow />}
               label={'ประตูฉุกเฉิน'}
-              isSelected={highLow}
-              onClick={() => setHighLow((s) => !s)}
+              isSelected={selectedOption === 'emergency'}
+              onClick={() => setSelectedOption('emergency')}
               variant="light"
             />
           </div>
