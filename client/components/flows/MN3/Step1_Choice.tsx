@@ -117,9 +117,9 @@ const Step1_Choice = ({
 
   const getTextColor = (priority: string) => {
     if (selectedPriorities.includes(priority)) {
-      return "font-bold text-[#FFE000]";
+      return "#FFE000"; // Yellow text when selected
     }
-    return "font-bold text-black group-hover:text-[#FFE000]";
+    return "#000000"; // Black text by default
   };
 
   return (
