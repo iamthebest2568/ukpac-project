@@ -908,19 +908,21 @@ body[data-dialog-open] {
     padding-bottom: clamp(16px, 4vh, 32px) !important;
   }
 
-  /* Page-specific exception: Ask05 needs top-aligned content and tight top padding */
-  .ask05-page .figma-style1-main {
-    align-items: start !important;
+}
+
+/* Ask05 desktop/tablet-only adjustments: keep mobile untouched */
+@media (min-width: 768px) {
+  .ask05-page .ask05-content {
+    width: 100%;
+    max-width: min(92vw, 900px);
+    margin: 0 auto;
+    padding: 16px 20px;
   }
-  .ask05-page .figma-style1-content-area {
-    justify-content: flex-start !important;
-    padding-top: 12px !important;
-    padding-bottom: 16px !important;
+  .ask05-page .ask05-textarea-box {
+    min-height: clamp(260px, 32vh, 460px);
+    padding: clamp(12px, 2.2vw, 20px);
   }
-  /* Allow wider content area specific to Ask05 so textarea and CTA match design */
-  .ask05-page .figma-style1-content {
-    max-width: min(100%, 980px) !important;
-  }
+  .ask05-page .ask05-title { max-width: min(92vw, 900px); margin: 8px auto 12px auto; }
 }
 
 @media (min-width: 768px) {
