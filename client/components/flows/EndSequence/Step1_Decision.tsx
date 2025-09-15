@@ -90,15 +90,15 @@ const Step1_Decision = ({
       imageLoading="eager"
     >
       {/* Content positioned exactly as in Figma */}
-      <div className="absolute w-full text-center" style={{ top: '60.7%' }}>
-        {/* Main thank you message - mixed font sizes as in Figma */}
-        <h1 className="font-prompt text-center leading-normal" style={{ color: '#000D59', fontWeight: 700, lineHeight: 'normal' }}>
-          <span style={{ fontSize: 'clamp(28px, 6.5vw, 70px)' }}>ขอบคุณ</span>
-          <span style={{ fontSize: 'clamp(24px, 5.6vw, 60px)' }}>ที่ร่วมเป็นส่วนหนึ่ง<br />ในการพัฒนาเมือง</span>
+      {/* Standard header area */}
+      <div className="w-full text-center px-4">
+        <h1 className="font-prompt text-center leading-normal" style={{ color: '#000D59', fontWeight: 700, lineHeight: '1' }}>
+          <span style={{ display: 'block', fontSize: 'clamp(28px, 6.5vw, 70px)' }}>ขอบคุณ</span>
+          <span style={{ display: 'block', fontSize: 'clamp(24px, 5.6vw, 60px)' }}>ที่ร่วมเป็นส่วนหนึ่งในการพัฒนาเมือง</span>
         </h1>
       </div>
 
-      {/* Question about reward - positioned as in Figma */}
+      {/* Question about reward */}
       <div className="absolute w-full text-center" style={{ top: '72.5%' }}>
         <h2
           className="font-prompt text-center leading-normal"
