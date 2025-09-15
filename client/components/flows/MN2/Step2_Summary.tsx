@@ -278,7 +278,7 @@ const Step2_Summary = ({
               navigateToPage("/fake-news");
             }}
             aria-label="พอใจกับผลลัพธ์ที่ได้จากการตอบคำถาม"
-            className="block rounded-[50px] bg-[#FFE000] mx-auto transition-all duration-200 hover:scale-105 flex items-center justify-center"
+            className="block rounded-[50px] figma-style1-button mx-auto transition-all duration-200 hover:scale-105 flex items-center justify-center"
             style={{
               width: "min(845px, 85vw)",
               height: "clamp(60px, 8vw, 118px)"
@@ -306,7 +306,7 @@ const Step2_Summary = ({
               navigateToPage("/ask05");
             }}
             aria-label="ไม่พอใจกับผลลัพธ์และต้องการให้ข้อเสนอแนะ"
-            className="block rounded-[50px] bg-[#FFE000] mx-auto transition-all duration-200 hover:scale-105 flex items-center justify-center"
+            className="block rounded-[50px] figma-style1-button mx-auto transition-all duration-200 hover:scale-105 flex items-center justify-center"
             style={{
               width: "min(845px, 85vw)",
               height: "clamp(60px, 8vw, 118px)"
