@@ -135,7 +135,6 @@ const Step3_Result = ({ sessionID, onNext, onBack, journeyData }: Step3_ResultPr
   return (
     <FigmaStyle1Layout
       backgroundImage={backgroundImage}
-      title={"จากงบประมาณของคุณ\nนี้คือสิ่งที่จะเกิดขึ้นในอนาคต"}
       buttons={[
         { text: "ใช่", onClick: handleYes, ariaLabel: "ตอบใช่ - พอใจกับผลลัพธ์" },
         { text: "ไม่ใช่", onClick: handleNo, ariaLabel: "ตอบไม่ใช่ - ไม่พอใจกับผลลัพธ์" },
@@ -143,8 +142,16 @@ const Step3_Result = ({ sessionID, onNext, onBack, journeyData }: Step3_ResultPr
       className="mn3-result-page"
       useBlueOverlay={false}
     >
+      {/* Title (use layout's title container for consistent styling) */}
+      <div className="figma-style1-title-container">
+        <h1 className="figma-style1-title" style={{ color: '#000D59' }}>
+          จากงบประมาณของคุณ<br />
+          นี้คือสิ่งที่จะเกิดขึ้นในอนาคต
+        </h1>
+      </div>
+
       {/* Illustration */}
-      <div className="w-full px-4 mb-8 flex justify-center">
+      <div className="w-full px-4 mb-6 flex justify-center">
         <img
           src="https://api.builder.io/api/v1/image/assets/TEMP/40ffac7fde4a30bb13050c151fbeed8c7c4fae41?width=1500"
           alt="Transport policy outcomes illustration"
@@ -153,8 +160,8 @@ const Step3_Result = ({ sessionID, onNext, onBack, journeyData }: Step3_ResultPr
       </div>
 
       {/* Question subtitle */}
-      <div className="text-center w-full max-w-none px-4 mb-8">
-        <h2 className="font-prompt text-center leading-normal mn3-result-subtitle">คุณพอใจหรือไม่</h2>
+      <div className="text-center w-full max-w-none px-4 mb-6">
+        <h2 className="figma-style1-subtitle" style={{ color: '#000D59' }}>คุณพอใจหรือ��ม่</h2>
       </div>
     </FigmaStyle1Layout>
   );
