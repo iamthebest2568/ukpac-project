@@ -53,7 +53,7 @@ type SessionSummary = {
   mn1Selected: string[]; // ลำดับความสำคัญของประเด็น
   mn2Selections?: Record<string, string[]>; // กลุ่มเป้าหมายที่ควรได้รับสิทธิ์
   mn3Selected?: string[]; // ประเด็นนโยบายที่ผู้ใช้เลือก
-  mn3BudgetAllocation?: Record<string, number>; // การจัด���รรงบ���ร���มาณ
+  mn3BudgetAllocation?: Record<string, number>; // การจัดสรรงบประมาณ
   mn3BudgetTotal?: number;
   satisfactionLevel?: string; // ระดับความพึงพอใจ
   ask05Comment?: string; // ข้อเสนอเพิ่มเติมต่อรัฐ
@@ -575,7 +575,7 @@ export default function UkDashboard() {
                     </AccordionItem>
                     {/* Comments */}
                     <AccordionItem value="comments">
-                      <AccordionTrigger>ข้อคิดเห็นอื่นๆ</AccordionTrigger>
+                      <AccordionTrigger>ข้อคิดเห็นอื่��ๆ</AccordionTrigger>
                       <AccordionContent>
                         <ul className="space-y-1 text-sm">
                           {(journey.ask05Samples || []).map(
