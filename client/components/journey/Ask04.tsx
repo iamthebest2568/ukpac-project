@@ -39,7 +39,7 @@ const Ask04 = ({ sessionID, onNavigate, journeyData }: Ask04Props) => {
     {
       text: "พอใจ",
       onClick: () => handleChoice("satisfied"),
-      ariaLabel: "พอใจกับผลลัพธ์ที่ไ���้จากการตอบคำถาม",
+      ariaLabel: "พอใจกับผลลัพธ์ที่ได้จากการตอบคำถาม",
     },
     {
       text: "ไม่พอใจ",
