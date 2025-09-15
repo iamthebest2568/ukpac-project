@@ -14,7 +14,11 @@ interface Flow_MiniGame_MN1Props {
   onBack?: () => void;
 }
 
-const Flow_MiniGame_MN1 = ({ sessionID, onComplete, onBack }: Flow_MiniGame_MN1Props) => {
+const Flow_MiniGame_MN1 = ({
+  sessionID,
+  onComplete,
+  onBack,
+}: Flow_MiniGame_MN1Props) => {
   const [currentStep, setCurrentStep] = useState<number>(1);
   const [flowData, setFlowData] = useState<any>({});
 
@@ -50,11 +54,7 @@ const Flow_MiniGame_MN1 = ({ sessionID, onComplete, onBack }: Flow_MiniGame_MN1P
     }
   };
 
-  return (
-    <div className="flow-container">
-      {renderCurrentStep()}
-    </div>
-  );
+  return <div className="flow-container">{renderCurrentStep()}</div>;
 };
 
 export default Flow_MiniGame_MN1;

@@ -17,7 +17,7 @@ const HowDoYouThinkPage = () => {
 
   const handleOptionSelect = (option: string) => {
     setSelectedOption(option);
-    
+
     // Log the selection
     logEvent({
       event: "HOW_DO_YOU_THINK_SELECTION",
@@ -46,35 +46,58 @@ const HowDoYouThinkPage = () => {
 
     // Navigate to next page after a short delay based on selection
     setTimeout(() => {
-      if (option === 'agree') {
+      if (option === "agree") {
         // If user agrees, go to fake news flow
-        navigateToPage('fakeNews', { from: 'how_do_you_think', selectedOption: option, sessionID });
+        navigateToPage("fakeNews", {
+          from: "how_do_you_think",
+          selectedOption: option,
+          sessionID,
+        });
       } else {
         // For neutral or disagree, go to Ask02 (next survey question)
-        navigateToPage('ask02', { from: 'how_do_you_think', selectedOption: option, sessionID });
+        navigateToPage("ask02", {
+          from: "how_do_you_think",
+          selectedOption: option,
+          sessionID,
+        });
       }
     }, 300);
   };
 
   return (
-    <div className="w-full min-h-screen relative bg-white flex flex-col" style={{ maxWidth: 1080, margin: "0 auto", backgroundImage: 'url("https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F53ba6df55d54475a8cd5ad290966b955?format=webp&width=800")', backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
+    <div
+      className="w-full min-h-screen relative bg-white flex flex-col"
+      style={{
+        maxWidth: 1080,
+        margin: "0 auto",
+        backgroundImage:
+          'url("https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F53ba6df55d54475a8cd5ad290966b955?format=webp&width=800")',
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
       {/* Content Section positioned at bottom */}
       <div
         className="flex-1 flex flex-col items-center justify-end px-4 py-8 pb-12"
-        style={{ background: 'transparent', minHeight: 'auto' }}
+        style={{ background: "transparent", minHeight: "auto" }}
       >
         {/* Bottom-aligned content box */}
-        <div className="w-full max-w-4xl px-4" style={{ paddingBottom: 'env(safe-area-inset-bottom,24px)' }}>
+        <div
+          className="w-full max-w-4xl px-4"
+          style={{ paddingBottom: "env(safe-area-inset-bottom,24px)" }}
+        >
           <div className="text-center mb-4">
             <h1
               className="font-prompt text-black text-center leading-tight"
               style={{
-                fontSize: 'clamp(24px, 5.2vw, 56px)',
+                fontSize: "clamp(24px, 5.2vw, 56px)",
                 fontWeight: 600,
-                lineHeight: '1.05'
+                lineHeight: "1.05",
               }}
             >
-              จากข้อความดังกล่าว<br />
+              จากข้อความดังกล่าว
+              <br />
               คุณมีความคิดเห็นอย่างไร
             </h1>
           </div>
@@ -84,29 +107,29 @@ const HowDoYouThinkPage = () => {
             {[
               { key: "agree", text: "เห็นด้วย" },
               { key: "neutral", text: "เฉยๆ" },
-              { key: "disagree", text: "ไม่เห็นด้วย" }
+              { key: "disagree", text: "ไม่เห็นด้วย" },
             ].map((option) => (
               <button
                 key={option.key}
                 onClick={() => handleOptionSelect(option.key)}
                 className="w-full max-w-[845px] transition-all duration-150 hover:scale-102 active:scale-98 flex items-center justify-center"
                 style={{
-                  height: 'clamp(56px, 9vw, 96px)',
-                  borderRadius: '999px',
-                  background: '#FFE000',
-                  border: 'none',
-                  cursor: 'pointer',
-                  boxShadow: '0 6px 18px rgba(0,0,0,0.08)'
+                  height: "clamp(56px, 9vw, 96px)",
+                  borderRadius: "999px",
+                  background: "#FFE000",
+                  border: "none",
+                  cursor: "pointer",
+                  boxShadow: "0 6px 18px rgba(0,0,0,0.08)",
                 }}
                 aria-label={`เลือก: ${option.text}`}
               >
                 <span
                   className="font-prompt text-black text-center"
                   style={{
-                    fontSize: 'clamp(18px, 3.8vw, 34px)',
+                    fontSize: "clamp(18px, 3.8vw, 34px)",
                     fontWeight: 500,
-                    letterSpacing: '0.4px',
-                    lineHeight: '1'
+                    letterSpacing: "0.4px",
+                    lineHeight: "1",
                   }}
                 >
                   {option.text}

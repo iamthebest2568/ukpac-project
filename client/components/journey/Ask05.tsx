@@ -16,7 +16,6 @@ interface Ask05Props {
 const Ask05 = ({ sessionID, onNavigate }: Ask05Props) => {
   const [suggestion, setSuggestion] = useState("");
 
-
   const handleContinue = () => {
     const data = {
       suggestion: suggestion.trim(),

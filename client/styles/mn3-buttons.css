@@ -33,7 +33,7 @@
   justify-content: center;
   border-radius: 26px; /* Slightly smaller */
   border: none;
-  background-color: #FFE000; /* default to yellow for all buttons */
+  background-color: #ffe000; /* default to yellow for all buttons */
   box-shadow: none;
   transition: all 0.12s ease;
   cursor: pointer;
@@ -56,18 +56,18 @@
 
 /* Yellow variant (for specific buttons like ปรับปรุงคุณภาพรถเมล์, เพิ่มความถี่รถเมล์) */
 .mn3-policy-button--yellow {
-  background-color: #FFE000;
+  background-color: #ffe000;
 }
 
 /* Selected state */
 .mn3-policy-button--selected {
   background-color: #000 !important;
-  color: #FFE000 !important;
+  color: #ffe000 !important;
 }
 
 /* Non-selected buttons should always appear yellow by default */
 .mn3-policy-button:not(.mn3-policy-button--selected) {
-  background-color: #FFE000 !important;
+  background-color: #ffe000 !important;
   color: #000 !important;
 }
 
@@ -80,14 +80,13 @@
 /* Hover behavior - selected becomes slightly lighter, non-selected hover -> black bg */
 .mn3-policy-button:hover:not(:disabled) {
   background-color: #000 !important;
-  color: #FFE000 !important;
+  color: #ffe000 !important;
   transform: scale(1.03);
 }
 
 .mn3-policy-button--selected:hover:not(:disabled) {
   background-color: #111 !important;
 }
-
 
 /* Disabled state */
 .mn3-policy-button:disabled {
@@ -105,7 +104,7 @@
 }
 
 .mn3-policy-button:hover:not(:disabled) .mn3-button-text {
-  color: #FFE000;
+  color: #ffe000;
 }
 
 /* Active state */
@@ -120,7 +119,7 @@
 
 /* Button text styling - readable and not truncated */
 .mn3-button-text {
-  font-family: 'Prompt', sans-serif;
+  font-family: "Prompt", sans-serif;
   font-weight: 600;
   font-size: clamp(12px, 2.6vw, 16px);
   line-height: 1.15;
@@ -138,7 +137,7 @@
 
 /* Selected button text */
 .mn3-policy-button--selected .mn3-button-text {
-  color: #FFE000;
+  color: #ffe000;
 }
 
 /* Mobile-specific optimizations */
@@ -204,18 +203,18 @@
     max-width: 1000px;
     gap: 32px;
   }
-  
+
   .mn3-button-row {
     gap: 20px;
   }
-  
+
   .mn3-policy-button {
     height: 60px;
     min-width: 180px;
     max-width: 400px;
     padding: 0 32px;
   }
-  
+
   .mn3-button-text {
     font-size: 18px;
   }
@@ -223,7 +222,7 @@
 
 /* Focus accessibility */
 .mn3-policy-button:focus {
-  outline: 3px solid #FFE000;
+  outline: 3px solid #ffe000;
   outline-offset: 2px;
 }
 
@@ -239,7 +238,7 @@
   .mn3-policy-button {
     transition: none;
   }
-  
+
   .mn3-policy-button:hover:not(:disabled) {
     transform: none;
   }
@@ -278,7 +277,7 @@
   min-height: 50px;
   border-radius: 40px; /* Slightly reduced border-radius */
   border: none;
-  background-color: #FFE000;
+  background-color: #ffe000;
   box-shadow: none;
   display: flex;
   align-items: center;
@@ -286,7 +285,7 @@
   transition: all 0.2s ease;
   cursor: pointer;
   margin: 0 auto;
-  font-family: 'Prompt', sans-serif;
+  font-family: "Prompt", sans-serif;
   font-weight: 500;
   font-size: clamp(16px, 4vw, 28px); /* Reduced from 50px max to 28px */
   line-height: normal;
@@ -307,7 +306,7 @@
   content: "";
   position: fixed;
   inset: 0;
-  background-image: url('https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fa06918f51a344c55898963662beae09b?format=webp&width=800');
+  background-image: url("https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fa06918f51a344c55898963662beae09b?format=webp&width=800");
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -320,7 +319,7 @@
   content: "";
   position: fixed;
   inset: 0;
-  background-image: url('https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F367f151282c94192a12cfd43c25fa87e?format=webp&width=800');
+  background-image: url("https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F367f151282c94192a12cfd43c25fa87e?format=webp&width=800");
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -329,7 +328,8 @@
 }
 
 /* Ensure direct children render above the fixed background */
-.mn3-page-bg > *, .mn3-allocation-bg > * {
+.mn3-page-bg > *,
+.mn3-allocation-bg > * {
   position: relative;
   z-index: 2;
 }
@@ -339,7 +339,9 @@
   position: fixed !important;
   left: 0 !important;
   right: 0 !important;
-  bottom: calc(env(safe-area-inset-bottom, 16px) + 30px) !important; /* add extra spacing from bottom */
+  bottom: calc(
+    env(safe-area-inset-bottom, 16px) + 30px
+  ) !important; /* add extra spacing from bottom */
   display: flex !important;
   flex-direction: column !important;
   justify-content: flex-end !important; /* push content to bottom */
@@ -399,7 +401,7 @@
 
 /* Budget display box matching Figma */
 .mn3-budget-display {
-  background-color: #FFE000;
+  background-color: #ffe000;
   border-radius: clamp(16px, 2vw, 20px);
   padding: clamp(16px, 4vw, 24px);
   display: flex;
@@ -430,10 +432,10 @@
 
 /* Budget label text */
 .mn3-budget-label {
-  font-family: 'Prompt', sans-serif;
+  font-family: "Prompt", sans-serif;
   font-weight: 700;
   font-size: clamp(24px, 4.6vw, 50px);
-  color: #000D59;
+  color: #000d59;
   text-align: center;
   line-height: normal;
   letter-spacing: 0.4px;
@@ -441,10 +443,10 @@
 
 /* Budget amount text */
 .mn3-budget-amount {
-  font-family: 'Prompt', sans-serif;
+  font-family: "Prompt", sans-serif;
   font-weight: 700;
   font-size: clamp(48px, 9.3vw, 100px);
-  color: #000D59;
+  color: #000d59;
   text-align: center;
   line-height: normal;
   letter-spacing: 0.4px;
@@ -471,10 +473,10 @@
 
 /* Priority label text */
 .mn3-allocation-label {
-  font-family: 'Prompt', sans-serif;
+  font-family: "Prompt", sans-serif;
   font-weight: 700;
   font-size: clamp(18px, 4.6vw, 50px);
-  color: #000D59;
+  color: #000d59;
   line-height: normal;
   letter-spacing: 0.4px;
   flex: 1;
@@ -490,13 +492,13 @@
 .mn3-allocation-input {
   width: clamp(120px, 19vw, 205px);
   height: clamp(80px, 12vw, 130px);
-  border: 5px solid #000D59;
+  border: 5px solid #000d59;
   border-radius: clamp(16px, 2vw, 20px);
   background-color: transparent;
-  font-family: 'Prompt', sans-serif;
+  font-family: "Prompt", sans-serif;
   font-weight: 700;
   font-size: clamp(32px, 6.5vw, 70px);
-  color: #000D59;
+  color: #000d59;
   text-align: center;
   line-height: normal;
   letter-spacing: 0.4px;
@@ -506,7 +508,7 @@
 }
 
 .mn3-allocation-input:focus {
-  border-color: #FFE000;
+  border-color: #ffe000;
   box-shadow: 0 0 0 3px rgba(255, 224, 0, 0.3);
 }
 
@@ -516,7 +518,7 @@
   margin: 0;
 }
 
-.mn3-allocation-input[type=number] {
+.mn3-allocation-input[type="number"] {
   -moz-appearance: textfield;
 }
 
@@ -527,14 +529,14 @@
 /* Result page background (cyan as per Figma) */
 .mn3-result-bg {
   position: relative;
-  background-color: #04D9F9;
+  background-color: #04d9f9;
 }
 
 .mn3-result-bg::before {
   content: "";
   position: fixed;
   inset: 0;
-  background-image: url('https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F44cf16d8ccf64321b16d01722cbc8356?format=webp&width=1500');
+  background-image: url("https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F44cf16d8ccf64321b16d01722cbc8356?format=webp&width=1500");
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -605,7 +607,7 @@
 .mn3-result-button {
   width: min(420px, 86vw);
   height: clamp(52px, 9.5vw, 72px);
-  background-color: #FFE000;
+  background-color: #ffe000;
   border-radius: 40px;
   border: none;
   display: flex;
@@ -614,7 +616,7 @@
   transition: all 0.2s ease;
   cursor: pointer;
 
-  font-family: 'Prompt', sans-serif;
+  font-family: "Prompt", sans-serif;
   font-weight: 400;
   font-size: clamp(16px, 2.6vw, 20px);
   color: #000;
@@ -625,10 +627,19 @@
 
 /* Limit excessive scaling on very large screens */
 @media (min-width: 1400px) {
-  .mn3-result-title { font-size: 36px; }
-  .mn3-result-subtitle { font-size: 28px; }
-  .mn3-result-image { max-height: 48vh; }
-  .mn3-result-button { width: 380px; height: 64px; }
+  .mn3-result-title {
+    font-size: 36px;
+  }
+  .mn3-result-subtitle {
+    font-size: 28px;
+  }
+  .mn3-result-image {
+    max-height: 48vh;
+  }
+  .mn3-result-button {
+    width: 380px;
+    height: 64px;
+  }
 }
 
 .mn3-result-button:hover {
@@ -729,16 +740,19 @@
     position: sticky;
     bottom: env(safe-area-inset-bottom, 12px);
     padding-bottom: env(safe-area-inset-bottom, 12px);
-    background: linear-gradient(to top, rgba(4,217,249,0.02), rgba(4,217,249,0));
+    background: linear-gradient(
+      to top,
+      rgba(4, 217, 249, 0.02),
+      rgba(4, 217, 249, 0)
+    );
   }
 }
-
 
 .mn3-continue-button:hover {
   transform: scale(1.05);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
   background-color: #000;
-  color: #FFE000;
+  color: #ffe000;
 }
 
 .mn3-continue-button:active {

@@ -87,7 +87,7 @@ const Step1_Choice = ({
   // Define which buttons should be yellow by default (from Figma design)
   const defaultYellowButtons = new Set([
     "ปรับปรุงคุณภาพรถเมล์",
-    "เพิ่มความถี่รถเมล์"
+    "เพิ่มความถี่รถเมล์",
   ]);
 
   const getButtonClasses = (priority: string, index: number) => {
@@ -108,9 +108,11 @@ const Step1_Choice = ({
   const renderPolicyButton = (priority: string, index: number) => (
     <button
       key={priority}
-      onPointerUp={() => !isSelectionDisabled(priority) && handlePriorityToggle(priority)}
+      onPointerUp={() =>
+        !isSelectionDisabled(priority) && handlePriorityToggle(priority)
+      }
       onKeyDown={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
+        if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
           if (!isSelectionDisabled(priority)) handlePriorityToggle(priority);
         }
@@ -119,9 +121,7 @@ const Step1_Choice = ({
       className={getButtonClasses(priority, index)}
       aria-label={`เลือกนโยบาย: ${priority}`}
     >
-      <span className="mn3-button-text">
-        {priority}
-      </span>
+      <span className="mn3-button-text">{priority}</span>
     </button>
   );
 
@@ -129,21 +129,21 @@ const Step1_Choice = ({
     <div className="w-full min-h-screen mn3-page-bg flex flex-col items-center justify-start relative">
       {/* Main Content Container */}
       <div className="mn3-content">
-        
         {/* Title Section - Optimized for mobile readability */}
         <div className="text-center w-full max-w-none px-4">
           <h1
             className="font-prompt text-center leading-normal mb-4"
             style={{
-              color: '#000D59',
-              fontSize: 'clamp(24px, 6vw, 48px)',
-              lineHeight: '1.2',
+              color: "#000D59",
+              fontSize: "clamp(24px, 6vw, 48px)",
+              lineHeight: "1.2",
               fontWeight: 700,
-              width: '100%',
-              margin: '0 auto 16px auto'
+              width: "100%",
+              margin: "0 auto 16px auto",
             }}
           >
-            คุณคิดว่าควรใช้เงินที่ได้<br />
+            คุณคิดว่าควรใช้เงินที่ได้
+            <br />
             จากการเก็บไปพัฒนาอะไร
           </h1>
         </div>
@@ -172,7 +172,10 @@ const Step1_Choice = ({
 
         {/* Continue Button - displayed directly below the options */}
         <div className="w-full px-4 mt-4 flex justify-center">
-          <div className="mx-auto flex flex-col items-center space-y-2" style={{ width: '100%', maxWidth: 980 }}>
+          <div
+            className="mx-auto flex flex-col items-center space-y-2"
+            style={{ width: "100%", maxWidth: 980 }}
+          >
             <button
               onClick={handleNext}
               className="mn3-continue-button"

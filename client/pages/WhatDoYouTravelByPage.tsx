@@ -9,7 +9,10 @@ export default function WhatDoYouTravelByPage() {
 
   const handleContinue = () => {
     // Log explicit travel method
-    logEvent({ event: "TRAVEL_METHOD", payload: { method: textInput, sessionID } });
+    logEvent({
+      event: "TRAVEL_METHOD",
+      payload: { method: textInput, sessionID },
+    });
     // Navigate to the opinion page after user submits travel method
     navigateToPage("/how-do-you-think", {
       from: "what_do_you_travel_by",
@@ -34,10 +37,11 @@ export default function WhatDoYouTravelByPage() {
               color: "#000D59",
               fontSize: "clamp(24px, 5.6vw, 60px)",
               fontWeight: 700,
-              lineHeight: "normal"
+              lineHeight: "normal",
             }}
           >
-            บอกเราหน่อยว่าคุณเดินทางเข้าเมือง<br />
+            บอกเราหน่อยว่าคุณเดินทางเข้าเมือง
+            <br />
             ด้วยวิธีการใดบ่อยที่สุด
           </h1>
         </div>
@@ -48,7 +52,7 @@ export default function WhatDoYouTravelByPage() {
             className="relative w-full rounded-[20px] border-[5px] border-[#000D59] bg-white"
             style={{
               minHeight: "clamp(320px, 35vh, 560px)",
-              padding: "clamp(20px, 4vw, 32px)"
+              padding: "clamp(20px, 4vw, 32px)",
             }}
           >
             <textarea
@@ -66,7 +70,7 @@ export default function WhatDoYouTravelByPage() {
                 lineHeight: 1.4,
                 verticalAlign: "top",
                 display: "block",
-                overflow: "auto"
+                overflow: "auto",
               }}
             />
           </div>
@@ -79,7 +83,7 @@ export default function WhatDoYouTravelByPage() {
               className="rounded-[50px] bg-[#FFE000] mx-auto"
               style={{
                 width: "min(845px, 85vw)",
-                height: "clamp(60px, 8vw, 118px)"
+                height: "clamp(60px, 8vw, 118px)",
               }}
             />
             <button
@@ -88,7 +92,7 @@ export default function WhatDoYouTravelByPage() {
               style={{
                 background: "transparent",
                 border: "none",
-                height: "clamp(60px, 8vw, 118px)"
+                height: "clamp(60px, 8vw, 118px)",
               }}
             >
               <span
@@ -96,7 +100,7 @@ export default function WhatDoYouTravelByPage() {
                 style={{
                   fontSize: "clamp(16px, 3.5vw, 50px)",
                   fontWeight: 400,
-                  letterSpacing: "0.4px"
+                  letterSpacing: "0.4px",
                 }}
               >
                 ไปต่อ

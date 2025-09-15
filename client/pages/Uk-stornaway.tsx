@@ -163,7 +163,11 @@ export default function UkStornaway() {
 
         if (eventName === "sw.choice.selected") {
           // Allow in-app navigation for special choices/tokens
-          const token = (captured.choiceText || captured.variantName || "").trim();
+          const token = (
+            captured.choiceText ||
+            captured.variantName ||
+            ""
+          ).trim();
           // 1) Explicit mappings for Thai labels
           if (token === "อื่น ๆ") {
             if (!navigatedRef.current) {
@@ -178,7 +182,10 @@ export default function UkStornaway() {
             if (!navigatedRef.current) {
               navigatedRef.current = true;
               setTimeout(() => {
-                navigateToPage("Flow_MiniGame_MN1", { from: "stornaway", choice: token });
+                navigateToPage("Flow_MiniGame_MN1", {
+                  from: "stornaway",
+                  choice: token,
+                });
               }, 50);
             }
             return;
@@ -187,7 +194,10 @@ export default function UkStornaway() {
             if (!navigatedRef.current) {
               navigatedRef.current = true;
               setTimeout(() => {
-                navigateToPage("Flow_MiniGame_MN3", { from: "stornaway", choice: token });
+                navigateToPage("Flow_MiniGame_MN3", {
+                  from: "stornaway",
+                  choice: token,
+                });
               }, 50);
             }
             return;
@@ -196,7 +206,10 @@ export default function UkStornaway() {
             if (!navigatedRef.current) {
               navigatedRef.current = true;
               setTimeout(() => {
-                navigateToPage("fakeNews", { from: "stornaway", choice: token });
+                navigateToPage("fakeNews", {
+                  from: "stornaway",
+                  choice: token,
+                });
               }, 50);
             }
             return;
@@ -206,7 +219,10 @@ export default function UkStornaway() {
               navigatedRef.current = true;
               setTimeout(() => {
                 // Navigate first to the opinion page, then the opinion page will continue to the next step
-                navigateToPage("/how-do-you-think", { from: "stornaway", choice: token });
+                navigateToPage("/how-do-you-think", {
+                  from: "stornaway",
+                  choice: token,
+                });
               }, 50);
             }
             return;
@@ -336,7 +352,6 @@ export default function UkStornaway() {
         s.onload = null;
       };
     }
-
 
     const cleanup = ensureScriptAndInit();
     return () => {

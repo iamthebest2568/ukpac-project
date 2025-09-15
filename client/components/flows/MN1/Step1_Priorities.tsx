@@ -70,17 +70,18 @@ const Step1_Priorities = ({
   };
 
   const isSelectionDisabled = (priority: string) =>
-    selectedPriorities.length >= maxSelections && !selectedPriorities.includes(priority);
+    selectedPriorities.length >= maxSelections &&
+    !selectedPriorities.includes(priority);
 
   const getButtonColor = (priority: string) => {
     const isSelected = selectedPriorities.includes(priority);
     const defaultColor = getDefaultButtonColor(priority);
-    
+
     if (isSelected) {
       // When selected, switch colors: yellow becomes gray, gray becomes yellow
       return defaultColor === "#FFE000" ? "#E9E9E9" : "#FFE000";
     }
-    
+
     // Default state from Figma
     return defaultColor;
   };
@@ -92,10 +93,10 @@ const Step1_Priorities = ({
       imageLoading="eager"
     >
       {/* White overlay section with cityscape image */}
-      <div className="absolute inset-0" style={{ top: '0%', height: '52%' }}>
-        <div 
+      <div className="absolute inset-0" style={{ top: "0%", height: "52%" }}>
+        <div
           className="w-full h-full flex items-center justify-center bg-white"
-          style={{ borderRadius: '0 0 800px 800px', overflow: 'hidden' }}
+          style={{ borderRadius: "0 0 800px 800px", overflow: "hidden" }}
         >
           <img
             src="https://api.builder.io/api/v1/image/assets/TEMP/3b287c4c812ae9bc78f9c5a8da49d3845fd1887f?width=2158"
@@ -107,29 +108,31 @@ const Step1_Priorities = ({
       </div>
 
       {/* Title positioned as in Figma */}
-      <div className="absolute w-full text-center" style={{ top: '53.2%' }}>
-        <h1 
+      <div className="absolute w-full text-center" style={{ top: "53.2%" }}>
+        <h1
           className="font-prompt text-center leading-normal"
           style={{
-            color: '#000D59',
-            fontSize: 'clamp(32px, 7.4vw, 80px)',
+            color: "#000D59",
+            fontSize: "clamp(32px, 7.4vw, 80px)",
             fontWeight: 700,
-            lineHeight: 'normal'
+            lineHeight: "normal",
           }}
         >
-          คุณคิดว่าควรใช้เงินที่ได้<br />จากการเก็บไปพัฒนาอะไร
+          คุณคิดว่าควรใช้เงินที่ได้
+          <br />
+          จากการเก็บไปพัฒนาอะไร
         </h1>
       </div>
 
       {/* Subtitle positioned as in Figma */}
-      <div className="absolute w-full text-center" style={{ top: '65%' }}>
-        <p 
+      <div className="absolute w-full text-center" style={{ top: "65%" }}>
+        <p
           className="font-prompt text-center"
           style={{
-            color: '#000D59',
-            fontSize: 'clamp(20px, 3.7vw, 40px)',
+            color: "#000D59",
+            fontSize: "clamp(20px, 3.7vw, 40px)",
             fontWeight: 700,
-            lineHeight: 'normal'
+            lineHeight: "normal",
           }}
         >
           ไม่เกิน 3 นโยบาย
@@ -137,17 +140,27 @@ const Step1_Priorities = ({
       </div>
 
       {/* Options Grid positioned as in Figma */}
-      <div className="absolute w-full flex flex-col items-center" style={{ top: '71.4%' }}>
-        <div className="flex flex-col" style={{ width: '91.1%', maxWidth: '984px', gap: 'clamp(16px, 1.2vw, 24px)' }}>
+      <div
+        className="absolute w-full flex flex-col items-center"
+        style={{ top: "71.4%" }}
+      >
+        <div
+          className="flex flex-col"
+          style={{
+            width: "91.1%",
+            maxWidth: "984px",
+            gap: "clamp(16px, 1.2vw, 24px)",
+          }}
+        >
           {/* Row 1: ลดค่าโดยสารรถไฟฟ้า (gray), ปรับปรุงคุณภาพรถเมล์ (yellow) */}
-          <div className="flex" style={{ gap: 'clamp(16px, 1.8vw, 19px)' }}>
+          <div className="flex" style={{ gap: "clamp(16px, 1.8vw, 19px)" }}>
             <button
               className="transition-all duration-200 flex items-center justify-center rounded-[40px] border-0"
               style={{
-                width: '43.1%', // 465/1080
-                height: 'clamp(60px, 4.7vw, 90px)',
+                width: "43.1%", // 465/1080
+                height: "clamp(60px, 4.7vw, 90px)",
                 backgroundColor: getButtonColor("ลดค่าโดยสารรถไฟฟ้า"),
-                opacity: isSelectionDisabled("ลดค่าโดยสารรถไฟฟ้า") ? 0.5 : 1
+                opacity: isSelectionDisabled("ลดค่าโดยสารรถไฟฟ้า") ? 0.5 : 1,
               }}
               onClick={() =>
                 !isSelectionDisabled("ลดค่าโดยสารรถไฟฟ้า") &&
@@ -158,22 +171,22 @@ const Step1_Priorities = ({
               <span
                 className="font-prompt text-black text-center"
                 style={{
-                  fontSize: 'clamp(16px, 3.7vw, 40px)',
+                  fontSize: "clamp(16px, 3.7vw, 40px)",
                   fontWeight: 700,
-                  letterSpacing: '0.4px'
+                  letterSpacing: "0.4px",
                 }}
               >
                 ลดค่าโดยสารรถไฟฟ้า
               </span>
             </button>
-            
+
             <button
               className="transition-all duration-200 flex items-center justify-center rounded-[40px] border-0"
               style={{
-                width: '46.3%', // 500/1080
-                height: 'clamp(60px, 4.7vw, 90px)',
+                width: "46.3%", // 500/1080
+                height: "clamp(60px, 4.7vw, 90px)",
                 backgroundColor: getButtonColor("ปรับปรุงคุณภาพรถเมล์"),
-                opacity: isSelectionDisabled("ปรับปรุงคุณภาพรถเมล์") ? 0.5 : 1
+                opacity: isSelectionDisabled("ปรับปรุงคุณภาพรถเมล์") ? 0.5 : 1,
               }}
               onClick={() =>
                 !isSelectionDisabled("ปรับปรุงคุณภาพรถเมล์") &&
@@ -184,9 +197,9 @@ const Step1_Priorities = ({
               <span
                 className="font-prompt text-black text-center"
                 style={{
-                  fontSize: 'clamp(16px, 3.7vw, 40px)',
+                  fontSize: "clamp(16px, 3.7vw, 40px)",
                   fontWeight: 700,
-                  letterSpacing: '0.4px'
+                  letterSpacing: "0.4px",
                 }}
               >
                 ปรับปรุงคุณภาพรถเมล์
@@ -195,37 +208,40 @@ const Step1_Priorities = ({
           </div>
 
           {/* Row 2: ตั๋วร่วม (gray), เพิ่มความถี่รถเมล์ (yellow), เพิ่มที่จอดรถ (gray) */}
-          <div className="flex" style={{ gap: 'clamp(16px, 1.8vw, 19px)' }}>
+          <div className="flex" style={{ gap: "clamp(16px, 1.8vw, 19px)" }}>
             <button
               className="transition-all duration-200 flex items-center justify-center rounded-[40px] border-0"
               style={{
-                width: '23%', // 248/1080
-                height: 'clamp(60px, 4.7vw, 90px)',
+                width: "23%", // 248/1080
+                height: "clamp(60px, 4.7vw, 90px)",
                 backgroundColor: getButtonColor("ตั๋วร่วม"),
-                opacity: isSelectionDisabled("ตั๋วร่วม") ? 0.5 : 1
+                opacity: isSelectionDisabled("ตั๋วร่วม") ? 0.5 : 1,
               }}
-              onClick={() => !isSelectionDisabled("ตั๋วร่วม") && handlePriorityToggle("ตั๋วร่วม")}
+              onClick={() =>
+                !isSelectionDisabled("ตั๋วร่วม") &&
+                handlePriorityToggle("ตั๋วร่วม")
+              }
               disabled={isSelectionDisabled("ตั๋วร่วม")}
             >
               <span
                 className="font-prompt text-black text-center"
                 style={{
-                  fontSize: 'clamp(16px, 3.7vw, 40px)',
+                  fontSize: "clamp(16px, 3.7vw, 40px)",
                   fontWeight: 700,
-                  letterSpacing: '0.4px'
+                  letterSpacing: "0.4px",
                 }}
               >
                 ตั๋วร่วม
               </span>
             </button>
-            
+
             <button
               className="transition-all duration-200 flex items-center justify-center rounded-[40px] border-0"
               style={{
-                width: '35.6%', // 385/1080
-                height: 'clamp(60px, 4.7vw, 90px)',
+                width: "35.6%", // 385/1080
+                height: "clamp(60px, 4.7vw, 90px)",
                 backgroundColor: getButtonColor("เพิ่มความถี่รถเมล์"),
-                opacity: isSelectionDisabled("เพิ่มความถี่รถเมล์") ? 0.5 : 1
+                opacity: isSelectionDisabled("เพิ่มความถี่รถเมล์") ? 0.5 : 1,
               }}
               onClick={() =>
                 !isSelectionDisabled("เพิ่��ความถี่รถเมล์") &&
@@ -236,22 +252,22 @@ const Step1_Priorities = ({
               <span
                 className="font-prompt text-black text-center"
                 style={{
-                  fontSize: 'clamp(16px, 3.7vw, 40px)',
+                  fontSize: "clamp(16px, 3.7vw, 40px)",
                   fontWeight: 700,
-                  letterSpacing: '0.4px'
+                  letterSpacing: "0.4px",
                 }}
               >
                 เพิ่มความถี่รถเมล์
               </span>
             </button>
-            
+
             <button
               className="transition-all duration-200 flex items-center justify-center rounded-[40px] border-0"
               style={{
-                width: '27.1%', // 293/1080
-                height: 'clamp(60px, 4.7vw, 90px)',
+                width: "27.1%", // 293/1080
+                height: "clamp(60px, 4.7vw, 90px)",
                 backgroundColor: getButtonColor("เพิ่มที่จอดรถ"),
-                opacity: isSelectionDisabled("เพิ่มที่จอดรถ") ? 0.5 : 1
+                opacity: isSelectionDisabled("เพิ่มที่จอดรถ") ? 0.5 : 1,
               }}
               onClick={() =>
                 !isSelectionDisabled("เพิ่มที่จอดรถ") &&
@@ -262,9 +278,9 @@ const Step1_Priorities = ({
               <span
                 className="font-prompt text-black text-center"
                 style={{
-                  fontSize: 'clamp(16px, 3.7vw, 40px)',
+                  fontSize: "clamp(16px, 3.7vw, 40px)",
                   fontWeight: 700,
-                  letterSpacing: '0.4px'
+                  letterSpacing: "0.4px",
                 }}
               >
                 เพิ่มที่จอดรถ
@@ -273,14 +289,14 @@ const Step1_Priorities = ({
           </div>
 
           {/* Row 3: เพิ่มความถี่รถไฟฟ้า (gray), เพิ่ม Feeder ในซอย (gray) */}
-          <div className="flex" style={{ gap: 'clamp(16px, 1.8vw, 19px)' }}>
+          <div className="flex" style={{ gap: "clamp(16px, 1.8vw, 19px)" }}>
             <button
               className="transition-all duration-200 flex items-center justify-center rounded-[40px] border-0"
               style={{
-                width: '43.1%', // 465/1080
-                height: 'clamp(60px, 4.7vw, 90px)',
+                width: "43.1%", // 465/1080
+                height: "clamp(60px, 4.7vw, 90px)",
                 backgroundColor: getButtonColor("เพิ่มความถี่รถไฟฟ้า"),
-                opacity: isSelectionDisabled("เพิ่มความถี่รถไฟฟ้า") ? 0.5 : 1
+                opacity: isSelectionDisabled("เพิ่มความถี่รถไฟฟ้า") ? 0.5 : 1,
               }}
               onClick={() =>
                 !isSelectionDisabled("เพิ่มความถี่รถไฟฟ้า") &&
@@ -291,22 +307,22 @@ const Step1_Priorities = ({
               <span
                 className="font-prompt text-black text-center"
                 style={{
-                  fontSize: 'clamp(16px, 3.7vw, 40px)',
+                  fontSize: "clamp(16px, 3.7vw, 40px)",
                   fontWeight: 700,
-                  letterSpacing: '0.4px'
+                  letterSpacing: "0.4px",
                 }}
               >
                 เพิ่มความถี่รถไฟฟ้า
               </span>
             </button>
-            
+
             <button
               className="transition-all duration-200 flex items-center justify-center rounded-[40px] border-0"
               style={{
-                width: '44.4%', // 480/1080
-                height: 'clamp(60px, 4.7vw, 90px)',
+                width: "44.4%", // 480/1080
+                height: "clamp(60px, 4.7vw, 90px)",
                 backgroundColor: getButtonColor("เพิ่ม Feeder ในซอย"),
-                opacity: isSelectionDisabled("เพิ่ม Feeder ในซอย") ? 0.5 : 1
+                opacity: isSelectionDisabled("เพิ่ม Feeder ในซอย") ? 0.5 : 1,
               }}
               onClick={() =>
                 !isSelectionDisabled("เพิ่ม Feeder ในซอย") &&
@@ -317,9 +333,9 @@ const Step1_Priorities = ({
               <span
                 className="font-prompt text-black text-center"
                 style={{
-                  fontSize: 'clamp(16px, 3.7vw, 40px)',
+                  fontSize: "clamp(16px, 3.7vw, 40px)",
                   fontWeight: 700,
-                  letterSpacing: '0.4px'
+                  letterSpacing: "0.4px",
                 }}
               >
                 เพิ่ม Feeder ในซอย
@@ -330,28 +346,35 @@ const Step1_Priorities = ({
       </div>
 
       {/* Continue Button positioned as in Figma */}
-      <div className="absolute w-full flex flex-col items-center" style={{ top: '91.1%' }}>
-        <div className="relative flex justify-center" style={{ width: '78.2%', maxWidth: '845px' }}>
+      <div
+        className="absolute w-full flex flex-col items-center"
+        style={{ top: "91.1%" }}
+      >
+        <div
+          className="relative flex justify-center"
+          style={{ width: "78.2%", maxWidth: "845px" }}
+        >
           <button
             onClick={handleNext}
             disabled={selectedPriorities.length === 0}
             className="transition-all duration-200 bg-[#FFE000] hover:scale-105 hover:shadow-lg hover:bg-black active:bg-black group flex items-center justify-center"
             style={{
-              width: 'clamp(300px, 78.2vw, 845px)',
-              height: 'clamp(50px, 6.1vw, 118px)',
-              borderRadius: '50px',
-              border: 'none',
+              width: "clamp(300px, 78.2vw, 845px)",
+              height: "clamp(50px, 6.1vw, 118px)",
+              borderRadius: "50px",
+              border: "none",
               opacity: selectedPriorities.length === 0 ? 0.5 : 1,
-              cursor: selectedPriorities.length === 0 ? 'not-allowed' : 'pointer'
+              cursor:
+                selectedPriorities.length === 0 ? "not-allowed" : "pointer",
             }}
           >
             <span
               className="font-prompt text-center text-black group-hover:text-[#FFE000] group-active:text-[#FFE000]"
               style={{
-                fontSize: 'clamp(18px, 4.6vw, 50px)',
+                fontSize: "clamp(18px, 4.6vw, 50px)",
                 fontWeight: 400,
-                letterSpacing: '0.4px',
-                lineHeight: 'normal'
+                letterSpacing: "0.4px",
+                lineHeight: "normal",
               }}
             >
               ไปต่อ
@@ -363,8 +386,8 @@ const Step1_Priorities = ({
           <div
             className="text-center mt-4"
             style={{
-              color: '#000D59',
-              fontSize: 'clamp(14px, 2.8vw, 18px)'
+              color: "#000D59",
+              fontSize: "clamp(14px, 2.8vw, 18px)",
             }}
           >
             กรุณาเลือกอย่างน้อย 1 ข้อเพื่อดำเนินการต่อ

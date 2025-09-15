@@ -395,10 +395,17 @@ export async function computeSessionSummaries(
       }
       if (ev.event === "FAKENEWS_CHOICE") {
         const ch = (ev.payload?.choice || "").toString();
-        fakeNewsResponse = ch === "search" ? "หาทางต่อ" : ch === "ignore" ? "ไม่ทำอะไร" : undefined;
+        fakeNewsResponse =
+          ch === "search"
+            ? "หาทางต่อ"
+            : ch === "ignore"
+              ? "ไม่ทำอะไร"
+              : undefined;
       }
       if (ev.event === "SOURCE_SELECTION") {
-        const src = sanitizeThai((ev.payload?.source || ev.payload?.sourceLabel || "").toString());
+        const src = sanitizeThai(
+          (ev.payload?.source || ev.payload?.sourceLabel || "").toString(),
+        );
         if (src) sourceSelected = src;
       }
       if (ev.event === "ENDSEQ_DECISION") {

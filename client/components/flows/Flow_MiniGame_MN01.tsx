@@ -12,7 +12,11 @@ interface Flow_MiniGame_MN01Props {
   onBack?: () => void;
 }
 
-const Flow_MiniGame_MN01 = ({ sessionID, onComplete, onBack }: Flow_MiniGame_MN01Props) => {
+const Flow_MiniGame_MN01 = ({
+  sessionID,
+  onComplete,
+  onBack,
+}: Flow_MiniGame_MN01Props) => {
   // Adapt MN01 step output to the expected MN1 shape so downstream flows (MN2) receive priorities
   const handleStep1Complete = (stepData: any) => {
     // Accept multiple possible shapes from Step1_Choice

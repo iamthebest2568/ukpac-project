@@ -22,11 +22,19 @@ interface Step3_ThankYouProps {
   journeyData?: any;
 }
 
-const Step3_ThankYou = ({ sessionID, onNext, onBack, journeyData }: Step3_ThankYouProps) => {
+const Step3_ThankYou = ({
+  sessionID,
+  onNext,
+  onBack,
+  journeyData,
+}: Step3_ThankYouProps) => {
   const [copied, setCopied] = useState(false);
 
   const handleFinish = () => {
-    logEvent({ event: "FINAL_FINISH_CLICKED", payload: { action: "finished", sessionID } });
+    logEvent({
+      event: "FINAL_FINISH_CLICKED",
+      payload: { action: "finished", sessionID },
+    });
     onNext({ action: "finished", completedAt: new Date().toISOString() });
   };
 
@@ -38,18 +46,43 @@ const Step3_ThankYou = ({ sessionID, onNext, onBack, journeyData }: Step3_ThankY
     }
   };
 
-  const shareText = encodeURIComponent("ร่วมเล่นเกมนี้เพื่อพัฒนาเมืองและมีสิทธิ์ลุ้นรับรางวัล!");
+  const shareText = encodeURIComponent(
+    "ร่วมเล่นเกมนี้เพื่อพัฒนาเมืองและมีสิทธิ์ลุ้นรับรางวัล!",
+  );
   const shareUrl = encodeURIComponent(getShareUrl());
 
   const openShareWindow = (url: string) => {
     window.open(url, "_blank", "noopener,noreferrer,width=600,height=600");
   };
 
-  const handleShareFacebook = () => { logEvent({ event: "SHARE", payload: { method: "facebook", sessionID } }); openShareWindow(`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`); };
-  const handleShareX = () => { logEvent({ event: "SHARE", payload: { method: "x", sessionID } }); openShareWindow(`https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}`); };
-  const handleShareLine = () => { logEvent({ event: "SHARE", payload: { method: "line", sessionID } }); openShareWindow(`https://social-plugins.line.me/lineit/share?url=${shareUrl}`); };
-  const handleShareWhatsApp = () => { logEvent({ event: "SHARE", payload: { method: "whatsapp", sessionID } }); openShareWindow(`https://api.whatsapp.com/send?text=${shareText}%20${shareUrl}`); };
-  const handleShareLinkedIn = () => { logEvent({ event: "SHARE", payload: { method: "linkedin", sessionID } }); openShareWindow(`https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}`); };
+  const handleShareFacebook = () => {
+    logEvent({ event: "SHARE", payload: { method: "facebook", sessionID } });
+    openShareWindow(`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`);
+  };
+  const handleShareX = () => {
+    logEvent({ event: "SHARE", payload: { method: "x", sessionID } });
+    openShareWindow(
+      `https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}`,
+    );
+  };
+  const handleShareLine = () => {
+    logEvent({ event: "SHARE", payload: { method: "line", sessionID } });
+    openShareWindow(
+      `https://social-plugins.line.me/lineit/share?url=${shareUrl}`,
+    );
+  };
+  const handleShareWhatsApp = () => {
+    logEvent({ event: "SHARE", payload: { method: "whatsapp", sessionID } });
+    openShareWindow(
+      `https://api.whatsapp.com/send?text=${shareText}%20${shareUrl}`,
+    );
+  };
+  const handleShareLinkedIn = () => {
+    logEvent({ event: "SHARE", payload: { method: "linkedin", sessionID } });
+    openShareWindow(
+      `https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}`,
+    );
+  };
 
   const handleCopyLink = async () => {
     const plainUrl = getShareUrl();
@@ -71,15 +104,34 @@ const Step3_ThankYou = ({ sessionID, onNext, onBack, journeyData }: Step3_ThankY
       imageLoading="eager"
     >
       <div className="w-full max-w-[980px] mx-auto px-4 py-8 text-center">
-        <h1 className="font-prompt" style={{ color: '#000D59', fontWeight: 700, lineHeight: '1' }}>
-          <span style={{ display: 'block', fontSize: 'clamp(28px, 6.5vw, 70px)' }}>ขอบคุณ</span>
-          <span style={{ display: 'block', fontSize: 'clamp(24px, 5.6vw, 60px)' }}>ที่ร่วมเป็นส่วนหนึ่งในการพัฒนาเมือง</span>
+        <h1
+          className="font-prompt"
+          style={{ color: "#000D59", fontWeight: 700, lineHeight: "1" }}
+        >
+          <span
+            style={{ display: "block", fontSize: "clamp(28px, 6.5vw, 70px)" }}
+          >
+            ขอบคุณ
+          </span>
+          <span
+            style={{ display: "block", fontSize: "clamp(24px, 5.6vw, 60px)" }}
+          >
+            ที่ร่วมเป็นส่วนหนึ่งในการพัฒนาเมือง
+          </span>
         </h1>
 
         <div className="mt-6 bg-yellow-100 rounded-lg p-4 max-w-[820px] mx-auto">
-          <h2 className="font-prompt" style={{ color: '#000D59', fontSize: 'clamp(20px,4.6vw,50px)', fontWeight: 700 }}>
+          <h2
+            className="font-prompt"
+            style={{
+              color: "#000D59",
+              fontSize: "clamp(20px,4.6vw,50px)",
+              fontWeight: 700,
+            }}
+          >
             เราจะประกาศรางวัล
-            <br />ทาง xxxxxxxxxxx วันที่ xx xxxx xxxx
+            <br />
+            ทาง xxxxxxxxxxx วันที่ xx xxxx xxxx
           </h2>
         </div>
 
@@ -89,16 +141,80 @@ const Step3_ThankYou = ({ sessionID, onNext, onBack, journeyData }: Step3_ThankY
               <button className="btn-large">แชร์เกมนี้ให้เพื่อน</button>
             </DialogTrigger>
             <DialogContent className="p-4 sm:p-6 bg-white rounded-lg max-w-md mx-auto max-h-[85vh] overflow-y-auto border border-gray-200">
-              <DialogTitle className="font-prompt text-lg sm:text-xl text-black mb-3 text-center">แชร์เกมนี้ให้เพื่อน</DialogTitle>
-              <DialogDescription className="text-sm text-gray-600 mb-4 text-center">เลือกแพลตฟอร์มที่ต้องการแชร์</DialogDescription>
+              <DialogTitle className="font-prompt text-lg sm:text-xl text-black mb-3 text-center">
+                แชร์เกมนี้ให้เพื่อน
+              </DialogTitle>
+              <DialogDescription className="text-sm text-gray-600 mb-4 text-center">
+                เลือกแพลตฟอร์มที่ต้องการแชร์
+              </DialogDescription>
 
               <div className="grid grid-cols-2 gap-3 mb-4">
-                <button className="btn-primary" style={{ backgroundColor: '#FFE000', color: '#000', border: '1px solid #000' }} onClick={handleShareFacebook}>Facebook</button>
-                <button className="btn-primary" style={{ backgroundColor: '#FFE000', color: '#000', border: '1px solid #000' }} onClick={handleShareX}>X</button>
-                <button className="btn-primary" style={{ backgroundColor: '#FFE000', color: '#000', border: '1px solid #000' }} onClick={handleShareLine}>LINE</button>
-                <button className="btn-primary" style={{ backgroundColor: '#FFE000', color: '#000', border: '1px solid #000' }} onClick={handleShareWhatsApp}>WhatsApp</button>
-                <button className="btn-primary" style={{ backgroundColor: '#FFE000', color: '#000', border: '1px solid #000' }} onClick={handleShareLinkedIn}>LinkedIn</button>
-                <button className="btn-primary col-span-2" style={{ backgroundColor: copied ? '#10b981' : '#FFE000', color: '#000', border: '1px solid #000' }} onClick={handleCopyLink}>{copied ? 'คัดลอกแล้ว ✓' : 'คัดลอกลิงก์'}</button>
+                <button
+                  className="btn-primary"
+                  style={{
+                    backgroundColor: "#FFE000",
+                    color: "#000",
+                    border: "1px solid #000",
+                  }}
+                  onClick={handleShareFacebook}
+                >
+                  Facebook
+                </button>
+                <button
+                  className="btn-primary"
+                  style={{
+                    backgroundColor: "#FFE000",
+                    color: "#000",
+                    border: "1px solid #000",
+                  }}
+                  onClick={handleShareX}
+                >
+                  X
+                </button>
+                <button
+                  className="btn-primary"
+                  style={{
+                    backgroundColor: "#FFE000",
+                    color: "#000",
+                    border: "1px solid #000",
+                  }}
+                  onClick={handleShareLine}
+                >
+                  LINE
+                </button>
+                <button
+                  className="btn-primary"
+                  style={{
+                    backgroundColor: "#FFE000",
+                    color: "#000",
+                    border: "1px solid #000",
+                  }}
+                  onClick={handleShareWhatsApp}
+                >
+                  WhatsApp
+                </button>
+                <button
+                  className="btn-primary"
+                  style={{
+                    backgroundColor: "#FFE000",
+                    color: "#000",
+                    border: "1px solid #000",
+                  }}
+                  onClick={handleShareLinkedIn}
+                >
+                  LinkedIn
+                </button>
+                <button
+                  className="btn-primary col-span-2"
+                  style={{
+                    backgroundColor: copied ? "#10b981" : "#FFE000",
+                    color: "#000",
+                    border: "1px solid #000",
+                  }}
+                  onClick={handleCopyLink}
+                >
+                  {copied ? "คัดลอกแล้ว ✓" : "คัดลอกลิงก์"}
+                </button>
               </div>
 
               <div className="mt-2">
@@ -109,7 +225,9 @@ const Step3_ThankYou = ({ sessionID, onNext, onBack, journeyData }: Step3_ThankY
             </DialogContent>
           </Dialog>
 
-          <button onClick={handleFinish} className="btn-large">จบเกม</button>
+          <button onClick={handleFinish} className="btn-large">
+            จบเกม
+          </button>
         </div>
       </div>
     </FigmaStyle1Layout>

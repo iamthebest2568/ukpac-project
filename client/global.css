@@ -80,7 +80,8 @@
     box-sizing: border-box;
   }
 
-  html, body {
+  html,
+  body {
     margin: 0;
     padding: 0;
     width: 100%;
@@ -145,12 +146,21 @@
 
   /* Skeleton shimmer effect for loading placeholders */
   @keyframes skeletonShimmer {
-    0% { background-position: -200% 0; }
-    100% { background-position: 200% 0; }
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
   }
 
   .skeleton-shimmer {
-    background: linear-gradient(90deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.14) 50%, rgba(255,255,255,0.06) 100%);
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.06) 0%,
+      rgba(255, 255, 255, 0.14) 50%,
+      rgba(255, 255, 255, 0.06) 100%
+    );
     background-size: 200% 100%;
     animation: skeletonShimmer 1.2s linear infinite;
   }
@@ -222,7 +232,9 @@
   }
 
   /* Prevent any horizontal overflow across the app */
-  html, body, #root {
+  html,
+  body,
+  #root {
     overflow-x: hidden;
     height: 100%;
   }
@@ -280,12 +292,13 @@
 
   /* Desktop: fixed 1080x1920 phone-frame centered */
   @media (min-width: 1081px) {
-    .app-container, .main-app-container {
+    .app-container,
+    .main-app-container {
       width: 1080px !important;
       height: 1920px !important;
       margin: 40px auto !important; /* center with vertical spacing */
       border-radius: 40px;
-      box-shadow: 0 0 30px rgba(0,0,0,0.5);
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
       overflow: visible !important; /* allow the page to scroll if frame is taller than viewport */
       display: block !important; /* undo mobile flex behavior for frame visuals */
     }

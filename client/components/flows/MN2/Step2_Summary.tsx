@@ -32,27 +32,33 @@ const Step2_Summary = ({
   const beneficiaryMapping = {
     everyone: {
       label: "ทุกคน",
-      iconSrc: "https://api.builder.io/api/v1/image/assets/TEMP/a7ee1168c07ae5401b45929d0d4fde9e6584ca73?width=188",
+      iconSrc:
+        "https://api.builder.io/api/v1/image/assets/TEMP/a7ee1168c07ae5401b45929d0d4fde9e6584ca73?width=188",
     },
     locals: {
       label: "คนในพื้นที่",
-      iconSrc: "https://api.builder.io/api/v1/image/assets/TEMP/7466a6d8ca4a47a6e90476e9f11efff972ddd262?width=140",
+      iconSrc:
+        "https://api.builder.io/api/v1/image/assets/TEMP/7466a6d8ca4a47a6e90476e9f11efff972ddd262?width=140",
     },
     elderly: {
       label: "ผู้สูงอายุ",
-      iconSrc: "https://api.builder.io/api/v1/image/assets/TEMP/a8a5176ee5947e2d351bcf255e32cb057477ac56?width=100",
+      iconSrc:
+        "https://api.builder.io/api/v1/image/assets/TEMP/a8a5176ee5947e2d351bcf255e32cb057477ac56?width=100",
     },
     students: {
       label: "นักเรียน/นักศึกษา",
-      iconSrc: "https://api.builder.io/api/v1/image/assets/TEMP/c7725aab330bcb8ed4f1c73461ddfdbe0270b371?width=118",
+      iconSrc:
+        "https://api.builder.io/api/v1/image/assets/TEMP/c7725aab330bcb8ed4f1c73461ddfdbe0270b371?width=118",
     },
     disabled: {
       label: "คนพิการ",
-      iconSrc: "https://api.builder.io/api/v1/image/assets/TEMP/7466a6d8ca4a47a6e90476e9f11efff972ddd262?width=140",
+      iconSrc:
+        "https://api.builder.io/api/v1/image/assets/TEMP/7466a6d8ca4a47a6e90476e9f11efff972ddd262?width=140",
     },
     other: {
       label: "อื่นๆ",
-      iconSrc: "https://api.builder.io/api/v1/image/assets/TEMP/a7ee1168c07ae5401b45929d0d4fde9e6584ca73?width=188",
+      iconSrc:
+        "https://api.builder.io/api/v1/image/assets/TEMP/a7ee1168c07ae5401b45929d0d4fde9e6584ca73?width=188",
     },
   };
 
@@ -75,7 +81,9 @@ const Step2_Summary = ({
     // Build lookup map
     const lookup: Record<string, string[]> = {};
     beneficiariesSelections.forEach((s: any) => {
-      lookup[s.priority] = Array.isArray(s.beneficiaries) ? s.beneficiaries : [];
+      lookup[s.priority] = Array.isArray(s.beneficiaries)
+        ? s.beneficiaries
+        : [];
     });
 
     // Create summary cards
@@ -84,7 +92,9 @@ const Step2_Summary = ({
       const beneficiaryObjects = beneficiaryIds.map((id: string) => ({
         id,
         label: (beneficiaryMapping as any)[id]?.label || "ทุกคน",
-        iconSrc: (beneficiaryMapping as any)[id]?.iconSrc || beneficiaryMapping.everyone.iconSrc,
+        iconSrc:
+          (beneficiaryMapping as any)[id]?.iconSrc ||
+          beneficiaryMapping.everyone.iconSrc,
       }));
 
       return {
@@ -138,7 +148,7 @@ const Step2_Summary = ({
               color: "#000D59",
               fontSize: "clamp(24px, 5.6vw, 60px)",
               fontWeight: 700,
-              lineHeight: "normal"
+              lineHeight: "normal",
             }}
           >
             นโยบายที่คุณเสนอ
@@ -153,7 +163,7 @@ const Step2_Summary = ({
               className="w-full max-w-[903px] mx-auto rounded-[20px] border-[5px] border-[#000D59] bg-transparent"
               style={{
                 minHeight: "clamp(200px, 25vw, 328px)",
-                padding: "clamp(16px, 3vw, 24px)"
+                padding: "clamp(16px, 3vw, 24px)",
               }}
             >
               {/* Policy Title */}
@@ -164,7 +174,7 @@ const Step2_Summary = ({
                     color: "#000D59",
                     fontSize: "clamp(18px, 3.7vw, 40px)",
                     fontWeight: 700,
-                    letterSpacing: "0.4px"
+                    letterSpacing: "0.4px",
                   }}
                 >
                   {card.priority}
@@ -172,18 +182,18 @@ const Step2_Summary = ({
               </div>
 
               {/* Beneficiary Icons - Responsive Grid */}
-              <div 
+              <div
                 className={`grid justify-items-center items-center ${
-                  card.beneficiaries.length <= 2 
-                    ? "grid-cols-2 gap-4" 
-                    : card.beneficiaries.length === 3 
-                      ? "grid-cols-3 gap-3" 
+                  card.beneficiaries.length <= 2
+                    ? "grid-cols-2 gap-4"
+                    : card.beneficiaries.length === 3
+                      ? "grid-cols-3 gap-3"
                       : "grid-cols-2 md:grid-cols-4 gap-3"
                 }`}
                 style={{
                   maxWidth: "100%",
                   margin: "0 auto",
-                  padding: "0 clamp(8px, 2vw, 16px)"
+                  padding: "0 clamp(8px, 2vw, 16px)",
                 }}
               >
                 {card.beneficiaries.map((beneficiary, beneficiaryIndex) => (
@@ -192,7 +202,7 @@ const Step2_Summary = ({
                     className="flex flex-col items-center justify-center"
                     style={{
                       width: "100%",
-                      maxWidth: "clamp(120px, 15vw, 176px)"
+                      maxWidth: "clamp(120px, 15vw, 176px)",
                     }}
                   >
                     {/* Circle with icon - Responsive SVG */}
@@ -205,14 +215,14 @@ const Step2_Summary = ({
                         style={{
                           width: "clamp(80px, 12vw, 132px)",
                           height: "clamp(80px, 12vw, 132px)",
-                          strokeWidth: "clamp(3, 0.5vw, 5)"
+                          strokeWidth: "clamp(3, 0.5vw, 5)",
                         }}
                       >
-                        <circle 
-                          cx="66.5" 
-                          cy="66.5" 
-                          r="63.6" 
-                          stroke="#000D59" 
+                        <circle
+                          cx="66.5"
+                          cy="66.5"
+                          r="63.6"
+                          stroke="#000D59"
                           strokeWidth="5"
                           fill="none"
                         />
@@ -224,7 +234,7 @@ const Step2_Summary = ({
                           className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 object-contain"
                           style={{
                             maxWidth: "clamp(35px, 6vw, 75px)",
-                            maxHeight: "clamp(30px, 5.5vw, 70px)"
+                            maxHeight: "clamp(30px, 5.5vw, 70px)",
                           }}
                         />
                       )}
@@ -239,7 +249,7 @@ const Step2_Summary = ({
                         letterSpacing: "0.4px",
                         lineHeight: "1.2",
                         maxWidth: "100%",
-                        wordBreak: "break-word"
+                        wordBreak: "break-word",
                       }}
                     >
                       {beneficiary.label}
@@ -259,7 +269,7 @@ const Step2_Summary = ({
               color: "#000D59",
               fontSize: "clamp(24px, 5.6vw, 60px)",
               fontWeight: 700,
-              lineHeight: "normal"
+              lineHeight: "normal",
             }}
           >
             คุณพอใจหรือไม่
@@ -281,7 +291,7 @@ const Step2_Summary = ({
             className="block rounded-[50px] figma-style1-button mx-auto transition-all duration-200 hover:scale-105 flex items-center justify-center"
             style={{
               width: "min(845px, 85vw)",
-              height: "clamp(60px, 8vw, 118px)"
+              height: "clamp(60px, 8vw, 118px)",
             }}
           >
             <span
@@ -289,7 +299,7 @@ const Step2_Summary = ({
               style={{
                 fontSize: "clamp(16px, 3.5vw, 50px)",
                 fontWeight: 400,
-                letterSpacing: "0.4px"
+                letterSpacing: "0.4px",
               }}
             >
               ใช่
@@ -309,7 +319,7 @@ const Step2_Summary = ({
             className="block rounded-[50px] figma-style1-button mx-auto transition-all duration-200 hover:scale-105 flex items-center justify-center"
             style={{
               width: "min(845px, 85vw)",
-              height: "clamp(60px, 8vw, 118px)"
+              height: "clamp(60px, 8vw, 118px)",
             }}
           >
             <span
@@ -317,7 +327,7 @@ const Step2_Summary = ({
               style={{
                 fontSize: "clamp(16px, 3.5vw, 50px)",
                 fontWeight: 400,
-                letterSpacing: "0.4px"
+                letterSpacing: "0.4px",
               }}
             >
               ไม่ใช่

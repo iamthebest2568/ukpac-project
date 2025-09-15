@@ -53,14 +53,18 @@ const FigmaStyle1Layout = ({
   children,
 }: FigmaStyle1LayoutProps) => {
   // Determine if this is the source selection page
-  const isSourceSelection = className?.includes('source-selection-page');
+  const isSourceSelection = className?.includes("source-selection-page");
   return (
     <div className={`figma-style1-container ${className}`}>
       <div className="figma-style1-content">
         {/* Background Image (overlay only rendered when useBlueOverlay is true) */}
         <div
           className="figma-style1-background"
-          style={backgroundImage ? { backgroundImage: `url(${backgroundImage})` } : undefined}
+          style={
+            backgroundImage
+              ? { backgroundImage: `url(${backgroundImage})` }
+              : undefined
+          }
         >
           {/* backgroundImage is set via inline style for per-page backgrounds; img kept for accessibility/tools but hidden via CSS by default */}
           {backgroundImage ? (
@@ -74,7 +78,9 @@ const FigmaStyle1Layout = ({
           ) : null}
 
           {useBlueOverlay ? (
-            <div className={`figma-style1-background-overlay figma-style1-background-overlay--blue`} />
+            <div
+              className={`figma-style1-background-overlay figma-style1-background-overlay--blue`}
+            />
           ) : null}
         </div>
 
@@ -90,7 +96,10 @@ const FigmaStyle1Layout = ({
               >
                 <div className="flex flex-col items-center">
                   {/* Yellow Circle with Replay Icon */}
-                  <div className="w-[50px] h-[50px] rounded-full flex items-center justify-center mb-2 shadow-lg" style={{backgroundColor: '#FFE000'}}>
+                  <div
+                    className="w-[50px] h-[50px] rounded-full flex items-center justify-center mb-2 shadow-lg"
+                    style={{ backgroundColor: "#FFE000" }}
+                  >
                     <svg
                       width="24"
                       height="24"
@@ -120,7 +129,11 @@ const FigmaStyle1Layout = ({
             {/* Title (always rendered if provided) */}
             {title && (
               <div className="figma-style1-title-container">
-                <h1 className={`figma-style1-title ${isSourceSelection ? 'figma-style1-title--black' : ''}`}>{title}</h1>
+                <h1
+                  className={`figma-style1-title ${isSourceSelection ? "figma-style1-title--black" : ""}`}
+                >
+                  {title}
+                </h1>
               </div>
             )}
 

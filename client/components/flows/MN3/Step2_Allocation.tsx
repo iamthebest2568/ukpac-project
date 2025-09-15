@@ -23,14 +23,17 @@ const Step2_Allocation = ({
   onBack,
   journeyData,
 }: Step2_AllocationProps) => {
-  const [budgetAllocation, setBudgetAllocation] = useState<BudgetAllocation>({});
+  const [budgetAllocation, setBudgetAllocation] = useState<BudgetAllocation>(
+    {},
+  );
   const [selectedPriorities, setSelectedPriorities] = useState<string[]>([]);
 
   const totalBudget = 100;
 
   useEffect(() => {
     // Get the selected priorities from Step1_Choice
-    const priorities = journeyData?.budget_step1_choice?.selectedPriorities || [];
+    const priorities =
+      journeyData?.budget_step1_choice?.selectedPriorities || [];
     setSelectedPriorities(priorities);
 
     // Initialize budget allocation with zeros (user will enter values)
@@ -49,12 +52,12 @@ const Step2_Allocation = ({
 
   const handleBudgetChange = (priority: string, value: string) => {
     // Allow empty string while typing
-    if (value === '') {
-      setBudgetAllocation((prev) => ({ ...prev, [priority]: '' }));
+    if (value === "") {
+      setBudgetAllocation((prev) => ({ ...prev, [priority]: "" }));
       return;
     }
 
-    const numValue = parseInt(value || '0', 10) || 0;
+    const numValue = parseInt(value || "0", 10) || 0;
 
     const currentTotal = Object.entries(budgetAllocation)
       .filter(([key]) => key !== priority)
@@ -89,7 +92,7 @@ const Step2_Allocation = ({
         selectedPriorities,
       },
     };
-    
+
     try {
       const body = {
         sessionId: sessionID || sessionStorage.getItem("ukPackSessionID") || "",
@@ -106,7 +109,7 @@ const Step2_Allocation = ({
           body: JSON.stringify(body),
         });
     } catch {}
-    
+
     onNext(data);
   };
 
@@ -120,12 +123,12 @@ const Step2_Allocation = ({
           <h1
             className="font-prompt text-center leading-normal"
             style={{
-              color: '#000D59',
-              fontSize: 'clamp(28px, 5.5vw, 60px)',
-              lineHeight: '1.2',
+              color: "#000D59",
+              fontSize: "clamp(28px, 5.5vw, 60px)",
+              lineHeight: "1.2",
               fontWeight: 700,
-              width: '100%',
-              margin: '0 auto'
+              width: "100%",
+              margin: "0 auto",
             }}
           >
             คุณจะให้งบประมาณแต่ละข้อเท่าไหร่
@@ -135,8 +138,8 @@ const Step2_Allocation = ({
         {/* Budget Display Box */}
         <div className="w-full px-4 mb-8">
           <div className="mn3-budget-display">
-            <img 
-              src="https://api.builder.io/api/v1/image/assets/TEMP/1d47ef39c86b6e96b386f3aefd8abc162945bed3?width=270" 
+            <img
+              src="https://api.builder.io/api/v1/image/assets/TEMP/1d47ef39c86b6e96b386f3aefd8abc162945bed3?width=270"
               alt="Budget coins icon"
               className="mn3-budget-icon"
             />
@@ -152,26 +155,36 @@ const Step2_Allocation = ({
           <div className="mn3-allocation-list">
             {selectedPriorities.map((priority, index) => (
               <div key={priority} className="mn3-allocation-item">
-                <div className="mn3-allocation-label">
-                  {priority}
-                </div>
+                <div className="mn3-allocation-label">{priority}</div>
                 <div className="mn3-allocation-input-container">
                   <input
                     type="number"
                     min="0"
                     max={totalBudget}
-                    value={budgetAllocation[priority] !== undefined ? budgetAllocation[priority] : 0}
-                    onChange={(e) => handleBudgetChange(priority, e.target.value)}
+                    value={
+                      budgetAllocation[priority] !== undefined
+                        ? budgetAllocation[priority]
+                        : 0
+                    }
+                    onChange={(e) =>
+                      handleBudgetChange(priority, e.target.value)
+                    }
                     onFocus={() => {
                       const current = budgetAllocation[priority];
-                      if (current === 0 || current === '0') {
-                        setBudgetAllocation((prev) => ({ ...prev, [priority]: '' }));
+                      if (current === 0 || current === "0") {
+                        setBudgetAllocation((prev) => ({
+                          ...prev,
+                          [priority]: "",
+                        }));
                       }
                     }}
                     onBlur={() => {
                       const current = budgetAllocation[priority];
-                      if (current === '' || current === undefined) {
-                        setBudgetAllocation((prev) => ({ ...prev, [priority]: 0 }));
+                      if (current === "" || current === undefined) {
+                        setBudgetAllocation((prev) => ({
+                          ...prev,
+                          [priority]: 0,
+                        }));
                       }
                     }}
                     className="mn3-allocation-input"
@@ -184,15 +197,18 @@ const Step2_Allocation = ({
 
         {/* Continue Button */}
         <div className="w-full px-4 mt-4 flex justify-center">
-          <div className="mx-auto flex flex-col items-center space-y-2" style={{ width: '100%', maxWidth: 980 }}>
+          <div
+            className="mx-auto flex flex-col items-center space-y-2"
+            style={{ width: "100%", maxWidth: 980 }}
+          >
             <button
               onClick={handleNext}
               disabled={!isComplete}
               className="mn3-continue-button"
               style={{
-                backgroundColor: !isComplete ? '#ccc' : '#FFE000',
-                color: !isComplete ? '#666' : '#000',
-                opacity: !isComplete ? 0.6 : 1
+                backgroundColor: !isComplete ? "#ccc" : "#FFE000",
+                color: !isComplete ? "#666" : "#000",
+                opacity: !isComplete ? 0.6 : 1,
               }}
               aria-label="ดำเนินการต่อไปยังขั้นตอนถัดไป"
             >
@@ -202,11 +218,11 @@ const Step2_Allocation = ({
               <div
                 className="text-center font-prompt"
                 style={{
-                  color: '#000D59',
-                  fontSize: 'clamp(14px, 3vw, 18px)',
+                  color: "#000D59",
+                  fontSize: "clamp(14px, 3vw, 18px)",
                   fontWeight: 500,
-                  maxWidth: '400px',
-                  padding: '8px'
+                  maxWidth: "400px",
+                  padding: "8px",
                 }}
               >
                 กรุณาจัดสรรงบประมาณให้ครบ {totalBudget} หน่วยเพื่อดำเนินการต่อ

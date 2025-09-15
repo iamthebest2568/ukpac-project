@@ -310,7 +310,10 @@ export default function UkDashboard() {
             <div className="space-y-6">
               {/* Totals summary */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                <SummaryCard title="Sessions" value={stats.totals.totalSessions} />
+                <SummaryCard
+                  title="Sessions"
+                  value={stats.totals.totalSessions}
+                />
                 <SummaryCard title="Plays" value={stats.totals.totalPlays} />
                 <SummaryCard
                   title="Completion"
@@ -322,18 +325,47 @@ export default function UkDashboard() {
                 />
               </div>
 
-
               {/* Charts */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                 <Card title="แนวโน้มการ��ล่น (รายวัน)">
                   <div className="w-full h-[240px] md:h-[320px] min-w-0">
                     <ResponsiveContainer width="100%" height="100%">
-                      <LineChart data={(stats.timeseries || []).map(d => ({ ...d, plays: Number(d.plays || 0) }))} margin={{ top: 8, right: 12, left: -8, bottom: 8 }}>
-                        <CartesianGrid strokeDasharray="3 3" stroke="#ffffff22" />
-                        <XAxis dataKey="date" stroke="#bbb" tick={{ fontSize: winW < 640 ? 10 : 12 }} hide={winW < 380} />
-                        <YAxis stroke="#bbb" tick={{ fontSize: winW < 640 ? 10 : 12 }} allowDecimals={false} />
-                        <Tooltip contentStyle={{ background: "#151517", border: "1px solid #2a2a2a", color: "#fff" }} />
-                        <Line type="monotone" dataKey="plays" stroke="#EFBA31" strokeWidth={2} dot={false} />
+                      <LineChart
+                        data={(stats.timeseries || []).map((d) => ({
+                          ...d,
+                          plays: Number(d.plays || 0),
+                        }))}
+                        margin={{ top: 8, right: 12, left: -8, bottom: 8 }}
+                      >
+                        <CartesianGrid
+                          strokeDasharray="3 3"
+                          stroke="#ffffff22"
+                        />
+                        <XAxis
+                          dataKey="date"
+                          stroke="#bbb"
+                          tick={{ fontSize: winW < 640 ? 10 : 12 }}
+                          hide={winW < 380}
+                        />
+                        <YAxis
+                          stroke="#bbb"
+                          tick={{ fontSize: winW < 640 ? 10 : 12 }}
+                          allowDecimals={false}
+                        />
+                        <Tooltip
+                          contentStyle={{
+                            background: "#151517",
+                            border: "1px solid #2a2a2a",
+                            color: "#fff",
+                          }}
+                        />
+                        <Line
+                          type="monotone"
+                          dataKey="plays"
+                          stroke="#EFBA31"
+                          strokeWidth={2}
+                          dot={false}
+                        />
                       </LineChart>
                     </ResponsiveContainer>
                   </div>
@@ -342,11 +374,34 @@ export default function UkDashboard() {
                 <Card title="เริ่มฉาก (Variants)">
                   <div className="w-full h-[260px] md:h-[320px] min-w-0">
                     <ResponsiveContainer width="100%" height="100%">
-                      <BarChart data={(stats.variants || []).slice(0, 10)} margin={{ top: 8, right: 12, left: -8, bottom: 8 }}>
-                        <CartesianGrid strokeDasharray="3 3" stroke="#ffffff22" />
-                        <XAxis dataKey="name" stroke="#bbb" tick={{ fontSize: winW < 640 ? 10 : 11 }} interval={0} angle={winW < 640 ? 0 : -20} height={winW < 640 ? 40 : 60} />
-                        <YAxis stroke="#bbb" tick={{ fontSize: winW < 640 ? 10 : 12 }} allowDecimals={false} />
-                        <Tooltip contentStyle={{ background: "#151517", border: "1px solid #2a2a2a", color: "#fff" }} />
+                      <BarChart
+                        data={(stats.variants || []).slice(0, 10)}
+                        margin={{ top: 8, right: 12, left: -8, bottom: 8 }}
+                      >
+                        <CartesianGrid
+                          strokeDasharray="3 3"
+                          stroke="#ffffff22"
+                        />
+                        <XAxis
+                          dataKey="name"
+                          stroke="#bbb"
+                          tick={{ fontSize: winW < 640 ? 10 : 11 }}
+                          interval={0}
+                          angle={winW < 640 ? 0 : -20}
+                          height={winW < 640 ? 40 : 60}
+                        />
+                        <YAxis
+                          stroke="#bbb"
+                          tick={{ fontSize: winW < 640 ? 10 : 12 }}
+                          allowDecimals={false}
+                        />
+                        <Tooltip
+                          contentStyle={{
+                            background: "#151517",
+                            border: "1px solid #2a2a2a",
+                            color: "#fff",
+                          }}
+                        />
                         <Bar dataKey="count" fill="#82ca9d" />
                       </BarChart>
                     </ResponsiveContainer>
@@ -357,10 +412,38 @@ export default function UkDashboard() {
                   <div className="w-full h-[260px] md:h-[320px] min-w-0">
                     <ResponsiveContainer width="100%" height="100%">
                       <PieChart>
-                        <Tooltip contentStyle={{ background: "#151517", border: "1px solid #2a2a2a", color: "#fff" }} />
-                        <Pie data={(stats.choices || []).slice(0, 8)} dataKey="count" nameKey="name" cx="50%" cy="50%" outerRadius={winW < 640 ? 70 : 90} label={winW >= 480}>
+                        <Tooltip
+                          contentStyle={{
+                            background: "#151517",
+                            border: "1px solid #2a2a2a",
+                            color: "#fff",
+                          }}
+                        />
+                        <Pie
+                          data={(stats.choices || []).slice(0, 8)}
+                          dataKey="count"
+                          nameKey="name"
+                          cx="50%"
+                          cy="50%"
+                          outerRadius={winW < 640 ? 70 : 90}
+                          label={winW >= 480}
+                        >
                           {stats.choices.slice(0, 8).map((_, i) => (
-                            <Cell key={i} fill={["#EFBA31","#8884d8","#82ca9d","#ff7f50","#00C49F","#FFBB28","#FF8042","#6ee7b7"][i % 8]} />
+                            <Cell
+                              key={i}
+                              fill={
+                                [
+                                  "#EFBA31",
+                                  "#8884d8",
+                                  "#82ca9d",
+                                  "#ff7f50",
+                                  "#00C49F",
+                                  "#FFBB28",
+                                  "#FF8042",
+                                  "#6ee7b7",
+                                ][i % 8]
+                              }
+                            />
                           ))}
                         </Pie>
                       </PieChart>
@@ -720,18 +803,25 @@ export default function UkDashboard() {
                       })();
                       const mn3money = (() => {
                         const alloc = s.mn3BudgetAllocation || {};
-                        const order = s.mn3Selected && s.mn3Selected.length ? s.mn3Selected : Object.keys(alloc);
+                        const order =
+                          s.mn3Selected && s.mn3Selected.length
+                            ? s.mn3Selected
+                            : Object.keys(alloc);
                         const seen = new Set<string>();
                         const pairs: string[] = [];
                         for (const p of order) {
                           seen.add(p);
                           const val = (alloc as any)[p];
-                          pairs.push(`${p}: ${typeof val === "number" ? val : "-"}`);
+                          pairs.push(
+                            `${p}: ${typeof val === "number" ? val : "-"}`,
+                          );
                         }
                         for (const p of Object.keys(alloc)) {
                           if (seen.has(p)) continue;
                           const val = (alloc as any)[p];
-                          pairs.push(`${p}: ${typeof val === "number" ? val : "-"}`);
+                          pairs.push(
+                            `${p}: ${typeof val === "number" ? val : "-"}`,
+                          );
                         }
                         return pairs.join(" ; ");
                       })();
@@ -870,7 +960,9 @@ function exportCsv(filename: string, rows: (string | number)[][]) {
 }
 
 function exportJson(filename: string, data: any) {
-  const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+  const blob = new Blob([JSON.stringify(data, null, 2)], {
+    type: "application/json",
+  });
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;

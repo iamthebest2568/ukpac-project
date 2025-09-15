@@ -1,1 +1,1 @@
-export { default } from '../MiniGameMN01Page';
+export { default } from "../MiniGameMN01Page";

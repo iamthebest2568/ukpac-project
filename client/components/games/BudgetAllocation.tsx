@@ -1,5 +1,5 @@
 /**
- * Budget Allocation Component  
+ * Budget Allocation Component
  * Visual design updated to match Figma - ALL original functionality preserved
  */
 
@@ -99,7 +99,7 @@ const BudgetAllocation = ({ sessionID, onNavigate }: BudgetAllocationProps) => {
               color: "#000D59",
               fontSize: "clamp(24px, 5.6vw, 60px)",
               fontWeight: 700,
-              lineHeight: "normal"
+              lineHeight: "normal",
             }}
           >
             คุณจะให้งบประมาณแต่ละข้อเท่าไหร่
@@ -111,7 +111,7 @@ const BudgetAllocation = ({ sessionID, onNavigate }: BudgetAllocationProps) => {
           <div
             className="rounded-[20px] bg-[#FFE000] p-8 flex items-center"
             style={{
-              height: "clamp(200px, 25vw, 280px)"
+              height: "clamp(200px, 25vw, 280px)",
             }}
           >
             {/* Coin Icon */}
@@ -122,11 +122,11 @@ const BudgetAllocation = ({ sessionID, onNavigate }: BudgetAllocationProps) => {
                 className="object-contain"
                 style={{
                   width: "clamp(80px, 12.5vw, 135px)",
-                  height: "clamp(95px, 15vw, 159px)"
+                  height: "clamp(95px, 15vw, 159px)",
                 }}
               />
             </div>
-            
+
             {/* Budget Text */}
             <div className="flex-1 text-right">
               <div
@@ -135,7 +135,7 @@ const BudgetAllocation = ({ sessionID, onNavigate }: BudgetAllocationProps) => {
                   color: "#000D59",
                   fontSize: "clamp(24px, 4.6vw, 50px)",
                   fontWeight: 700,
-                  letterSpacing: "0.4px"
+                  letterSpacing: "0.4px",
                 }}
               >
                 งบทั้งหมด
@@ -146,7 +146,7 @@ const BudgetAllocation = ({ sessionID, onNavigate }: BudgetAllocationProps) => {
                   color: "#000D59",
                   fontSize: "clamp(50px, 9.3vw, 100px)",
                   fontWeight: 700,
-                  letterSpacing: "0.4px"
+                  letterSpacing: "0.4px",
                 }}
               >
                 {totalBudget}
@@ -158,15 +158,20 @@ const BudgetAllocation = ({ sessionID, onNavigate }: BudgetAllocationProps) => {
         {/* ORIGINAL Budget Status Display - FUNCTIONALITY PRESERVED */}
         <div className="w-full max-w-[903px] mx-auto mb-8 bg-black bg-opacity-20 rounded-[20px] p-4">
           <div className="text-center">
-            <div className="text-lg font-prompt mb-2" style={{ color: "#000D59" }}>
+            <div
+              className="text-lg font-prompt mb-2"
+              style={{ color: "#000D59" }}
+            >
               งบที่เหลือ:{" "}
-              <span className={`font-medium ${
-                remainingBudget < 0
-                  ? "text-red-600"
-                  : remainingBudget > 0
-                    ? "text-yellow-600"
-                    : "text-green-600"
-              }`}>
+              <span
+                className={`font-medium ${
+                  remainingBudget < 0
+                    ? "text-red-600"
+                    : remainingBudget > 0
+                      ? "text-yellow-600"
+                      : "text-green-600"
+                }`}
+              >
                 {remainingBudget} บาท
               </span>
             </div>
@@ -189,12 +194,15 @@ const BudgetAllocation = ({ sessionID, onNavigate }: BudgetAllocationProps) => {
                   aria-valuenow={allocatedBudget}
                   aria-valuemin={0}
                   aria-valuemax={totalBudget}
-                  aria-label={`ใช้งบประมาณไปแล้ว ${allocatedBudget} จาก ${totalBudget} บาท` }
+                  aria-label={`ใช้งบประมาณไปแล้ว ${allocatedBudget} จาก ${totalBudget} บาท`}
                 ></div>
               </div>
-              <div className="text-sm mt-2 text-center" style={{ color: "#000D59" }}>
-                ใช้งบประมาณ{" "}
-                {((allocatedBudget / totalBudget) * 100).toFixed(1)}%
+              <div
+                className="text-sm mt-2 text-center"
+                style={{ color: "#000D59" }}
+              >
+                ใช้งบประมาณ {((allocatedBudget / totalBudget) * 100).toFixed(1)}
+                %
               </div>
             </div>
           </div>
@@ -212,7 +220,7 @@ const BudgetAllocation = ({ sessionID, onNavigate }: BudgetAllocationProps) => {
                     color: "#000D59",
                     fontSize: "clamp(24px, 4.6vw, 50px)",
                     fontWeight: 700,
-                    letterSpacing: "0.4px"
+                    letterSpacing: "0.4px",
                   }}
                 >
                   {item.label}
@@ -225,7 +233,7 @@ const BudgetAllocation = ({ sessionID, onNavigate }: BudgetAllocationProps) => {
                   className="rounded-[20px] border-[5px] border-[#000D59] bg-white flex items-center justify-center"
                   style={{
                     width: "clamp(150px, 19vw, 205px)",
-                    height: "clamp(100px, 12vw, 130px)"
+                    height: "clamp(100px, 12vw, 130px)",
                   }}
                 >
                   <input
@@ -233,7 +241,11 @@ const BudgetAllocation = ({ sessionID, onNavigate }: BudgetAllocationProps) => {
                     type="number"
                     min="0"
                     max={totalBudget}
-                    value={budgetAllocation[item.key as keyof typeof budgetAllocation]}
+                    value={
+                      budgetAllocation[
+                        item.key as keyof typeof budgetAllocation
+                      ]
+                    }
                     onChange={(e) =>
                       handleBudgetChange(
                         item.key as keyof typeof budgetAllocation,
@@ -245,7 +257,7 @@ const BudgetAllocation = ({ sessionID, onNavigate }: BudgetAllocationProps) => {
                       color: "#000D59",
                       fontSize: "clamp(35px, 6.5vw, 70px)",
                       fontWeight: 700,
-                      letterSpacing: "0.4px"
+                      letterSpacing: "0.4px",
                     }}
                     aria-describedby={`budget-${item.key}-description`}
                   />
@@ -292,7 +304,7 @@ const BudgetAllocation = ({ sessionID, onNavigate }: BudgetAllocationProps) => {
               className="rounded-[50px] bg-[#FFE000] mx-auto"
               style={{
                 width: "min(845px, 85vw)",
-                height: "clamp(80px, 10.9vw, 118px)"
+                height: "clamp(80px, 10.9vw, 118px)",
               }}
             />
             <button
@@ -306,7 +318,7 @@ const BudgetAllocation = ({ sessionID, onNavigate }: BudgetAllocationProps) => {
               style={{
                 background: "transparent",
                 border: "none",
-                height: "clamp(80px, 10.9vw, 118px)"
+                height: "clamp(80px, 10.9vw, 118px)",
               }}
               aria-describedby="next-button-description"
             >
@@ -315,7 +327,7 @@ const BudgetAllocation = ({ sessionID, onNavigate }: BudgetAllocationProps) => {
                 style={{
                   fontSize: "clamp(24px, 4.6vw, 50px)",
                   fontWeight: 400,
-                  letterSpacing: "0.4px"
+                  letterSpacing: "0.4px",
                 }}
               >
                 ไปต่อ
@@ -328,7 +340,7 @@ const BudgetAllocation = ({ sessionID, onNavigate }: BudgetAllocationProps) => {
                 className="text-center mt-4"
                 style={{
                   color: "#000D59",
-                  fontSize: "clamp(14px, 2.8vw, 18px)"
+                  fontSize: "clamp(14px, 2.8vw, 18px)",
                 }}
               >
                 กรุณาจัดสรรงบประมาณให้ครบ {totalBudget} บาทเพื่อดำเนินการต่อ

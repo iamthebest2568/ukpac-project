@@ -107,7 +107,6 @@
   display: none !important;
 }
 
-
 /* Ensure full coverage on all devices */
 @media (orientation: landscape) and (max-height: 500px) {
   .figma-style1-background-image {
@@ -122,7 +121,7 @@
 
 /* Blue overlay for source selection page - lower curve (convex bottom edge) */
 .figma-style1-background-overlay--blue {
-  background: var(--figma-style1-blue-overlay, #04D9F9) !important;
+  background: var(--figma-style1-blue-overlay, #04d9f9) !important;
   /* fallback if needed */
   z-index: 2;
   pointer-events: none;
@@ -206,8 +205,8 @@
 
 /* Ensure specific pages (like fake-news) use black title to match Figma */
 .figma-style1-container.fake-news-page .figma-style1-title,
-  .figma-style1-container .fake-news-page .figma-style1-title,
-  .fake-news-page .figma-style1-title {
+.figma-style1-container .fake-news-page .figma-style1-title,
+.fake-news-page .figma-style1-title {
   color: var(--figma-style1-text-dark) !important;
   font-weight: 700 !important;
 }
@@ -299,7 +298,7 @@
   height: clamp(44px, 10vh, 60px);
   min-height: 44px;
   max-height: 60px;
-  background-color: #FFE000;
+  background-color: #ffe000;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
@@ -364,7 +363,7 @@
 /* Secondary (yellow) variant for figma-style1 buttons */
 .figma-style1-button--secondary {
   @apply w-full h-[53px] rounded-[40px] border-[1.5px] border-black flex items-center justify-center transition-all duration-200 hover:scale-105 hover:shadow-lg hover:bg-black;
-  background-color: #FFE000;
+  background-color: #ffe000;
 }
 /* Compress MN2 summary action buttons */
 .mn2-summary-page [class*="rounded-[50px]"] {
@@ -382,14 +381,14 @@
 
 .figma-style1-button--secondary:hover .figma-style1-button-text,
 .figma-style1-button--secondary:active .figma-style1-button-text {
-  color: #FFE000;
+  color: #ffe000;
 }
 
 /* Removed duplicate - using responsive definition above */
 
 .figma-style1-button:hover .figma-style1-button-text,
 .figma-style1-button:active .figma-style1-button-text {
-  color: #FFE000;
+  color: #ffe000;
 }
 
 /* Dark variant for figma-style1 buttons */
@@ -399,12 +398,12 @@
 }
 
 .figma-style1-button--dark:hover {
-  background-color: #FFE000;
+  background-color: #ffe000;
 }
 
 .figma-style1-button-text--dark {
   @apply text-center font-prompt text-lg font-medium leading-7 tracking-[0.4px];
-  color: #FFE000;
+  color: #ffe000;
 }
 
 .figma-style1-button--dark:hover .figma-style1-button-text--dark,
@@ -428,12 +427,12 @@
 
 /* Color Palette Variables for figma-style1 */
 :root {
-  --figma-style1-primary: #FFE000;
+  --figma-style1-primary: #ffe000;
   --figma-style1-text-dark: #000000;
   --figma-style1-text-light: #ffffff;
   --figma-style1-overlay-start: rgba(0, 0, 0, 0);
   --figma-style1-overlay-end: rgba(0, 0, 0, 0.9);
-  --figma-style1-blue-overlay: #04D9F9;
+  --figma-style1-blue-overlay: #04d9f9;
 }
 
 /* Fine-tune for very small screens only */
@@ -524,7 +523,7 @@
 .app-container .figma-style1-button--secondary,
 .app-container .figma-style1-button--dark {
   /* Visual base to match mn3 continue button */
-  background-color: #FFE000 !important; /* yellow base */
+  background-color: #ffe000 !important; /* yellow base */
   color: #000 !important; /* black text by default */
   border: none !important; /* remove visible border */
   box-shadow: none !important; /* no extra shadow by default */
@@ -587,7 +586,9 @@
   transform: scale(1.03) !important;
 }
 
-.app-container .figma-style1-button.figma-style1-button--selected .figma-style1-button-text,
+.app-container
+  .figma-style1-button.figma-style1-button--selected
+  .figma-style1-button-text,
 .app-container .figma-style1-button--selected .figma-style1-button-text {
   color: #fff !important;
 }
@@ -616,8 +617,8 @@
   gap: 16px;
   padding: 16px;
   border-radius: 14px;
-  background: rgba(255,255,255,0.95);
-  box-shadow: 0 10px 24px rgba(0,0,0,0.06);
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
 }
 
 .mn3-summary-card-left {
@@ -637,7 +638,7 @@
   font-size: 28px;
   background: transparent;
   color: #ffffff; /* emoji/text inside icon should be white for contrast */
-  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
 }
 
 .mn3-summary-card-body {
@@ -648,9 +649,9 @@
 }
 
 .mn3-summary-card-title {
-  font-family: 'Prompt', sans-serif;
+  font-family: "Prompt", sans-serif;
   font-weight: 800;
-  color: #000D59;
+  color: #000d59;
   font-size: 18px;
 }
 
@@ -665,7 +666,7 @@
 .mn3-summary-bar-wrap {
   width: 100%;
   height: 10px;
-  background: rgba(0,0,0,0.06);
+  background: rgba(0, 0, 0, 0.06);
   border-radius: 10px;
   overflow: hidden;
 }
@@ -673,29 +674,47 @@
 .mn3-summary-bar {
   height: 100%;
   border-radius: 10px;
-  transition: width 400ms cubic-bezier(.2,.8,.2,1);
+  transition: width 400ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 /* color variants */
 .mn3-summary-card--green .mn3-summary-icon,
 .mn3-summary-card--green .mn3-summary-bar {
-  background: linear-gradient(90deg, #00C853, #66EEB3);
+  background: linear-gradient(90deg, #00c853, #66eeb3);
 }
 
 .mn3-summary-card--yellow .mn3-summary-icon,
 .mn3-summary-card--yellow .mn3-summary-bar {
-  background: linear-gradient(90deg, #FFE000, #FFD54F);
+  background: linear-gradient(90deg, #ffe000, #ffd54f);
 }
 
 .mn3-summary-card--red .mn3-summary-icon,
 .mn3-summary-card--red .mn3-summary-bar {
-  background: linear-gradient(90deg, #FF5252, #FF8A80);
+  background: linear-gradient(90deg, #ff5252, #ff8a80);
 }
 
 /* subtle card background tints */
-.mn3-summary-card--green { background: linear-gradient(180deg, rgba(0,200,83,0.05), rgba(255,255,255,0.96)); }
-.mn3-summary-card--yellow { background: linear-gradient(180deg, rgba(255,224,0,0.04), rgba(255,255,255,0.96)); }
-.mn3-summary-card--red { background: linear-gradient(180deg, rgba(255,82,82,0.03), rgba(255,255,255,0.97)); }
+.mn3-summary-card--green {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 200, 83, 0.05),
+    rgba(255, 255, 255, 0.96)
+  );
+}
+.mn3-summary-card--yellow {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 224, 0, 0.04),
+    rgba(255, 255, 255, 0.96)
+  );
+}
+.mn3-summary-card--red {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 82, 82, 0.03),
+    rgba(255, 255, 255, 0.97)
+  );
+}
 
 /* ensure good spacing on small screens */
 @media (max-width: 480px) {
@@ -704,16 +723,34 @@
     gap: 10px;
   }
 
-  .mn3-summary-card-left { flex: 0 0 56px; }
-  .mn3-summary-icon { width: 48px; height: 48px; font-size: 20px; }
-  .mn3-summary-card-title { font-size: 15px; }
+  .mn3-summary-card-left {
+    flex: 0 0 56px;
+  }
+  .mn3-summary-icon {
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+  }
+  .mn3-summary-card-title {
+    font-size: 15px;
+  }
 }
 
 @media (min-width: 1024px) {
-  .mn3-summary-card-left { flex: 0 0 96px; }
-  .mn3-summary-icon { width: 72px; height: 72px; font-size: 32px; }
-  .mn3-summary-card-title { font-size: 20px; }
-  .mn3-summary-bar-wrap { height: 12px; }
+  .mn3-summary-card-left {
+    flex: 0 0 96px;
+  }
+  .mn3-summary-icon {
+    width: 72px;
+    height: 72px;
+    font-size: 32px;
+  }
+  .mn3-summary-card-title {
+    font-size: 20px;
+  }
+  .mn3-summary-bar-wrap {
+    height: 12px;
+  }
 }
 
 /* Grid layout for summary + visual */
@@ -726,43 +763,86 @@
   margin: 0 auto 12px auto;
 }
 
-.mn3-summary-grid-left { display: flex; flex-direction: column; gap: 12px; }
+.mn3-summary-grid-left {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
 
-.mn3-summary-grid-right { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.mn3-summary-grid-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
 
 .mn3-result-pie {
   width: 220px;
   height: 220px;
   border-radius: 999px;
-  box-shadow: 0 8px 22px rgba(0,0,0,0.08);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
   display: block;
   margin-bottom: 8px;
 }
 
-.mn3-result-legend { width: 100%; max-width: 320px; display: flex; flex-direction: column; gap: 8px; }
+.mn3-result-legend {
+  width: 100%;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
 
-.mn3-legend-row { display: flex; align-items: center; gap: 10px; justify-content: space-between; }
-.mn3-legend-swatch { width: 18px; height: 18px; border-radius: 4px; display: inline-block; flex: 0 0 18px; }
-.mn3-legend-label { flex: 1 1 auto; color: #222; font-weight: 600; }
-.mn3-legend-value { color: #444; font-weight: 700; }
+.mn3-legend-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: space-between;
+}
+.mn3-legend-swatch {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  display: inline-block;
+  flex: 0 0 18px;
+}
+.mn3-legend-label {
+  flex: 1 1 auto;
+  color: #222;
+  font-weight: 600;
+}
+.mn3-legend-value {
+  color: #444;
+  font-weight: 700;
+}
 
-.mn3-legend-total { margin-top: 8px; font-weight: 700; color: #000D59; text-align: center; }
+.mn3-legend-total {
+  margin-top: 8px;
+  font-weight: 700;
+  color: #000d59;
+  text-align: center;
+}
 
 @media (max-width: 860px) {
-  .mn3-summary-grid { grid-template-columns: 1fr; }
-  .mn3-result-pie { width: 180px; height: 180px; }
+  .mn3-summary-grid {
+    grid-template-columns: 1fr;
+  }
+  .mn3-result-pie {
+    width: 180px;
+    height: 180px;
+  }
 }
 
 /* Ensure MN3 policy buttons keep their selected (black) appearance even after unified overrides */
 .app-container .mn3-policy-button.mn3-policy-button--selected,
 .app-container .mn3-policy-button--selected {
   background-color: #000 !important;
-  color: #FFE000 !important;
+  color: #ffe000 !important;
 }
 
 .app-container .mn3-policy-button.mn3-policy-button--selected .mn3-button-text,
 .app-container .mn3-policy-button--selected .mn3-button-text {
-  color: #FFE000 !important;
+  color: #ffe000 !important;
 }
 
 /* Slightly darker hover for an already selected MN3 policy button */
@@ -811,12 +891,14 @@
   overflow-y: auto !important;
   background: white !important;
   border-radius: 12px !important;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
 }
 
 /* Ensure dialog buttons are properly styled and clickable */
 [data-radix-dialog-content] button {
-  font-family: 'Prompt', sans-serif !important;
+  font-family: "Prompt", sans-serif !important;
   font-weight: 500 !important;
   min-height: 44px !important;
   display: flex !important;
@@ -884,14 +966,16 @@ body[data-dialog-open] {
    - Fill side space with matching color variable
    - Keep mobile (default cover) untouched
    ================================================ */
-:root { --figma-style1-bg-fill: #ffffff; }
+:root {
+  --figma-style1-bg-fill: #ffffff;
+}
 
 @media (min-width: 768px) {
   .figma-style1-background {
     background-size: contain !important;
     background-position: center center !important;
     background-repeat: no-repeat !important;
-    background-color: var(--figma-style1-bg-fill, #04D9F9) !important;
+    background-color: var(--figma-style1-bg-fill, #04d9f9) !important;
   }
 
   /* Balance content on larger screens without affecting mobile */
@@ -908,7 +992,6 @@ body[data-dialog-open] {
   .figma-style1-button-container {
     padding-bottom: clamp(16px, 4vh, 32px) !important;
   }
-
 }
 
 /* Ask05 desktop/tablet-only adjustments: keep mobile untouched */
@@ -923,7 +1006,10 @@ body[data-dialog-open] {
     min-height: clamp(260px, 32vh, 460px);
     padding: clamp(12px, 2.2vw, 20px);
   }
-  .ask05-page .ask05-title { max-width: min(92vw, 900px); margin: 8px auto 12px auto; }
+  .ask05-page .ask05-title {
+    max-width: min(92vw, 900px);
+    margin: 8px auto 12px auto;
+  }
 
   /* Positioning: title top, textarea centered, button bottom */
   .ask05-page .figma-style1-content-area {
@@ -931,7 +1017,8 @@ body[data-dialog-open] {
     flex-direction: column !important;
     min-height: 100% !important;
   }
-  .ask05-page .ask05-content { /* center between title and button */
+  .ask05-page .ask05-content {
+    /* center between title and button */
     margin-top: auto !important;
     margin-bottom: auto !important;
     display: flex !important;
@@ -957,7 +1044,7 @@ body[data-dialog-open] {
     background-size: contain !important;
     background-position: center center !important;
     background-repeat: no-repeat !important;
-    background-color: var(--figma-style1-bg-fill, #04D9F9) !important;
+    background-color: var(--figma-style1-bg-fill, #04d9f9) !important;
   }
 }
 
@@ -976,7 +1063,11 @@ body[data-dialog-open] {
   z-index: 100;
 }
 /* Ensure buttons are on top and clickable */
-.mn2-summary-page button { pointer-events: auto !important; position: relative; z-index: 3; }
+.mn2-summary-page button {
+  pointer-events: auto !important;
+  position: relative;
+  z-index: 3;
+}
 .mn2-summary-page::before {
   content: "";
   position: fixed;
@@ -988,7 +1079,8 @@ body[data-dialog-open] {
   background-repeat: no-repeat;
   pointer-events: none;
 }
-.mn2-summary-page > .absolute.inset-0 { /* blue + white curved overlays */
+.mn2-summary-page > .absolute.inset-0 {
+  /* blue + white curved overlays */
   display: none !important;
   pointer-events: none !important;
 }
@@ -1055,7 +1147,16 @@ body[data-dialog-open] {
   margin-bottom: clamp(6px, 2vw, 10px) !important;
 }
 /* Reduce bottom margins to save vertical space */
-.mn2-summary-page .mb-12 { margin-bottom: clamp(8px, 2vw, 12px) !important; }
-.mn2-summary-page .mb-8 { margin-bottom: clamp(6px, 2vw, 10px) !important; }
+.mn2-summary-page .mb-12 {
+  margin-bottom: clamp(8px, 2vw, 12px) !important;
+}
+.mn2-summary-page .mb-8 {
+  margin-bottom: clamp(6px, 2vw, 10px) !important;
+}
 /* Ensure inner content has bottom padding so buttons are reachable */
-.mn2-summary-page .z-10 { padding-bottom: clamp(16px, 10vh, 140px) !important; position: relative; z-index: 10; pointer-events: auto; }
+.mn2-summary-page .z-10 {
+  padding-bottom: clamp(16px, 10vh, 140px) !important;
+  position: relative;
+  z-index: 10;
+  pointer-events: auto;
+}
