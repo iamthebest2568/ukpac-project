@@ -1,9 +1,50 @@
 import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import CustomizationScreen from "../components/CustomizationScreen";
 import ColorPalette from "../components/ColorPalette";
 import CtaButton from "../components/CtaButton";
 import HeroWithShadow from "../components/HeroWithShadow";
+
+// small amenity icons (same assets as other screens)
+const IconAir = () => (
+  <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fee1c18a935564e92bb49991fac3b76df?format=webp&width=800" alt="แอร์" className="h-6 w-6 object-contain select-none" decoding="async" loading="eager" />
+);
+const IconFan = () => (
+  <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe01792ee89e240808ed47d8576b55d71?format=webp&width=800" alt="พัดลม" className="h-6 w-6 object-contain select-none" decoding="async" loading="eager" />
+);
+const IconSeat = () => (
+  <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F93439b2533284cdf914fc93cafa1cf26?format=webp&width=800" alt="ที่นั่งพิเศษ" className="h-6 w-6 object-contain select-none" decoding="async" loading="eager" />
+);
+const IconWifi = () => (
+  <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb0789bfd1100472f8351704764607d31?format=webp&width=800" alt="ที่จับ/ราวยืน" className="h-6 w-6 object-contain select-none" decoding="async" loading="eager" />
+);
+const IconPlug = () => (
+  <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F09a78e31a3de44e98772b0eef382af6f?format=webp&width=800" alt="ช่องชาร์จมือถือ/USB" className="h-6 w-6 object-contain select-none" decoding="async" loading="eager" />
+);
+const IconTv = () => (
+  <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fcb0cbf9ef6764e2d9e6f06e87827f5e9?format=webp&width=800" alt="Wi‑Fi ฟรี" className="h-6 w-6 object-contain select-none" decoding="async" loading="eager" />
+);
+const IconCup = () => (
+  <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe903bdf27bab4175824c159bc19a02ba?format=webp&width=800" alt="ระบบประกาศ" className="h-6 w-6 object-contain select-none" decoding="async" loading="eager" />
+);
+const IconCamSmall = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="7" width="14" height="10" rx="2" stroke="currentColor" strokeWidth="2"/><path d="M19 8l2-2v10l2-2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+);
+
+const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
+  "แอร์": <IconAir />,
+  "พัดลม": <IconFan />,
+  "ที่นั่งพิเศษ": <IconSeat />,
+  "ที่จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
+  "ช่องชาร์จมือถือ/USB": <IconPlug />,
+  "Wi‑Fi ฟรี": <IconTv />,
+  "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
+  "กล้องวงจรปิด": <IconCamSmall />,
+};
+
+const MONEY_ICON = "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fbc8b22cedfbb4640a702f724881f196d?format=webp&width=800";
+const SCAN_ICON = "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb8992da4be824b339d3df5f0a076ed93?format=webp&width=800";
 
 const DEFAULT_COLORS = [
   "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F5456dc0212c14ba6a327d537ceed405e?format=webp&width=800", // c1
