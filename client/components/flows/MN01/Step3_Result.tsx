@@ -142,7 +142,7 @@ const Step3_Result = ({ sessionID, onNext, onBack, journeyData }: Step3_ResultPr
       backgroundImage={backgroundImage}
       buttons={[
         { text: "ใช่", onClick: handleYes, ariaLabel: "ตอบใช่ - พอใจกับผลลัพธ์" },
-        { text: "ไม่ใช่", onClick: handleNo, ariaLabel: "ตอบไม่ใช่ - ��ม่พอใจกับผลลัพธ์" },
+        { text: "ไม่ใช่", onClick: handleNo, ariaLabel: "ตอบไม่ใช่ - ไม่พอใจกับผลลัพธ์" },
       ]}
       className="mn3-result-page"
       useBlueOverlay={false}
