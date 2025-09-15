@@ -1,4 +1,4 @@
-/**
+/*
  * Figma Style 1 - Design System
  * 
  * A complete vertical layout design system with:
@@ -1260,4 +1260,13 @@ body[data-dialog-open] {
     margin-top: auto !important;
     padding-bottom: env(safe-area-inset-bottom, 16px) !important;
   }
+}
+
+/* Source selection: tighter spacing between buttons */
+.source-selection-root .figma-style1-button-container {
+  gap: clamp(8px, 1.8vh, 14px) !important;
+}
+.source-selection-root .figma-style1-button-container > * + * {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
 }
