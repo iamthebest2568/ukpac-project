@@ -29,7 +29,7 @@ const Step1_Choice = ({
     "ปรับปรุงคุณภาพรถเมล์", 
     "ตั๋วร่วม",
     "เพิ่มความถี่รถเมล์",
-    "เพิ่มที่จอดรถ",
+    "เพ��่มที่จอดรถ",
     "เพิ่มความถี่รถไฟฟ้า",
     "เพิ่ม Feeder ในซอย",
   ];
@@ -165,18 +165,16 @@ const Step1_Choice = ({
           </div>
         </div>
 
-        {/* Continue Button - Fixed Footer */}
-        <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full z-50 px-4 pb-4">
-          <div className="mx-auto flex flex-col items-center space-y-2">
-            {selectedPriorities.length > 0 && (
-              <button
-                onClick={handleNext}
-                className="mn3-continue-button"
-                aria-label="ดำเนินการต่อไปยังขั้นตอนถัดไป"
-              >
-                ไปต่อ
-              </button>
-            )}
+        {/* Continue Button - displayed directly below the options */}
+        <div className="w-full px-4 mt-4 flex justify-center">
+          <div className="mx-auto flex flex-col items-center space-y-2" style={{ width: '100%', maxWidth: 980 }}>
+            <button
+              onClick={handleNext}
+              className="mn3-continue-button"
+              aria-label="ดำเนินการต่อไปยังขั้นตอนถัดไป"
+            >
+              ไปต่อ
+            </button>
           </div>
         </div>
       </div>
