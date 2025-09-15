@@ -143,7 +143,7 @@ const DesignScreen: React.FC = () => {
                     <div className="mt-3 flex justify-end gap-2">
                       <button
                         onClick={() => setShowTextarea(false)}
-                        className="px-4 py-2 rounded-md bg-gray-200"
+                        className="px-4 py-2 rounded-md bg-[#ffe000] text-black hover:bg-[#000d59] hover:text-white transition-colors"
                       >
                         ยกเลิก
                       </button>
