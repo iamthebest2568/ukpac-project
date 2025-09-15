@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CustomizationScreen from "../components/CustomizationScreen";
 import SelectionCard from "../components/SelectionCard";
@@ -361,7 +360,7 @@ const DoorScreen: React.FC = () => {
             />
             <SelectionCard
               icon={<IconHighLow />}
-              label={"ประตูฉุกเฉิน"}
+              label={"ประตูฉ��กเฉิน"}
               isSelected={selectedOption === "emergency"}
               onClick={() => setSelectedOption("emergency")}
               variant="light"
