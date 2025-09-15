@@ -25,12 +25,21 @@ const FeedbackSkipScreen: React.FC = () => {
           </div>
         }
       >
-        <div className="py-4 px-4 flex justify-center">
-          <img
-            src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fa3d7b58f82e946aaa6790206de94e35d?format=webp&width=800"
-            alt="รถเมล์ในฝัน กรุงเทพเคลื่อนที่ได้"
-            className="h-16 md:h-20 w-auto"
-          />
+        <div className="py-4 px-4">
+          <div className="flex justify-center">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fa3d7b58f82e946aaa6790206de94e35d?format=webp&width=800"
+              alt="รถเมล์ในฝัน กรุงเทพเคลื่อนที่ได้"
+              className="h-16 md:h-20 w-auto"
+            />
+          </div>
+          <div className="mt-3 flex justify-center">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fafa2d580a7624e59b0a5a37f7b8264f0?format=webp&width=800"
+              alt="ภาพประกอบรถเมล์"
+              className="h-24 md:h-32 w-auto"
+            />
+          </div>
         </div>
       </CustomizationScreen>
 
