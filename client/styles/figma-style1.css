@@ -206,9 +206,16 @@
 
 /* Ensure specific pages (like fake-news) use black title to match Figma */
 .figma-style1-container.fake-news-page .figma-style1-title,
-.figma-style1-container .fake-news-page .figma-style1-title,
-.fake-news-page .figma-style1-title {
+  .figma-style1-container .fake-news-page .figma-style1-title,
+  .fake-news-page .figma-style1-title {
   color: var(--figma-style1-text-dark) !important;
+  font-weight: 700 !important;
+}
+
+/* Make Ask04 and Ask04Budget titles black to improve readability on their backgrounds */
+.ask04-page .figma-style1-title,
+.ask04-budget-page .figma-style1-title {
+  color: #000 !important;
   font-weight: 700 !important;
 }
 
