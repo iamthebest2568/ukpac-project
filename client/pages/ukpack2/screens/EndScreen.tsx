@@ -14,6 +14,7 @@ const EndScreen: React.FC = () => {
     <>
       <CustomizationScreen
         title="ขอบคุณ"
+        theme="light"
         footerContent={
           <div className="flex justify-center">
             <CtaButton
@@ -40,9 +41,16 @@ const EndScreen: React.FC = () => {
               className="w-full h-auto max-w-[720px]"
             />
           </div>
-          <p className="text-white font-prompt font-semibold text-center">
+          <p className="text-[#001a73] font-prompt font-semibold text-center">
             ขอบคุณ ที่ร่วมเป็นส่วนหนึ่งในการพัฒนาเมือง
           </p>
+          <div className="w-full flex justify-center">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F82c90d874bf3491baf4f370102aa49f7?format=webp&width=800"
+              alt="ประกาศรางวัล"
+              className="w-full h-auto max-w-[420px] mt-2"
+            />
+          </div>
         </div>
       </CustomizationScreen>
 
