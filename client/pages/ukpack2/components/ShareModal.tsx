@@ -52,7 +52,7 @@ const ShareModal: React.FC<Props> = ({ isOpen, onClose, shareUrl, shareText }) =
             แชร์ไปยัง LINE
           </button>
 
-          <button onClick={onClose} className="mt-2 w-full px-4 py-2 rounded-md bg-white text-[#000d59] border border-gray-200 hover:bg-gray-100">ยกเลิก</button>
+          <button onClick={onClose} className="mt-2 w-full px-4 py-2 rounded-md bg-[#ffe000] text-black border border-gray-200 hover:bg-[#000d59] hover:text-white transition-colors">ยกเลิก</button>
         </div>
       </div>
     </div>
