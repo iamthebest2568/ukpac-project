@@ -2,7 +2,6 @@ import { useState } from "react";
 import FigmaStyle1Layout from "../components/layouts/FigmaStyle1Layout";
 import { useSession } from "../hooks/useSession";
 import { logEvent } from "../services/dataLogger.js";
-import { useState } from "react";
 
 export default function WhatDoYouTravelByPage() {
   const { navigateToPage, sessionID } = useSession();
