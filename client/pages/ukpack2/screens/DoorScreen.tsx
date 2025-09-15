@@ -51,7 +51,7 @@ const DoorScreen: React.FC = () => {
 
   return (
     <CustomizationScreen
-      title="ปรับแต่งรถเมล์ของคุณ"
+      title="ปรับแต่งรถเมล์ของค���ณ"
       theme="light"
       footerContent={<div className="flex justify-center"><CtaButton text="ถัดไป" onClick={handleNext} /></div>}
     >
@@ -95,14 +95,14 @@ const DoorScreen: React.FC = () => {
           <div className="grid grid-cols-2 gap-4">
             {/* Radio group for 1 or 2 doors */}
             <SelectionCard
-              icon={<IconDoor />}
+              icon={<IconDoor1 />}
               label={'1 ประตู'}
               isSelected={doorChoice === '1'}
               onClick={() => setDoorChoice('1')}
               variant="light"
             />
             <SelectionCard
-              icon={<IconDoor />}
+              icon={<IconDoor2 />}
               label={'2 ประตู'}
               isSelected={doorChoice === '2'}
               onClick={() => setDoorChoice('2')}
