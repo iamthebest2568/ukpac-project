@@ -293,7 +293,7 @@ export default function UkDashboard() {
                   checked={autoRefresh}
                   onChange={(e) => setAutoRefresh(e.target.checked)}
                 />{" "}
-                อัปเดตอัตโ���มัติ
+                อัปเดตอัตโนมัติ
               </label>
             </div>
           </div>
@@ -325,7 +325,7 @@ export default function UkDashboard() {
 
               {/* Charts */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                <Card title="แนวโน้มการเล่น (รายวัน)">
+                <Card title="แนวโน้มการ��ล่น (รายวัน)">
                   <div className="w-full h-[240px] md:h-[320px] min-w-0">
                     <ResponsiveContainer width="100%" height="100%">
                       <LineChart data={(stats.timeseries || []).map(d => ({ ...d, plays: Number(d.plays || 0) }))} margin={{ top: 8, right: 12, left: -8, bottom: 8 }}>
@@ -390,7 +390,7 @@ export default function UkDashboard() {
                             </span>
                           </li>
                           <li className="flex justify-between">
-                            <span>จำนวนเซสชัน</span>
+                            <span>จำนวนเซสชั��</span>
                             <span className="text-white/70">
                               {sessions.length}
                             </span>
@@ -696,7 +696,7 @@ export default function UkDashboard() {
                       "นโยบาย - กลุ่มเป้าหมายที่ควรได้รับสิทธิ์",
                       "ลำดับความสำคัญของประเด็น",
                       "การจัดสรรงบประมาณระหว่างนโยบาย",
-                      "ระดับความพึงพอใจ",
+                      "���ะดับความพึงพอใจ",
                       "ข้อเสนอเพ���่มเติ���ต่อรัฐ",
                       "การตอบสนองต่อข่าวปลอม",
                       "แหล่งข่าวที่ผู้ใช้เลือก",
