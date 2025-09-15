@@ -39,6 +39,38 @@ const ColorPalette: React.FC<ColorPaletteProps> = ({ colors, selectedColor, onCo
           const isSelected = c.toLowerCase() === (selectedColor || '').toLowerCase();
           return (
             <g key={c} transform={`translate(${x}, ${y})`}>
+              {c.startsWith('http') ? (
+            <>
+              <image
+                href={c}
+                x={0}
+                y={0}
+                width={SWATCH_SIZE}
+                height={SWATCH_SIZE}
+                preserveAspectRatio="xMidYMid slice"
+                role="button"
+                tabIndex={0}
+                aria-pressed={isSelected}
+                onClick={() => onColorSelect(c)}
+                onKeyDown={(e) => handleKey(e, c)}
+              />
+              {isSelected && (
+                <rect
+                  x={-4}
+                  y={-4}
+                  width={SWATCH_SIZE + 8}
+                  height={SWATCH_SIZE + 8}
+                  rx={14}
+                  ry={14}
+                  fill="none"
+                  stroke="#ffd874"
+                  strokeWidth={3}
+                  pointerEvents="none"
+                />
+              )}
+            </>
+          ) : (
+            <>
               <rect
                 x={0}
                 y={0}
@@ -69,6 +101,8 @@ const ColorPalette: React.FC<ColorPaletteProps> = ({ colors, selectedColor, onCo
                   pointerEvents="none"
                 />
               )}
+            </>
+          )}
             </g>
           );
         })}
