@@ -16,21 +16,6 @@ interface Ask05Props {
 const Ask05 = ({ sessionID, onNavigate }: Ask05Props) => {
   const [suggestion, setSuggestion] = useState("");
 
-  // Temporarily remove the global app container maxWidth for this page only
-  useEffect(() => {
-    const container = document.querySelector('.app-container') as HTMLElement | null;
-    if (!container) return;
-    const prevMax = container.style.maxWidth;
-    const prevMarginLeft = container.style.marginLeft;
-    // make it full-bleed
-    container.style.maxWidth = '100%';
-    container.style.marginLeft = '0';
-    // restore on unmount
-    return () => {
-      container.style.maxWidth = prevMax || '';
-      container.style.marginLeft = prevMarginLeft || '';
-    };
-  }, []);
 
   const handleContinue = () => {
     const data = {
@@ -108,7 +93,7 @@ const Ask05 = ({ sessionID, onNavigate }: Ask05Props) => {
               <textarea
                 value={suggestion}
                 onChange={(e) => setSuggestion(e.target.value)}
-                placeholder="พิมพ์ข้อความของคุณที่นี่..."
+                placeholder="พิมพ์ข้อความของค���ณที่นี่..."
                 className="w-full h-full resize-none border-none outline-none font-prompt bg-transparent"
                 style={{
                   fontSize: "clamp(16px, 3.7vw, 40px)",
