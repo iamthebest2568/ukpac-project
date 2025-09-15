@@ -219,6 +219,31 @@
   font-weight: 700 !important;
 }
 
+/* End-sequence page: increase spacing between title and action buttons, and allow title to use wider container */
+.end-sequence-page .figma-style1-title-container {
+  max-width: 980px !important;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+}
+.end-sequence-page .figma-style1-title {
+  width: 100% !important;
+  max-width: 980px !important;
+  margin-bottom: 20px !important; /* base spacing from title to following content */
+  text-align: center !important;
+}
+/* Target the specific button group spacing on the end-sequence form (uses mt-8 utility) */
+.end-sequence-page .mt-8 {
+  margin-top: clamp(48px, 8vw, 96px) !important;
+}
+
+/* Ensure headings remain readable on all viewports */
+.end-sequence-page .figma-style1-title,
+.end-sequence-page h1,
+.end-sequence-page h2 {
+  color: #000 !important;
+  letter-spacing: 0.2px !important;
+}
+
 /* Ensure button container text remains black on fake-news */
 .fake-news-page .figma-style1-button-text {
   color: var(--figma-style1-text-dark) !important;
