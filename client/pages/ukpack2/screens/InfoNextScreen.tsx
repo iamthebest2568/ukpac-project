@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import SummaryCard from '../components/SummaryCard';
+import SummaryDetails from '../components/SummaryDetails';
 import SecondaryButton from '../components/SecondaryButton';
 import CtaButton from '../components/CtaButton';
 
