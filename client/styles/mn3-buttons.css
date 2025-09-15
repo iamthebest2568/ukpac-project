@@ -299,23 +299,36 @@
 
 /* Fixed content block pinned to the bottom of the viewport */
 .mn3-content {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: env(safe-area-inset-bottom, 28px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  padding: 0 16px;
-  z-index: 3; /* above background but behind any modals */
-  pointer-events: auto;
+  position: fixed !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: env(safe-area-inset-bottom, 28px) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 12px !important;
+  padding: 0 16px !important;
+  z-index: 99999 !important; /* ensure on top of other UI */
+  pointer-events: auto !important;
+  transform: none !important;
+  backface-visibility: hidden !important;
 }
 
 /* Ensure the mn3-button-grid doesn't overflow horizontally */
 .mn3-content .mn3-button-grid {
   width: 100%;
   max-width: 980px;
+}
+
+/* Make continue button visible on top of everything */
+.mn3-continue-button {
+  position: relative !important;
+  z-index: 100000 !important;
+}
+
+/* Keep background behind fixed content */
+.mn3-page-bg::before {
+  z-index: 0 !important;
 }
 
 
