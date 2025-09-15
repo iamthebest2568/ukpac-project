@@ -29,7 +29,7 @@ const FeedbackChoiceModal: React.FC<Props> = ({
               onChooseUse();
               onClose();
             }}
-            className="flex-1 px-4 py-2 rounded-md bg-[#00d5f9] text-white font-prompt"
+            className="flex-1 px-4 py-2 rounded-md bg-[#ffe000] text-black hover:bg-[#000d59] hover:text-white transition-colors font-prompt"
           >
             ใช้บริการแน่นอน
           </button>
