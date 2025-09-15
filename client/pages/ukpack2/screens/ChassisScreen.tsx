@@ -59,7 +59,7 @@ const OPTIONS = [
     icon: <IconMedium />,
   },
   { key: "large", label: "รถเมล์ขนาดใหญ่ 41-50 ที่นั่ง", icon: <IconLarge /> },
-  { key: "extra", label: "รถเมล์รุ่นพิเศษ 51+ ที่นั่ง", icon: <IconExtra /> },
+  { key: "extra", label: "รถเมล��รุ่นพิเศษ 51+ ที่นั่ง", icon: <IconExtra /> },
 ];
 
 const HERO_IMAGE: Record<string, string> = {
@@ -103,7 +103,7 @@ const ChassisScreen: React.FC = () => {
   return (
     <>
       <CustomizationScreen
-        title="ปรับแต่งรถเมล์ของคุ���"
+        title="ปรับแต่งรถเมล์ของคุณ"
         theme="light"
         footerContent={
           <div className="flex justify-center">
@@ -129,6 +129,21 @@ const ChassisScreen: React.FC = () => {
               />
               {/* bus + star overlay inside same box for precise alignment */}
               <div className="relative w-[72%] max-w-[420px]">
+                {(() => {
+                  const amenities = (() => { try { const raw = sessionStorage.getItem('design.amenities'); return raw ? JSON.parse(raw) as string[] : []; } catch { return [] as string[]; } })();
+                  const payments = (() => { try { const raw = sessionStorage.getItem('design.payment'); return raw ? JSON.parse(raw) as string[] : []; } catch { return [] as string[]; } })();
+                  const overlay = [...(amenities||[]), ...(payments||[])];
+                  return overlay.length > 0 ? (
+                    <div className="absolute left-1/2 transform -translate-x-1/2 -top-4 flex flex-wrap justify-center gap-2 z-20 max-w-[80%]">
+                      {overlay.map((lab, i) => (
+                        <div key={`${lab}-${i}`} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center">
+                          {AMENITIES_ICON_SMALL[lab] ? <img src={AMENITIES_ICON_SMALL[lab]} alt={lab} className="h-5 w-5 object-contain"/> : <div className="text-xs">{lab}</div>}
+                        </div>
+                      ))}
+                    </div>
+                  ) : null;
+                })()}
+
                 <img
                   src={HERO_IMAGE[selected]}
                   alt={selectedLabel}
