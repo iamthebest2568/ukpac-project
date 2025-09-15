@@ -27,13 +27,12 @@ const ColorPalette: React.FC<ColorPaletteProps> = ({
   };
 
   return (
-    <div className="overflow-visible">
+    <div className="overflow-hidden">
       <svg
-        width={width}
-        height={height}
         viewBox={`0 0 ${width} ${height}`}
         role="list"
         aria-label="Color palette"
+        style={{ width: '100%', maxWidth: `${width}px`, height: 'auto', display: 'block' }}
       >
         {colors.map((c, idx) => {
           const col = idx % COLS;
