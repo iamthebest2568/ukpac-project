@@ -34,19 +34,25 @@ const SubmitScreen: React.FC = () => {
     }
   })();
 
-  const handleFinish = async () => {
+  const handleFinish = () => {
+    const submitData = { interval, route, area };
     try {
-      const submitData = { interval, route, area };
       sessionStorage.setItem('design.submit', JSON.stringify(submitData));
-      // update context service info
+    } catch (e) {}
+
+    // update context service info synchronously
+    try {
       if (dispatch) {
         dispatch({ type: 'SET_SERVICE_INFO', payload: { routeName: route, area, frequency: interval } });
       }
-      // call firebase submission with merged state
-      await submitDesignToFirebase({ ...(state || {}), serviceInfo: { routeName: route, area, frequency: interval } });
-    } catch (e) {
-      // ignore
-    }
+    } catch (e) {}
+
+    // Fire-and-forget submission to Firebase, but navigate immediately so UI isn't blocked
+    try {
+      submitDesignToFirebase({ ...(state || {}), serviceInfo: { routeName: route, area, frequency: interval } })
+        .catch(() => {});
+    } catch (e) {}
+
     navigate('/ukpack2/summary');
   };
 
@@ -54,7 +60,7 @@ const SubmitScreen: React.FC = () => {
   const heroImg = HERO_IMAGE[selectedChassis];
 
   return (
-    <CustomizationScreen title="���รับแต่งรถเมล์ของคุณ" theme="light" footerContent={<div className="flex justify-center"><CtaButton text="ออกแบบเสร็จแล้ว" onClick={handleFinish} /></div>}>
+    <CustomizationScreen title="ปรับแต่งรถเมล์ของคุณ" theme="light" footerContent={<div className="flex justify-center"><CtaButton text="ออกแบบเสร็จแล้ว" onClick={handleFinish} /></div>}>
       <div className="space-y-6">
         {heroImg ? (
           <div className="flex flex-col items-center">
