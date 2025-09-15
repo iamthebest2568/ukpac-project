@@ -76,7 +76,7 @@ const Step1_Decision = ({ sessionID, onNext, onBack, initialData }: Step1_Decisi
           <span style={{ display: 'block', fontSize: 'clamp(24px, 5.6vw, 60px)' }}>ที่ร่วมเป็นส่วนหนึ่งในการพัฒนาเมือง</span>
         </h1>
 
-        <h2 className="font-prompt mt-6" style={{ color: '#000D59', fontSize: 'clamp(20px, 4.6vw, 50px)', fontWeight: 700 }}>
+        <h2 className="font-prompt mt-6" style={{ color: '#000D59', fontSize: 'clamp(16px, 3.6vw, 36px)', fontWeight: 700 }}>
           คุณอยากกรอกข้อมูลเพิ่มเพื่อลุ้นรับรางวัล
           <br />บัตรขนส่งสาธารณะ 300 บาท หรือไม่
         </h2>
