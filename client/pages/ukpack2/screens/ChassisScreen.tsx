@@ -29,7 +29,7 @@ const IconLarge = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fefc1e1ed3bcb4769b51d1544d43b3b5f?format=webp&width=360"
     alt="รถเมล์ขนาดใหญ่ 41–50 ที่นั่ง"
-    className="max-h-12 w-auto object-contain select-none"
+    className="max-h-12 w-auto object-contain select-none -translate-y-0.5"
     decoding="async"
     loading="eager"
   />
@@ -38,7 +38,7 @@ const IconExtra = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9a8a7536ced24db19a65409fbba1c6b6?format=webp&width=360"
     alt="รถเมล์รุ่นพิเศษ 51+ ที่นั่ง"
-    className="max-h-12 w-auto object-contain select-none"
+    className="max-h-12 w-auto object-contain select-none -translate-y-0.5"
     decoding="async"
     loading="eager"
   />
