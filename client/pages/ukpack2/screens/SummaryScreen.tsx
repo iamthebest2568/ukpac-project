@@ -46,12 +46,9 @@ const SummaryScreen: React.FC = () => {
 
         <footer className="mt-6">
           <div className="bg-[#00d5f9] rounded-t-3xl p-6 drop-shadow-lg mt-8">
-            <div className="max-w-4xl mx-auto flex items-center justify-between gap-4">
-              <div className="text-[#000d59] font-sarabun">ถ้ามีรถประจำทางแบบนี้คุณคิดว่าจะใช้บริการหรือไม่</div>
-              <div className="flex items-center gap-3">
+            <div className="max-w-4xl mx-auto flex items-center justify-center gap-3">
                 <SecondaryButton text="กลับไปแก้ไข" onClick={() => navigate('/ukpack2/design')} />
                 <CtaButton text="ออกแบบเสร็จแล้ว" onClick={() => navigate('/ukpack2/info')} />
-              </div>
             </div>
           </div>
         </footer>
