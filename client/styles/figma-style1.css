@@ -876,6 +876,39 @@ body[data-dialog-open] {
   text-align: center !important;
 }
 
+/* ================================================
+   Desktop/Tablet-only background handling for ukpack1
+   - Center background images horizontally & vertically
+   - Use contain so full portrait is visible
+   - Fill side space with matching color variable
+   - Keep mobile (default cover) untouched
+   ================================================ */
+:root { --figma-style1-bg-fill: #00d5f9; }
+
+@media (min-width: 768px) {
+  .figma-style1-background {
+    background-size: contain !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    background-color: var(--figma-style1-bg-fill, #00d5f9) !important;
+  }
+
+  /* Balance content on larger screens without affecting mobile */
+  .figma-style1-main {
+    align-items: center !important;
+    justify-items: center !important;
+  }
+
+  .figma-style1-content-area {
+    padding-top: clamp(20px, 6vh, 64px) !important;
+    padding-bottom: clamp(20px, 6vh, 64px) !important;
+  }
+
+  .figma-style1-button-container {
+    padding-bottom: clamp(16px, 4vh, 32px) !important;
+  }
+}
+
 /* MN2 Summary page: remove local overlays and use global background */
 .mn2-summary-page {
   background: transparent !important;
