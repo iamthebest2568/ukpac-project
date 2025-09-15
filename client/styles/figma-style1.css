@@ -919,7 +919,14 @@ body[data-dialog-open] {
   }
   /* Allow wider content area specific to Ask05 so textarea and CTA match design */
   .ask05-page .figma-style1-content {
-    max-width: min(100%, 1080px) !important;
+    max-width: min(100%, 980px) !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .app-container:has(.figma-style1-container) {
+    max-width: none !important;
+    width: 100% !important;
   }
 }
 
