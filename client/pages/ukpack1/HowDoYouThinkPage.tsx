@@ -64,7 +64,7 @@ const HowDoYouThinkPage = () => {
       >
         <div className="absolute inset-0 flex items-center justify-center">
           <img
-            src="https://api.builder.io/api/v1/image/assets/TEMP/fb97aecf4ea38e54de1b5ff07717ce3f3d3923dd?width=2160"
+            src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F6d4ecad8056e45b0b7375a0e5a009530?format=webp&width=800"
             alt="Transportation background"
             className="w-full h-full object-cover"
             style={{ aspectRatio: "9/16" }}
@@ -88,7 +88,7 @@ const HowDoYouThinkPage = () => {
             }}
           >
             จากข้อความดังกล่าว<br />
-            คุณมีความคิดเ���็นอย่างไร
+            คุณมีความคิดเห็นอย่างไร
           </h1>
         </div>
 
