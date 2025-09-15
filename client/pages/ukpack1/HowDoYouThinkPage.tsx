@@ -51,7 +51,7 @@ const HowDoYouThinkPage = () => {
   };
 
   return (
-    <div className="w-full min-h-screen relative bg-white flex flex-col" style={{ maxWidth: 1080, margin: "0 auto" }}>
+    <div className="w-full min-h-screen relative bg-white flex flex-col" style={{ maxWidth: 1080, margin: "0 auto", backgroundImage: 'url("https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F53ba6df55d54475a8cd5ad290966b955?format=webp&width=800")', backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
       {/* Content Section positioned at bottom */}
       <div
         className="flex-1 flex flex-col items-center justify-end px-4 py-8 pb-12"
