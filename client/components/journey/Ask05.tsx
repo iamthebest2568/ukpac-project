@@ -64,7 +64,7 @@ const Ask05 = ({ sessionID, onNavigate }: Ask05Props) => {
       {/* page-specific override: align content area to top for this page */}
       <style>{`.ask05-page .figma-style1-content-area { justify-content: flex-start !important; padding-top: 12px; } .ask05-page .figma-style1-background { background-position: center top !important; }`}</style>
       {/* Content matching the new pages' structure */}
-      <div className="flex flex-col items-center justify-between h-full w-full px-4 py-8" style={{minHeight: 'calc(100vh - 160px)', width: '100vw', maxWidth: '100vw', marginLeft: 'calc(50% - 50vw)'}}>
+      <div className="flex flex-col items-center justify-between h-full w-full max-w-[1080px] mx-auto px-4 py-8" style={{minHeight: 'calc(100vh - 160px)'}}>
         {/* Title */}
         <div className="text-center mb-4 mt-2 w-full">
           <h1
@@ -76,7 +76,7 @@ const Ask05 = ({ sessionID, onNavigate }: Ask05Props) => {
               lineHeight: "normal",
             }}
           >
-            คุณคิดว่ารัฐควรทำอะไรที่จะทำให้นโยบายนี้เกิดขึ้นได้และเป็นประโยชน์ต่อประชาชนอย่างแท้จริง
+            คุณคิดว่ารัฐควรทำอะไรที่จะทำให้นโยบายนี้เกิดขึ้นได้และเป็���ประโยชน์ต่อประชาชนอย่างแท้จริง
           </h1>
         </div>
 
@@ -93,7 +93,7 @@ const Ask05 = ({ sessionID, onNavigate }: Ask05Props) => {
               <textarea
                 value={suggestion}
                 onChange={(e) => setSuggestion(e.target.value)}
-                placeholder="พิมพ์ข้อความของค���ณที่นี่..."
+                placeholder="พิมพ์ข้อความของคุณที่นี่..."
                 className="w-full h-full resize-none border-none outline-none font-prompt bg-transparent"
                 style={{
                   fontSize: "clamp(16px, 3.7vw, 40px)",
