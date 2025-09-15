@@ -1,6 +1,6 @@
 /**
  * UK PACK - MN3 Step 2: Budget Allocation
- * Redesigned to match Figma layout exactly
+ * Updated to match Figma design exactly
  */
 
 import { useState, useEffect } from "react";
@@ -23,23 +23,29 @@ const Step2_Allocation = ({
   onBack,
   journeyData,
 }: Step2_AllocationProps) => {
-  const [budgetAllocation, setBudgetAllocation] = useState<BudgetAllocation>(
-    {},
-  );
+  const [budgetAllocation, setBudgetAllocation] = useState<BudgetAllocation>({});
   const [selectedPriorities, setSelectedPriorities] = useState<string[]>([]);
 
   const totalBudget = 100;
 
   useEffect(() => {
     // Get the selected priorities from Step1_Choice
-    const priorities =
-      journeyData?.budget_step1_choice?.selectedPriorities || [];
+    const priorities = journeyData?.budget_step1_choice?.selectedPriorities || [];
     setSelectedPriorities(priorities);
 
-    // Initialize budget allocation with 0 for each selected priority
+    // Initialize budget allocation with equal distribution
     const initialAllocation: BudgetAllocation = {};
-    priorities.forEach((priority: string) => {
-      initialAllocation[priority] = 0;
+    const equalAmount = Math.floor(totalBudget / priorities.length);
+    let remaining = totalBudget;
+    
+    priorities.forEach((priority: string, index: number) => {
+      if (index === priorities.length - 1) {
+        // Give remaining to last item to ensure total = 100
+        initialAllocation[priority] = remaining;
+      } else {
+        initialAllocation[priority] = equalAmount;
+        remaining -= equalAmount;
+      }
     });
     setBudgetAllocation(initialAllocation);
   }, [journeyData]);
@@ -84,6 +90,7 @@ const Step2_Allocation = ({
         selectedPriorities,
       },
     };
+    
     try {
       const body = {
         sessionId: sessionID || sessionStorage.getItem("ukPackSessionID") || "",
@@ -100,115 +107,100 @@ const Step2_Allocation = ({
           body: JSON.stringify(body),
         });
     } catch {}
+    
     onNext(data);
   };
 
   const isComplete = allocatedBudget === totalBudget;
 
   return (
-    <div className="responsive-container minigame-layout">
-      {/* Background Image */}
-      <div className="bg-responsive" style={{
-        backgroundImage: 'url(https://api.builder.io/api/v1/image/assets/TEMP/800ce747c7dddce8b9f8a83f983aeec3551ce472?width=956)'
-      }}></div>
+    <div className="w-full min-h-screen mn3-page-bg flex flex-col items-center justify-start relative">
+      <div className="mn3-allocation-content">
+        {/* Title Section */}
+        <div className="text-center w-full max-w-none px-4 mb-6">
+          <h1
+            className="font-prompt text-center leading-normal"
+            style={{
+              color: '#000D59',
+              fontSize: 'clamp(28px, 5.5vw, 60px)',
+              lineHeight: '1.2',
+              fontWeight: 700,
+              width: '100%',
+              margin: '0 auto'
+            }}
+          >
+            คุณจะให้งบประมาณแต่ละข้อเท่าไหร่
+          </h1>
+        </div>
 
-      {/* Overlay */}
-      <div className="bg-overlay bg-overlay--dark"></div>
-
-      {/* Content */}
-      <div className="relative z-10 flex flex-col min-h-screen">
-        {/* Main Content */}
-        <div className="content-area responsive-padding-lg">
-          {/* Title */}
-          <div className="text-center responsive-padding-md">
-            <h1 className="heading-md heading-md-white responsive-spacing-md">
-              คุณจะให้งบประมาณ
-              <br />
-              แต่ละข้อเท่าไหร่
-            </h1>
-          </div>
-
-          {/* Budget Display Box */}
-          <div className="responsive-padding-md">
-            <div className="budget-display" style={{
-              backgroundColor: 'transparent',
-              borderColor: '#EFBA31',
-              color: '#EFBA31'
-            }}>
-              <div className="flex items-center justify-between gap-4">
-                <div className="flex items-center responsive-spacing-sm">
-                  <img
-                    src="https://api.builder.io/api/v1/image/assets/TEMP/d272a5766f6a17caa21ba5ce7f22eb07040ff3db?width=94"
-                    alt="Budget Icon"
-                    className="w-[clamp(36px, 8vw, 55px)] h-[clamp(42px, 9vw, 65px)]"
-                  />
-                  <div className="text-body font-medium" style={{ color: '#EFBA31' }}>
-                    งบทั้งหมด
-                  </div>
-                </div>
-                <div className="heading-lg font-bold" style={{ color: '#EFBA31' }}>
-                  100
-                </div>
-              </div>
+        {/* Budget Display Box */}
+        <div className="w-full px-4 mb-8">
+          <div className="mn3-budget-display">
+            <img 
+              src="https://api.builder.io/api/v1/image/assets/TEMP/1d47ef39c86b6e96b386f3aefd8abc162945bed3?width=270" 
+              alt="Budget coins icon"
+              className="mn3-budget-icon"
+            />
+            <div className="mn3-budget-text">
+              <div className="mn3-budget-label">งบทั้งหมด</div>
+              <div className="mn3-budget-amount">100</div>
             </div>
           </div>
+        </div>
 
-          {/* Budget Allocation Items */}
-          <div className="responsive-padding-md responsive-spacing-lg" style={{maxWidth: 890, margin: '0 auto'}}>
+        {/* Budget Allocation Items */}
+        <div className="w-full px-4 mb-6">
+          <div className="mn3-allocation-list">
             {selectedPriorities.map((priority, index) => (
-              <div
-                key={priority}
-                className="flex items-center justify-between gap-4 responsive-spacing-md w-full"
-              >
-                {/* Priority Label */}
-                <div className="text-body text-body-white font-medium flex-1">
+              <div key={priority} className="mn3-allocation-item">
+                <div className="mn3-allocation-label">
                   {priority}
                 </div>
-
-                {/* Budget Input */}
-                <div className="flex-shrink-0">
+                <div className="mn3-allocation-input-container">
                   <input
                     type="number"
                     min="0"
                     max={totalBudget}
                     value={budgetAllocation[priority] || 0}
-                    onChange={(e) =>
-                      handleBudgetChange(priority, e.target.value)
-                    }
-                    className="input-field text-center"
-                    style={{
-                      width: 'clamp(60px, 15vw, 80px)',
-                      height: 'clamp(44px, 10vw, 60px)',
-                      fontSize: 'clamp(14px, 4vw, 18px)',
-                      maxWidth: '80px'
-                    }}
-                    placeholder="0"
+                    onChange={(e) => handleBudgetChange(priority, e.target.value)}
+                    className="mn3-allocation-input"
                   />
                 </div>
               </div>
             ))}
           </div>
+        </div>
 
-          {/* Continue Button - Fixed Footer */}
-          <div className="fixed-footer">
-            <div className="btn-container">
-              <button
-                onClick={handleNext}
-                disabled={!isComplete}
-                className="btn-primary"
+        {/* Continue Button */}
+        <div className="w-full px-4 mt-4 flex justify-center">
+          <div className="mx-auto flex flex-col items-center space-y-2" style={{ width: '100%', maxWidth: 980 }}>
+            <button
+              onClick={handleNext}
+              disabled={!isComplete}
+              className="mn3-continue-button"
+              style={{
+                backgroundColor: !isComplete ? '#ccc' : '#FFE000',
+                color: !isComplete ? '#666' : '#000',
+                opacity: !isComplete ? 0.6 : 1
+              }}
+              aria-label="ดำเนินการต่อไปยังขั้นตอนถัดไป"
+            >
+              ไปต่อ
+            </button>
+            {!isComplete && (
+              <div 
+                className="text-center font-prompt"
                 style={{
-                  backgroundColor: !isComplete ? '#ccc' : '#EFBA31',
-                  color: !isComplete ? '#666' : '#000'
+                  color: '#000D59',
+                  fontSize: 'clamp(14px, 3vw, 18px)',
+                  fontWeight: 500,
+                  maxWidth: '400px',
+                  padding: '8px'
                 }}
               >
-                ไปต่อ
-              </button>
-              {!isComplete && (
-                <div className="text-body text-body-white text-center responsive-spacing-xs">
-                  กรุณาจัดสรรงบประมาณให้ครบ {totalBudget} หน่วยเพื่อดำเนินการต่อ
-                </div>
-              )}
-            </div>
+                กรุณาจัดสรรงบประมาณให้ครบ {totalBudget} หน่วยเพื่อดำเนินการต่อ
+              </div>
+            )}
           </div>
         </div>
       </div>
