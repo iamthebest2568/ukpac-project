@@ -1,5 +1,6 @@
 @import "./styles/figma-style1.css";
 @import "./styles/responsive-utils.css";
+@import "./styles/mn3-buttons.css";
 
 @tailwind base;
 @tailwind components;
