@@ -10,7 +10,8 @@ export default function WhatDoYouTravelByPage() {
   const handleContinue = () => {
     // Log explicit travel method
     logEvent({ event: "TRAVEL_METHOD", payload: { method: textInput, sessionID } });
-    navigateToPage("ask05", {
+    // Navigate to the opinion page after user submits travel method
+    navigateToPage("/how-do-you-think", {
       from: "what_do_you_travel_by",
       sessionID,
       travelMethod: textInput,
