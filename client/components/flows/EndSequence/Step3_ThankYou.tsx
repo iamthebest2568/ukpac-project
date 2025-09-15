@@ -65,7 +65,7 @@ const Step3_ThankYou = ({ sessionID, onNext, onBack, journeyData }: Step3_ThankY
 
   return (
     <FigmaStyle1Layout
-      backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F72c08d8e97114844b8bcc40584d9d5e8?format=webp&width=800"
+      backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F32a0df59d0b0488b9150246ae780d9e0?format=webp&width=800"
       backgroundAlt="ขอบคุณสำหรับการมีส่วนร่วม"
       className="source-selection-page endseq-thankyou-page"
       imageLoading="eager"
