@@ -165,7 +165,7 @@ const Step3_Result = ({
             }}
           >
             จากงบประมาณของคุณ<br />
-            นี้คือสิ่งที่��ะเกิดขึ้นในอนาคต
+            นี้คือสิ่งที่จะเกิดขึ้นในอนาคต
           </h1>
         </div>
 
@@ -194,17 +194,16 @@ const Step3_Result = ({
             คุณพอใจหรือไม่
           </h2>
         </div>
-      </div>
+        {/* Response Buttons - use design-system button classes for consistent appearance */}
+        <div className="figma-style1-button-container">
+          <button onClick={handleYes} className="figma-style1-button" aria-label="ตอบใช่ - พอใจกับผลลัพธ์">
+            <span className="figma-style1-button-text">ใช่</span>
+          </button>
 
-      {/* Buttons anchored to bottom using design-system container */}
-      <div className="figma-style1-button-container">
-        <button onClick={handleYes} className="figma-style1-button" aria-label="ตอบใช่ - พอใจกับผลลัพธ์">
-          <span className="figma-style1-button-text">ใช่</span>
-        </button>
-
-        <button onClick={handleNo} className="figma-style1-button" aria-label="ตอบไม่ใช่ - ไม่พอใจกับผลลัพธ์">
-          <span className="figma-style1-button-text">ไม่ใช่</span>
-        </button>
+          <button onClick={handleNo} className="figma-style1-button" aria-label="ตอบไม่ใช่ - ไม่พอใจกับผลลัพธ์">
+            <span className="figma-style1-button-text">ไม่ใช่</span>
+          </button>
+        </div>
       </div>
     </div>
   );
