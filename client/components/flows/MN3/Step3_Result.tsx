@@ -25,6 +25,7 @@ interface ResultSummary {
 const Step3_Result = ({ sessionID, onNext, onBack, journeyData }: Step3_ResultProps) => {
   const navigate = useNavigate();
   const [resultSummary, setResultSummary] = useState<ResultSummary[]>([]);
+  const [selected, setSelected] = useState<'yes' | 'no' | null>(null);
 
   const priorityIcons: { [key: string]: string } = {
     ลดค่าโดยสารรถไฟฟ้า: "🚇",
@@ -52,7 +53,19 @@ const Step3_Result = ({ sessionID, onNext, onBack, journeyData }: Step3_ResultPr
     setResultSummary(summary);
   }, [journeyData]);
 
+  const proceedAfterSelect = (route: string, data: any) => {
+    // keep a short delay so user sees selected state change before navigation
+    setTimeout(() => {
+      try {
+        onNext(data);
+      } catch (e) {}
+      navigate(route);
+    }, 140);
+  };
+
   const handleYes = () => {
+    setSelected('yes');
+
     logEvent({
       event: "MINIGAME_MN3_COMPLETE",
       payload: {
@@ -89,12 +102,12 @@ const Step3_Result = ({ sessionID, onNext, onBack, journeyData }: Step3_ResultPr
         });
     } catch {}
 
-    onNext(data);
-    // Navigate to fake-news after recording result
-    navigate('/ukpack1/fake-news');
-    };
+    proceedAfterSelect('/ukpack1/fake-news', data);
+  };
 
-    const handleNo = () => {
+  const handleNo = () => {
+    setSelected('no');
+
     logEvent({
       event: "MINIGAME_MN3_COMPLETE",
       payload: {
@@ -131,24 +144,18 @@ const Step3_Result = ({ sessionID, onNext, onBack, journeyData }: Step3_ResultPr
         });
     } catch {}
 
-    onNext(data);
-    // Navigate to ask05 after recording result
-    navigate('/ukpack1/ask05');
-    };
+    proceedAfterSelect('/ukpack1/ask05', data);
+  };
 
-    const backgroundImage = "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F733fd61d7f8e4a3ebfc2f76078fff7ee?format=webp&width=1500";
+  const backgroundImage = "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F733fd61d7f8e4a3ebfc2f76078fff7ee?format=webp&width=1500";
 
   return (
     <FigmaStyle1Layout
       backgroundImage={backgroundImage}
-      buttons={[
-        { text: "ใช่", onClick: handleYes, ariaLabel: "ตอบใช่ - พอใจกับผลลัพธ์" },
-        { text: "ไม่ใช่", onClick: handleNo, ariaLabel: "ตอบไม่ใช่ - ไม่พอใจกับผลลัพธ์" },
-      ]}
+      buttons={[]}
       className="mn3-result-page"
       useBlueOverlay={false}
     >
-      {/* Title (use layout's title container for consistent styling) */}
       <div className="figma-style1-title-container">
         <h1 className="figma-style1-title" style={{ color: '#000D59' }}>
           จากงบประมาณของคุณ<br />
@@ -156,7 +163,6 @@ const Step3_Result = ({ sessionID, onNext, onBack, journeyData }: Step3_ResultPr
         </h1>
       </div>
 
-      {/* Illustration */}
       <div className="w-full px-4 mb-6 flex justify-center">
         <img
           src="https://api.builder.io/api/v1/image/assets/TEMP/40ffac7fde4a30bb13050c151fbeed8c7c4fae41?width=1500"
@@ -165,18 +171,26 @@ const Step3_Result = ({ sessionID, onNext, onBack, journeyData }: Step3_ResultPr
         />
       </div>
 
-      {/* Question subtitle */}
       <div className="text-center w-full max-w-none px-4 mb-6">
         <h2 className="figma-style1-subtitle" style={{ color: '#000D59' }}>คุณพอใจหรือไม่</h2>
       </div>
 
-      {/* Buttons included in children so they show when custom children are used */}
       <div className="figma-style1-button-container">
-        <button onClick={handleYes} className="figma-style1-button" aria-label="ตอบใช่ - พอใจกับผลลัพธ์">
+        <button
+          onClick={handleYes}
+          className={`figma-style1-button ${selected === 'yes' ? 'figma-style1-button--selected' : ''}`}
+          aria-label="ตอบใช่ - พอใจกับผลลัพธ์"
+          aria-pressed={selected === 'yes'}
+        >
           <span className="figma-style1-button-text">ใช่</span>
         </button>
 
-        <button onClick={handleNo} className="figma-style1-button" aria-label="ตอบไม่ใช่ - ไม่พอใจกับผลลัพธ์">
+        <button
+          onClick={handleNo}
+          className={`figma-style1-button ${selected === 'no' ? 'figma-style1-button--selected' : ''}`}
+          aria-label="ตอบไม่ใช่ - ไม่พอใจกับผลลัพธ์"
+          aria-pressed={selected === 'no'}
+        >
           <span className="figma-style1-button-text">ไม่ใช่</span>
         </button>
       </div>

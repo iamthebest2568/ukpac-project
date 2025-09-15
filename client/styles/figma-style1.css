@@ -578,6 +578,28 @@
 /* Keep per-page max-width and sizing intact (these rules only change visuals) */
 /* End unified button appearance */
 
+/* Selected state for unified figma-style1 buttons: persistent visual when a button is chosen */
+.app-container .figma-style1-button.figma-style1-button--selected,
+.app-container .figma-style1-button--selected {
+  background-color: #000 !important;
+  color: #fff !important;
+  transform: scale(1.03) !important;
+}
+
+.app-container .figma-style1-button.figma-style1-button--selected .figma-style1-button-text,
+.app-container .figma-style1-button--selected .figma-style1-button-text {
+  color: #fff !important;
+}
+
+/* Keep focus visible for accessibility when toggled */
+.app-container .figma-style1-button.figma-style1-button--selected:focus,
+.app-container .figma-style1-button--selected:focus {
+  outline: 3px solid rgba(255, 255, 255, 0.12);
+  outline-offset: 2px;
+}
+
+/* End selected state styles */
+
 /* Final compatibility rules: ensure figma-style1 works within app-container */
 .app-container .figma-style1-container {
   flex: none !important; /* Don't let app-container flex affect us */
