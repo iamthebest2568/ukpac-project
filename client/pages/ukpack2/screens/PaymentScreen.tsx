@@ -123,6 +123,7 @@ const IconQr = () => (
 );
 
 const MONEY_ICON = 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fbc8b22cedfbb4640a702f724881f196d?format=webp&width=800';
+const SCAN_ICON = 'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb8992da4be824b339d3df5f0a076ed93?format=webp&width=800';
 
 const OPTIONS = [
   { key: "cash", label: "เงินสด", icon: <IconCash /> },
