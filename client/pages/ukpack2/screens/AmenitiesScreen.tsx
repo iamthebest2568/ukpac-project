@@ -99,7 +99,7 @@ const AMENITIES = [
   { key: "fan", label: "พัดลม", icon: <IconFan /> },
   { key: "seat", label: "ที่นั่งพิเศษ", icon: <IconSeat /> },
   { key: "wifi", label: "ที่จับ/ราวยืนที่ปลอดภัย", icon: <IconWifi /> },
-  { key: "plug", label: "ช่องชาร์จมือถือ/USB", icon: <IconPlug /> },
+  { key: "plug", label: "ช่องชาร์จ��ือถือ/USB", icon: <IconPlug /> },
   { key: "tv", label: "Wi‑Fi ฟรี", icon: <IconTv /> },
   { key: "cup", label: "ระบบประกาศบอกป้าย(เสียง/จอ)", icon: <IconCup /> },
   { key: "cam", label: "กล้องวงจรปิด", icon: <IconCam /> },
@@ -130,7 +130,7 @@ const AmenitiesScreen: React.FC = () => {
   const CHASSIS_LABELS: Record<string, string> = {
     small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
     medium: "รถเมล์ขนาดกลาง 31–40 ที่นั่ง",
-    large: "รถเมล์ขนาดใหญ่ 41–50 ที่นั่ง",
+    large: "รถเมล์ขน���ดใหญ่ 41–50 ที่นั่ง",
     extra: "รถเมล์รุ่นพิเศษ 51+ ที่นั่ง",
   };
   const HERO_IMAGE: Record<string, string> = {
@@ -169,13 +169,32 @@ const AmenitiesScreen: React.FC = () => {
         <div className="w-full rounded-md flex flex-col items-center justify-center gap-2">
           {selectedBusImage ? (
             <HeroWithShadow>
-              <img
-                src={selectedBusImage}
-                alt={`ภาพรถ - ${selectedLabel}`}
-                className="h-48 w-auto object-contain select-none"
-                decoding="async"
-                loading="eager"
-              />
+              <div className="relative">
+                {/* Overlay selected amenity icons on top of the bus image */}
+                {selected.length > 0 && (
+                  <div className="absolute left-1/2 transform -translate-x-1/2 -top-4 flex flex-wrap justify-center gap-2 z-20">
+                    {selected.map((label) => {
+                      const amen = AMENITIES.find((a) => a.label === label);
+                      return (
+                        <div
+                          key={label}
+                          className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-10 w-10 flex items-center justify-center"
+                        >
+                          {amen?.icon}
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+
+                <img
+                  src={selectedBusImage}
+                  alt={`ภาพรถ - ${selectedLabel}`}
+                  className="h-48 w-auto object-contain select-none"
+                  decoding="async"
+                  loading="eager"
+                />
+              </div>
             </HeroWithShadow>
           ) : (
             <div className="w-full h-48 bg-[#081042] rounded-md flex items-center justify-center text-sm text-gray-300">
