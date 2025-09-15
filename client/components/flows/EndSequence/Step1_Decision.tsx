@@ -54,7 +54,7 @@ const Step1_Decision = ({ sessionID, onNext, onBack, initialData }: Step1_Decisi
   };
 
   const onParticipate = () => {
-    trackDecision("participate", "ลุ้นรั���รางวัล");
+    trackDecision("participate", "ลุ้นรับรางวัล");
     handleChoice("participate");
   };
 
@@ -65,7 +65,7 @@ const Step1_Decision = ({ sessionID, onNext, onBack, initialData }: Step1_Decisi
 
   return (
     <FigmaStyle1Layout
-      backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Feb2f14480a1349a6bc6b76594e26c7b5?format=webp&width=2160"
+      backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F72c08d8e97114844b8bcc40584d9d5e8?format=webp&width=800"
       backgroundAlt="รางวัลสำหรับคุณ"
       className="source-selection-page end-sequence-page"
       imageLoading="eager"
