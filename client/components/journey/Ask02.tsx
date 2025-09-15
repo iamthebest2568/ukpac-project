@@ -45,7 +45,7 @@ const Ask02 = ({ sessionID, onNavigate }: Ask02Props) => {
     {
       text: "เก็บไปก็ไม่มีอะไรเกิดขึ้น",
       onClick: () => handleChoice("ineffective"),
-      ariaLabel: "เห็นว่าการเก็บเงินอาจไม่ส่งผลต่อการแก้ปัญหา",
+      ariaLabel: "เห็นว่าการเก็บเงินอาจไม่ส่งผลต่��การแก้ปัญหา",
     },
     {
       text: "อื่นๆ",
@@ -61,6 +61,7 @@ const Ask02 = ({ sessionID, onNavigate }: Ask02Props) => {
       title={`ทำไมคุณถึงรู้สึกแบบนั้น?
 ช่วยเล่าให้เราฟังหน่อยว่าเหตุผลของคุณคืออะไร`}
       buttons={buttons}
+      className="ask02-page"
     />
   );
 };
