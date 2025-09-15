@@ -46,7 +46,7 @@ const ShareModal: React.FC<Props> = ({ isOpen, onClose, shareUrl, shareText }) =
 
           <button
             onClick={handleLine}
-            className="w-full inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md bg-[#00c300] text-white font-semibold"
+            className="w-full inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md bg-[#ffe000] text-black font-semibold hover:bg-[#000d59] hover:text-white transition-colors"
             aria-label="Share to LINE"
           >
             แชร์ไปยัง LINE
