@@ -309,6 +309,17 @@
     }
   }
 
+  /* Full-bleed route override */
+  .full-bleed-page .app-container {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
   /* Theme Enforcement */
   .theme-white {
     background-color: #000000;
