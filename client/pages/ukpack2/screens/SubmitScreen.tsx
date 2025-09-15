@@ -103,12 +103,12 @@ const SubmitScreen: React.FC = () => {
           ) : null}
 
           <h2 className="text-lg font-prompt font-semibold text-[#003366] mt-2">
-            การบริการของรถเมล์
+            การบร��การของรถเมล์
           </h2>
 
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <label className="w-36 text-sm text-[#003366]">รถจะมา���ุกๆ</label>
+              <label className="w-36 text-sm text-[#003366]">รถจะมาทุกๆ</label>
               <input
                 type="text"
                 value={interval}
@@ -146,7 +146,7 @@ const SubmitScreen: React.FC = () => {
       <ConfirmModal
         isOpen={isExitModalOpen}
         title="ออกจากหน้าจอ"
-        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูก���ันทึก"
+        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
         onConfirm={() => navigate("/")}
         onCancel={() => setExitModalOpen(false)}
       />
