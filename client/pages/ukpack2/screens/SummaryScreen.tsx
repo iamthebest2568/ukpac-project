@@ -99,8 +99,8 @@ const SummaryScreen: React.FC = () => {
       <footer className="mt-6 w-full relative z-10">
         <div className="w-full bg-[#00d5f9] drop-shadow-lg rounded-t-3xl">
           <div className="max-w-4xl mx-auto px-4">
-            <div className="rounded-t-3xl p-6 flex items-center justify-center gap-4">
-              <div className="flex-1 min-w-0">
+            <div className="rounded-t-3xl p-6 flex flex-col items-center justify-center gap-4 max-w-sm mx-auto">
+              <div className="w-full">
                 <SecondaryButton
                   text="กลับไปแก้ไข"
                   onClick={() => navigate("/ukpack2/design")}
@@ -108,7 +108,7 @@ const SummaryScreen: React.FC = () => {
                 />
               </div>
 
-              <div className="flex-1 min-w-0">
+              <div className="w-full">
                 <CtaButton
                   text="ออกแบบเสร็จแล้ว"
                   onClick={() => navigate("/ukpack2/info")}
