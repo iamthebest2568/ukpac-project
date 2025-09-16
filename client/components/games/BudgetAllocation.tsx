@@ -131,7 +131,7 @@ const BudgetAllocationComponent = ({ sessionID, onNavigate, layoutMode = false }
           <div
             className="rounded-[20px] bg-[#FFE000] p-8 flex items-center"
             style={{
-              height: "clamp(200px, 25vw, 280px)",
+              height: cardHeight,
             }}
           >
             {/* Coin Icon */}
