@@ -670,7 +670,7 @@
 /* Desktop: shallower curve but taller container for balance */
 @media (min-width: 1024px) {
   .footer-container {
-    --footer-height: 680px;
+    --footer-height: 100vh; /* fill viewport on desktop */
     --footer-clip-h-num: 0.5;
     align-items: flex-start; /* position content near top, content padding handles spacing */
   }
