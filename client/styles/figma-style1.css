@@ -177,6 +177,53 @@
   justify-items: center;
 }
 
+/* Ensure background image covers the viewport fully (max-width on mobile) */
+.figma-style1-background-image {
+  width: 100vw !important;
+  height: 100vh !important;
+  object-fit: cover !important;
+  object-position: top center !important;
+}
+
+/* Mobile: pin content to the bottom and make buttons sit below text */
+@media (max-width: 430px) {
+  .figma-style1-main {
+    align-items: end !important; /* push content to bottom */
+    justify-items: center;
+  }
+
+  .figma-style1-content-area {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-end !important; /* place title and children near bottom */
+    align-items: stretch !important;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+    padding-bottom: 8px !important;
+    box-sizing: border-box !important;
+  }
+
+  .figma-style1-title {
+    /* Increase width and allow multi-line, keep it visible above buttons */
+    font-size: clamp(18px, 5.2vw, 22px) !important;
+    margin-bottom: 12px !important;
+  }
+
+  .figma-style1-button-container {
+    width: 100% !important;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+    padding-bottom: 18px !important;
+    margin-top: 8px !important;
+    box-sizing: border-box !important;
+  }
+
+  .figma-style1-button {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
 /* Specific tuning for fake-news page: lift content slightly so it doesn't sit under the curved overlay */
 .figma-style1-container.fake-news-page .figma-style1-main {
   align-items: center; /* move content higher so text/buttons stay visible */
