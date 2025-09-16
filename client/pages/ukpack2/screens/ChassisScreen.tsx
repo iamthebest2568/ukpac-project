@@ -269,7 +269,7 @@ const ChassisScreen: React.FC = () => {
       <ConfirmModal
         isOpen={isExitModalOpen}
         title="ออกจากหน้าจอ"
-        message="คุณแน่ใจหรือไม่ว่าต้อง��ารออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
+        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
         onConfirm={confirmExit}
         onCancel={() => setExitModalOpen(false)}
       />
