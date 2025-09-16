@@ -48,6 +48,17 @@ const SplashScreen: React.FC = () => {
           </div>
         </div>
       </div>
+      <div
+        data-loc="client/pages/ukpack2/screens/SplashScreen.tsx:21:7"
+        style={{
+          backgroundImage: "url('https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Faa37e416a74147ceba751c6d9f3c7353?format=webp&width=1600')",
+          backgroundPosition: '50% 50%',
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: 'cover',
+          fontWeight: '400',
+          width: '100%',
+        }}
+      />
       <PrivacyModal
         isOpen={showPrivacy}
         onClose={() => setShowPrivacy(false)}
