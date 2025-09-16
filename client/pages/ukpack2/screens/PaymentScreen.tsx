@@ -255,7 +255,14 @@ const PaymentScreen: React.FC = () => {
       const raw = sessionStorage.getItem("design.payment");
       if (raw) {
         const arr = JSON.parse(raw);
-        if (Array.isArray(arr)) setSelected(arr);
+        if (Array.isArray(arr)) {
+          // Normalize items: accept either keys (cash/scan/...) or labels (เงินสด/...)
+          const normalized = arr.map((item: string) => {
+            const found = OPTIONS.find((o) => o.key === item || o.label === item);
+            return found ? found.label : item;
+          });
+          setSelected(normalized);
+        }
       }
     } catch {}
   }, []);
