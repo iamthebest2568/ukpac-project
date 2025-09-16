@@ -638,8 +638,8 @@
   z-index: 2; /* above the decorative overlay */
   padding: 20px;
   text-align: center;
-  /* ensure content sits below the curved top: push content down by a fraction of clip height */
-  padding-top: calc(var(--footer-clip-px) * 0.6);
+  /* place content below the curved top: push content down past the clip height */
+  padding-top: calc(var(--footer-clip-px) + 24px);
   box-sizing: border-box;
 }
 
