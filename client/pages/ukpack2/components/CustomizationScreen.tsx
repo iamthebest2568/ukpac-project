@@ -32,7 +32,7 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
                 {headerContent}
               </div>
             ) : (
-              <h1 className="text-2xl font-prompt font-semibold">{title}</h1>
+              <h1 className="text-2xl font-prompt font-semibold customization-title">{title}</h1>
             )}
           </div>
         </header>
