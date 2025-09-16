@@ -37,6 +37,7 @@ const SplashScreen: React.FC = () => {
             <CtaButton
               text="เริ่มออกแบบ"
               onClick={() => navigate("/ukpack2/chassis")}
+              className="cta-button"
             />
           </div>
           <div className="mt-6 text-sm text-[#07204a]">
