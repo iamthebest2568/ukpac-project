@@ -6,18 +6,18 @@ import CtaButton from "../components/CtaButton";
 
 const IconAir = () => (
   <img
-    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fa5664fc8bb6b4f07aea5a9d95839a7a0?format=webp&width=800"
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F1af05f2540e4401ea9f82f3082f1262d?format=webp&width=800"
     alt="แอร์"
-    className="h-16 w-16 object-contain select-none"
+    className="h-20 w-20 object-contain select-none"
     decoding="async"
     loading="eager"
   />
 );
 const IconFan = () => (
   <img
-    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F58688a08ef9646fbbc3fcd00962bc5ef?format=webp&width=800"
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F73e1aae278224ef5861c3f19966cd63b?format=webp&width=800"
     alt="พัดลม"
-    className="h-16 w-16 object-contain select-none"
+    className="h-20 w-20 object-contain select-none"
     decoding="async"
     loading="eager"
   />
@@ -26,43 +26,43 @@ const IconSeat = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F93439b2533284cdf914fc93cafa1cf26?format=webp&width=800"
     alt="หน้าต่างเปิดได้"
-    className="h-16 w-16 object-contain select-none"
+    className="h-20 w-20 object-contain select-none"
     decoding="async"
     loading="eager"
   />
 );
 const IconWifi = () => (
   <img
-    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb0789bfd1100472f8351704764607d31?format=webp&width=800"
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F3a949d75d90840669601df07a65af479?format=webp&width=800"
     alt="ที่จับ/ราวยืน"
-    className="h-16 w-16 object-contain select-none"
+    className="h-20 w-20 object-contain select-none"
     decoding="async"
     loading="eager"
   />
 );
 const IconPlug = () => (
   <img
-    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F09a78e31a3de44e98772b0eef382af6f?format=webp&width=800"
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F69ce70e36cc043d2b124a20e34d33b06?format=webp&width=800"
     alt="ช่องชาร์จมือถือ/USB"
-    className="h-16 w-16 object-contain select-none"
+    className="h-20 w-20 object-contain select-none"
     decoding="async"
     loading="eager"
   />
 );
 const IconTv = () => (
   <img
-    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fcb0cbf9ef6764e2d9e6f06e87827f5e9?format=webp&width=800"
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F6e87ff91650a4c828cd5286cfaa34bb7?format=webp&width=800"
     alt="Wi‑Fi ฟรี"
-    className="h-16 w-16 object-contain select-none"
+    className="h-20 w-20 object-contain select-none"
     decoding="async"
     loading="eager"
   />
 );
 const IconCup = () => (
   <img
-    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe903bdf27bab4175824c159bc19a02ba?format=webp&width=800"
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F303a12b36a7b4bfb99c7707bbe96b8a6?format=webp&width=800"
     alt="ระบบประกาศบอกป้าย(เสียง/จอ)"
-    className="h-16 w-16 object-contain select-none"
+    className="h-20 w-20 object-contain select-none"
     decoding="async"
     loading="eager"
   />
@@ -75,7 +75,7 @@ const AMENITIES = [
   { key: "wifi", label: "ที่จับ/ราวยืนที่ปลอดภัย", icon: <IconWifi /> },
   { key: "plug", label: "ช่องชาร์จมือถือ/USB", icon: <IconPlug /> },
   { key: "tv", label: "Wi��Fi ฟรี", icon: <IconTv /> },
-  { key: "cup", label: "ระบบประกาศบอกป้าย(เสียง/จอ)", icon: <IconCup /> },
+  { key: "cup", label: "ระบบประกาศบอกป้าย(เส���ยง/จอ)", icon: <IconCup /> },
 ];
 
 import { useNavigate } from "react-router-dom";
@@ -113,7 +113,7 @@ const AmenitiesScreen: React.FC = () => {
   const CHASSIS_LABELS: Record<string, string> = {
     small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
     medium: "รถเมล์ขนาดกลาง 31–40 ที่นั่ง",
-    large: "รถเมล์ขนาดใหญ่ 41–50 ที่นั่ง",
+    large: "รถเมล์ขนาดใ���ญ่ 41–50 ที่นั่ง",
     extra: "รถกระบะดัดแปลง 8-12 ที่นั่ง",
   };
   const HERO_IMAGE: Record<string, string> = {
@@ -140,7 +140,7 @@ const AmenitiesScreen: React.FC = () => {
 
   const OVERLAY_ICON_SRC: Record<string, string> = {
     // labels
-    แอร์: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F02548238f8184e808929075a27733533?format=webp&width=800",
+    แอร��: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F02548238f8184e808929075a27733533?format=webp&width=800",
     พัดลม:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fdcae7affa4fe43e38aa5c78ca608e39e?format=webp&width=800",
     ที่นั่งพิเศษ:
@@ -225,7 +225,7 @@ const AmenitiesScreen: React.FC = () => {
             </HeroWithShadow>
           ) : (
             <div className="w-full h-48 bg-[#081042] rounded-md flex items-center justify-center text-sm text-gray-300">
-              Bus image preview (ภาพสำหรับรุ่นนี้จะถูกเพิ่มภายหลัง)
+              Bus image preview (ภาพสำหรับรุ่นนี��จะถูกเพิ่มภายหลัง)
             </div>
           )}
           <p className="mt-1 font-prompt font-semibold text-[#001a73] text-center">
