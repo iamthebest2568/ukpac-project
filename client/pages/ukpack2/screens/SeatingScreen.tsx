@@ -263,9 +263,10 @@ const SeatingScreen: React.FC = () => {
                 Top-down seat map preview (ภาพสำหรับรุ่���นี้จะถูกเพิ่มภายหลัง)
               </div>
             )}
-            <p className="mt-1 font-prompt font-semibold text-[#001a73] text-center">
-              รถที่ใช้งาน : {selectedLabel}
-            </p>
+            <div className="mt-1 text-center">
+              <p className="font-prompt font-semibold text-[#001a73]">รถที่เลือก :</p>
+              <p className="font-prompt font-semibold text-[#001a73]">{selectedLabel}</p>
+            </div>
           </div>
           <div className="bg-white rounded-t-3xl -mt-2 p-4">
             <StepTabs active={2} />
@@ -307,7 +308,7 @@ const SeatingScreen: React.FC = () => {
               </div>
 
               <div className="flex items-center justify-between">
-                <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">สตรีมีครรภ์</div>
+                <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">สตรีมีค��รภ์</div>
                 <input
                   type="number"
                   value={pregnantSeats}
