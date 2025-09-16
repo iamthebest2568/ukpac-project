@@ -222,21 +222,21 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
   "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
-  "กล้องวงจรปิด": <IconCam />,
+  "กล้��งวงจรปิด": <IconCam />,
 };
 
 const MONEY_ICON =
-  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F4c2d8cef09744f1294c2297699a57187?format=webp&width=800";
+  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F4c2d8cef09744f1294c2297699a57187?format=webp&width=1600";
 const SCAN_ICON =
-  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F5ed29e04d63c4746a45ed47b213871fa?format=webp&width=800";
+  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F5ed29e04d63c4746a45ed47b213871fa?format=webp&width=1600";
 const SCAN2_ICON =
-  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F56620e798eb94153b2390271f30d0dae?format=webp&width=800";
+  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F56620e798eb94153b2390271f30d0dae?format=webp&width=1600";
 const TOUCH_ICON =
-  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fdb2e47a586b841d1af014e9196f3c411?format=webp&width=800";
+  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fdb2e47a586b841d1af014e9196f3c411?format=webp&width=1600";
 const MONTHLY_ICON =
-  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fca6467eff0c74a77a8e5757f25a24e41?format=webp&width=800";
+  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fca6467eff0c74a77a8e5757f25a24e41?format=webp&width=1600";
 const BUS_EMPLOY_ICON =
-  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F41c089c5dd4b448993c4e02c02cdf7ac?format=webp&width=800";
+  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F41c089c5dd4b448993c4e02c02cdf7ac?format=webp&width=1600";
 
 const OPTIONS = [
   { key: "cash", label: "เงินสด", icon: <IconCash /> },
