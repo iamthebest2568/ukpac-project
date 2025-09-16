@@ -130,7 +130,7 @@ const Step1_Choice = ({
       {/* Main Content Container */}
       <div className="mn3-content">
         {/* Title Section - Optimized for mobile readability */}
-        <div className="text-center w-full max-w-none px-4">
+        <div className="text-center w-full max-w-none px-4" style={{ marginTop: 'clamp(32px, 8vh, 120px)' }}>
           <h1
             className="font-prompt text-center leading-normal mb-4"
             style={{
