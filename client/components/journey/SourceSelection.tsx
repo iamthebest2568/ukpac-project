@@ -1,4 +1,3 @@
-import { logEvent } from "../../services/dataLogger.js";
 import FigmaStyle1Layout from "../layouts/FigmaStyle1Layout";
 import { logEvent } from "../../services/dataLogger.js";
 
@@ -49,7 +48,7 @@ const SourceSelection = ({ sessionID, onNavigate }: SourceSelectionProps) => {
     {
       text: "ข้อมูลจากสนข.",
       onClick: () => handleSourceChoice("government_data", "ข้อมูลจากสนข."),
-      ariaLabel: "เลือกข้อมูลจากสำนักงานคณะกรรมการกำกับการขนส่งทางบก",
+      ariaLabel: "��ลือกข้อมูลจากสำนักงานคณะกรรมการกำกับการขนส่งทางบก",
     },
     {
       text: "ป้ายประกาศข้างทาง",
