@@ -37,7 +37,7 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
       </div>
 
       {footerContent ? (
-        <footer ref={footerRef} className="mt-auto w-full">
+        <footer ref={footerRef} className="mt-auto w-full relative z-auto">
           <div
             className={`${footerBgImage ? 'rounded-t-3xl p-6 drop-shadow-lg bg-no-repeat bg-top bg-cover' : 'bg-[#00d5f9] rounded-t-3xl p-6 drop-shadow-lg'}`}
             style={footerBgImage ? { backgroundImage: `url('${footerBgImage}')` } : undefined}
