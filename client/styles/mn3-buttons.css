@@ -468,8 +468,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: clamp(12px, 3vw, 20px);
+  gap: clamp(8px, 2vw, 16px);
   width: 100%;
+  flex-direction: row; /* ensure label and input sit on one line */
 }
 
 /* Priority label text */
