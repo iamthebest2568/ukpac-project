@@ -67,32 +67,6 @@ const IconCup = () => (
     loading="eager"
   />
 );
-const IconCam = () => (
-  <svg
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <rect
-      x="3"
-      y="7"
-      width="14"
-      height="10"
-      rx="2"
-      stroke="currentColor"
-      strokeWidth="2"
-    />
-    <path
-      d="M19 8l2-2v10l-2-2"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
 
 const AMENITIES = [
   { key: "air", label: "แอร์", icon: <IconAir /> },
@@ -102,7 +76,6 @@ const AMENITIES = [
   { key: "plug", label: "ช่องชาร์จมือถือ/USB", icon: <IconPlug /> },
   { key: "tv", label: "Wi‑Fi ฟรี", icon: <IconTv /> },
   { key: "cup", label: "ระบบประกาศบอกป้าย(เสียง/จอ)", icon: <IconCup /> },
-  { key: "cam", label: "กล้องวงจรปิด", icon: <IconCam /> },
 ];
 
 import { useNavigate } from "react-router-dom";
@@ -161,7 +134,7 @@ const AmenitiesScreen: React.FC = () => {
     "พัดลม": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fdcae7affa4fe43e38aa5c78ca608e39e?format=webp&width=800",
     "ที่นั่งพิเศษ": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F788c9e78d6944fc8a5088cc00aa40697?format=webp&width=800", // ใช้ไอคอนหน้าต่างเปิดได้
     "หน้าต่างเปิดได้": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F788c9e78d6944fc8a5088cc00aa40697?format=webp&width=800",
-    "ที่จับ/ราวยืนที่ปลอดภัย": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F1cae4f7306834a6eb0d86be09e05bfdd?format=webp&width=800",
+    "ที่จับ/ราวยืนที���ปลอดภัย": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F1cae4f7306834a6eb0d86be09e05bfdd?format=webp&width=800",
     "ช่องชาร์จมือถือ/USB": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fba274e72720c4a1b9695e83dbf8c1fe9?format=webp&width=800",
     "Wi‑Fi ฟรี": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F63dc13fe1fab446a9da88bfb297d9c6d?format=webp&width=800",
     "ระบบประกาศบอกป้าย(เสียง/จอ)": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F35b324f49ad84b71a92ae80b0b39f7cd?format=webp&width=800",
@@ -195,6 +168,7 @@ const AmenitiesScreen: React.FC = () => {
                   <div className="absolute left-1/2 -translate-x-1/2 -top-4 flex flex-wrap justify-center content-center gap-2 z-20 max-w-[80%]">
                     {selected
                       .slice()
+                      .filter((l) => AMENITIES.some((a) => a.label === l))
                       .sort((a, b) => a.localeCompare(b, 'th'))
                       .map((label, i) => {
                         const amen = AMENITIES.find((a) => a.label === label);
@@ -206,11 +180,7 @@ const AmenitiesScreen: React.FC = () => {
                           >
                             {src ? (
                               <img src={src} alt={label} className="h-6 w-6 md:h-7 md:w-7 object-contain" />
-                            ) : (
-                              <span className="text-[10px] md:text-xs font-medium text-[#001a73] px-1 text-center leading-none" title={label}>
-                                {label}
-                              </span>
-                            )}
+                            ) : null}
                           </div>
                         );
                       })}
