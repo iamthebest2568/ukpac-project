@@ -633,6 +633,13 @@
   text-align: center;
 }
 
+/* footer-specific overrides */
+.footer-container .privacy-button {
+  color: #fff !important;
+  border-color: rgba(255,255,255,0.2);
+  background: transparent;
+}
+
 @media (max-width: 768px) {
   .footer-container {
     height: 300px; /* slightly smaller on mobile */
