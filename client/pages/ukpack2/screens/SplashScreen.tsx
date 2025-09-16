@@ -61,6 +61,8 @@ const SplashScreen: React.FC = () => {
               onClick={() => navigate("/ukpack2/chassis")}
               className="cta-button"
             />
+          </div>
+          <div className="mt-4 text-sm">
             <button
               type="button"
               onClick={() => setShowPrivacy(true)}
