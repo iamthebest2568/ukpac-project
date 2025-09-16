@@ -182,6 +182,7 @@
 .figma-style1-background-image {
   width: 100vw !important;
   height: 100vh !important;
+  height: 100svh !important; /* prefer svh */
   object-fit: cover !important;
   object-position: top center !important;
 }
