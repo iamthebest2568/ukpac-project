@@ -689,14 +689,17 @@
   .mn3-allocation-item {
     flex-direction: row;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
     justify-content: space-between;
   }
 
   .mn3-allocation-label {
     text-align: left;
-    font-size: clamp(13px, 3.2vw, 18px);
+    font-size: clamp(13px, 3.2vw, 16px);
     flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .mn3-allocation-input-container {
@@ -706,9 +709,9 @@
   }
 
   .mn3-allocation-input {
-    width: clamp(70px, 22vw, 120px);
-    height: clamp(44px, 10vw, 64px);
-    font-size: clamp(16px, 4.5vw, 24px);
+    width: clamp(70px, 20vw, 110px);
+    height: clamp(40px, 8vw, 48px);
+    font-size: clamp(14px, 3.5vw, 18px);
     border-width: 3px;
   }
 
