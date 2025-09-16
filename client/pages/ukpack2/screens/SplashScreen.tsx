@@ -19,7 +19,7 @@ const SplashScreen: React.FC = () => {
       </div>
 
       <div
-        className="w-full"
+        className="w-full splash-bg"
         style={{
           backgroundImage: "url('https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F64639762d3b74ded9017bc2cd4357d1d?format=webp&width=1600')",
           backgroundSize: 'cover',
