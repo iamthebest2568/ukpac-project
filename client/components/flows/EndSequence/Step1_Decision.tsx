@@ -84,14 +84,19 @@ const Step1_Decision = ({
           style={{ color: "#000D59", fontWeight: 700, lineHeight: "1" }}
         >
           <span
-            style={{ display: "block", fontSize: "clamp(28px, 6.5vw, 70px)" }}
+            style={{ display: "block", fontSize: "clamp(28px, 6.5vw, 70px)", fontWeight: 700 }}
           >
             ขอบคุณ
           </span>
           <span
-            style={{ display: "block", fontSize: "clamp(24px, 5.6vw, 60px)" }}
+            style={{ display: "block", fontSize: "clamp(24px, 5.6vw, 60px)", fontWeight: 400 }}
           >
-            ที่ร่วมเป็นส่วนหนึ่งในการพัฒนาเมือง
+            ที่ร่วมเป็นส่วนหนึ่ง
+          </span>
+          <span
+            style={{ display: "block", fontSize: "clamp(24px, 5.6vw, 60px)", fontWeight: 400 }}
+          >
+            ในการพัฒนาเมือง
           </span>
         </h1>
 
@@ -99,13 +104,13 @@ const Step1_Decision = ({
           className="font-prompt mt-6"
           style={{
             color: "#000D59",
-            fontSize: "clamp(16px, 3.6vw, 36px)",
+            fontSize: "18px",
             fontWeight: 700,
           }}
         >
           คุณอยากกรอกข้อมูลเพิ่มเพื่อลุ้นรับรางวัล
           <br />
-          บัตรขนส่ง��าธารณะ 300 บาท หรือไม่
+          บัตรขนส่งสาธารณะ 300 บาท หรือไม่
         </h2>
 
         <div
@@ -115,14 +120,14 @@ const Step1_Decision = ({
           <button
             onClick={onParticipate}
             className="btn-large"
-            aria-label="เข้าร่วมโครงการและกร���กข้อมูลเพื่อรับรางวัล"
+            aria-label="เข้าร่วมโครงการและกรอกข้อมูลเพื่อรับรางวัล"
           >
             ลุ้นรับรางวัล
           </button>
           <button
             onClick={onDecline}
             className="btn-large"
-            aria-label="ไม่เข้าร่วมโครงการรับรางวัล"
+            aria-label="ไม่เข้าร่วมโ���รงการรับรางวัล"
           >
             ไม่
           </button>
