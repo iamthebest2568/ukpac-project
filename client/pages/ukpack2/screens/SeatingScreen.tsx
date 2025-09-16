@@ -82,7 +82,7 @@ const SeatingScreen: React.FC = () => {
     // Check if total seats is within range
     if (totalSeats < minCapacity) {
       setErrorTitle("จำนวนที่นั่งน้อยเกินไป");
-      setErrorMessage(`รถประเภทนี้ต้องมีที่นั่งอย่���งน้อย ${minCapacity} ที่นั่ง กรุณาเพิ่มจำนวนที่นั่ง`);
+      setErrorMessage(`รถประเภทนี้ต้องมีที่นั่งอย่างน้อย ${minCapacity} ที่นั่ง กรุณาเพิ่มจำนวนที่นั่ง`);
       setErrorModalOpen(true);
       return false;
     }
@@ -129,7 +129,7 @@ const SeatingScreen: React.FC = () => {
 
     if (v > maxCapacity) {
       setErrorTitle("จำนวนที่นั่งเกินขีดจำกัด");
-      setErrorMessage(`รถประเภทนี้สามารถมีที่นั่งได้สูงสุด ${maxCapacity} ที่นั่ง กรุณาลดจำนวนที่นั่ง`);
+      setErrorMessage(`รถประเภทนี้สามารถมีที่นั่งได้สูงสุด ${maxCapacity} ที่นั่ง กรุณาลดจำนวนที่นั��ง`);
       setErrorModalOpen(true);
     } else if (v < minCapacity && v > 0) {
       setErrorTitle("จำนวนที่นั่งน้อยเกินไป");
@@ -178,7 +178,7 @@ const SeatingScreen: React.FC = () => {
               </div>
             ) : (
               <div className="w-full h-48 bg-[#081042] rounded-md flex items-center justify-center text-sm text-gray-300">
-                Top-down seat map preview (ภาพสำหรับรุ่นนี้จะถูกเพิ่มภายหลัง)
+                Top-down seat map preview (ภาพสำหรับรุ่���นี้จะถูกเพิ่มภายหลัง)
               </div>
             )}
             <p className="mt-1 font-prompt font-semibold text-[#001a73] text-center">
@@ -190,7 +190,7 @@ const SeatingScreen: React.FC = () => {
             <div className="space-y-2 mt-2">
               <div className="flex items-center justify-between">
                 <div className="text-[#003366] font-sarabun">
-                  จำนวนที��นั่งทั้งหมด
+                  จำนวนที่นั่งทั้งหมด
                 </div>
                 <input
                   type="number"
