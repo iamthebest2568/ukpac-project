@@ -20,6 +20,7 @@
 .responsive-content {
   width: 100%;
   min-height: 100vh;
+  min-height: 100svh; /* prefer svh */
   padding: env(safe-area-inset-top, 0) env(safe-area-inset-right, 0)
     env(safe-area-inset-bottom, 0) env(safe-area-inset-left, 0);
   box-sizing: border-box;
@@ -335,6 +336,7 @@
 .minigame-layout {
   width: 100%;
   min-height: 100vh;
+  min-height: 100svh; /* prefer svh */
   position: relative;
   overflow: hidden;
   display: flex;
