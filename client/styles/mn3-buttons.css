@@ -353,6 +353,7 @@
   transform: none !important;
   backface-visibility: hidden !important;
   max-height: 100vh !important; /* ensure not taller than viewport */
+  max-height: 100svh !important; /* prefer svh */
   overflow-y: auto !important; /* allow scrolling if content exceeds viewport */
   -webkit-overflow-scrolling: touch !important;
 }
