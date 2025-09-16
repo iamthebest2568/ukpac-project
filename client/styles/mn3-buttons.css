@@ -403,8 +403,8 @@
 /* Budget display box matching Figma */
 .mn3-budget-display {
   background-color: #ffe000;
-  border-radius: clamp(16px, 2vw, 20px);
-  padding: clamp(16px, 4vw, 24px);
+  border-radius: clamp(8px, 1.2vw, 10px); /* reduced roundness */
+  padding: clamp(20px, 5vw, 32px); /* more padding so icon and amount sit further from edges */
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -412,7 +412,7 @@
   max-width: clamp(320px, 83.6vw, 903px);
   margin: 0 auto;
   gap: clamp(12px, 3vw, 20px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 /* Budget icon styling */
