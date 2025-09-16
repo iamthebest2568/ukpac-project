@@ -31,7 +31,7 @@ const Step2_Form = ({
     if (!formData.name.trim()) newErrors.name = "กรุณากรอกชื่อ";
     if (!formData.phone.trim()) newErrors.phone = "กรุณากรอกเบอร์โทร";
     else if (!/^[0-9]{9,10}$/.test(formData.phone.replace(/[-\s]/g, "")))
-      newErrors.phone = "เบอร์โทรศัพท์ไม่���ูกต้อง";
+      newErrors.phone = "เบอร์โทรศัพท์ไม่ถูกต้อง";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -72,11 +72,11 @@ const Step2_Form = ({
   return (
     <FigmaStyle1Layout
       backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fed905c4245ad426294f6060c64a191b2?format=webp&width=800"
-      backgroundAlt="กรอกข้อมูลรับรางวัล"
+      backgroundAlt="กรอกข้อมูลรับร���งวัล"
       className="source-selection-page endseq-form-page fake-news-page"
       imageLoading="eager"
     >
-      <div className="w-full max-w-[980px] mx-auto px-4 py-6" style={{ paddingTop: "clamp(80px, 22vh, 200px)", color: "#000D59" }}>
+      <div className="w-full max-w-[980px] mx-auto px-4 py-6" style={{ paddingTop: "clamp(160px, 28vh, 280px)", color: "#000D59" }}>
         <h1
           className="font-prompt text-center"
           style={{
