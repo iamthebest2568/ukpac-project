@@ -535,7 +535,7 @@ const PaymentScreen: React.FC = () => {
                   <div className="relative">
                     {/* overlay */}
                     {overlayLabels.length > 0 && (
-                      <div className="absolute left-1/2 -translate-x-1/2 -top-4 flex flex-wrap justify-center content-center gap-2 z-20 max-w-[80%]">
+                      <div className="absolute left-1/2 -translate-x-1/2 -top-4 flex flex-nowrap items-center justify-center gap-2 z-20 w-[90%] px-2 overflow-x-auto">
                         {overlayLabels.map((label, i) =>
                           renderOverlayIcon(label, i),
                         )}
