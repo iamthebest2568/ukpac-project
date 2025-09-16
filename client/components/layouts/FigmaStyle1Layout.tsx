@@ -89,7 +89,7 @@ const FigmaStyle1Layout = ({
 
   return (
     <div
-      className={`figma-style1-container ${className} ${platformClass} ${pageScope}`}
+      className={`figma-style1-container ${className} ${platformClass} ${pageScope} ${pageScope ? 'fake-news-page' : ''}`}
     >
       <div className="figma-style1-content">
         {/* Background Image (overlay only rendered when useBlueOverlay is true) */}
