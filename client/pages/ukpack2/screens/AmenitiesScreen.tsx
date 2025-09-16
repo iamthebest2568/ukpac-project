@@ -111,7 +111,7 @@ import HeroWithShadow from "../components/HeroWithShadow";
 
 const AmenitiesScreen: React.FC = () => {
   const navigate = useNavigate();
-  const [selected, setSelected] = useState<string[]>(["��อร์"]);
+  const [selected, setSelected] = useState<string[]>(["แอร์"]);
 
   const toggle = (label: string) => {
     setSelected((prev) =>
@@ -128,7 +128,7 @@ const AmenitiesScreen: React.FC = () => {
 
   // Selected chassis preview (reusing mapping from SeatingScreen)
   const CHASSIS_LABELS: Record<string, string> = {
-    small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
+    small: "รถเมล์ขนาดเล็ก 16–30 ที่���ั่ง",
     medium: "รถเมล์ขนาดกลาง 31–40 ที่นั่ง",
     large: "รถเมล์ขนาดใหญ่ 41–50 ที่นั่ง",
     extra: "รถเมล์รุ่นพิเศษ 51+ ที่นั่ง",
@@ -156,10 +156,17 @@ const AmenitiesScreen: React.FC = () => {
   const [isExitModalOpen, setExitModalOpen] = useState(false);
 
   const OVERLAY_ICON_SRC: Record<string, string> = {
+    // labels
     "แอร์": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F02548238f8184e808929075a27733533?format=webp&width=800",
     "พัดลม": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fdcae7affa4fe43e38aa5c78ca608e39e?format=webp&width=800",
-    "ที่นั่งพิเศษ": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F93439b2533284cdf914fc93cafa1cf26?format=webp&width=800",
+    "ที่นั่งพิเศษ": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F788c9e78d6944fc8a5088cc00aa40697?format=webp&width=800", // ใช้ไอคอนหน้าต่างเปิดได้
+    "หน้าต่างเปิดได้": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F788c9e78d6944fc8a5088cc00aa40697?format=webp&width=800",
     "ที่จับ/ราวยืนที่ปลอดภัย": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb0789bfd1100472f8351704764607d31?format=webp&width=800",
+    // keys (fallback)
+    air: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F02548238f8184e808929075a27733533?format=webp&width=800",
+    fan: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fdcae7affa4fe43e38aa5c78ca608e39e?format=webp&width=800",
+    seat: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F788c9e78d6944fc8a5088cc00aa40697?format=webp&width=800",
+    wifi: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb0789bfd1100472f8351704764607d31?format=webp&width=800",
   };
 
   return (
@@ -184,7 +191,8 @@ const AmenitiesScreen: React.FC = () => {
                       .slice()
                       .sort((a, b) => a.localeCompare(b, 'th'))
                       .map((label, i) => {
-                        const src = OVERLAY_ICON_SRC[label];
+                        const amen = AMENITIES.find((a) => a.label === label);
+                        const src = OVERLAY_ICON_SRC[label] || (amen ? OVERLAY_ICON_SRC[amen.key] : undefined);
                         return (
                           <div
                             key={`${label}-${i}`}
@@ -193,7 +201,7 @@ const AmenitiesScreen: React.FC = () => {
                             {src ? (
                               <img src={src} alt={label} className="h-6 w-6 md:h-7 md:w-7 object-contain" />
                             ) : (
-                              <span className="text-[10px] md:text-xs font-medium text-[#001a73] px-1 text-center leading-none">
+                              <span className="text-[10px] md:text-xs font-medium text-[#001a73] px-1 text-center leading-none" title={label}>
                                 {label}
                               </span>
                             )}
