@@ -132,7 +132,7 @@ const AmenitiesScreen: React.FC = () => {
     // labels
     "แอร์": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F02548238f8184e808929075a27733533?format=webp&width=800",
     "พัดลม": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fdcae7affa4fe43e38aa5c78ca608e39e?format=webp&width=800",
-    "ที่นั่งพิเศษ": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F788c9e78d6944fc8a5088cc00aa40697?format=webp&width=800", // ใช้ไอคอนหน้าต่างเปิดได้
+    "ที่���ั่งพิเศษ": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F788c9e78d6944fc8a5088cc00aa40697?format=webp&width=800", // ใช้ไอคอนหน้าต่างเปิดได้
     "หน้าต่างเปิดได้": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F788c9e78d6944fc8a5088cc00aa40697?format=webp&width=800",
     "ที่จับ/ราวยืนที���ปลอดภัย": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F1cae4f7306834a6eb0d86be09e05bfdd?format=webp&width=800",
     "ช่องชาร์จมือถือ/USB": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fba274e72720c4a1b9695e83dbf8c1fe9?format=webp&width=800",
@@ -179,7 +179,7 @@ const AmenitiesScreen: React.FC = () => {
                             className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
                           >
                             {src ? (
-                              <img src={src} alt={label} className="h-6 w-6 md:h-7 md:w-7 object-contain" />
+                              <img src={(src && src.includes('width=')) ? src.replace(/width=\d+/, 'width=1600') : src} alt={label} className="h-7 w-7 md:h-8 md:w-8 object-contain" />
                             ) : null}
                           </div>
                         );
@@ -209,7 +209,7 @@ const AmenitiesScreen: React.FC = () => {
           <StepTabs active={3} />
 
           <h2 className="text-xl font-prompt font-semibold text-[#003366] mt-2">
-            ความสะดวกสบาย
+            ��วามสะดวกสบาย
           </h2>
 
           <div className="grid grid-cols-4 gap-4">
