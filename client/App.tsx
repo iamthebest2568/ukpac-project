@@ -467,6 +467,14 @@ const App = () => {
                   element={<Navigate to="/ukpack1/end-sequence" replace />}
                 />
                 <Route
+                  path="/ukpack1/Step1_Decision"
+                  element={<Navigate to="/ukpack1/end-sequence" replace />}
+                />
+                <Route
+                  path="/Step1_Decision"
+                  element={<Navigate to="/ukpack1/end-sequence" replace />}
+                />
+                <Route
                   path="/EndScreenPage"
                   element={<Navigate to="/ukpack1/end-screen" replace />}
                 />
