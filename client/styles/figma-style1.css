@@ -587,7 +587,9 @@
 
 .app-container .figma-style1-content {
   height: 100vh !important;
+  height: 100svh !important;
   min-height: 100vh !important;
+  min-height: 100svh !important;
   overflow: hidden !important;
 }
 
