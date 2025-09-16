@@ -6,6 +6,7 @@ interface SelectionCardProps {
   isSelected?: boolean;
   onClick?: () => void;
   variant?: "dark" | "light";
+  hideLabel?: boolean;
 }
 
 const SelectionCard: React.FC<SelectionCardProps> = ({
@@ -14,6 +15,7 @@ const SelectionCard: React.FC<SelectionCardProps> = ({
   isSelected = false,
   onClick,
   variant = "dark",
+  hideLabel = false,
 }) => {
   const base = isSelected
     ? variant === "light"
@@ -35,9 +37,11 @@ const SelectionCard: React.FC<SelectionCardProps> = ({
       >
         {icon}
       </div>
-      <div className="px-2 text-xs md:text-sm font-sarabun text-center leading-tight break-words whitespace-normal max-w-full">
-        {label}
-      </div>
+      {!hideLabel && (
+        <div className="px-2 text-xs md:text-sm font-sarabun text-center leading-tight break-words whitespace-normal max-w-full">
+          {label}
+        </div>
+      )}
     </button>
   );
 };
