@@ -78,7 +78,7 @@ const Step1_Decision = ({
       className="source-selection-page end-sequence-page fake-news-page"
       imageLoading="eager"
     >
-      <div className="w-full max-w-[980px] mx-auto px-4 py-8 text-center" style={{ paddingTop: "clamp(48px, 18vh, 144px)", color: "#000D59" }}>
+      <div className="w-full max-w-[980px] mx-auto px-4 py-8 text-center" style={{ paddingTop: "clamp(96px, 30vh, 240px)", color: "#000D59" }}>
         <h1
           className="font-prompt"
           style={{ color: "#000D59", fontWeight: 700, lineHeight: "1" }}
