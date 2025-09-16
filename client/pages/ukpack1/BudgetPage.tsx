@@ -1,12 +1,13 @@
 import { useSession } from "../../hooks/useSession";
+import { useSession } from "../../hooks/useSession";
 import BudgetAllocation from "../../components/games/BudgetAllocation";
 
 const Ukpack1BudgetPage = () => {
   const { sessionID, navigateToPage } = useSession();
 
-  // Render BudgetAllocation without FigmaStyle1Layout for ukpack1/budget
+  // Render BudgetAllocation in compact layoutMode so it displays well without Figma wrapper
   return (
-    <BudgetAllocation sessionID={sessionID} onNavigate={navigateToPage} />
+    <BudgetAllocation sessionID={sessionID} onNavigate={navigateToPage} layoutMode={true} />
   );
 };
 
