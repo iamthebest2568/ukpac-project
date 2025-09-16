@@ -52,7 +52,7 @@ const SplashScreen: React.FC = () => {
             <button
               type="button"
               onClick={() => setShowPrivacy(true)}
-              className="underline"
+              className="underline privacy-button"
             >
               นโยบายและความเป็นส่วนตัว
             </button>
