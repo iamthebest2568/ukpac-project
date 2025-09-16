@@ -103,7 +103,7 @@ const Step3_ThankYou = ({
       className="source-selection-page endseq-thankyou-page fake-news-page"
       imageLoading="eager"
     >
-      <div className="w-full max-w-[980px] mx-auto px-4 py-8 text-center">
+      <div className="w-full max-w-[980px] mx-auto px-4 py-8 text-center" style={{ paddingTop: "clamp(192px, 36vh, 320px)", color: "#000D59" }}>
         <h1
           className="font-prompt"
           style={{ color: "#000D59", fontWeight: 700, lineHeight: "1" }}
@@ -137,7 +137,7 @@ const Step3_ThankYou = ({
         <div className="mt-8 flex flex-col items-center gap-4">
           <Dialog>
             <DialogTrigger asChild>
-              <button className="btn-large">แชร์เกมนี้ให้เพื่อน</button>
+              <button className="btn-large">แชร์เกมนี้��ห้เพื่อน</button>
             </DialogTrigger>
             <DialogContent className="p-4 sm:p-6 bg-white rounded-lg max-w-md mx-auto max-h-[85vh] overflow-y-auto border border-gray-200">
               <DialogTitle className="font-prompt text-lg sm:text-xl text-black mb-3 text-center">
@@ -174,7 +174,7 @@ const Step3_ThankYou = ({
 
               <div className="mt-2">
                 <DialogClose asChild>
-                  <button className="btn-secondary w-full">ปิ���</button>
+                  <button className="btn-secondary w-full">ปิด</button>
                 </DialogClose>
               </div>
             </DialogContent>
