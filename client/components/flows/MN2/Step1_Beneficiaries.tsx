@@ -209,7 +209,7 @@ const Step1_Beneficiaries = ({
                       {/* Label */}
                       <span
                         className={`font-prompt text-lg font-medium text-center transition-all duration-200 ${
-                          isSelected ? "text-[#EFBA31]" : "text-[#000D59]"
+                          isSelected ? "text-black" : "text-[#000D59]"
                         }`}
                       >
                         {group.label}
@@ -262,7 +262,7 @@ const Step1_Beneficiaries = ({
                       {/* Label */}
                       <span
                         className={`font-prompt text-lg font-medium text-center transition-all duration-200 ${
-                          isSelected ? "text-[#EFBA31]" : "text-[#000D59]"
+                          isSelected ? "text-black" : "text-[#000D59]"
                         }`}
                       >
                         {group.label}

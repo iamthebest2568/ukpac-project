@@ -137,7 +137,7 @@
 
 /* Selected button text */
 .mn3-policy-button--selected .mn3-button-text {
-  color: #ffe000;
+  color: #000 !important;
 }
 
 /* Mobile-specific optimizations */
