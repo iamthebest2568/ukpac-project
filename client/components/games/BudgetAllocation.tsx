@@ -43,7 +43,7 @@ const BudgetAllocationComponent = ({ sessionID, onNavigate, layoutMode = false }
     {
       key: "parking",
       label: "ที่จอดรถ",
-      description: "การจัดหาและพัฒ��าพื้นที่จอดรถ",
+      description: "การจัดหาและพัฒนาพื้นที่จอดรถ",
       icon: "🅿️",
     },
   ];
@@ -153,7 +153,7 @@ const BudgetAllocationComponent = ({ sessionID, onNavigate, layoutMode = false }
                 className="font-prompt font-bold text-center mb-2"
                 style={{
                   color: "#000D59",
-                  fontSize: "clamp(24px, 4.6vw, 50px)",
+                  fontSize: labelFontSize,
                   fontWeight: 700,
                   letterSpacing: "0.4px",
                 }}
@@ -237,11 +237,11 @@ const BudgetAllocationComponent = ({ sessionID, onNavigate, layoutMode = false }
                 <h3
                   className="font-prompt font-bold"
                   style={{
-                    color: "#000D59",
-                    fontSize: "clamp(24px, 4.6vw, 50px)",
-                    fontWeight: 700,
-                    letterSpacing: "0.4px",
-                  }}
+                  color: "#000D59",
+                  fontSize: labelFontSize,
+                  fontWeight: 700,
+                  letterSpacing: "0.4px",
+                }}
                 >
                   {item.label}
                 </h3>
