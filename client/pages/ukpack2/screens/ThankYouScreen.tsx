@@ -9,7 +9,7 @@ const ThankYouScreen: React.FC = () => {
 
   return (
     <CustomizationScreen
-      title="ขอบคุณ"
+      title=""
       theme="light"
       footerContent={
         <div className="flex flex-col items-center gap-3">
