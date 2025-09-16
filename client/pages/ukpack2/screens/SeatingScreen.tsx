@@ -64,9 +64,13 @@ const SeatingScreen: React.FC = () => {
   }, [currentChassis]);
 
   const maxCapacity = maxByChassis[selectedChassis] ?? 50;
+  const minCapacity = minByChassis[selectedChassis] ?? 16;
+
   React.useEffect(() => {
-    setTotalSeats(maxCapacity);
-  }, [maxCapacity]);
+    // Set initial seats to a reasonable default between min and max
+    const defaultSeats = selectedChassis === 'extra' ? 10 : Math.ceil((minCapacity + maxCapacity) / 2);
+    setTotalSeats(defaultSeats);
+  }, [selectedChassis, minCapacity, maxCapacity]);
 
   const selectedLabel = CHASSIS_LABELS[selectedChassis] || "";
   const selectedTopdown = TOPDOWN_IMAGE[selectedChassis];
@@ -78,7 +82,7 @@ const SeatingScreen: React.FC = () => {
     // Check if total seats is within range
     if (totalSeats < minCapacity) {
       setErrorTitle("จำนวนที่นั่งน้อยเกินไป");
-      setErrorMessage(`รถประเภทนี้ต้องมีที่นั่งอย่างน้อย ${minCapacity} ที่นั่ง กรุณาเพิ่มจำนวนที่นั่ง`);
+      setErrorMessage(`รถประเภทนี้ต้องมีที่นั่งอย่���งน้อย ${minCapacity} ที่นั่ง กรุณาเพิ่มจำนวนที่นั่ง`);
       setErrorModalOpen(true);
       return false;
     }
@@ -93,7 +97,7 @@ const SeatingScreen: React.FC = () => {
     // Check if special seats exceed total seats
     if (specialSeatsTotal > totalSeats) {
       setErrorTitle("พื้นที่ไม่เพียงพอ");
-      setErrorMessage(`ที่นั่งพิเศษทั้งหมด (${specialSeatsTotal} ที่นั��ง) เกินจำนวนที่นั่งทั้งหมด (${totalSeats} ที่นั่ง) กรุณาลดจำนวนที่นั่งบางส่วน`);
+      setErrorMessage(`ที่นั่งพิเศษทั้งหมด (${specialSeatsTotal} ที่นั่ง) เกินจำนวนที่นั่งทั้งหมด (${totalSeats} ที่นั่ง) กรุณาลดจำนวนที่นั่งบางส่วน`);
       setErrorModalOpen(true);
       return false;
     }
@@ -186,7 +190,7 @@ const SeatingScreen: React.FC = () => {
             <div className="space-y-2 mt-2">
               <div className="flex items-center justify-between">
                 <div className="text-[#003366] font-sarabun">
-                  จำนวนที่นั่งทั้งหมด
+                  จำนวนที��นั่งทั้งหมด
                 </div>
                 <input
                   type="number"
