@@ -79,42 +79,44 @@ const SummaryScreen: React.FC = () => {
           : raw.doorChoice === "2"
           ? "2 ประตู"
           : String(raw.doorChoice);
-      if (raw.hasRamp) return "ทางลาดสำหรับรถเข็น/ผู้พิการ";
+      if (raw.hasRamp) return "ทางลาดสำหรับรถ��ข็น/ผู้พิการ";
       if (raw.highLow) return "ประตูฉุกเฉิน";
     }
     return String(raw);
   }
 
   return (
-    <div className="min-h-screen bg-white text-black py-8 px-0">
-      <div className="max-w-4xl mx-auto px-4">
-        <header className="mb-6 text-center">
-          <h1 className="text-3xl font-prompt font-semibold">ปรับแต่งรถเมล์ของคุณ</h1>
-          <p className="mt-2 text-sm text-gray-700">นี่คือรถเมล์ในฝันของคุณ</p>
-        </header>
+    <div className="min-h-screen bg-white text-black flex flex-col">
+      {/* Scrollable content area */}
+      <div className="flex-1 overflow-y-auto pb-4">
+        <div className="max-w-4xl mx-auto px-4 py-8">
+          <header className="mb-6 text-center">
+            <h1 className="text-2xl md:text-3xl font-prompt font-semibold">ปรับแต่งรถเมล์ของคุณ</h1>
+            <p className="mt-2 text-sm text-gray-700">นี่คือรถเมล์ในฝันของคุณ</p>
+          </header>
 
-        <SummaryDetails />
+          <SummaryDetails />
+        </div>
       </div>
 
-      <footer className="mt-6 w-full relative z-10">
-        <div className="w-full bg-[#00d5f9] drop-shadow-lg rounded-t-3xl">
-          <div className="max-w-4xl mx-auto px-4">
-            <div className="rounded-t-3xl p-6 flex flex-col items-center justify-center gap-4 max-w-sm mx-auto">
-              <div className="w-full">
-                <SecondaryButton
-                  text="กลับไปแก้ไข"
-                  onClick={() => navigate("/ukpack2/design")}
-                  className="w-full"
-                />
-              </div>
+      {/* Fixed footer */}
+      <footer className="w-full bg-[#00d5f9] drop-shadow-lg rounded-t-3xl sticky bottom-0 z-10">
+        <div className="max-w-4xl mx-auto px-4">
+          <div className="p-4 md:p-6 flex flex-col items-center justify-center gap-3 max-w-sm mx-auto">
+            <div className="w-full">
+              <SecondaryButton
+                text="กลับไปแก้ไข"
+                onClick={() => navigate("/ukpack2/design")}
+                className="w-full text-sm md:text-base"
+              />
+            </div>
 
-              <div className="w-full">
-                <CtaButton
-                  text="ออกแบบเสร็จแล้ว"
-                  onClick={() => navigate("/ukpack2/info")}
-                  className="w-full"
-                />
-              </div>
+            <div className="w-full">
+              <CtaButton
+                text="ออกแบบเสร็จแล้ว"
+                onClick={() => navigate("/ukpack2/info")}
+                className="w-full text-sm md:text-base"
+              />
             </div>
           </div>
         </div>
