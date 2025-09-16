@@ -286,7 +286,7 @@ const SeatingScreen: React.FC = () => {
                       ),
                     )
                   }
-                  className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-full text-[#003366] bg-white text-right"
+                  className="w-24 px-3 py-2 border-2 border-[rgba(0,13,89,1)] sm:border sm:border-[#e5e7eb] rounded-full text-[#003366] bg-white text-right"
                   min={0}
                   max={maxCapacity}
                 />
@@ -295,7 +295,7 @@ const SeatingScreen: React.FC = () => {
               <div className="mt-4 text-[#003366] font-sarabun font-semibold text-[17.6px]">จำนวนที่นั่งพิเศษ</div>
 
               <div className="flex items-center justify-between mt-2">
-                <div className="text-[#003366] font-sarabun">จำนวนที่นั่งพิเศษ</div>
+                <div className="text-[#003366] font-sarabun font-semibold text-[17.6px] sm:font-normal sm:text-[16px]">จำนวนที่นั่งพิเศษ</div>
                 <input
                   type="number"
                   min={0}
