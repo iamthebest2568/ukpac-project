@@ -19,7 +19,7 @@ const SplashScreen: React.FC = () => {
               src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fbfa15cb7d28d4bff8817c7e0ca03bf58?format=webp&width=1600"
               alt="cover"
               className="h-auto object-contain mx-auto"
-              style={{ width: "70%" }}
+              style={{ width: "80%" }}
               decoding="async"
               loading="eager"
             />
