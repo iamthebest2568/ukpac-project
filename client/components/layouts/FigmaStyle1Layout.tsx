@@ -58,50 +58,47 @@ const FigmaStyle1Layout = ({
     <div className={`figma-style1-container ${className}`}>
       <div className="figma-style1-content">
         {/* Background Image (overlay only rendered when useBlueOverlay is true) */}
-        {/* Hide background when a page explicitly requests it via className (e.g. fake-news-page) */}
-        {!(className?.includes("fake-news-page")) && (
-          <div className="figma-style1-background">
-            {/* Use responsive img with srcset to control focal point and load appropriate sizes on mobile */}
-            {backgroundImage ? (
-              (() => {
-                // helper to set width param on builder.io image urls (safe fallback if params exist)
-                const setWidth = (url: string, w: number) => {
-                  try {
-                    const u = new URL(url);
-                    u.searchParams.set("width", String(w));
-                    return u.toString();
-                  } catch (e) {
-                    // fallback: append param
-                    return url + (url.includes("?") ? "&" : "?") + `width=${w}`;
-                  }
-                };
+        <div className="figma-style1-background">
+          {/* Use responsive img with srcset to control focal point and load appropriate sizes on mobile */}
+          {backgroundImage ? (
+            (() => {
+              // helper to set width param on builder.io image urls (safe fallback if params exist)
+              const setWidth = (url: string, w: number) => {
+                try {
+                  const u = new URL(url);
+                  u.searchParams.set("width", String(w));
+                  return u.toString();
+                } catch (e) {
+                  // fallback: append param
+                  return url + (url.includes("?") ? "&" : "?") + `width=${w}`;
+                }
+              };
 
-                const src480 = setWidth(backgroundImage, 480);
-                const src720 = setWidth(backgroundImage, 720);
-                const src1080 = setWidth(backgroundImage, 1080);
-                const src2160 = setWidth(backgroundImage, 2160);
+              const src480 = setWidth(backgroundImage, 480);
+              const src720 = setWidth(backgroundImage, 720);
+              const src1080 = setWidth(backgroundImage, 1080);
+              const src2160 = setWidth(backgroundImage, 2160);
 
-                return (
-                  <img
-                    src={src720}
-                    srcSet={`${src480} 480w, ${src720} 720w, ${src1080} 1080w, ${src2160} 2160w`}
-                    sizes="(max-width: 480px) 100vw, (max-width: 1024px) 100vw, 100vw"
-                    alt={backgroundAlt}
-                    className="figma-style1-background-image"
-                    loading={imageLoading}
-                    decoding="async"
-                  />
-                );
-              })()
-            ) : null}
+              return (
+                <img
+                  src={src720}
+                  srcSet={`${src480} 480w, ${src720} 720w, ${src1080} 1080w, ${src2160} 2160w`}
+                  sizes="(max-width: 480px) 100vw, (max-width: 1024px) 100vw, 100vw"
+                  alt={backgroundAlt}
+                  className="figma-style1-background-image"
+                  loading={imageLoading}
+                  decoding="async"
+                />
+              );
+            })()
+          ) : null}
 
-            {useBlueOverlay ? (
-              <div
-                className={`figma-style1-background-overlay figma-style1-background-overlay--blue`}
-              />
-            ) : null}
-          </div>
-        )}
+          {useBlueOverlay ? (
+            <div
+              className={`figma-style1-background-overlay figma-style1-background-overlay--blue`}
+            />
+          ) : null}
+        </div>
 
         {/* Main Content */}
         <div className="figma-style1-main">
