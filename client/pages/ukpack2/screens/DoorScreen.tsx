@@ -112,7 +112,7 @@ const IconDoor1 = () => (
 );
 const IconDoor2 = () => (
   <img
-    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F19aa75bc89c544e28a2d10840108af23?format=webp&width=800"
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8f9b21942af243b3b80b0e5ac8b12631?format=webp&width=800"
     alt="ประตู 2"
     className="h-8 w-8 object-contain select-none"
     decoding="async"
@@ -240,7 +240,7 @@ const DoorScreen: React.FC = () => {
                   <img src={MONEY_ICON} alt={label} className="h-5 w-5 object-contain" />
                 </div>
               );
-              if (label === "สแกนจ่าย") return (
+              if (label === "สแกนจ่���ย") return (
                 <div key={`${label}-${idx}`} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">
                   <img src={SCAN_ICON} alt={label} className="h-5 w-5 object-contain" />
                 </div>
@@ -274,7 +274,7 @@ const DoorScreen: React.FC = () => {
               );
               if (label === "2") return (
                 <div key={`${label}-${idx}`} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">
-                  <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F19aa75bc89c544e28a2d10840108af23?format=webp&width=800" alt="2 ประตู" className="h-5 w-5 object-contain" />
+                  <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8f9b21942af243b3b80b0e5ac8b12631?format=webp&width=800" alt="2 ประตู" className="h-6 w-6 md:h-7 md:w-7 object-contain" />
                 </div>
               );
               if (label === "ramp") return (
