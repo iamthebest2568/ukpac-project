@@ -691,13 +691,13 @@
     width: 100%;
     padding: 24px 40px;
     box-sizing: border-box;
-    /* small top padding so content sits above the curved area */
-    padding-top: calc(var(--footer-clip-px) * 0.12);
-    /* constrain content so it doesn't overlap the curved area */
-    max-height: calc(var(--footer-height) - var(--footer-clip-px) - 48px);
+    /* move content down into the curved area (overlap) */
+    margin-top: calc(var(--footer-clip-px) * -0.35);
+    padding-top: 24px; /* keep internal spacing */
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
+    z-index: 3; /* ensure content sits above curve */
   }
 
   .footer-content h2 {
