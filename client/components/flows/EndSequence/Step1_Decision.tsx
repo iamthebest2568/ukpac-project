@@ -75,7 +75,7 @@ const Step1_Decision = ({
     <FigmaStyle1Layout
       backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F32a0df59d0b0488b9150246ae780d9e0?format=webp&width=800"
       backgroundAlt="รางวัลสำหรับคุณ"
-      className="source-selection-page end-sequence-page"
+      className="source-selection-page end-sequence-page fake-news-page"
       imageLoading="eager"
     >
       <div className="w-full max-w-[980px] mx-auto px-4 py-8 text-center">
@@ -105,7 +105,7 @@ const Step1_Decision = ({
         >
           คุณอยากกรอกข้อมูลเพิ่มเพื่อลุ้นรับรางวัล
           <br />
-          บัตรขนส่งสาธารณะ 300 บาท หรือไม่
+          บัตรขนส่ง��าธารณะ 300 บาท หรือไม่
         </h2>
 
         <div
