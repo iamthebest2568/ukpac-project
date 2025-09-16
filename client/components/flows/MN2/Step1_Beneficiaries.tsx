@@ -55,7 +55,7 @@ const Step1_Beneficiaries = ({
     },
     {
       id: "students",
-      label: "นักเรียนนักศึกษา",
+      label: "���ักเรียนนักศึกษา",
       iconSrc:
         "https://api.builder.io/api/v1/image/assets/TEMP/054c6038c235112715becc476723cafe8d55d68f?width=74",
     },
@@ -160,14 +160,14 @@ const Step1_Beneficiaries = ({
             {/* Title with current priority */}
             <div className="figma-style1-title-container mb-6">
               <h1 className="figma-style1-title">
-                คุณคิดว่าใครควรได้ร���บประโยชน์จาก {currentPriority} ?
+                คุณคิดว่าใครควรได้รับประโยชน์จาก {currentPriority} ?
               </h1>
             </div>
 
             {/* Selection Grid - Same layout as original */}
             <div className="w-full max-w-[334px] mb-8">
               {/* Top Row */}
-              <div className="flex justify-between items-start mb-8">
+              <div className="flex justify-center items-start mb-8" style={{ gap: '24px' }}>
                 {beneficiaryGroups.slice(0, 3).map((group) => {
                   const isSelected = selectedGroups.includes(group.id);
                   const isDisabled = isSelectionDisabled(group.id);
