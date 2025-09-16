@@ -190,7 +190,9 @@
     margin: 0 auto;
     padding: 0 var(--space-sm);
     min-height: 100vh; /* safe fallback */
-    height: 100vh; /* force full viewport height */
+    min-height: 100svh; /* prefer the small viewport unit on mobile */
+    height: 100vh; /* legacy fallback */
+    height: 100svh; /* modern mobile viewport-aware height */
     display: flex; /* layout children vertically */
     flex-direction: column;
     overflow: hidden; /* disable scrolling on container */
