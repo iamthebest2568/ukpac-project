@@ -50,7 +50,7 @@ const IconSmall = () => (
 const IconMedium = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fab8ddd78f9a0478bb27f5818928665f3?format=webp&width=360"
-    alt="รถเ��ล์ขนาดกลาง 31-40 ที่นั่ง"
+    alt="รถเมล์ขนาดกลาง 31-40 ที่นั่ง"
     className="max-h-12 w-auto object-contain select-none"
     decoding="async"
     loading="eager"
@@ -79,10 +79,10 @@ const OPTIONS = [
   { key: "small", label: "รถเมล์ขนาดเล็ก 16-30 ที่นั่ง", icon: <IconSmall /> },
   {
     key: "medium",
-    label: "รถเมล์ขนาดกลาง 31-40 ที่นั่ง",
+    label: "ร��เมล์ขนาดกลาง 31-40 ที่นั่ง",
     icon: <IconMedium />,
   },
-  { key: "large", label: "รถเมล์ขนาด��หญ่ 41-50 ที่นั่ง", icon: <IconLarge /> },
+  { key: "large", label: "รถเมล์ขนาดใหญ่ 41-50 ที่นั่ง", icon: <IconLarge /> },
   { key: "extra", label: "รถกระบะดัดแปลง 8-12 ที่นั่ง", icon: <IconExtra /> },
 ];
 
@@ -234,7 +234,7 @@ const ChassisScreen: React.FC = () => {
                 />
                 <img
                   src={HERO_STAR}
-                  alt="สัญลักษณ์ดาว"
+                  alt="สัญลักษณ์ดา���"
                   className="absolute -top-2 -right-2 w-5 h-5 pointer-events-none select-none"
                   decoding="async"
                   loading="eager"
@@ -269,7 +269,7 @@ const ChassisScreen: React.FC = () => {
       <ConfirmModal
         isOpen={isExitModalOpen}
         title="ออกจากหน้าจอ"
-        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
+        message="คุณแน่ใจหรือไม่ว่าต้อง��ารออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
         onConfirm={confirmExit}
         onCancel={() => setExitModalOpen(false)}
       />
