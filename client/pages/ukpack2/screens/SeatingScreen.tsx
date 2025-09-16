@@ -110,7 +110,17 @@ const SeatingScreen: React.FC = () => {
     if (specialSeatsTotal > totalSeats) {
       setErrorTitle("พื้นที่ไม่เพียงพอ");
       setErrorMessage(
-        `ที่นั่งพิเศษทั้งหมด (${specialSeatsTotal} ที่นั่ง) เกินจำนวนที่นั่งทั้งหมด (${totalSeats} ที่นั่ง) กรุณาลดจำนวนที่นั่งบางส่วน`,
+        `ที่นั่งพิเศษทั้งหมด (${specialSeatsTotal} ที่นั่ง) เกินจำนวนที่นั่งทั้งหมด (${totalSeats} ที่นั่ง) กรุณาล���จำนวนที่นั่งบางส่วน`,
+      );
+      setErrorModalOpen(true);
+      return false;
+    }
+
+    // Ensure the explicit "จำนวนที่นั่งพิเศษ" covers the sum of special categories
+    if (specialSeats < specialSeatsTotal) {
+      setErrorTitle("จำนวนที่นั่งพิเศษไม่พอ");
+      setErrorMessage(
+        `จำนวนที่นั่งพิเศษ (${specialSeats}) น้อยกว่าจำนวนที่นั่งพิเศษย่อย (${specialSeatsTotal}) กรุณาปรับค่าหรือลดจำนวนที่นั่งพิเศษย่อย`,
       );
       setErrorModalOpen(true);
       return false;
