@@ -37,7 +37,7 @@ const IconSeat = () => (
 const IconWifi = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb0789bfd1100472f8351704764607d31?format=webp&width=800"
-    alt="ที่��ับ/ราวยืน"
+    alt="ที่จับ/ราวยืน"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
