@@ -681,22 +681,20 @@
   .footer-container {
     --footer-height: 100vh; /* fill viewport on desktop */
     --footer-clip-h-num: 0.25; /* 25% */
-    align-items: flex-start;
+    align-items: center; /* match mobile/tablet */
     justify-content: center;
   }
 
-  /* place content above the curve and keep comfortable spacing */
+  /* place content above the curve similarly to mobile/tablet */
   .footer-content {
     max-width: 980px;
     width: 100%;
     padding: 24px 40px;
     box-sizing: border-box;
-    /* move content down into the curved area (overlap) */
-    margin-top: calc(var(--footer-clip-px) * -0.35);
-    padding-top: 24px; /* keep internal spacing */
+    padding-top: calc(var(--footer-clip-px) + 24px); /* same as mobile/tablet */
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     z-index: 3; /* ensure content sits above curve */
   }
 
