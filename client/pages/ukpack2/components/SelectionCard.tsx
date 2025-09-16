@@ -2,7 +2,7 @@ import React from "react";
 
 interface SelectionCardProps {
   icon: React.ReactNode;
-  label: string;
+  label: React.ReactNode;
   isSelected?: boolean;
   onClick?: () => void;
   variant?: "dark" | "light";
