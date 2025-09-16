@@ -14,24 +14,24 @@ const ConfirmationScreen: React.FC = () => {
       <CustomizationScreen
         title=""
         theme="light"
-        headerContent={
-          <img
-            src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F6b62374327d643178ab7f4a913ddc1b1?format=webp&width=800"
-            alt="ยืนยันข้อมูลสำเร็จ"
-            className="h-16 md:h-20 w-auto object-contain"
-          />
-        }
         footerContent={
           <div className="flex justify-center gap-3">
             <CtaButton text="จบเกม" onClick={() => navigate("/ukpack2")} />
             <SecondaryButton
-              text="แชร์เกมนี้กับเพื่อน"
+              text="แชร���เกมนี้กับเพื่อน"
               onClick={() => setShareOpen(true)}
             />
           </div>
         }
       >
         <div className="max-w-4xl mx-auto">
+          <div className="w-full flex justify-center mb-4">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F6b62374327d643178ab7f4a913ddc1b1?format=webp&width=800"
+              alt="ยืนยันข้อมูลสำเร็จ"
+              className="h-16 md:h-20 w-auto object-contain"
+            />
+          </div>
           <div className="flex flex-col items-center text-center text-[#001a73]">
             <h2 className="font-prompt font-semibold text-2xl">ขอบคุณ</h2>
             <p className="font-sarabun text-lg">ที่ร่วมเป็นส่วนหนึ่งในการพัฒนาเมือง</p>
