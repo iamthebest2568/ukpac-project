@@ -191,18 +191,20 @@ const SeatingScreen: React.FC = () => {
                       const parsed = JSON.parse(raw);
                       return typeof parsed === "string"
                         ? parsed
-                        : parsed?.doorChoice || (parsed?.hasRamp ? "ramp" : parsed?.highLow ? "emergency" : null);
+                        : parsed?.doorChoice ||
+                            (parsed?.hasRamp
+                              ? "ramp"
+                              : parsed?.highLow
+                                ? "emergency"
+                                : null);
                     } catch {
                       return sessionStorage.getItem("design.doors");
                     }
                   })();
                   const DOOR_ICON_SMALL: Record<string, string> = {
-                    "1":
-                      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9811f9bca05c43feae9eafdcbab3c8d9?format=webp&width=800",
-                    "2":
-                      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8f9b21942af243b3b80b0e5ac8b12631?format=webp&width=800",
-                    ramp:
-                      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fece2b6fc843340f0997f2fd7d3ca0aea?format=webp&width=800",
+                    "1": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9811f9bca05c43feae9eafdcbab3c8d9?format=webp&width=800",
+                    "2": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8f9b21942af243b3b80b0e5ac8b12631?format=webp&width=800",
+                    ramp: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fece2b6fc843340f0997f2fd7d3ca0aea?format=webp&width=800",
                     emergency:
                       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F98de0624be3d4ae6b96d83edcf8891f9?format=webp&width=800",
                   };
@@ -219,7 +221,11 @@ const SeatingScreen: React.FC = () => {
                           className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center"
                         >
                           {DOOR_ICON_SMALL[lab] ? (
-                            <img src={DOOR_ICON_SMALL[lab]} alt={lab} className="h-5 w-5 object-contain" />
+                            <img
+                              src={DOOR_ICON_SMALL[lab]}
+                              alt={lab}
+                              className="h-5 w-5 object-contain"
+                            />
                           ) : (
                             <div className="text-xs">{lab}</div>
                           )}

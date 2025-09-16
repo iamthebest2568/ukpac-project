@@ -98,7 +98,12 @@ const InfoScreen: React.FC = () => {
                       const parsed = JSON.parse(raw);
                       return typeof parsed === "string"
                         ? parsed
-                        : parsed?.doorChoice || (parsed?.hasRamp ? "ramp" : parsed?.highLow ? "emergency" : null);
+                        : parsed?.doorChoice ||
+                            (parsed?.hasRamp
+                              ? "ramp"
+                              : parsed?.highLow
+                                ? "emergency"
+                                : null);
                     } catch {
                       return sessionStorage.getItem("design.doors");
                     }
@@ -121,12 +126,9 @@ const InfoScreen: React.FC = () => {
                       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F41c089c5dd4b448993c4e02c02cdf7ac?format=webp&width=800",
                     "ตั๋วรายเดือน/รอบ":
                       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fca6467eff0c74a77a8e5757f25a24e41?format=webp&width=800",
-                    "1":
-                      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9811f9bca05c43feae9eafdcbab3c8d9?format=webp&width=800",
-                    "2":
-                      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8f9b21942af243b3b80b0e5ac8b12631?format=webp&width=800",
-                    ramp:
-                      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fece2b6fc843340f0997f2fd7d3ca0aea?format=webp&width=800",
+                    "1": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9811f9bca05c43feae9eafdcbab3c8d9?format=webp&width=800",
+                    "2": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8f9b21942af243b3b80b0e5ac8b12631?format=webp&width=800",
+                    ramp: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fece2b6fc843340f0997f2fd7d3ca0aea?format=webp&width=800",
                     emergency:
                       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F98de0624be3d4ae6b96d83edcf8891f9?format=webp&width=800",
                   };
@@ -138,7 +140,11 @@ const InfoScreen: React.FC = () => {
                           className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
                         >
                           {ICONS[lab] ? (
-                            <img src={ICONS[lab]} alt={lab} className="h-6 w-6 md:h-7 md:w-7 object-contain" />
+                            <img
+                              src={ICONS[lab]}
+                              alt={lab}
+                              className="h-6 w-6 md:h-7 md:w-7 object-contain"
+                            />
                           ) : (
                             <div className="text-xs">{lab}</div>
                           )}
@@ -162,8 +168,8 @@ const InfoScreen: React.FC = () => {
             <h2 className="font-prompt font-semibold text-xl">รู้หรือไม่!</h2>
             <p>
               ในญี่ปุ่นมี Community Bus รถเมล์ขนาดเล็กที่วิ่งเข้าซอยและพื้นที่
-              ที่รถใหญ่เข้าไม่ถึง ค่าโดย���ารถูกมาก บางแห่งนั่งได้ทั้งสายเพียง 100
-              เยน ทำให้ผู้สูงอายุและเด็กเข้าถึงบริการสำคัญ เช่น
+              ที่รถใหญ่เข้าไม่ถึง ค่าโดย���ารถูกมาก บางแห่งนั่งได้ทั้งสายเพียง
+              100 เยน ทำให้ผู้สูงอายุและเด็กเข้าถึงบริการสำคัญ เช่น
               โรงพยาบาลและศูนย์ชุมชนได้สะดวกขึ้น
             </p>
           </div>
