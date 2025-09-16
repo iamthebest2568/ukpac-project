@@ -122,7 +122,7 @@ const Step1_Decision = ({
           <button
             onClick={onDecline}
             className="btn-large"
-            aria-label="ไม่เข้าร่วมโ���รงการรับรางวัล"
+            aria-label="ไม่เข้าร่วมโครงการรับรางวัล"
           >
             ไม่
           </button>
