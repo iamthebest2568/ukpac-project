@@ -226,7 +226,7 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
 };
 
 const MONEY_ICON =
-  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fbc8b22cedfbb4640a702f724881f196d?format=webp&width=800";
+  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F4c2d8cef09744f1294c2297699a57187?format=webp&width=800";
 const SCAN_ICON =
   "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb8992da4be824b339d3df5f0a076ed93?format=webp&width=800";
 const SCAN2_ICON =
@@ -319,7 +319,7 @@ const PaymentScreen: React.FC = () => {
               // check amenities map first
               if (AMENITIES_ICON_MAP[label]) {
                 return (
-                  <div key={`${label}-${idx}`} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center">
+                  <div key={`${label}-${idx}`} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">
                     {AMENITIES_ICON_MAP[label]}
                   </div>
                 );
@@ -332,38 +332,38 @@ const PaymentScreen: React.FC = () => {
                 </div>
               );
               if (opt.key === "cash") return (
-                <div key={`${label}-${idx}`} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center">
-                  <img src={MONEY_ICON} alt={label} className="h-5 w-5 object-contain" />
+                <div key={`${label}-${idx}`} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">
+                  <img src={MONEY_ICON} alt={label} className="h-6 w-6 md:h-7 md:w-7 object-contain" />
                 </div>
               );
               if (opt.key === "scan") return (
-                <div key={`${label}-${idx}`} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center">
-                  <img src={SCAN_ICON} alt={label} className="h-5 w-5 object-contain" />
+                <div key={`${label}-${idx}`} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">
+                  <img src={SCAN_ICON} alt={label} className="h-6 w-6 md:h-7 md:w-7 object-contain" />
                 </div>
               );
               if (opt.key === "scan2") return (
-                <div key={`${label}-${idx}`} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center">
-                  <img src={SCAN2_ICON} alt={label} className="h-5 w-5 object-contain" />
+                <div key={`${label}-${idx}`} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">
+                  <img src={SCAN2_ICON} alt={label} className="h-6 w-6 md:h-7 md:w-7 object-contain" />
                 </div>
               );
               if (opt.key === "tap") return (
-                <div key={`${label}-${idx}`} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center">
-                  <img src={TOUCH_ICON} alt={label} className="h-5 w-5 object-contain" />
+                <div key={`${label}-${idx}`} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">
+                  <img src={TOUCH_ICON} alt={label} className="h-6 w-6 md:h-7 md:w-7 object-contain" />
                 </div>
               );
               if (opt.key === "qr") return (
-                <div key={`${label}-${idx}`} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center">
-                  <img src={BUS_EMPLOY_ICON} alt={label} className="h-5 w-5 object-contain" />
+                <div key={`${label}-${idx}`} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">
+                  <img src={BUS_EMPLOY_ICON} alt={label} className="h-6 w-6 md:h-7 md:w-7 object-contain" />
                 </div>
               );
               if (opt.key === "monthly") return (
-                <div key={`${label}-${idx}`} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center">
-                  <img src={MONTHLY_ICON} alt={label} className="h-5 w-5 object-contain" />
+                <div key={`${label}-${idx}`} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">
+                  <img src={MONTHLY_ICON} alt={label} className="h-6 w-6 md:h-7 md:w-7 object-contain" />
                 </div>
               );
               // default to provided icon node
               return (
-                <div key={`${label}-${idx}`} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center">
+                <div key={`${label}-${idx}`} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">
                   {opt.icon}
                 </div>
               );
@@ -375,7 +375,7 @@ const PaymentScreen: React.FC = () => {
                   <div className="relative">
                     {/* overlay */}
                     {overlayLabels.length > 0 && (
-                      <div className="absolute left-1/2 transform -translate-x-1/2 -top-4 flex flex-wrap justify-center gap-2 z-20 max-w-[80%]">
+                      <div className="absolute left-1/2 -translate-x-1/2 -top-4 flex flex-wrap justify-center content-center gap-2 z-20 max-w-[80%]">
                         {overlayLabels.map((label, i) => renderOverlayIcon(label, i))}
                       </div>
                     )}
