@@ -31,7 +31,17 @@ const ConfirmationScreen: React.FC = () => {
           </div>
         }
       >
-        {/* Body intentionally left empty as requested */}
+        <div className="max-w-4xl mx-auto">
+          <div className="flex flex-col items-center text-center text-[#001a73]">
+            <h2 className="font-prompt font-semibold text-2xl">ขอบคุณ</h2>
+            <p className="font-sarabun text-lg">ที่ร่วมเป็นส่วนหนึ่งในการพัฒนาเมือง</p>
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9989e3bd2f31458aa7691b01a3a08b12?format=webp&width=800"
+              alt="ภาพประกาศรางวัล"
+              className="mt-3 w-full max-w-[640px] h-auto object-contain"
+            />
+          </div>
+        </div>
       </CustomizationScreen>
 
       <ShareModal isOpen={isShareOpen} onClose={() => setShareOpen(false)} shareUrl={window.location.origin + '/ukpack2'} shareText={'ผม/ฉันได้ออกแบบรถเมล์ในฝัน ลองดูสิ'} />
