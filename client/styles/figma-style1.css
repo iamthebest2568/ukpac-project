@@ -1596,3 +1596,9 @@ body[data-dialog-open] {
 .is-android .figma-style1-container.fake-news-page .figma-style1-button-container {
   padding-bottom: 20px !important;
 }
+
+@media (max-width: 640px) {
+  .figma-style1-container.fake-news-page .figma-style1-title {
+    margin-top: 14px !important;
+  }
+}
