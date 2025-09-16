@@ -50,23 +50,59 @@ const MONTHLY_ICON = "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd64
 const BUS_EMPLOY_ICON = "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F47fc617541cf45f28b7aa2d1b8deaf64?format=webp&width=800";
 
 const DEFAULT_COLORS = [
-  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F5456dc0212c14ba6a327d537ceed405e?format=webp&width=800", // c1
-  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F60613c947767482aa9d75e7414cdf10a?format=webp&width=800", // c2
-  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F257808683b104f7fb4c3d4ba712b4ef0?format=webp&width=800", // c3
-  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc1540ee8e580442bbcfe1c7cbf7ca0ca?format=webp&width=800", // c4
-  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F31b9a82b697a46a6b5b14e32002472d8?format=webp&width=800", // c5
-  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fcae7472130bc47f09f28af725a944548?format=webp&width=800", // c6
-  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F117b0cdb42744374a5999f03625d56aa?format=webp&width=800", // c7
-  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fee9ba92b67734653865abb9c651119d6?format=webp&width=800", // c8
-  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Ffae13b859b7c45eba3e49272be7622d2?format=webp&width=800", // c9
-  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9ba49f215d7d4abca6a601bdee2d7bd5?format=webp&width=800", // c10
-  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F30bc6908a9fc4a9e96afd58e5885af1b?format=webp&width=800", // c11
-  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F321fa0e9571a4e34b5fe6beffc1fbbed?format=webp&width=800", // c12
+  {
+    preview: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F5456dc0212c14ba6a327d537ceed405e?format=webp&width=800",
+    filter: "hue-rotate(0deg) saturate(1) brightness(1)" // blue/original
+  },
+  {
+    preview: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F60613c947767482aa9d75e7414cdf10a?format=webp&width=800",
+    filter: "hue-rotate(30deg) saturate(1.2) brightness(1.1)" // orange
+  },
+  {
+    preview: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F257808683b104f7fb4c3d4ba712b4ef0?format=webp&width=800",
+    filter: "hue-rotate(120deg) saturate(1.3) brightness(1)" // green
+  },
+  {
+    preview: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc1540ee8e580442bbcfe1c7cbf7ca0ca?format=webp&width=800",
+    filter: "hue-rotate(300deg) saturate(1.2) brightness(1)" // purple
+  },
+  {
+    preview: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F31b9a82b697a46a6b5b14e32002472d8?format=webp&width=800",
+    filter: "hue-rotate(0deg) saturate(1.5) brightness(1.2)" // bright blue
+  },
+  {
+    preview: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fcae7472130bc47f09f28af725a944548?format=webp&width=800",
+    filter: "hue-rotate(60deg) saturate(1.4) brightness(1.1)" // yellow
+  },
+  {
+    preview: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F117b0cdb42744374a5999f03625d56aa?format=webp&width=800",
+    filter: "hue-rotate(0deg) saturate(0.8) brightness(0.7)" // dark blue
+  },
+  {
+    preview: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fee9ba92b67734653865abb9c651119d6?format=webp&width=800",
+    filter: "hue-rotate(180deg) saturate(1.1) brightness(1)" // cyan
+  },
+  {
+    preview: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Ffae13b859b7c45eba3e49272be7622d2?format=webp&width=800",
+    filter: "hue-rotate(240deg) saturate(1.3) brightness(0.9)" // dark purple
+  },
+  {
+    preview: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9ba49f215d7d4abca6a601bdee2d7bd5?format=webp&width=800",
+    filter: "hue-rotate(0deg) saturate(0) brightness(0.4)" // black
+  },
+  {
+    preview: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F30bc6908a9fc4a9e96afd58e5885af1b?format=webp&width=800",
+    filter: "hue-rotate(0deg) saturate(0) brightness(0.7)" // dark gray
+  },
+  {
+    preview: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F321fa0e9571a4e34b5fe6beffc1fbbed?format=webp&width=800",
+    filter: "hue-rotate(0deg) saturate(0) brightness(1.3)" // white
+  },
 ];
 
 const DesignScreen: React.FC = () => {
   const navigate = useNavigate();
-  const [color, setColor] = useState<string>(DEFAULT_COLORS[0]);
+  const [color, setColor] = useState<typeof DEFAULT_COLORS[0]>(DEFAULT_COLORS[0]);
   const [slogan, setSlogan] = useState<string>("");
   const [showTextarea, setShowTextarea] = useState<boolean>(false);
   const [sloganDraft, setSloganDraft] = useState<string>("");
@@ -80,7 +116,7 @@ const DesignScreen: React.FC = () => {
 
   const handleFinish = () => {
     try {
-      sessionStorage.setItem("design.color", color);
+      sessionStorage.setItem("design.color", JSON.stringify(color));
       sessionStorage.setItem("design.slogan", slogan);
     } catch (e) {}
     navigate("/ukpack2/submit");
@@ -136,19 +172,6 @@ const DesignScreen: React.FC = () => {
 
                       return (
                         <>
-                          {/* tint overlay */}
-                          {color && (
-                            <div
-                              aria-hidden="true"
-                              className="absolute inset-0 pointer-events-none rounded-md"
-                              style={{
-                                backgroundImage: `url(${color})`,
-                                backgroundSize: 'cover',
-                                mixBlendMode: 'multiply',
-                                opacity: 0.9,
-                              }}
-                            />
-                          )}
 
                           {/* small icons row */}
                           {overlayLabels.length > 0 && (
@@ -185,7 +208,7 @@ const DesignScreen: React.FC = () => {
                                   <div key={lab+i} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"><img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fece2b6fc843340f0997f2fd7d3ca0aea?format=webp&width=800" alt="ทางลาด" className="h-6 w-6 md:h-7 md:w-7 object-contain"/></div>
                                 );
                                 if (lab === 'emergency') return (
-                                  <div key={lab+i} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"><img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F98de0624be3d4ae6b96d83edcf8891f9?format=webp&width=800" alt="ประตูฉุกเฉิน" className="h-6 w-6 md:h-7 md:w-7 object-contain"/></div>
+                                  <div key={lab+i} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"><img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F98de0624be3d4ae6b96d83edcf8891f9?format=webp&width=800" alt="ปร���ตูฉุกเฉิน" className="h-6 w-6 md:h-7 md:w-7 object-contain"/></div>
                                 );
                                 return <div key={lab+i} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10 text-xs">?</div>;
                               })}
@@ -199,6 +222,7 @@ const DesignScreen: React.FC = () => {
                       src={img}
                       alt={`ภาพรถ - ${label}`}
                       className="h-72 w-auto object-contain select-none relative z-10"
+                      style={{ filter: color?.filter || 'none' }}
                       decoding="async"
                       loading="eager"
                     />
@@ -221,9 +245,12 @@ const DesignScreen: React.FC = () => {
               ออกแบบสี
             </h2>
             <ColorPalette
-              colors={DEFAULT_COLORS}
-              selectedColor={color}
-              onColorSelect={setColor}
+              colors={DEFAULT_COLORS.map(c => c.preview)}
+              selectedColor={color?.preview || DEFAULT_COLORS[0].preview}
+              onColorSelect={(colorUrl) => {
+                const foundColor = DEFAULT_COLORS.find(c => c.preview === colorUrl);
+                if (foundColor) setColor(foundColor);
+              }}
             />
 
             <h2 className="text-xl font-prompt font-semibold text-[#003366] mt-4">
@@ -260,7 +287,7 @@ const DesignScreen: React.FC = () => {
                         onClick={() => setShowTextarea(false)}
                         className="px-4 py-2 rounded-md bg-[#ffe000] text-black hover:bg-[#000d59] hover:text-white transition-colors"
                       >
-                        ยกเลิก
+                        ยก��ลิก
                       </button>
                       <button
                         onClick={() => {
