@@ -182,7 +182,7 @@ const FigmaStyle1Layout = ({
               <div className="figma-style1-title-container">
                 <h1
                   className={`figma-style1-title ${isSourceSelection ? "figma-style1-title--black" : ""}`}
-                  style={isSourceSelection ? { fontSize: "32px", lineHeight: 1.05 } : undefined}
+                  style={isSourceSelection ? { fontSize: "36px", lineHeight: 1.05 } : undefined}
                 >
                   {title}
                 </h1>
