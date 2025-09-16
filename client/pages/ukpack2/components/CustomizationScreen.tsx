@@ -18,33 +18,7 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
   const isLight = theme === "light";
   const contentRef = useRef<HTMLDivElement | null>(null);
   const footerRef = useRef<HTMLDivElement | null>(null);
-  const [footerHeight, setFooterHeight] = useState(0);
-
-  useEffect(() => {
-    function update() {
-      try {
-        const h = footerRef.current?.getBoundingClientRect().height || 0;
-        setFooterHeight(h);
-      } catch (e) {
-        // ignore
-      }
-    }
-    update();
-    window.addEventListener("resize", update);
-    let ro: ResizeObserver | null = null;
-    try {
-      // observe footer size changes (safe-guard against older browsers)
-      // @ts-ignore
-      ro = new (window as any).ResizeObserver((entries: any) => update());
-      if (footerRef.current && ro) ro.observe(footerRef.current);
-    } catch (e) {
-      ro = null;
-    }
-    return () => {
-      window.removeEventListener("resize", update);
-      if (ro && footerRef.current) ro.unobserve(footerRef.current);
-    };
-  }, []);
+  const [footerHeight] = useState(0);
 
   return (
     <div
@@ -58,16 +32,12 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
         </header>
       ) : null}
 
-      <div
-        ref={contentRef}
-        className="flex-1 overflow-auto px-6 py-6"
-        style={{ paddingBottom: `calc(${footerHeight}px + 16px + env(safe-area-inset-bottom, 0px))` }}
-      >
+      <div ref={contentRef} className="flex-1 px-6 py-6">
         {children}
       </div>
 
       {footerContent ? (
-        <footer ref={footerRef} className="fixed bottom-0 left-0 w-full z-40">
+        <footer ref={footerRef} className="sticky bottom-0 left-0 w-full z-40">
           <div
             className={`${footerBgImage ? 'rounded-t-3xl p-6 drop-shadow-lg bg-no-repeat bg-top bg-cover' : 'bg-[#00d5f9] rounded-t-3xl p-6 drop-shadow-lg'}`}
             style={footerBgImage ? { backgroundImage: `url('${footerBgImage}')` } : undefined}
