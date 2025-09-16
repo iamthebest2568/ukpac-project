@@ -1520,7 +1520,7 @@ body[data-dialog-open] {
   width: 100% !important;
   max-width: 360px !important;
   margin: 0 auto !important;
-  padding: 12px 0 28px 0 !important; /* more bottom padding so buttons sit above edge */
+  padding: 12px 0 calc(env(safe-area-inset-bottom, 0px) + 20px) 0 !important; /* bottom: safe-area + 20px */
   display: flex !important;
   flex-direction: column !important;
   gap: 12px !important;
