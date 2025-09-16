@@ -37,11 +37,11 @@ const SelectionCard: React.FC<SelectionCardProps> = ({
       <button
         type="button"
         onClick={onClick}
-        className={`flex items-center justify-center p-0 focus:outline-none transition-all`}
+        className={`inline-flex items-center justify-center p-0 focus:outline-none transition-all`}
         aria-pressed={isSelected}
       >
         <div
-          className={`${boxSize} flex items-center justify-center transition-colors ${isSelected ? "bg-[#ffe000] ring-2 ring-[#d6a700]" : "bg-transparent"}`}
+          className={`${boxSize} flex items-center justify-center transition-colors ${isSelected ? "border-2 border-[#ffe000]" : "border border-transparent"}`}
         >
           <div className="w-11/12 h-11/12 flex items-center justify-center">
             {icon}
