@@ -88,7 +88,7 @@ const Step2_Form = ({
           กรอกข้อมูล เพื่อรับรางวัล
         </h1>
 
-        <div className="mt-6 flex flex-col items-center gap-4">
+        <div className="mt-12 flex flex-col items-center gap-6">
           <div className="w-full max-w-[890px]">
             <label className="sr-only" htmlFor="name">
               ชื่อ-นามสกุล
