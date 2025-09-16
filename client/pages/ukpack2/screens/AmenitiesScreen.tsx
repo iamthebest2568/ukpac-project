@@ -43,7 +43,7 @@ const IconWifi = () => (
 const IconPlug = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F09a78e31a3de44e98772b0eef382af6f?format=webp&width=800"
-    alt="ช่องชาร์จ���ือถือ/USB"
+    alt="ช่องชาร์จมือถือ/USB"
     className="h-8 w-8 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -75,7 +75,7 @@ const AMENITIES = [
   { key: "wifi", label: "ที่จับ/ราวยืนที่ปลอดภัย", icon: <IconWifi /> },
   { key: "plug", label: "ช่องชาร์จมือถือ/USB", icon: <IconPlug /> },
   { key: "tv", label: "Wi‑Fi ฟรี", icon: <IconTv /> },
-  { key: "cup", label: "ระบ��ประกาศบอกป้าย(เสียง/จอ)", icon: <IconCup /> },
+  { key: "cup", label: "ระบบป���ะกาศบอกป้าย(เสียง/จอ)", icon: <IconCup /> },
 ];
 
 import { useNavigate } from "react-router-dom";
@@ -112,7 +112,7 @@ const AmenitiesScreen: React.FC = () => {
   // Selected chassis preview (reusing mapping from SeatingScreen)
   const CHASSIS_LABELS: Record<string, string> = {
     small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
-    medium: "���ถเมล์ขนาดกลาง 31–40 ที่นั่ง",
+    medium: "รถเมล์ขนาดกลาง 31–40 ที่นั่ง",
     large: "รถเมล์ขนาดใหญ่ 41–50 ที่นั่ง",
     extra: "รถกระบะดัดแปลง 8-12 ที่นั่ง",
   };
@@ -151,7 +151,7 @@ const AmenitiesScreen: React.FC = () => {
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F1cae4f7306834a6eb0d86be09e05bfdd?format=webp&width=800",
     "ช่องชาร์จมือถือ/USB":
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fba274e72720c4a1b9695e83dbf8c1fe9?format=webp&width=800",
-    "Wi‑Fi ��รี":
+    "Wi‑Fi ฟรี":
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F63dc13fe1fab446a9da88bfb297d9c6d?format=webp&width=800",
     "ระบบประกาศบอกป้าย(เสียง/จอ)":
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F35b324f49ad84b71a92ae80b0b39f7cd?format=webp&width=800",
@@ -225,7 +225,7 @@ const AmenitiesScreen: React.FC = () => {
             </HeroWithShadow>
           ) : (
             <div className="w-full h-48 bg-[#081042] rounded-md flex items-center justify-center text-sm text-gray-300">
-              Bus image preview (ภาพ���ำหรับรุ่นนี้จะถูกเพิ่มภายหลัง)
+              Bus image preview (ภาพสำหรับรุ่นนี้จะถูกเพิ่มภายหลัง)
             </div>
           )}
           <p className="mt-1 font-prompt font-semibold text-[#001a73] text-center">
