@@ -174,7 +174,7 @@ const SeatingScreen: React.FC = () => {
         theme="light"
         footerContent={
           <div className="flex justify-center">
-            <CtaButton text="ถั���ไป" onClick={handleNext} />
+            <CtaButton text="ถัดไป" onClick={handleNext} />
           </div>
         }
       >
