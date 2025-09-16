@@ -513,7 +513,10 @@
   /* Background banner adjustments */
   .splash-bg {
     background-position: center center;
-    background-size: cover;
+    background-size: contain; /* preserve full PNG shape to avoid straight edge cropping */
+    background-repeat: no-repeat;
+    position: relative;
+    z-index: 0;
   }
 }
 
@@ -541,7 +544,10 @@
 
   .splash-bg {
     background-position: center center;
-    background-size: cover;
+    background-size: contain; /* preserve full PNG shape to avoid straight edge cropping */
+    background-repeat: no-repeat;
+    position: relative;
+    z-index: 0;
   }
 }
 
@@ -570,6 +576,8 @@
     margin-top: 65px;
     font-weight: 800;
     font-size: 22px;
+    position: relative;
+    z-index: 10; /* ensure text sits above background images */
   }
   .cta-button {
     margin: 0 auto;
@@ -582,5 +590,9 @@
     border: 1px solid rgba(10,9,9,0);
     font-weight: 600;
     text-align: center;
+    color: #07204a !important; /* ensure visible on all backgrounds */
+    position: relative;
+    z-index: 20;
+    background: transparent;
   }
 }
