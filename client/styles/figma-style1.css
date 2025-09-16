@@ -994,6 +994,29 @@
   font: var(--figma-title-font) !important;
 }
 
+/* Layout guarantees for ukpack1: keep content area scrollable when content is long
+   and ensure buttons stay visible at the bottom. These rules only touch styling. */
+.figma-style1-ukpack1 .figma-style1-main {
+  display: grid !important;
+  grid-template-rows: 1fr auto !important; /* content / actions */
+  height: 100svh !important;
+}
+
+.figma-style1-ukpack1 .figma-style1-content-area {
+  grid-row: 1 !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  padding: 20px !important;
+  box-sizing: border-box !important;
+  max-height: calc(100svh - var(--figma-footer-height));
+}
+
+.figma-style1-ukpack1 .figma-style1-button-container {
+  grid-row: 2 !important;
+  align-self: end !important;
+  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 20px) !important;
+}
+
 /* Mobile-first full-bleed adjustments (no side whitespace) ----------------------------------
    Makes figma-style1 pages use the full viewport width on phones so there is no
    left/right whitespace. Keeps safe-area insets for notches but removes fixed
