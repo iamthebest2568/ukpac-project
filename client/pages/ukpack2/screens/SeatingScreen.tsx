@@ -16,6 +16,7 @@ const SeatingScreen: React.FC = () => {
   const [childElderSeats, setChildElderSeats] = useState<number>(0);
   const [monkSeats, setMonkSeats] = useState<number>(0);
   const [wheelchairBikeSpaces, setWheelchairBikeSpaces] = useState<number>(0);
+  const [specialSeats, setSpecialSeats] = useState<number>(0);
   const [isExitModalOpen, setExitModalOpen] = useState(false);
   const [isErrorModalOpen, setErrorModalOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
@@ -107,7 +108,7 @@ const SeatingScreen: React.FC = () => {
 
     // Check if special seats exceed total seats
     if (specialSeatsTotal > totalSeats) {
-      setErrorTitle("พื้นที่ไม่เพียงพอ");
+      setErrorTitle("พื้นที���ไม่เพียงพอ");
       setErrorMessage(
         `ที่นั่งพิเศษทั้งหมด (${specialSeatsTotal} ที่นั่ง) เกินจำนวนที่นั่งทั้งหมด (${totalSeats} ที่นั่ง) กรุณาลดจำนวนที่นั่งบางส่วน`,
       );
@@ -143,7 +144,7 @@ const SeatingScreen: React.FC = () => {
     if (v > maxCapacity) {
       setErrorTitle("จำนวนที่นั่งเกินขีดจำกัด");
       setErrorMessage(
-        `รถประเภทนี้สามารถมีที่นั่งได้สูงสุด ${maxCapacity} ที่นั่ง กรุณาลดจำนวนที่นั��ง`,
+        `รถประเภทนี้สามารถมีที่นั่งได้สูงสุด ${maxCapacity} ที่นั่ง กรุณาลดจำนวนที่���ั��ง`,
       );
       setErrorModalOpen(true);
     } else if (v < minCapacity && v > 0) {
@@ -379,7 +380,7 @@ const SeatingScreen: React.FC = () => {
       <ConfirmModal
         isOpen={isExitModalOpen}
         title="ออกจากหน้าจอ"
-        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงขอ���คุณจะไม่ถู��บันทึก"
+        message="คุณแน่ใจหรือไม่ว่าต้องการออก? ��ารเปลี่ยนแปลงของคุณจะไม่ถู��บันทึก"
         onConfirm={() => navigate("/")}
         onCancel={() => setExitModalOpen(false)}
       />
