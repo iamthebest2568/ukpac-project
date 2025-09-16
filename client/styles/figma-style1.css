@@ -108,7 +108,7 @@
   width: 100% !important;
   height: 100% !important;
   object-fit: cover !important;
-  object-position: center center !important; /* adjust if you want top-left focal */
+  object-position: top center !important; /* show top of vertical images on mobile */
   z-index: 0 !important;
   display: block !important;
   pointer-events: none !important;
