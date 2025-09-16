@@ -28,8 +28,10 @@ const SplashScreen: React.FC = () => {
         }}
       >
         <div className="max-w-3xl mx-auto py-8 px-6 text-center">
-          <p className="text-[#002038] text-lg mb-6 font-semibold">
-            รถเมล์ในฝันที่คุณอยากขึ้นทุกวัน จะมีหน้าตาอย่างไร?
+          <p className="text-[#002038] text-lg sm:text-xl md:text-2xl mb-6 font-semibold leading-snug">
+            รถเมล์ในฝันที่คุณอยากขึ้นทุกวัน
+            <br />
+            จะมีหน้าตาอย่างไร?
           </p>
           <div className="flex justify-center">
             <CtaButton
