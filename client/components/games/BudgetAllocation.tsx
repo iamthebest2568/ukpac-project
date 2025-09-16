@@ -43,7 +43,7 @@ const BudgetAllocationComponent = ({ sessionID, onNavigate, layoutMode = false }
     {
       key: "parking",
       label: "ที่จอดรถ",
-      description: "การจัดหาและ���ัฒนาพื้นที่จอดรถ",
+      description: "การจัดหาและพัฒนาพื้นที่จอดรถ",
       icon: "🅿️",
     },
   ];
@@ -117,7 +117,7 @@ const BudgetAllocationComponent = ({ sessionID, onNavigate, layoutMode = false }
             className="font-prompt font-bold text-center"
             style={{
               color: "#000D59",
-              fontSize: "clamp(24px, 5.6vw, 60px)",
+              fontSize: titleFontSize,
               fontWeight: 700,
               lineHeight: "normal",
             }}
@@ -363,7 +363,7 @@ const BudgetAllocationComponent = ({ sessionID, onNavigate, layoutMode = false }
                   fontSize: "clamp(14px, 2.8vw, 18px)",
                 }}
               >
-                กรุณาจัดสรรงบประมาณให้ครบ {totalBudget} บาทเพื่อดำเนิน���ารต่อ
+                กรุณาจัดสรรงบประมาณให้ครบ {totalBudget} บาทเพื่อดำเนินการต่อ
               </div>
             )}
           </div>
