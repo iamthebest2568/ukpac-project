@@ -146,6 +146,9 @@ const Step1_Choice = ({
             <br />
             จากการเก็บไปพัฒนาอะไร
           </h1>
+          <div style={{ textAlign: 'center', marginBottom: '12px' }}>
+            <p style={{ color: '#000D59', fontSize: '16px', margin: 0 }}>ไม่เกิน 3 นโยบาย</p>
+          </div>
         </div>
 
         {/* Policy Options - Improved Grid Layout */}
