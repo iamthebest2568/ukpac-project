@@ -181,7 +181,7 @@ const IconTv = () => (
 const IconCup = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe903bdf27bab4175824c159bc19a02ba?format=webp&width=800"
-    alt="ระบบประกาศบอกป้าย(เสียง/จอ)"
+    alt="ระบบประก���ศบอกป้าย(เสียง/จอ)"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -280,7 +280,7 @@ const PaymentScreen: React.FC = () => {
           {(() => {
             const CHASSIS_LABELS: Record<string, string> = {
               small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
-              medium: "รถเมล์ขนาดกลาง 31–40 ที่นั่ง",
+              medium: "รถเมล์ขนาดกลาง 31–40 ท��่นั่ง",
               large: "รถเมล์ขนาดใหญ่ 41-50 ที่นั่ง",
               extra: "รถกระบะดัดแปลง 8-12 ที่นั่ง",
             };
@@ -358,6 +358,29 @@ const PaymentScreen: React.FC = () => {
                   </div>
                 );
               }
+
+              // check door selections
+              if (label === '1') return (
+                <div key={`${label}-${idx}`} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">
+                  <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9811f9bca05c43feae9eafdcbab3c8d9?format=webp&width=800" alt="1 ประตู" className="h-6 w-6 md:h-7 md:w-7 object-contain"/>
+                </div>
+              );
+              if (label === '2') return (
+                <div key={`${label}-${idx}`} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">
+                  <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8f9b21942af243b3b80b0e5ac8b12631?format=webp&width=800" alt="2 ประตู" className="h-6 w-6 md:h-7 md:w-7 object-contain"/>
+                </div>
+              );
+              if (label === 'ramp') return (
+                <div key={`${label}-${idx}`} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">
+                  <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fece2b6fc843340f0997f2fd7d3ca0aea?format=webp&width=800" alt="ทางลาด" className="h-6 w-6 md:h-7 md:w-7 object-contain"/>
+                </div>
+              );
+              if (label === 'emergency') return (
+                <div key={`${label}-${idx}`} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">
+                  <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F98de0624be3d4ae6b96d83edcf8891f9?format=webp&width=800" alt="ประตูฉุกเฉิน" className="h-6 w-6 md:h-7 md:w-7 object-contain"/>
+                </div>
+              );
+
               // fallback to payment options
               const opt = OPTIONS.find((o) => o.label === label);
               if (!opt)
