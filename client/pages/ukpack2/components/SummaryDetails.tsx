@@ -57,7 +57,7 @@ const displayDoor = (raw: any) => {
         : raw.doorChoice === "2"
           ? "2 ประตู"
           : String(raw.doorChoice);
-    if (raw.hasRamp) return "ทางลาดสำหรับรถเข็น/ผู้พิการ";
+    if (raw.hasRamp) return "ทางลา��สำหรับรถเข็น/ผู้พิการ";
     if (raw.highLow) return "ประตูฉุกเฉิน";
   }
   return String(raw);
@@ -154,7 +154,7 @@ const SummaryDetails: React.FC = () => {
               <img
                 src={heroImg}
                 alt={`ภาพรถ - ${chassisLabel}`}
-                className="h-64 w-auto object-contain select-none"
+                className="h-48 md:h-64 w-auto object-contain select-none"
                 decoding="async"
                 loading="eager"
               />
