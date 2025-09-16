@@ -715,6 +715,7 @@
     margin: 2vh auto;
     min-height: auto;
     max-height: calc(100vh - 20px);
+    max-height: calc(100svh - 20px);
     overflow-y: auto; /* allow content to scroll on small screens */
   }
 
