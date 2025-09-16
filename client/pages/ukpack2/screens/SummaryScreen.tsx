@@ -79,7 +79,7 @@ const SummaryScreen: React.FC = () => {
           : raw.doorChoice === "2"
             ? "2 ประตู"
             : String(raw.doorChoice);
-      if (raw.hasRamp) return "ทางลาดสำหรับรถ��ข็น/ผู้พิการ";
+      if (raw.hasRamp) return "ทางลาดสำหรับรถเข็น/ผู้พิการ";
       if (raw.highLow) return "ประตูฉุกเฉิน";
     }
     return String(raw);
