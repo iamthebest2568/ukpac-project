@@ -296,8 +296,9 @@ const SeatingScreen: React.FC = () => {
               <div className="mt-4 text-[#003366] font-sarabun font-semibold text-[17.6px]">จำนวนที่นั่งพิเศษ</div>
 
               <div className="flex items-center justify-between mt-2">
-                <div className="text-[#003366] font-sarabun font-semibold text-[17.6px] sm:font-normal sm:text-[16px]">จำนวนที่นั่งพิเศษ</div>
+                <label htmlFor="specialSeats" className="sr-only">จำนวนที่นั่งพิเศษ</label>
                 <input
+                  id="specialSeats"
                   type="number"
                   min={0}
                   max={maxCapacity}
@@ -348,7 +349,7 @@ const SeatingScreen: React.FC = () => {
               </div>
 
               <div className="flex items-center justify-between">
-                <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">พระภิกษุสงฆ์</div>
+                <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">พร���ภิกษุสงฆ์</div>
                 <input
                   type="number"
                   value={monkSeats}
