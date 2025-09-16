@@ -27,7 +27,7 @@ export default function ReasonOther01Page() {
       imageLoading="eager"
     >
       {/* Custom content matching Figma design */}
-      <div className="flex flex-col items-center justify-center h-full w-full max-w-[1080px] mx-auto px-4 py-6">
+      <div className="flex flex-col items-center justify-center h-full w-full max-w-full mx-auto px-4 py-6">
         {/* Title */}
         <div className="text-center mb-8">
           <h1
