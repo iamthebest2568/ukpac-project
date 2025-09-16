@@ -133,20 +133,24 @@ const Step1_Choice = ({
         {/* Title Section - Optimized for mobile readability */}
         <div className="text-center w-full max-w-none px-4">
           <h1
-            className="font-prompt text-center leading-normal mb-4"
+            className="font-prompt text-center leading-normal mb-2"
             style={{
               color: "#000D59",
               fontSize: "clamp(24px, 6vw, 48px)",
               lineHeight: "1.2",
               fontWeight: 700,
               width: "100%",
-              margin: "0 auto 16px auto",
+              margin: "0 auto 8px auto",
             }}
           >
             คุณคิดว่าควรใช้เงินที่ได้
             <br />
             จากการเก็บไปพัฒนาอะไร
           </h1>
+
+          <p className="font-prompt text-center mb-4" style={{ color: '#6b7280', fontSize: 'clamp(12px, 3.5vw, 16px)', fontWeight: 500 }}>
+            ไม่เกิน 3 นโยบาย
+          </p>
         </div>
 
         {/* Policy Options - Improved Grid Layout */}
