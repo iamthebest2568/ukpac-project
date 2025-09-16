@@ -655,7 +655,7 @@
 /* Tablet: reduce relative curve depth, keep height */
 @media (min-width: 640px) and (max-width: 1023px) {
   .footer-container {
-    --footer-clip-h: 80%;
+    --footer-clip-h: 95%;
     height: 360px;
   }
 }
@@ -664,7 +664,7 @@
 @media (min-width: 1024px) {
   .footer-container {
     --footer-clip-h: 45%;
-    height: 480px;
+    height: 680px;
   }
 }
 .footer-content h2 {
