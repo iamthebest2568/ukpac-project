@@ -485,6 +485,66 @@
   justify-content: center;
 }
 
+/* Larger breakpoints: tablet and desktop tweaks for /ukpack2 */
+@media (min-width: 768px) {
+  /* Make the central app container wider on tablets */
+  .responsive-container {
+    max-width: 1080px;
+  }
+
+  /* Splash top area spacing */
+  .splash-top {
+    padding: 64px 48px 24px;
+  }
+
+  /* Splash text sizing for tablets */
+  .splash-text {
+    margin-top: 80px;
+    font-size: 28px;
+    line-height: 36px;
+  }
+
+  /* CTA appearance for tablets */
+  .cta-button {
+    padding: 14px 36px;
+    font-size: 18px;
+  }
+
+  /* Background banner adjustments */
+  .splash-bg {
+    background-position: center center;
+    background-size: cover;
+  }
+}
+
+@media (min-width: 1024px) {
+  /* Desktop container max width */
+  .responsive-container {
+    max-width: 1200px;
+  }
+
+  /* More breathing room on desktop */
+  .splash-top {
+    padding: 96px 64px 32px;
+  }
+
+  .splash-text {
+    margin-top: 120px;
+    font-size: 34px;
+    line-height: 44px;
+  }
+
+  .cta-button {
+    padding: 16px 48px;
+    font-size: 20px;
+  }
+
+  .splash-bg {
+    background-position: center center;
+    background-size: cover;
+  }
+}
+
 /* Splash responsive tweaks */
 .splash-top {
   background-color: transparent;
