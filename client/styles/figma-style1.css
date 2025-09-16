@@ -1456,3 +1456,87 @@ body[data-dialog-open] {
   margin-top: 0 !important;
   margin-bottom: 0 !important;
 }
+
+/* ===================================================================
+   Standardized reset & layout for fake-news page
+   - Remove custom background/overlay
+   - Use clean centered layout with content pinned to bottom
+   - Keep buttons centered and constrained for accessibility
+   =================================================================== */
+.figma-style1-container.fake-news-page {
+  background: transparent !important;
+}
+
+.figma-style1-container.fake-news-page .figma-style1-background,
+.figma-style1-container.fake-news-page .figma-style1-background-image,
+.figma-style1-container.fake-news-page .figma-style1-background-overlay,
+.figma-style1-container.fake-news-page .figma-style1-wave-overlay {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+.figma-style1-container.fake-news-page .figma-style1-main {
+  align-items: end !important; /* keep content near bottom */
+  justify-items: center !important;
+  padding-bottom: env(safe-area-inset-bottom, 16px) !important;
+}
+
+.figma-style1-container.fake-news-page .figma-style1-content-area {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 20px !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-end !important;
+  align-items: center !important;
+  gap: 12px !important;
+}
+
+.figma-style1-container.fake-news-page .figma-style1-title-container {
+  width: 100% !important;
+  max-width: 720px !important;
+  margin: 0 auto 6px auto !important;
+  padding: 0 12px !important;
+}
+
+.figma-style1-container.fake-news-page .figma-style1-title {
+  color: #000 !important;
+  font-size: clamp(18px, 4.5vw, 22px) !important;
+  line-height: 1.25 !important;
+  text-align: center !important;
+  margin: 0 !important;
+  text-shadow: none !important;
+}
+
+.figma-style1-container.fake-news-page .figma-style1-button-container {
+  width: 100% !important;
+  max-width: 360px !important;
+  margin: 0 auto !important;
+  padding: 12px 0 18px 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+  align-items: center !important;
+}
+
+.figma-style1-container.fake-news-page .figma-style1-button {
+  width: 100% !important;
+  max-width: 100% !important;
+  border-radius: 28px !important;
+  height: 52px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.figma-style1-container.fake-news-page .figma-style1-button-text {
+  color: #000 !important;
+  text-align: center !important;
+}
+
+/* Ensure remaining layout inside route wrapper won't clip content */
+#main-content > .flow-container:has(.figma-style1-container.fake-news-page) {
+  overflow: visible !important;
+}
