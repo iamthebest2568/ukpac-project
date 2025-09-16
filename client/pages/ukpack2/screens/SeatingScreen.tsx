@@ -55,13 +55,16 @@ const SeatingScreen: React.FC = () => {
   };
 
   const selectedChassis = React.useMemo(() => {
+    // Prefer in-memory state (BusDesignContext) so selections are immediate.
+    if (state.chassis) return state.chassis as keyof typeof CHASSIS_LABELS;
     try {
       const saved = sessionStorage.getItem("design.chassis");
-      return (saved || currentChassis) as keyof typeof CHASSIS_LABELS;
+      if (saved) return saved as keyof typeof CHASSIS_LABELS;
     } catch {
-      return currentChassis as keyof typeof CHASSIS_LABELS;
+      // ignore
     }
-  }, [currentChassis]);
+    return currentChassis as keyof typeof CHASSIS_LABELS;
+  }, [state.chassis, currentChassis]);
 
   const maxCapacity = maxByChassis[selectedChassis] ?? 50;
   const minCapacity = minByChassis[selectedChassis] ?? 16;
@@ -338,7 +341,7 @@ const SeatingScreen: React.FC = () => {
 
               <div className="flex items-center justify-between">
                 <div className="text-[#003366] font-sarabun">
-                  พื้นที่สำหรับรถเข็น/จักรยาน
+                  พื���นที่สำหรับรถเข็น/จักรยาน
                 </div>
                 <input
                   type="number"
