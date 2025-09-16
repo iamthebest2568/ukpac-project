@@ -179,18 +179,27 @@ const AmenitiesScreen: React.FC = () => {
               <div className="relative">
                 {/* Overlay selected amenity icons on top of the bus image */}
                 {selected.length > 0 && (
-                  <div className="absolute left-1/2 transform -translate-x-1/2 -top-4 flex flex-wrap justify-center gap-2 z-20">
-                    {selected.map((label) => {
-                      const amen = AMENITIES.find((a) => a.label === label);
-                      return (
-                        <div
-                          key={label}
-                          className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-10 w-10 flex items-center justify-center"
-                        >
-                          {amen?.icon}
-                        </div>
-                      );
-                    })}
+                  <div className="absolute left-1/2 -translate-x-1/2 -top-4 flex flex-wrap justify-center content-center gap-2 z-20 max-w-[80%]">
+                    {selected
+                      .slice()
+                      .sort((a, b) => a.localeCompare(b, 'th'))
+                      .map((label, i) => {
+                        const src = OVERLAY_ICON_SRC[label];
+                        return (
+                          <div
+                            key={`${label}-${i}`}
+                            className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
+                          >
+                            {src ? (
+                              <img src={src} alt={label} className="h-6 w-6 md:h-7 md:w-7 object-contain" />
+                            ) : (
+                              <span className="text-[10px] md:text-xs font-medium text-[#001a73] px-1 text-center leading-none">
+                                {label}
+                              </span>
+                            )}
+                          </div>
+                        );
+                      })}
                   </div>
                 )}
 
