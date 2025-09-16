@@ -201,6 +201,21 @@ const Step2_Allocation = ({
             className="mx-auto flex flex-col items-center space-y-2"
             style={{ width: "100%", maxWidth: 980 }}
           >
+            {!isComplete && (
+              <div
+                className="text-center font-prompt mb-2"
+                style={{
+                  color: "#000D59",
+                  fontSize: "clamp(14px, 3vw, 18px)",
+                  fontWeight: 500,
+                  maxWidth: "400px",
+                  padding: "8px",
+                }}
+              >
+                กรุณาจัดสรรงบประมาณให้ครบ {totalBudget} หน่วยเพื่อดำเนินการต่อ
+              </div>
+            )}
+
             <button
               onClick={handleNext}
               disabled={!isComplete}
@@ -214,20 +229,6 @@ const Step2_Allocation = ({
             >
               ไปต่อ
             </button>
-            {!isComplete && (
-              <div
-                className="text-center font-prompt"
-                style={{
-                  color: "#000D59",
-                  fontSize: "clamp(14px, 3vw, 18px)",
-                  fontWeight: 500,
-                  maxWidth: "400px",
-                  padding: "8px",
-                }}
-              >
-                กรุณาจัดสรรงบประมาณให้ครบ {totalBudget} หน่วยเพื่อดำเนินการต่อ
-              </div>
-            )}
           </div>
         </div>
       </div>
