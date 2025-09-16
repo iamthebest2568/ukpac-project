@@ -20,15 +20,16 @@ const SelectionCard: React.FC<SelectionCardProps> = ({
   appearance = "card",
 }) => {
   const isLight = variant === "light";
-  const base = appearance === "bare"
-    ? `${isLight ? "text-[#003366]" : "text-white"} bg-transparent border-0`
-    : isSelected
-      ? isLight
-        ? "bg-[#ffe000] text-[#003366] border-transparent font-semibold"
-        : "bg-[#ffe000] text-black border-transparent"
-      : isLight
-        ? "bg-white text-[#003366] border border-gray-400"
-        : "bg-transparent text-white border border-[#081042]";
+  const base =
+    appearance === "bare"
+      ? `${isLight ? "text-[#003366]" : "text-white"} bg-transparent border-0`
+      : isSelected
+        ? isLight
+          ? "bg-[#ffe000] text-[#003366] border-transparent font-semibold"
+          : "bg-[#ffe000] text-black border-transparent"
+        : isLight
+          ? "bg-white text-[#003366] border border-gray-400"
+          : "bg-transparent text-white border border-[#081042]";
 
   // Group appearance: circular icon wrapper, responsive sizes
   if (appearance === "group") {
