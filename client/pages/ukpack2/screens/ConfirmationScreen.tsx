@@ -12,10 +12,17 @@ const ConfirmationScreen: React.FC = () => {
   return (
     <>
       <CustomizationScreen
-        title="ขอบคุณ"
+        title=""
         theme="light"
+        headerContent={
+          <img
+            src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F6b62374327d643178ab7f4a913ddc1b1?format=webp&width=800"
+            alt="ยืนยันข้อมูลสำเร็จ"
+            className="h-16 md:h-20 w-auto object-contain"
+          />
+        }
         footerContent={
-          <div className="flex justify-center">
+          <div className="flex justify-center gap-3">
             <CtaButton text="จบเกม" onClick={() => navigate("/ukpack2")} />
             <SecondaryButton
               text="แชร์เกมนี้กับเพื่อน"
@@ -24,12 +31,7 @@ const ConfirmationScreen: React.FC = () => {
           </div>
         }
       >
-        <div className="space-y-4">
-          <div className="bg-[#ffe000] text-[#000d59] rounded-md p-4">
-            <p className="font-prompt font-semibold">คุณได้ลงทะเบียนเพื่อเข้าร่วมลุ้นรางวัล 300 บาทแล้ว</p>
-            <p className="font-sarabun">ประกาศผลและการติดต่อจะส่งทางเบอร์โทรที่ให้ไว้ หากมีคำถาม สามารถติดต่อทีมงานได้</p>
-          </div>
-        </div>
+        {/* Body intentionally left empty as requested */}
       </CustomizationScreen>
 
       <ShareModal isOpen={isShareOpen} onClose={() => setShareOpen(false)} shareUrl={window.location.origin + '/ukpack2'} shareText={'ผม/ฉันได้ออกแบบรถเมล์ในฝัน ลองดูสิ'} />
