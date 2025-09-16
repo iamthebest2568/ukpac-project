@@ -143,7 +143,7 @@ const SeatingScreen: React.FC = () => {
     if (v > maxCapacity) {
       setErrorTitle("จำนวนที่นั่งเกินขีดจำกัด");
       setErrorMessage(
-        `รถประเภทนี้สา��ารถมีที่นั่งได้สูงสุด ${maxCapacity} ที่นั่ง กรุณาลดจำนวนที่นั��ง`,
+        `รถประเภทนี้สามารถมีที่นั่งได้สูงสุด ${maxCapacity} ที่นั่ง กรุณาลดจำนวนที่นั��ง`,
       );
       setErrorModalOpen(true);
     } else if (v < minCapacity && v > 0) {
@@ -282,6 +282,16 @@ const SeatingScreen: React.FC = () => {
 
               <div className="mt-4 text-[#003366] font-sarabun font-semibold text-[17.6px]">จำนวนที่นั่งพิเศษ</div>
 
+              <div className="flex items-center justify-between mt-2">
+                <div className="text-[#003366] font-sarabun">รวมที่นั่งพิเศษ</div>
+                <input
+                  type="number"
+                  value={pregnantSeats + childElderSeats + monkSeats + wheelchairBikeSpaces}
+                  readOnly
+                  className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-full text-[#003366] bg-white text-right"
+                />
+              </div>
+
               <div className="flex items-center justify-between">
                 <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">สตรีมีครรภ์</div>
                 <input
@@ -369,7 +379,7 @@ const SeatingScreen: React.FC = () => {
       <ConfirmModal
         isOpen={isExitModalOpen}
         title="ออกจากหน้าจอ"
-        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถู��บันทึก"
+        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงขอ���คุณจะไม่ถู��บันทึก"
         onConfirm={() => navigate("/")}
         onCancel={() => setExitModalOpen(false)}
       />
