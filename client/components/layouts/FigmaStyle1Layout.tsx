@@ -7,8 +7,8 @@ interface FigmaStyle1LayoutProps {
   backgroundImage: string;
   /** Alt text for background image */
   backgroundAlt?: string;
-  /** Title text to display */
-  title?: string;
+  /** Title to display (string or JSX) */
+  title?: React.ReactNode;
   /** Array of button configurations */
   buttons?: Array<{
     text: string;
@@ -182,6 +182,7 @@ const FigmaStyle1Layout = ({
               <div className="figma-style1-title-container">
                 <h1
                   className={`figma-style1-title ${isSourceSelection ? "figma-style1-title--black" : ""}`}
+                  style={isSourceSelection ? { fontSize: "22px", lineHeight: 1.05 } : undefined}
                 >
                   {title}
                 </h1>
