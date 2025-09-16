@@ -53,7 +53,7 @@ const IconSmall = () => (
 const IconMedium = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fab8ddd78f9a0478bb27f5818928665f3?format=webp&width=360"
-    alt="รถเมล์��นาดกลาง 31-40 ที่นั่ง"
+    alt="รถเ��ล์ขนาดกลาง 31-40 ที่นั่ง"
     className="max-h-12 w-auto object-contain select-none"
     decoding="async"
     loading="eager"
@@ -79,13 +79,13 @@ const IconExtra = () => (
 );
 
 const OPTIONS = [
-  { key: "small", label: "รถเมล์ขนาดเ��็ก 16-30 ที่นั่ง", icon: <IconSmall /> },
+  { key: "small", label: "รถเมล์ขนาดเล็ก 16-30 ที่นั่ง", icon: <IconSmall /> },
   {
     key: "medium",
     label: "รถเมล์ขนาดกลาง 31-40 ที่นั่ง",
     icon: <IconMedium />,
   },
-  { key: "large", label: "รถเมล์ขนาดใหญ�� 41-50 ที่นั่ง", icon: <IconLarge /> },
+  { key: "large", label: "รถเมล์ขนาด��หญ่ 41-50 ที่นั่ง", icon: <IconLarge /> },
   { key: "extra", label: "รถกระบะดัดแปลง 8-12 ที่นั่ง", icon: <IconExtra /> },
 ];
 
