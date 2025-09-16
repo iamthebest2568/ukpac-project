@@ -109,7 +109,7 @@ const Step1_Decision = ({
         </h2>
 
         <div
-          className="mt-8 flex flex-col items-center gap-4"
+          className="mt-2 flex flex-col items-center gap-2"
           style={{ width: "100%", maxWidth: 874, margin: "0 auto" }}
         >
           <button
@@ -117,12 +117,12 @@ const Step1_Decision = ({
             className="btn-large"
             aria-label="เข้าร่วมโครงการและกรอกข้อมูลเพื่อรับรางวัล"
           >
-            ลุ้นรับรางวัล
+            ลุ้นรับราง���ัล
           </button>
           <button
             onClick={onDecline}
             className="btn-large"
-            aria-label="ไม่เข้า��่วมโครงการรับรางวัล"
+            aria-label="ไม่เข้าร่วมโครงการรับรางวัล"
           >
             ไม่
           </button>
