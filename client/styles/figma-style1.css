@@ -177,6 +177,39 @@
   justify-items: center;
 }
 
+/* Specific tuning for fake-news page: lift content slightly so it doesn't sit under the curved overlay */
+.figma-style1-container.fake-news-page .figma-style1-main {
+  align-items: center; /* move content higher so text/buttons stay visible */
+}
+
+/* Reduce height of blue overlay on small screens to avoid covering buttons */
+.figma-style1-background-overlay--blue {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 42%;
+  z-index: 2;
+}
+
+@media (max-width: 375px) {
+  .figma-style1-background-overlay--blue {
+    height: 36%;
+  }
+}
+
+@media (min-width: 376px) and (max-width: 430px) {
+  .figma-style1-background-overlay--blue {
+    height: 40%;
+  }
+}
+
+@media (min-width: 431px) and (max-width: 768px) {
+  .figma-style1-background-overlay--blue {
+    height: 45%;
+  }
+}
+
 .figma-style1-header {
   @apply flex justify-start;
   /* Fluid header padding */
