@@ -14,7 +14,15 @@ const SplashScreen: React.FC = () => {
     >
       <div className="flex-1 flex flex-col items-center justify-center px-6 pt-12 splash-top">
         <div className="max-w-3xl w-full text-center">
-          <div className="w-full h-64 md:h-80 flex items-center justify-center" />
+          <div className="w-full h-64 md:h-80 flex items-center justify-center">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fbfa15cb7d28d4bff8817c7e0ca03bf58?format=webp&width=1600"
+              alt="cover"
+              className="w-full h-full object-contain mx-auto"
+              decoding="async"
+              loading="eager"
+            />
+          </div>
         </div>
       </div>
 
