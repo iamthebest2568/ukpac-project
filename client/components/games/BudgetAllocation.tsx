@@ -43,7 +43,7 @@ const BudgetAllocationComponent = ({ sessionID, onNavigate, layoutMode = false }
     {
       key: "parking",
       label: "ที่จอดรถ",
-      description: "การจัดหาและพัฒนาพื้นที่จอดรถ",
+      description: "การ���ัดหาและพัฒนาพื้นที่จอดรถ",
       icon: "🅿️",
     },
   ];
@@ -252,8 +252,8 @@ const BudgetAllocationComponent = ({ sessionID, onNavigate, layoutMode = false }
                 <div
                   className="rounded-[20px] border-[5px] border-[#000D59] bg-white flex items-center justify-center"
                   style={{
-                    width: "clamp(150px, 19vw, 205px)",
-                    height: "clamp(100px, 12vw, 130px)",
+                    width: inputBoxWidth,
+                    height: inputBoxHeight,
                   }}
                 >
                   <input
@@ -301,7 +301,7 @@ const BudgetAllocationComponent = ({ sessionID, onNavigate, layoutMode = false }
           {remainingBudget > 0 && remainingBudget < totalBudget && (
             <div className="mb-4 bg-yellow-500 bg-opacity-90 rounded-[15px] p-3">
               <div className="text-black text-center text-sm font-prompt">
-                คุณยังมีงบประมาณเหลือ <strong>{remainingBudget} บาท</strong>{" "}
+                ค���ณยังมีงบประมาณเหลือ <strong>{remainingBudget} บาท</strong>{" "}
                 กรุณาจัดสรรให้ครบ
               </div>
             </div>
@@ -363,7 +363,7 @@ const BudgetAllocationComponent = ({ sessionID, onNavigate, layoutMode = false }
                   fontSize: "clamp(14px, 2.8vw, 18px)",
                 }}
               >
-                กรุณาจัดสรรงบประมาณให้ครบ {totalBudget} บาทเพื่อด��เนินการต่อ
+                กรุณาจัดสรรงบประมาณให้ครบ {totalBudget} บาทเพื่อดำเนินการต่อ
               </div>
             )}
           </div>
