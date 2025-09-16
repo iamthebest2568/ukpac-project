@@ -79,7 +79,7 @@ const OPTIONS = [
   { key: "small", label: "รถเมล์ขนาดเล็ก 16-30 ที่นั่ง", icon: <IconSmall /> },
   {
     key: "medium",
-    label: "ร��เมล์ขนาดกลาง 31-40 ที่นั่ง",
+    label: "รถเมล์ขนาดกลาง 31-40 ที่นั่ง",
     icon: <IconMedium />,
   },
   { key: "large", label: "รถเมล์ขนาดใหญ่ 41-50 ที่นั่ง", icon: <IconLarge /> },
