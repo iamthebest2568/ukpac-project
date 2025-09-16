@@ -600,7 +600,7 @@
 /* Curved footer shape used on /ukpack2 as replacement for decorative background image */
 .footer-container {
   --footer-clip-w: 60%; /* width of the ellipse */
-  --footer-clip-h: 30%; /* height/depth of the ellipse (larger = deeper curve) */
+  --footer-clip-h: 50%; /* height/depth of the ellipse (larger = deeper curve) */
   --footer-bg-top: #f0f2f5; /* color above the footer */
 
   position: relative;
