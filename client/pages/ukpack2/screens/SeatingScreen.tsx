@@ -143,7 +143,7 @@ const SeatingScreen: React.FC = () => {
     if (v > maxCapacity) {
       setErrorTitle("จำนวนที่นั่งเกินขีดจำกัด");
       setErrorMessage(
-        `รถประเภทนี้สามารถมีที่นั่งได้สูงสุด ${maxCapacity} ที่นั่ง กรุณาลดจำนวนที่นั��ง`,
+        `รถประเภทนี้สามารถมีที��นั่งได้สูงสุด ${maxCapacity} ที่นั่ง กรุณาลดจำนวนที่นั��ง`,
       );
       setErrorModalOpen(true);
     } else if (v < minCapacity && v > 0) {
@@ -259,7 +259,7 @@ const SeatingScreen: React.FC = () => {
             <StepTabs active={2} />
             <div className="space-y-2 mt-2">
               <div className="flex items-center justify-between">
-                <div className="text-[#003366] font-sarabun" style={{fontWeight: 600, fontSize: '17.6px'}}>
+                <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">
                   จำนวนที่นั่งทั้งหมด
                 </div>
                 <input
@@ -280,10 +280,10 @@ const SeatingScreen: React.FC = () => {
                 />
               </div>
 
-              <div className="mt-4 text-[#003366] font-sarabun" style={{fontWeight: 600, fontSize: '17.6px'}}>จำนวนที่นั่งพิเศษ</div>
+              <div className="mt-4 text-[#003366] font-sarabun font-semibold text-[17.6px]">จำนวนที่นั่งพิเศษ</div>
 
               <div className="flex items-center justify-between">
-                <div className="text-[#003366] font-sarabun" style={{fontWeight: 600, fontSize: '17.6px'}}>สตรีมีครรภ์</div>
+                <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">สตรีมีครรภ์</div>
                 <input
                   type="number"
                   value={pregnantSeats}
@@ -302,7 +302,7 @@ const SeatingScreen: React.FC = () => {
               </div>
 
               <div className="flex items-center justify-between">
-                <div className="text-[#003366] font-sarabun" style={{fontWeight: 600, fontSize: '17.6px'}}>
+                <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">
                   เด็ก / ผู้สูงอายุ
                 </div>
                 <input
@@ -323,7 +323,7 @@ const SeatingScreen: React.FC = () => {
               </div>
 
               <div className="flex items-center justify-between">
-                <div className="text-[#003366] font-sarabun" style={{fontWeight: 600, fontSize: '17.6px'}}>พระภิกษุสงฆ์</div>
+                <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">พระภิกษุสงฆ์</div>
                 <input
                   type="number"
                   value={monkSeats}
@@ -342,7 +342,7 @@ const SeatingScreen: React.FC = () => {
               </div>
 
               <div className="flex items-center justify-between">
-                <div className="text-[#003366] font-sarabun" style={{fontWeight: 600, fontSize: '17.6px'}}>
+                <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">
                   พื้นที่สำหรับรถเข็น/จักรยาน
                 </div>
                 <input
