@@ -662,7 +662,7 @@
 /* Tablet: keep deep curve and height */
 @media (min-width: 640px) and (max-width: 1023px) {
   .footer-container {
-    --footer-height: 360px;
+    --footer-height: 420px;
     --footer-clip-h-num: 0.5;
   }
 }
