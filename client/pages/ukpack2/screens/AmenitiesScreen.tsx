@@ -6,7 +6,7 @@ import CtaButton from "../components/CtaButton";
 
 const IconAir = () => (
   <img
-    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fee1c18a935564e92bb49991fac3b76df?format=webp&width=800"
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fa5664fc8bb6b4f07aea5a9d95839a7a0?format=webp&width=800"
     alt="แอร์"
     className="h-8 w-8 object-contain select-none"
     decoding="async"
@@ -141,7 +141,7 @@ const AmenitiesScreen: React.FC = () => {
   const OVERLAY_ICON_SRC: Record<string, string> = {
     // labels
     แอร์: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F02548238f8184e808929075a27733533?format=webp&width=800",
-    พัดลม:
+    พัด���ม:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fdcae7affa4fe43e38aa5c78ca608e39e?format=webp&width=800",
     ที่นั่งพิเศษ:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F788c9e78d6944fc8a5088cc00aa40697?format=webp&width=800", // ใช้ไอคอนหน้าต่างเปิดได้
@@ -225,7 +225,7 @@ const AmenitiesScreen: React.FC = () => {
             </HeroWithShadow>
           ) : (
             <div className="w-full h-48 bg-[#081042] rounded-md flex items-center justify-center text-sm text-gray-300">
-              Bus image preview (ภาพสำหรับรุ่นนี้จะถูกเพิ่มภายหลัง)
+              Bus image preview (ภา���สำหรับรุ่นนี้จะถูกเพิ่มภายหลัง)
             </div>
           )}
           <p className="mt-1 font-prompt font-semibold text-[#001a73] text-center">
