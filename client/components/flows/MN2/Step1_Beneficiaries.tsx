@@ -147,7 +147,7 @@ const Step1_Beneficiaries = ({
         <div className="figma-style1-background">
           <img
             src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Faad14e063d78407fb534dc6eacb5f6dd?format=webp&width=800"
-            alt="กลุ่มผู้ได้รับประโยชน์"
+            alt="กล���่มผู้ได้รับประโยชน์"
             className="figma-style1-background-image"
           />
           <div className="figma-style1-background-overlay" />
@@ -200,7 +200,7 @@ const Step1_Beneficiaries = ({
                         <img
                           src={group.iconSrc}
                           alt={group.label}
-                          className="w-[50px] h-[50px] object-contain"
+                          className="w-[43px] h-[43px] object-contain"
                           style={{
                             filter: isSelected
                               ? "brightness(0)" // Black icons on yellow background
@@ -255,7 +255,7 @@ const Step1_Beneficiaries = ({
                         <img
                           src={group.iconSrc}
                           alt={group.label}
-                          className="w-[50px] h-[50px] object-contain"
+                          className="w-[43px] h-[43px] object-contain"
                           style={{
                             filter: isSelected
                               ? "brightness(0)" // Black icons on yellow background
@@ -319,7 +319,7 @@ const Step1_Beneficiaries = ({
                   id="next-button-description"
                   className="text-center text-white text-sm mt-2"
                 >
-                  กรุณาเลือกอย่างน้อย 1 กลุ่มเพื่อดำเนินการต่อ
+                  กรุณาเลือกอย่างน้อย 1 กล��่มเพื่อดำเนินการต่อ
                 </div>
               )}
             </div>
