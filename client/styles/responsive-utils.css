@@ -652,7 +652,7 @@
 
 @media (max-width: 768px) {
   .footer-container {
-    --footer-height: 320px; /* update computed height on mobile */
+    --footer-height: 100vh; /* fill viewport on mobile */
     --footer-clip-h-num: 0.5;
   }
 }
