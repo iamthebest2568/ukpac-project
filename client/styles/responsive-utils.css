@@ -1,12 +1,11 @@
-/**
- * Responsive Utilities for UK Pack 1
+/* Responsive Utilities for UK Pack 1
  * Mobile-first responsive design system that extends figma-style1.css
  * Ensures consistent button styling and layout across all screen sizes
  */
 
 /* ============================================
-   CORE RESPONSIVE LAYOUT UTILITIES
-   ============================================ */
+  CORE RESPONSIVE LAYOUT UTILITIES
+  ============================================ */
 
 /* Mobile-first container system */
 .responsive-container {
@@ -61,8 +60,8 @@
 }
 
 /* ============================================
-   CONSISTENT BUTTON SYSTEM (matching fake-news)
-   ============================================ */
+  CONSISTENT BUTTON SYSTEM (matching fake-news)
+  ============================================ */
 
 /* Primary button style matching fake-news page */
 .btn-primary {
@@ -183,8 +182,8 @@
 }
 
 /* ============================================
-   TYPOGRAPHY SYSTEM
-   ============================================ */
+  TYPOGRAPHY SYSTEM
+  ============================================ */
 
 /* Responsive headings */
 .heading-xl {
@@ -262,8 +261,8 @@
 }
 
 /* ============================================
-   MINI-GAME SPECIFIC COMPONENTS
-   ============================================ */
+  MINI-GAME SPECIFIC COMPONENTS
+  ============================================ */
 
 /* Option button grid for mini-games */
 .option-grid {
@@ -283,7 +282,6 @@
   justify-content: center;
 }
 
-/* Option button for mini-games */
 .option-btn {
   flex: 1;
   min-width: clamp(120px, 25vw, 200px);
@@ -323,7 +321,6 @@
   background-color: #ffe000;
 }
 
-/* Selected states */
 .option-btn--gray.selected {
   background-color: #ffe000;
 }
@@ -332,10 +329,9 @@
 }
 
 /* ============================================
-   LAYOUT COMPONENTS
-   ============================================ */
+  LAYOUT COMPONENTS
+  ============================================ */
 
-/* Full-screen layout for mini-games */
 .minigame-layout {
   width: 100%;
   min-height: 100vh;
@@ -345,7 +341,6 @@
   flex-direction: column;
 }
 
-/* Content area with responsive positioning */
 .content-area {
   flex: 1;
   display: flex;
@@ -356,7 +351,6 @@
   text-align: center;
 }
 
-/* Fixed footer for buttons */
 .fixed-footer {
   position: fixed;
   bottom: 0;
@@ -370,7 +364,6 @@
   backdrop-filter: blur(10px);
 }
 
-/* Sticky footer for better mobile UX */
 .sticky-footer {
   position: sticky;
   bottom: 0;
@@ -383,10 +376,9 @@
 }
 
 /* ============================================
-   BACKGROUND SYSTEM
-   ============================================ */
+  BACKGROUND SYSTEM
+  ============================================ */
 
-/* Responsive background image */
 .bg-responsive {
   position: absolute;
   inset: 0;
@@ -396,7 +388,6 @@
   z-index: 0;
 }
 
-/* Background overlay */
 .bg-overlay {
   position: absolute;
   inset: 0;
@@ -413,10 +404,9 @@
 }
 
 /* ============================================
-   FORM COMPONENTS
-   ============================================ */
+  FORM COMPONENTS
+  ============================================ */
 
-/* Responsive input fields */
 .input-field {
   width: 100%;
   max-width: clamp(200px, 80vw, 400px);
@@ -437,7 +427,6 @@
   box-shadow: 0 0 0 3px rgba(255, 224, 0, 0.2);
 }
 
-/* Label styling */
 .input-label {
   font-family: "Prompt", sans-serif;
   font-size: clamp(14px, 3.5vw, 16px);
@@ -448,10 +437,9 @@
 }
 
 /* ============================================
-   UTILITY CLASSES
-   ============================================ */
+  UTILITY CLASSES
+  ============================================ */
 
-/* Responsive visibility */
 .show-mobile {
   display: block;
 }
@@ -468,7 +456,6 @@
   }
 }
 
-/* Responsive text alignment */
 .text-center-mobile {
   text-align: center;
 }
@@ -479,7 +466,6 @@
   }
 }
 
-/* Safe area utilities */
 .safe-top {
   padding-top: env(safe-area-inset-top, 0);
 }
@@ -493,154 +479,46 @@
   padding-right: env(safe-area-inset-right, 0);
 }
 
-/* Flexbox utilities */
 .flex-center {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.flex-col-center {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+/* Splash responsive tweaks */
+.splash-top {
+  background-color: transparent;
 }
 
-/* ============================================
-   RESPONSIVE BREAKPOINT UTILITIES
-   ============================================ */
-
-/* Extra small devices (320px - 374px) */
-@media (max-width: 374px) {
-  .btn-primary,
-  .btn-secondary,
-  .btn-large {
-    font-size: 13px !important;
-    height: 44px !important;
+@media (max-width: 640px) {
+  .splash-top {
+    background-color: rgba(255, 255, 255, 1);
+    padding-bottom: 20px;
+    background-image: url('https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fbfa15cb7d28d4bff8817c7e0ca03bf58?format=webp');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    flex-direction: row;
+    overflow: auto;
+    width: 100%;
+    height: auto;
+    flex-grow: 1;
+    text-align: center;
+    margin: auto;
   }
-
-  .heading-xl {
-    font-size: 24px !important;
+  .splash-bg {
+    background-color: rgba(255,255,255,1) !important;
   }
-  .heading-lg {
-    font-size: 20px !important;
+  .splash-text {
+    margin-top: 65px;
+    font-weight: 800;
+    font-size: 22px;
   }
-  .heading-md {
-    font-size: 18px !important;
+  .cta-button {
+    margin: 0 auto;
   }
-  .heading-sm {
-    font-size: 16px !important;
-  }
-}
-
-/* Small devices (375px - 667px) - iPhone SE, iPhone 8 */
-@media (min-width: 375px) and (max-width: 667px) {
-  .btn-container {
-    max-width: 350px;
-  }
-
-  .option-grid {
-    max-width: 90vw;
-  }
-}
-
-/* Medium devices (668px - 1023px) - iPads, small tablets */
-@media (min-width: 668px) and (max-width: 1023px) {
-  .btn-container {
-    max-width: 400px;
-  }
-
-  .option-grid {
-    max-width: 80vw;
-  }
-
-  .btn-primary,
-  .btn-secondary {
-    height: clamp(48px, 8vh, 60px);
-    font-size: clamp(16px, 3vw, 20px);
-  }
-}
-
-/* Large devices (1024px and up) - Desktop */
-@media (min-width: 1024px) {
-  .btn-container {
-    max-width: 400px;
-  }
-
-  .option-grid {
-    max-width: 1000px;
-  }
-
-  .btn-primary,
-  .btn-secondary {
-    height: 60px;
-    font-size: 18px;
-  }
-
-  .btn-large {
-    height: 118px;
-    font-size: 50px;
-  }
-}
-
-/* ============================================
-   ACCESSIBILITY IMPROVEMENTS
-   ============================================ */
-
-/* Focus indicators */
-.btn-primary:focus,
-.btn-secondary:focus,
-.btn-large:focus,
-.option-btn:focus,
-.input-field:focus {
-  outline: 3px solid #ffe000;
-  outline-offset: 2px;
-}
-
-/* Reduced motion support */
-@media (prefers-reduced-motion: reduce) {
-  .btn-primary,
-  .btn-secondary,
-  .btn-large,
-  .option-btn {
-    transition: none;
-  }
-
-  .btn-primary:hover,
-  .btn-secondary:hover,
-  .btn-large:hover,
-  .option-btn:hover {
-    transform: none;
-  }
-}
-
-/* High contrast support */
-@media (prefers-contrast: high) {
-  .btn-primary,
-  .btn-secondary,
-  .btn-large,
-  .option-btn {
-    border-width: 2px;
-  }
-}
-
-/* ============================================
-   PRINT STYLES
-   ============================================ */
-
-@media print {
-  .btn-primary,
-  .btn-secondary,
-  .btn-large,
-  .option-btn,
-  .fixed-footer,
-  .sticky-footer {
-    display: none;
-  }
-
-  .bg-responsive,
-  .bg-overlay {
-    display: none;
+  .privacy-button {
+    border: 1px solid rgba(10,9,9,0);
   }
 }
