@@ -32,7 +32,7 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
         </header>
       ) : null}
 
-      <div ref={contentRef} className="flex-1 px-6 py-6">
+      <div ref={contentRef} className="flex-1 px-6 py-6 pb-12 md:pb-16">
         {children}
       </div>
 
