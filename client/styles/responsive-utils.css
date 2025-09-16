@@ -642,10 +642,24 @@
 
 @media (max-width: 768px) {
   .footer-container {
-    height: 300px; /* slightly smaller on mobile */
+    height: 320px; /* slightly smaller on mobile */
   }
   .footer-container::before {
     clip-path: ellipse(80% 12% at 50% 0%);
+  }
+}
+
+/* Footer heading responsive tweaks */
+.footer-content h2 {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+@media (max-width: 640px) {
+  .footer-content h2 {
+    font-size: 18px;
+    color: rgba(0, 13, 89, 1);
+    line-height: 1.2;
   }
 }
 
