@@ -89,7 +89,7 @@ const SeatingScreen: React.FC = () => {
 
     // Check if total seats is within range
     if (totalSeats < minCapacity) {
-      setErrorTitle("จำนวนที่นั่งน้��ยเกินไป");
+      setErrorTitle("จำนวนที่นั่งน้อยเกินไป");
       setErrorMessage(
         `รถประเภทนี้ต้องมีที่นั่งอย่างน้อย ${minCapacity} ที่นั่ง กรุณาเพิ่มจำนวนที่นั่ง`,
       );
