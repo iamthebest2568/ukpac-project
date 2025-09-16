@@ -619,6 +619,20 @@
 }
 
 /* If components explicitly use color for contrast (e.g., white text on colored backgrounds), keep those by preferring specific selectors in components' CSS. */
+
+/* Make all interactive text on /ukpack2 become yellow on hover for consistency */
+.full-bleed-page .app-container button:hover,
+.full-bleed-page .app-container a:hover,
+.full-bleed-page .app-container [role="button"]:hover {
+  color: #ffd100 !important; /* yellow */
+  text-decoration-color: #ffd100 !important;
+}
+
+/* Ensure selection card labels also change on hover */
+.full-bleed-page .app-container .selection-label-mobile,
+.full-bleed-page .app-container .selection-label-mobile:hover {
+  color: inherit;
+}
 .footer-container {
   /* base variables */
   --footer-clip-w: 60%; /* horizontal radius (percent) */
