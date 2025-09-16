@@ -369,8 +369,14 @@
 .end-sequence-page .figma-style1-title,
 .end-sequence-page h1,
 .end-sequence-page h2 {
-  color: #000 !important;
+  color: #000D59 !important;
   letter-spacing: 0.2px !important;
+}
+
+/* Ensure general content text on end-sequence pages uses the same brand color */
+.end-sequence-page .figma-style1-content-area,
+.end-sequence-page .figma-style1-content-area * {
+  color: #000D59 !important;
 }
 
 /* Ensure button container text remains black on fake-news */
