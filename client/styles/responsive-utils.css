@@ -652,31 +652,27 @@
 
 @media (max-width: 768px) {
   .footer-container {
-    height: 320px; /* slightly smaller on mobile */
-    --footer-clip-h: 95%;
-  }
-  .footer-container::before {
-    clip-path: ellipse(80% 12% at 50% 0%);
+    --footer-height: 320px; /* update computed height on mobile */
+    --footer-clip-h-num: 0.95;
   }
 }
 
 /* Footer heading responsive tweaks */
 
-/* Tablet: reduce relative curve depth, keep height */
+/* Tablet: keep deep curve and height */
 @media (min-width: 640px) and (max-width: 1023px) {
   .footer-container {
-    --footer-clip-h: 95%;
-    height: 360px;
+    --footer-height: 360px;
+    --footer-clip-h-num: 0.95;
   }
 }
 
 /* Desktop: shallower curve but taller container for balance */
 @media (min-width: 1024px) {
   .footer-container {
-    --footer-clip-h: 45%;
-    height: 680px;
-    align-items: flex-start; /* put content higher so it sits above the curved area */
-    padding-top: 120px; /* push content into visible area */
+    --footer-height: 680px;
+    --footer-clip-h-num: 0.45;
+    align-items: flex-start; /* position content near top, content padding handles spacing */
   }
 
   /* ensure content doesn't overflow and is centered horizontally */
@@ -685,6 +681,7 @@
     width: 100%;
     padding: 24px 40px;
     box-sizing: border-box;
+    padding-top: calc(var(--footer-clip-px) * 0.6); /* keep computed padding-top */
   }
 
   .footer-content h2 {
