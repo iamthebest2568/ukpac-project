@@ -75,7 +75,7 @@ const AMENITIES = [
   { key: "wifi", label: "ที่จับ/ราวยืนที่ปลอดภัย", icon: <IconWifi /> },
   { key: "plug", label: "ช่องชาร์จมือถือ/USB", icon: <IconPlug /> },
   { key: "tv", label: "Wi‑Fi ฟรี", icon: <IconTv /> },
-  { key: "cup", label: "ระบบประกาศบอกป้าย(เสียง/จอ)", icon: <IconCup /> },
+  { key: "cup", label: "ระบ��ประกาศบอกป้าย(เสียง/จอ)", icon: <IconCup /> },
 ];
 
 import { useNavigate } from "react-router-dom";
@@ -85,6 +85,16 @@ import HeroWithShadow from "../components/HeroWithShadow";
 const AmenitiesScreen: React.FC = () => {
   const navigate = useNavigate();
   const [selected, setSelected] = useState<string[]>(["แอร์"]);
+  // load previously selected amenities
+  useEffect(() => {
+    try {
+      const raw = sessionStorage.getItem("design.amenities");
+      if (raw) {
+        const arr = JSON.parse(raw);
+        if (Array.isArray(arr)) setSelected(arr);
+      }
+    } catch {}
+  }, []);
 
   const toggle = (label: string) => {
     setSelected((prev) =>
@@ -215,7 +225,7 @@ const AmenitiesScreen: React.FC = () => {
             </HeroWithShadow>
           ) : (
             <div className="w-full h-48 bg-[#081042] rounded-md flex items-center justify-center text-sm text-gray-300">
-              Bus image preview (ภาพสำหรับรุ่นนี้จะถูกเพิ่มภายหลัง)
+              Bus image preview (ภาพ���ำหรับรุ่นนี้จะถูกเพิ่มภายหลัง)
             </div>
           )}
           <p className="mt-1 font-prompt font-semibold text-[#001a73] text-center">
