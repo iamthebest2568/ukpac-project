@@ -15,7 +15,7 @@ const IconAir = () => (
 );
 const IconFan = () => (
   <img
-    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe01792ee89e240808ed47d8576b55d71?format=webp&width=800"
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F58688a08ef9646fbbc3fcd00962bc5ef?format=webp&width=800"
     alt="พัดลม"
     className="h-8 w-8 object-contain select-none"
     decoding="async"
@@ -236,7 +236,7 @@ const AmenitiesScreen: React.FC = () => {
           <StepTabs active={3} />
 
           <h2 className="text-xl font-prompt font-semibold text-[#003366] mt-2">
-            ความสะ���วกสบาย
+            ความสะดวกสบาย
           </h2>
 
           <div className="grid grid-cols-3 md:grid-cols-4 gap-4">
