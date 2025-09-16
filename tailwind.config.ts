@@ -28,6 +28,7 @@ export default {
     extend: {
       fontFamily: {
         prompt: ["Prompt", "sans-serif"],
+        sarabun: ["Sarabun", "Prompt", "sans-serif"],
       },
       maxWidth: {
         app: "420px",
