@@ -91,7 +91,7 @@ const Step1_Decision = ({
           <span
             style={{ display: "block", fontSize: "clamp(24px, 5.6vw, 60px)", fontWeight: 400 }}
           >
-            ในการพัฒน���เมือง
+            ในการพัฒนาเมือง
           </span>
         </h1>
 
@@ -117,7 +117,7 @@ const Step1_Decision = ({
             className="btn-large"
             aria-label="เข้าร่วมโครงการและกรอกข้อมูลเพื่อรับรางวัล"
           >
-            ลุ้นรับราง���ัล
+            ลุ้นรับรางวัล
           </button>
           <button
             onClick={onDecline}
