@@ -26,7 +26,7 @@ const IconSmall = () => (
 const IconMedium = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fab8ddd78f9a0478bb27f5818928665f3?format=webp&width=360"
-    alt="รถเมล์ขนาดกลาง 31-40 ที่นั่ง"
+    alt="รถเมล์��นาดกลาง 31-40 ที่นั่ง"
     className="max-h-12 w-auto object-contain select-none"
     decoding="async"
     loading="eager"
@@ -44,7 +44,7 @@ const IconLarge = () => (
 const IconExtra = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9a8a7536ced24db19a65409fbba1c6b6?format=webp&width=360"
-    alt="รถเมล์รุ่นพิเศษ 51+ ที่นั่ง"
+    alt="รถกระบะดัดแปลง 8-12 ที่นั่ง"
     className="max-h-12 w-auto object-contain select-none -translate-y-0.5"
     decoding="async"
     loading="eager"
@@ -58,8 +58,8 @@ const OPTIONS = [
     label: "รถเมล์ขนาดกลาง 31-40 ที่นั่ง",
     icon: <IconMedium />,
   },
-  { key: "large", label: "รถเมล์ขนาดใหญ่ 41-50 ที่นั่ง", icon: <IconLarge /> },
-  { key: "extra", label: "รถเมล์รุ่นพิเศษ 51+ ที่นั่ง", icon: <IconExtra /> },
+  { key: "large", label: "รถเมล์ขนาดใหญ�� 41-50 ที่นั่ง", icon: <IconLarge /> },
+  { key: "extra", label: "รถกระบะดัดแปลง 8-12 ที่นั่ง", icon: <IconExtra /> },
 ];
 
 const HERO_IMAGE: Record<string, string> = {

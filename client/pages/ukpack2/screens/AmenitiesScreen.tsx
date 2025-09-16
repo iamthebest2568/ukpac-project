@@ -61,7 +61,7 @@ const IconTv = () => (
 const IconCup = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe903bdf27bab4175824c159bc19a02ba?format=webp&width=800"
-    alt="ระบบประกาศบอกป้าย(เสียง/จอ)"
+    alt="ระบบประกาศบอกป้าย(เสี���ง/จอ)"
     className="h-8 w-8 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -104,7 +104,7 @@ const AmenitiesScreen: React.FC = () => {
     small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
     medium: "รถเมล์ขนาดกลาง 31–40 ที่นั่ง",
     large: "รถเมล์ขนาดใหญ่ 41–50 ที่นั่ง",
-    extra: "รถเมล์รุ่นพิเศษ 51+ ที่นั่ง",
+    extra: "รถกระบะดัดแปลง 8-12 ที่นั่ง",
   };
   const HERO_IMAGE: Record<string, string> = {
     small:

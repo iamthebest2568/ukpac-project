@@ -47,7 +47,7 @@ const CHASSIS_LABELS: Record<string, string> = {
   small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
   medium: "รถเมล์ขนาดกลาง 31–40 ที่นั่ง",
   large: "รถเมล์ขนาดใหญ่ 41-50 ที่นั่ง",
-  extra: "รถเมล์รุ่นพิเศษ 51+ ที่นั่ง",
+  extra: "รถกระบะดัดแปลง 8-12 ที่นั่ง",
 };
 
 const HERO_IMAGE: Record<string, string> = {
@@ -175,7 +175,7 @@ const SummaryDetails: React.FC = () => {
           </div>
 
           <div className="flex items-start gap-3">
-            <div className="w-28 md:w-36 text-sm text-[#003366] truncate">ลักษณะพิเศษ</div>
+            <div className="w-28 md:w-36 text-sm text-[#003366] truncate">ล��กษณะพิเศษ</div>
             <div className="flex-1 font-sarabun font-semibold text-sm text-[#003366] break-words">{data.slogan || '-'}</div>
           </div>
 
