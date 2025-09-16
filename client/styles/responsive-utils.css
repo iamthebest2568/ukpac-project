@@ -648,6 +648,15 @@
   color: #fff !important;
   border-color: rgba(255,255,255,0.2);
   background: transparent;
+  text-decoration-color: currentColor; /* underline matches text color */
+}
+
+@media (max-width: 640px) {
+  .footer-container .privacy-button {
+    color: rgba(0, 0, 0, 1) !important;
+    text-decoration-color: rgba(0, 0, 0, 1) !important;
+    background-color: transparent;
+  }
 }
 
 @media (max-width: 768px) {
