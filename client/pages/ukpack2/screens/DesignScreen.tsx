@@ -42,8 +42,12 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   "กล้องวงจรปิด": <IconCamSmall />,
 };
 
-const MONEY_ICON = "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fbc8b22cedfbb4640a702f724881f196d?format=webp&width=800";
-const SCAN_ICON = "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb8992da4be824b339d3df5f0a076ed93?format=webp&width=800";
+const MONEY_ICON = "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9349b93d24274adc91be5f4657facdda?format=webp&width=800";
+const SCAN_ICON = "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fbc97b87e6027435fb25a72f5478406cd?format=webp&width=800";
+const SCAN2_ICON = "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F56620e798eb94153b2390271f30d0dae?format=webp&width=800";
+const TOUCH_ICON = "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F4e22405c00c84fbfb1cd43fea6d8f8b4?format=webp&width=800";
+const MONTHLY_ICON = "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Ff841cf7477174217b2aa753d7acb4b21?format=webp&width=800";
+const BUS_EMPLOY_ICON = "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F47fc617541cf45f28b7aa2d1b8deaf64?format=webp&width=800";
 
 const DEFAULT_COLORS = [
   "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F5456dc0212c14ba6a327d537ceed405e?format=webp&width=800", // c1
@@ -88,7 +92,7 @@ const DesignScreen: React.FC = () => {
       theme="light"
       footerContent={
         <div className="flex justify-center">
-          <CtaButton text="ออกแบบเสร็จแล้ว" onClick={handleFinish} />
+          <CtaButton text="ออก���บบเสร็จแล้ว" onClick={handleFinish} />
         </div>
       }
     >
@@ -151,12 +155,39 @@ const DesignScreen: React.FC = () => {
                             <div className="absolute left-1/2 transform -translate-x-1/2 -top-4 flex flex-wrap justify-center gap-2 z-20 max-w-[80%]">
                               {overlayLabels.map((lab, i) => {
                                 if (AMENITIES_ICON_MAP[lab]) return (
-                                  <div key={`${lab}-${i}`} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center">{AMENITIES_ICON_MAP[lab]}</div>
+                                  <div key={`${lab}-${i}`} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">{AMENITIES_ICON_MAP[lab]}</div>
                                 );
-                                if (lab === 'เงินสด') return <div key={lab+i} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center"><img src={MONEY_ICON} alt={lab} className="h-5 w-5 object-contain"/></div>;
-                                if (lab === 'สแกนจ่าย') return <div key={lab+i} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center"><img src={SCAN_ICON} alt={lab} className="h-5 w-5 object-contain"/></div>;
-                                if (lab === '1' || lab === '2' || lab === 'ramp' || lab === 'emergency') return <div key={lab+i} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center text-xs">{String(lab)}</div>;
-                                return <div key={lab+i} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center text-xs">?</div>;
+                                if (lab === 'เงินสด') return (
+                                  <div key={lab+i} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"><img src={MONEY_ICON} alt={lab} className="h-6 w-6 md:h-7 md:w-7 object-contain"/></div>
+                                );
+                                if (lab === 'สแกนจ่าย') return (
+                                  <div key={lab+i} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"><img src={SCAN_ICON} alt={lab} className="h-6 w-6 md:h-7 md:w-7 object-contain"/></div>
+                                );
+                                if (lab === 'สแกนจ่าย 2') return (
+                                  <div key={lab+i} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"><img src={SCAN2_ICON} alt={lab} className="h-6 w-6 md:h-7 md:w-7 object-contain"/></div>
+                                );
+                                if (lab === 'แตะบัตร') return (
+                                  <div key={lab+i} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"><img src={TOUCH_ICON} alt={lab} className="h-6 w-6 md:h-7 md:w-7 object-contain"/></div>
+                                );
+                                if (lab === 'กระเป๋ารถเมล์') return (
+                                  <div key={lab+i} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"><img src={BUS_EMPLOY_ICON} alt={lab} className="h-6 w-6 md:h-7 md:w-7 object-contain"/></div>
+                                );
+                                if (lab === 'ตั๋วรายเดือน/รอบ') return (
+                                  <div key={lab+i} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"><img src={MONTHLY_ICON} alt={lab} className="h-6 w-6 md:h-7 md:w-7 object-contain"/></div>
+                                );
+                                if (lab === '1') return (
+                                  <div key={lab+i} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"><img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9811f9bca05c43feae9eafdcbab3c8d9?format=webp&width=800" alt="1 ประตู" className="h-6 w-6 md:h-7 md:w-7 object-contain"/></div>
+                                );
+                                if (lab === '2') return (
+                                  <div key={lab+i} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"><img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8f9b21942af243b3b80b0e5ac8b12631?format=webp&width=800" alt="2 ประตู" className="h-6 w-6 md:h-7 md:w-7 object-contain"/></div>
+                                );
+                                if (lab === 'ramp') return (
+                                  <div key={lab+i} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"><img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fece2b6fc843340f0997f2fd7d3ca0aea?format=webp&width=800" alt="ทางลาด" className="h-6 w-6 md:h-7 md:w-7 object-contain"/></div>
+                                );
+                                if (lab === 'emergency') return (
+                                  <div key={lab+i} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"><img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F98de0624be3d4ae6b96d83edcf8891f9?format=webp&width=800" alt="ประตูฉุกเฉิน" className="h-6 w-6 md:h-7 md:w-7 object-contain"/></div>
+                                );
+                                return <div key={lab+i} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10 text-xs">?</div>;
                               })}
                             </div>
                           )}
