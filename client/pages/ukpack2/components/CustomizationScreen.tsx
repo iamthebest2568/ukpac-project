@@ -6,6 +6,7 @@ interface CustomizationScreenProps {
   footerContent?: React.ReactNode;
   theme?: "dark" | "light";
   footerBgImage?: string;
+  headerContent?: React.ReactNode;
 }
 
 const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
@@ -14,6 +15,7 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
   footerContent,
   theme = "dark",
   footerBgImage,
+  headerContent,
 }) => {
   const isLight = theme === "light";
   const contentRef = useRef<HTMLDivElement | null>(null);
@@ -22,10 +24,14 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
     <div
       className={`min-h-screen flex flex-col ${isLight ? "bg-white text-black" : "bg-[#000d59] text-white"}`}
     >
-      {title?.trim() ? (
+      {title?.trim() || headerContent ? (
         <header className="px-6 border-b border-[#081042] flex items-center justify-center h-16">
           <div className="max-w-4xl w-full flex items-center justify-center">
-            <h1 className="text-2xl font-prompt font-semibold">{title}</h1>
+            {headerContent ? (
+              <div className="w-full flex items-center justify-center">{headerContent}</div>
+            ) : (
+              <h1 className="text-2xl font-prompt font-semibold">{title}</h1>
+            )}
           </div>
         </header>
       ) : null}
