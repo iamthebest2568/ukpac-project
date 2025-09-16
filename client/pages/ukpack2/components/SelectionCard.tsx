@@ -27,7 +27,7 @@ const SelectionCard: React.FC<SelectionCardProps> = ({
     <button
       type="button"
       onClick={onClick}
-      className={`flex flex-col items-center justify-center p-4 rounded-2xl ${base} focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#ffe000] transition-colors`}
+      className={`w-full flex flex-col items-center justify-center p-4 rounded-2xl ${base} focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#ffe000] transition-colors`}
       aria-pressed={isSelected}
     >
       <div
@@ -35,7 +35,7 @@ const SelectionCard: React.FC<SelectionCardProps> = ({
       >
         {icon}
       </div>
-      <div className="text-sm font-sarabun text-center leading-tight">
+      <div className="px-2 text-xs md:text-sm font-sarabun text-center leading-tight break-words whitespace-normal max-w-full">
         {label}
       </div>
     </button>
