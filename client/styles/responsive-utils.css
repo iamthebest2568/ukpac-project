@@ -665,6 +665,27 @@
   .footer-container {
     --footer-clip-h: 45%;
     height: 680px;
+    align-items: flex-start; /* put content higher so it sits above the curved area */
+    padding-top: 120px; /* push content into visible area */
+  }
+
+  /* ensure content doesn't overflow and is centered horizontally */
+  .footer-content {
+    max-width: 980px;
+    width: 100%;
+    padding: 24px 40px;
+    box-sizing: border-box;
+  }
+
+  .footer-content h2 {
+    font-size: 36px;
+    line-height: 1.1;
+    margin-bottom: 12px;
+  }
+
+  .footer-content p {
+    font-size: 18px;
+    margin-bottom: 20px;
   }
 }
 .footer-content h2 {
