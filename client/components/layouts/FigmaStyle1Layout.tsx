@@ -70,7 +70,10 @@ const FigmaStyle1Layout = ({
     // Detect if current route belongs to ukpack1 and set page scope class for styling
     try {
       if (typeof window !== 'undefined' && window.location && window.location.pathname.startsWith('/ukpack1')) {
-        setPageScope('figma-style1-ukpack1');
+        // Skip applying global ukpack1 styling to the uk-stornaway (video) page
+        if (!window.location.pathname.includes('uk-stornaway')) {
+          setPageScope('figma-style1-ukpack1');
+        }
       }
     } catch (e) {
       // noop
