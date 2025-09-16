@@ -202,9 +202,7 @@ const Step1_Beneficiaries = ({
                           alt={group.label}
                           className="w-[43px] h-[43px] object-contain"
                           style={{
-                            filter: isSelected
-                              ? "brightness(0)" // Black icons on yellow background
-                              : "brightness(0) invert(1)", // White icons on black background
+                            filter: isSelected ? "brightness(0)" : "none",
                           }}
                         />
                       </div>
@@ -257,9 +255,7 @@ const Step1_Beneficiaries = ({
                           alt={group.label}
                           className="w-[43px] h-[43px] object-contain"
                           style={{
-                            filter: isSelected
-                              ? "brightness(0)" // Black icons on yellow background
-                              : "brightness(0) invert(1)", // White icons on black background
+                            filter: isSelected ? "brightness(0)" : "none",
                           }}
                         />
                       </div>
@@ -319,7 +315,7 @@ const Step1_Beneficiaries = ({
                   id="next-button-description"
                   className="text-center text-white text-sm mt-2"
                 >
-                  กรุณาเลือกอย่างน้อย 1 กลุ่มเพื่อดำเนินการต่อ
+                  กรุณาเลือกอย่า���น้อย 1 กลุ่มเพื่อดำเนินการต่อ
                 </div>
               )}
             </div>
