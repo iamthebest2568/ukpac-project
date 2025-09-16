@@ -54,8 +54,21 @@ const FigmaStyle1Layout = ({
 }: FigmaStyle1LayoutProps) => {
   // Determine if this is the source selection page
   const isSourceSelection = className?.includes("source-selection-page");
+
+  // Platform detection to allow iOS vs Android spacing control
+  const [platformClass, setPlatformClass] = useState("");
+  useEffect(() => {
+    if (typeof navigator === "undefined") return;
+    const ua = navigator.userAgent || "";
+    const isAndroid = /Android/i.test(ua);
+    const isIPad = /iPad/.test(ua) || (navigator.platform === 'MacIntel' && typeof (window as any).ontouchend === 'object');
+    const isIPhone = /iPhone/.test(ua);
+    if (isAndroid) setPlatformClass("is-android");
+    else if (isIPhone || isIPad) setPlatformClass("is-ios");
+  }, []);
+
   return (
-    <div className={`figma-style1-container ${className}`}>
+    <div className={`figma-style1-container ${className} ${platformClass}`}>
       <div className="figma-style1-content">
         {/* Background Image (overlay only rendered when useBlueOverlay is true) */}
         <div className="figma-style1-background">
