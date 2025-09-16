@@ -32,16 +32,16 @@ const SelectionCard: React.FC<SelectionCardProps> = ({
 
   // Group appearance: circular icon wrapper, responsive sizes
   if (appearance === "group") {
-    const circleSize = "w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28";
+    const boxSize = "w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28";
     return (
       <button
         type="button"
         onClick={onClick}
-        className={`flex items-center justify-center p-0 ${isSelected ? "" : ""} focus:outline-none transition-all`}
+        className={`flex items-center justify-center p-0 focus:outline-none transition-all`}
         aria-pressed={isSelected}
       >
         <div
-          className={`rounded-full flex items-center justify-center ${circleSize} transition-colors ${isSelected ? "bg-[#ffe000] ring-2 ring-[#d6a700]" : "bg-white/0"}`}
+          className={`${boxSize} flex items-center justify-center transition-colors ${isSelected ? "bg-[#ffe000] ring-2 ring-[#d6a700]" : "bg-transparent"}`}
         >
           <div className="w-11/12 h-11/12 flex items-center justify-center">
             {icon}
