@@ -459,6 +459,14 @@ const App = () => {
                   element={<Navigate to="/ukpack1/source-selection" replace />}
                 />
                 <Route
+                  path="/ukpack1/SourceSelection"
+                  element={<Navigate to="/ukpack1/source-selection" replace />}
+                />
+                <Route
+                  path="/SourceSelection"
+                  element={<Navigate to="/ukpack1/source-selection" replace />}
+                />
+                <Route
                   path="/EndSequencePage"
                   element={<Navigate to="/ukpack1/end-sequence" replace />}
                 />
