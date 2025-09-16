@@ -110,7 +110,7 @@ const SeatingScreen: React.FC = () => {
     if (specialSeatsTotal > totalSeats) {
       setErrorTitle("พื้นที่ไม่เพียงพอ");
       setErrorMessage(
-        `ที่นั่งพิเศษทั้งหมด (${specialSeatsTotal} ที่นั่ง) เกินจำนวนที่นั่งทั้งหมด (${totalSeats} ที่นั่ง) กรุณาลดจำนวนที่นั่งบางส่วน`,
+        `ที่นั่งพิเ���ษทั้งหมด (${specialSeatsTotal} ที่นั่ง) เกินจำนวนที่นั่งทั้งหมด (${totalSeats} ที่นั่ง) กรุณาลดจำนวนที่นั่งบางส่วน`,
       );
       setErrorModalOpen(true);
       return false;
@@ -174,7 +174,7 @@ const SeatingScreen: React.FC = () => {
         theme="light"
         footerContent={
           <div className="flex justify-center">
-            <CtaButton text="ถัดไป" onClick={handleNext} />
+            <CtaButton text="ถั���ไป" onClick={handleNext} />
           </div>
         }
       >
@@ -293,10 +293,8 @@ const SeatingScreen: React.FC = () => {
                 />
               </div>
 
-              <div className="mt-4 text-[#003366] font-sarabun font-semibold text-[17.6px]">จำนวนที่นั่งพิเศษ</div>
-
-              <div className="flex items-center justify-between mt-2">
-                <label htmlFor="specialSeats" className="sr-only">จำนวนที่นั่งพิเศษ</label>
+              <div className="flex items-center justify-between mt-4">
+                <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">จำนวนที่นั่งพิเศษ</div>
                 <input
                   id="specialSeats"
                   type="number"
@@ -349,7 +347,7 @@ const SeatingScreen: React.FC = () => {
               </div>
 
               <div className="flex items-center justify-between">
-                <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">พร���ภิกษุสงฆ์</div>
+                <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">พระภิกษุสงฆ์</div>
                 <input
                   type="number"
                   value={monkSeats}
