@@ -38,8 +38,8 @@ const SeatingScreen: React.FC = () => {
 
   const CHASSIS_LABELS: Record<string, string> = {
     small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
-    medium: "รถเมล์ขนาดกลาง 31–40 ที่นั่ง",
-    large: "รถเมล์ขนาดใหญ่ 41–50 ที่นั่ง",
+    medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
+    large: "รถเมล์ขนาดใหญ่ 41–50 ที่น���่ง",
     extra: "รถกระบะดัดแปลง 8-12 ที่นั่ง",
   };
 
@@ -97,7 +97,7 @@ const SeatingScreen: React.FC = () => {
     }
 
     if (totalSeats > maxCapacity) {
-      setErrorTitle("จำนวนที่นั่งเกินขีดจำกัด");
+      setErrorTitle("จำนวนที่นั่งเกินขีดจ��กัด");
       setErrorMessage(
         `รถประเภทนี้สามารถมีที่นั่งได้สูงสุด ${maxCapacity} ที่นั่ง กรุณาลดจำนวนที่นั่ง`,
       );
@@ -341,7 +341,7 @@ const SeatingScreen: React.FC = () => {
 
               <div className="flex items-center justify-between">
                 <div className="text-[#003366] font-sarabun">
-                  พื���นที่สำหรับรถเข็น/จักรยาน
+                  พื้นที่สำหรับรถเข็น/จักรย��น
                 </div>
                 <input
                   type="number"
