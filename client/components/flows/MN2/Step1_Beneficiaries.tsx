@@ -194,7 +194,7 @@ const Step1_Beneficiaries = ({
                       {/* Circular Icon Background */}
                       <div
                         className={`w-[68px] h-[68px] rounded-full flex items-center justify-center mb-2 transition-all duration-200 ${
-                          isSelected ? "bg-[#EFBA31]" : "bg-black"
+                          isSelected ? "bg-[#EFBA31]" : isDisabled ? "bg-gray-300" : "bg-transparent border-2 border-white/20"
                         }`}
                       >
                         <img
@@ -249,7 +249,7 @@ const Step1_Beneficiaries = ({
                       {/* Circular Icon Background */}
                       <div
                         className={`w-[68px] h-[68px] rounded-full flex items-center justify-center mb-2 transition-all duration-200 ${
-                          isSelected ? "bg-[#EFBA31]" : "bg-black"
+                          isSelected ? "bg-[#EFBA31]" : isDisabled ? "bg-gray-300" : "bg-transparent border-2 border-white/20"
                         }`}
                       >
                         <img
