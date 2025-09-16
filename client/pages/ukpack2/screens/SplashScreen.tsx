@@ -12,11 +12,10 @@ const SplashScreen: React.FC = () => {
       className="min-h-screen flex flex-col"
       style={{ backgroundColor: "#e9f9ff" }}
     >
-      <div className="flex-1" />
 
       <div className="footer-container">
         <div className="footer-content">
-          <h2 className="text-2xl md:text-3xl font-bold mb-2">รถเมล์ในฝันที่คุณอยากขึ้นทุกกวัน<br />จะมีหน้าตาอย่างไ��?<br /></h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">รถเมล์ในฝันที่คุณอยากขึ้นทุกกวัน<br />จะมีหน้าตาอย่างไร?<br /></h2>
           <div className="flex items-center justify-center gap-4">
             <CtaButton
               text="เริ่มออกแบบ"
