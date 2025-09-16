@@ -327,6 +327,9 @@
 /* Button System - Fluid responsive */
 .figma-style1-button-container {
   /* Working grid layout with proper padding */
+  z-index: 11; /* above overlay */
+  position: relative;
+  padding-bottom: 16px; /* ensure buttons are visible above curve */
   grid-row: 2;
   width: 100%;
   max-width: 380px;
