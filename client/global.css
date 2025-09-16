@@ -186,7 +186,7 @@
   /* Global application container: fluid on mobile, capped at 1080px on large screens */
   .app-container {
     width: 100%;
-    max-width: 1080px;
+    max-width: 100%;
     margin: 0 auto;
     padding: 0 var(--space-sm);
     min-height: 100vh; /* safe fallback */
