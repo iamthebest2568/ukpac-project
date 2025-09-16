@@ -215,9 +215,9 @@ const IconCam = () => (
 );
 
 const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
-  "แอร์": <IconAir />,
-  "พัดลม": <IconFan />,
-  "ที่นั่งพิเศษ": <IconSeat />,
+  แอร์: <IconAir />,
+  พัดลม: <IconFan />,
+  ที่นั่งพิเศษ: <IconSeat />,
   "ที่จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
   "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
@@ -313,57 +313,118 @@ const PaymentScreen: React.FC = () => {
             })();
 
             // combine amenities + payment selections for overlay
-            const overlayLabels: string[] = [...(amenitiesFromStorage || []), ...(selected || [])];
+            const overlayLabels: string[] = [
+              ...(amenitiesFromStorage || []),
+              ...(selected || []),
+            ];
 
             const renderOverlayIcon = (label: string, idx: number) => {
               // check amenities map first
               if (AMENITIES_ICON_MAP[label]) {
                 return (
-                  <div key={`${label}-${idx}`} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">
+                  <div
+                    key={`${label}-${idx}`}
+                    className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
+                  >
                     {AMENITIES_ICON_MAP[label]}
                   </div>
                 );
               }
               // fallback to payment options
               const opt = OPTIONS.find((o) => o.label === label);
-              if (!opt) return (
-                <div key={`${label}-${idx}`} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center text-xs">
-                  ?
-                </div>
-              );
-              if (opt.key === "cash") return (
-                <div key={`${label}-${idx}`} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">
-                  <img src={MONEY_ICON} alt={label} className="h-6 w-6 md:h-7 md:w-7 object-contain" />
-                </div>
-              );
-              if (opt.key === "scan") return (
-                <div key={`${label}-${idx}`} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">
-                  <img src={SCAN_ICON} alt={label} className="h-6 w-6 md:h-7 md:w-7 object-contain" />
-                </div>
-              );
-              if (opt.key === "scan2") return (
-                <div key={`${label}-${idx}`} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">
-                  <img src={SCAN2_ICON} alt={label} className="h-6 w-6 md:h-7 md:w-7 object-contain" />
-                </div>
-              );
-              if (opt.key === "tap") return (
-                <div key={`${label}-${idx}`} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">
-                  <img src={TOUCH_ICON} alt={label} className="h-6 w-6 md:h-7 md:w-7 object-contain" />
-                </div>
-              );
-              if (opt.key === "qr") return (
-                <div key={`${label}-${idx}`} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">
-                  <img src={BUS_EMPLOY_ICON} alt={label} className="h-6 w-6 md:h-7 md:w-7 object-contain" />
-                </div>
-              );
-              if (opt.key === "monthly") return (
-                <div key={`${label}-${idx}`} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">
-                  <img src={MONTHLY_ICON} alt={label} className="h-6 w-6 md:h-7 md:w-7 object-contain" />
-                </div>
-              );
+              if (!opt)
+                return (
+                  <div
+                    key={`${label}-${idx}`}
+                    className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center text-xs"
+                  >
+                    ?
+                  </div>
+                );
+              if (opt.key === "cash")
+                return (
+                  <div
+                    key={`${label}-${idx}`}
+                    className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
+                  >
+                    <img
+                      src={MONEY_ICON}
+                      alt={label}
+                      className="h-6 w-6 md:h-7 md:w-7 object-contain"
+                    />
+                  </div>
+                );
+              if (opt.key === "scan")
+                return (
+                  <div
+                    key={`${label}-${idx}`}
+                    className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
+                  >
+                    <img
+                      src={SCAN_ICON}
+                      alt={label}
+                      className="h-6 w-6 md:h-7 md:w-7 object-contain"
+                    />
+                  </div>
+                );
+              if (opt.key === "scan2")
+                return (
+                  <div
+                    key={`${label}-${idx}`}
+                    className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
+                  >
+                    <img
+                      src={SCAN2_ICON}
+                      alt={label}
+                      className="h-6 w-6 md:h-7 md:w-7 object-contain"
+                    />
+                  </div>
+                );
+              if (opt.key === "tap")
+                return (
+                  <div
+                    key={`${label}-${idx}`}
+                    className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
+                  >
+                    <img
+                      src={TOUCH_ICON}
+                      alt={label}
+                      className="h-6 w-6 md:h-7 md:w-7 object-contain"
+                    />
+                  </div>
+                );
+              if (opt.key === "qr")
+                return (
+                  <div
+                    key={`${label}-${idx}`}
+                    className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
+                  >
+                    <img
+                      src={BUS_EMPLOY_ICON}
+                      alt={label}
+                      className="h-6 w-6 md:h-7 md:w-7 object-contain"
+                    />
+                  </div>
+                );
+              if (opt.key === "monthly")
+                return (
+                  <div
+                    key={`${label}-${idx}`}
+                    className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
+                  >
+                    <img
+                      src={MONTHLY_ICON}
+                      alt={label}
+                      className="h-6 w-6 md:h-7 md:w-7 object-contain"
+                    />
+                  </div>
+                );
               // default to provided icon node
               return (
-                <div key={`${label}-${idx}`} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">
+                <div
+                  key={`${label}-${idx}`}
+                  className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
+                >
                   {opt.icon}
                 </div>
               );
@@ -376,7 +437,9 @@ const PaymentScreen: React.FC = () => {
                     {/* overlay */}
                     {overlayLabels.length > 0 && (
                       <div className="absolute left-1/2 -translate-x-1/2 -top-4 flex flex-wrap justify-center content-center gap-2 z-20 max-w-[80%]">
-                        {overlayLabels.map((label, i) => renderOverlayIcon(label, i))}
+                        {overlayLabels.map((label, i) =>
+                          renderOverlayIcon(label, i),
+                        )}
                       </div>
                     )}
 
