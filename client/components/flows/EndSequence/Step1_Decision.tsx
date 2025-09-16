@@ -115,14 +115,14 @@ const Step1_Decision = ({
           <button
             onClick={onParticipate}
             className="btn-large"
-            aria-label="เข้าร่วมโครงการ��ละกรอกข้อมูลเพื่อรับรางวัล"
+            aria-label="เข้าร่วมโครงการและกรอกข้อมูลเพื่อรับรางวัล"
           >
             ลุ้นรับรางวัล
           </button>
           <button
             onClick={onDecline}
             className="btn-large"
-            aria-label="ไม่เข้าร่วมโครงการรับรางวัล"
+            aria-label="ไม��เข้าร่วมโครงการรับรางวัล"
           >
             ไม่
           </button>
