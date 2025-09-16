@@ -37,7 +37,7 @@ const BudgetAllocationComponent = ({ sessionID, onNavigate, layoutMode = false }
     {
       key: "busQuality",
       label: "ปรับปรุงคุณภาพรถเมล์",
-      description: "การปรับปรุงและพัฒนาคุณภาพรถโดยสาร���ระจำทาง",
+      description: "การปรับปรุงและพัฒนาคุณภาพรถโดยสารประจำทาง",
       icon: "🚌",
     },
     {
@@ -311,7 +311,7 @@ const BudgetAllocationComponent = ({ sessionID, onNavigate, layoutMode = false }
             <div className="mb-4 bg-green-500 bg-opacity-90 rounded-[15px] p-3">
               <div className="text-white text-center text-sm font-prompt">
                 <strong>เยี่ยม!</strong> คุณจัดสรรงบประมาณครบ {totalBudget}{" "}
-                บาทแล้ว
+                ���าทแล้ว
               </div>
             </div>
           )}
@@ -323,8 +323,8 @@ const BudgetAllocationComponent = ({ sessionID, onNavigate, layoutMode = false }
             <div
               className="rounded-[50px] bg-[#FFE000] mx-auto"
               style={{
-                width: "min(845px, 85vw)",
-                height: "clamp(80px, 10.9vw, 118px)",
+                width: continueWidth,
+                height: continueHeight,
               }}
             />
             <button
@@ -338,14 +338,14 @@ const BudgetAllocationComponent = ({ sessionID, onNavigate, layoutMode = false }
               style={{
                 background: "transparent",
                 border: "none",
-                height: "clamp(80px, 10.9vw, 118px)",
+                height: continueHeight,
               }}
               aria-describedby="next-button-description"
             >
               <span
                 className="font-prompt text-black text-center font-normal px-4"
                 style={{
-                  fontSize: "clamp(24px, 4.6vw, 50px)",
+                  fontSize: buttonFontSize,
                   fontWeight: 400,
                   letterSpacing: "0.4px",
                 }}
@@ -363,7 +363,7 @@ const BudgetAllocationComponent = ({ sessionID, onNavigate, layoutMode = false }
                   fontSize: "clamp(14px, 2.8vw, 18px)",
                 }}
               >
-                กรุณาจัดสรรงบประมาณให้ครบ {totalBudget} บาทเพื่อด���เนินการต่อ
+                กรุณาจัดสรรงบประมาณให้ครบ {totalBudget} บาทเพื่อดำเนินการต่อ
               </div>
             )}
           </div>
