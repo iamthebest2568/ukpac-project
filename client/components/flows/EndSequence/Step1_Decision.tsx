@@ -21,7 +21,7 @@ const Step1_Decision = ({
 }: Step1_DecisionProps) => {
   const handleChoice = (choice: "participate" | "decline") => {
     const choiceText = {
-      participate: "ลุ้นรับรางวัล",
+      participate: "ลุ้��รับรางวัล",
       decline: "ไม่",
     }[choice];
 
@@ -78,7 +78,7 @@ const Step1_Decision = ({
       className="source-selection-page end-sequence-page fake-news-page"
       imageLoading="eager"
     >
-      <div className="w-full max-w-[980px] mx-auto px-4 py-8 text-center">
+      <div className="w-full max-w-[980px] mx-auto px-4 py-8 text-center" style={{ paddingTop: "clamp(24px, 10vh, 96px)" }}>
         <h1
           className="font-prompt"
           style={{ color: "#000D59", fontWeight: 700, lineHeight: "1" }}
