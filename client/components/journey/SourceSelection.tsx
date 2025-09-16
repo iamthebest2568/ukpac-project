@@ -69,7 +69,7 @@ const SourceSelection = ({ sessionID, onNavigate }: SourceSelectionProps) => {
 
   return (
     <FigmaStyle1Layout
-      backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F960218265f754592a3de9137a87be996?format=webp&width=800"
+      backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe440541746654e5895886cb9b56c8cb7?format=webp&width=800"
       backgroundAlt="รถไฟใต้ดินและป้ายข่าว"
       title="คุณจะติดตามข่าว หรือ เชื่อจากแหล่งข่าวไหน"
       buttons={buttons}
