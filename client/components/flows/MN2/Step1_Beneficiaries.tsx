@@ -156,11 +156,11 @@ const Step1_Beneficiaries = ({
         {/* Main Content */}
         <div className="figma-style1-main">
           {/* Content Area */}
-          <div className="figma-style1-content-area">
+          <div className="figma-style1-content-area" style={{ paddingTop: "clamp(48px, 12vh, 160px)" }}>
             {/* Title with current priority */}
             <div className="figma-style1-title-container mb-6">
               <h1 className="figma-style1-title">
-                คุณคิดว่าใครควรได้รับประโยชน์จาก {currentPriority} ?
+                คุณคิดว่าใครควรได้ร���บประโยชน์จาก {currentPriority} ?
               </h1>
             </div>
 
@@ -319,7 +319,7 @@ const Step1_Beneficiaries = ({
                   id="next-button-description"
                   className="text-center text-white text-sm mt-2"
                 >
-                  กรุณาเลือกอย่างน้อย 1 กลุ่ม���พื่อดำเนินการต่อ
+                  กรุณาเลือกอย่างน้อย 1 กลุ่มเพื่อดำเนินการต่อ
                 </div>
               )}
             </div>
