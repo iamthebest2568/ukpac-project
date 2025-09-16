@@ -64,7 +64,7 @@ const IconTv = () => (
 const IconCup = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe903bdf27bab4175824c159bc19a02ba?format=webp&width=800"
-    alt="ระบบประกาศบอกป้���ย(เสียง/จอ)"
+    alt="ระบบประกาศบอกป้�����ย(เสียง/จอ)"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -130,7 +130,7 @@ const IconRamp = () => (
 );
 const IconHighLow = () => (
   <img
-    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F0a17fe8444b34725b19cc5a62c0da84b?format=webp&width=800"
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F98de0624be3d4ae6b96d83edcf8891f9?format=webp&width=800"
     alt="ประตูฉุกเฉิน"
     className="h-8 w-8 object-contain select-none"
     decoding="async"
@@ -255,7 +255,7 @@ const DoorScreen: React.FC = () => {
                   <img src={TOUCH_ICON} alt={label} className="h-5 w-5 object-contain" />
                 </div>
               );
-              if (label === "กระเ��๋ารถเมล์") return (
+              if (label === "กร��เ��๋ารถเมล์") return (
                 <div key={`${label}-${idx}`} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">
                   <img src={BUS_EMPLOY_ICON} alt={label} className="h-5 w-5 object-contain" />
                 </div>
@@ -284,7 +284,7 @@ const DoorScreen: React.FC = () => {
               );
               if (label === "emergency") return (
                 <div key={`${label}-${idx}`} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">
-                  <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F0a17fe8444b34725b19cc5a62c0da84b?format=webp&width=800" alt="ประตูฉุกเฉิน" className="h-5 w-5 object-contain" />
+                  <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F98de0624be3d4ae6b96d83edcf8891f9?format=webp&width=800" alt="ประตูฉุกเฉิน" className="h-6 w-6 md:h-7 md:w-7 object-contain" />
                 </div>
               );
 
