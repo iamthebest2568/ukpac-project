@@ -71,21 +71,41 @@ const IconCup = () => (
   />
 );
 const IconCamSmall = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="3" y="7" width="14" height="10" rx="2" stroke="currentColor" strokeWidth="2" />
-    <path d="M19 8l2-2v10l-2-2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+  <svg
+    width="18"
+    height="18"
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <rect
+      x="3"
+      y="7"
+      width="14"
+      height="10"
+      rx="2"
+      stroke="currentColor"
+      strokeWidth="2"
+    />
+    <path
+      d="M19 8l2-2v10l-2-2"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
   </svg>
 );
 
 const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
-  "แอร์": <IconAir />,
-  "พัดลม": <IconFan />,
-  "ที่นั่งพิเศษ": <IconSeat />,
+  แอร์: <IconAir />,
+  พัดลม: <IconFan />,
+  ที่นั่งพิเศษ: <IconSeat />,
   "ที่จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
   "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
   "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
-  "กล้องวงจรปิด": <IconCamSmall />,
+  กล้องวงจรปิด: <IconCamSmall />,
 };
 
 const MONEY_ICON =
@@ -221,75 +241,164 @@ const DoorScreen: React.FC = () => {
             })();
 
             // build overlay labels: amenities + payments + current door selection
-            const overlayLabels = [...(amenitiesFromStorage || []), ...(paymentsFromStorage || [])];
+            const overlayLabels = [
+              ...(amenitiesFromStorage || []),
+              ...(paymentsFromStorage || []),
+            ];
             if (selectedOption) overlayLabels.push(selectedOption);
 
             const renderOverlayIcon = (label: string, idx: number) => {
               // amenities
               if (AMENITIES_ICON_MAP[label]) {
                 return (
-                  <div key={`${label}-${idx}`} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">
+                  <div
+                    key={`${label}-${idx}`}
+                    className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
+                  >
                     {AMENITIES_ICON_MAP[label]}
                   </div>
                 );
               }
 
               // payment labels
-              if (label === "เงินสด") return (
-                <div key={`${label}-${idx}`} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">
-                  <img src={MONEY_ICON} alt={label} className="h-5 w-5 object-contain" />
-                </div>
-              );
-              if (label === "สแกนจ่าย") return (
-                <div key={`${label}-${idx}`} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">
-                  <img src={SCAN_ICON} alt={label} className="h-5 w-5 object-contain" />
-                </div>
-              );
-              if (label === "สแกนจ่าย 2") return (
-                <div key={`${label}-${idx}`} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">
-                  <img src={SCAN2_ICON} alt={label} className="h-5 w-5 object-contain" />
-                </div>
-              );
-              if (label === "แตะบัตร") return (
-                <div key={`${label}-${idx}`} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">
-                  <img src={TOUCH_ICON} alt={label} className="h-5 w-5 object-contain" />
-                </div>
-              );
-              if (label === "กร��เ��๋ารถเมล์") return (
-                <div key={`${label}-${idx}`} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">
-                  <img src={BUS_EMPLOY_ICON} alt={label} className="h-5 w-5 object-contain" />
-                </div>
-              );
-              if (label === "ตั๋วรายเดือน/รอบ") return (
-                <div key={`${label}-${idx}`} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">
-                  <img src={MONTHLY_ICON} alt={label} className="h-5 w-5 object-contain" />
-                </div>
-              );
+              if (label === "เงินสด")
+                return (
+                  <div
+                    key={`${label}-${idx}`}
+                    className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
+                  >
+                    <img
+                      src={MONEY_ICON}
+                      alt={label}
+                      className="h-5 w-5 object-contain"
+                    />
+                  </div>
+                );
+              if (label === "สแกนจ่าย")
+                return (
+                  <div
+                    key={`${label}-${idx}`}
+                    className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
+                  >
+                    <img
+                      src={SCAN_ICON}
+                      alt={label}
+                      className="h-5 w-5 object-contain"
+                    />
+                  </div>
+                );
+              if (label === "สแกนจ่าย 2")
+                return (
+                  <div
+                    key={`${label}-${idx}`}
+                    className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
+                  >
+                    <img
+                      src={SCAN2_ICON}
+                      alt={label}
+                      className="h-5 w-5 object-contain"
+                    />
+                  </div>
+                );
+              if (label === "แตะบัตร")
+                return (
+                  <div
+                    key={`${label}-${idx}`}
+                    className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
+                  >
+                    <img
+                      src={TOUCH_ICON}
+                      alt={label}
+                      className="h-5 w-5 object-contain"
+                    />
+                  </div>
+                );
+              if (label === "กร��เ��๋ารถเมล์")
+                return (
+                  <div
+                    key={`${label}-${idx}`}
+                    className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
+                  >
+                    <img
+                      src={BUS_EMPLOY_ICON}
+                      alt={label}
+                      className="h-5 w-5 object-contain"
+                    />
+                  </div>
+                );
+              if (label === "ตั๋วรายเดือน/รอบ")
+                return (
+                  <div
+                    key={`${label}-${idx}`}
+                    className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
+                  >
+                    <img
+                      src={MONTHLY_ICON}
+                      alt={label}
+                      className="h-5 w-5 object-contain"
+                    />
+                  </div>
+                );
 
               // door option keys
-              if (label === "1") return (
-                <div key={`${label}-${idx}`} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">
-                  <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9811f9bca05c43feae9eafdcbab3c8d9?format=webp&width=800" alt="1 ประตู" className="h-6 w-6 md:h-7 md:w-7 object-contain" />
-                </div>
-              );
-              if (label === "2") return (
-                <div key={`${label}-${idx}`} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">
-                  <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8f9b21942af243b3b80b0e5ac8b12631?format=webp&width=800" alt="2 ประตู" className="h-6 w-6 md:h-7 md:w-7 object-contain" />
-                </div>
-              );
-              if (label === "ramp") return (
-                <div key={`${label}-${idx}`} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">
-                  <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fece2b6fc843340f0997f2fd7d3ca0aea?format=webp&width=800" alt="ทางลาด" className="h-6 w-6 md:h-7 md:w-7 object-contain" />
-                </div>
-              );
-              if (label === "emergency") return (
-                <div key={`${label}-${idx}`} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">
-                  <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F98de0624be3d4ae6b96d83edcf8891f9?format=webp&width=800" alt="ประตูฉุกเฉิน" className="h-6 w-6 md:h-7 md:w-7 object-contain" />
-                </div>
-              );
+              if (label === "1")
+                return (
+                  <div
+                    key={`${label}-${idx}`}
+                    className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
+                  >
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9811f9bca05c43feae9eafdcbab3c8d9?format=webp&width=800"
+                      alt="1 ประตู"
+                      className="h-6 w-6 md:h-7 md:w-7 object-contain"
+                    />
+                  </div>
+                );
+              if (label === "2")
+                return (
+                  <div
+                    key={`${label}-${idx}`}
+                    className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
+                  >
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8f9b21942af243b3b80b0e5ac8b12631?format=webp&width=800"
+                      alt="2 ประตู"
+                      className="h-6 w-6 md:h-7 md:w-7 object-contain"
+                    />
+                  </div>
+                );
+              if (label === "ramp")
+                return (
+                  <div
+                    key={`${label}-${idx}`}
+                    className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
+                  >
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fece2b6fc843340f0997f2fd7d3ca0aea?format=webp&width=800"
+                      alt="ทางลาด"
+                      className="h-6 w-6 md:h-7 md:w-7 object-contain"
+                    />
+                  </div>
+                );
+              if (label === "emergency")
+                return (
+                  <div
+                    key={`${label}-${idx}`}
+                    className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
+                  >
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F98de0624be3d4ae6b96d83edcf8891f9?format=webp&width=800"
+                      alt="ประตูฉุกเฉิน"
+                      className="h-6 w-6 md:h-7 md:w-7 object-contain"
+                    />
+                  </div>
+                );
 
               return (
-                <div key={`${label}-${idx}`} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10 text-xs">
+                <div
+                  key={`${label}-${idx}`}
+                  className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10 text-xs"
+                >
                   ?
                 </div>
               );
@@ -302,7 +411,9 @@ const DoorScreen: React.FC = () => {
                     {/* overlay */}
                     {overlayLabels.length > 0 && (
                       <div className="absolute left-1/2 transform -translate-x-1/2 -top-4 flex flex-wrap justify-center gap-2 z-20 max-w-[80%]">
-                        {overlayLabels.map((lab, i) => renderOverlayIcon(lab, i))}
+                        {overlayLabels.map((lab, i) =>
+                          renderOverlayIcon(lab, i),
+                        )}
                       </div>
                     )}
 
