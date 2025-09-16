@@ -15,7 +15,7 @@ const CtaButton: React.FC<CtaButtonProps> = ({ text, onClick, className = '' }) 
         `bg-[#ffe000] text-black rounded-full px-6 py-3 inline-flex items-center justify-center shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#000d59] hover:bg-[#000d59] hover:text-white transition-colors font-prompt font-semibold ${className}`
       }
     >
-      {text}
+      <span style={{ backgroundColor: 'rgb(0, 13, 89)' }}>{text}</span>
     </button>
   );
 };
