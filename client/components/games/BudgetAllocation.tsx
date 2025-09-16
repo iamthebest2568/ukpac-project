@@ -164,7 +164,7 @@ const BudgetAllocationComponent = ({ sessionID, onNavigate, layoutMode = false }
                 className="font-prompt font-bold text-center"
                 style={{
                   color: "#000D59",
-                  fontSize: "clamp(50px, 9.3vw, 100px)",
+                  fontSize: totalFontSize,
                   fontWeight: 700,
                   letterSpacing: "0.4px",
                 }}
@@ -363,7 +363,7 @@ const BudgetAllocationComponent = ({ sessionID, onNavigate, layoutMode = false }
                   fontSize: "clamp(14px, 2.8vw, 18px)",
                 }}
               >
-                กรุณาจัดสรรงบประมาณให้ครบ {totalBudget} บาทเพื่อดำเนินการต่อ
+                กรุณาจัดสรรงบประมาณให้ครบ {totalBudget} บาทเพื่อด��เนินการต่อ
               </div>
             )}
           </div>
