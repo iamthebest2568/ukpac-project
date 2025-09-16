@@ -84,8 +84,8 @@ const UkDashboard: React.FC = () => {
           />
           <select value={sessionFilter} onChange={(e)=>setSessionFilter(e.target.value)} className="bg-white/10 rounded px-3 py-2 outline-none">
             <option value="">ทุก session</option>
-            {uniqueSessions.map((sid) => (
-              <option key={sid} value={sid}>{sid}</option>
+            {uniqueSessions.map((sid, i) => (
+              <option key={`${sid}-${i}`} value={sid}>{sid}</option>
             ))}
           </select>
         </section>
