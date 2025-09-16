@@ -12,7 +12,7 @@ const InfoScreen: React.FC = () => {
   return (
     <>
       <CustomizationScreen
-        title="รู้หรือไม่!"
+        title=""
         theme="light"
         footerContent={
           <div className="flex justify-center">
@@ -33,10 +33,9 @@ const InfoScreen: React.FC = () => {
           </div>
 
           <div className="prose text-[#001a73] font-sarabun">
-            <h2 className="font-prompt font-semibold text-xl">รู้หรือไม่!</h2>
             <p>
               ในญี่ปุ่นมี Community Bus รถเมล์ขนาดเล็กที่วิ่งเข้าซอยและพื้นที่ ที่รถใหญ่เข้าไม่ถึง
-              ค่าโดยสารถูกมาก บางแห่งนั่งได้ทั้งสายเพี���ง 100 เยน ทำให้ผู้สูงอายุและเด็กเข้าถึงบริการสำคัญ
+              ค่าโดยสารถูกมาก บางแห่งนั่งได้ทั้งสายเพียง 100 เยน ทำให้ผู้สูงอายุและเด็กเข้าถึงบริการสำคัญ
               เช่น โรงพยาบาลและศูนย์ชุมชนได้สะดวกขึ้น
             </p>
           </div>
