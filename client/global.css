@@ -290,20 +290,20 @@
     }
   }
 
-  /* Desktop: fixed 1080x1920 phone-frame centered */
+  /* Desktop: remove fixed 1080x1920 phone-frame centered - allow full width */
   @media (min-width: 1081px) {
     .app-container,
     .main-app-container {
-      width: 1080px !important;
-      height: 1920px !important;
-      margin: 40px auto !important; /* center with vertical spacing */
-      border-radius: 40px;
-      box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
-      overflow: visible !important; /* allow the page to scroll if frame is taller than viewport */
-      display: block !important; /* undo mobile flex behavior for frame visuals */
+      width: 100% !important;
+      height: auto !important;
+      margin: 0 auto !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      overflow: visible !important;
+      display: block !important;
     }
 
-    /* Allow body scrolling on desktop so users can scroll to see the full frame */
+    /* Allow body scrolling on desktop */
     body {
       overflow-y: auto;
     }
