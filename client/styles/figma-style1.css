@@ -1474,9 +1474,10 @@ body[data-dialog-open] {
 .figma-style1-container.fake-news-page .figma-style1-background-image,
 .figma-style1-container.fake-news-page .figma-style1-background-overlay,
 .figma-style1-container.fake-news-page .figma-style1-wave-overlay {
-  display: none !important;
-  visibility: hidden !important;
+  display: block !important;
+  visibility: visible !important;
   pointer-events: none !important;
+  z-index: 0 !important;
 }
 
 /* Center content vertically and horizontally */
