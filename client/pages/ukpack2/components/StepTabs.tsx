@@ -4,7 +4,7 @@ interface StepTabsProps {
   active: number; // 1-based index
 }
 
-const iconCommon = "w-5 h-5 md:w-7 md:h-7";
+const iconCommon = "max-w-[70%] w-auto h-auto";
 
 const BusIcon = ({ active }: { active: boolean }) => (
   <svg
