@@ -681,7 +681,7 @@
     width: 100%;
     padding: 24px 40px;
     box-sizing: border-box;
-    padding-top: calc(var(--footer-clip-px) * 0.6); /* keep computed padding-top */
+    padding-top: calc(var(--footer-clip-px) + 24px); /* keep computed padding-top */
   }
 
   .footer-content h2 {
