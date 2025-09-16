@@ -122,7 +122,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       {/* Fixed 1080px mobile-first container */}
       <div
         className="app-container bg-white relative responsive-container safe-top safe-bottom"
-        style={isFullBleed ? { width: "100%", padding: 0 } : { width: "100%", maxWidth: 1080 }}
+        style={isFullBleed ? { width: "100%", padding: 0 } : { width: "100%", maxWidth: "100%" }}
       >
         <a
           href="#main-content"
