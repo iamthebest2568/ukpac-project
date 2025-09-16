@@ -18,7 +18,16 @@ const SplashScreen: React.FC = () => {
         </div>
       </div>
 
-      <div className="w-full">
+      <div
+        className="w-full"
+        style={{
+          backgroundImage: "url('https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F64639762d3b74ded9017bc2cd4357d1d?format=webp&width=1600')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          borderTopLeftRadius: '48% 12%',
+          borderTopRightRadius: '48% 12%',
+        }}
+      >
         <div className="max-w-3xl mx-auto py-8 px-6 text-center">
           <p className="text-[#002038] text-lg mb-6 font-semibold">
             รถเมล์ในฝันที่คุณอยากขึ้นทุกวัน จะมีหน้าตาอย่างไร?
