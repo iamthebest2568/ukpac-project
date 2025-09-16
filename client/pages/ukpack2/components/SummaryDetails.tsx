@@ -10,6 +10,14 @@ const IconTv = () => <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7
 const IconCup = () => <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe903bdf27bab4175824c159bc19a02ba?format=webp&width=800" alt="ระบบประกาศ" className="h-6 w-6 object-contain select-none"/>;
 const IconCamSmall = () => <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="7" width="14" height="10" rx="2" stroke="currentColor" strokeWidth="2"/><path d="M19 8l2-2v10l-2-2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>;
 
+// Payment icons with updated assets
+const MONEY_ICON = "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9349b93d24274adc91be5f4657facdda?format=webp&width=800";
+const SCAN_ICON = "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fbc97b87e6027435fb25a72f5478406cd?format=webp&width=800";
+const SCAN2_ICON = "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F56620e798eb94153b2390271f30d0dae?format=webp&width=800";
+const TOUCH_ICON = "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F4e22405c00c84fbfb1cd43fea6d8f8b4?format=webp&width=800";
+const MONTHLY_ICON = "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Ff841cf7477174217b2aa753d7acb4b21?format=webp&width=800";
+const BUS_EMPLOY_ICON = "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F47fc617541cf45f28b7aa2d1b8deaf64?format=webp&width=800";
+
 const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   "แอร์": <IconAir />,
   "พัดลม": <IconFan />,
@@ -17,8 +25,20 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   "ที่จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
   "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
-  "ระบบประก���ศบอกป้าย(เสียง/จอ)": <IconCup />,
+  "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
   "กล้องวงจรปิด": <IconCamSmall />,
+  // Payment icons
+  "เงินสด": <img src={MONEY_ICON} alt="เงินสด" className="h-5 w-5 object-contain" />,
+  "สแกนจ่าย": <img src={SCAN_ICON} alt="สแกนจ่าย" className="h-5 w-5 object-contain" />,
+  "สแกนจ่าย 2": <img src={SCAN2_ICON} alt="สแกนจ่าย 2" className="h-5 w-5 object-contain" />,
+  "แตะบัตร": <img src={TOUCH_ICON} alt="แตะบัตร" className="h-5 w-5 object-contain" />,
+  "กระเป๋ารถเมล์": <img src={BUS_EMPLOY_ICON} alt="กระเป๋ารถเมล์" className="h-5 w-5 object-contain" />,
+  "ตั๋วรายเดือน/รอบ": <img src={MONTHLY_ICON} alt="ตั๋วรายเดือน/รอบ" className="h-5 w-5 object-contain" />,
+  // Door icons
+  "1": <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9811f9bca05c43feae9eafdcbab3c8d9?format=webp&width=800" alt="1 ประตู" className="h-5 w-5 object-contain" />,
+  "2": <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8f9b21942af243b3b80b0e5ac8b12631?format=webp&width=800" alt="2 ประตู" className="h-5 w-5 object-contain" />,
+  "ramp": <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fece2b6fc843340f0997f2fd7d3ca0aea?format=webp&width=800" alt="ทางลาด" className="h-5 w-5 object-contain" />,
+  "emergency": <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F98de0624be3d4ae6b96d83edcf8891f9?format=webp&width=800" alt="ประตูฉุกเฉิน" className="h-5 w-5 object-contain" />,
 };
 
 const displayDoor = (raw: any) => {
@@ -123,7 +143,7 @@ const SummaryDetails: React.FC = () => {
                 return overlayLabels.length > 0 ? (
                   <div className="absolute left-1/2 transform -translate-x-1/2 -top-4 flex flex-wrap justify-center gap-2 z-20 max-w-[80%]">
                     {overlayLabels.map((lab, i) => (
-                      <div key={`${lab}-${i}`} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center">
+                      <div key={`${lab}-${i}`} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">
                         {AMENITIES_ICON_MAP[lab] || <div className="text-xs">{String(lab)}</div>}
                       </div>
                     ))}
