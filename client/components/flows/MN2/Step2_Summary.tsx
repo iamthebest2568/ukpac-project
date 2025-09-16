@@ -139,7 +139,7 @@ const Step2_Summary = ({
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 w-full max-w-[1080px] mx-auto px-4 py-6">
+      <div className="relative z-10 w-full max-w-full mx-auto px-4 py-6">
         {/* Title */}
         <div className="text-center mb-8">
           <h1
