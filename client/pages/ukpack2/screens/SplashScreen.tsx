@@ -18,7 +18,7 @@ const SplashScreen: React.FC = () => {
             <img
               src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fbfa15cb7d28d4bff8817c7e0ca03bf58?format=webp&width=1600"
               alt="cover"
-              className="w-full h-full object-contain mx-auto"
+              className="w-full h-auto object-contain mx-auto"
               decoding="async"
               loading="eager"
             />
@@ -39,7 +39,7 @@ const SplashScreen: React.FC = () => {
           <p className="text-[#002038] text-lg sm:text-xl md:text-2xl mb-6 font-semibold leading-snug">
             รถเมล์ในฝันที่คุณอยากขึ้นทุกวัน
             <br />
-            จะมีหน้าตาอย่างไร?
+            จะมี��น้าตาอย่างไร?
           </p>
           <div className="flex justify-center">
             <CtaButton
