@@ -39,7 +39,7 @@ const SplashScreen: React.FC = () => {
           <p className="text-[#002038] text-lg sm:text-xl md:text-2xl mb-6 font-semibold leading-snug">
             รถเมล์ในฝันที่คุณอยากขึ้นทุกวัน
             <br />
-            จะมี��น้าตาอย่างไร?
+            จะมีหน้าตาอย่างไร?
           </p>
           <div className="flex justify-center">
             <CtaButton
