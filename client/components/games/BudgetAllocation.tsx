@@ -8,9 +8,12 @@ import { useState, useEffect } from "react";
 interface BudgetAllocationProps {
   sessionID: string | null;
   onNavigate: (screenId: string, data?: any) => void;
+  /** When true the component will not render its own full-screen background and sizing
+   *  so it can be safely placed inside a page-level layout (like FigmaStyle1Layout) */
+  layoutMode?: boolean;
 }
 
-const BudgetAllocation = ({ sessionID, onNavigate }: BudgetAllocationProps) => {
+const BudgetAllocation = ({ sessionID, onNavigate, layoutMode = false }: BudgetAllocationProps) => {
   const [budgetAllocation, setBudgetAllocation] = useState({
     trainDiscount: 0,
     busQuality: 0,
@@ -73,21 +76,23 @@ const BudgetAllocation = ({ sessionID, onNavigate }: BudgetAllocationProps) => {
   const isOverBudget = allocatedBudget > totalBudget;
 
   return (
-    <div className="min-h-screen bg-white flex flex-col relative overflow-hidden">
+    <div className={`${layoutMode ? "w-full" : "min-h-screen bg-white"} flex flex-col relative overflow-hidden`}>
       {/* Background with curved blue bottom - NEW FIGMA DESIGN */}
-      <div className="absolute inset-0">
-        {/* Blue background */}
-        <div className="absolute inset-0 bg-[#04D9F9]" />
-        {/* White curved top section */}
-        <div
-          className="absolute top-0 left-0 right-0 bg-white"
-          style={{
-            height: "clamp(1400px, 80vh, 1680px)",
-            borderBottomLeftRadius: "clamp(300px, 40vw, 800px)",
-            borderBottomRightRadius: "clamp(300px, 40vw, 800px)",
-          }}
-        />
-      </div>
+      {!layoutMode && (
+        <div className="absolute inset-0">
+          {/* Blue background */}
+          <div className="absolute inset-0 bg-[#04D9F9]" />
+          {/* White curved top section */}
+          <div
+            className="absolute top-0 left-0 right-0 bg-white"
+            style={{
+              height: "clamp(1400px, 80vh, 1680px)",
+              borderBottomLeftRadius: "clamp(300px, 40vw, 800px)",
+              borderBottomRightRadius: "clamp(300px, 40vw, 800px)",
+            }}
+          />
+        </div>
+      )}
 
       {/* Main Content */}
       <div className="relative z-10 w-full max-w-full mx-auto px-4 py-8">
@@ -290,7 +295,7 @@ const BudgetAllocation = ({ sessionID, onNavigate }: BudgetAllocationProps) => {
           {isComplete && (
             <div className="mb-4 bg-green-500 bg-opacity-90 rounded-[15px] p-3">
               <div className="text-white text-center text-sm font-prompt">
-                <strong>เยี่ยม!</strong> คุณจัดสรรงบประมาณครบ {totalBudget}{" "}
+                <strong>เยี่ยม!</strong> คุณจั��สรรงบประมาณครบ {totalBudget}{" "}
                 บาทแล้ว
               </div>
             </div>
