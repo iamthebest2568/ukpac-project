@@ -14,15 +14,6 @@ const ConfirmationScreen: React.FC = () => {
       <CustomizationScreen
         title=""
         theme="light"
-        footerContent={
-          <div className="flex justify-center gap-3">
-            <CtaButton text="จบเกม" onClick={() => navigate("/ukpack2")} />
-            <SecondaryButton
-              text="แชร���เกมนี้กับเพื่อน"
-              onClick={() => setShareOpen(true)}
-            />
-          </div>
-        }
       >
         <div className="max-w-4xl mx-auto">
           <div className="w-full flex justify-center mb-4">
@@ -40,6 +31,10 @@ const ConfirmationScreen: React.FC = () => {
               alt="ภาพประกาศรางวัล"
               className="mt-3 w-full max-w-[640px] h-auto object-contain"
             />
+          </div>
+          <div className="mt-6 w-full flex flex-col items-center gap-3">
+            <CtaButton text="จบเกม" onClick={() => navigate("/ukpack2")} />
+            <SecondaryButton text="แชร์เกมนี้กับเพื่อน" onClick={() => setShareOpen(true)} />
           </div>
         </div>
       </CustomizationScreen>
