@@ -680,28 +680,43 @@
 @media (min-width: 1024px) {
   .footer-container {
     --footer-height: 100vh; /* fill viewport on desktop */
-    --footer-clip-h-num: 0.25;
-    align-items: flex-start; /* position content near top, content padding handles spacing */
+    --footer-clip-h-num: 0.25; /* 25% */
+    align-items: flex-start;
+    justify-content: center;
   }
 
-  /* ensure content doesn't overflow and is centered horizontally */
+  /* place content above the curve and keep comfortable spacing */
   .footer-content {
     max-width: 980px;
     width: 100%;
     padding: 24px 40px;
     box-sizing: border-box;
-    padding-top: calc(var(--footer-clip-px) + 24px); /* keep computed padding-top */
+    /* small top padding so content sits above the curved area */
+    padding-top: calc(var(--footer-clip-px) * 0.12);
+    /* constrain content so it doesn't overlap the curved area */
+    max-height: calc(var(--footer-height) - var(--footer-clip-px) - 48px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .footer-content h2 {
-    font-size: 36px;
-    line-height: 1.1;
+    font-size: 32px;
+    line-height: 1.15;
     margin-bottom: 12px;
+    color: rgb(0, 13, 89);
   }
 
   .footer-content p {
     font-size: 18px;
     margin-bottom: 20px;
+    color: rgba(255,255,255,0.95);
+  }
+
+  /* Make CTA visually balanced on desktop */
+  .cta-button {
+    padding: 16px 48px;
+    font-size: 20px;
   }
 }
 .footer-content h2 {
