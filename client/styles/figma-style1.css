@@ -619,7 +619,7 @@
 /* ===================================================================
    UKPACK1 - Unified button appearance
    Make all primary and secondary buttons across the ukpack1 pages share
-   the same visual style as the "ไปต่อ" button in minigame-mn1.
+   the same visual style as the "ไปต��อ" button in minigame-mn1.
    Only visual appearance is changed (background / text / hover / border)
    max-width, layout and per-page sizing rules are preserved.
    =================================================================== */
@@ -1545,4 +1545,29 @@ body[data-dialog-open] {
 /* Ensure route wrapper won't clip content */
 #main-content > .flow-container:has(.figma-style1-container.fake-news-page) {
   overflow: visible !important;
+}
+
+/* Remove global/app padding when showing fake-news so content is truly centered */
+.app-container:has(.figma-style1-container.fake-news-page) {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  width: 100vw !important;
+  max-width: 100vw !important;
+}
+
+/* Ensure main content wrapper has no extra offsets */
+#main-content {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.figma-style1-container.fake-news-page .figma-style1-content {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
 }
