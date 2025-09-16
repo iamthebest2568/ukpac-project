@@ -43,7 +43,7 @@ const BudgetAllocationComponent = ({ sessionID, onNavigate, layoutMode = false }
     {
       key: "parking",
       label: "ที่จอดรถ",
-      description: "การจัดหาและพัฒนาพื้นที่จอดรถ",
+      description: "การจัดหาและ���ัฒนาพื้นที่จอดรถ",
       icon: "🅿️",
     },
   ];
@@ -110,7 +110,7 @@ const BudgetAllocationComponent = ({ sessionID, onNavigate, layoutMode = false }
       )}
 
       {/* Main Content */}
-      <div className="relative z-10 w-full max-w-full mx-auto px-4 py-8">
+      <div className="relative z-10 w-full max-w-full mx-auto px-4 py-8" style={layoutMode ? { maxWidth: "960px" } : undefined}>
         {/* Title - NEW FIGMA DESIGN */}
         <div className="text-center mb-12">
           <h1
@@ -214,7 +214,7 @@ const BudgetAllocationComponent = ({ sessionID, onNavigate, layoutMode = false }
                   aria-valuenow={allocatedBudget}
                   aria-valuemin={0}
                   aria-valuemax={totalBudget}
-                  aria-label={`ใช้งบประม���ณไปแล้ว ${allocatedBudget} จาก ${totalBudget} บาท`}
+                  aria-label={`ใช้งบประมาณไปแล้ว ${allocatedBudget} จาก ${totalBudget} บาท`}
                 ></div>
               </div>
               <div
@@ -310,7 +310,7 @@ const BudgetAllocationComponent = ({ sessionID, onNavigate, layoutMode = false }
           {isComplete && (
             <div className="mb-4 bg-green-500 bg-opacity-90 rounded-[15px] p-3">
               <div className="text-white text-center text-sm font-prompt">
-                <strong>เยี่ยม!</strong> คุณ���ัดสรรงบประมาณครบ {totalBudget}{" "}
+                <strong>เยี่ยม!</strong> คุณจัดสรรงบประมาณครบ {totalBudget}{" "}
                 บาทแล้ว
               </div>
             </div>
@@ -363,7 +363,7 @@ const BudgetAllocationComponent = ({ sessionID, onNavigate, layoutMode = false }
                   fontSize: "clamp(14px, 2.8vw, 18px)",
                 }}
               >
-                กรุณาจัดสรรงบประมาณให้ครบ {totalBudget} บาทเพื่อดำเนินการต่อ
+                กรุณาจัดสรรงบประมาณให้ครบ {totalBudget} บาทเพื่อดำเนิน���ารต่อ
               </div>
             )}
           </div>
