@@ -100,7 +100,7 @@ const Step3_ThankYou = ({
     <FigmaStyle1Layout
       backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F32a0df59d0b0488b9150246ae780d9e0?format=webp&width=800"
       backgroundAlt="ขอบคุณสำหรับการมีส่วนร่วม"
-      className="source-selection-page endseq-thankyou-page"
+      className="source-selection-page endseq-thankyou-page fake-news-page"
       imageLoading="eager"
     >
       <div className="w-full max-w-[980px] mx-auto px-4 py-8 text-center">
