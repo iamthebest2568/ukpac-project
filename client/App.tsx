@@ -116,7 +116,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       </div>
     );
   }
-  const isFullBleed = location.pathname.startsWith("/ukpack2/feedback");
+  const isFullBleed = location.pathname.startsWith("/ukpack2");
   return (
     <div className={`min-h-screen flex justify-center bg-[#2a2a2a] ${isFullBleed ? 'full-bleed-page' : ''}`}>
       {/* Fixed 1080px mobile-first container */}
