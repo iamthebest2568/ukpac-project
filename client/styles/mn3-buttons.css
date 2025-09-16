@@ -54,7 +54,7 @@
   white-space: normal;
 }
 
-/* Yellow variant (for specific buttons like ปรับปรุงคุณภาพรถเมล���, เพิ่มความถี่รถเมล์) */
+/* Yellow variant (for specific buttons like ปรับปรุงคุณภาพรถเมล์, เพิ่มความถี่รถเมล์) */
 .mn3-policy-button--yellow {
   background-color: #ffe000;
 }
@@ -124,7 +124,7 @@
   font-size: clamp(12px, 2.6vw, 16px);
   line-height: 1.15;
   letter-spacing: 0px;
-  color: #000;
+  color: #000D59; /* updated per request */
   text-align: center;
   margin: 0;
   padding: 4px 2px; /* small padding inside button */
