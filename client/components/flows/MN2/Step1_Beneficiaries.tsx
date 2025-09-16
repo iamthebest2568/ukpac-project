@@ -167,7 +167,7 @@ const Step1_Beneficiaries = ({
             {/* Selection Grid - Same layout as original */}
             <div className="w-full max-w-[334px] mb-8">
               {/* Top Row */}
-              <div className="flex justify-center items-start mb-8" style={{ gap: '24px' }}>
+              <div className="flex justify-center items-center mb-8" style={{ gap: '24px' }}>
                 {beneficiaryGroups.slice(0, 3).map((group) => {
                   const isSelected = selectedGroups.includes(group.id);
                   const isDisabled = isSelectionDisabled(group.id);
@@ -194,7 +194,7 @@ const Step1_Beneficiaries = ({
                       {/* Circular Icon Background */}
                       <div
                         className={`w-[68px] h-[68px] rounded-full flex items-center justify-center mb-2 transition-all duration-200 ${
-                          isSelected ? "bg-[#EFBA31]" : isDisabled ? "bg-gray-300" : "bg-transparent border-2 border-white/20"
+                          isSelected ? "bg-[#EFBA31]" : isDisabled ? "bg-gray-300" : "bg-transparent border-2 border-gray-300"
                         }`}
                       >
                         <img
@@ -220,7 +220,7 @@ const Step1_Beneficiaries = ({
               </div>
 
               {/* Bottom Row */}
-              <div className="flex justify-center items-start" style={{ gap: '24px' }}>
+              <div className="flex justify-center items-center" style={{ gap: '24px' }}>
                 {beneficiaryGroups.slice(3, 6).map((group) => {
                   const isSelected = selectedGroups.includes(group.id);
                   const isDisabled = isSelectionDisabled(group.id);
@@ -247,7 +247,7 @@ const Step1_Beneficiaries = ({
                       {/* Circular Icon Background */}
                       <div
                         className={`w-[68px] h-[68px] rounded-full flex items-center justify-center mb-2 transition-all duration-200 ${
-                          isSelected ? "bg-[#EFBA31]" : isDisabled ? "bg-gray-300" : "bg-transparent border-2 border-white/20"
+                          isSelected ? "bg-[#EFBA31]" : isDisabled ? "bg-gray-300" : "bg-transparent border-2 border-gray-300"
                         }`}
                       >
                         <img
