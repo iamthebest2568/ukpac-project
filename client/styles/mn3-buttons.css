@@ -67,10 +67,14 @@
 
 /* Non-selected buttons appear gray by default (handled by base class) */
 
-/* Disabled but not selected - show muted yellow */
+/* Disabled but not selected - show solid gray when selection limit reached */
 .mn3-policy-button:disabled:not(.mn3-policy-button--selected) {
-  opacity: 0.6;
+  opacity: 1 !important;
   cursor: not-allowed;
+  background-color: #e5e7eb !important; /* solid gray */
+  color: #6b7280 !important; /* muted gray text */
+  transform: none !important;
+  box-shadow: none !important;
 }
 
 /* Hover behavior - selected becomes slightly lighter, non-selected hover -> black bg */
