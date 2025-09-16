@@ -15,12 +15,12 @@ const ConfirmationScreen: React.FC = () => {
         title=""
         theme="light"
       >
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-auto pb-32">
           <div className="w-full flex justify-center mb-4">
             <img
               src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F6b62374327d643178ab7f4a913ddc1b1?format=webp&width=800"
               alt="ยืนยันข้อมูลสำเร็จ"
-              className="h-16 md:h-20 w-auto object-contain"
+              className="w-full max-w-[900px] h-auto object-contain mx-auto"
             />
           </div>
           <div className="flex flex-col items-center text-center text-[#001a73]">
@@ -32,9 +32,13 @@ const ConfirmationScreen: React.FC = () => {
               className="mt-3 w-full max-w-[640px] h-auto object-contain"
             />
           </div>
-          <div className="mt-6 w-full flex flex-col items-center gap-3">
-            <CtaButton text="จบเกม" onClick={() => navigate("/ukpack2")} />
-            <SecondaryButton text="แชร์เกมนี้กับเพื่อน" onClick={() => setShareOpen(true)} />
+        </div>
+        <div className="fixed bottom-0 left-0 right-0 z-10">
+          <div className="max-w-4xl mx-auto px-6 pb-[env(safe-area-inset-bottom,1rem)]">
+            <div className="w-full flex flex-col items-center gap-3 bg-white py-4">
+              <CtaButton className="w-full max-w-xs" text="จบเกม" onClick={() => navigate("/ukpack2")} />
+              <SecondaryButton className="w-full max-w-xs" text="แชร์เกมนี้กับเพื่อน" onClick={() => setShareOpen(true)} />
+            </div>
           </div>
         </div>
       </CustomizationScreen>
