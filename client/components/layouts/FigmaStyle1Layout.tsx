@@ -1,6 +1,6 @@
 import React from "react";
 
-import { memo, Fragment } from "react";
+import { memo, Fragment, useEffect, useState } from "react";
 
 interface FigmaStyle1LayoutProps {
   /** Background image URL */
