@@ -18,12 +18,21 @@ const SeatingScreen: React.FC = () => {
   const [wheelchairBikeSpaces, setWheelchairBikeSpaces] = useState<number>(0);
   const [isExitModalOpen, setExitModalOpen] = useState(false);
   const [isErrorModalOpen, setErrorModalOpen] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string>("");
+  const [errorTitle, setErrorTitle] = useState<string>("ข้อผิดพลาด");
 
   const maxByChassis: Record<string, number> = {
     small: 30,
     medium: 40,
     large: 50,
-    extra: 51,
+    extra: 12, // รถกระบะดัดแปลง 8-12 ที่นั่ง
+  };
+
+  const minByChassis: Record<string, number> = {
+    small: 16,
+    medium: 31,
+    large: 41,
+    extra: 8,
   };
   const currentChassis = state.chassis || "medium";
 
@@ -62,7 +71,41 @@ const SeatingScreen: React.FC = () => {
   const selectedLabel = CHASSIS_LABELS[selectedChassis] || "";
   const selectedTopdown = TOPDOWN_IMAGE[selectedChassis];
 
+  const validateSeating = (): boolean => {
+    const minCapacity = minByChassis[selectedChassis] ?? 16;
+    const specialSeatsTotal = pregnantSeats + childElderSeats + monkSeats + wheelchairBikeSpaces;
+
+    // Check if total seats is within range
+    if (totalSeats < minCapacity) {
+      setErrorTitle("จำนวนที่นั่งน้อยเกินไป");
+      setErrorMessage(`รถประเภทนี้ต้องมีที่นั่งอย่างน้อย ${minCapacity} ที่นั่ง กรุณาเพิ่มจำนวนที่นั่ง`);
+      setErrorModalOpen(true);
+      return false;
+    }
+
+    if (totalSeats > maxCapacity) {
+      setErrorTitle("จำนวนที่นั่งเกินขีดจำกัด");
+      setErrorMessage(`รถประเภทนี้สามารถมีที่นั่งได้สูงสุด ${maxCapacity} ที่นั่ง กรุณาลดจำนวนที่นั่ง`);
+      setErrorModalOpen(true);
+      return false;
+    }
+
+    // Check if special seats exceed total seats
+    if (specialSeatsTotal > totalSeats) {
+      setErrorTitle("พื้นที่ไม่เพียงพอ");
+      setErrorMessage(`ที่นั่งพิเศษทั้งหมด (${specialSeatsTotal} ที่นั��ง) เกินจำนวนที่นั่งทั้งหมด (${totalSeats} ที่นั่ง) กรุณาลดจำนวนที่นั่งบางส่วน`);
+      setErrorModalOpen(true);
+      return false;
+    }
+
+    return true;
+  };
+
   const handleNext = () => {
+    if (!validateSeating()) {
+      return;
+    }
+
     try {
       const seating = {
         totalSeats,
@@ -77,8 +120,16 @@ const SeatingScreen: React.FC = () => {
   };
 
   const handleTotalSeatsChange = (v: number) => {
+    const minCapacity = minByChassis[selectedChassis] ?? 16;
     setTotalSeats(v);
+
     if (v > maxCapacity) {
+      setErrorTitle("จำนวนที่นั่งเกินขีดจำกัด");
+      setErrorMessage(`รถประเภทนี้สามารถมีที่นั่งได้สูงสุด ${maxCapacity} ที่นั่ง กรุณาลดจำนวนที่นั่ง`);
+      setErrorModalOpen(true);
+    } else if (v < minCapacity && v > 0) {
+      setErrorTitle("จำนวนที่นั่งน้อยเกินไป");
+      setErrorMessage(`รถประเภทนี้ต้องมีที่นั่งอย่างน้อย ${minCapacity} ที่นั่ง กรุณาเพิ่มจำนวนที่นั่ง`);
       setErrorModalOpen(true);
     }
   };
@@ -249,8 +300,8 @@ const SeatingScreen: React.FC = () => {
 
       <ErrorModal
         isOpen={isErrorModalOpen}
-        title="ความจุเกิน"
-        message={`จำนวนที่นั่งทั้งหมดเกินความจุสูงสุดของรถ (${maxCapacity}) กรุณาตรวจสอบ`}
+        title={errorTitle}
+        message={errorMessage}
         onClose={() => setErrorModalOpen(false)}
       />
     </>
