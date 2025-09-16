@@ -98,7 +98,7 @@ const Step3_ThankYou = ({
 
   return (
     <FigmaStyle1Layout
-      backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F4b8e2ab84c654706bae6ef4de11ca394?format=webp&width=800"
+      backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F3e5cf66ab817488c81987423db4dfc0d?format=webp&width=800"
       backgroundAlt="ขอบคุณสำหรับการมีส่วนร่วม"
       className="source-selection-page endseq-thankyou-page fake-news-page"
       imageLoading="eager"
@@ -174,7 +174,7 @@ const Step3_ThankYou = ({
 
               <div className="mt-2">
                 <DialogClose asChild>
-                  <button className="btn-secondary w-full">ปิด</button>
+                  <button className="btn-secondary w-full">ปิ���</button>
                 </DialogClose>
               </div>
             </DialogContent>
