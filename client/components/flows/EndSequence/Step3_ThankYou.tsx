@@ -47,7 +47,7 @@ const Step3_ThankYou = ({
   };
 
   const shareText = encodeURIComponent(
-    "ร่วมเล่นเกมนี้เพื่อพัฒนาเมืองและมีสิทธิ์ลุ้นรับรางวัล!",
+    "ร่วมเล่นเกมนี้เ���ื่อพัฒนาเมืองและมีสิทธิ์ลุ้นรับรางวัล!",
   );
   const shareUrl = encodeURIComponent(getShareUrl());
 
@@ -137,7 +137,7 @@ const Step3_ThankYou = ({
         <div className="mt-8 flex flex-col items-center gap-4">
           <Dialog>
             <DialogTrigger asChild>
-              <button className="btn-large">แชร์เกมนี้��ห้เพื่อน</button>
+              <button className="btn-large">แชร์เกมนี้ให้เพื่อน</button>
             </DialogTrigger>
             <DialogContent className="p-4 sm:p-6 bg-white rounded-lg max-w-md mx-auto max-h-[85vh] overflow-y-auto border border-gray-200">
               <DialogTitle className="font-prompt text-lg sm:text-xl text-black mb-3 text-center">
