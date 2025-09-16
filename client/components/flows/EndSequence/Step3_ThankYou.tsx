@@ -98,7 +98,7 @@ const Step3_ThankYou = ({
 
   return (
     <FigmaStyle1Layout
-      backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F32a0df59d0b0488b9150246ae780d9e0?format=webp&width=800"
+      backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F4b8e2ab84c654706bae6ef4de11ca394?format=webp&width=800"
       backgroundAlt="ขอบคุณสำหรับการมีส่วนร่วม"
       className="source-selection-page endseq-thankyou-page fake-news-page"
       imageLoading="eager"
@@ -108,15 +108,14 @@ const Step3_ThankYou = ({
           className="font-prompt"
           style={{ color: "#000D59", fontWeight: 700, lineHeight: "1" }}
         >
-          <span
-            style={{ display: "block", fontSize: "clamp(28px, 6.5vw, 70px)" }}
-          >
-            ขอบคุณ
+          <span style={{ display: "block", fontSize: "clamp(28px, 6.5vw, 70px)", lineHeight: 1 }}>
+            <span style={{ fontWeight: 700 }}>ขอบคุณ</span>
+            <span style={{ fontWeight: 400, fontSize: "clamp(24px, 5.6vw, 60px)", marginLeft: "8px" }}>ที่ร่วมเป็นส่วนหนึ่ง</span>
           </span>
           <span
-            style={{ display: "block", fontSize: "clamp(24px, 5.6vw, 60px)" }}
+            style={{ display: "block", fontSize: "clamp(24px, 5.6vw, 60px)", fontWeight: 400 }}
           >
-            ที่ร่วมเป็นส่วนหนึ่งในการพัฒนาเมือง
+            ในการพัฒนาเมือง
           </span>
         </h1>
 
