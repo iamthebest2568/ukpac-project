@@ -181,7 +181,7 @@ const StepTabs: React.FC<StepTabsProps> = ({ active }) => {
                 <img
                   src={TAB1_ICON}
                   alt={isActive ? "โครงรถ (แท็บปัจจุบัน)" : "โครงรถ"}
-                  className={`w-5 h-5 md:w-7 md:h-7 max-w-full ${isActive ? "" : "grayscale opacity-60"}`}
+                  className={`${iconCommon} ${isActive ? "" : "grayscale opacity-60"}`}
                   decoding="async"
                   loading="eager"
                 />
@@ -189,7 +189,7 @@ const StepTabs: React.FC<StepTabsProps> = ({ active }) => {
                 <img
                   src={TAB2_ICON}
                   alt={isActive ? "แท็บที่ 2 (แอคทีฟ)" : "แท็บที่ 2"}
-                  className={`w-5 h-5 md:w-7 md:h-7 max-w-full ${isActive ? "" : "grayscale opacity-60"}`}
+                  className={`${iconCommon} ${isActive ? "" : "grayscale opacity-60"}`}
                   decoding="async"
                   loading="eager"
                 />
@@ -197,7 +197,7 @@ const StepTabs: React.FC<StepTabsProps> = ({ active }) => {
                 <img
                   src={TAB3_ICON}
                   alt={isActive ? "แท็บที่ 3 (แอคทีฟ)" : "แท็บที่ 3"}
-                  className={`w-5 h-5 md:w-7 md:h-7 max-w-full ${isActive ? "" : "grayscale opacity-60"}`}
+                  className={`${iconCommon} ${isActive ? "" : "grayscale opacity-60"}`}
                   decoding="async"
                   loading="eager"
                 />
@@ -205,7 +205,7 @@ const StepTabs: React.FC<StepTabsProps> = ({ active }) => {
                 <img
                   src={TAB4_ICON}
                   alt={isActive ? "แท็บที่ 4 (แอคทีฟ)" : "แท็บที่ 4"}
-                  className={`w-5 h-5 md:w-7 md:h-7 max-w-full ${isActive ? "" : "grayscale opacity-60"}`}
+                  className={`${iconCommon} ${isActive ? "" : "grayscale opacity-60"}`}
                   decoding="async"
                   loading="eager"
                 />
@@ -213,7 +213,7 @@ const StepTabs: React.FC<StepTabsProps> = ({ active }) => {
                 <img
                   src={TAB5_ICON}
                   alt={isActive ? "แท็บที่ 5 (แอคทีฟ)" : "แท็บที่ 5"}
-                  className={`w-5 h-5 md:w-7 md:h-7 max-w-full ${isActive ? "" : "grayscale opacity-60"}`}
+                  className={`${iconCommon} ${isActive ? "" : "grayscale opacity-60"}`}
                   decoding="async"
                   loading="eager"
                 />
