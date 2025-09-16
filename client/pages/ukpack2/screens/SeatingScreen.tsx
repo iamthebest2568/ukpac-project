@@ -45,7 +45,7 @@ const SeatingScreen: React.FC = () => {
 
   const TOPDOWN_IMAGE: Record<string, string | undefined> = {
     small:
-      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9ab4a85f41e64448b6ce79942def8a26?format=webp&width=800",
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F1edb1ed85aec48c6a1e0038571e30e65?format=webp&width=800",
     medium:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Ff5741ea88d0b4d94a8cc687f16501d5c?format=webp&width=800",
     large:
@@ -298,7 +298,7 @@ const SeatingScreen: React.FC = () => {
 
               <div className="flex items-center justify-between">
                 <div className="text-[#003366] font-sarabun">
-                  เด็ก / ผู้สูงอายุ
+                  เด็ก / ผู้สูงอาย���
                 </div>
                 <input
                   type="number"
