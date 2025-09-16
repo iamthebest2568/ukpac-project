@@ -37,13 +37,13 @@ const BudgetAllocationComponent = ({ sessionID, onNavigate, layoutMode = false }
     {
       key: "busQuality",
       label: "ปรับปรุงคุณภาพรถเมล์",
-      description: "การปรับปรุงและพัฒนาคุณภาพรถโดยสารประจำทาง",
+      description: "การปรับปรุงและพัฒนาคุณภาพรถโดยสาร���ระจำทาง",
       icon: "🚌",
     },
     {
       key: "parking",
       label: "ที่จอดรถ",
-      description: "การ���ัดหาและพัฒนาพื้นที่จอดรถ",
+      description: "การจัดหาและพัฒนาพื้นที่จอดรถ",
       icon: "🅿️",
     },
   ];
@@ -275,7 +275,7 @@ const BudgetAllocationComponent = ({ sessionID, onNavigate, layoutMode = false }
                     className="w-full h-full bg-transparent text-center font-prompt font-bold border-none outline-none focus:ring-2 focus:ring-[#FFE000]"
                     style={{
                       color: "#000D59",
-                      fontSize: "clamp(35px, 6.5vw, 70px)",
+                      fontSize: inputFontSize,
                       fontWeight: 700,
                       letterSpacing: "0.4px",
                     }}
@@ -301,7 +301,7 @@ const BudgetAllocationComponent = ({ sessionID, onNavigate, layoutMode = false }
           {remainingBudget > 0 && remainingBudget < totalBudget && (
             <div className="mb-4 bg-yellow-500 bg-opacity-90 rounded-[15px] p-3">
               <div className="text-black text-center text-sm font-prompt">
-                ค���ณยังมีงบประมาณเหลือ <strong>{remainingBudget} บาท</strong>{" "}
+                คุณยังมีงบประมาณเหลือ <strong>{remainingBudget} บาท</strong>{" "}
                 กรุณาจัดสรรให้ครบ
               </div>
             </div>
@@ -363,7 +363,7 @@ const BudgetAllocationComponent = ({ sessionID, onNavigate, layoutMode = false }
                   fontSize: "clamp(14px, 2.8vw, 18px)",
                 }}
               >
-                กรุณาจัดสรรงบประมาณให้ครบ {totalBudget} บาทเพื่อดำเนินการต่อ
+                กรุณาจัดสรรงบประมาณให้ครบ {totalBudget} บาทเพื่อด���เนินการต่อ
               </div>
             )}
           </div>
