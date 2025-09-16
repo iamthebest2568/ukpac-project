@@ -5,6 +5,7 @@
 import { useState, useEffect } from "react";
 import { useSession } from "../../hooks/useSession";
 import { logEvent } from "../../services/dataLogger.js";
+import FigmaStyle1Layout from "../../components/layouts/FigmaStyle1Layout";
 
 const HowDoYouThinkPage = () => {
   const { sessionID, navigateToPage } = useSession();
