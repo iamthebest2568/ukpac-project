@@ -109,13 +109,13 @@ const Step1_Decision = ({
         </h2>
 
         <div
-          className="mt-8 flex flex-col items-center gap-4"
+          className="mt-4 flex flex-col items-center gap-4"
           style={{ width: "100%", maxWidth: 874, margin: "0 auto" }}
         >
           <button
             onClick={onParticipate}
             className="btn-large"
-            aria-label="เข้าร่วมโครงการและกรอกข้อมูลเพื่อรับรางวัล"
+            aria-label="เข้าร่วมโครงการ��ละกรอกข้อมูลเพื่อรับรางวัล"
           >
             ลุ้นรับรางวัล
           </button>
