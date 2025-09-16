@@ -15,11 +15,8 @@ const SplashScreen: React.FC = () => {
       <div className="flex-1 flex flex-col items-center justify-center px-6 pt-12">
         <div className="max-w-3xl w-full text-center">
           <div className="w-full h-64 md:h-80 flex items-center justify-center">
-            <img
-              src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fd0f51cc217ab444f85054abef8272035?format=webp&width=800"
-              alt="รถเมล์ในฝัน"
-              className="max-h-72 w-auto mx-auto object-contain"
-            />
+            {/* Splash image hidden but placeholder kept so layout doesn't shift */}
+            <div aria-hidden className="max-h-72 w-auto mx-auto" style={{height: '100%'}} />
           </div>
         </div>
       </div>
