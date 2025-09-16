@@ -26,7 +26,7 @@ const SeatingScreen: React.FC = () => {
     small: 30,
     medium: 40,
     large: 50,
-    extra: 12, // รถ��ระบะดัดแปลง 8-12 ที่นั่ง
+    extra: 12, // รถกระบะดัดแปลง 8-12 ที่นั่ง
   };
 
   const minByChassis: Record<string, number> = {
@@ -38,9 +38,9 @@ const SeatingScreen: React.FC = () => {
   const currentChassis = state.chassis || "medium";
 
   const CHASSIS_LABELS: Record<string, string> = {
-    small: "รถเมล์ขนาดเล็ก 16–30 ท��่นั่ง",
+    small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
     medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
-    large: "รถเมล์ขนาดใหญ่ 41–50 ที่น���่ง",
+    large: "รถเมล์ขนาดใหญ่ 41–50 ที่นั่ง",
     extra: "รถกระบะดัดแปลง 8-12 ที่นั่ง",
   };
 
@@ -89,18 +89,18 @@ const SeatingScreen: React.FC = () => {
 
     // Check if total seats is within range
     if (totalSeats < minCapacity) {
-      setErrorTitle("จำนวนที่นั่งน้อยเ��ินไป");
+      setErrorTitle("จำนวนที่นั่งน้อยเกินไป");
       setErrorMessage(
-        `รถประเภทนี้ต้องมีที่นั่งอย่างน้อย ${minCapacity} ที่นั่ง กร��ณาเพิ่มจำนวนที่นั่ง`,
+        `รถประเภทนี้ต้องมีที่นั่งอย่างน้อย ${minCapacity} ที่นั่ง กรุณาเพิ่มจำนวนที่นั่ง`,
       );
       setErrorModalOpen(true);
       return false;
     }
 
     if (totalSeats > maxCapacity) {
-      setErrorTitle("จำนวนที่นั่งเกินขีดจ��กัด");
+      setErrorTitle("จำนวนที่นั่งเกินขีดจำกัด");
       setErrorMessage(
-        `รถประเภทนี้สามารถมีที่นั่งได้สูงสุด ${maxCapacity} ที่นั่ง กรุณาลดจำนวนที่นั่ง`,
+        `รถประเภทนี้สามารถมีที่นั่งได้สูงส��ด ${maxCapacity} ที่นั่ง กรุณาลดจำนวนที่นั่ง`,
       );
       setErrorModalOpen(true);
       return false;
@@ -110,7 +110,7 @@ const SeatingScreen: React.FC = () => {
     if (specialSeatsTotal > totalSeats) {
       setErrorTitle("พื้นที่ไม่เพียงพอ");
       setErrorMessage(
-        `ที่นั่งพิเศษทั้งหมด (${specialSeatsTotal} ที่นั่ง) เกินจำนวนที่นั่งทั้งหมด (${totalSeats} ที่นั่ง) กรุณาลดจำนว��ที่นั่งบางส่วน`,
+        `ที่นั่งพิเศษทั้งหมด (${specialSeatsTotal} ที่นั่ง) เกินจำนวนที่นั่งทั้งหมด (${totalSeats} ที่นั่ง) กรุณาลดจำนวนที่นั่งบางส่วน`,
       );
       setErrorModalOpen(true);
       return false;
@@ -155,13 +155,13 @@ const SeatingScreen: React.FC = () => {
     if (v > maxCapacity) {
       setErrorTitle("จำนวนที่นั่งเกินขีดจำกัด");
       setErrorMessage(
-        `รถประเภทนี้สามารถมีที่นั่งได้สูงสุด ${maxCapacity} ที่นั่ง กรุณาลดจำนวนที่นั��ง`,
+        `รถประเภทนี้สามารถมีที่นั่งได้สูงสุด ${maxCapacity} ที่นั่ง กรุณาลดจำนวนที่นั่ง`,
       );
       setErrorModalOpen(true);
     } else if (v < minCapacity && v > 0) {
       setErrorTitle("จำนวนที่นั่งน้อยเกินไป");
       setErrorMessage(
-        `รถประเภทนี้ต้องมีที่นั่งอย่างน้อย ${minCapacity} ที่นั่ง กรุณาเพิ่มจำนวนที่นั่ง`,
+        `รถประเภทนี้ต้องมีที่นั่งอย่างน้อย ${minCapacity} ท���่นั่ง กรุณาเพิ่มจำนวนที่นั่ง`,
       );
       setErrorModalOpen(true);
     }
@@ -252,7 +252,7 @@ const SeatingScreen: React.FC = () => {
 
                 <img
                   src={selectedTopdown}
-                  alt={`ผ���งที่��ั่งมุมมองบน - ${selectedLabel}`}
+                  alt={`ผังที่นั่งมุมมองบน - ${selectedLabel}`}
                   className="h-48 w-auto object-contain select-none"
                   decoding="async"
                   loading="eager"
@@ -260,7 +260,7 @@ const SeatingScreen: React.FC = () => {
               </div>
             ) : (
               <div className="w-full h-48 bg-[#081042] rounded-md flex items-center justify-center text-sm text-gray-300">
-                Top-down seat map preview (ภาพสำหรับรุ่���นี้จะถูกเพิ่มภายหลัง)
+                Top-down seat map preview (ภาพสำหรับรุ่นนี้จะถูกเพิ่มภายหลัง)
               </div>
             )}
             <div className="mt-1 text-center">
@@ -308,7 +308,7 @@ const SeatingScreen: React.FC = () => {
               </div>
 
               <div className="flex items-center justify-between">
-                <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">สตรีมีค��รภ์</div>
+                <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">สตรีมีครรภ์</div>
                 <input
                   type="number"
                   value={pregnantSeats}
@@ -394,7 +394,7 @@ const SeatingScreen: React.FC = () => {
       <ConfirmModal
         isOpen={isExitModalOpen}
         title="ออกจากหน้าจอ"
-        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถู��บันทึก"
+        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
         onConfirm={() => navigate("/")}
         onCancel={() => setExitModalOpen(false)}
       />
