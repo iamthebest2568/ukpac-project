@@ -434,7 +434,7 @@ const DesignScreen: React.FC = () => {
                                     >
                                       <img
                                         src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F98de0624be3d4ae6b96d83edcf8891f9?format=webp&width=800"
-                                        alt="ปร���ตูฉุกเฉิน"
+                                        alt="ประตูฉุกเฉิน"
                                         className="h-6 w-6 md:h-7 md:w-7 object-contain"
                                       />
                                     </div>
@@ -525,7 +525,7 @@ const DesignScreen: React.FC = () => {
                         onClick={() => setShowTextarea(false)}
                         className="px-4 py-2 rounded-md bg-[#ffe000] text-black hover:bg-[#000d59] hover:text-white transition-colors"
                       >
-                        ยก��ลิก
+                        ยกเลิก
                       </button>
                       <button
                         onClick={() => {
