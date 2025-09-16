@@ -345,6 +345,15 @@
   padding-left: 20px !important;
   padding-right: 20px !important;
 }
+
+/* Source selection: make title width match the button area and increase size */
+.source-selection-page .figma-style1-title-container {
+  max-width: 380px !important; /* match button container */
+}
+.source-selection-page .figma-style1-title {
+  font-size: 36px !important;
+  line-height: 1.05 !important;
+}
 .end-sequence-page .figma-style1-title {
   width: 100% !important;
   max-width: 980px !important;
