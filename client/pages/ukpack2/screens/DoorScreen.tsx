@@ -151,7 +151,7 @@ const IconRamp = () => (
 const IconHighLow = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F98de0624be3d4ae6b96d83edcf8891f9?format=webp&width=800"
-    alt="ประตูฉุกเฉิน"
+    alt="ประตูฉุก���ฉิน"
     className="h-8 w-8 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -313,7 +313,7 @@ const DoorScreen: React.FC = () => {
                     />
                   </div>
                 );
-              if (label === "กร��เ��๋ารถเมล์")
+              if (label === "กระเป๋ารถเมล์")
                 return (
                   <div
                     key={`${label}-${idx}`}
