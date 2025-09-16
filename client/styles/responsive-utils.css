@@ -653,7 +653,7 @@
 @media (max-width: 768px) {
   .footer-container {
     --footer-height: 450px; /* mobile fixed height requested */
-    --footer-clip-h-num: 0.45; /* 45% */
+    --footer-clip-h-num: 0.35; /* 35% */
   }
 }
 
