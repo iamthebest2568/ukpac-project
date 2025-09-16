@@ -11,10 +11,7 @@ const ConfirmationScreen: React.FC = () => {
 
   return (
     <>
-      <CustomizationScreen
-        title=""
-        theme="light"
-      >
+      <CustomizationScreen title="" theme="light">
         <div className="max-w-4xl mx-auto pb-32">
           <div className="w-full flex justify-center mb-4">
             <img
@@ -25,7 +22,9 @@ const ConfirmationScreen: React.FC = () => {
           </div>
           <div className="flex flex-col items-center text-center text-[#001a73]">
             <h2 className="font-prompt font-semibold text-2xl">ขอบคุณ</h2>
-            <p className="font-sarabun text-lg">ที่ร่วมเป็นส่วนหนึ่งในการพัฒนาเมือง</p>
+            <p className="font-sarabun text-lg">
+              ที่ร่วมเป็นส่วนหนึ่งในการพัฒนาเมือง
+            </p>
             <img
               src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9989e3bd2f31458aa7691b01a3a08b12?format=webp&width=800"
               alt="ภาพประกาศรางวัล"
@@ -36,14 +35,27 @@ const ConfirmationScreen: React.FC = () => {
         <div className="fixed bottom-0 left-0 right-0 z-10">
           <div className="max-w-4xl mx-auto px-6 pb-[env(safe-area-inset-bottom,1rem)]">
             <div className="w-full flex flex-col items-center gap-3 bg-white py-4">
-              <CtaButton className="w-full max-w-xs" text="จบเกม" onClick={() => navigate("/ukpack2")} />
-              <SecondaryButton className="w-full max-w-xs" text="แชร์เกมนี้กับเพื่อน" onClick={() => setShareOpen(true)} />
+              <CtaButton
+                className="w-full max-w-xs"
+                text="จบเกม"
+                onClick={() => navigate("/ukpack2")}
+              />
+              <SecondaryButton
+                className="w-full max-w-xs"
+                text="แชร์เกมนี้กับเพื่อน"
+                onClick={() => setShareOpen(true)}
+              />
             </div>
           </div>
         </div>
       </CustomizationScreen>
 
-      <ShareModal isOpen={isShareOpen} onClose={() => setShareOpen(false)} shareUrl={window.location.origin + '/ukpack2'} shareText={'ผม/ฉันได้ออกแบบรถเมล์ในฝัน ลองดูสิ'} />
+      <ShareModal
+        isOpen={isShareOpen}
+        onClose={() => setShareOpen(false)}
+        shareUrl={window.location.origin + "/ukpack2"}
+        shareText={"ผม/ฉันได้ออกแบบรถเมล์ในฝัน ลองดูสิ"}
+      />
     </>
   );
 };

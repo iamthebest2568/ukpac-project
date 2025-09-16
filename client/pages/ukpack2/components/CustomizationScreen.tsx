@@ -28,7 +28,9 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
         <header className="px-6 border-b border-[#081042] flex items-center justify-center h-16">
           <div className="max-w-4xl w-full flex items-center justify-center">
             {headerContent ? (
-              <div className="w-full flex items-center justify-center">{headerContent}</div>
+              <div className="w-full flex items-center justify-center">
+                {headerContent}
+              </div>
             ) : (
               <h1 className="text-2xl font-prompt font-semibold">{title}</h1>
             )}

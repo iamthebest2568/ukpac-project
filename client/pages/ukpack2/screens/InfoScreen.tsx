@@ -61,7 +61,10 @@ const InfoScreen: React.FC = () => {
           </div>
 
           <div className="flex flex-col items-center mt-2">
-            <div className="relative w-full flex items-center justify-center" style={{ minHeight: "160px" }}>
+            <div
+              className="relative w-full flex items-center justify-center"
+              style={{ minHeight: "160px" }}
+            >
               <img
                 src={HERO_SHADOW}
                 alt="เงารถ"
@@ -85,7 +88,10 @@ const InfoScreen: React.FC = () => {
           <div className="prose text-[#001a73] font-sarabun">
             <h2 className="font-prompt font-semibold text-xl">รู้หรือไม่!</h2>
             <p>
-              ในญี่ปุ่นมี Community Bus รถเมล์ขนาดเล็กที่วิ่งเข้าซอยและพื้นที่ ที่รถใหญ่เข้าไม่ถึง ค่าโดยสารถูกมาก บางแห่งนั่งได้ทั้งสายเพียง 100 เยน ทำให้ผู้สูงอายุและเด็กเข้าถึงบริการสำคัญ เช่น โรงพยาบาลและศูนย์ชุมชนได้สะดวกขึ้น
+              ในญี่ปุ่นมี Community Bus รถเมล์ขนาดเล็กที่วิ่งเข้าซอยและพื้นที่
+              ที่รถใหญ่เข้าไม่ถึง ค่าโดยสารถูกมาก บางแห่งนั่งได้ทั้งสายเพียง 100
+              เยน ทำให้ผู้สูงอายุและเด็กเข้าถึงบริการสำคัญ เช่น
+              โรงพยาบาลและศูนย์ชุมชนได้สะดวกขึ้น
             </p>
           </div>
         </div>
