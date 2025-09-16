@@ -21,7 +21,7 @@ const Step1_Decision = ({
 }: Step1_DecisionProps) => {
   const handleChoice = (choice: "participate" | "decline") => {
     const choiceText = {
-      participate: "ลุ้��รับรางวัล",
+      participate: "ลุ้นรับรางวัล",
       decline: "ไม่",
     }[choice];
 
@@ -73,7 +73,7 @@ const Step1_Decision = ({
 
   return (
     <FigmaStyle1Layout
-      backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F0ddd85a3edf04d94bd21d154888e831c?format=webp&width=800"
+      backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F263a25a7969444fca1a6d9586554800e?format=webp&width=800"
       backgroundAlt="รางวัลสำหรับคุณ"
       className="source-selection-page end-sequence-page fake-news-page"
       imageLoading="eager"
@@ -122,7 +122,7 @@ const Step1_Decision = ({
           <button
             onClick={onDecline}
             className="btn-large"
-            aria-label="ไม่เข้าร่วมโครงการรับรางวัล"
+            aria-label="ไม่เข้��ร่วมโครงการรับรางวัล"
           >
             ไม่
           </button>
