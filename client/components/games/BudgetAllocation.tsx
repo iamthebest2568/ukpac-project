@@ -43,7 +43,7 @@ const BudgetAllocationComponent = ({ sessionID, onNavigate, layoutMode = false }
     {
       key: "parking",
       label: "ที่จอดรถ",
-      description: "การจัดหาและพัฒนาพื้นที่จอดรถ",
+      description: "การจัดหาและพัฒ��าพื้นที่จอดรถ",
       icon: "🅿️",
     },
   ];
@@ -141,8 +141,8 @@ const BudgetAllocationComponent = ({ sessionID, onNavigate, layoutMode = false }
                 alt="Budget icon"
                 className="object-contain"
                 style={{
-                  width: "clamp(80px, 12.5vw, 135px)",
-                  height: "clamp(95px, 15vw, 159px)",
+                  width: coinWidth,
+                  height: coinHeight,
                 }}
               />
             </div>
