@@ -121,7 +121,7 @@ const IconDoor2 = () => (
 );
 const IconRamp = () => (
   <img
-    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F38de4d577fa346a985827c9da650fd69?format=webp&width=800"
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fece2b6fc843340f0997f2fd7d3ca0aea?format=webp&width=800"
     alt="ทางสำหรับรถเข็น/ผู้พิการ"
     className="h-8 w-8 object-contain select-none"
     decoding="async"
@@ -240,7 +240,7 @@ const DoorScreen: React.FC = () => {
                   <img src={MONEY_ICON} alt={label} className="h-5 w-5 object-contain" />
                 </div>
               );
-              if (label === "สแกนจ่���ย") return (
+              if (label === "สแกนจ่าย") return (
                 <div key={`${label}-${idx}`} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">
                   <img src={SCAN_ICON} alt={label} className="h-5 w-5 object-contain" />
                 </div>
@@ -279,7 +279,7 @@ const DoorScreen: React.FC = () => {
               );
               if (label === "ramp") return (
                 <div key={`${label}-${idx}`} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">
-                  <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F38de4d577fa346a985827c9da650fd69?format=webp&width=800" alt="ทางลาด" className="h-5 w-5 object-contain" />
+                  <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fece2b6fc843340f0997f2fd7d3ca0aea?format=webp&width=800" alt="ทางลาด" className="h-6 w-6 md:h-7 md:w-7 object-contain" />
                 </div>
               );
               if (label === "emergency") return (
