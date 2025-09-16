@@ -228,7 +228,7 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
 const MONEY_ICON =
   "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe6cd10633ea44588bae0f3b59f7ab4d3?format=webp&width=800";
 const SCAN_ICON =
-  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F5ed29e04d63c4746a45ed47b213871fa?format=webp&width=1600";
+  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F03c85a3f2921449d80d540bed9bfbbdc?format=webp&width=800";
 const SCAN2_ICON =
   "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F56620e798eb94153b2390271f30d0dae?format=webp&width=1600";
 const TOUCH_ICON =
