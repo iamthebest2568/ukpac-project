@@ -57,6 +57,7 @@ const FigmaStyle1Layout = ({
 
   // Platform detection to allow iOS vs Android spacing control
   const [platformClass, setPlatformClass] = useState("");
+  const [pageScope, setPageScope] = useState("");
   useEffect(() => {
     if (typeof navigator === "undefined") return;
     const ua = navigator.userAgent || "";
@@ -65,10 +66,19 @@ const FigmaStyle1Layout = ({
     const isIPhone = /iPhone/.test(ua);
     if (isAndroid) setPlatformClass("is-android");
     else if (isIPhone || isIPad) setPlatformClass("is-ios");
+
+    // Detect if current route belongs to ukpack1 and set page scope class for styling
+    try {
+      if (typeof window !== 'undefined' && window.location && window.location.pathname.startsWith('/ukpack1')) {
+        setPageScope('figma-style1-ukpack1');
+      }
+    } catch (e) {
+      // noop
+    }
   }, []);
 
   return (
-    <div className={`figma-style1-container ${className} ${platformClass}`}>
+    <div className={`figma-style1-container ${className} ${platformClass} ${pageScope}`}>
       <div className="figma-style1-content">
         {/* Background Image (overlay only rendered when useBlueOverlay is true) */}
         <div className="figma-style1-background">
