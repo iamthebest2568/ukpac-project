@@ -159,7 +159,7 @@ const Step1_Beneficiaries = ({
           <div className="figma-style1-content-area" style={{ paddingTop: "clamp(48px, 12vh, 160px)" }}>
             {/* Title with current priority */}
             <div className="figma-style1-title-container mb-6">
-              <h1 className="figma-style1-title">
+              <h1 className="figma-style1-title" style={{ color: '#000D59' }}>
                 คุณคิดว่าใครควรได้รับประโยชน์จาก {currentPriority} ?
               </h1>
             </div>
