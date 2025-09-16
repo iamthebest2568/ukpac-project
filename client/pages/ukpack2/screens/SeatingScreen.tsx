@@ -91,7 +91,7 @@ const SeatingScreen: React.FC = () => {
     if (totalSeats < minCapacity) {
       setErrorTitle("จำนวนที่นั่งน้อยเกินไป");
       setErrorMessage(
-        `รถประเภทนี้ต้องมีที่นั่งอย่างน้อย ${minCapacity} ที่นั่ง กรุณาเพิ่มจำนวนที่นั่ง`,
+        `รถประเภทนี้ต้องมีที่นั่งอย่างน้อ��� ${minCapacity} ที่นั่ง กรุณาเพิ่มจำนวนที่นั่ง`,
       );
       setErrorModalOpen(true);
       return false;
@@ -100,7 +100,7 @@ const SeatingScreen: React.FC = () => {
     if (totalSeats > maxCapacity) {
       setErrorTitle("จำนวนที่นั่งเกินขีดจำกัด");
       setErrorMessage(
-        `รถประเภทนี้สามารถมีที่นั่งได้สูงส��ด ${maxCapacity} ที่นั่ง กรุณาลดจำนวนที่นั่ง`,
+        `รถประเภทนี้สามารถมีที่นั่งได้สูงสุด ${maxCapacity} ที่นั่ง กรุณาลดจำนวนที่นั่ง`,
       );
       setErrorModalOpen(true);
       return false;
@@ -155,13 +155,13 @@ const SeatingScreen: React.FC = () => {
     if (v > maxCapacity) {
       setErrorTitle("จำนวนที่นั่งเกินขีดจำกัด");
       setErrorMessage(
-        `รถประเภทนี้สามารถมีที่นั่งได้สูงสุด ${maxCapacity} ที่นั่ง กรุณาลดจำนวนที่นั่ง`,
+        `รถประเภทนี้สามารถมีที่นั่งไ��้สูงสุด ${maxCapacity} ที่นั่ง กรุณาลดจำนวนที่นั่ง`,
       );
       setErrorModalOpen(true);
     } else if (v < minCapacity && v > 0) {
       setErrorTitle("จำนวนที่นั่งน้อยเกินไป");
       setErrorMessage(
-        `รถประเภทนี้ต้องมีที่นั่งอย่างน้อย ${minCapacity} ท���่นั่ง กรุณาเพิ่มจำนวนที่นั่ง`,
+        `รถประเภทนี้ต้องมีที่นั่งอย่างน้อย ${minCapacity} ที่นั่ง กรุณาเพิ่มจำนวนที่นั่ง`,
       );
       setErrorModalOpen(true);
     }
