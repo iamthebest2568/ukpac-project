@@ -973,6 +973,27 @@
   min-height: 100vh !important; /* Ensure full viewport height */
 }
 
+/* Shared style tokens for ukpack1 pages */
+.figma-style1-ukpack1 {
+  --figma-content-max-width: 720px;
+  --figma-button-max-width: 360px;
+  --figma-title-font: 700 18px/23.4px "Prompt", sans-serif;
+  --figma-footer-height: 360px;
+}
+
+/* Apply shared tokens to layout pieces */
+.figma-style1-ukpack1 .figma-style1-title-container {
+  max-width: var(--figma-content-max-width) !important;
+}
+
+.figma-style1-ukpack1 .figma-style1-button-container {
+  max-width: var(--figma-button-max-width) !important;
+}
+
+.figma-style1-ukpack1 .figma-style1-title {
+  font: var(--figma-title-font) !important;
+}
+
 /* Mobile-first full-bleed adjustments (no side whitespace) ----------------------------------
    Makes figma-style1 pages use the full viewport width on phones so there is no
    left/right whitespace. Keeps safe-area insets for notches but removes fixed
