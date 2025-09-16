@@ -1104,6 +1104,7 @@ body[data-dialog-open] {
     width: 95% !important;
     margin: 16px !important;
     max-height: calc(100vh - 32px) !important;
+    max-height: calc(100svh - 32px) !important;
   }
 }
 
