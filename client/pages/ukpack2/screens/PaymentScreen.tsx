@@ -250,6 +250,15 @@ const OPTIONS = [
 const PaymentScreen: React.FC = () => {
   const navigate = useNavigate();
   const [selected, setSelected] = useState<string[]>(["เงินสด"]);
+  useEffect(() => {
+    try {
+      const raw = sessionStorage.getItem("design.payment");
+      if (raw) {
+        const arr = JSON.parse(raw);
+        if (Array.isArray(arr)) setSelected(arr);
+      }
+    } catch {}
+  }, []);
 
   const toggle = (label: string) => {
     setSelected((prev) =>
