@@ -85,7 +85,7 @@ const SeatingScreen: React.FC = () => {
 
     // Check if total seats is within range
     if (totalSeats < minCapacity) {
-      setErrorTitle("จำนวนที่นั่งน้อยเกินไป");
+      setErrorTitle("จำนวนที่นั่งน้อยเ��ินไป");
       setErrorMessage(
         `รถประเภทนี้ต้องมีที่นั่งอย่างน้อย ${minCapacity} ที่นั่ง กรุณาเพิ่มจำนวนที่นั่ง`,
       );
@@ -184,7 +184,33 @@ const SeatingScreen: React.FC = () => {
                       return [] as string[];
                     }
                   })();
-                  const overlay = [...(amenities || []), ...(payments || [])];
+                  const doors = (() => {
+                    try {
+                      const raw = sessionStorage.getItem("design.doors");
+                      if (!raw) return null;
+                      const parsed = JSON.parse(raw);
+                      return typeof parsed === "string"
+                        ? parsed
+                        : parsed?.doorChoice || (parsed?.hasRamp ? "ramp" : parsed?.highLow ? "emergency" : null);
+                    } catch {
+                      return sessionStorage.getItem("design.doors");
+                    }
+                  })();
+                  const DOOR_ICON_SMALL: Record<string, string> = {
+                    "1":
+                      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9811f9bca05c43feae9eafdcbab3c8d9?format=webp&width=800",
+                    "2":
+                      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8f9b21942af243b3b80b0e5ac8b12631?format=webp&width=800",
+                    ramp:
+                      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fece2b6fc843340f0997f2fd7d3ca0aea?format=webp&width=800",
+                    emergency:
+                      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F98de0624be3d4ae6b96d83edcf8891f9?format=webp&width=800",
+                  };
+                  const overlay = [
+                    ...(amenities || []),
+                    ...(payments || []),
+                    ...(doors ? [doors as string] : []),
+                  ];
                   return overlay.length > 0 ? (
                     <div className="absolute left-1/2 transform -translate-x-1/2 -top-4 flex flex-wrap justify-center gap-2 z-20 max-w-[80%]">
                       {overlay.map((lab, i) => (
@@ -192,7 +218,11 @@ const SeatingScreen: React.FC = () => {
                           key={`${lab}-${i}`}
                           className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center"
                         >
-                          <div className="text-xs">{lab}</div>
+                          {DOOR_ICON_SMALL[lab] ? (
+                            <img src={DOOR_ICON_SMALL[lab]} alt={lab} className="h-5 w-5 object-contain" />
+                          ) : (
+                            <div className="text-xs">{lab}</div>
+                          )}
                         </div>
                       ))}
                     </div>
@@ -201,7 +231,7 @@ const SeatingScreen: React.FC = () => {
 
                 <img
                   src={selectedTopdown}
-                  alt={`ผังที่นั่งมุมมองบน - ${selectedLabel}`}
+                  alt={`ผังที่��ั่งมุมมองบน - ${selectedLabel}`}
                   className="h-48 w-auto object-contain select-none"
                   decoding="async"
                   loading="eager"
