@@ -579,7 +579,9 @@
 /* Override global.css app-container conflicts for figma-style1 */
 .app-container .figma-style1-container {
   height: 100vh !important;
+  height: 100svh !important;
   min-height: 100vh !important;
+  min-height: 100svh !important;
   flex: none !important;
 }
 
