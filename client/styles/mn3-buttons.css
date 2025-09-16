@@ -54,7 +54,7 @@
   white-space: normal;
 }
 
-/* Yellow variant (for specific buttons like ปรับปรุงคุณภาพรถเมล์, เพิ่มความถี่รถเมล์) */
+/* Yellow variant (for specific buttons like ปรับปรุงคุณภาพรถเมล���, เพิ่มความถี่รถเมล์) */
 .mn3-policy-button--yellow {
   background-color: #ffe000;
 }
@@ -90,7 +90,7 @@
 
 /* Disabled state */
 .mn3-policy-button:disabled {
-  opacity: 0.5;
+  opacity: 1 !important;
   cursor: not-allowed;
   transform: none !important;
   box-shadow: none !important;
