@@ -7,6 +7,7 @@ interface SelectionCardProps {
   onClick?: () => void;
   variant?: "dark" | "light";
   hideLabel?: boolean;
+  appearance?: "card" | "bare";
 }
 
 const SelectionCard: React.FC<SelectionCardProps> = ({
@@ -16,24 +17,28 @@ const SelectionCard: React.FC<SelectionCardProps> = ({
   onClick,
   variant = "dark",
   hideLabel = false,
+  appearance = "card",
 }) => {
-  const base = isSelected
-    ? variant === "light"
-      ? "bg-[#ffe000] text-[#003366] border-transparent font-semibold"
-      : "bg-[#ffe000] text-black border-transparent"
-    : variant === "light"
-      ? "bg-white text-[#003366] border border-gray-400"
-      : "bg-transparent text-white border border-[#081042]";
+  const isLight = variant === "light";
+  const base = appearance === "bare"
+    ? `${isLight ? "text-[#003366]" : "text-white"} bg-transparent border-0`
+    : isSelected
+      ? isLight
+        ? "bg-[#ffe000] text-[#003366] border-transparent font-semibold"
+        : "bg-[#ffe000] text-black border-transparent"
+      : isLight
+        ? "bg-white text-[#003366] border border-gray-400"
+        : "bg-transparent text-white border border-[#081042]";
 
   return (
     <button
       type="button"
       onClick={onClick}
-      className={`w-full flex flex-col items-center justify-center p-4 rounded-2xl ${base} focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#ffe000] transition-colors`}
+      className={`w-full flex flex-col items-center justify-center ${appearance === "bare" ? "p-0" : "p-4"} ${appearance === "bare" ? "rounded-none" : "rounded-2xl"} ${base} focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#ffe000] transition-colors`}
       aria-pressed={isSelected}
     >
       <div
-        className={`h-12 mb-2 flex items-center justify-center ${isSelected ? (variant === "light" ? "text-[#003366]" : "text-black") : variant === "light" ? "text-[#003366]" : "text-white"}`}
+        className={`${appearance === "bare" ? "mb-0" : "h-12 mb-2"} flex items-center justify-center ${isLight ? "text-[#003366]" : "text-white"}`}
       >
         {icon}
       </div>
