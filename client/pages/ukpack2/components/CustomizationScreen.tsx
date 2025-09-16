@@ -61,7 +61,7 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
       <div
         ref={contentRef}
         className="flex-1 overflow-auto px-6 py-6"
-        style={{ paddingBottom: `calc(${footerHeight}px + env(safe-area-inset-bottom, 0px))` }}
+        style={{ paddingBottom: `calc(${footerHeight}px + 16px + env(safe-area-inset-bottom, 0px))` }}
       >
         {children}
       </div>
