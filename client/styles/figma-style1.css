@@ -1464,9 +1464,12 @@ body[data-dialog-open] {
    - Keep buttons centered and constrained for accessibility
    =================================================================== */
 .figma-style1-container.fake-news-page {
-  background: transparent !important;
+  background: #04D9F9 !important; /* full screen blue fill */
+  min-height: 100vh !important;
+  width: 100% !important;
 }
 
+/* hide any decorative background layers for this page */
 .figma-style1-container.fake-news-page .figma-style1-background,
 .figma-style1-container.fake-news-page .figma-style1-background-image,
 .figma-style1-container.fake-news-page .figma-style1-background-overlay,
@@ -1476,45 +1479,48 @@ body[data-dialog-open] {
   pointer-events: none !important;
 }
 
+/* Center content vertically and horizontally */
 .figma-style1-container.fake-news-page .figma-style1-main {
-  align-items: end !important; /* keep content near bottom */
+  align-items: center !important; /* vertical centering */
   justify-items: center !important;
-  padding-bottom: env(safe-area-inset-bottom, 16px) !important;
+  height: 100vh !important;
+  padding-bottom: env(safe-area-inset-bottom, 20px) !important;
 }
 
 .figma-style1-container.fake-news-page .figma-style1-content-area {
   width: 100% !important;
   max-width: 100% !important;
-  padding: 20px !important;
+  padding: 20px 16px !important;
   box-sizing: border-box !important;
   display: flex !important;
   flex-direction: column !important;
-  justify-content: flex-end !important;
-  align-items: center !important;
-  gap: 12px !important;
+  justify-content: center !important; /* center vertically */
+  align-items: center !important; /* center horizontally */
+  gap: 16px !important;
 }
 
 .figma-style1-container.fake-news-page .figma-style1-title-container {
   width: 100% !important;
   max-width: 720px !important;
-  margin: 0 auto 6px auto !important;
+  margin: 0 auto !important;
   padding: 0 12px !important;
 }
 
 .figma-style1-container.fake-news-page .figma-style1-title {
   color: #000 !important;
   font-size: clamp(18px, 4.5vw, 22px) !important;
-  line-height: 1.25 !important;
+  line-height: 1.3 !important;
   text-align: center !important;
   margin: 0 !important;
   text-shadow: none !important;
 }
 
+/* Buttons centered and constrained */
 .figma-style1-container.fake-news-page .figma-style1-button-container {
   width: 100% !important;
   max-width: 360px !important;
   margin: 0 auto !important;
-  padding: 12px 0 18px 0 !important;
+  padding: 8px 0 20px 0 !important;
   display: flex !important;
   flex-direction: column !important;
   gap: 12px !important;
@@ -1536,7 +1542,7 @@ body[data-dialog-open] {
   text-align: center !important;
 }
 
-/* Ensure remaining layout inside route wrapper won't clip content */
+/* Ensure route wrapper won't clip content */
 #main-content > .flow-container:has(.figma-style1-container.fake-news-page) {
   overflow: visible !important;
 }
