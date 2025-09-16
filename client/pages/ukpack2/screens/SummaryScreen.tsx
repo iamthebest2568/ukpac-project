@@ -31,7 +31,7 @@ const SummaryScreen: React.FC = () => {
   }, []);
 
   const CHASSIS_LABELS: Record<string, string> = {
-    small: "รถเมล์ขนาดเล็ก 16–30 ที่น��่ง",
+    small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
     medium: "รถเมล์ขนาดกลาง 31–40 ที่นั่ง",
     large: "รถเมล์ขนาดใหญ่ 41-50 ที่นั่ง",
     extra: "รถกระบะดัดแปลง 8-12 ที่นั่ง",
@@ -96,7 +96,7 @@ const SummaryScreen: React.FC = () => {
         <SummaryDetails />
       </div>
 
-      <footer className="mt-6 w-full">
+      <footer className="mt-6 w-full relative z-10">
         <div className="w-full bg-[#00d5f9] drop-shadow-lg rounded-t-3xl">
           <div className="max-w-4xl mx-auto px-4">
             <div className="rounded-t-3xl p-6 flex items-center justify-center gap-4">

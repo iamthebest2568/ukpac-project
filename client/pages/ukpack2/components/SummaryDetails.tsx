@@ -17,7 +17,7 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   "ที่จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
   "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
-  "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
+  "ระบบประก���ศบอกป้าย(เสียง/จอ)": <IconCup />,
   "กล้องวงจรปิด": <IconCamSmall />,
 };
 
@@ -175,7 +175,7 @@ const SummaryDetails: React.FC = () => {
           </div>
 
           <div className="flex items-start gap-3">
-            <div className="w-28 md:w-36 text-sm text-[#003366] truncate">ล��กษณะพิเศษ</div>
+            <div className="w-28 md:w-36 text-sm text-[#003366] truncate">ลักษณะพิเศษ</div>
             <div className="flex-1 font-sarabun font-semibold text-sm text-[#003366] break-words">{data.slogan || '-'}</div>
           </div>
 
