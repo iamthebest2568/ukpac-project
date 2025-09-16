@@ -8,7 +8,7 @@ const IconAir = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fa5664fc8bb6b4f07aea5a9d95839a7a0?format=webp&width=800"
     alt="แอร์"
-    className="h-14 w-14 object-contain select-none"
+    className="h-16 w-16 object-contain select-none"
     decoding="async"
     loading="eager"
   />
@@ -17,7 +17,7 @@ const IconFan = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F58688a08ef9646fbbc3fcd00962bc5ef?format=webp&width=800"
     alt="พัดลม"
-    className="h-14 w-14 object-contain select-none"
+    className="h-16 w-16 object-contain select-none"
     decoding="async"
     loading="eager"
   />
@@ -26,7 +26,7 @@ const IconSeat = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F93439b2533284cdf914fc93cafa1cf26?format=webp&width=800"
     alt="หน้าต่างเปิดได้"
-    className="h-14 w-14 object-contain select-none"
+    className="h-16 w-16 object-contain select-none"
     decoding="async"
     loading="eager"
   />
@@ -35,7 +35,7 @@ const IconWifi = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb0789bfd1100472f8351704764607d31?format=webp&width=800"
     alt="ที่จับ/ราวยืน"
-    className="h-14 w-14 object-contain select-none"
+    className="h-16 w-16 object-contain select-none"
     decoding="async"
     loading="eager"
   />
@@ -43,8 +43,8 @@ const IconWifi = () => (
 const IconPlug = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F09a78e31a3de44e98772b0eef382af6f?format=webp&width=800"
-    alt="ช่องชาร์จ���ือถือ/USB"
-    className="h-14 w-14 object-contain select-none"
+    alt="ช่องชาร์จมือถือ/USB"
+    className="h-16 w-16 object-contain select-none"
     decoding="async"
     loading="eager"
   />
@@ -53,7 +53,7 @@ const IconTv = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fcb0cbf9ef6764e2d9e6f06e87827f5e9?format=webp&width=800"
     alt="Wi‑Fi ฟรี"
-    className="h-14 w-14 object-contain select-none"
+    className="h-16 w-16 object-contain select-none"
     decoding="async"
     loading="eager"
   />
@@ -62,7 +62,7 @@ const IconCup = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe903bdf27bab4175824c159bc19a02ba?format=webp&width=800"
     alt="ระบบประกาศบอกป้าย(เสียง/จอ)"
-    className="h-14 w-14 object-contain select-none"
+    className="h-16 w-16 object-contain select-none"
     decoding="async"
     loading="eager"
   />
@@ -74,7 +74,7 @@ const AMENITIES = [
   { key: "seat", label: "ที่นั่งพิเศษ", icon: <IconSeat /> },
   { key: "wifi", label: "ที่จับ/ราวยืนที่ปลอดภัย", icon: <IconWifi /> },
   { key: "plug", label: "ช่องชาร์จมือถือ/USB", icon: <IconPlug /> },
-  { key: "tv", label: "Wi‑Fi ฟรี", icon: <IconTv /> },
+  { key: "tv", label: "Wi��Fi ฟรี", icon: <IconTv /> },
   { key: "cup", label: "ระบบประกาศบอกป้าย(เสียง/จอ)", icon: <IconCup /> },
 ];
 
@@ -151,7 +151,7 @@ const AmenitiesScreen: React.FC = () => {
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F1cae4f7306834a6eb0d86be09e05bfdd?format=webp&width=800",
     "ช่องชาร์จมือถือ/USB":
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fba274e72720c4a1b9695e83dbf8c1fe9?format=webp&width=800",
-    "Wi‑Fi ฟรี":
+    "Wi‑Fi ���รี":
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F63dc13fe1fab446a9da88bfb297d9c6d?format=webp&width=800",
     "ระบบประกาศบอกป้าย(เสียง/จอ)":
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F35b324f49ad84b71a92ae80b0b39f7cd?format=webp&width=800",
