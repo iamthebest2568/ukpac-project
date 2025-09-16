@@ -49,7 +49,7 @@ const Step1_Beneficiaries = ({
     },
     {
       id: "elderly",
-      label: "ผู้สูงอายุ",
+      label: "ผู้ส��งอายุ",
       iconSrc:
         "https://api.builder.io/api/v1/image/assets/TEMP/1b0a18f821ff070a939691646da69e792c28ce55?width=100",
     },
@@ -157,13 +157,6 @@ const Step1_Beneficiaries = ({
         <div className="figma-style1-main">
           {/* Content Area */}
           <div className="figma-style1-content-area">
-            {/* Step Indicator */}
-            <div className="text-center mb-4">
-              <p className="text-white font-prompt text-sm">
-                ขั้นตอนที่ {currentStep} จาก {totalPrioritySteps}
-              </p>
-            </div>
-
             {/* Title with current priority */}
             <div className="figma-style1-title-container mb-6">
               <h1 className="figma-style1-title">
