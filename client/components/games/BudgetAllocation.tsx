@@ -90,7 +90,7 @@ const BudgetAllocation = ({ sessionID, onNavigate }: BudgetAllocationProps) => {
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 w-full max-w-[1080px] mx-auto px-4 py-8">
+      <div className="relative z-10 w-full max-w-full mx-auto px-4 py-8">
         {/* Title - NEW FIGMA DESIGN */}
         <div className="text-center mb-12">
           <h1
