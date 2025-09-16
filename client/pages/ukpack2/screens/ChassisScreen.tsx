@@ -68,7 +68,7 @@ const IconLarge = () => (
 const IconExtra = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9a8a7536ced24db19a65409fbba1c6b6?format=webp&width=360"
-    alt="รถกระบะดัดแปลง 8-12 ที่นั่ง"
+    alt="รถกระบะดัดแป���ง 8-12 ที่นั่ง"
     className="max-h-12 w-auto object-contain select-none -translate-y-0.5"
     decoding="async"
     loading="eager"
@@ -76,14 +76,15 @@ const IconExtra = () => (
 );
 
 const OPTIONS = [
-  { key: "small", label: "รถเมล์ขนาดเล็ก 16-30 ที่นั่ง", icon: <IconSmall /> },
+  { key: "small", label: "รถเมล์ขนาดเล็ก 16-30 ที่นั่ง", labelText: "รถเมล์ขนาดเล็ก 16-30 ที่นั่ง", icon: <IconSmall /> },
   {
     key: "medium",
-    label: "รถเมล์มา��รฐาน 30-60 ที่นั่ง",
+    label: "รถเมล์มาตรฐาน 30-60 ที่นั่ง",
+    labelText: "รถเมล์มาตรฐาน 30-60 ที่นั่ง",
     icon: <IconMedium />,
   },
-  { key: "large", label: <><span>รถตู้โดยสาร</span><br />9-15 ที่นั่ง</>, icon: <IconLarge /> },
-  { key: "extra", label: "รถกะบะดัดแปลง 8-12 ที่นั่ง", icon: <IconExtra /> },
+  { key: "large", label: <><span>รถตู้โดยสาร</span><br />9-15 ที่นั่ง</>, labelText: "รถตู้โดยสาร 9-15 ที่นั่ง", icon: <IconLarge /> },
+  { key: "extra", label: "รถกะบะดัดแปลง 8-12 ที่นั่ง", labelText: "รถกะบะดัดแปลง 8-12 ที่นั่ง", icon: <IconExtra /> },
 ];
 
 const HERO_IMAGE: Record<string, string> = {
