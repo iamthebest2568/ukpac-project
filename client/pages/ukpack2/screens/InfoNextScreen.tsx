@@ -76,7 +76,9 @@ const InfoNextScreen: React.FC = () => {
 
         <SummaryDetails />
 
-        <p className="mt-4 font-prompt font-bold text-[#003366] text-center">ถ้ามีรถประจำทางแบบนี้คุณคิดว่าจะใช้บริการหรือไม่</p>
+        <p className="mt-4 font-prompt font-bold text-[#003366] text-center">
+          ถ้ามีรถประจำทางแบบนี้คุณคิดว่าจะใช้บริการหรือไม่
+        </p>
 
         <footer className="mt-6">
           <div className="bg-[#00d5f9] rounded-t-3xl p-6 drop-shadow-lg">

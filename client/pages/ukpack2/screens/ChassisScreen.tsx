@@ -8,10 +8,13 @@ import ConfirmModal from "../components/ConfirmModal";
 import { clearDesignStorage } from "../../ukpack2/utils/clearDesign";
 
 const AMENITIES_ICON_SMALL = {
-  "แอร์": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fee1c18a935564e92bb49991fac3b76df?format=webp&width=800",
-  "พัดลม": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe01792ee89e240808ed47d8576b55d71?format=webp&width=800",
-  "ที่นั่งพิเศษ": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F93439b2533284cdf914fc93cafa1cf26?format=webp&width=800",
-  "ที่จับ/ราวยืนที่ปลอดภัย": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb0789bfd1100472f8351704764607d31?format=webp&width=800",
+  แอร์: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fee1c18a935564e92bb49991fac3b76df?format=webp&width=800",
+  พัดลม:
+    "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe01792ee89e240808ed47d8576b55d71?format=webp&width=800",
+  ที่นั่งพิเศษ:
+    "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F93439b2533284cdf914fc93cafa1cf26?format=webp&width=800",
+  "ที่จับ/ราวยืนที่ปลอดภัย":
+    "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb0789bfd1100472f8351704764607d31?format=webp&width=800",
 };
 
 const IconSmall = () => (
@@ -135,14 +138,39 @@ const ChassisScreen: React.FC = () => {
               {/* bus + star overlay inside same box for precise alignment */}
               <div className="relative w-[72%] max-w-[420px]">
                 {(() => {
-                  const amenities = (() => { try { const raw = sessionStorage.getItem('design.amenities'); return raw ? JSON.parse(raw) as string[] : []; } catch { return [] as string[]; } })();
-                  const payments = (() => { try { const raw = sessionStorage.getItem('design.payment'); return raw ? JSON.parse(raw) as string[] : []; } catch { return [] as string[]; } })();
-                  const overlay = [...(amenities||[]), ...(payments||[])];
+                  const amenities = (() => {
+                    try {
+                      const raw = sessionStorage.getItem("design.amenities");
+                      return raw ? (JSON.parse(raw) as string[]) : [];
+                    } catch {
+                      return [] as string[];
+                    }
+                  })();
+                  const payments = (() => {
+                    try {
+                      const raw = sessionStorage.getItem("design.payment");
+                      return raw ? (JSON.parse(raw) as string[]) : [];
+                    } catch {
+                      return [] as string[];
+                    }
+                  })();
+                  const overlay = [...(amenities || []), ...(payments || [])];
                   return overlay.length > 0 ? (
                     <div className="absolute left-1/2 transform -translate-x-1/2 -top-4 flex flex-wrap justify-center gap-2 z-20 max-w-[80%]">
                       {overlay.map((lab, i) => (
-                        <div key={`${lab}-${i}`} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center">
-                          {AMENITIES_ICON_SMALL[lab] ? <img src={AMENITIES_ICON_SMALL[lab]} alt={lab} className="h-5 w-5 object-contain"/> : <div className="text-xs">{lab}</div>}
+                        <div
+                          key={`${lab}-${i}`}
+                          className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center"
+                        >
+                          {AMENITIES_ICON_SMALL[lab] ? (
+                            <img
+                              src={AMENITIES_ICON_SMALL[lab]}
+                              alt={lab}
+                              className="h-5 w-5 object-contain"
+                            />
+                          ) : (
+                            <div className="text-xs">{lab}</div>
+                          )}
                         </div>
                       ))}
                     </div>

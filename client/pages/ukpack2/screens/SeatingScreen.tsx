@@ -68,7 +68,10 @@ const SeatingScreen: React.FC = () => {
 
   React.useEffect(() => {
     // Set initial seats to a reasonable default between min and max
-    const defaultSeats = selectedChassis === 'extra' ? 10 : Math.ceil((minCapacity + maxCapacity) / 2);
+    const defaultSeats =
+      selectedChassis === "extra"
+        ? 10
+        : Math.ceil((minCapacity + maxCapacity) / 2);
     setTotalSeats(defaultSeats);
   }, [selectedChassis, minCapacity, maxCapacity]);
 
@@ -77,19 +80,24 @@ const SeatingScreen: React.FC = () => {
 
   const validateSeating = (): boolean => {
     const minCapacity = minByChassis[selectedChassis] ?? 16;
-    const specialSeatsTotal = pregnantSeats + childElderSeats + monkSeats + wheelchairBikeSpaces;
+    const specialSeatsTotal =
+      pregnantSeats + childElderSeats + monkSeats + wheelchairBikeSpaces;
 
     // Check if total seats is within range
     if (totalSeats < minCapacity) {
       setErrorTitle("จำนวนที่นั่งน้อยเกินไป");
-      setErrorMessage(`รถประเภทนี้ต้องมีที่นั่งอย่างน้อย ${minCapacity} ที่นั่ง กรุณาเพิ่มจำนวนที่นั่ง`);
+      setErrorMessage(
+        `รถประเภทนี้ต้องมีที่นั่งอย่างน้อย ${minCapacity} ที่นั่ง กรุณาเพิ่มจำนวนที่นั่ง`,
+      );
       setErrorModalOpen(true);
       return false;
     }
 
     if (totalSeats > maxCapacity) {
       setErrorTitle("จำนวนที่นั่งเกินขีดจำกัด");
-      setErrorMessage(`รถประเภทนี้สามารถมีที่นั่งได้สูงสุด ${maxCapacity} ที่นั่ง กรุณาลดจำนวนที่นั่ง`);
+      setErrorMessage(
+        `รถประเภทนี้สามารถมีที่นั่งได้สูงสุด ${maxCapacity} ที่นั่ง กรุณาลดจำนวนที่นั่ง`,
+      );
       setErrorModalOpen(true);
       return false;
     }
@@ -97,7 +105,9 @@ const SeatingScreen: React.FC = () => {
     // Check if special seats exceed total seats
     if (specialSeatsTotal > totalSeats) {
       setErrorTitle("พื้นที่ไม่เพียงพอ");
-      setErrorMessage(`ที่นั่งพิเศษทั้งหมด (${specialSeatsTotal} ที่นั่ง) เกินจำนวนที่นั่งทั้งหมด (${totalSeats} ที่นั่ง) กรุณาลดจำนวนที่นั่งบางส่วน`);
+      setErrorMessage(
+        `ที่นั่งพิเศษทั้งหมด (${specialSeatsTotal} ที่นั่ง) เกินจำนวนที่นั่งทั้งหมด (${totalSeats} ที่นั่ง) กรุณาลดจำนวนที่นั่งบางส่วน`,
+      );
       setErrorModalOpen(true);
       return false;
     }
@@ -129,11 +139,15 @@ const SeatingScreen: React.FC = () => {
 
     if (v > maxCapacity) {
       setErrorTitle("จำนวนที่นั่งเกินขีดจำกัด");
-      setErrorMessage(`รถประเภทนี้สามารถมีที่นั่งได้สูงสุด ${maxCapacity} ที่นั่ง กรุณาลดจำนวนที่นั��ง`);
+      setErrorMessage(
+        `รถประเภทนี้สามารถมีที่นั่งได้สูงสุด ${maxCapacity} ที่นั่ง กรุณาลดจำนวนที่นั��ง`,
+      );
       setErrorModalOpen(true);
     } else if (v < minCapacity && v > 0) {
       setErrorTitle("จำนวนที่นั่งน้อยเกินไป");
-      setErrorMessage(`รถประเภทนี้ต้องมีที่นั่งอย่างน้อย ${minCapacity} ที่นั่ง กรุณาเพิ่มจำนวนที่นั่ง`);
+      setErrorMessage(
+        `รถประเภทนี้ต้องมีที่นั่งอย่างน้อย ${minCapacity} ที่นั่ง กรุณาเพิ่มจำนวนที่นั่ง`,
+      );
       setErrorModalOpen(true);
     }
   };
@@ -154,13 +168,30 @@ const SeatingScreen: React.FC = () => {
             {selectedTopdown ? (
               <div className="relative">
                 {(() => {
-                  const amenities = (() => { try { const raw = sessionStorage.getItem('design.amenities'); return raw ? JSON.parse(raw) as string[] : []; } catch { return [] as string[]; } })();
-                  const payments = (() => { try { const raw = sessionStorage.getItem('design.payment'); return raw ? JSON.parse(raw) as string[] : []; } catch { return [] as string[]; } })();
-                  const overlay = [...(amenities||[]), ...(payments||[])];
+                  const amenities = (() => {
+                    try {
+                      const raw = sessionStorage.getItem("design.amenities");
+                      return raw ? (JSON.parse(raw) as string[]) : [];
+                    } catch {
+                      return [] as string[];
+                    }
+                  })();
+                  const payments = (() => {
+                    try {
+                      const raw = sessionStorage.getItem("design.payment");
+                      return raw ? (JSON.parse(raw) as string[]) : [];
+                    } catch {
+                      return [] as string[];
+                    }
+                  })();
+                  const overlay = [...(amenities || []), ...(payments || [])];
                   return overlay.length > 0 ? (
                     <div className="absolute left-1/2 transform -translate-x-1/2 -top-4 flex flex-wrap justify-center gap-2 z-20 max-w-[80%]">
                       {overlay.map((lab, i) => (
-                        <div key={`${lab}-${i}`} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center">
+                        <div
+                          key={`${lab}-${i}`}
+                          className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center"
+                        >
                           <div className="text-xs">{lab}</div>
                         </div>
                       ))}

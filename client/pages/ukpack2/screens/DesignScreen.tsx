@@ -7,102 +7,187 @@ import HeroWithShadow from "../components/HeroWithShadow";
 
 // small amenity icons (same assets as other screens)
 const IconAir = () => (
-  <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fee1c18a935564e92bb49991fac3b76df?format=webp&width=800" alt="แอร์" className="h-6 w-6 object-contain select-none" decoding="async" loading="eager" />
+  <img
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fee1c18a935564e92bb49991fac3b76df?format=webp&width=800"
+    alt="แอร์"
+    className="h-6 w-6 object-contain select-none"
+    decoding="async"
+    loading="eager"
+  />
 );
 const IconFan = () => (
-  <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe01792ee89e240808ed47d8576b55d71?format=webp&width=800" alt="พัดลม" className="h-6 w-6 object-contain select-none" decoding="async" loading="eager" />
+  <img
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe01792ee89e240808ed47d8576b55d71?format=webp&width=800"
+    alt="พัดลม"
+    className="h-6 w-6 object-contain select-none"
+    decoding="async"
+    loading="eager"
+  />
 );
 const IconSeat = () => (
-  <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F93439b2533284cdf914fc93cafa1cf26?format=webp&width=800" alt="ที่นั่งพิเศษ" className="h-6 w-6 object-contain select-none" decoding="async" loading="eager" />
+  <img
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F93439b2533284cdf914fc93cafa1cf26?format=webp&width=800"
+    alt="ที่นั่งพิเศษ"
+    className="h-6 w-6 object-contain select-none"
+    decoding="async"
+    loading="eager"
+  />
 );
 const IconWifi = () => (
-  <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb0789bfd1100472f8351704764607d31?format=webp&width=800" alt="ที่จับ/ราวยืน" className="h-6 w-6 object-contain select-none" decoding="async" loading="eager" />
+  <img
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb0789bfd1100472f8351704764607d31?format=webp&width=800"
+    alt="ที่จับ/ราวยืน"
+    className="h-6 w-6 object-contain select-none"
+    decoding="async"
+    loading="eager"
+  />
 );
 const IconPlug = () => (
-  <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F09a78e31a3de44e98772b0eef382af6f?format=webp&width=800" alt="ช่องชาร์จมือถือ/USB" className="h-6 w-6 object-contain select-none" decoding="async" loading="eager" />
+  <img
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F09a78e31a3de44e98772b0eef382af6f?format=webp&width=800"
+    alt="ช่องชาร์จมือถือ/USB"
+    className="h-6 w-6 object-contain select-none"
+    decoding="async"
+    loading="eager"
+  />
 );
 const IconTv = () => (
-  <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fcb0cbf9ef6764e2d9e6f06e87827f5e9?format=webp&width=800" alt="Wi‑Fi ฟรี" className="h-6 w-6 object-contain select-none" decoding="async" loading="eager" />
+  <img
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fcb0cbf9ef6764e2d9e6f06e87827f5e9?format=webp&width=800"
+    alt="Wi‑Fi ฟรี"
+    className="h-6 w-6 object-contain select-none"
+    decoding="async"
+    loading="eager"
+  />
 );
 const IconCup = () => (
-  <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe903bdf27bab4175824c159bc19a02ba?format=webp&width=800" alt="ระบบประกาศ" className="h-6 w-6 object-contain select-none" decoding="async" loading="eager" />
+  <img
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe903bdf27bab4175824c159bc19a02ba?format=webp&width=800"
+    alt="ระบบประกาศ"
+    className="h-6 w-6 object-contain select-none"
+    decoding="async"
+    loading="eager"
+  />
 );
 const IconCamSmall = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="7" width="14" height="10" rx="2" stroke="currentColor" strokeWidth="2"/><path d="M19 8l2-2v10l2-2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+  <svg
+    width="18"
+    height="18"
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <rect
+      x="3"
+      y="7"
+      width="14"
+      height="10"
+      rx="2"
+      stroke="currentColor"
+      strokeWidth="2"
+    />
+    <path
+      d="M19 8l2-2v10l2-2"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
 );
 
 const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
-  "แอร์": <IconAir />,
-  "พัดลม": <IconFan />,
-  "ที่นั่งพิเศษ": <IconSeat />,
+  แอร์: <IconAir />,
+  พัดลม: <IconFan />,
+  ที่นั่งพิเศษ: <IconSeat />,
   "ที่จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
   "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
   "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
-  "กล้องวงจรปิด": <IconCamSmall />,
+  กล้องวงจรปิด: <IconCamSmall />,
 };
 
-const MONEY_ICON = "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9349b93d24274adc91be5f4657facdda?format=webp&width=800";
-const SCAN_ICON = "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fbc97b87e6027435fb25a72f5478406cd?format=webp&width=800";
-const SCAN2_ICON = "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F56620e798eb94153b2390271f30d0dae?format=webp&width=800";
-const TOUCH_ICON = "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F4e22405c00c84fbfb1cd43fea6d8f8b4?format=webp&width=800";
-const MONTHLY_ICON = "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Ff841cf7477174217b2aa753d7acb4b21?format=webp&width=800";
-const BUS_EMPLOY_ICON = "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F47fc617541cf45f28b7aa2d1b8deaf64?format=webp&width=800";
+const MONEY_ICON =
+  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9349b93d24274adc91be5f4657facdda?format=webp&width=800";
+const SCAN_ICON =
+  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fbc97b87e6027435fb25a72f5478406cd?format=webp&width=800";
+const SCAN2_ICON =
+  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F56620e798eb94153b2390271f30d0dae?format=webp&width=800";
+const TOUCH_ICON =
+  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F4e22405c00c84fbfb1cd43fea6d8f8b4?format=webp&width=800";
+const MONTHLY_ICON =
+  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Ff841cf7477174217b2aa753d7acb4b21?format=webp&width=800";
+const BUS_EMPLOY_ICON =
+  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F47fc617541cf45f28b7aa2d1b8deaf64?format=webp&width=800";
 
 const DEFAULT_COLORS = [
   {
-    preview: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F5456dc0212c14ba6a327d537ceed405e?format=webp&width=800",
-    filter: "hue-rotate(0deg) saturate(1) brightness(1)" // blue/original
+    preview:
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F5456dc0212c14ba6a327d537ceed405e?format=webp&width=800",
+    filter: "hue-rotate(0deg) saturate(1) brightness(1)", // blue/original
   },
   {
-    preview: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F60613c947767482aa9d75e7414cdf10a?format=webp&width=800",
-    filter: "hue-rotate(30deg) saturate(1.2) brightness(1.1)" // orange
+    preview:
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F60613c947767482aa9d75e7414cdf10a?format=webp&width=800",
+    filter: "hue-rotate(30deg) saturate(1.2) brightness(1.1)", // orange
   },
   {
-    preview: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F257808683b104f7fb4c3d4ba712b4ef0?format=webp&width=800",
-    filter: "hue-rotate(120deg) saturate(1.3) brightness(1)" // green
+    preview:
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F257808683b104f7fb4c3d4ba712b4ef0?format=webp&width=800",
+    filter: "hue-rotate(120deg) saturate(1.3) brightness(1)", // green
   },
   {
-    preview: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc1540ee8e580442bbcfe1c7cbf7ca0ca?format=webp&width=800",
-    filter: "hue-rotate(300deg) saturate(1.2) brightness(1)" // purple
+    preview:
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc1540ee8e580442bbcfe1c7cbf7ca0ca?format=webp&width=800",
+    filter: "hue-rotate(300deg) saturate(1.2) brightness(1)", // purple
   },
   {
-    preview: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F31b9a82b697a46a6b5b14e32002472d8?format=webp&width=800",
-    filter: "hue-rotate(0deg) saturate(1.5) brightness(1.2)" // bright blue
+    preview:
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F31b9a82b697a46a6b5b14e32002472d8?format=webp&width=800",
+    filter: "hue-rotate(0deg) saturate(1.5) brightness(1.2)", // bright blue
   },
   {
-    preview: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fcae7472130bc47f09f28af725a944548?format=webp&width=800",
-    filter: "hue-rotate(60deg) saturate(1.4) brightness(1.1)" // yellow
+    preview:
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fcae7472130bc47f09f28af725a944548?format=webp&width=800",
+    filter: "hue-rotate(60deg) saturate(1.4) brightness(1.1)", // yellow
   },
   {
-    preview: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F117b0cdb42744374a5999f03625d56aa?format=webp&width=800",
-    filter: "hue-rotate(0deg) saturate(0.8) brightness(0.7)" // dark blue
+    preview:
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F117b0cdb42744374a5999f03625d56aa?format=webp&width=800",
+    filter: "hue-rotate(0deg) saturate(0.8) brightness(0.7)", // dark blue
   },
   {
-    preview: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fee9ba92b67734653865abb9c651119d6?format=webp&width=800",
-    filter: "hue-rotate(180deg) saturate(1.1) brightness(1)" // cyan
+    preview:
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fee9ba92b67734653865abb9c651119d6?format=webp&width=800",
+    filter: "hue-rotate(180deg) saturate(1.1) brightness(1)", // cyan
   },
   {
-    preview: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Ffae13b859b7c45eba3e49272be7622d2?format=webp&width=800",
-    filter: "hue-rotate(240deg) saturate(1.3) brightness(0.9)" // dark purple
+    preview:
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Ffae13b859b7c45eba3e49272be7622d2?format=webp&width=800",
+    filter: "hue-rotate(240deg) saturate(1.3) brightness(0.9)", // dark purple
   },
   {
-    preview: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9ba49f215d7d4abca6a601bdee2d7bd5?format=webp&width=800",
-    filter: "hue-rotate(0deg) saturate(0) brightness(0.4)" // black
+    preview:
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9ba49f215d7d4abca6a601bdee2d7bd5?format=webp&width=800",
+    filter: "hue-rotate(0deg) saturate(0) brightness(0.4)", // black
   },
   {
-    preview: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F30bc6908a9fc4a9e96afd58e5885af1b?format=webp&width=800",
-    filter: "hue-rotate(0deg) saturate(0) brightness(0.7)" // dark gray
+    preview:
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F30bc6908a9fc4a9e96afd58e5885af1b?format=webp&width=800",
+    filter: "hue-rotate(0deg) saturate(0) brightness(0.7)", // dark gray
   },
   {
-    preview: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F321fa0e9571a4e34b5fe6beffc1fbbed?format=webp&width=800",
-    filter: "hue-rotate(0deg) saturate(0) brightness(1.3)" // white
+    preview:
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F321fa0e9571a4e34b5fe6beffc1fbbed?format=webp&width=800",
+    filter: "hue-rotate(0deg) saturate(0) brightness(1.3)", // white
   },
 ];
 
 const DesignScreen: React.FC = () => {
   const navigate = useNavigate();
-  const [color, setColor] = useState<typeof DEFAULT_COLORS[0]>(DEFAULT_COLORS[0]);
+  const [color, setColor] = useState<(typeof DEFAULT_COLORS)[0]>(
+    DEFAULT_COLORS[0],
+  );
   const [slogan, setSlogan] = useState<string>("");
   const [showTextarea, setShowTextarea] = useState<boolean>(false);
   const [sloganDraft, setSloganDraft] = useState<string>("");
@@ -164,53 +249,204 @@ const DesignScreen: React.FC = () => {
                   <div className="relative">
                     {/* color tint overlay + selected amenities/payments */}
                     {(() => {
-                      const amenities = (() => { try { const raw = sessionStorage.getItem('design.amenities'); return raw ? JSON.parse(raw) as string[] : []; } catch { return [] as string[]; } })();
-                      const payments = (() => { try { const raw = sessionStorage.getItem('design.payment'); return raw ? JSON.parse(raw) as string[] : []; } catch { return [] as string[]; } })();
-                      const doorsRaw = (() => { try { const raw = sessionStorage.getItem('design.doors'); return raw ? (JSON.parse(raw) as any) : raw ? String(raw) : null; } catch { return sessionStorage.getItem('design.doors'); } })();
-                      const overlayLabels: string[] = [...(amenities||[]), ...(payments||[])];
-                      if (doorsRaw) overlayLabels.push(typeof doorsRaw === 'string' ? doorsRaw : doorsRaw.doorChoice || (doorsRaw.hasRamp ? 'ramp' : doorsRaw.highLow ? 'emergency' : ''));
+                      const amenities = (() => {
+                        try {
+                          const raw =
+                            sessionStorage.getItem("design.amenities");
+                          return raw ? (JSON.parse(raw) as string[]) : [];
+                        } catch {
+                          return [] as string[];
+                        }
+                      })();
+                      const payments = (() => {
+                        try {
+                          const raw = sessionStorage.getItem("design.payment");
+                          return raw ? (JSON.parse(raw) as string[]) : [];
+                        } catch {
+                          return [] as string[];
+                        }
+                      })();
+                      const doorsRaw = (() => {
+                        try {
+                          const raw = sessionStorage.getItem("design.doors");
+                          return raw
+                            ? (JSON.parse(raw) as any)
+                            : raw
+                              ? String(raw)
+                              : null;
+                        } catch {
+                          return sessionStorage.getItem("design.doors");
+                        }
+                      })();
+                      const overlayLabels: string[] = [
+                        ...(amenities || []),
+                        ...(payments || []),
+                      ];
+                      if (doorsRaw)
+                        overlayLabels.push(
+                          typeof doorsRaw === "string"
+                            ? doorsRaw
+                            : doorsRaw.doorChoice ||
+                                (doorsRaw.hasRamp
+                                  ? "ramp"
+                                  : doorsRaw.highLow
+                                    ? "emergency"
+                                    : ""),
+                        );
 
                       return (
                         <>
-
                           {/* small icons row */}
                           {overlayLabels.length > 0 && (
                             <div className="absolute left-1/2 transform -translate-x-1/2 -top-4 flex flex-wrap justify-center gap-2 z-20 max-w-[80%]">
                               {overlayLabels.map((lab, i) => {
-                                if (AMENITIES_ICON_MAP[lab]) return (
-                                  <div key={`${lab}-${i}`} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">{AMENITIES_ICON_MAP[lab]}</div>
+                                if (AMENITIES_ICON_MAP[lab])
+                                  return (
+                                    <div
+                                      key={`${lab}-${i}`}
+                                      className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
+                                    >
+                                      {AMENITIES_ICON_MAP[lab]}
+                                    </div>
+                                  );
+                                if (lab === "เงินสด")
+                                  return (
+                                    <div
+                                      key={lab + i}
+                                      className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
+                                    >
+                                      <img
+                                        src={MONEY_ICON}
+                                        alt={lab}
+                                        className="h-6 w-6 md:h-7 md:w-7 object-contain"
+                                      />
+                                    </div>
+                                  );
+                                if (lab === "สแกนจ่าย")
+                                  return (
+                                    <div
+                                      key={lab + i}
+                                      className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
+                                    >
+                                      <img
+                                        src={SCAN_ICON}
+                                        alt={lab}
+                                        className="h-6 w-6 md:h-7 md:w-7 object-contain"
+                                      />
+                                    </div>
+                                  );
+                                if (lab === "สแกนจ่าย 2")
+                                  return (
+                                    <div
+                                      key={lab + i}
+                                      className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
+                                    >
+                                      <img
+                                        src={SCAN2_ICON}
+                                        alt={lab}
+                                        className="h-6 w-6 md:h-7 md:w-7 object-contain"
+                                      />
+                                    </div>
+                                  );
+                                if (lab === "แตะบัตร")
+                                  return (
+                                    <div
+                                      key={lab + i}
+                                      className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
+                                    >
+                                      <img
+                                        src={TOUCH_ICON}
+                                        alt={lab}
+                                        className="h-6 w-6 md:h-7 md:w-7 object-contain"
+                                      />
+                                    </div>
+                                  );
+                                if (lab === "กระเป๋ารถเมล์")
+                                  return (
+                                    <div
+                                      key={lab + i}
+                                      className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
+                                    >
+                                      <img
+                                        src={BUS_EMPLOY_ICON}
+                                        alt={lab}
+                                        className="h-6 w-6 md:h-7 md:w-7 object-contain"
+                                      />
+                                    </div>
+                                  );
+                                if (lab === "ตั๋วรายเดือน/รอบ")
+                                  return (
+                                    <div
+                                      key={lab + i}
+                                      className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
+                                    >
+                                      <img
+                                        src={MONTHLY_ICON}
+                                        alt={lab}
+                                        className="h-6 w-6 md:h-7 md:w-7 object-contain"
+                                      />
+                                    </div>
+                                  );
+                                if (lab === "1")
+                                  return (
+                                    <div
+                                      key={lab + i}
+                                      className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
+                                    >
+                                      <img
+                                        src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9811f9bca05c43feae9eafdcbab3c8d9?format=webp&width=800"
+                                        alt="1 ประตู"
+                                        className="h-6 w-6 md:h-7 md:w-7 object-contain"
+                                      />
+                                    </div>
+                                  );
+                                if (lab === "2")
+                                  return (
+                                    <div
+                                      key={lab + i}
+                                      className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
+                                    >
+                                      <img
+                                        src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8f9b21942af243b3b80b0e5ac8b12631?format=webp&width=800"
+                                        alt="2 ประตู"
+                                        className="h-6 w-6 md:h-7 md:w-7 object-contain"
+                                      />
+                                    </div>
+                                  );
+                                if (lab === "ramp")
+                                  return (
+                                    <div
+                                      key={lab + i}
+                                      className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
+                                    >
+                                      <img
+                                        src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fece2b6fc843340f0997f2fd7d3ca0aea?format=webp&width=800"
+                                        alt="ทางลาด"
+                                        className="h-6 w-6 md:h-7 md:w-7 object-contain"
+                                      />
+                                    </div>
+                                  );
+                                if (lab === "emergency")
+                                  return (
+                                    <div
+                                      key={lab + i}
+                                      className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
+                                    >
+                                      <img
+                                        src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F98de0624be3d4ae6b96d83edcf8891f9?format=webp&width=800"
+                                        alt="ปร���ตูฉุกเฉิน"
+                                        className="h-6 w-6 md:h-7 md:w-7 object-contain"
+                                      />
+                                    </div>
+                                  );
+                                return (
+                                  <div
+                                    key={lab + i}
+                                    className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10 text-xs"
+                                  >
+                                    ?
+                                  </div>
                                 );
-                                if (lab === 'เงินสด') return (
-                                  <div key={lab+i} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"><img src={MONEY_ICON} alt={lab} className="h-6 w-6 md:h-7 md:w-7 object-contain"/></div>
-                                );
-                                if (lab === 'สแกนจ่าย') return (
-                                  <div key={lab+i} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"><img src={SCAN_ICON} alt={lab} className="h-6 w-6 md:h-7 md:w-7 object-contain"/></div>
-                                );
-                                if (lab === 'สแกนจ่าย 2') return (
-                                  <div key={lab+i} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"><img src={SCAN2_ICON} alt={lab} className="h-6 w-6 md:h-7 md:w-7 object-contain"/></div>
-                                );
-                                if (lab === 'แตะบัตร') return (
-                                  <div key={lab+i} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"><img src={TOUCH_ICON} alt={lab} className="h-6 w-6 md:h-7 md:w-7 object-contain"/></div>
-                                );
-                                if (lab === 'กระเป๋ารถเมล์') return (
-                                  <div key={lab+i} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"><img src={BUS_EMPLOY_ICON} alt={lab} className="h-6 w-6 md:h-7 md:w-7 object-contain"/></div>
-                                );
-                                if (lab === 'ตั๋วรายเดือน/รอบ') return (
-                                  <div key={lab+i} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"><img src={MONTHLY_ICON} alt={lab} className="h-6 w-6 md:h-7 md:w-7 object-contain"/></div>
-                                );
-                                if (lab === '1') return (
-                                  <div key={lab+i} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"><img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9811f9bca05c43feae9eafdcbab3c8d9?format=webp&width=800" alt="1 ประตู" className="h-6 w-6 md:h-7 md:w-7 object-contain"/></div>
-                                );
-                                if (lab === '2') return (
-                                  <div key={lab+i} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"><img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8f9b21942af243b3b80b0e5ac8b12631?format=webp&width=800" alt="2 ประตู" className="h-6 w-6 md:h-7 md:w-7 object-contain"/></div>
-                                );
-                                if (lab === 'ramp') return (
-                                  <div key={lab+i} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"><img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fece2b6fc843340f0997f2fd7d3ca0aea?format=webp&width=800" alt="ทางลาด" className="h-6 w-6 md:h-7 md:w-7 object-contain"/></div>
-                                );
-                                if (lab === 'emergency') return (
-                                  <div key={lab+i} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"><img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F98de0624be3d4ae6b96d83edcf8891f9?format=webp&width=800" alt="ปร���ตูฉุกเฉิน" className="h-6 w-6 md:h-7 md:w-7 object-contain"/></div>
-                                );
-                                return <div key={lab+i} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10 text-xs">?</div>;
                               })}
                             </div>
                           )}
@@ -222,7 +458,7 @@ const DesignScreen: React.FC = () => {
                       src={img}
                       alt={`ภาพรถ - ${label}`}
                       className="h-72 w-auto object-contain select-none relative z-10"
-                      style={{ filter: color?.filter || 'none' }}
+                      style={{ filter: color?.filter || "none" }}
                       decoding="async"
                       loading="eager"
                     />
@@ -245,10 +481,12 @@ const DesignScreen: React.FC = () => {
               ออกแบบสี
             </h2>
             <ColorPalette
-              colors={DEFAULT_COLORS.map(c => c.preview)}
+              colors={DEFAULT_COLORS.map((c) => c.preview)}
               selectedColor={color?.preview || DEFAULT_COLORS[0].preview}
               onColorSelect={(colorUrl) => {
-                const foundColor = DEFAULT_COLORS.find(c => c.preview === colorUrl);
+                const foundColor = DEFAULT_COLORS.find(
+                  (c) => c.preview === colorUrl,
+                );
                 if (foundColor) setColor(foundColor);
               }}
             />

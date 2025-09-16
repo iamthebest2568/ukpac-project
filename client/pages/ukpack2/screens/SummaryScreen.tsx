@@ -77,8 +77,8 @@ const SummaryScreen: React.FC = () => {
         return raw.doorChoice === "1"
           ? "1 ประตู"
           : raw.doorChoice === "2"
-          ? "2 ประตู"
-          : String(raw.doorChoice);
+            ? "2 ประตู"
+            : String(raw.doorChoice);
       if (raw.hasRamp) return "ทางลาดสำหรับรถ��ข็น/ผู้พิการ";
       if (raw.highLow) return "ประตูฉุกเฉิน";
     }
@@ -91,8 +91,12 @@ const SummaryScreen: React.FC = () => {
       <div className="flex-1 overflow-y-auto pb-4">
         <div className="max-w-4xl mx-auto px-4 py-8">
           <header className="mb-6 text-center">
-            <h1 className="text-2xl md:text-3xl font-prompt font-semibold">ปรับแต่งรถเมล์ของคุณ</h1>
-            <p className="mt-2 text-sm text-gray-700">นี่คือรถเมล์ในฝันของคุณ</p>
+            <h1 className="text-2xl md:text-3xl font-prompt font-semibold">
+              ปรับแต่งรถเมล์ของคุณ
+            </h1>
+            <p className="mt-2 text-sm text-gray-700">
+              นี่คือรถเมล์ในฝันของคุณ
+            </p>
           </header>
 
           <SummaryDetails />

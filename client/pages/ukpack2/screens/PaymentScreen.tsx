@@ -318,7 +318,7 @@ const PaymentScreen: React.FC = () => {
                 const raw = sessionStorage.getItem("design.doors");
                 if (!raw) return null;
                 const parsed = JSON.parse(raw);
-                return typeof parsed === 'string' ? parsed : parsed;
+                return typeof parsed === "string" ? parsed : parsed;
               } catch {
                 return sessionStorage.getItem("design.doors");
               }
@@ -332,16 +332,16 @@ const PaymentScreen: React.FC = () => {
 
             // Add door selection to overlay
             if (doorsFromStorage) {
-              if (typeof doorsFromStorage === 'string') {
+              if (typeof doorsFromStorage === "string") {
                 overlayLabels.push(doorsFromStorage);
-              } else if (typeof doorsFromStorage === 'object') {
+              } else if (typeof doorsFromStorage === "object") {
                 // Handle door object format
                 if (doorsFromStorage.doorChoice) {
                   overlayLabels.push(doorsFromStorage.doorChoice);
                 } else if (doorsFromStorage.hasRamp) {
-                  overlayLabels.push('ramp');
+                  overlayLabels.push("ramp");
                 } else if (doorsFromStorage.highLow) {
-                  overlayLabels.push('emergency');
+                  overlayLabels.push("emergency");
                 }
               }
             }
@@ -360,26 +360,58 @@ const PaymentScreen: React.FC = () => {
               }
 
               // check door selections
-              if (label === '1') return (
-                <div key={`${label}-${idx}`} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">
-                  <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9811f9bca05c43feae9eafdcbab3c8d9?format=webp&width=800" alt="1 ประตู" className="h-6 w-6 md:h-7 md:w-7 object-contain"/>
-                </div>
-              );
-              if (label === '2') return (
-                <div key={`${label}-${idx}`} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">
-                  <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8f9b21942af243b3b80b0e5ac8b12631?format=webp&width=800" alt="2 ประตู" className="h-6 w-6 md:h-7 md:w-7 object-contain"/>
-                </div>
-              );
-              if (label === 'ramp') return (
-                <div key={`${label}-${idx}`} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">
-                  <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fece2b6fc843340f0997f2fd7d3ca0aea?format=webp&width=800" alt="ทางลาด" className="h-6 w-6 md:h-7 md:w-7 object-contain"/>
-                </div>
-              );
-              if (label === 'emergency') return (
-                <div key={`${label}-${idx}`} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">
-                  <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F98de0624be3d4ae6b96d83edcf8891f9?format=webp&width=800" alt="ประตูฉุกเฉิน" className="h-6 w-6 md:h-7 md:w-7 object-contain"/>
-                </div>
-              );
+              if (label === "1")
+                return (
+                  <div
+                    key={`${label}-${idx}`}
+                    className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
+                  >
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9811f9bca05c43feae9eafdcbab3c8d9?format=webp&width=800"
+                      alt="1 ประตู"
+                      className="h-6 w-6 md:h-7 md:w-7 object-contain"
+                    />
+                  </div>
+                );
+              if (label === "2")
+                return (
+                  <div
+                    key={`${label}-${idx}`}
+                    className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
+                  >
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8f9b21942af243b3b80b0e5ac8b12631?format=webp&width=800"
+                      alt="2 ประตู"
+                      className="h-6 w-6 md:h-7 md:w-7 object-contain"
+                    />
+                  </div>
+                );
+              if (label === "ramp")
+                return (
+                  <div
+                    key={`${label}-${idx}`}
+                    className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
+                  >
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fece2b6fc843340f0997f2fd7d3ca0aea?format=webp&width=800"
+                      alt="ทางลาด"
+                      className="h-6 w-6 md:h-7 md:w-7 object-contain"
+                    />
+                  </div>
+                );
+              if (label === "emergency")
+                return (
+                  <div
+                    key={`${label}-${idx}`}
+                    className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
+                  >
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F98de0624be3d4ae6b96d83edcf8891f9?format=webp&width=800"
+                      alt="ประตูฉุกเฉิน"
+                      className="h-6 w-6 md:h-7 md:w-7 object-contain"
+                    />
+                  </div>
+                );
 
               // fallback to payment options
               const opt = OPTIONS.find((o) => o.label === label);

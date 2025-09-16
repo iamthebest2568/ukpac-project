@@ -6,12 +6,18 @@ import { useBusDesign } from "../context/BusDesignContext";
 import ConfirmModal from "../components/ConfirmModal";
 import HeroWithShadow from "../components/HeroWithShadow";
 
-const MONEY_ICON = "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fbc8b22cedfbb4640a702f724881f196d?format=webp&width=800";
-const SCAN_ICON = "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb8992da4be824b339d3df5f0a076ed93?format=webp&width=800";
-const SCAN2_ICON = "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F56620e798eb94153b2390271f30d0dae?format=webp&width=800";
-const TOUCH_ICON = "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fdb2e47a586b841d1af014e9196f3c411?format=webp&width=800";
-const MONTHLY_ICON = "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fca6467eff0c74a77a8e5757f25a24e41?format=webp&width=800";
-const BUS_EMPLOY_ICON = "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F41c089c5dd4b448993c4e02c02cdf7ac?format=webp&width=800";
+const MONEY_ICON =
+  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fbc8b22cedfbb4640a702f724881f196d?format=webp&width=800";
+const SCAN_ICON =
+  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb8992da4be824b339d3df5f0a076ed93?format=webp&width=800";
+const SCAN2_ICON =
+  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F56620e798eb94153b2390271f30d0dae?format=webp&width=800";
+const TOUCH_ICON =
+  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fdb2e47a586b841d1af014e9196f3c411?format=webp&width=800";
+const MONTHLY_ICON =
+  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fca6467eff0c74a77a8e5757f25a24e41?format=webp&width=800";
+const BUS_EMPLOY_ICON =
+  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F41c089c5dd4b448993c4e02c02cdf7ac?format=webp&width=800";
 
 const SubmitScreen: React.FC = () => {
   const navigate = useNavigate();
@@ -97,14 +103,45 @@ const SubmitScreen: React.FC = () => {
               <HeroWithShadow>
                 <div className="relative">
                   {(() => {
-                    const amenities = (() => { try { const raw = sessionStorage.getItem('design.amenities'); return raw ? JSON.parse(raw) as string[] : []; } catch { return [] as string[]; } })();
-                    const payments = (() => { try { const raw = sessionStorage.getItem('design.payment'); return raw ? JSON.parse(raw) as string[] : []; } catch { return [] as string[]; } })();
-                    const overlay = [...(amenities||[]), ...(payments||[])];
+                    const amenities = (() => {
+                      try {
+                        const raw = sessionStorage.getItem("design.amenities");
+                        return raw ? (JSON.parse(raw) as string[]) : [];
+                      } catch {
+                        return [] as string[];
+                      }
+                    })();
+                    const payments = (() => {
+                      try {
+                        const raw = sessionStorage.getItem("design.payment");
+                        return raw ? (JSON.parse(raw) as string[]) : [];
+                      } catch {
+                        return [] as string[];
+                      }
+                    })();
+                    const overlay = [...(amenities || []), ...(payments || [])];
                     return overlay.length > 0 ? (
                       <div className="absolute left-1/2 transform -translate-x-1/2 -top-4 flex flex-wrap justify-center gap-2 z-20 max-w-[80%]">
                         {overlay.map((lab, i) => (
-                          <div key={`${lab}-${i}`} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center">
-                            {lab === 'เงินสด' ? <img src={MONEY_ICON} alt={lab} className="h-5 w-5 object-contain"/> : lab === 'สแกนจ่าย' ? <img src={SCAN_ICON} alt={lab} className="h-5 w-5 object-contain"/> : <div className="text-xs">{lab}</div>}
+                          <div
+                            key={`${lab}-${i}`}
+                            className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center"
+                          >
+                            {lab === "เงินสด" ? (
+                              <img
+                                src={MONEY_ICON}
+                                alt={lab}
+                                className="h-5 w-5 object-contain"
+                              />
+                            ) : lab === "สแกนจ่าย" ? (
+                              <img
+                                src={SCAN_ICON}
+                                alt={lab}
+                                className="h-5 w-5 object-contain"
+                              />
+                            ) : (
+                              <div className="text-xs">{lab}</div>
+                            )}
                           </div>
                         ))}
                       </div>
@@ -132,7 +169,9 @@ const SubmitScreen: React.FC = () => {
 
           <div className="space-y-4">
             <div className="flex items-center gap-3 min-w-0">
-              <label className="w-28 md:w-36 text-sm text-[#003366] truncate">รถจะมาทุกๆ</label>
+              <label className="w-28 md:w-36 text-sm text-[#003366] truncate">
+                รถจะมาทุกๆ
+              </label>
               <input
                 type="text"
                 value={interval}
@@ -143,7 +182,9 @@ const SubmitScreen: React.FC = () => {
             </div>
 
             <div className="flex items-center gap-3 min-w-0">
-              <label className="w-28 md:w-36 text-sm text-[#003366] truncate">สายรถเมล์</label>
+              <label className="w-28 md:w-36 text-sm text-[#003366] truncate">
+                สายรถเมล์
+              </label>
               <input
                 type="text"
                 value={route}
@@ -153,7 +194,9 @@ const SubmitScreen: React.FC = () => {
             </div>
 
             <div className="flex items-center gap-3 min-w-0">
-              <label className="w-28 md:w-36 text-sm text-[#003366] truncate">พื้นที่ที่วิ่ง</label>
+              <label className="w-28 md:w-36 text-sm text-[#003366] truncate">
+                พื้นที่ที่วิ่ง
+              </label>
               <input
                 type="text"
                 value={area}
