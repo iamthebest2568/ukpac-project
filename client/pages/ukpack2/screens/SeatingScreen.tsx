@@ -91,7 +91,7 @@ const SeatingScreen: React.FC = () => {
     if (totalSeats < minCapacity) {
       setErrorTitle("จำนวนที่นั่งน้อยเ��ินไป");
       setErrorMessage(
-        `รถประเภทนี้ต้องมีที่นั่งอย่างน้อย ${minCapacity} ที่นั่ง กรุณาเพิ่มจำนวนที่นั่ง`,
+        `รถประเภทนี้ต้องมีที่นั่งอย่างน้อย ${minCapacity} ที่นั่ง กร��ณาเพิ่มจำนวนที่นั่ง`,
       );
       setErrorModalOpen(true);
       return false;
@@ -108,7 +108,7 @@ const SeatingScreen: React.FC = () => {
 
     // Check if special seats exceed total seats
     if (specialSeatsTotal > totalSeats) {
-      setErrorTitle("พื้นที���ไม่เพียงพอ");
+      setErrorTitle("พื้นที่ไม่เพียงพอ");
       setErrorMessage(
         `ที่นั่งพิเศษทั้งหมด (${specialSeatsTotal} ที่นั่ง) เกินจำนวนที่นั่งทั้งหมด (${totalSeats} ที่นั่ง) กรุณาลดจำนวนที่นั่งบางส่วน`,
       );
@@ -144,7 +144,7 @@ const SeatingScreen: React.FC = () => {
     if (v > maxCapacity) {
       setErrorTitle("จำนวนที่นั่งเกินขีดจำกัด");
       setErrorMessage(
-        `รถประเภทนี้สามารถมีที่นั่งได้สูงสุด ${maxCapacity} ที่นั่ง กรุณาลดจำนวนที่���ั��ง`,
+        `รถประเภทนี้สามารถมีที่นั่งได้สูงสุด ${maxCapacity} ที่นั่ง กรุณาลดจำนวนที่นั��ง`,
       );
       setErrorModalOpen(true);
     } else if (v < minCapacity && v > 0) {
@@ -241,7 +241,7 @@ const SeatingScreen: React.FC = () => {
 
                 <img
                   src={selectedTopdown}
-                  alt={`ผังที่��ั่งมุมมองบน - ${selectedLabel}`}
+                  alt={`ผ���งที่��ั่งมุมมองบน - ${selectedLabel}`}
                   className="h-48 w-auto object-contain select-none"
                   decoding="async"
                   loading="eager"
@@ -284,11 +284,13 @@ const SeatingScreen: React.FC = () => {
               <div className="mt-4 text-[#003366] font-sarabun font-semibold text-[17.6px]">จำนวนที่นั่งพิเศษ</div>
 
               <div className="flex items-center justify-between mt-2">
-                <div className="text-[#003366] font-sarabun">รวมที่นั่งพิเศษ</div>
+                <div className="text-[#003366] font-sarabun">จำนวนที่นั่งพิเศษ</div>
                 <input
                   type="number"
-                  value={pregnantSeats + childElderSeats + monkSeats + wheelchairBikeSpaces}
-                  readOnly
+                  min={0}
+                  max={maxCapacity}
+                  value={specialSeats}
+                  onChange={(e) => setSpecialSeats(Math.min(maxCapacity, Math.max(0, parseInt(e.target.value || "0", 10))))}
                   className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-full text-[#003366] bg-white text-right"
                 />
               </div>
@@ -380,7 +382,7 @@ const SeatingScreen: React.FC = () => {
       <ConfirmModal
         isOpen={isExitModalOpen}
         title="ออกจากหน้าจอ"
-        message="คุณแน่ใจหรือไม่ว่าต้องการออก? ��ารเปลี่ยนแปลงของคุณจะไม่ถู��บันทึก"
+        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถู��บันทึก"
         onConfirm={() => navigate("/")}
         onCancel={() => setExitModalOpen(false)}
       />
