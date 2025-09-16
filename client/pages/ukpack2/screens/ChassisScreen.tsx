@@ -16,6 +16,30 @@ const AMENITIES_ICON_SMALL = {
   "ที่จับ/ราวยืนที่ปลอดภัย":
     "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb0789bfd1100472f8351704764607d31?format=webp&width=800",
 };
+const PAYMENT_ICON_SMALL: Record<string, string> = {
+  เงินสด:
+    "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fbc8b22cedfbb4640a702f724881f196d?format=webp&width=800",
+  สแกนจ่าย:
+    "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb8992da4be824b339d3df5f0a076ed93?format=webp&width=800",
+  "สแกนจ่าย 2":
+    "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F56620e798eb94153b2390271f30d0dae?format=webp&width=800",
+  แตะบัตร:
+    "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fdb2e47a586b841d1af014e9196f3c411?format=webp&width=800",
+  กระเป๋ารถเมล์:
+    "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F41c089c5dd4b448993c4e02c02cdf7ac?format=webp&width=800",
+  "ตั๋วรายเดือน/รอบ":
+    "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fca6467eff0c74a77a8e5757f25a24e41?format=webp&width=800",
+};
+const DOOR_ICON_SMALL: Record<string, string> = {
+  "1":
+    "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9811f9bca05c43feae9eafdcbab3c8d9?format=webp&width=800",
+  "2":
+    "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8f9b21942af243b3b80b0e5ac8b12631?format=webp&width=800",
+  ramp:
+    "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fece2b6fc843340f0997f2fd7d3ca0aea?format=webp&width=800",
+  emergency:
+    "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F98de0624be3d4ae6b96d83edcf8891f9?format=webp&width=800",
+};
 
 const IconSmall = () => (
   <img
@@ -55,7 +79,7 @@ const IconExtra = () => (
 );
 
 const OPTIONS = [
-  { key: "small", label: "รถเมล์ขนาดเล็ก 16-30 ที่นั่ง", icon: <IconSmall /> },
+  { key: "small", label: "รถเมล์ขนาดเ��็ก 16-30 ที่นั่ง", icon: <IconSmall /> },
   {
     key: "medium",
     label: "รถเมล์ขนาดกลาง 31-40 ที่นั่ง",
@@ -154,25 +178,43 @@ const ChassisScreen: React.FC = () => {
                       return [] as string[];
                     }
                   })();
-                  const overlay = [...(amenities || []), ...(payments || [])];
+                  const doors = (() => {
+                    try {
+                      const raw = sessionStorage.getItem("design.doors");
+                      if (!raw) return null;
+                      const parsed = JSON.parse(raw);
+                      return typeof parsed === "string"
+                        ? parsed
+                        : parsed?.doorChoice || (parsed?.hasRamp ? "ramp" : parsed?.highLow ? "emergency" : null);
+                    } catch {
+                      return sessionStorage.getItem("design.doors");
+                    }
+                  })();
+                  const overlay = [
+                    ...(amenities || []),
+                    ...(payments || []),
+                    ...(doors ? [doors as string] : []),
+                  ];
                   return overlay.length > 0 ? (
                     <div className="absolute left-1/2 transform -translate-x-1/2 -top-4 flex flex-wrap justify-center gap-2 z-20 max-w-[80%]">
-                      {overlay.map((lab, i) => (
-                        <div
-                          key={`${lab}-${i}`}
-                          className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center"
-                        >
-                          {AMENITIES_ICON_SMALL[lab] ? (
-                            <img
-                              src={AMENITIES_ICON_SMALL[lab]}
-                              alt={lab}
-                              className="h-5 w-5 object-contain"
-                            />
-                          ) : (
-                            <div className="text-xs">{lab}</div>
-                          )}
-                        </div>
-                      ))}
+                      {overlay.map((lab, i) => {
+                        const src =
+                          AMENITIES_ICON_SMALL[lab] ||
+                          PAYMENT_ICON_SMALL[lab] ||
+                          DOOR_ICON_SMALL[lab];
+                        return (
+                          <div
+                            key={`${lab}-${i}`}
+                            className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center"
+                          >
+                            {src ? (
+                              <img src={src} alt={lab} className="h-5 w-5 object-contain" />
+                            ) : (
+                              <div className="text-xs">{lab}</div>
+                            )}
+                          </div>
+                        );
+                      })}
                     </div>
                   ) : null;
                 })()}
