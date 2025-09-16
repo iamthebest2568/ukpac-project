@@ -514,7 +514,13 @@
   .cta-button {
     margin: 0 auto;
   }
+  .cta-button {
+    /* ensure readable size on mobile */
+    font-size: 18px;
+  }
   .privacy-button {
     border: 1px solid rgba(10,9,9,0);
+    font-weight: 600;
+    text-align: center;
   }
 }
