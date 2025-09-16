@@ -83,16 +83,11 @@ const Step1_Decision = ({
           className="font-prompt"
           style={{ color: "#000D59", fontWeight: 700, lineHeight: "1" }}
         >
-          <span
-            style={{ display: "block", fontSize: "clamp(28px, 6.5vw, 70px)", fontWeight: 700 }}
-          >
-            ขอบคุณ
+          <span style={{ display: "block", fontSize: "clamp(28px, 6.5vw, 70px)", lineHeight: 1 }}>
+            <span style={{ fontWeight: 700 }}>ขอบคุณ</span>
+            <span style={{ fontWeight: 400, fontSize: "clamp(24px, 5.6vw, 60px)", marginLeft: "8px" }}>ที่ร่วมเป็นส่วนหนึ่ง</span>
           </span>
-          <span
-            style={{ display: "block", fontSize: "clamp(24px, 5.6vw, 60px)", fontWeight: 400 }}
-          >
-            ที่ร่วมเป็นส่วนหนึ่ง
-          </span>
+
           <span
             style={{ display: "block", fontSize: "clamp(24px, 5.6vw, 60px)", fontWeight: 400 }}
           >
