@@ -17,8 +17,6 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
 }) => {
   const isLight = theme === "light";
   const contentRef = useRef<HTMLDivElement | null>(null);
-  const footerRef = useRef<HTMLDivElement | null>(null);
-  const [footerHeight] = useState(0);
 
   return (
     <div
@@ -34,20 +32,19 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
 
       <div ref={contentRef} className="flex-1 min-h-0 uk2-scroll px-6 py-6">
         {children}
-      </div>
-
-      {footerContent ? (
-        <footer ref={footerRef} className="mt-auto w-full relative z-auto">
-          <div
-            className={`${footerBgImage ? 'rounded-t-3xl p-6 drop-shadow-lg bg-no-repeat bg-top bg-cover' : 'bg-[#00d5f9] rounded-t-3xl p-6 drop-shadow-lg'}`}
-            style={footerBgImage ? { backgroundImage: `url('${footerBgImage}')` } : undefined}
-          >
-            <div className="max-w-4xl mx-auto px-6" style={{ paddingBottom: 'env(safe-area-inset-bottom, 1rem)' }}>
-              {footerContent}
+        {footerContent ? (
+          <div className="mt-6">
+            <div
+              className={`${footerBgImage ? 'rounded-t-3xl p-6 drop-shadow-lg bg-no-repeat bg-top bg-cover' : 'bg-[#00d5f9] rounded-t-3xl p-6 drop-shadow-lg'}`}
+              style={footerBgImage ? { backgroundImage: `url('${footerBgImage}')` } : undefined}
+            >
+              <div className="max-w-4xl mx-auto px-6" style={{ paddingBottom: 'env(safe-area-inset-bottom, 1rem)' }}>
+                {footerContent}
+              </div>
             </div>
           </div>
-        </footer>
-      ) : null}
+        ) : null}
+      </div>
     </div>
   );
 };
