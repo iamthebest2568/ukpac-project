@@ -118,11 +118,17 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   }
   const isFullBleed = location.pathname.startsWith("/ukpack2");
   return (
-    <div className={`min-h-screen flex justify-center ${isFullBleed ? 'bg-white full-bleed-page' : 'bg-[#2a2a2a]'}`}>
+    <div
+      className={`min-h-screen flex justify-center ${isFullBleed ? "bg-white full-bleed-page" : "bg-[#2a2a2a]"}`}
+    >
       {/* Fixed 1080px mobile-first container */}
       <div
         className="app-container bg-white relative responsive-container safe-top safe-bottom"
-        style={isFullBleed ? { width: "100%", padding: 0 } : { width: "100%", maxWidth: "100%" }}
+        style={
+          isFullBleed
+            ? { width: "100%", padding: 0 }
+            : { width: "100%", maxWidth: "100%" }
+        }
       >
         <a
           href="#main-content"
@@ -188,7 +194,10 @@ const App = () => {
                   element={<Navigate to="/ukpack1/uk-stornaway" replace />}
                 />
                 <Route path="/ukpack2" element={<SplashScreen />} />
-                <Route path="/ukpack2/dashboard" element={<UkPack2Dashboard />} />
+                <Route
+                  path="/ukpack2/dashboard"
+                  element={<UkPack2Dashboard />}
+                />
                 <Route path="/ukpack2/chassis" element={<ChassisScreen />} />
                 <Route path="/ukpack2/seating" element={<SeatingScreen />} />
                 <Route

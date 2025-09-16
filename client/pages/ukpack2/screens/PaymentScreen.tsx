@@ -222,7 +222,7 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
   "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
-  "กล้องวงจรปิด": <IconCam />,
+  กล้องวงจรปิด: <IconCam />,
 };
 
 const MONEY_ICON =
@@ -258,7 +258,9 @@ const PaymentScreen: React.FC = () => {
         if (Array.isArray(arr)) {
           // Normalize items: accept either keys (cash/scan/...) or labels (เงินสด/...)
           const normalized = arr.map((item: string) => {
-            const found = OPTIONS.find((o) => o.key === item || o.label === item);
+            const found = OPTIONS.find(
+              (o) => o.key === item || o.label === item,
+            );
             return found ? found.label : item;
           });
           setSelected(normalized);

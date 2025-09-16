@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const MN3Skeleton: React.FC = () => {
   return (

@@ -1490,7 +1490,9 @@ body[data-dialog-open] {
   .ask02-2-page .figma-style1-title-container {
     margin-top: clamp(12px, 4vh, 40px) !important;
   }
-  .ask02-2-page .figma-style1-button-container { margin-top: auto !important; }
+  .ask02-2-page .figma-style1-button-container {
+    margin-top: auto !important;
+  }
 }
 
 /* Ask02_2: same positioning for mobile */
@@ -1535,7 +1537,7 @@ body[data-dialog-open] {
    - Keep buttons centered and constrained for accessibility
    =================================================================== */
 .figma-style1-container.fake-news-page {
-  background: #04D9F9 !important; /* full screen blue fill */
+  background: #04d9f9 !important; /* full screen blue fill */
   min-height: 100vh !important;
   width: 100% !important;
 }
@@ -1556,7 +1558,9 @@ body[data-dialog-open] {
   align-items: end !important; /* pin content to bottom */
   justify-items: center !important;
   height: 100vh !important;
-  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 50px) !important; /* +30px for iPhone */ /* 20px above bottom + safe-area */
+  padding-bottom: calc(
+    env(safe-area-inset-bottom, 0px) + 50px
+  ) !important; /* +30px for iPhone */ /* 20px above bottom + safe-area */
 }
 
 .figma-style1-container.fake-news-page .figma-style1-content-area {
@@ -1646,7 +1650,9 @@ body[data-dialog-open] {
 
 /* Platform-specific overrides */
 .is-ios .figma-style1-container.fake-news-page .figma-style1-main {
-  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 50px) !important; /* +30px for iPhone */
+  padding-bottom: calc(
+    env(safe-area-inset-bottom, 0px) + 50px
+  ) !important; /* +30px for iPhone */
 }
 
 .is-android .figma-style1-container.fake-news-page .figma-style1-main {
@@ -1654,10 +1660,14 @@ body[data-dialog-open] {
 }
 
 .is-ios .figma-style1-container.fake-news-page .figma-style1-button-container {
-  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 50px) !important; /* +30px for iPhone */
+  padding-bottom: calc(
+    env(safe-area-inset-bottom, 0px) + 50px
+  ) !important; /* +30px for iPhone */
 }
 
-.is-android .figma-style1-container.fake-news-page .figma-style1-button-container {
+.is-android
+  .figma-style1-container.fake-news-page
+  .figma-style1-button-container {
   padding-bottom: 20px !important;
 }
 

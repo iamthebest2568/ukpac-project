@@ -572,7 +572,7 @@
     margin: auto;
   }
   .splash-bg {
-    background-color: rgba(255,255,255,1) !important;
+    background-color: rgba(255, 255, 255, 1) !important;
   }
   .splash-text {
     margin-top: 65px;
@@ -589,7 +589,7 @@
     font-size: 18px;
   }
   .privacy-button {
-    border: 1px solid rgba(10,9,9,0);
+    border: 1px solid rgba(10, 9, 9, 0);
     font-weight: 600;
     text-align: center;
     color: #07204a !important; /* ensure visible on all backgrounds */
@@ -602,8 +602,9 @@
 /* Curved footer shape used on /ukpack2 as replacement for decorative background image */
 
 /* UKPACK2: force typography color to brand navy on full-bleed pages */
-.full-bleed-page, .full-bleed-page .app-container {
-  color: #000D59;
+.full-bleed-page,
+.full-bleed-page .app-container {
+  color: #000d59;
 }
 
 /* Ensure common text elements inherit the ukpack2 color unless explicitly styled */
@@ -617,7 +618,7 @@
 .full-bleed-page .app-container label,
 .full-bleed-page .app-container input,
 .full-bleed-page .app-container textarea {
-  color: #000D59;
+  color: #000d59;
 }
 
 /* If components explicitly use color for contrast (e.g., white text on colored backgrounds), keep those by preferring specific selectors in components' CSS. */
@@ -644,7 +645,9 @@
 
   position: relative;
   width: 100%;
-  height: var(--footer-height); /* height set via variable to compute px depth */
+  height: var(
+    --footer-height
+  ); /* height set via variable to compute px depth */
   background-color: #04d9f9; /* updated blue color */
   color: white;
   display: flex;
@@ -657,7 +660,7 @@
 }
 
 .footer-container::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -683,7 +686,7 @@
 /* footer-specific overrides */
 .footer-container .privacy-button {
   color: #fff !important;
-  border-color: rgba(255,255,255,0.2);
+  border-color: rgba(255, 255, 255, 0.2);
   background: transparent;
   text-decoration-color: currentColor; /* underline matches text color */
 }
@@ -745,7 +748,7 @@
   .footer-content p {
     font-size: 18px;
     margin-bottom: 20px;
-    color: rgba(255,255,255,0.95);
+    color: rgba(255, 255, 255, 0.95);
   }
 
   /* Make CTA visually balanced on desktop */
@@ -772,7 +775,9 @@
 
 /* Small responsive helper classes used by ukpack2 components */
 .customization-title {
-  font: 600 24px/32px Prompt, sans-serif;
+  font:
+    600 24px/32px Prompt,
+    sans-serif;
 }
 @media (max-width: 640px) {
   .customization-title {

@@ -76,15 +76,36 @@ const IconExtra = () => (
 );
 
 const OPTIONS = [
-  { key: "small", label: "รถเมล์ขนาดเล็ก 16-30 ที่นั่ง", labelText: "รถเมล์ขนาดเล็ก 16-30 ที่นั่ง", icon: <IconSmall /> },
+  {
+    key: "small",
+    label: "รถเมล์ขนาดเล็ก 16-30 ที่นั่ง",
+    labelText: "รถเมล์ขนาดเล็ก 16-30 ที่นั่ง",
+    icon: <IconSmall />,
+  },
   {
     key: "medium",
     label: "รถเมล์มาตรฐาน 30-50 ที่นั่ง",
     labelText: "รถเมล์มาตรฐาน 30-50 ที่นั่ง",
     icon: <IconMedium />,
   },
-  { key: "large", label: <><span>รถตู้โดยสาร</span><br />9-15 ที่นั่ง</>, labelText: "รถตู้โดยสาร 9-15 ที่นั่ง", icon: <IconLarge /> },
-  { key: "extra", label: "รถกะบะดัดแปลง 8-12 ที่นั่ง", labelText: "รถกะบะดัดแปลง 8-12 ที่นั่ง", icon: <IconExtra /> },
+  {
+    key: "large",
+    label: (
+      <>
+        <span>รถตู้โดยสาร</span>
+        <br />
+        9-15 ที่นั่ง
+      </>
+    ),
+    labelText: "รถตู้โดยสาร 9-15 ที่นั่ง",
+    icon: <IconLarge />,
+  },
+  {
+    key: "extra",
+    label: "รถกะบะดัดแปลง 8-12 ที่นั่ง",
+    labelText: "รถกะบะดัดแปลง 8-12 ที่นั่ง",
+    icon: <IconExtra />,
+  },
 ];
 
 const HERO_IMAGE: Record<string, string> = {

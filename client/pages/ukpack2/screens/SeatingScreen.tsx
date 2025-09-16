@@ -264,8 +264,12 @@ const SeatingScreen: React.FC = () => {
               </div>
             )}
             <div className="mt-1 text-center">
-              <p className="font-prompt font-semibold text-[#001a73]">รถที่เลือก :</p>
-              <p className="font-prompt font-semibold text-[#001a73]">{selectedLabel}</p>
+              <p className="font-prompt font-semibold text-[#001a73]">
+                รถที่เลือก :
+              </p>
+              <p className="font-prompt font-semibold text-[#001a73]">
+                {selectedLabel}
+              </p>
             </div>
           </div>
           <div className="bg-white rounded-t-3xl -mt-2 p-4">
@@ -294,20 +298,31 @@ const SeatingScreen: React.FC = () => {
               </div>
 
               <div className="flex items-center justify-between mt-4">
-                <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">จำนวนที่นั่งพิเศษ</div>
+                <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">
+                  จำนวนที่นั่งพิเศษ
+                </div>
                 <input
                   id="specialSeats"
                   type="number"
                   min={0}
                   max={maxCapacity}
                   value={specialSeats}
-                  onChange={(e) => setSpecialSeats(Math.min(maxCapacity, Math.max(0, parseInt(e.target.value || "0", 10))))}
+                  onChange={(e) =>
+                    setSpecialSeats(
+                      Math.min(
+                        maxCapacity,
+                        Math.max(0, parseInt(e.target.value || "0", 10)),
+                      ),
+                    )
+                  }
                   className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-full text-[#003366] bg-white text-right"
                 />
               </div>
 
               <div className="flex items-center justify-between">
-                <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">สตรีมีครรภ์</div>
+                <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">
+                  สตรีมีครรภ์
+                </div>
                 <input
                   type="number"
                   value={pregnantSeats}
@@ -347,7 +362,9 @@ const SeatingScreen: React.FC = () => {
               </div>
 
               <div className="flex items-center justify-between">
-                <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">พระภิกษุสงฆ์</div>
+                <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">
+                  พระภิกษุสงฆ์
+                </div>
                 <input
                   type="number"
                   value={monkSeats}

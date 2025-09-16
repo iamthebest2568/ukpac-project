@@ -62,17 +62,24 @@ const FigmaStyle1Layout = ({
     if (typeof navigator === "undefined") return;
     const ua = navigator.userAgent || "";
     const isAndroid = /Android/i.test(ua);
-    const isIPad = /iPad/.test(ua) || (navigator.platform === 'MacIntel' && typeof (window as any).ontouchend === 'object');
+    const isIPad =
+      /iPad/.test(ua) ||
+      (navigator.platform === "MacIntel" &&
+        typeof (window as any).ontouchend === "object");
     const isIPhone = /iPhone/.test(ua);
     if (isAndroid) setPlatformClass("is-android");
     else if (isIPhone || isIPad) setPlatformClass("is-ios");
 
     // Detect if current route belongs to ukpack1 and set page scope class for styling
     try {
-      if (typeof window !== 'undefined' && window.location && window.location.pathname.startsWith('/ukpack1')) {
+      if (
+        typeof window !== "undefined" &&
+        window.location &&
+        window.location.pathname.startsWith("/ukpack1")
+      ) {
         // Skip applying global ukpack1 styling to the uk-stornaway (video) page
-        if (!window.location.pathname.includes('uk-stornaway')) {
-          setPageScope('figma-style1-ukpack1');
+        if (!window.location.pathname.includes("uk-stornaway")) {
+          setPageScope("figma-style1-ukpack1");
         }
       }
     } catch (e) {
@@ -81,43 +88,45 @@ const FigmaStyle1Layout = ({
   }, []);
 
   return (
-    <div className={`figma-style1-container ${className} ${platformClass} ${pageScope}`}>
+    <div
+      className={`figma-style1-container ${className} ${platformClass} ${pageScope}`}
+    >
       <div className="figma-style1-content">
         {/* Background Image (overlay only rendered when useBlueOverlay is true) */}
         <div className="figma-style1-background">
           {/* Use responsive img with srcset to control focal point and load appropriate sizes on mobile */}
-          {backgroundImage ? (
-            (() => {
-              // helper to set width param on builder.io image urls (safe fallback if params exist)
-              const setWidth = (url: string, w: number) => {
-                try {
-                  const u = new URL(url);
-                  u.searchParams.set("width", String(w));
-                  return u.toString();
-                } catch (e) {
-                  // fallback: append param
-                  return url + (url.includes("?") ? "&" : "?") + `width=${w}`;
-                }
-              };
+          {backgroundImage
+            ? (() => {
+                // helper to set width param on builder.io image urls (safe fallback if params exist)
+                const setWidth = (url: string, w: number) => {
+                  try {
+                    const u = new URL(url);
+                    u.searchParams.set("width", String(w));
+                    return u.toString();
+                  } catch (e) {
+                    // fallback: append param
+                    return url + (url.includes("?") ? "&" : "?") + `width=${w}`;
+                  }
+                };
 
-              const src480 = setWidth(backgroundImage, 480);
-              const src720 = setWidth(backgroundImage, 720);
-              const src1080 = setWidth(backgroundImage, 1080);
-              const src2160 = setWidth(backgroundImage, 2160);
+                const src480 = setWidth(backgroundImage, 480);
+                const src720 = setWidth(backgroundImage, 720);
+                const src1080 = setWidth(backgroundImage, 1080);
+                const src2160 = setWidth(backgroundImage, 2160);
 
-              return (
-                <img
-                  src={src720}
-                  srcSet={`${src480} 480w, ${src720} 720w, ${src1080} 1080w, ${src2160} 2160w`}
-                  sizes="(max-width: 480px) 100vw, (max-width: 1024px) 100vw, 100vw"
-                  alt={backgroundAlt}
-                  className="figma-style1-background-image"
-                  loading={imageLoading}
-                  decoding="async"
-                />
-              );
-            })()
-          ) : null}
+                return (
+                  <img
+                    src={src720}
+                    srcSet={`${src480} 480w, ${src720} 720w, ${src1080} 1080w, ${src2160} 2160w`}
+                    sizes="(max-width: 480px) 100vw, (max-width: 1024px) 100vw, 100vw"
+                    alt={backgroundAlt}
+                    className="figma-style1-background-image"
+                    loading={imageLoading}
+                    decoding="async"
+                  />
+                );
+              })()
+            : null}
 
           {useBlueOverlay ? (
             <div

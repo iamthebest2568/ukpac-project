@@ -1,1 +1,1 @@
-export { default } from '../FakeNewsPage';
+export { default } from "../FakeNewsPage";
