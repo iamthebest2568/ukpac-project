@@ -49,15 +49,6 @@ const SplashScreen: React.FC = () => {
               className="cta-button"
             />
           </div>
-          <div className="mt-6 text-sm text-[#07204a]">
-            <button
-              type="button"
-              onClick={() => setShowPrivacy(true)}
-              className="underline privacy-button"
-            >
-              นโยบายและความเป็นส่วนตัว
-            </button>
-          </div>
         </div>
       </div>
       <div className="footer-container">
