@@ -619,7 +619,7 @@
 /* ===================================================================
    UKPACK1 - Unified button appearance
    Make all primary and secondary buttons across the ukpack1 pages share
-   the same visual style as the "ไปต��อ" button in minigame-mn1.
+   the same visual style as the "ไปต่อ" button in minigame-mn1.
    Only visual appearance is changed (background / text / hover / border)
    max-width, layout and per-page sizing rules are preserved.
    =================================================================== */
@@ -1481,10 +1481,10 @@ body[data-dialog-open] {
 
 /* Center content vertically and horizontally */
 .figma-style1-container.fake-news-page .figma-style1-main {
-  align-items: center !important; /* vertical centering */
+  align-items: end !important; /* pin content to bottom */
   justify-items: center !important;
   height: 100vh !important;
-  padding-bottom: env(safe-area-inset-bottom, 20px) !important;
+  padding-bottom: env(safe-area-inset-bottom, 36px) !important;
 }
 
 .figma-style1-container.fake-news-page .figma-style1-content-area {
@@ -1494,7 +1494,7 @@ body[data-dialog-open] {
   box-sizing: border-box !important;
   display: flex !important;
   flex-direction: column !important;
-  justify-content: center !important; /* center vertically */
+  justify-content: flex-end !important; /* push content to bottom */
   align-items: center !important; /* center horizontally */
   gap: 16px !important;
 }
@@ -1520,7 +1520,7 @@ body[data-dialog-open] {
   width: 100% !important;
   max-width: 360px !important;
   margin: 0 auto !important;
-  padding: 8px 0 20px 0 !important;
+  padding: 12px 0 28px 0 !important; /* more bottom padding so buttons sit above edge */
   display: flex !important;
   flex-direction: column !important;
   gap: 12px !important;
