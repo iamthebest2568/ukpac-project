@@ -103,8 +103,22 @@
 }
 
 .figma-style1-background-image {
-  /* Use CSS background instead globally */
-  display: none !important;
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center center !important; /* adjust if you want top-left focal */
+  z-index: 0 !important;
+  display: block !important;
+  pointer-events: none !important;
+}
+
+.figma-style1-background {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+  overflow: hidden !important;
 }
 
 /* Ensure full coverage on all devices */
