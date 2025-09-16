@@ -55,7 +55,7 @@ const Step1_Beneficiaries = ({
     },
     {
       id: "students",
-      label: "���ักเรียนนักศึกษา",
+      label: "นักเรียนนักศึกษา",
       iconSrc:
         "https://api.builder.io/api/v1/image/assets/TEMP/054c6038c235112715becc476723cafe8d55d68f?width=74",
     },
@@ -222,7 +222,7 @@ const Step1_Beneficiaries = ({
               </div>
 
               {/* Bottom Row */}
-              <div className="flex justify-between items-start">
+              <div className="flex justify-center items-start" style={{ gap: '24px' }}>
                 {beneficiaryGroups.slice(3, 6).map((group) => {
                   const isSelected = selectedGroups.includes(group.id);
                   const isDisabled = isSelectionDisabled(group.id);
