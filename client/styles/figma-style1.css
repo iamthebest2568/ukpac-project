@@ -1492,7 +1492,7 @@ body[data-dialog-open] {
   align-items: end !important; /* pin content to bottom */
   justify-items: center !important;
   height: 100vh !important;
-  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 20px) !important; /* 20px above bottom + safe-area */
+  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 50px) !important; /* +30px for iPhone */ /* 20px above bottom + safe-area */
 }
 
 .figma-style1-container.fake-news-page .figma-style1-content-area {
@@ -1582,7 +1582,7 @@ body[data-dialog-open] {
 
 /* Platform-specific overrides */
 .is-ios .figma-style1-container.fake-news-page .figma-style1-main {
-  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 20px) !important;
+  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 50px) !important; /* +30px for iPhone */
 }
 
 .is-android .figma-style1-container.fake-news-page .figma-style1-main {
@@ -1590,7 +1590,7 @@ body[data-dialog-open] {
 }
 
 .is-ios .figma-style1-container.fake-news-page .figma-style1-button-container {
-  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 20px) !important;
+  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 50px) !important; /* +30px for iPhone */
 }
 
 .is-android .figma-style1-container.fake-news-page .figma-style1-button-container {
