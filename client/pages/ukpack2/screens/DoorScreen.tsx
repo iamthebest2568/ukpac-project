@@ -37,7 +37,7 @@ const IconSeat = () => (
 const IconWifi = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb0789bfd1100472f8351704764607d31?format=webp&width=800"
-    alt="ที่จับ/ราวยืน"
+    alt="ที่��ับ/ราวยืน"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -151,7 +151,7 @@ const IconRamp = () => (
 const IconHighLow = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F98de0624be3d4ae6b96d83edcf8891f9?format=webp&width=800"
-    alt="ประตูฉุก���ฉิน"
+    alt="ประตูฉุกเฉิน"
     className="h-8 w-8 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -187,7 +187,7 @@ const DoorScreen: React.FC = () => {
 
   return (
     <CustomizationScreen
-      title="ปรับแ���่งรถเมล์ของคุณ"
+      title="ปรับแต่งรถเมล์ของคุณ"
       theme="light"
       footerContent={
         <div className="flex justify-center">
