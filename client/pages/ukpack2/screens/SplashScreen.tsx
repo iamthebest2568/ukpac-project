@@ -27,7 +27,7 @@ const SplashScreen: React.FC = () => {
           backgroundRepeat: 'no-repeat',
         }}
       >
-        <div className="max-w-3xl mx-auto py-8 px-6 text-center">
+        <div className="max-w-3xl mx-auto py-8 px-6 text-center splash-text">
           <p className="text-[#002038] text-lg sm:text-xl md:text-2xl mb-6 font-semibold leading-snug">
             รถเมล์ในฝันที่คุณอยากขึ้นทุกวัน
             <br />
