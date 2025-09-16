@@ -305,6 +305,17 @@
   hyphens: auto;
 }
 
+/* Small vertical nudge for the main title so it sits lower in the layout (specific tweak) */
+.figma-style1-title {
+  margin-top: 36px;
+}
+
+@media (max-width: 640px) {
+  .figma-style1-title {
+    margin-top: 43px;
+  }
+}
+
 /* Black text variant for source selection */
 .figma-style1-title--black {
   @apply text-black;
