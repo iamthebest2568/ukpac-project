@@ -79,11 +79,11 @@ const OPTIONS = [
   { key: "small", label: "รถเมล์ขนาดเล็ก 16-30 ที่นั่ง", icon: <IconSmall /> },
   {
     key: "medium",
-    label: "รถเมล์ขนาดกลาง 31-40 ที่นั่ง",
+    label: "รถเมล์มา��รฐาน 30-60 ที่นั่ง",
     icon: <IconMedium />,
   },
-  { key: "large", label: "รถเมล์ขนาดใหญ่ 41-50 ที่นั่ง", icon: <IconLarge /> },
-  { key: "extra", label: "รถกระบะดัดแปลง 8-12 ที่นั่ง", icon: <IconExtra /> },
+  { key: "large", label: <><span>รถตู้โดยสาร</span><br />9-15 ที่นั่ง</>, icon: <IconLarge /> },
+  { key: "extra", label: "รถกะบะดัดแปลง 8-12 ที่นั่ง", icon: <IconExtra /> },
 ];
 
 const HERO_IMAGE: Record<string, string> = {
@@ -270,7 +270,7 @@ const ChassisScreen: React.FC = () => {
       <ConfirmModal
         isOpen={isExitModalOpen}
         title="ออกจากหน้าจอ"
-        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
+        message="คุณแน่ใ���หรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
         onConfirm={confirmExit}
         onCancel={() => setExitModalOpen(false)}
       />
