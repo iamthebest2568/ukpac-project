@@ -46,7 +46,7 @@ const ThankYouScreen: React.FC = () => {
             <p>คุณอยากกรอกข้อมูลเพิ่ม</p>
             <p>เพื่อลุ้นรับรางวัล</p>
             <p>ลุ้นรางวัลบัตรขนส่งสาธารณะ</p>
-            <p>300บาท หรือไม่</p>
+            <p><span className="text-3xl md:text-4xl font-extrabold text-[#001a73]">300</span> บาท หรือไม่</p>
           </div>
         </div>
       </div>
