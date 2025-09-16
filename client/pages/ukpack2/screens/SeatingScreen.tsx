@@ -143,7 +143,7 @@ const SeatingScreen: React.FC = () => {
     if (v > maxCapacity) {
       setErrorTitle("จำนวนที่นั่งเกินขีดจำกัด");
       setErrorMessage(
-        `รถประเภทนี้สามารถมีที��นั่งได้สูงสุด ${maxCapacity} ที่นั่ง กรุณาลดจำนวนที่นั��ง`,
+        `รถประเภทนี้สา��ารถมีที่นั่งได้สูงสุด ${maxCapacity} ที่นั่ง กรุณาลดจำนวนที่นั��ง`,
       );
       setErrorModalOpen(true);
     } else if (v < minCapacity && v > 0) {
@@ -274,7 +274,7 @@ const SeatingScreen: React.FC = () => {
                       ),
                     )
                   }
-                  className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-md text-[#003366] bg-white text-right"
+                  className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-full text-[#003366] bg-white text-right"
                   min={0}
                   max={maxCapacity}
                 />
@@ -295,7 +295,7 @@ const SeatingScreen: React.FC = () => {
                       ),
                     )
                   }
-                  className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-md text-[#003366] bg-white text-right"
+                  className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-full text-[#003366] bg-white text-right"
                   min={0}
                   max={maxCapacity}
                 />
@@ -316,7 +316,7 @@ const SeatingScreen: React.FC = () => {
                       ),
                     )
                   }
-                  className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-md text-[#003366] bg-white text-right"
+                  className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-full text-[#003366] bg-white text-right"
                   min={0}
                   max={maxCapacity}
                 />
@@ -335,7 +335,7 @@ const SeatingScreen: React.FC = () => {
                       ),
                     )
                   }
-                  className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-md text-[#003366] bg-white text-right"
+                  className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-full text-[#003366] bg-white text-right"
                   min={0}
                   max={maxCapacity}
                 />
@@ -356,7 +356,7 @@ const SeatingScreen: React.FC = () => {
                       ),
                     )
                   }
-                  className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-md text-[#003366] bg-white text-right"
+                  className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-full text-[#003366] bg-white text-right"
                   min={0}
                   max={maxCapacity}
                 />
