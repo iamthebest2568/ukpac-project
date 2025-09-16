@@ -181,7 +181,7 @@ const IconTv = () => (
 const IconCup = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe903bdf27bab4175824c159bc19a02ba?format=webp&width=800"
-    alt="ระบบประก���ศบอกป้าย(เสียง/จอ)"
+    alt="ระบบประกาศบอกป้าย(เสียง/จอ)"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -220,9 +220,9 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   ที่นั่งพิเศษ: <IconSeat />,
   "ที่จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
   "ช่องชาร์จมือถือ/USB": <IconPlug />,
-  "Wi���Fi ฟรี": <IconTv />,
+  "Wi‑Fi ฟรี": <IconTv />,
   "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
-  "กล้��งวงจรปิด": <IconCam />,
+  "กล้องวงจรปิด": <IconCam />,
 };
 
 const MONEY_ICON =
@@ -289,7 +289,7 @@ const PaymentScreen: React.FC = () => {
           {(() => {
             const CHASSIS_LABELS: Record<string, string> = {
               small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
-              medium: "รถเมล์ขนาดกลาง 31–40 ท��่นั่ง",
+              medium: "รถเมล์ขนาดกลาง 31–40 ที่นั่ง",
               large: "รถเมล์ขนาดใหญ่ 41-50 ที่นั่ง",
               extra: "รถกระบะดัดแปลง 8-12 ที่นั่ง",
             };
