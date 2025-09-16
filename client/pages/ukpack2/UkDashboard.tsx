@@ -50,7 +50,10 @@ const UkDashboard: React.FC = () => {
     }
   };
 
-  const uniqueSessions = useMemo(() => Array.from(new Set(events.map(e => e.sessionID))), [events]);
+  const uniqueSessions = useMemo(() => {
+    const values = events.map((e) => e.sessionID || "(none)");
+    return Array.from(new Set(values));
+  }, [events]);
 
   return (
     <div className="min-h-screen bg-[#0b0b0b] text-white p-4 md:p-6">
