@@ -71,7 +71,7 @@ const Step2_Form = ({
 
   return (
     <FigmaStyle1Layout
-      backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fa52a9cd6039944788094bde3ff0fd7f0?format=webp&width=800"
+      backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fed905c4245ad426294f6060c64a191b2?format=webp&width=800"
       backgroundAlt="กรอกข้อมูลรับรางวัล"
       className="source-selection-page endseq-form-page fake-news-page"
       imageLoading="eager"
