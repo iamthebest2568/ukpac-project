@@ -91,7 +91,7 @@ const Step1_Decision = ({
           <span
             style={{ display: "block", fontSize: "clamp(24px, 5.6vw, 60px)", fontWeight: 400 }}
           >
-            ในการพัฒนาเมือง
+            ในการพัฒน���เมือง
           </span>
         </h1>
 
@@ -109,7 +109,7 @@ const Step1_Decision = ({
         </h2>
 
         <div
-          className="mt-2 flex flex-col items-center gap-2"
+          className="mt-8 flex flex-col items-center gap-4"
           style={{ width: "100%", maxWidth: 874, margin: "0 auto" }}
         >
           <button
