@@ -65,7 +65,7 @@ const SelectionCard: React.FC<SelectionCardProps> = ({
         {icon}
       </div>
       {!hideLabel && (
-        <div className="px-2 text-xs md:text-sm font-sarabun text-center leading-tight break-words whitespace-normal max-w-full">
+        <div className="px-2 text-xs md:text-sm font-sarabun text-center leading-tight break-words whitespace-normal max-w-full selection-label-mobile">
           {label}
         </div>
       )}
