@@ -8,7 +8,7 @@ const IconAir = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F1af05f2540e4401ea9f82f3082f1262d?format=webp&width=800"
     alt="แอร์"
-    className="h-20 w-20 object-contain select-none"
+    className="object-contain select-none h-full w-full"
     decoding="async"
     loading="eager"
   />
@@ -17,7 +17,7 @@ const IconFan = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F73e1aae278224ef5861c3f19966cd63b?format=webp&width=800"
     alt="พัดลม"
-    className="h-20 w-20 object-contain select-none"
+    className="object-contain select-none h-full w-full"
     decoding="async"
     loading="eager"
   />
@@ -26,7 +26,7 @@ const IconSeat = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F93439b2533284cdf914fc93cafa1cf26?format=webp&width=800"
     alt="หน้าต่างเปิดได้"
-    className="h-20 w-20 object-contain select-none"
+    className="object-contain select-none h-full w-full"
     decoding="async"
     loading="eager"
   />
@@ -35,7 +35,7 @@ const IconWifi = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F3a949d75d90840669601df07a65af479?format=webp&width=800"
     alt="ที่จับ/ราวยืน"
-    className="h-20 w-20 object-contain select-none"
+    className="object-contain select-none h-full w-full"
     decoding="async"
     loading="eager"
   />
@@ -44,7 +44,7 @@ const IconPlug = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F69ce70e36cc043d2b124a20e34d33b06?format=webp&width=800"
     alt="ช่องชาร์จมือถือ/USB"
-    className="h-20 w-20 object-contain select-none"
+    className="object-contain select-none h-full w-full"
     decoding="async"
     loading="eager"
   />
@@ -53,7 +53,7 @@ const IconTv = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F6e87ff91650a4c828cd5286cfaa34bb7?format=webp&width=800"
     alt="Wi‑Fi ฟรี"
-    className="h-20 w-20 object-contain select-none"
+    className="object-contain select-none h-full w-full"
     decoding="async"
     loading="eager"
   />
@@ -62,7 +62,7 @@ const IconCup = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F303a12b36a7b4bfb99c7707bbe96b8a6?format=webp&width=800"
     alt="ระบบประกาศบอกป้าย(เสียง/จอ)"
-    className="h-20 w-20 object-contain select-none"
+    className="object-contain select-none h-full w-full"
     decoding="async"
     loading="eager"
   />
@@ -73,7 +73,7 @@ const AMENITIES = [
   { key: "fan", label: "พัดลม", icon: <IconFan /> },
   { key: "seat", label: "ที่นั่งพิเศษ", icon: <IconSeat /> },
   { key: "wifi", label: "ที่จับ/ราวยืนที่ปลอดภัย", icon: <IconWifi /> },
-  { key: "plug", label: "ช่องชาร์จมือถือ/USB", icon: <IconPlug /> },
+  { key: "plug", label: "ช่องชาร์จม��อถือ/USB", icon: <IconPlug /> },
   { key: "tv", label: "Wi‑Fi ฟรี", icon: <IconTv /> },
   { key: "cup", label: "ระบบประกาศบอกป้าย(เสียง/จอ)", icon: <IconCup /> },
 ];
@@ -111,7 +111,7 @@ const AmenitiesScreen: React.FC = () => {
 
   // Selected chassis preview (reusing mapping from SeatingScreen)
   const CHASSIS_LABELS: Record<string, string> = {
-    small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
+    small: "รถเมล��ขนาดเล็ก 16–30 ที่นั่ง",
     medium: "รถเมล์ขนาดกลาง 31–40 ที่นั่ง",
     large: "รถเมล์ขนาดใหญ่ 41–50 ที่นั่ง",
     extra: "รถกระบะดัดแปลง 8-12 ที่นั่ง",
@@ -225,7 +225,7 @@ const AmenitiesScreen: React.FC = () => {
             </HeroWithShadow>
           ) : (
             <div className="w-full h-48 bg-[#081042] rounded-md flex items-center justify-center text-sm text-gray-300">
-              Bus image preview (ภาพสำหรับรุ่นนี้จะถ���กเพิ่มภายหลัง)
+              Bus image preview (ภาพสำหรับรุ่นนี้จะถูกเพิ่มภายหลัง)
             </div>
           )}
           <p className="mt-1 font-prompt font-semibold text-[#001a73] text-center">
