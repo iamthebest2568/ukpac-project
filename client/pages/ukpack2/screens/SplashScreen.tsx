@@ -12,7 +12,7 @@ const SplashScreen: React.FC = () => {
       className="min-h-screen flex flex-col"
       style={{ backgroundColor: "#e9f9ff" }}
     >
-      <div className="flex-1 flex flex-col items-center justify-center px-6 pt-12">
+      <div className="flex-1 flex flex-col items-center justify-center px-6 pt-12 splash-top">
         <div className="max-w-3xl w-full text-center">
           <div className="w-full h-64 md:h-80 flex items-center justify-center" />
         </div>
