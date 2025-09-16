@@ -126,6 +126,7 @@
   .figma-style1-background-image {
     object-fit: cover;
     height: 100vh !important;
+    height: 100svh !important; /* prefer svh */
   }
 }
 
