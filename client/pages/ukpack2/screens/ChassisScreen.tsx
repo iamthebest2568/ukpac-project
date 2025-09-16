@@ -79,8 +79,8 @@ const OPTIONS = [
   { key: "small", label: "รถเมล์ขนาดเล็ก 16-30 ที่นั่ง", labelText: "รถเมล์ขนาดเล็ก 16-30 ที่นั่ง", icon: <IconSmall /> },
   {
     key: "medium",
-    label: "รถเมล์มาตรฐาน 30-60 ที่นั่ง",
-    labelText: "รถเมล์มาตรฐาน 30-60 ที่นั่ง",
+    label: "รถเมล์มาตรฐาน 30-50 ที่นั่ง",
+    labelText: "รถเมล์มาตรฐาน 30-50 ที่นั่ง",
     icon: <IconMedium />,
   },
   { key: "large", label: <><span>รถตู้โดยสาร</span><br />9-15 ที่นั่ง</>, labelText: "รถตู้โดยสาร 9-15 ที่นั่ง", icon: <IconLarge /> },
@@ -244,7 +244,7 @@ const ChassisScreen: React.FC = () => {
               </div>
             </div>
             <p className="mt-2 font-prompt font-semibold text-[#001a73] text-center">
-              <span className="chassis-label-mobile">รถที่ใช้งาน : </span>
+              <span className="chassis-label-mobile">รถที่เลือก : </span>
               {selectedLabel}
             </p>
           </div>
@@ -271,7 +271,7 @@ const ChassisScreen: React.FC = () => {
       <ConfirmModal
         isOpen={isExitModalOpen}
         title="ออกจากหน้าจอ"
-        message="คุณแน่ใ���หรือไม่ว่าต้องการออก? การเปลี��ยนแปลงของคุณจะไม่ถูกบันทึก"
+        message="คุณแน่ใ���หรือไม่ว่าต้องการออก? การเปลี���ยนแปลงของคุณจะไม่ถูกบันทึก"
         onConfirm={confirmExit}
         onCancel={() => setExitModalOpen(false)}
       />
