@@ -59,7 +59,7 @@ const SelectionCard: React.FC<SelectionCardProps> = ({
       aria-pressed={isSelected}
     >
       <div
-        className={`${appearance === "bare" ? "mb-0" : "h-12 mb-2"} flex items-center justify-center ${isLight ? "text-[#003366]" : "text-white"} ${isSelected ? "filter-none scale-125" : "filter grayscale opacity-80"} transition-transform`}
+        className={`${appearance === "bare" ? "mb-0" : "h-12 mb-2"} flex items-center justify-center ${isLight ? "text-[#003366]" : "text-white"} transition-transform`}
       >
         {icon}
       </div>
