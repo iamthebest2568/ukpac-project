@@ -1484,7 +1484,7 @@ body[data-dialog-open] {
   align-items: end !important; /* pin content to bottom */
   justify-items: center !important;
   height: 100vh !important;
-  padding-bottom: env(safe-area-inset-bottom, 36px) !important;
+  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 20px) !important; /* 20px above bottom + safe-area */
 }
 
 .figma-style1-container.fake-news-page .figma-style1-content-area {
