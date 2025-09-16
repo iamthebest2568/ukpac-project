@@ -62,7 +62,22 @@ const SplashScreen: React.FC = () => {
       </div>
       <div className="footer-container">
         <div className="footer-content">
-          {/* Decorative curved footer replacing background image */}
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">ขึ้นรถเมล์ในฝันของคุณ</h2>
+          <p className="mb-4 max-w-xl mx-auto">เริ่มออกแบบและเลือกตัวเลือกต่างๆ เพื่อสร้างรถเมล์ที่เหมาะกับการเดินทางของคุณ</p>
+          <div className="flex items-center justify-center gap-4">
+            <CtaButton
+              text="เริ่มออกแบบ"
+              onClick={() => navigate("/ukpack2/chassis")}
+              className="cta-button"
+            />
+            <button
+              type="button"
+              onClick={() => setShowPrivacy(true)}
+              className="underline privacy-button"
+            >
+              นโยบายและความเป็นส่วนตัว
+            </button>
+          </div>
         </div>
       </div>
       <PrivacyModal
