@@ -37,7 +37,7 @@ const SeatingScreen: React.FC = () => {
   const currentChassis = state.chassis || "medium";
 
   const CHASSIS_LABELS: Record<string, string> = {
-    small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
+    small: "รถเมล์ขนาดเล็ก 16–30 ท��่นั่ง",
     medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
     large: "รถเมล์ขนาดใหญ่ 41–50 ที่น���่ง",
     extra: "รถกระบะดัดแปลง 8-12 ที่นั่ง",
@@ -259,7 +259,7 @@ const SeatingScreen: React.FC = () => {
             <StepTabs active={2} />
             <div className="space-y-2 mt-2">
               <div className="flex items-center justify-between">
-                <div className="text-[#003366] font-sarabun">
+                <div className="text-[#003366] font-sarabun" style={{fontWeight: 600, fontSize: '17.6px'}}>
                   จำนวนที่นั่งทั้งหมด
                 </div>
                 <input
@@ -280,8 +280,10 @@ const SeatingScreen: React.FC = () => {
                 />
               </div>
 
+              <div className="mt-4 text-[#003366] font-sarabun" style={{fontWeight: 600, fontSize: '17.6px'}}>จำนวนที่นั่งพิเศษ</div>
+
               <div className="flex items-center justify-between">
-                <div className="text-[#003366] font-sarabun">สตรีมีครรภ์</div>
+                <div className="text-[#003366] font-sarabun" style={{fontWeight: 600, fontSize: '17.6px'}}>สตรีมีครรภ์</div>
                 <input
                   type="number"
                   value={pregnantSeats}
@@ -300,7 +302,7 @@ const SeatingScreen: React.FC = () => {
               </div>
 
               <div className="flex items-center justify-between">
-                <div className="text-[#003366] font-sarabun">
+                <div className="text-[#003366] font-sarabun" style={{fontWeight: 600, fontSize: '17.6px'}}>
                   เด็ก / ผู้สูงอายุ
                 </div>
                 <input
@@ -321,7 +323,7 @@ const SeatingScreen: React.FC = () => {
               </div>
 
               <div className="flex items-center justify-between">
-                <div className="text-[#003366] font-sarabun">พระภิกษุสงฆ์</div>
+                <div className="text-[#003366] font-sarabun" style={{fontWeight: 600, fontSize: '17.6px'}}>พระภิกษุสงฆ์</div>
                 <input
                   type="number"
                   value={monkSeats}
@@ -340,8 +342,8 @@ const SeatingScreen: React.FC = () => {
               </div>
 
               <div className="flex items-center justify-between">
-                <div className="text-[#003366] font-sarabun">
-                  พื้นที่สำหรับรถเข็น/จักรย��น
+                <div className="text-[#003366] font-sarabun" style={{fontWeight: 600, fontSize: '17.6px'}}>
+                  พื้นที่สำหรับรถเข็น/จักรยาน
                 </div>
                 <input
                   type="number"
