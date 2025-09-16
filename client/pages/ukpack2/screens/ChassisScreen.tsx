@@ -234,7 +234,7 @@ const ChassisScreen: React.FC = () => {
                 />
                 <img
                   src={HERO_STAR}
-                  alt="สัญลักษณ์ดา���"
+                  alt="สัญลักษณ์ดาว"
                   className="absolute -top-2 -right-2 w-5 h-5 pointer-events-none select-none"
                   decoding="async"
                   loading="eager"
