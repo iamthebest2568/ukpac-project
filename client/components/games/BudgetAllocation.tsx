@@ -13,7 +13,7 @@ interface BudgetAllocationProps {
   layoutMode?: boolean;
 }
 
-const BudgetAllocation = ({ sessionID, onNavigate, layoutMode = false }: BudgetAllocationProps) => {
+const BudgetAllocationComponent = ({ sessionID, onNavigate, layoutMode = false }: BudgetAllocationProps) => {
   const [budgetAllocation, setBudgetAllocation] = useState({
     trainDiscount: 0,
     busQuality: 0,
@@ -295,7 +295,7 @@ const BudgetAllocation = ({ sessionID, onNavigate, layoutMode = false }: BudgetA
           {isComplete && (
             <div className="mb-4 bg-green-500 bg-opacity-90 rounded-[15px] p-3">
               <div className="text-white text-center text-sm font-prompt">
-                <strong>เยี่ยม!</strong> คุณจั��สรรงบประมาณครบ {totalBudget}{" "}
+                <strong>เยี่ยม!</strong> คุณจัดสรรงบประมาณครบ {totalBudget}{" "}
                 บาทแล้ว
               </div>
             </div>
@@ -358,4 +358,4 @@ const BudgetAllocation = ({ sessionID, onNavigate, layoutMode = false }: BudgetA
   );
 };
 
-export default BudgetAllocation;
+export default BudgetAllocationComponent;
