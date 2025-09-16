@@ -64,7 +64,7 @@ const IconTv = () => (
 const IconCup = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe903bdf27bab4175824c159bc19a02ba?format=webp&width=800"
-    alt="ระบบประกาศบอกป้าย(เสียง/จอ)"
+    alt="ระบบประกาศบอกป้���ย(เสียง/จอ)"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -103,7 +103,7 @@ const BUS_EMPLOY_ICON =
 
 const IconDoor1 = () => (
   <img
-    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F64fd535257924608b5904905f56ec3a2?format=webp&width=800"
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9811f9bca05c43feae9eafdcbab3c8d9?format=webp&width=800"
     alt="ประตู 1"
     className="h-8 w-8 object-contain select-none"
     decoding="async"
@@ -228,7 +228,7 @@ const DoorScreen: React.FC = () => {
               // amenities
               if (AMENITIES_ICON_MAP[label]) {
                 return (
-                  <div key={`${label}-${idx}`} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center">
+                  <div key={`${label}-${idx}`} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">
                     {AMENITIES_ICON_MAP[label]}
                   </div>
                 );
@@ -236,60 +236,60 @@ const DoorScreen: React.FC = () => {
 
               // payment labels
               if (label === "เงินสด") return (
-                <div key={`${label}-${idx}`} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center">
+                <div key={`${label}-${idx}`} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">
                   <img src={MONEY_ICON} alt={label} className="h-5 w-5 object-contain" />
                 </div>
               );
               if (label === "สแกนจ่าย") return (
-                <div key={`${label}-${idx}`} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center">
+                <div key={`${label}-${idx}`} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">
                   <img src={SCAN_ICON} alt={label} className="h-5 w-5 object-contain" />
                 </div>
               );
               if (label === "สแกนจ่าย 2") return (
-                <div key={`${label}-${idx}`} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center">
+                <div key={`${label}-${idx}`} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">
                   <img src={SCAN2_ICON} alt={label} className="h-5 w-5 object-contain" />
                 </div>
               );
               if (label === "แตะบัตร") return (
-                <div key={`${label}-${idx}`} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center">
+                <div key={`${label}-${idx}`} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">
                   <img src={TOUCH_ICON} alt={label} className="h-5 w-5 object-contain" />
                 </div>
               );
-              if (label === "กระเป๋ารถเมล์") return (
-                <div key={`${label}-${idx}`} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center">
+              if (label === "กระเ��๋ารถเมล์") return (
+                <div key={`${label}-${idx}`} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">
                   <img src={BUS_EMPLOY_ICON} alt={label} className="h-5 w-5 object-contain" />
                 </div>
               );
               if (label === "ตั๋วรายเดือน/รอบ") return (
-                <div key={`${label}-${idx}`} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center">
+                <div key={`${label}-${idx}`} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">
                   <img src={MONTHLY_ICON} alt={label} className="h-5 w-5 object-contain" />
                 </div>
               );
 
               // door option keys
               if (label === "1") return (
-                <div key={`${label}-${idx}`} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center">
-                  <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F64fd535257924608b5904905f56ec3a2?format=webp&width=800" alt="1 ประตู" className="h-5 w-5 object-contain" />
+                <div key={`${label}-${idx}`} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">
+                  <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9811f9bca05c43feae9eafdcbab3c8d9?format=webp&width=800" alt="1 ประตู" className="h-6 w-6 md:h-7 md:w-7 object-contain" />
                 </div>
               );
               if (label === "2") return (
-                <div key={`${label}-${idx}`} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center">
+                <div key={`${label}-${idx}`} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">
                   <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F19aa75bc89c544e28a2d10840108af23?format=webp&width=800" alt="2 ประตู" className="h-5 w-5 object-contain" />
                 </div>
               );
               if (label === "ramp") return (
-                <div key={`${label}-${idx}`} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center">
+                <div key={`${label}-${idx}`} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">
                   <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F38de4d577fa346a985827c9da650fd69?format=webp&width=800" alt="ทางลาด" className="h-5 w-5 object-contain" />
                 </div>
               );
               if (label === "emergency") return (
-                <div key={`${label}-${idx}`} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center">
+                <div key={`${label}-${idx}`} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">
                   <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F0a17fe8444b34725b19cc5a62c0da84b?format=webp&width=800" alt="ประตูฉุกเฉิน" className="h-5 w-5 object-contain" />
                 </div>
               );
 
               return (
-                <div key={`${label}-${idx}`} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center text-xs">
+                <div key={`${label}-${idx}`} className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10 text-xs">
                   ?
                 </div>
               );
