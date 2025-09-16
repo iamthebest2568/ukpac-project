@@ -49,7 +49,7 @@ const Step1_Beneficiaries = ({
     },
     {
       id: "elderly",
-      label: "ผู้ส��งอายุ",
+      label: "ผู้สูงอายุ",
       iconSrc:
         "https://api.builder.io/api/v1/image/assets/TEMP/1b0a18f821ff070a939691646da69e792c28ce55?width=100",
     },
@@ -211,7 +211,7 @@ const Step1_Beneficiaries = ({
                       {/* Label */}
                       <span
                         className={`font-prompt text-lg font-medium text-center transition-all duration-200 ${
-                          isSelected ? "text-[#EFBA31]" : "text-white"
+                          isSelected ? "text-[#EFBA31]" : "text-[#000D59]"
                         }`}
                       >
                         {group.label}
@@ -266,7 +266,7 @@ const Step1_Beneficiaries = ({
                       {/* Label */}
                       <span
                         className={`font-prompt text-lg font-medium text-center transition-all duration-200 ${
-                          isSelected ? "text-[#EFBA31]" : "text-white"
+                          isSelected ? "text-[#EFBA31]" : "text-[#000D59]"
                         }`}
                       >
                         {group.label}
@@ -319,7 +319,7 @@ const Step1_Beneficiaries = ({
                   id="next-button-description"
                   className="text-center text-white text-sm mt-2"
                 >
-                  กรุณาเลือกอย่างน้อย 1 กลุ่มเพื่อดำเนินการต่อ
+                  กรุณาเลือกอย่างน้อย 1 กลุ่ม���พื่อดำเนินการต่อ
                 </div>
               )}
             </div>
