@@ -312,11 +312,39 @@ const PaymentScreen: React.FC = () => {
               }
             })();
 
-            // combine amenities + payment selections for overlay
+            // read selected doors from sessionStorage
+            const doorsFromStorage = (() => {
+              try {
+                const raw = sessionStorage.getItem("design.doors");
+                if (!raw) return null;
+                const parsed = JSON.parse(raw);
+                return typeof parsed === 'string' ? parsed : parsed;
+              } catch {
+                return sessionStorage.getItem("design.doors");
+              }
+            })();
+
+            // combine amenities + payment selections + doors for overlay
             const overlayLabels: string[] = [
               ...(amenitiesFromStorage || []),
               ...(selected || []),
             ];
+
+            // Add door selection to overlay
+            if (doorsFromStorage) {
+              if (typeof doorsFromStorage === 'string') {
+                overlayLabels.push(doorsFromStorage);
+              } else if (typeof doorsFromStorage === 'object') {
+                // Handle door object format
+                if (doorsFromStorage.doorChoice) {
+                  overlayLabels.push(doorsFromStorage.doorChoice);
+                } else if (doorsFromStorage.hasRamp) {
+                  overlayLabels.push('ramp');
+                } else if (doorsFromStorage.highLow) {
+                  overlayLabels.push('emergency');
+                }
+              }
+            }
 
             const renderOverlayIcon = (label: string, idx: number) => {
               // check amenities map first
