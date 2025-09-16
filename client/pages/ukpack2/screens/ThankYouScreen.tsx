@@ -12,14 +12,16 @@ const ThankYouScreen: React.FC = () => {
       title="ขอบคุณ"
       theme="light"
       footerContent={
-        <div className="flex justify-center">
+        <div className="flex flex-col items-center gap-3">
           <SecondaryButton
             text="ลุ้นรับรางวัล"
             onClick={() => navigate("/ukpack2/form")}
+            className="w-full max-w-xs"
           />
           <CtaButton
             text="ไม่ลุ้นรับรางวัล"
             onClick={() => navigate("/ukpack2/feedback-skip")}
+            className="w-full max-w-xs"
           />
         </div>
       }
@@ -32,15 +34,20 @@ const ThankYouScreen: React.FC = () => {
             className="w-full max-w-[640px] h-auto object-contain"
           />
         </div>
-        <div className="inline-block bg-white border border-gray-100 rounded-xl p-6 shadow-md">
-          <h2 className="text-2xl font-prompt font-bold text-[#001a73]">
+        <div className="inline-block bg-white border border-gray-100 rounded-xl p-6 shadow-md text-[#001a73]">
+          <h2 className="text-2xl font-prompt font-bold">
             ขอบคุณที่ร่วมสร้างสรรค์รถเมล์
           </h2>
           <p className="mt-3 font-sarabun text-gray-700">
-            ขอบคุณสำหรับการ��อกแบบรถเมล์ของคุณ!
-            คุณสามารถลงทะเบียนเพื่อเข้าร่วมลุ้นรางวัลมูลค่า 300 บาท
-            หรือเลือกที่จะไม่ลุ้นรางวัลและดำเนินการต่อ
+            เราจะนำข้อมูลเหล่านี้รวบรวม เป็นขอเสนอส่งต่อเพื่อการพัฒนา รถประจำทางให้ดียิ่งขึ้น
           </p>
+          <hr className="my-6 border-[#e5e7eb]" />
+          <div className="font-sarabun leading-relaxed">
+            <p>คุณอยากกรอกข้อมูลเพิ่ม</p>
+            <p>เพื่อลุ้นรับรางวัล</p>
+            <p>ลุ้นรางวัลบัตรขนส่งสาธารณะ</p>
+            <p>300บาท หรือไม่</p>
+          </div>
         </div>
       </div>
     </CustomizationScreen>
