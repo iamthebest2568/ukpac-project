@@ -309,6 +309,12 @@
     }
   }
 
+  /* Re-enable scrolling for ukpack2 content areas inside app-container */
+  .app-container .uk2-scroll {
+    overflow: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
   /* Full-bleed route override */
   .full-bleed-page .app-container {
     width: 100% !important;
