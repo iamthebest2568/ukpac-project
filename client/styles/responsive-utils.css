@@ -601,7 +601,7 @@
 .footer-container {
   /* base variables */
   --footer-clip-w: 60%; /* horizontal radius (percent) */
-  --footer-clip-h-num: 0.95; /* vertical depth as a number (0-1) */
+  --footer-clip-h-num: 0.5; /* vertical depth as a number (0-1) */
   --footer-height: 360px; /* fallback height */
   --footer-bg-top: #f0f2f5; /* color above the footer */
 
@@ -653,7 +653,7 @@
 @media (max-width: 768px) {
   .footer-container {
     --footer-height: 320px; /* update computed height on mobile */
-    --footer-clip-h-num: 0.95;
+    --footer-clip-h-num: 0.5;
   }
 }
 
@@ -663,7 +663,7 @@
 @media (min-width: 640px) and (max-width: 1023px) {
   .footer-container {
     --footer-height: 360px;
-    --footer-clip-h-num: 0.95;
+    --footer-clip-h-num: 0.5;
   }
 }
 
@@ -671,7 +671,7 @@
 @media (min-width: 1024px) {
   .footer-container {
     --footer-height: 680px;
-    --footer-clip-h-num: 0.45;
+    --footer-clip-h-num: 0.5;
     align-items: flex-start; /* position content near top, content padding handles spacing */
   }
 
