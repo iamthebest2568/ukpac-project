@@ -190,6 +190,7 @@ const Step2_Allocation = ({
             color: "#000D59",
             fontSize: "clamp(14px, 3vw, 18px)",
             fontWeight: 500,
+            marginTop: "32px",
           }}>
             กรุณาจัดสรรงบประมาณให้ครบ {totalBudget} หน่วยเพื่อดำเนินการต่อ
           </div>
@@ -197,7 +198,7 @@ const Step2_Allocation = ({
         </div>
 
         {/* Continue Button */}
-    <div className="w-full px-4 mt-4 flex justify-center">
+    <div className="w-full px-4 flex justify-center" style={{ marginTop:  '48px' }}>
       <div
         className="mx-auto flex flex-col items-center space-y-2"
         style={{ width: "100%", maxWidth: 980 }}
@@ -207,7 +208,7 @@ const Step2_Allocation = ({
           className="figma-style1-button"
           aria-label="ไปต่อ"
         >
-          <span className="figma-style1-button-text">ไปต่��</span>
+          <span className="figma-style1-button-text">ไปต่อ</span>
         </button>
       </div>
     </div>
