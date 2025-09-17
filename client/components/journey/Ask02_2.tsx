@@ -39,7 +39,7 @@ const Ask02_2 = ({ sessionID, onNavigate }: Ask02_2Props) => {
       <div className="ask02-2-content">
         <div className="w-full max-w-[890px] mx-auto" style={{ marginTop: "clamp(10px, 3vh, 28px)", marginBottom: "clamp(8px, 2vh, 20px)" }}>
           <div
-            className="ask02-2-textarea-box relative w-full rounded-[20px] border-[5px] border-[#000D59] bg-white"
+            className="ask02-2-textarea-box relative w-full rounded-[20px] border-2 border-[#000D59] bg-white"
             style={{
               minHeight: "clamp(200px, 28vh, 400px)",
               padding: "clamp(12px, 2.2vw, 20px)",
@@ -54,7 +54,7 @@ const Ask02_2 = ({ sessionID, onNavigate }: Ask02_2Props) => {
                 fontSize: "clamp(16px, 3.6vw, 38px)",
                 fontWeight: 400,
                 minHeight: "clamp(150px, 18vh, 340px)",
-                color: "#000",
+                color: "#000D59",
                 lineHeight: 1.3,
               }}
             />
