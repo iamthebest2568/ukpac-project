@@ -307,7 +307,7 @@ const ChassisScreen: React.FC = () => {
 
                 {/* Right column: two equal cards stacked */}
                 <div className="flex flex-col gap-4">
-                  <div style={{ minHeight: '88px' }}>
+                  <div style={{ minHeight: '72px' }}>
                     <SelectionCard
                     key={OPTIONS[1].key}
                     icon={OPTIONS[1].icon}
