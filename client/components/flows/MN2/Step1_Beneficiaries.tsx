@@ -186,7 +186,7 @@ const Step1_Beneficiaries = ({
         </div>
 
         {/* Bottom Row */}
-        <div className="flex justify-center items-center" style={{ gap: "24px" }}>
+        <div className="flex justify-center items-center" style={{ gap: "16px" }}>
           {beneficiaryGroups.slice(3, 6).map((group) => {
             const isSelected = selectedGroups.includes(group.id);
             const isDisabled = isSelectionDisabled(group.id);
