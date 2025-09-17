@@ -34,7 +34,7 @@ const Step3_Result = ({
 
   const priorityIcons: { [key: string]: string } = {
     ลดค่าโดยสารรถไฟฟ้า: "🚇",
-    ปรับปรุงคุณภาพรถเมล์: "🚌",
+    ปรับปรุงคุณภ��พรถเมล์: "🚌",
     ตั๋วร่วม: "🎫",
     เพิ่มความถี่รถเมล์: "🚍",
     เพิ่มความถี่รถไฟฟ้า: "🚊",
@@ -175,6 +175,33 @@ const Step3_Result = ({
           className="mn3-result-mockup"
         />
       </div>
+
+      <div className="text-center w-full max-w-none px-4 mt-4 mb-4">
+        <h2 className="figma-style1-subtitle" style={{ color: "#000D59" }}>
+          คุณพอใจหรือไม่
+        </h2>
+      </div>
+
+      <div className="figma-style1-button-container">
+        <button
+          onClick={handleYes}
+          className={`figma-style1-button ${selected === "yes" ? "figma-style1-button--selected" : ""}`}
+          aria-label="ตอบใช่ - พอใจกับผลลัพธ์"
+          aria-pressed={selected === "yes"}
+        >
+          <span className="figma-style1-button-text">ใช่</span>
+        </button>
+
+        <button
+          onClick={handleNo}
+          className={`figma-style1-button ${selected === "no" ? "figma-style1-button--selected" : ""}`}
+          aria-label="ตอบไม่ใช่ - ไม่พอใจกับผลลัพธ์"
+          aria-pressed={selected === "no"}
+        >
+          <span className="figma-style1-button-text">ไม่ใช่</span>
+        </button>
+      </div>
+
     </FigmaStyle1Layout>
   );
 };
