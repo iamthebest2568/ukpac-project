@@ -29,3 +29,19 @@
   position: relative !important;
   z-index: 1002 !important;
 }
+
+/* Ensure main content is placed above the curved overlay and not pinned to bottom */
+.figma-style1-container.mn3-step2-page .figma-style1-main {
+  align-items: flex-start !important;
+}
+
+/* Add safe top padding so the curved overlay doesn't intrude into content area */
+.figma-style1-container.mn3-step2-page .figma-style1-content-area {
+  padding-top: 28px !important;
+  overflow: visible !important;
+}
+
+/* Reduce blue overlay height slightly on this page to avoid covering mid-content */
+.figma-style1-container.mn3-step2-page .figma-style1-background-overlay--blue {
+  height: 28% !important;
+}
