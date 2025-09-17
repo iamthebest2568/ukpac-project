@@ -73,6 +73,12 @@
   display: none !important;
 }
 
+/* Also remove any CSS background-image on the background container */
+.figma-style1-container.mn2-summary-minimal .figma-style1-background {
+  background-image: none !important;
+  background-color: transparent !important;
+}
+
 /* Remove ring/border styling if any remains */
 .figma-style1-container.mn2-summary-minimal .mn3-summary-card,
 .figma-style1-container.mn2-summary-minimal .mn3-summary-card-left,
