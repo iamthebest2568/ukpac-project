@@ -46,7 +46,7 @@ const Step1_Beneficiaries = ({
       id: "locals",
       label: "คนในพื้นที่",
       iconSrc:
-        "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F75dae77cabc141689710422f296e6840?format=webp&width=100",
+        "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F80dacf98db464f3ab5ee072638adeab3?format=webp&width=100",
     },
     {
       id: "elderly",
@@ -243,7 +243,7 @@ const Step1_Beneficiaries = ({
         </button>
 
         {selectedGroups.length === 0 && (
-          <div id="next-button-description" className="text-center text-white text-sm mt-2">กรุณาเลือกอย่างน้อย 1 กลุ่มเพื่อดำเนินการต่อ</div>
+          <div id="next-button-description" className="text-center text-white text-sm mt-2">กรุณาเลือกอย่างน้อย 1 ���ลุ่มเพื่อดำเนินการต่อ</div>
         )}
       </div>
     </FigmaStyle1Layout>
