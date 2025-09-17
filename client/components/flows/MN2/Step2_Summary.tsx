@@ -34,32 +34,32 @@ const Step2_Summary = ({
     everyone: {
       label: "ทุกคน",
       iconSrc:
-        "https://api.builder.io/api/v1/image/assets/TEMP/a7ee1168c07ae5401b45929d0d4fde9e6584ca73?width=188",
+        "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F6aea04e167b34bbaa81a1335f3e08d70?format=webp&width=188",
     },
     locals: {
       label: "คนในพื้นที่",
       iconSrc:
-        "https://api.builder.io/api/v1/image/assets/TEMP/7466a6d8ca4a47a6e90476e9f11efff972ddd262?width=140",
+        "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F4870895254c74fb0b71891fe77ff16ad?format=webp&width=140",
     },
     elderly: {
       label: "ผู้สูงอายุ",
       iconSrc:
-        "https://api.builder.io/api/v1/image/assets/TEMP/a8a5176ee5947e2d351bcf255e32cb057477ac56?width=100",
+        "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F5f1f23edaa064209ba216ac6219b0f05?format=webp&width=100",
     },
     students: {
       label: "นักเรียน/นักศึกษา",
       iconSrc:
-        "https://api.builder.io/api/v1/image/assets/TEMP/c7725aab330bcb8ed4f1c73461ddfdbe0270b371?width=118",
+        "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fa00fe76fc5684ac187f34f528e766809?format=webp&width=118",
     },
     disabled: {
       label: "คนพิการ",
       iconSrc:
-        "https://api.builder.io/api/v1/image/assets/TEMP/7466a6d8ca4a47a6e90476e9f11efff972ddd262?width=140",
+        "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc30a4427be1d410eb2e68c2418817fc7?format=webp&width=140",
     },
     other: {
       label: "อื่นๆ",
       iconSrc:
-        "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F4d62f4ab8d05481a8a0c67a1f1015cbd?format=webp&width=188",
+        "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe88e054f2a5043e1abf7abc914c189c6?format=webp&width=188",
     },
   };
 
