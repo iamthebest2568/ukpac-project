@@ -50,7 +50,7 @@ const Step1_Beneficiaries = ({
     },
     {
       id: "elderly",
-      label: "ผู้สูง��ายุ",
+      label: "ผู้สูง��า���ุ",
       iconSrc:
         "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F27d0ed309a3847dcbb81fc45f1a01235?format=webp&width=100",
     },
@@ -177,7 +177,7 @@ const Step1_Beneficiaries = ({
                 }}
               >
                   <div className={`w-[68px] h-[68px] mb-2 flex items-center justify-center ${isSelected ? 'rounded-full bg-[#EFBA31]' : ''}`}>
-                  <img src={group.iconSrc} alt={group.label} className="w-[44px] h-[44px] object-contain" style={{ filter: isSelected ? "brightness(0)" : "none" }} />
+                  <img src={group.iconSrc} alt={group.label} className="w-[44px] h-[44px] object-contain" />
                 </div>
 
               </div>
@@ -208,7 +208,7 @@ const Step1_Beneficiaries = ({
                 }}
               >
                   <div className={`w-[68px] h-[68px] mb-2 flex items-center justify-center ${isSelected ? 'rounded-full bg-[#EFBA31]' : ''}`}>
-                  <img src={group.iconSrc} alt={group.label} className="w-[44px] h-[44px] object-contain" style={{ filter: isSelected ? "brightness(0)" : "none" }} />
+                  <img src={group.iconSrc} alt={group.label} className="w-[44px] h-[44px] object-contain" />
                 </div>
 
               </div>
