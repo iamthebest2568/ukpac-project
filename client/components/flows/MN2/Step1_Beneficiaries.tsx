@@ -68,7 +68,7 @@ const Step1_Beneficiaries = ({
     },
     {
       id: "other",
-      label: "อื���นๆ",
+      label: "อื่นๆ",
       iconSrc:
         "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F3d8f458dc3dc476fa622ebcf946e6eb5?format=webp&width=100",
     },
