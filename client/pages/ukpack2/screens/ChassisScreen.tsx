@@ -277,7 +277,7 @@ const ChassisScreen: React.FC = () => {
               <div className="grid grid-cols-2 gap-4">
                 {/* Left column: large primary card on top, small card below */}
                 <div className="flex flex-col gap-4">
-                  <div className="transform scale-100">
+                  <div style={{ minHeight: '88px' }}>
                     <SelectionCard
                       key={OPTIONS[0].key}
                       icon={OPTIONS[0].icon}
@@ -285,10 +285,10 @@ const ChassisScreen: React.FC = () => {
                       isSelected={selected === OPTIONS[0].key}
                       onClick={() => setSelected(OPTIONS[0].key)}
                       variant="light"
-                      size="lg"
+                      size="sm"
                     />
                   </div>
-                  <div>
+                  <div style={{ minHeight: '72px' }}>
                     <SelectionCard
                       key={OPTIONS[2].key}
                       icon={OPTIONS[2].icon}
@@ -296,13 +296,15 @@ const ChassisScreen: React.FC = () => {
                       isSelected={selected === OPTIONS[2].key}
                       onClick={() => setSelected(OPTIONS[2].key)}
                       variant="light"
+                      layout="horizontal"
+                      size="sm"
                     />
                   </div>
                 </div>
 
                 {/* Right column: two equal cards stacked */}
                 <div className="flex flex-col gap-4">
-                  <div>
+                  <div style={{ minHeight: '88px' }}>
                     <SelectionCard
                       key={OPTIONS[1].key}
                       icon={OPTIONS[1].icon}
@@ -310,9 +312,11 @@ const ChassisScreen: React.FC = () => {
                       isSelected={selected === OPTIONS[1].key}
                       onClick={() => setSelected(OPTIONS[1].key)}
                       variant="light"
+                      layout="horizontal"
+                      size="md"
                     />
                   </div>
-                  <div>
+                  <div style={{ minHeight: '72px' }}>
                     <SelectionCard
                       key={OPTIONS[3].key}
                       icon={OPTIONS[3].icon}
@@ -320,6 +324,8 @@ const ChassisScreen: React.FC = () => {
                       isSelected={selected === OPTIONS[3].key}
                       onClick={() => setSelected(OPTIONS[3].key)}
                       variant="light"
+                      layout="horizontal"
+                      size="sm"
                     />
                   </div>
                 </div>
