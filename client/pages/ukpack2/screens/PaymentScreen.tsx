@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import CustomizationScreen from "../components/CustomizationScreen";
 import SelectionCard from "../components/SelectionCard";
 import CtaButton from "../components/CtaButton";
-import HeroWithShadow from "../components/HeroWithShadow";
+import VehiclePreview from "../components/VehiclePreview";
 import { useNavigate } from "react-router-dom";
 import StepTabs from "../components/StepTabs";
 
@@ -297,7 +297,7 @@ const PaymentScreen: React.FC = () => {
           {/* show selected hero bus image from chassis selection with overlays from previous steps */}
           {(() => {
             const CHASSIS_LABELS: Record<string, string> = {
-              small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
+              small: "รถเมล���ขนาดเล็ก 16–30 ที่นั่ง",
               medium: "รถเมล์ขนาดกลาง 31–40 ที่นั่ง",
               large: "รถเมล์ขนาดใหญ่ 41-50 ที่นั่ง",
               extra: "รถกระบะดัดแปลง 8-12 ที่นั่ง",
