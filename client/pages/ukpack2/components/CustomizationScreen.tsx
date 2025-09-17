@@ -62,7 +62,7 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
                   {title && <span className="font-medium">{title}</span>}
                 </div>
 
-                <div className="w-full sm:w-auto flex items-center justify-center">
+                <div className="w-full flex items-center justify-center">
                   {footerContent}
                 </div>
 
