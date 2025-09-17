@@ -194,34 +194,16 @@ const Step2_Summary = ({
                   >
                     {/* Circle with icon - Responsive SVG */}
                     <div className="relative mb-3">
-                      <svg
-                        viewBox="0 0 133 133"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="stroke-[#000D59]"
-                        style={{
-                          width: "clamp(80px, 12vw, 132px)",
-                          height: "clamp(80px, 12vw, 132px)",
-                          strokeWidth: "clamp(3, 0.5vw, 5)",
-                        }}
-                      >
-                        <circle
-                          cx="66.5"
-                          cy="66.5"
-                          r="63.6"
-                          stroke="#000D59"
-                          strokeWidth="5"
-                          fill="none"
-                        />
-                      </svg>
                       {beneficiary.iconSrc && (
                         <img
                           src={beneficiary.iconSrc}
                           alt={beneficiary.label}
-                          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 object-contain"
+                          className="object-contain"
                           style={{
-                            maxWidth: "clamp(35px, 6vw, 75px)",
-                            maxHeight: "clamp(30px, 5.5vw, 70px)",
+                            width: "clamp(80px, 12vw, 132px)",
+                            height: "clamp(80px, 12vw, 132px)",
+                            display: "block",
+                            margin: "0 auto",
                           }}
                         />
                       )}
@@ -274,7 +256,7 @@ const Step2_Summary = ({
               });
               navigateToPage("/fake-news");
             }}
-            aria-label="พอใจกั���ผลลัพธ์ที่ได้จากการตอบคำถาม"
+            aria-label="พอใจกั���ผลลัพธ์ที่ได้จ���กการตอบคำถาม"
             className="block rounded-[50px] figma-style1-button mx-auto transition-all duration-200 hover:scale-105 flex items-center justify-center"
             style={{
               width: "min(845px, 85vw)",
