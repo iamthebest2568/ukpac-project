@@ -1,0 +1,31 @@
+/* MN3 page z-index and title visibility fixes */
+
+/* Ensure the figma-style1 title for Step2 (mn3-step2-page) stays above any overlays */
+.figma-style1-container.mn3-step2-page .figma-style1-title-container {
+  position: relative !important;
+  z-index: 1001 !important;
+}
+
+/* Force title color and remove text-shadow for readability on custom background */
+.figma-style1-container.mn3-step2-page .figma-style1-title {
+  color: #000D59 !important;
+  text-shadow: none !important;
+}
+
+/* Ensure the sticky title and allocation content are above the mn3 fixed content */
+.figma-style1-container.mn3-step2-page .mn3-allocation-content,
+.figma-style1-container.mn3-step2-page .mn3-allocation-content * {
+  position: relative !important;
+  z-index: 1000 !important;
+}
+
+/* Lower blue overlay specifically for this page so it doesn't cover title */
+.figma-style1-container.mn3-step2-page .figma-style1-background-overlay--blue {
+  z-index: 1 !important;
+}
+
+/* If mn3-content is present and fixed, ensure buttons remain clickable by placing them above */
+.figma-style1-container.mn3-step2-page .mn3-continue-button {
+  position: relative !important;
+  z-index: 1002 !important;
+}
