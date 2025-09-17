@@ -42,7 +42,7 @@ const Step3_Result = ({
     "ตั๋วร่วม": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F2f0106ff48a44f03b71429502944e9f2?format=webp&width=720",
     "เพิ่มที่จอดรถ": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F79ac3a2ac5e84e88b4015fd66aaebe04?format=webp&width=720",
     "เพิ่มความถี่รถไฟฟ้า": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fd90beaca642d4cceba685d933aeb644f?format=webp&width=720",
-    "ปรับปรุงคุณภาพรถเมล์": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F602cfdd852a147ed852d50b2ed05772d?format=webp&width=720",
+    "ปรับปรุงคุณภา���รถเมล์": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F602cfdd852a147ed852d50b2ed05772d?format=webp&width=720",
     "เพิ่มความถี่รถเมล์": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F4e921e92e2c44db7a2ad24ee299e9a6d?format=webp&width=720",
     "เพิ่ม Feeder ในซอย": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fbb907b894b5a44b3bde47b685f00caca?format=webp&width=720",
     "ลดค่าโดยสารรถไฟฟ้า": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F902c640032bd41f3b30e4ce96330d938?format=webp&width=720",
@@ -189,18 +189,21 @@ const Step3_Result = ({
         <div className="max-w-[980px] mx-auto relative" style={{ height: 320, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           {resultSummary.map((s, i) => {
             const imgSrc = priorityImageMap[s.priority] || "https://cdn.builder.io/api/v1/image/assets/TEMP/placeholder.png?width=720";
-            const offset = collageOffsets[i] || { left: `${10 + i * 20}%`, top: `${i * 6}%`, rotate: `${i * 3}deg`, z: i + 1, scale: 1 };
-            const width = resultSummary.length === 1 ? '64%' : resultSummary.length === 2 ? '52%' : '40%';
+            const offset = collageOffsets[i] || { left: `50%`, top: `${i * 2}%`, rotate: `${(i - 1) * 4}deg`, z: i + 1, scale: 1 };
+            const count = resultSummary.length;
+            const spacing = count === 1 ? 0 : count === 2 ? 160 : 140; // px spacing between centers
+            const offsetX = Math.round((i - (count - 1) / 2) * spacing);
+            const width = count === 1 ? '64%' : count === 2 ? '52%' : '40%';
             return (
               <div
                 key={s.priority}
                 style={{
                   position: 'absolute',
-                  left: offset.left,
+                  left: '50%',
                   top: offset.top,
-                  transform: `translate(-50%, 0) rotate(${offset.rotate}) scale(${offset.scale})`,
+                  transform: `translate(${offsetX}px, 0) rotate(${offset.rotate}) scale(${offset.scale})`,
                   width,
-                  boxShadow: '0 6px 18px rgba(0,0,0,0.18)',
+                  boxShadow: '0 10px 24px rgba(0,0,0,0.18)',
                   borderRadius: 12,
                   overflow: 'hidden',
                   zIndex: offset.z,
