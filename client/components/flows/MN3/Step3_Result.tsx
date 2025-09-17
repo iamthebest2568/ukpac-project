@@ -161,10 +161,10 @@ const Step3_Result = ({
     "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F185e56314d8041d09e93ab98fd2502dd?format=webp&width=1500";
 
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '24px', boxSizing: 'border-box', background: "url('https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc1ed3685db4c4db29e2444681145a1bb?format=webp&width=1600') top center / cover no-repeat" }}>
-      <div style={{ textAlign: 'center', width: '100%', marginBottom: 16 }}>
+    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', paddingTop: '24px', paddingLeft: '24px', paddingRight: '24px', paddingBottom: '24px', boxSizing: 'border-box', background: "url('https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc1ed3685db4c4db29e2444681145a1bb?format=webp&width=1600') top center / cover no-repeat" }}>
+      <div style={{ textAlign: 'center', width: '100%', marginBottom: 8 }}>
         <h1 style={{ color: '#000D59', margin: 0, fontSize: 'clamp(20px, 4.5vw, 32px)', lineHeight: 1.15, fontWeight: 700 }}>
-          จากงบป���ะมาณของคุณ
+          จากงบประมาณของคุณ
           <br />
           นี่คือสิ่งที่จะเกิดขึ้นในอนาคต
         </h1>
