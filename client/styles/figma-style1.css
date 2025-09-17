@@ -194,14 +194,20 @@
 /* Main Content Layout */
 
 /* Page-specific override: force MN3 Step2 content to the top */
+/* Use more specific selectors to override other page-scope rules (fake-news / ukpack1) */
+.figma-style1-container.mn3-step2-minimal.figma-style1-ukpack1 .figma-style1-main,
+.figma-style1-container.mn3-step2-minimal.fake-news-page .figma-style1-main,
 .figma-style1-container.mn3-step2-minimal .figma-style1-main {
   align-items: start !important;
+  grid-template-rows: auto 1fr !important; /* make title and content sit at top */
+  justify-items: start !important;
 }
 
 .figma-style1-container.mn3-step2-minimal .figma-style1-content-area {
   justify-content: flex-start !important;
   /* remove extra top padding so title and content sit at the very top */
   padding-top: 0 !important;
+  align-items: flex-start !important;
 }
 
 /* Reduce title top margin and tighten spacing for Step2 */
@@ -211,7 +217,7 @@
 }
 
 .figma-style1-container.mn3-step2-minimal .figma-style1-title-container {
-  padding-top: 8px !important;
+  padding-top: 4px !important;
   padding-bottom: 6px !important;
   max-width: 980px !important; /* allow title + content to use wider area */
 }
