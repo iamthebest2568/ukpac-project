@@ -145,15 +145,9 @@ const Step2_Summary = ({
       imageLoading="eager"
       title={<span style={{ color: "#000D59" }}>นโยบายที่คุณเสนอ</span>}
     >
-      <div className="relative z-10 w-full max-w-full mx-auto px-4 py-6" style={{ paddingTop: "clamp(120px, 24vh, 260px)" }}>
+      <div className="relative z-10 w-full max-w-full mx-auto px-4 py-6" style={{ paddingTop: "clamp(80px, 18vh, 140px)" }}>
         {/* Title */}
         <div className="text-center mb-8">
-          {/* DEBUG: show journeyData and computed summaryCards when not in production */}
-          {process.env.NODE_ENV !== 'production' && (
-            <pre style={{ textAlign: 'left', maxHeight: 220, overflow: 'auto', background: '#fff', color: '#000', padding: 12, borderRadius: 6 }}>
-{JSON.stringify({ journeyData, summaryCards }, null, 2)}
-            </pre>
-          )}
           <h1
             className="font-prompt font-bold text-center"
             style={{
