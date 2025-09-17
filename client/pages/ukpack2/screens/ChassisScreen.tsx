@@ -85,7 +85,7 @@ const OPTIONS = [
   {
     key: "medium",
     label: "รถเมล์มาตรฐาน 30-50 ที่นั่ง",
-    labelText: "รถเมล์มาตรฐาน 30-50 ที่นั่ง",
+    labelText: "ร��เมล์มาตรฐาน 30-50 ที่นั่ง",
     icon: <IconMedium />,
   },
   {
@@ -296,7 +296,6 @@ const ChassisScreen: React.FC = () => {
                       isSelected={selected === OPTIONS[2].key}
                       onClick={() => setSelected(OPTIONS[2].key)}
                       variant="light"
-                      layout="horizontal"
                       size="sm"
                     />
                   </div>
