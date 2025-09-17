@@ -75,7 +75,7 @@ const SourceSelection = ({ sessionID, onNavigate }: SourceSelectionProps) => {
         <>
           <span>คุณจะติดตามข่าว หรือ</span>
           <br />
-          <span>เชื่อจากแหล่งข่าว</span>
+          <span>เชื่อจากแหล่งข่าวไหน</span>
         </>
       }
       buttons={buttons}
