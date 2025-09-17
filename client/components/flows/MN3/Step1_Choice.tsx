@@ -87,7 +87,7 @@ const Step1_Choice = ({
 
   // Define which buttons should be yellow by default (from Figma design)
   const defaultYellowButtons = new Set([
-    "ปรับปรุงคุณภาพรถเมล์", // choice_2
+    "ปรับป���ุงคุณภาพรถเมล์", // choice_2
     "เพิ่มความถี่รถเมล์", // choice_4
   ]);
 
@@ -148,16 +148,11 @@ const Step1_Choice = ({
             จากการเก็บไปพัฒนาอะไร
           </h1>
 
-          <p
-            className="font-prompt text-center mb-4"
-            style={{
-              color: "#6b7280",
-              fontSize: "clamp(12px, 3.5vw, 16px)",
-              fontWeight: 500,
-            }}
-          >
-            ไม่เกิน 3 นโยบาย
-          </p>
+          <div style={{ textAlign: "center", marginTop: "12px" }}>
+            <p style={{ color: "#000D59", fontSize: "16px", margin: 0 }}>
+              ไม่เกิน 3 นโยบาย
+            </p>
+          </div>
         </div>
 
         {/* Policy Options - Improved Grid Layout */}
