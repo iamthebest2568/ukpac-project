@@ -9,7 +9,7 @@ import { clearDesignStorage } from "../../ukpack2/utils/clearDesign";
 import VehiclePreview from "../components/VehiclePreview";
 
 const AMENITIES_ICON_SMALL = {
-  แอร์: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fee1c18a935564e92bb49991fac3b76df?format=webp&width=800",
+  แ��ร์: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fee1c18a935564e92bb49991fac3b76df?format=webp&width=800",
   พัดลม:
     "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe01792ee89e240808ed47d8576b55d71?format=webp&width=800",
   ที่นั่งพิเศษ:
@@ -79,7 +79,7 @@ const IconExtra = () => (
 const OPTIONS = [
   {
     key: "small",
-    label: "รถเมล์ขนาดเล็ก 16-30 ที่นั่ง",
+    label: "รถเมล์ขนาดเ��็ก 16-30 ที่นั่ง",
     labelText: "รถ���มล์ขนาดเล็ก 16-30 ที่นั่ง",
     icon: <IconSmall />,
   },
@@ -152,6 +152,43 @@ const ChassisScreen: React.FC = () => {
     navigate("/");
   };
 
+  const overlayLabels = (() => {
+    const amenities = (() => {
+      try {
+        const raw = sessionStorage.getItem("design.amenities");
+        return raw ? (JSON.parse(raw) as string[]) : [];
+      } catch {
+        return [] as string[];
+      }
+    })();
+    const payments = (() => {
+      try {
+        const raw = sessionStorage.getItem("design.payment");
+        return raw ? (JSON.parse(raw) as string[]) : [];
+      } catch {
+        return [] as string[];
+      }
+    })();
+    const doors = (() => {
+      try {
+        const raw = sessionStorage.getItem("design.doors");
+        if (!raw) return null;
+        const parsed = JSON.parse(raw);
+        return typeof parsed === "string"
+          ? parsed
+          : parsed?.doorChoice || (parsed?.hasRamp ? "ramp" : parsed?.highLow ? "emergency" : null);
+      } catch {
+        return sessionStorage.getItem("design.doors");
+      }
+    })();
+
+    return [
+      ...(amenities || []),
+      ...(payments || []),
+      ...(doors ? [doors as string] : []),
+    ];
+  })();
+
   return (
     <>
       <CustomizationScreen
@@ -159,7 +196,7 @@ const ChassisScreen: React.FC = () => {
         theme="light"
         footerContent={
           <div className="flex justify-center">
-            <CtaButton text="ถัดไป" onClick={handleNext} />
+            <CtaButton text="ถัดไ��" onClick={handleNext} />
           </div>
         }
       >
