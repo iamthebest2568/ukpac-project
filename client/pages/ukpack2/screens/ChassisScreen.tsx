@@ -92,7 +92,7 @@ const OPTIONS = [
     key: "large",
     label: (
       <>
-        <span>รถตู้โดยสาร</span>
+        <span>���ถตู้โดยสาร</span>
         <br />
         9-15 ที่นั่ง
       </>
@@ -285,6 +285,7 @@ const ChassisScreen: React.FC = () => {
                     isSelected={selected === OPTIONS[0].key}
                     onClick={() => setSelected(OPTIONS[0].key)}
                     variant="light"
+                    appearance="bare"
                     hideLabel={true}
                     size="sm"
                   />
@@ -297,6 +298,7 @@ const ChassisScreen: React.FC = () => {
                     isSelected={selected === OPTIONS[2].key}
                     onClick={() => setSelected(OPTIONS[2].key)}
                     variant="light"
+                    appearance="bare"
                     hideLabel={true}
                     size="sm"
                   />
@@ -313,6 +315,7 @@ const ChassisScreen: React.FC = () => {
                     isSelected={selected === OPTIONS[1].key}
                     onClick={() => setSelected(OPTIONS[1].key)}
                     variant="light"
+                    appearance="bare"
                     hideLabel={true}
                     size="lg"
                   />
@@ -325,6 +328,7 @@ const ChassisScreen: React.FC = () => {
                     isSelected={selected === OPTIONS[3].key}
                     onClick={() => setSelected(OPTIONS[3].key)}
                     variant="light"
+                    appearance="bare"
                     hideLabel={true}
                     size="sm"
                   />
