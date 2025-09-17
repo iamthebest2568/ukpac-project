@@ -158,7 +158,7 @@ const Step3_Result = ({
   return (
     <FigmaStyle1Layout
       backgroundImage={backgroundImage}
-      className="mn3-step3-page"
+      className="mn3-step3-page figma-style1-ukpack1 fake-news-page"
       imageLoading="eager"
       title={"จากงบประมาณของคุณ นี่คือสิ่งที่จะเกิดขึ้นในอนาคต"}
     >
