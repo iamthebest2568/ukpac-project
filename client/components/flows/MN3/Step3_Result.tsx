@@ -192,22 +192,18 @@ const Step3_Result = ({
                   className={`mn3-summary-card ${colorClass} mb-3`}
                 >
                   <div className="mn3-summary-card-left">
-                    <div className="mn3-summary-icon" aria-hidden>
-                      {item.icon}
-                    </div>
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Ff663e24f6aaf435b835af863ed8b00b8?format=webp&width=800"
+                      alt={item.priority}
+                      className="mn3-summary-image"
+                    />
                   </div>
                   <div className="mn3-summary-card-body">
                     <div className="mn3-summary-card-title">
                       {item.priority}
                     </div>
                     <div className="mn3-summary-card-meta">
-                      <span className="mn3-summary-amount">
-                        {item.allocation}
-                      </span>
-                      <span className="mn3-summary-percent">
-                        {" "}
-                        ({Math.round(item.percentage)}%)
-                      </span>
+                      <span className="mn3-summary-amount">{item.allocation}</span>
                     </div>
                   </div>
                 </div>
