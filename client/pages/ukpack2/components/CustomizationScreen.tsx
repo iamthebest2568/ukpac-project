@@ -40,7 +40,7 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
         </header>
       ) : null}
 
-      <div ref={contentRef} className="flex-1 min-h-0 px-6 py-6" style={{ height: "calc(100vh - 64px - 80px)", overflow: 'hidden' }}>
+      <div ref={contentRef} className="flex-1 min-h-0 px-6 py-6" style={{ height: "calc(100vh - 64px - (64px + env(safe-area-inset-bottom, 0px)))", overflow: 'hidden' }}>
         {children}
       </div>
       {footerContent ? (
