@@ -98,7 +98,7 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   "ที่จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
   "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
-  "ระบบประก���ศบอกป้าย(เสียง/จอ)": <IconCup />,
+  "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
   กล้องวงจรปิด: <IconCamSmall />,
   // Payment icons
   เงินสด: (
@@ -181,7 +181,7 @@ const displayDoor = (raw: any) => {
 };
 
 const CHASSIS_LABELS: Record<string, string> = {
-  small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
+  small: "��ถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
   medium: "รถเมล์ขนาดกลาง 31–40 ที่นั่ง",
   large: "รถเมล์ขนาดใหญ่ 41-50 ที่นั่ง",
   extra: "รถกระบะดัดแปลง 8-12 ที่นั่ง",
@@ -249,77 +249,57 @@ const SummaryDetails: React.FC = () => {
     <>
       {heroImg && (
         <div className="flex flex-col items-center mb-6">
-          <HeroWithShadow>
-            <div className="relative">
-              {(() => {
-                const amenities = (() => {
-                  try {
-                    const raw = sessionStorage.getItem("design.amenities");
-                    return raw ? (JSON.parse(raw) as string[]) : [];
-                  } catch {
-                    return [] as string[];
-                  }
-                })();
-                const payments = (() => {
-                  try {
-                    const raw = sessionStorage.getItem("design.payment");
-                    return raw ? (JSON.parse(raw) as string[]) : [];
-                  } catch {
-                    return [] as string[];
-                  }
-                })();
-                const doorsRaw = (() => {
-                  try {
-                    const raw = sessionStorage.getItem("design.doors");
-                    return raw
-                      ? (JSON.parse(raw) as any)
-                      : raw
-                        ? String(raw)
-                        : null;
-                  } catch {
-                    return sessionStorage.getItem("design.doors");
-                  }
-                })();
-                const overlayLabels: string[] = [
-                  ...(amenities || []),
-                  ...(payments || []),
-                ];
-                if (doorsRaw)
-                  overlayLabels.push(
-                    typeof doorsRaw === "string"
-                      ? doorsRaw
-                      : doorsRaw.doorChoice ||
-                          (doorsRaw.hasRamp
-                            ? "ramp"
-                            : doorsRaw.highLow
-                              ? "emergency"
-                              : ""),
-                  );
-                return overlayLabels.length > 0 ? (
-                  <div className="absolute left-1/2 transform -translate-x-1/2 -top-4 flex flex-wrap justify-center gap-2 z-20 max-w-[80%]">
-                    {overlayLabels.map((lab, i) => (
-                      <div
-                        key={`${lab}-${i}`}
-                        className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
-                      >
-                        {AMENITIES_ICON_MAP[lab] || (
-                          <div className="text-xs">{String(lab)}</div>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                ) : null;
-              })()}
-
-              <img
-                src={heroImg}
-                alt={`ภาพรถ - ${chassisLabel}`}
-                className="h-48 md:h-64 w-auto object-contain select-none"
-                decoding="async"
-                loading="eager"
-              />
-            </div>
-          </HeroWithShadow>
+          <VehiclePreview
+            imageSrc={heroImg}
+            label={`รถที่เลือก : ${chassisLabel}`}
+            overlayLabels={(() => {
+              const amenities = (() => {
+                try {
+                  const raw = sessionStorage.getItem("design.amenities");
+                  return raw ? (JSON.parse(raw) as string[]) : [];
+                } catch {
+                  return [] as string[];
+                }
+              })();
+              const payments = (() => {
+                try {
+                  const raw = sessionStorage.getItem("design.payment");
+                  return raw ? (JSON.parse(raw) as string[]) : [];
+                } catch {
+                  return [] as string[];
+                }
+              })();
+              const doorsRaw = (() => {
+                try {
+                  const raw = sessionStorage.getItem("design.doors");
+                  return raw
+                    ? (JSON.parse(raw) as any)
+                    : raw
+                      ? String(raw)
+                      : null;
+                } catch {
+                  return sessionStorage.getItem("design.doors");
+                }
+              })();
+              const overlayLabels: string[] = [
+                ...(amenities || []),
+                ...(payments || []),
+              ];
+              if (doorsRaw)
+                overlayLabels.push(
+                  typeof doorsRaw === "string"
+                    ? doorsRaw
+                    : doorsRaw.doorChoice ||
+                        (doorsRaw.hasRamp
+                          ? "ramp"
+                          : doorsRaw.highLow
+                            ? "emergency"
+                            : ""),
+                );
+              return overlayLabels;
+            })()}
+            overlayIconMap={AMENITIES_ICON_MAP}
+          />
           <p className="mt-2 font-prompt font-semibold text-sm text-[#003366] text-center">
             รถที่เลือก : {chassisLabel}
           </p>
