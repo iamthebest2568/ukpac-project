@@ -41,7 +41,7 @@ const DOOR_ICON_SMALL: Record<string, string> = {
 const IconSmall = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F5ea1b3d990e44d49aa5441bc3a4b3bcc?format=webp&width=360"
-    alt="รถเมล์ขนาดเล็ก 16-30 ที่นั่ง"
+    alt="รถเมล์ขนาดเล็�� 16-30 ที่นั่ง"
     className="max-h-12 w-auto object-contain select-none"
     decoding="async"
     loading="eager"
@@ -68,7 +68,7 @@ const IconLarge = () => (
 const IconExtra = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9a8a7536ced24db19a65409fbba1c6b6?format=webp&width=360"
-    alt="รถ���ระบะดัดแปลง 8-12 ที่นั่ง"
+    alt="รถกระบะดัดแปลง 8-12 ที่นั่ง"
     className="max-h-12 w-auto object-contain select-none -translate-y-0.5"
     decoding="async"
     loading="eager"
@@ -285,6 +285,7 @@ const ChassisScreen: React.FC = () => {
                       isSelected={selected === OPTIONS[0].key}
                       onClick={() => setSelected(OPTIONS[0].key)}
                       variant="light"
+                      size="lg"
                     />
                   </div>
                   <div>
