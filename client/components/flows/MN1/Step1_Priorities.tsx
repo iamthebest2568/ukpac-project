@@ -118,9 +118,9 @@ const Step1_Priorities = ({
             lineHeight: "normal",
           }}
         >
-          คุณคิดว่าควรใช้เงินที่ได้
+          คุณคิดว่า���วรใช้เงินที่ได้
           <br />
-          จากการเก็บ���ปพัฒนาอะไร
+          จากการเก็บไปพัฒนาอะไร
         </h1>
       </div>
 
@@ -266,7 +266,7 @@ const Step1_Priorities = ({
               style={{
                 width: "27.1%", // 293/1080
                 height: "clamp(60px, 4.7vw, 90px)",
-                backgroundColor: getButtonColor("���พิ่มที่จอดรถ"),
+                backgroundColor: getButtonColor("เพิ่มที่จอดรถ"),
                 opacity: isSelectionDisabled("เพิ่มที่จอดรถ") ? 0.5 : 1,
               }}
               onClick={() =>
@@ -390,7 +390,7 @@ const Step1_Priorities = ({
               fontSize: "clamp(14px, 2.8vw, 18px)",
             }}
           >
-            กรุณาเลือกอย่างน้อย 1 ข้อเพื่อดำเนินการต่อ
+            กรุณาเลือกอย่างน้อย 1 ข้อเพื่อดำเนิน��ารต่อ
           </div>
         )}
       </div>
