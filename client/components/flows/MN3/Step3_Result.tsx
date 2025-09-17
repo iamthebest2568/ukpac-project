@@ -186,7 +186,7 @@ const Step3_Result = ({
 
       {/* Selected priorities visual summary - overlapping collage */}
       <div className="w-full px-4 mb-6">
-        <div className="max-w-[980px] mx-auto relative" style={{ height: 320 }}>
+        <div className="max-w-[980px] mx-auto relative" style={{ height: 320, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           {resultSummary.map((s, i) => {
             const imgSrc = priorityImageMap[s.priority] || "https://cdn.builder.io/api/v1/image/assets/TEMP/placeholder.png?width=720";
             const offset = collageOffsets[i] || { left: `${10 + i * 20}%`, top: `${i * 6}%`, rotate: `${i * 3}deg`, z: i + 1, scale: 1 };
