@@ -15,7 +15,7 @@ const SplashScreen: React.FC = () => {
 
       <div className="footer-container mt-auto">
         <div className="footer-content" style={{ position: 'relative', textAlign: 'center', zIndex: 2, padding: '114px 20px 20px', fontWeight: 400 }}>
-          <h2 style={{ color: 'rgb(0, 13, 89)', fontSize: '18px', fontWeight: 700, lineHeight: '21.6px', marginBottom: '8px', textDecorationColor: 'rgb(0, 13, 89)' }} className="text-2xl md:text-3xl mb-2">รถเมล์ในฝันที่คุณอยากขึ้นทุกวัน<br />จะมีหน้าตาอย่��งไร?<br /></h2>
+          <h2 style={{ color: 'rgb(0, 13, 89)', fontSize: '18px', fontWeight: 700, lineHeight: '21.6px', marginBottom: '8px', textDecorationColor: 'rgb(0, 13, 89)' }} className="text-2xl md:text-3xl mb-2">รถเมล์ในฝันที่คุณอยากขึ้นทุกวัน<br />จะมีหน้าตาอย่างไร?<br /></h2>
           <div className="flex items-center justify-center gap-4">
             <CtaButton
               text="เริ่มออกแบบ"
@@ -30,7 +30,7 @@ const SplashScreen: React.FC = () => {
               className="underline privacy-button"
               style={{ display: 'inline-block', borderColor: 'rgba(255, 255, 255, 0.2)', borderWidth: '0.8px', fontWeight: 600, position: 'relative', textDecorationColor: 'currentColor', textDecorationLine: 'underline', zIndex: 20, backgroundColor: 'transparent' }}
             >
-              นโยบายและความเป็นส่วนตัว
+              นโยบายและความเป��นส่วนตัว
             </button>
           </div>
         </div>
