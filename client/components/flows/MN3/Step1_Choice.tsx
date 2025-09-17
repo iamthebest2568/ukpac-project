@@ -87,7 +87,7 @@ const Step1_Choice = ({
 
   // Define which buttons should be yellow by default (from Figma design)
   const defaultYellowButtons = new Set([
-    "ปรับป���ุงคุณภาพรถเมล์", // choice_2
+    "ปรับปรุงคุณภาพรถเมล์", // choice_2
     "เพิ่มความถี่รถเมล์", // choice_4
   ]);
 
