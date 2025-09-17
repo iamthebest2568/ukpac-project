@@ -1,8 +1,3 @@
-/**
- * UK PACK - MN3 Step 3: Budget Result Display
- * Refactored to use FigmaStyle1Layout for consistent behavior
- */
-
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { logEvent } from "../../../services/dataLogger.js";
@@ -63,7 +58,6 @@ const Step3_Result = ({
   }, [journeyData]);
 
   const proceedAfterSelect = (route: string, data: any) => {
-    // keep a short delay so user sees selected state change before navigation
     setTimeout(() => {
       try {
         onNext(data);
@@ -158,32 +152,23 @@ const Step3_Result = ({
     proceedAfterSelect("/ukpack1/ask05", data);
   };
 
-  const backgroundImage =
-    "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F185e56314d8041d09e93ab98fd2502dd?format=webp&width=1500";
+  // Use empty backgroundImage to avoid decorative background while keeping layout structure
+  const backgroundImage = "";
 
   return (
     <FigmaStyle1Layout
       backgroundImage={backgroundImage}
       className="mn3-step3-page"
       imageLoading="eager"
-      title={<span style={{ color: "#000D59" }}>จากงบประมาณของคุณ<br/>นี่คือสิ่งที่จะเกิดขึ้นในอนาคต</span>}
+      title={"จากงบประมาณของคุณ นี่คือสิ่งที่จะเกิดขึ้นในอนาคต"}
     >
+      {/* Minimal content -- only elements required for flow and logic */}
       <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
-        <img
-          src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Ff663e24f6aaf435b835af863ed8b00b8?format=webp&width=1200"
-          alt="Mockup"
-          style={{
-            maxWidth: "94vw",
-            maxHeight: "60vh",
-            objectFit: "contain",
-            borderRadius: 8,
-            boxShadow: "0 12px 30px rgba(0,0,0,0.12)",
-          }}
-        />
+        {/* Intentionally empty: removed decorative mockup image */}
       </div>
 
       <div style={{ textAlign: "center", width: "100%", marginTop: 20 }}>
-        <h2 style={{ color: "#000D59", marginBottom: 12 }}>คุณพอใจหรือไม่</h2>
+        <h2 style={{ marginBottom: 12 }}>คุณพอใจหรือไม่</h2>
 
         <div
           style={{
@@ -199,26 +184,15 @@ const Step3_Result = ({
           <button
             onClick={handleYes}
             aria-pressed={selected === "yes"}
-            className="figma-style1-button"
-            style={{
-              width: "100%",
-              padding: "14px",
-              borderRadius: 28,
-              fontWeight: 600,
-            }}
+            style={{ width: "100%", padding: "12px", borderRadius: 6 }}
           >
             ใช่
           </button>
+
           <button
             onClick={handleNo}
             aria-pressed={selected === "no"}
-            className="figma-style1-button"
-            style={{
-              width: "100%",
-              padding: "14px",
-              borderRadius: 28,
-              fontWeight: 600,
-            }}
+            style={{ width: "100%", padding: "12px", borderRadius: 6 }}
           >
             ไม่ใช่
           </button>
