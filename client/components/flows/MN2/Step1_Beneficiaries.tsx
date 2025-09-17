@@ -40,37 +40,37 @@ const Step1_Beneficiaries = ({
       id: "everyone",
       label: "ทุกคน",
       iconSrc:
-        "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F6aea04e167b34bbaa81a1335f3e08d70?format=webp&width=100",
+        "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F2ec46a7af92d4823b0f7a3811d503497?format=webp&width=100",
     },
     {
       id: "locals",
       label: "คนในพื้นที่",
       iconSrc:
-        "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F4870895254c74fb0b71891fe77ff16ad?format=webp&width=100",
+        "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F80dacf98db464f3ab5ee072638adeab3?format=webp&width=100",
     },
     {
       id: "elderly",
-      label: "ผู้สูงอายุ",
+      label: "ผู��สูง��า���ุ",
       iconSrc:
-        "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F5f1f23edaa064209ba216ac6219b0f05?format=webp&width=100",
+        "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fbfdfb91726974106938b417fb182beaa?format=webp&width=100",
     },
     {
       id: "students",
       label: "นักเรียนนักศึกษา",
       iconSrc:
-        "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fa00fe76fc5684ac187f34f528e766809?format=webp&width=100",
+        "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fbb5f14f791d7491184a2c2f0f5f44c34?format=webp&width=100",
     },
     {
       id: "disabled",
       label: "คนพิการ",
       iconSrc:
-        "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc30a4427be1d410eb2e68c2418817fc7?format=webp&width=100",
+        "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe7622c6277264a06b3b7f875af1a342a?format=webp&width=100",
     },
     {
       id: "other",
       label: "อื่นๆ",
       iconSrc:
-        "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe88e054f2a5043e1abf7abc914c189c6?format=webp&width=100",
+        "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F11dc2218b328411c8cf995f911ba9055",
     },
   ];
 
