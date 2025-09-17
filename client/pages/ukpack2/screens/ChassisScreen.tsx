@@ -103,7 +103,7 @@ const OPTIONS = [
   {
     key: "extra",
     label: "รถกะบะดัดแปลง 8-12 ที่นั่ง",
-    labelText: "รถกะบะดัดแปลง 8-12 ที��นั่ง",
+    labelText: "รถกะบะดัดแปลง 8-12 ที่นั่ง",
     icon: <IconExtra />,
   },
 ];
@@ -164,10 +164,10 @@ const ChassisScreen: React.FC = () => {
       >
         <div className="space-y-6">
           {/* Hero bus illustration with shadow overlay */}
-          <div className="flex flex-col items-center mt-0">
+          <div className="flex flex-col items-center -mt-6">
             <div
               className="relative w-full flex items-center justify-center"
-              style={{ minHeight: "120px" }}
+              style={{ minHeight: "100px" }}
             >
               {/* shadow only */}
               <img
@@ -179,7 +179,7 @@ const ChassisScreen: React.FC = () => {
                 aria-hidden="true"
               />
               {/* bus + star overlay inside same box for precise alignment */}
-              <div className="relative w-[60%] max-w-[320px]" style={{ height: '140px' }}>
+              <div className="relative w-[60%] max-w-[320px]" style={{ height: '120px' }}>
                 {(() => {
                   const amenities = (() => {
                     try {
@@ -265,7 +265,7 @@ const ChassisScreen: React.FC = () => {
               </div>
             </div>
             <p className="mt-2 font-prompt font-semibold text-[#001a73] text-center">
-              <span className="chassis-label-mobile">รถที่เลือก : </span>
+              <span className="chassis-label-mobile">รถท���่เลือก : </span>
               {selectedLabel}
             </p>
           </div>
