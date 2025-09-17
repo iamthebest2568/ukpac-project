@@ -206,7 +206,7 @@ const Step2_Allocation = ({
         <button
           onClick={handleNext}
           className="figma-style1-button"
-          aria-label="ไปต่อ"
+          aria-label="ดำเนินการต่อ"
         >
           <span className="figma-style1-button-text">ไปต่อ</span>
         </button>
