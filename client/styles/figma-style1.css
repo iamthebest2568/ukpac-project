@@ -473,6 +473,23 @@
   position: relative !important;
 }
 
+/* Center MN3 final step content vertically and horizontally */
+.figma-style1-container.mn3-step3-page.fake-news-page .figma-style1-main {
+  align-items: center !important;
+  justify-items: center !important;
+}
+.figma-style1-container.mn3-step3-page.fake-news-page .figma-style1-content-area {
+  justify-content: center !important;
+  align-items: center !important;
+  padding-top: 0 !important;
+  padding-bottom: 24px !important;
+}
+/* Ensure collage wrapper sits centered and responsive */
+.figma-style1-container.mn3-step3-page .max-w-\[980px\] {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
 /* Ensure button container text remains black on fake-news */
 .fake-news-page .figma-style1-button-text {
   color: var(--figma-style1-text-dark) !important;
