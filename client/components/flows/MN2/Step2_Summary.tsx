@@ -295,7 +295,7 @@ const Step2_Summary = ({
             </button>
 
             <button
-              onClick={onBack}
+              onClick={handleNo}
               className="figma-style1-button"
               aria-label="ไม่ใช่"
             >
