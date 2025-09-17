@@ -42,7 +42,7 @@ const IconSmall = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F91c62d1140ba42828ef9648da47a49ad?format=webp&width=800"
     alt="" aria-hidden="true"
-    className="h-full w-auto object-contain select-none"
+    className="max-h-12 sm:max-h-16 w-auto object-contain select-none"
     decoding="async"
     loading="eager"
   />
@@ -51,7 +51,7 @@ const IconMedium = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F81895dfac78f4bd88c3c0235d48fff80?format=webp&width=800"
     alt="" aria-hidden="true"
-    className="h-full w-auto object-contain select-none"
+    className="max-h-12 sm:max-h-16 w-auto object-contain select-none"
     decoding="async"
     loading="eager"
   />
@@ -79,7 +79,7 @@ const OPTIONS = [
   {
     key: "small",
     label: "รถเมล์ขนาดเล็ก 16-30 ที่นั่ง",
-    labelText: "รถเมล์ขนาดเล็ก 16-30 ที่นั่ง",
+    labelText: "รถ���มล์ขนาดเล็ก 16-30 ที่นั่ง",
     icon: <IconSmall />,
   },
   {
