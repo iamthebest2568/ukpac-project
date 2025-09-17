@@ -159,7 +159,7 @@ const Step3_Result = ({
   };
 
   const backgroundImage =
-    "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F733fd61d7f8e4a3ebfc2f76078fff7ee?format=webp&width=1500";
+    "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F185e56314d8041d09e93ab98fd2502dd?format=webp&width=1500";
 
   return (
     <FigmaStyle1Layout
