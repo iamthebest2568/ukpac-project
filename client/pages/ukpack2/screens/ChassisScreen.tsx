@@ -42,7 +42,7 @@ const IconSmall = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F91c62d1140ba42828ef9648da47a49ad?format=webp&width=800"
     alt="" aria-hidden="true"
-    className="max-h-6 w-auto object-contain select-none"
+    className="h-full w-auto object-contain select-none"
     decoding="async"
     loading="eager"
   />
@@ -51,7 +51,7 @@ const IconMedium = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F81895dfac78f4bd88c3c0235d48fff80?format=webp&width=800"
     alt="" aria-hidden="true"
-    className="max-h-12 w-auto object-contain select-none"
+    className="h-full w-auto object-contain select-none"
     decoding="async"
     loading="eager"
   />
@@ -60,7 +60,7 @@ const IconLarge = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F77fae6aebf004c59a359e095f0bc823b?format=webp&width=800"
     alt="" aria-hidden="true"
-    className="max-h-12 w-auto object-contain select-none -translate-y-0.5"
+    className="h-full w-auto object-contain select-none -translate-y-0.5"
     decoding="async"
     loading="eager"
   />
@@ -69,7 +69,7 @@ const IconExtra = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F70e4ddd14fbf493682a6e61008ae4621?format=webp&width=800"
     alt="" aria-hidden="true"
-    className="max-h-12 w-auto object-contain select-none -translate-y-0.5"
+    className="h-full w-auto object-contain select-none -translate-y-0.5"
     decoding="async"
     loading="eager"
   />
