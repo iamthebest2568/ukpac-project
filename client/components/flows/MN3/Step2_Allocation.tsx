@@ -125,7 +125,7 @@ const Step2_Allocation = ({
       imageLoading="eager"
       title={"คุณจะให้งบประมาณแต่ละข้อเท่าไหร่"}
     >
-      <div className="mn3-allocation-content" style={{ paddingTop: "clamp(40px, 8vh, 120px)" }}>
+      <div className="mn3-allocation-content" style={{ paddingTop: "12px" }}>
         {/* Budget Display Box */}
         <div className="w-full px-4 mb-8">
           <div className="mn3-budget-display">
