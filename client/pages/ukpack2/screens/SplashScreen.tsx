@@ -12,36 +12,15 @@ const SplashScreen: React.FC = () => {
       className="min-h-screen flex flex-col"
       style={{ position: 'relative', backgroundColor: '#ffffff', overflow: 'hidden' }}
     >
-      {/* Hero using inline SVG + clipPath to create precise curved bottom */}
-      <div style={{ width: '100%', position: 'relative', zIndex: 1 }} aria-hidden>
-        <svg
-          viewBox="0 0 1000 700"
-          preserveAspectRatio="xMidYMid slice"
-          style={{ display: 'block', width: '100%', height: '62vh' }}
-          xmlns="http://www.w3.org/2000/svg"
-          role="img"
-          aria-hidden
-        >
-          <defs>
-            <clipPath id="heroClip">
-              <path d="M0,0 H1000 V480 C800,540 200,540 0,480 Z" />
-            </clipPath>
-          </defs>
-
-          <image
-            href="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fcb178a40e22648eca72705d402137a33?format=webp&width=1600"
-            x="0"
-            y="0"
-            width="100%"
-            height="100%"
-            preserveAspectRatio="xMidYMid slice"
-            clipPath="url(#heroClip)"
-          />
-        </svg>
-      </div>
-
-      {/* Turquoise footer background */}
-      <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, height: '38vh', backgroundColor: '#04d9f9', zIndex: 0 }} aria-hidden />
+      {/* Bottom turquoise curved footer (no hero image) */}
+      <svg
+        viewBox="0 0 1000 400"
+        preserveAspectRatio="none"
+        style={{ position: 'absolute', left: 0, right: 0, bottom: 0, width: '100%', height: '38vh', zIndex: 0 }}
+        aria-hidden
+      >
+        <path d="M0,400 L0,140 C200,80 800,80 1000,140 L1000,400 Z" fill="#04d9f9" />
+      </svg>
 
       <div className="footer-container mt-auto">
         <div className="footer-content" style={{ position: 'relative', textAlign: 'center', zIndex: 2, padding: '64px 20px 20px', fontWeight: 400 }}>
