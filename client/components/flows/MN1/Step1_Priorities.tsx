@@ -89,7 +89,7 @@ const Step1_Priorities = ({
   return (
     <FigmaStyle1Layout
       backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fa7f27d75c92b4bc1aee01a749a8a496a?format=webp&width=800"
-      className="minigame-mn1-page"
+      className="minigame-mn1-page figma-style1-ukpack1"
       imageLoading="eager"
     >
       {/* White overlay section with cityscape image */}
@@ -241,7 +241,7 @@ const Step1_Priorities = ({
                 width: "35.6%", // 385/1080
                 height: "clamp(60px, 4.7vw, 90px)",
                 backgroundColor: getButtonColor("เพิ่มความถี่รถเมล์"),
-                opacity: isSelectionDisabled("เพิ่มความถี่รถเมล์") ? 0.5 : 1,
+                opacity: isSelectionDisabled("เพิ่มความถี���รถเมล์") ? 0.5 : 1,
               }}
               onClick={() =>
                 !isSelectionDisabled("เพิ่มความถี่รถเมล์") &&
