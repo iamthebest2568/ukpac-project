@@ -149,6 +149,24 @@ const Step2_Summary = ({
     onNext(data);
   };
 
+  const handleNo = () => {
+    // User is not satisfied — record and navigate to ask05 for feedback
+    const data = {
+      summary: { summaryReviewed: true, summaryCards, confirmed: false },
+    };
+
+    logEvent({
+      event: "MINIGAME_MN2_SUMMARY_NOT_SATISFIED",
+      payload: { summaryCards, sessionID },
+    });
+
+    try {
+      onNext(data);
+    } catch (e) {}
+
+    navigateToPage("ask05", data);
+  };
+
   return (
     <FigmaStyle1Layout
       backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F4cef67ac526c447abe657171a21c6eb1?format=webp&width=800"
