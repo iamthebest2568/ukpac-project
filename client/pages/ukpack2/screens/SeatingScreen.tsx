@@ -7,6 +7,7 @@ import ConfirmModal from "../components/ConfirmModal";
 import ErrorModal from "../components/ErrorModal";
 import { useBusDesign } from "../context/BusDesignContext";
 import StepTabs from "../components/StepTabs";
+import HeroWithShadow from "../components/HeroWithShadow";
 
 const SeatingScreen: React.FC = () => {
   const navigate = useNavigate();
@@ -181,7 +182,8 @@ const SeatingScreen: React.FC = () => {
         <div className="space-y-6">
           <div className="w-full rounded-md flex flex-col items-center justify-center gap-2">
             {selectedTopdown ? (
-              <div className="relative">
+              <HeroWithShadow containerClassName="relative w-[60%] max-w-[320px]" shadowClassName="absolute w-[60%] max-w-[320px] pointer-events-none select-none">
+                <div className="relative" style={{ height: '120px' }}>
                 {(() => {
                   const amenities = (() => {
                     try {
@@ -257,7 +259,8 @@ const SeatingScreen: React.FC = () => {
                   decoding="async"
                   loading="eager"
                 />
-              </div>
+                </div>
+              </HeroWithShadow>
             ) : (
               <div className="w-full h-48 bg-[#081042] rounded-md flex items-center justify-center text-sm text-gray-300">
                 Top-down seat map preview (ภาพสำหรับรุ่นนี้จะถูกเพิ่มภายหลัง)
