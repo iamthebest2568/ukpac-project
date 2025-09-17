@@ -200,7 +200,26 @@
 
 .figma-style1-container.mn3-step2-minimal .figma-style1-content-area {
   justify-content: flex-start !important;
-  padding-top: env(safe-area-inset-top, 8px) !important;
+  /* remove extra top padding so title and content sit at the very top */
+  padding-top: 0 !important;
+}
+
+/* Reduce title top margin and tighten spacing for Step2 */
+.figma-style1-container.mn3-step2-minimal .figma-style1-title {
+  margin-top: 0 !important;
+  margin-bottom: 6px !important;
+}
+
+.figma-style1-container.mn3-step2-minimal .figma-style1-title-container {
+  padding-top: 8px !important;
+  padding-bottom: 6px !important;
+  max-width: 980px !important; /* allow title + content to use wider area */
+}
+
+/* Ensure the allocation content itself sits at the top of the content area */
+.figma-style1-container.mn3-step2-minimal .mn3-allocation-content {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
 }
 .figma-style1-main {
   /* Main content layer - back to grid layout but with better centering */
