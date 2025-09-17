@@ -474,20 +474,26 @@
 }
 
 /* Center MN3 final step content vertically and horizontally */
-.figma-style1-container.mn3-step3-page.fake-news-page .figma-style1-main {
-  align-items: center !important;
-  justify-items: center !important;
-}
+.figma-style1-container.mn3-step3-page.fake-news-page .figma-style1-main,
 .figma-style1-container.mn3-step3-page.fake-news-page .figma-style1-content-area {
-  justify-content: center !important;
+  display: flex !important;
+  flex-direction: column !important;
   align-items: center !important;
+  justify-content: center !important;
   padding-top: 0 !important;
   padding-bottom: 24px !important;
 }
+
 /* Ensure collage wrapper sits centered and responsive */
 .figma-style1-container.mn3-step3-page .max-w-\[980px\] {
   margin-left: auto !important;
   margin-right: auto !important;
+}
+
+/* Make bottom question text black for readability */
+.figma-style1-container.mn3-step3-page .figma-style1-content-area h2,
+.figma-style1-container.mn3-step3-page .figma-style1-content-area h1 {
+  color: #000D59 !important;
 }
 
 /* Ensure button container text remains black on fake-news */
