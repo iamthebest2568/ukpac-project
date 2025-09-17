@@ -121,6 +121,7 @@ const Step2_Allocation = ({
       backgroundImage={""} /* disable decorative background while debugging */
       className="mn3-step2-page mn3-step2-minimal"
       imageLoading="eager"
+      title={"คุณจะให้งบประมาณแต่ละข้อเท่าไหร่"}
     >
       <div className="mn3-allocation-content" style={{ paddingTop: "clamp(40px, 8vh, 120px)" }}>
         {/* Budget Display Box */}
