@@ -13,7 +13,7 @@ const AMENITIES_ICON_SMALL = {
     "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe01792ee89e240808ed47d8576b55d71?format=webp&width=800",
   ที่นั่งพิเศษ:
     "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F93439b2533284cdf914fc93cafa1cf26?format=webp&width=800",
-  "ที��จับ/ราวยืนที่ปลอดภัย":
+  "ที��จับ/ราวยืนที่ปลอดภ��ย":
     "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb0789bfd1100472f8351704764607d31?format=webp&width=800",
 };
 const PAYMENT_ICON_SMALL: Record<string, string> = {
@@ -42,7 +42,7 @@ const IconSmall = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F5ea1b3d990e44d49aa5441bc3a4b3bcc?format=webp&width=360"
     alt="รถเมล์ขนาดเล็�� 16-30 ที่นั่ง"
-    className="max-h-12 w-auto object-contain select-none"
+    className="max-h-6 w-auto object-contain select-none"
     decoding="async"
     loading="eager"
   />
