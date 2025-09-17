@@ -186,7 +186,7 @@ export function exportEventsAsCSV() {
 }
 
 // Initialize logging service
-console.log('📊 UK PACK Data Logger initialized');
+// console.log('📊 UK PACK Data Logger initialized');
 
 // Only run browser-specific code if we're in a browser environment
 if (typeof window !== 'undefined' && typeof document !== 'undefined') {
