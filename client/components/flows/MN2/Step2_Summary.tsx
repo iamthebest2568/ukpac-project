@@ -250,64 +250,6 @@ const Step2_Summary = ({
           </h2>
         </div>
 
-        {/* Satisfaction Buttons - Responsive */}
-        <div className="w-full max-w-[874px] mx-auto space-y-4">
-          {/* Yes (ใช่) */}
-          <button
-            onClick={() => {
-              logEvent({
-                event: "SATISFACTION_CHOICE",
-                payload: { choice: "พอใจ", path: "MN1_MN2", sessionID },
-              });
-              navigateToPage("/fake-news");
-            }}
-            aria-label="พอใจกั���ผลลัพธ์ที่ได้จ���กการตอบคำถาม"
-            className="block rounded-[50px] figma-style1-button mx-auto transition-all duration-200 hover:scale-105 flex items-center justify-center"
-            style={{
-              width: "min(845px, 85vw)",
-              height: "clamp(60px, 8vw, 118px)",
-            }}
-          >
-            <span
-              className="font-prompt text-center font-normal px-4"
-              style={{
-                fontSize: "clamp(16px, 3.5vw, 50px)",
-                fontWeight: 400,
-                letterSpacing: "0.4px",
-              }}
-            >
-              ใช่
-            </span>
-          </button>
-
-          {/* No (ไม่ใช่) */}
-          <button
-            onClick={() => {
-              logEvent({
-                event: "SATISFACTION_CHOICE",
-                payload: { choice: "ไม่พอใจ", path: "MN1_MN2", sessionID },
-              });
-              navigateToPage("/ask05");
-            }}
-            aria-label="ไม่พอใจกับผลลัพธ์และต้องการให้ข้อเสนอแนะ"
-            className="block rounded-[50px] figma-style1-button mx-auto transition-all duration-200 hover:scale-105 flex items-center justify-center"
-            style={{
-              width: "min(845px, 85vw)",
-              height: "clamp(60px, 8vw, 118px)",
-            }}
-          >
-            <span
-              className="font-prompt text-center font-normal px-4"
-              style={{
-                fontSize: "clamp(16px, 3.5vw, 50px)",
-                fontWeight: 400,
-                letterSpacing: "0.4px",
-              }}
-            >
-              ไม่ใช่
-            </span>
-          </button>
-        </div>
       </div>
     </FigmaStyle1Layout>
   );
