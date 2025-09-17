@@ -297,7 +297,7 @@ const PaymentScreen: React.FC = () => {
           {/* show selected hero bus image from chassis selection with overlays from previous steps */}
           {(() => {
             const CHASSIS_LABELS: Record<string, string> = {
-              small: "รถเมล���ขนาดเล็ก 16–30 ที่นั่ง",
+              small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
               medium: "รถเมล์ขนาดกลาง 31–40 ที่นั่ง",
               large: "รถเมล์ขนาดใหญ่ 41-50 ที่นั่ง",
               extra: "รถกระบะดัดแปลง 8-12 ที่นั่ง",
@@ -533,26 +533,20 @@ const PaymentScreen: React.FC = () => {
 
             return img ? (
               <>
-                <HeroWithShadow containerClassName="relative w-[60%] max-w-[320px]" shadowClassName="absolute w-[60%] max-w-[320px] pointer-events-none select-none" >
-                  <div className="relative" style={{ height: '120px' }}>
-                    {/* overlay */}
-                    {overlayLabels.length > 0 && (
-                      <div className="absolute left-1/2 -translate-x-1/2 -top-4 flex flex-nowrap items-center justify-center gap-2 z-20 w-[90%] px-2 overflow-x-auto">
-                        {overlayLabels.map((label, i) =>
-                          renderOverlayIcon(label, i),
-                        )}
-                      </div>
-                    )}
-
-                    <img
-                      src={img}
-                      alt={`ภาพรถ - ${label}`}
-                      className="h-full w-auto object-contain select-none"
-                      decoding="async"
-                      loading="eager"
-                    />
-                  </div>
-                </HeroWithShadow>
+                <VehiclePreview
+                  imageSrc={img}
+                  label={`รถที่ใช้งาน : ${label}`}
+                  overlayLabels={overlayLabels}
+                  overlayIconMap={{
+                    ...AMENITIES_ICON_MAP,
+                    เงินสด: <img src={MONEY_ICON} alt="เงินสด" className="h-5 w-5 object-contain" />,
+                    สแกนจ่าย: <img src={SCAN_ICON} alt="สแกนจ่าย" className="h-5 w-5 object-contain" />,
+                    "สแกนจ่าย 2": <img src={SCAN2_ICON} alt="สแกนจ่าย 2" className="h-5 w-5 object-contain" />,
+                    แตะบัตร: <img src={TOUCH_ICON} alt="แตะบัตร" className="h-5 w-5 object-contain" />,
+                    กระเป๋ารถเมล์: <img src={BUS_EMPLOY_ICON} alt="กระเป๋ารถเมล์" className="h-5 w-5 object-contain" />,
+                    "ตั๋วรายเดือน/รอบ": <img src={MONTHLY_ICON} alt="ตั๋วรายเดือน/รอบ" className="h-5 w-5 object-contain" />,
+                  }}
+                />
                 <p className="mt-1 font-prompt font-semibold text-[#001a73] text-center">
                   รถที่ใช้งาน : {label}
                 </p>
