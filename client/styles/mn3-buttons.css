@@ -490,9 +490,12 @@
   letter-spacing: 0px;
   flex: 1;
   text-align: left;
-  white-space: nowrap; /* keep label on single line */
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: normal; /* allow wrapping for long labels */
+  overflow: visible;
+  text-overflow: clip;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  min-width: 0; /* allow flex children to shrink properly */
 }
 
 /* Input container */
