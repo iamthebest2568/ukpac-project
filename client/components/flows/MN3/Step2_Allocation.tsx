@@ -124,7 +124,7 @@ const Step2_Allocation = ({
             className="font-prompt text-center leading-normal"
             style={{
               color: "#000D59",
-              fontSize: "clamp(22px, 9vw, 80px)",
+              fontSize: "clamp(16px, 4vw, 28px)",
               lineHeight: "1.05",
               fontWeight: 700,
               width: "100%",
