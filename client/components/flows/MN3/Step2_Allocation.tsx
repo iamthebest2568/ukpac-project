@@ -117,11 +117,12 @@ const Step2_Allocation = ({
   const isComplete = allocatedBudget === totalBudget;
 
   return (
-    <div className="w-full min-h-screen mn3-allocation-bg flex flex-col items-center justify-start relative">
-      <div
-        className="mn3-allocation-content"
-        style={{ paddingTop: "clamp(40px, 8vh, 120px)" }}
-      >
+    <FigmaStyle1Layout
+      className="mn3-step2-page"
+      imageLoading="eager"
+      title={<span style={{ color: "#000D59" }}>คุณจะให้งบประมาณแต่ละข้อเท่าไหร่</span>}
+    >
+      <div className="mn3-allocation-content" style={{ paddingTop: "clamp(40px, 8vh, 120px)" }}>
         {/* Title Section */}
         <div className="text-center w-full max-w-none px-4 mb-6">
           <h1
@@ -239,7 +240,7 @@ const Step2_Allocation = ({
           </div>
         </div>
       </div>
-    </div>
+    </FigmaStyle1Layout>
   );
 };
 
