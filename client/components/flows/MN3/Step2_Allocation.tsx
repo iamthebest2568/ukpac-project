@@ -191,7 +191,7 @@ const Step2_Allocation = ({
     <div className="w-full px-4 mt-4 flex justify-center">
       <div
         className="mx-auto flex flex-col items-center space-y-2"
-        style={{ width: "100%", maxWidth: 980 }}
+        style={{ width: "100%", maxWidth: 980, marginTop: "auto" }}
       >
         <button
           onClick={handleNext}
