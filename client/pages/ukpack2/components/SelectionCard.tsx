@@ -57,7 +57,8 @@ const SelectionCard: React.FC<SelectionCardProps> = ({
   }
 
   // size adjustments
-  const iconContainerClass = appearance === "bare" ? "mb-0" : size === "lg" ? "h-20 mb-2" : size === "sm" ? "h-8 mb-2" : "h-12 mb-2";
+  const baseHeight = size === "lg" ? "h-20" : size === "sm" ? "h-8" : "h-12";
+  const iconContainerClass = `${baseHeight} ${appearance === "bare" ? "mb-0" : "mb-2"}`;
   const labelClass = size === "lg" ? "px-2 text-sm md:text-base" : size === "sm" ? "px-2 text-xs md:text-sm" : "px-2 text-xs md:text-sm";
 
   // Horizontal layout
