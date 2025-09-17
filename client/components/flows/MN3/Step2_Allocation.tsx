@@ -144,26 +144,6 @@ const Step2_Allocation = ({
           </h1>
         </div>
 
-        {/* Title Section */}
-        <div className="text-center w-full max-w-none px-4 mb-6">
-          <h1
-            className="font-prompt text-center leading-normal"
-            style={{
-              color: "#000D59",
-              fontSize: "clamp(16px, 4vw, 28px)",
-              lineHeight: "1.05",
-              fontWeight: 700,
-              width: "100%",
-              margin: "0 auto",
-              whiteSpace: "normal",
-              overflow: "visible",
-              textOverflow: "clip",
-            }}
-          >
-            คุณจะให้งบประมาณเท่าไหร่
-          </h1>
-        </div>
-
         {/* Budget Display Box */}
         <div className="w-full px-4 mb-8">
           <div className="mn3-budget-display">
