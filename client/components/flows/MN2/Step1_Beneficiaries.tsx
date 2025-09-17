@@ -143,7 +143,7 @@ const Step1_Beneficiaries = ({
 
   const titleText = currentPriority === 'ลดค่าโดยสารรถไฟฟ้า'
     ? 'คุณคิดว่าใครควรได้รับ  การลดค่าโดยสารรถไฟฟ้าบ้าง'
-    : `ค���ณคิดว่าใครควรได้รับประโยชน์จาก ${currentPriority} ?`;
+    : `คุณคิดว่าใครควรได้รับประโยชน์จาก ${currentPriority} ?`;
 
   return (
     <FigmaStyle1Layout
@@ -186,7 +186,7 @@ const Step1_Beneficiaries = ({
         </div>
 
         {/* Bottom Row */}
-        <div className="flex justify-center items-center" style={{ gap: "16px" }}>
+        <div className="flex justify-center items-center" style={{ gap: "8px" }}>
           {beneficiaryGroups.slice(3, 6).map((group) => {
             const isSelected = selectedGroups.includes(group.id);
             const isDisabled = isSelectionDisabled(group.id);
