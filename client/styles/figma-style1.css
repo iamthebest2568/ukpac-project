@@ -911,6 +911,29 @@
   }
 }
 
+/* Image style for summary cards (replace icon) */
+.mn3-summary-image {
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+}
+
+@media (max-width: 480px) {
+  .mn3-summary-image {
+    width: 56px;
+    height: 56px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .mn3-summary-image {
+    width: 96px;
+    height: 96px;
+  }
+}
+
 /* Grid layout for summary + visual */
 .mn3-summary-grid {
   display: grid;
