@@ -40,7 +40,7 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
         </header>
       ) : null}
 
-      <div ref={contentRef} className="flex-1 min-h-0 px-6 py-6 pb-28 overflow-hidden">
+      <div ref={contentRef} className="flex-1 min-h-0 px-6 py-6 pb-28 overflow-auto">
         {children}
       </div>
       {footerContent ? (
