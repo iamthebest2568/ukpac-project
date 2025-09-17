@@ -103,7 +103,7 @@ const OPTIONS = [
   {
     key: "extra",
     label: "รถกะบะดัดแปลง 8-12 ที่นั่ง",
-    labelText: "รถกะบะ���ัดแปลง 8-12 ที่นั่ง",
+    labelText: "รถกะบะดัดแปลง 8-12 ที��นั่ง",
     icon: <IconExtra />,
   },
 ];
@@ -164,22 +164,22 @@ const ChassisScreen: React.FC = () => {
       >
         <div className="space-y-6">
           {/* Hero bus illustration with shadow overlay */}
-          <div className="flex flex-col items-center mt-2">
+          <div className="flex flex-col items-center mt-0">
             <div
               className="relative w-full flex items-center justify-center"
-              style={{ minHeight: "160px" }}
+              style={{ minHeight: "120px" }}
             >
               {/* shadow only */}
               <img
                 src={HERO_SHADOW}
                 alt="เงารถ"
-                className="absolute bottom-0 w-[60%] max-w-[320px] pointer-events-none select-none"
+                className="absolute w-[60%] max-w-[320px] pointer-events-none select-none" style={{ bottom: '8px' }}
                 decoding="async"
                 loading="eager"
                 aria-hidden="true"
               />
               {/* bus + star overlay inside same box for precise alignment */}
-              <div className="relative w-[60%] max-w-[320px]">
+              <div className="relative w-[60%] max-w-[320px]" style={{ height: '140px' }}>
                 {(() => {
                   const amenities = (() => {
                     try {
@@ -250,14 +250,14 @@ const ChassisScreen: React.FC = () => {
                 <img
                   src={HERO_IMAGE[selected]}
                   alt={selectedLabel}
-                  className="w-full h-auto object-contain select-none"
+                  className="w-full h-full object-contain select-none"
                   decoding="async"
                   loading="eager"
                 />
                 <img
                   src={HERO_STAR}
                   alt="สัญลักษณ์ดาว"
-                  className="absolute -top-2 -right-2 w-5 h-5 pointer-events-none select-none"
+                  className="absolute w-5 h-5 pointer-events-none select-none" style={{ top: '6px', right: '6px' }}
                   decoding="async"
                   loading="eager"
                   aria-hidden="true"
