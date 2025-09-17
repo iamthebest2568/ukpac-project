@@ -78,7 +78,7 @@ export function logEvent(eventData) {
     }
 
     // 5. Also log to console for debugging (can be removed in production)
-    console.log('📊 Event Logged:', enrichedEvent);
+    console.log("📊 Event Logged:", enrichedEvent);
 
     // Event logged successfully to localStorage
   } catch (error) {
@@ -143,7 +143,7 @@ export function clearEventLogs() {
   try {
     sessionStorage.removeItem("ukPackSessionID");
   } catch (_) {}
-  console.log('🗑️ Event logs cleared');
+  console.log("🗑️ Event logs cleared");
 }
 
 /**
@@ -198,7 +198,7 @@ export function exportEventsAsCSV() {
 }
 
 // Initialize logging service
-console.log('📊 UK PACK Data Logger initialized');
+console.log("📊 UK PACK Data Logger initialized");
 
 // Only run browser-specific code if we're in a browser environment
 if (typeof window !== "undefined" && typeof document !== "undefined") {

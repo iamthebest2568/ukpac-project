@@ -475,7 +475,8 @@
 
 /* Center MN3 final step content vertically and horizontally */
 .figma-style1-container.mn3-step3-page.fake-news-page .figma-style1-main,
-.figma-style1-container.mn3-step3-page.fake-news-page .figma-style1-content-area {
+.figma-style1-container.mn3-step3-page.fake-news-page
+  .figma-style1-content-area {
   display: flex !important;
   flex-direction: column !important;
   align-items: center !important;
@@ -493,7 +494,7 @@
 /* Make bottom question text black for readability */
 .figma-style1-container.mn3-step3-page .figma-style1-content-area h2,
 .figma-style1-container.mn3-step3-page .figma-style1-content-area h1 {
-  color: #000D59 !important;
+  color: #000d59 !important;
 }
 
 /* Ensure button container text remains black on fake-news */

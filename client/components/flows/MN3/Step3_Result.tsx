@@ -39,19 +39,26 @@ const Step3_Result = ({
 
   // Map priorities to illustrative images (attachments provided)
   const priorityImageMap: { [key: string]: string } = {
-    "ตั๋วร่วม": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F2f0106ff48a44f03b71429502944e9f2?format=webp&width=720",
-    "เพิ่มที่จอดรถ": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F79ac3a2ac5e84e88b4015fd66aaebe04?format=webp&width=720",
-    "เพิ่มความถี่รถไฟฟ้า": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fd90beaca642d4cceba685d933aeb644f?format=webp&width=720",
-    "ปรับปรุงคุณภา���รถเมล์": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F602cfdd852a147ed852d50b2ed05772d?format=webp&width=720",
-    "เพิ่มความถี่รถเมล์": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F4e921e92e2c44db7a2ad24ee299e9a6d?format=webp&width=720",
-    "เพิ่ม Feeder ในซอย": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fbb907b894b5a44b3bde47b685f00caca?format=webp&width=720",
-    "ลดค่าโดยสารรถไฟฟ้า": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F902c640032bd41f3b30e4ce96330d938?format=webp&width=720",
+    ตั๋วร่วม:
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F2f0106ff48a44f03b71429502944e9f2?format=webp&width=720",
+    เพิ่มที่จอดรถ:
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F79ac3a2ac5e84e88b4015fd66aaebe04?format=webp&width=720",
+    เพิ่มความถี่รถไฟฟ้า:
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fd90beaca642d4cceba685d933aeb644f?format=webp&width=720",
+    "ปรับปรุงคุณภา���รถเมล์":
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F602cfdd852a147ed852d50b2ed05772d?format=webp&width=720",
+    เพิ่มความถี่รถเมล์:
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F4e921e92e2c44db7a2ad24ee299e9a6d?format=webp&width=720",
+    "เพิ่ม Feeder ในซอย":
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fbb907b894b5a44b3bde47b685f00caca?format=webp&width=720",
+    ลดค่าโดยสารรถไฟฟ้า:
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F902c640032bd41f3b30e4ce96330d938?format=webp&width=720",
   };
 
   const collageOffsets = [
-    { left: '8%', top: '0%', rotate: '-6deg', z: 1, scale: 0.98 },
-    { left: '30%', top: '6%', rotate: '6deg', z: 2, scale: 1 },
-    { left: '52%', top: '-6%', rotate: '-2deg', z: 3, scale: 0.94 },
+    { left: "8%", top: "0%", rotate: "-6deg", z: 1, scale: 0.98 },
+    { left: "30%", top: "6%", rotate: "6deg", z: 2, scale: 1 },
+    { left: "52%", top: "-6%", rotate: "-2deg", z: 3, scale: 0.94 },
   ];
 
   useEffect(() => {
@@ -170,7 +177,8 @@ const Step3_Result = ({
   };
 
   // Use provided background image for MN3 final step
-  const backgroundImage = "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Ffad6c306ff6d4b21802e5245972126b1?format=webp&width=1500";
+  const backgroundImage =
+    "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Ffad6c306ff6d4b21802e5245972126b1?format=webp&width=1500";
 
   return (
     <FigmaStyle1Layout
@@ -186,40 +194,72 @@ const Step3_Result = ({
 
       {/* Selected priorities visual summary - overlapping collage */}
       <div className="w-full px-4 mb-6">
-        <div className="max-w-[980px] mx-auto relative" style={{ height: 320, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <div
+          className="max-w-[980px] mx-auto relative"
+          style={{
+            height: 320,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           {resultSummary.map((s, i) => {
-            const imgSrc = priorityImageMap[s.priority] || "https://cdn.builder.io/api/v1/image/assets/TEMP/placeholder.png?width=720";
-            const offset = collageOffsets[i] || { left: `50%`, top: `${i * 2}%`, rotate: `${(i - 1) * 4}deg`, z: i + 1, scale: 1 };
+            const imgSrc =
+              priorityImageMap[s.priority] ||
+              "https://cdn.builder.io/api/v1/image/assets/TEMP/placeholder.png?width=720";
+            const offset = collageOffsets[i] || {
+              left: `50%`,
+              top: `${i * 2}%`,
+              rotate: `${(i - 1) * 4}deg`,
+              z: i + 1,
+              scale: 1,
+            };
             const count = resultSummary.length;
             const spacing = count === 1 ? 0 : count === 2 ? 160 : 140; // px spacing between centers
             const offsetX = Math.round((i - (count - 1) / 2) * spacing);
-            const width = count === 1 ? '64%' : count === 2 ? '52%' : '40%';
+            const width = count === 1 ? "64%" : count === 2 ? "52%" : "40%";
             return (
               <div
                 key={s.priority}
                 style={{
-                  position: 'absolute',
-                  left: '50%',
+                  position: "absolute",
+                  left: "50%",
                   top: offset.top,
                   transform: `translate(${offsetX}px, 0) rotate(${offset.rotate}) scale(${offset.scale})`,
                   width,
-                  boxShadow: '0 10px 24px rgba(0,0,0,0.18)',
+                  boxShadow: "0 10px 24px rgba(0,0,0,0.18)",
                   borderRadius: 12,
-                  overflow: 'hidden',
+                  overflow: "hidden",
                   zIndex: offset.z,
-                  background: '#fff',
+                  background: "#fff",
                 }}
               >
-                <div style={{ width: '100%', paddingBottom: '80%', position: 'relative' }}>
+                <div
+                  style={{
+                    width: "100%",
+                    paddingBottom: "80%",
+                    position: "relative",
+                  }}
+                >
                   <img
                     src={imgSrc}
                     alt={s.priority}
-                    style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
+                    style={{
+                      position: "absolute",
+                      inset: 0,
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
                   />
                 </div>
-                <div style={{ padding: '8px 10px', textAlign: 'center' }}>
-                  <div style={{ fontWeight: 700, color: '#000D59' }}>{s.priority}</div>
-                  <div style={{ color: '#6b7280', fontSize: 14 }}>{Math.round(s.percentage)}% of budget</div>
+                <div style={{ padding: "8px 10px", textAlign: "center" }}>
+                  <div style={{ fontWeight: 700, color: "#000D59" }}>
+                    {s.priority}
+                  </div>
+                  <div style={{ color: "#6b7280", fontSize: 14 }}>
+                    {Math.round(s.percentage)}% of budget
+                  </div>
                 </div>
               </div>
             );
@@ -230,7 +270,17 @@ const Step3_Result = ({
       <div style={{ textAlign: "center", width: "100%", marginTop: 20 }}>
         <h2 style={{ marginBottom: 12 }}>คุณพอใจหรือไม่</h2>
 
-        <div className="figma-style1-button-container" style={{ width: "100%", maxWidth: 360, margin: "0 auto", display: "flex", flexDirection: "column", gap: 12 }}>
+        <div
+          className="figma-style1-button-container"
+          style={{
+            width: "100%",
+            maxWidth: 360,
+            margin: "0 auto",
+            display: "flex",
+            flexDirection: "column",
+            gap: 12,
+          }}
+        >
           <button
             onClick={handleYes}
             aria-pressed={selected === "yes"}

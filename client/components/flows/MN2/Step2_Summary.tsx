@@ -262,7 +262,10 @@ const Step2_Summary = ({
             คุณพอใจหรือไม่
           </h2>
 
-          <div className="figma-style1-button-container mt-6" style={{ maxWidth: 360, margin: "0 auto" }}>
+          <div
+            className="figma-style1-button-container mt-6"
+            style={{ maxWidth: 360, margin: "0 auto" }}
+          >
             <button
               onClick={handleEndGame}
               className="figma-style1-button"
