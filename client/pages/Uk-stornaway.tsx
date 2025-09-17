@@ -173,7 +173,8 @@ export default function UkStornaway() {
             if (!navigatedRef.current) {
               navigatedRef.current = true;
               setTimeout(() => {
-                navigateToPage("ask02", { from: "stornaway", choice: token });
+                // Navigate to Ask02_2 (ask02-2) flow instead of Ask02
+                navigateToPage("ask02_2", { from: "stornaway", choice: token });
               }, 50);
             }
             return;
