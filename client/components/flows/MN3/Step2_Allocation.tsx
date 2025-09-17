@@ -119,7 +119,7 @@ const Step2_Allocation = ({
 
   return (
     <FigmaStyle1Layout
-      backgroundImage={"https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Ffff5dfe72bcf4d2988f941ea38264b0c?format=webp&width=800"}
+      backgroundImage={"https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fca1fd3675fcf47bebc3fca6ad2e96d03?format=webp&width=800"}
       useBlueOverlay={false}
       className="mn3-step2-page mn3-step2-minimal"
       imageLoading="eager"
