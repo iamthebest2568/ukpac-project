@@ -50,7 +50,7 @@ const Step1_Beneficiaries = ({
     },
     {
       id: "elderly",
-      label: "ผู��สูง��า���ุ",
+      label: "ผู้สูงอายุ",
       iconSrc:
         "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fbfdfb91726974106938b417fb182beaa?format=webp&width=100",
     },
