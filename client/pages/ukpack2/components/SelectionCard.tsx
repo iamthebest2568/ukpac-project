@@ -8,6 +8,7 @@ interface SelectionCardProps {
   variant?: "dark" | "light";
   hideLabel?: boolean;
   appearance?: "card" | "bare" | "group";
+  size?: "sm" | "md" | "lg";
 }
 
 const SelectionCard: React.FC<SelectionCardProps> = ({
@@ -18,6 +19,7 @@ const SelectionCard: React.FC<SelectionCardProps> = ({
   variant = "dark",
   hideLabel = false,
   appearance = "card",
+  size = "md",
 }) => {
   const isLight = variant === "light";
   const base =
@@ -52,6 +54,10 @@ const SelectionCard: React.FC<SelectionCardProps> = ({
     );
   }
 
+  // size adjustments
+  const iconContainerClass = appearance === "bare" ? "mb-0" : size === "lg" ? "h-20 mb-2" : size === "sm" ? "h-8 mb-2" : "h-12 mb-2";
+  const labelClass = size === "lg" ? "px-2 text-sm md:text-base" : size === "sm" ? "px-2 text-xs md:text-sm" : "px-2 text-xs md:text-sm";
+
   return (
     <button
       type="button"
@@ -60,12 +66,12 @@ const SelectionCard: React.FC<SelectionCardProps> = ({
       aria-pressed={isSelected}
     >
       <div
-        className={`${appearance === "bare" ? "mb-0" : "h-12 mb-2"} flex items-center justify-center ${isLight ? "text-[#003366]" : "text-white"} transition-transform`}
+        className={`${iconContainerClass} flex items-center justify-center ${isLight ? "text-[#003366]" : "text-white"} transition-transform`}
       >
         {icon}
       </div>
       {!hideLabel && (
-        <div className="px-2 text-xs md:text-sm font-sarabun text-center leading-tight break-words whitespace-normal max-w-full selection-label-mobile">
+        <div className={`${labelClass} font-sarabun text-center leading-tight break-words whitespace-normal max-w-full selection-label-mobile`}>
           {label}
         </div>
       )}
