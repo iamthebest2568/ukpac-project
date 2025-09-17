@@ -6,7 +6,7 @@ interface Props {
   imageSrc?: string | null;
   label?: string | React.ReactNode;
   overlayLabels?: string[];
-  overlayIconMap?: Record<string, string>;
+  overlayIconMap?: Record<string, string | React.ReactNode>;
   placeholderText?: string;
 }
 
