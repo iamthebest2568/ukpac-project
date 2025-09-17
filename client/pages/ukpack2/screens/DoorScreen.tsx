@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CustomizationScreen from "../components/CustomizationScreen";
 import SelectionCard from "../components/SelectionCard";
-import HeroWithShadow from "../components/HeroWithShadow";
+import VehiclePreview from "../components/VehiclePreview";
 import CtaButton from "../components/CtaButton";
 import StepTabs from "../components/StepTabs";
 
@@ -187,7 +187,7 @@ const DoorScreen: React.FC = () => {
 
   return (
     <CustomizationScreen
-      title="ปรับแต่งรถเมล์ของคุณ"
+      title="ปร���บแต่งรถเมล์ของคุณ"
       theme="light"
       footerContent={
         <div className="flex justify-center">
