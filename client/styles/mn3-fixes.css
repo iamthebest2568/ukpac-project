@@ -156,3 +156,44 @@
   outline: none !important;
   box-shadow: none !important;
 }
+
+/* MN3 step2 minimal: hide decorative backgrounds/overlays and ensure content visible */
+.figma-style1-container.mn3-step2-minimal .figma-style1-background-image,
+.figma-style1-container.mn3-step2-minimal .figma-style1-background-overlay,
+.figma-style1-container.mn3-step2-minimal .figma-style1-wave-overlay,
+.figma-style1-container.mn3-step2-minimal::before,
+.figma-style1-container.mn3-step2-minimal .figma-style1-background::before {
+  display: none !important;
+  background: transparent !important;
+  content: none !important;
+}
+
+.figma-style1-container.mn3-step2-minimal .figma-style1-background {
+  background-image: none !important;
+  background-color: transparent !important;
+}
+
+.figma-style1-container.mn3-step2-minimal .figma-style1-content,
+.figma-style1-container.mn3-step2-minimal .figma-style1-main,
+.figma-style1-container.mn3-step2-minimal .figma-style1-content-area {
+  overflow: visible !important;
+  max-height: none !important;
+  background: transparent !important;
+}
+
+.figma-style1-container.mn3-step2-minimal .mn3-allocation-content,
+.figma-style1-container.mn3-step2-minimal .mn3-allocation-list,
+.figma-style1-container.mn3-step2-minimal .mn3-allocation-item {
+  position: relative !important;
+  z-index: 1000 !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Ensure continue button is visible and clickable */
+.figma-style1-container.mn3-step2-minimal .mn3-continue-button {
+  position: relative !important;
+  z-index: 1001 !important;
+  pointer-events: auto !important;
+}
