@@ -45,10 +45,8 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
       </div>
       {footerContent ? (
         <div className="fixed bottom-4 sm:bottom-10 left-0 right-0 z-50">
-          <div className="bg-[#00d5f9] w-full py-3">
-            <div
-              className="max-w-4xl mx-auto w-full px-4 sm:px-6"
-            >
+          <div className="bg-[#00d5f9] w-full" style={{ height: "calc(64px + env(safe-area-inset-bottom, 0px))" }}>
+            <div className="max-w-4xl mx-auto w-full px-4 sm:px-6" style={{ height: '64px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <div className="w-full flex items-center justify-center">
                 {footerContent}
               </div>
