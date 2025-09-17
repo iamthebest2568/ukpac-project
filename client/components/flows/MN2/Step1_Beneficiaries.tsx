@@ -50,7 +50,7 @@ const Step1_Beneficiaries = ({
     },
     {
       id: "elderly",
-      label: "ผู��สูงอายุ",
+      label: "ผู้สูงอายุ",
       iconSrc:
         "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F87b74452a09049c98ad12ee790ce5df3?format=webp&width=100",
     },
@@ -177,8 +177,8 @@ const Step1_Beneficiaries = ({
                 }}
               >
                 <div
-                  className={`w-[68px] h-[68px] rounded-full flex items-center justify-center mb-2 transition-all duration-200 ${
-                    isSelected ? "bg-[#EFBA31]" : isDisabled ? "bg-gray-300" : "bg-transparent border-2 border-gray-300"
+                className={`w-[68px] h-[68px] rounded-full flex items-center justify-center mb-2 transition-all duration-200 ${
+                    isSelected ? "bg-[#EFBA31]" : isDisabled ? "bg-gray-300" : "bg-transparent"
                   }`}
                 >
                   <img src={group.iconSrc} alt={group.label} className="w-[43px] h-[43px] object-contain" style={{ filter: isSelected ? "brightness(0)" : "none" }} />
