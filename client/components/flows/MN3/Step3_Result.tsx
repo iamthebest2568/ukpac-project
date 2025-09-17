@@ -163,8 +163,8 @@ const Step3_Result = ({
     proceedAfterSelect("/ukpack1/ask05", data);
   };
 
-  // Use empty backgroundImage to avoid decorative background while keeping layout structure
-  const backgroundImage = "";
+  // Use provided background image for MN3 final step
+  const backgroundImage = "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Ffad6c306ff6d4b21802e5245972126b1?format=webp&width=1500";
 
   return (
     <FigmaStyle1Layout
