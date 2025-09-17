@@ -204,7 +204,11 @@ const FigmaStyle1Layout = ({
                         aria-describedby={`button-description-${index}`}
                       >
                         <span className="figma-style1-button-text">
-                          {button.text}
+                          {typeof button.text === 'string' && button.text.trim() === 'อื่นๆ' ? (
+                            <p style={{ margin: 0 }}>อื่น ๆ</p>
+                          ) : (
+                            button.text
+                          )}
                         </span>
                       </button>
                       {button.ariaLabel && (
