@@ -217,17 +217,6 @@ const Step1_Beneficiaries = ({
         </div>
       </div>
 
-      {/* Selection Summary */}
-      <div className="text-center mb-6">
-        <p className="text-white font-prompt text-sm">เลือกแล้ว: {selectedGroups.length} จาก {maxSelections} กลุ่ม</p>
-        {selectedGroups.length > 0 && (
-          <p className="text-[#EFBA31] font-prompt text-xs mt-1">
-            {selectedGroups
-              .map((id) => beneficiaryGroups.find((g) => g.id === id)?.label)
-              .join(", ")}
-          </p>
-        )}
-      </div>
 
       {/* Submit Button */}
       <div className="w-full max-w-[325px]">
