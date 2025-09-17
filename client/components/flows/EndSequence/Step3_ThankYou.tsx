@@ -47,7 +47,7 @@ const Step3_ThankYou = ({
   };
 
   const shareText = encodeURIComponent(
-    "ร่วมเล่นเกมนี้เ���ื่อพัฒนาเมืองและมีสิทธิ์ลุ้นรับรางวัล!",
+    "ร่วมเล่นเกมนี้เพื่อพัฒนาเมืองและมีสิทธิ์ลุ้นรับรางวัล!",
   );
   const shareUrl = encodeURIComponent(getShareUrl());
 
