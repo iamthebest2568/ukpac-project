@@ -9,12 +9,12 @@ import { clearDesignStorage } from "../../ukpack2/utils/clearDesign";
 import VehiclePreview from "../components/VehiclePreview";
 
 const AMENITIES_ICON_SMALL = {
-  แ��ร์: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fee1c18a935564e92bb49991fac3b76df?format=webp&width=800",
+  แอร์: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fee1c18a935564e92bb49991fac3b76df?format=webp&width=800",
   พัดลม:
     "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe01792ee89e240808ed47d8576b55d71?format=webp&width=800",
   ที่นั่งพิเศษ:
     "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F93439b2533284cdf914fc93cafa1cf26?format=webp&width=800",
-  "ที��จับ/ราวยืนที่ปลอดภัย":
+  "ที่จับ/ราวยืนที่ปลอดภัย":
     "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb0789bfd1100472f8351704764607d31?format=webp&width=800",
 };
 const PAYMENT_ICON_SMALL: Record<string, string> = {
@@ -22,7 +22,7 @@ const PAYMENT_ICON_SMALL: Record<string, string> = {
     "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fbc8b22cedfbb4640a702f724881f196d?format=webp&width=800",
   สแกนจ่าย:
     "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb8992da4be824b339d3df5f0a076ed93?format=webp&width=800",
-  "สแกนจ่���ย 2":
+  "สแกนจ่าย 2":
     "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F56620e798eb94153b2390271f30d0dae?format=webp&width=800",
   แตะบัตร:
     "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fdb2e47a586b841d1af014e9196f3c411?format=webp&width=800",
@@ -79,8 +79,8 @@ const IconExtra = () => (
 const OPTIONS = [
   {
     key: "small",
-    label: "รถเมล์ขนาดเ��็ก 16-30 ที่นั่ง",
-    labelText: "รถ���มล์ขนาดเล็ก 16-30 ที่นั่ง",
+    label: "รถเมล์ขนาดเล็ก 16-30 ที่นั่ง",
+    labelText: "รถเมล์ขนาดเล็ก 16-30 ที่นั่ง",
     icon: <IconSmall />,
   },
   {
@@ -103,7 +103,7 @@ const OPTIONS = [
   },
   {
     key: "extra",
-    label: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
+    label: "รถกะบะดัดแป��ง 8–12 ที่นั่ง",
     labelText: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
     icon: <IconExtra />,
   },
@@ -196,7 +196,7 @@ const ChassisScreen: React.FC = () => {
         theme="light"
         footerContent={
           <div className="flex justify-center">
-            <CtaButton text="ถัดไ��" onClick={handleNext} />
+            <CtaButton text="ถัดไป" onClick={handleNext} />
           </div>
         }
       >
@@ -210,7 +210,7 @@ const ChassisScreen: React.FC = () => {
               {/* shadow only */}
               <img
                 src={HERO_SHADOW}
-                alt="เงาร���"
+                alt="เงารถ"
                 className="absolute w-[60%] max-w-[320px] pointer-events-none select-none" style={{ bottom: '8px' }}
                 decoding="async"
                 loading="eager"
