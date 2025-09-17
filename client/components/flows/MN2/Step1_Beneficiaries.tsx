@@ -40,37 +40,37 @@ const Step1_Beneficiaries = ({
       id: "everyone",
       label: "ทุกคน",
       iconSrc:
-        "https://api.builder.io/api/v1/image/assets/TEMP/1a7aa898479a915b1d4d0ef1156c80bf95c372af?width=100",
+        "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F678f337e0a394ffb8609633861f0f9de?format=webp&width=100",
     },
     {
       id: "locals",
       label: "คนในพื้นที่",
       iconSrc:
-        "https://api.builder.io/api/v1/image/assets/TEMP/1e470dd8f9f7ac27485f56fba45554979acb2509?width=100",
+        "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F75dae77cabc141689710422f296e6840?format=webp&width=100",
     },
     {
       id: "elderly",
       label: "ผู้สูงอายุ",
       iconSrc:
-        "https://api.builder.io/api/v1/image/assets/TEMP/1b0a18f821ff070a939691646da69e792c28ce55?width=100",
+        "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F87b74452a09049c98ad12ee790ce5df3?format=webp&width=100",
     },
     {
       id: "students",
       label: "นักเรียนนักศึกษา",
       iconSrc:
-        "https://api.builder.io/api/v1/image/assets/TEMP/054c6038c235112715becc476723cafe8d55d68f?width=74",
+        "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fbb5f14f791d7491184a2c2f0f5f44c34?format=webp&width=100",
     },
     {
       id: "disabled",
       label: "คนพิการ",
       iconSrc:
-        "https://api.builder.io/api/v1/image/assets/TEMP/9633f8bb6d0c953adb33a0769227522a310bb01f?width=88",
+        "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe7622c6277264a06b3b7f875af1a342a?format=webp&width=100",
     },
     {
       id: "other",
       label: "อื่นๆ",
       iconSrc:
-        "https://api.builder.io/api/v1/image/assets/TEMP/5a8e81b8e50e6e0ed69f435d1c09e3de070df984?width=82",
+        "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F14d951d6f7a640668ef405accb5cb6d5?format=webp&width=100",
     },
   ];
 
