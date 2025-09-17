@@ -31,7 +31,7 @@ export default function WhatDoYouTravelByPage() {
       <div className="wdytb-content">
         <div className="w-full max-w-[890px] mx-auto">
           <div
-            className="wdytb-textarea-box relative w-full rounded-[20px] border-[5px] border-[#000D59] bg-white"
+            className="wdytb-textarea-box relative w-full rounded-[20px] border-2 border-[#000D59] bg-white"
             style={{
               minHeight: "clamp(320px, 35vh, 560px)",
               padding: "clamp(20px, 4vw, 32px)",
