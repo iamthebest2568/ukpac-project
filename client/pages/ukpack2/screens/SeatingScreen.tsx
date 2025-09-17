@@ -315,7 +315,7 @@ const SeatingScreen: React.FC = () => {
 
               <div className="flex items-center justify-between">
                 <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">
-                  เด็��� / ผู้สูงอายุ
+                  เด็ก / ผู้สูงอายุ
                 </div>
                 <input
                   type="number"
