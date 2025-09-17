@@ -186,15 +186,6 @@ const Step2_Allocation = ({
             ))}
           </div>
 
-          <div className="text-center font-prompt mt-2" style={{
-            color: "#000D59",
-            fontSize: "clamp(14px, 3vw, 18px)",
-            fontWeight: 500,
-            marginTop: "32px",
-          }}>
-            กรุณาจัดสรรงบประมาณให้ครบ {totalBudget} หน่วยเพื่อดำเนินการต่อ
-          </div>
-
         </div>
 
         {/* Continue Button */}
@@ -210,6 +201,16 @@ const Step2_Allocation = ({
         >
           <span className="figma-style1-button-text">ไปต่อ</span>
         </button>
+      </div>
+    </div>
+
+    <div className="w-full px-4 mt-2">
+      <div className="text-center font-prompt" style={{
+        color: "#000D59",
+        fontSize: "clamp(14px, 3vw, 18px)",
+        fontWeight: 500,
+      }}>
+        กรุณาจัดสรรงบประมาณให้ครบ {totalBudget} หน่วยเพื่อดำเนินการต่อ
       </div>
     </div>
       </div>
