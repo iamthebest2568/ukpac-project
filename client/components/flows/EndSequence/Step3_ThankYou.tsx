@@ -98,7 +98,7 @@ const Step3_ThankYou = ({
 
   return (
     <FigmaStyle1Layout
-      backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F3e5cf66ab817488c81987423db4dfc0d?format=webp&width=800"
+      backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fa142e56a252746dbbac7b784e4e2e204?format=webp&width=800"
       backgroundAlt="ขอบคุณสำหรับการมีส่วนร่วม"
       className="source-selection-page endseq-thankyou-page fake-news-page"
       imageLoading="eager"
