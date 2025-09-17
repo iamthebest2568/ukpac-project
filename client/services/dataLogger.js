@@ -143,7 +143,7 @@ export function clearEventLogs() {
   try {
     sessionStorage.removeItem("ukPackSessionID");
   } catch (_) {}
-  // Event logs cleared (debug log suppressed)
+  console.log('🗑️ Event logs cleared');
 }
 
 /**
