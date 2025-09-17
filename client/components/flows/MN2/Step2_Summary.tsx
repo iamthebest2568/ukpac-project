@@ -65,7 +65,7 @@ const Step2_Summary = ({
 
   useEffect(() => {
     // Extract priorities from journey data
-    const prioritiesData: string[] =
+    let prioritiesData: string[] =
       journeyData?.priorities?.selectedPriorities ||
       journeyData?.mn1?.priorities?.selectedPriorities ||
       [];
@@ -78,6 +78,11 @@ const Step2_Summary = ({
       journeyData?.beneficiaries?.selections ||
       journeyData?.mn2?.beneficiaries?.selections ||
       [];
+
+    // If priorities missing, derive from beneficiaries selections order
+    if (!prioritiesData || prioritiesData.length === 0) {
+      prioritiesData = (beneficiariesSelections || []).map((s: any) => s.priority);
+    }
 
     // Build lookup map
     const lookup: Record<string, string[]> = {};
@@ -138,7 +143,7 @@ const Step2_Summary = ({
               lineHeight: "normal",
             }}
           >
-            นโยบายที่คุณเสนอ
+            นโยบาย���ี่คุณเสนอ
           </h1>
         </div>
 
