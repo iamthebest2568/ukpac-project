@@ -70,7 +70,7 @@ const Step1_Beneficiaries = ({
       id: "other",
       label: "อื่นๆ",
       iconSrc:
-        "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F11dc2218b328411c8cf995f911ba9055",
+        "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F4d62f4ab8d05481a8a0c67a1f1015cbd?format=webp&width=100",
     },
   ];
 
