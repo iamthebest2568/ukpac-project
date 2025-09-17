@@ -21,6 +21,7 @@ const SelectionCard: React.FC<SelectionCardProps> = ({
   hideLabel = false,
   appearance = "card",
   size = "md",
+  layout = "vertical",
 }) => {
   const isLight = variant === "light";
   const base =
