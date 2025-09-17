@@ -190,21 +190,20 @@ const Step2_Allocation = ({
 
         {/* Continue Button */}
 
-    <div className="w-full px-4" style={{ marginTop: '80px', marginBottom: '12px' }}>
-      <div className="text-center font-prompt" style={{
-        color: "#000D59",
-        fontSize: "clamp(14px, 3vw, 18px)",
-        fontWeight: 500,
-      }}>
-        กรุณาจัดสรรงบประมาณให้ครบ {totalBudget} หน่วยเพื่อดำเนินการต่อ
-      </div>
-    </div>
-
-    <div className="w-full px-4 flex justify-center" style={{ marginTop:  '88px' }}>
+    <div className="w-full px-4 flex justify-center" style={{ marginTop: '24px' }}>
       <div
-        className="mx-auto flex flex-col items-center space-y-2"
+        className="mx-auto flex flex-col items-center"
         style={{ width: "100%", maxWidth: 980 }}
       >
+        <div className="text-center font-prompt" style={{
+          color: "#000D59",
+          fontSize: "clamp(14px, 3vw, 18px)",
+          fontWeight: 500,
+          marginBottom: "8px",
+        }}>
+          กรุณาจัดสรรงบประมาณให้ครบ {totalBudget} หน่วยเพื่อดำเนินการต่อ
+        </div>
+
         <button
           onClick={handleNext}
           className="figma-style1-button"
