@@ -151,6 +151,48 @@
   box-shadow: none !important;
 }
 
+/* ---------- MN3 Step2: force remove background and overlays ---------- */
+.figma-style1-container.mn3-step2-page .figma-style1-background,
+.figma-style1-container.mn3-step2-page .figma-style1-background-image,
+.figma-style1-container.mn3-step2-page .figma-style1-background-overlay,
+.figma-style1-container.mn3-step2-page .figma-style1-wave-overlay,
+.figma-style1-container.mn3-step2-page::before {
+  display: none !important;
+  background: transparent !important;
+  background-image: none !important;
+  content: none !important;
+}
+
+.figma-style1-container.mn3-step2-page,
+.figma-style1-container.mn3-step2-page .figma-style1-content,
+.figma-style1-container.mn3-step2-page .figma-style1-main,
+.figma-style1-container.mn3-step2-page .figma-style1-content-area {
+  background: transparent !important;
+  background-color: transparent !important;
+  overflow: visible !important;
+}
+
+/* Also apply same rules for mn3-step2-minimal class */
+.figma-style1-container.mn3-step2-minimal .figma-style1-background,
+.figma-style1-container.mn3-step2-minimal .figma-style1-background-image,
+.figma-style1-container.mn3-step2-minimal .figma-style1-background-overlay,
+.figma-style1-container.mn3-step2-minimal .figma-style1-wave-overlay,
+.figma-style1-container.mn3-step2-minimal::before {
+  display: none !important;
+  background: transparent !important;
+  background-image: none !important;
+  content: none !important;
+}
+
+.figma-style1-container.mn3-step2-minimal,
+.figma-style1-container.mn3-step2-minimal .figma-style1-content,
+.figma-style1-container.mn3-step2-minimal .figma-style1-main,
+.figma-style1-container.mn3-step2-minimal .figma-style1-content-area {
+  background: transparent !important;
+  background-color: transparent !important;
+  overflow: visible !important;
+}
+
 .figma-style1-container.mn2-step1-page [role="checkbox"]:focus,
 .figma-style1-container.mn2-step1-page [role="checkbox"]:focus-visible {
   outline: none !important;
