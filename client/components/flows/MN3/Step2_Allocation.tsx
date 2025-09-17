@@ -118,8 +118,8 @@ const Step2_Allocation = ({
 
   return (
     <FigmaStyle1Layout
-      backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F034d6a2e306d4367882448000484d30b?format=webp&width=800"
-      className="mn3-step2-page"
+      backgroundImage={""} /* disable decorative background while debugging */
+      className="mn3-step2-page mn3-step2-minimal"
       imageLoading="eager"
     >
       <div className="mn3-allocation-content" style={{ paddingTop: "clamp(40px, 8vh, 120px)" }}>
@@ -132,7 +132,7 @@ const Step2_Allocation = ({
               className="mn3-budget-icon"
             />
             <div className="mn3-budget-text">
-              <div className="mn3-budget-label">งบทั้งหมด</div>
+              <div className="mn3-budget-label">ง���ทั้งหมด</div>
               <div className="mn3-budget-amount">100</div>
             </div>
           </div>
@@ -235,7 +235,7 @@ const Step2_Allocation = ({
                 color: !isComplete ? "#666" : "#000",
                 opacity: !isComplete ? 0.6 : 1,
               }}
-              aria-label="ดำเนินการต่อไปยังขั้นตอนถัดไป"
+              aria-label="ด���เนินการต่อไปยังขั้นตอนถัดไป"
             >
               ไปต่อ
             </button>
