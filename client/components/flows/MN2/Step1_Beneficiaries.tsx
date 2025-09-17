@@ -70,7 +70,7 @@ const Step1_Beneficiaries = ({
       id: "other",
       label: "อื่นๆ",
       iconSrc:
-        "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F14d951d6f7a640668ef405accb5cb6d5?format=webp&width=100",
+        "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F11dc2218b328411c8cf995f911ba9055",
     },
   ];
 
@@ -177,9 +177,7 @@ const Step1_Beneficiaries = ({
                 }}
               >
                   <img src={group.iconSrc} alt={group.label} className="w-[68px] h-[68px] mb-2 object-contain" style={{ filter: isSelected ? "brightness(0)" : "none" }} />
-                <span className={`font-prompt text-lg font-medium text-center transition-all duration-200 ${isSelected ? "text-black" : "text-[#000D59]"}`}>
-                  {group.label}
-                </span>
+
               </div>
             );
           })}
@@ -208,9 +206,7 @@ const Step1_Beneficiaries = ({
                 }}
               >
                   <img src={group.iconSrc} alt={group.label} className="w-[68px] h-[68px] mb-2 object-contain" style={{ filter: isSelected ? "brightness(0)" : "none" }} />
-                <span className={`font-prompt text-lg font-medium text-center transition-all duration-200 ${isSelected ? "text-black" : "text-[#000D59]"}`}>
-                  {group.label}
-                </span>
+
               </div>
             );
           })}
