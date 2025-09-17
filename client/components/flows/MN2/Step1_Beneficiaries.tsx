@@ -230,9 +230,6 @@ const Step1_Beneficiaries = ({
           </span>
         </button>
 
-        {selectedGroups.length === 0 && (
-          <div id="next-button-description" className="text-center text-white text-sm mt-2">กรุณาเลือกอย่างน้อย 1 กลุ่มเพื่อดำเนินการต่อ</div>
-        )}
       </div>
     </FigmaStyle1Layout>
   );
