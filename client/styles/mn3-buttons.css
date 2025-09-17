@@ -296,6 +296,24 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+/* Fixed positioning for allocation page continue button */
+.mn3-allocation-content .mn3-continue-button {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: calc(env(safe-area-inset-bottom, 16px) + 12px);
+  width: calc(100% - 32px);
+  max-width: 980px;
+  z-index: 100000;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+@media (min-width: 1024px) {
+  .mn3-allocation-content .mn3-continue-button {
+    width: min(420px, 86vw);
+  }
+}
+
 /* Background image for MN3 page - full viewport wallpaper via fixed pseudo-element */
 .mn3-page-bg {
   position: relative;
