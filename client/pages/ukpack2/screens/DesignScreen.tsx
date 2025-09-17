@@ -36,7 +36,7 @@ const IconSeat = () => (
 const IconWifi = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb0789bfd1100472f8351704764607d31?format=webp&width=800"
-    alt="ที่จับ/ราวยืน"
+    alt="ที่จับ/��าวยืน"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -245,225 +245,69 @@ const DesignScreen: React.FC = () => {
             const img = HERO_IMAGE[selected];
             return img ? (
               <>
-                <HeroWithShadow>
-                  <div className="relative">
-                    {/* color tint overlay + selected amenities/payments */}
-                    {(() => {
-                      const amenities = (() => {
-                        try {
-                          const raw =
-                            sessionStorage.getItem("design.amenities");
-                          return raw ? (JSON.parse(raw) as string[]) : [];
-                        } catch {
-                          return [] as string[];
-                        }
-                      })();
-                      const payments = (() => {
-                        try {
-                          const raw = sessionStorage.getItem("design.payment");
-                          return raw ? (JSON.parse(raw) as string[]) : [];
-                        } catch {
-                          return [] as string[];
-                        }
-                      })();
-                      const doorsRaw = (() => {
-                        try {
-                          const raw = sessionStorage.getItem("design.doors");
-                          return raw
-                            ? (JSON.parse(raw) as any)
-                            : raw
-                              ? String(raw)
-                              : null;
-                        } catch {
-                          return sessionStorage.getItem("design.doors");
-                        }
-                      })();
-                      const overlayLabels: string[] = [
-                        ...(amenities || []),
-                        ...(payments || []),
-                      ];
-                      if (doorsRaw)
-                        overlayLabels.push(
-                          typeof doorsRaw === "string"
-                            ? doorsRaw
-                            : doorsRaw.doorChoice ||
-                                (doorsRaw.hasRamp
-                                  ? "ramp"
-                                  : doorsRaw.highLow
-                                    ? "emergency"
-                                    : ""),
-                        );
-
-                      return (
-                        <>
-                          {/* small icons row */}
-                          {overlayLabels.length > 0 && (
-                            <div className="absolute left-1/2 transform -translate-x-1/2 -top-4 flex flex-wrap justify-center gap-2 z-20 max-w-[80%]">
-                              {overlayLabels.map((lab, i) => {
-                                if (AMENITIES_ICON_MAP[lab])
-                                  return (
-                                    <div
-                                      key={`${lab}-${i}`}
-                                      className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
-                                    >
-                                      {AMENITIES_ICON_MAP[lab]}
-                                    </div>
-                                  );
-                                if (lab === "เงินสด")
-                                  return (
-                                    <div
-                                      key={lab + i}
-                                      className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
-                                    >
-                                      <img
-                                        src={MONEY_ICON}
-                                        alt={lab}
-                                        className="h-6 w-6 md:h-7 md:w-7 object-contain"
-                                      />
-                                    </div>
-                                  );
-                                if (lab === "สแกนจ่าย")
-                                  return (
-                                    <div
-                                      key={lab + i}
-                                      className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
-                                    >
-                                      <img
-                                        src={SCAN_ICON}
-                                        alt={lab}
-                                        className="h-6 w-6 md:h-7 md:w-7 object-contain"
-                                      />
-                                    </div>
-                                  );
-                                if (lab === "สแกนจ่าย 2")
-                                  return (
-                                    <div
-                                      key={lab + i}
-                                      className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
-                                    >
-                                      <img
-                                        src={SCAN2_ICON}
-                                        alt={lab}
-                                        className="h-6 w-6 md:h-7 md:w-7 object-contain"
-                                      />
-                                    </div>
-                                  );
-                                if (lab === "แตะบัตร")
-                                  return (
-                                    <div
-                                      key={lab + i}
-                                      className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
-                                    >
-                                      <img
-                                        src={TOUCH_ICON}
-                                        alt={lab}
-                                        className="h-6 w-6 md:h-7 md:w-7 object-contain"
-                                      />
-                                    </div>
-                                  );
-                                if (lab === "กระเป๋ารถเมล์")
-                                  return (
-                                    <div
-                                      key={lab + i}
-                                      className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
-                                    >
-                                      <img
-                                        src={BUS_EMPLOY_ICON}
-                                        alt={lab}
-                                        className="h-6 w-6 md:h-7 md:w-7 object-contain"
-                                      />
-                                    </div>
-                                  );
-                                if (lab === "ตั๋วรายเดือน/รอบ")
-                                  return (
-                                    <div
-                                      key={lab + i}
-                                      className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
-                                    >
-                                      <img
-                                        src={MONTHLY_ICON}
-                                        alt={lab}
-                                        className="h-6 w-6 md:h-7 md:w-7 object-contain"
-                                      />
-                                    </div>
-                                  );
-                                if (lab === "1")
-                                  return (
-                                    <div
-                                      key={lab + i}
-                                      className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
-                                    >
-                                      <img
-                                        src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9811f9bca05c43feae9eafdcbab3c8d9?format=webp&width=800"
-                                        alt="1 ประตู"
-                                        className="h-6 w-6 md:h-7 md:w-7 object-contain"
-                                      />
-                                    </div>
-                                  );
-                                if (lab === "2")
-                                  return (
-                                    <div
-                                      key={lab + i}
-                                      className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
-                                    >
-                                      <img
-                                        src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8f9b21942af243b3b80b0e5ac8b12631?format=webp&width=800"
-                                        alt="2 ประตู"
-                                        className="h-6 w-6 md:h-7 md:w-7 object-contain"
-                                      />
-                                    </div>
-                                  );
-                                if (lab === "ramp")
-                                  return (
-                                    <div
-                                      key={lab + i}
-                                      className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
-                                    >
-                                      <img
-                                        src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fece2b6fc843340f0997f2fd7d3ca0aea?format=webp&width=800"
-                                        alt="ทางลาด"
-                                        className="h-6 w-6 md:h-7 md:w-7 object-contain"
-                                      />
-                                    </div>
-                                  );
-                                if (lab === "emergency")
-                                  return (
-                                    <div
-                                      key={lab + i}
-                                      className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
-                                    >
-                                      <img
-                                        src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F98de0624be3d4ae6b96d83edcf8891f9?format=webp&width=800"
-                                        alt="ประตูฉุกเฉิน"
-                                        className="h-6 w-6 md:h-7 md:w-7 object-contain"
-                                      />
-                                    </div>
-                                  );
-                                return (
-                                  <div
-                                    key={lab + i}
-                                    className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10 text-xs"
-                                  >
-                                    ?
-                                  </div>
-                                );
-                              })}
-                            </div>
-                          )}
-                        </>
+                <VehiclePreview
+                  imageSrc={img}
+                  label={`รถที่ใช้งาน : ${label}`}
+                  overlayLabels={(() => {
+                    const amenities = (() => {
+                      try {
+                        const raw = sessionStorage.getItem("design.amenities");
+                        return raw ? (JSON.parse(raw) as string[]) : [];
+                      } catch {
+                        return [] as string[];
+                      }
+                    })();
+                    const payments = (() => {
+                      try {
+                        const raw = sessionStorage.getItem("design.payment");
+                        return raw ? (JSON.parse(raw) as string[]) : [];
+                      } catch {
+                        return [] as string[];
+                      }
+                    })();
+                    const doorsRaw = (() => {
+                      try {
+                        const raw = sessionStorage.getItem("design.doors");
+                        return raw
+                          ? (JSON.parse(raw) as any)
+                          : raw
+                            ? String(raw)
+                            : null;
+                      } catch {
+                        return sessionStorage.getItem("design.doors");
+                      }
+                    })();
+                    const overlayLabels: string[] = [
+                      ...(amenities || []),
+                      ...(payments || []),
+                    ];
+                    if (doorsRaw)
+                      overlayLabels.push(
+                        typeof doorsRaw === "string"
+                          ? doorsRaw
+                          : doorsRaw.doorChoice ||
+                              (doorsRaw.hasRamp
+                                ? "ramp"
+                                : doorsRaw.highLow
+                                  ? "emergency"
+                                  : ""),
                       );
-                    })()}
-
-                    <img
-                      src={img}
-                      alt={`ภาพรถ - ${label}`}
-                      className="h-72 w-auto object-contain select-none relative z-10"
-                      style={{ filter: color?.filter || "none" }}
-                      decoding="async"
-                      loading="eager"
-                    />
-                  </div>
-                </HeroWithShadow>
+                    return overlayLabels;
+                  })()}
+                  overlayIconMap={{
+                    ...AMENITIES_ICON_MAP,
+                    เงินสด: <img src={MONEY_ICON} alt="เงินสด" className="h-5 w-5 object-contain" />,
+                    สแกนจ่าย: <img src={SCAN_ICON} alt="สแกนจ่าย" className="h-5 w-5 object-contain" />,
+                    "สแกนจ่าย 2": <img src={SCAN2_ICON} alt="สแกนจ่าย 2" className="h-5 w-5 object-contain" />,
+                    แตะบัตร: <img src={TOUCH_ICON} alt="แตะบัตร" className="h-5 w-5 object-contain" />,
+                    กระเป๋ารถเมล์: <img src={BUS_EMPLOY_ICON} alt="กระเป๋ารถเมล์" className="h-5 w-5 object-contain" />,
+                    "ตั๋วรายเดือน/รอบ": <img src={MONTHLY_ICON} alt="ตั๋วรายเดือน/รอบ" className="h-5 w-5 object-contain" />,
+                    "1": <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9811f9bca05c43feae9eafdcbab3c8d9?format=webp&width=800" alt="1 ประตู" className="h-5 w-5 object-contain" />,
+                    "2": <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8f9b21942af243b3b80b0e5ac8b12631?format=webp&width=800" alt="2 ประตู" className="h-5 w-5 object-contain" />,
+                    ramp: <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fece2b6fc843340f0997f2fd7d3ca0aea?format=webp&width=800" alt="ทางลาด" className="h-5 w-5 object-contain" />,
+                    emergency: <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F98de0624be3d4ae6b96d83edcf8891f9?format=webp&width=800" alt="ประตูฉุกเฉิน" className="h-5 w-5 object-contain" />,
+                  }}
+                />
                 <p className="mt-1 font-prompt font-semibold text-[#001a73] text-center">
                   รถที่ใช้งาน : {label}
                 </p>
