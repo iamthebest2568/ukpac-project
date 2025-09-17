@@ -533,8 +533,8 @@ const PaymentScreen: React.FC = () => {
 
             return img ? (
               <>
-                <HeroWithShadow>
-                  <div className="relative">
+                <HeroWithShadow containerClassName="relative w-[60%] max-w-[320px]" shadowClassName="absolute w-[60%] max-w-[320px] pointer-events-none select-none" >
+                  <div className="relative" style={{ height: '120px' }}>
                     {/* overlay */}
                     {overlayLabels.length > 0 && (
                       <div className="absolute left-1/2 -translate-x-1/2 -top-4 flex flex-nowrap items-center justify-center gap-2 z-20 w-[90%] px-2 overflow-x-auto">
@@ -547,7 +547,7 @@ const PaymentScreen: React.FC = () => {
                     <img
                       src={img}
                       alt={`ภาพรถ - ${label}`}
-                      className="h-48 w-auto object-contain select-none"
+                      className="h-full w-auto object-contain select-none"
                       decoding="async"
                       loading="eager"
                     />
