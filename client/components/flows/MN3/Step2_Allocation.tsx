@@ -119,7 +119,8 @@ const Step2_Allocation = ({
 
   return (
     <FigmaStyle1Layout
-      backgroundImage={""} /* disable decorative background while debugging */
+      backgroundImage={"https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Ffff5dfe72bcf4d2988f941ea38264b0c?format=webp&width=800"}
+      useBlueOverlay={false}
       className="mn3-step2-page mn3-step2-minimal"
       imageLoading="eager"
       title={"คุณจะให้งบประมาณแต่ละข้อเท่าไหร่"}
