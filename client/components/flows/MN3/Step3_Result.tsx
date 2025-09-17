@@ -136,7 +136,7 @@ const Step3_Result = ({
         budgetAllocation:
           journeyData?.budget_step2_allocation?.budgetAllocation || {},
         resultSummary,
-        satisfaction: "ไม่ใช่",
+        satisfaction: "ไม่ใ��่",
         sessionID,
       },
     });
@@ -177,31 +177,50 @@ const Step3_Result = ({
       backgroundImage={backgroundImage}
       className="mn3-step3-page figma-style1-ukpack1 fake-news-page"
       imageLoading="eager"
-      title={"จากงบประมาณของคุณ นี่คือสิ่งที่จะเกิดขึ้นในอนาคต"}
+      title={"จากงบประมาณของคุณ นี่ค���อสิ่งที่จะเกิดขึ้นในอนาคต"}
     >
       {/* Minimal content -- only elements required for flow and logic */}
       <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
         {/* Intentionally empty: removed decorative mockup image */}
       </div>
 
-      {/* Selected priorities visual summary */}
+      {/* Selected priorities visual summary - overlapping collage */}
       <div className="w-full px-4 mb-6">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-[980px] mx-auto">
-          {resultSummary.map((s, i) => (
-            <div key={s.priority} className="w-full rounded-lg border shadow-sm bg-white" style={{ overflow: "hidden" }}>
-              <div style={{ width: "100%", height: 0, paddingBottom: "80%", position: "relative", background: "#fff" }}>
-                <img
-                  src={priorityImageMap[s.priority] || "https://cdn.builder.io/api/v1/image/assets/TEMP/placeholder.png?width=720"}
-                  alt={s.priority}
-                  style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
-                />
+        <div className="max-w-[980px] mx-auto relative" style={{ height: 320 }}>
+          {resultSummary.map((s, i) => {
+            const imgSrc = priorityImageMap[s.priority] || "https://cdn.builder.io/api/v1/image/assets/TEMP/placeholder.png?width=720";
+            const offset = collageOffsets[i] || { left: `${10 + i * 20}%`, top: `${i * 6}%`, rotate: `${i * 3}deg`, z: i + 1, scale: 1 };
+            const width = resultSummary.length === 1 ? '64%' : resultSummary.length === 2 ? '52%' : '40%';
+            return (
+              <div
+                key={s.priority}
+                style={{
+                  position: 'absolute',
+                  left: offset.left,
+                  top: offset.top,
+                  transform: `translate(-50%, 0) rotate(${offset.rotate}) scale(${offset.scale})`,
+                  width,
+                  boxShadow: '0 6px 18px rgba(0,0,0,0.18)',
+                  borderRadius: 12,
+                  overflow: 'hidden',
+                  zIndex: offset.z,
+                  background: '#fff',
+                }}
+              >
+                <div style={{ width: '100%', paddingBottom: '80%', position: 'relative' }}>
+                  <img
+                    src={imgSrc}
+                    alt={s.priority}
+                    style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
+                  />
+                </div>
+                <div style={{ padding: '8px 10px', textAlign: 'center' }}>
+                  <div style={{ fontWeight: 700, color: '#000D59' }}>{s.priority}</div>
+                  <div style={{ color: '#6b7280', fontSize: 14 }}>{Math.round(s.percentage)}% of budget</div>
+                </div>
               </div>
-              <div style={{ padding: "10px", textAlign: "center" }}>
-                <div style={{ fontWeight: 700, color: "#000D59" }}>{s.priority}</div>
-                <div style={{ color: "#6b7280", fontSize: 14 }}>{Math.round(s.percentage)}% of budget</div>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 
