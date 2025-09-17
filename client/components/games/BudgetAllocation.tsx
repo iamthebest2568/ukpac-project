@@ -403,7 +403,7 @@ const BudgetAllocationComponent = ({
                   fontSize: "clamp(14px, 2.8vw, 18px)",
                 }}
               >
-                กรุณาจัดสรรงบประมาณให้ครบ {totalBudget} บาทเพื���อดำเนินการต่อ
+                กรุณาจัดสรรงบประมาณให้ครบ {totalBudget} บาทเพื่อดำเนินการต่อ
               </div>
             )}
           </div>
