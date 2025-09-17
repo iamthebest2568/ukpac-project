@@ -296,23 +296,6 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Fixed positioning for allocation page continue button */
-.mn3-allocation-content .mn3-continue-button {
-  position: fixed;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: calc(env(safe-area-inset-bottom, 16px) + 12px);
-  width: min(420px, 86vw);
-  max-width: 980px;
-  z-index: 100000;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-}
-
-@media (min-width: 1024px) {
-  .mn3-allocation-content .mn3-continue-button {
-    width: min(420px, 86vw);
-  }
-}
 
 /* Background image for MN3 page - full viewport wallpaper via fixed pseudo-element */
 .mn3-page-bg {
@@ -423,8 +406,6 @@
   width: 100%;
   max-width: 980px; /* constrain to same width used for other mn3 content */
   box-sizing: border-box;
-  /* Add bottom padding so fixed continue button doesn't overlap content */
-  padding-bottom: clamp(120px, 16vh, 220px);
 }
 
 /* Budget display box matching Figma */
