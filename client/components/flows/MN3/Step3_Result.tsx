@@ -171,11 +171,32 @@ const Step3_Result = ({
       backgroundImage={backgroundImage}
       className="mn3-step3-page figma-style1-ukpack1 fake-news-page"
       imageLoading="eager"
-      title={"จากงบประมาณของคุณ นี่คือสิ่งที่จะเกิดขึ้นในอนาคต"}
+      title={"จากงบประมาณของคุณ นี่คือสิ่งที่จะเกิดขึ้นในอนา��ต"}
     >
       {/* Minimal content -- only elements required for flow and logic */}
       <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
         {/* Intentionally empty: removed decorative mockup image */}
+      </div>
+
+      {/* Selected priorities visual summary */}
+      <div className="w-full px-4 mb-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-[980px] mx-auto">
+          {resultSummary.map((s, i) => (
+            <div key={s.priority} className="w-full rounded-lg border shadow-sm bg-white" style={{ overflow: "hidden" }}>
+              <div style={{ width: "100%", height: 0, paddingBottom: "80%", position: "relative", background: "#fff" }}>
+                <img
+                  src={priorityImageMap[s.priority] || "https://cdn.builder.io/api/v1/image/assets/TEMP/placeholder.png?width=720"}
+                  alt={s.priority}
+                  style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
+                />
+              </div>
+              <div style={{ padding: "10px", textAlign: "center" }}>
+                <div style={{ fontWeight: 700, color: "#000D59" }}>{s.priority}</div>
+                <div style={{ color: "#6b7280", fontSize: 14 }}>{Math.round(s.percentage)}% of budget</div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
       <div style={{ textAlign: "center", width: "100%", marginTop: 20 }}>
