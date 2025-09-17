@@ -181,102 +181,110 @@ const SeatingScreen: React.FC = () => {
         <div className="space-y-6">
           <div className="w-full rounded-md flex flex-col items-center justify-center gap-2">
             {selectedTopdown ? (
-              <div className="relative w-[60%] max-w-[320px]" style={{ height: '120px' }}>
-                {(() => {
-                  const amenities = (() => {
-                    try {
-                      const raw = sessionStorage.getItem("design.amenities");
-                      return raw ? (JSON.parse(raw) as string[]) : [];
-                    } catch {
-                      return [] as string[];
-                    }
-                  })();
-                  const payments = (() => {
-                    try {
-                      const raw = sessionStorage.getItem("design.payment");
-                      return raw ? (JSON.parse(raw) as string[]) : [];
-                    } catch {
-                      return [] as string[];
-                    }
-                  })();
-                  const doors = (() => {
-                    try {
-                      const raw = sessionStorage.getItem("design.doors");
-                      if (!raw) return null;
-                      const parsed = JSON.parse(raw);
-                      return typeof parsed === "string"
-                        ? parsed
-                        : parsed?.doorChoice ||
-                            (parsed?.hasRamp
-                              ? "ramp"
-                              : parsed?.highLow
-                                ? "emergency"
-                                : null);
-                    } catch {
-                      return sessionStorage.getItem("design.doors");
-                    }
-                  })();
-                  const DOOR_ICON_SMALL: Record<string, string> = {
-                    "1": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9811f9bca05c43feae9eafdcbab3c8d9?format=webp&width=800",
-                    "2": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8f9b21942af243b3b80b0e5ac8b12631?format=webp&width=800",
-                    ramp: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fece2b6fc843340f0997f2fd7d3ca0aea?format=webp&width=800",
-                    emergency:
-                      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F98de0624be3d4ae6b96d83edcf8891f9?format=webp&width=800",
-                  };
-                  const overlay = [
-                    ...(amenities || []),
-                    ...(payments || []),
-                    ...(doors ? [doors as string] : []),
-                  ];
-                  return overlay.length > 0 ? (
-                    <div className="absolute left-1/2 transform -translate-x-1/2 -top-4 flex flex-wrap justify-center gap-2 z-20 max-w-[80%]">
-                      {overlay.map((lab, i) => {
-                        const src =
-                          AMENITIES_ICON_SMALL[lab] ||
-                          PAYMENT_ICON_SMALL[lab] ||
-                          DOOR_ICON_SMALL[lab];
-                        return (
-                          <div
-                            key={`${lab}-${i}`}
-                            className="bg-white/90 rounded-full p-1 h-8 w-8 flex items-center justify-center"
-                          >
-                            {src ? (
-                              <img
-                                src={src}
-                                alt={lab}
-                                className="h-5 w-5 object-contain"
-                              />
-                            ) : (
-                              <div className="text-xs">{lab}</div>
-                            )}
-                          </div>
-                        );
-                      })}
-                    </div>
-                  ) : null;
-                })()}
-
+              <div className="relative w-full flex items-center justify-center" style={{ minHeight: '100px' }}>
                 <img
-                  src={selectedTopdown}
-                  alt={`ผังที่นั่งมุมมองบน - ${selectedLabel}`}
-                  className="h-full w-auto object-contain select-none"
+                  src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb1e30b1544304677996b179fc27ae5c7?format=webp&width=800"
+                  alt="เงา"
+                  className="absolute w-[60%] max-w-[320px] pointer-events-none select-none"
+                  style={{ bottom: '8px' }}
                   decoding="async"
                   loading="eager"
+                  aria-hidden="true"
                 />
+
+                <div className="relative w-[60%] max-w-[320px]" style={{ height: '120px' }}>
+                  {(() => {
+                    const amenities = (() => {
+                      try {
+                        const raw = sessionStorage.getItem("design.amenities");
+                        return raw ? (JSON.parse(raw) as string[]) : [];
+                      } catch {
+                        return [] as string[];
+                      }
+                    })();
+                    const payments = (() => {
+                      try {
+                        const raw = sessionStorage.getItem("design.payment");
+                        return raw ? (JSON.parse(raw) as string[]) : [];
+                      } catch {
+                        return [] as string[];
+                      }
+                    })();
+                    const doors = (() => {
+                      try {
+                        const raw = sessionStorage.getItem("design.doors");
+                        if (!raw) return null;
+                        const parsed = JSON.parse(raw);
+                        return typeof parsed === "string"
+                          ? parsed
+                          : parsed?.doorChoice ||
+                              (parsed?.hasRamp
+                                ? "ramp"
+                                : parsed?.highLow
+                                  ? "emergency"
+                                  : null);
+                      } catch {
+                        return sessionStorage.getItem("design.doors");
+                      }
+                    })();
+                    const DOOR_ICON_SMALL: Record<string, string> = {
+                      "1": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9811f9bca05c43feae9eafdcbab3c8d9?format=webp&width=800",
+                      "2": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8f9b21942af243b3b80b0e5ac8b12631?format=webp&width=800",
+                      ramp: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fece2b6fc843340f0997f2fd7d3ca0aea?format=webp&width=800",
+                      emergency:
+                        "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F98de0624be3d4ae6b96d83edcf8891f9?format=webp&width=800",
+                    };
+                    const overlay = [
+                      ...(amenities || []),
+                      ...(payments || []),
+                      ...(doors ? [doors as string] : []),
+                    ];
+                    return overlay.length > 0 ? (
+                      <div className="absolute left-1/2 transform -translate-x-1/2 -top-4 flex flex-wrap justify-center gap-2 z-20 max-w-[80%]">
+                        {overlay.map((lab, i) => {
+                          const src =
+                            AMENITIES_ICON_SMALL[lab] ||
+                            PAYMENT_ICON_SMALL[lab] ||
+                            DOOR_ICON_SMALL[lab];
+                          return (
+                            <div
+                              key={`${lab}-${i}`}
+                              className="bg-white/90 rounded-full p-1 h-8 w-8 flex items-center justify-center"
+                            >
+                              {src ? (
+                                <img
+                                  src={src}
+                                  alt={lab}
+                                  className="h-5 w-5 object-contain"
+                                />
+                              ) : (
+                                <div className="text-xs">{lab}</div>
+                              )}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    ) : null;
+                  })()}
+
+                  <img
+                    src={selectedTopdown}
+                    alt={`ผังที่นั่งมุมมองบน - ${selectedLabel}`}
+                    className="h-full w-auto object-contain mx-auto select-none"
+                    decoding="async"
+                    loading="eager"
+                  />
+                </div>
               </div>
             ) : (
               <div className="w-full h-48 bg-[#081042] rounded-md flex items-center justify-center text-sm text-gray-300">
                 Top-down seat map preview (ภาพสำหรับรุ่นนี้จะถูกเพิ่มภายหลัง)
               </div>
             )}
-            <div className="mt-1 text-center">
-              <p className="font-prompt font-semibold text-[#001a73]">
-                รถที่เลือก :
-              </p>
-              <p className="font-prompt font-semibold text-[#001a73]">
-                {selectedLabel}
-              </p>
-            </div>
+            <p className="mt-2 font-prompt font-semibold text-[#001a73] text-center text-sm md:text-base max-w-[320px] mx-auto">
+              <span className="chassis-label-mobile">รถที่เลือก : </span>
+              {selectedLabel}
+            </p>
           </div>
           <div className="bg-white rounded-t-3xl -mt-2 p-4">
             <StepTabs active={2} />
