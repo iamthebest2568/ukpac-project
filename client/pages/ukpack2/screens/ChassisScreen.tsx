@@ -40,7 +40,7 @@ const DOOR_ICON_SMALL: Record<string, string> = {
 
 const IconSmall = () => (
   <img
-    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F5ea1b3d990e44d49aa5441bc3a4b3bcc?format=webp&width=360"
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F91c62d1140ba42828ef9648da47a49ad?format=webp&width=800"
     alt="รถเมล์ขนาดเล็�� 16-30 ที่นั่ง"
     className="max-h-6 w-auto object-contain select-none"
     decoding="async"
@@ -49,7 +49,7 @@ const IconSmall = () => (
 );
 const IconMedium = () => (
   <img
-    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fab8ddd78f9a0478bb27f5818928665f3?format=webp&width=360"
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F81895dfac78f4bd88c3c0235d48fff80?format=webp&width=800"
     alt="รถเมล์ขนาดกลาง 31-40 ที่นั่ง"
     className="max-h-12 w-auto object-contain select-none"
     decoding="async"
@@ -58,7 +58,7 @@ const IconMedium = () => (
 );
 const IconLarge = () => (
   <img
-    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fefc1e1ed3bcb4769b51d1544d43b3b5f?format=webp&width=360"
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F77fae6aebf004c59a359e095f0bc823b?format=webp&width=800"
     alt="รถเมล์ขนาดใหญ่ 41–50 ที่นั่ง"
     className="max-h-12 w-auto object-contain select-none -translate-y-0.5"
     decoding="async"
@@ -67,7 +67,7 @@ const IconLarge = () => (
 );
 const IconExtra = () => (
   <img
-    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9a8a7536ced24db19a65409fbba1c6b6?format=webp&width=360"
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F70e4ddd14fbf493682a6e61008ae4621?format=webp&width=800"
     alt="รถกระบะดัดแปลง 8-12 ที่นั่ง"
     className="max-h-12 w-auto object-contain select-none -translate-y-0.5"
     decoding="async"
