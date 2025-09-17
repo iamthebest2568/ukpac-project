@@ -26,7 +26,7 @@ export default function WhatDoYouTravelByPage() {
       backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F54f76900fd8c46ffbaa090c8234dbd22?format=webp&width=800"
       className="what-do-you-travel-by-page"
       imageLoading="eager"
-      title={`บอกเราหน่อยว่าคุณเดินทางเข้าเมือง\nด้วยวิธีการใดบ่อยที่สุด`}
+      title={<span style={{ color: '#000D59' }}>บอกเราหน่อยว่าคุณเดินทางเข้าเมือง<br/>ด้วยวิธีการใดบ่อยที่สุด</span>}
     >
       <div className="wdytb-content">
         <div className="w-full max-w-[890px] mx-auto">
