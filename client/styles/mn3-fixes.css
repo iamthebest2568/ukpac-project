@@ -45,3 +45,26 @@
 .figma-style1-container.mn3-step2-page .figma-style1-background-overlay--blue {
   height: 28% !important;
 }
+
+/* MN2 icon/color rules: ensure icon groups use #000D59 */
+.figma-style1-container.mn2-summary-page svg circle,
+.figma-style1-container.mn2-summary-page svg path,
+.figma-style1-container.mn2-summary-page .mn3-summary-icon {
+  stroke: #000D59 !important;
+  color: #000D59 !important;
+  fill: none !important;
+}
+
+/* Beneficiary icon circles on selection grid (step1) */
+.figma-style1-container.mn2-step1-page .w-\[68px\].h-\[68px\].rounded-full {
+  border-color: #000D59 !important;
+}
+
+.figma-style1-container.mn2-step1-page .w-\[68px\].h-\[68px\].rounded-full img {
+  filter: grayscale(100%) drop-shadow(0 0 0 #000D59) !important;
+}
+
+/* Ensure labels under icons use brand color */
+.figma-style1-container.mn2-step1-page span {
+  color: #000D59 !important;
+}
