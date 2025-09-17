@@ -94,6 +94,23 @@
   background-color: transparent !important;
 }
 
+/* Override overflow hiding that might clip summary cards */
+.figma-style1-container.mn2-summary-minimal .figma-style1-content,
+.figma-style1-container.mn2-summary-minimal .figma-style1-main,
+.figma-style1-container.mn2-summary-minimal .figma-style1-content-area,
+.figma-style1-container.mn2-summary-minimal .figma-style1-content-area > * {
+  overflow: visible !important;
+  max-height: none !important;
+}
+
+/* Ensure summary cards are above any background layers */
+.figma-style1-container.mn2-summary-minimal .mn3-summary-list,
+.figma-style1-container.mn2-summary-minimal .space-y-6,
+.figma-style1-container.mn2-summary-minimal .mn3-summary-card {
+  position: relative !important;
+  z-index: 1000 !important;
+}
+
 /* Remove ring/border styling if any remains */
 .figma-style1-container.mn2-summary-minimal .mn3-summary-card,
 .figma-style1-container.mn2-summary-minimal .mn3-summary-card-left,
