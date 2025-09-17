@@ -118,9 +118,10 @@ const Step2_Allocation = ({
 
   return (
     <FigmaStyle1Layout
+      backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F034d6a2e306d4367882448000484d30b?format=webp&width=800"
       className="mn3-step2-page"
       imageLoading="eager"
-      title={<span style={{ color: "#000D59" }}>คุณจะให้งบประมาณแต่ละข้อเท่าไหร่</span>}
+      title={<span style={{ color: "#000D59" }}>คุณจะให้งบประมาณเท่าไหร่</span>}
     >
       <div className="mn3-allocation-content" style={{ paddingTop: "clamp(40px, 8vh, 120px)" }}>
         {/* Title Section */}
