@@ -25,8 +25,8 @@ const SplashScreen: React.FC = () => {
           sizes="100vw"
           alt="รถเมล์ในฝัน"
           className="w-full h-full object-cover"
-          style={{ display: 'block', width: '100%', height: '100vh', objectPosition: 'center' }}
-          loading="lazy"
+          style={{ display: 'block', width: '100%', minHeight: '100svh', height: 'auto', objectPosition: 'top center' }}
+          loading="eager"
           decoding="async"
         />
       </div>
