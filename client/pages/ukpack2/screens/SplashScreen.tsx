@@ -10,8 +10,19 @@ const SplashScreen: React.FC = () => {
   return (
     <div
       className="min-h-screen flex flex-col"
-      style={{ backgroundColor: "#e9f9ff" }}
+      style={{ position: 'relative', backgroundColor: '#ffffff' }}
     >
+      {/* Full-bleed hero image */}
+      <div style={{ position: 'absolute', inset: 0, zIndex: 0, backgroundColor: '#ffffff' }} aria-hidden>
+        <img
+          src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fcb178a40e22648eca72705d402137a33?format=webp&width=1200"
+          alt="รถเมล์ในฝัน"
+          className="w-full h-full object-cover"
+          style={{ display: 'block', width: '100%', height: '100%', objectPosition: 'center' }}
+          loading="eager"
+          decoding="async"
+        />
+      </div>
 
       <div className="footer-container mt-auto">
         <div className="footer-content" style={{ position: 'relative', textAlign: 'center', zIndex: 2, padding: '114px 20px 20px', fontWeight: 400 }}>
