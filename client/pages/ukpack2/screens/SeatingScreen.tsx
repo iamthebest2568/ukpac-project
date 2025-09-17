@@ -7,7 +7,6 @@ import ConfirmModal from "../components/ConfirmModal";
 import ErrorModal from "../components/ErrorModal";
 import { useBusDesign } from "../context/BusDesignContext";
 import StepTabs from "../components/StepTabs";
-import HeroWithShadow from "../components/HeroWithShadow";
 
 const SeatingScreen: React.FC = () => {
   const navigate = useNavigate();
@@ -154,7 +153,7 @@ const SeatingScreen: React.FC = () => {
     setTotalSeats(v);
 
     if (v > maxCapacity) {
-      setErrorTitle("จำนวนที่นั่งเกินขีดจำกัด");
+      setErrorTitle("จำนวนที่นั่งเกินขีดจำ���ัด");
       setErrorMessage(
         `รถประเภทนี้สามารถมีที่นั่งได้สูงสุด ${maxCapacity} ที่นั่ง กรุณาลดจำนวนที่นั่ง`,
       );
@@ -182,8 +181,7 @@ const SeatingScreen: React.FC = () => {
         <div className="space-y-6">
           <div className="w-full rounded-md flex flex-col items-center justify-center gap-2">
             {selectedTopdown ? (
-              <HeroWithShadow containerClassName="relative w-[60%] max-w-[320px]" shadowClassName="absolute w-[60%] max-w-[320px] pointer-events-none select-none">
-                <div className="relative" style={{ height: '120px' }}>
+              <div className="relative w-[60%] max-w-[320px]" style={{ height: '120px' }}>
                 {(() => {
                   const amenities = (() => {
                     try {
@@ -232,22 +230,28 @@ const SeatingScreen: React.FC = () => {
                   ];
                   return overlay.length > 0 ? (
                     <div className="absolute left-1/2 transform -translate-x-1/2 -top-4 flex flex-wrap justify-center gap-2 z-20 max-w-[80%]">
-                      {overlay.map((lab, i) => (
-                        <div
-                          key={`${lab}-${i}`}
-                          className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center"
-                        >
-                          {DOOR_ICON_SMALL[lab] ? (
-                            <img
-                              src={DOOR_ICON_SMALL[lab]}
-                              alt={lab}
-                              className="h-5 w-5 object-contain"
-                            />
-                          ) : (
-                            <div className="text-xs">{lab}</div>
-                          )}
-                        </div>
-                      ))}
+                      {overlay.map((lab, i) => {
+                        const src =
+                          AMENITIES_ICON_SMALL[lab] ||
+                          PAYMENT_ICON_SMALL[lab] ||
+                          DOOR_ICON_SMALL[lab];
+                        return (
+                          <div
+                            key={`${lab}-${i}`}
+                            className="bg-white/90 rounded-full p-1 h-8 w-8 flex items-center justify-center"
+                          >
+                            {src ? (
+                              <img
+                                src={src}
+                                alt={lab}
+                                className="h-5 w-5 object-contain"
+                              />
+                            ) : (
+                              <div className="text-xs">{lab}</div>
+                            )}
+                          </div>
+                        );
+                      })}
                     </div>
                   ) : null;
                 })()}
@@ -255,12 +259,11 @@ const SeatingScreen: React.FC = () => {
                 <img
                   src={selectedTopdown}
                   alt={`ผังที่นั่งมุมมองบน - ${selectedLabel}`}
-                  className="h-48 w-auto object-contain select-none"
+                  className="h-full w-auto object-contain select-none"
                   decoding="async"
                   loading="eager"
                 />
-                </div>
-              </HeroWithShadow>
+              </div>
             ) : (
               <div className="w-full h-48 bg-[#081042] rounded-md flex items-center justify-center text-sm text-gray-300">
                 Top-down seat map preview (ภาพสำหรับรุ่นนี้จะถูกเพิ่มภายหลัง)
