@@ -109,6 +109,31 @@
 .figma-style1-container.mn2-summary-minimal .mn3-summary-card {
   position: relative !important;
   z-index: 1000 !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Remove any pointer-events:none that may prevent interaction */
+.figma-style1-container.mn2-summary-minimal *,
+.figma-style1-container.mn2-summary-minimal *::before,
+.figma-style1-container.mn2-summary-minimal *::after {
+  pointer-events: auto !important;
+}
+
+/* Ensure main aligns top so content isn't pushed out of view */
+.figma-style1-container.mn2-summary-minimal .figma-style1-main {
+  align-items: flex-start !important;
+}
+
+/* Remove any residual pseudo overlays */
+.figma-style1-container.mn2-summary-minimal::before,
+.figma-style1-container.mn2-summary-minimal .figma-style1-content::before,
+.figma-style1-container.mn2-summary-minimal .figma-style1-content-area::before {
+  display: none !important;
+  content: none !important;
+  background: transparent !important;
 }
 
 /* Remove ring/border styling if any remains */
