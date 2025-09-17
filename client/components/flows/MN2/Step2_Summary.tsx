@@ -121,8 +121,8 @@ const Step2_Summary = ({
 
   return (
     <FigmaStyle1Layout
-      backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F4f3c5cfc206b4e8e9e3da585a88dcc2f?format=webp&width=800"
-      className="mn2-summary-page"
+      backgroundImage={""} // disabled decorative background for debugging
+      className="mn2-summary-page mn2-summary-minimal"
       imageLoading="eager"
       title={<span style={{ color: "#000D59" }}>นโยบายที่คุณเสนอ</span>}
     >
