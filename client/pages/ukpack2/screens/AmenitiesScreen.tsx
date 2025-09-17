@@ -80,7 +80,7 @@ const AMENITIES = [
 
 import { useNavigate } from "react-router-dom";
 import StepTabs from "../components/StepTabs";
-import HeroWithShadow from "../components/HeroWithShadow";
+import VehiclePreview from "../components/VehiclePreview";
 
 const AmenitiesScreen: React.FC = () => {
   const navigate = useNavigate();
