@@ -68,7 +68,7 @@ const IconLarge = () => (
 const IconExtra = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9a8a7536ced24db19a65409fbba1c6b6?format=webp&width=360"
-    alt="รถกระบะดัดแปลง 8-12 ที่นั่ง"
+    alt="รถ���ระบะดัดแปลง 8-12 ที่นั่ง"
     className="max-h-12 w-auto object-contain select-none -translate-y-0.5"
     decoding="async"
     loading="eager"
@@ -265,7 +265,7 @@ const ChassisScreen: React.FC = () => {
               </div>
             </div>
             <p className="mt-2 font-prompt font-semibold text-[#001a73] text-center">
-              <span className="chassis-label-mobile">รถท���่เลือก : </span>
+              <span className="chassis-label-mobile">รถที่เลือก : </span>
               {selectedLabel}
             </p>
           </div>
@@ -273,17 +273,56 @@ const ChassisScreen: React.FC = () => {
           {/* White content area with tabs + cards */}
           <div className="bg-white rounded-2xl -mt-2 p-4 border border-gray-400">
             <StepTabs active={1} />
-            <div className="grid grid-cols-2 gap-4 mt-2">
-              {OPTIONS.map((o) => (
-                <SelectionCard
-                  key={o.key}
-                  icon={o.icon}
-                  label={o.label}
-                  isSelected={selected === o.key}
-                  onClick={() => setSelected(o.key)}
-                  variant="light"
-                />
-              ))}
+            <div className="mt-2">
+              <div className="grid grid-cols-2 gap-4">
+                {/* Left column: large primary card on top, small card below */}
+                <div className="flex flex-col gap-4">
+                  <div className="transform scale-100">
+                    <SelectionCard
+                      key={OPTIONS[0].key}
+                      icon={OPTIONS[0].icon}
+                      label={OPTIONS[0].label}
+                      isSelected={selected === OPTIONS[0].key}
+                      onClick={() => setSelected(OPTIONS[0].key)}
+                      variant="light"
+                    />
+                  </div>
+                  <div>
+                    <SelectionCard
+                      key={OPTIONS[2].key}
+                      icon={OPTIONS[2].icon}
+                      label={OPTIONS[2].label}
+                      isSelected={selected === OPTIONS[2].key}
+                      onClick={() => setSelected(OPTIONS[2].key)}
+                      variant="light"
+                    />
+                  </div>
+                </div>
+
+                {/* Right column: two equal cards stacked */}
+                <div className="flex flex-col gap-4">
+                  <div>
+                    <SelectionCard
+                      key={OPTIONS[1].key}
+                      icon={OPTIONS[1].icon}
+                      label={OPTIONS[1].label}
+                      isSelected={selected === OPTIONS[1].key}
+                      onClick={() => setSelected(OPTIONS[1].key)}
+                      variant="light"
+                    />
+                  </div>
+                  <div>
+                    <SelectionCard
+                      key={OPTIONS[3].key}
+                      icon={OPTIONS[3].icon}
+                      label={OPTIONS[3].label}
+                      isSelected={selected === OPTIONS[3].key}
+                      onClick={() => setSelected(OPTIONS[3].key)}
+                      variant="light"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
