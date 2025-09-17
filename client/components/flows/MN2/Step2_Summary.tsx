@@ -59,7 +59,7 @@ const Step2_Summary = ({
     other: {
       label: "อื่นๆ",
       iconSrc:
-        "https://api.builder.io/api/v1/image/assets/TEMP/a7ee1168c07ae5401b45929d0d4fde9e6584ca73?width=188",
+        "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F4d62f4ab8d05481a8a0c67a1f1015cbd?format=webp&width=188",
     },
   };
 
