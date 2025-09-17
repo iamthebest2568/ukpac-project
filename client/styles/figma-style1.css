@@ -1564,6 +1564,9 @@ body[data-dialog-open] {
     padding: clamp(12px, 2.2vw, 20px);
   }
   .ask02-2-page .ask02-2-textarea-box textarea {
+    text-align: left;
+  }
+  .ask02-2-page .ask02-2-textarea-box textarea:placeholder-shown {
     text-align: center;
   }
   .ask02-2-page .ask02-2-textarea-box textarea::placeholder {
