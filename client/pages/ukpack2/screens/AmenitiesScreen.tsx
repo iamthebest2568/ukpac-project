@@ -178,51 +178,12 @@ const AmenitiesScreen: React.FC = () => {
       <div className="space-y-6">
         <div className="w-full rounded-md flex flex-col items-center justify-center gap-2">
           {selectedBusImage ? (
-            <HeroWithShadow>
-              <div className="relative">
-                {/* Overlay selected amenity icons on top of the bus image */}
-                {selected.length > 0 && (
-                  <div className="absolute left-1/2 -translate-x-1/2 -top-4 flex flex-wrap justify-center content-center gap-2 z-20 max-w-[80%]">
-                    {selected
-                      .slice()
-                      .filter((l) => AMENITIES.some((a) => a.label === l))
-                      .sort((a, b) => a.localeCompare(b, "th"))
-                      .map((label, i) => {
-                        const amen = AMENITIES.find((a) => a.label === label);
-                        const src =
-                          OVERLAY_ICON_SRC[label] ||
-                          (amen ? OVERLAY_ICON_SRC[amen.key] : undefined);
-                        return (
-                          <div
-                            key={`${label}-${i}`}
-                            className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
-                          >
-                            {src ? (
-                              <img
-                                src={
-                                  src && src.includes("width=")
-                                    ? src.replace(/width=\d+/, "width=1600")
-                                    : src
-                                }
-                                alt={label}
-                                className="h-7 w-7 md:h-8 md:w-8 object-contain"
-                              />
-                            ) : null}
-                          </div>
-                        );
-                      })}
-                  </div>
-                )}
-
-                <img
-                  src={selectedBusImage}
-                  alt={`ภาพรถ - ${selectedLabel}`}
-                  className="h-48 w-auto object-contain select-none"
-                  decoding="async"
-                  loading="eager"
-                />
-              </div>
-            </HeroWithShadow>
+            <VehiclePreview
+              imageSrc={selectedBusImage}
+              label={<><p className="mb-0">รถที่เลือก :</p>{selectedLabel}</>}
+              overlayLabels={selected.slice().filter((l) => AMENITIES.some((a) => a.label === l)).sort((a, b) => a.localeCompare(b, 'th'))}
+              overlayIconMap={OVERLAY_ICON_SRC}
+            />
           ) : (
             <div className="w-full h-48 bg-[#081042] rounded-md flex items-center justify-center text-sm text-gray-300">
               Bus image preview (ภาพสำหรับรุ่นนี้จะถูกเพิ่มภายหลัง)
