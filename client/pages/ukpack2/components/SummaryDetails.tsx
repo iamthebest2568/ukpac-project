@@ -1,5 +1,5 @@
 import React from "react";
-import HeroWithShadow from "./HeroWithShadow";
+import VehiclePreview from "./VehiclePreview";
 
 const IconAir = () => (
   <img
@@ -98,7 +98,7 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   "ที่จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
   "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
-  "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
+  "ระบบประก���ศบอกป้าย(เสียง/จอ)": <IconCup />,
   กล้องวงจรปิด: <IconCamSmall />,
   // Payment icons
   เงินสด: (
