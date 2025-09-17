@@ -131,7 +131,7 @@ export function getCurrentSessionEvents() {
 export function clearEventLogs() {
   try { localStorage.removeItem('ukPackEvents'); } catch (_) {}
   try { sessionStorage.removeItem('ukPackSessionID'); } catch (_) {}
-  console.log('🗑️ Event logs cleared');
+  // Event logs cleared (debug log suppressed)
 }
 
 /**
