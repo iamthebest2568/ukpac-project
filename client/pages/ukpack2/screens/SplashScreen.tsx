@@ -13,14 +13,24 @@ const SplashScreen: React.FC = () => {
       style={{ position: 'relative', backgroundColor: '#ffffff', overflow: 'hidden' }}
     >
       {/* Bottom turquoise curved footer (no hero image) */}
-      <svg
-        viewBox="0 0 1000 420"
-        preserveAspectRatio="none"
-        style={{ position: 'absolute', left: 0, right: 0, bottom: '-1px', width: '100%', height: '38vh', zIndex: 0, display: 'block' }}
-        aria-hidden
-      >
-        <path d="M0,420 L0,140 C200,80 800,80 1000,140 L1000,420 Z" fill="#04d9f9" style={{ shapeRendering: 'geometricPrecision' }} />
-      </svg>
+    <svg
+      viewBox="0 0 1000 420"
+      preserveAspectRatio="none"
+      style={{ position: 'absolute', left: 0, right: 0, bottom: '-1px', width: '100%', height: '38vh', zIndex: 0, display: 'block' }}
+      aria-hidden
+    >
+      <path d="M0,420 L0,140 C200,80 800,80 1000,140 L1000,420 Z" fill="#04d9f9" style={{ shapeRendering: 'geometricPrecision' }} />
+    </svg>
+
+    {/* White overlay to guarantee white above the curve */}
+    <svg
+      viewBox="0 0 1000 420"
+      preserveAspectRatio="none"
+      style={{ position: 'absolute', left: 0, right: 0, bottom: '-1px', width: '100%', height: '38vh', zIndex: 1, display: 'block', pointerEvents: 'none' }}
+      aria-hidden
+    >
+      <path d="M0,0 H1000 V140 C800,80 200,80 0,140 Z" fill="#ffffff" style={{ shapeRendering: 'geometricPrecision' }} />
+    </svg>
 
       <div className="footer-container mt-auto">
         <div className="footer-content" style={{ position: 'relative', textAlign: 'center', zIndex: 2, padding: '64px 20px 20px', fontWeight: 400 }}>
