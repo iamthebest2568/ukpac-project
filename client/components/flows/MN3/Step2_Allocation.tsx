@@ -190,7 +190,7 @@ const Step2_Allocation = ({
 
         {/* Continue Button */}
 
-    <div className="w-full px-4" style={{ marginBottom: '12px' }}>
+    <div className="w-full px-4" style={{ marginTop: '80px', marginBottom: '12px' }}>
       <div className="text-center font-prompt" style={{
         color: "#000D59",
         fontSize: "clamp(14px, 3vw, 18px)",
