@@ -290,7 +290,7 @@ const BudgetAllocationComponent = ({
               {/* Budget Input Box - NEW FIGMA DESIGN */}
               <div className="ml-8">
                 <div
-                  className="rounded-[20px] border-[5px] border-[#000D59] bg-white flex items-center justify-center"
+                  className="rounded-[20px] border-2 border-[#000D59] bg-white flex items-center justify-center"
                   style={{
                     width: inputBoxWidth,
                     height: inputBoxHeight,
