@@ -101,3 +101,16 @@
   box-shadow: none !important;
   border: none !important;
 }
+
+/* Remove clickable checkbox focus rectangle on MN2 beneficiary options */
+.figma-style1-container.mn2-step1-page [role="checkbox"],
+.figma-style1-container.mn2-step1-page [role="checkbox"] * {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.figma-style1-container.mn2-step1-page [role="checkbox"]:focus,
+.figma-style1-container.mn2-step1-page [role="checkbox"]:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
