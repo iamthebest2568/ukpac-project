@@ -264,7 +264,7 @@ const ChassisScreen: React.FC = () => {
                 />
               </div>
             </div>
-            <p className="mt-2 font-prompt font-semibold text-[#001a73] text-center">
+            <p className="mt-2 font-prompt font-semibold text-[#001a73] text-center text-sm md:text-base max-w-[320px] mx-auto">
               <span className="chassis-label-mobile">รถที่เลือก : </span>
               {selectedLabel}
             </p>
