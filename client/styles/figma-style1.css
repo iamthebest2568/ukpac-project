@@ -192,6 +192,16 @@
 }
 
 /* Main Content Layout */
+
+/* Page-specific override: force MN3 Step2 content to the top */
+.figma-style1-container.mn3-step2-minimal .figma-style1-main {
+  align-items: start !important;
+}
+
+.figma-style1-container.mn3-step2-minimal .figma-style1-content-area {
+  justify-content: flex-start !important;
+  padding-top: env(safe-area-inset-top, 8px) !important;
+}
 .figma-style1-main {
   /* Main content layer - back to grid layout but with better centering */
   position: relative;
