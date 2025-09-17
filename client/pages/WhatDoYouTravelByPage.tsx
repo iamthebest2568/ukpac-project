@@ -40,14 +40,14 @@ export default function WhatDoYouTravelByPage() {
             <textarea
               value={textInput}
               onChange={(e) => setTextInput(e.target.value)}
-              placeholder="พิมพ์ข้อความของคุณที่นี่..."
+              placeholder="พิมพ์ข้อความของคุณที่นี��..."
               className="w-full h-full resize-none border-none outline-none font-prompt bg-transparent"
               style={{
                 padding: "clamp(12px, 2.5vw, 24px)",
                 fontSize: "clamp(16px, 3.2vw, 36px)",
                 fontWeight: 400,
                 minHeight: "clamp(260px, 30vh, 480px)",
-                color: "#000",
+                color: "#000D59",
                 boxSizing: "border-box",
                 lineHeight: 1.4,
                 verticalAlign: "top",
