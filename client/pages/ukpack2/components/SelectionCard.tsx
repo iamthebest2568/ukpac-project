@@ -57,13 +57,13 @@ const SelectionCard: React.FC<SelectionCardProps> = ({
   }
 
   // size adjustments
-  const baseHeight = size === "lg" ? "h-20" : size === "sm" ? "h-8" : "h-12";
-  const iconContainerClass = `${baseHeight} ${appearance === "bare" ? "mb-0" : "mb-2"}`;
+  const FIXED_ICON_HEIGHT = "h-16";
+  const iconContainerClass = `${FIXED_ICON_HEIGHT} ${appearance === "bare" ? "mb-0" : "mb-2"}`;
   const labelClass = size === "lg" ? "px-2 text-sm md:text-base" : size === "sm" ? "px-2 text-xs md:text-sm" : "px-2 text-xs md:text-sm";
 
   // Horizontal layout
   if (layout === "horizontal") {
-    const iconBox = size === "lg" ? "w-28 h-20" : size === "sm" ? "w-16 h-10" : "w-20 h-12";
+    const iconBox = `flex-shrink-0 ${FIXED_ICON_HEIGHT} w-auto flex items-center justify-center`;
     return (
       <button
         type="button"
