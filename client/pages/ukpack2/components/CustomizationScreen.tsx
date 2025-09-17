@@ -44,7 +44,7 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
         {children}
       </div>
       {footerContent ? (
-        <div className="sm:fixed sm:bottom-10 left-0 right-0 z-40">
+        <div className="fixed bottom-4 sm:bottom-10 left-0 right-0 z-50">
           <div className="bg-[#00d5f9] w-full py-3">
             <div
               className="max-w-4xl mx-auto w-full px-4 sm:px-6"
