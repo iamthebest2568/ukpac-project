@@ -190,7 +190,7 @@ const Step2_Allocation = ({
 
         {/* Continue Button */}
 
-    <div className="w-full px-4 mt-2">
+    <div className="w-full px-4" style={{ marginBottom: '12px' }}>
       <div className="text-center font-prompt" style={{
         color: "#000D59",
         fontSize: "clamp(14px, 3vw, 18px)",
@@ -200,7 +200,7 @@ const Step2_Allocation = ({
       </div>
     </div>
 
-    <div className="w-full px-4 flex justify-center" style={{ marginTop:  '176px' }}>
+    <div className="w-full px-4 flex justify-center" style={{ marginTop:  '8px' }}>
       <div
         className="mx-auto flex flex-col items-center space-y-2"
         style={{ width: "100%", maxWidth: 980 }}
