@@ -6,6 +6,7 @@
 import { useEffect, useState } from "react";
 import { useSession } from "../../../hooks/useSession";
 import { logEvent } from "../../../services/dataLogger.js";
+import FigmaStyle1Layout from "../../layouts/FigmaStyle1Layout";
 
 interface Step2_SummaryProps {
   sessionID: string | null;
@@ -151,7 +152,7 @@ const Step2_Summary = ({
               lineHeight: "normal",
             }}
           >
-            นโยบายที่คุณเสนอ
+            นโยบ��ยที่คุณเสนอ
           </h1>
         </div>
 
@@ -287,7 +288,7 @@ const Step2_Summary = ({
               });
               navigateToPage("/fake-news");
             }}
-            aria-label="พอใจกับผลลัพธ์ที่ได้จากการตอบคำถาม"
+            aria-label="พอใจกั���ผลลัพธ์ที่ได้จากการตอบคำถาม"
             className="block rounded-[50px] figma-style1-button mx-auto transition-all duration-200 hover:scale-105 flex items-center justify-center"
             style={{
               width: "min(845px, 85vw)",
