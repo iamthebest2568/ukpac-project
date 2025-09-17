@@ -93,7 +93,7 @@ const Step2_Summary = ({
     });
 
     // Create summary cards
-    const cards: SummaryCard[] = prioritiesData.map((priority: string) => {
+    let cards: SummaryCard[] = prioritiesData.map((priority: string) => {
       const beneficiaryIds = lookup[priority] || [];
       const beneficiaryObjects = beneficiaryIds.map((id: string) => ({
         id,
@@ -108,6 +108,20 @@ const Step2_Summary = ({
         beneficiaries: beneficiaryObjects,
       };
     });
+
+    // If no priorities found but there are beneficiary selections, build cards from selections order
+    if ((!cards || cards.length === 0) && Array.isArray(beneficiariesSelections) && beneficiariesSelections.length > 0) {
+      cards = beneficiariesSelections.map((s: any) => {
+        const beneficiaryObjects = (s.beneficiaries || []).map((id: string) => ({
+          id,
+          label: (beneficiaryMapping as any)[id]?.label || "ทุกคน",
+          iconSrc:
+            (beneficiaryMapping as any)[id]?.iconSrc ||
+            beneficiaryMapping.everyone.iconSrc,
+        }));
+        return { priority: s.priority || "(ไม่ระบุ)", beneficiaries: beneficiaryObjects };
+      });
+    }
 
     setSummaryCards(cards);
   }, [journeyData]);
