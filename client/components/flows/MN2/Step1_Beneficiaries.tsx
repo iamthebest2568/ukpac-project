@@ -50,9 +50,9 @@ const Step1_Beneficiaries = ({
     },
     {
       id: "elderly",
-      label: "ผู้สูงอายุ",
+      label: "ผู้สูง��ายุ",
       iconSrc:
-        "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F87b74452a09049c98ad12ee790ce5df3?format=webp&width=100",
+        "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F27d0ed309a3847dcbb81fc45f1a01235?format=webp&width=100",
     },
     {
       id: "students",
@@ -243,7 +243,7 @@ const Step1_Beneficiaries = ({
         </button>
 
         {selectedGroups.length === 0 && (
-          <div id="next-button-description" className="text-center text-white text-sm mt-2">กรุณาเลือกอย่างน้อย 1 ���ลุ่มเพื่อดำเนินการต่อ</div>
+          <div id="next-button-description" className="text-center text-white text-sm mt-2">กรุณาเลือกอย่างน้อย 1 กลุ่มเพื่อดำเนินการต่อ</div>
         )}
       </div>
     </FigmaStyle1Layout>
