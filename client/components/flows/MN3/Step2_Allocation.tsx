@@ -200,14 +200,14 @@ const Step2_Allocation = ({
     <div className="w-full px-4 mt-4 flex justify-center">
       <div
         className="mx-auto flex flex-col items-center space-y-2"
-        style={{ width: "100%", maxWidth: 980, marginTop: "auto" }}
+        style={{ width: "100%", maxWidth: 980 }}
       >
         <button
           onClick={handleNext}
           className="figma-style1-button"
           aria-label="ไปต่อ"
         >
-          <span className="figma-style1-button-text">ไปต่อ</span>
+          <span className="figma-style1-button-text">ไปต่��</span>
         </button>
       </div>
     </div>
