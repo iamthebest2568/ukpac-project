@@ -67,7 +67,7 @@ const HowDoYouThinkPage = () => {
 
   return (
     <FigmaStyle1Layout
-      backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F03789f104f4644aa9ebfb404c4c0c073?format=webp&width=800"
+      backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb5edf32ee2ed476284e73427d3abce51?format=webp&width=800"
       className="how-do-you-think-page"
     >
       {/* Content Section positioned at bottom */}
