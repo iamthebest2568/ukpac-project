@@ -405,6 +405,8 @@
   width: 100%;
   max-width: 980px; /* constrain to same width used for other mn3 content */
   box-sizing: border-box;
+  /* Add bottom padding so fixed continue button doesn't overlap content */
+  padding-bottom: clamp(120px, 16vh, 220px);
 }
 
 /* Budget display box matching Figma */
