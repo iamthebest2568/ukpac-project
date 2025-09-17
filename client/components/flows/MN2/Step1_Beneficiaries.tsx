@@ -143,7 +143,7 @@ const Step1_Beneficiaries = ({
 
   const titleText = currentPriority === 'ลดค่าโดยสารรถไฟฟ้า'
     ? 'คุณคิดว่าใครควรได้รับ  การลดค่าโดยสารรถไฟฟ้าบ้าง'
-    : `คุณคิดว่าใครควรได้รับประโยชน์จาก ${currentPriority} ?`;
+    : `��ุณคิดว่าใครควรได้รับประโยชน์จาก ${currentPriority} ?`;
 
   return (
     <FigmaStyle1Layout
@@ -176,13 +176,7 @@ const Step1_Beneficiaries = ({
                   }
                 }}
               >
-                <div
-                className={`w-[68px] h-[68px] rounded-full flex items-center justify-center mb-2 transition-all duration-200 ${
-                    isSelected ? "bg-[#EFBA31]" : isDisabled ? "bg-gray-300" : "bg-transparent"
-                  }`}
-                >
-                  <img src={group.iconSrc} alt={group.label} className="w-[43px] h-[43px] object-contain" style={{ filter: isSelected ? "brightness(0)" : "none" }} />
-                </div>
+                  <img src={group.iconSrc} alt={group.label} className="w-[68px] h-[68px] mb-2 object-contain" style={{ filter: isSelected ? "brightness(0)" : "none" }} />
                 <span className={`font-prompt text-lg font-medium text-center transition-all duration-200 ${isSelected ? "text-black" : "text-[#000D59]"}`}>
                   {group.label}
                 </span>
