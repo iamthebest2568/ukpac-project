@@ -213,7 +213,7 @@ const Step1_Beneficiaries = ({
                   }
                 }}
               >
-                <div className={`w-[68px] h-[68px] rounded-full flex items-center justify-center mb-2 transition-all duration-200 ${isSelected ? "bg-[#EFBA31]" : isDisabled ? "bg-gray-300" : "bg-transparent border-2 border-gray-300"}`}>
+                <div className={`w-[68px] h-[68px] rounded-full flex items-center justify-center mb-2 transition-all duration-200 ${isSelected ? "bg-[#EFBA31]" : isDisabled ? "bg-gray-300" : "bg-transparent"}`}>
                   <img src={group.iconSrc} alt={group.label} className="w-[43px] h-[43px] object-contain" style={{ filter: isSelected ? "brightness(0)" : "none" }} />
                 </div>
                 <span className={`font-prompt text-lg font-medium text-center transition-all duration-200 ${isSelected ? "text-black" : "text-[#000D59]"}`}>
