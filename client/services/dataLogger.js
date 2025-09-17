@@ -75,9 +75,9 @@ export function logEvent(eventData) {
       localStorage.setItem('ukPackEvents', JSON.stringify(existingEvents));
     } catch (_) { /* ignore */ }
     
-    // 5. Also log to console for debugging (can be removed in production)
-    console.log('📊 Event Logged:', enrichedEvent);
-    
+    // 5. Debug logging disabled in this environment
+    // console.log('📊 Event Logged:', enrichedEvent);
+
     // Event logged successfully to localStorage
     
   } catch (error) {
