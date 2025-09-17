@@ -155,7 +155,7 @@ const Step1_Beneficiaries = ({
       {/* Content Area (selection grid & button) */}
       <div className="w-full max-w-[334px] mb-8">
         {/* Top Row */}
-        <div className="flex justify-center items-center mb-8" style={{ gap: "24px" }}>
+        <div className="flex justify-center items-center mb-4" style={{ gap: "16px" }}>
           {beneficiaryGroups.slice(0, 3).map((group) => {
             const isSelected = selectedGroups.includes(group.id);
             const isDisabled = isSelectionDisabled(group.id);
