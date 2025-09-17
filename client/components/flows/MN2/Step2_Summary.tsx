@@ -81,7 +81,9 @@ const Step2_Summary = ({
 
     // If priorities missing, derive from beneficiaries selections order
     if (!prioritiesData || prioritiesData.length === 0) {
-      prioritiesData = (beneficiariesSelections || []).map((s: any) => s.priority);
+      prioritiesData = (beneficiariesSelections || []).map(
+        (s: any) => s.priority,
+      );
     }
 
     // Build lookup map
@@ -110,16 +112,25 @@ const Step2_Summary = ({
     });
 
     // If no priorities found but there are beneficiary selections, build cards from selections order
-    if ((!cards || cards.length === 0) && Array.isArray(beneficiariesSelections) && beneficiariesSelections.length > 0) {
+    if (
+      (!cards || cards.length === 0) &&
+      Array.isArray(beneficiariesSelections) &&
+      beneficiariesSelections.length > 0
+    ) {
       cards = beneficiariesSelections.map((s: any) => {
-        const beneficiaryObjects = (s.beneficiaries || []).map((id: string) => ({
-          id,
-          label: (beneficiaryMapping as any)[id]?.label || "ทุกคน",
-          iconSrc:
-            (beneficiaryMapping as any)[id]?.iconSrc ||
-            beneficiaryMapping.everyone.iconSrc,
-        }));
-        return { priority: s.priority || "(ไม่ระบุ)", beneficiaries: beneficiaryObjects };
+        const beneficiaryObjects = (s.beneficiaries || []).map(
+          (id: string) => ({
+            id,
+            label: (beneficiaryMapping as any)[id]?.label || "ทุกคน",
+            iconSrc:
+              (beneficiaryMapping as any)[id]?.iconSrc ||
+              beneficiaryMapping.everyone.iconSrc,
+          }),
+        );
+        return {
+          priority: s.priority || "(ไม่ระบุ)",
+          beneficiaries: beneficiaryObjects,
+        };
       });
     }
 
@@ -145,7 +156,10 @@ const Step2_Summary = ({
       imageLoading="eager"
       title={<span style={{ color: "#000D59" }}>นโยบายที่คุณเสนอ</span>}
     >
-      <div className="relative z-10 w-full max-w-full mx-auto px-4 py-6" style={{ paddingTop: "clamp(80px, 18vh, 140px)" }}>
+      <div
+        className="relative z-10 w-full max-w-full mx-auto px-4 py-6"
+        style={{ paddingTop: "clamp(80px, 18vh, 140px)" }}
+      >
         {/* Policy Cards */}
         <div className="space-y-6 mb-12">
           {summaryCards.map((card, index) => (
@@ -248,7 +262,6 @@ const Step2_Summary = ({
             คุณพอใจหรือไม่
           </h2>
         </div>
-
       </div>
     </FigmaStyle1Layout>
   );

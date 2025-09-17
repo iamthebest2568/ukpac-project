@@ -141,9 +141,10 @@ const Step1_Beneficiaries = ({
     onNext(data);
   };
 
-  const titleText = currentPriority === 'ลดค่าโดยสารรถไฟฟ้า'
-    ? 'คุณคิดว่าใครควรได้รับ  การลดค่าโดยสารรถไฟฟ้าบ้าง'
-    : `คุณคิดว่าใครควรได้รับประโยชน์จาก ${currentPriority} ?`;
+  const titleText =
+    currentPriority === "ลดค่าโดยสารรถไฟฟ้า"
+      ? "คุณคิดว่าใครควรได้รับ  การลดค่าโดยสารรถไฟฟ้าบ้าง"
+      : `คุณคิดว่าใครควรได้รับประโยชน์จาก ${currentPriority} ?`;
 
   return (
     <FigmaStyle1Layout
@@ -155,7 +156,10 @@ const Step1_Beneficiaries = ({
       {/* Content Area (selection grid & button) */}
       <div className="w-full max-w-[334px] mb-8">
         {/* Top Row */}
-        <div className="flex justify-center items-center mb-2" style={{ gap: "8px" }}>
+        <div
+          className="flex justify-center items-center mb-2"
+          style={{ gap: "8px" }}
+        >
           {beneficiaryGroups.slice(0, 3).map((group) => {
             const isSelected = selectedGroups.includes(group.id);
             const isDisabled = isSelectionDisabled(group.id);
@@ -176,17 +180,25 @@ const Step1_Beneficiaries = ({
                   }
                 }}
               >
-                  <div className={`w-[68px] h-[68px] mb-2 flex items-center justify-center ${isSelected ? 'rounded-full bg-[#EFBA31]' : ''}`}>
-                  <img src={group.iconSrc} alt={group.label} className="w-[68px] h-[68px] object-contain" />
+                <div
+                  className={`w-[68px] h-[68px] mb-2 flex items-center justify-center ${isSelected ? "rounded-full bg-[#EFBA31]" : ""}`}
+                >
+                  <img
+                    src={group.iconSrc}
+                    alt={group.label}
+                    className="w-[68px] h-[68px] object-contain"
+                  />
                 </div>
-
               </div>
             );
           })}
         </div>
 
         {/* Bottom Row */}
-        <div className="flex justify-center items-center" style={{ gap: "8px" }}>
+        <div
+          className="flex justify-center items-center"
+          style={{ gap: "8px" }}
+        >
           {beneficiaryGroups.slice(3, 6).map((group) => {
             const isSelected = selectedGroups.includes(group.id);
             const isDisabled = isSelectionDisabled(group.id);
@@ -207,16 +219,20 @@ const Step1_Beneficiaries = ({
                   }
                 }}
               >
-                  <div className={`w-[68px] h-[68px] mb-2 flex items-center justify-center ${isSelected ? 'rounded-full bg-[#EFBA31]' : ''}`}>
-                  <img src={group.iconSrc} alt={group.label} className="w-[68px] h-[68px] object-contain" />
+                <div
+                  className={`w-[68px] h-[68px] mb-2 flex items-center justify-center ${isSelected ? "rounded-full bg-[#EFBA31]" : ""}`}
+                >
+                  <img
+                    src={group.iconSrc}
+                    alt={group.label}
+                    className="w-[68px] h-[68px] object-contain"
+                  />
                 </div>
-
               </div>
             );
           })}
         </div>
       </div>
-
 
       {/* Submit Button */}
       <div className="w-full max-w-[325px]">
@@ -225,11 +241,8 @@ const Step1_Beneficiaries = ({
           disabled={selectedGroups.length === 0}
           className={`w-full h-[53px] rounded-[40px] border-[1.5px] border-black flex items-center justify-center transition-all duration-200 figma-style1-button ${selectedGroups.length === 0 ? "cursor-not-allowed opacity-60" : ""}`}
         >
-          <span className={`figma-style1-button-text`}>
-            ไปต่อ
-          </span>
+          <span className={`figma-style1-button-text`}>ไปต่อ</span>
         </button>
-
       </div>
     </FigmaStyle1Layout>
   );

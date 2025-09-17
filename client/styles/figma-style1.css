@@ -195,7 +195,8 @@
 
 /* Page-specific override: force MN3 Step2 content to the top */
 /* Use more specific selectors to override other page-scope rules (fake-news / ukpack1) */
-.figma-style1-container.mn3-step2-minimal.figma-style1-ukpack1 .figma-style1-main,
+.figma-style1-container.mn3-step2-minimal.figma-style1-ukpack1
+  .figma-style1-main,
 .figma-style1-container.mn3-step2-minimal.fake-news-page .figma-style1-main,
 .figma-style1-container.mn3-step2-minimal .figma-style1-main {
   align-items: start !important;

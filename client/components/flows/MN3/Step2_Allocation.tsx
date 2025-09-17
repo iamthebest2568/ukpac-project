@@ -119,13 +119,18 @@ const Step2_Allocation = ({
 
   return (
     <FigmaStyle1Layout
-      backgroundImage={"https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fca1fd3675fcf47bebc3fca6ad2e96d03?format=webp&width=800"}
+      backgroundImage={
+        "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fca1fd3675fcf47bebc3fca6ad2e96d03?format=webp&width=800"
+      }
       useBlueOverlay={false}
       className="mn3-step2-page mn3-step2-minimal"
       imageLoading="eager"
       title={"คุณจะให้งบประมาณแต่ละข้อเท่าไหร่"}
     >
-      <div className="mn3-allocation-content" style={{ paddingTop: "clamp(40px, 8vh, 120px)" }}>
+      <div
+        className="mn3-allocation-content"
+        style={{ paddingTop: "clamp(40px, 8vh, 120px)" }}
+      >
         {/* Budget Display Box */}
         <div className="w-full px-4 mb-8">
           <div className="mn3-budget-display">
@@ -140,7 +145,6 @@ const Step2_Allocation = ({
             </div>
           </div>
         </div>
-
 
         {/* Budget Allocation Items */}
         <div className="w-full px-4 mb-6">
@@ -185,34 +189,39 @@ const Step2_Allocation = ({
               </div>
             ))}
           </div>
-
         </div>
 
         {/* Continue Button */}
 
-    <div className="w-full px-4 flex justify-center" style={{ marginTop: '24px' }}>
-      <div
-        className="mx-auto flex flex-col items-center"
-        style={{ width: "100%", maxWidth: 980 }}
-      >
-        <div className="text-center font-prompt" style={{
-          color: "#000D59",
-          fontSize: "clamp(14px, 3vw, 18px)",
-          fontWeight: 500,
-          marginBottom: "8px",
-        }}>
-          กรุณาจัดสรรงบประมาณให้ครบ {totalBudget} หน่วยเพื่อดำเนินการต่อ
-        </div>
-
-        <button
-          onClick={handleNext}
-          className="figma-style1-button"
-          aria-label="ดำเนินการต่อ"
+        <div
+          className="w-full px-4 flex justify-center"
+          style={{ marginTop: "24px" }}
         >
-          <span className="figma-style1-button-text">ไปต่อ</span>
-        </button>
-      </div>
-    </div>
+          <div
+            className="mx-auto flex flex-col items-center"
+            style={{ width: "100%", maxWidth: 980 }}
+          >
+            <div
+              className="text-center font-prompt"
+              style={{
+                color: "#000D59",
+                fontSize: "clamp(14px, 3vw, 18px)",
+                fontWeight: 500,
+                marginBottom: "8px",
+              }}
+            >
+              กรุณาจัดสรรงบประมาณให้ครบ {totalBudget} หน่วยเพื่อดำเนินการต่อ
+            </div>
+
+            <button
+              onClick={handleNext}
+              className="figma-style1-button"
+              aria-label="ดำเนินการต่อ"
+            >
+              <span className="figma-style1-button-text">ไปต่อ</span>
+            </button>
+          </div>
+        </div>
       </div>
     </FigmaStyle1Layout>
   );

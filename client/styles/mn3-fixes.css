@@ -8,7 +8,7 @@
 
 /* Force title color and remove text-shadow for readability on custom background */
 .figma-style1-container.mn3-step2-page .figma-style1-title {
-  color: #000D59 !important;
+  color: #000d59 !important;
   text-shadow: none !important;
 }
 
@@ -50,14 +50,14 @@
 .figma-style1-container.mn2-summary-page svg circle,
 .figma-style1-container.mn2-summary-page svg path,
 .figma-style1-container.mn2-summary-page .mn3-summary-icon {
-  stroke: #000D59 !important;
-  color: #000D59 !important;
+  stroke: #000d59 !important;
+  color: #000d59 !important;
   fill: none !important;
 }
 
 /* Ensure labels under icons use brand color */
 .figma-style1-container.mn2-step1-page span {
-  color: #000D59 !important;
+  color: #000d59 !important;
 }
 
 /* Push title and icon rows down on MN2 Step1 so they are lower in the viewport */
