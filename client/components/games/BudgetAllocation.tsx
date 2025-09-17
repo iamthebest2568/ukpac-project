@@ -47,7 +47,7 @@ const BudgetAllocationComponent = ({
     {
       key: "parking",
       label: "ที่จอดรถ",
-      description: "การจัดหาและพัฒนาพื้นที่จอดรถ",
+      description: "การจัดหาและพัฒนาพื้นท���่จอดรถ",
       icon: "🅿️",
     },
   ];
@@ -351,7 +351,7 @@ const BudgetAllocationComponent = ({
             <div className="mb-4 bg-green-500 bg-opacity-90 rounded-[15px] p-3">
               <div className="text-white text-center text-sm font-prompt">
                 <strong>เยี่ยม!</strong> คุณจัดสรรงบประมาณครบ {totalBudget}{" "}
-                ���าทแล้ว
+                บาทแล้ว
               </div>
             </div>
           )}
