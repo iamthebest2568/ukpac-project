@@ -123,7 +123,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     >
       {/* Fixed 1080px mobile-first container */}
       <div
-        className="app-container bg-white relative responsive-container safe-top safe-bottom"
+        className={`app-container bg-white relative responsive-container safe-top safe-bottom ${isFullBleed ? "" : "h-screen"}`}
         style={
           isFullBleed
             ? { width: "100%", padding: 0 }
@@ -140,9 +140,13 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         <main
           id="main-content"
           role="main"
-          className="w-full responsive-content"
+          className={`w-full responsive-content ${isFullBleed ? "" : "h-full overflow-hidden"}`}
         >
-          {children}
+          {isFullBleed ? (
+            children
+          ) : (
+            <div style={{ height: '100%', overflow: 'hidden' }}>{children}</div>
+          )}
         </main>
       </div>
     </div>
