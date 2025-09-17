@@ -100,63 +100,37 @@ const SubmitScreen: React.FC = () => {
         <div className="space-y-6">
           {heroImg ? (
             <div className="flex flex-col items-center">
-              <HeroWithShadow>
-                <div className="relative">
-                  {(() => {
-                    const amenities = (() => {
-                      try {
-                        const raw = sessionStorage.getItem("design.amenities");
-                        return raw ? (JSON.parse(raw) as string[]) : [];
-                      } catch {
-                        return [] as string[];
-                      }
-                    })();
-                    const payments = (() => {
-                      try {
-                        const raw = sessionStorage.getItem("design.payment");
-                        return raw ? (JSON.parse(raw) as string[]) : [];
-                      } catch {
-                        return [] as string[];
-                      }
-                    })();
-                    const overlay = [...(amenities || []), ...(payments || [])];
-                    return overlay.length > 0 ? (
-                      <div className="absolute left-1/2 transform -translate-x-1/2 -top-4 flex flex-wrap justify-center gap-2 z-20 max-w-[80%]">
-                        {overlay.map((lab, i) => (
-                          <div
-                            key={`${lab}-${i}`}
-                            className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center"
-                          >
-                            {lab === "เงินสด" ? (
-                              <img
-                                src={MONEY_ICON}
-                                alt={lab}
-                                className="h-5 w-5 object-contain"
-                              />
-                            ) : lab === "สแกนจ่าย" ? (
-                              <img
-                                src={SCAN_ICON}
-                                alt={lab}
-                                className="h-5 w-5 object-contain"
-                              />
-                            ) : (
-                              <div className="text-xs">{lab}</div>
-                            )}
-                          </div>
-                        ))}
-                      </div>
-                    ) : null;
-                  })()}
-
-                  <img
-                    src={heroImg}
-                    alt={`ภาพรถ - ${chassisLabel}`}
-                    className="h-56 w-auto object-contain select-none"
-                    decoding="async"
-                    loading="eager"
-                  />
-                </div>
-              </HeroWithShadow>
+              <VehiclePreview
+                imageSrc={heroImg}
+                label={<><span className="chassis-label-mobile">รถที่เลือก : </span>{chassisLabel}</>}
+                overlayLabels={((): string[] => {
+                  const amenities = (() => {
+                    try {
+                      const raw = sessionStorage.getItem("design.amenities");
+                      return raw ? (JSON.parse(raw) as string[]) : [];
+                    } catch {
+                      return [] as string[];
+                    }
+                  })();
+                  const payments = (() => {
+                    try {
+                      const raw = sessionStorage.getItem("design.payment");
+                      return raw ? (JSON.parse(raw) as string[]) : [];
+                    } catch {
+                      return [] as string[];
+                    }
+                  })();
+                  return [...(amenities || []), ...(payments || [])];
+                })()}
+                overlayIconMap={{
+                  เงินสด: MONEY_ICON,
+                  สแกนจ่าย: SCAN_ICON,
+                  "สแกนจ่าย 2": SCAN2_ICON,
+                  แตะบัตร: TOUCH_ICON,
+                  "ตั๋วรายเดือน/รอบ": MONTHLY_ICON,
+                  กระเป๋ารถเมล์: BUS_EMPLOY_ICON,
+                }}
+              />
               <p className="mt-2 font-prompt font-semibold text-[#001a73] text-center">
                 รถที่เลือก : {chassisLabel}
               </p>
