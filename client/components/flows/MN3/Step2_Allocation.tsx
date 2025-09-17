@@ -133,7 +133,7 @@ const Step2_Allocation = ({
               className="mn3-budget-icon"
             />
             <div className="mn3-budget-text">
-              <div className="mn3-budget-label">ง���ทั้งหมด</div>
+              <div className="mn3-budget-label">งบทั้งหมด</div>
               <div className="mn3-budget-amount">100</div>
             </div>
           </div>
