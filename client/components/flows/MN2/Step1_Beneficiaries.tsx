@@ -176,7 +176,9 @@ const Step1_Beneficiaries = ({
                   }
                 }}
               >
-                  <img src={group.iconSrc} alt={group.label} className="w-[68px] h-[68px] mb-2 object-contain" style={{ filter: isSelected ? "brightness(0)" : "none" }} />
+                  <div className={`w-[68px] h-[68px] mb-2 flex items-center justify-center ${isSelected ? 'rounded-full bg-[#EFBA31]' : ''}`}>
+                  <img src={group.iconSrc} alt={group.label} className="w-[44px] h-[44px] object-contain" style={{ filter: isSelected ? "brightness(0)" : "none" }} />
+                </div>
 
               </div>
             );
@@ -205,7 +207,9 @@ const Step1_Beneficiaries = ({
                   }
                 }}
               >
-                  <img src={group.iconSrc} alt={group.label} className="w-[68px] h-[68px] mb-2 object-contain" style={{ filter: isSelected ? "brightness(0)" : "none" }} />
+                  <div className={`w-[68px] h-[68px] mb-2 flex items-center justify-center ${isSelected ? 'rounded-full bg-[#EFBA31]' : ''}`}>
+                  <img src={group.iconSrc} alt={group.label} className="w-[44px] h-[44px] object-contain" style={{ filter: isSelected ? "brightness(0)" : "none" }} />
+                </div>
 
               </div>
             );
