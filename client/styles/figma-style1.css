@@ -440,6 +440,38 @@
   color: #000d59 !important;
 }
 
+/* Final step (MN3) safety overrides - hide decorative backgrounds/overlays and ensure content visible */
+.figma-style1-container.mn3-step3-page .figma-style1-background,
+.figma-style1-container.mn3-step3-page .figma-style1-background-image,
+.figma-style1-container.mn3-step3-page .figma-style1-background-overlay,
+.figma-style1-container.mn3-step3-page .figma-style1-wave-overlay,
+.figma-style1-container.mn3-step3-page::before,
+.figma-style1-container.mn3-step3-page .figma-style1-content::before {
+  display: none !important;
+  background: transparent !important;
+}
+
+/* Keep content visible and above any decorative layers */
+.figma-style1-container.mn3-step3-page .figma-style1-content,
+.figma-style1-container.mn3-step3-page .figma-style1-main,
+.figma-style1-container.mn3-step3-page .figma-style1-content-area {
+  overflow: visible !important;
+  z-index: 9999 !important;
+}
+
+/* Ensure title and interactive elements are accessible on top */
+.figma-style1-container.mn3-step3-page .figma-style1-title,
+.figma-style1-container.mn3-step3-page .figma-style1-button,
+.figma-style1-container.mn3-step3-page .figma-style1-button-text {
+  z-index: 10000 !important;
+}
+
+/* Also make sure mn3-specific allocation content isn't clipped */
+.figma-style1-container.mn3-step3-page .mn3-allocation-content {
+  overflow: visible !important;
+  position: relative !important;
+}
+
 /* Ensure button container text remains black on fake-news */
 .fake-news-page .figma-style1-button-text {
   color: var(--figma-style1-text-dark) !important;
