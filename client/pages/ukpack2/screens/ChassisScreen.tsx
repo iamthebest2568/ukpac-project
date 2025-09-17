@@ -103,7 +103,7 @@ const OPTIONS = [
   {
     key: "extra",
     label: "รถกะบะดัดแปลง 8-12 ที่นั่ง",
-    labelText: "รถกะบะดัดแปลง 8-12 ที่นั่ง",
+    labelText: "รถกะบะดัดแปลง 8-12 ที่น��่ง",
     icon: <IconExtra />,
   },
 ];
@@ -279,25 +279,27 @@ const ChassisScreen: React.FC = () => {
                 <div className="flex flex-col gap-4">
                   <div style={{ minHeight: '88px' }}>
                     <SelectionCard
-                      key={OPTIONS[0].key}
-                      icon={OPTIONS[0].icon}
-                      label={OPTIONS[0].label}
-                      isSelected={selected === OPTIONS[0].key}
-                      onClick={() => setSelected(OPTIONS[0].key)}
-                      variant="light"
-                      size="sm"
-                    />
+                    key={OPTIONS[0].key}
+                    icon={OPTIONS[0].icon}
+                    label={OPTIONS[0].label}
+                    isSelected={selected === OPTIONS[0].key}
+                    onClick={() => setSelected(OPTIONS[0].key)}
+                    variant="light"
+                    hideLabel={true}
+                    size="sm"
+                  />
                   </div>
                   <div style={{ minHeight: '72px' }}>
                     <SelectionCard
-                      key={OPTIONS[2].key}
-                      icon={OPTIONS[2].icon}
-                      label={OPTIONS[2].label}
-                      isSelected={selected === OPTIONS[2].key}
-                      onClick={() => setSelected(OPTIONS[2].key)}
-                      variant="light"
-                      size="sm"
-                    />
+                    key={OPTIONS[2].key}
+                    icon={OPTIONS[2].icon}
+                    label={OPTIONS[2].label}
+                    isSelected={selected === OPTIONS[2].key}
+                    onClick={() => setSelected(OPTIONS[2].key)}
+                    variant="light"
+                    hideLabel={true}
+                    size="sm"
+                  />
                   </div>
                 </div>
 
@@ -305,25 +307,27 @@ const ChassisScreen: React.FC = () => {
                 <div className="flex flex-col gap-4">
                   <div style={{ minHeight: '88px' }}>
                     <SelectionCard
-                      key={OPTIONS[1].key}
-                      icon={OPTIONS[1].icon}
-                      label={OPTIONS[1].label}
-                      isSelected={selected === OPTIONS[1].key}
-                      onClick={() => setSelected(OPTIONS[1].key)}
-                      variant="light"
-                      size="lg"
-                    />
+                    key={OPTIONS[1].key}
+                    icon={OPTIONS[1].icon}
+                    label={OPTIONS[1].label}
+                    isSelected={selected === OPTIONS[1].key}
+                    onClick={() => setSelected(OPTIONS[1].key)}
+                    variant="light"
+                    hideLabel={true}
+                    size="lg"
+                  />
                   </div>
                   <div style={{ minHeight: '72px' }}>
                     <SelectionCard
-                      key={OPTIONS[3].key}
-                      icon={OPTIONS[3].icon}
-                      label={OPTIONS[3].label}
-                      isSelected={selected === OPTIONS[3].key}
-                      onClick={() => setSelected(OPTIONS[3].key)}
-                      variant="light"
-                      size="sm"
-                    />
+                    key={OPTIONS[3].key}
+                    icon={OPTIONS[3].icon}
+                    label={OPTIONS[3].label}
+                    isSelected={selected === OPTIONS[3].key}
+                    onClick={() => setSelected(OPTIONS[3].key)}
+                    variant="light"
+                    hideLabel={true}
+                    size="sm"
+                  />
                   </div>
                 </div>
               </div>
