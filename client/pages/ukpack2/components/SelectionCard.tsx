@@ -9,6 +9,7 @@ interface SelectionCardProps {
   hideLabel?: boolean;
   appearance?: "card" | "bare" | "group";
   size?: "sm" | "md" | "lg";
+  layout?: "vertical" | "horizontal";
 }
 
 const SelectionCard: React.FC<SelectionCardProps> = ({
