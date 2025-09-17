@@ -138,7 +138,7 @@ const Step2_Summary = ({
               lineHeight: "normal",
             }}
           >
-            นโยบ��ยที่คุณเสนอ
+            นโยบายที่คุณเสนอ
           </h1>
         </div>
 
