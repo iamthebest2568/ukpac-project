@@ -14,17 +14,17 @@ const SplashScreen: React.FC = () => {
     >
       {/* Bottom turquoise curved footer (no hero image) */}
       <svg
-        viewBox="0 0 1000 400"
+        viewBox="0 0 1000 420"
         preserveAspectRatio="none"
-        style={{ position: 'absolute', left: 0, right: 0, bottom: 0, width: '100%', height: '38vh', zIndex: 0 }}
+        style={{ position: 'absolute', left: 0, right: 0, bottom: '-1px', width: '100%', height: '38vh', zIndex: 0, display: 'block' }}
         aria-hidden
       >
-        <path d="M0,400 L0,140 C200,80 800,80 1000,140 L1000,400 Z" fill="#04d9f9" />
+        <path d="M0,420 L0,140 C200,80 800,80 1000,140 L1000,420 Z" fill="#04d9f9" style={{ shapeRendering: 'geometricPrecision' }} />
       </svg>
 
       <div className="footer-container mt-auto">
         <div className="footer-content" style={{ position: 'relative', textAlign: 'center', zIndex: 2, padding: '64px 20px 20px', fontWeight: 400 }}>
-          <h2 style={{ color: 'rgb(0, 13, 89)', fontSize: '18px', fontWeight: 700, lineHeight: '21.6px', marginBottom: '8px', textDecorationColor: 'rgb(0, 13, 89)' }} className="text-2xl md:text-3xl mb-2">รถเมล์ในฝันที่คุณอยากขึ้นทุกวัน<br />จะมีหน้าตาอย่างไร?<br /></h2>
+          <h2 style={{ color: 'rgb(0, 13, 89)', fontSize: '18px', fontWeight: 700, lineHeight: '21.6px', marginBottom: '8px', textDecorationColor: 'rgb(0, 13, 89)' }} className="text-2xl md:text-3xl mb-2">รถ���มล์ในฝันที่คุณอยากขึ้นทุกวัน<br />จะมีหน้าตาอย่างไร?<br /></h2>
           <div className="flex items-center justify-center gap-4">
             <CtaButton
               text="เริ่มออกแบบ"
