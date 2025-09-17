@@ -103,6 +103,32 @@
   justify-content: center;
 }
 
+/* Reset and safe styles for mn3 result page to avoid cropping of mockup image */
+.figma-style1-container.mn3-result-page .figma-style1-content {
+  overflow: visible !important; /* allow mockup to show fully */
+}
+
+.figma-style1-container.mn3-result-page .figma-style1-main {
+  z-index: 5 !important; /* keep content above background */
+}
+
+.figma-style1-container.mn3-result-page .mn3-result-mockup-container {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 12px 16px !important;
+}
+
+.figma-style1-container.mn3-result-page .mn3-result-mockup {
+  width: auto !important;
+  max-width: min(720px, 94vw) !important;
+  height: auto !important;
+  max-height: calc(100vh - 160px) !important;
+  object-fit: contain !important; /* don't crop image */
+  display: block !important;
+  margin: 0 auto !important;
+}
+
 .figma-style1-background-image {
   position: absolute !important;
   inset: 0 !important;
