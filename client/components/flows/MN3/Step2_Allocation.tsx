@@ -192,13 +192,13 @@ const Step2_Allocation = ({
             fontWeight: 500,
             marginTop: "32px",
           }}>
-            กรุณาจัดสรรงบประมาณให้ครบ {totalBudget} หน่วยเพื่อดำเนินการต่��
+            กรุณาจัดสรรงบประมาณให้ครบ {totalBudget} หน่วยเพื่อดำเนินการต่อ
           </div>
 
         </div>
 
         {/* Continue Button */}
-    <div className="w-full px-4 flex justify-center" style={{ marginTop:  '96px' }}>
+    <div className="w-full px-4 flex justify-center" style={{ marginTop:  '176px' }}>
       <div
         className="mx-auto flex flex-col items-center space-y-2"
         style={{ width: "100%", maxWidth: 980 }}
