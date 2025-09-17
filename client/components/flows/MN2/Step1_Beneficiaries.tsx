@@ -234,10 +234,10 @@ const Step1_Beneficiaries = ({
         <button
           onClick={handleNext}
           disabled={selectedGroups.length === 0}
-          className={`w-full h-[53px] rounded-[40px] border-[1.5px] border-black flex items-center justify-center transition-all duration-200 ${selectedGroups.length === 0 ? "bg-gray-400 cursor-not-allowed" : "figma-style1-button"}`}
+          className={`w-full h-[53px] rounded-[40px] border-[1.5px] border-black flex items-center justify-center transition-all duration-200 figma-style1-button ${selectedGroups.length === 0 ? "cursor-not-allowed opacity-60" : ""}`}
           aria-describedby="next-button-description"
         >
-          <span className={`figma-style1-button-text ${selectedGroups.length === 0 ? "text-gray-600" : ""}`}>
+          <span className={`figma-style1-button-text`}>
             ไปต่อ
           </span>
         </button>
