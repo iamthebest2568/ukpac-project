@@ -35,14 +35,16 @@ const VehiclePreview: React.FC<Props> = ({
             {overlayLabels && overlayLabels.length > 0 && (
               <div className="absolute left-1/2 transform -translate-x-1/2 -top-4 flex flex-wrap justify-center gap-2 z-20 max-w-[80%]">
                 {overlayLabels.map((lab, i) => {
-                  const src = overlayIconMap[lab];
+                  const srcOrNode = overlayIconMap[lab];
                   return (
                     <div
                       key={`${lab}-${i}`}
                       className="bg-white/90 rounded-full p-1 h-8 w-8 flex items-center justify-center"
                     >
-                      {src ? (
-                        <img src={src} alt={lab} className="h-5 w-5 object-contain" />
+                      {typeof srcOrNode === 'string' && srcOrNode ? (
+                        <img src={srcOrNode} alt={lab} className="h-5 w-5 object-contain" />
+                      ) : srcOrNode ? (
+                        <>{srcOrNode}</>
                       ) : (
                         <div className="text-xs">{lab}</div>
                       )}
