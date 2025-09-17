@@ -48,7 +48,6 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
           <div className="bg-[#00d5f9] w-full py-3">
             <div
               className="max-w-4xl mx-auto w-full px-4 sm:px-6"
-              style={{ paddingBottom: "env(safe-area-inset-bottom, 1rem)" }}
             >
               <div className="w-full flex items-center justify-center">
                 {footerContent}
