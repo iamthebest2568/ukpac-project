@@ -40,7 +40,7 @@ const Step1_Beneficiaries = ({
       id: "everyone",
       label: "ทุกคน",
       iconSrc:
-        "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F678f337e0a394ffb8609633861f0f9de?format=webp&width=100",
+        "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F2ec46a7af92d4823b0f7a3811d503497?format=webp&width=100",
     },
     {
       id: "locals",
@@ -50,7 +50,7 @@ const Step1_Beneficiaries = ({
     },
     {
       id: "elderly",
-      label: "ผู้สูงอายุ",
+      label: "ผู��สูงอายุ",
       iconSrc:
         "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F87b74452a09049c98ad12ee790ce5df3?format=webp&width=100",
     },
