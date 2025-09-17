@@ -92,7 +92,7 @@ const OPTIONS = [
     key: "large",
     label: (
       <>
-        <span>���ถตู้โดยสาร</span>
+        <span>รถตู้โดยสาร</span>
         <br />
         9-15 ที่นั่ง
       </>
@@ -102,7 +102,7 @@ const OPTIONS = [
   },
   {
     key: "extra",
-    label: "รถกะบะดัดแปลง 8-12 ที่นั่ง",
+    label: "รถกะบะดัดแปล�� 8-12 ที่นั่ง",
     labelText: "รถกะบะดัดแปลง 8-12 ที่น��่ง",
     icon: <IconExtra />,
   },
@@ -172,7 +172,7 @@ const ChassisScreen: React.FC = () => {
               {/* shadow only */}
               <img
                 src={HERO_SHADOW}
-                alt="เงารถ"
+                alt="เงาร���"
                 className="absolute w-[60%] max-w-[320px] pointer-events-none select-none" style={{ bottom: '8px' }}
                 decoding="async"
                 loading="eager"
@@ -274,7 +274,7 @@ const ChassisScreen: React.FC = () => {
           <div className="bg-white rounded-2xl -mt-2 p-4 border border-gray-400">
             <StepTabs active={1} />
             <div className="mt-2">
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-x-4 gap-y-2">
                 {/* Left column: large primary card on top, small card below */}
                 <div className="flex flex-col gap-4">
                   <div style={{ minHeight: '88px' }}>
