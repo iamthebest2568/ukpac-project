@@ -120,26 +120,11 @@ const Step2_Summary = ({
   };
 
   return (
-    <div className="mn2-summary-page min-h-screen bg-white flex flex-col relative overflow-hidden">
-      {/* Background with curved blue bottom */}
-      <div className="absolute inset-0">
-        {/* Blue background */}
-        <div
-          className="absolute inset-0 bg-[#04D9F9]"
-          style={{ width: "100%", height: "100%" }}
-        />
-        {/* White curved top section */}
-        <div
-          className="absolute top-0 left-0 right-0 bg-white"
-          style={{
-            height: "clamp(1000px, 70vh, 1420px)",
-            borderBottomLeftRadius: "clamp(300px, 40vw, 800px)",
-            borderBottomRightRadius: "clamp(300px, 40vw, 800px)",
-          }}
-        />
-      </div>
-
-      {/* Main Content */}
+    <FigmaStyle1Layout
+      className="mn2-summary-page"
+      imageLoading="eager"
+      title={<span style={{ color: "#000D59" }}>นโยบายที่คุณเสนอ</span>}
+    >
       <div className="relative z-10 w-full max-w-full mx-auto px-4 py-6">
         {/* Title */}
         <div className="text-center mb-8">
@@ -336,7 +321,7 @@ const Step2_Summary = ({
           </button>
         </div>
       </div>
-    </div>
+    </FigmaStyle1Layout>
   );
 };
 
