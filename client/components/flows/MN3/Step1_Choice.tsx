@@ -148,7 +148,14 @@ const Step1_Choice = ({
             จากการเก็บไปพัฒนาอะไร
           </h1>
 
-          <p className="font-prompt text-center mb-4" style={{ color: '#6b7280', fontSize: 'clamp(12px, 3.5vw, 16px)', fontWeight: 500 }}>
+          <p
+            className="font-prompt text-center mb-4"
+            style={{
+              color: "#6b7280",
+              fontSize: "clamp(12px, 3.5vw, 16px)",
+              fontWeight: 500,
+            }}
+          >
             ไม่เกิน 3 นโยบาย
           </p>
         </div>

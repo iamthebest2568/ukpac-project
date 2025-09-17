@@ -1,1 +1,1 @@
-export { default } from '../UkDashboard';
+export { default } from "../UkDashboard";

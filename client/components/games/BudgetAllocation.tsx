@@ -13,7 +13,11 @@ interface BudgetAllocationProps {
   layoutMode?: boolean;
 }
 
-const BudgetAllocationComponent = ({ sessionID, onNavigate, layoutMode = false }: BudgetAllocationProps) => {
+const BudgetAllocationComponent = ({
+  sessionID,
+  onNavigate,
+  layoutMode = false,
+}: BudgetAllocationProps) => {
   const [budgetAllocation, setBudgetAllocation] = useState({
     trainDiscount: 0,
     busQuality: 0,
@@ -77,21 +81,54 @@ const BudgetAllocationComponent = ({ sessionID, onNavigate, layoutMode = false }
 
   // Size tokens adjust the UI when rendered inside constrained pages (layoutMode)
   const compact = layoutMode;
-  const titleFontSize = compact ? 'clamp(18px, 4.2vw, 28px)' : 'clamp(24px, 5.6vw, 60px)';
-  const cardHeight = compact ? 'clamp(120px, 20vw, 160px)' : 'clamp(200px, 25vw, 280px)';
-  const coinWidth = compact ? 'clamp(48px, 8vw, 80px)' : 'clamp(80px, 12.5vw, 135px)';
-  const coinHeight = compact ? 'clamp(56px, 10vw, 95px)' : 'clamp(95px, 15vw, 159px)';
-  const labelFontSize = compact ? 'clamp(16px, 3.6vw, 22px)' : 'clamp(24px, 4.6vw, 50px)';
-  const totalFontSize = compact ? 'clamp(28px, 6vw, 48px)' : 'clamp(50px, 9.3vw, 100px)';
-  const inputBoxWidth = compact ? 'clamp(110px, 20vw, 160px)' : 'clamp(150px, 19vw, 205px)';
-  const inputBoxHeight = compact ? 'clamp(64px, 10vw, 90px)' : 'clamp(100px, 12vw, 130px)';
-  const inputFontSize = compact ? 'clamp(20px, 4.6vw, 34px)' : 'clamp(35px, 6.5vw, 70px)';
-  const continueHeight = compact ? 'clamp(56px, 8vw, 72px)' : 'clamp(80px, 10.9vw, 118px)';
-  const continueWidth = compact ? 'min(600px,85vw)' : 'min(845px,85vw)';
-  const buttonFontSize = compact ? 'clamp(18px, 3.6vw, 28px)' : 'clamp(24px, 4.6vw, 50px)';
+  const titleFontSize = compact
+    ? "clamp(18px, 4.2vw, 28px)"
+    : "clamp(24px, 5.6vw, 60px)";
+  const cardHeight = compact
+    ? "clamp(120px, 20vw, 160px)"
+    : "clamp(200px, 25vw, 280px)";
+  const coinWidth = compact
+    ? "clamp(48px, 8vw, 80px)"
+    : "clamp(80px, 12.5vw, 135px)";
+  const coinHeight = compact
+    ? "clamp(56px, 10vw, 95px)"
+    : "clamp(95px, 15vw, 159px)";
+  const labelFontSize = compact
+    ? "clamp(16px, 3.6vw, 22px)"
+    : "clamp(24px, 4.6vw, 50px)";
+  const totalFontSize = compact
+    ? "clamp(28px, 6vw, 48px)"
+    : "clamp(50px, 9.3vw, 100px)";
+  const inputBoxWidth = compact
+    ? "clamp(110px, 20vw, 160px)"
+    : "clamp(150px, 19vw, 205px)";
+  const inputBoxHeight = compact
+    ? "clamp(64px, 10vw, 90px)"
+    : "clamp(100px, 12vw, 130px)";
+  const inputFontSize = compact
+    ? "clamp(20px, 4.6vw, 34px)"
+    : "clamp(35px, 6.5vw, 70px)";
+  const continueHeight = compact
+    ? "clamp(56px, 8vw, 72px)"
+    : "clamp(80px, 10.9vw, 118px)";
+  const continueWidth = compact ? "min(600px,85vw)" : "min(845px,85vw)";
+  const buttonFontSize = compact
+    ? "clamp(18px, 3.6vw, 28px)"
+    : "clamp(24px, 4.6vw, 50px)";
 
   return (
-    <div className={`${layoutMode ? "w-full" : "min-h-screen bg-white"} flex flex-col relative overflow-hidden`} style={layoutMode ? { maxHeight: "calc(100vh - 80px)", overflowY: "auto", paddingBottom: "env(safe-area-inset-bottom,24px)" } : undefined}>
+    <div
+      className={`${layoutMode ? "w-full" : "min-h-screen bg-white"} flex flex-col relative overflow-hidden`}
+      style={
+        layoutMode
+          ? {
+              maxHeight: "calc(100vh - 80px)",
+              overflowY: "auto",
+              paddingBottom: "env(safe-area-inset-bottom,24px)",
+            }
+          : undefined
+      }
+    >
       {/* Background with curved blue bottom - NEW FIGMA DESIGN */}
       {!layoutMode && (
         <div className="absolute inset-0">
@@ -110,7 +147,10 @@ const BudgetAllocationComponent = ({ sessionID, onNavigate, layoutMode = false }
       )}
 
       {/* Main Content */}
-      <div className="relative z-10 w-full max-w-full mx-auto px-4 py-8" style={layoutMode ? { maxWidth: "960px" } : undefined}>
+      <div
+        className="relative z-10 w-full max-w-full mx-auto px-4 py-8"
+        style={layoutMode ? { maxWidth: "960px" } : undefined}
+      >
         {/* Title - NEW FIGMA DESIGN */}
         <div className="text-center mb-12">
           <h1
@@ -237,11 +277,11 @@ const BudgetAllocationComponent = ({ sessionID, onNavigate, layoutMode = false }
                 <h3
                   className="font-prompt font-bold"
                   style={{
-                  color: "#000D59",
-                  fontSize: labelFontSize,
-                  fontWeight: 700,
-                  letterSpacing: "0.4px",
-                }}
+                    color: "#000D59",
+                    fontSize: labelFontSize,
+                    fontWeight: 700,
+                    letterSpacing: "0.4px",
+                  }}
                 >
                   {item.label}
                 </h3>

@@ -130,7 +130,10 @@ const Step1_Choice = ({
       {/* Main Content Container */}
       <div className="mn3-content">
         {/* Title Section - Optimized for mobile readability */}
-        <div className="text-center w-full max-w-none px-4" style={{ marginTop: 'clamp(32px, 8vh, 120px)' }}>
+        <div
+          className="text-center w-full max-w-none px-4"
+          style={{ marginTop: "clamp(32px, 8vh, 120px)" }}
+        >
           <h1
             className="font-prompt text-center leading-normal mb-4"
             style={{
@@ -146,8 +149,10 @@ const Step1_Choice = ({
             <br />
             จากการเก็บไปพัฒนาอะไร
           </h1>
-          <div style={{ textAlign: 'center', marginTop: '12px' }}>
-            <p style={{ color: '#000D59', fontSize: '16px', margin: 0 }}>ไม่เกิน 3 นโยบาย</p>
+          <div style={{ textAlign: "center", marginTop: "12px" }}>
+            <p style={{ color: "#000D59", fontSize: "16px", margin: 0 }}>
+              ไม่เกิน 3 นโยบาย
+            </p>
           </div>
         </div>
 

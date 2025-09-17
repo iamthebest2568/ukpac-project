@@ -6,7 +6,11 @@ const Ukpack1BudgetPage = () => {
 
   // Render BudgetAllocation in compact layoutMode so it displays well without Figma wrapper
   return (
-    <BudgetAllocation sessionID={sessionID} onNavigate={navigateToPage} layoutMode={true} />
+    <BudgetAllocation
+      sessionID={sessionID}
+      onNavigate={navigateToPage}
+      layoutMode={true}
+    />
   );
 };
 

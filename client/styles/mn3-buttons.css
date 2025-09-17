@@ -124,7 +124,7 @@
   font-size: clamp(12px, 2.6vw, 16px);
   line-height: 1.15;
   letter-spacing: 0px;
-  color: #000D59; /* updated per request */
+  color: #000d59; /* updated per request */
   text-align: center;
   margin: 0;
   padding: 4px 2px; /* small padding inside button */
@@ -296,7 +296,6 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-
 /* Background image for MN3 page - full viewport wallpaper via fixed pseudo-element */
 .mn3-page-bg {
   position: relative;
@@ -418,7 +417,11 @@
 .mn3-budget-display {
   background-color: #ffe000;
   border-radius: clamp(8px, 1.2vw, 10px); /* reduced roundness */
-  padding: clamp(20px, 5vw, 32px); /* more padding so icon and amount sit further from edges */
+  padding: clamp(
+    20px,
+    5vw,
+    32px
+  ); /* more padding so icon and amount sit further from edges */
   display: flex;
   align-items: center;
   justify-content: space-between;

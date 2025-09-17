@@ -38,7 +38,13 @@ const Ask02_2 = ({ sessionID, onNavigate }: Ask02_2Props) => {
       imageLoading="eager"
     >
       <div className="ask02-2-content">
-        <div className="w-full max-w-[890px] mx-auto" style={{ marginTop: "clamp(10px, 3vh, 28px)", marginBottom: "clamp(8px, 2vh, 20px)" }}>
+        <div
+          className="w-full max-w-[890px] mx-auto"
+          style={{
+            marginTop: "clamp(10px, 3vh, 28px)",
+            marginBottom: "clamp(8px, 2vh, 20px)",
+          }}
+        >
           <div
             className="ask02-2-textarea-box relative w-full rounded-[20px] border-2 border-[#000D59] bg-white"
             style={{
@@ -54,7 +60,8 @@ const Ask02_2 = ({ sessionID, onNavigate }: Ask02_2Props) => {
                 tabIndex={0}
                 onClick={() => textareaRef.current?.focus()}
                 onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") textareaRef.current?.focus();
+                  if (e.key === "Enter" || e.key === " ")
+                    textareaRef.current?.focus();
                 }}
               >
                 พิมพ์ข้อความของคุณที่นี่...
@@ -91,7 +98,10 @@ const Ask02_2 = ({ sessionID, onNavigate }: Ask02_2Props) => {
       </div>
 
       {textInput.trim().length === 0 && (
-        <div className="text-center font-prompt mt-2" style={{ color: "#000D59", fontSize: "14px" }}>
+        <div
+          className="text-center font-prompt mt-2"
+          style={{ color: "#000D59", fontSize: "14px" }}
+        >
           กรุณากรอกข้อความเพื่อดำเนินการต่อ
         </div>
       )}

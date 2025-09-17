@@ -76,7 +76,10 @@ const Step2_Form = ({
       className="source-selection-page endseq-form-page fake-news-page"
       imageLoading="eager"
     >
-      <div className="w-full max-w-[980px] mx-auto px-4 py-6" style={{ paddingTop: "clamp(320px, 40vh, 400px)", color: "#000D59" }}>
+      <div
+        className="w-full max-w-[980px] mx-auto px-4 py-6"
+        style={{ paddingTop: "clamp(320px, 40vh, 400px)", color: "#000D59" }}
+      >
         <h1
           className="font-prompt text-center"
           style={{

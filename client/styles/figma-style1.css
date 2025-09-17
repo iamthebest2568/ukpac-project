@@ -37,7 +37,6 @@
   padding: 0;
 }
 
-
 /* Small phones (320px - 375px) */
 @media (max-width: 375px) {
   .figma-style1-content {
@@ -396,14 +395,14 @@
 .end-sequence-page .figma-style1-title,
 .end-sequence-page h1,
 .end-sequence-page h2 {
-  color: #000D59 !important;
+  color: #000d59 !important;
   letter-spacing: 0.2px !important;
 }
 
 /* Ensure general content text on end-sequence pages uses the same brand color */
 .end-sequence-page .figma-style1-content-area,
 .end-sequence-page .figma-style1-content-area * {
-  color: #000D59 !important;
+  color: #000d59 !important;
 }
 
 /* Ensure button container text remains black on fake-news */
@@ -928,7 +927,7 @@
   height: 72px;
   object-fit: cover;
   border-radius: 8px;
-  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
 }
 
 @media (max-width: 480px) {
@@ -944,7 +943,6 @@
     height: 96px;
   }
 }
-
 
 /* Grid layout for summary + visual */
 .mn3-summary-grid {
@@ -1583,7 +1581,7 @@ body[data-dialog-open] {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: #000D59;
+    color: #000d59;
     opacity: 0.9;
     font-size: clamp(16px, 3.6vw, 38px);
     line-height: 1.3;

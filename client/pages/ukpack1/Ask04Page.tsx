@@ -1,1 +1,1 @@
-export { default } from '../Ask04Page';
+export { default } from "../Ask04Page";

@@ -103,23 +103,54 @@ const Step3_ThankYou = ({
       className="source-selection-page endseq-thankyou-page fake-news-page"
       imageLoading="eager"
     >
-      <div className="w-full max-w-[980px] mx-auto px-4 py-8 text-center" style={{ paddingTop: "clamp(192px, 36vh, 320px)", color: "#000D59" }}>
+      <div
+        className="w-full max-w-[980px] mx-auto px-4 py-8 text-center"
+        style={{ paddingTop: "clamp(192px, 36vh, 320px)", color: "#000D59" }}
+      >
         <h1
           className="font-prompt"
           style={{ color: "#000D59", fontWeight: 700, lineHeight: "1" }}
         >
-          <span style={{ display: "block", fontSize: "clamp(28px, 6.5vw, 70px)", lineHeight: 1 }}>
+          <span
+            style={{
+              display: "block",
+              fontSize: "clamp(28px, 6.5vw, 70px)",
+              lineHeight: 1,
+            }}
+          >
             <span style={{ fontWeight: 700 }}>ขอบคุณ</span>
-            <span style={{ fontWeight: 400, fontSize: "clamp(24px, 5.6vw, 60px)", marginLeft: "8px" }}>ที่ร่วมเป็นส่วนหนึ่ง</span>
+            <span
+              style={{
+                fontWeight: 400,
+                fontSize: "clamp(24px, 5.6vw, 60px)",
+                marginLeft: "8px",
+              }}
+            >
+              ที่ร่วมเป็นส่วนหนึ่ง
+            </span>
           </span>
           <span
-            style={{ display: "block", fontSize: "clamp(24px, 5.6vw, 60px)", fontWeight: 400 }}
+            style={{
+              display: "block",
+              fontSize: "clamp(24px, 5.6vw, 60px)",
+              fontWeight: 400,
+            }}
           >
             ในการพัฒนาเมือง
           </span>
         </h1>
 
-        <div className="mt-6 rounded-lg p-4 max-w-[820px] mx-auto" style={{ backgroundImage: "url('https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F078fb776552d4ee5a1b89c7e00d0a299?format=webp&width=800')", backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center', minHeight: '140px' }}>
+        <div
+          className="mt-6 rounded-lg p-4 max-w-[820px] mx-auto"
+          style={{
+            backgroundImage:
+              "url('https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F078fb776552d4ee5a1b89c7e00d0a299?format=webp&width=800')",
+            backgroundSize: "contain",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+            minHeight: "140px",
+          }}
+        >
           <h2
             className="font-prompt sr-only"
             style={{

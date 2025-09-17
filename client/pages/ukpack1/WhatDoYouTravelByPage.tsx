@@ -1,1 +1,1 @@
-export { default } from '../WhatDoYouTravelByPage';
+export { default } from "../WhatDoYouTravelByPage";

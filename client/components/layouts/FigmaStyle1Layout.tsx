@@ -89,7 +89,7 @@ const FigmaStyle1Layout = ({
 
   return (
     <div
-      className={`figma-style1-container ${className} ${platformClass} ${pageScope} ${pageScope ? 'fake-news-page' : ''}`}
+      className={`figma-style1-container ${className} ${platformClass} ${pageScope} ${pageScope ? "fake-news-page" : ""}`}
     >
       <div className="figma-style1-content">
         {/* Background Image (overlay only rendered when useBlueOverlay is true) */}
@@ -182,9 +182,17 @@ const FigmaStyle1Layout = ({
               <div className="figma-style1-title-container">
                 <h1
                   className={`figma-style1-title ${isSourceSelection ? "figma-style1-title--black" : ""}`}
-                  style={isSourceSelection ? { fontSize: "36px", lineHeight: 1.05 } : undefined}
+                  style={
+                    isSourceSelection
+                      ? { fontSize: "36px", lineHeight: 1.05 }
+                      : undefined
+                  }
                 >
-                  {typeof title === 'string' ? <p style={{ margin: 0 }}>{title}</p> : title}
+                  {typeof title === "string" ? (
+                    <p style={{ margin: 0 }}>{title}</p>
+                  ) : (
+                    title
+                  )}
                 </h1>
               </div>
             )}
@@ -204,7 +212,8 @@ const FigmaStyle1Layout = ({
                         aria-describedby={`button-description-${index}`}
                       >
                         <span className="figma-style1-button-text">
-                          {typeof button.text === 'string' && button.text.trim() === 'อื่นๆ' ? (
+                          {typeof button.text === "string" &&
+                          button.text.trim() === "อื่นๆ" ? (
                             <p style={{ margin: 0 }}>อื่น ๆ</p>
                           ) : (
                             button.text

@@ -78,18 +78,43 @@ const Step1_Decision = ({
       className="source-selection-page end-sequence-page fake-news-page"
       imageLoading="eager"
     >
-      <div className="w-full max-w-[980px] mx-auto px-4 py-8 text-center" style={{ paddingTop: "calc(clamp(157px, 33vh, 285px) - clamp(28px, 6.5vw, 70px))", color: "#000D59" }}>
+      <div
+        className="w-full max-w-[980px] mx-auto px-4 py-8 text-center"
+        style={{
+          paddingTop:
+            "calc(clamp(157px, 33vh, 285px) - clamp(28px, 6.5vw, 70px))",
+          color: "#000D59",
+        }}
+      >
         <h1
           className="font-prompt"
           style={{ color: "#000D59", fontWeight: 700, lineHeight: "1" }}
         >
-          <span style={{ display: "block", fontSize: "clamp(28px, 6.5vw, 70px)", lineHeight: 1 }}>
+          <span
+            style={{
+              display: "block",
+              fontSize: "clamp(28px, 6.5vw, 70px)",
+              lineHeight: 1,
+            }}
+          >
             <span style={{ fontWeight: 700 }}>ขอบคุณ</span>
-            <span style={{ fontWeight: 400, fontSize: "clamp(24px, 5.6vw, 60px)", marginLeft: "8px" }}>ที่ร่วมเป็นส่วนหนึ่ง</span>
+            <span
+              style={{
+                fontWeight: 400,
+                fontSize: "clamp(24px, 5.6vw, 60px)",
+                marginLeft: "8px",
+              }}
+            >
+              ที่ร่วมเป็นส่วนหนึ่ง
+            </span>
           </span>
 
           <span
-            style={{ display: "block", fontSize: "clamp(24px, 5.6vw, 60px)", fontWeight: 400 }}
+            style={{
+              display: "block",
+              fontSize: "clamp(24px, 5.6vw, 60px)",
+              fontWeight: 400,
+            }}
           >
             ในการพัฒนาเมือง
           </span>

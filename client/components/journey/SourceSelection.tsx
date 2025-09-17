@@ -71,11 +71,13 @@ const SourceSelection = ({ sessionID, onNavigate }: SourceSelectionProps) => {
     <FigmaStyle1Layout
       backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fa9dea989b2c347318a49bb8e9f717a35?format=webp&width=800"
       backgroundAlt="รถไฟใต้ดินและป้ายข่าว"
-      title={<>
-        <span>คุณจะติดตามข่าว หรือ</span>
-        <br />
-        <span>เชื่อจากแหล่งข่าว</span>
-      </>}
+      title={
+        <>
+          <span>คุณจะติดตามข่าว หรือ</span>
+          <br />
+          <span>เชื่อจากแหล่งข่าว</span>
+        </>
+      }
       buttons={buttons}
       className="source-selection-page source-selection-root"
     />
