@@ -45,7 +45,7 @@ const Ask02 = ({ sessionID, onNavigate }: Ask02Props) => {
     {
       text: "เก็บไปก็ไม่มีอะไรเกิดขึ้น",
       onClick: () => handleChoice("ineffective"),
-      ariaLabel: "เห็นว่าการเก็บเงินอา���ไม่ส่งผลต่อการแก้ปัญหา",
+      ariaLabel: "เห็นว่าการเก็บเงินอาจไม่ส่งผลต่อการแก้ปัญหา",
     },
     {
       text: "อื่นๆ",
