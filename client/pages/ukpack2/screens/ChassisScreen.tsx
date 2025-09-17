@@ -290,7 +290,7 @@ const ChassisScreen: React.FC = () => {
                     size="sm"
                   />
                   </div>
-                  <div style={{ minHeight: '72px' }}>
+                  <div style={{ minHeight: '60px' }}>
                     <SelectionCard
                     key={OPTIONS[2].key}
                     icon={OPTIONS[2].icon}
