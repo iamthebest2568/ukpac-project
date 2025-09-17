@@ -107,7 +107,7 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   สแกนจ่าย: (
     <img src={SCAN_ICON} alt="สแกนจ่าย" className="h-5 w-5 object-contain" />
   ),
-  "สแกนจ่าย 2": (
+  "สแก���จ่าย 2": (
     <img src={SCAN2_ICON} alt="สแกนจ่าย 2" className="h-5 w-5 object-contain" />
   ),
   แตะบัตร: (
@@ -181,7 +181,7 @@ const displayDoor = (raw: any) => {
 };
 
 const CHASSIS_LABELS: Record<string, string> = {
-  small: "��ถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
+  small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
   medium: "รถเมล์ขนาดกลาง 31–40 ที่นั่ง",
   large: "รถเมล์ขนาดใหญ่ 41-50 ที่นั่ง",
   extra: "รถกระบะดัดแปลง 8-12 ที่นั่ง",
