@@ -185,8 +185,8 @@ const Step1_Priorities = ({
               style={{
                 width: "46.3%", // 500/1080
                 height: "clamp(60px, 4.7vw, 90px)",
-                backgroundColor: getButtonColor("ปรับปรุงคุณภาพรถเมล์"),
-                opacity: isSelectionDisabled("ปร��บปรุงคุณภาพรถเมล์") ? 0.5 : 1,
+                backgroundColor: getButtonColor("ปรับปรุงคุณภาพรถเ���ล์"),
+                opacity: isSelectionDisabled("ปรับปรุงคุณภาพรถเมล์") ? 0.5 : 1,
               }}
               onClick={() =>
                 !isSelectionDisabled("ปรับปรุงคุณภาพรถเมล์") &&
@@ -240,8 +240,8 @@ const Step1_Priorities = ({
               style={{
                 width: "35.6%", // 385/1080
                 height: "clamp(60px, 4.7vw, 90px)",
-                backgroundColor: getButtonColor("เพิ่มความถี่รถเมล์"),
-                opacity: isSelectionDisabled("เพิ่มความถี���รถเมล์") ? 0.5 : 1,
+                backgroundColor: getButtonColor("เพิ่มความถี่รถเม��์"),
+                opacity: isSelectionDisabled("เพิ่มความถี่รถเมล์") ? 0.5 : 1,
               }}
               onClick={() =>
                 !isSelectionDisabled("เพิ่มความถี่รถเมล์") &&
@@ -295,7 +295,7 @@ const Step1_Priorities = ({
               style={{
                 width: "43.1%", // 465/1080
                 height: "clamp(60px, 4.7vw, 90px)",
-                backgroundColor: getButtonColor("เพิ่มความถี่รถไฟฟ้า"),
+                backgroundColor: getButtonColor("เพิ่มความ���ี่รถไฟฟ้า"),
                 opacity: isSelectionDisabled("เพิ่มความถี่รถไฟฟ้า") ? 0.5 : 1,
               }}
               onClick={() =>
