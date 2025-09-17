@@ -46,7 +46,7 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
       {footerContent ? (
         <div>
           <div
-            className={`${footerBgImage ? "rounded-t-3xl p-6 drop-shadow-lg bg-no-repeat bg-top bg-cover" : "bg-[#00d5f9] rounded-t-3xl p-6 drop-shadow-lg"}`}
+            className={`${footerBgImage ? "rounded-t-3xl p-4 sm:p-6 drop-shadow-lg bg-no-repeat bg-top bg-cover" : "bg-[#00d5f9] rounded-t-3xl p-4 sm:p-6 drop-shadow-lg"}`}
             style={
               footerBgImage
                 ? { backgroundImage: `url('${footerBgImage}')` }
@@ -54,10 +54,12 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
             }
           >
             <div
-              className="max-w-4xl mx-auto px-6"
+              className="max-w-4xl mx-auto w-full px-4 sm:px-6"
               style={{ paddingBottom: "env(safe-area-inset-bottom, 1rem)" }}
             >
-              {footerContent}
+              <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-3">
+                {footerContent}
+              </div>
             </div>
           </div>
         </div>
