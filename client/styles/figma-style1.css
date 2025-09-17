@@ -37,56 +37,6 @@
   padding: 0;
 }
 
-/* Make the MN3 result page transparent so its background image is visible and content isn't blocked */
-.figma-style1-container.mn3-result-page {
-  background: transparent !important;
-}
-
-.figma-style1-container.mn3-result-page .figma-style1-background,
-.figma-style1-container.mn3-result-page .figma-style1-background-image {
-  display: block !important;
-}
-
-/* Ensure main content area is above background */
-.figma-style1-container.mn3-result-page .figma-style1-main {
-  position: relative;
-  z-index: 2;
-}
-
-/* Ensure the parent app container doesn't add a white background that covers the page */
-.app-container:has(.figma-style1-container.mn3-result-page) {
-  background: transparent !important;
-}
-
-/* Ensure the route wrapper/main content doesn't clip the figma-style1 container */
-#main-content > .flow-container:has(.figma-style1-container.mn3-result-page) {
-  overflow: visible !important;
-}
-
-/* Bring mockup image to the front and center it */
-.mn3-result-mockup-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  padding: 20px 16px;
-  position: relative;
-  z-index: 10005 !important;
-}
-
-.mn3-result-mockup {
-  width: 100%;
-  max-width: 720px;
-  height: auto;
-  object-fit: contain;
-  border-radius: 12px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
-  display: block;
-  margin: 0 auto;
-  position: relative;
-  z-index: 10006 !important;
-  max-height: calc(100vh - 160px);
-}
 
 /* Small phones (320px - 375px) */
 @media (max-width: 375px) {
