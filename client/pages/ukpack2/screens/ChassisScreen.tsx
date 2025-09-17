@@ -103,7 +103,7 @@ const OPTIONS = [
   {
     key: "extra",
     label: "รถกะบะดัดแปลง 8-12 ที่นั่ง",
-    labelText: "รถกะบะดัดแปลง 8-12 ที่นั่ง",
+    labelText: "รถกะบะ���ัดแปลง 8-12 ที่นั่ง",
     icon: <IconExtra />,
   },
 ];
@@ -173,13 +173,13 @@ const ChassisScreen: React.FC = () => {
               <img
                 src={HERO_SHADOW}
                 alt="เงารถ"
-                className="absolute bottom-0 w-[72%] max-w-[420px] pointer-events-none select-none"
+                className="absolute bottom-0 w-[60%] max-w-[320px] pointer-events-none select-none"
                 decoding="async"
                 loading="eager"
                 aria-hidden="true"
               />
               {/* bus + star overlay inside same box for precise alignment */}
-              <div className="relative w-[72%] max-w-[420px]">
+              <div className="relative w-[60%] max-w-[320px]">
                 {(() => {
                   const amenities = (() => {
                     try {
