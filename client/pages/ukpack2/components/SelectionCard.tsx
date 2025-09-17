@@ -60,6 +60,28 @@ const SelectionCard: React.FC<SelectionCardProps> = ({
   const iconContainerClass = appearance === "bare" ? "mb-0" : size === "lg" ? "h-20 mb-2" : size === "sm" ? "h-8 mb-2" : "h-12 mb-2";
   const labelClass = size === "lg" ? "px-2 text-sm md:text-base" : size === "sm" ? "px-2 text-xs md:text-sm" : "px-2 text-xs md:text-sm";
 
+  // Horizontal layout
+  if (layout === "horizontal") {
+    const iconBox = size === "lg" ? "w-28 h-20" : size === "sm" ? "w-16 h-10" : "w-20 h-12";
+    return (
+      <button
+        type="button"
+        onClick={onClick}
+        className={`w-full flex items-center ${appearance === "bare" ? "p-0" : "p-3"} ${appearance === "bare" ? "rounded-none" : "rounded-2xl"} ${base} focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#ffe000] transition-colors`}
+        aria-pressed={isSelected}
+      >
+        <div className={`${iconBox} flex items-center justify-center flex-shrink-0 ${isLight ? "text-[#003366]" : "text-white"}`}>
+          {icon}
+        </div>
+        {!hideLabel && (
+          <div className={`ml-3 ${labelClass} font-sarabun text-left leading-tight break-words whitespace-normal max-w-full`}>
+            {label}
+          </div>
+        )}
+      </button>
+    );
+  }
+
   return (
     <button
       type="button"
