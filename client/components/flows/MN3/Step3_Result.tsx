@@ -162,6 +162,14 @@ const Step3_Result = ({
 
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '24px', boxSizing: 'border-box', background: 'transparent' }}>
+      <div style={{ textAlign: 'center', width: '100%', marginBottom: 16 }}>
+        <h1 style={{ color: '#000D59', margin: 0, fontSize: 'clamp(20px, 4.5vw, 32px)', lineHeight: 1.15, fontWeight: 700 }}>
+          จากงบประมาณของคุณ
+          <br />
+          นี่คือสิ่งที่จะเกิดขึ้นในอนาคต
+        </h1>
+      </div>
+
       <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
         <img
           src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Ff663e24f6aaf435b835af863ed8b00b8?format=webp&width=1200"
