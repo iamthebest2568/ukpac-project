@@ -117,7 +117,7 @@ const Step2_Allocation = ({
 
   return (
     <div className="w-full min-h-screen mn3-allocation-bg flex flex-col items-center justify-start relative">
-      <div className="mn3-allocation-content">
+      <div className="mn3-allocation-content" style={{ paddingTop: "clamp(80px, 14vh, 180px)" }}>
         {/* Title Section */}
         <div className="text-center w-full max-w-none px-4 mb-6">
           <h1
