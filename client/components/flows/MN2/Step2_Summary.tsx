@@ -146,7 +146,7 @@ const Step2_Summary = ({
           {summaryCards.map((card, index) => (
             <div
               key={index}
-              className="w-full max-w-[903px] mx-auto rounded-[20px] border-[5px] border-[#000D59] bg-transparent"
+              className="w-full max-w-[903px] mx-auto rounded-[20px] border-2 border-[#000D59] bg-transparent"
               style={{
                 minHeight: "clamp(200px, 25vw, 328px)",
                 padding: "clamp(16px, 3vw, 24px)",
