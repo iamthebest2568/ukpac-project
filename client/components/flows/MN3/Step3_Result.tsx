@@ -170,31 +170,23 @@ const Step3_Result = ({
       <div style={{ textAlign: "center", width: "100%", marginTop: 20 }}>
         <h2 style={{ marginBottom: 12 }}>คุณพอใจหรือไม่</h2>
 
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: 12,
-            alignItems: "center",
-            width: "100%",
-            maxWidth: 360,
-            margin: "0 auto",
-          }}
-        >
+        <div className="figma-style1-button-container" style={{ width: "100%", maxWidth: 360, margin: "0 auto", display: "flex", flexDirection: "column", gap: 12 }}>
           <button
             onClick={handleYes}
             aria-pressed={selected === "yes"}
-            style={{ width: "100%", padding: "12px", borderRadius: 6 }}
+            className="figma-style1-button"
+            style={{ width: "100%" }}
           >
-            ใช่
+            <span className="figma-style1-button-text">ใช่</span>
           </button>
 
           <button
             onClick={handleNo}
             aria-pressed={selected === "no"}
-            style={{ width: "100%", padding: "12px", borderRadius: 6 }}
+            className="figma-style1-button"
+            style={{ width: "100%" }}
           >
-            ไม่ใช่
+            <span className="figma-style1-button-text">ไม่ใช่</span>
           </button>
         </div>
       </div>
