@@ -37,6 +37,22 @@
   padding: 0;
 }
 
+/* Make the MN3 result page transparent so its background image is visible and content isn't blocked */
+.figma-style1-container.mn3-result-page {
+  background: transparent !important;
+}
+
+.figma-style1-container.mn3-result-page .figma-style1-background,
+.figma-style1-container.mn3-result-page .figma-style1-background-image {
+  display: block !important;
+}
+
+/* Ensure main content area is above background */
+.figma-style1-container.mn3-result-page .figma-style1-main {
+  position: relative;
+  z-index: 2;
+}
+
 /* Small phones (320px - 375px) */
 @media (max-width: 375px) {
   .figma-style1-content {
