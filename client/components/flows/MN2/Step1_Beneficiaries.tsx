@@ -141,12 +141,16 @@ const Step1_Beneficiaries = ({
     onNext(data);
   };
 
+  const titleText = currentPriority === 'ลดค่าโดยสารรถไฟฟ้า'
+    ? 'คุณคิดว่าใครควรได้รับ  การลดค่าโดยสารรถไฟฟ้าบ้าง'
+    : `คุณคิดว่าใครควรได้รับประโยชน์จาก ${currentPriority} ?`;
+
   return (
     <FigmaStyle1Layout
       backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Faad14e063d78407fb534dc6eacb5f6dd?format=webp&width=800"
       className="mn2-step1-page"
       imageLoading="eager"
-      title={<span style={{ color: "#000D59" }}>คุณคิดว่าใครควรได้รับประโยชน์จาก {currentPriority} ?</span>}
+      title={<span style={{ color: "#000D59" }}>{titleText}</span>}
     >
       {/* Content Area (selection grid & button) */}
       <div className="w-full max-w-[334px] mb-8">
