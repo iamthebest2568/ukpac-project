@@ -168,74 +168,12 @@ const Step3_Result = ({
       className="mn3-result-page"
       useBlueOverlay={false}
     >
-      <div className="figma-style1-title-container">
-        <h1 className="figma-style1-title" style={{ color: "#000D59" }}>
-          จากงบประมาณของคุณ
-          <br />
-          นี้คือสิ่งที่จะเกิดขึ้นในอนาคต
-        </h1>
-      </div>
-
-      {/* Result summary list (icon-focused, no charts) */}
-      <div className="mn3-summary-list w-full px-4 mb-4">
-        {resultSummary && resultSummary.length > 0
-          ? resultSummary.map((item, idx) => {
-              const colorClass =
-                idx === 0
-                  ? "mn3-summary-card--green"
-                  : idx === 1
-                    ? "mn3-summary-card--yellow"
-                    : "mn3-summary-card--red";
-              return (
-                <div
-                  key={item.priority}
-                  className={`mn3-summary-card ${colorClass} mb-3`}
-                >
-                  <div className="mn3-summary-card-left">
-                    <img
-                      src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Ff663e24f6aaf435b835af863ed8b00b8?format=webp&width=800"
-                      alt={item.priority}
-                      className="mn3-summary-image"
-                    />
-                  </div>
-                  <div className="mn3-summary-card-body">
-                    <div className="mn3-summary-card-title">
-                      {item.priority}
-                    </div>
-                    <div className="mn3-summary-card-meta">
-                      <span className="mn3-summary-amount">{item.allocation}</span>
-                    </div>
-                  </div>
-                </div>
-              );
-            })
-          : null}
-      </div>
-
-      <div className="text-center w-full max-w-none px-4 mb-6">
-        <h2 className="figma-style1-subtitle" style={{ color: "#000D59" }}>
-          คุณพอใจหรือไม่
-        </h2>
-      </div>
-
-      <div className="figma-style1-button-container">
-        <button
-          onClick={handleYes}
-          className={`figma-style1-button ${selected === "yes" ? "figma-style1-button--selected" : ""}`}
-          aria-label="ตอบใช่ - พอใจกับผลลัพธ์"
-          aria-pressed={selected === "yes"}
-        >
-          <span className="figma-style1-button-text">ใช่</span>
-        </button>
-
-        <button
-          onClick={handleNo}
-          className={`figma-style1-button ${selected === "no" ? "figma-style1-button--selected" : ""}`}
-          aria-label="ตอบไม่ใช่ - ไม่พอใจกับผลลัพธ์"
-          aria-pressed={selected === "no"}
-        >
-          <span className="figma-style1-button-text">ไม่ใช่</span>
-        </button>
+      <div className="mn3-result-mockup-container">
+        <img
+          src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Ff663e24f6aaf435b835af863ed8b00b8?format=webp&width=1200"
+          alt="Mockup"
+          className="mn3-result-mockup"
+        />
       </div>
     </FigmaStyle1Layout>
   );
