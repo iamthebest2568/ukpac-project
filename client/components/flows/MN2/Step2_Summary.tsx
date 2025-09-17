@@ -261,6 +261,24 @@ const Step2_Summary = ({
           >
             คุณพอใจหรือไม่
           </h2>
+
+          <div className="figma-style1-button-container mt-6" style={{ maxWidth: 360, margin: "0 auto" }}>
+            <button
+              onClick={handleEndGame}
+              className="figma-style1-button"
+              aria-label="ใช่"
+            >
+              <span className="figma-style1-button-text">ใช่</span>
+            </button>
+
+            <button
+              onClick={onBack}
+              className="figma-style1-button"
+              aria-label="ไม่ใช่"
+            >
+              <span className="figma-style1-button-text">ไม่ใช่</span>
+            </button>
+          </div>
         </div>
       </div>
     </FigmaStyle1Layout>
