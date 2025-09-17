@@ -124,26 +124,6 @@ const Step2_Allocation = ({
       title={<span style={{ color: "#000D59" }}>คุณจะให้งบประมาณเท่าไหร่</span>}
     >
       <div className="mn3-allocation-content" style={{ paddingTop: "clamp(40px, 8vh, 120px)" }}>
-        {/* Sticky Title so it remains visible at all times */}
-        <div style={{ position: "sticky", top: 8, zIndex: 50, background: "transparent", width: "100%", padding: "8px 16px" }}>
-          <h1
-            className="font-prompt text-center leading-normal"
-            style={{
-              color: "#000D59",
-              fontSize: "clamp(16px, 4vw, 28px)",
-              lineHeight: "1.05",
-              fontWeight: 700,
-              width: "100%",
-              margin: "0 auto",
-              whiteSpace: "normal",
-              overflow: "visible",
-              textOverflow: "clip",
-            }}
-          >
-            คุณจะให้งบประมาณแต่ละข้อเท่าไหร่
-          </h1>
-        </div>
-
         {/* Budget Display Box */}
         <div className="w-full px-4 mb-8">
           <div className="mn3-budget-display">
