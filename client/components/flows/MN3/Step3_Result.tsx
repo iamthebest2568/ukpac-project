@@ -136,7 +136,7 @@ const Step3_Result = ({
         budgetAllocation:
           journeyData?.budget_step2_allocation?.budgetAllocation || {},
         resultSummary,
-        satisfaction: "ไม่ใ��่",
+        satisfaction: "ไม่ใช่",
         sessionID,
       },
     });
