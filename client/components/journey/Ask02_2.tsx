@@ -3,7 +3,7 @@
  * Full-bleed implementation matching Figma design with blue background and text input
  */
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { logEvent } from "../../services/dataLogger.js";
 import FigmaStyle1Layout from "../layouts/FigmaStyle1Layout";
 
@@ -14,6 +14,7 @@ interface Ask02_2Props {
 
 const Ask02_2 = ({ sessionID, onNavigate }: Ask02_2Props) => {
   const [textInput, setTextInput] = useState("");
+  const textareaRef = useRef<HTMLTextAreaElement | null>(null);
 
   const handleNext = () => {
     // Log the user's custom reason
@@ -45,10 +46,26 @@ const Ask02_2 = ({ sessionID, onNavigate }: Ask02_2Props) => {
               padding: "clamp(12px, 2.2vw, 20px)",
             }}
           >
+            {/* Overlay placeholder centered vertically and horizontally */}
+            {textInput.length === 0 && (
+              <div
+                className="ask02-2-placeholder-overlay font-prompt"
+                role="button"
+                tabIndex={0}
+                onClick={() => textareaRef.current?.focus()}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") textareaRef.current?.focus();
+                }}
+              >
+                พิมพ์ข้อความของคุณที่นี่...
+              </div>
+            )}
+
             <textarea
+              ref={textareaRef}
               value={textInput}
               onChange={(e) => setTextInput(e.target.value)}
-              placeholder="พิมพ์ข้อความของคุณที่นี่..."
+              aria-label="พิมพ์ข้อความของค��ณที่นี่"
               className="w-full h-full resize-none border-none outline-none font-prompt bg-transparent"
               style={{
                 fontSize: "clamp(16px, 3.6vw, 38px)",
