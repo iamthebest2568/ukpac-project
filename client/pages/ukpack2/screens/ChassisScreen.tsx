@@ -103,7 +103,7 @@ const OPTIONS = [
   },
   {
     key: "extra",
-    label: "รถกะบะดัดแป��ง 8–12 ที่นั่ง",
+    label: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
     labelText: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
     icon: <IconExtra />,
   },
