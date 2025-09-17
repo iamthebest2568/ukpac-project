@@ -52,7 +52,7 @@ type SessionSummary = {
   keyMessage1?: string; // Key message 1
   mn1Selected: string[]; // ลำดับความสำคัญของประเด็น
   mn2Selections?: Record<string, string[]>; // กลุ่มเป้าหมายที่ควรได้รับสิทธิ์
-  mn3Selected?: string[]; // ��ระเด็นนโยบายที่ผู้ใช้เลือก
+  mn3Selected?: string[]; // ประเด็นนโยบายที่ผู้ใช้เลือ���
   mn3BudgetAllocation?: Record<string, number>; // การจัดสรรงบประมาณ
   mn3BudgetTotal?: number;
   satisfactionLevel?: string; // ระดับความพึงพอใจ
@@ -160,7 +160,7 @@ export default function UkDashboard() {
       }
       setLastUpdated(new Date().toLocaleString());
     } catch (e: any) {
-      setError(e?.message || "โหลดข้อมูลล้มเหลว");
+      setError(e?.message || "โหลดข้อมูลล้ม���หลว");
     } finally {
       if (firstLoad) setLoading(false);
       setFirstLoad(false);
@@ -769,7 +769,7 @@ export default function UkDashboard() {
                       "IP",
                       "Access Time",
                       "ทำไมคุณถึงต้องเข้าเมืองบ่อย ๆ ?",
-                      "ค���ณใช้รถแบบไหนเดินทางเข้าเมือง ?",
+                      "ค���ณใช้รถแบบไหนเ���ินทางเข้าเมือง ?",
                       "คุณคิดเห็นอย่างไรกับนโยบายนี้ ?",
                       "จากข้อความข้างต้น คุณมีความคิดเห็นอย่างไร (เห็นด้วย/กลางๆ/ไม่เห็นด้วย)",
                       "ทำไมคุณถึงคิดอย่างนั้น (นโยบายไม่ครอบคลุม / เก็บไปก็ไม่มีอะไรดีขึ้น / อื่นๆ)",
