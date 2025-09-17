@@ -39,13 +39,13 @@ const Step3_Result = ({
 
   // Map priorities to illustrative images (attachments provided)
   const priorityImageMap: { [key: string]: string } = {
-    ตั๋วร่วม:
+    ตั๋���ร่วม:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F2f0106ff48a44f03b71429502944e9f2?format=webp&width=720",
     เพิ่มที่จอดรถ:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F79ac3a2ac5e84e88b4015fd66aaebe04?format=webp&width=720",
     เพิ่มความถี่รถไฟฟ้า:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fd90beaca642d4cceba685d933aeb644f?format=webp&width=720",
-    "ปรับปรุงคุณภา���รถเมล์":
+    "ปรับปรุงคุณภาพรถเมล์":
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F602cfdd852a147ed852d50b2ed05772d?format=webp&width=720",
     เพิ่มความถี่รถเมล์:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F4e921e92e2c44db7a2ad24ee299e9a6d?format=webp&width=720",
@@ -185,7 +185,7 @@ const Step3_Result = ({
       backgroundImage={backgroundImage}
       className="mn3-step3-page figma-style1-ukpack1 fake-news-page"
       imageLoading="eager"
-      title={"จากงบประมาณของคุณ นี่ค���อสิ่งที่จะเกิดขึ้นในอนาคต"}
+      title={"จากงบประมาณของคุณ นี่คือสิ่งที่จะเกิดขึ้นในอนาคต"}
     >
       {/* Minimal content -- only elements required for flow and logic */}
       <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
@@ -225,7 +225,7 @@ const Step3_Result = ({
                   position: "absolute",
                   left: "50%",
                   top: offset.top,
-                  transform: `translate(${offsetX}px, 0) rotate(${offset.rotate}) scale(${offset.scale})`,
+                  transform: `translate(calc(-50% + ${offsetX}px), 0) rotate(${offset.rotate}) scale(${offset.scale})`,
                   width,
                   boxShadow: "0 10px 24px rgba(0,0,0,0.18)",
                   borderRadius: 12,
@@ -268,7 +268,7 @@ const Step3_Result = ({
       </div>
 
       <div style={{ textAlign: "center", width: "100%", marginTop: 20 }}>
-        <h2 style={{ marginBottom: 12 }}>คุณพอใจหรือไม่</h2>
+        <h2 style={{ marginBottom: 12, color: "#000D59" }}>คุณพอใจหรือไม่</h2>
 
         <div
           className="figma-style1-button-container"
