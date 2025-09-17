@@ -277,7 +277,7 @@ const ChassisScreen: React.FC = () => {
               <div className="grid grid-cols-2 gap-x-4 gap-y-2">
                 {/* Left column: large primary card on top, small card below */}
                 <div className="flex flex-col gap-4">
-                  <div style={{ minHeight: '88px' }}>
+                  <div style={{ minHeight: '72px' }}>
                     <SelectionCard
                     key={OPTIONS[0].key}
                     icon={OPTIONS[0].icon}
