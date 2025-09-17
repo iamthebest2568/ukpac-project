@@ -59,3 +59,8 @@
 .figma-style1-container.mn2-step1-page span {
   color: #000D59 !important;
 }
+
+/* Push title and icon rows down on MN2 Step1 so they are lower in the viewport */
+.figma-style1-container.mn2-step1-page .figma-style1-content-area {
+  padding-top: clamp(140px, 30vh, 320px) !important;
+}
