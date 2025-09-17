@@ -48,6 +48,12 @@ const Step3_Result = ({
     "ลดค่าโดยสารรถไฟฟ้า": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F902c640032bd41f3b30e4ce96330d938?format=webp&width=720",
   };
 
+  const collageOffsets = [
+    { left: '8%', top: '0%', rotate: '-6deg', z: 1, scale: 0.98 },
+    { left: '30%', top: '6%', rotate: '6deg', z: 2, scale: 1 },
+    { left: '52%', top: '-6%', rotate: '-2deg', z: 3, scale: 0.94 },
+  ];
+
   useEffect(() => {
     const allocationData =
       journeyData?.budget_step2_allocation?.budgetAllocation || {};
