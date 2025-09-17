@@ -124,14 +124,14 @@ const Step2_Allocation = ({
             className="font-prompt text-center leading-normal"
             style={{
               color: "#000D59",
-              fontSize: "clamp(28px, 5.5vw, 60px)",
+              fontSize: "clamp(18px, 4vw, 36px)",
               lineHeight: "1.2",
               fontWeight: 700,
               width: "100%",
               margin: "0 auto",
             }}
           >
-            คุณจะให้งบประมาณแต่ละข้อเท่าไหร่
+            คุณจะให้งบประมาณแต่ละข้อ��ท่าไหร่
           </h1>
         </div>
 
