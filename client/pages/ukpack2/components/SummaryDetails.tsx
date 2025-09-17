@@ -107,7 +107,7 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   สแกนจ่าย: (
     <img src={SCAN_ICON} alt="สแกนจ่าย" className="h-5 w-5 object-contain" />
   ),
-  "สแก���จ่าย 2": (
+  "สแกนจ่าย 2": (
     <img src={SCAN2_ICON} alt="สแกนจ่าย 2" className="h-5 w-5 object-contain" />
   ),
   แตะบัตร: (
