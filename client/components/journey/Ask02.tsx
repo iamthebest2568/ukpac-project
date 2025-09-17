@@ -45,7 +45,7 @@ const Ask02 = ({ sessionID, onNavigate }: Ask02Props) => {
     {
       text: "เก็บไปก็ไม่มีอะไรเกิดขึ้น",
       onClick: () => handleChoice("ineffective"),
-      ariaLabel: "เห็นว่าการเก็บเ��ินอาจไม่ส่งผลต่อการแก้ปัญหา",
+      ariaLabel: "เห็นว่าการเก็บเงินอาจไม่ส่งผลต่อการแก้ปัญหา",
     },
     {
       text: "อื่นๆ",
@@ -58,7 +58,7 @@ const Ask02 = ({ sessionID, onNavigate }: Ask02Props) => {
     <FigmaStyle1Layout
       backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F5117e49b26df4728a78a17199af7ae9c?format=webp&width=800"
       backgroundAlt="บุคคลกำลังคิดบนบันไดเลื่อน"
-      title={`ทำไมคุณถึงคิดแบบนั้น ?`}
+      title={`ทำไมคุณถึงคิดแบบนั้น`}
       buttons={buttons}
       className="ask02-page"
     />
