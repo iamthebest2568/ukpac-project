@@ -125,7 +125,7 @@ const Step2_Summary = ({
       imageLoading="eager"
       title={<span style={{ color: "#000D59" }}>นโยบายที่คุณเสนอ</span>}
     >
-      <div className="relative z-10 w-full max-w-full mx-auto px-4 py-6">
+      <div className="relative z-10 w-full max-w-full mx-auto px-4 py-6" style={{ paddingTop: "clamp(120px, 24vh, 260px)" }}>
         {/* Title */}
         <div className="text-center mb-8">
           <h1
