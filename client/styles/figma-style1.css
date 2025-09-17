@@ -1563,6 +1563,13 @@ body[data-dialog-open] {
     min-height: clamp(260px, 32vh, 460px);
     padding: clamp(12px, 2.2vw, 20px);
   }
+  .ask02-2-page .ask02-2-textarea-box textarea {
+    text-align: center;
+  }
+  .ask02-2-page .ask02-2-textarea-box textarea::placeholder {
+    text-align: center;
+    opacity: 0.6;
+  }
   /* Slightly lower the title on desktop/tablet */
   .ask02-2-page .figma-style1-title-container {
     margin-top: clamp(12px, 4vh, 40px) !important;
