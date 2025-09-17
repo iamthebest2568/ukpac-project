@@ -934,6 +934,24 @@
   }
 }
 
+/* Mockup-only display for MN3 result: single centered image */
+.mn3-result-mockup-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 20px 16px;
+}
+
+.mn3-result-mockup {
+  width: 100%;
+  max-width: 720px;
+  height: auto;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+}
+
 /* Grid layout for summary + visual */
 .mn3-summary-grid {
   display: grid;
