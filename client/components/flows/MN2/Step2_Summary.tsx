@@ -146,21 +146,6 @@ const Step2_Summary = ({
       title={<span style={{ color: "#000D59" }}>นโยบายที่คุณเสนอ</span>}
     >
       <div className="relative z-10 w-full max-w-full mx-auto px-4 py-6" style={{ paddingTop: "clamp(80px, 18vh, 140px)" }}>
-        {/* Title */}
-        <div className="text-center mb-8">
-          <h1
-            className="font-prompt font-bold text-center"
-            style={{
-              color: "#000D59",
-              fontSize: "clamp(24px, 5.6vw, 60px)",
-              fontWeight: 700,
-              lineHeight: "normal",
-            }}
-          >
-            นโยบาย���ี่คุณเสนอ
-          </h1>
-        </div>
-
         {/* Policy Cards */}
         <div className="space-y-6 mb-12">
           {summaryCards.map((card, index) => (
