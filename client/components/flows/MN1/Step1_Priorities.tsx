@@ -120,7 +120,7 @@ const Step1_Priorities = ({
         >
           คุณคิดว่าควรใช้เงินที่ได้
           <br />
-          จากการเก็บไปพัฒนาอะไร
+          จากการเก็บไปพัฒนาอ��ไร
         </h1>
       </div>
 
@@ -152,7 +152,7 @@ const Step1_Priorities = ({
             gap: "clamp(16px, 1.2vw, 24px)",
           }}
         >
-          {/* Row 1: ลดค่าโด���สารรถไฟฟ้า (gray), ปรับปรุงคุณภาพรถเมล์ (yellow) */}
+          {/* Row 1: ลดค่าโดยสารรถไฟฟ้า (gray), ปรับปรุงคุณภาพรถเมล์ (yellow) */}
           <div className="flex" style={{ gap: "clamp(16px, 1.8vw, 19px)" }}>
             <button
               className="transition-all duration-200 flex items-center justify-center rounded-[40px] border-0"
@@ -266,7 +266,7 @@ const Step1_Priorities = ({
               style={{
                 width: "27.1%", // 293/1080
                 height: "clamp(60px, 4.7vw, 90px)",
-                backgroundColor: getButtonColor("เพิ่มที่จอดรถ"),
+                backgroundColor: getButtonColor("เพิ่��ที่จอดรถ"),
                 opacity: isSelectionDisabled("เพิ่มที่จอดรถ") ? 0.5 : 1,
               }}
               onClick={() =>
