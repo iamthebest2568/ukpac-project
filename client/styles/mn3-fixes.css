@@ -62,5 +62,6 @@
 
 /* Push title and icon rows down on MN2 Step1 so they are lower in the viewport */
 .figma-style1-container.mn2-step1-page .figma-style1-content-area {
-  padding-top: clamp(140px, 30vh, 320px) !important;
+  /* Increased to push content further down */
+  padding-top: clamp(200px, 38vh, 420px) !important;
 }
