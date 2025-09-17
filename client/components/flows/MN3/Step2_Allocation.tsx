@@ -125,13 +125,13 @@ const Step2_Allocation = ({
             style={{
               color: "#000D59",
               fontSize: "clamp(22px, 9vw, 80px)",
-              lineHeight: "1",
+              lineHeight: "1.05",
               fontWeight: 700,
               width: "100%",
               margin: "0 auto",
-              whiteSpace: "nowrap",
-              overflow: "hidden",
-              textOverflow: "ellipsis",
+              whiteSpace: "normal",
+              overflow: "visible",
+              textOverflow: "clip",
             }}
           >
             คุณจะให้งบประมาณแต่ละข้อเท่าไหร่
