@@ -240,7 +240,7 @@ const Step1_Priorities = ({
               style={{
                 width: "35.6%", // 385/1080
                 height: "clamp(60px, 4.7vw, 90px)",
-                backgroundColor: getButtonColor("เพิ่มความถี่รถเมล์"),
+                backgroundColor: getButtonColor("เพิ่มคว���มถี่รถเมล์"),
                 opacity: isSelectionDisabled("เพิ่มควา��ถี่รถเมล์") ? 0.5 : 1,
               }}
               onClick={() =>
@@ -321,7 +321,7 @@ const Step1_Priorities = ({
               style={{
                 width: "44.4%", // 480/1080
                 height: "clamp(60px, 4.7vw, 90px)",
-                backgroundColor: getButtonColor("เพิ่ม Feeder ในซอย"),
+                backgroundColor: getButtonColor("เพิ่ม Feeder ในซอ���"),
                 opacity: isSelectionDisabled("เพิ่ม Feeder ในซอย") ? 0.5 : 1,
               }}
               onClick={() =>
@@ -390,7 +390,7 @@ const Step1_Priorities = ({
               fontSize: "clamp(14px, 2.8vw, 18px)",
             }}
           >
-            กรุณาเลือกอย่างน้อย 1 ข้อเพื่อดำเนิน��ารต่อ
+            กรุณาเลือกอย่างน้อย 1 ข้อเพื่อดำเนินการต่อ
           </div>
         )}
       </div>
