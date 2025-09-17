@@ -13,13 +13,20 @@ const SplashScreen: React.FC = () => {
       style={{ position: 'relative', backgroundColor: '#ffffff' }}
     >
       {/* Full-bleed hero image */}
-      <div style={{ position: 'absolute', inset: 0, zIndex: 0, backgroundColor: '#ffffff' }} aria-hidden>
+      <div style={{ position: 'absolute', inset: 0, zIndex: 0, backgroundColor: '#ffffff', minHeight: '100svh' }} aria-hidden>
         <img
-          src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fcb178a40e22648eca72705d402137a33?format=webp&width=1200"
+          src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fcb178a40e22648eca72705d402137a33?format=webp&width=720"
+          srcSet={
+            `https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fcb178a40e22648eca72705d402137a33?format=webp&width=480 480w, ` +
+            `https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fcb178a40e22648eca72705d402137a33?format=webp&width=720 720w, ` +
+            `https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fcb178a40e22648eca72705d402137a33?format=webp&width=1080 1080w, ` +
+            `https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fcb178a40e22648eca72705d402137a33?format=webp&width=1600 1600w`
+          }
+          sizes="100vw"
           alt="รถเมล์ในฝัน"
           className="w-full h-full object-cover"
-          style={{ display: 'block', width: '100%', height: '100%', objectPosition: 'center' }}
-          loading="eager"
+          style={{ display: 'block', width: '100%', height: '100vh', objectPosition: 'center' }}
+          loading="lazy"
           decoding="async"
         />
       </div>
