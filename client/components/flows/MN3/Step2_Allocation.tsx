@@ -227,19 +227,6 @@ const Step2_Allocation = ({
               </div>
             )}
 
-            <button
-              onClick={handleNext}
-              disabled={!isComplete}
-              className="mn3-continue-button"
-              style={{
-                backgroundColor: !isComplete ? "#ccc" : "#FFE000",
-                color: !isComplete ? "#666" : "#000",
-                opacity: !isComplete ? 0.6 : 1,
-              }}
-              aria-label="ด���เนินการต่อไปยังขั้นตอนถัดไป"
-            >
-              ไปต่อ
-            </button>
           </div>
         </div>
       </div>
