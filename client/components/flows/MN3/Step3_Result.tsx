@@ -161,47 +161,24 @@ const Step3_Result = ({
     "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F185e56314d8041d09e93ab98fd2502dd?format=webp&width=1500";
 
   return (
-    <FigmaStyle1Layout
-      backgroundImage={backgroundImage}
-      buttons={[]}
-      className="mn3-result-page"
-      useBlueOverlay={false}
-    >
-      <div className="mn3-result-mockup-container">
+    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '24px', boxSizing: 'border-box', background: 'transparent' }}>
+      <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
         <img
           src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Ff663e24f6aaf435b835af863ed8b00b8?format=webp&width=1200"
           alt="Mockup"
-          className="mn3-result-mockup"
+          style={{ maxWidth: '94vw', maxHeight: '60vh', objectFit: 'contain', borderRadius: 8, boxShadow: '0 12px 30px rgba(0,0,0,0.12)' }}
         />
       </div>
 
-      <div className="text-center w-full max-w-none px-4 mt-4 mb-4">
-        <h2 className="figma-style1-subtitle" style={{ color: "#000D59" }}>
-          คุณพอใ��หรือไม่
-        </h2>
+      <div style={{ textAlign: 'center', width: '100%', marginTop: 20 }}>
+        <h2 style={{ color: '#000D59', marginBottom: 12 }}>คุณพอใจหรือไม่</h2>
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 12, alignItems: 'center', width: '100%', maxWidth: 360, margin: '0 auto' }}>
+          <button onClick={handleYes} aria-pressed={selected === 'yes'} style={{ width: '100%', padding: '14px', borderRadius: 28, background: '#FFE000', border: 'none', fontWeight: 600 }}>ใช่</button>
+          <button onClick={handleNo} aria-pressed={selected === 'no'} style={{ width: '100%', padding: '14px', borderRadius: 28, background: '#FFE000', border: 'none', fontWeight: 600 }}>ไม่ใช่</button>
+        </div>
       </div>
-
-      <div className="figma-style1-button-container">
-        <button
-          onClick={handleYes}
-          className={`figma-style1-button ${selected === "yes" ? "figma-style1-button--selected" : ""}`}
-          aria-label="ตอบใช่ - พอใจกับผลลัพธ์"
-          aria-pressed={selected === "yes"}
-        >
-          <span className="figma-style1-button-text">ใช่</span>
-        </button>
-
-        <button
-          onClick={handleNo}
-          className={`figma-style1-button ${selected === "no" ? "figma-style1-button--selected" : ""}`}
-          aria-label="ตอบไม่ใช่ - ไม่พอใจกับผลลัพธ์"
-          aria-pressed={selected === "no"}
-        >
-          <span className="figma-style1-button-text">ไม่ใช่</span>
-        </button>
-      </div>
-
-    </FigmaStyle1Layout>
+    </div>
   );
 };
 
