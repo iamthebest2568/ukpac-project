@@ -30,7 +30,7 @@ const SplashScreen: React.FC = () => {
               className="underline privacy-button"
               style={{ display: 'inline-block', borderColor: 'rgba(255, 255, 255, 0.2)', borderWidth: '0.8px', fontWeight: 600, position: 'relative', textDecorationColor: 'currentColor', textDecorationLine: 'underline', zIndex: 20, backgroundColor: 'transparent' }}
             >
-              นโยบายและความเป��นส่วนตัว
+              นโยบายและความเป็นส่วนตัว
             </button>
           </div>
         </div>
