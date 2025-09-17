@@ -65,3 +65,18 @@
   /* Increased to push content further down */
   padding-top: clamp(200px, 38vh, 420px) !important;
 }
+
+/* Minimal debug mode for MN2 summary: hide decorative backgrounds and overlays */
+.figma-style1-container.mn2-summary-minimal .figma-style1-background-image,
+.figma-style1-container.mn2-summary-minimal .figma-style1-background-overlay,
+.figma-style1-container.mn2-summary-minimal .figma-style1-wave-overlay {
+  display: none !important;
+}
+
+/* Remove ring/border styling if any remains */
+.figma-style1-container.mn2-summary-minimal .mn3-summary-card,
+.figma-style1-container.mn2-summary-minimal .mn3-summary-card-left,
+.figma-style1-container.mn2-summary-minimal svg {
+  box-shadow: none !important;
+  border: none !important;
+}
