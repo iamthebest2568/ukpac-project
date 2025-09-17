@@ -152,7 +152,7 @@ const Step2_Summary = ({
   return (
     <FigmaStyle1Layout
       backgroundImage={""} // disabled decorative background for debugging
-      className="mn2-summary-page mn2-summary-minimal"
+      className="mn2-summary-page mn2-summary-minimal figma-style1-ukpack1"
       imageLoading="eager"
       title={<span style={{ color: "#000D59" }}>นโยบายที่คุณเสนอ</span>}
     >
