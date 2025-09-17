@@ -250,7 +250,7 @@ const ChassisScreen: React.FC = () => {
                 <img
                   src={HERO_IMAGE[selected]}
                   alt={selectedLabel}
-                  className="w-full h-full object-contain select-none"
+                  className="h-full w-auto object-contain mx-auto select-none"
                   decoding="async"
                   loading="eager"
                 />
