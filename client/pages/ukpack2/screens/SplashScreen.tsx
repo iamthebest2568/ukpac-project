@@ -51,7 +51,7 @@ const SplashScreen: React.FC = () => {
         backgroundRepeat: "no-repeat",
         backgroundSize: "100% auto",
       }}>
-        <div style={{ textAlign: "center", padding: "12px 20px", fontSize: 22 }}>
+        <div style={{ textAlign: "center", padding: "12px 20px", fontSize: 22, fontWeight: 700 }}>
           <div>รถเมล์ในฝันที่คุณอยากขึ้นทุกวัน</div>
           <div>จะมีหน้าตาอย่างไร?</div>
         </div>
