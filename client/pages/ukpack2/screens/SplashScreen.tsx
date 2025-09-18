@@ -14,38 +14,43 @@ const SplashScreen: React.FC = () => {
         minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
-        justifyContent: "flex-end",
+        justifyContent: "space-between",
         alignItems: "center",
         padding: 0,
       }}
     >
-      <div style={{ textAlign: "center", paddingBottom: 80, width: "100%", boxSizing: "border-box" }}>
-        <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
-          <img
-            src={HERO_SRC}
-            alt="bus"
-            style={{
-              display: "block",
-              margin: "0 auto 20px",
-              width: "100%",
-              maxWidth: "min(80vw, 420px)",
-              height: "auto",
-              objectFit: "contain",
-            }}
-          />
-        </div>
+      {/* Top: image */}
+      <div style={{ width: "100%", display: "flex", justifyContent: "center", paddingTop: 12 }}>
+        <img
+          src={HERO_SRC}
+          alt="bus"
+          style={{
+            display: "block",
+            margin: "0 auto",
+            width: "100%",
+            maxWidth: "min(80vw, 420px)",
+            height: "auto",
+            objectFit: "contain",
+          }}
+        />
+      </div>
 
+      {/* Middle: heading centered */}
+      <div style={{ textAlign: "center", padding: "12px 20px" }}>
         <h2 style={{ margin: 0 }}>
           รถเมล์ในฝันที่คุณอยากขึ้นทุกวัน
           <br />
           จะมีหน้าตาอย่างไร?
         </h2>
+      </div>
 
-        <div style={{ marginTop: 24 }}>
+      {/* Bottom: buttons */}
+      <div style={{ width: "100%", paddingBottom: 60, display: "flex", flexDirection: "column", alignItems: "center", gap: 12 }}>
+        <div>
           <button type="button" onClick={() => navigate("/ukpack2/chassis")}>เริ่มออกแบบ</button>
         </div>
 
-        <div style={{ marginTop: 12 }}>
+        <div>
           <button type="button" onClick={() => setShowPrivacy(true)}>นโยบายและความเป็นส่วนตัว</button>
         </div>
       </div>
