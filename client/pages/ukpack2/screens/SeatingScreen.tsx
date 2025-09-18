@@ -66,7 +66,7 @@ const SeatingScreen: React.FC = () => {
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F788c9e78d6944fc8a5088cc00aa40697?format=webp&width=800",
     "ที่จับ/ราว���ืนที่ปลอดภัย":
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F1cae4f7306834a6eb0d86be09e05bfdd?format=webp&width=800",
-    "����องชาร์จมือถือ/USB":
+    "ช��องชาร์จมือถือ/USB":
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fba274e72720c4a1b9695e83dbf8c1fe9?format=webp&width=800",
     "Wi‑Fi ฟรี":
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F63dc13fe1fab446a9da88bfb297d9c6d?format=webp&width=800",
@@ -145,7 +145,7 @@ const SeatingScreen: React.FC = () => {
     if (typeof totalSeats === "number" && totalSeats > maxCapacity) {
       setErrorTitle("จำนวนที่นั่งเกินขีดจำกัด");
       setErrorMessage(
-        `รถประเภทนี้สามารถมีที่นั่งได้สูงสุด ${maxCapacity} ที่นั่ง กรุณากรอกจำนวนระหว่าง ${minCapacity} ถึง ${maxCapacity}`,
+        `รถประเ��ทนี้สามารถมีที่นั่งได้สูงสุด ${maxCapacity} ที่นั่ง กรุณากรอกจำนวนระหว่าง ${minCapacity} ถึง ${maxCapacity}`,
       );
       setErrorModalOpen(true);
       return false;
@@ -165,7 +165,7 @@ const SeatingScreen: React.FC = () => {
     if ((Number(specialSeats) || 0) < specialSeatsTotal) {
       setErrorTitle("จำนวนที่นั่งพิเศษไม่พอ");
       setErrorMessage(
-        `จำนวนที่นั่งพิเศษ (${specialSeats}) น��อยกว่าจำนวนที่นั่งพิเศษย่อย (${specialSeatsTotal}) กรุณาปรับค่าหรือลดจำนวนที่นั่งพิเศษย่อย`,
+        `จำนวนที่นั่งพิเศษ (${specialSeats}) น้อยกว่าจำนวนที่นั่งพิเศษ��่อย (${specialSeatsTotal}) กรุณาปรับค่าหรือลดจำนวนที่นั่งพิเศษย่อย`,
       );
       setErrorModalOpen(true);
       return false;
@@ -201,30 +201,7 @@ const SeatingScreen: React.FC = () => {
     // During typing we only set a clamped value; final validation happens on Next
     const clamped = Math.min(maxCapacity, Math.max(0, v as number));
     setTotalSeats(clamped);
-
-    // If total decreased below current sum of category seats, reduce categories to fit
-    const categories = [childElderSeats, pregnantSeats, monkSeats, wheelchairBikeSpaces];
-    const categoriesSum = categories.reduce((a, b) => a + b, 0);
-    if (categoriesSum > clamped) {
-      let remaining = clamped;
-      // Reduce in priority order: childElder, pregnant, monk, wheelchair (you can adjust order)
-      const order = [0, 1, 2, 3];
-      const newValues = [0, 0, 0, 0];
-      for (let i = 0; i < order.length; i++) {
-        const idx = order[i];
-        const val = categories[idx];
-        const take = Math.min(val, remaining);
-        newValues[idx] = take;
-        remaining -= take;
-      }
-      // apply reduced values
-      setChildElderSeats(newValues[0]);
-      setPregnantSeats(newValues[1]);
-      setMonkSeats(newValues[2]);
-      setWheelchairBikeSpaces(newValues[3]);
-      // adjust specialSeats as well
-      setSpecialSeats(Math.min(specialSeats, clamped));
-    }
+    // Do not adjust category fields while typing; validate on submit
   };
 
   return (
