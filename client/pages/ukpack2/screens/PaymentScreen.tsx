@@ -133,6 +133,15 @@ const IconAir = () => (
     loading="eager"
   />
 );
+
+const storedColor = (() => {
+  try {
+    const raw = sessionStorage.getItem('design.color');
+    return raw ? JSON.parse(raw) : null;
+  } catch {
+    return null;
+  }
+})();
 const IconFan = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe01792ee89e240808ed47d8576b55d71?format=webp&width=800"
@@ -300,7 +309,7 @@ const PaymentScreen: React.FC = () => {
               small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
               medium: "รถเมล์ขนาดกลาง 31–40 ที่นั่ง",
               large: "รถเมล์ขนาดใหญ่ 41-50 ที่นั่ง",
-              extra: "รถกระบะดัดแปลง 8-12 ที่นั่ง",
+              extra: "รถกระบะดัดแปลง 8-12 ��ี่นั่ง",
             };
             const HERO_IMAGE: Record<string, string> = {
               small:
