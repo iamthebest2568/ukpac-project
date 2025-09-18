@@ -22,14 +22,14 @@ const PrivacyModal: React.FC<Props> = ({ isOpen, onClose }) => {
           </p>
           <p className="mt-2">
             หากต้องการทราบรายละเอียดเพิ่มเติม
-            โปรดติดต่อทีมงานหรือดูเอกสารฉบับเต็มที่จัดเตรียมให้เมื่อระบบเชื่อมต่อกับ
+            โปรดติดต่อทีมงานหรือดูเอกสารฉบับเต็มที่จัดเตรียมให้เมื่อร���บบเชื่อมต่อกับ
             CMS
           </p>
         </div>
         <div className="mt-4 flex justify-end">
           <button
             onClick={onClose}
-            className="px-4 py-2 rounded-md bg-[#000d59] text-white"
+            className="px-4 py-2 rounded-md bg-[#ffe000] text-black hover:bg-[#000d59] hover:text-white transition-colors"
           >
             ปิด
           </button>
