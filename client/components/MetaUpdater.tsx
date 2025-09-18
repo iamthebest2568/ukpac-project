@@ -1,7 +1,5 @@
 import React, { useEffect } from "react";
 
-import React, { useEffect } from "react";
-
 interface Props {
   title?: string;
   description?: string;
@@ -92,7 +90,7 @@ const MetaUpdater: React.FC<Props> = ({ title, description, image, canonical, hr
       hreflangEl = ensureLink('alternate', { href: finalCanonical, hreflang });
     }
 
-    // JSON-LD: WebSite + Organization
+    // JSON-LD: WebSite
     const ld = {
       '@context': 'https://schema.org',
       '@type': 'WebSite',
