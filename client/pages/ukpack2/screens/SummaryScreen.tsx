@@ -104,7 +104,7 @@ const SummaryScreen: React.FC = () => {
       </div>
 
       {/* Fixed footer */}
-      <footer className="w-full bg-[#00d5f9] drop-shadow-lg rounded-t-3xl sticky bottom-0 z-10">
+      <footer className="w-full bg-[#00d5f9] drop-shadow-lg rounded-t-3xl sticky bottom-[50px] z-10">
         <div className="max-w-4xl mx-auto px-4">
           <div className="p-4 md:p-6 flex flex-col items-center justify-center gap-3 max-w-sm mx-auto">
             <div className="w-full">
