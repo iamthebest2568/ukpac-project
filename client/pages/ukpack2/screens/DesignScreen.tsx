@@ -247,7 +247,7 @@ const DesignScreen: React.FC = () => {
               <>
                 <VehiclePreview
                   imageSrc={img}
-                  label={`รถที่ใช้งาน : ${label}`}
+                  label={<><span className="chassis-label-mobile">รถที่เลือก : </span>{label}</>}
                   colorFilter={color?.filter}
                   overlayLabels={(() => {
                     const amenities = (() => {
