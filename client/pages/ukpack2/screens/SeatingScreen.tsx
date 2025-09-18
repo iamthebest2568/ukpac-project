@@ -12,12 +12,13 @@ import VehiclePreview from "../components/VehiclePreview";
 const SeatingScreen: React.FC = () => {
   const navigate = useNavigate();
   const { state } = useBusDesign();
-  const [totalSeats, setTotalSeats] = useState<number>(40);
+  const [totalSeats, setTotalSeats] = useState<number | "">("");
   const [pregnantSeats, setPregnantSeats] = useState<number>(0);
   const [childElderSeats, setChildElderSeats] = useState<number>(0);
   const [monkSeats, setMonkSeats] = useState<number>(0);
   const [wheelchairBikeSpaces, setWheelchairBikeSpaces] = useState<number>(0);
   const [specialSeats, setSpecialSeats] = useState<number>(0);
+  const [isTotalFocused, setTotalFocused] = useState<boolean>(false);
   const [isExitModalOpen, setExitModalOpen] = useState(false);
   const [isErrorModalOpen, setErrorModalOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
@@ -66,7 +67,7 @@ const SeatingScreen: React.FC = () => {
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F788c9e78d6944fc8a5088cc00aa40697?format=webp&width=800",
     "ที่จับ/ราวยืนที่ปลอดภัย":
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F1cae4f7306834a6eb0d86be09e05bfdd?format=webp&width=800",
-    "ช่องชาร์จมือถือ/USB":
+    "ช่องช���ร์จมือถือ/USB":
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fba274e72720c4a1b9695e83dbf8c1fe9?format=webp&width=800",
     "Wi‑Fi ฟรี":
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F63dc13fe1fab446a9da88bfb297d9c6d?format=webp&width=800",
@@ -205,7 +206,7 @@ const SeatingScreen: React.FC = () => {
   return (
     <>
       <CustomizationScreen
-        title="ปรับแต่งร���เมล์ของคุณ"
+        title="ปรับแต่งรถเมล์ของคุณ"
         theme="light"
         footerContent={
           <div className="flex justify-center">
@@ -279,7 +280,7 @@ const SeatingScreen: React.FC = () => {
             <div className="space-y-2 mt-2">
               <div className="flex items-center justify-between">
                 <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">
-                  จำนว��ที่นั่งทั้งหมด
+                  จำนวนที่นั่งทั้งหมด
                 </div>
                 <input
                   type="number"
