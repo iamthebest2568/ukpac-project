@@ -141,9 +141,6 @@ const SubmitScreen: React.FC = () => {
                   กระเป๋ารถเมล์: BUS_EMPLOY_ICON,
                 }}
               />
-              <p className="mt-2 font-prompt font-semibold text-[#001a73] text-center">
-                รถที่เลือก : {chassisLabel}
-              </p>
             </div>
           ) : null}
 
