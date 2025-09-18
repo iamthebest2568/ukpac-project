@@ -434,9 +434,6 @@ const DoorScreen: React.FC = () => {
                     emergency: <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F98de0624be3d4ae6b96d83edcf8891f9?format=webp&width=800" alt="ประตูฉุกเฉิน" className="h-5 w-5 object-contain" />,
                   }}
                 />
-                <p className="mt-1 font-prompt font-semibold text-[#001a73] text-center">
-                  รถที่ใช้งาน : {label}
-                </p>
               </>
             ) : (
               <div className="w-full h-48 bg-[#081042] rounded-md flex items-center justify-center text-sm text-gray-300">
