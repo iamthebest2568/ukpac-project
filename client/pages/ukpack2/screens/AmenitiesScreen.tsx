@@ -138,6 +138,15 @@ const AmenitiesScreen: React.FC = () => {
   const selectedBusImage = HERO_IMAGE[selectedChassis];
   const [isExitModalOpen, setExitModalOpen] = useState(false);
 
+  const storedColor = (() => {
+    try {
+      const raw = sessionStorage.getItem('design.color');
+      return raw ? JSON.parse(raw) : null;
+    } catch {
+      return null;
+    }
+  })();
+
   const OVERLAY_ICON_SRC: Record<string, string> = {
     // labels
     แอร์: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F02548238f8184e808929075a27733533?format=webp&width=800",
