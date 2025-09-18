@@ -130,30 +130,38 @@ const SeatingScreen: React.FC = () => {
     const specialSeatsTotal =
       pregnantSeats + childElderSeats + monkSeats + wheelchairBikeSpaces;
 
+    // Ensure total seats provided
+    if (totalSeats === "") {
+      setErrorTitle("กรุณาระบุจำนวนที่นั่ง");
+      setErrorMessage(`กรุณากรอกจำนวนที่นั่งระหว่าง ${minCapacity} ถึง ${maxCapacity} ที่นั่ง`);
+      setErrorModalOpen(true);
+      return false;
+    }
+
     // Check if total seats is within range
-    if (totalSeats < minCapacity) {
-      setErrorTitle("จำนวนที่นั่งน้อยเกินไ��");
+    if (typeof totalSeats === "number" && totalSeats < minCapacity) {
+      setErrorTitle("จำนวนที่นั่งน้อยเกินไป");
       setErrorMessage(
-        `รถประเภทนี้ต้องมีที่นั่งอย่างน้อย ${minCapacity} ที่นั่ง กรุณาเพิ่มจำนวนที่นั่ง`,
+        `รถประเภทนี้ต้องมีที่นั่งอย่างน้อย ${minCapacity} ที่นั่ง กรุณากรอกจำนวนระหว่าง ${minCapacity} ถึง ${maxCapacity}`,
       );
       setErrorModalOpen(true);
       return false;
     }
 
-    if (totalSeats > maxCapacity) {
+    if (typeof totalSeats === "number" && totalSeats > maxCapacity) {
       setErrorTitle("จำนวนที่นั่งเกินขีดจำกัด");
       setErrorMessage(
-        `รถประเภทนี้สาม���รถมีที่นั่งได้สูงสุด ${maxCapacity} ที่นั่ง กรุณาลดจำนวนที่นั่ง`,
+        `รถประเภทนี้สามารถมีที่นั่งได้สูงสุด ${maxCapacity} ที่นั่ง กรุณากรอกจำนวนระหว่าง ${minCapacity} ถึง ${maxCapacity}`,
       );
       setErrorModalOpen(true);
       return false;
     }
 
     // Check if special seats exceed total seats
-    if (specialSeatsTotal > totalSeats) {
+    if (specialSeatsTotal > (typeof totalSeats === "number" ? totalSeats : 0)) {
       setErrorTitle("พื้นที่ไม่เพียงพอ");
       setErrorMessage(
-        `ที่นั่งพิเศษทั้งหมด (${specialSeatsTotal} ที่นั่ง) เกินจำนวนที่นั��งทั้งหมด (${totalSeats} ที่นั่ง) กรุณาลดจำนวนที่นั่งบางส่วน`,
+        `ที่นั่งพิเศษทั้งหมด (${specialSeatsTotal} ที่นั่ง) เกินจำนวนที่นั่งทั้งหมด (${totalSeats}) กรุณาลดจำนวนที่นั่งบางส่วน`,
       );
       setErrorModalOpen(true);
       return false;
