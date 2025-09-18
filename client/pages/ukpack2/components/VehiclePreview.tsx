@@ -62,14 +62,35 @@ const VehiclePreview: React.FC<Props> = ({
               </div>
             )}
 
-            <img
-              src={imageSrc}
-              alt={typeof label === 'string' ? `ภาพรถ - ${label}` : 'ภาพรถ'}
-              className="h-full w-auto object-contain mx-auto select-none"
-              decoding="async"
-              loading="eager"
-              style={colorFilter ? { filter: colorFilter } : undefined}
-            />
+            {(() => {
+              const isHex = typeof colorFilter === 'string' && /^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(colorFilter);
+              return (
+                <>
+                  <img
+                    src={imageSrc}
+                    alt={typeof label === 'string' ? `ภาพรถ - ${label}` : 'ภาพรถ'}
+                    className="h-full w-auto object-contain mx-auto select-none"
+                    decoding="async"
+                    loading="eager"
+                    style={isHex ? { filter: 'grayscale(1) contrast(1.05) brightness(1)' } : colorFilter ? { filter: colorFilter } : undefined}
+                  />
+                  {isHex && (
+                    <div
+                      aria-hidden="true"
+                      style={{
+                        position: 'absolute',
+                        inset: 0,
+                        backgroundColor: colorFilter as string,
+                        mixBlendMode: 'multiply',
+                        opacity: 0.95,
+                        pointerEvents: 'none',
+                        borderRadius: 0,
+                      }}
+                    />
+                  )}
+                </>
+              );
+            })()}
           </div>
         </div>
       ) : (
