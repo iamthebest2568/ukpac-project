@@ -199,10 +199,6 @@ const AmenitiesScreen: React.FC = () => {
               Bus image preview (ภาพสำหรับรุ่นนี้จะถูกเพิ่มภายหลัง)
             </div>
           )}
-          <div className="mt-1 font-prompt font-semibold text-[#001a73] text-center">
-            <p className="mb-0">รถที่เลือก :</p>
-            {selectedLabel}
-          </div>
         </div>
         <div className="bg-white rounded-2xl -mt-2 p-4 border border-gray-400">
           <StepTabs active={3} />
