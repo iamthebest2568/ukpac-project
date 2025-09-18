@@ -205,7 +205,7 @@ const SeatingScreen: React.FC = () => {
   return (
     <>
       <CustomizationScreen
-        title="ปรับแต่งรถเมล์ของคุณ"
+        title="ปรับแต่งร���เมล์ของคุณ"
         theme="light"
         footerContent={
           <div className="flex justify-center">
@@ -279,7 +279,7 @@ const SeatingScreen: React.FC = () => {
             <div className="space-y-2 mt-2">
               <div className="flex items-center justify-between">
                 <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">
-                  จำนวนที่นั่งทั้งหมด
+                  จำนว��ที่นั่งทั้งหมด
                 </div>
                 <input
                   type="number"
@@ -293,7 +293,8 @@ const SeatingScreen: React.FC = () => {
                       ),
                     )
                   }
-                  className="w-24 px-3 py-2 border-2 border-[rgba(0,13,89,1)] sm:border sm:border-[#e5e7eb] rounded-full text-[#003366] bg-white text-right"
+                  className="w-24 px-3 py-2 rounded-full text-[#000D59] bg-white text-right"
+                  style={{ borderWidth: 3, borderColor: 'rgba(0,13,89,1)' }}
                   min={0}
                   max={maxCapacity}
                 />
@@ -412,7 +413,7 @@ const SeatingScreen: React.FC = () => {
       <ConfirmModal
         isOpen={isExitModalOpen}
         title="ออกจากหน้าจอ"
-        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณ���ะไม่ถูกบันทึก"
+        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
         onConfirm={() => navigate("/")}
         onCancel={() => setExitModalOpen(false)}
       />
