@@ -121,66 +121,18 @@ const BUS_EMPLOY_ICON =
   "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F47fc617541cf45f28b7aa2d1b8deaf64?format=webp&width=800";
 
 const DEFAULT_COLORS = [
-  {
-    preview:
-      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F5456dc0212c14ba6a327d537ceed405e?format=webp&width=800",
-    filter: "hue-rotate(0deg) saturate(1) brightness(1)", // blue/original
-  },
-  {
-    preview:
-      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F60613c947767482aa9d75e7414cdf10a?format=webp&width=800",
-    filter: "hue-rotate(30deg) saturate(1.2) brightness(1.1)", // orange
-  },
-  {
-    preview:
-      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F257808683b104f7fb4c3d4ba712b4ef0?format=webp&width=800",
-    filter: "hue-rotate(120deg) saturate(1.3) brightness(1)", // green
-  },
-  {
-    preview:
-      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc1540ee8e580442bbcfe1c7cbf7ca0ca?format=webp&width=800",
-    filter: "hue-rotate(300deg) saturate(1.2) brightness(1)", // purple
-  },
-  {
-    preview:
-      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F31b9a82b697a46a6b5b14e32002472d8?format=webp&width=800",
-    filter: "hue-rotate(0deg) saturate(1.5) brightness(1.2)", // bright blue
-  },
-  {
-    preview:
-      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fcae7472130bc47f09f28af725a944548?format=webp&width=800",
-    filter: "hue-rotate(60deg) saturate(1.4) brightness(1.1)", // yellow
-  },
-  {
-    preview:
-      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F117b0cdb42744374a5999f03625d56aa?format=webp&width=800",
-    filter: "hue-rotate(0deg) saturate(0.8) brightness(0.7)", // dark blue
-  },
-  {
-    preview:
-      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fee9ba92b67734653865abb9c651119d6?format=webp&width=800",
-    filter: "hue-rotate(180deg) saturate(1.1) brightness(1)", // cyan
-  },
-  {
-    preview:
-      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Ffae13b859b7c45eba3e49272be7622d2?format=webp&width=800",
-    filter: "hue-rotate(240deg) saturate(1.3) brightness(0.9)", // dark purple
-  },
-  {
-    preview:
-      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9ba49f215d7d4abca6a601bdee2d7bd5?format=webp&width=800",
-    filter: "hue-rotate(0deg) saturate(0) brightness(0.4)", // black
-  },
-  {
-    preview:
-      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F30bc6908a9fc4a9e96afd58e5885af1b?format=webp&width=800",
-    filter: "hue-rotate(0deg) saturate(0) brightness(0.7)", // dark gray
-  },
-  {
-    preview:
-      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F321fa0e9571a4e34b5fe6beffc1fbbed?format=webp&width=800",
-    filter: "hue-rotate(0deg) saturate(0) brightness(1.3)", // white
-  },
+  { preview: '#353635', filter: '#353635' },
+  { preview: '#7d53a2', filter: '#7d53a2' },
+  { preview: '#fee000', filter: '#fee000' },
+  { preview: '#bbbdbf', filter: '#bbbdbf' },
+  { preview: '#4453a4', filter: '#4453a4' },
+  { preview: '#f68c1f', filter: '#f68c1f' },
+  { preview: '#ffffff', filter: '#ffffff' },
+  { preview: '#208541', filter: '#208541' },
+  { preview: '#eb2127', filter: '#eb2127' },
+  { preview: '#603a17', filter: '#603a17' },
+  { preview: '#6cc283', filter: '#6cc283' },
+  { preview: '#ef416b', filter: '#ef416b' },
 ];
 
 const DesignScreen: React.FC = () => {
@@ -213,7 +165,7 @@ const DesignScreen: React.FC = () => {
       theme="light"
       footerContent={
         <div className="flex justify-center">
-          <CtaButton text="ออกแบบเสร็จแล้ว" onClick={handleFinish} />
+          <CtaButton text="อ���กแบบเสร็จแล้ว" onClick={handleFinish} />
         </div>
       }
     >
