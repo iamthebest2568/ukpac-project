@@ -181,7 +181,7 @@ const SeatingScreen: React.FC = () => {
     setTotalSeats(v);
 
     if (v > maxCapacity) {
-      setErrorTitle("���ำนวนที่นั่งเกินขีดจำกัด");
+      setErrorTitle("จำนวนที่นั่งเกินขีดจำกัด");
       setErrorMessage(
         `รถประเภทนี้สามารถมีที่นั่งได้สูงสุด ${maxCapacity} ที่นั่ง กรุณาลดจำนวนที่นั่ง`,
       );
