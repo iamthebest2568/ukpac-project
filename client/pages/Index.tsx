@@ -1,5 +1,6 @@
 import { useSession } from "../hooks/useSession";
 import { Link } from "react-router-dom";
+import MetaUpdater from "../components/MetaUpdater";
 
 const IndexPage = () => {
   const { navigateToPage } = useSession();
