@@ -67,7 +67,7 @@ const SeatingScreen: React.FC = () => {
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F788c9e78d6944fc8a5088cc00aa40697?format=webp&width=800",
     "ที่จับ/ราวยืนที่ปลอดภัย":
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F1cae4f7306834a6eb0d86be09e05bfdd?format=webp&width=800",
-    "ช่องช���ร์จมือถือ/USB":
+    "ช่องชาร์จมือถือ/USB":
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fba274e72720c4a1b9695e83dbf8c1fe9?format=webp&width=800",
     "Wi‑Fi ฟรี":
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F63dc13fe1fab446a9da88bfb297d9c6d?format=webp&width=800",
@@ -106,14 +106,21 @@ const SeatingScreen: React.FC = () => {
   const maxCapacity = maxByChassis[selectedChassis] ?? 50;
   const minCapacity = minByChassis[selectedChassis] ?? 16;
 
-  React.useEffect(() => {
-    // Set initial seats to a reasonable default between min and max
-    const defaultSeats =
-      selectedChassis === "extra"
-        ? 10
-        : Math.ceil((minCapacity + maxCapacity) / 2);
-    setTotalSeats(defaultSeats);
-  }, [selectedChassis, minCapacity, maxCapacity]);
+  const getDefaultSeats = () =>
+    selectedChassis === "extra"
+      ? 10
+      : Math.ceil((minCapacity + maxCapacity) / 2);
+
+  const handleTotalFocus = () => {
+    setTotalFocused(true);
+    if (totalSeats === "") {
+      setTotalSeats(getDefaultSeats());
+    }
+  };
+
+  const handleTotalBlur = () => {
+    setTotalFocused(false);
+  };
 
   const selectedLabel = CHASSIS_LABELS[selectedChassis] || "";
   const selectedTopdown = TOPDOWN_IMAGE[selectedChassis];
