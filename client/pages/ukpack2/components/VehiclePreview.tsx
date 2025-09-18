@@ -78,9 +78,9 @@ const VehiclePreview: React.FC<Props> = ({
         </div>
       )}
 
-      <p className="mt-2 font-prompt font-semibold text-[#001a73] text-center text-sm md:text-base max-w-[320px] mx-auto">
+      <div role="group" aria-label="vehicle-label" className="mt-2 font-prompt font-semibold text-[#001a73] text-center text-sm md:text-base max-w-[320px] mx-auto">
         {label}
-      </p>
+      </div>
     </div>
   );
 };
