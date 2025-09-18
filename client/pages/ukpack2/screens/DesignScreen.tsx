@@ -309,9 +309,6 @@ const DesignScreen: React.FC = () => {
                     emergency: <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F98de0624be3d4ae6b96d83edcf8891f9?format=webp&width=800" alt="ประตูฉุกเฉิน" className="h-5 w-5 object-contain" />,
                   }}
                 />
-                <p className="mt-1 font-prompt font-semibold text-[#001a73] text-center">
-                  รถที่ใช้งาน : {label}
-                </p>
               </>
             ) : (
               <div className="w-full h-72 rounded-md flex items-center justify-center text-sm text-gray-300">
@@ -337,7 +334,7 @@ const DesignScreen: React.FC = () => {
             />
 
             <h2 className="text-xl font-prompt font-semibold text-[#003366] mt-4">
-              ลักษณะพิเศษอื่น ๆ ของรถคุณ
+              ลักษณะพิเศษอื่น ๆ ��องรถคุณ
             </h2>
             <div>
               <input
