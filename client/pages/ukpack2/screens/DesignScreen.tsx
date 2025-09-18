@@ -334,7 +334,7 @@ const DesignScreen: React.FC = () => {
             />
 
             <h2 className="text-xl font-prompt font-semibold text-[#003366] mt-4">
-              ลักษณะพิเศษอื่น ๆ ��องรถคุณ
+              ลักษณะพิเศษอื่น ๆ ของรถคุณ
             </h2>
             <div>
               <input
