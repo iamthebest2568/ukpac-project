@@ -145,7 +145,7 @@ const SeatingScreen: React.FC = () => {
     if (typeof totalSeats === "number" && totalSeats > maxCapacity) {
       setErrorTitle("จำนวนที่นั่งเกินขีดจำกัด");
       setErrorMessage(
-        `รถประเ��ทนี้สามารถมีที่นั่งได้สูงสุด ${maxCapacity} ที่นั่ง กรุณากรอกจำนวนระหว่าง ${minCapacity} ถึง ${maxCapacity}`,
+        `รถประเภทนี้สามารถมีที่นั่งได้สูงสุด ${maxCapacity} ที่นั่ง กรุณากรอกจำนวนระหว่าง ${minCapacity} ถึง ${maxCapacity}`,
       );
       setErrorModalOpen(true);
       return false;
@@ -165,7 +165,7 @@ const SeatingScreen: React.FC = () => {
     if ((Number(specialSeats) || 0) < specialSeatsTotal) {
       setErrorTitle("จำนวนที่นั่งพิเศษไม่พอ");
       setErrorMessage(
-        `จำนวนที่นั่งพิเศษ (${specialSeats}) น้อยกว่าจำนวนที่นั่งพิเศษ��่อย (${specialSeatsTotal}) กรุณาปรับค่าหรือลดจำนวนที่นั่งพิเศษย่อย`,
+        `จำนวนที่นั่งพิเศษ (${specialSeats}) น้อยกว่าจำนวนที่นั่งพิเศษย่อย (${specialSeatsTotal}) กรุณาปรับค่าหรือลดจำนวนที่นั่งพิเศษย่อย`,
       );
       setErrorModalOpen(true);
       return false;
@@ -316,14 +316,18 @@ const SeatingScreen: React.FC = () => {
                   type="number"
                   min={0}
                   max={maxCapacity}
-                  value={specialSeats}
+                  value={specialSeats === "" ? "" : specialSeats}
+                  onFocus={() => {
+                    if (specialSeats === 0) setSpecialSeats("");
+                  }}
                   onChange={(e) => {
-                    const parsed = Math.max(0, parseInt(e.target.value || "0", 10));
-                    const total = typeof totalSeats === "number" ? totalSeats : maxCapacity;
-                    const categoriesSum = pregnantSeats + childElderSeats + monkSeats + wheelchairBikeSpaces;
-                    // specialSeats must be at least sum of categories and at most total
-                    const clamped = Math.min(total, Math.max(categoriesSum, parsed));
-                    setSpecialSeats(clamped);
+                    const raw = e.target.value;
+                    if (raw === "") {
+                      setSpecialSeats("");
+                      return;
+                    }
+                    const parsed = Math.max(0, Math.min(maxCapacity, parseInt(raw || "0", 10)));
+                    setSpecialSeats(parsed);
                   }}
                   className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-full text-[#003366] bg-white text-right"
                 />
