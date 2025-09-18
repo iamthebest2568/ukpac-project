@@ -47,9 +47,9 @@ const SplashScreen: React.FC = () => {
         gap: 12,
         boxSizing: "border-box",
         backgroundImage: `url('https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F1ae91a1faaef4abeb8eb1b6603bd90f5?format=webp&width=800')`,
-        backgroundPosition: "bottom center",
+        backgroundPosition: "top center",
         backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
+        backgroundSize: "100% auto",
       }}>
         <div style={{ textAlign: "center", padding: "12px 20px" }}>
           <div>รถเมล์ในฝันที่คุณอยากขึ้นทุกวัน</div>
