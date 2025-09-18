@@ -201,6 +201,30 @@ const SeatingScreen: React.FC = () => {
     // During typing we only set a clamped value; final validation happens on Next
     const clamped = Math.min(maxCapacity, Math.max(0, v as number));
     setTotalSeats(clamped);
+
+    // If total decreased below current sum of category seats, reduce categories to fit
+    const categories = [childElderSeats, pregnantSeats, monkSeats, wheelchairBikeSpaces];
+    const categoriesSum = categories.reduce((a, b) => a + b, 0);
+    if (categoriesSum > clamped) {
+      let remaining = clamped;
+      // Reduce in priority order: childElder, pregnant, monk, wheelchair (you can adjust order)
+      const order = [0, 1, 2, 3];
+      const newValues = [0, 0, 0, 0];
+      for (let i = 0; i < order.length; i++) {
+        const idx = order[i];
+        const val = categories[idx];
+        const take = Math.min(val, remaining);
+        newValues[idx] = take;
+        remaining -= take;
+      }
+      // apply reduced values
+      setChildElderSeats(newValues[0]);
+      setPregnantSeats(newValues[1]);
+      setMonkSeats(newValues[2]);
+      setWheelchairBikeSpaces(newValues[3]);
+      // adjust specialSeats as well
+      setSpecialSeats(Math.min(specialSeats, clamped));
+    }
   };
 
   return (
