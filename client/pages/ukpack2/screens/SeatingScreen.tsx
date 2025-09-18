@@ -13,11 +13,11 @@ const SeatingScreen: React.FC = () => {
   const navigate = useNavigate();
   const { state } = useBusDesign();
   const [totalSeats, setTotalSeats] = useState<number | "">("");
-  const [pregnantSeats, setPregnantSeats] = useState<number>(0);
-  const [childElderSeats, setChildElderSeats] = useState<number>(0);
-  const [monkSeats, setMonkSeats] = useState<number>(0);
-  const [wheelchairBikeSpaces, setWheelchairBikeSpaces] = useState<number>(0);
-  const [specialSeats, setSpecialSeats] = useState<number>(0);
+  const [pregnantSeats, setPregnantSeats] = useState<number | "">("");
+  const [childElderSeats, setChildElderSeats] = useState<number | "">("");
+  const [monkSeats, setMonkSeats] = useState<number | "">("");
+  const [wheelchairBikeSpaces, setWheelchairBikeSpaces] = useState<number | "">("");
+  const [specialSeats, setSpecialSeats] = useState<number | "">("");
   const [isExitModalOpen, setExitModalOpen] = useState(false);
   const [isErrorModalOpen, setErrorModalOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
@@ -143,7 +143,7 @@ const SeatingScreen: React.FC = () => {
     }
 
     if (typeof totalSeats === "number" && totalSeats > maxCapacity) {
-      setErrorTitle("จำนวนที่นั่งเกินขีดจำกัด");
+      setErrorTitle("จ���นวนที่นั่งเกินขีดจำกัด");
       setErrorMessage(
         `รถประเภทนี้สามารถมีที่นั่งได้สูงสุด ${maxCapacity} ที่���ั่ง กรุณากรอกจำนวนระหว่าง ${minCapacity} ถึง ${maxCapacity}`,
       );
@@ -165,7 +165,7 @@ const SeatingScreen: React.FC = () => {
     if (specialSeats < specialSeatsTotal) {
       setErrorTitle("จำนวนที่นั่���พิเศษไม่พอ");
       setErrorMessage(
-        `จำนวนที่นั่งพิเศษ (${specialSeats}) น้อยกว่าจำนวนที่นั่งพิเศษย่อย (${specialSeatsTotal}) กรุณาปรับค่าหรือลดจำนวนที่นั��งพิเศษย่อย`,
+        `จำนวน��ี่นั่งพิเศษ (${specialSeats}) น้อยกว่าจำนวนที่นั่งพิเศษย่อย (${specialSeatsTotal}) กรุณาปรับค่าหรือลดจำนวนที่นั��งพิเศษย่อย`,
       );
       setErrorModalOpen(true);
       return false;
