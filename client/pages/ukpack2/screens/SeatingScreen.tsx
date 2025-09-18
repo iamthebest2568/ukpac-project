@@ -27,7 +27,7 @@ const SeatingScreen: React.FC = () => {
     small: 30,
     medium: 40,
     large: 50,
-    extra: 12, // รถกระบะดัดแปลง 8-12 ที่นั่ง
+    extra: 12, // รถกระบะดัดแปลง 8-12 ที่น��่ง
   };
 
   const minByChassis: Record<string, number> = {
@@ -70,7 +70,7 @@ const SeatingScreen: React.FC = () => {
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fba274e72720c4a1b9695e83dbf8c1fe9?format=webp&width=800",
     "Wi‑Fi ฟรี":
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F63dc13fe1fab446a9da88bfb297d9c6d?format=webp&width=800",
-    "ระบบประกาศบอกป้าย(เสียง/จอ)":
+    "��ะบบประกาศบอกป้าย(เสียง/จอ)":
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F35b324f49ad84b71a92ae80b0b39f7cd?format=webp&width=800",
     air: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F02548238f8184e808929075a27733533?format=webp&width=800",
     fan: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fdcae7affa4fe43e38aa5c78ca608e39e?format=webp&width=800",
@@ -111,14 +111,9 @@ const SeatingScreen: React.FC = () => {
       : Math.ceil((minCapacity + maxCapacity) / 2);
 
   const handleTotalFocus = () => {
-    setTotalFocused(true);
     if (totalSeats === "") {
       setTotalSeats(getDefaultSeats());
     }
-  };
-
-  const handleTotalBlur = () => {
-    setTotalFocused(false);
   };
 
   const selectedLabel = CHASSIS_LABELS[selectedChassis] || "";
@@ -150,7 +145,7 @@ const SeatingScreen: React.FC = () => {
     if (typeof totalSeats === "number" && totalSeats > maxCapacity) {
       setErrorTitle("จำนวนที่นั่งเกินขีดจำกัด");
       setErrorMessage(
-        `รถประเภทนี้สามารถมีที่นั่งได้สูงสุด ${maxCapacity} ที่นั่ง กรุณากรอกจำนวนระหว่าง ${minCapacity} ถึง ${maxCapacity}`,
+        `รถประเภทนี้สามารถมีที่นั่งได้สูงสุด ${maxCapacity} ที่นั่ง กรุณากรอกจำนว��ระหว่าง ${minCapacity} ถึง ${maxCapacity}`,
       );
       setErrorModalOpen(true);
       return false;
@@ -215,7 +210,7 @@ const SeatingScreen: React.FC = () => {
     } else if (v < minCapacity && v > 0) {
       setErrorTitle("จำนวนที่นั่ง���้อยเกินไป");
       setErrorMessage(
-        `รถประเภทนี้ต้องมีที่นั่งอย่างน้อย ${minCapacity} ที่นั่ง กรุณากรอกจำนว��ระหว่าง ${minCapacity} ถึง ${maxCapacity}`,
+        `ร��ประเภทนี้ต้องมีที่นั่งอย่างน้อย ${minCapacity} ที่นั่ง กรุณากรอกจำนว��ระหว่าง ${minCapacity} ถึง ${maxCapacity}`,
       );
       setErrorModalOpen(true);
     }
