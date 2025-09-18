@@ -208,7 +208,7 @@ const SeatingScreen: React.FC = () => {
     } else if (v < minCapacity && v > 0) {
       setErrorTitle("จำนวนที่นั่ง���้อยเกินไป");
       setErrorMessage(
-        `รถประเภทนี้ต้องมีที่นั่งอย่างน้อย ${minCapacity} ที่นั่ง กรุณากรอกจำนวนระหว่าง ${minCapacity} ถึง ${maxCapacity}`,
+        `รถประเภทนี้ต้องมีที่นั่งอย่างน้อย ${minCapacity} ที่นั่ง กรุณากรอกจำนว��ระหว่าง ${minCapacity} ถึง ${maxCapacity}`,
       );
       setErrorModalOpen(true);
     }
@@ -295,21 +295,30 @@ const SeatingScreen: React.FC = () => {
                 </div>
                 <input
                   type="number"
-                  placeholder="พิมพ์"
+                  placeholder="ระบุ..."
                   value={totalSeats}
-                  onChange={(e) =>
-                    handleTotalSeatsChange(
-                      Math.min(
-                        maxCapacity,
-                        Math.max(0, parseInt(e.target.value || "0", 10)),
-                      ),
-                    )
-                  }
+                  onFocus={handleTotalFocus}
+                  onBlur={handleTotalBlur}
+                  onChange={(e) => {
+                    const raw = e.target.value;
+                    if (raw === "") {
+                      handleTotalSeatsChange("");
+                      return;
+                    }
+                    const parsed = Math.min(
+                      maxCapacity,
+                      Math.max(0, parseInt(raw || "0", 10)),
+                    );
+                    handleTotalSeatsChange(parsed);
+                  }}
                   className="w-24 px-3 py-2 rounded-full text-[#000D59] bg-white text-right"
                   style={{ borderWidth: 3, borderColor: 'rgba(0,13,89,1)' }}
                   min={0}
                   max={maxCapacity}
                 />
+                {isTotalFocused && (
+                  <div className="mt-2 text-sm text-[#555]">{`รถมี ${minCapacity}-${maxCapacity} ที่นั่ง`}</div>
+                )}
               </div>
 
               <div className="flex items-center justify-between mt-4">
@@ -399,7 +408,7 @@ const SeatingScreen: React.FC = () => {
 
               <div className="flex items-center justify-between">
                 <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">
-                  พื้นที่สำหรับรถเข็น/จักรยาน
+                  พ���้นที่สำหรับรถเข็น/จักรยาน
                 </div>
                 <input
                   type="number"
