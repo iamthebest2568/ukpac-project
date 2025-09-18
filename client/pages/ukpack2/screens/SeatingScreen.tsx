@@ -105,16 +105,42 @@ const SeatingScreen: React.FC = () => {
   const maxCapacity = maxByChassis[selectedChassis] ?? 50;
   const minCapacity = minByChassis[selectedChassis] ?? 16;
 
-  const getDefaultSeats = () =>
-    selectedChassis === "extra"
-      ? 10
-      : Math.ceil((minCapacity + maxCapacity) / 2);
 
   const handleTotalFocus = () => {
-    if (totalSeats === "") {
-      setTotalSeats(getDefaultSeats());
-    }
+    // Intentionally do not auto-fill or show a number on focus.
+    // The field should remain empty so users can type freely.
   };
+
+  React.useEffect(() => {
+    // Load saved seating only if it belongs to the currently selected chassis
+    try {
+      const storedChassis = sessionStorage.getItem("design.chassis");
+      const raw = sessionStorage.getItem("design.seating");
+      if (raw && storedChassis === selectedChassis) {
+        const parsed = JSON.parse(raw);
+        if (parsed && typeof parsed.totalSeats === "number") {
+          // clamp stored total to current chassis bounds
+          const clampedTotal = Math.min(maxCapacity, Math.max(minCapacity, parsed.totalSeats));
+          setTotalSeats(clampedTotal);
+          setSpecialSeats(parsed.specialSeats ?? "");
+          setPregnantSeats(parsed.pregnantSeats ?? "");
+          setChildElderSeats(parsed.childElderSeats ?? "");
+          setMonkSeats(parsed.monkSeats ?? "");
+          setWheelchairBikeSpaces(parsed.wheelchairBikeSpaces ?? "");
+          return;
+        }
+      }
+    } catch {
+      // ignore parse errors
+    }
+    // Default to empty so the field shows placeholder and is easy to type into
+    setTotalSeats("");
+    setSpecialSeats("");
+    setPregnantSeats("");
+    setChildElderSeats("");
+    setMonkSeats("");
+    setWheelchairBikeSpaces("");
+  }, [selectedChassis, minCapacity, maxCapacity]);
 
   const selectedLabel = CHASSIS_LABELS[selectedChassis] || "";
   const selectedTopdown = TOPDOWN_IMAGE[selectedChassis];
