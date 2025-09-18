@@ -4,9 +4,14 @@ interface CtaButtonProps {
   text: string;
   onClick?: () => void;
   className?: string;
+  style?: React.CSSProperties;
 }
 
-const CtaButton: React.FC<CtaButtonProps> = ({ text, onClick, className = '' }) => {
+const CtaButton: React.FC<CtaButtonProps> = ({ text, onClick, className = '', style }) => {
+  const baseStyle: React.CSSProperties = {
+    paddingLeft: 'calc(1.5rem + 7.5px)',
+    paddingRight: 'calc(1.5rem + 7.5px)',
+  };
   return (
     <button
       type="button"
@@ -14,7 +19,7 @@ const CtaButton: React.FC<CtaButtonProps> = ({ text, onClick, className = '' }) 
       className={
         `bg-[#ffe000] text-black rounded-full py-2 sm:py-3 inline-flex items-center justify-center shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#000d59] hover:bg-[#000d59] hover:text-white transition-colors font-prompt font-semibold ${className}`
       }
-      style={{ paddingLeft: 'calc(1.5rem + 7.5px)', paddingRight: 'calc(1.5rem + 7.5px)' }}
+      style={{ ...baseStyle, ...(style || {}) }}
     >
       {text}
     </button>
