@@ -17,11 +17,10 @@ const SeatingScreen: React.FC = () => {
   const [childElderSeats, setChildElderSeats] = useState<number | "">("");
   const [monkSeats, setMonkSeats] = useState<number | "">("");
   const [wheelchairBikeSpaces, setWheelchairBikeSpaces] = useState<number | "">("");
-  const [specialSeats, setSpecialSeats] = useState<number | "">("");
   const [isExitModalOpen, setExitModalOpen] = useState(false);
   const [isErrorModalOpen, setErrorModalOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
-  const [errorTitle, setErrorTitle] = useState<string>("ข้อผิดพลาด");
+  const [errorTitle, setErrorTitle] = useState<string>("��้อผิดพลาด");
 
   const maxByChassis: Record<string, number> = {
     small: 30,
@@ -122,7 +121,6 @@ const SeatingScreen: React.FC = () => {
           // clamp stored total to current chassis bounds
           const clampedTotal = Math.min(maxCapacity, Math.max(minCapacity, parsed.totalSeats));
           setTotalSeats(clampedTotal);
-          setSpecialSeats(parsed.specialSeats ?? "");
           setPregnantSeats(parsed.pregnantSeats ?? "");
           setChildElderSeats(parsed.childElderSeats ?? "");
           setMonkSeats(parsed.monkSeats ?? "");
@@ -135,7 +133,6 @@ const SeatingScreen: React.FC = () => {
     }
     // Default to empty so the field shows placeholder and is easy to type into
     setTotalSeats("");
-    setSpecialSeats("");
     setPregnantSeats("");
     setChildElderSeats("");
     setMonkSeats("");
@@ -171,7 +168,7 @@ const SeatingScreen: React.FC = () => {
     if (typeof totalSeats === "number" && totalSeats > maxCapacity) {
       setErrorTitle("จำนวนที่นั่งเกินขีดจำกัด");
       setErrorMessage(
-        `รถประเภทนี้สามารถมีที่นั่งได้สูงสุด ${maxCapacity} ที่นั่ง กรุณากรอกจำนวนระหว่าง ${minCapacity} ถึง ${maxCapacity}`,
+        `รถประเภทนี้สามารถมีที่นั่งได้ส��งสุด ${maxCapacity} ที่นั่ง กรุณากรอกจำนวนระหว่าง ${minCapacity} ถึง ${maxCapacity}`,
       );
       setErrorModalOpen(true);
       return false;
@@ -199,7 +196,6 @@ const SeatingScreen: React.FC = () => {
     try {
       const seating = {
         totalSeats,
-        specialSeats,
         pregnantSeats,
         childElderSeats,
         monkSeats,
@@ -321,32 +317,6 @@ const SeatingScreen: React.FC = () => {
                   style={{ borderWidth: 3, borderColor: 'rgba(0,13,89,1)' }}
                   min={0}
                   max={maxCapacity}
-                />
-              </div>
-
-              <div className="flex items-center justify-between mt-4">
-                <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">
-                  จำนวนที่นั่งพิเศษ
-                </div>
-                <input
-                  id="specialSeats"
-                  type="number"
-                  min={0}
-                  max={maxCapacity}
-                  value={specialSeats === "" ? "" : specialSeats}
-                  onFocus={() => {
-                    if (specialSeats === 0) setSpecialSeats("");
-                  }}
-                  onChange={(e) => {
-                    const raw = e.target.value;
-                    if (raw === "") {
-                      setSpecialSeats("");
-                      return;
-                    }
-                    const parsed = Math.max(0, Math.min(maxCapacity, parseInt(raw || "0", 10)));
-                    setSpecialSeats(parsed);
-                  }}
-                  className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-full text-[#003366] bg-white text-right"
                 />
               </div>
 
