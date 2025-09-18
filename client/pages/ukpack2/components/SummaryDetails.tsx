@@ -105,7 +105,7 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
     <img src={MONEY_ICON} alt="เงินสด" className="h-5 w-5 object-contain" />
   ),
   สแกนจ่าย: (
-    <img src={SCAN_ICON} alt="สแกนจ่า��" className="h-5 w-5 object-contain" />
+    <img src={SCAN_ICON} alt="สแกนจ่าย" className="h-5 w-5 object-contain" />
   ),
   "สแกนจ่าย 2": (
     <img src={SCAN2_ICON} alt="สแกนจ่าย 2" className="h-5 w-5 object-contain" />
@@ -379,9 +379,9 @@ const SummaryDetails: React.FC = () => {
                           ? "2 ประตู"
                           : String(data.doors.doorChoice)
                       : data.doors.hasRamp
-                        ? "ทางลาดสำหรั��รถเข็น/ผู้พิการ"
+                        ? "ทางลาดสำหรับรถเข็น/ผู้พิการ"
                         : data.doors.highLow
-                          ? "ประตูฉุกเ��ิน"
+                          ? "ประตูฉุกเฉิน"
                           : JSON.stringify(data.doors)
                     : String(data.doors)
                 : "-"}

@@ -227,7 +227,7 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   แอร์: <IconAir />,
   พัดลม: <IconFan />,
   ที่นั่งพิเศษ: <IconSeat />,
-  "ที่จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
+  "ที่จับ/ราวยืน��ี่ปลอดภัย": <IconWifi />,
   "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
   "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
@@ -421,7 +421,7 @@ const PaymentScreen: React.FC = () => {
                   >
                     <img
                       src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fece2b6fc843340f0997f2fd7d3ca0aea?format=webp&width=800"
-                      alt="ทา���ลาด"
+                      alt="ทางลาด"
                       className="h-6 w-6 md:h-7 md:w-7 object-contain"
                     />
                   </div>
