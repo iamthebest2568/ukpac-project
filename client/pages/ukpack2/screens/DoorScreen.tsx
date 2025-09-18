@@ -64,7 +64,7 @@ const IconTv = () => (
 const IconCup = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe903bdf27bab4175824c159bc19a02ba?format=webp&width=800"
-    alt="ระบบประกาศบอกป้าย(เสียง/จอ)"
+    alt="ระบบประกาศบอกป้าย(เส��ยง/จอ)"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -120,6 +120,15 @@ const MONTHLY_ICON =
   "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fca6467eff0c74a77a8e5757f25a24e41?format=webp&width=800";
 const BUS_EMPLOY_ICON =
   "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F41c089c5dd4b448993c4e02c02cdf7ac?format=webp&width=800";
+
+const storedColor = (() => {
+  try {
+    const raw = sessionStorage.getItem('design.color');
+    return raw ? JSON.parse(raw) : null;
+  } catch {
+    return null;
+  }
+})();
 
 const IconDoor1 = () => (
   <img
