@@ -145,7 +145,7 @@ const SeatingScreen: React.FC = () => {
     if (typeof totalSeats === "number" && totalSeats > maxCapacity) {
       setErrorTitle("จำนวนที่นั่งเกินขีดจำกัด");
       setErrorMessage(
-        `รถประเภทนี้สามารถมีที่นั่งได้สูงสุด ${maxCapacity} ที่นั่ง กรุณากรอกจำนวนระหว่าง ${minCapacity} ถึง ${maxCapacity}`,
+        `รถประเภทนี้สามาร���มีที่นั่งได้สูงสุด ${maxCapacity} ที่นั่ง กรุณากรอกจำนวนระหว่าง ${minCapacity} ถึง ${maxCapacity}`,
       );
       setErrorModalOpen(true);
       return false;
@@ -165,7 +165,7 @@ const SeatingScreen: React.FC = () => {
     if (specialSeats < specialSeatsTotal) {
       setErrorTitle("จำนวนที่นั่งพิเศษไม่พอ");
       setErrorMessage(
-        `จำนวนที่นั่งพิเศษ (${specialSeats}) น้อยกว่าจำนวนที่นั่งพิเศษย่อย (${specialSeatsTotal}) กรุณาปรับค่าหรือลดจำนวนที่นั่งพิเศษย่อย`,
+        `จำนวนที่นั่งพิเศษ (${specialSeats}) น้อยกว่าจำนวนที่นั่งพิเศษย่อย (${specialSeatsTotal}) กรุ���าปรับค่าหรือลดจำนวนที่นั่งพิเศษย่อย`,
       );
       setErrorModalOpen(true);
       return false;
@@ -317,14 +317,14 @@ const SeatingScreen: React.FC = () => {
                   min={0}
                   max={maxCapacity}
                   value={specialSeats}
-                  onChange={(e) =>
-                    setSpecialSeats(
-                      Math.min(
-                        maxCapacity,
-                        Math.max(0, parseInt(e.target.value || "0", 10)),
-                      ),
-                    )
-                  }
+                  onChange={(e) => {
+                    const parsed = Math.max(0, parseInt(e.target.value || "0", 10));
+                    const total = typeof totalSeats === "number" ? totalSeats : maxCapacity;
+                    const categoriesSum = pregnantSeats + childElderSeats + monkSeats + wheelchairBikeSpaces;
+                    // specialSeats must be at least sum of categories and at most total
+                    const clamped = Math.min(total, Math.max(categoriesSum, parsed));
+                    setSpecialSeats(clamped);
+                  }}
                   className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-full text-[#003366] bg-white text-right"
                 />
               </div>
@@ -336,14 +336,18 @@ const SeatingScreen: React.FC = () => {
                 <input
                   type="number"
                   value={childElderSeats}
-                  onChange={(e) =>
-                    setChildElderSeats(
-                      Math.min(
-                        maxCapacity,
-                        Math.max(0, parseInt(e.target.value || "0", 10)),
-                      ),
-                    )
-                  }
+                  onChange={(e) => {
+                    const raw = parseInt(e.target.value || "0", 10);
+                    const total = typeof totalSeats === "number" ? totalSeats : maxCapacity;
+                    const otherSum = pregnantSeats + monkSeats + wheelchairBikeSpaces;
+                    const maxForThis = Math.max(0, total - otherSum);
+                    const clamped = Math.min(maxForThis, Math.max(0, raw));
+                    setChildElderSeats(clamped);
+                    const categoriesSum = clamped + pregnantSeats + monkSeats + wheelchairBikeSpaces;
+                    if (specialSeats < categoriesSum) {
+                      setSpecialSeats(categoriesSum);
+                    }
+                  }}
                   className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-full text-[#003366] bg-white text-right"
                   min={0}
                   max={maxCapacity}
@@ -352,19 +356,23 @@ const SeatingScreen: React.FC = () => {
 
               <div className="flex items-center justify-between">
                 <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">
-                  สตรีม��ครรภ์
+                  สตรีมีครรภ์
                 </div>
                 <input
                   type="number"
                   value={pregnantSeats}
-                  onChange={(e) =>
-                    setPregnantSeats(
-                      Math.min(
-                        maxCapacity,
-                        Math.max(0, parseInt(e.target.value || "0", 10)),
-                      ),
-                    )
-                  }
+                  onChange={(e) => {
+                    const raw = parseInt(e.target.value || "0", 10);
+                    const total = typeof totalSeats === "number" ? totalSeats : maxCapacity;
+                    const otherSum = childElderSeats + monkSeats + wheelchairBikeSpaces;
+                    const maxForThis = Math.max(0, total - otherSum);
+                    const clamped = Math.min(maxForThis, Math.max(0, raw));
+                    setPregnantSeats(clamped);
+                    const categoriesSum = childElderSeats + clamped + monkSeats + wheelchairBikeSpaces;
+                    if (specialSeats < categoriesSum) {
+                      setSpecialSeats(categoriesSum);
+                    }
+                  }}
                   className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-full text-[#003366] bg-white text-right"
                   min={0}
                   max={maxCapacity}
@@ -378,14 +386,18 @@ const SeatingScreen: React.FC = () => {
                 <input
                   type="number"
                   value={monkSeats}
-                  onChange={(e) =>
-                    setMonkSeats(
-                      Math.min(
-                        maxCapacity,
-                        Math.max(0, parseInt(e.target.value || "0", 10)),
-                      ),
-                    )
-                  }
+                  onChange={(e) => {
+                    const raw = parseInt(e.target.value || "0", 10);
+                    const total = typeof totalSeats === "number" ? totalSeats : maxCapacity;
+                    const otherSum = childElderSeats + pregnantSeats + wheelchairBikeSpaces;
+                    const maxForThis = Math.max(0, total - otherSum);
+                    const clamped = Math.min(maxForThis, Math.max(0, raw));
+                    setMonkSeats(clamped);
+                    const categoriesSum = childElderSeats + pregnantSeats + clamped + wheelchairBikeSpaces;
+                    if (specialSeats < categoriesSum) {
+                      setSpecialSeats(categoriesSum);
+                    }
+                  }}
                   className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-full text-[#003366] bg-white text-right"
                   min={0}
                   max={maxCapacity}
@@ -394,7 +406,7 @@ const SeatingScreen: React.FC = () => {
 
               <div className="flex items-center justify-between">
                 <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">
-                  พ���้นที่สำหรับรถเข็น/จักรยาน
+                  พื้นที่สำหรับรถเข็น/จักรยาน
                 </div>
                 <input
                   type="number"
