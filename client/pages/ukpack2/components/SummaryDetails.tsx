@@ -145,7 +145,7 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   ramp: (
     <img
       src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fece2b6fc843340f0997f2fd7d3ca0aea?format=webp&width=800"
-      alt="ทางลาด"
+      alt="��างลาด"
       className="h-5 w-5 object-contain"
     />
   ),
@@ -181,10 +181,10 @@ const displayDoor = (raw: any) => {
 };
 
 const CHASSIS_LABELS: Record<string, string> = {
-  small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
-  medium: "รถเมล์ขนาดกลาง 31–40 ที่นั่ง",
-  large: "รถเมล์ขนาดใหญ่ 41-50 ที่นั่ง",
-  extra: "รถกระบะดัดแปลง 8-12 ที่นั่ง",
+  small: "รถเมล์ขน���ดเล็ก 16–30 ที่นั่ง",
+  medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
+  large: "รถตู้โดยสาร 9–15 ที่นั่ง",
+  extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
 };
 
 const HERO_IMAGE: Record<string, string> = {
