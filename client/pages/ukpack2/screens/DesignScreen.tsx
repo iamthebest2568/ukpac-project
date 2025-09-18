@@ -121,18 +121,18 @@ const BUS_EMPLOY_ICON =
   "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F47fc617541cf45f28b7aa2d1b8deaf64?format=webp&width=800";
 
 const DEFAULT_COLORS = [
-  { preview: '#353635', filter: '#353635' },
-  { preview: '#7d53a2', filter: '#7d53a2' },
-  { preview: '#fee000', filter: '#fee000' },
-  { preview: '#bbbdbf', filter: '#bbbdbf' },
-  { preview: '#4453a4', filter: '#4453a4' },
-  { preview: '#f68c1f', filter: '#f68c1f' },
-  { preview: '#ffffff', filter: '#ffffff' },
-  { preview: '#208541', filter: '#208541' },
-  { preview: '#eb2127', filter: '#eb2127' },
-  { preview: '#603a17', filter: '#603a17' },
-  { preview: '#6cc283', filter: '#6cc283' },
-  { preview: '#ef416b', filter: '#ef416b' },
+  { preview: '#353635', filter: 'hue-rotate(0deg) saturate(0) brightness(0.25)' },
+  { preview: '#7d53a2', filter: 'hue-rotate(300deg) saturate(1.2) brightness(0.9)' },
+  { preview: '#fee000', filter: 'hue-rotate(60deg) saturate(1.4) brightness(1.1)' },
+  { preview: '#bbbdbf', filter: 'hue-rotate(0deg) saturate(0) brightness(0.8)' },
+  { preview: '#4453a4', filter: 'hue-rotate(220deg) saturate(1.3) brightness(0.95)' },
+  { preview: '#f68c1f', filter: 'hue-rotate(30deg) saturate(1.3) brightness(1)' },
+  { preview: '#ffffff', filter: 'hue-rotate(0deg) saturate(0) brightness(1.4)' },
+  { preview: '#208541', filter: 'hue-rotate(120deg) saturate(1.3) brightness(0.95)' },
+  { preview: '#eb2127', filter: 'hue-rotate(0deg) saturate(1.6) brightness(0.95)' },
+  { preview: '#603a17', filter: 'hue-rotate(20deg) saturate(0.8) brightness(0.7)' },
+  { preview: '#6cc283', filter: 'hue-rotate(140deg) saturate(1.2) brightness(1)' },
+  { preview: '#ef416b', filter: 'hue-rotate(340deg) saturate(1.3) brightness(1)' },
 ];
 
 const DesignScreen: React.FC = () => {
@@ -165,7 +165,7 @@ const DesignScreen: React.FC = () => {
       theme="light"
       footerContent={
         <div className="flex justify-center">
-          <CtaButton text="อ���กแบบเสร็จแล้ว" onClick={handleFinish} />
+          <CtaButton text="ออกแบบเสร็จแล้ว" onClick={handleFinish} />
         </div>
       }
     >
