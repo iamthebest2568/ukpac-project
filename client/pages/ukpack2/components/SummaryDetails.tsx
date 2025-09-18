@@ -105,7 +105,7 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
     <img src={MONEY_ICON} alt="เงินสด" className="h-5 w-5 object-contain" />
   ),
   สแกนจ่าย: (
-    <img src={SCAN_ICON} alt="��แกนจ่าย" className="h-5 w-5 object-contain" />
+    <img src={SCAN_ICON} alt="สแกนจ่าย" className="h-5 w-5 object-contain" />
   ),
   "สแกนจ่าย 2": (
     <img src={SCAN2_ICON} alt="สแกนจ่าย 2" className="h-5 w-5 object-contain" />
@@ -175,7 +175,7 @@ const displayDoor = (raw: any) => {
           ? "2 ประตู"
           : String(raw.doorChoice);
     if (raw.hasRamp) return "ทางลาดสำหรับรถเข็น/ผู้พิการ";
-    if (raw.highLow) return "ประตูฉ��กเฉิน";
+    if (raw.highLow) return "ประตูฉุกเฉิน";
   }
   return String(raw);
 };
@@ -260,6 +260,7 @@ const SummaryDetails: React.FC = () => {
         <div className="flex flex-col items-center mb-6">
           <VehiclePreview
             imageSrc={heroImg}
+            colorFilter={storedColor?.filter}
             label={`รถที่เลือก : ${chassisLabel}`}
             overlayLabels={(() => {
               const amenities = (() => {
@@ -381,7 +382,7 @@ const SummaryDetails: React.FC = () => {
                           ? "2 ประตู"
                           : String(data.doors.doorChoice)
                       : data.doors.hasRamp
-                        ? "ทางลาดสำหรับรถเข็น/ผู้พิการ"
+                        ? "ทางลาดสำหรั��รถเข็น/ผู้พิการ"
                         : data.doors.highLow
                           ? "ประตูฉุกเฉิน"
                           : JSON.stringify(data.doors)
