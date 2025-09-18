@@ -35,17 +35,12 @@ const SplashScreen: React.FC = () => {
         />
       </div>
 
-      {/* Middle: heading centered */}
-      <div style={{ textAlign: "center", padding: "12px 20px" }}>
-        <h2 style={{ margin: 0 }}>
-          รถเมล์ในฝันที่คุณอยากขึ้นทุกวัน
-          <br />
-          จะมีหน้าตาอย่างไร?
-        </h2>
-      </div>
 
-      {/* Bottom: buttons */}
+      {/* Bottom: text + buttons */}
       <div style={{ width: "100%", paddingBottom: 60, display: "flex", flexDirection: "column", alignItems: "center", gap: 12 }}>
+        <div style={{ textAlign: "center", padding: "12px 20px" }}>
+          รถเมล์ในฝันที่คุณอยากขึ้นทุกวัน จะมีหน้าตาอย่างไร?
+        </div>
         <div>
           <button type="button" onClick={() => navigate("/ukpack2/chassis")}>เริ่มออกแบบ</button>
         </div>
