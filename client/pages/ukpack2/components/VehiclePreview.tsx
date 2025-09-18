@@ -43,7 +43,13 @@ const VehiclePreview: React.FC<Props> = ({
                       className="bg-white/90 rounded-full p-1 h-8 w-8 flex items-center justify-center inline-flex flex-shrink-0"
                     >
                       {typeof srcOrNode === 'string' && srcOrNode ? (
-                        <img src={srcOrNode} alt={lab} className="h-6 w-6 object-contain" decoding="async" loading="eager" />
+                        (() => {
+                          const src = srcOrNode as string;
+                          const srcSet = src.includes('width=') ? `${src} 1x, ${src.replace(/width=\d+/, 'width=1600')} 2x` : undefined;
+                          return (
+                            <img src={src} srcSet={srcSet} alt={lab} className="h-6 w-6 object-contain" decoding="async" loading="eager" />
+                          );
+                        })()
                       ) : srcOrNode ? (
                         <>{srcOrNode}</>
                       ) : (
