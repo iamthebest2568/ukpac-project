@@ -138,12 +138,17 @@ const ChassisScreen: React.FC = () => {
     clearDesignStorage();
   }, []);
 
-  const handleNext = () => {
+  // Persist chassis selection whenever it changes so other screens reflect it immediately
+  React.useEffect(() => {
     try {
       sessionStorage.setItem("design.chassis", selected);
     } catch (e) {
       // ignore
     }
+  }, [selected]);
+
+  const handleNext = () => {
+    // navigation will use the already persisted "design.chassis"
     navigate("/ukpack2/seating");
   };
 
