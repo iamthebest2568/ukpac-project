@@ -57,10 +57,11 @@ const SplashScreen: React.FC = () => {
             <div>รถเมล์ในฝันที่คุณอยากขึ้นทุกวัน</div>
             <div>จะมีหน้าตาอย่างไร?</div>
           </div>
-          <div>
+          <div style={{ width: '100%', maxWidth: 384, paddingLeft: 20, paddingRight: 20 }}>
             <CtaButton
               text="เริ่มออกแบบ"
               onClick={() => navigate("/ukpack2/chassis")}
+              className="w-full"
               style={{ paddingLeft: 'calc(1.5rem + 15px)', paddingRight: 'calc(1.5rem + 15px)' }}
             />
           </div>
