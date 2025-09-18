@@ -59,7 +59,12 @@ const SelectionCard: React.FC<SelectionCardProps> = ({
   // size adjustments
   const FIXED_ICON_HEIGHT = "h-16";
   const iconContainerClass = `${FIXED_ICON_HEIGHT} ${appearance === "bare" ? "mb-0" : "mb-2"}`;
-  const labelClass = size === "lg" ? "px-2 text-sm md:text-base" : size === "sm" ? "px-2 text-xs md:text-sm" : "px-2 text-xs md:text-sm";
+  const labelClass =
+    size === "lg"
+      ? "px-2 text-sm md:text-base"
+      : size === "sm"
+        ? "px-2 text-xs md:text-sm"
+        : "px-2 text-xs md:text-sm";
 
   // Horizontal layout
   if (layout === "horizontal") {
@@ -71,11 +76,15 @@ const SelectionCard: React.FC<SelectionCardProps> = ({
         className={`w-full flex items-center ${appearance === "bare" ? "p-0" : "p-3"} ${appearance === "bare" ? "rounded-none" : "rounded-2xl"} ${base} focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#ffe000] transition-colors`}
         aria-pressed={isSelected}
       >
-        <div className={`${iconBox} flex items-center justify-center flex-shrink-0 ${isLight ? "text-[#003366]" : "text-white"}`}>
+        <div
+          className={`${iconBox} flex items-center justify-center flex-shrink-0 ${isLight ? "text-[#003366]" : "text-white"}`}
+        >
           {icon}
         </div>
         {!hideLabel && (
-          <div className={`ml-3 ${labelClass} font-sarabun text-left leading-tight break-words whitespace-normal max-w-full`}>
+          <div
+            className={`ml-3 ${labelClass} font-sarabun text-left leading-tight break-words whitespace-normal max-w-full`}
+          >
             {label}
           </div>
         )}
@@ -96,7 +105,9 @@ const SelectionCard: React.FC<SelectionCardProps> = ({
         {icon}
       </div>
       {!hideLabel && (
-        <div className={`${labelClass} font-sarabun text-center leading-tight break-words whitespace-normal max-w-full selection-label-mobile`}>
+        <div
+          className={`${labelClass} font-sarabun text-center leading-tight break-words whitespace-normal max-w-full selection-label-mobile`}
+        >
           {label}
         </div>
       )}

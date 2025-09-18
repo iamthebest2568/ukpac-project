@@ -136,7 +136,7 @@ const IconAir = () => (
 
 const storedColor = (() => {
   try {
-    const raw = sessionStorage.getItem('design.color');
+    const raw = sessionStorage.getItem("design.color");
     return raw ? JSON.parse(raw) : null;
   } catch {
     return null;
@@ -545,16 +545,59 @@ const PaymentScreen: React.FC = () => {
                 <VehiclePreview
                   imageSrc={img}
                   colorFilter={storedColor?.filter}
-                  label={<><span className="chassis-label-mobile">รถที่เลือก : </span>{label}</>}
+                  label={
+                    <>
+                      <span className="chassis-label-mobile">
+                        รถที่เลือก :{" "}
+                      </span>
+                      {label}
+                    </>
+                  }
                   overlayLabels={overlayLabels}
                   overlayIconMap={{
                     ...AMENITIES_ICON_MAP,
-                    เงินสด: <img src={MONEY_ICON} alt="เงินสด" className="h-5 w-5 object-contain" />,
-                    สแกนจ่าย: <img src={SCAN_ICON} alt="สแกนจ่าย" className="h-5 w-5 object-contain" />,
-                    "สแกนจ่าย 2": <img src={SCAN2_ICON} alt="สแกนจ่าย 2" className="h-5 w-5 object-contain" />,
-                    แตะบัตร: <img src={TOUCH_ICON} alt="แตะบ��ตร" className="h-5 w-5 object-contain" />,
-                    กระเป๋ารถเมล์: <img src={BUS_EMPLOY_ICON} alt="กระเป๋ารถเมล์" className="h-5 w-5 object-contain" />,
-                    "ตั๋วรายเดือน/รอบ": <img src={MONTHLY_ICON} alt="ตั๋วรายเดือน/รอบ" className="h-5 w-5 object-contain" />,
+                    เงินสด: (
+                      <img
+                        src={MONEY_ICON}
+                        alt="เงินสด"
+                        className="h-5 w-5 object-contain"
+                      />
+                    ),
+                    สแกนจ่าย: (
+                      <img
+                        src={SCAN_ICON}
+                        alt="สแกนจ่าย"
+                        className="h-5 w-5 object-contain"
+                      />
+                    ),
+                    "สแกนจ่าย 2": (
+                      <img
+                        src={SCAN2_ICON}
+                        alt="สแกนจ่าย 2"
+                        className="h-5 w-5 object-contain"
+                      />
+                    ),
+                    แตะบัตร: (
+                      <img
+                        src={TOUCH_ICON}
+                        alt="แตะบ��ตร"
+                        className="h-5 w-5 object-contain"
+                      />
+                    ),
+                    กระเป๋ารถเมล์: (
+                      <img
+                        src={BUS_EMPLOY_ICON}
+                        alt="กระเป๋ารถเมล์"
+                        className="h-5 w-5 object-contain"
+                      />
+                    ),
+                    "ตั๋วรายเดือน/รอบ": (
+                      <img
+                        src={MONTHLY_ICON}
+                        alt="ตั๋วรายเดือน/รอบ"
+                        className="h-5 w-5 object-contain"
+                      />
+                    ),
                   }}
                 />
               </>

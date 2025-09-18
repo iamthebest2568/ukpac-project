@@ -123,7 +123,7 @@ const BUS_EMPLOY_ICON =
 
 const storedColor = (() => {
   try {
-    const raw = sessionStorage.getItem('design.color');
+    const raw = sessionStorage.getItem("design.color");
     return raw ? JSON.parse(raw) : null;
   } catch {
     return null;
@@ -418,20 +418,87 @@ const DoorScreen: React.FC = () => {
                 <VehiclePreview
                   imageSrc={img}
                   colorFilter={storedColor?.filter}
-                  label={<><span className="chassis-label-mobile">รถที่เลือก : </span>{label}</>}
+                  label={
+                    <>
+                      <span className="chassis-label-mobile">
+                        รถที่เลือก :{" "}
+                      </span>
+                      {label}
+                    </>
+                  }
                   overlayLabels={overlayLabels}
                   overlayIconMap={{
                     ...AMENITIES_ICON_MAP,
-                    เงินสด: <img src={MONEY_ICON} alt="เงินสด" className="h-5 w-5 object-contain" />,
-                    สแกนจ่าย: <img src={SCAN_ICON} alt="สแกนจ่าย" className="h-5 w-5 object-contain" />,
-                    "สแกนจ่าย 2": <img src={SCAN2_ICON} alt="สแกนจ่าย 2" className="h-5 w-5 object-contain" />,
-                    แตะบัตร: <img src={TOUCH_ICON} alt="แตะบัตร" className="h-5 w-5 object-contain" />,
-                    กระเป๋ารถเมล์: <img src={BUS_EMPLOY_ICON} alt="กระเป๋ารถเมล์" className="h-5 w-5 object-contain" />,
-                    "ตั๋วรายเดือน/รอบ": <img src={MONTHLY_ICON} alt="ตั๋วรายเดือน/รอบ" className="h-5 w-5 object-contain" />,
-                    "1": <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9811f9bca05c43feae9eafdcbab3c8d9?format=webp&width=800" alt="1 ประตู" className="h-5 w-5 object-contain" />,
-                    "2": <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8f9b21942af243b3b80b0e5ac8b12631?format=webp&width=800" alt="2 ประตู" className="h-5 w-5 object-contain" />,
-                    ramp: <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fece2b6fc843340f0997f2fd7d3ca0aea?format=webp&width=800" alt="ทางลาด" className="h-5 w-5 object-contain" />,
-                    emergency: <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F98de0624be3d4ae6b96d83edcf8891f9?format=webp&width=800" alt="ประตูฉุกเฉิน" className="h-5 w-5 object-contain" />,
+                    เงินสด: (
+                      <img
+                        src={MONEY_ICON}
+                        alt="เงินสด"
+                        className="h-5 w-5 object-contain"
+                      />
+                    ),
+                    สแกนจ่าย: (
+                      <img
+                        src={SCAN_ICON}
+                        alt="สแกนจ่าย"
+                        className="h-5 w-5 object-contain"
+                      />
+                    ),
+                    "สแกนจ่าย 2": (
+                      <img
+                        src={SCAN2_ICON}
+                        alt="สแกนจ่าย 2"
+                        className="h-5 w-5 object-contain"
+                      />
+                    ),
+                    แตะบัตร: (
+                      <img
+                        src={TOUCH_ICON}
+                        alt="แตะบัตร"
+                        className="h-5 w-5 object-contain"
+                      />
+                    ),
+                    กระเป๋ารถเมล์: (
+                      <img
+                        src={BUS_EMPLOY_ICON}
+                        alt="กระเป๋ารถเมล์"
+                        className="h-5 w-5 object-contain"
+                      />
+                    ),
+                    "ตั๋วรายเดือน/รอบ": (
+                      <img
+                        src={MONTHLY_ICON}
+                        alt="ตั๋วรายเดือน/รอบ"
+                        className="h-5 w-5 object-contain"
+                      />
+                    ),
+                    "1": (
+                      <img
+                        src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9811f9bca05c43feae9eafdcbab3c8d9?format=webp&width=800"
+                        alt="1 ประตู"
+                        className="h-5 w-5 object-contain"
+                      />
+                    ),
+                    "2": (
+                      <img
+                        src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8f9b21942af243b3b80b0e5ac8b12631?format=webp&width=800"
+                        alt="2 ประตู"
+                        className="h-5 w-5 object-contain"
+                      />
+                    ),
+                    ramp: (
+                      <img
+                        src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fece2b6fc843340f0997f2fd7d3ca0aea?format=webp&width=800"
+                        alt="ทางลาด"
+                        className="h-5 w-5 object-contain"
+                      />
+                    ),
+                    emergency: (
+                      <img
+                        src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F98de0624be3d4ae6b96d83edcf8891f9?format=webp&width=800"
+                        alt="ประตูฉุกเฉิน"
+                        className="h-5 w-5 object-contain"
+                      />
+                    ),
                   }}
                 />
               </>

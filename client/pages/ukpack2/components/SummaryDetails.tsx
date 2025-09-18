@@ -200,7 +200,7 @@ const HERO_IMAGE: Record<string, string> = {
 
 const storedColor = (() => {
   try {
-    const raw = sessionStorage.getItem('design.color');
+    const raw = sessionStorage.getItem("design.color");
     return raw ? JSON.parse(raw) : null;
   } catch {
     return null;

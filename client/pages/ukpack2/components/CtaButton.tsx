@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 interface CtaButtonProps {
   text: string;
@@ -7,18 +7,21 @@ interface CtaButtonProps {
   style?: React.CSSProperties;
 }
 
-const CtaButton: React.FC<CtaButtonProps> = ({ text, onClick, className = '', style }) => {
+const CtaButton: React.FC<CtaButtonProps> = ({
+  text,
+  onClick,
+  className = "",
+  style,
+}) => {
   const baseStyle: React.CSSProperties = {
-    paddingLeft: 'calc(1.5rem + 7.5px)',
-    paddingRight: 'calc(1.5rem + 7.5px)',
+    paddingLeft: "calc(1.5rem + 7.5px)",
+    paddingRight: "calc(1.5rem + 7.5px)",
   };
   return (
     <button
       type="button"
       onClick={onClick}
-      className={
-        `bg-[#ffe000] text-black rounded-full py-2 sm:py-3 inline-flex items-center justify-center shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#000d59] hover:bg-[#000d59] hover:text-white transition-colors font-prompt font-semibold ${className}`
-      }
+      className={`bg-[#ffe000] text-black rounded-full py-2 sm:py-3 inline-flex items-center justify-center shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#000d59] hover:bg-[#000d59] hover:text-white transition-colors font-prompt font-semibold ${className}`}
       style={{ ...baseStyle, ...(style || {}) }}
     >
       {text}

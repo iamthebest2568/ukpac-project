@@ -836,7 +836,9 @@ export default function UkDashboard() {
                         s.opinionLevel || "",
                         s.opinionLevel || "",
                         s.ask02Choice || "",
-                        [s.ask02CustomReason, s.reasonOther01].filter(Boolean).join(" | ") || "",
+                        [s.ask02CustomReason, s.reasonOther01]
+                          .filter(Boolean)
+                          .join(" | ") || "",
                         s.travelMethod || "",
                         s.opinionLevel || "",
                         (s.mn1Selected || []).join(" | "),

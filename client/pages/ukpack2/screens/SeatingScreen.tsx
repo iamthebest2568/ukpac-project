@@ -58,13 +58,20 @@ const SeatingScreen: React.FC = () => {
 
   const OVERLAY_ICON_SRC: Record<string, string> = {
     แอร์: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F02548238f8184e808929075a27733533?format=webp&width=800",
-    พัดลม: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fdcae7affa4fe43e38aa5c78ca608e39e?format=webp&width=800",
-    ที่นั่งพิเศษ: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F788c9e78d6944fc8a5088cc00aa40697?format=webp&width=800",
-    "หน้าต่างเปิดได้": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F788c9e78d6944fc8a5088cc00aa40697?format=webp&width=800",
-    "ที่จับ/ราวยืนที่ปลอดภัย": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F1cae4f7306834a6eb0d86be09e05bfdd?format=webp&width=800",
-    "ช่องชาร์จมือถือ/USB": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fba274e72720c4a1b9695e83dbf8c1fe9?format=webp&width=800",
-    "Wi‑Fi ฟรี": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F63dc13fe1fab446a9da88bfb297d9c6d?format=webp&width=800",
-    "ระบบประกาศบอกป้าย(เสียง/จอ)": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F35b324f49ad84b71a92ae80b0b39f7cd?format=webp&width=800",
+    พัดลม:
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fdcae7affa4fe43e38aa5c78ca608e39e?format=webp&width=800",
+    ที่นั่งพิเศษ:
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F788c9e78d6944fc8a5088cc00aa40697?format=webp&width=800",
+    หน้าต่างเปิดได้:
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F788c9e78d6944fc8a5088cc00aa40697?format=webp&width=800",
+    "ที่จับ/ราวยืนที่ปลอดภัย":
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F1cae4f7306834a6eb0d86be09e05bfdd?format=webp&width=800",
+    "ช่องชาร์จมือถือ/USB":
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fba274e72720c4a1b9695e83dbf8c1fe9?format=webp&width=800",
+    "Wi‑Fi ฟรี":
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F63dc13fe1fab446a9da88bfb297d9c6d?format=webp&width=800",
+    "ระบบประกาศบอกป้าย(เสียง/จอ)":
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F35b324f49ad84b71a92ae80b0b39f7cd?format=webp&width=800",
     air: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F02548238f8184e808929075a27733533?format=webp&width=800",
     fan: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fdcae7affa4fe43e38aa5c78ca608e39e?format=webp&width=800",
     seat: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F788c9e78d6944fc8a5088cc00aa40697?format=webp&width=800",
@@ -76,7 +83,7 @@ const SeatingScreen: React.FC = () => {
 
   const storedColor = (() => {
     try {
-      const raw = sessionStorage.getItem('design.color');
+      const raw = sessionStorage.getItem("design.color");
       return raw ? JSON.parse(raw) : null;
     } catch {
       return null;
@@ -232,7 +239,12 @@ const SeatingScreen: React.FC = () => {
                   const parsed = JSON.parse(raw);
                   return typeof parsed === "string"
                     ? parsed
-                    : parsed?.doorChoice || (parsed?.hasRamp ? "ramp" : parsed?.highLow ? "emergency" : null);
+                    : parsed?.doorChoice ||
+                        (parsed?.hasRamp
+                          ? "ramp"
+                          : parsed?.highLow
+                            ? "emergency"
+                            : null);
                 } catch {
                   return sessionStorage.getItem("design.doors");
                 }
@@ -248,7 +260,14 @@ const SeatingScreen: React.FC = () => {
                 <VehiclePreview
                   imageSrc={selectedTopdown}
                   colorFilter={storedColor?.filter}
-                  label={<><span className="chassis-label-mobile">รถที่เลือก : </span>{selectedLabel}</>}
+                  label={
+                    <>
+                      <span className="chassis-label-mobile">
+                        รถที่เลือก :{" "}
+                      </span>
+                      {selectedLabel}
+                    </>
+                  }
                   overlayLabels={overlay}
                   overlayIconMap={OVERLAY_ICON_SRC}
                 />

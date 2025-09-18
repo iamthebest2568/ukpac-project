@@ -88,7 +88,7 @@ const SubmitScreen: React.FC = () => {
 
   const storedColor = (() => {
     try {
-      const raw = sessionStorage.getItem('design.color');
+      const raw = sessionStorage.getItem("design.color");
       return raw ? JSON.parse(raw) : null;
     } catch {
       return null;
@@ -112,7 +112,12 @@ const SubmitScreen: React.FC = () => {
               <VehiclePreview
                 imageSrc={heroImg}
                 colorFilter={storedColor?.filter}
-                label={<><span className="chassis-label-mobile">รถที่เลือก : </span>{chassisLabel}</>}
+                label={
+                  <>
+                    <span className="chassis-label-mobile">รถที่เลือก : </span>
+                    {chassisLabel}
+                  </>
+                }
                 overlayLabels={((): string[] => {
                   const amenities = (() => {
                     try {

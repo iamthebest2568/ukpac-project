@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import PrivacyModal from "../components/PrivacyModal";
 import CtaButton from "../components/CtaButton";
 
-const HERO_SRC = "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F56cd643a31b04240bbdbdec0b25906a2?format=webp&width=800";
+const HERO_SRC =
+  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F56cd643a31b04240bbdbdec0b25906a2?format=webp&width=800";
 
 const SplashScreen: React.FC = () => {
   const navigate = useNavigate();
@@ -21,7 +22,14 @@ const SplashScreen: React.FC = () => {
       }}
     >
       {/* Top: image */}
-      <div style={{ width: "100%", display: "flex", justifyContent: "center", paddingTop: 12 }}>
+      <div
+        style={{
+          width: "100%",
+          display: "flex",
+          justifyContent: "center",
+          paddingTop: 12,
+        }}
+      >
         <img
           src={HERO_SRC}
           alt="bus"
@@ -36,42 +44,76 @@ const SplashScreen: React.FC = () => {
         />
       </div>
 
-
       {/* Bottom: text + buttons (with decorative background) */}
-      <div style={{
-        width: "100%",
-        paddingBottom: 55,
-        paddingTop: 50,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        gap: 12,
-        boxSizing: "border-box",
-        backgroundImage: `url('https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F85b2817865b54dc8bff385b54fcd5d55?format=webp&width=800')`,
-        backgroundPosition: "top center",
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "100% auto",
-      }}>
-        <div style={{ marginTop: -5, display: "flex", flexDirection: "column", alignItems: "center", gap: 12, width: "100%" }}>
-          <div style={{ textAlign: "center", padding: "12px 20px", fontSize: 22, fontWeight: 700 }}>
+      <div
+        style={{
+          width: "100%",
+          paddingBottom: 55,
+          paddingTop: 50,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: 12,
+          boxSizing: "border-box",
+          backgroundImage: `url('https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F85b2817865b54dc8bff385b54fcd5d55?format=webp&width=800')`,
+          backgroundPosition: "top center",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "100% auto",
+        }}
+      >
+        <div
+          style={{
+            marginTop: -5,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: 12,
+            width: "100%",
+          }}
+        >
+          <div
+            style={{
+              textAlign: "center",
+              padding: "12px 20px",
+              fontSize: 22,
+              fontWeight: 700,
+            }}
+          >
             <div>รถเมล์ในฝันที่คุณอยากขึ้นทุกวัน</div>
             <div>จะมีหน้าตาอย่างไร?</div>
           </div>
-          <div style={{ width: '100%', paddingLeft: 20, paddingRight: 20, display: 'flex', justifyContent: 'center' }}>
+          <div
+            style={{
+              width: "100%",
+              paddingLeft: 20,
+              paddingRight: 20,
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
             <CtaButton
               text="เริ่มออกแบบ"
               onClick={() => navigate("/ukpack2/chassis")}
-              style={{ width: '70%' }}
+              style={{ width: "70%" }}
             />
           </div>
 
           <div>
-            <button type="button" onClick={() => setShowPrivacy(true)} style={{ textDecoration: 'underline' }}>นโยบายและความเป็นส่วนตัว</button>
+            <button
+              type="button"
+              onClick={() => setShowPrivacy(true)}
+              style={{ textDecoration: "underline" }}
+            >
+              นโยบายและความเป็นส่วนตัว
+            </button>
           </div>
         </div>
       </div>
 
-      <PrivacyModal isOpen={showPrivacy} onClose={() => setShowPrivacy(false)} />
+      <PrivacyModal
+        isOpen={showPrivacy}
+        onClose={() => setShowPrivacy(false)}
+      />
     </div>
   );
 };

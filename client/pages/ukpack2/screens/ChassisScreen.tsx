@@ -42,7 +42,8 @@ const DOOR_ICON_SMALL: Record<string, string> = {
 const IconSmall = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F91c62d1140ba42828ef9648da47a49ad?format=webp&width=800"
-    alt="" aria-hidden="true"
+    alt=""
+    aria-hidden="true"
     className="max-h-12 sm:max-h-16 w-auto object-contain select-none"
     decoding="async"
     loading="eager"
@@ -51,7 +52,8 @@ const IconSmall = () => (
 const IconMedium = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F81895dfac78f4bd88c3c0235d48fff80?format=webp&width=800"
-    alt="" aria-hidden="true"
+    alt=""
+    aria-hidden="true"
     className="max-h-12 sm:max-h-16 w-auto object-contain select-none"
     decoding="async"
     loading="eager"
@@ -60,7 +62,8 @@ const IconMedium = () => (
 const IconLarge = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F77fae6aebf004c59a359e095f0bc823b?format=webp&width=800"
-    alt="" aria-hidden="true"
+    alt=""
+    aria-hidden="true"
     className="h-full w-auto object-contain select-none -translate-y-0.5"
     decoding="async"
     loading="eager"
@@ -69,7 +72,8 @@ const IconLarge = () => (
 const IconExtra = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F70e4ddd14fbf493682a6e61008ae4621?format=webp&width=800"
-    alt="" aria-hidden="true"
+    alt=""
+    aria-hidden="true"
     className="h-full w-auto object-contain select-none -translate-y-0.5"
     decoding="async"
     loading="eager"
@@ -181,7 +185,8 @@ const ChassisScreen: React.FC = () => {
         const parsed = JSON.parse(raw);
         return typeof parsed === "string"
           ? parsed
-          : parsed?.doorChoice || (parsed?.hasRamp ? "ramp" : parsed?.highLow ? "emergency" : null);
+          : parsed?.doorChoice ||
+              (parsed?.hasRamp ? "ramp" : parsed?.highLow ? "emergency" : null);
       } catch {
         return sessionStorage.getItem("design.doors");
       }
@@ -216,13 +221,17 @@ const ChassisScreen: React.FC = () => {
               <img
                 src={HERO_SHADOW}
                 alt="เงารถ"
-                className="absolute w-[60%] max-w-[320px] pointer-events-none select-none" style={{ bottom: '8px' }}
+                className="absolute w-[60%] max-w-[320px] pointer-events-none select-none"
+                style={{ bottom: "8px" }}
                 decoding="async"
                 loading="eager"
                 aria-hidden="true"
               />
               {/* bus + star overlay inside same box for precise alignment */}
-              <div className="relative w-[60%] max-w-[320px]" style={{ height: '120px' }}>
+              <div
+                className="relative w-[60%] max-w-[320px]"
+                style={{ height: "120px" }}
+              >
                 {(() => {
                   const amenities = (() => {
                     try {
@@ -300,7 +309,8 @@ const ChassisScreen: React.FC = () => {
                 <img
                   src={HERO_STAR}
                   alt="สัญลักษณ์ดาว"
-                  className="absolute w-5 h-5 pointer-events-none select-none" style={{ top: '6px', right: '6px' }}
+                  className="absolute w-5 h-5 pointer-events-none select-none"
+                  style={{ top: "6px", right: "6px" }}
                   decoding="async"
                   loading="eager"
                   aria-hidden="true"
@@ -320,61 +330,61 @@ const ChassisScreen: React.FC = () => {
               <div className="grid grid-cols-2 gap-x-4 gap-y-2">
                 {/* Left column: large primary card on top, small card below */}
                 <div className="flex flex-col gap-4">
-                  <div style={{ minHeight: '72px' }}>
+                  <div style={{ minHeight: "72px" }}>
                     <SelectionCard
-                    key={OPTIONS[0].key}
-                    icon={OPTIONS[0].icon}
-                    label={OPTIONS[0].label}
-                    isSelected={selected === OPTIONS[0].key}
-                    onClick={() => setSelected(OPTIONS[0].key)}
-                    variant="light"
-                    appearance="bare"
-                    hideLabel={true}
-                    size="sm"
-                  />
+                      key={OPTIONS[0].key}
+                      icon={OPTIONS[0].icon}
+                      label={OPTIONS[0].label}
+                      isSelected={selected === OPTIONS[0].key}
+                      onClick={() => setSelected(OPTIONS[0].key)}
+                      variant="light"
+                      appearance="bare"
+                      hideLabel={true}
+                      size="sm"
+                    />
                   </div>
-                  <div style={{ minHeight: '60px' }}>
+                  <div style={{ minHeight: "60px" }}>
                     <SelectionCard
-                    key={OPTIONS[2].key}
-                    icon={OPTIONS[2].icon}
-                    label={OPTIONS[2].label}
-                    isSelected={selected === OPTIONS[2].key}
-                    onClick={() => setSelected(OPTIONS[2].key)}
-                    variant="light"
-                    appearance="bare"
-                    hideLabel={true}
-                    size="sm"
-                  />
+                      key={OPTIONS[2].key}
+                      icon={OPTIONS[2].icon}
+                      label={OPTIONS[2].label}
+                      isSelected={selected === OPTIONS[2].key}
+                      onClick={() => setSelected(OPTIONS[2].key)}
+                      variant="light"
+                      appearance="bare"
+                      hideLabel={true}
+                      size="sm"
+                    />
                   </div>
                 </div>
 
                 {/* Right column: two equal cards stacked */}
                 <div className="flex flex-col gap-4">
-                  <div style={{ minHeight: '72px' }}>
+                  <div style={{ minHeight: "72px" }}>
                     <SelectionCard
-                    key={OPTIONS[1].key}
-                    icon={OPTIONS[1].icon}
-                    label={OPTIONS[1].label}
-                    isSelected={selected === OPTIONS[1].key}
-                    onClick={() => setSelected(OPTIONS[1].key)}
-                    variant="light"
-                    appearance="bare"
-                    hideLabel={true}
-                    size="lg"
-                  />
+                      key={OPTIONS[1].key}
+                      icon={OPTIONS[1].icon}
+                      label={OPTIONS[1].label}
+                      isSelected={selected === OPTIONS[1].key}
+                      onClick={() => setSelected(OPTIONS[1].key)}
+                      variant="light"
+                      appearance="bare"
+                      hideLabel={true}
+                      size="lg"
+                    />
                   </div>
-                  <div style={{ minHeight: '60px' }}>
+                  <div style={{ minHeight: "60px" }}>
                     <SelectionCard
-                    key={OPTIONS[3].key}
-                    icon={OPTIONS[3].icon}
-                    label={OPTIONS[3].label}
-                    isSelected={selected === OPTIONS[3].key}
-                    onClick={() => setSelected(OPTIONS[3].key)}
-                    variant="light"
-                    appearance="bare"
-                    hideLabel={true}
-                    size="sm"
-                  />
+                      key={OPTIONS[3].key}
+                      icon={OPTIONS[3].icon}
+                      label={OPTIONS[3].label}
+                      isSelected={selected === OPTIONS[3].key}
+                      onClick={() => setSelected(OPTIONS[3].key)}
+                      variant="light"
+                      appearance="bare"
+                      hideLabel={true}
+                      size="sm"
+                    />
                   </div>
                 </div>
               </div>
