@@ -40,7 +40,7 @@ const SplashScreen: React.FC = () => {
       {/* Bottom: text + buttons (with decorative background) */}
       <div style={{
         width: "100%",
-        paddingBottom: 100,
+        paddingBottom: 55,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
