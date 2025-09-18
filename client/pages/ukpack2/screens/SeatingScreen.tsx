@@ -41,8 +41,8 @@ const SeatingScreen: React.FC = () => {
   const CHASSIS_LABELS: Record<string, string> = {
     small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
     medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
-    large: "รถเมล์ขนาดใหญ่ 41–50 ที่นั่ง",
-    extra: "รถกระบะดัดแปลง 8-12 ที่นั่ง",
+    large: "รถตู้โดยสาร 9–15 ที่นั่ง",
+    extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
   };
 
   const TOPDOWN_IMAGE: Record<string, string | undefined> = {
@@ -260,7 +260,7 @@ const SeatingScreen: React.FC = () => {
             <div className="space-y-2 mt-2">
               <div className="flex items-center justify-between">
                 <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">
-                  จำนวนที่นั่งทั้งหมด
+                  จำ���วนที่นั่งทั้งหมด
                 </div>
                 <input
                   type="number"
