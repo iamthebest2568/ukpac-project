@@ -27,7 +27,7 @@ const SeatingScreen: React.FC = () => {
     small: 30,
     medium: 40,
     large: 50,
-    extra: 12, // รถกระบะดัดแปลง 8-12 ที่นั่ง
+    extra: 12, // รถกร���บะดัดแปลง 8-12 ที่นั่ง
   };
 
   const minByChassis: Record<string, number> = {
@@ -138,7 +138,7 @@ const SeatingScreen: React.FC = () => {
     if (specialSeatsTotal > totalSeats) {
       setErrorTitle("พื้นที่ไม่เพียงพอ");
       setErrorMessage(
-        `ที่นั่งพิเศษทั้งหมด (${specialSeatsTotal} ที่นั่ง) เกินจำนวนที่นั่งทั้งหมด (${totalSeats} ที่นั่ง) กรุณาลดจำนวนที่นั่งบางส่วน`,
+        `ที่นั่งพิเศษทั้งหมด (${specialSeatsTotal} ที่นั่ง) เกินจำนวนที่นั��งทั้งหมด (${totalSeats} ที่นั่ง) กรุณาลดจำนวนที่นั่งบางส่วน`,
       );
       setErrorModalOpen(true);
       return false;
@@ -183,7 +183,7 @@ const SeatingScreen: React.FC = () => {
     if (v > maxCapacity) {
       setErrorTitle("จำนวนที่นั่งเกินขีดจำกัด");
       setErrorMessage(
-        `รถประเภทนี้ส���มารถมีที่นั่งได้สูงสุด ${maxCapacity} ที่นั่ง กรุณาลดจำนวนที่นั่ง`,
+        `รถประเภทนี้สามารถมีที่นั่งได้สูงสุด ${maxCapacity} ที่นั่ง กรุณาลดจำนวนที่นั่ง`,
       );
       setErrorModalOpen(true);
     } else if (v < minCapacity && v > 0) {
