@@ -323,13 +323,13 @@ const SeatingScreen: React.FC = () => {
 
               <div className="flex items-center justify-between">
                 <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">
-                  สตรีมีครรภ์
+                  เด็ก / ผู้สูงอายุ
                 </div>
                 <input
                   type="number"
-                  value={pregnantSeats}
+                  value={childElderSeats}
                   onChange={(e) =>
-                    setPregnantSeats(
+                    setChildElderSeats(
                       Math.min(
                         maxCapacity,
                         Math.max(0, parseInt(e.target.value || "0", 10)),
@@ -344,13 +344,13 @@ const SeatingScreen: React.FC = () => {
 
               <div className="flex items-center justify-between">
                 <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">
-                  เด็ก / ผู้สูงอายุ
+                  สตรีมีครรภ์
                 </div>
                 <input
                   type="number"
-                  value={childElderSeats}
+                  value={pregnantSeats}
                   onChange={(e) =>
-                    setChildElderSeats(
+                    setPregnantSeats(
                       Math.min(
                         maxCapacity,
                         Math.max(0, parseInt(e.target.value || "0", 10)),
@@ -412,7 +412,7 @@ const SeatingScreen: React.FC = () => {
       <ConfirmModal
         isOpen={isExitModalOpen}
         title="ออกจากหน้าจอ"
-        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
+        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณ���ะไม่ถูกบันทึก"
         onConfirm={() => navigate("/")}
         onCancel={() => setExitModalOpen(false)}
       />
