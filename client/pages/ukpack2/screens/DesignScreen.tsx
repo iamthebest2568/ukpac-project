@@ -228,7 +228,7 @@ const DesignScreen: React.FC = () => {
             };
             const HERO_IMAGE: Record<string, string> = {
               small:
-                "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F5ea1b3d990e44d49aa5441bc3a4b3bcc?format=webp&width=800",
+                "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F44cea8aeb6d4415e899494a90c6f59b1?format=webp&width=800",
               medium:
                 "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fab8ddd78f9a0478bb27f5818928665f3?format=webp&width=800",
               large:
@@ -301,7 +301,7 @@ const DesignScreen: React.FC = () => {
                     สแกนจ่าย: <img src={SCAN_ICON} alt="สแกนจ่าย" className="h-5 w-5 object-contain" />,
                     "สแกนจ่าย 2": <img src={SCAN2_ICON} alt="สแกนจ่าย 2" className="h-5 w-5 object-contain" />,
                     แตะบัตร: <img src={TOUCH_ICON} alt="แตะบัตร" className="h-5 w-5 object-contain" />,
-                    กระเป๋ารถเมล์: <img src={BUS_EMPLOY_ICON} alt="กระเป๋ารถเมล์" className="h-5 w-5 object-contain" />,
+                    กระเป๋ารถเมล์: <img src={BUS_EMPLOY_ICON} alt="��ระเป๋ารถเมล์" className="h-5 w-5 object-contain" />,
                     "ตั๋วรายเดือน/รอบ": <img src={MONTHLY_ICON} alt="ตั๋วรายเดือน/รอบ" className="h-5 w-5 object-contain" />,
                     "1": <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9811f9bca05c43feae9eafdcbab3c8d9?format=webp&width=800" alt="1 ประตู" className="h-5 w-5 object-contain" />,
                     "2": <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8f9b21942af243b3b80b0e5ac8b12631?format=webp&width=800" alt="2 ประตู" className="h-5 w-5 object-contain" />,
@@ -367,7 +367,7 @@ const DesignScreen: React.FC = () => {
                         onClick={() => setShowTextarea(false)}
                         className="px-4 py-2 rounded-md bg-[#ffe000] text-black hover:bg-[#000d59] hover:text-white transition-colors"
                       >
-                        ยกเลิก
+                        ย���เลิก
                       </button>
                       <button
                         onClick={() => {
