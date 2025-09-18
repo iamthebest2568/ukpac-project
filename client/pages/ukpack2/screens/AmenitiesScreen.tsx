@@ -189,6 +189,7 @@ const AmenitiesScreen: React.FC = () => {
           {selectedBusImage ? (
             <VehiclePreview
               imageSrc={selectedBusImage}
+              colorFilter={storedColor?.filter}
               label={<><p className="mb-0">รถที่เลือก :</p>{selectedLabel}</>}
               overlayLabels={selected.slice().filter((l) => AMENITIES.some((a) => a.label === l)).sort((a, b) => a.localeCompare(b, 'th'))}
               overlayIconMap={OVERLAY_ICON_SRC}
