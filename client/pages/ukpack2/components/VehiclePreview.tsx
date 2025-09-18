@@ -8,6 +8,7 @@ interface Props {
   overlayLabels?: string[];
   overlayIconMap?: Record<string, string | React.ReactNode>;
   placeholderText?: string;
+  colorFilter?: string | null;
 }
 
 const VehiclePreview: React.FC<Props> = ({
