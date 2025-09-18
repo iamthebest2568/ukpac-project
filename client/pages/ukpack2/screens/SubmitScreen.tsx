@@ -86,6 +86,15 @@ const SubmitScreen: React.FC = () => {
   const chassisLabel = CHASSIS_LABELS[selectedChassis] || "";
   const heroImg = HERO_IMAGE[selectedChassis];
 
+  const storedColor = (() => {
+    try {
+      const raw = sessionStorage.getItem('design.color');
+      return raw ? JSON.parse(raw) : null;
+    } catch {
+      return null;
+    }
+  })();
+
   return (
     <>
       <CustomizationScreen
