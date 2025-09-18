@@ -224,7 +224,7 @@ const DesignScreen: React.FC = () => {
               small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
               medium: "รถเมล์ขนาดกลาง 31–40 ที่นั่ง",
               large: "รถเมล์ขนาดใหญ่ 41-50 ที่นั่ง",
-              extra: "รถกระบะดัดแปลง 8-12 ที่นั่���",
+              extra: "รถกระบะดัดแปลง 8-12 ที่นั่ง",
             };
             const HERO_IMAGE: Record<string, string> = {
               small:
@@ -234,7 +234,7 @@ const DesignScreen: React.FC = () => {
               large:
                 "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fefc1e1ed3bcb4769b51d1544d43b3b5f?format=webp&width=800",
               extra:
-                "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9a8a7536ced24db19a65409fbba1c6b6?format=webp&width=800",
+                "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc4ba360c1fe64492b71fc207c9dfd328?format=webp&width=800",
             };
             let selected = "medium";
             try {
@@ -345,7 +345,7 @@ const DesignScreen: React.FC = () => {
                   setSloganDraft(slogan);
                   setShowTextarea(true);
                 }}
-                placeholder="พิมพ์ คุณสมบัต��พิเศษ"
+                placeholder="พิมพ์ คุณสมบัติพิเศษ"
                 className="w-full rounded-md px-4 py-2 bg-white border border-[#e5e7eb] text-[#003366] placeholder-gray-400 cursor-text"
               />
 
