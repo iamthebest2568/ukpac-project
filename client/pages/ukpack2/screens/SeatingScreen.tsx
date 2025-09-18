@@ -126,8 +126,8 @@ const SeatingScreen: React.FC = () => {
 
     // Ensure total seats provided
     if (totalSeats === "") {
-      setErrorTitle("กรุณาระบุจำนวนที่นั่ง");
-      setErrorMessage(`กรุณ��กรอกจำนวนที่นั่งระหว่าง ${minCapacity} ถึง ${maxCapacity} ที่นั่ง`);
+      setErrorTitle("กรุณาระบุจำนวนที��นั่ง");
+      setErrorMessage(`กรุณากรอกจำนวนที่นั่งระหว่าง ${minCapacity} ถึง ${maxCapacity} ที่นั่ง`);
       setErrorModalOpen(true);
       return false;
     }
@@ -305,9 +305,6 @@ const SeatingScreen: React.FC = () => {
                   min={0}
                   max={maxCapacity}
                 />
-                {isTotalFocused && (
-                  <div className="mt-2 text-sm text-[#555]">{`รถมี ${minCapacity}-${maxCapacity} ที่นั่ง`}</div>
-                )}
               </div>
 
               <div className="flex items-center justify-between mt-4">
@@ -355,7 +352,7 @@ const SeatingScreen: React.FC = () => {
 
               <div className="flex items-center justify-between">
                 <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">
-                  สตรีมีครรภ์
+                  สตรีม��ครรภ์
                 </div>
                 <input
                   type="number"
@@ -423,7 +420,7 @@ const SeatingScreen: React.FC = () => {
       <ConfirmModal
         isOpen={isExitModalOpen}
         title="ออกจากหน้าจอ"
-        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
+        message="คุณแน่ใจหรื��ไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
         onConfirm={() => navigate("/")}
         onCancel={() => setExitModalOpen(false)}
       />
