@@ -41,6 +41,7 @@ const SplashScreen: React.FC = () => {
       <div style={{
         width: "100%",
         paddingBottom: 55,
+        paddingTop: 30,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
