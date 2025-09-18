@@ -11,7 +11,7 @@ const PrivacyModal: React.FC<Props> = ({ isOpen, onClose }) => {
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
       <div className="bg-white rounded-lg p-6 max-w-2xl w-full mx-4">
         <h3 className="text-lg font-prompt font-semibold text-[#001a73]">
-          นโยบายและความเป็นส่วนตัว
+          นโยบา��และความเป็นส่วนตัว
         </h3>
         <div className="mt-3 text-sm text-gray-700">
           <p>
@@ -22,7 +22,7 @@ const PrivacyModal: React.FC<Props> = ({ isOpen, onClose }) => {
           </p>
           <p className="mt-2">
             หากต้องการทราบรายละเอียดเพิ่มเติม
-            โปรดติดต่อทีมงานหรือดูเอกสารฉบับเต็มที่จัดเตรียมให้เมื่อร���บบเชื่อมต่อกับ
+            โปรดติดต่อทีมงานหรือดูเอกสารฉบับเต็มที่จัดเตรียมให้เมื่อระบบเชื่อมต่อกับ
             CMS
           </p>
         </div>
