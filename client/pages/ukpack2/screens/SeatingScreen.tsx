@@ -179,7 +179,7 @@ const SeatingScreen: React.FC = () => {
 
     // Check if special seats exceed total seats
     if (specialSeatsTotal > (typeof totalSeats === "number" ? totalSeats : 0)) {
-      setErrorTitle("พื้นที่ไม่เพีย���พอ");
+      setErrorTitle("พื้นที่ไม่เพียงพอ");
       setErrorMessage(
         `ที่นั่งพิเศษทั้งหมด (${specialSeatsTotal} ที่นั่ง) เกินจำนวนที่นั่งทั้งหมด (${totalSeats}) กรุณาลดจำนวนที่นั่งบางส่วน`,
       );
@@ -187,11 +187,24 @@ const SeatingScreen: React.FC = () => {
       return false;
     }
 
-    // Ensure the explicit "จำนวนที่นั่งพิเศษ" covers the sum of special categories
-    if ((Number(specialSeats) || 0) < specialSeatsTotal) {
+    // Treat empty explicit 'จำนวนที่นั่งพิเศษ' as implicit equal to the sum of subcategories
+    const explicitSpecial = specialSeats === "" ? specialSeatsTotal : Number(specialSeats) || 0;
+
+    // Ensure the explicit "จำนวนที่นั่งพิเศษ" (if provided) covers the sum of special categories
+    if (explicitSpecial < specialSeatsTotal) {
       setErrorTitle("จำนวนที่นั่งพิเศษไม่พอ");
       setErrorMessage(
-        `จำนวนที่นั่งพิเศษ (${specialSeats}) น้อยกว่าจำนวนที่นั่งพิเศษย่อย (${specialSeatsTotal}) กรุณาปรับค่าหรือลดจำนวนที่นั่งพิเศษย่อย`,
+        `จำนวนที่นั่งพิเศษ (${explicitSpecial}) น้อยกว่าจำนวนที่นั่งพิเศษย่อย (${specialSeatsTotal}) กรุณาปรับค่าหรือลดจำนวนที่นั่งพิเศษย่อย`,
+      );
+      setErrorModalOpen(true);
+      return false;
+    }
+
+    // Ensure explicit special does not exceed total
+    if (typeof totalSeats === "number" && explicitSpecial > totalSeats) {
+      setErrorTitle("จำนวนที่นั่งพิเศษเกินจำนวนทั้งหมด");
+      setErrorMessage(
+        `จำนวนที่นั่งพิเศษ (${explicitSpecial}) มากกว่าจำนวนที่นั่งทั้งหมด (${totalSeats}) กรุณาปรับค่าหรือตรวจสอบอีกครั้ง`,
       );
       setErrorModalOpen(true);
       return false;
@@ -436,7 +449,7 @@ const SeatingScreen: React.FC = () => {
 
               <div className="flex items-center justify-between">
                 <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">
-                  พื้นที่สำหรับรถเข็น/จักรยาน
+                  พื��นที่สำหรับรถเข็น/จักรยาน
                 </div>
                 <input
                   type="number"
@@ -466,7 +479,7 @@ const SeatingScreen: React.FC = () => {
       <ConfirmModal
         isOpen={isExitModalOpen}
         title="ออกจากหน้าจอ"
-        message="คุณแน่ใจหรื��ไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
+        message="คุณแน่ใจหรื��ไม่ว่าต้องการออก? การเปล���่ยนแปลงของคุณจะไม่ถูกบันทึก"
         onConfirm={() => navigate("/")}
         onCancel={() => setExitModalOpen(false)}
       />
