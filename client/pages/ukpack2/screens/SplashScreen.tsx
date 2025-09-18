@@ -16,10 +16,24 @@ const SplashScreen: React.FC = () => {
         flexDirection: "column",
         justifyContent: "flex-end",
         alignItems: "center",
+        padding: 0,
       }}
     >
-      <div style={{ textAlign: "center", paddingBottom: 80 }}>
-        <img src={HERO_SRC} alt="bus" style={{ display: "block", margin: "0 auto 20px", maxWidth: 360, width: "100%", height: "auto" }} />
+      <div style={{ textAlign: "center", paddingBottom: 80, width: "100%", boxSizing: "border-box" }}>
+        <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
+          <img
+            src={HERO_SRC}
+            alt="bus"
+            style={{
+              display: "block",
+              margin: "0 auto 20px",
+              width: "100%",
+              maxWidth: "min(80vw, 420px)",
+              height: "auto",
+              objectFit: "contain",
+            }}
+          />
+        </div>
 
         <h2 style={{ margin: 0 }}>
           รถเมล์ในฝันที่คุณอยากขึ้นทุกวัน
