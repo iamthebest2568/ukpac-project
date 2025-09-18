@@ -9,9 +9,9 @@ const SummaryCard: React.FC<SummaryCardProps> = ({ designData }) => {
 
   const CHASSIS_LABELS: Record<string, string> = {
     small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
-    medium: "รถเมล์ขนาดกลาง 31–40 ที่นั่ง",
-    large: "รถเมล์ขนาดใหญ่ 41-50 ที่นั่ง",
-    extra: "รถกระบะดัดแปลง 8-12 ที่นั่ง",
+    medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
+    large: "รถตู้โดยสาร 9–15 ที่นั่ง",
+    extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
   };
 
   const formatValue = (key: string, value: any) => {
