@@ -52,7 +52,7 @@ type SessionSummary = {
   keyMessage1?: string; // Key message 1
   mn1Selected: string[]; // ลำดับความสำคัญของประเด็น
   mn2Selections?: Record<string, string[]>; // กลุ่มเป้าหมายที่ควรได้รับสิทธิ์
-  mn3Selected?: string[]; // ประเด็นนโยบายที่ผู้ใช้เลือ���
+  mn3Selected?: string[]; // ประเด็นนโยบายที่ผู้ใช้เลือก
   mn3BudgetAllocation?: Record<string, number>; // การจัดสรรงบประมาณ
   mn3BudgetTotal?: number;
   satisfactionLevel?: string; // ระดับความพึงพอใจ
@@ -505,7 +505,7 @@ export default function UkDashboard() {
                                   </span>
                                 </li>
                                 <li className="flex justify-between">
-                                  <span>ล่าสุด</span>
+                                  <span>ล���าสุด</span>
                                   <span className="text-white/70">{max}</span>
                                 </li>
                               </>
@@ -639,7 +639,7 @@ export default function UkDashboard() {
                     {/* MN3 money */}
                     <AccordionItem value="mn3money">
                       <AccordionTrigger>
-                        Minigame 3 : เงิ���ที่ใส่
+                        Minigame 3 : เงิ���ที���ใส่
                       </AccordionTrigger>
                       <AccordionContent>
                         <ul className="space-y-1 text-sm">
@@ -782,7 +782,7 @@ export default function UkDashboard() {
                       "คุณจะให้งบประมาณแต่ละข้อเท่าไร (งบทั้งหมด 100)",
                       "คุณพอใจกับผลลัพธ์ที่เกิดขึ้นหรือไม่ (พอใจ / ไม่พอใจ)",
                       "คุณคิดว่ารัฐควรทำอะไรที่จะทำให้นโยบายนี้เกิดขึ้นได้จริง และเป็นประโยชน์ต่อประชาชนอย่างแท้จริง",
-                      "ตอนนี้มีข้อมูลที่ผิ��พลาด เช่น ข่าวปลอมเกี่ยวกับนโยบาย คุณคิดว่าอย่างไร",
+                      "ตอนนี้มีข้อมูลที่ผิ��พ��าด เช่น ข่าวปลอมเกี่ยวกับนโยบาย คุณคิดว่าอย่างไร",
                       "คุณจะติดตามข่าว หรือเชื่อจากแหล่งไหนมากที่สุด",
                       "ขอบคุณที่ร่วมเป็นส่วนหนึ่ง → ต้องการลุ้นรับรางวัลหรือไม่",
                       "กรอกข้อมูลเพื่อลุ้นรางวัล (ชื่อ)",
