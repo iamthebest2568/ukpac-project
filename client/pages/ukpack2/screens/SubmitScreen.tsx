@@ -111,6 +111,7 @@ const SubmitScreen: React.FC = () => {
             <div className="flex flex-col items-center">
               <VehiclePreview
                 imageSrc={heroImg}
+                colorFilter={storedColor?.filter}
                 label={<><span className="chassis-label-mobile">รถที่เลือก : </span>{chassisLabel}</>}
                 overlayLabels={((): string[] => {
                   const amenities = (() => {
