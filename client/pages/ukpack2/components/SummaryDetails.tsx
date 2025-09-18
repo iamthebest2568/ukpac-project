@@ -105,7 +105,7 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
     <img src={MONEY_ICON} alt="เงินสด" className="h-5 w-5 object-contain" />
   ),
   สแกนจ่าย: (
-    <img src={SCAN_ICON} alt="สแกนจ่าย" className="h-5 w-5 object-contain" />
+    <img src={SCAN_ICON} alt="��แกนจ่าย" className="h-5 w-5 object-contain" />
   ),
   "สแกนจ่าย 2": (
     <img src={SCAN2_ICON} alt="สแกนจ่าย 2" className="h-5 w-5 object-contain" />
@@ -175,7 +175,7 @@ const displayDoor = (raw: any) => {
           ? "2 ประตู"
           : String(raw.doorChoice);
     if (raw.hasRamp) return "ทางลาดสำหรับรถเข็น/ผู้พิการ";
-    if (raw.highLow) return "ประตูฉุกเฉิน";
+    if (raw.highLow) return "ประตูฉ��กเฉิน";
   }
   return String(raw);
 };
@@ -197,6 +197,15 @@ const HERO_IMAGE: Record<string, string> = {
   extra:
     "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9a8a7536ced24db19a65409fbba1c6b6?format=webp&width=800",
 };
+
+const storedColor = (() => {
+  try {
+    const raw = sessionStorage.getItem('design.color');
+    return raw ? JSON.parse(raw) : null;
+  } catch {
+    return null;
+  }
+})();
 
 const SummaryDetails: React.FC = () => {
   const data: Record<string, any> = {};
