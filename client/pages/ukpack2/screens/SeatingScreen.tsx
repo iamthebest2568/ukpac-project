@@ -66,7 +66,7 @@ const SeatingScreen: React.FC = () => {
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F788c9e78d6944fc8a5088cc00aa40697?format=webp&width=800",
     "ที่จับ/ราว���ืนที่ปลอดภัย":
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F1cae4f7306834a6eb0d86be09e05bfdd?format=webp&width=800",
-    "ช่องชาร์จมือถือ/USB":
+    "ช��องชาร์จมือถือ/USB":
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fba274e72720c4a1b9695e83dbf8c1fe9?format=webp&width=800",
     "Wi‑Fi ฟรี":
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F63dc13fe1fab446a9da88bfb297d9c6d?format=webp&width=800",
@@ -163,7 +163,7 @@ const SeatingScreen: React.FC = () => {
 
     // Ensure the explicit "จำ���วนที่นั่งพิเศษ" covers the sum of special categories
     if (specialSeats < specialSeatsTotal) {
-      setErrorTitle("จำนวนที่นั่งพิเศษไม่พอ");
+      setErrorTitle("จำนวนที่นั่���พิเศษไม่พอ");
       setErrorMessage(
         `จำนวนที่นั่งพิเศษ (${specialSeats}) น้อยกว่าจำนวนที่นั่งพิเศษย่อย (${specialSeatsTotal}) กรุณาปรับค่าหรือลดจำนวนที่นั��งพิเศษย่อย`,
       );
@@ -311,7 +311,6 @@ const SeatingScreen: React.FC = () => {
                   placeholder="ระบ��..."
                   value={totalSeats}
                   onFocus={handleTotalFocus}
-                  onBlur={handleTotalBlur}
                   onChange={(e) => {
                     const raw = e.target.value;
                     if (raw === "") {
