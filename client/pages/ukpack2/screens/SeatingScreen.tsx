@@ -136,7 +136,7 @@ const SeatingScreen: React.FC = () => {
 
     // Check if special seats exceed total seats
     if (specialSeatsTotal > totalSeats) {
-      setErrorTitle("พื้นที���ไม่เพียงพอ");
+      setErrorTitle("พื้นที่ไม่เพียงพอ");
       setErrorMessage(
         `ที่นั่งพิเศษทั้งหมด (${specialSeatsTotal} ที่นั่ง) เกินจำนวนที่นั่งทั้งหมด (${totalSeats} ที่นั่ง) กรุณาลดจำนวนที่นั่งบางส่วน`,
       );
@@ -247,6 +247,7 @@ const SeatingScreen: React.FC = () => {
               return (
                 <VehiclePreview
                   imageSrc={selectedTopdown}
+                  colorFilter={storedColor?.filter}
                   label={<><span className="chassis-label-mobile">รถที่เลือก : </span>{selectedLabel}</>}
                   overlayLabels={overlay}
                   overlayIconMap={OVERLAY_ICON_SRC}
@@ -259,7 +260,7 @@ const SeatingScreen: React.FC = () => {
             <div className="space-y-2 mt-2">
               <div className="flex items-center justify-between">
                 <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">
-                  จำนวนที่นั่งทั้งหมด
+                  จำ��วนที่นั่งทั้งหมด
                 </div>
                 <input
                   type="number"
@@ -392,7 +393,7 @@ const SeatingScreen: React.FC = () => {
       <ConfirmModal
         isOpen={isExitModalOpen}
         title="ออกจากหน้าจอ"
-        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
+        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะ���ม่ถูกบันทึก"
         onConfirm={() => navigate("/")}
         onCancel={() => setExitModalOpen(false)}
       />
