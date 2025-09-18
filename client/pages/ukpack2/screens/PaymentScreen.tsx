@@ -421,7 +421,7 @@ const PaymentScreen: React.FC = () => {
                   >
                     <img
                       src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fece2b6fc843340f0997f2fd7d3ca0aea?format=webp&width=800"
-                      alt="ทางลาด"
+                      alt="ทา���ลาด"
                       className="h-6 w-6 md:h-7 md:w-7 object-contain"
                     />
                   </div>
@@ -557,9 +557,6 @@ const PaymentScreen: React.FC = () => {
                     "ตั๋วรายเดือน/รอบ": <img src={MONTHLY_ICON} alt="ตั๋วรายเดือน/รอบ" className="h-5 w-5 object-contain" />,
                   }}
                 />
-                <p className="mt-1 font-prompt font-semibold text-[#001a73] text-center">
-                  รถที่ใช้งาน : {label}
-                </p>
               </>
             ) : (
               <div className="w-full h-48 bg-[#081042] rounded-md flex items-center justify-center text-sm text-gray-300">
