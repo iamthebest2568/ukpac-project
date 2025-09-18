@@ -172,7 +172,7 @@ const IconWifi = () => (
 const IconPlug = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F09a78e31a3de44e98772b0eef382af6f?format=webp&width=800"
-    alt="ช่องชาร์จมือถือ/USB"
+    alt="ช่องชาร์จมือ��ือ/USB"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -308,7 +308,7 @@ const PaymentScreen: React.FC = () => {
             const CHASSIS_LABELS: Record<string, string> = {
               small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
               medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
-              large: "รถตู้โดยสาร 9–15 ที่นั่ง",
+              large: "รถตู้โดยสาร 9–15 ที���นั่ง",
               extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
             };
             const HERO_IMAGE: Record<string, string> = {
@@ -317,7 +317,7 @@ const PaymentScreen: React.FC = () => {
               medium:
                 "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fab8ddd78f9a0478bb27f5818928665f3?format=webp&width=800",
               large:
-                "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fefc1e1ed3bcb4769b51d1544d43b3b5f?format=webp&width=800",
+                "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc4ba360c1fe64492b71fc207c9dfd328?format=webp&width=800",
               extra:
                 "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9a8a7536ced24db19a65409fbba1c6b6?format=webp&width=800",
             };
