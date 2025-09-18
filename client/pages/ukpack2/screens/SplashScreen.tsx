@@ -41,7 +41,7 @@ const SplashScreen: React.FC = () => {
       <div style={{
         width: "100%",
         paddingBottom: 55,
-        paddingTop: 35,
+        paddingTop: 50,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -52,16 +52,18 @@ const SplashScreen: React.FC = () => {
         backgroundRepeat: "no-repeat",
         backgroundSize: "100% auto",
       }}>
-        <div style={{ textAlign: "center", padding: "12px 20px", fontSize: 22, fontWeight: 700 }}>
-          <div>รถเมล์ในฝันที่คุณอยากขึ้นทุกวัน</div>
-          <div>จะมีหน้าตาอย่างไร?</div>
-        </div>
-        <div>
-          <CtaButton text="เริ่มออกแบบ" onClick={() => navigate("/ukpack2/chassis")} />
-        </div>
+        <div style={{ marginTop: -5, display: "flex", flexDirection: "column", alignItems: "center", gap: 12, width: "100%" }}>
+          <div style={{ textAlign: "center", padding: "12px 20px", fontSize: 22, fontWeight: 700 }}>
+            <div>รถเมล์ในฝันที่คุณอยากขึ้นทุกวัน</div>
+            <div>จะมีหน้าตาอย่างไร?</div>
+          </div>
+          <div>
+            <CtaButton text="เริ่มออกแบบ" onClick={() => navigate("/ukpack2/chassis")} />
+          </div>
 
-        <div>
-          <button type="button" onClick={() => setShowPrivacy(true)} style={{ textDecoration: 'underline' }}>นโยบายและความเป็นส่วนตัว</button>
+          <div>
+            <button type="button" onClick={() => setShowPrivacy(true)} style={{ textDecoration: 'underline' }}>นโยบายและความเป็นส่วนตัว</button>
+          </div>
         </div>
       </div>
 
