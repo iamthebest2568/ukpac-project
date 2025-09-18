@@ -123,7 +123,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     >
       {/* Fixed 1080px mobile-first container */}
       <div
-        className={`app-container bg-white relative responsive-container safe-top safe-bottom ${isFullBleed ? "" : "h-screen"}`}
+        className={`app-container bg-white relative responsive-container ${isFullBleed ? "safe-bottom" : "safe-top safe-bottom"} ${isFullBleed ? "" : "h-screen"}`}
         style={
           isFullBleed
             ? { width: "100%", padding: 0 }
