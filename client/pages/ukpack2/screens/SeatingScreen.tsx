@@ -143,7 +143,7 @@ const SeatingScreen: React.FC = () => {
     if (totalSeats > maxCapacity) {
       setErrorTitle("จำนวนที่นั่งเกินขีดจำกัด");
       setErrorMessage(
-        `รถประเภทนี้สามารถมีที่นั่งได้สูงสุด ${maxCapacity} ที่นั่ง กรุณาลดจำนวนที่นั่ง`,
+        `รถประเภทนี้สาม���รถมีที่นั่งได้สูงสุด ${maxCapacity} ที่นั่ง กรุณาลดจำนวนที่นั่ง`,
       );
       setErrorModalOpen(true);
       return false;
@@ -191,20 +191,24 @@ const SeatingScreen: React.FC = () => {
     navigate("/ukpack2/amenities");
   };
 
-  const handleTotalSeatsChange = (v: number) => {
+  const handleTotalSeatsChange = (v: number | "") => {
     const minCapacity = minByChassis[selectedChassis] ?? 16;
+    if (v === "") {
+      setTotalSeats("");
+      return;
+    }
     setTotalSeats(v);
 
     if (v > maxCapacity) {
       setErrorTitle("จำนวนที่นั่งเกินขีดจำกัด");
       setErrorMessage(
-        `รถประเภทนี้สามารถมีที่นั่งได้สูงสุด ${maxCapacity} ที่นั่ง กรุณาลดจำนวนที่นั่ง`,
+        `รถประเภทนี้สามารถมีที่นั่งได้สูงสุด ${maxCapacity} ที่นั่ง กรุณากรอกจำนวนระหว่าง ${minCapacity} ถึง ${maxCapacity}`,
       );
       setErrorModalOpen(true);
     } else if (v < minCapacity && v > 0) {
-      setErrorTitle("จำนวนที่นั่งน้อยเกินไป");
+      setErrorTitle("จำนวนที่นั่ง���้อยเกินไป");
       setErrorMessage(
-        `รถประเภทนี้ต้องมีที่นั่งอย่างน้อย ${minCapacity} ที่นั่ง กรุณาเพิ่มจำนวนที่นั่ง`,
+        `รถประเภทนี้ต้องมีที่นั่งอย่างน้อย ${minCapacity} ที่นั่ง กรุณากรอกจำนวนระหว่าง ${minCapacity} ถึง ${maxCapacity}`,
       );
       setErrorModalOpen(true);
     }
@@ -271,7 +275,7 @@ const SeatingScreen: React.FC = () => {
                   label={
                     <>
                       <span className="chassis-label-mobile">
-                        รถที่เลือก :{" "}
+                        รถ���ี่เลือก :{" "}
                       </span>
                       {selectedLabel}
                     </>
