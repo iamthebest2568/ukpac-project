@@ -339,18 +339,18 @@ const SeatingScreen: React.FC = () => {
                 </div>
                 <input
                   type="number"
-                  value={childElderSeats}
+                  value={childElderSeats === "" ? "" : childElderSeats}
+                  onFocus={() => {
+                    if (childElderSeats === 0) setChildElderSeats("");
+                  }}
                   onChange={(e) => {
-                    const raw = parseInt(e.target.value || "0", 10);
-                    const total = typeof totalSeats === "number" ? totalSeats : maxCapacity;
-                    const otherSum = pregnantSeats + monkSeats + wheelchairBikeSpaces;
-                    const maxForThis = Math.max(0, total - otherSum);
-                    const clamped = Math.min(maxForThis, Math.max(0, raw));
-                    setChildElderSeats(clamped);
-                    const categoriesSum = clamped + pregnantSeats + monkSeats + wheelchairBikeSpaces;
-                    if (specialSeats < categoriesSum) {
-                      setSpecialSeats(categoriesSum);
+                    const raw = e.target.value;
+                    if (raw === "") {
+                      setChildElderSeats("");
+                      return;
                     }
+                    const parsed = Math.max(0, Math.min(maxCapacity, parseInt(raw || "0", 10)));
+                    setChildElderSeats(parsed);
                   }}
                   className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-full text-[#003366] bg-white text-right"
                   min={0}
