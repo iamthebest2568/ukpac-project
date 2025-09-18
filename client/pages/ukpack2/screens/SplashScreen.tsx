@@ -36,8 +36,20 @@ const SplashScreen: React.FC = () => {
       </div>
 
 
-      {/* Bottom: text + buttons */}
-      <div style={{ width: "100%", paddingBottom: 60, display: "flex", flexDirection: "column", alignItems: "center", gap: 12 }}>
+      {/* Bottom: text + buttons (with decorative background) */}
+      <div style={{
+        width: "100%",
+        paddingBottom: 100,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: 12,
+        boxSizing: "border-box",
+        backgroundImage: `url('https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F1ae91a1faaef4abeb8eb1b6603bd90f5?format=webp&width=800')`,
+        backgroundPosition: "bottom center",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+      }}>
         <div style={{ textAlign: "center", padding: "12px 20px" }}>
           <div>รถเมล์ในฝันที่คุณอยากขึ้นทุกวัน</div>
           <div>จะมีหน้าตาอย่างไร?</div>
