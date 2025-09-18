@@ -64,7 +64,7 @@ const SeatingScreen: React.FC = () => {
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F788c9e78d6944fc8a5088cc00aa40697?format=webp&width=800",
     หน้าต่างเปิดได้:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F788c9e78d6944fc8a5088cc00aa40697?format=webp&width=800",
-    "ที่จับ/ราว���ืนที่ปลอดภัย":
+    "ที่จับ/ราว���ืนที่ปลอดภั��":
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F1cae4f7306834a6eb0d86be09e05bfdd?format=webp&width=800",
     "ช��องชาร์จมือถือ/USB":
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fba274e72720c4a1b9695e83dbf8c1fe9?format=webp&width=800",
@@ -177,34 +177,12 @@ const SeatingScreen: React.FC = () => {
       return false;
     }
 
-    // Check if special seats exceed total seats
-    if (specialSeatsTotal > (typeof totalSeats === "number" ? totalSeats : 0)) {
-      setErrorTitle("พื้นที่ไม่เพียงพอ");
+    // Require the sum of category seats to exactly match the totalSeats
+    const totalNum = typeof totalSeats === "number" ? totalSeats : 0;
+    if (specialSeatsTotal !== totalNum) {
+      setErrorTitle("จำนวนที่นั่งไม่ตรงกัน");
       setErrorMessage(
-        `ที่นั่งพิเศษทั้งหมด (${specialSeatsTotal} ที่นั่ง) เกินจำนวนที่นั่งทั้งหมด (${totalSeats}) กรุณาลดจำนวนที่นั่งบางส่วน`,
-      );
-      setErrorModalOpen(true);
-      return false;
-    }
-
-    // Treat empty explicit 'จำนวนที่นั่งพิเศษ' as implicit equal to the sum of subcategories
-    const explicitSpecial = specialSeats === "" ? specialSeatsTotal : Number(specialSeats) || 0;
-
-    // Ensure the explicit "จำนวนที่นั่งพิเศษ" (if provided) covers the sum of special categories
-    if (explicitSpecial < specialSeatsTotal) {
-      setErrorTitle("จำนวนที่นั่งพิเศษไม่พอ");
-      setErrorMessage(
-        `จำนวนที่นั่งพิเศษ (${explicitSpecial}) น้อยกว่าจำนวนที่นั่งพิเศษย่อย (${specialSeatsTotal}) กรุณาปรับค่าหรือลดจำนวนที่นั่งพิเศษย่อย`,
-      );
-      setErrorModalOpen(true);
-      return false;
-    }
-
-    // Ensure explicit special does not exceed total
-    if (typeof totalSeats === "number" && explicitSpecial > totalSeats) {
-      setErrorTitle("จำนวนที่นั่งพิเศษเกินจำนวนทั้งหมด");
-      setErrorMessage(
-        `จำนวนที่นั่งพิเศษ (${explicitSpecial}) มากกว่าจำนวนที่นั่งทั้งหมด (${totalSeats}) กรุณาปรับค่าหรือตรวจสอบอีกครั้ง`,
+        `ผลรวมของช่องพิเศษ (${specialSeatsTotal}) ต้องเท่ากับจำนวนที่นั่งทั้งหมด (${totalNum}) กรุณาปรับค่าช่องย่อยหรือจำนวนทั้งหมด`,
       );
       setErrorModalOpen(true);
       return false;
@@ -449,7 +427,7 @@ const SeatingScreen: React.FC = () => {
 
               <div className="flex items-center justify-between">
                 <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">
-                  พื��นที่สำหรับรถเข็น/จักรยาน
+                  พื้นที่สำหรับรถเข็น/จักรยาน
                 </div>
                 <input
                   type="number"
@@ -479,7 +457,7 @@ const SeatingScreen: React.FC = () => {
       <ConfirmModal
         isOpen={isExitModalOpen}
         title="ออกจากหน้าจอ"
-        message="คุณแน่ใจหรื��ไม่ว่าต้องการออก? การเปล���่ยนแปลงของคุณจะไม่ถูกบันทึก"
+        message="คุณแน่ใจหรื��ไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
         onConfirm={() => navigate("/")}
         onCancel={() => setExitModalOpen(false)}
       />
