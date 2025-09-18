@@ -56,7 +56,7 @@ const SplashScreen: React.FC = () => {
           <div>จะมีหน้าตาอย่างไร?</div>
         </div>
         <div>
-          <button type="button" onClick={() => navigate("/ukpack2/chassis")}>เริ่มออกแบบ</button>
+          <CtaButton text="เริ่มออกแบบ" onClick={() => navigate("/ukpack2/chassis")} />
         </div>
 
         <div>
