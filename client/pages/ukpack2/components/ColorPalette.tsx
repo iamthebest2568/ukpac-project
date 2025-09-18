@@ -22,9 +22,21 @@ const ColorPalette: React.FC<ColorPaletteProps> = ({ colors, selectedColor, onCo
               aria-pressed={isSelected}
               className={`relative w-full aspect-square rounded-lg overflow-hidden flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2 bg-white shadow-sm hover:shadow-md transition-shadow ${isSelected ? 'ring-4 ring-[#ffd874]' : 'ring-1 ring-[#e5e7eb]'}`}
             >
-              {isImage ? (
-                <img src={c} alt="color swatch" className="w-full h-full object-cover" />
-              ) : (
+              {isImage ? (() => {
+                const srcSet = c.includes('width=') ? `${c} 1x, ${c.replace(/width=\\d+/, 'width=1600')} 2x` : undefined;
+                return (
+                  <img
+                    src={c}
+                    srcSet={srcSet}
+                    alt="color swatch"
+                    className="w-full h-full object-contain select-none"
+                    decoding="async"
+                    loading="eager"
+                    draggable={false}
+                    style={{ imageRendering: 'auto' }}
+                  />
+                );
+              })() : (
                 <span className="w-full h-full block" style={{ background: c }} />
               )}
             </button>
