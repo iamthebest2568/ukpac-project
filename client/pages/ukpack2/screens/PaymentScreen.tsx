@@ -545,7 +545,7 @@ const PaymentScreen: React.FC = () => {
                 <VehiclePreview
                   imageSrc={img}
                   colorFilter={storedColor?.filter}
-                  label={`รถที่ใช้งาน : ${label}`}
+                  label={<><span className="chassis-label-mobile">รถที่เลือก : </span>{label}</>}
                   overlayLabels={overlayLabels}
                   overlayIconMap={{
                     ...AMENITIES_ICON_MAP,
