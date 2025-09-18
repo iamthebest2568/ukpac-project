@@ -183,7 +183,7 @@ const SeatingScreen: React.FC = () => {
     if (v > maxCapacity) {
       setErrorTitle("จำนวนที่นั่งเกินขีดจำกัด");
       setErrorMessage(
-        `รถประเภทนี้สามารถมีที่นั่งได้สูงสุด ${maxCapacity} ที่นั่ง กรุณาลดจำนวนที่นั่ง`,
+        `รถประเภทนี้ส���มารถมีที่นั่งได้สูงสุด ${maxCapacity} ที่นั่ง กรุณาลดจำนวนที่นั่ง`,
       );
       setErrorModalOpen(true);
     } else if (v < minCapacity && v > 0) {
@@ -260,7 +260,7 @@ const SeatingScreen: React.FC = () => {
             <div className="space-y-2 mt-2">
               <div className="flex items-center justify-between">
                 <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">
-                  จำ���วนที่นั่งทั้งหมด
+                  จำนวนที่นั่งทั้งหมด
                 </div>
                 <input
                   type="number"
