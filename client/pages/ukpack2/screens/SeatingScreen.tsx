@@ -27,7 +27,7 @@ const SeatingScreen: React.FC = () => {
     small: 30,
     medium: 40,
     large: 50,
-    extra: 12, // รถกระบะดัดแปลง 8-12 ที่นั่��
+    extra: 12, // ��ถกระบะดัดแปลง 8-12 ที่นั่ง
   };
 
   const minByChassis: Record<string, number> = {
@@ -64,7 +64,7 @@ const SeatingScreen: React.FC = () => {
     "ที่จับ/ราวยืนที่ปลอดภัย": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F1cae4f7306834a6eb0d86be09e05bfdd?format=webp&width=800",
     "ช่องชาร์จมือถือ/USB": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fba274e72720c4a1b9695e83dbf8c1fe9?format=webp&width=800",
     "Wi‑Fi ฟรี": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F63dc13fe1fab446a9da88bfb297d9c6d?format=webp&width=800",
-    "ระบบประกาศบ��กป้าย(เสียง/จอ)": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F35b324f49ad84b71a92ae80b0b39f7cd?format=webp&width=800",
+    "ระบบประกาศบอกป้าย(เสียง/จอ)": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F35b324f49ad84b71a92ae80b0b39f7cd?format=webp&width=800",
     air: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F02548238f8184e808929075a27733533?format=webp&width=800",
     fan: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fdcae7affa4fe43e38aa5c78ca608e39e?format=webp&width=800",
     seat: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F788c9e78d6944fc8a5088cc00aa40697?format=webp&width=800",
@@ -138,7 +138,7 @@ const SeatingScreen: React.FC = () => {
     if (specialSeatsTotal > totalSeats) {
       setErrorTitle("พื้นที่ไม่เพียงพอ");
       setErrorMessage(
-        `ที่นั่งพิเศษทั้งหมด (${specialSeatsTotal} ที่นั่ง) เกินจำนวนที่นั่งทั้งหมด (${totalSeats} ที่นั่ง) กรุณาลดจำนวนที่นั่งบางส่วน`,
+        `ที่นั่งพิเศษทั้งหมด (${specialSeatsTotal} ที่นั่ง) เกินจำน���นที่นั่งทั้งหมด (${totalSeats} ที่นั่ง) กรุณาลดจำนวนที่นั่งบางส่วน`,
       );
       setErrorModalOpen(true);
       return false;
