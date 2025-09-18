@@ -145,7 +145,7 @@ const SeatingScreen: React.FC = () => {
     if (typeof totalSeats === "number" && totalSeats > maxCapacity) {
       setErrorTitle("จำนวนที่นั่งเกินขีดจำกัด");
       setErrorMessage(
-        `รถประเภทนี้สามารถมีที่นั่งได้สูงสุด ${maxCapacity} ที่นั่ง กรุณากรอกจำนวนระหว่าง ${minCapacity} ถึง ${maxCapacity}`,
+        `รถประเภทนี้สามารถมีที่นั่งได้สูงสุด ${maxCapacity} ที่���ั่ง กรุณากรอกจำนวนระหว่าง ${minCapacity} ถึง ${maxCapacity}`,
       );
       setErrorModalOpen(true);
       return false;
@@ -165,7 +165,7 @@ const SeatingScreen: React.FC = () => {
     if (specialSeats < specialSeatsTotal) {
       setErrorTitle("จำนวนที่นั่งพิเศษไม่พอ");
       setErrorMessage(
-        `จำนวนที่นั่งพิเศษ (${specialSeats}) น้อยกว่าจำนวนที่นั่งพิเศษย่อย (${specialSeatsTotal}) กรุณาปรับค่าหรือลดจำนวนที่นั่งพิเศษย่อย`,
+        `จำนวนที่นั่งพิเศษ (${specialSeats}) น้อยกว่าจำนวนที่นั่งพิเศษย่อย (${specialSeatsTotal}) กรุณาปรับค่าหรือลดจำนวนที่นั��งพิเศษย่อย`,
       );
       setErrorModalOpen(true);
       return false;
@@ -284,7 +284,7 @@ const SeatingScreen: React.FC = () => {
                 </div>
                 <input
                   type="number"
-                  placeholder="ระบุ..."
+                  placeholder="ระบ��..."
                   value={totalSeats}
                   onFocus={handleTotalFocus}
                   onBlur={handleTotalBlur}
@@ -423,15 +423,6 @@ const SeatingScreen: React.FC = () => {
                       setSpecialSeats(categoriesSum);
                     }
                   }}
-                  onChangeCapture={undefined}
-                  onChange={(e) =>
-                    setWheelchairBikeSpaces(
-                      Math.min(
-                        maxCapacity,
-                        Math.max(0, parseInt(e.target.value || "0", 10)),
-                      ),
-                    )
-                  }
                   className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-full text-[#003366] bg-white text-right"
                   min={0}
                   max={maxCapacity}
