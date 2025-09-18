@@ -74,6 +74,15 @@ const SeatingScreen: React.FC = () => {
     cup: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F35b324f49ad84b71a92ae80b0b39f7cd?format=webp&width=800",
   };
 
+  const storedColor = (() => {
+    try {
+      const raw = sessionStorage.getItem('design.color');
+      return raw ? JSON.parse(raw) : null;
+    } catch {
+      return null;
+    }
+  })();
+
   const selectedChassis = React.useMemo(() => {
     // Prefer in-memory state (BusDesignContext) so selections are immediate.
     if (state.chassis) return state.chassis as keyof typeof CHASSIS_LABELS;
@@ -127,7 +136,7 @@ const SeatingScreen: React.FC = () => {
 
     // Check if special seats exceed total seats
     if (specialSeatsTotal > totalSeats) {
-      setErrorTitle("พื้นที่ไม่เพียงพอ");
+      setErrorTitle("พื้นที���ไม่เพียงพอ");
       setErrorMessage(
         `ที่นั่งพิเศษทั้งหมด (${specialSeatsTotal} ที่นั่ง) เกินจำนวนที่นั่งทั้งหมด (${totalSeats} ที่นั่ง) กรุณาลดจำนวนที่นั่งบางส่วน`,
       );
