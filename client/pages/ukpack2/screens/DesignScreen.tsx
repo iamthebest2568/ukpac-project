@@ -45,7 +45,7 @@ const IconWifi = () => (
 const IconPlug = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F09a78e31a3de44e98772b0eef382af6f?format=webp&width=800"
-    alt="ช่องชาร์จมือถือ/USB"
+    alt="ช่องช���ร์จมือถือ/USB"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -184,7 +184,7 @@ const DesignScreen: React.FC = () => {
               medium:
                 "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fada3699e9e324993a811e668bfc19891?format=webp&width=800",
               large:
-                "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fefc1e1ed3bcb4769b51d1544d43b3b5f?format=webp&width=800",
+                "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc4ba360c1fe64492b71fc207c9dfd328?format=webp&width=800",
               extra:
                 "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Faa7d15f5f97141ee8446eba62e919c07?format=webp&width=800",
             };
@@ -311,7 +311,7 @@ const DesignScreen: React.FC = () => {
                       ref={textareaRef}
                       value={sloganDraft}
                       onChange={(e) => setSloganDraft(e.target.value)}
-                      placeholder="พิมพ์คุณสมบัติพิเศษอื่นๆ ของรถเมล์ในฝันของคุณ"
+                      placeholder="พิมพ์คุณส���บัติพิเศษอื่นๆ ของรถเมล์ในฝันของคุณ"
                       className="mt-3 w-full h-36 p-3 border rounded-md text-sm resize-none"
                     />
                     <div className="mt-3 flex justify-end gap-2">
