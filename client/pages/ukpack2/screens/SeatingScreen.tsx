@@ -40,7 +40,7 @@ const SeatingScreen: React.FC = () => {
 
   const CHASSIS_LABELS: Record<string, string> = {
     small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
-    medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
+    medium: "รถเมล์มาตรฐาน 30–50 ที��นั่ง",
     large: "รถตู้โดยสาร 9–15 ที่นั่ง",
     extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
   };
@@ -62,7 +62,7 @@ const SeatingScreen: React.FC = () => {
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fdcae7affa4fe43e38aa5c78ca608e39e?format=webp&width=800",
     ที่นั่งพิเศษ:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F788c9e78d6944fc8a5088cc00aa40697?format=webp&width=800",
-    หน้าต่างเปิ���ได้:
+    หน้าต่างเปิดได้:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F788c9e78d6944fc8a5088cc00aa40697?format=webp&width=800",
     "ที่จับ/ราว���ืนที่ปลอดภัย":
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F1cae4f7306834a6eb0d86be09e05bfdd?format=webp&width=800",
@@ -153,9 +153,9 @@ const SeatingScreen: React.FC = () => {
 
     // Check if special seats exceed total seats
     if (specialSeatsTotal > (typeof totalSeats === "number" ? totalSeats : 0)) {
-      setErrorTitle("พื้นที่ไม่เพียงพอ");
+      setErrorTitle("พื้นที่ไม่เพีย���พอ");
       setErrorMessage(
-        `ที่นั่งพิเศษทั้งหมด (${specialSeatsTotal} ที่นั่ง) เกิน��ำนวนที่นั่งทั้งหมด (${totalSeats}) กรุณาลดจำนวนที่นั่งบางส่วน`,
+        `ที่นั่งพิเศษทั้งหมด (${specialSeatsTotal} ที่นั่ง) เกินจำนวนที่นั่งทั้งหมด (${totalSeats}) กรุณาลดจำนวนที่นั่งบางส่วน`,
       );
       setErrorModalOpen(true);
       return false;
@@ -360,7 +360,7 @@ const SeatingScreen: React.FC = () => {
 
               <div className="flex items-center justify-between">
                 <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">
-                  ��ตรีมีครรภ์
+                  สตรีมีครรภ์
                 </div>
                 <input
                   type="number"
@@ -414,18 +414,18 @@ const SeatingScreen: React.FC = () => {
                 </div>
                 <input
                   type="number"
-                  value={wheelchairBikeSpaces}
+                  value={wheelchairBikeSpaces === "" ? "" : wheelchairBikeSpaces}
+                  onFocus={() => {
+                    if (wheelchairBikeSpaces === 0) setWheelchairBikeSpaces("");
+                  }}
                   onChange={(e) => {
-                    const raw = parseInt(e.target.value || "0", 10);
-                    const total = typeof totalSeats === "number" ? totalSeats : maxCapacity;
-                    const otherSum = childElderSeats + pregnantSeats + monkSeats;
-                    const maxForThis = Math.max(0, total - otherSum);
-                    const clamped = Math.min(maxForThis, Math.max(0, raw));
-                    setWheelchairBikeSpaces(clamped);
-                    const categoriesSum = childElderSeats + pregnantSeats + monkSeats + clamped;
-                    if (specialSeats < categoriesSum) {
-                      setSpecialSeats(categoriesSum);
+                    const raw = e.target.value;
+                    if (raw === "") {
+                      setWheelchairBikeSpaces("");
+                      return;
                     }
+                    const parsed = Math.max(0, Math.min(maxCapacity, parseInt(raw || "0", 10)));
+                    setWheelchairBikeSpaces(parsed);
                   }}
                   className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-full text-[#003366] bg-white text-right"
                   min={0}
