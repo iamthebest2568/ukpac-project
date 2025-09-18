@@ -1,9 +1,14 @@
 import React, { useEffect } from "react";
 
+import React, { useEffect } from "react";
+
 interface Props {
   title?: string;
   description?: string;
   image?: string;
+  canonical?: string;
+  hreflang?: string; // e.g. 'th'
+  locale?: string; // e.g. 'th_TH'
 }
 
 function ensureMeta(
@@ -30,79 +35,122 @@ function ensureMeta(
   if (el) el.content = content;
 }
 
-const MetaUpdater: React.FC<Props> = ({ title, description, image }) => {
+function ensureLink(rel: string, attrs: Record<string, string>) {
+  const head = document.head;
+  const selector = Object.entries(attrs)
+    .map(([k, v]) => `[${k}="${v}"]`)
+    .join("");
+  let el = head.querySelector(`link[rel="${rel}"]${selector}`) as HTMLLinkElement | null;
+  if (!el) {
+    el = document.createElement("link");
+    el.rel = rel;
+    Object.entries(attrs).forEach(([k, v]) => el!.setAttribute(k, v));
+    head.appendChild(el);
+  }
+  return el;
+}
+
+const MetaUpdater: React.FC<Props> = ({ title, description, image, canonical, hreflang, locale }) => {
   useEffect(() => {
+    const head = document.head;
     const prevTitle = document.title;
-    const prevDesc =
-      document
-        .querySelector('meta[name="description"]')
-        ?.getAttribute("content") || "";
-    const prevOgTitle =
-      document
-        .querySelector('meta[property="og:title"]')
-        ?.getAttribute("content") || "";
-    const prevOgDesc =
-      document
-        .querySelector('meta[property="og:description"]')
-        ?.getAttribute("content") || "";
-    const prevOgImage =
-      document
-        .querySelector('meta[property="og:image"]')
-        ?.getAttribute("content") || "";
-    const prevTwitterTitle =
-      document
-        .querySelector('meta[name="twitter:title"]')
-        ?.getAttribute("content") || "";
-    const prevTwitterDesc =
-      document
-        .querySelector('meta[name="twitter:description"]')
-        ?.getAttribute("content") || "";
-    const prevTwitterImage =
-      document
-        .querySelector('meta[name="twitter:image"]')
-        ?.getAttribute("content") || "";
+
+    const prev = {
+      description: document.querySelector('meta[name="description"]')?.getAttribute('content') || '',
+      ogTitle: document.querySelector('meta[property="og:title"]')?.getAttribute('content') || '',
+      ogDesc: document.querySelector('meta[property="og:description"]')?.getAttribute('content') || '',
+      ogImage: document.querySelector('meta[property="og:image"]')?.getAttribute('content') || '',
+      twitterTitle: document.querySelector('meta[name="twitter:title"]')?.getAttribute('content') || '',
+      twitterDesc: document.querySelector('meta[name="twitter:description"]')?.getAttribute('content') || '',
+      twitterImage: document.querySelector('meta[name="twitter:image"]')?.getAttribute('content') || '',
+      canonical: document.querySelector('link[rel="canonical"]')?.getAttribute('href') || '',
+      ogLocale: document.querySelector('meta[property="og:locale"]')?.getAttribute('content') || '',
+    };
+
+    // defaults
+    const finalCanonical = canonical || (typeof window !== 'undefined' ? window.location.href : '');
+    const finalLocale = locale || 'th_TH';
 
     if (title) document.title = title;
-    if (description) ensureMeta({ name: "description" }, description);
-    if (title) ensureMeta({ prop: "og:title" }, title);
-    if (description) ensureMeta({ prop: "og:description" }, description);
-    if (image) ensureMeta({ prop: "og:image" }, image);
-    if (title) ensureMeta({ name: "twitter:title" }, title);
-    if (description) ensureMeta({ name: "twitter:description" }, description);
-    if (image) ensureMeta({ name: "twitter:image" }, image);
+    if (description) ensureMeta({ name: 'description' }, description);
+    if (title) ensureMeta({ prop: 'og:title' }, title);
+    if (description) ensureMeta({ prop: 'og:description' }, description);
+    if (image) ensureMeta({ prop: 'og:image' }, image);
+    if (title) ensureMeta({ name: 'twitter:title' }, title);
+    if (description) ensureMeta({ name: 'twitter:description' }, description);
+    if (image) ensureMeta({ name: 'twitter:image' }, image);
+
+    // og:locale
+    ensureMeta({ prop: 'og:locale' }, finalLocale);
+
+    // canonical
+    const canonicalEl = ensureLink('canonical', { href: finalCanonical });
+
+    // hreflang (optional)
+    let hreflangEl: HTMLLinkElement | null = null;
+    if (hreflang) {
+      hreflangEl = ensureLink('alternate', { href: finalCanonical, hreflang });
+    }
+
+    // JSON-LD: WebSite + Organization
+    const ld = {
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      url: typeof window !== 'undefined' ? window.location.origin : '',
+      name: title || document.title || 'UK PACT',
+      inLanguage: finalLocale,
+      description: description || '',
+    };
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.setAttribute('data-meta-updater', 'true');
+    script.text = JSON.stringify(ld);
+    head.appendChild(script);
 
     return () => {
       document.title = prevTitle;
-      if (document.querySelector('meta[name="description"]'))
-        document
-          .querySelector('meta[name="description"]')!
-          .setAttribute("content", prevDesc);
-      if (document.querySelector('meta[property="og:title"]'))
-        document
-          .querySelector('meta[property="og:title"]')!
-          .setAttribute("content", prevOgTitle);
-      if (document.querySelector('meta[property="og:description"]'))
-        document
-          .querySelector('meta[property="og:description"]')!
-          .setAttribute("content", prevOgDesc);
-      if (document.querySelector('meta[property="og:image"]'))
-        document
-          .querySelector('meta[property="og:image"]')!
-          .setAttribute("content", prevOgImage);
-      if (document.querySelector('meta[name="twitter:title"]'))
-        document
-          .querySelector('meta[name="twitter:title"]')!
-          .setAttribute("content", prevTwitterTitle);
-      if (document.querySelector('meta[name="twitter:description"]'))
-        document
-          .querySelector('meta[name="twitter:description"]')!
-          .setAttribute("content", prevTwitterDesc);
-      if (document.querySelector('meta[name="twitter:image"]'))
-        document
-          .querySelector('meta[name="twitter:image"]')!
-          .setAttribute("content", prevTwitterImage);
+      if (description) {
+        const desc = document.querySelector('meta[name="description"]');
+        if (desc) desc.setAttribute('content', prev.description);
+      }
+      if (title) {
+        const ot = document.querySelector('meta[property="og:title"]');
+        if (ot) ot.setAttribute('content', prev.ogTitle);
+      }
+      if (description) {
+        const od = document.querySelector('meta[property="og:description"]');
+        if (od) od.setAttribute('content', prev.ogDesc);
+      }
+      if (image) {
+        const oi = document.querySelector('meta[property="og:image"]');
+        if (oi) oi.setAttribute('content', prev.ogImage);
+      }
+      const tt = document.querySelector('meta[name="twitter:title"]');
+      if (tt) tt.setAttribute('content', prev.twitterTitle);
+      const td = document.querySelector('meta[name="twitter:description"]');
+      if (td) td.setAttribute('content', prev.twitterDesc);
+      const ti = document.querySelector('meta[name="twitter:image"]');
+      if (ti) ti.setAttribute('content', prev.twitterImage);
+
+      // restore og:locale
+      const ol = document.querySelector('meta[property="og:locale"]');
+      if (ol) ol.setAttribute('content', prev.ogLocale);
+
+      // remove canonical/hreflang if we created them (only if href equals finalCanonical)
+      try {
+        const ce = document.querySelector('link[rel="canonical"]');
+        if (ce && ce.getAttribute('href') === finalCanonical && prev.canonical === '') ce.remove();
+        if (hreflangEl) {
+          const he = document.querySelector(`link[rel="alternate"][hreflang="${hreflang}"]`);
+          if (he && he.getAttribute('href') === finalCanonical) he.remove();
+        }
+      } catch (e) {}
+
+      // remove injected JSON-LD
+      const injected = document.querySelectorAll('script[data-meta-updater]');
+      injected.forEach((s) => s.remove());
     };
-  }, [title, description, image]);
+  }, [title, description, image, canonical, hreflang, locale]);
 
   return null;
 };
