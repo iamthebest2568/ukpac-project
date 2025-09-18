@@ -9,7 +9,13 @@ const IndexPage = () => {
   // The user will add links to cards later.
 
   return (
-    <div className="min-h-screen bg-white flex items-center justify-center py-12">
+    <>
+      <MetaUpdater
+        title="UK PACT - กรุงเทพฯ ลดติด"
+        description="UK PACT — เชิญชวนคนกรุงเทพฯ มาร่วมออกแบบเมือง ลดปัญหาจราจรและมลพิษ ด้วยนโยบายและตัวเลือกที่ใช้งานได้จริง"
+        image="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fa9dea989b2c347318a49bb8e9f717a35?format=webp&width=1200"
+      />
+      <div className="min-h-screen bg-white flex items-center justify-center py-12">
       <div className="w-full max-w-[1000px] px-4">
         <header className="mb-8 text-center">
           <h1 className="font-prompt font-bold text-[#000D59]" style={{ fontSize: "clamp(24px, 4.5vw, 40px)" }}>
@@ -80,6 +86,7 @@ const IndexPage = () => {
         </main>
       </div>
     </div>
+    </>
   );
 };
 
