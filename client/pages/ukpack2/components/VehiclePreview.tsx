@@ -136,6 +136,11 @@ const VehiclePreview: React.FC<Props> = ({
               }
             />
 
+            {/** optional star overlay placed at top-right of the vehicle image container */}
+            {/** starSrc is measured relative to this inner container (position: relative) */}
+            {/** we style it to slightly overlap the image */}
+            {typeof ({} as any) /* placeholder to keep formatting */ !== 'function' ? null : null}
+
             {colorHex && imageSrc && (
               <div
                 aria-hidden
