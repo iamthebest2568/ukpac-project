@@ -38,7 +38,7 @@
   width: 100% !important;
   max-width: 1200px !important;
   margin: 0 auto !important;
-  padding: 0 12px !important;
+
   box-sizing: border-box !important;
   position: relative !important;
   min-height: 140px !important;
@@ -81,13 +81,12 @@
   text-align: center !important;
   width: 100% !important;
   box-sizing: border-box !important;
-  padding: 0 12px !important;
+
 }
 
 /* Right column (controls) */
 .controls {
   width: 100% !important;
-  padding: 12px !important;
   box-sizing: border-box !important;
   background: #ffffff !important;
   border-radius: 0 !important;
