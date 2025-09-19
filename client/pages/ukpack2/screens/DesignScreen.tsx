@@ -240,7 +240,7 @@ const DesignScreen: React.FC = () => {
         image="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F44cea8aeb6d4415e899494a90c6f59b1?format=webp&width=1200"
       />
       <CustomizationScreen
-        title="ปรับแต่งรถเมล์ของคุณ"
+        title="ปรับ���ต่งรถเมล์ของคุณ"
         theme="light"
         footerContent={
           <div className="flex justify-center">
@@ -287,6 +287,7 @@ const DesignScreen: React.FC = () => {
                       </>
                     }
                     colorFilter={color?.filter}
+                    colorHex={color?.colorHex || null}
                     overlayLabels={(() => {
                       const amenities = (() => {
                         try {
