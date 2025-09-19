@@ -110,6 +110,12 @@
   border-radius: 0;
 }
 
+/* Semantic section grouping for tabs + frame + grid */
+.controlsSection {
+  width: 100%;
+  box-sizing: border-box;
+}
+
 
 /* Controls box: frame around tabs + content. Tabs will visually sit above the top border */
 .controlsBox {
