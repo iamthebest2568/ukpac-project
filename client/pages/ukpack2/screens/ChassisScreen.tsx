@@ -255,10 +255,10 @@ const ChassisScreen: React.FC = () => {
                 <div className={styles.selectionGrid}>
                   <SelectionCard
                     key={OPTIONS[0].key}
-                    icon={selected === OPTIONS[0].key ? <IconSmallAlt /> : <IconSmall />}
+                    icon={firstIconClicked ? <IconSmallAlt /> : <IconSmall />}
                     label={OPTIONS[0].label}
                     isSelected={selected === OPTIONS[0].key}
-                    onClick={() => setSelected(OPTIONS[0].key)}
+                    onClick={() => { setSelected(OPTIONS[0].key); setFirstIconClicked(true); }}
                     variant="light"
                     appearance="bare"
                     hideLabel={true}
@@ -310,7 +310,7 @@ const ChassisScreen: React.FC = () => {
       <ConfirmModal
         isOpen={isExitModalOpen}
         title="ออกจากหน้าจอ"
-        message="คุณแน่ใจหรือไม่ว่าต้องการ��อก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
+        message="���ุณแน่ใจหรือไม่ว่าต้องการ��อก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
         onConfirm={confirmExit}
         onCancel={() => setExitModalOpen(false)}
         contentClassName={`${styles.containerPadding} ${styles.modalContent}`}
