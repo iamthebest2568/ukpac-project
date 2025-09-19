@@ -30,19 +30,19 @@ const VehiclePreview: React.FC<Props> = ({
           <img
             src={SHADOW_URL}
             alt="เงา"
-            className="absolute w-[60%] max-w-[320px] pointer-events-none select-none"
-            style={{ bottom: "8px" }}
+            className="absolute w-[70%] max-w-[480px] pointer-events-none select-none"
+            style={{ bottom: "12px" }}
             decoding="async"
             loading="eager"
             aria-hidden="true"
           />
 
           <div
-            className="relative w-[60%] max-w-[320px]"
-            style={{ height: "120px" }}
+            className="relative w-[70%] max-w-[480px]"
+            style={{ height: "160px" }}
           >
             {overlayLabels && overlayLabels.length > 0 && (
-              <div className="absolute left-1/2 transform -translate-x-1/2 -top-4 flex items-center gap-2 z-20 max-w-[80%] overflow-x-auto whitespace-nowrap">
+              <div className="absolute left-1/2 transform -translate-x-1/2 -top-4 flex items-center gap-2 z-20 max-w-[95%] overflow-x-auto whitespace-nowrap">
                 {overlayLabels.map((lab, i) => {
                   const srcOrNode = overlayIconMap[lab];
                   return (
