@@ -359,7 +359,7 @@ const DesignScreen: React.FC = () => {
                       ramp: (
                         <img
                           src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fece2b6fc843340f0997f2fd7d3ca0aea?format=webp&width=800"
-                          alt="ทางลา��"
+                          alt="ทางลาด"
                           className="h-5 w-5 object-contain"
                         />
                       ),
@@ -389,9 +389,28 @@ const DesignScreen: React.FC = () => {
                 colors={DEFAULT_COLORS.map((c) => c.preview)}
                 selectedColor={color?.preview || DEFAULT_COLORS[0].preview}
                 onColorSelect={(colorUrl) => {
-                  const foundColor = DEFAULT_COLORS.find(
-                    (c) => c.preview === colorUrl,
-                  );
+                  // Try exact match first
+                  let foundColor = DEFAULT_COLORS.find((c) => c.preview === colorUrl);
+
+                  // If not found, try substring match (allows passing filename like "ef416b" or partial URL)
+                  if (!foundColor && colorUrl) {
+                    foundColor = DEFAULT_COLORS.find((c) => c.preview.includes(colorUrl));
+                  }
+
+                  // If still not found and colorUrl looks like a plain filename or hash (no protocol),
+                  // compare against the last path segment of the preview URL as well
+                  if (!foundColor && colorUrl && !colorUrl.startsWith("http") && colorUrl.includes(".")) {
+                    foundColor = DEFAULT_COLORS.find((c) => {
+                      try {
+                        const parts = c.preview.split("/");
+                        const last = parts[parts.length - 1] || c.preview;
+                        return last.includes(colorUrl) || c.preview.includes(colorUrl);
+                      } catch (e) {
+                        return false;
+                      }
+                    });
+                  }
+
                   if (foundColor) setColor(foundColor);
                 }}
               />
