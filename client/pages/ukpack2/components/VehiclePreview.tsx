@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
 const SHADOW_URL =
   "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb1e30b1544304677996b179fc27ae5c7?format=webp&width=800";
@@ -17,8 +17,6 @@ interface Props {
   // when true, VehiclePreview will render a "รถที่เลือก : {label}" line beneath the preview
   showSelectedText?: boolean;
 }
-
-import React, { useEffect, useRef } from "react";
 
 const VehiclePreview: React.FC<Props> = ({
   imageSrc,
