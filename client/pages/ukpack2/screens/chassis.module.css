@@ -118,31 +118,24 @@
 
 
 /* Controls box: frame around tabs + content. Tabs will visually sit above the top border */
-:root{
-  --controls-border-width: 2px;
-}
-
 .controlsBox {
-  --bw: var(--controls-border-width);
-  border: var(--bw) solid #000D59; /* responsive border width via CSS variable */
+  border: 2px solid #000D59; /* restored fixed border width */
   border-radius: 8px;
   background: #ffffff;
   overflow: visible;
   box-sizing: border-box;
   position: relative;
   z-index: 0; /* default stacking for frame */
-  padding: calc(var(--bw) * 1) 0 12px 0; /* small top padding to separate tabs */
+  padding: 2px 0 12px 0; /* small top padding to separate tabs */
   min-height: 128px; /* ensure a minimum visible area for controls */
   transition: border-color 150ms ease, border-width 150ms ease;
 }
 
 @media (max-width: 639px) {
-  :root { --controls-border-width: 1px; }
   .controlsBox { min-height: 110px; }
 }
 
 @media (min-width: 1024px) {
-  :root { --controls-border-width: 3px; }
   .controlsBox { min-height: 160px; }
 }
 
