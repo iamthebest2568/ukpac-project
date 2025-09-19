@@ -105,7 +105,7 @@ const OPTIONS = [
   {
     key: "small",
     label: "รถเมล์ขนาดเ���็ก 16-30 ที่นั่ง",
-    labelText: "รถเมล์ขนาดเล็ก 16-30 ที่นั่ง",
+    labelText: "รถเมล์ขนาดเ���็ก 16-30 ที่นั่ง",
     icon: <IconSmall />,
   },
   {
@@ -153,6 +153,7 @@ const ChassisScreen: React.FC = () => {
   const navigate = useNavigate();
   const [selected, setSelected] = useState<string>(OPTIONS[0].key);
   const [firstIconClicked, setFirstIconClicked] = useState<boolean>(false);
+  const [secondIconClicked, setSecondIconClicked] = useState<boolean>(false);
   const selectedLabel = useMemo(() => {
     const found = OPTIONS.find((o) => o.key === selected)?.labelText || "";
     return String(found).replace(/(\d+)-(\d+)/, "$1–$2");
