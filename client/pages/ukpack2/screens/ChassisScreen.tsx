@@ -84,7 +84,7 @@ const OPTIONS = [
   {
     key: "small",
     label: "รถเมล์ขนาดเล็ก 16-30 ที่นั่ง",
-    labelText: "รถเมล์ขนาดเล็ก 16-30 ที่นั่ง",
+    labelText: "รถเมล์ขนาดเล็ก 16-30 ท��่นั่ง",
     icon: <IconSmall />,
   },
   {
@@ -213,109 +213,106 @@ const ChassisScreen: React.FC = () => {
         <div className="space-y-6">
           {/* Hero bus illustration with shadow overlay */}
           <div className="flex flex-col items-center -mt-6">
-            <div
-              className="relative w-full flex items-center justify-center"
-              style={{ minHeight: "100px" }}
-            >
-              {/* shadow only */}
-              <img
-                src={HERO_SHADOW}
-                alt="เงารถ"
-                className="absolute w-3/4 sm:w-[60%] max-w-[420px] pointer-events-none select-none"
-                style={{ bottom: "8px" }}
-                decoding="async"
-                loading="eager"
-                aria-hidden="true"
-              />
-              {/* bus + star overlay inside same box for precise alignment */}
-              <div
-                className="relative w-full sm:w-[60%] max-w-[480px]"
-                // use responsive height classes to better adapt across screens
-                style={{ height: "auto" }}
-              >
-                {(() => {
-                  const amenities = (() => {
-                    try {
-                      const raw = sessionStorage.getItem("design.amenities");
-                      return raw ? (JSON.parse(raw) as string[]) : [];
-                    } catch {
-                      return [] as string[];
-                    }
-                  })();
-                  const payments = (() => {
-                    try {
-                      const raw = sessionStorage.getItem("design.payment");
-                      return raw ? (JSON.parse(raw) as string[]) : [];
-                    } catch {
-                      return [] as string[];
-                    }
-                  })();
-                  const doors = (() => {
-                    try {
-                      const raw = sessionStorage.getItem("design.doors");
-                      if (!raw) return null;
-                      const parsed = JSON.parse(raw);
-                      return typeof parsed === "string"
-                        ? parsed
-                        : parsed?.doorChoice ||
-                            (parsed?.hasRamp
-                              ? "ramp"
-                              : parsed?.highLow
-                                ? "emergency"
-                                : null);
-                    } catch {
-                      return sessionStorage.getItem("design.doors");
-                    }
-                  })();
-                  const overlay = [
-                    ...(amenities || []),
-                    ...(payments || []),
-                    ...(doors ? [doors as string] : []),
-                  ];
-                  return overlay.length > 0 ? (
-                    <div className="absolute left-1/2 transform -translate-x-1/2 -top-4 flex flex-wrap justify-center gap-2 z-20 max-w-[80%]">
-                      {overlay.map((lab, i) => {
-                        const src =
-                          AMENITIES_ICON_SMALL[lab] ||
-                          PAYMENT_ICON_SMALL[lab] ||
-                          DOOR_ICON_SMALL[lab];
-                        return (
-                          <div
-                            key={`${lab}-${i}`}
-                            className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center"
-                          >
-                            {src ? (
-                              <img
-                                src={src}
-                                alt={lab}
-                                className="h-5 w-5 object-contain"
-                              />
-                            ) : (
-                              <div className="text-xs">{lab}</div>
-                            )}
-                          </div>
-                        );
-                      })}
-                    </div>
-                  ) : null;
-                })()}
-
+            <div className="relative w-full flex items-center justify-center" style={{ minHeight: "100px" }}>
+              {/* wrapper to scale vehicle and shadow down by 30% */}
+              <div className="relative w-full flex items-center justify-center" style={{ transform: `scale(0.7)`, transformOrigin: "center" }}>
+                {/* shadow only */}
                 <img
-                  src={HERO_IMAGE[selected]}
-                  alt={selectedLabel}
-                  className="h-full w-auto object-contain mx-auto select-none"
-                  decoding="async"
-                  loading="eager"
-                />
-                <img
-                  src={HERO_STAR}
-                  alt="สัญลักษณ์ดาว"
-                  className="absolute w-5 h-5 pointer-events-none select-none"
-                  style={{ top: "6px", right: "6px" }}
+                  src={HERO_SHADOW}
+                  alt="เงารถ"
+                  className="absolute w-3/4 sm:w-[60%] max-w-[420px] pointer-events-none select-none"
+                  style={{ bottom: "8px" }}
                   decoding="async"
                   loading="eager"
                   aria-hidden="true"
                 />
+                {/* bus + star overlay inside same box for precise alignment */}
+                <div className="relative w-full sm:w-[60%] max-w-[480px]" // use responsive height classes to better adapt across screens
+                  style={{ height: "auto" }}>
+                  {(() => {
+                    const amenities = (() => {
+                      try {
+                        const raw = sessionStorage.getItem("design.amenities");
+                        return raw ? (JSON.parse(raw) as string[]) : [];
+                      } catch {
+                        return [] as string[];
+                      }
+                    })();
+                    const payments = (() => {
+                      try {
+                        const raw = sessionStorage.getItem("design.payment");
+                        return raw ? (JSON.parse(raw) as string[]) : [];
+                      } catch {
+                        return [] as string[];
+                      }
+                    })();
+                    const doors = (() => {
+                      try {
+                        const raw = sessionStorage.getItem("design.doors");
+                        if (!raw) return null;
+                        const parsed = JSON.parse(raw);
+                        return typeof parsed === "string"
+                          ? parsed
+                          : parsed?.doorChoice ||
+                              (parsed?.hasRamp
+                                ? "ramp"
+                                : parsed?.highLow
+                                  ? "emergency"
+                                  : null);
+                      } catch {
+                        return sessionStorage.getItem("design.doors");
+                      }
+                    })();
+                    const overlay = [
+                      ...(amenities || []),
+                      ...(payments || []),
+                      ...(doors ? [doors as string] : []),
+                    ];
+                    return overlay.length > 0 ? (
+                      <div className="absolute left-1/2 transform -translate-x-1/2 -top-4 flex flex-wrap justify-center gap-2 z-20 max-w-[80%]">
+                        {overlay.map((lab, i) => {
+                          const src =
+                            AMENITIES_ICON_SMALL[lab] ||
+                            PAYMENT_ICON_SMALL[lab] ||
+                            DOOR_ICON_SMALL[lab];
+                          return (
+                            <div
+                              key={`${lab}-${i}`}
+                              className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center"
+                            >
+                              {src ? (
+                                <img
+                                  src={src}
+                                  alt={lab}
+                                  className="h-5 w-5 object-contain"
+                                />
+                              ) : (
+                                <div className="text-xs">{lab}</div>
+                              )}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    ) : null;
+                  })()}
+
+                  <img
+                    src={HERO_IMAGE[selected]}
+                    alt={selectedLabel}
+                    className="h-full w-auto object-contain mx-auto select-none"
+                    decoding="async"
+                    loading="eager"
+                  />
+                  <img
+                    src={HERO_STAR}
+                    alt="สัญลักษณ์ดาว"
+                    className="absolute w-5 h-5 pointer-events-none select-none"
+                    style={{ top: "6px", right: "6px" }}
+                    decoding="async"
+                    loading="eager"
+                    aria-hidden="true"
+                  />
+                </div>
               </div>
             </div>
             <p className="mt-2 font-prompt font-semibold text-[#001a73] text-center text-sm md:text-base max-w-[320px] mx-auto">
