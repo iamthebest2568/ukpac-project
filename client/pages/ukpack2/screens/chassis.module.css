@@ -141,18 +141,18 @@
 
 /* Move tabs up to overlap the top border so the border appears under the tabs */
 .tabsWrapper {
-  /* make tabs full-bleed to viewport edges regardless of parent padding */
+  /* make tabs truly full-bleed irrespective of parent centering */
   position: relative;
   z-index: 10; /* ensure tabs sit above the frame */
   width: 100vw;
-  left: 50%;
-  transform: translateX(-50%);
+  margin-left: calc(50% - 50vw); /* shift to viewport left edge */
+  margin-right: calc(50% - 50vw);
   margin: 0 0 -16px 0; /* overlap so tabs sit on top of border */
   padding: 0;
 }
 
 /* ensure inner tab items stretch to fill full-bleed container */
-.tabsWrapper .flex { width: 100%; }
+.tabsWrapper > .flex { width: 100%; }
 
 .controlsContent {
   /* 5px padding from border on all sides for balanced spacing */
