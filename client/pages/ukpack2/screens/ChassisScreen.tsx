@@ -50,6 +50,16 @@ const IconSmall = () => (
     loading="eager"
   />
 );
+const IconSmallAlt = () => (
+  <img
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F30205d6e380e4cd9a9ba998f9067d507?format=webp&width=800"
+    alt=""
+    aria-hidden="true"
+    className="max-h-12 sm:max-h-16 w-auto object-contain select-none"
+    decoding="async"
+    loading="eager"
+  />
+);
 const IconMedium = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F81895dfac78f4bd88c3c0235d48fff80?format=webp&width=800"
@@ -100,7 +110,7 @@ const OPTIONS = [
       <>
         <span>รถตู้โดยสาร</span>
         <br />
-        9-15 ที่นั่ง
+        9-15 ที��นั่ง
       </>
     ),
     labelText: "รถตู้โดยสาร 9-15 ท��่นั่ง",
