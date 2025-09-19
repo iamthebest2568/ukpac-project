@@ -162,7 +162,7 @@ const StepTabs: React.FC<StepTabsProps> = ({ active, className }) => {
     <div className={`${className ? className + " " : ""}flex flex-nowrap justify-start items-center gap-0 mb-0`}>
       {tabs.map((Icon, idx) => {
         const isActive = idx + 1 === active;
-        const commonClasses = `text-center py-0 flex-1 min-w-0`;
+        const commonClasses = `text-center py-0 w-auto`;
         return (
           <div
             key={idx}
