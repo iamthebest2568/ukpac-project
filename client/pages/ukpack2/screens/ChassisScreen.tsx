@@ -221,7 +221,7 @@ const ChassisScreen: React.FC = () => {
               <img
                 src={HERO_SHADOW}
                 alt="เงารถ"
-                className="absolute w-[60%] max-w-[320px] pointer-events-none select-none"
+                className="absolute w-3/4 sm:w-[60%] max-w-[420px] pointer-events-none select-none"
                 style={{ bottom: "8px" }}
                 decoding="async"
                 loading="eager"
@@ -229,8 +229,9 @@ const ChassisScreen: React.FC = () => {
               />
               {/* bus + star overlay inside same box for precise alignment */}
               <div
-                className="relative w-[60%] max-w-[320px]"
-                style={{ height: "120px" }}
+                className="relative w-full sm:w-[60%] max-w-[480px]"
+                // use responsive height classes to better adapt across screens
+                style={{ height: "auto" }}
               >
                 {(() => {
                   const amenities = (() => {
