@@ -146,11 +146,24 @@ const SeatingScreen: React.FC = () => {
   const selectedTopdown = TOPDOWN_IMAGE[selectedChassis];
 
   const validateSeating = (): boolean => {
-    // Determine min/max from selected chassis
-    const minCapacityLocal = minByChassis[selectedChassis] ?? 16;
-    const maxCapacityLocal = maxByChassis[selectedChassis] ?? 50;
+    // fixed mapping for chassis ranges
+    const mappingMin: Record<string, number> = {
+      small: 16,
+      medium: 30,
+      large: 9,
+      extra: 8,
+    };
+    const mappingMax: Record<string, number> = {
+      small: 30,
+      medium: 50,
+      large: 15,
+      extra: 12,
+    };
 
-    // totalSeats must be provided and a number
+    const minCapacityLocal = mappingMin[selectedChassis] ?? 16;
+    const maxCapacityLocal = mappingMax[selectedChassis] ?? 50;
+
+    // totalSeats must be provided and numeric
     if (totalSeats === "" || typeof totalSeats !== "number") {
       setErrorTitle("กรุณาระบุจำนวนที่นั่งทั้งหมด");
       setErrorMessage(`กรุณากรอกจำนวนที่นั่งทั้งหมดในช่วง ${minCapacityLocal} ถึง ${maxCapacityLocal} ที่นั่ง`);
@@ -158,31 +171,27 @@ const SeatingScreen: React.FC = () => {
       return false;
     }
 
-    // Check range per chassis
+    // Check that totalSeats is within the exact allowed range for selected chassis
     if (totalSeats < minCapacityLocal || totalSeats > maxCapacityLocal) {
-      setErrorTitle("จำนวนที่นั่งไม่อยู่ในช่วงของรถที่เลือก");
-      setErrorMessage(
-        `คุณเลือก: ${CHASSIS_LABELS[selectedChassis]}. ค่าที่ถูกต้องคือ ${minCapacityLocal} ถึง ${maxCapacityLocal} ที่นั่ง แต่คุณกรอก ${totalSeats} ที่นั่ง`,
-      );
+      const chassisLabel = CHASSIS_LABELS[selectedChassis] || selectedChassis;
+      setErrorTitle("จำนวนที่นั่งไม่ถูกต้องสำหรับประเภทรถที่เลือก");
+      setErrorMessage(`คุณเลือก: ${chassisLabel}. ค่าที่ถูกต้องคือ ${minCapacityLocal} ถึง ${maxCapacityLocal} ที่นั่ง แต่คุณกรอก ${totalSeats}`);
       setErrorModalOpen(true);
       return false;
     }
 
-    // Coerce sub-fields to numbers (empty => 0)
-    const vSpecial = Number(specialSeats) || 0;
-    const vChild = Number(childElderSeats) || 0;
-    const vPreg = Number(pregnantSeats) || 0;
-    const vMonk = Number(monkSeats) || 0;
-    const vWheel = Number(wheelchairBikeSpaces) || 0;
+    // Sum sub-fields (treat empty as 0)
+    const sSpecial = Number(specialSeats) || 0;
+    const sChild = Number(childElderSeats) || 0;
+    const sPreg = Number(pregnantSeats) || 0;
+    const sMonk = Number(monkSeats) || 0;
+    const sWheel = Number(wheelchairBikeSpaces) || 0;
 
-    const sumSubs = vSpecial + vChild + vPreg + vMonk + vWheel;
+    const sumSubs = sSpecial + sChild + sPreg + sMonk + sWheel;
 
-    // Sum must exactly match totalSeats
     if (sumSubs !== totalSeats) {
-      setErrorTitle("ผลรวมของช่องย่อยไม่ตรงกับจำนวนทั้งหมด");
-      setErrorMessage(
-        `ผลรวมของช่องย่อย (${sumSubs}) ต้องเท่ากับ จำนวนที่นั่งทั้งหมด (${totalSeats}) กรุณาปรับค่าช่องย่อยหรือตัวเลขทั้งหมด`,
-      );
+      setErrorTitle("ผลรวมของที่นั่งย่อยไม่ตรงกัน");
+      setErrorMessage(`ผลรวมของที่นั่งย่อยทั้งหมด (${sumSubs}) ไม่ตรงกับจำนวนที่นั่งทั้งหมด (${totalSeats})`);
       setErrorModalOpen(true);
       return false;
     }
