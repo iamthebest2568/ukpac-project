@@ -102,7 +102,7 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   พัดลม: <IconFan />,
   ที่นั่งพิเศษ: <IconSeat />,
   "ที่จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
-  "ช่องชาร์จมือถือ/USB": <IconPlug />,
+  "ช่��งชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
   "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
   กล้องวงจรปิด: <IconCamSmall />,
@@ -123,77 +123,88 @@ const BUS_EMPLOY_ICON =
 
 const DEFAULT_COLORS = [
   {
-    // id mapped from user-provided list
     id: "353635-new",
     preview:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F6cd69d1c234d4a76a0ed41ea01305797?format=webp&width=800",
     filter: "hue-rotate(0deg) saturate(0) brightness(0.25)",
+    colorHex: "#353635",
   },
   {
     id: "7d53a2",
     preview:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F00940e952f104c52930267d96b4b2af5?format=webp&width=800",
     filter: "hue-rotate(300deg) saturate(1.2) brightness(0.9)",
+    colorHex: "#7d53a2",
   },
   {
     id: "fee000",
     preview:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb8bed674c69e4fbf8938b06844b190c9?format=webp&width=800",
     filter: "hue-rotate(60deg) saturate(1.4) brightness(1.1)",
+    colorHex: "#fee000",
   },
   {
     id: "bbbdbf",
     preview:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F803a56e88e08447c9ab15d0467c55ea3?format=webp&width=800",
     filter: "hue-rotate(0deg) saturate(0) brightness(0.8)",
+    colorHex: "#bbbdbf",
   },
   {
     id: "4453a4",
     preview:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F999ac23ceef54cff9055c12ac4974dee?format=webp&width=800",
     filter: "hue-rotate(220deg) saturate(1.3) brightness(0.95)",
+    colorHex: "#4453a4",
   },
   {
     id: "f68c1f",
     preview:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fdc1c5b39791f47e3bb6627c58b1d204d?format=webp&width=800",
     filter: "hue-rotate(30deg) saturate(1.3) brightness(1)",
+    colorHex: "#f68c1f",
   },
   {
     id: "ffffff",
     preview:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fba23b0e3eb784768b38ddd27be4dab85?format=webp&width=800",
     filter: "hue-rotate(0deg) saturate(0) brightness(1.4)",
+    colorHex: "#ffffff",
   },
   {
     id: "208541",
     preview:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F5bbf8091266941a7aa6661f5847195aa?format=webp&width=800",
     filter: "hue-rotate(120deg) saturate(1.3) brightness(0.95)",
+    colorHex: "#208541",
   },
   {
     id: "eb2127",
     preview:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F525c7ba870e843b382836543ad6603fb?format=webp&width=800",
     filter: "hue-rotate(0deg) saturate(1.6) brightness(0.95)",
+    colorHex: "#eb2127",
   },
   {
     id: "603a17",
     preview:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fd6e630c909ac4834a996652aee7ea713?format=webp&width=800",
     filter: "hue-rotate(20deg) saturate(0.8) brightness(0.7)",
+    colorHex: "#603a17",
   },
   {
     id: "6cc283",
     preview:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F3c92ed63c4ed420eb5fc8b6ac7233112?format=webp&width=800",
     filter: "hue-rotate(140deg) saturate(1.2) brightness(1)",
+    colorHex: "#6cc283",
   },
   {
     id: "ef416b",
     preview:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F581cd64e0d274cff87af2fcd0b172222?format=webp&width=800",
     filter: "hue-rotate(340deg) saturate(1.3) brightness(1)",
+    colorHex: "#ef416b",
   },
 ];
 
@@ -224,7 +235,7 @@ const DesignScreen: React.FC = () => {
   return (
     <>
       <MetaUpdater
-        title="UK PACT - กรุงเทพฯ ลดติด"
+        title="UK PACT - ���รุงเทพฯ ลดติด"
         description="ออกแบบรถเมล์เพื่อช่วยลดปัญหาการจราจรในกรุงเทพฯ — เลือกขนาดรถ สี และสิ่งอำนวยความสะดวกที่ต้องการ"
         image="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F44cea8aeb6d4415e899494a90c6f59b1?format=webp&width=1200"
       />
