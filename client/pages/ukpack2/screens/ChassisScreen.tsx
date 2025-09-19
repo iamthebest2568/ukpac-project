@@ -19,7 +19,7 @@ const AMENITIES_ICON_SMALL = {
     "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb0789bfd1100472f8351704764607d31?format=webp&width=800",
 };
 const PAYMENT_ICON_SMALL: Record<string, string> = {
-  เงินสด:
+  เง���นสด:
     "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fbc8b22cedfbb4640a702f724881f196d?format=webp&width=800",
   สแกนจ่าย:
     "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb8992da4be824b339d3df5f0a076ed93?format=webp&width=800",
@@ -246,59 +246,61 @@ const ChassisScreen: React.FC = () => {
 
           {/* Right: tabs + selection cards (full width) */}
           <div className={styles.controlsWrapper}>
-            <div className={styles.tabsWrapper}>
-              <StepTabs active={1} className={styles.containerPadding} />
-            </div>
+            <div className={styles.controlsBox}>
+              <div className={`${styles.tabsWrapper} ${styles.containerPadding}`}>
+                <StepTabs active={1} className={styles.containerPadding} />
+              </div>
 
-            <div style={{ marginTop: 12 }}>
-              <div className={styles.selectionGrid}>
-                <SelectionCard
-                  key={OPTIONS[0].key}
-                  icon={OPTIONS[0].icon}
-                  label={OPTIONS[0].label}
-                  isSelected={selected === OPTIONS[0].key}
-                  onClick={() => setSelected(OPTIONS[0].key)}
-                  variant="light"
-                  appearance="bare"
-                  hideLabel={true}
-                  size="sm"
-                />
+              <div className={styles.controlsContent}>
+                <div className={styles.selectionGrid}>
+                  <SelectionCard
+                    key={OPTIONS[0].key}
+                    icon={OPTIONS[0].icon}
+                    label={OPTIONS[0].label}
+                    isSelected={selected === OPTIONS[0].key}
+                    onClick={() => setSelected(OPTIONS[0].key)}
+                    variant="light"
+                    appearance="bare"
+                    hideLabel={true}
+                    size="sm"
+                  />
 
-                <SelectionCard
-                  key={OPTIONS[1].key}
-                  icon={OPTIONS[1].icon}
-                  label={OPTIONS[1].label}
-                  isSelected={selected === OPTIONS[1].key}
-                  onClick={() => setSelected(OPTIONS[1].key)}
-                  variant="light"
-                  appearance="bare"
-                  hideLabel={true}
-                  size="lg"
-                />
+                  <SelectionCard
+                    key={OPTIONS[1].key}
+                    icon={OPTIONS[1].icon}
+                    label={OPTIONS[1].label}
+                    isSelected={selected === OPTIONS[1].key}
+                    onClick={() => setSelected(OPTIONS[1].key)}
+                    variant="light"
+                    appearance="bare"
+                    hideLabel={true}
+                    size="lg"
+                  />
 
-                <SelectionCard
-                  key={OPTIONS[2].key}
-                  icon={OPTIONS[2].icon}
-                  label={OPTIONS[2].label}
-                  isSelected={selected === OPTIONS[2].key}
-                  onClick={() => setSelected(OPTIONS[2].key)}
-                  variant="light"
-                  appearance="bare"
-                  hideLabel={true}
-                  size="sm"
-                />
+                  <SelectionCard
+                    key={OPTIONS[2].key}
+                    icon={OPTIONS[2].icon}
+                    label={OPTIONS[2].label}
+                    isSelected={selected === OPTIONS[2].key}
+                    onClick={() => setSelected(OPTIONS[2].key)}
+                    variant="light"
+                    appearance="bare"
+                    hideLabel={true}
+                    size="sm"
+                  />
 
-                <SelectionCard
-                  key={OPTIONS[3].key}
-                  icon={OPTIONS[3].icon}
-                  label={OPTIONS[3].label}
-                  isSelected={selected === OPTIONS[3].key}
-                  onClick={() => setSelected(OPTIONS[3].key)}
-                  variant="light"
-                  appearance="bare"
-                  hideLabel={true}
-                  size="sm"
-                />
+                  <SelectionCard
+                    key={OPTIONS[3].key}
+                    icon={OPTIONS[3].icon}
+                    label={OPTIONS[3].label}
+                    isSelected={selected === OPTIONS[3].key}
+                    onClick={() => setSelected(OPTIONS[3].key)}
+                    variant="light"
+                    appearance="bare"
+                    hideLabel={true}
+                    size="sm"
+                  />
+                </div>
               </div>
             </div>
           </div>
