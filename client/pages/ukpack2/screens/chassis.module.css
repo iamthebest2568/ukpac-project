@@ -118,15 +118,32 @@
 
 
 /* Controls box: frame around tabs + content. Tabs will visually sit above the top border */
+:root{
+  --controls-border-width: 2px;
+}
+
 .controlsBox {
-  border: 2px solid #000D59; /* increased thickness, updated color */
+  --bw: var(--controls-border-width);
+  border: var(--bw) solid #000D59; /* responsive border width via CSS variable */
   border-radius: 8px;
   background: #ffffff;
   overflow: visible;
   box-sizing: border-box;
   position: relative;
   z-index: 0; /* default stacking for frame */
-  padding-top: 0; /* rely on controlsContent for inner spacing */
+  padding: calc(var(--bw) * 1) 0 12px 0; /* small top padding to separate tabs */
+  min-height: 128px; /* ensure a minimum visible area for controls */
+  transition: border-color 150ms ease, border-width 150ms ease;
+}
+
+@media (max-width: 639px) {
+  :root { --controls-border-width: 1px; }
+  .controlsBox { min-height: 110px; }
+}
+
+@media (min-width: 1024px) {
+  :root { --controls-border-width: 3px; }
+  .controlsBox { min-height: 160px; }
 }
 
 /* Move tabs up to overlap the top border so the border appears under the tabs */
@@ -163,12 +180,6 @@
   }
 }
 
-@media (min-width: 768px) {
-  .selectionGrid {
-    grid-template-columns: repeat(4, 1fr); /* 4 columns on md+ */
-    gap: 2px; /* tightened gap between icons on wider screens */
-  }
-}
 
 /* Fixed footer that uses same horizontal padding as content */
 .fixedFooter {
