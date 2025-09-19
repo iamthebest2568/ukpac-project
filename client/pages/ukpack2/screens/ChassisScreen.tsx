@@ -7,6 +7,7 @@ import StepTabs from "../../ukpack2/components/StepTabs";
 import ConfirmModal from "../components/ConfirmModal";
 import { clearDesignStorage } from "../../ukpack2/utils/clearDesign";
 import VehiclePreview from "../components/VehiclePreview";
+import styles from "./chassis.module.css";
 
 const AMENITIES_ICON_SMALL = {
   แอร์: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fee1c18a935564e92bb49991fac3b76df?format=webp&width=800",
@@ -102,7 +103,7 @@ const OPTIONS = [
         9-15 ที่นั่ง
       </>
     ),
-    labelText: "รถ���ู้โดยสาร 9-15 ที่นั่ง",
+    labelText: "รถตู้โดยสาร 9-15 ที่นั่ง",
     icon: <IconLarge />,
   },
   {
