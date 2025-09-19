@@ -1,7 +1,5 @@
 import React from "react";
 
-import React from "react";
-
 interface SelectionCardProps {
   icon: React.ReactNode;
   label: React.ReactNode;
