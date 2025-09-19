@@ -30,8 +30,8 @@ const VehiclePreview: React.FC<Props> = ({
           <img
             src={SHADOW_URL}
             alt="เงา"
-            className="absolute w-[60%] sm:w-[65%] md:w-[70%] lg:w-[75%] max-w-[320px] sm:max-w-[380px] md:max-w-[480px] pointer-events-none select-none"
-            style={{ bottom: "12px" }}
+            className="absolute w-[60%] max-w-[320px] pointer-events-none select-none"
+            style={{ bottom: "8px" }}
             decoding="async"
             loading="eager"
             aria-hidden="true"
