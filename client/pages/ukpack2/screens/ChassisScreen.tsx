@@ -149,14 +149,14 @@ const OPTIONS = [
   {
     key: "extra",
     label: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
-    labelText: "รถกะบะดัดแปลง 8–12 ที่นั่���",
+    labelText: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
     icon: <IconExtra />,
   },
 ];
 
 const HERO_IMAGE: Record<string, string> = {
   small:
-    "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fd3d563bd119e4ea9b33dc9bc72ad4d7b?format=webp&width=800",
+    "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F20092528ba1e4f2eb4562515ccb6f75a?format=webp&width=800",
   medium:
     "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fbcd1013232914b39b73ebd2bd35d7bbd",
   large:
