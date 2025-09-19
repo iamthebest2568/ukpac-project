@@ -155,8 +155,8 @@
   padding: 0;
 }
 
-/* ensure inner tab items stretch to fill full-bleed container */
-.tabsWrapper > .flex { width: 100%; }
+/* ensure inner tab items stretch to fill full-bleed container and small gap between tabs */
+.tabsWrapper > .flex { width: 100%; gap: 1px !important; }
 
 /* increase tab inner height to scale with width increase */
 .tabInner {
