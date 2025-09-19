@@ -110,7 +110,7 @@ const OPTIONS = [
       <>
         <span>รถตู้โดยสาร</span>
         <br />
-        9-15 ที��นั่ง
+        9-15 ที่นั่ง
       </>
     ),
     labelText: "รถตู้โดยสาร 9-15 ท��่นั่ง",
@@ -254,7 +254,7 @@ const ChassisScreen: React.FC = () => {
                 <div className={styles.selectionGrid}>
                   <SelectionCard
                     key={OPTIONS[0].key}
-                    icon={OPTIONS[0].icon}
+                    icon={selected === OPTIONS[0].key ? <IconSmallAlt /> : <IconSmall />}
                     label={OPTIONS[0].label}
                     isSelected={selected === OPTIONS[0].key}
                     onClick={() => setSelected(OPTIONS[0].key)}
@@ -309,7 +309,7 @@ const ChassisScreen: React.FC = () => {
       <ConfirmModal
         isOpen={isExitModalOpen}
         title="ออกจากหน้าจอ"
-        message="คุณแน่ใจหรือไม่ว่าต้องการ��อก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
+        message="คุณแน่ใจหรือไม่ว่าต้องการ��อก? การเปลี่ยนแปลงของคุณจะไม่ถูกบ���นทึก"
         onConfirm={confirmExit}
         onCancel={() => setExitModalOpen(false)}
         contentClassName={`${styles.containerPadding} ${styles.modalContent}`}
