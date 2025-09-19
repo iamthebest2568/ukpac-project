@@ -171,7 +171,7 @@ const SeatingScreen: React.FC = () => {
     if (typeof totalSeats === "number" && totalSeats > maxCapacity) {
       setErrorTitle("จำนวนที่นั่งเกินขีดจำกัด");
       setErrorMessage(
-        `รถประเภทนี้สามารถมีที่นั่งได้ส��งสุด ${maxCapacity} ที่นั่ง กรุณากรอ��จำนวนระหว่าง ${minCapacity} ถึง ${maxCapacity}`,
+        `รถประเภทนี้สามารถมีที่นั่งได้ส��งสุด ${maxCapacity} ที่นั่ง กรุณากรอกจำนวนระหว่าง ${minCapacity} ถึง ${maxCapacity}`,
       );
       setErrorModalOpen(true);
       return false;
@@ -321,6 +321,32 @@ const SeatingScreen: React.FC = () => {
                   style={{ borderWidth: 3, borderColor: 'rgba(0,13,89,1)' }}
                   min={0}
                   max={maxCapacity}
+                />
+              </div>
+
+              <div className="flex items-center justify-between mt-4">
+                <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">
+                  จำนวนที่นั่งพิเศษ
+                </div>
+                <input
+                  id="specialSeats"
+                  type="number"
+                  min={0}
+                  max={maxCapacity}
+                  value={specialSeats === "" ? "" : specialSeats}
+                  onFocus={() => {
+                    if (specialSeats === 0) setSpecialSeats("");
+                  }}
+                  onChange={(e) => {
+                    const raw = e.target.value;
+                    if (raw === "") {
+                      setSpecialSeats("");
+                      return;
+                    }
+                    const parsed = Math.max(0, Math.min(maxCapacity, parseInt(raw || "0", 10)));
+                    setSpecialSeats(parsed);
+                  }}
+                  className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-full text-[#003366] bg-white text-right"
                 />
               </div>
 
