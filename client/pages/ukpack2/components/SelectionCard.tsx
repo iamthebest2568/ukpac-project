@@ -1,5 +1,7 @@
 import React from "react";
 
+import React from "react";
+
 interface SelectionCardProps {
   icon: React.ReactNode;
   label: React.ReactNode;
@@ -34,6 +36,19 @@ const SelectionCard: React.FC<SelectionCardProps> = ({
         : isLight
           ? "bg-white text-[#003366] border border-gray-400"
           : "bg-transparent text-white border border-[#081042]";
+
+  // Normalize icon sizes: ensure icons (img/svg) scale to the container height
+  let normalizedIcon = icon;
+  try {
+    if (React.isValidElement(icon)) {
+      const originalProps: any = (icon as React.ReactElement).props || {};
+      const mergedStyle = { ...(originalProps.style || {}), maxHeight: '100%', width: 'auto' };
+      const mergedClassName = `${originalProps.className || ''} max-h-full w-auto`.trim();
+      normalizedIcon = React.cloneElement(icon as React.ReactElement, { ...originalProps, style: mergedStyle, className: mergedClassName });
+    }
+  } catch (e) {
+    normalizedIcon = icon;
+  }
 
   // Group appearance: circular icon wrapper, responsive sizes
   if (appearance === "group") {
