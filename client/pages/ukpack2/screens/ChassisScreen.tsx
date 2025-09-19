@@ -301,10 +301,10 @@ const ChassisScreen: React.FC = () => {
 
                   <SelectionCard
                     key={OPTIONS[2].key}
-                    icon={OPTIONS[2].icon}
+                    icon={thirdIconClicked ? <IconLargeAlt /> : <IconLarge />}
                     label={OPTIONS[2].label}
                     isSelected={selected === OPTIONS[2].key}
-                    onClick={() => setSelected(OPTIONS[2].key)}
+                    onClick={() => { setSelected(OPTIONS[2].key); setThirdIconClicked(true); }}
                     variant="light"
                     appearance="bare"
                     hideLabel={true}
