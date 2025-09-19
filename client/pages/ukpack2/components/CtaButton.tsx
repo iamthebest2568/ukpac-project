@@ -16,6 +16,8 @@ const CtaButton: React.FC<CtaButtonProps> = ({
   const baseStyle: React.CSSProperties = {
     paddingLeft: "calc(1.5rem + 7.5px)",
     paddingRight: "calc(1.5rem + 7.5px)",
+    minWidth: "220px",
+    boxSizing: "border-box",
   };
   return (
     <button
