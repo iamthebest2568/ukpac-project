@@ -159,12 +159,12 @@
 .tabsWrapper > .flex { width: 100%; }
 
 /* increase tab inner height by 2px: base +2 (was 32px -> 34px) */
-.tabInner_1 {
+.tabInner {
   height: 34px; /* mobile */
 }
 
 @media (min-width: 768px) {
-  .tabInner_1 { height: 42px; } /* desktop: 40 -> 42 */
+  .tabInner { height: 42px; } /* desktop: 40 -> 42 */
 }
 
 .controlsContent {
