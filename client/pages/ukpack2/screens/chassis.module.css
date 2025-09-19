@@ -113,7 +113,7 @@
 
 /* Controls box: frame around tabs + content. Tabs will visually sit above the top border */
 .controlsBox {
-  border: 2px solid #d1d5db; /* increased thickness */
+  border: 2px solid #000D59; /* increased thickness, updated color */
   border-radius: 8px;
   background: #ffffff;
   overflow: visible;
