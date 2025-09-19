@@ -229,7 +229,7 @@ const ChassisScreen: React.FC = () => {
 
                 <img
                   src={HERO_STAR}
-                  alt="สัญลักษณ์ดาว"
+                  alt="สัญลักษณ์��าว"
                   className={styles.starBadge}
                   decoding="async"
                   loading="eager"
@@ -247,7 +247,7 @@ const ChassisScreen: React.FC = () => {
           {/* Right: tabs + selection cards (full width) */}
           <div className={styles.controlsWrapper}>
             <div className={styles.tabsWrapper}>
-              <StepTabs active={1} />
+              <StepTabs active={1} className={styles.containerPadding} />
             </div>
 
             <div style={{ marginTop: 12 }}>
