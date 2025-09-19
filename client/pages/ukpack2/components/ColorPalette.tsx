@@ -1,9 +1,12 @@
 import React from "react";
 
+type ColorItem = { preview: string; id?: string; colorHex?: string } | string;
+
 interface ColorPaletteProps {
-  colors: string[];
+  colors: ColorItem[];
   selectedColor?: string;
-  onColorSelect: (color: string) => void;
+  // Now emits colorHex (eg. "#7d53a2") and the preview URL for reference
+  onColorSelect: (colorHex: string | null, preview?: string) => void;
 }
 
 const ColorPalette: React.FC<ColorPaletteProps> = ({
@@ -14,19 +17,21 @@ const ColorPalette: React.FC<ColorPaletteProps> = ({
   return (
     <div className="w-full">
       <div className="grid grid-cols-6 sm:grid-cols-6 md:grid-cols-6 gap-3">
-        {colors.map((c) => {
+        {colors.map((item) => {
+          const c = typeof item === "string" ? item : item.preview;
+          const colorHex = typeof item === "string" ? null : item.colorHex || null;
           const isSelected =
-            c.toLowerCase() === (selectedColor || "").toLowerCase();
+            (c || "").toLowerCase() === (selectedColor || "").toLowerCase();
           const isImage = c.startsWith("http");
           return (
             <button
               key={c}
               type="button"
-              onClick={() => onColorSelect(c)}
+              onClick={() => onColorSelect(colorHex, c)}
               onKeyDown={(e) => {
                 if (e.key === "Enter" || e.key === " ") {
                   e.preventDefault();
-                  onColorSelect(c);
+                  onColorSelect(colorHex, c);
                 }
               }}
               aria-pressed={isSelected}
