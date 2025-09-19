@@ -45,7 +45,7 @@ const IconSmall = () => (
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F02db4c9e3b9d40c78d7d829d6e607b66?format=webp&width=800"
     alt=""
     aria-hidden="true"
-    className="max-h-12 sm:max-h-16 w-auto object-contain select-none"
+    className="h-full w-auto object-contain select-none"
     decoding="async"
     loading="eager"
   />
@@ -55,7 +55,7 @@ const IconSmallAlt = () => (
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F30205d6e380e4cd9a9ba998f9067d507?format=webp&width=800"
     alt=""
     aria-hidden="true"
-    className="max-h-12 sm:max-h-16 w-auto object-contain select-none"
+    className="h-full w-auto object-contain select-none"
     decoding="async"
     loading="eager"
   />
@@ -65,7 +65,7 @@ const IconMedium = () => (
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F690f66728c0b4605a14b1280e2651e0a?format=webp&width=800"
     alt=""
     aria-hidden="true"
-    className="max-h-12 sm:max-h-16 w-auto object-contain select-none"
+    className="h-full w-auto object-contain select-none"
     decoding="async"
     loading="eager"
   />
@@ -75,7 +75,7 @@ const IconMediumAlt = () => (
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F7e854e4440014ff5ad1f9e6b6f982923?format=webp&width=800"
     alt=""
     aria-hidden="true"
-    className="max-h-12 sm:max-h-16 w-auto object-contain select-none"
+    className="h-full w-auto object-contain select-none"
     decoding="async"
     loading="eager"
   />
