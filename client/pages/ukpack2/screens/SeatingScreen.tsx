@@ -21,7 +21,7 @@ const SeatingScreen: React.FC = () => {
   const [isExitModalOpen, setExitModalOpen] = useState(false);
   const [isErrorModalOpen, setErrorModalOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
-  const [errorTitle, setErrorTitle] = useState<string>("��้อผิดพลาด");
+  const [errorTitle, setErrorTitle] = useState<string>("��้อผ��ดพลาด");
 
   const maxByChassis: Record<string, number> = {
     small: 30,
@@ -148,7 +148,7 @@ const SeatingScreen: React.FC = () => {
   const validateSeating = (): boolean => {
     const minCapacity = minByChassis[selectedChassis] ?? 16;
     const specialSeatsTotal =
-      (Number(pregnantSeats) || 0) + (Number(childElderSeats) || 0) + (Number(monkSeats) || 0) + (Number(wheelchairBikeSpaces) || 0);
+      (Number(specialSeats) || 0) + (Number(pregnantSeats) || 0) + (Number(childElderSeats) || 0) + (Number(monkSeats) || 0) + (Number(wheelchairBikeSpaces) || 0);
 
     // Ensure total seats provided
     if (totalSeats === "") {
