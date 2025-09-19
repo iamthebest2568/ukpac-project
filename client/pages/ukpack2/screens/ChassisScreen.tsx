@@ -214,7 +214,7 @@ const ChassisScreen: React.FC = () => {
       >
         <div className={styles.container}>
           {/* Left: preview area (full width) */}
-          <div className={styles.previewColumn}>
+          <div className={`${styles.previewColumn} px-4 md:px-6`}>
             <div className={styles.previewInner}>
               <img
                 src={HERO_SHADOW}
@@ -265,7 +265,7 @@ const ChassisScreen: React.FC = () => {
           </div>
 
           {/* Right: tabs + selection cards (full width) */}
-          <div className={styles.controls}>
+          <div className={`${styles.controls} px-4 md:px-6`}>
             <div className={styles.tabsWrapper}>
               <StepTabs active={1} />
             </div>
