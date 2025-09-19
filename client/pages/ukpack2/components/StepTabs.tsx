@@ -156,7 +156,7 @@ const TAB4_IMG =
 const TAB5_IMG =
   "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F722988d425e141738e4c3ef3c5521b1d?format=webp&width=800";
 
-const StepTabs: React.FC<StepTabsProps> = ({ active }) => {
+const StepTabs: React.FC<StepTabsProps> = ({ active, className }) => {
   const tabs = [BusIcon, DeckIcon, ChairIcon, TvIcon, ReceiptIcon];
   return (
     <div className={`${className ? className + " " : ""}flex flex-nowrap justify-between md:justify-around items-center gap-0 mb-4`}>
