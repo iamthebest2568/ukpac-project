@@ -422,87 +422,26 @@ const DesignScreen: React.FC = () => {
                 ออกแบบสี
               </h2>
               <ColorPalette
-                colors={DEFAULT_COLORS.map((c) => c.preview)}
+                colors={DEFAULT_COLORS}
                 selectedColor={color?.preview || DEFAULT_COLORS[0].preview}
-                onColorSelect={(colorUrl) => {
-                  if (!colorUrl) return;
-
-                  const normalize = (s: string) =>
-                    s
-                      .toLowerCase()
-                      .trim()
-                      .replace(/\?.*$/, "") // remove query
-                      .replace(/\.(svg|webp|png|jpg|jpeg)$/, "")
-                      .replace(/[_\s]/g, "-")
-                      .replace(/[^a-z0-9\-]/g, "");
-
-                  const target = normalize(colorUrl);
-
-                  // 1) exact URL match
-                  let foundColor = DEFAULT_COLORS.find(
-                    (c) => normalize(c.preview) === target,
-                  );
-
-                  // 2) exact last-segment match or includes match
-                  if (!foundColor) {
-                    foundColor = DEFAULT_COLORS.find((c) => {
-                      try {
-                        const url = c.preview;
-                        const parts = url.split("/");
-                        let last = parts[parts.length - 1] || url;
-                        last = last.split("?")[0];
-                        return (
-                          normalize(last).includes(target) ||
-                          normalize(url).includes(target)
-                        );
-                      } catch (e) {
-                        return false;
-                      }
-                    });
+                onColorSelect={(colorHex, preview) => {
+                  // colorHex is passed directly by the palette when available
+                  // preview is the image URL clicked
+                  let foundColor = undefined as (typeof DEFAULT_COLORS)[0] | undefined;
+                  if (preview) {
+                    foundColor = DEFAULT_COLORS.find((c) => c.preview === preview);
                   }
 
-                  // 3) fallback: substring match on preview
-                  if (!foundColor) {
-                    foundColor = DEFAULT_COLORS.find((c) =>
-                      normalize(c.preview).includes(target),
-                    );
+                  if (!foundColor && colorHex) {
+                    foundColor = DEFAULT_COLORS.find((c) => c.colorHex === colorHex);
                   }
-
-                  // derive possible hex from filename/id (strip -new suffix)
-                  const deriveHex = (input?: string | null) => {
-                    if (!input) return null;
-                    try {
-                      let s = input.toLowerCase().trim();
-                      s = s.replace(/\?.*$/, "");
-                      s = s.replace(/\.(svg|webp|png|jpg|jpeg)$/, "");
-                      // take last path segment if url
-                      if (s.includes("/")) s = s.split("/").pop() || s;
-                      // remove known suffix -new
-                      s = s.replace(/-new$/, "");
-                      // remove non hex chars
-                      const maybe = s.replace(/[^0-9a-f]/g, "");
-                      if (/^[0-9a-f]{6}$/.test(maybe)) return `#${maybe}`;
-                      return null;
-                    } catch (e) {
-                      return null;
-                    }
-                  };
-
-                  const hexFromFound = deriveHex(foundColor?.id || null);
-                  const hexFromUrl = deriveHex(colorUrl);
-                  const hex = hexFromFound || hexFromUrl;
 
                   if (foundColor) {
-                    if (hex) setColor({ ...foundColor, colorHex: hex });
+                    if (colorHex) setColor({ ...foundColor, colorHex });
                     else setColor(foundColor);
-                  } else if (hex) {
-                    // create a synthetic color object so VehiclePreview can use colorHex
-                    setColor({
-                      preview: colorUrl,
-                      filter: null,
-                      id: hex.replace("#", ""),
-                      colorHex: hex,
-                    } as any);
+                  } else if (colorHex) {
+                    // synthetic object so VehiclePreview can use colorHex
+                    setColor({ preview: preview || color?.preview, filter: null, id: colorHex.replace('#', ''), colorHex } as any);
                   }
                 }}
               />
