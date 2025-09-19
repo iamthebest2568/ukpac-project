@@ -21,9 +21,10 @@ const VehiclePreview: React.FC<Props> = ({
   label,
   overlayLabels = [],
   overlayIconMap = {},
-  placeholderText = "ภาพสำหรับรุ่นนี้จะถูกเพิ��มภายหลัง",
+  placeholderText = "ภาพสำหรับรุ่นนี้จะถูกเพิ่มภายหลัง",
   colorFilter = null,
   colorHex = null,
+  className,
 }) => {
   return (
     <div className={`w-full rounded-md flex flex-col items-center justify-center gap-2 ${className || ""}`}>
