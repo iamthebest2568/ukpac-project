@@ -42,7 +42,7 @@ const VehiclePreview: React.FC<Props> = ({
             style={{ height: "120px" }}
           >
             {overlayLabels && overlayLabels.length > 0 && (
-              <div className="absolute left-1/2 transform -translate-x-1/2 -top-4 flex items-center gap-2 z-20 max-w-[80%] sm:max-w-[85%] md:max-w-[95%] overflow-x-auto whitespace-nowrap">
+              <div className="absolute left-1/2 transform -translate-x-1/2 -top-4 flex items-center gap-2 z-20 max-w-[85%] sm:max-w-[90%] md:max-w-[100%] overflow-x-auto whitespace-nowrap">
                 {overlayLabels.map((lab, i) => {
                   const srcOrNode = overlayIconMap[lab];
                   return (
