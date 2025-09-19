@@ -123,7 +123,7 @@ const BUS_EMPLOY_ICON =
 
 const DEFAULT_COLORS = [
   {
-    preview: "#353635",
+    preview: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Ff8cd07f7173d434181ef5bb4859e14af?format=webp&width=800",
     filter: "hue-rotate(0deg) saturate(0) brightness(0.25)",
   },
   {
