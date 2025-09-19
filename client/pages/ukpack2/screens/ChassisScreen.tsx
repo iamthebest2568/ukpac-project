@@ -225,6 +225,7 @@ const ChassisScreen: React.FC = () => {
                   overlayIconMap={{ ...AMENITIES_ICON_SMALL, ...PAYMENT_ICON_SMALL, ...DOOR_ICON_SMALL }}
                   colorHex={null}
                   className={styles.containerPadding}
+                  showSelectedText={true}
                 />
 
                 <img
@@ -238,10 +239,6 @@ const ChassisScreen: React.FC = () => {
               </div>
             </div>
 
-            <p className={styles.selectedLabel}>
-              <span className="chassis-label-mobile">รถที่เลือก : </span>
-              {selectedLabel}
-            </p>
 
           </div>
 
