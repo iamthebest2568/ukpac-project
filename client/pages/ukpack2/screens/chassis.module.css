@@ -1,126 +1,151 @@
-/* Isolated styles for ChassisScreen (full-width, responsive)
-   This file is intentionally self-contained and uses conservative defaults
-   so the page renders correctly even if global Tailwind styles are absent. */
+/* Page-scoped layout for /ukpack2/chassis
+   - Isolated CSS module to control horizontal spacing and grid layout
+   - Mobile: 16px (1rem) -> px-4
+   - Tablet (>=640px): 24px (1.5rem) -> px-6
+   - Desktop (>=1024px): 32px (2rem) -> px-8
+*/
 :root{
   --chassis-gap: 16px;
   --chassis-accent: #001a73;
 }
 
-/* Container: full viewport width with responsive 1 / 2 column layout */
-.container {
-  width: 100vw !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  box-sizing: border-box !important;
-  display: grid !important;
-  grid-template-columns: 1fr !important;
-  gap: var(--chassis-gap) !important;
+/* Horizontal padding container used across header, main content, footer, modal */
+.containerPadding {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  box-sizing: border-box;
 }
 
-@media (min-width: 768px) {
-  .container {
-    grid-template-columns: 1fr 1fr !important;
+@media (min-width: 640px) {
+  .containerPadding {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
   }
 }
 
-/* Left column (preview) */
-.previewColumn {
-  width: 100% !important;
-  margin: 0 auto !important;
-  padding: 0 !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  box-sizing: border-box !important;
+@media (min-width: 1024px) {
+  .containerPadding {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Main content grid: 1 column mobile, 2 columns from md */
+.contentGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--chassis-gap);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  .contentGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Left preview wrapper and inner preview (no forced horizontal padding here) */
+.previewWrapper {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .previewInner {
-  width: 100% !important;
-  max-width: 1200px !important;
-  margin: 0 auto !important;
-
-  box-sizing: border-box !important;
-  position: relative !important;
-  min-height: 140px !important;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  position: relative;
+  min-height: 140px;
 }
 
 .shadowImg {
-  position: absolute !important;
-  left: 0 !important;
-  right: 0 !important;
-  margin: 0 auto !important;
-  width: 100% !important;
-  height: auto !important;
-  max-width: 1200px !important;
-  bottom: 8px !important;
-  pointer-events: none !important;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 100%;
+  height: auto;
+  max-width: 1200px;
+  bottom: 8px;
+  pointer-events: none;
 }
 
 .heroImg {
-  display: block !important;
-  width: 100% !important;
-  height: auto !important;
-  object-fit: contain !important;
-  margin: 0 auto !important;
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  margin: 0 auto;
 }
 
 .starBadge {
-  position: absolute !important;
-  width: 20px !important;
-  height: 20px !important;
-  top: 6px !important;
-  right: 6px !important;
-  pointer-events: none !important;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 6px;
+  right: 6px;
+  pointer-events: none;
 }
 
 .selectedLabel {
-  margin-top: 12px !important;
-  font-family: inherit !important;
-  font-weight: 600 !important;
-  color: var(--chassis-accent) !important;
-  text-align: center !important;
-  width: 100% !important;
-  box-sizing: border-box !important;
-
+  margin-top: 12px;
+  font-family: inherit;
+  font-weight: 600;
+  color: var(--chassis-accent);
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-/* Right column (controls) */
-.controls {
-  width: 100% !important;
-  box-sizing: border-box !important;
-  background: #ffffff !important;
-  border-radius: 0 !important;
+/* Right controls wrapper */
+.controlsWrapper {
+  width: 100%;
+  box-sizing: border-box;
+  background: #ffffff;
+  border-radius: 0;
 }
 
-/* Tabs container override to ensure full-width and no extra gaps */
 .tabsWrapper {
-  width: 100% !important;
-  margin: 0 !important;
-  padding: 0 !important;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
-/* Selection grid */
 .selectionGrid {
-  display: grid !important;
-  grid-template-columns: repeat(2, 1fr) !important;
-  gap: var(--chassis-gap) !important;
-  width: 100% !important;
-  box-sizing: border-box !important;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--chassis-gap);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 @media (min-width: 1024px) {
   .selectionGrid {
-    grid-template-columns: repeat(2, 1fr) !important;
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* Footer area (CTA) - make sure full width and pinned to bottom */
-.footerInner {
-  width: 100% !important;
-  padding: 8px 12px !important;
-  box-sizing: border-box !important;
+/* Fixed footer that uses same horizontal padding as content */
+.fixedFooter {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0; /* will be positioned by CustomizationScreen outer offset as needed */
+  z-index: 60;
+}
+
+/* Modal content should respect same horizontal padding when centered */
+.modalContent {
+  width: 100%;
+  max-width: 640px;
+  box-sizing: border-box;
 }
 
 /* Small helpers */
-.center { display:flex !important; align-items:center !important; justify-content:center !important; }
-.hidden { display:none !important; }
+.center { display:flex; align-items:center; justify-content:center; }
+.hidden { display:none; }
