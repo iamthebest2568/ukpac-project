@@ -30,6 +30,7 @@ const VehiclePreview: React.FC<Props> = ({
   colorHex = null,
   className,
   showSelectedText = false,
+  starSrc = null,
 }) => {
   const shadowRef = useRef<HTMLImageElement | null>(null);
   const carRef = useRef<HTMLImageElement | null>(null);
