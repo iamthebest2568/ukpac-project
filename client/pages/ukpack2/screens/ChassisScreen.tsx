@@ -142,6 +142,7 @@ const HERO_STAR =
 const ChassisScreen: React.FC = () => {
   const navigate = useNavigate();
   const [selected, setSelected] = useState<string>(OPTIONS[0].key);
+  const [firstIconClicked, setFirstIconClicked] = useState<boolean>(false);
   const selectedLabel = useMemo(() => {
     const found = OPTIONS.find((o) => o.key === selected)?.labelText || "";
     return String(found).replace(/(\d+)-(\d+)/, "$1–$2");
@@ -309,7 +310,7 @@ const ChassisScreen: React.FC = () => {
       <ConfirmModal
         isOpen={isExitModalOpen}
         title="ออกจากหน้าจอ"
-        message="คุณแน่ใจหรือไม่ว่าต้องการ��อก? การเปลี่ยนแปลงของคุณจะไม่ถูกบ���นทึก"
+        message="คุณแน่ใจหรือไม่ว่าต้องการ��อก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
         onConfirm={confirmExit}
         onCancel={() => setExitModalOpen(false)}
         contentClassName={`${styles.containerPadding} ${styles.modalContent}`}
