@@ -14,6 +14,8 @@ interface Props {
   colorHex?: string | null;
   // optional className to allow page-scoped padding/alignment
   className?: string;
+  // when true, VehiclePreview will render a "รถที่เลือก : {label}" line beneath the preview
+  showSelectedText?: boolean;
 }
 
 const VehiclePreview: React.FC<Props> = ({
@@ -25,6 +27,7 @@ const VehiclePreview: React.FC<Props> = ({
   colorFilter = null,
   colorHex = null,
   className,
+  showSelectedText = false,
 }) => {
   return (
     <div className={`w-full rounded-md flex flex-col items-center justify-center gap-2 ${className || ""}`}>
@@ -118,6 +121,17 @@ const VehiclePreview: React.FC<Props> = ({
       ) : (
         <div className="w-full h-48 bg-[#081042] rounded-md flex items-center justify-center text-sm text-gray-300">
           {placeholderText}
+        </div>
+      )}
+
+      {showSelectedText && label && (
+        <div
+          role="group"
+          aria-label="vehicle-label"
+          className="mt-2 font-prompt font-semibold text-[#001a73] text-center text-sm md:text-base max-w-[320px] mx-auto"
+        >
+          <span className="chassis-label-mobile">รถที่เลือก : </span>
+          {label}
         </div>
       )}
 
