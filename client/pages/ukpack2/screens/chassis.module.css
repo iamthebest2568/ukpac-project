@@ -158,13 +158,19 @@
 /* ensure inner tab items stretch to fill full-bleed container */
 .tabsWrapper > .flex { width: 100%; }
 
-/* increase tab inner height by 2px: base +2 (was 32px -> 34px) */
+/* increase tab inner height to scale with width increase */
 .tabInner {
-  height: 34px; /* mobile */
+  height: 36px; /* mobile: increased */
 }
 
 @media (min-width: 768px) {
-  .tabInner { height: 42px; } /* desktop: 40 -> 42 */
+  .tabInner { height: 45px; } /* desktop: increased */
+}
+
+/* per-tab horizontal padding to increase width by ~4px (2px each side) */
+.tabItem {
+  padding-left: 2px;
+  padding-right: 2px;
 }
 
 .controlsContent {
