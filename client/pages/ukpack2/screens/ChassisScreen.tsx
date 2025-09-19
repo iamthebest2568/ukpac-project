@@ -15,13 +15,13 @@ const AMENITIES_ICON_SMALL = {
     "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe01792ee89e240808ed47d8576b55d71?format=webp&width=800",
   ที่นั่งพิเศษ:
     "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F93439b2533284cdf914fc93cafa1cf26?format=webp&width=800",
-  "ที่จั��/��าวยืนที��ปลอดภัย":
+  "ที่จับ/ราวยืนที่ปลอดภัย":
     "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb0789bfd1100472f8351704764607d31?format=webp&width=800",
 };
 const PAYMENT_ICON_SMALL: Record<string, string> = {
   เงินสด:
     "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fbc8b22cedfbb4640a702f724881f196d?format=webp&width=800",
-  ส��กนจ่าย:
+  สแกนจ่าย:
     "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb8992da4be824b339d3df5f0a076ed93?format=webp&width=800",
   "สแกนจ่าย 2":
     "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F56620e798eb94153b2390271f30d0dae?format=webp&width=800",
@@ -124,7 +124,7 @@ const IconExtraAlt = () => (
 const OPTIONS = [
   {
     key: "small",
-    label: "รถเมล์ขนาดเ���็ก 16-30 ที่นั่ง",
+    label: "รถเมล์ขนาดเล็ก 16-30 ที่นั่ง",
     labelText: "รถเมล์ขนาดเล็ก 16-30 ที่นั่ง",
     icon: <IconSmall />,
   },
@@ -143,13 +143,13 @@ const OPTIONS = [
         9-15 ที่นั่ง
       </>
     ),
-    labelText: "รถตู้โดยสาร 9-15 ท��่นั่ง",
+    labelText: "รถตู้โดยสาร 9-15 ที่นั่ง",
     icon: <IconLarge />,
   },
   {
     key: "extra",
     label: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
-    labelText: "รถกะบะดัด���ปลง 8–12 ที่นั่ง",
+    labelText: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
     icon: <IconExtra />,
   },
 ];
@@ -342,7 +342,7 @@ const ChassisScreen: React.FC = () => {
       <ConfirmModal
         isOpen={isExitModalOpen}
         title="ออกจากหน้าจอ"
-        message="คุณแน่ใจหรือไม่ว่าต้องการ��อก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
+        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
         onConfirm={confirmExit}
         onCancel={() => setExitModalOpen(false)}
         contentClassName={`${styles.containerPadding} ${styles.modalContent}`}
