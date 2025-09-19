@@ -164,6 +164,7 @@ const ChassisScreen: React.FC = () => {
   const [selected, setSelected] = useState<string>(OPTIONS[0].key);
   const [firstIconClicked, setFirstIconClicked] = useState<boolean>(false);
   const [secondIconClicked, setSecondIconClicked] = useState<boolean>(false);
+  const [thirdIconClicked, setThirdIconClicked] = useState<boolean>(false);
   const selectedLabel = useMemo(() => {
     const found = OPTIONS.find((o) => o.key === selected)?.labelText || "";
     return String(found).replace(/(\d+)-(\d+)/, "$1–$2");
@@ -241,7 +242,7 @@ const ChassisScreen: React.FC = () => {
         containerPaddingClass={styles.containerPadding}
         footerContent={
           <div className="flex justify-center">
-            <CtaButton text="ถ��ดไป" onClick={handleNext} />
+            <CtaButton text="ถัดไป" onClick={handleNext} />
           </div>
         }
       >
