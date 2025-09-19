@@ -84,7 +84,7 @@ const IconExtra = () => (
 const OPTIONS = [
   {
     key: "small",
-    label: "รถเมล์ขนาดเล็ก 16-30 ที่นั่ง",
+    label: "รถเมล์ขนาดเ���็ก 16-30 ที่นั่ง",
     labelText: "รถเมล์ขนาดเล็ก 16-30 ที่นั่ง",
     icon: <IconSmall />,
   },
@@ -226,15 +226,7 @@ const ChassisScreen: React.FC = () => {
                   colorHex={null}
                   className={styles.containerPadding}
                   showSelectedText={true}
-                />
-
-                <img
-                  src={HERO_STAR}
-                  alt="สัญลักษณ์ดาว"
-                  className={styles.starBadge}
-                  decoding="async"
-                  loading="eager"
-                  aria-hidden="true"
+                  starSrc={HERO_STAR}
                 />
               </div>
             </div>
