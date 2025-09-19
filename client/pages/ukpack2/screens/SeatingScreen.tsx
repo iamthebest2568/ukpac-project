@@ -13,6 +13,7 @@ const SeatingScreen: React.FC = () => {
   const navigate = useNavigate();
   const { state } = useBusDesign();
   const [totalSeats, setTotalSeats] = useState<number | "">("");
+  const [specialSeats, setSpecialSeats] = useState<number | "">("");
   const [pregnantSeats, setPregnantSeats] = useState<number | "">("");
   const [childElderSeats, setChildElderSeats] = useState<number | "">("");
   const [monkSeats, setMonkSeats] = useState<number | "">("");
