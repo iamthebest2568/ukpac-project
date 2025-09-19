@@ -210,104 +210,48 @@ const ChassisScreen: React.FC = () => {
           </div>
         }
       >
-        <div className="space-y-6">
-          {/* Hero bus illustration with shadow overlay */}
-          <div className="flex flex-col items-center -mt-6">
-            <div className="relative w-full flex items-center justify-center" style={{ minHeight: "100px" }}>
-              {/* wrapper to scale vehicle and shadow down by 30% */}
-              <div className="relative w-full flex items-center justify-center" style={{ transform: `scale(0.7)`, transformOrigin: "center" }}>
-                {/* shadow only */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Left: preview area */}
+          <div className="flex flex-col items-center w-full">
+            <div className="w-full max-w-[520px] mx-auto">
+              <div className="relative w-full flex items-center justify-center" style={{ minHeight: 140 }}>
                 <img
                   src={HERO_SHADOW}
                   alt="เงารถ"
-                  className="absolute w-3/4 sm:w-[60%] max-w-[420px] pointer-events-none select-none"
-                  style={{ bottom: "8px" }}
+                  className="absolute w-3/4 sm:w-3/4 md:w-4/5 lg:w-[90%] max-w-[600px] pointer-events-none select-none"
+                  style={{ bottom: 8 }}
                   decoding="async"
                   loading="eager"
                   aria-hidden="true"
                 />
-                {/* bus + star overlay inside same box for precise alignment */}
-                <div className="relative w-full sm:w-[60%] max-w-[480px]" // use responsive height classes to better adapt across screens
-                  style={{ height: "auto" }}>
-                  {(() => {
-                    const amenities = (() => {
-                      try {
-                        const raw = sessionStorage.getItem("design.amenities");
-                        return raw ? (JSON.parse(raw) as string[]) : [];
-                      } catch {
-                        return [] as string[];
-                      }
-                    })();
-                    const payments = (() => {
-                      try {
-                        const raw = sessionStorage.getItem("design.payment");
-                        return raw ? (JSON.parse(raw) as string[]) : [];
-                      } catch {
-                        return [] as string[];
-                      }
-                    })();
-                    const doors = (() => {
-                      try {
-                        const raw = sessionStorage.getItem("design.doors");
-                        if (!raw) return null;
-                        const parsed = JSON.parse(raw);
-                        return typeof parsed === "string"
-                          ? parsed
-                          : parsed?.doorChoice ||
-                              (parsed?.hasRamp
-                                ? "ramp"
-                                : parsed?.highLow
-                                  ? "emergency"
-                                  : null);
-                      } catch {
-                        return sessionStorage.getItem("design.doors");
-                      }
-                    })();
-                    const overlay = [
-                      ...(amenities || []),
-                      ...(payments || []),
-                      ...(doors ? [doors as string] : []),
-                    ];
-                    return overlay.length > 0 ? (
-                      <div className="absolute left-1/2 transform -translate-x-1/2 -top-4 flex flex-wrap justify-center gap-2 z-20 max-w-[80%]">
-                        {overlay.map((lab, i) => {
-                          const src =
-                            AMENITIES_ICON_SMALL[lab] ||
-                            PAYMENT_ICON_SMALL[lab] ||
-                            DOOR_ICON_SMALL[lab];
-                          return (
-                            <div
-                              key={`${lab}-${i}`}
-                              className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center"
-                            >
-                              {src ? (
-                                <img
-                                  src={src}
-                                  alt={lab}
-                                  className="h-5 w-5 object-contain"
-                                />
-                              ) : (
-                                <div className="text-xs">{lab}</div>
-                              )}
-                            </div>
-                          );
-                        })}
-                      </div>
-                    ) : null;
-                  })()}
+
+                <div className="relative w-full">
+                  {overlayLabels && overlayLabels.length > 0 && (
+                    <div className="absolute left-1/2 transform -translate-x-1/2 -top-4 flex flex-wrap justify-center gap-2 z-20 w-[90%]">
+                      {overlayLabels.map((lab, i) => {
+                        const src = AMENITIES_ICON_SMALL[lab] || PAYMENT_ICON_SMALL[lab] || DOOR_ICON_SMALL[lab];
+                        return (
+                          <div key={`${lab}-${i}`} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center">
+                            {src ? <img src={src} alt={lab} className="h-5 w-5 object-contain" /> : <div className="text-xs">{lab}</div>}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
 
                   <img
                     src={HERO_IMAGE[selected]}
                     alt={selectedLabel}
-                    className="h-full w-auto object-contain mx-auto select-none"
+                    className="mx-auto w-full h-auto max-w-[520px] object-contain select-none"
                     decoding="async"
                     loading="eager"
                   />
+
                   <img
                     src={HERO_STAR}
                     alt="สัญลักษณ์ดาว"
                     className="absolute w-5 h-5 pointer-events-none select-none"
-                    style={{ top: "6px", right: "6px" }}
+                    style={{ top: 6, right: 6 }}
                     decoding="async"
                     loading="eager"
                     aria-hidden="true"
@@ -315,70 +259,66 @@ const ChassisScreen: React.FC = () => {
                 </div>
               </div>
             </div>
-            <p className="mt-2 font-prompt font-semibold text-[#001a73] text-center text-sm md:text-base max-w-[320px] mx-auto">
+
+            <p className="mt-3 font-prompt font-semibold text-[#001a73] text-center text-sm md:text-base max-w-[520px] mx-auto">
               <span className="chassis-label-mobile">รถที่เลือก : </span>
               {selectedLabel}
             </p>
           </div>
 
-          {/* White content area with tabs + cards */}
-          <div className="bg-white rounded-2xl -mt-2 p-4">
+          {/* Right: tabs + selection cards */}
+          <div className="bg-white rounded-2xl p-4 w-full">
             <StepTabs active={1} />
-            <div className="mt-2">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {/* Left column: large primary card on top, small card below */}
-                <div className="flex flex-col gap-4">
-                  <SelectionCard
-                    key={OPTIONS[0].key}
-                    icon={OPTIONS[0].icon}
-                    label={OPTIONS[0].label}
-                    isSelected={selected === OPTIONS[0].key}
-                    onClick={() => setSelected(OPTIONS[0].key)}
-                    variant="light"
-                    appearance="bare"
-                    hideLabel={true}
-                    size="sm"
-                  />
 
-                  <SelectionCard
-                    key={OPTIONS[2].key}
-                    icon={OPTIONS[2].icon}
-                    label={OPTIONS[2].label}
-                    isSelected={selected === OPTIONS[2].key}
-                    onClick={() => setSelected(OPTIONS[2].key)}
-                    variant="light"
-                    appearance="bare"
-                    hideLabel={true}
-                    size="sm"
-                  />
-                </div>
+            <div className="mt-3">
+              <div className="grid grid-cols-2 sm:grid-cols-2 gap-4">
+                <SelectionCard
+                  key={OPTIONS[0].key}
+                  icon={OPTIONS[0].icon}
+                  label={OPTIONS[0].label}
+                  isSelected={selected === OPTIONS[0].key}
+                  onClick={() => setSelected(OPTIONS[0].key)}
+                  variant="light"
+                  appearance="bare"
+                  hideLabel={true}
+                  size="sm"
+                />
 
-                {/* Right column: two equal cards stacked */}
-                <div className="flex flex-col gap-4">
-                  <SelectionCard
-                    key={OPTIONS[1].key}
-                    icon={OPTIONS[1].icon}
-                    label={OPTIONS[1].label}
-                    isSelected={selected === OPTIONS[1].key}
-                    onClick={() => setSelected(OPTIONS[1].key)}
-                    variant="light"
-                    appearance="bare"
-                    hideLabel={true}
-                    size="lg"
-                  />
+                <SelectionCard
+                  key={OPTIONS[1].key}
+                  icon={OPTIONS[1].icon}
+                  label={OPTIONS[1].label}
+                  isSelected={selected === OPTIONS[1].key}
+                  onClick={() => setSelected(OPTIONS[1].key)}
+                  variant="light"
+                  appearance="bare"
+                  hideLabel={true}
+                  size="lg"
+                />
 
-                  <SelectionCard
-                    key={OPTIONS[3].key}
-                    icon={OPTIONS[3].icon}
-                    label={OPTIONS[3].label}
-                    isSelected={selected === OPTIONS[3].key}
-                    onClick={() => setSelected(OPTIONS[3].key)}
-                    variant="light"
-                    appearance="bare"
-                    hideLabel={true}
-                    size="sm"
-                  />
-                </div>
+                <SelectionCard
+                  key={OPTIONS[2].key}
+                  icon={OPTIONS[2].icon}
+                  label={OPTIONS[2].label}
+                  isSelected={selected === OPTIONS[2].key}
+                  onClick={() => setSelected(OPTIONS[2].key)}
+                  variant="light"
+                  appearance="bare"
+                  hideLabel={true}
+                  size="sm"
+                />
+
+                <SelectionCard
+                  key={OPTIONS[3].key}
+                  icon={OPTIONS[3].icon}
+                  label={OPTIONS[3].label}
+                  isSelected={selected === OPTIONS[3].key}
+                  onClick={() => setSelected(OPTIONS[3].key)}
+                  variant="light"
+                  appearance="bare"
+                  hideLabel={true}
+                  size="sm"
+                />
               </div>
             </div>
           </div>
