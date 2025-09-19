@@ -239,7 +239,7 @@ const ChassisScreen: React.FC = () => {
               <div className={styles.tabsWrapper}>
                 <StepTabs active={1} />
               </div>
-            <div className={`${styles.controlsBox} ${styles.containerPadding}`}>
+            <div className={styles.controlsBox}>
 
               <div className={styles.controlsContent}>
                 <div className={styles.selectionGrid}>
@@ -300,7 +300,7 @@ const ChassisScreen: React.FC = () => {
       <ConfirmModal
         isOpen={isExitModalOpen}
         title="ออกจากหน้าจอ"
-        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
+        message="คุณแน่ใจหรือไม่ว่าต้องการ��อก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
         onConfirm={confirmExit}
         onCancel={() => setExitModalOpen(false)}
         contentClassName={`${styles.containerPadding} ${styles.modalContent}`}
