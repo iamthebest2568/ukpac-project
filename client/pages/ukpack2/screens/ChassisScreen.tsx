@@ -102,7 +102,7 @@ const OPTIONS = [
         9-15 ที่นั่ง
       </>
     ),
-    labelText: "รถตู้โดยสาร 9-15 ที่นั่ง",
+    labelText: "รถ���ู้โดยสาร 9-15 ที่นั่ง",
     icon: <IconLarge />,
   },
   {
@@ -204,6 +204,7 @@ const ChassisScreen: React.FC = () => {
       <CustomizationScreen
         title="ปรับแต่งรถเมล์ของคุณ"
         theme="light"
+        fullWidth
         footerContent={
           <div className="flex justify-center">
             <CtaButton text="ถัดไป" onClick={handleNext} />
