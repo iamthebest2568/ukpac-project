@@ -152,6 +152,8 @@ const TAB3_IMG =
   "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F3f0c10c8393e4956b264d9e694bfcdb9?format=webp&width=800";
 const TAB4_IMG =
   "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F26eb6ca7ce4444559376b691e1f57529?format=webp&width=800";
+const TAB5_IMG =
+  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F722988d425e141738e4c3ef3c5521b1d?format=webp&width=800";
 
 const StepTabs: React.FC<StepTabsProps> = ({ active }) => {
   const tabs = [BusIcon, DeckIcon, ChairIcon, TvIcon, ReceiptIcon];
