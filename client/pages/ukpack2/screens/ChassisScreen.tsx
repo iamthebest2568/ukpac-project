@@ -110,6 +110,16 @@ const IconExtra = () => (
     loading="eager"
   />
 );
+const IconExtraAlt = () => (
+  <img
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F0ed01deb92a7455c8bdf82be5c749bb9?format=webp&width=800"
+    alt=""
+    aria-hidden="true"
+    className="h-full w-auto object-contain select-none -translate-y-0.5"
+    decoding="async"
+    loading="eager"
+  />
+);
 
 const OPTIONS = [
   {
