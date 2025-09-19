@@ -215,7 +215,7 @@ const ChassisScreen: React.FC = () => {
       >
         <div className={`${styles.contentGrid} ${styles.containerPadding}`}>
           {/* Left: preview area (full width) */}
-          <div className={`${styles.previewColumn} px-4 md:px-6`}>
+          <div className={`${styles.previewWrapper}`}>
             <div className={styles.previewInner}>
               <img
                 src={HERO_SHADOW}
@@ -266,7 +266,7 @@ const ChassisScreen: React.FC = () => {
           </div>
 
           {/* Right: tabs + selection cards (full width) */}
-          <div className={`${styles.controls} px-4 md:px-6`}>
+          <div className={styles.controlsWrapper}>
             <div className={styles.tabsWrapper}>
               <StepTabs active={1} />
             </div>
@@ -329,9 +329,10 @@ const ChassisScreen: React.FC = () => {
       <ConfirmModal
         isOpen={isExitModalOpen}
         title="ออกจากหน้าจอ"
-        message="คุณแน่ใจห��ือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
+        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
         onConfirm={confirmExit}
         onCancel={() => setExitModalOpen(false)}
+        contentClassName={`${styles.containerPadding} ${styles.modalContent}`}
       />
     </>
   );
