@@ -126,7 +126,7 @@
 /* Move tabs up to overlap the top border so the border appears under the tabs */
 .tabsWrapper {
   width: 100%;
-  margin: 0 0 12px 0; /* space between tabs and frame */
+  margin: 0 0 -13px 0; /* overlap into frame so overall gap to selection grid becomes 1px */
   padding: 0;
   position: relative;
   z-index: 1;
