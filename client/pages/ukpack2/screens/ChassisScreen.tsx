@@ -212,68 +212,66 @@ const ChassisScreen: React.FC = () => {
           </div>
         }
       >
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className={styles.container}>
           {/* Left: preview area (full width) */}
-          <div className="flex flex-col items-center w-full">
-            <div className="w-full">
-              <div className="relative w-full flex items-center justify-center" style={{ minHeight: 140 }}>
+          <div className={styles.previewColumn}>
+            <div className={styles.previewInner}>
+              <img
+                src={HERO_SHADOW}
+                alt="เงารถ"
+                className={styles.shadowImg}
+                decoding="async"
+                loading="eager"
+                aria-hidden="true"
+              />
+
+              <div className="" style={{ position: 'relative' }}>
+                {overlayLabels && overlayLabels.length > 0 && (
+                  <div className={styles.previewInner + "-overlay"} style={{ position: 'absolute', left: '50%', transform: 'translateX(-50%)', top: -16, display: 'flex', gap: 8, zIndex: 20, width: '100%', justifyContent: 'center' }}>
+                    {overlayLabels.map((lab, i) => {
+                      const src = AMENITIES_ICON_SMALL[lab] || PAYMENT_ICON_SMALL[lab] || DOOR_ICON_SMALL[lab];
+                      return (
+                        <div key={`${lab}-${i}`} style={{ background: 'rgba(255,255,255,0.9)', backdropFilter: 'blur(4px)', borderRadius: 9999, padding: 4, boxShadow: '0 1px 3px rgba(0,0,0,0.12)', height: 32, width: 32, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                          {src ? <img src={src} alt={lab} style={{ height: 20, width: 20, objectFit: 'contain' }} /> : <div style={{ fontSize: 10 }}>{lab}</div>}
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+
                 <img
-                  src={HERO_SHADOW}
-                  alt="เงารถ"
-                  className="absolute inset-x-0 mx-auto w-full h-auto pointer-events-none select-none"
-                  style={{ bottom: 8, maxWidth: '1200px' }}
+                  src={HERO_IMAGE[selected]}
+                  alt={selectedLabel}
+                  className={styles.heroImg}
+                  decoding="async"
+                  loading="eager"
+                />
+
+                <img
+                  src={HERO_STAR}
+                  alt="สัญลักษณ์ดาว"
+                  className={styles.starBadge}
                   decoding="async"
                   loading="eager"
                   aria-hidden="true"
                 />
-
-                <div className="relative w-full">
-                  {overlayLabels && overlayLabels.length > 0 && (
-                    <div className="absolute left-1/2 transform -translate-x-1/2 -top-4 flex flex-wrap justify-center gap-2 z-20 w-full max-w-[1200px] px-4">
-                      {overlayLabels.map((lab, i) => {
-                        const src = AMENITIES_ICON_SMALL[lab] || PAYMENT_ICON_SMALL[lab] || DOOR_ICON_SMALL[lab];
-                        return (
-                          <div key={`${lab}-${i}`} className="bg-white/90 backdrop-blur rounded-full p-1 shadow-md h-8 w-8 flex items-center justify-center">
-                            {src ? <img src={src} alt={lab} className="h-5 w-5 object-contain" /> : <div className="text-xs">{lab}</div>}
-                          </div>
-                        );
-                      })}
-                    </div>
-                  )}
-
-                  <img
-                    src={HERO_IMAGE[selected]}
-                    alt={selectedLabel}
-                    className="mx-auto w-full h-auto object-contain select-none"
-                    decoding="async"
-                    loading="eager"
-                  />
-
-                  <img
-                    src={HERO_STAR}
-                    alt="สัญลักษณ์ดาว"
-                    className="absolute w-5 h-5 pointer-events-none select-none"
-                    style={{ top: 6, right: 6 }}
-                    decoding="async"
-                    loading="eager"
-                    aria-hidden="true"
-                  />
-                </div>
               </div>
             </div>
 
-            <p className="mt-3 font-prompt font-semibold text-[#001a73] text-center text-sm md:text-base w-full">
+            <p className={styles.selectedLabel}>
               <span className="chassis-label-mobile">รถที่เลือก : </span>
               {selectedLabel}
             </p>
           </div>
 
           {/* Right: tabs + selection cards (full width) */}
-          <div className="bg-white rounded-none p-4 w-full">
-            <StepTabs active={1} />
+          <div className={styles.controls}>
+            <div className={styles.tabsWrapper}>
+              <StepTabs active={1} />
+            </div>
 
-            <div className="mt-3">
-              <div className="grid grid-cols-2 gap-4 w-full">
+            <div style={{ marginTop: 12 }}>
+              <div className={styles.selectionGrid}>
                 <SelectionCard
                   key={OPTIONS[0].key}
                   icon={OPTIONS[0].icon}
@@ -330,7 +328,7 @@ const ChassisScreen: React.FC = () => {
       <ConfirmModal
         isOpen={isExitModalOpen}
         title="ออกจากหน้าจอ"
-        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
+        message="คุณแน่ใจห��ือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
         onConfirm={confirmExit}
         onCancel={() => setExitModalOpen(false)}
       />
