@@ -49,7 +49,7 @@ const SelectionCard: React.FC<SelectionCardProps> = ({
           className={`${boxSize} flex items-center justify-center transition-colors ${isSelected ? "border-2 border-[#ffe000]" : "border border-transparent"}`}
         >
           <div className="w-11/12 h-11/12 flex items-center justify-center">
-            {icon}
+            {normalizedIcon}
           </div>
         </div>
       </button>
@@ -66,6 +66,19 @@ const SelectionCard: React.FC<SelectionCardProps> = ({
         ? "px-2 text-xs md:text-sm"
         : "px-2 text-xs md:text-sm";
 
+  // Normalize icon sizes: ensure icons (img/svg) scale to the container height
+  let normalizedIcon = icon;
+  try {
+    if (React.isValidElement(icon)) {
+      const originalProps: any = (icon as React.ReactElement).props || {};
+      const mergedStyle = { ...(originalProps.style || {}), maxHeight: '100%', width: 'auto' };
+      const mergedClassName = `${originalProps.className || ''} max-h-full w-auto`.trim();
+      normalizedIcon = React.cloneElement(icon as React.ReactElement, { ...originalProps, style: mergedStyle, className: mergedClassName });
+    }
+  } catch (e) {
+    normalizedIcon = icon;
+  }
+
   // Horizontal layout
   if (layout === "horizontal") {
     const iconBox = `flex-shrink-0 ${FIXED_ICON_HEIGHT} w-auto flex items-center justify-center`;
@@ -79,7 +92,7 @@ const SelectionCard: React.FC<SelectionCardProps> = ({
         <div
           className={`${iconBox} flex items-center justify-center flex-shrink-0 ${isLight ? "text-[#003366]" : "text-white"}`}
         >
-          {icon}
+          {normalizedIcon}
         </div>
         {!hideLabel && (
           <div
@@ -102,7 +115,7 @@ const SelectionCard: React.FC<SelectionCardProps> = ({
       <div
         className={`${iconContainerClass} flex items-center justify-center ${isLight ? "text-[#003366]" : "text-white"} transition-transform`}
       >
-        {icon}
+        {normalizedIcon}
       </div>
       {!hideLabel && (
         <div
