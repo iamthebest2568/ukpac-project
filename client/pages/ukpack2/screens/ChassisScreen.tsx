@@ -291,7 +291,7 @@ const ChassisScreen: React.FC = () => {
                     icon={firstIconClicked ? <IconSmallAlt /> : <IconSmall />}
                     label={OPTIONS[0].label}
                     isSelected={selected === OPTIONS[0].key}
-                    onClick={() => { setSelected(OPTIONS[0].key); setFirstIconClicked(true); }}
+                    onClick={() => { setSelected(OPTIONS[0].key); setFirstIconClicked(true); setSecondIconClicked(false); setThirdIconClicked(false); setFourthIconClicked(false); }}
                     variant="light"
                     appearance="bare"
                     hideLabel={true}
@@ -303,7 +303,7 @@ const ChassisScreen: React.FC = () => {
                     icon={secondIconClicked ? <IconMediumAlt /> : <IconMedium />}
                     label={OPTIONS[1].label}
                     isSelected={selected === OPTIONS[1].key}
-                    onClick={() => { setSelected(OPTIONS[1].key); setSecondIconClicked(true); }}
+                    onClick={() => { setSelected(OPTIONS[1].key); setSecondIconClicked(true); setFirstIconClicked(false); setThirdIconClicked(false); setFourthIconClicked(false); }}
                     variant="light"
                     appearance="bare"
                     hideLabel={true}
@@ -315,7 +315,7 @@ const ChassisScreen: React.FC = () => {
                     icon={thirdIconClicked ? <IconLargeAlt /> : <IconLarge />}
                     label={OPTIONS[2].label}
                     isSelected={selected === OPTIONS[2].key}
-                    onClick={() => { setSelected(OPTIONS[2].key); setThirdIconClicked(true); }}
+                    onClick={() => { setSelected(OPTIONS[2].key); setThirdIconClicked(true); setFirstIconClicked(false); setSecondIconClicked(false); setFourthIconClicked(false); }}
                     variant="light"
                     appearance="bare"
                     hideLabel={true}
@@ -327,7 +327,7 @@ const ChassisScreen: React.FC = () => {
                     icon={fourthIconClicked ? <IconExtraAlt /> : <IconExtra />}
                     label={OPTIONS[3].label}
                     isSelected={selected === OPTIONS[3].key}
-                    onClick={() => { setSelected(OPTIONS[3].key); setFourthIconClicked(true); }}
+                    onClick={() => { setSelected(OPTIONS[3].key); setFourthIconClicked(true); setFirstIconClicked(false); setSecondIconClicked(false); setThirdIconClicked(false); }}
                     variant="light"
                     appearance="bare"
                     hideLabel={true}
@@ -343,7 +343,7 @@ const ChassisScreen: React.FC = () => {
       <ConfirmModal
         isOpen={isExitModalOpen}
         title="ออกจากหน้าจอ"
-        message="คุณแน่ใจหรือไ��่ว่าต้องการ��อก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
+        message="คุณแน่ใจหรือไม่ว่าต้องการ��อก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
         onConfirm={confirmExit}
         onCancel={() => setExitModalOpen(false)}
         contentClassName={`${styles.containerPadding} ${styles.modalContent}`}
