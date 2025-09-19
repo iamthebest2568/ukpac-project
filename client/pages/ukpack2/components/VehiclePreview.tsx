@@ -139,7 +139,17 @@ const VehiclePreview: React.FC<Props> = ({
             {/** optional star overlay placed at top-right of the vehicle image container */}
             {/** starSrc is measured relative to this inner container (position: relative) */}
             {/** we style it to slightly overlap the image */}
-            {typeof ({} as any) /* placeholder to keep formatting */ !== 'function' ? null : null}
+            {starSrc && (
+              <img
+                src={starSrc}
+                alt="สัญลักษณ์ดาว"
+                className="absolute pointer-events-none select-none"
+                style={{ top: -8, right: -8, width: 28, height: 28 }}
+                decoding="async"
+                loading="eager"
+                aria-hidden="true"
+              />
+            )}
 
             {colorHex && imageSrc && (
               <div
