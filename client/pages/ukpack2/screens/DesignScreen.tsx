@@ -46,7 +46,7 @@ const IconWifi = () => (
 const IconPlug = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F09a78e31a3de44e98772b0eef382af6f?format=webp&width=800"
-    alt="ช่องช���ร์จม���อถือ/USB"
+    alt="ช่องช���ร์จมือถือ/USB"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -123,50 +123,63 @@ const BUS_EMPLOY_ICON =
 
 const DEFAULT_COLORS = [
   {
+    // id mapped from user-provided list
+    id: "353635-new",
     preview: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F6cd69d1c234d4a76a0ed41ea01305797?format=webp&width=800",
     filter: "hue-rotate(0deg) saturate(0) brightness(0.25)",
   },
   {
+    id: "7d53a2",
     preview: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F00940e952f104c52930267d96b4b2af5?format=webp&width=800",
     filter: "hue-rotate(300deg) saturate(1.2) brightness(0.9)",
   },
   {
+    id: "fee000",
     preview: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb8bed674c69e4fbf8938b06844b190c9?format=webp&width=800",
     filter: "hue-rotate(60deg) saturate(1.4) brightness(1.1)",
   },
   {
+    id: "bbbdbf",
     preview: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F803a56e88e08447c9ab15d0467c55ea3?format=webp&width=800",
     filter: "hue-rotate(0deg) saturate(0) brightness(0.8)",
   },
   {
+    id: "4453a4",
     preview: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F999ac23ceef54cff9055c12ac4974dee?format=webp&width=800",
     filter: "hue-rotate(220deg) saturate(1.3) brightness(0.95)",
   },
   {
+    id: "f68c1f",
     preview: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fdc1c5b39791f47e3bb6627c58b1d204d?format=webp&width=800",
     filter: "hue-rotate(30deg) saturate(1.3) brightness(1)",
   },
   {
+    id: "ffffff",
     preview: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fba23b0e3eb784768b38ddd27be4dab85?format=webp&width=800",
     filter: "hue-rotate(0deg) saturate(0) brightness(1.4)",
   },
   {
+    id: "208541",
     preview: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F5bbf8091266941a7aa6661f5847195aa?format=webp&width=800",
     filter: "hue-rotate(120deg) saturate(1.3) brightness(0.95)",
   },
   {
+    id: "eb2127",
     preview: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F525c7ba870e843b382836543ad6603fb?format=webp&width=800",
     filter: "hue-rotate(0deg) saturate(1.6) brightness(0.95)",
   },
   {
+    id: "603a17",
     preview: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fd6e630c909ac4834a996652aee7ea713?format=webp&width=800",
     filter: "hue-rotate(20deg) saturate(0.8) brightness(0.7)",
   },
   {
+    id: "6cc283",
     preview: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F3c92ed63c4ed420eb5fc8b6ac7233112?format=webp&width=800",
     filter: "hue-rotate(140deg) saturate(1.2) brightness(1)",
   },
   {
+    id: "ef416b",
     preview: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F581cd64e0d274cff87af2fcd0b172222?format=webp&width=800",
     filter: "hue-rotate(340deg) saturate(1.3) brightness(1)",
   },
@@ -245,7 +258,7 @@ const DesignScreen: React.FC = () => {
                     label={
                       <>
                         <span className="chassis-label-mobile">
-                          รถที่เลื���ก :{" "}
+                          รถที่เลือก :{" "}
                         </span>
                         {label}
                       </>
