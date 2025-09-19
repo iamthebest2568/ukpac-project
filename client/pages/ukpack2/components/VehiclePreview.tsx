@@ -128,7 +128,7 @@ const VehiclePreview: React.FC<Props> = ({
         <div
           role="group"
           aria-label="vehicle-label"
-          className="mt-2 font-prompt font-semibold text-[#001a73] text-center text-sm md:text-base max-w-[320px] mx-auto"
+          className="mt-1 font-prompt font-semibold text-[#001a73] text-center text-sm md:text-base max-w-[320px] mx-auto"
         >
           <span className="chassis-label-mobile">รถที่เลือก : </span>
           {label}
