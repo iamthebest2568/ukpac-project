@@ -21,7 +21,7 @@ const AMENITIES_ICON_SMALL = {
 const PAYMENT_ICON_SMALL: Record<string, string> = {
   เงินสด:
     "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fbc8b22cedfbb4640a702f724881f196d?format=webp&width=800",
-  สแกนจ่าย:
+  ส��กนจ่าย:
     "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb8992da4be824b339d3df5f0a076ed93?format=webp&width=800",
   "สแกนจ่าย 2":
     "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F56620e798eb94153b2390271f30d0dae?format=webp&width=800",
@@ -149,7 +149,7 @@ const OPTIONS = [
   {
     key: "extra",
     label: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
-    labelText: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
+    labelText: "รถกะบะดัด���ปลง 8–12 ที่นั่ง",
     icon: <IconExtra />,
   },
 ];
@@ -250,14 +250,13 @@ const ChassisScreen: React.FC = () => {
         title="ปรับแต่งรถเมล์ของคุณ"
         theme="light"
         fullWidth
-        containerPaddingClass={styles.containerPadding}
         footerContent={
           <div className="flex justify-center">
             <CtaButton text="ถัดไป" onClick={handleNext} />
           </div>
         }
       >
-        <div className={`${styles.contentGrid} ${styles.containerPadding}`}>
+        <div className={styles.contentGrid}>
           {/* Left: preview area (full width) */}
           <div className={`${styles.previewWrapper}`}>
             <div className={styles.previewInner}>
