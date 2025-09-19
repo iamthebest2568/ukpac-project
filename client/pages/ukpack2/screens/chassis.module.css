@@ -151,6 +151,7 @@
   width: 100%;
   box-sizing: border-box;
   justify-items: center; /* center icons inside cells */
+  align-items: center; /* ensure vertical centering */
 }
 
 @media (min-width: 768px) {
