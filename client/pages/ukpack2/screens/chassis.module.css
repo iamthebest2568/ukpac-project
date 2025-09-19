@@ -113,7 +113,31 @@
 .tabsWrapper {
   width: 100%;
   margin: 0;
-  padding: 0;
+  padding: 0 0 0 0;
+  position: relative;
+  z-index: 10;
+}
+
+/* Controls box: frame around tabs + content. Tabs will visually sit above the top border */
+.controlsBox {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #ffffff;
+  overflow: visible;
+  box-sizing: border-box;
+}
+
+/* Move tabs up to overlap the top border so the border appears under the tabs */
+.tabsWrapper {
+  margin-top: -12px;
+  padding-top: 12px;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.controlsContent {
+  padding: 12px 0 12px 0;
+  box-sizing: border-box;
 }
 
 .selectionGrid {
