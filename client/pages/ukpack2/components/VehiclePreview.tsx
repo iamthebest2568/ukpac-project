@@ -119,11 +119,18 @@ const VehiclePreview: React.FC<Props> = ({
             )}
 
             <img
+              ref={carRef}
               src={imageSrc}
               alt={typeof label === "string" ? `ภาพรถ - ${label}` : "ภาพรถ"}
               className="h-full w-auto object-contain mx-auto select-none"
               decoding="async"
               loading="eager"
+              onLoad={() => {
+                // update shadow once image dimensions are available
+                setTimeout(() => {
+                  try { updateShadow(); } catch (e) { /* ignore */ }
+                }, 10);
+              }}
               style={
                 !colorHex && colorFilter ? { filter: colorFilter } : undefined
               }
