@@ -135,7 +135,7 @@
   padding-left: 0;
   padding-right: 0;
   position: relative;
-  z-index: 30; /* ensure tabs are above the border */
+  z-index: 20; /* Reduced z-index to allow border to be visually under */
 }
 
 .controlsContent {
