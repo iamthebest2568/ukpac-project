@@ -6,6 +6,8 @@ interface ConfirmModalProps {
   message?: string;
   onConfirm: () => void;
   onCancel: () => void;
+  // optional class to control modal inner content (e.g., for horizontal padding)
+  contentClassName?: string;
 }
 
 const ConfirmModal: React.FC<ConfirmModalProps> = ({
@@ -14,11 +16,12 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({
   message = "",
   onConfirm,
   onCancel,
+  contentClassName,
 }) => {
   if (!isOpen) return null;
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-      <div className="bg-white rounded-lg p-6 max-w-md w-full">
+      <div className={`${contentClassName ? contentClassName : ""} bg-white rounded-lg p-6 max-w-md w-full`}>
         <h3 className="text-lg font-prompt font-semibold text-[#000d59]">
           {title}
         </h3>
@@ -28,7 +31,7 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({
             className="px-4 py-2 rounded-md bg-[#ffe000] text-black hover:bg-[#000d59] hover:text-white transition-colors"
             onClick={onCancel}
           >
-            ยกเลิก
+            ยก���ลิก
           </button>
           <button
             className="px-4 py-2 rounded-md bg-[#ffe000] text-black hover:bg-[#000d59] hover:text-white transition-colors"
