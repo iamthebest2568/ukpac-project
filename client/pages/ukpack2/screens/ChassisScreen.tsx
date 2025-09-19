@@ -82,7 +82,7 @@ const IconMediumAlt = () => (
 );
 const IconLarge = () => (
   <img
-    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F77fae6aebf004c59a359e095f0bc823b?format=webp&width=800"
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe47a852ed9744f70941c98e44c3630b4?format=webp&width=800"
     alt=""
     aria-hidden="true"
     className="h-full w-auto object-contain select-none -translate-y-0.5"
