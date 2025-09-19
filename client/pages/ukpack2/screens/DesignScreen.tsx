@@ -259,7 +259,7 @@ const DesignScreen: React.FC = () => {
               };
               const HERO_IMAGE: Record<string, string> = {
                 small:
-                  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F44cea8aeb6d4415e899494a90c6f59b1?format=webp&width=800",
+                  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F7009b0178b564d22ad5111730dd33022?format=webp&width=800",
                 medium:
                   "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fada3699e9e324993a811e668bfc19891?format=webp&width=800",
                 large:
@@ -351,7 +351,7 @@ const DesignScreen: React.FC = () => {
                           className="h-5 w-5 object-contain"
                         />
                       ),
-                      "สแกนจ่าย 2": (
+                      "สแ���นจ่าย 2": (
                         <img
                           src={SCAN2_ICON}
                           alt="สแกนจ่าย 2"
