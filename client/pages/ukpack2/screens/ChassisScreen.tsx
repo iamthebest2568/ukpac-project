@@ -70,6 +70,16 @@ const IconMedium = () => (
     loading="eager"
   />
 );
+const IconMediumAlt = () => (
+  <img
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F7e854e4440014ff5ad1f9e6b6f982923?format=webp&width=800"
+    alt=""
+    aria-hidden="true"
+    className="max-h-12 sm:max-h-16 w-auto object-contain select-none"
+    decoding="async"
+    loading="eager"
+  />
+);
 const IconLarge = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F77fae6aebf004c59a359e095f0bc823b?format=webp&width=800"
