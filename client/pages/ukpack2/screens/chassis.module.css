@@ -110,13 +110,6 @@
   border-radius: 0;
 }
 
-.tabsWrapper {
-  width: 100%;
-  margin: 0;
-  padding: 0 0 0 0;
-  position: relative;
-  z-index: 10;
-}
 
 /* Controls box: frame around tabs + content. Tabs will visually sit above the top border */
 .controlsBox {
@@ -126,16 +119,20 @@
   overflow: visible;
   box-sizing: border-box;
   position: relative;
+  z-index: 1; /* put border layer below tabs */
 }
 
 /* Move tabs up to overlap the top border so the border appears under the tabs */
 .tabsWrapper {
-  margin-top: -18px; /* lift tabs further to sit above the border */
+  width: 100%;
+  margin: 0;
+  padding: 0 0 0 0;
+  margin-top: -18px; /* lift tabs to overlap the top border */
   padding-top: 18px;
   padding-left: 0;
   padding-right: 0;
   position: relative;
-  z-index: 20; /* Reduced z-index to allow border to be visually under */
+  z-index: 5; /* tabs above border (controlsBox z-index:1) */
 }
 
 .controlsContent {
