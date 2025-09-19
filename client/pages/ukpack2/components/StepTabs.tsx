@@ -142,18 +142,8 @@ const ReceiptIcon = ({ active }: { active: boolean }) => (
   </svg>
 );
 
-const TAB1_ICON =
-  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F334e1ba542cd4c8b9ae5a2d3218aade1?format=webp&width=256";
-const TAB2_ICON =
-  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb01ce26924af40298818d01f9f981186?format=webp&width=800";
-const TAB3_ICON =
-  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc3da8ccecbee48069923b34ed1e086b4?format=webp&width=800";
-const TAB4_ICON =
-  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F3acdda301a6447e0b773a57c42341e4d?format=webp&width=800";
-const TAB5_ICON =
-  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe14dc248d0bf42c6930f536febc17543?format=webp&width=800";
-const TAB_FRAME =
-  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F7051a3301b21425da3380084ca4740a6?format=webp&width=800";
+const TAB_IMG =
+  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F62e50799090e485b9fec3c783a7c4d73?format=webp&width=800";
 
 const StepTabs: React.FC<StepTabsProps> = ({ active }) => {
   const tabs = [BusIcon, DeckIcon, ChairIcon, TvIcon, ReceiptIcon];
