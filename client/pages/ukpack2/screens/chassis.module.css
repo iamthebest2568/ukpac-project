@@ -191,6 +191,14 @@
   padding: 0 !important;
 }
 
+/* force any image inside the grid to scale to full cell height */
+.selectionGrid > button img {
+  height: 100% !important;
+  max-height: none !important;
+  width: auto !important;
+  object-fit: contain !important;
+}
+
 
 /* Fixed footer that uses same horizontal padding as content */
 .fixedFooter {
