@@ -126,7 +126,7 @@
 /* Move tabs up to overlap the top border so the border appears under the tabs */
 .tabsWrapper {
   width: 100%;
-  margin: 0 0 -14px 0; /* negative to offset controlsBox border (2px) + controlsContent padding-top (12px) => 0px visible gap */
+  margin: 0 0 -15px 0; /* moved 1px closer to frame */
   padding: 0;
   position: relative;
   z-index: 1;
