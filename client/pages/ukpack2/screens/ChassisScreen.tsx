@@ -210,16 +210,16 @@ const ChassisScreen: React.FC = () => {
           </div>
         }
       >
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Left: preview area */}
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Left: preview area (full width) */}
           <div className="flex flex-col items-center w-full">
-            <div className="w-full max-w-[520px] mx-auto">
+            <div className="w-full">
               <div className="relative w-full flex items-center justify-center" style={{ minHeight: 140 }}>
                 <img
                   src={HERO_SHADOW}
                   alt="เงารถ"
-                  className="absolute w-3/4 sm:w-3/4 md:w-4/5 lg:w-[90%] max-w-[600px] pointer-events-none select-none"
-                  style={{ bottom: 8 }}
+                  className="absolute inset-x-0 mx-auto w-full h-auto pointer-events-none select-none"
+                  style={{ bottom: 8, maxWidth: '1200px' }}
                   decoding="async"
                   loading="eager"
                   aria-hidden="true"
@@ -227,7 +227,7 @@ const ChassisScreen: React.FC = () => {
 
                 <div className="relative w-full">
                   {overlayLabels && overlayLabels.length > 0 && (
-                    <div className="absolute left-1/2 transform -translate-x-1/2 -top-4 flex flex-wrap justify-center gap-2 z-20 w-[90%]">
+                    <div className="absolute left-1/2 transform -translate-x-1/2 -top-4 flex flex-wrap justify-center gap-2 z-20 w-full max-w-[1200px] px-4">
                       {overlayLabels.map((lab, i) => {
                         const src = AMENITIES_ICON_SMALL[lab] || PAYMENT_ICON_SMALL[lab] || DOOR_ICON_SMALL[lab];
                         return (
@@ -242,7 +242,7 @@ const ChassisScreen: React.FC = () => {
                   <img
                     src={HERO_IMAGE[selected]}
                     alt={selectedLabel}
-                    className="mx-auto w-full h-auto max-w-[520px] object-contain select-none"
+                    className="mx-auto w-full h-auto object-contain select-none"
                     decoding="async"
                     loading="eager"
                   />
@@ -260,18 +260,18 @@ const ChassisScreen: React.FC = () => {
               </div>
             </div>
 
-            <p className="mt-3 font-prompt font-semibold text-[#001a73] text-center text-sm md:text-base max-w-[520px] mx-auto">
+            <p className="mt-3 font-prompt font-semibold text-[#001a73] text-center text-sm md:text-base w-full">
               <span className="chassis-label-mobile">รถที่เลือก : </span>
               {selectedLabel}
             </p>
           </div>
 
-          {/* Right: tabs + selection cards */}
-          <div className="bg-white rounded-2xl p-4 w-full">
+          {/* Right: tabs + selection cards (full width) */}
+          <div className="bg-white rounded-none p-4 w-full">
             <StepTabs active={1} />
 
             <div className="mt-3">
-              <div className="grid grid-cols-2 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-4 w-full">
                 <SelectionCard
                   key={OPTIONS[0].key}
                   icon={OPTIONS[0].icon}
