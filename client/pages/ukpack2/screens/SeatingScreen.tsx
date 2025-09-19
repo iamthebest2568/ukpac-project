@@ -17,7 +17,9 @@ const SeatingScreen: React.FC = () => {
   const [pregnantSeats, setPregnantSeats] = useState<number | "">("");
   const [childElderSeats, setChildElderSeats] = useState<number | "">("");
   const [monkSeats, setMonkSeats] = useState<number | "">("");
-  const [wheelchairBikeSpaces, setWheelchairBikeSpaces] = useState<number | "">("");
+  const [wheelchairBikeSpaces, setWheelchairBikeSpaces] = useState<number | "">(
+    "",
+  );
   const [isExitModalOpen, setExitModalOpen] = useState(false);
   const [isErrorModalOpen, setErrorModalOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
@@ -105,7 +107,6 @@ const SeatingScreen: React.FC = () => {
   const maxCapacity = maxByChassis[selectedChassis] ?? 50;
   const minCapacity = minByChassis[selectedChassis] ?? 16;
 
-
   const handleTotalFocus = () => {
     // Intentionally do not auto-fill or show a number on focus.
     // The field should remain empty so users can type freely.
@@ -120,7 +121,10 @@ const SeatingScreen: React.FC = () => {
         const parsed = JSON.parse(raw);
         if (parsed && typeof parsed.totalSeats === "number") {
           // clamp stored total to current chassis bounds
-          const clampedTotal = Math.min(maxCapacity, Math.max(minCapacity, parsed.totalSeats));
+          const clampedTotal = Math.min(
+            maxCapacity,
+            Math.max(minCapacity, parsed.totalSeats),
+          );
           setTotalSeats(clampedTotal);
           setSpecialSeats(parsed.specialSeats ?? "");
           setPregnantSeats(parsed.pregnantSeats ?? "");
@@ -164,11 +168,18 @@ const SeatingScreen: React.FC = () => {
     const maxCapacityLocal = mappingMax[selectedChassis] ?? 50;
 
     // Normalize totalSeats to number for inclusive checks
-    const total = typeof totalSeats === "number" ? totalSeats : (totalSeats === "" ? NaN : Number(totalSeats));
+    const total =
+      typeof totalSeats === "number"
+        ? totalSeats
+        : totalSeats === ""
+          ? NaN
+          : Number(totalSeats);
 
     if (Number.isNaN(total)) {
       setErrorTitle("กรุณาระบุจำนวนที่นั่งทั้งหมด");
-      setErrorMessage(`กรุณากรอกจำนวนที่นั่งทั้งหมดในช่วง ${minCapacityLocal} ถึง ${maxCapacityLocal} ที่นั่ง`);
+      setErrorMessage(
+        `กรุณากรอกจำนวนที่นั่งทั้งหมดในช่วง ${minCapacityLocal} ถึง ${maxCapacityLocal} ที่นั่ง`,
+      );
       setErrorModalOpen(true);
       return false;
     }
@@ -195,7 +206,9 @@ const SeatingScreen: React.FC = () => {
 
     if (sumSubs !== total) {
       setErrorTitle("ผลรวมของที่นั่งย่อยไม่ตรงกัน");
-      setErrorMessage(`ผลรวมของที่นั่งย่อยทั้งหมด (${sumSubs}) ไม่ตรงกับจำนวนที่นั่งทั้งหมด (${total})`);
+      setErrorMessage(
+        `ผลรวมของที่นั่งย่อยทั้งหมด (${sumSubs}) ไม่ตรงกับจำนวนที่นั่งทั้งหมด (${total})`,
+      );
       setErrorModalOpen(true);
       return false;
     }
@@ -330,7 +343,7 @@ const SeatingScreen: React.FC = () => {
                     handleTotalSeatsChange(parsed);
                   }}
                   className="w-24 px-3 py-2 rounded-full text-[#000D59] bg-white text-right"
-                  style={{ borderWidth: 3, borderColor: 'rgba(0,13,89,1)' }}
+                  style={{ borderWidth: 3, borderColor: "rgba(0,13,89,1)" }}
                   min={0}
                   max={maxCapacity}
                 />
@@ -355,7 +368,10 @@ const SeatingScreen: React.FC = () => {
                       setSpecialSeats("");
                       return;
                     }
-                    const parsed = Math.max(0, Math.min(maxCapacity, parseInt(raw || "0", 10)));
+                    const parsed = Math.max(
+                      0,
+                      Math.min(maxCapacity, parseInt(raw || "0", 10)),
+                    );
                     setSpecialSeats(parsed);
                   }}
                   className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-full text-[#003366] bg-white text-right"
@@ -378,7 +394,10 @@ const SeatingScreen: React.FC = () => {
                       setChildElderSeats("");
                       return;
                     }
-                    const parsed = Math.max(0, Math.min(maxCapacity, parseInt(raw || "0", 10)));
+                    const parsed = Math.max(
+                      0,
+                      Math.min(maxCapacity, parseInt(raw || "0", 10)),
+                    );
                     setChildElderSeats(parsed);
                   }}
                   className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-full text-[#003366] bg-white text-right"
@@ -403,7 +422,10 @@ const SeatingScreen: React.FC = () => {
                       setPregnantSeats("");
                       return;
                     }
-                    const parsed = Math.max(0, Math.min(maxCapacity, parseInt(raw || "0", 10)));
+                    const parsed = Math.max(
+                      0,
+                      Math.min(maxCapacity, parseInt(raw || "0", 10)),
+                    );
                     setPregnantSeats(parsed);
                   }}
                   className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-full text-[#003366] bg-white text-right"
@@ -428,7 +450,10 @@ const SeatingScreen: React.FC = () => {
                       setMonkSeats("");
                       return;
                     }
-                    const parsed = Math.max(0, Math.min(maxCapacity, parseInt(raw || "0", 10)));
+                    const parsed = Math.max(
+                      0,
+                      Math.min(maxCapacity, parseInt(raw || "0", 10)),
+                    );
                     setMonkSeats(parsed);
                   }}
                   className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-full text-[#003366] bg-white text-right"
@@ -443,7 +468,9 @@ const SeatingScreen: React.FC = () => {
                 </div>
                 <input
                   type="number"
-                  value={wheelchairBikeSpaces === "" ? "" : wheelchairBikeSpaces}
+                  value={
+                    wheelchairBikeSpaces === "" ? "" : wheelchairBikeSpaces
+                  }
                   onFocus={() => {
                     if (wheelchairBikeSpaces === 0) setWheelchairBikeSpaces("");
                   }}
@@ -453,7 +480,10 @@ const SeatingScreen: React.FC = () => {
                       setWheelchairBikeSpaces("");
                       return;
                     }
-                    const parsed = Math.max(0, Math.min(maxCapacity, parseInt(raw || "0", 10)));
+                    const parsed = Math.max(
+                      0,
+                      Math.min(maxCapacity, parseInt(raw || "0", 10)),
+                    );
                     setWheelchairBikeSpaces(parsed);
                   }}
                   className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-full text-[#003366] bg-white text-right"

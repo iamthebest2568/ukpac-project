@@ -87,7 +87,9 @@ const VehiclePreview: React.FC<Props> = ({
               className="h-full w-auto object-contain mx-auto select-none"
               decoding="async"
               loading="eager"
-              style={!colorHex && colorFilter ? { filter: colorFilter } : undefined}
+              style={
+                !colorHex && colorFilter ? { filter: colorFilter } : undefined
+              }
             />
 
             {colorHex && (
