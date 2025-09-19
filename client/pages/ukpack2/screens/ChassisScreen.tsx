@@ -105,7 +105,7 @@ const OPTIONS = [
   {
     key: "small",
     label: "รถเมล์ขนาดเ���็ก 16-30 ที่นั่ง",
-    labelText: "รถเมล์ขนาดเ���็ก 16-30 ที่นั่ง",
+    labelText: "รถเมล์ขนาดเล็ก 16-30 ที่นั่ง",
     icon: <IconSmall />,
   },
   {
@@ -278,10 +278,10 @@ const ChassisScreen: React.FC = () => {
 
                   <SelectionCard
                     key={OPTIONS[1].key}
-                    icon={OPTIONS[1].icon}
+                    icon={secondIconClicked ? <IconMediumAlt /> : <IconMedium />}
                     label={OPTIONS[1].label}
                     isSelected={selected === OPTIONS[1].key}
-                    onClick={() => setSelected(OPTIONS[1].key)}
+                    onClick={() => { setSelected(OPTIONS[1].key); setSecondIconClicked(true); }}
                     variant="light"
                     appearance="bare"
                     hideLabel={true}
