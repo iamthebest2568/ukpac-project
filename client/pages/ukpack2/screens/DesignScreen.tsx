@@ -438,7 +438,37 @@ const DesignScreen: React.FC = () => {
                     foundColor = DEFAULT_COLORS.find((c) => normalize(c.preview).includes(target));
                   }
 
-                  if (foundColor) setColor(foundColor);
+                  // derive possible hex from filename/id (strip -new suffix)
+                  const deriveHex = (input?: string | null) => {
+                    if (!input) return null;
+                    try {
+                      let s = input.toLowerCase().trim();
+                      s = s.replace(/\?.*$/, "");
+                      s = s.replace(/\.(svg|webp|png|jpg|jpeg)$/, "");
+                      // take last path segment if url
+                      if (s.includes("/")) s = s.split("/").pop() || s;
+                      // remove known suffix -new
+                      s = s.replace(/-new$/, "");
+                      // remove non hex chars
+                      const maybe = s.replace(/[^0-9a-f]/g, "");
+                      if (/^[0-9a-f]{6}$/.test(maybe)) return `#${maybe}`;
+                      return null;
+                    } catch (e) {
+                      return null;
+                    }
+                  };
+
+                  const hexFromFound = deriveHex(foundColor?.id || null);
+                  const hexFromUrl = deriveHex(colorUrl);
+                  const hex = hexFromFound || hexFromUrl;
+
+                  if (foundColor) {
+                    if (hex) setColor({ ...foundColor, colorHex: hex });
+                    else setColor(foundColor);
+                  } else if (hex) {
+                    // create a synthetic color object so VehiclePreview can use colorHex
+                    setColor({ preview: colorUrl, filter: null, id: hex.replace('#',''), colorHex: hex } as any);
+                  }
                 }}
               />
 
