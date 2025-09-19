@@ -206,13 +206,14 @@ const ChassisScreen: React.FC = () => {
         title="ปรับแต่งรถเมล์ของคุณ"
         theme="light"
         fullWidth
+        containerPaddingClass={styles.containerPadding}
         footerContent={
           <div className="flex justify-center">
             <CtaButton text="ถัดไป" onClick={handleNext} />
           </div>
         }
       >
-        <div className={styles.container}>
+        <div className={`${styles.contentGrid} ${styles.containerPadding}`}>
           {/* Left: preview area (full width) */}
           <div className={`${styles.previewColumn} px-4 md:px-6`}>
             <div className={styles.previewInner}>
