@@ -26,7 +26,7 @@ const VehiclePreview: React.FC<Props> = ({
   colorHex = null,
 }) => {
   return (
-    <div className="w-full rounded-md flex flex-col items-center justify-center gap-2">
+    <div className={`w-full rounded-md flex flex-col items-center justify-center gap-2 ${className || ""}`}>
       {imageSrc ? (
         <div
           className="relative w-full flex items-center justify-center"
