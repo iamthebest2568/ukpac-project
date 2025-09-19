@@ -171,7 +171,15 @@ const StepTabs: React.FC<StepTabsProps> = ({ active }) => {
             <div className="relative w-full max-w-[64px] md:max-w-[64px] h-8 md:h-10 flex items-center justify-center select-none">
               <img
                 src={
-                  idx === 0 ? TAB1_IMG : idx === 1 ? TAB2_IMG : idx === 2 ? TAB3_IMG : idx === 3 ? TAB4_IMG : TAB_IMG
+                  idx === 0
+                    ? TAB1_IMG
+                    : idx === 1
+                    ? TAB2_IMG
+                    : idx === 2
+                    ? TAB3_IMG
+                    : idx === 3
+                    ? TAB4_IMG
+                    : TAB5_IMG
                 }
                 alt={isActive ? `แท็บที่ ${idx + 1} (แอคทีฟ)` : `แท็บที่ ${idx + 1}`}
                 className={`${iconCommon} ${isActive ? "" : "grayscale opacity-60"}`}
