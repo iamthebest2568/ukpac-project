@@ -92,14 +92,21 @@ const VehiclePreview: React.FC<Props> = ({
               }
             />
 
-            {colorHex && (
+            {colorHex && imageSrc && (
               <div
                 aria-hidden
                 className="absolute inset-0 pointer-events-none"
                 style={{
                   background: colorHex,
-                  mixBlendMode: "multiply",
-                  opacity: 0.85,
+                  zIndex: 10,
+                  WebkitMaskImage: `url(${imageSrc})`,
+                  WebkitMaskRepeat: "no-repeat",
+                  WebkitMaskSize: "contain",
+                  WebkitMaskPosition: "center",
+                  maskImage: `url(${imageSrc})`,
+                  maskRepeat: "no-repeat",
+                  maskSize: "contain",
+                  maskPosition: "center",
                 }}
               />
             )}
