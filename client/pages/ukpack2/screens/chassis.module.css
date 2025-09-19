@@ -163,7 +163,7 @@
   justify-content: center; /* center the whole group */
   justify-items: stretch; /* let buttons fill horizontally */
   align-items: stretch; /* stretch vertically */
-  grid-auto-rows: minmax(80px, auto); /* ensure adequate row height */
+  grid-auto-rows: 120px; /* fixed row height to equalize icons */
 }
 
 @media (min-width: 768px) {
@@ -171,7 +171,7 @@
     grid-template-columns: repeat(4, 1fr); /* 4 columns on md+ */
     gap: 2px; /* tightened gap between icons on wider screens */
     justify-content: center;
-    grid-auto-rows: minmax(100px, auto);
+    grid-auto-rows: 160px; /* taller rows on larger screens */
   }
 }
 
