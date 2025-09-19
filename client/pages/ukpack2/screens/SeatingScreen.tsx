@@ -21,7 +21,7 @@ const SeatingScreen: React.FC = () => {
   const [isExitModalOpen, setExitModalOpen] = useState(false);
   const [isErrorModalOpen, setErrorModalOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
-  const [errorTitle, setErrorTitle] = useState<string>("��้อผ��ดพลาด");
+  const [errorTitle, setErrorTitle] = useState<string>("��้อผิดพลาด");
 
   const maxByChassis: Record<string, number> = {
     small: 30,
@@ -171,7 +171,7 @@ const SeatingScreen: React.FC = () => {
     if (typeof totalSeats === "number" && totalSeats > maxCapacity) {
       setErrorTitle("จำนวนที่นั่งเกินขีดจำกัด");
       setErrorMessage(
-        `รถประเภทนี้สามารถมีที่นั่งได้ส��งสุด ${maxCapacity} ที่นั่ง กรุณากรอกจำนวนระหว่าง ${minCapacity} ถึง ${maxCapacity}`,
+        `รถประเภทนี้สามารถมีที่นั่งได้ส��งสุด ${maxCapacity} ที่นั่ง กรุณากรอ��จำนวนระหว่าง ${minCapacity} ถึง ${maxCapacity}`,
       );
       setErrorModalOpen(true);
       return false;
@@ -199,6 +199,7 @@ const SeatingScreen: React.FC = () => {
     try {
       const seating = {
         totalSeats,
+        specialSeats,
         pregnantSeats,
         childElderSeats,
         monkSeats,
