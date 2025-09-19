@@ -146,12 +146,21 @@
 
 .selectionGrid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, max-content); /* shrink columns to icon width */
   gap: 2px; /* tightened gap between icons */
   width: 100%;
   box-sizing: border-box;
+  justify-content: center; /* center the whole group */
   justify-items: center; /* center icons inside cells */
   align-items: center; /* ensure vertical centering */
+}
+
+@media (min-width: 768px) {
+  .selectionGrid {
+    grid-template-columns: repeat(4, max-content); /* 4 columns on md+ */
+    gap: 2px; /* tightened gap between icons on wider screens */
+    justify-content: center;
+  }
 }
 
 @media (min-width: 768px) {
