@@ -175,6 +175,7 @@ const ChassisScreen: React.FC = () => {
   const [firstIconClicked, setFirstIconClicked] = useState<boolean>(false);
   const [secondIconClicked, setSecondIconClicked] = useState<boolean>(false);
   const [thirdIconClicked, setThirdIconClicked] = useState<boolean>(false);
+  const [fourthIconClicked, setFourthIconClicked] = useState<boolean>(false);
   const selectedLabel = useMemo(() => {
     const found = OPTIONS.find((o) => o.key === selected)?.labelText || "";
     return String(found).replace(/(\d+)-(\d+)/, "$1–$2");
