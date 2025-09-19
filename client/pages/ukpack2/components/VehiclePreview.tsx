@@ -10,6 +10,8 @@ interface Props {
   overlayIconMap?: Record<string, string | React.ReactNode>;
   placeholderText?: string;
   colorFilter?: string | null;
+  // new: direct hex color overlay (eg. "#7d53a2"). If provided, takes precedence over colorFilter.
+  colorHex?: string | null;
 }
 
 const VehiclePreview: React.FC<Props> = ({
@@ -19,6 +21,7 @@ const VehiclePreview: React.FC<Props> = ({
   overlayIconMap = {},
   placeholderText = "ภาพสำหรับรุ่นนี้จะถูกเพิ่มภายหลัง",
   colorFilter = null,
+  colorHex = null,
 }) => {
   return (
     <div className="w-full rounded-md flex flex-col items-center justify-center gap-2">
