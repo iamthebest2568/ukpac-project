@@ -246,10 +246,10 @@ const ChassisScreen: React.FC = () => {
 
           {/* Right: tabs + selection cards (full width) */}
           <div className={styles.controlsWrapper}>
-              <div className={`${styles.tabsWrapper} ${styles.containerPadding}`}>
-                <StepTabs active={1} className={styles.containerPadding} />
+              <div className={styles.tabsWrapper}>
+                <StepTabs active={1} />
               </div>
-            <div className={styles.controlsBox}>
+            <div className={`${styles.controlsBox} ${styles.containerPadding}`}>
 
               <div className={styles.controlsContent}>
                 <div className={styles.selectionGrid}>
