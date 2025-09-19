@@ -126,14 +126,15 @@
 /* Move tabs up to overlap the top border so the border appears under the tabs */
 .tabsWrapper {
   width: 100%;
-  margin: 0 0 -15px 0; /* moved 1px closer to frame */
+  margin: 0; /* don't overlap frame */
   padding: 0;
   position: relative;
   z-index: 1;
 }
 
 .controlsContent {
-  padding: 12px 0 12px 0;
+  /* set top padding to match the border width so content sits flush under frame */
+  padding: 2px 0 12px 0;
   box-sizing: border-box;
 }
 
