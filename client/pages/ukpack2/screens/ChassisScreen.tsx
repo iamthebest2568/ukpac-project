@@ -238,6 +238,11 @@ const ChassisScreen: React.FC = () => {
               </div>
             </div>
 
+            <p className={styles.selectedLabel}>
+              <span className="chassis-label-mobile">รถที่เลือก : </span>
+              {selectedLabel}
+            </p>
+
           </div>
 
           {/* Right: tabs + selection cards (full width) */}
