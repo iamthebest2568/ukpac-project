@@ -57,8 +57,8 @@ const SelectionCard: React.FC<SelectionCardProps> = ({
   }
 
   // size adjustments
-  const FIXED_ICON_HEIGHT = "h-16";
-  const iconContainerClass = `${FIXED_ICON_HEIGHT} ${appearance === "bare" ? "mb-0" : "mb-2"}`;
+  const FIXED_ICON_HEIGHT = "h-16 md:h-20";
+  const iconContainerClass = `${FIXED_ICON_HEIGHT} ${appearance === "bare" ? "mb-0" : "mb-2 p-2"}`;
   const labelClass =
     size === "lg"
       ? "px-2 text-sm md:text-base"
@@ -73,7 +73,7 @@ const SelectionCard: React.FC<SelectionCardProps> = ({
       <button
         type="button"
         onClick={onClick}
-        className={`${appearance === "bare" ? "w-auto p-0" : "w-full p-3"} ${appearance === "bare" ? "rounded-none" : "rounded-2xl"} ${base} focus:outline-none ${appearance === 'bare' ? 'focus:ring-0 focus:ring-offset-0' : 'focus:ring-2 focus:ring-offset-2 focus:ring-[#ffe000]'} transition-colors`}
+        className={`${appearance === "bare" ? "w-auto p-0" : "w-full p-3 shadow-sm hover:shadow-md hover:-translate-y-0.5 transform"} ${appearance === "bare" ? "rounded-none" : "rounded-2xl"} ${base} focus:outline-none ${appearance === 'bare' ? 'focus:ring-0 focus:ring-offset-0' : 'focus:ring-2 focus:ring-offset-2 focus:ring-[#ffe000]'} transition-colors`}
         aria-pressed={isSelected}
       >
         <div
@@ -96,7 +96,7 @@ const SelectionCard: React.FC<SelectionCardProps> = ({
     <button
       type="button"
       onClick={onClick}
-      className={`${appearance === "bare" ? "w-auto p-0" : "w-full p-4"} ${appearance === "bare" ? "rounded-none" : "rounded-2xl"} ${base} focus:outline-none ${appearance === 'bare' ? 'focus:ring-0 focus:ring-offset-0' : 'focus:ring-2 focus:ring-offset-2 focus:ring-[#ffe000]'} transition-colors`}
+      className={`${appearance === "bare" ? "w-auto p-0" : "w-full p-4 shadow-sm hover:shadow-md hover:-translate-y-0.5 transform"} ${appearance === "bare" ? "rounded-none" : "rounded-2xl"} ${base} focus:outline-none ${appearance === 'bare' ? 'focus:ring-0 focus:ring-offset-0' : 'focus:ring-2 focus:ring-offset-2 focus:ring-[#ffe000]'} transition-colors`}
       aria-pressed={isSelected}
     >
       <div
