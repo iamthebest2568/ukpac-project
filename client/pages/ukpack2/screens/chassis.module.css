@@ -119,20 +119,17 @@
   overflow: visible;
   box-sizing: border-box;
   position: relative;
-  z-index: 1; /* put border layer below tabs */
+  z-index: 0; /* default stacking for frame */
+  padding-top: 0; /* rely on controlsContent for inner spacing */
 }
 
 /* Move tabs up to overlap the top border so the border appears under the tabs */
 .tabsWrapper {
   width: 100%;
-  margin: 0;
-  padding: 0 0 0 0;
-  margin-top: -18px; /* lift tabs to overlap the top border */
-  padding-top: 18px;
-  padding-left: 0;
-  padding-right: 0;
+  margin: 0 0 12px 0; /* space between tabs and frame */
+  padding: 0;
   position: relative;
-  z-index: 5; /* tabs above border (controlsBox z-index:1) */
+  z-index: 1;
 }
 
 .controlsContent {
