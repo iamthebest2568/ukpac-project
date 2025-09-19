@@ -146,43 +146,42 @@ const SeatingScreen: React.FC = () => {
   const selectedTopdown = TOPDOWN_IMAGE[selectedChassis];
 
   const validateSeating = (): boolean => {
-    const minCapacity = minByChassis[selectedChassis] ?? 16;
-    const specialSeatsTotal =
-      (Number(specialSeats) || 0) + (Number(pregnantSeats) || 0) + (Number(childElderSeats) || 0) + (Number(monkSeats) || 0) + (Number(wheelchairBikeSpaces) || 0);
+    // Determine min/max from selected chassis
+    const minCapacityLocal = minByChassis[selectedChassis] ?? 16;
+    const maxCapacityLocal = maxByChassis[selectedChassis] ?? 50;
 
-    // Ensure total seats provided
-    if (totalSeats === "") {
-      setErrorTitle("กรุณาระบุจำนวนที่นั่ง");
-      setErrorMessage(`กรุณากรอกจำนวนที่นั่งระหว่าง ${minCapacity} ถึง ${maxCapacity} ที่นั่ง`);
+    // totalSeats must be provided and a number
+    if (totalSeats === "" || typeof totalSeats !== "number") {
+      setErrorTitle("กรุณาระบุจำนวนที่นั่งทั้งหมด");
+      setErrorMessage(`กรุณากรอกจำนวนที่นั่งทั้งหมดในช่วง ${minCapacityLocal} ถึง ${maxCapacityLocal} ที่นั่ง`);
       setErrorModalOpen(true);
       return false;
     }
 
-    // Check if total seats is within range
-    if (typeof totalSeats === "number" && totalSeats < minCapacity) {
-      setErrorTitle("จำนวนที่นั่งน้อยเกินไป");
+    // Check range per chassis
+    if (totalSeats < minCapacityLocal || totalSeats > maxCapacityLocal) {
+      setErrorTitle("จำนวนที่นั่งไม่อยู่ในช่วงของรถที่เลือก");
       setErrorMessage(
-        `รถประเภทนี้ต้องมีที่นั่งอย่างน้อย ${minCapacity} ที่นั่ง กรุณากรอกจำนวนระหว่าง ${minCapacity} ถึง ${maxCapacity}`,
+        `คุณเลือก: ${CHASSIS_LABELS[selectedChassis]}. ค่าที่ถูกต้องคือ ${minCapacityLocal} ถึง ${maxCapacityLocal} ที่นั่ง แต่คุณกรอก ${totalSeats} ที่นั่ง`,
       );
       setErrorModalOpen(true);
       return false;
     }
 
-    if (typeof totalSeats === "number" && totalSeats > maxCapacity) {
-      setErrorTitle("จำนวนที่นั่งเกินขีดจำกัด");
-      setErrorMessage(
-        `รถประเภทนี้สามารถมีที่นั่งได้ส��งสุด ${maxCapacity} ที่นั่ง กรุณากรอกจำนวนระหว่าง ${minCapacity} ถึง ${maxCapacity}`,
-      );
-      setErrorModalOpen(true);
-      return false;
-    }
+    // Coerce sub-fields to numbers (empty => 0)
+    const vSpecial = Number(specialSeats) || 0;
+    const vChild = Number(childElderSeats) || 0;
+    const vPreg = Number(pregnantSeats) || 0;
+    const vMonk = Number(monkSeats) || 0;
+    const vWheel = Number(wheelchairBikeSpaces) || 0;
 
-    // Require the sum of category seats to exactly match the totalSeats
-    const totalNum = typeof totalSeats === "number" ? totalSeats : 0;
-    if (specialSeatsTotal !== totalNum) {
-      setErrorTitle("จำนวนที่นั่งไม่ตรงกัน");
+    const sumSubs = vSpecial + vChild + vPreg + vMonk + vWheel;
+
+    // Sum must exactly match totalSeats
+    if (sumSubs !== totalSeats) {
+      setErrorTitle("ผลรวมของช่องย่อยไม่ตรงกับจำนวนทั้งหมด");
       setErrorMessage(
-        `ผลรวมของช่องพิเศษ (${specialSeatsTotal}) ต้องเท่ากับจำนวนที่นั่งทั้งหมด (${totalNum}) กรุณาปรับค่าช่องย่อยหรือจำนวนทั้งหมด`,
+        `ผลรวมของช่องย่อย (${sumSubs}) ต้องเท่ากับ จำนวนที่นั่งทั้งหมด (${totalSeats}) กรุณาปรับค่าช่องย่อยหรือตัวเลขทั้งหมด`,
       );
       setErrorModalOpen(true);
       return false;
