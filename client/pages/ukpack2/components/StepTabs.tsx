@@ -159,7 +159,7 @@ const TAB5_IMG =
 const StepTabs: React.FC<StepTabsProps> = ({ active }) => {
   const tabs = [BusIcon, DeckIcon, ChairIcon, TvIcon, ReceiptIcon];
   return (
-    <div className="flex flex-nowrap justify-between md:justify-around items-center gap-0 mb-4">
+    <div className={`${className ? className + " " : ""}flex flex-nowrap justify-between md:justify-around items-center gap-0 mb-4`}>
       {tabs.map((Icon, idx) => {
         const isActive = idx + 1 === active;
         const commonClasses = `text-center py-0 flex-1 min-w-0`;
