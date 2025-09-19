@@ -169,7 +169,7 @@ const StepTabs: React.FC<StepTabsProps> = ({ active, className }) => {
             className={commonClasses}
             aria-current={isActive ? "step" : undefined}
           >
-            <div className="relative w-full max-w-[64px] md:max-w-[64px] h-8 md:h-10 flex items-center justify-center select-none">
+            <div className="relative w-8 md:w-10 h-8 md:h-10 flex items-center justify-center select-none">
               {
                 (() => {
                   const src =
