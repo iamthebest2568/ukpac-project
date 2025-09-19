@@ -2,6 +2,7 @@ import React from "react";
 
 interface StepTabsProps {
   active: number; // 1-based index
+  className?: string;
 }
 
 const iconCommon = "h-full w-auto max-w-full";
