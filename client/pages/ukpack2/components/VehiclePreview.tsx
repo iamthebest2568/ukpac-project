@@ -18,6 +18,8 @@ interface Props {
   showSelectedText?: boolean;
 }
 
+import React, { useEffect, useRef } from "react";
+
 const VehiclePreview: React.FC<Props> = ({
   imageSrc,
   label,
@@ -29,17 +31,46 @@ const VehiclePreview: React.FC<Props> = ({
   className,
   showSelectedText = false,
 }) => {
+  const shadowRef = useRef<HTMLImageElement | null>(null);
+  const carRef = useRef<HTMLImageElement | null>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+
+  const updateShadow = () => {
+    const carEl = carRef.current;
+    const shadowEl = shadowRef.current;
+    const containerEl = containerRef.current;
+    if (!carEl || !shadowEl || !containerEl) return;
+    const carRect = carEl.getBoundingClientRect();
+    const containerRect = containerEl.getBoundingClientRect();
+    const width = Math.round(carRect.width);
+    // set width and center under car within container
+    shadowEl.style.width = `${width}px`;
+    shadowEl.style.left = `${carRect.left - containerRect.left + carRect.width / 2}px`;
+    shadowEl.style.transform = `translateX(-50%)`;
+  };
+
+  useEffect(() => {
+    // update when imageSrc changes and on resize
+    updateShadow();
+    const onResize = () => updateShadow();
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [imageSrc]);
+
   return (
     <div className={`w-full rounded-md flex flex-col items-center justify-center gap-2 ${className || ""}`}>
       {imageSrc ? (
         <div
           className="relative w-full flex items-center justify-center"
           style={{ minHeight: "100px" }}
+          ref={containerRef}
         >
           <img
+            ref={shadowRef}
             src={SHADOW_URL}
             alt="เงา"
-            className="absolute w-[60%] max-w-[320px] pointer-events-none select-none"
+            className="absolute pointer-events-none select-none"
             style={{ bottom: "8px" }}
             decoding="async"
             loading="eager"
