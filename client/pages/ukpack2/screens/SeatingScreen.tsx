@@ -27,7 +27,7 @@ const SeatingScreen: React.FC = () => {
     small: 30,
     medium: 40,
     large: 50,
-    extra: 12, // รถกระบะดัดแปลง 8-12 ที่นั่ง
+    extra: 12, // รถกระบะดัดแ��ลง 8-12 ที่นั่ง
   };
 
   const minByChassis: Record<string, number> = {
@@ -163,19 +163,23 @@ const SeatingScreen: React.FC = () => {
     const minCapacityLocal = mappingMin[selectedChassis] ?? 16;
     const maxCapacityLocal = mappingMax[selectedChassis] ?? 50;
 
-    // totalSeats must be provided and numeric
-    if (totalSeats === "" || typeof totalSeats !== "number") {
+    // Normalize totalSeats to number for inclusive checks
+    const total = typeof totalSeats === "number" ? totalSeats : (totalSeats === "" ? NaN : Number(totalSeats));
+
+    if (Number.isNaN(total)) {
       setErrorTitle("กรุณาระบุจำนวนที่นั่งทั้งหมด");
       setErrorMessage(`กรุณากรอกจำนวนที่นั่งทั้งหมดในช่วง ${minCapacityLocal} ถึง ${maxCapacityLocal} ที่นั่ง`);
       setErrorModalOpen(true);
       return false;
     }
 
-    // Check that totalSeats is within the exact allowed range for selected chassis
-    if (totalSeats < minCapacityLocal || totalSeats > maxCapacityLocal) {
+    // Inclusive range check: total must be >= min and <= max
+    if (!(total >= minCapacityLocal && total <= maxCapacityLocal)) {
       const chassisLabel = CHASSIS_LABELS[selectedChassis] || selectedChassis;
       setErrorTitle("จำนวนที่นั่งไม่ถูกต้องสำหรับประเภทรถที่เลือก");
-      setErrorMessage(`คุณเลือก: ${chassisLabel}. ค่าที่ถูกต้องคือ ${minCapacityLocal} ถึง ${maxCapacityLocal} ที่นั่ง แต่คุณกรอก ${totalSeats}`);
+      setErrorMessage(
+        `คุณเลือก: ${chassisLabel}. ค่าที่ถูกต้องคือ ${minCapacityLocal} ถึง ${maxCapacityLocal} ที่นั่ง แต่คุณกรอก ${total}`,
+      );
       setErrorModalOpen(true);
       return false;
     }
@@ -189,9 +193,9 @@ const SeatingScreen: React.FC = () => {
 
     const sumSubs = sSpecial + sChild + sPreg + sMonk + sWheel;
 
-    if (sumSubs !== totalSeats) {
+    if (sumSubs !== total) {
       setErrorTitle("ผลรวมของที่นั่งย่อยไม่ตรงกัน");
-      setErrorMessage(`ผลรวมของที่นั่งย่อยทั้งหมด (${sumSubs}) ไม่ตรงกับจำนวนที่นั่งทั้งหมด (${totalSeats})`);
+      setErrorMessage(`ผลรวมของที่นั่งย่อยทั้งหมด (${sumSubs}) ไม่ตรงกับจำนวนที่นั่งทั้งหมด (${total})`);
       setErrorModalOpen(true);
       return false;
     }
@@ -385,7 +389,7 @@ const SeatingScreen: React.FC = () => {
 
               <div className="flex items-center justify-between">
                 <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">
-                  สตรีมีครรภ์
+                  สตรีม���ครรภ์
                 </div>
                 <input
                   type="number"
