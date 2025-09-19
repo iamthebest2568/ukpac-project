@@ -12,6 +12,8 @@ interface Props {
   colorFilter?: string | null;
   // new: direct hex color overlay (eg. "#7d53a2"). If provided, takes precedence over colorFilter.
   colorHex?: string | null;
+  // optional className to allow page-scoped padding/alignment
+  className?: string;
 }
 
 const VehiclePreview: React.FC<Props> = ({
