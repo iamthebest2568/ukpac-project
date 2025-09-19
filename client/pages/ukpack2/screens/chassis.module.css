@@ -149,15 +149,15 @@
 }
 
 .controlsContent {
-  /* set top padding to match the border width so content sits flush under frame */
-  padding: 2px 0 12px 0;
+  /* 5px padding from border on all sides for balanced spacing */
+  padding: 5px 5px 12px 5px;
   box-sizing: border-box;
 }
 
 .selectionGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* fill available width */
-  gap: 2px; /* tightened gap between icons */
+  gap: 3px; /* 3px gap between icons as requested */
   width: 100%;
   box-sizing: border-box;
   justify-content: center; /* center the whole group */
@@ -169,7 +169,7 @@
 @media (min-width: 768px) {
   .selectionGrid {
     grid-template-columns: repeat(4, 1fr); /* 4 columns on md+ */
-    gap: 2px; /* tightened gap between icons on wider screens */
+    gap: 3px; /* 3px gap between icons on wider screens */
     justify-content: center;
     grid-auto-rows: 160px; /* taller rows on larger screens */
   }
