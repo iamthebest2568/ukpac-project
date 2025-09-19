@@ -324,10 +324,10 @@ const ChassisScreen: React.FC = () => {
 
                   <SelectionCard
                     key={OPTIONS[3].key}
-                    icon={OPTIONS[3].icon}
+                    icon={fourthIconClicked ? <IconExtraAlt /> : <IconExtra />}
                     label={OPTIONS[3].label}
                     isSelected={selected === OPTIONS[3].key}
-                    onClick={() => setSelected(OPTIONS[3].key)}
+                    onClick={() => { setSelected(OPTIONS[3].key); setFourthIconClicked(true); }}
                     variant="light"
                     appearance="bare"
                     hideLabel={true}
@@ -343,7 +343,7 @@ const ChassisScreen: React.FC = () => {
       <ConfirmModal
         isOpen={isExitModalOpen}
         title="ออกจากหน้าจอ"
-        message="คุณแน่ใจหรือไม่ว่าต้องการ��อก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
+        message="คุณแน่ใจหรือไ��่ว่าต้องการ��อก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
         onConfirm={confirmExit}
         onCancel={() => setExitModalOpen(false)}
         contentClassName={`${styles.containerPadding} ${styles.modalContent}`}
