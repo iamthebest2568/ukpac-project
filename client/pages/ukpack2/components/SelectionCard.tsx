@@ -37,7 +37,20 @@ const SelectionCard: React.FC<SelectionCardProps> = ({
           ? "bg-white text-[#003366] border border-gray-400"
           : "bg-transparent text-white border border-[#081042]";
 
-  // Group appearance: circular icon wrapper, responsive sizes"
+  // Normalize icon sizes: ensure icons (img/svg) scale to the container height
+  let normalizedIcon = icon;
+  try {
+    if (React.isValidElement(icon)) {
+      const originalProps: any = (icon as React.ReactElement).props || {};
+      const mergedStyle = { ...(originalProps.style || {}), maxHeight: '100%', width: 'auto' };
+      const mergedClassName = `${originalProps.className || ''} max-h-full w-auto`.trim();
+      normalizedIcon = React.cloneElement(icon as React.ReactElement, { ...originalProps, style: mergedStyle, className: mergedClassName });
+    }
+  } catch (e) {
+    normalizedIcon = icon;
+  }
+
+  // Group appearance: circular icon wrapper, responsive sizes
   if (appearance === "group") {
     const boxSize = "w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28";
     return (
@@ -67,19 +80,6 @@ const SelectionCard: React.FC<SelectionCardProps> = ({
       : size === "sm"
         ? "px-2 text-xs md:text-sm"
         : "px-2 text-xs md:text-sm";
-
-  // Normalize icon sizes: ensure icons (img/svg) scale to the container height
-  let normalizedIcon = icon;
-  try {
-    if (React.isValidElement(icon)) {
-      const originalProps: any = (icon as React.ReactElement).props || {};
-      const mergedStyle = { ...(originalProps.style || {}), maxHeight: '100%', width: 'auto' };
-      const mergedClassName = `${originalProps.className || ''} max-h-full w-auto`.trim();
-      normalizedIcon = React.cloneElement(icon as React.ReactElement, { ...originalProps, style: mergedStyle, className: mergedClassName });
-    }
-  } catch (e) {
-    normalizedIcon = icon;
-  }
 
   // Horizontal layout
   if (layout === "horizontal") {
