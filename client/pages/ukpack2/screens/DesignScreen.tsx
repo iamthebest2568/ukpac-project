@@ -46,7 +46,7 @@ const IconWifi = () => (
 const IconPlug = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F09a78e31a3de44e98772b0eef382af6f?format=webp&width=800"
-    alt="ช่องช���ร์จมือถือ/USB"
+    alt="ช่องช���ร์จม���อถือ/USB"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -245,7 +245,7 @@ const DesignScreen: React.FC = () => {
                     label={
                       <>
                         <span className="chassis-label-mobile">
-                          รถที่เลือก :{" "}
+                          รถที่เลื���ก :{" "}
                         </span>
                         {label}
                       </>
@@ -389,26 +389,40 @@ const DesignScreen: React.FC = () => {
                 colors={DEFAULT_COLORS.map((c) => c.preview)}
                 selectedColor={color?.preview || DEFAULT_COLORS[0].preview}
                 onColorSelect={(colorUrl) => {
-                  // Try exact match first
-                  let foundColor = DEFAULT_COLORS.find((c) => c.preview === colorUrl);
+                  if (!colorUrl) return;
 
-                  // If not found, try substring match (allows passing filename like "ef416b" or partial URL)
-                  if (!foundColor && colorUrl) {
-                    foundColor = DEFAULT_COLORS.find((c) => c.preview.includes(colorUrl));
-                  }
+                  const normalize = (s: string) =>
+                    s
+                      .toLowerCase()
+                      .trim()
+                      .replace(/\?.*$/, "") // remove query
+                      .replace(/\.(svg|webp|png|jpg|jpeg)$/, "")
+                      .replace(/[_\s]/g, "-")
+                      .replace(/[^a-z0-9\-]/g, "");
 
-                  // If still not found and colorUrl looks like a plain filename or hash (no protocol),
-                  // compare against the last path segment of the preview URL as well
-                  if (!foundColor && colorUrl && !colorUrl.startsWith("http") && colorUrl.includes(".")) {
+                  const target = normalize(colorUrl);
+
+                  // 1) exact URL match
+                  let foundColor = DEFAULT_COLORS.find((c) => normalize(c.preview) === target);
+
+                  // 2) exact last-segment match or includes match
+                  if (!foundColor) {
                     foundColor = DEFAULT_COLORS.find((c) => {
                       try {
-                        const parts = c.preview.split("/");
-                        const last = parts[parts.length - 1] || c.preview;
-                        return last.includes(colorUrl) || c.preview.includes(colorUrl);
+                        const url = c.preview;
+                        const parts = url.split("/");
+                        let last = parts[parts.length - 1] || url;
+                        last = last.split("?")[0];
+                        return normalize(last).includes(target) || normalize(url).includes(target);
                       } catch (e) {
                         return false;
                       }
                     });
+                  }
+
+                  // 3) fallback: substring match on preview
+                  if (!foundColor) {
+                    foundColor = DEFAULT_COLORS.find((c) => normalize(c.preview).includes(target));
                   }
 
                   if (foundColor) setColor(foundColor);
