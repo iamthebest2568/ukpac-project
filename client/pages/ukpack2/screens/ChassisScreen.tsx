@@ -324,7 +324,7 @@ const ChassisScreen: React.FC = () => {
           </div>
 
           {/* White content area with tabs + cards */}
-          <div className="bg-white rounded-2xl -mt-2 p-4 border border-gray-400">
+          <div className="bg-white rounded-2xl -mt-2 p-4">
             <StepTabs active={1} />
             <div className="mt-2">
               <div className="grid grid-cols-2 gap-x-4 gap-y-2">
