@@ -25,7 +25,7 @@ const VehiclePreview: React.FC<Props> = ({
       {imageSrc ? (
         <div
           className="relative w-full flex items-center justify-center"
-          style={{ minHeight: "100px", WebkitFilter: colorFilter ? colorFilter : undefined, filter: colorFilter ? colorFilter : undefined }}
+          style={{ minHeight: "100px" }}
         >
           <img
             src={SHADOW_URL}
