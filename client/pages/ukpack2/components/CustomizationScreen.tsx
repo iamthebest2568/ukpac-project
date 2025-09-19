@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 
 interface CustomizationScreenProps {
   title: string;
@@ -8,6 +8,8 @@ interface CustomizationScreenProps {
   footerBgImage?: string;
   headerContent?: React.ReactNode;
   fullWidth?: boolean;
+  // optional CSS module class to enforce consistent horizontal padding
+  containerPaddingClass?: string;
 }
 
 const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
@@ -18,6 +20,7 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
   footerBgImage,
   headerContent,
   fullWidth = false,
+  containerPaddingClass,
 }) => {
   const isLight = theme === "light";
   const contentRef = useRef<HTMLDivElement | null>(null);
@@ -28,7 +31,7 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
     >
       {title?.trim() || headerContent ? (
         <header className={`${fullWidth ? "px-0" : "px-6"} flex items-center justify-center h-16`}>
-          <div className={`${fullWidth ? "w-full" : "max-w-4xl w-full"} flex items-center justify-center`}>
+          <div className={`${fullWidth ? "w-full" : "max-w-4xl w-full"} flex items-center justify-center ${containerPaddingClass || ""}`}>
             {headerContent ? (
               <div className="w-full flex items-center justify-center">
                 {headerContent}
@@ -44,7 +47,7 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
 
       <div
         ref={contentRef}
-        className={`flex-1 min-h-0 ${fullWidth ? "px-0" : "px-6"} py-6`}
+        className={`flex-1 min-h-0 ${containerPaddingClass ? containerPaddingClass : (fullWidth ? "px-0" : "px-6")} py-6`}
         style={{
           height:
             "calc(100vh - 64px - (56px + env(safe-area-inset-bottom, 0px)))",
@@ -60,7 +63,7 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
             style={{ height: "calc(80px + env(safe-area-inset-bottom, 0px))" }}
           >
             <div
-              className={`w-full ${fullWidth ? "px-4 sm:px-6" : "max-w-4xl mx-auto w-full px-4 sm:px-6"}`}
+              className={containerPaddingClass ? `w-full ${containerPaddingClass}` : `w-full ${fullWidth ? "px-4 sm:px-6" : "max-w-4xl mx-auto w-full px-4 sm:px-6"}`}
               style={{
                 height: "80px",
                 display: "flex",
