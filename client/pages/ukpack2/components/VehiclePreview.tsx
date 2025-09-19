@@ -19,7 +19,7 @@ const VehiclePreview: React.FC<Props> = ({
   label,
   overlayLabels = [],
   overlayIconMap = {},
-  placeholderText = "ภาพสำหรับรุ่นนี้จะถูกเพิ่มภายหลัง",
+  placeholderText = "ภาพสำหรับรุ่นนี้จะถูกเพิ��มภายหลัง",
   colorFilter = null,
   colorHex = null,
 }) => {
@@ -83,12 +83,24 @@ const VehiclePreview: React.FC<Props> = ({
 
             <img
               src={imageSrc}
-              alt={typeof label === "string" ? `ภ���พรถ - ${label}` : "ภาพรถ"}
+              alt={typeof label === "string" ? `ภาพรถ - ${label}` : "ภาพรถ"}
               className="h-full w-auto object-contain mx-auto select-none"
               decoding="async"
               loading="eager"
-              style={colorFilter ? { filter: colorFilter } : undefined}
+              style={!colorHex && colorFilter ? { filter: colorFilter } : undefined}
             />
+
+            {colorHex && (
+              <div
+                aria-hidden
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  background: colorHex,
+                  mixBlendMode: "multiply",
+                  opacity: 0.85,
+                }}
+              />
+            )}
           </div>
         </div>
       ) : (
