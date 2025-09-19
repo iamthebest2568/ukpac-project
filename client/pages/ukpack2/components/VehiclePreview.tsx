@@ -16,6 +16,8 @@ interface Props {
   className?: string;
   // when true, VehiclePreview will render a "รถที่เลือก : {label}" line beneath the preview
   showSelectedText?: boolean;
+  // optional star icon to overlay on the top-right of the vehicle image
+  starSrc?: string | null;
 }
 
 const VehiclePreview: React.FC<Props> = ({
