@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CustomizationScreen from "../../ukpack2/components/CustomizationScreen";
 import SelectionCard from "../../ukpack2/components/SelectionCard";
@@ -19,7 +19,7 @@ const AMENITIES_ICON_SMALL = {
     "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb0789bfd1100472f8351704764607d31?format=webp&width=800",
 };
 const PAYMENT_ICON_SMALL: Record<string, string> = {
-  เง���นสด:
+  เงินสด:
     "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fbc8b22cedfbb4640a702f724881f196d?format=webp&width=800",
   สแกนจ่าย:
     "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb8992da4be824b339d3df5f0a076ed93?format=webp&width=800",
@@ -85,12 +85,12 @@ const OPTIONS = [
   {
     key: "small",
     label: "รถเมล์ขนาดเล็ก 16-30 ที่นั่ง",
-    labelText: "รถเมล์ขนาดเล็ก 16-30 ท��่นั่ง",
+    labelText: "รถเมล์ขนาดเล็ก 16-30 ที่นั่ง",
     icon: <IconSmall />,
   },
   {
     key: "medium",
-    label: "รถเมล์ม���ตรฐาน 30-50 ที่นั่ง",
+    label: "รถเมล์มาตรฐาน 30-50 ที่นั่ง",
     labelText: "รถเมล์มาตรฐาน 30-50 ที่นั่ง",
     icon: <IconMedium />,
   },
@@ -103,7 +103,7 @@ const OPTIONS = [
         9-15 ที่นั่ง
       </>
     ),
-    labelText: "รถตู้โดยสาร 9-15 ที่นั่ง",
+    labelText: "รถตู้โดยสาร 9-15 ท��่นั่ง",
     icon: <IconLarge />,
   },
   {
@@ -217,7 +217,7 @@ const ChassisScreen: React.FC = () => {
           {/* Left: preview area (full width) */}
           <div className={`${styles.previewWrapper}`}>
             <div className={styles.previewInner}>
-              <div style={{ position: 'relative' }}>
+              <div style={{ position: "relative" }}>
                 <VehiclePreview
                   imageSrc={HERO_IMAGE[selected]}
                   label={selectedLabel}
@@ -229,7 +229,7 @@ const ChassisScreen: React.FC = () => {
 
                 <img
                   src={HERO_STAR}
-                  alt="สัญลักษณ์��าว"
+                  alt="สัญลักษณ์ดาว"
                   className={styles.starBadge}
                   decoding="async"
                   loading="eager"
