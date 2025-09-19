@@ -126,7 +126,7 @@
 /* Move tabs up to overlap the top border so the border appears under the tabs */
 .tabsWrapper {
   width: 100%;
-  margin: 0; /* no gap between StepTabs and SelectionGrid */
+  margin: 0 0 -14px 0; /* negative to offset controlsBox border (2px) + controlsContent padding-top (12px) => 0px visible gap */
   padding: 0;
   position: relative;
   z-index: 1;
