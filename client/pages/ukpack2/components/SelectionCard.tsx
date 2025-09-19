@@ -57,7 +57,7 @@ const SelectionCard: React.FC<SelectionCardProps> = ({
   }
 
   // size adjustments
-  const FIXED_ICON_HEIGHT = "h-16 md:h-20";
+  const FIXED_ICON_HEIGHT = appearance === 'bare' && hideLabel ? "h-full" : "h-16 md:h-20";
   const iconContainerClass = `${FIXED_ICON_HEIGHT} ${appearance === "bare" ? "mb-0" : "mb-2 p-2"}`;
   const labelClass =
     size === "lg"
