@@ -73,7 +73,7 @@ const SelectionCard: React.FC<SelectionCardProps> = ({
       <button
         type="button"
         onClick={onClick}
-        className={`w-full flex items-center ${appearance === "bare" ? "p-0" : "p-3"} ${appearance === "bare" ? "rounded-none" : "rounded-2xl"} ${base} focus:outline-none ${appearance === 'bare' ? 'focus:ring-0 focus:ring-offset-0' : 'focus:ring-2 focus:ring-offset-2 focus:ring-[#ffe000]'} transition-colors`}
+        className={`${appearance === "bare" ? "w-auto p-0" : "w-full p-3"} ${appearance === "bare" ? "rounded-none" : "rounded-2xl"} ${base} focus:outline-none ${appearance === 'bare' ? 'focus:ring-0 focus:ring-offset-0' : 'focus:ring-2 focus:ring-offset-2 focus:ring-[#ffe000]'} transition-colors`}
         aria-pressed={isSelected}
       >
         <div
