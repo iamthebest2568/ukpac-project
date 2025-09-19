@@ -7,6 +7,7 @@ interface CustomizationScreenProps {
   theme?: "dark" | "light";
   footerBgImage?: string;
   headerContent?: React.ReactNode;
+  fullWidth?: boolean;
 }
 
 const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
@@ -16,6 +17,7 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
   theme = "dark",
   footerBgImage,
   headerContent,
+  fullWidth = false,
 }) => {
   const isLight = theme === "light";
   const contentRef = useRef<HTMLDivElement | null>(null);
@@ -25,8 +27,8 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
       className={`h-screen flex flex-col overflow-hidden ${isLight ? "bg-white text-black" : "bg-[#000d59] text-white"}`}
     >
       {title?.trim() || headerContent ? (
-        <header className="px-6 flex items-center justify-center h-16">
-          <div className="max-w-4xl w-full flex items-center justify-center">
+        <header className={`${fullWidth ? "px-0" : "px-6"} flex items-center justify-center h-16`}>
+          <div className={`${fullWidth ? "w-full" : "max-w-4xl w-full"} flex items-center justify-center`}>
             {headerContent ? (
               <div className="w-full flex items-center justify-center">
                 {headerContent}
@@ -42,7 +44,7 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
 
       <div
         ref={contentRef}
-        className="flex-1 min-h-0 px-6 py-6"
+        className={`flex-1 min-h-0 ${fullWidth ? "px-0" : "px-6"} py-6`}
         style={{
           height:
             "calc(100vh - 64px - (56px + env(safe-area-inset-bottom, 0px)))",
@@ -58,7 +60,7 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
             style={{ height: "calc(80px + env(safe-area-inset-bottom, 0px))" }}
           >
             <div
-              className="max-w-4xl mx-auto w-full px-4 sm:px-6"
+              className={`w-full ${fullWidth ? "px-4 sm:px-6" : "max-w-4xl mx-auto w-full px-4 sm:px-6"}`}
               style={{
                 height: "80px",
                 display: "flex",
