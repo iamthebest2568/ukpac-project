@@ -191,12 +191,26 @@
   padding: 0 !important;
 }
 
-/* force any image inside the grid to scale to full cell height */
-.selectionGrid > button img {
+/* force any image or SVG inside the grid to scale to full cell height */
+.selectionGrid > button img,
+.selectionGrid > button svg,
+.selectionGrid img,
+.selectionGrid svg {
   height: 100% !important;
   max-height: none !important;
   width: auto !important;
   object-fit: contain !important;
+  display: block !important;
+}
+
+/* ensure grid stretches and rows are uniform */
+.selectionGrid {
+  align-content: stretch;
+  align-items: stretch;
+}
+
+.selectionGrid > button > div:first-child {
+  min-height: 0; /* allow flex children to shrink properly */
 }
 
 
