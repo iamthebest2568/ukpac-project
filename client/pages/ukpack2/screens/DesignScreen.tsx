@@ -123,7 +123,7 @@ const BUS_EMPLOY_ICON =
 
 const DEFAULT_COLORS = [
   {
-    preview: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Ff8cd07f7173d434181ef5bb4859e14af?format=webp&width=800",
+    preview: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F6cd69d1c234d4a76a0ed41ea01305797?format=webp&width=800",
     filter: "hue-rotate(0deg) saturate(0) brightness(0.25)",
   },
   {
@@ -359,7 +359,7 @@ const DesignScreen: React.FC = () => {
                       ramp: (
                         <img
                           src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fece2b6fc843340f0997f2fd7d3ca0aea?format=webp&width=800"
-                          alt="ทางลาด"
+                          alt="ทางลา��"
                           className="h-5 w-5 object-contain"
                         />
                       ),
