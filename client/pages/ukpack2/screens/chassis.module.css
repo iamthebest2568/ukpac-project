@@ -16,7 +16,7 @@
   box-sizing: border-box;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 768px) {
   .containerPadding {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
