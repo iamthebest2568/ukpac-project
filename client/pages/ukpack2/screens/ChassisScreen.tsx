@@ -42,7 +42,7 @@ const DOOR_ICON_SMALL: Record<string, string> = {
 
 const IconSmall = () => (
   <img
-    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F91c62d1140ba42828ef9648da47a49ad?format=webp&width=800"
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F02db4c9e3b9d40c78d7d829d6e607b66?format=webp&width=800"
     alt=""
     aria-hidden="true"
     className="max-h-12 sm:max-h-16 w-auto object-contain select-none"
