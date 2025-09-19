@@ -160,56 +160,12 @@ const StepTabs: React.FC<StepTabsProps> = ({ active }) => {
           >
             <div className="relative w-full max-w-[64px] md:max-w-[64px] h-8 md:h-10 flex items-center justify-center select-none">
               <img
-                src={TAB_FRAME}
-                alt={isActive ? "กรอบแท็บ (แอคทีฟ)" : "กรอบแท็บ"}
-                className={`absolute inset-0 w-full h-full object-contain pointer-events-none ${isActive ? "" : "grayscale opacity-60"}`}
+                src={TAB_IMG}
+                alt={isActive ? `แท็บที่ ${idx + 1} (แอคทีฟ)` : `แท็บที่ ${idx + 1}`}
+                className={`${iconCommon} ${isActive ? "" : "grayscale opacity-60"}`}
                 decoding="async"
                 loading="eager"
-                aria-hidden={!isActive}
               />
-              {idx === 0 ? (
-                <img
-                  src={TAB1_ICON}
-                  alt={isActive ? "โครงรถ (แท็บปัจจุบัน)" : "โครงรถ"}
-                  className={`${iconCommon} ${isActive ? "" : "grayscale opacity-60"}`}
-                  decoding="async"
-                  loading="eager"
-                />
-              ) : idx === 1 ? (
-                <img
-                  src={TAB2_ICON}
-                  alt={isActive ? "แท็บที่ 2 (แอคทีฟ)" : "แท็บที่ 2"}
-                  className={`${iconCommon} ${isActive ? "" : "grayscale opacity-60"}`}
-                  decoding="async"
-                  loading="eager"
-                />
-              ) : idx === 2 ? (
-                <img
-                  src={TAB3_ICON}
-                  alt={isActive ? "แท็บที่ 3 (แอคทีฟ)" : "แท็บที่ 3"}
-                  className={`${iconCommon} ${isActive ? "" : "grayscale opacity-60"}`}
-                  decoding="async"
-                  loading="eager"
-                />
-              ) : idx === 3 ? (
-                <img
-                  src={TAB4_ICON}
-                  alt={isActive ? "แท็บที่ 4 (แอคทีฟ)" : "แท็บที่ 4"}
-                  className={`${iconCommon} ${isActive ? "" : "grayscale opacity-60"}`}
-                  decoding="async"
-                  loading="eager"
-                />
-              ) : idx === 4 ? (
-                <img
-                  src={TAB5_ICON}
-                  alt={isActive ? "แท็บที่ 5 (แอคทีฟ)" : "แท็บที่ 5"}
-                  className={`${iconCommon} ${isActive ? "" : "grayscale opacity-60"}`}
-                  decoding="async"
-                  loading="eager"
-                />
-              ) : (
-                <Icon active={isActive} />
-              )}
             </div>
           </div>
         );
