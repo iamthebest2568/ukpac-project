@@ -120,19 +120,22 @@
 
 /* Controls box: frame around tabs + content. Tabs will visually sit above the top border */
 .controlsBox {
-  border: 1px solid #e5e7eb;
+  border: 2px solid #d1d5db; /* increased thickness */
   border-radius: 8px;
   background: #ffffff;
   overflow: visible;
   box-sizing: border-box;
+  position: relative;
 }
 
 /* Move tabs up to overlap the top border so the border appears under the tabs */
 .tabsWrapper {
-  margin-top: -12px;
-  padding-top: 12px;
+  margin-top: -18px; /* lift tabs further to sit above the border */
+  padding-top: 18px;
   padding-left: 0;
   padding-right: 0;
+  position: relative;
+  z-index: 30; /* ensure tabs are above the border */
 }
 
 .controlsContent {
