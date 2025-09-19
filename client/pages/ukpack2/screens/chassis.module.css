@@ -147,7 +147,7 @@
 .selectionGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: var(--chassis-gap);
+  gap: 8px; /* reduced gap for tighter spacing between icons */
   width: 100%;
   box-sizing: border-box;
   justify-items: center; /* center icons inside cells */
@@ -156,6 +156,7 @@
 @media (min-width: 768px) {
   .selectionGrid {
     grid-template-columns: repeat(4, 1fr); /* 4 columns on md+ */
+    gap: 12px; /* slightly larger gap on wider screens */
   }
 }
 
