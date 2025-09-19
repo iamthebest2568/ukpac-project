@@ -224,7 +224,6 @@ const ChassisScreen: React.FC = () => {
                   overlayLabels={overlayLabels}
                   overlayIconMap={{ ...AMENITIES_ICON_SMALL, ...PAYMENT_ICON_SMALL, ...DOOR_ICON_SMALL }}
                   colorHex={null}
-                  className={styles.containerPadding}
                   showSelectedText={true}
                   starSrc={HERO_STAR}
                 />
