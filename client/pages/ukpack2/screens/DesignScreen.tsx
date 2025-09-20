@@ -516,7 +516,7 @@ const DesignScreen: React.FC = () => {
                             setSlogan(sloganDraft);
                             setShowTextarea(false);
                           }}
-                          className="px-4 py-2 rounded-xl bg-[#000D59] text-white hover:bg-[#ffe000] hover:text-white transition-colors"
+                          className="px-4 py-2 rounded-xl bg-[#000D59] text-white hover:bg-[#ffe000] hover:text-[#000D59] transition-colors" style={{color: '#ffffff'}}
                         >
                           บันทึก
                         </button>
