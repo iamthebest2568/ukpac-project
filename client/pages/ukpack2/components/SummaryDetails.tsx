@@ -172,7 +172,7 @@ const displayDoor = (raw: any) => {
   if (typeof raw === "object") {
     if (raw.doorChoice)
       return raw.doorChoice === "1"
-        ? "1 ประตู"
+        ? "1 ประต��"
         : raw.doorChoice === "2"
           ? "2 ประตู"
           : String(raw.doorChoice);
@@ -241,20 +241,28 @@ const SummaryDetails: React.FC = () => {
     // ignore
   }
 
+  const { state } = useBusDesign();
   const selected = (() => {
     try {
-      return (
-        (data.chassis as string) ||
-        sessionStorage.getItem("design.chassis") ||
-        "medium"
-      );
+      if (state?.chassis) return state.chassis as string;
+      return sessionStorage.getItem("design.chassis") || "medium";
     } catch (e) {
       return "medium";
     }
-  })() as string;
+  })();
 
   const chassisLabel = CHASSIS_LABELS[selected] || "";
   const heroImg = HERO_IMAGE[selected];
+
+  // color: prefer context exterior color, fallback to sessionStorage
+  const storedColorLocal = state?.exterior?.color || (() => {
+    try {
+      const raw = sessionStorage.getItem("design.color");
+      return raw ? JSON.parse(raw) : null;
+    } catch {
+      return null;
+    }
+  })();
 
   return (
     <>
@@ -262,7 +270,8 @@ const SummaryDetails: React.FC = () => {
         <div className="flex flex-col items-center mb-6">
           <VehiclePreview
             imageSrc={heroImg}
-            colorFilter={storedColor?.filter}
+            colorFilter={storedColorLocal?.filter ?? null}
+            colorHex={storedColorLocal?.colorHex ?? null}
             label={`รถที่เลือก : ${chassisLabel}`}
             overlayLabels={(() => {
               const amenities = (() => {
