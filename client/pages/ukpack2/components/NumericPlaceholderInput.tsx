@@ -12,8 +12,9 @@ type Props = {
 const NumericPlaceholderInput: React.FC<Props> = ({ id, value, onChange, min = 0, max = Infinity, className = "" }) => {
   const [focused, setFocused] = useState(false);
 
-  // When not focused we show a display value of 00 (or padded number)
-  const displayValue = value === "" ? "00" : String(value).padStart(2, "0");
+  // When not focused we show a display value of 00 only for empty value.
+  // When a user has entered a value we display it as-is (no leading zero padding).
+  const displayValue = value === "" ? "00" : String(value);
   const inputValue = focused ? (value === "" ? "" : String(value)) : displayValue;
 
   return (
