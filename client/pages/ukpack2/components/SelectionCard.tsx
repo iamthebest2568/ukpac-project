@@ -28,20 +28,20 @@ const SelectionCard: React.FC<SelectionCardProps> = ({
     appearance === "bare"
       ? `${isLight ? "text-[#003366]" : "text-white"} bg-transparent border-0`
       : isSelected
-        ? isLight
-          ? "bg-[#ffe000] text-[#003366] border-transparent font-semibold"
-          : "bg-[#ffe000] text-black border-transparent"
-        : isLight
-          ? "bg-white text-[#003366] border border-gray-400"
-          : "bg-transparent text-white border border-[#081042]";
+      ? isLight
+        ? "bg-[#ffe000] text-[#003366] border-transparent font-semibold"
+        : "bg-[#ffe000] text-black border-transparent"
+      : isLight
+      ? "bg-white text-[#003366] border border-gray-400"
+      : "bg-transparent text-white border border-[#081042]";
 
   // Normalize icon sizes: ensure icons (img/svg) scale to the container height
   let normalizedIcon = icon;
   try {
     if (React.isValidElement(icon)) {
       const originalProps: any = (icon as React.ReactElement).props || {};
-      const mergedStyle = { ...(originalProps.style || {}), maxHeight: '100%', width: 'auto' };
-      const mergedClassName = `${originalProps.className || ''} max-h-full w-auto`.trim();
+      const mergedStyle = { ...(originalProps.style || {}), maxHeight: "100%", width: "auto" };
+      const mergedClassName = `${originalProps.className || ""} max-h-full w-auto`.trim();
       normalizedIcon = React.cloneElement(icon as React.ReactElement, { ...originalProps, style: mergedStyle, className: mergedClassName });
     }
   } catch (e) {
@@ -55,7 +55,7 @@ const SelectionCard: React.FC<SelectionCardProps> = ({
       <button
         type="button"
         onClick={onClick}
-        className={`inline-flex items-center justify-center p-0 focus:outline-none transition-all`}
+        className={`inline-flex items-center justify-center p-0 focus:outline-none transition-all ${isSelected ? 'selected' : ''} ${layout === 'horizontal' ? 'horizontal' : 'vertical'}`}
         aria-pressed={isSelected}
       >
         <div
@@ -70,34 +70,35 @@ const SelectionCard: React.FC<SelectionCardProps> = ({
   }
 
   // size adjustments
-  const FIXED_ICON_HEIGHT = appearance === 'bare' && hideLabel ? "h-full" : "h-16 md:h-20";
-  const iconContainerClass = `${FIXED_ICON_HEIGHT} ${appearance === "bare" ? "mb-0" : "mb-2 p-2"}`;
+  const FIXED_ICON_HEIGHT_CLASS = "h-16 md:h-20"; // fallback Tailwind classes
+  const iconContainerClass = `${appearance === "bare" ? "mb-0" : "mb-2 p-2"}`;
   const labelClass =
     size === "lg"
       ? "px-2 text-sm md:text-base"
       : size === "sm"
-        ? "px-2 text-xs md:text-sm"
-        : "px-2 text-xs md:text-sm";
+      ? "px-2 text-xs md:text-sm"
+      : "px-2 text-xs md:text-sm";
 
-  // Horizontal layout
+  // Build button classes and append helpers for CSS targeting
+  const appearanceClasses = appearance === "bare" ? "w-auto p-0 rounded-none" : "w-full p-3 rounded-2xl";
+  const focusClasses = appearance === "bare" ? "focus:outline-none focus:ring-0 focus:ring-offset-0" : "focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#ffe000]";
+  const selectedClass = isSelected ? "selected" : "";
+  const layoutClass = layout === "horizontal" ? "horizontal" : "vertical";
+
   if (layout === "horizontal") {
-    const iconBox = `flex-shrink-0 ${FIXED_ICON_HEIGHT} w-auto flex items-center justify-center`;
+    const iconBox = `flex-shrink-0 ${FIXED_ICON_HEIGHT_CLASS} w-auto flex items-center justify-center`;
     return (
       <button
         type="button"
         onClick={onClick}
-        className={`${appearance === "bare" ? "w-auto p-0" : "w-full p-3 shadow-sm hover:shadow-md hover:-translate-y-0.5 transform"} ${appearance === "bare" ? "rounded-none" : "rounded-2xl"} ${base} focus:outline-none ${appearance === 'bare' ? 'focus:ring-0 focus:ring-offset-0' : 'focus:ring-2 focus:ring-offset-2 focus:ring-[#ffe000]'} transition-colors`}
+        className={`${appearanceClasses} ${base} ${focusClasses} transition-colors ${selectedClass} ${layoutClass}`}
         aria-pressed={isSelected}
       >
-        <div
-          className={`${iconBox} flex items-center justify-center flex-shrink-0 ${isLight ? "text-[#003366]" : "text-white"}`}
-        >
+        <div className={`iconContainer ${iconBox} flex items-center justify-center ${isLight ? "text-[#003366]" : "text-white"}`}>
           {normalizedIcon}
         </div>
         {!hideLabel && (
-          <div
-            className={`ml-3 ${labelClass} font-sarabun text-left leading-tight break-words whitespace-normal max-w-full`}
-          >
+          <div className={`ml-3 ${labelClass} font-sarabun text-left leading-tight break-words whitespace-normal max-w-full`}>
             {label}
           </div>
         )}
@@ -105,22 +106,19 @@ const SelectionCard: React.FC<SelectionCardProps> = ({
     );
   }
 
+  // Vertical layout (default)
   return (
     <button
       type="button"
       onClick={onClick}
-      className={`${appearance === "bare" ? "w-auto p-0" : "w-full p-4 shadow-sm hover:shadow-md hover:-translate-y-0.5 transform"} ${appearance === "bare" ? "rounded-none" : "rounded-2xl"} ${base} focus:outline-none ${appearance === 'bare' ? 'focus:ring-0 focus:ring-offset-0' : 'focus:ring-2 focus:ring-offset-2 focus:ring-[#ffe000]'} transition-colors`}
+      className={`${appearance === "bare" ? "w-auto p-0" : "w-full p-4 shadow-sm hover:shadow-md hover:-translate-y-0.5 transform"} ${appearance === "bare" ? "rounded-none" : "rounded-2xl"} ${base} ${focusClasses} transition-colors ${selectedClass} ${layoutClass}`}
       aria-pressed={isSelected}
     >
-      <div
-        className={`${iconContainerClass} flex items-center justify-center ${isLight ? "text-[#003366]" : "text-white"} transition-transform`}
-      >
+      <div className={`${iconContainerClass} ${FIXED_ICON_HEIGHT_CLASS} flex items-center justify-center ${isLight ? "text-[#003366]" : "text-white"} transition-transform iconContainer`}>
         {normalizedIcon}
       </div>
       {!hideLabel && (
-        <div
-          className={`${labelClass} font-sarabun text-center leading-tight break-words whitespace-normal max-w-full selection-label-mobile`}
-        >
+        <div className={`${labelClass} font-sarabun text-center leading-tight break-words whitespace-normal max-w-full selection-label-mobile`}>
           {label}
         </div>
       )}

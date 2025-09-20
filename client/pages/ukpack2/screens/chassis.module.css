@@ -3,8 +3,7 @@
    - Mobile: 16px (1rem) -> px-4
    - Tablet (>=640px): 24px (1.5rem) -> px-6
    - Desktop (>=1024px): 32px (2rem) -> px-8
-*/
-:root{
+*/:root{
   --chassis-gap: 16px;
   --chassis-accent: #001a73;
 }
@@ -252,7 +251,7 @@
 }
 
 /* Icon container: fixed uniform height, width flexible (fills column) */
-.selectionGrid > button > div:first-child {
+.selectionGrid > button > div.iconContainer {
   height: var(--icon-cell-height) !important;
   width: 100% !important;
   display: flex;
@@ -285,10 +284,48 @@
   align-content: stretch;
 }
 
-.selectionGrid > button > div:first-child {
+.selectionGrid > button > div.iconContainer {
   min-height: 0; /* allow flex children to shrink properly */
 }
 
+
+/* Horizontal inline card layout (matches example) */
+.selectionGrid > button.horizontal {
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 12px !important;
+  padding: 8px 12px !important;
+}
+
+/* Inline icon sizing: smaller uniform height for inline cards */
+.selectionGrid > button.horizontal > div.iconContainer {
+  height: 56px !important; /* mobile inline icon height */
+  width: auto !important;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .selectionGrid > button.horizontal > div.iconContainer {
+    height: 72px !important; /* larger inline height on md+ */
+  }
+}
+
+/* Ensure images inside horizontal cards respect the container height */
+.selectionGrid > button.horizontal img,
+.selectionGrid > button.horizontal svg {
+  height: 100% !important;
+  width: auto !important;
+}
+
+/* Selected state: visible border + subtle background */
+.selectionGrid > button.selected {
+  border: 2px solid #f7c948 !important; /* warm yellow border */
+  background: #fff7d6 !important; /* light yellow background */
+}
 
 /* Fixed footer that uses same horizontal padding as content */
 .fixedFooter {

@@ -54,7 +54,7 @@ const IconSmall = () => (
 const IconSmallAlt = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fed2dc7373da74a8caeaca4fcb33205a3?format=webp&width=800"
-    alt="ไอคอนรถเมล์ขนา���เล็ก (กดแล้ว)"
+    alt="ไอคอนรถเมล์ขนาดเล็ก (กดแล้ว)"
     aria-hidden="true"
     className="h-full w-auto object-contain select-none"
     decoding="async"
@@ -113,7 +113,7 @@ const IconExtra = () => (
 );
 const IconExtraAlt = () => (
   <img
-    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F0ed01deb92a7455c8bdf82be5c749bb9?format=webp&width=800"
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F0ed01deb92a745c8bdf82be5c749bb9?format=webp&width=800"
     alt=""
     aria-hidden="true"
     className="h-full w-auto object-contain select-none -translate-y-0.5"
@@ -324,9 +324,10 @@ const ChassisScreen: React.FC = () => {
                     isSelected={selected === OPTIONS[0].key}
                     onClick={() => { setSelected(OPTIONS[0].key); setFirstIconClicked(true); setSecondIconClicked(false); setThirdIconClicked(false); setFourthIconClicked(false); }}
                     variant="light"
-                    appearance="bare"
-                    hideLabel={true}
+                    appearance="card"
+                    hideLabel={false}
                     size="sm"
+                    layout="horizontal"
                   />
 
                   <SelectionCard
@@ -336,9 +337,10 @@ const ChassisScreen: React.FC = () => {
                     isSelected={selected === OPTIONS[1].key}
                     onClick={() => { setSelected(OPTIONS[1].key); setSecondIconClicked(true); setFirstIconClicked(false); setThirdIconClicked(false); setFourthIconClicked(false); }}
                     variant="light"
-                    appearance="bare"
-                    hideLabel={true}
+                    appearance="card"
+                    hideLabel={false}
                     size="lg"
+                    layout="horizontal"
                   />
 
                   <SelectionCard
@@ -348,9 +350,10 @@ const ChassisScreen: React.FC = () => {
                     isSelected={selected === OPTIONS[2].key}
                     onClick={() => { setSelected(OPTIONS[2].key); setThirdIconClicked(true); setFirstIconClicked(false); setSecondIconClicked(false); setFourthIconClicked(false); }}
                     variant="light"
-                    appearance="bare"
-                    hideLabel={true}
+                    appearance="card"
+                    hideLabel={false}
                     size="sm"
+                    layout="horizontal"
                   />
 
                   <SelectionCard
@@ -360,9 +363,10 @@ const ChassisScreen: React.FC = () => {
                     isSelected={selected === OPTIONS[3].key}
                     onClick={() => { setSelected(OPTIONS[3].key); setFourthIconClicked(true); setFirstIconClicked(false); setSecondIconClicked(false); setThirdIconClicked(false); }}
                     variant="light"
-                    appearance="bare"
-                    hideLabel={true}
+                    appearance="card"
+                    hideLabel={false}
                     size="sm"
+                    layout="horizontal"
                   />
                 </div>
               </div>
@@ -374,7 +378,7 @@ const ChassisScreen: React.FC = () => {
       <ConfirmModal
         isOpen={isExitModalOpen}
         title="ออกจากหน้าจอ"
-        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
+        message="คุณแน่ใจหรือไม่ว่าต้องการอ��ก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
         onConfirm={confirmExit}
         onCancel={() => setExitModalOpen(false)}
         contentClassName={`${styles.containerPadding} ${styles.modalContent}`}
