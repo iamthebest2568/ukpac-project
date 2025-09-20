@@ -27,7 +27,7 @@ const VehiclePreview: React.FC<Props> = ({
   label,
   overlayLabels = [],
   overlayIconMap = {},
-  placeholderText = "ภาพสำหรับรุ่นนี้จะถูกเพิ่มภายหล��ง",
+  placeholderText = "ภาพสำหรับรุ่นนี้จะถูกเพิ่มภายหลัง",
   colorFilter = null,
   colorHex = null,
   colorMaskSrc = null,
@@ -125,7 +125,7 @@ const VehiclePreview: React.FC<Props> = ({
             <img
               ref={carRef}
               src={imageSrc}
-              alt={typeof label === "string" ? `ภาพรถ - ${label}` : "ภา���รถ"}
+              alt={typeof label === "string" ? `ภาพรถ - ${label}` : "ภาพรถ"}
               className="h-full w-auto object-contain mx-auto select-none"
               decoding="async"
               loading="eager"
