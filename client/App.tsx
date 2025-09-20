@@ -86,7 +86,7 @@ const ConfirmationScreen = lazy(
   () => import("./pages/ukpack2/screens/ConfirmationScreen"),
 );
 const EndScreen = lazy(() => import("./pages/ukpack2/screens/EndScreen"));
-const SkipEndPage = lazy(() => import("./pages/SkipEnd"));
+const SkipEndPage = lazy(() => import("./pages/ukpack2/screens/SkipEnd"));
 const UkPack2Dashboard = lazy(() => import("./pages/ukpack2/UkDashboard"));
 
 // Layout component with accessibility features
@@ -134,9 +134,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         <a
           href="#main-content"
           className="skip-link sr-only focus:not-sr-only absolute top-2 left-2 z-50 bg-yellow-400 text-black px-2 py-1 rounded touch-target"
-          aria-label="ข้ามไปยังเนื้อหาหลั��"
+          aria-label="ข้ามไปยังเนื้อหาหลัก"
         >
-          ข้ามไปยังเนื้อหาหลัก
+          ข้ามไปย��งเนื้อหาหลัก
         </a>
         <main
           id="main-content"
