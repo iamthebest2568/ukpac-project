@@ -227,7 +227,7 @@ const IconCam = () => (
 const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   "แอร์": <IconAir />,
   "พัดลม": <IconFan />,
-  "ที่นั่งพิเศษ": <IconSeat />,
+  "ที่นั่งพิเศ���": <IconSeat />,
   "ที่จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
   "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
@@ -618,7 +618,7 @@ const PaymentScreen: React.FC = () => {
           <div className={styles.controlsBox}>
             <div className={styles.controlsContent}>
               <h2 className="text-xl font-prompt font-semibold text-[#003366] mt-2">
-                การจ่ายเงิ���
+                การจ่ายเงิน
               </h2>
 
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
