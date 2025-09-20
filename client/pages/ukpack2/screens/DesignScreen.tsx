@@ -46,7 +46,7 @@ const IconWifi = () => (
 const IconPlug = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F09a78e31a3de44e98772b0eef382af6f?format=webp&width=800"
-    alt="ช่องชาร์จมือถือ/USB"
+    alt="ช่องชาร์จมือถ��อ/USB"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -237,7 +237,7 @@ const DesignScreen: React.FC = () => {
     <>
       <MetaUpdater
         title="UK PACT - กรุงเทพฯ ลดติด"
-        description="ออกแบบรถเมล์เพื่อช่���ยลดปัญหาการจราจรในกรุงเทพฯ — เลือกขนาดรถ สี และสิ่งอำนวยความสะดวกที่ต้องการ"
+        description="ออกแบบรถเมล์เพื่อช่วยลดปัญหาการจราจรในกรุงเทพฯ — เลือกขนาดรถ สี และสิ่งอำนวยความสะดวกที่ต้องการ"
         image="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F44cea8aeb6d4415e899494a90c6f59b1?format=webp&width=1200"
       />
       <CustomizationScreen
@@ -256,7 +256,7 @@ const DesignScreen: React.FC = () => {
                 small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
                 medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
                 large: "รถตู้โดยสาร 9–15 ที่นั่ง",
-                extra: "รถกะบะดัดแปลง 8–12 ที่นั��ง",
+                extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
               };
               const HERO_IMAGE: Record<string, string> = {
                 small:
@@ -309,7 +309,7 @@ const DesignScreen: React.FC = () => {
                     label={
                       <>
                         <span className="chassis-label-mobile">
-                          รถที่เลื���ก :{" "}
+                          รถที่เลือก :{" "}
                         </span>
                         {label}
                       </>
@@ -369,7 +369,7 @@ const DesignScreen: React.FC = () => {
                       "เงินสด": (
                         <img
                           src={MONEY_ICON}
-                          alt="เงิ��สด"
+                          alt="เงินสด"
                           className="h-5 w-5 object-contain"
                         />
                       ),
@@ -503,7 +503,7 @@ const DesignScreen: React.FC = () => {
                         ref={textareaRef}
                         value={sloganDraft}
                         onChange={(e) => setSloganDraft(e.target.value)}
-                        placeholder="พิมพ์คุณสมบั��ิพิเศษอื่นๆ ของรถเมล์ในฝันของคุณ"
+                        placeholder="พิมพ์คุณสมบัติพิเศษอื่นๆ ของรถเมล์ในฝันของคุณ"
                         className="mt-3 w-full h-36 p-3 border-2 border-[#000D59] rounded-xl text-sm resize-none"
                       />
                       <div className="mt-3 flex justify-end gap-2">
@@ -523,7 +523,7 @@ const DesignScreen: React.FC = () => {
                           className="px-4 py-2 rounded-xl bg-[#000D59] hover:bg-[#ffe000] transition-colors save-btn-modal"
                           style={{ color: isSaveHover ? '#000D59' : '#ffffff' }}
                         >
-                          <span style={{ color: isSaveHover ? '#000D59' : '#ffffff' }}>บั���ทึก</span>
+                          <span style={{ color: isSaveHover ? '#000D59' : '#ffffff' }}>บันทึก</span>
                         </button>
                       </div>
                     </div>
