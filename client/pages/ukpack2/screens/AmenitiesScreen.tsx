@@ -82,9 +82,11 @@ import { useNavigate } from "react-router-dom";
 import StepTabs from "../components/StepTabs";
 import VehiclePreview from "../components/VehiclePreview";
 import styles from "./chassis.module.css";
+import { useBusDesign } from "../context/BusDesignContext";
 
 const AmenitiesScreen: React.FC = () => {
   const navigate = useNavigate();
+  const { state } = useBusDesign();
   const [selected, setSelected] = useState<string[]>(["แอร์"]);
   // load previously selected amenities
   useEffect(() => {
