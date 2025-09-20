@@ -54,7 +54,7 @@ const IconSmall = () => (
 const IconSmallAlt = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fed2dc7373da74a8caeaca4fcb33205a3?format=webp&width=800"
-    alt="ไอค��นรถเมล์ขนาดเล็ก (กดแล้ว)"
+    alt="ไอคอนรถเมล์ขนาดเล็ก (กดแล้ว)"
     aria-hidden="true"
     className="h-full w-auto object-contain select-none"
     decoding="async"
@@ -149,7 +149,7 @@ const OPTIONS = [
   },
   {
     key: "extra",
-    label: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
+    label: "รถกะบะด��ดแปลง 8–12 ที่นั่ง",
     labelText: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
     icon: <IconExtra />,
   },
