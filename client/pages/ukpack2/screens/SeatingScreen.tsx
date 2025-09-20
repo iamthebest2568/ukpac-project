@@ -21,7 +21,7 @@ const TOPDOWN_IMAGE: Record<string, string | undefined> = {
 };
 
 const CHASSIS_LABELS: Record<string, string> = {
-  small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
+  small: "รถเมล์ขนาดเล็ก 16–30 ���ี่นั่ง",
   medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
   large: "รถตู้โดยสาร 9–15 ที่นั่ง",
   extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
@@ -170,7 +170,7 @@ const SeatingScreen: React.FC = () => {
   })();
 
   return (
-    <>
+    <div>
       <CustomizationScreen title="ปรับแต่งรถเมล์ของคุณ" theme="light" fullWidth containerPaddingClass={styles.containerPadding} footerContent={<div className="flex justify-center"><CtaButton text="ถัดไป" onClick={handleNext} /></div>}>
         <div className={styles.contentGrid}>
           <div className={styles.previewWrapper}>
@@ -243,7 +243,7 @@ const SeatingScreen: React.FC = () => {
       <ConfirmModal isOpen={isExitModalOpen} title="ออกจากหน้าจอ" message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก" onConfirm={() => navigate("/")} onCancel={() => setExitModalOpen(false)} />
 
       <ErrorModal isOpen={isErrorModalOpen} title={errorTitle} message={errorMessage} onClose={() => setErrorModalOpen(false)} />
-    </>
+    </div>
   );
 };
 
