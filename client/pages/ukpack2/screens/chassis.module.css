@@ -245,7 +245,7 @@
   justify-content: flex-start !important;
   width: 100%;
   height: auto;
-  padding: 6px !important; /* inner spacing */
+  padding: 4px !important; /* reduced inner spacing for compact layout */
   border-color: transparent !important; /* hide grid item borders visually */
   background: transparent;
 }
