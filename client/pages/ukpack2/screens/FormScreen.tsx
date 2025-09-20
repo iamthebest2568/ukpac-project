@@ -108,7 +108,7 @@ const FormScreen: React.FC = () => {
             </div>
             <div className="w-px h-10 md:h-12 bg-[#000D59] mx-2" />
             <input
-              className="flex-1 h-full bg-transparent border-none outline-none text-black placeholder-gray-500 font-prompt text-lg md:text-xl font-light px-4"
+              className="flex-1 h-full bg-transparent border-none outline-none text-black placeholder-gray-500 font-sarabun text-[17.6px] font-normal px-4"
               placeholder="ชื่อ-นามสกุล"
               value={name}
               onChange={(e) => setName(e.target.value)}
@@ -125,7 +125,7 @@ onBlur={() => logEvent({ event: "FORM_NAME_BLUR", payload: { nameLen: name.lengt
             </div>
             <div className="w-px h-10 md:h-12 bg-[#000D59] mx-2" />
             <input
-              className="flex-1 h-full bg-transparent border-none outline-none text-black placeholder-gray-500 font-prompt text-lg md:text-xl font-light px-4"
+              className="flex-1 h-full bg-transparent border-none outline-none text-black placeholder-gray-500 font-sarabun text-[17.6px] font-normal px-4"
               placeholder="เบอร์โทรศัพท์"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
