@@ -38,7 +38,7 @@ const InfoScreen: React.FC = () => {
   return (
     <>
       <CustomizationScreen
-        title=""
+        title="ปรับแต่งรถเมล์ของคุณ"
         theme="light"
         footerContent={
           <div className="flex justify-center">
@@ -51,13 +51,15 @@ const InfoScreen: React.FC = () => {
       >
         <div className="space-y-6">
           <div className="w-full flex justify-center">
-            <div
-              className="w-full max-w-[900px] bg-center rounded-xl"
-              style={{ backgroundImage: "url('https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4f5915a8ee85de9?format=webp&width=800')", height: '180px', backgroundRepeat: 'no-repeat', backgroundPosition: 'center', backgroundSize: 'contain', position: 'relative', zIndex: 0 }}
-            />
+            <div className="w-full max-w-[900px] relative" style={{ height: '180px' }}>
+              <div
+                className="absolute inset-0 rounded-xl bg-center bg-no-repeat"
+                style={{ backgroundImage: "url('https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4f5915a8ee85de9?format=webp&width=800')", backgroundSize: 'cover', pointerEvents: 'none' }}
+              />
+            </div>
           </div>
 
-          <div className="flex flex-col items-center mt-2 relative z-10">
+          <div className="flex flex-col items-center -mt-12 relative z-10">
             <div
               className="relative w-full flex items-center justify-center"
               style={{ minHeight: "160px" }}
