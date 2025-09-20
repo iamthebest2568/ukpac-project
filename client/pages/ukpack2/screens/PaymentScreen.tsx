@@ -297,7 +297,7 @@ const PaymentScreen: React.FC = () => {
 
   return (
     <CustomizationScreen
-      title="���รับแต่งรถเมล์ของคุณ"
+      title="ปรับแต่งรถเมล์ของคุณ"
       theme="light"
       fullWidth
       footerContent={
@@ -553,14 +553,7 @@ const PaymentScreen: React.FC = () => {
                   imageSrc={img}
                   colorFilter={storedColorLocal?.filter}
                   colorHex={storedColorLocal?.colorHex}
-                  label={
-                    <>
-                      <span className="chassis-label-mobile">
-                        รถที่เลือก :{" "}
-                      </span>
-                      {label}
-                    </>
-                  }
+                  label={label}
                   showSelectedText
                   overlayLabels={overlayLabels}
                   overlayIconMap={{
