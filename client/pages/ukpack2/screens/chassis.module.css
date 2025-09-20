@@ -264,3 +264,22 @@
 /* Small helpers */
 .center { display:flex; align-items:center; justify-content:center; }
 .hidden { display:none; }
+
+/* Prevent content overflow in controls and preview areas */
+.controlsBox, .controlsContent {
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: auto; /* allow internal scrolling if content too tall */
+}
+
+/* Make sure preview images never overflow their container */
+.previewInner, .previewInner img, .previewInner svg {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Ensure any immediate child panel inside controlsWrapper respects width */
+.controlsWrapper > * {
+  width: 100%;
+  box-sizing: border-box;
+}
