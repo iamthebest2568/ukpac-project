@@ -98,7 +98,8 @@ const InfoScreen: React.FC = () => {
                 <img
                   src={HERO_IMAGE[selected]}
                   alt={selectedLabel}
-                  className="w-full h-auto object-contain select-none"
+                  className="w-full h-auto object-contain select-none z-40"
+                  style={{ position: 'relative', zIndex: 60 }}
                   decoding="async"
                   loading="eager"
                 />
