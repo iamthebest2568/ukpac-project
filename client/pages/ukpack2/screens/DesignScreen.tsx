@@ -105,7 +105,7 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   "ช่��งชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
   "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
-  กล้องวงจรปิด: <IconCamSmall />,
+  ก���้องวงจรปิด: <IconCamSmall />,
 };
 
 const MONEY_ICON =
@@ -254,7 +254,7 @@ const DesignScreen: React.FC = () => {
               const CHASSIS_LABELS: Record<string, string> = {
                 small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
                 medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
-                large: "รถตู้โดยสาร 9–15 ที่นั่ง",
+                large: "รถตู้โ���ยสาร 9–15 ที่นั่ง",
                 extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
               };
               const HERO_IMAGE: Record<string, string> = {
@@ -287,7 +287,6 @@ const DesignScreen: React.FC = () => {
                       </>
                     }
                     colorFilter={color?.filter}
-                    colorHex={color?.colorHex || null}
                     overlayLabels={(() => {
                       const amenities = (() => {
                         try {
@@ -372,7 +371,7 @@ const DesignScreen: React.FC = () => {
                           className="h-5 w-5 object-contain"
                         />
                       ),
-                      "ตั๋วรายเดือน/รอบ": (
+                      "ตั๋วรา���เดือน/รอบ": (
                         <img
                           src={MONTHLY_ICON}
                           alt="ตั๋วรายเดือน/รอบ"
