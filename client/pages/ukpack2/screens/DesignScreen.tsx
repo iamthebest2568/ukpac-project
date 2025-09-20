@@ -28,7 +28,7 @@ const IconFan = () => (
 const IconSeat = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F93439b2533284cdf914fc93cafa1cf26?format=webp&width=800"
-    alt="ที่นั่งพิเศษ"
+    alt="ที่นั่งพิ��ศษ"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -64,7 +64,7 @@ const IconTv = () => (
 const IconCup = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe903bdf27bab4175824c159bc19a02ba?format=webp&width=800"
-    alt="ระบบประกาศ"
+    alt="��ะบบประกาศ"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -235,7 +235,7 @@ const DesignScreen: React.FC = () => {
     <>
       <MetaUpdater
         title="UK PACT - กรุงเทพฯ ลดติด"
-        description="ออกแบบรถเมล์เพื่อช่วยลดปัญหาการจราจรในกรุงเทพฯ — เลือกขนาดรถ สี ���ละสิ่งอำนวยความสะดวกที่ต้อง���าร"
+        description="ออกแบบรถเมล์เพื่อช่วยลดปัญห��การจราจรในกรุงเทพฯ — เลือกขนาดรถ สี ���ละสิ่งอำนวยความสะดวกที่ต้อง���าร"
         image="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F44cea8aeb6d4415e899494a90c6f59b1?format=webp&width=1200"
       />
       <CustomizationScreen
@@ -302,9 +302,6 @@ const DesignScreen: React.FC = () => {
                     imageSrc={img}
                     label={label}
                     showSelectedText
-                    colorFilter={color?.filter}
-                    colorHex={color?.colorHex || null}
-                    colorMaskSrc={MASKS[selected] || null}
                     overlayLabels={(() => {
                       const amenities = (() => {
                         try {
