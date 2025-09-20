@@ -277,37 +277,27 @@ const DesignScreen: React.FC = () => {
                 extra: null,
               };
 
-              // Optional: pre-rendered full-vehicle images per chassis per colorHex.
-              // If provided, clicking a swatch will swap the vehicle image to the pre-rendered one.
-              const PRE_RENDERED: Record<string, Record<string, string>> = {
-                // Example: medium: { "7d53a2": "https://.../medium-7d53a2.png" }
-                small: {},
-                medium: {},
-                large: {},
-                extra: {},
-              };
+              // NOTE: Pre-rendered image swapping and first-swatch override removed.
+              // Previous implementation allowed mapping specific chassis+color to a
+              // pre-rendered vehicle image (PRE_RENDERED) and to override the
+              // preview image when the first swatch was clicked (FIRST_SWATCH_IMAGE).
+              //
+              // This was removed to simplify behavior: the preview now always uses
+              // the base HERO_IMAGE for the selected chassis. Color is applied via
+              // VehiclePreview using colorFilter / colorHex (overlay or blend).
+              // If you later want pre-rendered mappings, reintroduce PRE_RENDERED
+              // as a mapping and implement a findPreRendered helper here.
 
-              // Custom image to use when the first color swatch is selected
-              const FIRST_SWATCH_IMAGE = "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Ff9b1d87b7e3a41faa572e1421c77fe66?format=webp&width=800";
-
-              // When the first swatch is clicked, we'll override the preview image directly
-              const [overrideImage, setOverrideImage] = useState<string | null>(null);
-
-              const findPreRendered = (ch: string, hex: string | undefined | null) => {
-                if (!hex) return undefined;
-                const key = hex.replace(/^#/, "").toLowerCase();
-                const byChDefault = PRE_RENDERED[ch] || {};
-                return byChDefault[key] || byChDefault[hex] || undefined;
-              };
+              // (no PRE_RENDERED / overrideImage state present)
               let selected = "medium";
               try {
                 const saved = sessionStorage.getItem("design.chassis");
                 if (saved) selected = saved;
               } catch (e) {}
               const label = CHASSIS_LABELS[selected] || "";
-              // prefer pre-rendered vehicle for selected chassis+color if available
-              const pre = findPreRendered(selected, color?.colorHex || undefined);
-              const img = overrideImage || pre || HERO_IMAGE[selected];
+              // Use the base hero image for the selected chassis. Color overlay
+              // is handled by VehiclePreview via colorFilter / colorHex.
+              const img = HERO_IMAGE[selected];
               return img ? (
                 <>
                   <VehiclePreview
@@ -387,7 +377,7 @@ const DesignScreen: React.FC = () => {
                           className="h-5 w-5 object-contain"
                         />
                       ),
-                      "แ���ะบัตร": (
+                      "แ������บัตร": (
                         <img
                           src={TOUCH_ICON}
                           alt="แตะบัตร"
@@ -479,19 +469,12 @@ const DesignScreen: React.FC = () => {
                     } as any);
                   }
 
-                  // If the first swatch was clicked, map this chassis+color to the provided attachment image
-                  try {
-                    const isFirstSwatch = !!(preview && preview === DEFAULT_COLORS[0].preview) || (foundColor && foundColor.id === "353635-new");
-                    if (isFirstSwatch) {
-                      // directly override the preview image
-                      setOverrideImage(FIRST_SWATCH_IMAGE);
-                    } else {
-                      // clear any override when other colors selected
-                      setOverrideImage(null);
-                    }
-                  } catch (e) {
-                    // ignore
-                  }
+                  // NOTE: Removed behavior that overrode the preview image when the
+                  // first color swatch was clicked. Current behavior: selecting a
+                  // color only updates the color state (colorHex / filter) and
+                  // VehiclePreview applies the tint/overlay. If you need to swap
+                  // the vehicle image for certain swatches, reintroduce a mapping
+                  // and set the imageSrc accordingly here.
 
                   // Log for debugging
                   console.log('Color selected:', foundColor || { colorHex, preview });
