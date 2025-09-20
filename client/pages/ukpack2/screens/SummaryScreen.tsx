@@ -34,8 +34,8 @@ const SummaryScreen: React.FC = () => {
   const CHASSIS_LABELS: Record<string, string> = {
     small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
     medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
-    large: "รถตู้โดยสาร 9–15 ที่นั่ง",
-    extra: "ร��กะบะดัดแปลง 8–12 ที่นั่ง",
+    large: "รถตู้โดยส��ร 9–15 ที่นั่ง",
+    extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
   };
 
   const HERO_IMAGE: Record<string, string> = {
@@ -87,7 +87,7 @@ const SummaryScreen: React.FC = () => {
   }
 
   return (
-    <CustomizationScreen title="" theme="light" footerContent={
+    <CustomizationScreen title="ปรับแต่งรถเมล์ของคุณ" theme="light" fullWidth footerContent={
       <div className="flex justify-center">
         <div className="w-full max-w-4xl mx-auto flex items-center justify-center">
           <div className="w-full max-w-sm p-4 md:p-6 flex flex-col items-stretch gap-3">
@@ -109,13 +109,7 @@ const SummaryScreen: React.FC = () => {
         </div>
       </div>
     }>
-      <div className="max-w-4xl mx-auto px-4 py-8">
-        <header className="mb-6 text-center">
-          <h1 className="text-2xl md:text-3xl font-prompt font-semibold">
-            ปรับแต่งรถเมล์ของคุณ
-          </h1>
-        </header>
-
+      <div className="max-w-5xl mx-auto px-4 py-8">
         <SummaryDetails />
       </div>
     </CustomizationScreen>
