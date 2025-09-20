@@ -91,7 +91,6 @@ const SeatingScreen: React.FC = () => {
     setWheelchairBikeSpaces("");
   }, [selectedChassis, minCapacity, maxCapacity]);
 
-  const handleTotalFocus = () => {};
 
   const validateSeating = (): boolean => {
     const mappingMin: Record<string, number> = { small: 16, medium: 30, large: 9, extra: 8 };
@@ -195,7 +194,8 @@ const SeatingScreen: React.FC = () => {
                       type="number"
                       placeholder="ระบุ..."
                       value={totalSeats}
-                      onFocus={handleTotalFocus}
+                      onFocus={(e) => { e.currentTarget.placeholder = ''; }}
+                      onBlur={(e) => { if (e.currentTarget.value === '') e.currentTarget.placeholder = 'ระบุ...'; }}
                       onChange={(e) => {
                         const raw = e.target.value;
                         if (raw === "") { handleTotalSeatsChange(""); return; }
@@ -211,27 +211,27 @@ const SeatingScreen: React.FC = () => {
 
                   <div className="flex items-center justify-between mt-4">
                     <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">จำนวนที่นั่งพิเศษ</div>
-                    <input id="specialSeats" type="number" min={0} max={maxCapacity} placeholder="00" value={specialSeats === "" ? "" : specialSeats} onFocus={() => { if (specialSeats === 0) setSpecialSeats(""); }} onChange={(e) => { const raw = e.target.value; if (raw === "") { setSpecialSeats(""); return; } const parsed = Math.max(0, Math.min(maxCapacity, parseInt(raw || "0", 10))); setSpecialSeats(parsed); }} className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-full text-[#003366] bg-white text-right" />
+                    <input id="specialSeats" type="number" min={0} max={maxCapacity} placeholder="00" value={specialSeats === "" ? "" : specialSeats} onFocus={(e) => { if (specialSeats === 0) setSpecialSeats(""); e.currentTarget.placeholder = ''; }} onBlur={(e) => { if (e.currentTarget.value === '') e.currentTarget.placeholder = '00'; }} onChange={(e) => { const raw = e.target.value; if (raw === "") { setSpecialSeats(""); return; } const parsed = Math.max(0, Math.min(maxCapacity, parseInt(raw || "0", 10))); setSpecialSeats(parsed); }} className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-full text-[#003366] bg-white text-right" />
                   </div>
 
                   <div className="flex items-center justify-between">
                     <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">เด็ก / ผู้สูงอายุ</div>
-                    <input type="number" placeholder="00" value={childElderSeats === "" ? "" : childElderSeats} onFocus={() => { if (childElderSeats === 0) setChildElderSeats(""); }} onChange={(e) => { const raw = e.target.value; if (raw === "") { setChildElderSeats(""); return; } const parsed = Math.max(0, Math.min(maxCapacity, parseInt(raw || "0", 10))); setChildElderSeats(parsed); }} className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-full text-[#003366] bg-white text-right" min={0} max={maxCapacity} />
+                    <input type="number" placeholder="00" value={childElderSeats === "" ? "" : childElderSeats} onFocus={(e) => { if (childElderSeats === 0) setChildElderSeats(""); e.currentTarget.placeholder = ''; }} onBlur={(e) => { if (e.currentTarget.value === '') e.currentTarget.placeholder = '00'; }} onChange={(e) => { const raw = e.target.value; if (raw === "") { setChildElderSeats(""); return; } const parsed = Math.max(0, Math.min(maxCapacity, parseInt(raw || "0", 10))); setChildElderSeats(parsed); }} className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-full text-[#003366] bg-white text-right" min={0} max={maxCapacity} />
                   </div>
 
                   <div className="flex items-center justify-between">
                     <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">สตรีมพครรภ์</div>
-                    <input type="number" placeholder="00" value={pregnantSeats === "" ? "" : pregnantSeats} onFocus={() => { if (pregnantSeats === 0) setPregnantSeats(""); }} onChange={(e) => { const raw = e.target.value; if (raw === "") { setPregnantSeats(""); return; } const parsed = Math.max(0, Math.min(maxCapacity, parseInt(raw || "0", 10))); setPregnantSeats(parsed); }} className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-full text-[#003366] bg-white text-right" min={0} max={maxCapacity} />
+                    <input type="number" placeholder="00" value={pregnantSeats === "" ? "" : pregnantSeats} onFocus={(e) => { if (pregnantSeats === 0) setPregnantSeats(""); e.currentTarget.placeholder = ''; }} onBlur={(e) => { if (e.currentTarget.value === '') e.currentTarget.placeholder = '00'; }} onChange={(e) => { const raw = e.target.value; if (raw === "") { setPregnantSeats(""); return; } const parsed = Math.max(0, Math.min(maxCapacity, parseInt(raw || "0", 10))); setPregnantSeats(parsed); }} className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-full text-[#003366] bg-white text-right" min={0} max={maxCapacity} />
                   </div>
 
                   <div className="flex items-center justify-between">
                     <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">พระภิกษุสงฆ์</div>
-                    <input type="number" placeholder="00" value={monkSeats === "" ? "" : monkSeats} onFocus={() => { if (monkSeats === 0) setMonkSeats(""); }} onChange={(e) => { const raw = e.target.value; if (raw === "") { setMonkSeats(""); return; } const parsed = Math.max(0, Math.min(maxCapacity, parseInt(raw || "0", 10))); setMonkSeats(parsed); }} className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-full text-[#003366] bg-white text-right" min={0} max={maxCapacity} />
+                    <input type="number" placeholder="00" value={monkSeats === "" ? "" : monkSeats} onFocus={(e) => { if (monkSeats === 0) setMonkSeats(""); e.currentTarget.placeholder = ''; }} onBlur={(e) => { if (e.currentTarget.value === '') e.currentTarget.placeholder = '00'; }} onChange={(e) => { const raw = e.target.value; if (raw === "") { setMonkSeats(""); return; } const parsed = Math.max(0, Math.min(maxCapacity, parseInt(raw || "0", 10))); setMonkSeats(parsed); }} className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-full text-[#003366] bg-white text-right" min={0} max={maxCapacity} />
                   </div>
 
                   <div className="flex items-center justify-between">
                     <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">พื้นที่สำหรับรถเข็น/จักรยาน</div>
-                    <input type="number" placeholder="00" value={wheelchairBikeSpaces === "" ? "" : wheelchairBikeSpaces} onFocus={() => { if (wheelchairBikeSpaces === 0) setWheelchairBikeSpaces(""); }} onChange={(e) => { const raw = e.target.value; if (raw === "") { setWheelchairBikeSpaces(""); return; } const parsed = Math.max(0, Math.min(maxCapacity, parseInt(raw || "0", 10))); setWheelchairBikeSpaces(parsed); }} className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-full text-[#003366] bg-white text-right" min={0} max={maxCapacity} />
+                    <input type="number" placeholder="00" value={wheelchairBikeSpaces === "" ? "" : wheelchairBikeSpaces} onFocus={(e) => { if (wheelchairBikeSpaces === 0) setWheelchairBikeSpaces(""); e.currentTarget.placeholder = ''; }} onBlur={(e) => { if (e.currentTarget.value === '') e.currentTarget.placeholder = '00'; }} onChange={(e) => { const raw = e.target.value; if (raw === "") { setWheelchairBikeSpaces(""); return; } const parsed = Math.max(0, Math.min(maxCapacity, parseInt(raw || "0", 10))); setWheelchairBikeSpaces(parsed); }} className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-full text-[#003366] bg-white text-right" min={0} max={maxCapacity} />
                   </div>
                 </div>
               </div>
