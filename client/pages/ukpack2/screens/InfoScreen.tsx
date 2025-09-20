@@ -51,16 +51,17 @@ const InfoScreen: React.FC = () => {
       >
         <div className="space-y-6">
           <div className="w-full flex justify-center">
-            <div className="w-full max-w-[900px] relative" style={{ height: '220px' }}>
+            <div className="w-full max-w-[900px] relative h-[220px] md:h-[300px]" >
               <img
                 src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe0d645d03e674262a48ecc18869e1901?format=webp&width=1600"
                 alt="bg"
                 className="absolute inset-0 w-full h-full object-cover rounded-xl pointer-events-none select-none"
+                style={{ objectPosition: 'center 40%' }}
                 decoding="async"
                 loading="eager"
               />
 
-              <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center z-20" style={{ width: '72%', maxWidth: 420 }}>
+              <div className="absolute left-1/2 top-[45%] transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center z-20" style={{ width: '72%', maxWidth: 420 }}>
                 {(() => {
                   const amenities = (() => {
                     try { const raw = sessionStorage.getItem("design.amenities"); return raw ? (JSON.parse(raw) as string[]) : []; } catch { return [] as string[]; }
@@ -120,7 +121,7 @@ const InfoScreen: React.FC = () => {
       <ConfirmModal
         isOpen={isExitModalOpen}
         title="ออกจากหน้าจอ"
-        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่��ูกบันทึก"
+        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
         onConfirm={() => navigate("/")}
         onCancel={() => setExitModalOpen(false)}
       />
