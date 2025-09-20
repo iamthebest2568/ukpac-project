@@ -12,16 +12,16 @@ const ThankYouScreen: React.FC = () => {
       title=""
       theme="light"
       footerContent={
-        <div className="flex flex-col items-center gap-3">
+        <div className="flex flex-col items-stretch gap-3 w-full max-w-sm mx-auto">
           <SecondaryButton
             text="ลุ้นรับรางวัล"
             onClick={() => navigate("/ukpack2/form")}
-            className="w-full max-w-xs"
+            className="w-full"
           />
           <CtaButton
             text="ไม่ลุ้นรับรางวัล"
             onClick={() => navigate("/ukpack2/feedback-skip")}
-            className="w-full max-w-xs"
+            className="w-full"
           />
         </div>
       }
