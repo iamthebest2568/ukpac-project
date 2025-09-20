@@ -26,7 +26,7 @@ const PAYMENT_ICON_SMALL: Record<string, string> = {
     "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb8992da4be824b339d3df5f0a076ed93?format=webp&width=800",
   "สแกนจ่าย 2":
     "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F56620e798eb94153b2390271f30d0dae?format=webp&width=800",
-  แตะบัตร:
+  แตะบัต��:
     "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fdb2e47a586b841d1af014e9196f3c411?format=webp&width=800",
   กระเป๋ารถเมล์:
     "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F41c089c5dd4b448993c4e02c02cdf7ac?format=webp&width=800",
@@ -53,8 +53,8 @@ const IconSmall = () => (
 );
 const IconSmallAlt = () => (
   <img
-    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F30205d6e380e4cd9a9ba998f9067d507?format=webp&width=800"
-    alt=""
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fed2dc7373da74a8caeaca4fcb33205a3?format=webp&width=800"
+    alt="ไอคอนรถเมล์ขนาดเล็ก (กดแล้ว)"
     aria-hidden="true"
     className="h-full w-auto object-contain select-none"
     decoding="async"
@@ -279,7 +279,7 @@ const ChassisScreen: React.FC = () => {
   return (
     <>
       <CustomizationScreen
-        title="ปรับแต่งร���เมล์ของคุณ"
+        title="ปรับ��ต่งรถเมล์ของคุณ"
         theme="light"
         fullWidth
         footerContent={
@@ -374,7 +374,7 @@ const ChassisScreen: React.FC = () => {
       <ConfirmModal
         isOpen={isExitModalOpen}
         title="ออกจากหน้าจอ"
-        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
+        message="คุณแน่ใจหรื���ไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
         onConfirm={confirmExit}
         onCancel={() => setExitModalOpen(false)}
         contentClassName={`${styles.containerPadding} ${styles.modalContent}`}
