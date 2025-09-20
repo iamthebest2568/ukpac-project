@@ -21,12 +21,12 @@ const FeedbackSkipScreen: React.FC = () => {
         footerBgImage={'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F7e994bb254cb408c86bed190e97b659e?format=webp&width=1600'}
         footerContent={
           <div className="flex flex-col items-stretch gap-3 w-full max-w-sm mx-auto">
-            <SecondaryButton className="w-full" text="แชร์เกมนี้ให้เ��ื่อน" onClick={() => setShareOpen(true)} />
+            <SecondaryButton className="w-full" text="แชร์เกมนี้ให้เพื่อน" onClick={() => setShareOpen(true)} />
             <CtaButton className="w-full" text="จบเกม" onClick={handleEnd} />
           </div>
         }
       >
-        <div className="max-w-4xl mx-auto pb-32">
+        <div className="max-w-4xl mx-auto pb-32 -mt-8">
           <div className="w-full flex justify-center mb-4">
             <img
               src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F6b62374327d643178ab7f4a913ddc1b1?format=webp&width=800"
