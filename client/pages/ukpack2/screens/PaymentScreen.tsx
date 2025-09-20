@@ -581,8 +581,6 @@ const PaymentScreen: React.FC = () => {
               <>
                 <VehiclePreview
                   imageSrc={img}
-                  colorFilter={storedColorLocal?.filter}
-                  colorHex={storedColorLocal?.colorHex}
                   label={label}
                   showSelectedText
                   overlayLabels={normalizedOverlayLabels}
@@ -598,7 +596,7 @@ const PaymentScreen: React.FC = () => {
                     "สแกนจ่าย": (
                       <img
                         src={"https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F125e79ee890243308489d0acbb1eef2b?format=webp&width=800"}
-                        alt="สแกนจ่าย"
+                        alt="��แกนจ่าย"
                         className="h-full w-full object-contain"
                       />
                     ),
