@@ -176,8 +176,7 @@
 }
 
 .controlsContent {
-  /* 5px padding from border on all sides for balanced spacing */
-  padding: 5px 5px 12px 5px;
+  padding: 0;
   box-sizing: border-box;
 }
 
@@ -187,6 +186,7 @@
   gap: 3px; /* 3px gap between icons as requested */
   width: 100%;
   box-sizing: border-box;
+  padding: 5px; /* fill up to the border */
   justify-content: center; /* center the whole group */
   justify-items: stretch; /* let buttons fill horizontally */
   align-items: stretch; /* stretch vertically */
@@ -197,6 +197,7 @@
   .selectionGrid {
     grid-template-columns: repeat(4, 1fr); /* 4 columns on md+ */
     gap: 3px; /* 3px gap between icons on wider screens */
+    padding: 5px; /* ensure grid stretches to border */
     justify-content: center;
     grid-auto-rows: 160px; /* taller rows on larger screens */
   }
