@@ -60,7 +60,7 @@ const IconSeatAlt = () => (
 );
 const IconWifi = () => (
   <img
-    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F3a949d75d90840669601df07a65af479?format=webp&width=800"
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fdfbb7f3adfa04596916b9ea1950acef1?format=webp&width=800"
     alt="ที่จับ/ราวยืน"
     className="object-contain select-none h-full w-full"
     decoding="async"
