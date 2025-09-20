@@ -338,7 +338,7 @@ const DoorScreen: React.FC = () => {
                     />
                   </div>
                 );
-              if (label === "ตั๋วรายเดือน/รอบ")
+              if (label === "ตั๋วรายเด��อน/รอบ")
                 return (
                   <div
                     key={`${label}-${idx}`}
@@ -517,7 +517,7 @@ const DoorScreen: React.FC = () => {
                 ประตู
               </h2>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                 {/* Radio group for 1 or 2 doors */}
                 <SelectionCard
                   icon={<IconDoor1 />}
