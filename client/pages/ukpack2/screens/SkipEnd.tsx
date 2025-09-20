@@ -21,12 +21,9 @@ const SkipEnd: React.FC = () => {
             <img
               src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc36f7d2aca87432f90a5a36fb28b97ed?format=webp&width=1600"
               alt="ภาพขอบคุณ"
-              className="w-full h-auto max-w-[720px]"
+              className="w-full h-auto max-w-[720px] mb-6"
             />
           </div>
-          <p className="text-[#001a73] font-prompt font-semibold text-center">
-            ขอบคุณ ที่ร่วมเป็นส่วนหนึ่งในการพัฒนาเม��อง
-          </p>
         </div>
 
         <footer
