@@ -5,7 +5,7 @@ import { useBusDesign } from "../context/BusDesignContext";
 const IconAir = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fee1c18a935564e92bb49991fac3b76df?format=webp&width=800"
-    alt="��อร์"
+    alt="แอร์"
     className="h-6 w-6 object-contain select-none"
   />
 );
