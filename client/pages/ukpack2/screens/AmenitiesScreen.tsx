@@ -131,6 +131,9 @@ const AmenitiesScreen: React.FC = () => {
   };
   const selectedChassis = (() => {
     try {
+      // prefer value from context state, fallback to sessionStorage
+      const ctx = state?.chassis;
+      if (ctx) return ctx as keyof typeof CHASSIS_LABELS;
       const saved = sessionStorage.getItem("design.chassis");
       return (saved || "medium") as keyof typeof CHASSIS_LABELS;
     } catch {
@@ -157,7 +160,7 @@ const AmenitiesScreen: React.FC = () => {
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fdcae7affa4fe43e38aa5c78ca608e39e?format=webp&width=800",
     ที่นั่งพิเศษ:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F788c9e78d6944fc8a5088cc00aa40697?format=webp&width=800", // ใช้ไอคอนหน้าต่างเปิดได้
-    หน้าต่างเปิดได้:
+    หน้า���่างเปิดได้:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F788c9e78d6944fc8a5088cc00aa40697?format=webp&width=800",
     "ที่จับ/ราวยืนที่ปลอดภัย":
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F1cae4f7306834a6eb0d86be09e05bfdd?format=webp&width=800",
