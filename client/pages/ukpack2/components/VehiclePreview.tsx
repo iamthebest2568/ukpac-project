@@ -155,16 +155,28 @@ const VehiclePreview: React.FC<Props> = ({
             )}
 
             {colorHex && (imageSrc || null) && (
-              <div
-                aria-hidden
-                className="absolute inset-0 pointer-events-none"
-                style={{
-                  background: colorHex,
-                  zIndex: 10,
-                  // prefer explicit mask if provided, otherwise fall back to the car image as a mask
-                  WebkitMaskImage: `url(${(typeof (null) !== 'undefined' ? '' : '')})`,
-                }}
-              />
+              (() => {
+                const maskSrc = (typeof (null) !== 'undefined' ? null : null) || imageSrc;
+                const src = maskSrc;
+                return (
+                  <div
+                    aria-hidden
+                    className="absolute inset-0 pointer-events-none"
+                    style={{
+                      background: colorHex,
+                      zIndex: 10,
+                      WebkitMaskImage: src ? `url(${src})` : undefined,
+                      WebkitMaskRepeat: "no-repeat",
+                      WebkitMaskSize: "contain",
+                      WebkitMaskPosition: "center",
+                      maskImage: src ? `url(${src})` : undefined,
+                      maskRepeat: "no-repeat",
+                      maskSize: "contain",
+                      maskPosition: "center",
+                    }}
+                  />
+                );
+              })()
             )}
           </div>
         </div>
