@@ -139,7 +139,7 @@ const IconAir = () => (
 const IconFan = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe01792ee89e240808ed47d8576b55d71?format=webp&width=800"
-    alt="พัดลม"
+    alt="พัด���ม"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -301,7 +301,7 @@ const PaymentScreen: React.FC = () => {
 
   return (
     <CustomizationScreen
-      title="ปรับแต่งรถเมล์ของคุ���"
+      title="ปรับแต่งรถเมล์ของคุณ"
       theme="light"
       fullWidth
       footerContent={
@@ -482,7 +482,7 @@ const PaymentScreen: React.FC = () => {
                     className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
                   >
                     <img
-                      src={SCAN_ICON}
+                      src={isSel ? SCAN_ICON_ACTIVE : SCAN_ICON}
                       alt={label}
                       className="h-6 w-6 md:h-7 md:w-7 object-contain"
                     />
@@ -571,7 +571,7 @@ const PaymentScreen: React.FC = () => {
                     ),
                     "สแกนจ่าย": (
                       <img
-                        src={SCAN_ICON}
+                        src={isSel ? SCAN_ICON_ACTIVE : SCAN_ICON}
                         alt="สแกนจ่าย"
                         className="h-5 w-5 object-contain"
                       />
@@ -639,7 +639,7 @@ const PaymentScreen: React.FC = () => {
                       />
                     ) : o.key === "scan" ? (
                       <img
-                        src={SCAN_ICON}
+                        src={isSel ? SCAN_ICON_ACTIVE : SCAN_ICON}
                         alt={o.label}
                         className={`object-contain select-none h-full w-full `}
                         decoding="async"
