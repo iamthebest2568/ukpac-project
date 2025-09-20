@@ -238,6 +238,8 @@ const SCAN_ICON_ACTIVE =
   "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F37c0e26d7e834005a5d7c26bb0de8bf7?format=webp&width=800";
 const SCAN2_ICON =
   "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb49d8647d7754dc98655081f6a829b15?format=webp&width=800";
+const SCAN2_ICON_ACTIVE =
+  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb128b8b4b90940efbe43f37b3ab27b3e?format=webp&width=800";
 const TOUCH_ICON =
   "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F4e22405c00c84fbfb1cd43fea6d8f8b4?format=webp&width=800";
 const MONTHLY_ICON =
@@ -495,10 +497,10 @@ const PaymentScreen: React.FC = () => {
                     className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
                   >
                     <img
-                      src={SCAN2_ICON}
-                      alt={label}
-                      className="h-6 w-6 md:h-7 md:w-7 object-contain"
-                    />
+                        src={selected.includes("สแกนจ่าย 2") ? SCAN2_ICON_ACTIVE : SCAN2_ICON}
+                        alt={label}
+                        className="h-6 w-6 md:h-7 md:w-7 object-contain"
+                      />
                   </div>
                 );
               if (opt.key === "tap")
@@ -578,7 +580,7 @@ const PaymentScreen: React.FC = () => {
                     ),
                     "สแกนจ่าย 2": (
                       <img
-                        src={SCAN2_ICON}
+                        src={selected.includes("สแกนจ่าย 2") ? SCAN2_ICON_ACTIVE : SCAN2_ICON}
                         alt="สแกนจ่าย 2"
                         className="h-5 w-5 object-contain"
                       />
@@ -647,7 +649,7 @@ const PaymentScreen: React.FC = () => {
                       />
                     ) : o.key === "scan2" ? (
                       <img
-                        src={SCAN2_ICON}
+                        src={isSel ? SCAN2_ICON_ACTIVE : SCAN2_ICON}
                         alt={o.label}
                         className={`object-contain select-none h-full w-full `}
                         decoding="async"
