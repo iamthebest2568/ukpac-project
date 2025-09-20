@@ -126,7 +126,7 @@ const OPTIONS = [
   {
     key: "small",
     label: "รถเมล์ขนาดเล็ก 16-30 ที่นั่ง",
-    labelText: "รถเมล์ขนาดเล็ก 16-30 ที่นั่ง",
+    labelText: "รถเมล์ขนาดเล็ก 16-30 ท��่นั่ง",
     icon: <IconSmall />,
   },
   {
@@ -296,7 +296,6 @@ const ChassisScreen: React.FC = () => {
                   label={selectedLabel}
                   overlayLabels={overlayLabels}
                   overlayIconMap={{ ...AMENITIES_ICON_SMALL, ...PAYMENT_ICON_SMALL, ...DOOR_ICON_SMALL }}
-                  colorHex={null}
                   showSelectedText={true}
                   starSrc={HERO_STAR}
                 />
