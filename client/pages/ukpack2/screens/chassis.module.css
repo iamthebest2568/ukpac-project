@@ -222,8 +222,8 @@
   padding: 0.1px; /* fill up to the border */
   justify-content: center; /* center the whole group */
   justify-items: stretch; /* let buttons fill horizontally */
-  align-items: stretch; /* stretch vertically */
-  grid-auto-rows: 120px; /* fixed row height to equalize icons */
+  align-items: start; /* allow items to size to content */
+  grid-auto-rows: auto; /* let rows size to content instead of fixed height */
 }
 
 @media (min-width: 768px) {
@@ -232,25 +232,26 @@
     gap: 3px; /* 3px gap between icons on wider screens */
     padding: 0.1px; /* ensure grid stretches to border */
     justify-content: center;
-    grid-auto-rows: 160px; /* taller rows on larger screens */
+    grid-auto-rows: auto; /* let rows size to content on larger screens */
   }
 }
 
 /* ensure buttons inside grid fill the cell */
 .selectionGrid > button {
   width: 100%;
-  height: 100%;
-  padding: 0 !important;
+  height: auto;
+  padding: 6px !important; /* give some inner spacing and let SelectionCard control its own sizing */
   border-color: transparent !important; /* hide grid item borders visually */
+  background: transparent;
 }
 
 /* make the first child (icon container) stretch */
 .selectionGrid > button > div:first-child {
-  height: 100%;
+  height: auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 !important;
+  padding: 8px !important; /* allow icon container its own padding */
 }
 
 /* force any image or SVG inside the grid to scale to full cell height */
@@ -258,8 +259,8 @@
 .selectionGrid > button svg,
 .selectionGrid img,
 .selectionGrid svg {
-  height: 100% !important;
-  max-height: none !important;
+  max-height: 100%;
+  height: auto !important;
   width: auto !important;
   object-fit: contain !important;
   display: block !important;
