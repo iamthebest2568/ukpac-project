@@ -17,12 +17,12 @@ const ThankYouScreen: React.FC = () => {
             className="w-full max-w-[640px] h-auto object-contain"
           />
         </div>
-        <div className="inline-block bg-white border border-gray-100 rounded-xl p-6 shadow-md text-[#001a73]">
+        <div className="inline-block bg-white rounded-xl p-6 shadow-md text-[#001a73]">
           <h2 className="text-2xl font-prompt font-bold">
             ขอบคุณที่ร่วมสร้างสรรค์รถเมล์
           </h2>
           <p className="mt-3 font-sarabun text-gray-700">
-            เราจะนำข้อมูลเหล่านี้ร��บรวม เป็นขอเสนอส่งต่อเพื่อการพัฒนา
+            เราจะนำข้อมูลเหล่านี้รวบรวม เป็นขอเสนอส่งต่อเพื่อการพัฒนา
             รถประจำทางให้ดียิ่งขึ้น
           </p>
           <hr className="my-6 border-[#e5e7eb]" />
