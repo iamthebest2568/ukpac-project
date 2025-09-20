@@ -328,6 +328,7 @@
     box-shadow: none !important;
     padding-left: 0 !important;
     padding-right: 0 !important;
+    overflow: visible !important; /* allow children to render full-bleed */
   }
 
   /* Theme Enforcement */
