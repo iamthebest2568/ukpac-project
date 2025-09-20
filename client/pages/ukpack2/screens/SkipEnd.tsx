@@ -39,8 +39,8 @@ const SkipEnd: React.FC = () => {
             marginLeft: 'calc(50% - 50vw)'
           }}
         >
-          <div className="max-w-4xl mx-auto flex items-center justify-center h-full">
-            <div className="flex flex-col items-center gap-3 py-6">
+          <div className="max-w-4xl mx-auto flex items-end justify-center h-full">
+            <div className="flex flex-col items-center gap-3 pt-6 pb-10">
               <div style={{ width: '220px' }}>
                 <CtaButton
                   className="w-full"
