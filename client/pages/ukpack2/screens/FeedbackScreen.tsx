@@ -32,7 +32,7 @@ const FeedbackScreen: React.FC = () => {
             value={feedback}
             onChange={(e) => setFeedback(e.target.value)}
             placeholder="เหตุผลที่อาจจะไม่ใช้บริการประจำทาง"
-            className="w-full min-h-[240px] rounded-2xl px-4 py-3 border border-gray-300 text-gray-800 resize-vertical"
+            className="w-full min-h-[260px] rounded-2xl px-6 py-5 border-[5px] border-[#000D59] text-[#000d59] resize-vertical font-sarabun text-[17.6px] text-center placeholder-gray-500"
           />
         </main>
       </div>
