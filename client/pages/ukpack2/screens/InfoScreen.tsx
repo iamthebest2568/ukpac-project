@@ -54,7 +54,7 @@ const InfoScreen: React.FC = () => {
             <img
               src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8252bd27b98340349ac37000716c83db?format=webp&width=800"
               alt="header image"
-              className="w-full h-[160px] md:h-[200px] object-cover rounded-b-xl"
+              className="w-full h-auto object-contain rounded-b-xl max-h-[220px] md:max-h-[360px] mx-auto"
               style={{ objectPosition: 'center' }}
             />
           </div>
