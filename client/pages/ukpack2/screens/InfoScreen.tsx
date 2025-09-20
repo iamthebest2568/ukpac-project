@@ -5,10 +5,10 @@ import CtaButton from "../components/CtaButton";
 import ConfirmModal from "../components/ConfirmModal";
 
 const CHASSIS_LABELS: Record<string, string> = {
-  small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
+  small: "รถเมล��ขนาดเล็ก 16–30 ที่นั่ง",
   medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
   large: "รถตู้โดยสาร 9–15 ที่นั่ง",
-  extra: "รถก���บะดัดแปลง 8–12 ที่นั่ง",
+  extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
 };
 const HERO_IMAGE: Record<string, string> = {
   small:
@@ -84,7 +84,7 @@ const InfoScreen: React.FC = () => {
                   })();
                   const overlay = [ ...(amenities || []), ...(payments || []), ...(doors ? [doors as string] : []) ];
                   const ICONS: Record<string, string> = {
-                    เงินส���: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fbc8b22cedfbb4640a702f724881f196d?format=webp&width=800",
+                    เงินสด: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fbc8b22cedfbb4640a702f724881f196d?format=webp&width=800",
                     สแกนจ่าย: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb8992da4be824b339d3df5f0a076ed93?format=webp&width=800",
                     "สแกนจ่าย 2": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F56620e798eb94153b2390271f30d0dae?format=webp&width=800",
                     แตะบัตร: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fdb2e47a586b841d1af014e9196f3c411?format=webp&width=800",
