@@ -267,6 +267,14 @@ const DesignScreen: React.FC = () => {
                 extra:
                   "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Faa7d15f5f97141ee8446eba62e919c07?format=webp&width=800",
               };
+
+              const MASKS: Record<string, string | null> = {
+                // Upload mask images (black=masked area) for each chassis variant and paste URLs here.
+                small: null,
+                medium: null,
+                large: null,
+                extra: null,
+              };
               let selected = "medium";
               try {
                 const saved = sessionStorage.getItem("design.chassis");
@@ -286,7 +294,9 @@ const DesignScreen: React.FC = () => {
                         {label}
                       </>
                     }
-                    colorFilter={color?.filter} colorHex={color?.colorHex || null}
+                    colorFilter={color?.filter}
+                    colorHex={color?.colorHex || null}
+                    colorMaskSrc={MASKS[selected] || null}
                     overlayLabels={(() => {
                       const amenities = (() => {
                         try {
@@ -458,7 +468,7 @@ const DesignScreen: React.FC = () => {
                     setSloganDraft(slogan);
                     setShowTextarea(true);
                   }}
-                  placeholder="พิมพ์ คุณสมบัติพิเศษ"
+                  placeholder="พ��มพ์ คุณสมบัติพิเศษ"
                   className="w-full rounded-md px-4 py-2 bg-white border border-[#e5e7eb] text-[#003366] placeholder-gray-400 cursor-text"
                 />
 
