@@ -143,7 +143,7 @@ const IconDoor1 = () => (
 const IconDoor2 = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8f9b21942af243b3b80b0e5ac8b12631?format=webp&width=800"
-    alt="ป���ะตู 2"
+    alt="ประตู 2"
     className="h-8 w-8 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -152,7 +152,7 @@ const IconDoor2 = () => (
 const IconRamp = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fece2b6fc843340f0997f2fd7d3ca0aea?format=webp&width=800"
-    alt="ทางสำหรับรถเข็น/ผู้พิการ"
+    alt="ทางสำหร���บรถเข็น/ผู้พิการ"
     className="h-8 w-8 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -311,7 +311,7 @@ const DoorScreen: React.FC = () => {
                     />
                   </div>
                 );
-              if (label === "แตะบัตร")
+              if (label === "แตะ���ัตร")
                 return (
                   <div
                     key={`${label}-${idx}`}
@@ -519,7 +519,7 @@ const DoorScreen: React.FC = () => {
           <div className={styles.controlsBox}>
             <div className={styles.controlsContent}>
               <h2 className="text-xl font-prompt font-semibold text-[#003366] mt-2">
-                ประตู
+                ประต��
               </h2>
 
               <div className="grid grid-cols-2 gap-4">
