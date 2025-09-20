@@ -149,45 +149,7 @@ const VehiclePreview: React.FC<Props> = ({
               />
             )}
 
-            {colorHex && imageSrc && (
-              (() => {
-                // Use colorMaskSrc if available, otherwise use a blend mode approach
-                if (colorMaskSrc) {
-                  return (
-                    <div
-                      aria-hidden
-                      className="absolute inset-0 pointer-events-none"
-                      style={{
-                        background: colorHex,
-                        zIndex: 10,
-                        WebkitMaskImage: `url(${colorMaskSrc})`,
-                        WebkitMaskRepeat: "no-repeat",
-                        WebkitMaskSize: "contain",
-                        WebkitMaskPosition: "center",
-                        maskImage: `url(${colorMaskSrc})`,
-                        maskRepeat: "no-repeat",
-                        maskSize: "contain",
-                        maskPosition: "center",
-                      }}
-                    />
-                  );
-                } else {
-                  // For vehicles without masks, use multiply blend mode for color tinting
-                  return (
-                    <div
-                      aria-hidden
-                      className="absolute inset-0 pointer-events-none"
-                      style={{
-                        background: colorHex,
-                        zIndex: 10,
-                        mixBlendMode: "multiply",
-                        opacity: 0.8,
-                      }}
-                    />
-                  );
-                }
-              })()
-            )}
+            {/* Color overlay removed — VehiclePreview renders the base image only */}
           </div>
         </div>
       ) : (
