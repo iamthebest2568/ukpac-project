@@ -102,7 +102,7 @@ const IconCamSmall = () => (
 const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   "แอร์": <IconAir />,
   "พัดลม": <IconFan />,
-  "ที่นั่งพิเศษ": <IconSeat />,
+  "ที่น���่งพิเศษ": <IconSeat />,
   "ที่จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
   "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
@@ -136,6 +136,16 @@ const IconDoor1 = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F20b45db4b1fc4fdaa7c2f8874aea451d?format=webp&width=800"
     alt="ประตู 1"
+    className="object-contain select-none max-h-full w-auto"
+    decoding="async"
+    loading="eager"
+  />
+);
+
+const IconDoor1Active = () => (
+  <img
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F462ae98cbc00484fb2afe9c14ad6f9b6?format=webp&width=800"
+    alt="ประตู 1 (selected)"
     className="object-contain select-none max-h-full w-auto"
     decoding="async"
     loading="eager"
