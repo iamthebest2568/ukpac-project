@@ -18,7 +18,7 @@ const IconFan = () => (
 const IconSeat = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F93439b2533284cdf914fc93cafa1cf26?format=webp&width=800"
-    alt="ที่นั่งพิเศษ"
+    alt="ที่นั่ง��ิเศษ"
     className="h-6 w-6 object-contain select-none"
   />
 );
@@ -101,7 +101,7 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
   "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
-  กล้องวงรปิด: <IconCamSmall />,
+  "กล้องวงจรปิด": <IconCamSmall />,
   // Payment icons
   เงินสด: (
     <img src={MONEY_ICON} alt="เงินสด" className="h-5 w-5 object-contain" />
@@ -183,7 +183,7 @@ const displayDoor = (raw: any) => {
 };
 
 const CHASSIS_LABELS: Record<string, string> = {
-  small: "รถ��มล์ขนาดเล็ก 16–30 ที่นั่ง",
+  small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
   medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
   large: "รถตู้โดยสาร 9–15 ที่นั่ง",
   extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
@@ -363,7 +363,7 @@ const SummaryDetails: React.FC = () => {
 
           <div className="flex items-start gap-3">
             <div className="w-28 md:w-36 text-sm text-[#003366] truncate">
-              ความส��ดวก
+              ความสะดวก
             </div>
             <div className="flex-1 font-sarabun font-semibold text-sm text-[#003366] break-words">
               {data.amenities
@@ -385,7 +385,7 @@ const SummaryDetails: React.FC = () => {
                   : typeof data.doors === "object"
                     ? data.doors.doorChoice
                       ? data.doors.doorChoice === "1"
-                        ? "1 ประู"
+                        ? "1 ประตู"
                         : data.doors.doorChoice === "2"
                           ? "2 ประตู"
                           : String(data.doors.doorChoice)
@@ -398,19 +398,3 @@ const SummaryDetails: React.FC = () => {
                 : "-"}
             </div>
           </div>
-
-          <div className="flex items-start gap-3">
-            <div className="w-28 md:w-36 text-sm text-[#003366] truncate">
-              ลักษณะพิเศษ
-            </div>
-            <div className="flex-1 font-sarabun font-semibold text-sm text-[#003366] break-words">
-              {data.slogan || "-"}
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
-  );
-};
-
-export default SummaryDetails;
