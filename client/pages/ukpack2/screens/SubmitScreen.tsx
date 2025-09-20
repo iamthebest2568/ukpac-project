@@ -172,15 +172,16 @@ const SubmitScreen: React.FC = () => {
               <span className="w-12 text-sm text-[#003366]" style={{ fontFamily: 'Sarabun, sans-serif', fontSize: '17.6px' }}>นาที</span>
             </div>
 
-            <div className="flex items-center gap-3 min-w-0">
+            <div className="flex items-start gap-3 min-w-0">
               <label className="w-28 md:w-36 text-sm text-[#003366] truncate" style={{ fontFamily: 'Sarabun, sans-serif', fontSize: '17.6px' }}>
-                สายรถเมล์
+                สายรถ���มล์
               </label>
-              <input
-                type="text"
+              <textarea
                 value={route}
                 onChange={(e) => setRoute(e.target.value)}
-                className="flex-1 min-w-0 max-w-[220px] md:max-w-none rounded-xl px-3 py-1.5 md:py-2 border-2 border-[#000D59] h-9 md:h-auto"
+                placeholder="พิมพ์"
+                className="flex-1 min-w-0 max-w-[220px] md:max-w-none rounded-xl px-3 py-2 border-2 border-[#000D59] h-24 md:h-auto resize-none"
+                style={{ fontFamily: 'Sarabun, sans-serif', fontSize: '17.6px' }}
               />
             </div>
 
@@ -192,7 +193,8 @@ const SubmitScreen: React.FC = () => {
                 value={area}
                 onChange={(e) => setArea(e.target.value)}
                 placeholder="พิมพ์"
-                className="flex-1 min-w-0 max-w-[220px] md:max-w-none rounded-xl px-3 py-2 border-2 border-[#000D59] h-24 md:h-auto resize-vertical"
+                className="flex-1 min-w-0 max-w-[220px] md:max-w-none rounded-xl px-3 py-2 border-2 border-[#000D59] h-24 md:h-auto resize-none"
+                style={{ fontFamily: 'Sarabun, sans-serif', fontSize: '17.6px' }}
               />
             </div>
           </div>
@@ -201,7 +203,7 @@ const SubmitScreen: React.FC = () => {
 
       <ConfirmModal
         isOpen={isExitModalOpen}
-        title="ออกจากหน้าจอ"
+        title="ออ��จากหน้าจอ"
         message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
         onConfirm={() => navigate("/")}
         onCancel={() => setExitModalOpen(false)}
