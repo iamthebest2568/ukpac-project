@@ -98,7 +98,7 @@ const IconCamSmall = () => (
 );
 
 const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
-  แอร์: <IconAir />,
+  แอร���: <IconAir />,
   พัดลม: <IconFan />,
   ที่นั่งพิเศษ: <IconSeat />,
   "ที่จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
@@ -488,7 +488,7 @@ const DesignScreen: React.FC = () => {
                     setShowTextarea(true);
                   }}
                   placeholder="พิมพ์ คุณสมบัติพิเศษ"
-                  className="w-full rounded-xl px-4 py-2 bg-white border-2 border-[#e5e7eb] text-[#003366] placeholder-gray-400 cursor-text"
+                  className="w-full rounded-xl px-4 py-2 bg-white border-2 border-[#000D59] text-[#003366] placeholder-gray-400 cursor-text"
                 />
 
                 {showTextarea && (
@@ -502,12 +502,12 @@ const DesignScreen: React.FC = () => {
                         value={sloganDraft}
                         onChange={(e) => setSloganDraft(e.target.value)}
                         placeholder="พิมพ์คุณสมบัติพิเศษอื่นๆ ของรถเมล์ในฝันของคุณ"
-                        className="mt-3 w-full h-36 p-3 border-2 rounded-xl text-sm resize-none"
+                        className="mt-3 w-full h-36 p-3 border-2 border-[#000D59] rounded-xl text-sm resize-none"
                       />
                       <div className="mt-3 flex justify-end gap-2">
                         <button
                           onClick={() => setShowTextarea(false)}
-                          className="px-4 py-2 rounded-xl bg-[#000D59] text-white transition-colors"
+                          className="px-4 py-2 rounded-xl bg-[#ffe000] text-[#000D59] transition-colors"
                         >
                           ยกเลิก
                         </button>
@@ -516,7 +516,7 @@ const DesignScreen: React.FC = () => {
                             setSlogan(sloganDraft);
                             setShowTextarea(false);
                           }}
-                          className="px-4 py-2 rounded-xl bg-[#ffe000] text-black hover:bg-[#000d59] hover:text-white transition-colors"
+                          className="px-4 py-2 rounded-xl bg-[#000D59] text-white hover:bg-[#ffe000] hover:text-[#000D59] transition-colors"
                         >
                           บันทึก
                         </button>
