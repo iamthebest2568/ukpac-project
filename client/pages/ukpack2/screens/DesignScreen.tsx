@@ -55,7 +55,7 @@ const IconPlug = () => (
 const IconTv = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fcb0cbf9ef6764e2d9e6f06e87827f5e9?format=webp&width=800"
-    alt="Wi‑Fi ฟรี"
+    alt="Wi‑Fi ��รี"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -98,9 +98,9 @@ const IconCamSmall = () => (
 );
 
 const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
-  แอร์: <IconAir />,
-  พัดลม: <IconFan />,
-  ���ี่นั่งพิเศษ: <IconSeat />,
+  "แอร์": <IconAir />,
+  "พัดลม": <IconFan />,
+  "ที่นั่งพิเศษ": <IconSeat />,
   "ที่จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
   "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
@@ -253,7 +253,7 @@ const DesignScreen: React.FC = () => {
           <div className="w-full rounded-md flex flex-col items-center justify-center gap-2">
             {(() => {
               const CHASSIS_LABELS: Record<string, string> = {
-                small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
+                small: "รถเมล์ขนาดเล็�� 16–30 ที่นั่ง",
                 medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
                 large: "รถตู้โดยสาร 9–15 ที่นั่ง",
                 extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
@@ -387,7 +387,7 @@ const DesignScreen: React.FC = () => {
                           className="h-5 w-5 object-contain"
                         />
                       ),
-                      "แตะบัตร": (
+                      "แ���ะบัตร": (
                         <img
                           src={TOUCH_ICON}
                           alt="แตะบัตร"
