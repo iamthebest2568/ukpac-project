@@ -215,7 +215,7 @@
 }
 
 .selectionGrid {
-  --icon-cell-height: 120px; /* mobile default icon height */
+  --icon-cell-height: 140px; /* mobile default icon height (increased) */
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* fill available width */
   gap: 12px; /* slightly larger gap for breathing room */
