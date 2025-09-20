@@ -51,11 +51,24 @@ const InfoScreen: React.FC = () => {
       >
         <div className="space-y-6">
           <div className="w-full flex justify-center">
-            <div className="w-full max-w-[900px] relative" style={{ height: '180px' }}>
-              <div
-                className="absolute inset-0 rounded-xl bg-center bg-no-repeat"
-                style={{ backgroundImage: "url('https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4f5915a8ee85de9?format=webp&width=800')", backgroundSize: 'cover', pointerEvents: 'none' }}
-              />
+            <div className="w-full max-w-[900px] relative" style={{ height: '220px' }}>
+              <svg
+                className="absolute inset-0 w-full h-full"
+                viewBox="0 0 900 220"
+                preserveAspectRatio="xMidYMid slice"
+                xmlns="http://www.w3.org/2000/svg"
+                role="img"
+                aria-hidden="true"
+              >
+                <defs>
+                  <clipPath id="ukpack2-info-clip">
+                    <rect width="900" height="220" rx="16" ry="16" />
+                  </clipPath>
+                </defs>
+                <g clipPath="url(#ukpack2-info-clip)">
+                  <image href="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4f5915a8ee85de9?format=webp&width=800" x="0" y="0" width="900" height="220" preserveAspectRatio="xMidYMid slice" />
+                </g>
+              </svg>
             </div>
           </div>
 
