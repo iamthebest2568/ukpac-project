@@ -487,7 +487,7 @@ const DesignScreen: React.FC = () => {
                     setSloganDraft(slogan);
                     setShowTextarea(true);
                   }}
-                  placeholder="พิมพ์ คุณสม���ัติพิเศษ"
+                  placeholder="พิมพ์ คุณสมบัติพิเศษ"
                   className="w-full rounded-md px-4 py-2 bg-white border border-[#e5e7eb] text-[#003366] placeholder-gray-400 cursor-text"
                 />
 
