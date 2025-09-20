@@ -107,7 +107,7 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
   "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
-  "กล้องวงจรปิด": <IconCamSmall />,
+  "กล้อง��งจรปิด": <IconCamSmall />,
 };
 
 const MONEY_ICON =
@@ -134,7 +134,7 @@ const storedColor = (() => {
 
 const IconDoor1 = () => (
   <img
-    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F45173c261e684912b99bc0b4caf21003?format=webp&width=800"
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F20b45db4b1fc4fdaa7c2f8874aea451d?format=webp&width=800"
     alt="ประตู 1"
     className="object-contain select-none max-h-full w-auto"
     decoding="async"
@@ -325,7 +325,7 @@ const DoorScreen: React.FC = () => {
                     />
                   </div>
                 );
-              if (label === "กระเป๋ารถเมล์")
+              if (label === "กระเ��๋ารถเมล์")
                 return (
                   <div
                     key={`${label}-${idx}`}
