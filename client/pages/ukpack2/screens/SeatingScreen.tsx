@@ -193,7 +193,7 @@ const SeatingScreen: React.FC = () => {
                     <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">จำนวนที่นั่งทั้งหมด</div>
                     <input
                       type="number"
-                      placeholder="พิมพ��"
+                      placeholder="พิมพ์"
                       value={totalSeats}
                       onFocus={(e) => { e.currentTarget.placeholder = ''; }}
                       onBlur={(e) => { if (e.currentTarget.value === '') e.currentTarget.placeholder = 'พิมพ์'; }}
@@ -231,7 +231,7 @@ const SeatingScreen: React.FC = () => {
                   </div>
 
                   <div className="flex items-center justify-between">
-                    <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">พื้นที่สำหรับรถเข็น/จักรยาน</div>
+                    <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">พ���้นที่สำหรับรถเข็น/จักรยาน</div>
                     <NumericPlaceholderInput value={wheelchairBikeSpaces} onChange={(v) => setWheelchairBikeSpaces(v)} min={0} max={maxCapacity} className="w-24 px-3 py-2 text-[#003366] bg-transparent text-right font-sarabun text-[17.6px] outline-none" />
                   </div>
                 </div>
