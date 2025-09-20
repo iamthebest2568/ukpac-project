@@ -144,7 +144,7 @@ const IconDoor1 = () => (
 const IconDoor2 = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8f9b21942af243b3b80b0e5ac8b12631?format=webp&width=800"
-    alt="ประตู 2"
+    alt="ประ��ู 2"
     className="h-8 w-8 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -338,7 +338,7 @@ const DoorScreen: React.FC = () => {
                     />
                   </div>
                 );
-              if (label === "ตั๋วรายเด��อน/รอบ")
+              if (label === "ตั๋วรายเดือน/รอบ")
                 return (
                   <div
                     key={`${label}-${idx}`}
@@ -525,6 +525,8 @@ const DoorScreen: React.FC = () => {
                   isSelected={selectedOption === "1"}
                   onClick={() => setSelectedOption("1")}
                   variant="light"
+                  hideLabel
+                  appearance="group"
                 />
                 <SelectionCard
                   icon={<IconDoor2 />}
@@ -532,6 +534,8 @@ const DoorScreen: React.FC = () => {
                   isSelected={selectedOption === "2"}
                   onClick={() => setSelectedOption("2")}
                   variant="light"
+                  hideLabel
+                  appearance="group"
                 />
 
                 {/* Single-choice options */}
@@ -541,6 +545,8 @@ const DoorScreen: React.FC = () => {
                   isSelected={selectedOption === "ramp"}
                   onClick={() => setSelectedOption("ramp")}
                   variant="light"
+                  hideLabel
+                  appearance="group"
                 />
                 <SelectionCard
                   icon={<IconHighLow />}
@@ -548,6 +554,8 @@ const DoorScreen: React.FC = () => {
                   isSelected={selectedOption === "emergency"}
                   onClick={() => setSelectedOption("emergency")}
                   variant="light"
+                  hideLabel
+                  appearance="group"
                 />
               </div>
             </div>
