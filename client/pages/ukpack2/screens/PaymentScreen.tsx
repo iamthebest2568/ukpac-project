@@ -139,7 +139,7 @@ const IconAir = () => (
 const IconFan = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe01792ee89e240808ed47d8576b55d71?format=webp&width=800"
-    alt="พัด����ม"
+    alt="พัดลม"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -221,8 +221,8 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   "แอร์": <IconAir />,
   "พัดลม": <IconFan />,
   "ที่นั่งพิเศษ": <IconSeat />,
-  "ที่จับ/ราวยืนที่��ลอดภัย": <IconWifi />,
-  "ช่องชาร์จ���ือถือ/USB": <IconPlug />,
+  "ที่จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
+  "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
   "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
   "กล้องวงจรปิด": <IconCam />,
@@ -267,7 +267,7 @@ const OPTIONS = [
 const PaymentScreen: React.FC = () => {
   const navigate = useNavigate();
   const { state } = useBusDesign();
-  const [selected, setSelected] = useState<string[]>(["เง���นสด"]);
+  const [selected, setSelected] = useState<string[]>(["เงินสด"]);
 
   const storedColorLocal = state?.exterior?.color || (() => {
     try {
@@ -397,11 +397,11 @@ const PaymentScreen: React.FC = () => {
             ];
             // Normalize known corrupted label encodings (in case values were stored with encoding issues)
             const CORRECT_LABELS: Record<string, string> = {
-              "สแกนจ่��ย 2": "สแกนจ่าย 2",
+              "สแกนจ่าย 2": "สแกนจ่าย 2",
               "���แกนจ่าย 2": "สแกนจ่าย 2",
-              "แ��ะบัตร": "แตะบัตร",
-              "กระ��ป๋ารถเมล์": "กระเป๋ารถเมล์",
-              "เงินส��": "เงินสด",
+              "แตะบัตร": "แตะบัตร",
+              "กระเป๋ารถเมล์": "กระเป๋ารถเมล์",
+              "เงินสด": "เงินสด",
             };
             const stripReplacement = (s: string) => (s || "").replace(/�|\uFFFD/g, "").trim();
             const normalizedOverlayLabels = overlayLabels.map((l) => {
@@ -607,7 +607,7 @@ const PaymentScreen: React.FC = () => {
                     "เงินสด": (
                       <img
                         src={CASH_OVERLAY_ICON}
-                        alt="เงินส��"
+                        alt="เงินสด"
                         className="h-full w-full object-contain"
                       />
                     ),
@@ -664,7 +664,7 @@ const PaymentScreen: React.FC = () => {
           <div className={styles.controlsBox}>
             <div className={styles.controlsContent}>
               <h2 className="text-xl font-prompt font-semibold text-[#003366] mt-2">
-                ก���รจ่ายเงิน
+                การจ่ายเงิน
               </h2>
 
               <div className="grid grid-cols-3 gap-4">
