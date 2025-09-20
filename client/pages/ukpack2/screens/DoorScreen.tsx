@@ -550,7 +550,7 @@ const DoorScreen: React.FC = () => {
                 />
                 <SelectionCard
                   icon={<IconHighLow />}
-                  label={"ป���ะตูฉุกเฉิน"}
+                  label={"ประตูฉุกเฉิน"}
                   isSelected={selectedOption === "emergency"}
                   onClick={() => setSelectedOption("emergency")}
                   variant="light"
