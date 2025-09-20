@@ -34,7 +34,7 @@ const IconSeat = () => (
 const IconWifi = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F3a949d75d90840669601df07a65af479?format=webp&width=800"
-    alt="ที่จับ/��าวยืน"
+    alt="ที่จับ/ราวยืน"
     className="object-contain select-none h-full w-full"
     decoding="async"
     loading="eager"
@@ -199,12 +199,7 @@ const AmenitiesScreen: React.FC = () => {
                 imageSrc={selectedBusImage}
                 colorFilter={null}
                 colorHex={null}
-                label={
-                  <>
-                    <p className="mb-0">รถที่เลือก :</p>
-                    {selectedLabel}
-                  </>
-                }
+                label={selectedLabel}
                 showSelectedText
                 overlayLabels={selected
                   .slice()
