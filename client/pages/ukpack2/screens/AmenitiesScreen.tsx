@@ -185,52 +185,61 @@ const AmenitiesScreen: React.FC = () => {
         </div>
       }
     >
-      <div className="space-y-6">
-        <div className="w-full rounded-md flex flex-col items-center justify-center gap-2">
-          {selectedBusImage ? (
-            <VehiclePreview
-              imageSrc={selectedBusImage}
-              colorFilter={storedColor?.filter}
-              label={
-                <>
-                  <p className="mb-0">รถที่เลือก :</p>
-                  {selectedLabel}
-                </>
-              }
-              overlayLabels={selected
-                .slice()
-                .filter((l) => AMENITIES.some((a) => a.label === l))
-                .sort((a, b) => a.localeCompare(b, "th"))}
-              overlayIconMap={OVERLAY_ICON_SRC}
-            />
-          ) : (
-            <div className="w-full h-48 bg-[#081042] rounded-md flex items-center justify-center text-sm text-gray-300">
-              Bus image preview (ภาพสำหรับรุ่นนี้จะถูกเพิ่มภายหลัง)
-            </div>
-          )}
-        </div>
-        <div className="bg-white rounded-2xl -mt-2 p-4 border border-gray-400">
-          <StepTabs active={3} />
-
-          <h2 className="text-xl font-prompt font-semibold text-[#003366] mt-2">
-            ความสะดวกสบาย
-          </h2>
-
-          <div className="grid grid-cols-3 md:grid-cols-4 gap-4">
-            {AMENITIES.map((a) => (
-              <SelectionCard
-                key={a.key}
-                icon={a.icon}
-                label={a.label}
-                isSelected={selected.includes(a.label)}
-                onClick={() => toggle(a.label)}
-                variant="light"
-                hideLabel
-                appearance="group"
+      <div className={styles.contentGrid}>
+        <div className={`${styles.previewWrapper}`}>
+          <div className={styles.previewInner}>
+            {selectedBusImage ? (
+              <VehiclePreview
+                imageSrc={selectedBusImage}
+                colorFilter={storedColor?.filter}
+                label={
+                  <>
+                    <p className="mb-0">รถที่เลือก :</p>
+                    {selectedLabel}
+                  </>
+                }
+                overlayLabels={selected
+                  .slice()
+                  .filter((l) => AMENITIES.some((a) => a.label === l))
+                  .sort((a, b) => a.localeCompare(b, "th"))}
+                overlayIconMap={OVERLAY_ICON_SRC}
               />
-            ))}
+            ) : (
+              <div className="w-full h-48 bg-[#081042] rounded-md flex items-center justify-center text-sm text-gray-300">
+                Bus image preview (ภาพสำหรับรุ่นนี้จะถูกเพิ่มภายหลัง)
+              </div>
+            )}
           </div>
         </div>
+
+        <section className={`${styles.controlsSection} ${styles.controlsWrapper}`}>
+          <div className={styles.tabsWrapper}>
+            <StepTabs active={3} />
+          </div>
+
+          <div className={styles.controlsBox}>
+            <div className={styles.controlsContent}>
+              <h2 className="text-xl font-prompt font-semibold text-[#003366] mt-2">
+                ความสะดวกสบาย
+              </h2>
+
+              <div className={styles.selectionGrid}>
+                {AMENITIES.map((a) => (
+                  <SelectionCard
+                    key={a.key}
+                    icon={a.icon}
+                    label={a.label}
+                    isSelected={selected.includes(a.label)}
+                    onClick={() => toggle(a.label)}
+                    variant="light"
+                    hideLabel
+                    appearance="group"
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
     </CustomizationScreen>
   );
