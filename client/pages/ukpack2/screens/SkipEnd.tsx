@@ -27,13 +27,6 @@ const SkipEnd: React.FC = () => {
           <p className="text-[#001a73] font-prompt font-semibold text-center">
             ขอบคุณ ที่ร่วมเป็นส่วนหนึ่งในการพัฒนาเม��อง
           </p>
-          <div className="w-full flex justify-center">
-            <img
-              src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F3d54db27cd9f49bf946e4a1ed5688fb3?format=webp&width=800"
-              alt="เราจะประกาศรางวัล"
-              className="w-full h-auto max-w-[420px] mt-2"
-            />
-          </div>
           <div className="flex flex-col items-stretch gap-3 pt-2 w-full max-w-sm mx-auto">
             <CtaButton
               className="w-full"
