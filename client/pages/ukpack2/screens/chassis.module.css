@@ -171,6 +171,8 @@
 .tabItem {
   padding-left: 2px;
   padding-right: 2px;
+  box-sizing: border-box;
+  border: 0.1px solid var(--chassis-accent);
 }
 
 .controlsContent {
