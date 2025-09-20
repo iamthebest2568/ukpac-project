@@ -136,7 +136,8 @@ const IconAir = () => (
   />
 );
 
-const storedColor = (() => {
+const { state: _globalState } = (typeof window !== 'undefined' ? require('../context/BusDesignContext').useBusDesign?.() : { state: null }) as any;
+const storedColor = _globalState?.exterior?.color || (() => {
   try {
     const raw = sessionStorage.getItem("design.color");
     return raw ? JSON.parse(raw) : null;
@@ -156,7 +157,7 @@ const IconFan = () => (
 const IconSeat = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F93439b2533284cdf914fc93cafa1cf26?format=webp&width=800"
-    alt="ที่น���่งพิเศษ"
+    alt="ที่นั่งพิเศษ"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -192,7 +193,7 @@ const IconTv = () => (
 const IconCup = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe903bdf27bab4175824c159bc19a02ba?format=webp&width=800"
-    alt="ระบบประกาศบอกป้าย(เสียง/จอ)"
+    alt="ระบบประกาศบอกป้าย(เสียง/���อ)"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -255,7 +256,7 @@ const OPTIONS = [
   { key: "scan2", label: "สแกนจ่าย 2", icon: null },
   { key: "tap", label: "แตะบัตร", icon: <IconTap /> },
   { key: "qr", label: "กระเป๋ารถเมล์", icon: <IconQr /> },
-  { key: "monthly", label: "ตั๋���รายเดือน/รอบ", icon: null },
+  { key: "monthly", label: "ตั๋วรายเดือน/รอบ", icon: null },
 ];
 
 const PaymentScreen: React.FC = () => {
@@ -597,7 +598,7 @@ const PaymentScreen: React.FC = () => {
                         className="h-5 w-5 object-contain"
                       />
                     ),
-                    "ตั๋วรายเดือน/รอบ": (
+                    "ตั๋วรายเดือ���/รอบ": (
                       <img
                         src={MONTHLY_ICON}
                         alt="ตั๋วรายเดือน/รอบ"
