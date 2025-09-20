@@ -286,7 +286,7 @@ const DesignScreen: React.FC = () => {
                         {label}
                       </>
                     }
-                    colorFilter={color?.filter}
+                    colorFilter={color?.filter} colorHex={color?.colorHex || null}
                     overlayLabels={(() => {
                       const amenities = (() => {
                         try {
