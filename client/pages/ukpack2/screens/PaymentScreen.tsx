@@ -441,7 +441,7 @@ const PaymentScreen: React.FC = () => {
                   >
                     <img
                       src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F98de0624be3d4ae6b96d83edcf8891f9?format=webp&width=800"
-                      alt="ประตูฉุกเฉิน"
+                      alt="ประตู���ุกเฉิน"
                       className="h-6 w-6 md:h-7 md:w-7 object-contain"
                     />
                   </div>
@@ -571,7 +571,7 @@ const PaymentScreen: React.FC = () => {
                         className="h-5 w-5 object-contain"
                       />
                     ),
-                    สแกนจ่าย: (
+                    สแกน���่าย: (
                       <img
                         src={SCAN_ICON}
                         alt="สแกนจ่าย"
@@ -602,7 +602,7 @@ const PaymentScreen: React.FC = () => {
                     "ตั๋วรายเดือ���/รอบ": (
                       <img
                         src={MONTHLY_ICON}
-                        alt="ตั๋วรายเดือน/รอบ"
+                        alt="���ั๋วรายเดือน/รอบ"
                         className="h-5 w-5 object-contain"
                       />
                     ),
@@ -627,7 +627,7 @@ const PaymentScreen: React.FC = () => {
                 การจ่ายเงิน
               </h2>
 
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="grid grid-cols-3 gap-4">
                 {OPTIONS.map((o) => {
                   const isSel = selected.includes(o.label);
                   const iconNode =
