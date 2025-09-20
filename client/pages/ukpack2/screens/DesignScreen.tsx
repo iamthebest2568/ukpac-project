@@ -244,7 +244,7 @@ const DesignScreen: React.FC = () => {
         theme="light"
         footerContent={
           <div className="flex justify-center">
-            <CtaButton text="ออกแบบเสร็จแล้ว" onClick={handleFinish} />
+            <CtaButton text="ออกแบบเ���ร็จแล้ว" onClick={handleFinish} />
           </div>
         }
       >
@@ -417,7 +417,7 @@ const DesignScreen: React.FC = () => {
                       "2": (
                         <img
                           src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8f9b21942af243b3b80b0e5ac8b12631?format=webp&width=800"
-                          alt="2 ประต��"
+                          alt="2 ประตู"
                           className="h-5 w-5 object-contain"
                         />
                       ),
