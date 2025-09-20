@@ -174,13 +174,13 @@ const SubmitScreen: React.FC = () => {
 
             <div className="flex items-start gap-3 min-w-0">
               <label className="w-28 md:w-36 text-sm text-[#003366] truncate" style={{ fontFamily: 'Sarabun, sans-serif', fontSize: '17.6px' }}>
-                สายรถ���มล์
+                สายรถเมล์
               </label>
               <textarea
                 value={route}
                 onChange={(e) => setRoute(e.target.value)}
                 placeholder="พิมพ์"
-                className="flex-1 min-w-0 max-w-[220px] md:max-w-none rounded-xl px-3 py-2 border-2 border-[#000D59] h-24 md:h-auto resize-none"
+                className="flex-1 min-w-0 max-w-[220px] md:max-w-none rounded-xl px-3 py-2 border-2 border-[#000D59] h-9 md:h-auto resize-none"
                 style={{ fontFamily: 'Sarabun, sans-serif', fontSize: '17.6px' }}
               />
             </div>
@@ -193,7 +193,7 @@ const SubmitScreen: React.FC = () => {
                 value={area}
                 onChange={(e) => setArea(e.target.value)}
                 placeholder="พิมพ์"
-                className="flex-1 min-w-0 max-w-[220px] md:max-w-none rounded-xl px-3 py-2 border-2 border-[#000D59] h-24 md:h-auto resize-none"
+                className="flex-1 min-w-0 max-w-[220px] md:max-w-none rounded-xl px-3 py-2 border-2 border-[#000D59] h-9 md:h-auto resize-none"
                 style={{ fontFamily: 'Sarabun, sans-serif', fontSize: '17.6px' }}
               />
             </div>
@@ -203,7 +203,7 @@ const SubmitScreen: React.FC = () => {
 
       <ConfirmModal
         isOpen={isExitModalOpen}
-        title="ออ��จากหน้าจอ"
+        title="ออกจากหน้าจอ"
         message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
         onConfirm={() => navigate("/")}
         onCancel={() => setExitModalOpen(false)}
