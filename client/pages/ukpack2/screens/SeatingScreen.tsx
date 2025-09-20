@@ -216,7 +216,7 @@ const SeatingScreen: React.FC = () => {
 
                   <div className="flex items-center justify-between">
                     <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">เด็ก / ผู้สูงอายุ</div>
-                    <input type="number" value={childElderSeats === "" ? "" : childElderSeats} onFocus={() => { if (childElderSeats === 0) setChildElderSeats(""); }} onChange={(e) => { const raw = e.target.value; if (raw === "") { setChildElderSeats(""); return; } const parsed = Math.max(0, Math.min(maxCapacity, parseInt(raw || "0", 10))); setChildElderSeats(parsed); }} className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-full text-[#003366] bg-white text-right" min={0} max={maxCapacity} />
+                    <input type="number" placeholder="00" value={childElderSeats === "" ? "" : childElderSeats} onFocus={() => { if (childElderSeats === 0) setChildElderSeats(""); }} onChange={(e) => { const raw = e.target.value; if (raw === "") { setChildElderSeats(""); return; } const parsed = Math.max(0, Math.min(maxCapacity, parseInt(raw || "0", 10))); setChildElderSeats(parsed); }} className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-full text-[#003366] bg-white text-right" min={0} max={maxCapacity} />
                   </div>
 
                   <div className="flex items-center justify-between">
@@ -240,7 +240,7 @@ const SeatingScreen: React.FC = () => {
         </div>
       </CustomizationScreen>
 
-      <ConfirmModal isOpen={isExitModalOpen} title="ออกจากหน้าจอ" message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบั��ทึก" onConfirm={() => navigate("/")} onCancel={() => setExitModalOpen(false)} />
+      <ConfirmModal isOpen={isExitModalOpen} title="ออกจากหน้า���อ" message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก" onConfirm={() => navigate("/")} onCancel={() => setExitModalOpen(false)} />
 
       <ErrorModal isOpen={isErrorModalOpen} title={errorTitle} message={errorMessage} onClose={() => setErrorModalOpen(false)} />
     </div>
