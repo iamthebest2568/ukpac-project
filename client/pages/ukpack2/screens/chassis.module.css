@@ -216,62 +216,73 @@
 }
 
 .selectionGrid {
+  --icon-cell-height: 120px; /* mobile default icon height */
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* fill available width */
-  gap: 3px; /* 3px gap between icons as requested */
+  gap: 12px; /* slightly larger gap for breathing room */
   width: 100%;
   box-sizing: border-box;
   padding: 0.1px; /* fill up to the border */
   justify-content: center; /* center the whole group */
   justify-items: stretch; /* let buttons fill horizontally */
-  align-items: start; /* allow items to size to content */
-  grid-auto-rows: auto; /* let rows size to content instead of fixed height */
+  align-items: start; /* align cells to start so height control comes from icon container */
 }
 
 @media (min-width: 768px) {
   .selectionGrid {
+    --icon-cell-height: 160px; /* larger icon height on wider screens */
     grid-template-columns: repeat(4, 1fr); /* 4 columns on md+ */
-    gap: 3px; /* 3px gap between icons on wider screens */
+    gap: 12px; /* match gap on larger screens */
     padding: 0.1px; /* ensure grid stretches to border */
     justify-content: center;
-    grid-auto-rows: auto; /* let rows size to content on larger screens */
   }
 }
 
-/* ensure buttons inside grid fill the cell */
+/* ensure buttons inside grid layout vertically and center content */
 .selectionGrid > button {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
   width: 100%;
   height: auto;
-  padding: 6px !important; /* give some inner spacing and let SelectionCard control its own sizing */
+  padding: 6px !important; /* inner spacing */
   border-color: transparent !important; /* hide grid item borders visually */
   background: transparent;
 }
 
-/* make the first child (icon container) stretch */
+/* Icon container: fixed uniform height, width flexible (fills column) */
 .selectionGrid > button > div:first-child {
-  height: auto;
+  height: var(--icon-cell-height) !important;
+  width: 100% !important;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 8px !important; /* allow icon container its own padding */
+  padding: 0 !important; /* no extra padding so images use full height */
 }
 
-/* force any image or SVG inside the grid to scale to full cell height */
+/* Images/SVGs: fixed to icon container height, width scales automatically */
 .selectionGrid > button img,
 .selectionGrid > button svg,
 .selectionGrid img,
 .selectionGrid svg {
-  max-height: 100%;
-  height: auto !important;
+  height: 100% !important;
+  max-height: none !important;
   width: auto !important;
   object-fit: contain !important;
   display: block !important;
+  max-width: 100%;
 }
 
-/* ensure grid stretches and rows are uniform */
+/* allow labels below icon to take natural space; grid rows will size accordingly */
+.selectionGrid > button .selection-label-mobile,
+.selectionGrid > button .selection-label-mobile + * {
+  margin-top: 8px;
+}
+
+/* ensure grid stretches and rows are uniform where possible */
 .selectionGrid {
   align-content: stretch;
-  align-items: stretch;
 }
 
 .selectionGrid > button > div:first-child {
