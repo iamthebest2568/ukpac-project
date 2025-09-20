@@ -79,8 +79,8 @@ const FormScreen: React.FC = () => {
       theme="light"
       footerContent={
         <div className="flex flex-col items-stretch gap-3 w-full max-w-sm mx-auto">
-          <CtaButton className="w-full" text="ลุ้นรับรางวัล" onClick={submit} />
-          <SecondaryButton className="w-full" text="ไม่" onClick={skip} />
+          <CtaButton className="w-full" text="ลุ้นรับรางวัล" onClick={submit} style={{ backgroundColor: '#000d59', color: '#ffffff' }} />
+          <SecondaryButton className="w-full" text="ไม่รับรางวัล" onClick={skip} className="bg-[#ffe000] text-black hover:bg-[#000d59] hover:text-white" />
         </div>
       }
     >
