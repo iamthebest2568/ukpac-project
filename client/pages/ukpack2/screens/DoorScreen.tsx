@@ -29,7 +29,7 @@ const IconFan = () => (
 const IconSeat = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F93439b2533284cdf914fc93cafa1cf26?format=webp&width=800"
-    alt="ที่นั่งพิเศษ"
+    alt="ท���่นั่งพิเศษ"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -152,7 +152,7 @@ const IconDoor2 = () => (
 const IconRamp = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fece2b6fc843340f0997f2fd7d3ca0aea?format=webp&width=800"
-    alt="ทางสำหร���บรถเข็น/ผู้พิการ"
+    alt="ทางสำหรับรถเข็น/ผู้พิการ"
     className="h-8 w-8 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -211,7 +211,7 @@ const DoorScreen: React.FC = () => {
           {(() => {
             const CHASSIS_LABELS: Record<string, string> = {
               small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
-              medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
+              medium: "รถเมล์มา��รฐาน 30–50 ที่นั่ง",
               large: "รถตู้โดยสาร 9–15 ที่นั่ง",
               extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
             };
@@ -311,7 +311,7 @@ const DoorScreen: React.FC = () => {
                     />
                   </div>
                 );
-              if (label === "แตะ���ัตร")
+              if (label === "แตะบัตร")
                 return (
                   <div
                     key={`${label}-${idx}`}
@@ -455,7 +455,7 @@ const DoorScreen: React.FC = () => {
                     แตะบัตร: (
                       <img
                         src={TOUCH_ICON}
-                        alt="แตะบั��ร"
+                        alt="แตะบัตร"
                         className="h-5 w-5 object-contain"
                       />
                     ),
@@ -519,7 +519,7 @@ const DoorScreen: React.FC = () => {
           <div className={styles.controlsBox}>
             <div className={styles.controlsContent}>
               <h2 className="text-xl font-prompt font-semibold text-[#003366] mt-2">
-                ประต��
+                ประตู
               </h2>
 
               <div className="grid grid-cols-2 gap-4">
