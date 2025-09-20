@@ -24,9 +24,6 @@ const VehiclePreview: React.FC<Props> = ({
   overlayLabels = [],
   overlayIconMap = {},
   placeholderText = "ภาพสำหรับรุ่นนี้จะถูกเพิ่มภายหลัง",
-  colorFilter = null,
-  colorHex = null,
-  colorMaskSrc = null,
   className,
   showSelectedText = false,
   starSrc = null,
@@ -208,7 +205,7 @@ const VehiclePreview: React.FC<Props> = ({
           aria-label="vehicle-label"
           className="mt-1 font-sarabun font-semibold text-[#001a73] text-center text-[17.6px] max-w-[320px] mx-auto"
         >
-          <span className="chassis-label-mobile">รถที่เลือก : </span>
+          <span className="chassis-label-mobile">ร��ที่เลือก : </span>
           {label}
         </div>
       )}
