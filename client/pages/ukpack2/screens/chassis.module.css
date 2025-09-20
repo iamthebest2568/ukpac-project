@@ -300,7 +300,7 @@
 
 /* Inline icon sizing: smaller uniform height for inline cards */
 .selectionGrid > button.horizontal > div.iconContainer {
-  height: 56px !important; /* mobile inline icon height */
+  height: 80px !important; /* mobile inline icon height increased */
   width: auto !important;
   flex-shrink: 0;
   display: flex;
@@ -310,7 +310,7 @@
 
 @media (min-width: 768px) {
   .selectionGrid > button.horizontal > div.iconContainer {
-    height: 72px !important; /* larger inline height on md+ */
+    height: 96px !important; /* larger inline height on md+ */
   }
 }
 
