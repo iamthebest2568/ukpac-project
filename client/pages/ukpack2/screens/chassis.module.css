@@ -108,12 +108,15 @@
   box-sizing: border-box;
   background: #ffffff;
   border-radius: 0;
+  padding: 0 !important; /* ensure no extra padding from ancestors */
 }
 
 /* Semantic section grouping for tabs + frame + grid */
 .controlsSection {
   width: 100%;
   box-sizing: border-box;
+  padding: 0 !important; /* remove inherited padding */
+  margin: 0 !important;
 }
 
 
@@ -123,6 +126,8 @@
   width: 100vw !important;
   margin-left: calc(50% - 50vw) !important;
   margin-right: calc(50% - 50vw) !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
   border: 2px solid #000D59; /* restored fixed border width */
   border-color: #000D59;
   border-radius: 8px;
@@ -152,8 +157,10 @@
   width: 100vw !important;
   margin-left: calc(50% - 50vw) !important;
   margin-right: calc(50% - 50vw) !important;
-  margin: 0 0 -16px 0; /* overlap so tabs sit on top of border */
-  padding: 0;
+  margin: 0 0 -16px 0 !important; /* overlap so tabs sit on top of border */
+  padding: 0 !important;
+  left: 0 !important;
+  transform: none !important;
 }
 
 /* ensure inner tab items stretch to fill full-bleed container and small gap between tabs */
