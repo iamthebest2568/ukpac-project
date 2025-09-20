@@ -242,6 +242,8 @@ const SCAN2_ICON_ACTIVE =
   "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb128b8b4b90940efbe43f37b3ab27b3e?format=webp&width=800";
 const TOUCH_ICON =
   "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F17a8f3fe1df04db28a257c97c30c9959?format=webp&width=800";
+const TOUCH_ICON_ACTIVE =
+  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8cad04d43a934610ad263ec567710f38?format=webp&width=800";
 const MONTHLY_ICON =
   "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Ff841cf7477174217b2aa753d7acb4b21?format=webp&width=800";
 const BUS_EMPLOY_ICON =
@@ -303,7 +305,7 @@ const PaymentScreen: React.FC = () => {
 
   return (
     <CustomizationScreen
-      title="ปรับแต่งรถ��มล์ของคุณ"
+      title="ปรับแต่งรถเมล์ของคุณ"
       theme="light"
       fullWidth
       footerContent={
@@ -592,7 +594,7 @@ const PaymentScreen: React.FC = () => {
                         className="h-5 w-5 object-contain"
                       />
                     ),
-                    "กระ��ป๋ารถเ��ล์": (
+                    "กระ��ป๋ารถเมล์": (
                       <img
                         src={BUS_EMPLOY_ICON}
                         alt="กระเป๋ารถเมล์"
@@ -624,7 +626,7 @@ const PaymentScreen: React.FC = () => {
           <div className={styles.controlsBox}>
             <div className={styles.controlsContent}>
               <h2 className="text-xl font-prompt font-semibold text-[#003366] mt-2">
-                ก���รจ่า���เงิน
+                ก���รจ่ายเงิน
               </h2>
 
               <div className="grid grid-cols-3 gap-4">
