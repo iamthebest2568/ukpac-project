@@ -101,7 +101,7 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
   "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
-  กล้องวงจรปิด: <IconCamSmall />,
+  กล้องวง��รปิด: <IconCamSmall />,
   // Payment icons
   เงินสด: (
     <img src={MONEY_ICON} alt="เงินสด" className="h-5 w-5 object-contain" />
@@ -172,7 +172,7 @@ const displayDoor = (raw: any) => {
   if (typeof raw === "object") {
     if (raw.doorChoice)
       return raw.doorChoice === "1"
-        ? "1 ประต��"
+        ? "1 ประตู"
         : raw.doorChoice === "2"
           ? "2 ประตู"
           : String(raw.doorChoice);
@@ -385,7 +385,7 @@ const SummaryDetails: React.FC = () => {
                   : typeof data.doors === "object"
                     ? data.doors.doorChoice
                       ? data.doors.doorChoice === "1"
-                        ? "1 ประตู"
+                        ? "1 ประ��ู"
                         : data.doors.doorChoice === "2"
                           ? "2 ประตู"
                           : String(data.doors.doorChoice)
