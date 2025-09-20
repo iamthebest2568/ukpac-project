@@ -66,7 +66,7 @@ const SkipEnd: React.FC = () => {
         isOpen={isShareOpen}
         onClose={() => setShareOpen(false)}
         shareUrl={window.location.origin + '/ukpack2'}
-        shareText={'ผม/ฉันได้ออกแบบรถเมล์ใน��ัน ลองดูสิ'}
+        shareText={'ผม/ฉันได้ออกแบบรถเมล์ในนี้ ลองดูสิ'}
       />
     </>
   );
