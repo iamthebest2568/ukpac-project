@@ -631,7 +631,7 @@ const PaymentScreen: React.FC = () => {
                       <img
                         src={isSel ? MONEY_ICON_ACTIVE : MONEY_ICON}
                         alt={o.label}
-                        className={`h-8 w-8 object-contain select-none ${isSel ? "" : "grayscale opacity-60"}`}
+                        className={`object-contain select-none h-full w-full ${isSel ? "" : "grayscale opacity-60"}`}
                         decoding="async"
                         loading="eager"
                       />
@@ -639,7 +639,7 @@ const PaymentScreen: React.FC = () => {
                       <img
                         src={SCAN_ICON}
                         alt={o.label}
-                        className={`h-8 w-8 object-contain select-none ${isSel ? "" : "grayscale opacity-60"}`}
+                        className={`object-contain select-none h-full w-full ${isSel ? "" : "grayscale opacity-60"}`}
                         decoding="async"
                         loading="eager"
                       />
@@ -647,7 +647,7 @@ const PaymentScreen: React.FC = () => {
                       <img
                         src={SCAN2_ICON}
                         alt={o.label}
-                        className={`h-8 w-8 object-contain select-none ${isSel ? "" : "grayscale opacity-60"}`}
+                        className={`object-contain select-none h-full w-full ${isSel ? "" : "grayscale opacity-60"}`}
                         decoding="async"
                         loading="eager"
                       />
@@ -655,7 +655,7 @@ const PaymentScreen: React.FC = () => {
                       <img
                         src={TOUCH_ICON}
                         alt={o.label}
-                        className={`h-8 w-8 object-contain select-none ${isSel ? "" : "grayscale opacity-60"}`}
+                        className={`object-contain select-none h-full w-full ${isSel ? "" : "grayscale opacity-60"}`}
                         decoding="async"
                         loading="eager"
                       />
@@ -663,7 +663,7 @@ const PaymentScreen: React.FC = () => {
                       <img
                         src={BUS_EMPLOY_ICON}
                         alt={o.label}
-                        className={`h-8 w-8 object-contain select-none ${isSel ? "" : "grayscale opacity-60"}`}
+                        className={`object-contain select-none h-full w-full ${isSel ? "" : "grayscale opacity-60"}`}
                         decoding="async"
                         loading="eager"
                       />
@@ -671,7 +671,7 @@ const PaymentScreen: React.FC = () => {
                       <img
                         src={MONTHLY_ICON}
                         alt={o.label}
-                        className={`h-8 w-8 object-contain select-none ${isSel ? "" : "grayscale opacity-60"}`}
+                        className={`object-contain select-none h-full w-full ${isSel ? "" : "grayscale opacity-60"}`}
                         decoding="async"
                         loading="eager"
                       />
