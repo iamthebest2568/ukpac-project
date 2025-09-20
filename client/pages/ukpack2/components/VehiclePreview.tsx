@@ -109,7 +109,7 @@ const VehiclePreview: React.FC<Props> = ({
                               src={src}
                               srcSet={srcSet}
                               alt={lab}
-                              className="h-6 w-6 object-contain"
+                              className="h-full w-full object-contain"
                               decoding="async"
                               loading="eager"
                             />
