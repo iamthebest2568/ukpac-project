@@ -237,7 +237,7 @@ const DesignScreen: React.FC = () => {
     <>
       <MetaUpdater
         title="UK PACT - กรุงเทพฯ ลดติด"
-        description="ออกแบบรถเมล์เพื่อช่วยลดปัญหาการจราจรในกรุงเทพฯ — เลือกขนาดรถ สี และสิ่งอำนวยความสะดวกที่ต้อง���าร"
+        description="ออกแบบรถเมล์เพื่อช่วยลดปัญหาการจราจรในกรุงเทพฯ — เลือกขนาดรถ สี ���ละสิ่งอำนวยความสะดวกที่ต้อง���าร"
         image="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F44cea8aeb6d4415e899494a90c6f59b1?format=webp&width=1200"
       />
       <CustomizationScreen
@@ -287,11 +287,20 @@ const DesignScreen: React.FC = () => {
                 extra: {},
               };
 
+              // Custom image to use when the first color swatch is selected
+              const FIRST_SWATCH_IMAGE = "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Ff9b1d87b7e3a41faa572e1421c77fe66?format=webp&width=800";
+
+              const [customPreRendered, setCustomPreRendered] = useState<Record<string, Record<string, string>>>(() => ({ ...PRE_RENDERED }));
+
               const findPreRendered = (ch: string, hex: string | undefined | null) => {
                 if (!hex) return undefined;
                 const key = hex.replace(/^#/, "").toLowerCase();
-                const byCh = PRE_RENDERED[ch] || {};
-                return byCh[key] || byCh[hex] || undefined;
+                const byCh = customPreRendered[ch] || {};
+                // check custom mapping first, then fall back to the static PRE_RENDERED
+                const fromCustom = byCh[key] || byCh[hex];
+                if (fromCustom) return fromCustom;
+                const byChDefault = PRE_RENDERED[ch] || {};
+                return byChDefault[key] || byChDefault[hex] || undefined;
               };
               let selected = "medium";
               try {
@@ -471,6 +480,25 @@ const DesignScreen: React.FC = () => {
                       id: colorHex.replace('#', ''),
                       colorHex
                     } as any);
+                  }
+
+                  // If the first swatch was clicked, map this chassis+color to the provided attachment image
+                  try {
+                    const isFirstSwatch = !!(preview && preview === DEFAULT_COLORS[0].preview) || (foundColor && foundColor.id === "353635-new");
+                    if (isFirstSwatch) {
+                      const key = (colorHex || (foundColor && foundColor.colorHex) || (foundColor && foundColor.id) || "").replace(/^#/, "").toLowerCase();
+                      if (key) {
+                        setCustomPreRendered((prev) => ({
+                          ...prev,
+                          [selected]: {
+                            ...(prev[selected] || {}),
+                            [key]: FIRST_SWATCH_IMAGE,
+                          },
+                        }));
+                      }
+                    }
+                  } catch (e) {
+                    // ignore
                   }
 
                   // Log for debugging
