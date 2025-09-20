@@ -6,7 +6,7 @@ import CtaButton from "../components/CtaButton";
 
 const IconAir = () => (
   <img
-    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8e0dd6895ad14429b43956b99686acd3?format=webp&width=800"
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F717ae5876456493a97f29b6d6684c104?format=webp&width=800"
     alt="แอร์"
     className="object-contain select-none h-full w-full"
     decoding="async"
