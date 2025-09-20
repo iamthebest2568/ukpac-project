@@ -16,7 +16,7 @@ const IconAir = () => (
 const IconAirAlt = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Ff0fe8436ac954fd6b49da127a89b7d76?format=webp&width=800"
-    alt="แอร์ (กดแล้ว)"
+    alt="แอร์ (��ดแล้ว)"
     className="object-contain select-none h-full w-full"
     decoding="async"
     loading="eager"
@@ -44,6 +44,15 @@ const IconSeat = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb101ad9f32f94ecebf2dda6bd7e56974?format=webp&width=800"
     alt="หน้าต่างเปิดได้"
+    className="object-contain select-none h-full w-full"
+    decoding="async"
+    loading="eager"
+  />
+);
+const IconSeatAlt = () => (
+  <img
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fa2e2c44acf9340069f09f361139b4ffa?format=webp&width=800"
+    alt="ที่จับ/ราวยืน (กดแล้ว)"
     className="object-contain select-none h-full w-full"
     decoding="async"
     loading="eager"
@@ -135,7 +144,7 @@ const AmenitiesScreen: React.FC = () => {
     small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
     medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
     large: "รถตู้โดยสาร 9–15 ที่นั่ง",
-    extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
+    extra: "รถกะบะดัดแปลง 8–12 ที่นั��ง",
   };
   const HERO_IMAGE: Record<string, string> = {
     small:
