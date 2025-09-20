@@ -338,7 +338,7 @@ const ChassisScreen: React.FC = () => {
                     onClick={() => { setSelected(OPTIONS[1].key); setSecondIconClicked(true); setFirstIconClicked(false); setThirdIconClicked(false); setFourthIconClicked(false); }}
                     variant="light"
                     appearance="card"
-                    hideLabel={false}
+                    hideLabel={true}
                     size="lg"
                     layout="horizontal"
                   />
