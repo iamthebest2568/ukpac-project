@@ -1242,11 +1242,12 @@
   -webkit-overflow-scrolling: unset !important;
   display: flex !important;
   flex-direction: column !important;
-  justify-content: flex-start !important; /* keep title near top */
+  justify-content: center !important; /* center content vertically within available space */
   align-items: center !important;
   gap: 12px !important;
   padding: 12px !important;
-  flex: 0 0 auto !important;
+  flex: 1 1 auto !important; /* allow content to grow and center properly */
+  min-height: 0 !important; /* allow flex children to shrink on short viewports */
   max-height: none !important;
 }
 .figma-style1-container.source-selection-root .figma-style1-title {
