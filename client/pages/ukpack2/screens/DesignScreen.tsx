@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import CustomizationScreen from "../components/CustomizationScreen";
 import ColorPalette from "../components/ColorPalette";
 import MetaUpdater from "../../../components/MetaUpdater";
+import { OVERLAY_ICON_SRC } from "../utils/overlayIcons";
 import CtaButton from "../components/CtaButton";
 import VehiclePreview from "../components/VehiclePreview";
 
