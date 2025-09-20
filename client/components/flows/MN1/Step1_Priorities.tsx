@@ -120,7 +120,7 @@ const Step1_Priorities = ({
         >
           คุณคิดว่าควรใช้เงินที่ได้
           <br />
-          จากการเก็บไปพัฒนาอะไร
+          จากกา���เก็บไปพัฒนาอะไร
         </h1>
       </div>
 
@@ -242,8 +242,8 @@ const Step1_Priorities = ({
               style={{
                 width: "35.6%", // 385/1080
                 height: "clamp(60px, 4.7vw, 90px)",
-                backgroundColor: getButtonColor("เพิ่มควมถี่รถเมล์"),
-                opacity: isSelectionDisabled("เพิ่มควาถี่รถเมล์") ? 0.5 : 1,
+                backgroundColor: getButtonColor("เพิ่มความถี่รถเมล์"),
+                opacity: isSelectionDisabled("เพิ่มความถี่รถเมล์") ? 0.5 : 1,
               }}
               onClick={() =>
                 !isSelectionDisabled("เพิ่มความถี่รถเมล์") &&
@@ -272,7 +272,7 @@ const Step1_Priorities = ({
                 opacity: isSelectionDisabled("เพิ่มที่จอดรถ") ? 0.5 : 1,
               }}
               onClick={() =>
-                !isSelectionDisabled("เพิ่มที่จอดร���") &&
+                !isSelectionDisabled("เพิ่มที่จอดรถ") &&
                 handlePriorityToggle("เพิ่มที่จอดรถ")
               }
               disabled={isSelectionDisabled("เพิ่มที่จอดรถ")}
@@ -298,7 +298,7 @@ const Step1_Priorities = ({
                 width: "43.1%", // 465/1080
                 height: "clamp(60px, 4.7vw, 90px)",
                 backgroundColor: getButtonColor("เพิ่มความถี่รถไฟฟ้า"),
-                opacity: isSelectionDisabled("พิ่มความถี่รถไฟฟ้า") ? 0.5 : 1,
+                opacity: isSelectionDisabled("เพิ่มความถี่รถไฟฟ้า") ? 0.5 : 1,
               }}
               onClick={() =>
                 !isSelectionDisabled("เพิ่มความถี่รถไฟฟ้า") &&
@@ -323,11 +323,11 @@ const Step1_Priorities = ({
               style={{
                 width: "44.4%", // 480/1080
                 height: "clamp(60px, 4.7vw, 90px)",
-                backgroundColor: getButtonColor("เพิ่ม Feeder ในซอ"),
+                backgroundColor: getButtonColor("เพิ่ม Feeder ในซอย"),
                 opacity: isSelectionDisabled("เพิ่ม Feeder ในซอย") ? 0.5 : 1,
               }}
               onClick={() =>
-                !isSelectionDisabled("เ��ิ่ม Feeder ในซอย") &&
+                !isSelectionDisabled("เพิ่ม Feeder ในซอย") &&
                 handlePriorityToggle("เพิ่ม Feeder ในซอย")
               }
               disabled={isSelectionDisabled("เพิ่ม Feeder ในซอย")}
