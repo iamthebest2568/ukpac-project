@@ -80,6 +80,8 @@ const IconCamSmall = () => (
 // Payment icons with updated assets
 const MONEY_ICON =
   "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9349b93d24274adc91be5f4657facdda?format=webp&width=800";
+
+import { useBusDesign } from "../context/BusDesignContext";
 const SCAN_ICON =
   "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fbc97b87e6027435fb25a72f5478406cd?format=webp&width=800";
 const SCAN2_ICON =
