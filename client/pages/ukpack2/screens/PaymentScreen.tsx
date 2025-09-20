@@ -302,7 +302,7 @@ const PaymentScreen: React.FC = () => {
         </div>
       }
     >
-      <div className="space-y-6">
+      <div className={styles.contentGrid}>
         <div className="w-full rounded-md flex flex-col items-center justify-center gap-2">
           {/* show selected hero bus image from chassis selection with overlays from previous steps */}
           {(() => {
