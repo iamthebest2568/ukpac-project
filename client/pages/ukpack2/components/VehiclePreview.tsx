@@ -82,42 +82,70 @@ const VehiclePreview: React.FC<Props> = ({
           className="relative w-[60%] sm:w-[65%] md:w-[70%] lg:w-[75%] max-w-[320px] sm:max-w-[380px] md:max-w-[480px]"
           style={{ height: "120px" }}
         >
-            {overlayLabels && overlayLabels.length > 0 && (
-              <div className="absolute left-1/2 transform -translate-x-1/2 -top-4 flex flex-wrap justify-center items-center gap-2 z-20 w-[95%] sm:w-[90%] md:w-[100%]">
-                {overlayLabels.map((lab, i) => {
-                  const srcOrNode = overlayIconMap[lab];
-                  return (
-                    <div
-                    key={`${lab}-${i}`}
-                    className="h-10 w-10 sm:h-12 sm:w-12 flex items-center justify-center inline-flex flex-shrink-0" // Removed background styling
-                  >
-                      {typeof srcOrNode === "string" && srcOrNode ? (
-                        (() => {
-                          const src = srcOrNode as string;
-                          const srcSet = src.includes("width=")
-                            ? `${src} 1x, ${src.replace(/width=\d+/, "width=1600")} 2x`
-                            : undefined;
-                          return (
-                            <img
-                              src={src}
-                              srcSet={srcSet}
-                              alt={lab}
-                              className="h-full w-full object-contain"
-                              decoding="async"
-                              loading="eager"
-                            />
-                          );
-                        })()
-                      ) : srcOrNode ? (
-                        <>{srcOrNode}</>
-                      ) : (
-                        <div className="text-xs inline-block">{lab}</div>
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
-            )}
+            {overlayLabels && overlayLabels.length > 0 && (() => {
+              // Allow stored overlay icon mappings (set by selection pages) to override
+              // the overlayIconMap prop. Stored mapping is expected at
+              // sessionStorage.design.overlayIconMap as { [label]: string }
+              let storedMap: Record<string, string> = {};
+              try {
+                const raw = sessionStorage.getItem("design.overlayIconMap");
+                if (raw) storedMap = JSON.parse(raw) as Record<string, string>;
+              } catch {}
+
+              // choose size classes based on selected chassis (stored in sessionStorage.design.chassis)
+              const chassis = (() => {
+                try { return sessionStorage.getItem("design.chassis") || undefined; } catch { return undefined; }
+              })();
+              const sizeClass = (() => {
+                switch (chassis) {
+                  case "small": return "h-8 w-8 sm:h-10 sm:w-10";
+                  case "large": return "h-12 w-12 sm:h-14 sm:w-14";
+                  case "extra": return "h-12 w-12 sm:h-14 sm:w-14";
+                  case "medium":
+                  default:
+                    return "h-10 w-10 sm:h-12 sm:w-12";
+                }
+              })();
+
+              return (
+                <div className="absolute left-1/2 transform -translate-x-1/2 -top-4 flex flex-wrap justify-center items-center gap-2 z-20 w-[95%] sm:w-[90%] md:w-[100%]">
+                  {overlayLabels.map((lab, i) => {
+                    const propVal = overlayIconMap ? overlayIconMap[lab] : undefined;
+                    const storedVal = storedMap ? storedMap[lab] : undefined;
+                    const srcOrNode = storedVal || propVal;
+                    return (
+                      <div
+                      key={`${lab}-${i}`}
+                      className={`${sizeClass} flex items-center justify-center inline-flex flex-shrink-0`} // size depends on chassis
+                    >
+                        {typeof srcOrNode === "string" && srcOrNode ? (
+                          (() => {
+                            const src = srcOrNode as string;
+                            const srcSet = src.includes("width=")
+                              ? `${src} 1x, ${src.replace(/width=\d+/, "width=1600")} 2x`
+                              : undefined;
+                            return (
+                              <img
+                                src={src}
+                                srcSet={srcSet}
+                                alt={lab}
+                                className="h-full w-full object-contain"
+                                decoding="async"
+                                loading="eager"
+                              />
+                            );
+                          })()
+                        ) : srcOrNode ? (
+                          <>{srcOrNode}</>
+                        ) : (
+                          <div className="text-xs inline-block">{lab}</div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              );
+            })()}
 
             <img
               ref={carRef}
