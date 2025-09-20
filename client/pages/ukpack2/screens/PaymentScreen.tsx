@@ -302,9 +302,27 @@ const PaymentScreen: React.FC = () => {
     );
   };
 
+  const PAYMENT_BUTTON_SRC: Record<string, string> = {
+    เงินสด: MONEY_ICON,
+    สแกนจ่าย: SCAN_ICON,
+    "สแกนจ่าย 2": SCAN2_ICON,
+    แตะบัตร: TOUCH_ICON,
+    "ตั๋วรายเดือน/รอบ": MONTHLY_ICON,
+    กระเป๋ารถเมล์: BUS_EMPLOY_ICON,
+  };
+
   const handleNext = () => {
     try {
       sessionStorage.setItem("design.payment", JSON.stringify(selected));
+      // persist overlay icon mapping for selected payment methods
+      try {
+        const raw = sessionStorage.getItem("design.overlayIconMap");
+        const map = raw ? (JSON.parse(raw) as Record<string, string>) : {};
+        selected.forEach((lab) => {
+          if (PAYMENT_BUTTON_SRC[lab]) map[lab] = PAYMENT_BUTTON_SRC[lab];
+        });
+        sessionStorage.setItem("design.overlayIconMap", JSON.stringify(map));
+      } catch (e) {}
     } catch (e) {}
     navigate("/ukpack2/doors");
   };
