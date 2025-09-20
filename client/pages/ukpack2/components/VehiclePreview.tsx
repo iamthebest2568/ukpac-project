@@ -34,6 +34,7 @@ const VehiclePreview: React.FC<Props> = ({
   className,
   showSelectedText = false,
   starSrc = null,
+  showShadow = true,
 }) => {
   const shadowRef = useRef<HTMLImageElement | null>(null);
   const carRef = useRef<HTMLImageElement | null>(null);
