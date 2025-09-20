@@ -27,7 +27,7 @@ const VehiclePreview: React.FC<Props> = ({
   label,
   overlayLabels = [],
   overlayIconMap = {},
-  placeholderText = "ภาพสำหรับรุ่นนี้จะถูกเพิ่มภายหลัง",
+  placeholderText = "ภาพสำหรับรุ่นนี้จะถูกเพิ่มภายหล��ง",
   colorFilter = null,
   colorHex = null,
   colorMaskSrc = null,
@@ -125,7 +125,7 @@ const VehiclePreview: React.FC<Props> = ({
             <img
               ref={carRef}
               src={imageSrc}
-              alt={typeof label === "string" ? `ภาพรถ - ${label}` : "ภาพรถ"}
+              alt={typeof label === "string" ? `ภาพรถ - ${label}` : "ภา���รถ"}
               className="h-full w-auto object-contain mx-auto select-none"
               decoding="async"
               loading="eager"
@@ -155,10 +155,9 @@ const VehiclePreview: React.FC<Props> = ({
               />
             )}
 
-            {colorHex && (imageSrc || null) && (
+            {colorHex && (imageSrc || colorMaskSrc) && (
               (() => {
-                const maskSrc = (typeof (null) !== 'undefined' ? null : null) || imageSrc;
-                const src = maskSrc;
+                const src = colorMaskSrc || imageSrc || undefined;
                 return (
                   <div
                     aria-hidden
