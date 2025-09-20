@@ -119,10 +119,10 @@
 
 /* Controls box: frame around tabs + content. Tabs will visually sit above the top border */
 .controlsBox {
-  /* full-bleed like tabs - center using left + transform to avoid calc issues inside transformed parents */
-  width: 100vw;
-  left: 50%;
-  transform: translateX(-50%);
+  /* full-bleed like tabs - align to viewport using calc to avoid transformed ancestor issues */
+  width: 100vw !important;
+  margin-left: calc(50% - 50vw) !important;
+  margin-right: calc(50% - 50vw) !important;
   border: 2px solid #000D59; /* restored fixed border width */
   border-color: #000D59;
   border-radius: 8px;
@@ -146,12 +146,12 @@
 
 /* Move tabs up to overlap the top border so the border appears under the tabs */
 .tabsWrapper {
-  /* make tabs truly full-bleed irrespective of parent centering - use left/transform to avoid calc issues */
+  /* make tabs truly full-bleed irrespective of parent centering - align to viewport with calc */
   position: relative;
   z-index: 10; /* ensure tabs sit above the frame */
-  width: 100vw;
-  left: 50%;
-  transform: translateX(-50%);
+  width: 100vw !important;
+  margin-left: calc(50% - 50vw) !important;
+  margin-right: calc(50% - 50vw) !important;
   margin: 0 0 -16px 0; /* overlap so tabs sit on top of border */
   padding: 0;
 }
@@ -312,9 +312,9 @@
 .bg-white.rounded-t-3xl,
 .bg-white.rounded-2xl,
 .bg-white.rounded-2xl.-mt-2 {
-  width: 100vw;
-  left: 50%;
-  transform: translateX(-50%);
+  width: 100vw !important;
+  margin-left: calc(50% - 50vw) !important;
+  margin-right: calc(50% - 50vw) !important;
   box-sizing: border-box;
   overflow: visible;
   border: 2px solid var(--chassis-accent); /* show border like controlsBox */
@@ -329,9 +329,9 @@
 .bg-white.rounded-2xl.-mt-2 > .flex.w-full {
   position: relative;
   z-index: 10;
-  width: 100vw;
-  left: 50%;
-  transform: translateX(-50%);
+  width: 100vw !important;
+  margin-left: calc(50% - 50vw) !important;
+  margin-right: calc(50% - 50vw) !important;
   margin: 0 0 -16px 0; /* overlap so tabs sit on top of border */
   padding: 0;
 }
