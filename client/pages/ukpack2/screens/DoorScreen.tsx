@@ -183,7 +183,7 @@ const IconRamp = () => (
 const IconRampActive = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F199c45ef45704addad6c7b113f14b7da?format=webp&width=800"
-    alt="ทางสำหรับรถเข็น/ผู้พิการ (selected)"
+    alt="ทางสำหรับรถ��ข็น/ผู้พิการ (selected)"
     className="object-contain select-none max-h-full w-auto"
     decoding="async"
     loading="eager"
@@ -380,7 +380,7 @@ const DoorScreen: React.FC = () => {
                     />
                   </div>
                 );
-              if (label === "กระเป๋าร��เมล์")
+              if (label === "กระเป๋ารถเมล์")
                 return (
                   <div
                     key={`${label}-${idx}`}
