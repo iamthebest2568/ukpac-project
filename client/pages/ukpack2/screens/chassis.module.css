@@ -135,7 +135,7 @@
   box-sizing: border-box;
   position: relative;
   z-index: 0; /* default stacking for frame */
-  padding: 2px 0 12px 0; /* small top padding to separate tabs */
+  padding: 2px 0 6px 0; /* reduced bottom padding to bring icons closer to border */
   min-height: 128px; /* ensure a minimum visible area for controls */
   transition: border-color 150ms ease, border-width 150ms ease;
 }
@@ -186,7 +186,7 @@
 }
 
 .controlsContent {
-  padding: 12px;
+  padding: 6px; /* reduced inner padding so grid sits nearer to border */
   box-sizing: border-box;
 }
 
@@ -221,8 +221,8 @@
   gap: 6px; /* tighter gap for compact layout */
   width: 100%;
   box-sizing: border-box;
-  padding: 0.1px; /* fill up to the border */
-  justify-content: center; /* center the whole group */
+  padding: 0; /* remove inner padding so icons sit near border */
+  justify-content: start; /* align the group to the left edge of the frame */
   justify-items: stretch; /* let buttons fill horizontally */
   align-items: start; /* align cells to start so height control comes from icon container */
 }
@@ -232,8 +232,8 @@
     --icon-cell-height: 200px; /* larger icon height on wider screens (increased) */
     grid-template-columns: repeat(4, 1fr); /* 4 columns on md+ */
     gap: 6px; /* tighter gap on larger screens */
-    padding: 0.1px; /* ensure grid stretches to border */
-    justify-content: center;
+    padding: 0; /* ensure grid stretches to border */
+    justify-content: start;
   }
 }
 
