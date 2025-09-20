@@ -37,7 +37,7 @@ const IconSeat = () => (
 const IconWifi = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb0789bfd1100472f8351704764607d31?format=webp&width=800"
-    alt="ที่จับ/ราวยืน"
+    alt="ที่จับ/ราว���ืน"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -377,7 +377,7 @@ const DesignScreen: React.FC = () => {
                       "สแกนจ่าย 2": (
                         <img
                           src={SCAN2_ICON}
-                          alt="สแกนจ่าย 2"
+                          alt="��แกนจ่าย 2"
                           className="h-5 w-5 object-contain"
                         />
                       ),
@@ -449,9 +449,9 @@ const DesignScreen: React.FC = () => {
                 colors={DEFAULT_COLORS}
                 selectedColor={color?.preview || DEFAULT_COLORS[0].preview}
                 onColorSelect={(colorHex, preview) => {
-                  // colorHex is passed directly by the palette when available
-                  // preview is the image URL clicked
+                  // Find color by preview URL first, then by colorHex
                   let foundColor = undefined as (typeof DEFAULT_COLORS)[0] | undefined;
+
                   if (preview) {
                     foundColor = DEFAULT_COLORS.find((c) => c.preview === preview);
                   }
@@ -461,12 +461,20 @@ const DesignScreen: React.FC = () => {
                   }
 
                   if (foundColor) {
-                    if (colorHex) setColor({ ...foundColor, colorHex });
-                    else setColor(foundColor);
+                    // Always set the complete color object with all properties
+                    setColor(foundColor);
                   } else if (colorHex) {
-                    // synthetic object so VehiclePreview can use colorHex
-                    setColor({ preview: preview || color?.preview, filter: null, id: colorHex.replace('#', ''), colorHex } as any);
+                    // Create synthetic object with basic properties
+                    setColor({
+                      preview: preview || color?.preview || "",
+                      filter: null,
+                      id: colorHex.replace('#', ''),
+                      colorHex
+                    } as any);
                   }
+
+                  // Log for debugging
+                  console.log('Color selected:', foundColor || { colorHex, preview });
                 }}
               />
 
