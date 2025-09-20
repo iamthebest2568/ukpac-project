@@ -182,7 +182,7 @@ const SummaryDetails: React.FC = () => {
           : raw.doorChoice === "2"
             ? "2 ประตู"
             : String(raw.doorChoice);
-      if (raw.hasRamp) return "ทาง��าดสำหรับรถเข็น/ผู้พิการ";
+      if (raw.hasRamp) return "ทางลาดสำหรับรถเข็น/ผู้พิการ";
       if (raw.highLow) return "ประตูฉุกเฉิน";
     }
     return String(raw);
@@ -196,7 +196,7 @@ const SummaryDetails: React.FC = () => {
             imageSrc={heroImg}
             colorFilter={storedColorLocal?.filter ?? null}
             colorHex={storedColorLocal?.colorHex ?? null}
-            label={`รถที่เลือก : ${chassisLabel}`}
+            label={chassisLabel}
             showSelectedText
             overlayLabels={(() => {
               const amenities = (() => {
@@ -264,7 +264,7 @@ const SummaryDetails: React.FC = () => {
 
           <div className="flex items-start gap-3">
             <div className="w-28 md:w-36 text-sm text-[#003366] truncate">ทางขึ้น</div>
-            <div className="flex-1 font-sarabun font-semibold text-sm text-[#003366] break-words">{data.doors ? (typeof data.doors === "string" ? displayDoor(data.doors) : typeof data.doors === "object" ? (data.doors.doorChoice ? (data.doors.doorChoice === "1" ? "1 ประตู" : data.doors.doorChoice === "2" ? "2 ประตู" : String(data.doors.doorChoice)) : data.doors.hasRamp ? "ทางลาดสำหรับรถเ��็��/ผู้พิการ" : data.doors.highLow ? "ประตูฉุกเฉิน" : JSON.stringify(data.doors)) : String(data.doors)) : "-"}</div>
+            <div className="flex-1 font-sarabun font-semibold text-sm text-[#003366] break-words">{data.doors ? (typeof data.doors === "string" ? displayDoor(data.doors) : typeof data.doors === "object" ? (data.doors.doorChoice ? (data.doors.doorChoice === "1" ? "1 ประตู" : data.doors.doorChoice === "2" ? "2 ประตู" : String(data.doors.doorChoice)) : data.doors.hasRamp ? "ทางลาดสำหรับรถเ������/ผู้พิการ" : data.doors.highLow ? "ประตูฉุกเฉิน" : JSON.stringify(data.doors)) : String(data.doors)) : "-"}</div>
           </div>
 
           <div className="flex items-start gap-3">
