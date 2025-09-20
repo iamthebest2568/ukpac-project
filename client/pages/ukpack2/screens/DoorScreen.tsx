@@ -233,7 +233,7 @@ const DoorScreen: React.FC = () => {
     fullWidth
     footerContent={
         <div className="flex justify-center">
-          <CtaButton text="���ัดไป" onClick={handleNext} />
+          <CtaButton text="ถัดไป" onClick={handleNext} />
         </div>
       }
     >
@@ -552,7 +552,7 @@ const DoorScreen: React.FC = () => {
                   const DOOR_OPTIONS = [
                     { key: "1", label: "1 ประตู", icon: <IconDoor1 />, iconActive: <IconDoor1Active /> },
                     { key: "2", label: "2 ประตู", icon: <IconDoor2 />, iconActive: <IconDoor2Active /> },
-                    { key: "ramp", label: "ทางลาดสำหรับรถเข็น/ผู้พิกา���", icon: <IconRamp />, iconActive: <IconRamp /> },
+                    { key: "ramp", label: "ทางลาดสำหรับรถเข็น/ผู้พิการ", icon: <IconRamp />, iconActive: <IconRampActive /> },
                     { key: "emergency", label: "ประตูฉุกเฉิน", icon: <IconHighLow />, iconActive: <IconHighLow /> },
                   ];
 
