@@ -20,8 +20,6 @@ const HERO_IMAGE: Record<string, string> = {
   extra:
     "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9a8a7536ced24db19a65409fbba1c6b6?format=webp&width=800",
 };
-const HERO_SHADOW =
-  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb1e30b1544304677996b179fc27ae5c7?format=webp&width=800";
 
 const InfoScreen: React.FC = () => {
   const navigate = useNavigate();
@@ -53,10 +51,9 @@ const InfoScreen: React.FC = () => {
       >
         <div className="space-y-6">
           <div className="w-full flex justify-center">
-            <img
-              src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fad6ecaefec2f420f80fa1d09b6c8c9a0?format=webp&width=1600"
-              alt="cover"
-              className="w-full h-auto max-w-[900px]"
+            <div
+              className="w-full max-w-[900px] bg-center bg-cover rounded-xl"
+              style={{ backgroundImage: "url('https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4f5915a8ee85de9?format=webp&width=800')", height: '220px' }}
             />
           </div>
 
@@ -65,14 +62,6 @@ const InfoScreen: React.FC = () => {
               className="relative w-full flex items-center justify-center"
               style={{ minHeight: "160px" }}
             >
-              <img
-                src={HERO_SHADOW}
-                alt="เงารถ"
-                className="absolute bottom-0 w-[72%] max-w-[420px] pointer-events-none select-none"
-                decoding="async"
-                loading="eager"
-                aria-hidden="true"
-              />
               <div className="relative w-[72%] max-w-[420px]">
                 {(() => {
                   const amenities = (() => {
@@ -137,7 +126,7 @@ const InfoScreen: React.FC = () => {
                       {overlay.map((lab, i) => (
                         <div
                           key={`${lab}-${i}`}
-                          className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
+                          className="bg-white/95 backdrop-blur rounded-full h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
                         >
                           {ICONS[lab] ? (
                             <img
@@ -164,7 +153,7 @@ const InfoScreen: React.FC = () => {
             </div>
           </div>
 
-          <div className="bg-[#e6e7e8] rounded-lg p-4 text-[#001a73] font-sarabun">
+          <div className="bg-[#e6e7e8] rounded-xl p-4 text-[#001a73] font-sarabun">
             <h2 className="font-sarabun font-semibold text-xl text-center">รู้หรือไม่!</h2>
             <p>
               ในญี่ปุ่นมี Community Bus รถเมล์ขนาดเล็กที่วิ่งเข้าซอยและพื้นที่
@@ -179,7 +168,7 @@ const InfoScreen: React.FC = () => {
       <ConfirmModal
         isOpen={isExitModalOpen}
         title="ออกจากหน้าจอ"
-        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
+        message="คุณแน่ใจหรือไม่ว่าต้องการ���อก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
         onConfirm={() => navigate("/")}
         onCancel={() => setExitModalOpen(false)}
       />
