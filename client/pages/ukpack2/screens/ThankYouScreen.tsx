@@ -20,9 +20,9 @@ const ThankYouScreen: React.FC = () => {
         <div className="inline-block bg-white rounded-xl p-6 text-[#001a73]">
           <p className="mt-3 font-prompt font-bold text-[18px]">
             เราจะนำข้อมูลเหล่านี้รวบรวม เป็นข้อเสนอส่งต่อเพื่อการพัฒนา
-            รถประจำทางให้ดียิ่งขึ้น
+            รถประจำทางใ��้ดียิ่งขึ้น
           </p>
-          <hr className="my-6 border-[#e5e7eb]" />
+          <hr className="my-6 border-t-4 border-[#000D59] w-full" />
           <div className="font-prompt font-semibold text-[18px] leading-relaxed">
             <p>คุณอยากกรอกข้อมูลเพิ่ม</p>
             <p>เพื่อลุ้นรับรางวัล</p>
