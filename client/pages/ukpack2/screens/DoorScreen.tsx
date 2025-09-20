@@ -134,7 +134,7 @@ const storedColor = (() => {
 
 const IconDoor1 = () => (
   <img
-    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9811f9bca05c43feae9eafdcbab3c8d9?format=webp&width=800"
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F45173c261e684912b99bc0b4caf21003?format=webp&width=800"
     alt="ประตู 1"
     className="h-8 w-8 object-contain select-none"
     decoding="async"
@@ -211,7 +211,7 @@ const DoorScreen: React.FC = () => {
         <div className="w-full rounded-md flex flex-col items-center justify-center gap-2">
           {(() => {
             const CHASSIS_LABELS: Record<string, string> = {
-              small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
+              small: "รถเมล์ข��าดเล็ก 16–30 ที่นั่ง",
               medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
               large: "รถตู้โดยสาร 9–15 ที่นั่ง",
               extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
