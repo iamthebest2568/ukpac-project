@@ -258,7 +258,7 @@ const BUS_EMPLOY_ICON_ACTIVE =
 const OPTIONS = [
   { key: "cash", label: "เงินสด", icon: <IconCash /> },
   { key: "scan", label: "สแกนจ่าย", icon: <IconScan /> },
-  { key: "scan2", label: "สแกนจ่าย 2", icon: null },
+  { key: "scan2", label: "สแกนจ่��ย 2", icon: null },
   { key: "tap", label: "แตะบัตร", icon: <IconTap /> },
   { key: "qr", label: "กระเป๋ารถเมล์", icon: <IconQr /> },
   { key: "monthly", label: "ตั๋วรายเดือน/รอบ", icon: null },
@@ -442,7 +442,7 @@ const PaymentScreen: React.FC = () => {
                   >
                     <img
                       src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fece2b6fc843340f0997f2fd7d3ca0aea?format=webp&width=800"
-                      alt="ทางลาด"
+                      alt="��างลาด"
                       className="h-6 w-6 md:h-7 md:w-7 object-contain"
                     />
                   </div>
@@ -586,7 +586,7 @@ const PaymentScreen: React.FC = () => {
                         className="h-full w-full object-contain"
                       />
                     ),
-                    "สแกนจ่��ย 2": (
+                    "สแกนจ่าย 2": (
                       <img
                         src={"https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F95e4291272564bf2b9d1b522cd4bf75e?format=webp&width=800"}
                         alt="สแกนจ่าย 2"
