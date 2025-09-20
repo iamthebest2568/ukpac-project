@@ -89,23 +89,16 @@ const SummaryScreen: React.FC = () => {
   return (
     <CustomizationScreen title="" theme="light" footerContent={
       <div className="flex justify-center">
-        <div className="w-full max-w-sm mx-auto">
-          <div className="p-4 md:p-6 flex flex-col items-center justify-center gap-3">
-            <div className="w-full">
-              <SecondaryButton
-                text="กลับไปแก้ไข"
-                onClick={() => navigate("/ukpack2/design")}
-                className="w-full text-sm md:text-base"
-              />
-            </div>
-
-            <div className="w-full">
-              <CtaButton
-                text="ออกแบบเสร็จแล้ว"
-                onClick={() => navigate("/ukpack2/info")}
-                className="w-full text-sm md:text-base"
-              />
-            </div>
+        <div className="w-full max-w-4xl mx-auto flex items-center justify-center">
+          <div className="flex items-center gap-3">
+            <SecondaryButton
+              text="กลับไปแก้ไข"
+              onClick={() => navigate("/ukpack2/design")}
+            />
+            <CtaButton
+              text="ออกแบบเสร็จแล้ว"
+              onClick={() => navigate("/ukpack2/info")}
+            />
           </div>
         </div>
       </div>
