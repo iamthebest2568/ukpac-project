@@ -77,12 +77,6 @@ const FormScreen: React.FC = () => {
     <CustomizationScreen
       title=""
       theme="light"
-      footerContent={
-        <div className="flex flex-col items-stretch gap-3 w-full max-w-sm mx-auto">
-          <CtaButton className="w-full" text="ลุ้นรับรางวัล" onClick={submit} />
-          <SecondaryButton className="w-full" text="ไม่รับรางวัล" onClick={skip} className="bg-[#ffe000] text-black hover:bg-[#000d59] hover:text-white" />
-        </div>
-      }
     >
       <div className="max-w-xl mx-auto pt-4 space-y-5 font-sarabun text-[17.6px] form-no-focus">
         <style>{`.form-no-focus *:focus{outline:none !important;box-shadow:none !important;}`}</style>
