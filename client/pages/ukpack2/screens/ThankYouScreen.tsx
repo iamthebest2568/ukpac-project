@@ -13,7 +13,7 @@ const ThankYouScreen: React.FC = () => {
         <div className="w-full flex justify-center mb-2">
           <img
             src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fda6359656dee4bb3bf9d0e68709cafbf?format=webp&width=800"
-            alt="ขอบคุณที่ร่วม���ร้างสรรค์รถเมล์"
+            alt="ขอบคุณที่ร่วมสร้างสรรค์รถเมล์"
             className="w-full max-w-[640px] h-auto object-contain"
           />
         </div>
@@ -48,17 +48,21 @@ const ThankYouScreen: React.FC = () => {
         }}
       >
         <div className="max-w-4xl mx-auto flex items-center justify-center h-full">
-          <div className="flex flex-col items-stretch gap-3 w-full max-w-sm py-6">
-            <SecondaryButton
-              className="w-full"
-              text="ลุ้นรับรางวัล"
-              onClick={() => navigate("/ukpack2/form")}
-            />
-            <CtaButton
-              className="w-full"
-              text="ไม่ลุ้นรับรางวัล"
-              onClick={() => navigate("/ukpack2/feedback-skip")}
-            />
+          <div className="flex flex-col items-center gap-3 py-6">
+            <div style={{ width: '220px' }}>
+              <SecondaryButton
+                className="w-full"
+                text="ลุ้นรับรางวัล"
+                onClick={() => navigate("/ukpack2/form")}
+              />
+            </div>
+            <div style={{ width: '220px' }}>
+              <CtaButton
+                className="w-full"
+                text="ไม่ลุ้นรับรางวัล"
+                onClick={() => navigate("/ukpack2/feedback-skip")}
+              />
+            </div>
           </div>
         </div>
       </footer>
