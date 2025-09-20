@@ -90,6 +90,8 @@ const SelectionCard: React.FC<SelectionCardProps> = ({
       <button
         type="button"
         onClick={onClick}
+        onFocus={(e) => e.currentTarget.blur()}
+        style={{ outline: 'none', boxShadow: 'none' }}
         className={`${appearanceClasses} ${base} ${focusClasses} ${layoutClass}`}
         aria-pressed={isSelected}
       >
