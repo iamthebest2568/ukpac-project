@@ -1231,20 +1231,22 @@
 }
 
 /* Source-selection specific: make content non-scrollable and fit on one viewport */
+/* Use a column flex layout so buttons can be pushed to the bottom reliably */
 .figma-style1-container.source-selection-root .figma-style1-main {
-  display: grid !important;
-  grid-template-rows: 1fr auto !important;
+  display: flex !important;
+  flex-direction: column !important;
   height: 100svh !important;
 }
 .figma-style1-container.source-selection-root .figma-style1-content-area {
   overflow: visible !important;
   -webkit-overflow-scrolling: unset !important;
   display: flex !important;
-  flex-direction: column;
-  justify-content: center !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important; /* keep title near top */
   align-items: center !important;
   gap: 12px !important;
   padding: 12px !important;
+  flex: 0 0 auto !important;
   max-height: none !important;
 }
 .figma-style1-container.source-selection-root .figma-style1-title {
@@ -1254,13 +1256,14 @@
   line-height: 1.15 !important;
 }
 .figma-style1-container.source-selection-root .figma-style1-button-container {
-  position: static !important;
+  position: relative !important;
   padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 12px) !important;
-  margin-top: 8px !important;
+  margin-top: auto !important; /* pushes buttons to bottom */
   gap: 10px !important;
   display: flex !important;
   flex-direction: column !important;
   align-items: center !important;
+  width: 100% !important;
 }
 
 /* On very small devices, slightly reduce spacing to ensure all fits */
