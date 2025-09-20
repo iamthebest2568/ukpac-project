@@ -101,7 +101,7 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   แอร์: <IconAir />,
   พัดลม: <IconFan />,
   ที่นั่งพิเศษ: <IconSeat />,
-  "ที่จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
+  "ที่จับ/ราว��ืนที่ปลอดภัย": <IconWifi />,
   "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
   "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
@@ -394,7 +394,7 @@ const DesignScreen: React.FC = () => {
                           className="h-5 w-5 object-contain"
                         />
                       ),
-                      "กระ���ป๋ารถเมล์": (
+                      "กระเป๋ารถเมล์": (
                         <img
                           src={BUS_EMPLOY_ICON}
                           alt="กระเป๋ารถเมล์"
@@ -513,11 +513,14 @@ const DesignScreen: React.FC = () => {
                           ยกเลิก
                         </button>
                         <button
+                          onMouseEnter={() => setIsSaveHover(true)}
+                          onMouseLeave={() => setIsSaveHover(false)}
                           onClick={() => {
                             setSlogan(sloganDraft);
                             setShowTextarea(false);
                           }}
-                          className="px-4 py-2 rounded-xl bg-[#000D59] text-white hover:bg-[#ffe000] hover:text-[#000D59] transition-colors" style={{color: '#ffffff'}}
+                          className="px-4 py-2 rounded-xl bg-[#000D59] hover:bg-[#ffe000] transition-colors"
+                          style={{ color: isSaveHover ? '#000D59' : '#ffffff' }}
                         >
                           บันทึก
                         </button>
