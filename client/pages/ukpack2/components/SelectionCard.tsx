@@ -53,7 +53,9 @@ const SelectionCard: React.FC<SelectionCardProps> = ({
       <button
         type="button"
         onClick={onClick}
-        className={`inline-flex items-center justify-center p-0 focus:outline-none ${layout === 'horizontal' ? 'horizontal' : 'vertical'}`}
+        onFocus={(e) => e.currentTarget.blur()}
+        style={{ outline: 'none', boxShadow: 'none' }}
+        className={`inline-flex items-center justify-center p-0 ${layout === 'horizontal' ? 'horizontal' : 'vertical'}`}
         aria-pressed={isSelected}
       >
         <div
