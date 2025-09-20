@@ -228,10 +228,25 @@ const DoorScreen: React.FC = () => {
     return "1";
   });
 
+  const DOOR_BUTTON_SRC: Record<string, string> = {
+    "1": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F20b45db4b1fc4fdaa7c2f8874aea451d?format=webp&width=800",
+    "2": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fad85d6b0010f404ca1b5581d76257fd9?format=webp&width=800",
+    ramp: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F245ff72a7c3b468293c517a934e4e839?format=webp&width=800",
+    emergency: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F38e094ce2f914f2089d04349bc6f386b?format=webp&width=800",
+  };
+
   const handleNext = () => {
     try {
       // store single selected option (string) for doors
       sessionStorage.setItem("design.doors", JSON.stringify(selectedOption));
+      // persist overlay icon for door selection
+      try {
+        const raw = sessionStorage.getItem("design.overlayIconMap");
+        const map = raw ? (JSON.parse(raw) as Record<string, string>) : {};
+        const key = selectedOption;
+        if (DOOR_BUTTON_SRC[key]) map[key] = DOOR_BUTTON_SRC[key];
+        sessionStorage.setItem("design.overlayIconMap", JSON.stringify(map));
+      } catch (e) {}
     } catch (e) {}
     navigate("/ukpack2/design");
   };
