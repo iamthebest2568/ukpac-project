@@ -189,7 +189,7 @@ const SummaryDetails: React.FC = () => {
   };
 
   return (
-    <div className="font-sarabun">
+    <div className="font-sarabun text-[17.6px] font-bold">
       {heroImg && (
         <div className="flex flex-col items-center mb-6">
           <VehiclePreview
@@ -263,7 +263,7 @@ const SummaryDetails: React.FC = () => {
 
           <div className="flex items-start gap-3">
             <div className="w-28 md:w-36 text-sm text-[#003366] truncate">ทางขึ้น</div>
-            <div className="flex-1 font-sarabun font-semibold text-sm text-[#003366] break-words">{data.doors ? (typeof data.doors === "string" ? displayDoor(data.doors) : typeof data.doors === "object" ? (data.doors.doorChoice ? (data.doors.doorChoice === "1" ? "1 ประตู" : data.doors.doorChoice === "2" ? "2 ประตู" : String(data.doors.doorChoice)) : data.doors.hasRamp ? "ทางลาดสำหรับรถเข็��/ผู้พิการ" : data.doors.highLow ? "ประตูฉุกเฉิน" : JSON.stringify(data.doors)) : String(data.doors)) : "-"}</div>
+            <div className="flex-1 font-sarabun font-semibold text-sm text-[#003366] break-words">{data.doors ? (typeof data.doors === "string" ? displayDoor(data.doors) : typeof data.doors === "object" ? (data.doors.doorChoice ? (data.doors.doorChoice === "1" ? "1 ประตู" : data.doors.doorChoice === "2" ? "2 ประตู" : String(data.doors.doorChoice)) : data.doors.hasRamp ? "ทางลาดสำหรับรถเ��็��/ผู้พิการ" : data.doors.highLow ? "ประตูฉุกเฉิน" : JSON.stringify(data.doors)) : String(data.doors)) : "-"}</div>
           </div>
 
           <div className="flex items-start gap-3">
