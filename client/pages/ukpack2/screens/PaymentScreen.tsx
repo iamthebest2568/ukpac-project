@@ -564,14 +564,14 @@ const PaymentScreen: React.FC = () => {
                   overlayLabels={overlayLabels}
                   overlayIconMap={{
                     ...AMENITIES_ICON_MAP,
-                    เงินสด: (
+                    "เงินสด": (
                       <img
                         src={MONEY_ICON}
                         alt="เงินสด"
                         className="h-5 w-5 object-contain"
                       />
                     ),
-                    สแกน���่าย: (
+                    "สแกนจ่าย": (
                       <img
                         src={SCAN_ICON}
                         alt="สแกนจ่าย"
@@ -585,24 +585,24 @@ const PaymentScreen: React.FC = () => {
                         className="h-5 w-5 object-contain"
                       />
                     ),
-                    แตะบัตร: (
+                    "แตะบัตร": (
                       <img
                         src={TOUCH_ICON}
                         alt="แตะบัตร"
                         className="h-5 w-5 object-contain"
                       />
                     ),
-                    กระเป๋ารถเมล์: (
+                    "กระเป๋ารถเมล์": (
                       <img
                         src={BUS_EMPLOY_ICON}
-                        alt="กระเป๋��รถเมล์"
+                        alt="กระเป๋ารถเมล์"
                         className="h-5 w-5 object-contain"
                       />
                     ),
-                    "ตั๋วรายเดือ���/รอบ": (
+                    "ตั๋วรายเดือน/รอบ": (
                       <img
                         src={MONTHLY_ICON}
-                        alt="���ั๋วรายเดือน/รอบ"
+                        alt="ตั๋วรายเดือน/รอบ"
                         className="h-5 w-5 object-contain"
                       />
                     ),
