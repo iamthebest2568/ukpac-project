@@ -101,7 +101,7 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
   "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
-  กล้องวง��รปิด: <IconCamSmall />,
+  กล้องวงรปิด: <IconCamSmall />,
   // Payment icons
   เงินสด: (
     <img src={MONEY_ICON} alt="เงินสด" className="h-5 w-5 object-contain" />
@@ -183,7 +183,7 @@ const displayDoor = (raw: any) => {
 };
 
 const CHASSIS_LABELS: Record<string, string> = {
-  small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
+  small: "รถ��มล์ขนาดเล็ก 16–30 ที่นั่ง",
   medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
   large: "รถตู้โดยสาร 9–15 ที่นั่ง",
   extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
@@ -363,7 +363,7 @@ const SummaryDetails: React.FC = () => {
 
           <div className="flex items-start gap-3">
             <div className="w-28 md:w-36 text-sm text-[#003366] truncate">
-              ความสะดวก
+              ความส��ดวก
             </div>
             <div className="flex-1 font-sarabun font-semibold text-sm text-[#003366] break-words">
               {data.amenities
@@ -385,7 +385,7 @@ const SummaryDetails: React.FC = () => {
                   : typeof data.doors === "object"
                     ? data.doors.doorChoice
                       ? data.doors.doorChoice === "1"
-                        ? "1 ประ��ู"
+                        ? "1 ประู"
                         : data.doors.doorChoice === "2"
                           ? "2 ประตู"
                           : String(data.doors.doorChoice)
