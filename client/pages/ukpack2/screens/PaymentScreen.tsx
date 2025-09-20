@@ -595,7 +595,7 @@ const PaymentScreen: React.FC = () => {
                     ),
                     "แตะบัตร": (
                       <img
-                        src={selected.includes("แตะบัตร") ? TOUCH_ICON_ACTIVE : TOUCH_ICON}
+                        src={"https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F6b3a398ec0ee41b9b59accc97f8057bf?format=webp&width=800"}
                         alt="แตะบัตร"
                         className="h-5 w-5 object-contain"
                       />
