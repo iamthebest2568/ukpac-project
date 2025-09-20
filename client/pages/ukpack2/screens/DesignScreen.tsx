@@ -314,6 +314,7 @@ const DesignScreen: React.FC = () => {
                         {label}
                       </>
                     }
+                    showSelectedText
                     colorFilter={color?.filter}
                     colorHex={color?.colorHex || null}
                     colorMaskSrc={MASKS[selected] || null}
