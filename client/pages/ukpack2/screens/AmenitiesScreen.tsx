@@ -221,7 +221,7 @@ const AmenitiesScreen: React.FC = () => {
     แอร์: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F43ef2946e5324cb981bc063db02fe5bc?format=webp&width=800",
     พัดลม:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F4e8932e864664a7f8a454d61f4e87ca9?format=webp&width=800",
-    ที่นั่งพิเศษ:
+    ที่น���่งพิเศษ:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb35efe05833149089a2df21cf61300b4?format=webp&width=800", // ใช้ไอคอนหน้าต่างเปิดได้
     หน้าต่างเปิดได้:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb35efe05833149089a2df21cf61300b4?format=webp&width=800",
@@ -230,7 +230,7 @@ const AmenitiesScreen: React.FC = () => {
     "ช่องชาร์จมือถือ/USB":
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F2d38a737cf2c4bf29f8764e48a93d404?format=webp&width=800",
     "Wi‑Fi ฟรี":
-      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F4ac1a198d950430b9ad73c0cba9c7fd6?format=webp&width=800",
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F3704368ab32542b7a31e3eba186adc57?format=webp&width=800",
     "ระบบประกาศบอกป้าย(เสียง/จอ)":
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8cb34953cb154a96b61c6c6a5352056c?format=webp&width=800",
     // keys (fallback)
