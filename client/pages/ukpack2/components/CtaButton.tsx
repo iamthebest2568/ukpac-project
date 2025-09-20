@@ -23,7 +23,7 @@ const CtaButton: React.FC<CtaButtonProps> = ({
     <button
       type="button"
       onClick={onClick}
-      className={`bg-[#ffe000] text-black rounded-full py-2 sm:py-3 inline-flex items-center justify-center shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#000d59] hover:bg-[#000d59] hover:text-white transition-colors font-prompt font-semibold ${className}`}
+      className={`bg-[#ffe000] text-black rounded-full py-2 inline-flex items-center justify-center shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#000d59] hover:bg-[#000d59] hover:text-white transition-colors font-prompt font-semibold ${className}`}
       style={{ ...baseStyle, ...(style || {}) }}
     >
       {text}
