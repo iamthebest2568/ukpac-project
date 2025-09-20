@@ -122,7 +122,7 @@ const SeatingScreen: React.FC = () => {
     const sWheel = Number(wheelchairBikeSpaces) || 0;
     const sumSubs = sSpecial + sChild + sPreg + sMonk + sWheel;
     if (sumSubs !== total) {
-      setErrorTitle("ผลรวมของที่นั่งย่อยไม่ตรงกัน");
+      setErrorTitle("ผลรวมของที่นั่งย่อยไม่ตรงกั���");
       setErrorMessage(`ผลรวมของที่นั่งย่อยทั้งหมด (${sumSubs}) ไม่ตรงกับจำนวนที่นั่งทั้งหมด (${total})`);
       setErrorModalOpen(true);
       return false;
@@ -178,40 +178,9 @@ const SeatingScreen: React.FC = () => {
                     <input type="number" placeholder="ระบุ..." value={totalSeats} onFocus={handleTotalFocus} onChange={(e) => { const raw = e.target.value; if (raw === "") { handleTotalSeatsChange(""); return; } const parsed = Math.min(maxCapacity, Math.max(0, parseInt(raw || "0", 10))); handleTotalSeatsChange(parsed); }} className="w-24 px-3 py-2 rounded-full text-[#000D59] bg-white text-right" style={{ borderWidth: 3, borderColor: "rgba(0,13,89,1)" }} min={0} max={maxCapacity} />
                   </div>
 
-                  <div className="flex items-center justify-between mt-4">
-                    <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">จำนวนที่นั่งพิเศษ</div>
-                    <input id="specialSeats" type="number" min={0} max={maxCapacity} value={specialSeats === "" ? "" : specialSeats} onFocus={() => { if (specialSeats === 0) setSpecialSeats(""); }} onChange={(e) => { const raw = e.target.value; if (raw === "") { setSpecialSeats(""); return; } const parsed = Math.max(0, Math.min(maxCapacity, parseInt(raw || "0", 10))); setSpecialSeats(parsed); }} className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-full text-[#003366] bg-white text-right" />
-                  </div>
+          <ConfirmModal isOpen={isExitModalOpen} title="ออกจากหน้าจอ" message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก" onConfirm={() => navigate("/")} onCancel={() => setExitModalOpen(false)} />
 
-                  <div className="flex items-center justify-between">
-                    <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">เด็ก / ผู้สูงอายุ</div>
-                    <input type="number" value={childElderSeats === "" ? "" : childElderSeats} onFocus={() => { if (childElderSeats === 0) setChildElderSeats(""); }} onChange={(e) => { const raw = e.target.value; if (raw === "") { setChildElderSeats(""); return; } const parsed = Math.max(0, Math.min(maxCapacity, parseInt(raw || "0", 10))); setChildElderSeats(parsed); }} className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-full text-[#003366] bg-white text-right" min={0} max={maxCapacity} />
-                  </div>
-
-                  <div className="flex items-center justify-between">
-                    <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">สตรีมพครรภ์</div>
-                    <input type="number" value={pregnantSeats === "" ? "" : pregnantSeats} onFocus={() => { if (pregnantSeats === 0) setPregnantSeats(""); }} onChange={(e) => { const raw = e.target.value; if (raw === "") { setPregnantSeats(""); return; } const parsed = Math.max(0, Math.min(maxCapacity, parseInt(raw || "0", 10))); setPregnantSeats(parsed); }} className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-full text-[#003366] bg-white text-right" min={0} max={maxCapacity} />
-                  </div>
-
-                  <div className="flex items-center justify-between">
-                    <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">พระภิกษุสงฆ์</div>
-                    <input type="number" value={monkSeats === "" ? "" : monkSeats} onFocus={() => { if (monkSeats === 0) setMonkSeats(""); }} onChange={(e) => { const raw = e.target.value; if (raw === "") { setMonkSeats(""); return; } const parsed = Math.max(0, Math.min(maxCapacity, parseInt(raw || "0", 10))); setMonkSeats(parsed); }} className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-full text-[#003366] bg-white text-right" min={0} max={maxCapacity} />
-                  </div>
-
-                  <div className="flex items-center justify-between">
-                    <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">พื้นที่สำหรับรถเข็น/จักรยาน</div>
-                    <input type="number" value={wheelchairBikeSpaces === "" ? "" : wheelchairBikeSpaces} onFocus={() => { if (wheelchairBikeSpaces === 0) setWheelchairBikeSpaces(""); }} onChange={(e) => { const raw = e.target.value; if (raw === "") { setWheelchairBikeSpaces(""); return; } const parsed = Math.max(0, Math.min(maxCapacity, parseInt(raw || "0", 10))); setWheelchairBikeSpaces(parsed); }} className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-full text-[#003366] bg-white text-right" min={0} max={maxCapacity} />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </CustomizationScreen>
-
-      <ConfirmModal isOpen={isExitModalOpen} title="ออกจากหน้าจอ" message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก" onConfirm={() => navigate("/")} onCancel={() => setExitModalOpen(false)} />
-
-      <ErrorModal isOpen={isErrorModalOpen} title={errorTitle} message={errorMessage} onClose={() => setErrorModalOpen(false)} />
+          <ErrorModal isOpen={isErrorModalOpen} title={errorTitle} message={errorMessage} onClose={() => setErrorModalOpen(false)} />
     </>
   );
 };
