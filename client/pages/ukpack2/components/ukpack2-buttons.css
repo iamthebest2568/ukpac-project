@@ -6,6 +6,11 @@
   background-color: #FFE000 !important;
   color: #000D59 !important;
 }
+/* Stronger specificity to override full-bleed-page hover rule */
+.full-bleed-page .app-container .ukpack2-secondary-btn:hover {
+  background-color: #FFE000 !important;
+  color: #000D59 !important;
+}
 .ukpack2-secondary-btn:focus {
   outline: 2px solid #FFE000 !important;
   outline-offset: 2px !important;
