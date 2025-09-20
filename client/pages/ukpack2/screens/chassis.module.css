@@ -152,7 +152,7 @@
 .tabsWrapper {
   /* make tabs truly full-bleed irrespective of parent centering - align to viewport with calc */
   position: relative;
-  z-index: 9999; /* ensure tabs sit above the frame */
+  z-index: 20; /* lower z-index so popups/modals can appear above tabs */
   width: 100vw !important;
   margin-left: calc(50% - 50vw) !important;
   margin-right: calc(50% - 50vw) !important;
