@@ -551,7 +551,8 @@ const PaymentScreen: React.FC = () => {
               <>
                 <VehiclePreview
                   imageSrc={img}
-                  colorFilter={storedColor?.filter}
+                  colorFilter={storedColorLocal?.filter}
+                  colorHex={storedColorLocal?.colorHex}
                   label={
                     <>
                       <span className="chassis-label-mobile">
@@ -594,7 +595,7 @@ const PaymentScreen: React.FC = () => {
                     กระเป๋ารถเมล์: (
                       <img
                         src={BUS_EMPLOY_ICON}
-                        alt="กระเป๋ารถเมล์"
+                        alt="กระเป๋��รถเมล์"
                         className="h-5 w-5 object-contain"
                       />
                     ),
