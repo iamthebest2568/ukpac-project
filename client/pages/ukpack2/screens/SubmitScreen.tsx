@@ -118,6 +118,7 @@ const SubmitScreen: React.FC = () => {
                     {chassisLabel}
                   </>
                 }
+                showSelectedText
                 overlayLabels={((): string[] => {
                   const amenities = (() => {
                     try {
