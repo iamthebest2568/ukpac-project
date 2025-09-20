@@ -33,7 +33,7 @@ const SubmitScreen: React.FC = () => {
     small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
     medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
     large: "รถตู้โดยสาร 9–15 ที่นั่ง",
-    extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
+    extra: "รถกะบะดัดแปลง 8–12 ที��นั่ง",
   };
   const HERO_IMAGE: Record<string, string> = {
     small:
@@ -165,35 +165,39 @@ const SubmitScreen: React.FC = () => {
               </label>
               <input
                 type="text"
+                placeholder="พิมพ์"
                 value={interval}
                 onChange={(e) => setInterval(e.target.value)}
-                className="flex-1 min-w-0 max-w-[220px] md:max-w-none rounded-xl px-3 py-1.5 md:py-2 border-2 border-[#000D59] h-9 md:h-auto"
+                className="flex-1 min-w-0 max-w-[220px] rounded-xl px-3 py-1.5 border-2 border-[#000D59] h-9"
+                style={{ fontFamily: 'Sarabun, sans-serif', fontSize: '17.6px' }}
               />
               <span className="w-12 text-sm text-[#003366]" style={{ fontFamily: 'Sarabun, sans-serif', fontSize: '17.6px' }}>นาที</span>
             </div>
 
-            <div className="flex items-start gap-3 min-w-0">
+            <div className="flex items-center gap-3 min-w-0">
               <label className="w-28 md:w-36 text-sm text-[#003366] truncate" style={{ fontFamily: 'Sarabun, sans-serif', fontSize: '17.6px' }}>
                 สายรถเมล์
               </label>
-              <textarea
+              <input
+                type="text"
+                placeholder="พิมพ์"
                 value={route}
                 onChange={(e) => setRoute(e.target.value)}
-                placeholder="พิมพ์"
-                className="flex-1 min-w-0 max-w-[220px] md:max-w-none rounded-xl px-3 py-2 border-2 border-[#000D59] h-9 md:h-auto resize-none"
+                className="flex-1 min-w-0 max-w-[220px] rounded-xl px-3 py-1.5 border-2 border-[#000D59] h-9"
                 style={{ fontFamily: 'Sarabun, sans-serif', fontSize: '17.6px' }}
               />
             </div>
 
-            <div className="flex items-start gap-3 min-w-0">
+            <div className="flex items-center gap-3 min-w-0">
               <label className="w-28 md:w-36 text-sm text-[#003366] truncate" style={{ fontFamily: 'Sarabun, sans-serif', fontSize: '17.6px' }}>
                 พื้นที่ที่วิ่ง
               </label>
-              <textarea
+              <input
+                type="text"
+                placeholder="พิมพ์"
                 value={area}
                 onChange={(e) => setArea(e.target.value)}
-                placeholder="พิมพ์"
-                className="flex-1 min-w-0 max-w-[220px] md:max-w-none rounded-xl px-3 py-2 border-2 border-[#000D59] h-9 md:h-auto resize-none"
+                className="flex-1 min-w-0 max-w-[220px] rounded-xl px-3 py-1.5 border-2 border-[#000D59] h-9"
                 style={{ fontFamily: 'Sarabun, sans-serif', fontSize: '17.6px' }}
               />
             </div>
