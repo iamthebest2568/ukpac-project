@@ -301,7 +301,7 @@ const PaymentScreen: React.FC = () => {
 
   return (
     <CustomizationScreen
-      title="ปรับแต่งรถเมล์ของคุณ"
+      title="ปรับแต่งร���เมล์ของคุณ"
       theme="light"
       fullWidth
       footerContent={
@@ -316,7 +316,7 @@ const PaymentScreen: React.FC = () => {
           {(() => {
             const CHASSIS_LABELS: Record<string, string> = {
               small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
-              medium: "รถเมล์มาตร���าน 30–50 ที่นั่ง",
+              medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
               large: "รถตู้โดยสาร 9–15 ที่นั่ง",
               extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
             };
@@ -564,14 +564,14 @@ const PaymentScreen: React.FC = () => {
                     ...AMENITIES_ICON_MAP,
                     "เงินสด": (
                       <img
-                        src={MONEY_ICON}
-                        alt="เงินสด"
+                        src={selected.includes("เงินสด") ? MONEY_ICON_ACTIVE : MONEY_ICON}
+                        alt="เง���นสด"
                         className="h-5 w-5 object-contain"
                       />
                     ),
                     "สแกนจ่าย": (
                       <img
-                        src={SCAN_ICON}
+                        src={selected.includes("สแกนจ่าย") ? SCAN_ICON_ACTIVE : SCAN_ICON}
                         alt="สแกนจ่าย"
                         className="h-5 w-5 object-contain"
                       />
