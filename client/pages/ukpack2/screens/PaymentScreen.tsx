@@ -129,7 +129,7 @@ const IconQr = () => (
 const IconAir = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fee1c18a935564e92bb49991fac3b76df?format=webp&width=800"
-    alt="แอพ"
+    alt="แ��พ"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -166,7 +166,7 @@ const IconWifi = () => (
 const IconPlug = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F09a78e31a3de44e98772b0eef382af6f?format=webp&width=800"
-    alt="ช่องชาร์จมือถือ/USB"
+    alt="ช่องชา���์จมือถือ/USB"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -247,7 +247,7 @@ const TOUCH_ICON_ACTIVE =
 const MONTHLY_ICON =
   "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Ff841cf7477174217b2aa753d7acb4b21?format=webp&width=800";
 const BUS_EMPLOY_ICON =
-  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F47fc617541cf45f28b7aa2d1b8deaf64?format=webp&width=800";
+  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F70ea0f54beea4e5291e4838094456c19?format=webp&width=800";
 
 const OPTIONS = [
   { key: "cash", label: "เงินสด", icon: <IconCash /> },
@@ -255,7 +255,7 @@ const OPTIONS = [
   { key: "scan2", label: "สแกนจ่าย 2", icon: null },
   { key: "tap", label: "แตะบัตร", icon: <IconTap /> },
   { key: "qr", label: "กระเป๋ารถเมล์", icon: <IconQr /> },
-  { key: "monthly", label: "ตั๋วรายเดือน/รอบ", icon: null },
+  { key: "monthly", label: "ตั๋วรายเด���อน/รอบ", icon: null },
 ];
 
 const PaymentScreen: React.FC = () => {
@@ -601,7 +601,7 @@ const PaymentScreen: React.FC = () => {
                         className="h-5 w-5 object-contain"
                       />
                     ),
-                    "ตั๋วร��ยเดือน/รอบ": (
+                    "ตั๋วรายเดือน/รอบ": (
                       <img
                         src={MONTHLY_ICON}
                         alt="ตั๋วรายเดือน/รอบ"
