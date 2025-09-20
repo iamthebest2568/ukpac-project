@@ -383,7 +383,7 @@ const DesignScreen: React.FC = () => {
                       "สแกนจ่าย 2": (
                         <img
                           src={SCAN2_ICON}
-                          alt="สแกนจ่าย 2"
+                          alt="สแก���จ่าย 2"
                           className="h-5 w-5 object-contain"
                         />
                       ),
@@ -511,7 +511,7 @@ const DesignScreen: React.FC = () => {
                           onClick={() => setShowTextarea(false)}
                           className="px-4 py-2 rounded-xl bg-[#ffe000] text-[#000D59] hover:bg-[#000D59] hover:text-white transition-colors"
                         >
-                          ย���เลิก
+                          ยกเลิก
                         </button>
                         <button
                           onMouseEnter={() => setIsSaveHover(true)}
