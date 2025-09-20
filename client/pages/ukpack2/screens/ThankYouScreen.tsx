@@ -8,24 +8,7 @@ const ThankYouScreen: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <CustomizationScreen
-      title=""
-      theme="light"
-      footerContent={
-        <div className="flex flex-col items-stretch gap-3 w-full max-w-sm mx-auto">
-          <SecondaryButton
-            text="ลุ้นรับรางวัล"
-            onClick={() => navigate("/ukpack2/form")}
-            className="w-full"
-          />
-          <CtaButton
-            text="ไม่ลุ้นรับรางวัล"
-            onClick={() => navigate("/ukpack2/feedback-skip")}
-            className="w-full"
-          />
-        </div>
-      }
-    >
+    <CustomizationScreen title="" theme="light">
       <div className="max-w-2xl mx-auto pt-4 pb-8 px-6 text-center">
         <div className="w-full flex justify-center mb-2">
           <img
@@ -39,7 +22,7 @@ const ThankYouScreen: React.FC = () => {
             ขอบคุณที่ร่วมสร้างสรรค์รถเมล์
           </h2>
           <p className="mt-3 font-sarabun text-gray-700">
-            เราจะนำข้อมูลเหล่านี้รวบรวม เป็นขอเสนอส่งต่อเพื่อการพัฒนา
+            เราจะนำข้อมูลเหล่านี้ร��บรวม เป็นขอเสนอส่งต่อเพื่อการพัฒนา
             รถประจำทางให้ดียิ่งขึ้น
           </p>
           <hr className="my-6 border-[#e5e7eb]" />
@@ -56,6 +39,30 @@ const ThankYouScreen: React.FC = () => {
           </div>
         </div>
       </div>
+
+      <footer
+        className="rounded-t-3xl py-12 px-6 bg-no-repeat bg-top bg-cover w-screen"
+        style={{
+          backgroundImage:
+            "url('https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc3874bf37db54abeb4a13c308b0df9a4?format=webp&width=1600')",
+          minHeight: '320px'
+        }}
+      >
+        <div className="max-w-4xl mx-auto flex items-end justify-center h-full">
+          <div className="flex flex-col items-stretch gap-3 w-full max-w-sm pb-6">
+            <SecondaryButton
+              className="w-full"
+              text="ลุ้นรับรางวัล"
+              onClick={() => navigate("/ukpack2/form")}
+            />
+            <CtaButton
+              className="w-full"
+              text="ไม่ลุ้นรับรางวัล"
+              onClick={() => navigate("/ukpack2/feedback-skip")}
+            />
+          </div>
+        </div>
+      </footer>
     </CustomizationScreen>
   );
 };
