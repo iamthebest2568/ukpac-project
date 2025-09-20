@@ -15,7 +15,7 @@ const FeedbackScreen: React.FC = () => {
   };
 
   const skip = () => {
-    navigate("/skip-end");
+    navigate("/ukpack2/skip-end");
   };
 
   return (
