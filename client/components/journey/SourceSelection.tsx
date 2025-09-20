@@ -46,9 +46,9 @@ const SourceSelection = ({ sessionID, onNavigate }: SourceSelectionProps) => {
       ariaLabel: "เลือกช่องข่าว",
     },
     {
-      text: "ข้อมูลจากสนข.",
-      onClick: () => handleSourceChoice("government_data", "ข้อมูลจากสนข."),
-      ariaLabel: "เลือกข้อมูลจากสำนักงานคณะกรรมการกำกับการขนส่งทางบก",
+      text: "ข้อมูลภาครัฐ",
+      onClick: () => handleSourceChoice("government_data", "ข้อมูลภาครัฐ"),
+      ariaLabel: "เลือกข้อมูลภาครัฐ",
     },
     {
       text: "ป้ายประกาศข้างทาง",
