@@ -184,8 +184,26 @@
 
 /* Provide inner horizontal padding for stacked controls so inputs sit inside the frame */
 .controlsContent .space-y-2 {
-  padding: 8px 16px 12px 16px;
+  /* 10px horizontal padding so content sits 10px from the frame edge */
+  padding: 10px 10px 12px 10px;
   box-sizing: border-box;
+}
+
+/* Reduce visual height of number inputs inside controls to match design request */
+.controlsContent input[type="number"] {
+  padding-top: 6px !important;
+  padding-bottom: 6px !important;
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+  height: auto !important;
+  line-height: 1 !important;
+  font-size: 15px !important;
+  box-sizing: border-box;
+}
+
+/* Keep rounded-full look but ensure the internal padding keeps elements compact */
+.controlsContent input[type="number"].rounded-full {
+  border-radius: 9999px;
 }
 
 .selectionGrid {
