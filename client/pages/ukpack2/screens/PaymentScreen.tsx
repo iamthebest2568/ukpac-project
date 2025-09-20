@@ -221,7 +221,7 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   "แอร์": <IconAir />,
   "พัดลม": <IconFan />,
   "ที่นั่งพิเศษ": <IconSeat />,
-  "ที่จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
+  "ที่จับ/ราวยืนที่��ลอดภัย": <IconWifi />,
   "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
   "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
@@ -258,7 +258,7 @@ const BUS_EMPLOY_ICON_ACTIVE =
 const OPTIONS = [
   { key: "cash", label: "เงินสด", icon: <IconCash /> },
   { key: "scan", label: "สแกนจ่าย", icon: <IconScan /> },
-  { key: "scan2", label: "สแกนจ่าย 2", icon: null },
+  { key: "scan2", label: "���แกนจ่าย 2", icon: null },
   { key: "tap", label: "แตะบัตร", icon: <IconTap /> },
   { key: "qr", label: "กระเป๋ารถเมล์", icon: <IconQr /> },
   { key: "monthly", label: "ตั๋วรายเดือน/รอบ", icon: null },
@@ -328,7 +328,7 @@ const PaymentScreen: React.FC = () => {
               small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
               medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
               large: "รถตู้โดยสาร 9–15 ที่นั่ง",
-              extra: "รถกะบะดัดแปลง 8–12 ที่นั่��",
+              extra: "รถกะบะดัดแป���ง 8–12 ที่นั่��",
             };
             const HERO_IMAGE: Record<string, string> = {
               small:
@@ -576,13 +576,13 @@ const PaymentScreen: React.FC = () => {
                   colorHex={storedColorLocal?.colorHex}
                   label={label}
                   showSelectedText
-                  overlayLabels={overlayLabels}
+                  overlayLabels={normalizedOverlayLabels}
                   overlayIconMap={{
                     ...AMENITIES_ICON_MAP,
                     "เงินสด": (
                       <img
                         src={CASH_OVERLAY_ICON}
-                        alt="เงินสด"
+                        alt="เงินส��"
                         className="h-full w-full object-contain"
                       />
                     ),
@@ -593,7 +593,7 @@ const PaymentScreen: React.FC = () => {
                         className="h-full w-full object-contain"
                       />
                     ),
-                    "���แกนจ่าย 2": (
+                    "สแกนจ่าย 2": (
                       <img
                         src={"https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F95e4291272564bf2b9d1b522cd4bf75e?format=webp&width=800"}
                         alt="สแกนจ่าย 2"
@@ -614,7 +614,7 @@ const PaymentScreen: React.FC = () => {
                         className="h-full w-full object-contain"
                       />
                     ),
-                    "ตั๋วรายเดือน/���อบ": (
+                    "ตั๋วรายเดือน/รอบ": (
                       <img
                         src={"https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8a53d9e6b6284ac19efb0e61c1025784?format=webp&width=800"}
                         alt="ตั๋วรายเดือน/รอบ"
