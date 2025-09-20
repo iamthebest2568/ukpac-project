@@ -429,7 +429,7 @@ const PaymentScreen: React.FC = () => {
                   >
                     <img
                       src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8f9b21942af243b3b80b0e5ac8b12631?format=webp&width=800"
-                      alt="2 ประ���ู"
+                      alt="2 ประตู"
                       className="h-6 w-6 md:h-7 md:w-7 object-contain"
                     />
                   </div>
@@ -588,7 +588,7 @@ const PaymentScreen: React.FC = () => {
                     ),
                     "สแกนจ่าย 2": (
                       <img
-                        src={selected.includes("สแกนจ่าย 2") ? SCAN2_ICON_ACTIVE : SCAN2_ICON}
+                        src={"https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F95e4291272564bf2b9d1b522cd4bf75e?format=webp&width=800"}
                         alt="สแกนจ่าย 2"
                         className="h-5 w-5 object-contain"
                       />
