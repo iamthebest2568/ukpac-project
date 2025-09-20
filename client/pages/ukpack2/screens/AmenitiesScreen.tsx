@@ -168,9 +168,31 @@ const AmenitiesScreen: React.FC = () => {
     );
   };
 
+  const AMENITIES_BUTTON_SRC: Record<string, string> = {
+    แอร์: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F717ae5876456493a97f29b6d6684c104?format=webp&width=800",
+    พัดลม: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F891faed3bf8a457fbcdd936181ed2b7a?format=webp&width=800",
+    ที่นั่งพิเศษ: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F54f4c944e6ab4e84800e14b2a1105b94?format=webp&width=800",
+    "ที่จับ/ราวยืนที่ปลอดภัย": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fdfbb7f3adfa04596916b9ea1950acef1?format=webp&width=800",
+    "ช่องชาร์จมือถือ/USB": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fae1e15679ac4476a9e82f163e7eab121?format=webp&width=800",
+    "Wi‑Fi ฟรี": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F1fb83749171e40fdb6fd8e6d75d46504?format=webp&width=800",
+    "ระบบประกาศบอกป้าย(เสียง/จอ)": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F48d62d5384e148bf8fe718dd2287d55f?format=webp&width=800",
+  };
+
   const handleNext = () => {
     try {
       sessionStorage.setItem("design.amenities", JSON.stringify(selected));
+      // persist overlay icon mapping for selected amenities so other pages use
+      // the exact asset used in the selection buttons
+      try {
+        const raw = sessionStorage.getItem("design.overlayIconMap");
+        const map = raw ? (JSON.parse(raw) as Record<string, string>) : {};
+        selected.forEach((lab) => {
+          if (AMENITIES_BUTTON_SRC[lab]) map[lab] = AMENITIES_BUTTON_SRC[lab];
+        });
+        sessionStorage.setItem("design.overlayIconMap", JSON.stringify(map));
+      } catch (e) {
+        // ignore
+      }
     } catch (e) {}
     navigate("/ukpack2/payment");
   };
