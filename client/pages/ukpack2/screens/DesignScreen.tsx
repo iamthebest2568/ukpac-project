@@ -105,7 +105,7 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
   "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
-  "���ล้องวงจรปิด": <IconCamSmall />,
+  "กล้องวงจรปิด": <IconCamSmall />,
 };
 
 const MONEY_ICON =
@@ -254,7 +254,7 @@ const DesignScreen: React.FC = () => {
               const CHASSIS_LABELS: Record<string, string> = {
                 small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
                 medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
-                large: "รถตู้โดย��าร 9–15 ที่นั่ง",
+                large: "รถตู้โดยสาร 9–15 ที่นั่ง",
                 extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
               };
               const HERO_IMAGE: Record<string, string> = {
@@ -365,14 +365,14 @@ const DesignScreen: React.FC = () => {
                     })()}
                     overlayIconMap={{
                       ...AMENITIES_ICON_MAP,
-                      เงิน��ด: (
+                      "เงินสด": (
                         <img
                           src={MONEY_ICON}
                           alt="เงินสด"
                           className="h-5 w-5 object-contain"
                         />
                       ),
-                      สแกนจ่าย: (
+                      "สแกนจ่าย": (
                         <img
                           src={SCAN_ICON}
                           alt="สแกนจ่าย"
@@ -386,17 +386,17 @@ const DesignScreen: React.FC = () => {
                           className="h-5 w-5 object-contain"
                         />
                       ),
-                      แตะบัตร: (
+                      "แตะบัตร": (
                         <img
                           src={TOUCH_ICON}
                           alt="แตะบัตร"
                           className="h-5 w-5 object-contain"
                         />
                       ),
-                      กระเป๋ารถเมล์: (
+                      "กระเป๋ารถเมล์": (
                         <img
                           src={BUS_EMPLOY_ICON}
-                          alt="ก���ะเป๋ารถเมล์"
+                          alt="กระเป๋ารถเมล์"
                           className="h-5 w-5 object-contain"
                         />
                       ),
@@ -501,7 +501,7 @@ const DesignScreen: React.FC = () => {
                         ref={textareaRef}
                         value={sloganDraft}
                         onChange={(e) => setSloganDraft(e.target.value)}
-                        placeholder="พิมพ์ค��ณสมบัติพิเศษอื่นๆ ของรถเมล์ในฝันของคุณ"
+                        placeholder="พิมพ์คุณสมบัติพิเศษอื่นๆ ของรถเมล์ในฝันของคุณ"
                         className="mt-3 w-full h-36 p-3 border-2 rounded-xl text-sm resize-none"
                       />
                       <div className="mt-3 flex justify-end gap-2">
