@@ -294,8 +294,8 @@
   flex-direction: row !important;
   align-items: center !important;
   justify-content: flex-start !important;
-  gap: 12px !important;
-  padding: 8px 12px !important;
+  gap: 8px !important; /* slightly tighter inline gap */
+  padding: 6px 8px !important; /* reduced padding for compact cards */
 }
 
 /* Inline icon sizing: smaller uniform height for inline cards */
