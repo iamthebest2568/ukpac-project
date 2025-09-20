@@ -46,11 +46,10 @@ const SelectionCard: React.FC<SelectionCardProps> = ({
     normalizedIcon = icon;
   }
 
-  // Group appearance: circular icon wrapper, responsive sizes
+  // Group appearance: icon-only (no background circle or shadow)
   if (appearance === "group") {
-    // Slightly larger circular buttons with clear selected state
-    const boxSize = "w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32";
-    const selectedClasses = isSelected ? "ring-2 ring-amber-400 shadow-lg" : "ring-0";
+    // Fixed icon container to control size while keeping no decorative background
+    const boxSize = "w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28";
 
     return (
       <button
@@ -61,10 +60,8 @@ const SelectionCard: React.FC<SelectionCardProps> = ({
         className={`inline-flex items-center justify-center p-0 ${layout === 'horizontal' ? 'horizontal' : 'vertical'}`}
         aria-pressed={isSelected}
       >
-        <div
-          className={`${boxSize} flex items-center justify-center border border-transparent rounded-full bg-white/95 ${selectedClasses}`}
-        >
-          <div className="w-10/12 h-10/12 flex items-center justify-center">
+        <div className={`${boxSize} flex items-center justify-center border border-transparent bg-transparent`}>
+          <div className="w-full h-full flex items-center justify-center">
             {normalizedIcon}
           </div>
         </div>
