@@ -446,7 +446,7 @@ const DesignScreen: React.FC = () => {
             })()}
           </div>
           <div className="max-w-4xl w-full mx-auto">
-            <div className="bg-white rounded-xl p-6 border-2 border-gray-200">
+            <div className="bg-white rounded-xl p-6 border-2 border-[#000D59]">
               <h2 className="text-xl font-prompt font-semibold text-[#003366] mt-2">
                 ออกแบบสี
               </h2>
