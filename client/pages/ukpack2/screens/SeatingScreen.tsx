@@ -31,7 +31,6 @@ const SeatingScreen: React.FC = () => {
   const navigate = useNavigate();
   const { state } = useBusDesign();
 
-  // Seating state
   const [totalSeats, setTotalSeats] = useState<number | "">("");
   const [specialSeats, setSpecialSeats] = useState<number | "">("");
   const [pregnantSeats, setPregnantSeats] = useState<number | "">("");
@@ -41,8 +40,8 @@ const SeatingScreen: React.FC = () => {
 
   const [isExitModalOpen, setExitModalOpen] = useState(false);
   const [isErrorModalOpen, setErrorModalOpen] = useState(false);
-  const [errorMessage, setErrorMessage] = useState<string>("");
-  const [errorTitle, setErrorTitle] = useState<string>("ข้อผิดพลาด");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [errorTitle, setErrorTitle] = useState("ข้อผิดพลาด");
 
   const maxByChassis: Record<string, number> = { small: 30, medium: 40, large: 50, extra: 12 };
   const minByChassis: Record<string, number> = { small: 16, medium: 31, large: 41, extra: 8 };
@@ -64,7 +63,6 @@ const SeatingScreen: React.FC = () => {
   const selectedLabel = CHASSIS_LABELS[selectedChassis] || "";
   const selectedTopdown = TOPDOWN_IMAGE[selectedChassis];
 
-  // Load saved seating when chassis matches
   useEffect(() => {
     try {
       const storedChassis = sessionStorage.getItem("design.chassis");
@@ -82,7 +80,9 @@ const SeatingScreen: React.FC = () => {
           return;
         }
       }
-    } catch {}
+    } catch {
+      // ignore
+    }
     setTotalSeats("");
     setSpecialSeats("");
     setPregnantSeats("");
@@ -122,7 +122,7 @@ const SeatingScreen: React.FC = () => {
     const sWheel = Number(wheelchairBikeSpaces) || 0;
     const sumSubs = sSpecial + sChild + sPreg + sMonk + sWheel;
     if (sumSubs !== total) {
-      setErrorTitle("ผลรวมของที่นั่งย่อยไม่ตรงกั���");
+      setErrorTitle("ผลรวมของที่นั่งย่อยไม่ตรงกัน");
       setErrorMessage(`ผลรวมของที่นั่งย่อยทั้งหมด (${sumSubs}) ไม่ตรงกับจำนวนที่นั่งทั้งหมด (${total})`);
       setErrorModalOpen(true);
       return false;
@@ -135,7 +135,9 @@ const SeatingScreen: React.FC = () => {
     try {
       const seating = { totalSeats, specialSeats, pregnantSeats, childElderSeats, monkSeats, wheelchairBikeSpaces };
       sessionStorage.setItem("design.seating", JSON.stringify(seating));
-    } catch (e) {}
+    } catch (e) {
+      // ignore
+    }
     navigate("/ukpack2/amenities");
   };
 
@@ -145,12 +147,26 @@ const SeatingScreen: React.FC = () => {
     setTotalSeats(clamped);
   };
 
-  // overlay labels: combine previous selections
   const overlay = (() => {
-    const amenities = (() => { try { const raw = sessionStorage.getItem("design.amenities"); return raw ? (JSON.parse(raw) as string[]) : []; } catch { return [] as string[]; } })();
-    const payments = (() => { try { const raw = sessionStorage.getItem("design.payment"); return raw ? (JSON.parse(raw) as string[]) : []; } catch { return [] as string[]; } })();
-    const doors = (() => { try { const raw = sessionStorage.getItem("design.doors"); if (!raw) return null; const parsed = JSON.parse(raw); return typeof parsed === "string" ? parsed : parsed?.doorChoice || (parsed?.hasRamp ? "ramp" : parsed?.highLow ? "emergency" : null); } catch { return sessionStorage.getItem("design.doors"); } })();
-    return [...(amenities || []), ...(payments || []), ...(doors ? [doors as string] : [])];
+    try {
+      const a = sessionStorage.getItem("design.amenities");
+      const p = sessionStorage.getItem("design.payment");
+      const d = sessionStorage.getItem("design.doors");
+      const amenities = a ? JSON.parse(a) : [];
+      const payments = p ? JSON.parse(p) : [];
+      let door: string | null = null;
+      if (d) {
+        try {
+          const parsed = JSON.parse(d);
+          door = typeof parsed === "string" ? parsed : parsed?.doorChoice || (parsed?.hasRamp ? "ramp" : parsed?.highLow ? "emergency" : null);
+        } catch {
+          door = d;
+        }
+      }
+      return [...(amenities || []), ...(payments || []), ...(door ? [door] : [])];
+    } catch {
+      return [] as string[];
+    }
   })();
 
   return (
@@ -175,12 +191,58 @@ const SeatingScreen: React.FC = () => {
                 <div className="space-y-2 mt-2">
                   <div className="flex items-center justify-between">
                     <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">จำนวนที่นั่งทั้งหมด</div>
-                    <input type="number" placeholder="ระบุ..." value={totalSeats} onFocus={handleTotalFocus} onChange={(e) => { const raw = e.target.value; if (raw === "") { handleTotalSeatsChange(""); return; } const parsed = Math.min(maxCapacity, Math.max(0, parseInt(raw || "0", 10))); handleTotalSeatsChange(parsed); }} className="w-24 px-3 py-2 rounded-full text-[#000D59] bg-white text-right" style={{ borderWidth: 3, borderColor: "rgba(0,13,89,1)" }} min={0} max={maxCapacity} />
+                    <input
+                      type="number"
+                      placeholder="ระบุ..."
+                      value={totalSeats}
+                      onFocus={handleTotalFocus}
+                      onChange={(e) => {
+                        const raw = e.target.value;
+                        if (raw === "") { handleTotalSeatsChange(""); return; }
+                        const parsed = Math.min(maxCapacity, Math.max(0, parseInt(raw || "0", 10)));
+                        handleTotalSeatsChange(parsed);
+                      }}
+                      className="w-24 px-3 py-2 rounded-full text-[#000D59] bg-white text-right"
+                      style={{ borderWidth: 3, borderColor: "rgba(0,13,89,1)" }}
+                      min={0}
+                      max={maxCapacity}
+                    />
                   </div>
 
-          <ConfirmModal isOpen={isExitModalOpen} title="ออกจากหน้าจอ" message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก" onConfirm={() => navigate("/")} onCancel={() => setExitModalOpen(false)} />
+                  <div className="flex items-center justify-between mt-4">
+                    <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">จำนวนที่นั่งพิเศษ</div>
+                    <input id="specialSeats" type="number" min={0} max={maxCapacity} value={specialSeats === "" ? "" : specialSeats} onFocus={() => { if (specialSeats === 0) setSpecialSeats(""); }} onChange={(e) => { const raw = e.target.value; if (raw === "") { setSpecialSeats(""); return; } const parsed = Math.max(0, Math.min(maxCapacity, parseInt(raw || "0", 10))); setSpecialSeats(parsed); }} className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-full text-[#003366] bg-white text-right" />
+                  </div>
 
-          <ErrorModal isOpen={isErrorModalOpen} title={errorTitle} message={errorMessage} onClose={() => setErrorModalOpen(false)} />
+                  <div className="flex items-center justify-between">
+                    <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">เด็ก / ผู้สูงอายุ</div>
+                    <input type="number" value={childElderSeats === "" ? "" : childElderSeats} onFocus={() => { if (childElderSeats === 0) setChildElderSeats(""); }} onChange={(e) => { const raw = e.target.value; if (raw === "") { setChildElderSeats(""); return; } const parsed = Math.max(0, Math.min(maxCapacity, parseInt(raw || "0", 10))); setChildElderSeats(parsed); }} className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-full text-[#003366] bg-white text-right" min={0} max={maxCapacity} />
+                  </div>
+
+                  <div className="flex items-center justify-between">
+                    <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">สตรีมพครรภ์</div>
+                    <input type="number" value={pregnantSeats === "" ? "" : pregnantSeats} onFocus={() => { if (pregnantSeats === 0) setPregnantSeats(""); }} onChange={(e) => { const raw = e.target.value; if (raw === "") { setPregnantSeats(""); return; } const parsed = Math.max(0, Math.min(maxCapacity, parseInt(raw || "0", 10))); setPregnantSeats(parsed); }} className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-full text-[#003366] bg-white text-right" min={0} max={maxCapacity} />
+                  </div>
+
+                  <div className="flex items-center justify-between">
+                    <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">พระภิกษุสงฆ์</div>
+                    <input type="number" value={monkSeats === "" ? "" : monkSeats} onFocus={() => { if (monkSeats === 0) setMonkSeats(""); }} onChange={(e) => { const raw = e.target.value; if (raw === "") { setMonkSeats(""); return; } const parsed = Math.max(0, Math.min(maxCapacity, parseInt(raw || "0", 10))); setMonkSeats(parsed); }} className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-full text-[#003366] bg-white text-right" min={0} max={maxCapacity} />
+                  </div>
+
+                  <div className="flex items-center justify-between">
+                    <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">พื้นที่สำหรับรถเข็น/จักรยาน</div>
+                    <input type="number" value={wheelchairBikeSpaces === "" ? "" : wheelchairBikeSpaces} onFocus={() => { if (wheelchairBikeSpaces === 0) setWheelchairBikeSpaces(""); }} onChange={(e) => { const raw = e.target.value; if (raw === "") { setWheelchairBikeSpaces(""); return; } const parsed = Math.max(0, Math.min(maxCapacity, parseInt(raw || "0", 10))); setWheelchairBikeSpaces(parsed); }} className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-full text-[#003366] bg-white text-right" min={0} max={maxCapacity} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </CustomizationScreen>
+
+      <ConfirmModal isOpen={isExitModalOpen} title="ออกจากหน้าจอ" message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก" onConfirm={() => navigate("/")} onCancel={() => setExitModalOpen(false)} />
+
+      <ErrorModal isOpen={isErrorModalOpen} title={errorTitle} message={errorMessage} onClose={() => setErrorModalOpen(false)} />
     </>
   );
 };
