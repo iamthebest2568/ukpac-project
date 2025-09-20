@@ -13,6 +13,15 @@ const IconAir = () => (
     loading="eager"
   />
 );
+const IconAirAlt = () => (
+  <img
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F214f32e9828e4ed5a2d789142cb65df4?format=webp&width=800"
+    alt="แอร์ (กดแล้ว)"
+    className="object-contain select-none h-full w-full"
+    decoding="async"
+    loading="eager"
+  />
+);
 const IconFan = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F73e1aae278224ef5861c3f19966cd63b?format=webp&width=800"
@@ -61,7 +70,7 @@ const IconTv = () => (
 const IconCup = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F303a12b36a7b4bfb99c7707bbe96b8a6?format=webp&width=800"
-    alt="ระบบประกาศบอกป้าย(เสียง/จ���)"
+    alt="ระบบประกาศบอกป้าย(เสียง/จอ)"
     className="object-contain select-none h-full w-full"
     decoding="async"
     loading="eager"
