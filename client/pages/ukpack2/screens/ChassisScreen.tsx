@@ -126,7 +126,7 @@ const OPTIONS = [
   {
     key: "small",
     label: "รถเมล์ขนาดเล็ก 16-30 ที่นั่ง",
-    labelText: "รถเมล์ขนาดเล็ก 16-30 ท��่นั่ง",
+    labelText: "รถเมล์ขนาดเล็ก 16-30 ที่นั่ง",
     icon: <IconSmall />,
   },
   {
@@ -144,7 +144,7 @@ const OPTIONS = [
         9-15 ที่นั่ง
       </>
     ),
-    labelText: "รถตู้โดยสาร 9-15 ที่นั���ง",
+    labelText: "รถตู้โดยสาร 9-15 ที่นั่ง",
     icon: <IconLarge />,
   },
   {
