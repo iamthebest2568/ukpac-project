@@ -25,7 +25,7 @@ const IconAirAlt = () => (
 const IconFan = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F891faed3bf8a457fbcdd936181ed2b7a?format=webp&width=800"
-    alt="พัด�����"
+    alt="พัดลม"
     className="object-contain select-none h-full w-full"
     decoding="async"
     loading="eager"
@@ -70,7 +70,7 @@ const IconWifi = () => (
 const IconWifiAlt = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F70d82d5dddd54c909edc9bddb202fc6e?format=webp&width=800"
-    alt="ที่จับ/ราวยืน (กด��ล้ว)"
+    alt="ที่จับ/ราวยืน (กดแล้ว)"
     className="object-contain select-none h-full w-full"
     decoding="async"
     loading="eager"
@@ -88,7 +88,7 @@ const IconPlug = () => (
 const IconPlugAlt = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F76d2422a6fb84d0bb752cd149518a87b?format=webp&width=800"
-    alt="ช่องชาร์จม���อถือ/USB (กดแล้ว)"
+    alt="ช่องชาร์จมือถือ/USB (กดแล้ว)"
     className="object-contain select-none h-full w-full"
     decoding="async"
     loading="eager"
@@ -138,7 +138,7 @@ const AMENITIES = [
   { key: "wifi", label: "ที่จับ/ราวยืนที่ปลอดภัย", icon: <IconWifi />, iconActive: <IconWifiAlt /> },
   { key: "plug", label: "ช่องชาร์จมือถือ/USB", icon: <IconPlug />, iconActive: <IconPlugAlt /> },
   { key: "tv", label: "Wi‑Fi ฟรี", icon: <IconTv />, iconActive: <IconTvAlt /> },
-  { key: "cup", label: "ระบบประกาศบอกป้าย(เสียง/จอ)", icon: <IconCup />, iconActive: <IconCupAlt /> },
+  { key: "cup", label: "ระบบประกาศบอ��ป้าย(เสียง/จอ)", icon: <IconCup />, iconActive: <IconCupAlt /> },
 ];
 
 import { useNavigate } from "react-router-dom";
@@ -202,7 +202,7 @@ const AmenitiesScreen: React.FC = () => {
     small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
     medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
     large: "รถตู้โดยสาร 9–15 ที่นั่ง",
-    extra: "รถกะบะด���ดแปลง 8–12 ที่นั่ง",
+    extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
   };
   const HERO_IMAGE: Record<string, string> = {
     small:
@@ -292,7 +292,7 @@ const AmenitiesScreen: React.FC = () => {
               />
             ) : (
               <div className="w-full h-48 bg-[#081042] rounded-md flex items-center justify-center text-sm text-gray-300">
-                Bus image preview (ภาพสำหรับรุ่นนี้จะ��ูกเพิ่มภายหลัง)
+                Bus image preview (ภาพสำหรับรุ่นนี้จะถูกเพิ่มภายหลัง)
               </div>
             )}
           </div>
