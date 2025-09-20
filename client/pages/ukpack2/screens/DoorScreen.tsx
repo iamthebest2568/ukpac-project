@@ -100,14 +100,14 @@ const IconCamSmall = () => (
 );
 
 const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
-  แอร์: <IconAir />,
-  พัดลม: <IconFan />,
-  ที่นั่งพิเศษ: <IconSeat />,
+  "แอร์": <IconAir />,
+  "พัดลม": <IconFan />,
+  "ที่นั่งพิเศษ": <IconSeat />,
   "ที่จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
   "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
   "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
-  กล้องว���จรปิด: <IconCamSmall />,
+  "กล้องวงจรปิด": <IconCamSmall />,
 };
 
 const MONEY_ICON =
@@ -523,7 +523,7 @@ const DoorScreen: React.FC = () => {
                     { key: "1", label: "1 ประตู", icon: <IconDoor1 />, iconActive: <IconDoor1 /> },
                     { key: "2", label: "2 ประตู", icon: <IconDoor2 />, iconActive: <IconDoor2 /> },
                     { key: "ramp", label: "ทางลาดสำหรับรถเข็น/ผู้พิการ", icon: <IconRamp />, iconActive: <IconRamp /> },
-                    { key: "emergency", label: "ประตูฉุกเฉิน", icon: <IconHighLow />, iconActive: <IconHighLow /> },
+                    { key: "emergency", label: "ปร��ตูฉุกเฉิน", icon: <IconHighLow />, iconActive: <IconHighLow /> },
                   ];
 
                   return DOOR_OPTIONS.map((opt) => (
