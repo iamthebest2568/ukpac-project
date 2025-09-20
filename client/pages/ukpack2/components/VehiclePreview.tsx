@@ -140,7 +140,7 @@ const VehiclePreview: React.FC<Props> = ({
                 }, 10);
               }}
               style={
-                !colorHex && colorFilter ? { filter: colorFilter } : undefined
+                colorFilter && !colorMaskSrc ? { filter: colorFilter } : undefined
               }
             />
 
