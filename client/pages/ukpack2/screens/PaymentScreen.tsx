@@ -128,7 +128,7 @@ const IconQr = () => (
 const IconAir = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fee1c18a935564e92bb49991fac3b76df?format=webp&width=800"
-    alt="แอร์"
+    alt="แอ��์"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -296,6 +296,8 @@ const PaymentScreen: React.FC = () => {
     <CustomizationScreen
       title="ปรับแต่งรถเมล์ของคุณ"
       theme="light"
+      fullWidth
+      containerPaddingClass={styles.containerPadding}
       footerContent={
         <div className="flex justify-center">
           <CtaButton text="ถัดไป" onClick={handleNext} />
