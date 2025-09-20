@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './ukpack2-buttons.css';
+
 interface SecondaryButtonProps {
   text: string;
   onClick?: () => void;
