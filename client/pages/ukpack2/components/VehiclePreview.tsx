@@ -30,6 +30,7 @@ const VehiclePreview: React.FC<Props> = ({
   placeholderText = "ภาพสำหรับรุ่นนี้จะถูกเพิ่มภายหลัง",
   colorFilter = null,
   colorHex = null,
+  colorMaskSrc = null,
   className,
   showSelectedText = false,
   starSrc = null,
