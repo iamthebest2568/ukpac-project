@@ -25,7 +25,7 @@ const IconSeat = () => (
 const IconWifi = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb0789bfd1100472f8351704764607d31?format=webp&width=800"
-    alt="ที่จับ/���าวยืน"
+    alt="ที่จับ/ราวยืน"
     className="h-6 w-6 object-contain select-none"
   />
 );
@@ -95,10 +95,10 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   แอร์: <IconAir />,
   พัดลม: <IconFan />,
   ที่นั่งพิเศษ: <IconSeat />,
-  "ที่จ��บ/ราวยืนที่ปลอดภัย": <IconWifi />,
+  "ที่จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
   "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
-  "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
+  "ระบบประกาศบอกป้าย(เ���ียง/จอ)": <IconCup />,
   กล้องวงจรปิด: <IconCamSmall />,
   // Payment icons
   เงินสด: (
@@ -145,7 +145,7 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   ramp: (
     <img
       src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fece2b6fc843340f0997f2fd7d3ca0aea?format=webp&width=800"
-      alt="��างลาด"
+      alt="ทางลาด"
       className="h-5 w-5 object-contain"
     />
   ),
