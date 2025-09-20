@@ -5,7 +5,7 @@ import CtaButton from "../components/CtaButton";
 import ConfirmModal from "../components/ConfirmModal";
 
 const CHASSIS_LABELS: Record<string, string> = {
-  small: "รถเมล��ขนาดเล็ก 16–30 ที่นั่ง",
+  small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
   medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
   large: "รถตู้โดยสาร 9–15 ที่นั่ง",
   extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
@@ -164,7 +164,7 @@ const InfoScreen: React.FC = () => {
             </div>
           </div>
 
-          <div className="prose text-[#001a73] font-sarabun">
+          <div className="bg-[#e6e7e8] rounded-lg p-4 text-[#001a73] font-sarabun">
             <h2 className="font-sarabun font-semibold text-xl text-center">รู้หรือไม่!</h2>
             <p>
               ในญี่ปุ่นมี Community Bus รถเมล์ขนาดเล็กที่วิ่งเข้าซอยและพื้นที่
@@ -179,7 +179,7 @@ const InfoScreen: React.FC = () => {
       <ConfirmModal
         isOpen={isExitModalOpen}
         title="ออกจากหน้าจอ"
-        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
+        message="คุณแน่ใ���หรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
         onConfirm={() => navigate("/")}
         onCancel={() => setExitModalOpen(false)}
       />
