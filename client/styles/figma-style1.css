@@ -345,6 +345,18 @@
   .figma-style1-background-overlay--blue {
     height: 45%;
   }
+
+  /* For larger mobile screens, ensure fake-news buttons stay visible and reachable */
+  .figma-style1-container.fake-news-page .figma-style1-main {
+    align-items: end !important; /* pin content to bottom so buttons are within viewport */
+  }
+
+  .figma-style1-container.fake-news-page .figma-style1-button-container {
+    position: sticky !important;
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 20px) !important;
+    padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 12px) !important;
+    margin-top: 12px !important;
+  }
 }
 
 .figma-style1-header {
