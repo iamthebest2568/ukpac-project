@@ -53,11 +53,11 @@ const SelectionCard: React.FC<SelectionCardProps> = ({
       <button
         type="button"
         onClick={onClick}
-        className={`inline-flex items-center justify-center p-0 focus:outline-none transition-all ${layout === 'horizontal' ? 'horizontal' : 'vertical'}`}
+        className={`inline-flex items-center justify-center p-0 focus:outline-none ${layout === 'horizontal' ? 'horizontal' : 'vertical'}`}
         aria-pressed={isSelected}
       >
         <div
-          className={`${boxSize} flex items-center justify-center transition-colors border border-transparent`}
+          className={`${boxSize} flex items-center justify-center border border-transparent`}
         >
           <div className="w-11/12 h-11/12 flex items-center justify-center">
             {normalizedIcon}
@@ -79,7 +79,7 @@ const SelectionCard: React.FC<SelectionCardProps> = ({
 
   // Build button classes and append helpers for CSS targeting
   const appearanceClasses = appearance === "bare" ? "w-auto p-0 rounded-none" : "w-full p-3 rounded-2xl";
-  const focusClasses = appearance === "bare" ? "focus:outline-none focus:ring-0 focus:ring-offset-0" : "focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#ffe000]";
+  const focusClasses = "focus:outline-none";
   const layoutClass = layout === "horizontal" ? "horizontal" : "vertical";
 
   if (layout === "horizontal") {
@@ -88,7 +88,7 @@ const SelectionCard: React.FC<SelectionCardProps> = ({
       <button
         type="button"
         onClick={onClick}
-        className={`${appearanceClasses} ${base} ${focusClasses} transition-colors ${layoutClass}`}
+        className={`${appearanceClasses} ${base} ${focusClasses} ${layoutClass}`}
         aria-pressed={isSelected}
       >
         <div className={`iconContainer ${iconBox} flex items-center justify-center ${isLight ? "text-[#003366]" : "text-white"}`}>
@@ -108,7 +108,7 @@ const SelectionCard: React.FC<SelectionCardProps> = ({
     <button
       type="button"
       onClick={onClick}
-      className={`${appearance === "bare" ? "w-auto p-0" : "w-full p-4 shadow-sm hover:shadow-md hover:-translate-y-0.5 transform"} ${appearance === "bare" ? "rounded-none" : "rounded-2xl"} ${base} ${focusClasses} transition-colors ${layoutClass}`}
+      className={`${appearance === "bare" ? "w-auto p-0" : "w-full p-4"} ${appearance === "bare" ? "rounded-none" : "rounded-2xl"} ${base} ${focusClasses} ${layoutClass}`}
       aria-pressed={isSelected}
     >
       <div className={`${iconContainerClass} ${FIXED_ICON_HEIGHT_CLASS} flex items-center justify-center ${isLight ? "text-[#003366]" : "text-white"} transition-transform iconContainer`}>
