@@ -252,7 +252,7 @@
 
 /* Door screen specific overrides to clear conflicting styles and enforce layout */
 .doorControls .selectionGrid {
-  --icon-cell-height: 160px !important; /* larger default for door icons */
+  --icon-cell-height: 220px !important; /* larger default for door icons */
   display: grid !important;
   grid-template-columns: repeat(2, 1fr) !important; /* force 2 columns */
   gap: 2px !important; /* tight gap */
@@ -265,12 +265,12 @@
 .doorControls .selectionGrid > button {
   padding: 0 !important;
   width: auto !important; /* allow buttons to size to content */
-  max-width: 140px !important;
+  max-width: 200px !important;
 }
 
 .doorControls .selectionGrid > button > div.iconContainer {
   height: var(--icon-cell-height) !important;
-  width: 100px !important; /* fixed icon width to make icons larger */
+  width: 160px !important; /* fixed icon width to make icons larger */
 }
 
 .doorControls .selectionGrid img,
