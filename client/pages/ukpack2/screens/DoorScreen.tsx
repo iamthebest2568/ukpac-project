@@ -160,6 +160,16 @@ const IconDoor2 = () => (
     loading="eager"
   />
 );
+
+const IconDoor2Active = () => (
+  <img
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F978c8d677ffa44f4977862f58a16ec0c?format=webp&width=800"
+    alt="ประตู 2 (selected)"
+    className="object-contain select-none max-h-full w-auto"
+    decoding="async"
+    loading="eager"
+  />
+);
 const IconRamp = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F245ff72a7c3b468293c517a934e4e839?format=webp&width=800"
@@ -464,7 +474,7 @@ const DoorScreen: React.FC = () => {
                         className="h-5 w-5 object-contain"
                       />
                     ),
-                    "กระเป๋ารถเมล์": (
+                    "กระเ��๋ารถเมล์": (
                       <img
                         src={BUS_EMPLOY_ICON}
                         alt="กระเป๋ารถเมล์"
