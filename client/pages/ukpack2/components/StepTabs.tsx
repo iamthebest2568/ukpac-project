@@ -198,11 +198,11 @@ const StepTabs: React.FC<StepTabsProps> = ({ active, className }) => {
                         background: baseColor,
                         WebkitMaskImage: `url(${src})`,
                         WebkitMaskRepeat: "no-repeat",
-                        WebkitMaskSize: "contain",
+                        WebkitMaskSize: "100% 100%",
                         WebkitMaskPosition: "center",
                         maskImage: `url(${src})`,
                         maskRepeat: "no-repeat",
-                        maskSize: "contain",
+                        maskSize: "100% 100%",
                         maskPosition: "center",
                         opacity: isActive ? 1 : 0.6,
                       }}
