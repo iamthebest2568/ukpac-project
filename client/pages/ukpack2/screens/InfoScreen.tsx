@@ -40,6 +40,7 @@ const InfoScreen: React.FC = () => {
       <CustomizationScreen
         title="ปรับแต่งรถเมล์ของคุณ"
         theme="light"
+        fullWidth
         footerContent={
           <div className="flex justify-center">
             <CtaButton
