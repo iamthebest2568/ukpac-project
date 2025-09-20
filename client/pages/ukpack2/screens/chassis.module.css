@@ -293,6 +293,9 @@
   margin-right: calc(50% - 50vw);
   box-sizing: border-box;
   overflow: visible;
+  border: 2px solid var(--chassis-accent); /* show border like controlsBox */
+  border-radius: 8px;
+  background: #ffffff;
 }
 
 /* Make StepTabs inside those panels full-bleed like .tabsWrapper */
@@ -311,6 +314,16 @@
 /* Ensure the inner content of those panels uses the controlsContent spacing */
 .bg-white.rounded-t-3xl .space-y-2,
 .bg-white.rounded-2xl .space-y-2 {
-  padding: 5px;
+  padding: 8px 8px 12px 8px; /* small padding to match controlsContent */
   box-sizing: border-box;
+}
+
+/* Reduce panel horizontal padding on very small screens to avoid horizontal scroll */
+@media (max-width: 420px) {
+  .bg-white.rounded-t-3xl,
+  .bg-white.rounded-2xl,
+  .bg-white.rounded-2xl.-mt-2 {
+    padding-left: 6px !important;
+    padding-right: 6px !important;
+  }
 }
