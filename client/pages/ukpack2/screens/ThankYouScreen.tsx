@@ -18,7 +18,7 @@ const ThankYouScreen: React.FC = () => {
           />
         </div>
         <div className="inline-block bg-white rounded-xl p-6 text-[#001a73]">
-          <p className="mt-3 font-prompt font-bold text-[18px]">
+          <p className="mt-3 font-prompt font-semibold text-[18px]">
             เราจะนำข้อมูลเหล่านี้รวบรวม เป็นข้อเสนอส่งต่อเพื่อการพัฒนา
             รถประจำทางใ��้ดียิ่งขึ้น
           </p>
