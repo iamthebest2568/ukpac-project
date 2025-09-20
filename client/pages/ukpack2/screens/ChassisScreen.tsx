@@ -43,8 +43,8 @@ const DOOR_ICON_SMALL: Record<string, string> = {
 
 const IconSmall = () => (
   <img
-    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F02db4c9e3b9d40c78d7d829d6e607b66?format=webp&width=800"
-    alt=""
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F268d81cb81c4464295f29a6a61c9661d?format=webp&width=800"
+    alt="ไอคอนรถเมล์ขนาดเล็ก"
     aria-hidden="true"
     className="h-full w-auto object-contain select-none"
     decoding="async"
@@ -279,7 +279,7 @@ const ChassisScreen: React.FC = () => {
   return (
     <>
       <CustomizationScreen
-        title="ปรับแต่งรถเมล์ของคุณ"
+        title="ปรับแต่งร���เมล์ของคุณ"
         theme="light"
         fullWidth
         footerContent={
