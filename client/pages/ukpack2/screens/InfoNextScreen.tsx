@@ -68,15 +68,21 @@ const InfoNextScreen: React.FC = () => {
     <CustomizationScreen title="" theme="light" footerContent={
       <div className="flex justify-center">
         <div className="w-full max-w-4xl mx-auto flex items-center justify-center">
-          <div className="flex items-center gap-3">
-            <SecondaryButton
-              text="ใช้บริการแน่นอน"
-              onClick={() => navigate("/ukpack2/thank-you")}
-            />
-            <CtaButton
-              text="ไม่แน่ใจ"
-              onClick={() => navigate("/ukpack2/feedback")}
-            />
+          <div className="flex flex-col items-stretch gap-3 w-full max-w-sm p-4 md:p-6 mx-auto">
+            <div className="w-full">
+              <SecondaryButton
+                text="ใช้บริการแน่นอน"
+                onClick={() => navigate("/ukpack2/thank-you")}
+                className="w-full"
+              />
+            </div>
+            <div className="w-full">
+              <CtaButton
+                text="ไม่แน่ใจ"
+                onClick={() => navigate("/ukpack2/feedback")}
+                className="w-full"
+              />
+            </div>
           </div>
         </div>
       </div>
