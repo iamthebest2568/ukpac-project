@@ -107,7 +107,7 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
   "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
-  กล้องวงจรปิด: <IconCamSmall />,
+  กล้องว���จรปิด: <IconCamSmall />,
 };
 
 const MONEY_ICON =
@@ -163,7 +163,7 @@ const IconHighLow = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F98de0624be3d4ae6b96d83edcf8891f9?format=webp&width=800"
     alt="ประตูฉุกเฉิน"
-    className="h-8 w-8 object-contain select-none"
+    className="object-contain select-none max-h-full w-auto"
     decoding="async"
     loading="eager"
   />
