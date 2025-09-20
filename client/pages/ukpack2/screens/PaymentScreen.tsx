@@ -232,7 +232,7 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
   "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
-  "กล้องวงจรปิด": <IconCam />,
+  "กล้องวงจรป���ด": <IconCam />,
 };
 
 const MONEY_ICON =
@@ -297,7 +297,6 @@ const PaymentScreen: React.FC = () => {
       title="ปรับแต่งร���เมล์ของคุณ"
       theme="light"
       fullWidth
-      containerPaddingClass={styles.containerPadding}
       footerContent={
         <div className="flex justify-center">
           <CtaButton text="ถัดไป" onClick={handleNext} />
