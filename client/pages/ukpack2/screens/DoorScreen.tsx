@@ -253,7 +253,7 @@ const DoorScreen: React.FC = () => {
             const CHASSIS_LABELS: Record<string, string> = {
               small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
               medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
-              large: "รถตู้โดยสาร 9–15 ที่นั่ง",
+              large: "รถตู้โดยสาร 9–15 ที่นั��ง",
               extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
             };
             const HERO_IMAGE: Record<string, string> = {
@@ -473,7 +473,7 @@ const DoorScreen: React.FC = () => {
                         className="h-5 w-5 object-contain"
                       />
                     ),
-                    สแก���จ่าย: (
+                    สแกนจ่าย: (
                       <img
                         src={SCAN_ICON}
                         alt="สแกนจ่าย"
@@ -494,7 +494,7 @@ const DoorScreen: React.FC = () => {
                         className="h-5 w-5 object-contain"
                       />
                     ),
-                    "กระเป๋ารถเมล์": (
+                    "���ระเป๋ารถเมล์": (
                       <img
                         src={BUS_EMPLOY_ICON}
                         alt="กระเป๋ารถเมล์"
@@ -563,7 +563,7 @@ const DoorScreen: React.FC = () => {
                     { key: "1", label: "1 ประตู", icon: <IconDoor1 />, iconActive: <IconDoor1Active /> },
                     { key: "2", label: "2 ประตู", icon: <IconDoor2 />, iconActive: <IconDoor2Active /> },
                     { key: "ramp", label: "ทางลาดสำหรับรถเข็น/ผู้พิการ", icon: <IconRamp />, iconActive: <IconRampActive /> },
-                    { key: "emergency", label: "ประตูฉุกเฉิน", icon: <IconHighLow />, iconActive: <IconHighLow /> },
+                    { key: "emergency", label: "ประตูฉุกเฉิน", icon: <IconHighLow />, iconActive: <IconHighLowActive /> },
                   ];
 
                   return DOOR_OPTIONS.map((opt) => (
