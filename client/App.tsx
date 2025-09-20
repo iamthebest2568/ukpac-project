@@ -86,6 +86,7 @@ const ConfirmationScreen = lazy(
   () => import("./pages/ukpack2/screens/ConfirmationScreen"),
 );
 const EndScreen = lazy(() => import("./pages/ukpack2/screens/EndScreen"));
+const SkipEndPage = lazy(() => import("./pages/SkipEnd"));
 const UkPack2Dashboard = lazy(() => import("./pages/ukpack2/UkDashboard"));
 
 // Layout component with accessibility features
