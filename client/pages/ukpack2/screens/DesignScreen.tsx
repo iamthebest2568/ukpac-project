@@ -101,7 +101,7 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   แอร์: <IconAir />,
   พัดลม: <IconFan />,
   ที่นั่งพิเศษ: <IconSeat />,
-  "ที่จับ/ราว��ืนที่ปลอดภัย": <IconWifi />,
+  "ที่จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
   "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
   "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
@@ -237,11 +237,11 @@ const DesignScreen: React.FC = () => {
     <>
       <MetaUpdater
         title="UK PACT - กรุงเทพฯ ลดติด"
-        description="ออกแบบร���เมล์เพื่อช่วยลดปัญหาการจราจรในกรุงเทพฯ — เลือกขนาดรถ สี และสิ่งอำ���วยความสะดวกที่ต้องการ"
+        description="ออกแบบรถเม��์เพื่อช่วยลดปัญหาการจราจรในกรุงเทพฯ — เลือกขนาดรถ สี และสิ่งอำนวยความสะดวกที่ต้องการ"
         image="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F44cea8aeb6d4415e899494a90c6f59b1?format=webp&width=1200"
       />
       <CustomizationScreen
-        title="ปรับ��ต่งรถเมล์ของคุณ"
+        title="ปรับแต่งรถเมล์ของคุณ"
         theme="light"
         footerContent={
           <div className="flex justify-center">
@@ -256,7 +256,7 @@ const DesignScreen: React.FC = () => {
                 small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
                 medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
                 large: "รถตู้โดยสาร 9–15 ที่นั่ง",
-                extra: "รถกะบะ���ัดแปลง 8–12 ที่นั่ง",
+                extra: "รถกะบะดัดแปล�� 8–12 ที่นั่ง",
               };
               const HERO_IMAGE: Record<string, string> = {
                 small:
@@ -373,7 +373,7 @@ const DesignScreen: React.FC = () => {
                           className="h-5 w-5 object-contain"
                         />
                       ),
-                      "���แกนจ่าย": (
+                      "สแกนจ่าย": (
                         <img
                           src={SCAN_ICON}
                           alt="สแกนจ่าย"
@@ -477,7 +477,7 @@ const DesignScreen: React.FC = () => {
               />
 
               <h2 className="text-xl font-prompt font-semibold text-[#003366] mt-4">
-                ลักษณะพิเศ��อื่น ๆ ของรถคุณ
+                ลักษณะพิเศษอื่น ๆ ขอ���รถคุณ
               </h2>
               <div>
                 <input
