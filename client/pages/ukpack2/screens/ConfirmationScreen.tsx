@@ -13,7 +13,7 @@ const ConfirmationScreen: React.FC = () => {
     <>
       <CustomizationScreen title="" theme="light">
         <div className="max-w-4xl mx-auto pb-32 -mt-12">
-          <div className="w-full flex justify-center mb-4">
+          <div className="w-full flex justify-center mb-2">
             <img
               src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F6b62374327d643178ab7f4a913ddc1b1?format=webp&width=800"
               alt="ยืนยันข้อมูลสำเร็จ"
