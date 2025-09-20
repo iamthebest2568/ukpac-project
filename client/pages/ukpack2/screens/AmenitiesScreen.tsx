@@ -228,7 +228,7 @@ const AmenitiesScreen: React.FC = () => {
     "ที่จับ/ราวยืนที่ปลอดภัย":
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F2ea6db6de8904f6f9cb279f96f470250?format=webp&width=800",
     "ช่องชาร์จมือถือ/USB":
-      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fba274e72720c4a1b9695e83dbf8c1fe9?format=webp&width=800",
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F2d38a737cf2c4bf29f8764e48a93d404?format=webp&width=800",
     "Wi‑Fi ฟรี":
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F4ac1a198d950430b9ad73c0cba9c7fd6?format=webp&width=800",
     "ระบบประกาศบอกป้าย(เสียง/จอ)":
@@ -238,7 +238,7 @@ const AmenitiesScreen: React.FC = () => {
     fan: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F4e8932e864664a7f8a454d61f4e87ca9?format=webp&width=800",
     seat: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb35efe05833149089a2df21cf61300b4?format=webp&width=800",
     wifi: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F2ea6db6de8904f6f9cb279f96f470250?format=webp&width=800",
-    plug: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fba274e72720c4a1b9695e83dbf8c1fe9?format=webp&width=800",
+    plug: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F2d38a737cf2c4bf29f8764e48a93d404?format=webp&width=800",
     tv: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F4ac1a198d950430b9ad73c0cba9c7fd6?format=webp&width=800",
     cup: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8cb34953cb154a96b61c6c6a5352056c?format=webp&width=800",
   };
