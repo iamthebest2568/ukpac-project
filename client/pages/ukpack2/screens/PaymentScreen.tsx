@@ -139,7 +139,7 @@ const IconAir = () => (
 const IconFan = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe01792ee89e240808ed47d8576b55d71?format=webp&width=800"
-    alt="พัด���ม"
+    alt="พัด����ม"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -222,7 +222,7 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   "พัดลม": <IconFan />,
   "ที่นั่งพิเศษ": <IconSeat />,
   "ที่จับ/ราวยืนที่��ลอดภัย": <IconWifi />,
-  "ช่องชาร์จมือถือ/USB": <IconPlug />,
+  "ช่องชาร์จ���ือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
   "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
   "กล้องวงจรปิด": <IconCam />,
@@ -258,7 +258,7 @@ const BUS_EMPLOY_ICON_ACTIVE =
 const OPTIONS = [
   { key: "cash", label: "เงินสด", icon: <IconCash /> },
   { key: "scan", label: "สแกนจ่าย", icon: <IconScan /> },
-  { key: "scan2", label: "���แกนจ่าย 2", icon: null },
+  { key: "scan2", label: "สแกนจ่าย 2", icon: null },
   { key: "tap", label: "แตะบัตร", icon: <IconTap /> },
   { key: "qr", label: "กระเป๋ารถเมล์", icon: <IconQr /> },
   { key: "monthly", label: "ตั๋วรายเดือน/รอบ", icon: null },
@@ -380,7 +380,8 @@ const PaymentScreen: React.FC = () => {
             // Normalize known corrupted label encodings (in case values were stored with encoding issues)
             const CORRECT_LABELS: Record<string, string> = {
               "สแกนจ่��ย 2": "สแกนจ่าย 2",
-              "แ��ะบัตร": "แตะบัตร",
+              "���แกนจ่าย 2": "สแกนจ่าย 2",
+              "แ��ะบัตร": "แ���ะบัตร",
               "กระ��ป๋ารถเมล์": "กระเป๋ารถเมล์",
             };
             const normalizedOverlayLabels = overlayLabels.map((l) => CORRECT_LABELS[l] || l);
@@ -525,7 +526,7 @@ const PaymentScreen: React.FC = () => {
                     className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
                   >
                     <img
-                      src={selected.includes("แ��ะบัตร") ? TOUCH_ICON_ACTIVE : TOUCH_ICON}
+                      src={selected.includes("แตะบัตร") ? TOUCH_ICON_ACTIVE : TOUCH_ICON}
                       alt={label}
                       className="h-6 w-6 md:h-7 md:w-7 object-contain"
                     />
