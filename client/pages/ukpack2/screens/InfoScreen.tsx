@@ -51,17 +51,17 @@ const InfoScreen: React.FC = () => {
       >
         <div className="space-y-6">
           <div className="w-full flex justify-center">
-            <div className="w-full max-w-[900px] relative h-[220px] md:h-[300px]" >
+            <div className="w-full max-w-[900px] relative h-[220px] md:h-[300px] flex items-center justify-center" >
               <img
                 src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe0d645d03e674262a48ecc18869e1901?format=webp&width=1600"
                 alt="bg"
-                className="absolute inset-0 w-full h-full object-cover rounded-xl pointer-events-none select-none"
-                style={{ objectPosition: 'center 40%' }}
+                className="mx-auto w-auto h-full object-contain rounded-xl pointer-events-none select-none"
+                style={{ objectPosition: 'center 40%', maxWidth: 900 }}
                 decoding="async"
                 loading="eager"
               />
 
-              <div className="absolute left-1/2 top-[45%] transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center z-20" style={{ width: '72%', maxWidth: 420 }}>
+              <div className="absolute left-1/2 top-[50%] transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center z-20" style={{ width: '72%', maxWidth: 420 }}>
                 {(() => {
                   const amenities = (() => {
                     try { const raw = sessionStorage.getItem("design.amenities"); return raw ? (JSON.parse(raw) as string[]) : []; } catch { return [] as string[]; }
