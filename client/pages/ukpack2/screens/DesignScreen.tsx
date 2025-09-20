@@ -237,7 +237,7 @@ const DesignScreen: React.FC = () => {
     <>
       <MetaUpdater
         title="UK PACT - กรุงเทพฯ ลดติด"
-        description="ออกแบบรถเมล์เพื่อช่วยลดปัญหาการจราจรในกรุงเทพฯ — เลือกขนาดรถ สี และสิ่งอำนวยความสะดวกที่ต้องการ"
+        description="ออกแบบรถเมล์เพื่อช่วยลดปัญหาการจราจรในกรุงเทพฯ — เลือกขนาดรถ สี และสิ่งอำนวยความสะดวกที่ต้อง���าร"
         image="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F44cea8aeb6d4415e899494a90c6f59b1?format=webp&width=1200"
       />
       <CustomizationScreen
@@ -306,14 +306,7 @@ const DesignScreen: React.FC = () => {
                 <>
                   <VehiclePreview
                     imageSrc={img}
-                    label={
-                      <>
-                        <span className="chassis-label-mobile">
-                          รถที่เลือก :{" "}
-                        </span>
-                        {label}
-                      </>
-                    }
+                    label={label}
                     showSelectedText
                     colorFilter={color?.filter}
                     colorHex={color?.colorHex || null}
