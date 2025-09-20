@@ -144,7 +144,7 @@ const IconDoor1 = () => (
 const IconDoor2 = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8f9b21942af243b3b80b0e5ac8b12631?format=webp&width=800"
-    alt="ประ��ู 2"
+    alt="ประตู 2"
     className="h-8 w-8 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -286,7 +286,7 @@ const DoorScreen: React.FC = () => {
                     />
                   </div>
                 );
-              if (label === "สแกนจ่าย")
+              if (label === "สแกนจ่า���")
                 return (
                   <div
                     key={`${label}-${idx}`}
@@ -517,7 +517,7 @@ const DoorScreen: React.FC = () => {
                 ประตู
               </h2>
 
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              <div className="grid grid-cols-2 gap-3">
                 {/* Radio group for 1 or 2 doors */}
                 <SelectionCard
                   icon={<IconDoor1 />}
