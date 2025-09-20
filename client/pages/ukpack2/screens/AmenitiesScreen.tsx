@@ -31,6 +31,15 @@ const IconFan = () => (
     loading="eager"
   />
 );
+const IconFanAlt = () => (
+  <img
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F280e585e2bdc4134acc70eeb143c6c69?format=webp&width=800"
+    alt="พัดลม (กดแล้ว)"
+    className="object-contain select-none h-full w-full"
+    decoding="async"
+    loading="eager"
+  />
+);
 const IconSeat = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F93439b2533284cdf914fc93cafa1cf26?format=webp&width=800"
