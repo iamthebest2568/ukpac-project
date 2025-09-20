@@ -100,7 +100,7 @@ const IconCamSmall = () => (
 const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   แอร์: <IconAir />,
   พัดลม: <IconFan />,
-  ที่นั่งพิเศษ: <IconSeat />,
+  ���ี่นั่งพิเศษ: <IconSeat />,
   "ที่จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
   "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
@@ -290,15 +290,12 @@ const DesignScreen: React.FC = () => {
               // Custom image to use when the first color swatch is selected
               const FIRST_SWATCH_IMAGE = "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Ff9b1d87b7e3a41faa572e1421c77fe66?format=webp&width=800";
 
-              const [customPreRendered, setCustomPreRendered] = useState<Record<string, Record<string, string>>>(() => ({ ...PRE_RENDERED }));
+              // When the first swatch is clicked, we'll override the preview image directly
+              const [overrideImage, setOverrideImage] = useState<string | null>(null);
 
               const findPreRendered = (ch: string, hex: string | undefined | null) => {
                 if (!hex) return undefined;
                 const key = hex.replace(/^#/, "").toLowerCase();
-                const byCh = customPreRendered[ch] || {};
-                // check custom mapping first, then fall back to the static PRE_RENDERED
-                const fromCustom = byCh[key] || byCh[hex];
-                if (fromCustom) return fromCustom;
                 const byChDefault = PRE_RENDERED[ch] || {};
                 return byChDefault[key] || byChDefault[hex] || undefined;
               };
@@ -310,7 +307,7 @@ const DesignScreen: React.FC = () => {
               const label = CHASSIS_LABELS[selected] || "";
               // prefer pre-rendered vehicle for selected chassis+color if available
               const pre = findPreRendered(selected, color?.colorHex || undefined);
-              const img = pre || HERO_IMAGE[selected];
+              const img = overrideImage || pre || HERO_IMAGE[selected];
               return img ? (
                 <>
                   <VehiclePreview
@@ -435,7 +432,7 @@ const DesignScreen: React.FC = () => {
                       emergency: (
                         <img
                           src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F98de0624be3d4ae6b96d83edcf8891f9?format=webp&width=800"
-                          alt="ประตูฉุกเฉิน"
+                          alt="ประ���ูฉุกเฉิน"
                           className="h-5 w-5 object-contain"
                         />
                       ),
@@ -486,16 +483,11 @@ const DesignScreen: React.FC = () => {
                   try {
                     const isFirstSwatch = !!(preview && preview === DEFAULT_COLORS[0].preview) || (foundColor && foundColor.id === "353635-new");
                     if (isFirstSwatch) {
-                      const key = (colorHex || (foundColor && foundColor.colorHex) || (foundColor && foundColor.id) || "").replace(/^#/, "").toLowerCase();
-                      if (key) {
-                        setCustomPreRendered((prev) => ({
-                          ...prev,
-                          [selected]: {
-                            ...(prev[selected] || {}),
-                            [key]: FIRST_SWATCH_IMAGE,
-                          },
-                        }));
-                      }
+                      // directly override the preview image
+                      setOverrideImage(FIRST_SWATCH_IMAGE);
+                    } else {
+                      // clear any override when other colors selected
+                      setOverrideImage(null);
                     }
                   } catch (e) {
                     // ignore
