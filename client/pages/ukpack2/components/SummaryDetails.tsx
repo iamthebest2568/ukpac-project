@@ -5,7 +5,7 @@ import { useBusDesign } from "../context/BusDesignContext";
 const IconAir = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fee1c18a935564e92bb49991fac3b76df?format=webp&width=800"
-    alt="แอร์"
+    alt="��อร์"
     className="h-6 w-6 object-contain select-none"
   />
 );
@@ -171,7 +171,7 @@ const SummaryDetails: React.FC = () => {
     if (typeof raw === "string") {
       if (raw === "1") return "1 ประตู";
       if (raw === "2") return "2 ประตู";
-      if (raw === "ramp") return "ทางลาดสำหรับ��ถเข็น/ผู้พิการ";
+      if (raw === "ramp") return "ทางลาดสำหรับรถเข็น/ผู้พิการ";
       if (raw === "emergency") return "ประตูฉุกเฉิน";
       return raw;
     }
@@ -263,7 +263,7 @@ const SummaryDetails: React.FC = () => {
 
           <div className="flex items-start gap-3">
             <div className="w-28 md:w-36 text-sm text-[#003366] truncate">ทางขึ้น</div>
-            <div className="flex-1 font-sarabun font-semibold text-sm text-[#003366] break-words">{data.doors ? (typeof data.doors === "string" ? displayDoor(data.doors) : typeof data.doors === "object" ? (data.doors.doorChoice ? (data.doors.doorChoice === "1" ? "1 ประตู" : data.doors.doorChoice === "2" ? "2 ประตู" : String(data.doors.doorChoice)) : data.doors.hasRamp ? "ทางลาดสำหรับรถเข็น/ผู้พิการ" : data.doors.highLow ? "ประตูฉุกเฉิน" : JSON.stringify(data.doors)) : String(data.doors)) : "-"}</div>
+            <div className="flex-1 font-sarabun font-semibold text-sm text-[#003366] break-words">{data.doors ? (typeof data.doors === "string" ? displayDoor(data.doors) : typeof data.doors === "object" ? (data.doors.doorChoice ? (data.doors.doorChoice === "1" ? "1 ประตู" : data.doors.doorChoice === "2" ? "2 ประตู" : String(data.doors.doorChoice)) : data.doors.hasRamp ? "ทางลาดสำ��รับรถเข็น/ผู้พิการ" : data.doors.highLow ? "ประตูฉุกเฉิน" : JSON.stringify(data.doors)) : String(data.doors)) : "-"}</div>
           </div>
 
           <div className="flex items-start gap-3">
