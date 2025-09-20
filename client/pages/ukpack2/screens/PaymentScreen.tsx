@@ -139,7 +139,7 @@ const IconAir = () => (
 const IconFan = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe01792ee89e240808ed47d8576b55d71?format=webp&width=800"
-    alt="พัด�����ม"
+    alt="พัด����ม"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -222,7 +222,7 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   "พัดลม": <IconFan />,
   "ที่นั่งพิเศษ": <IconSeat />,
   "ที่จับ/ราวยืนที่��ลอดภัย": <IconWifi />,
-  "ช่องชาร์จ�����ือถือ/USB": <IconPlug />,
+  "ช่องชาร์จ���ือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
   "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
   "กล้องวงจรปิด": <IconCam />,
@@ -267,7 +267,7 @@ const OPTIONS = [
 const PaymentScreen: React.FC = () => {
   const navigate = useNavigate();
   const { state } = useBusDesign();
-  const [selected, setSelected] = useState<string[]>(["เงินสด"]);
+  const [selected, setSelected] = useState<string[]>(["เง���นสด"]);
 
   const storedColorLocal = state?.exterior?.color || (() => {
     try {
@@ -385,7 +385,14 @@ const PaymentScreen: React.FC = () => {
               "กระ��ป๋ารถเมล์": "กระเป๋ารถเมล์",
               "เงินส��": "เงินสด",
             };
-            const normalizedOverlayLabels = overlayLabels.map((l) => CORRECT_LABELS[l] || l);
+            const stripReplacement = (s: string) => (s || "").replace(/�|\uFFFD/g, "").trim();
+            const normalizedOverlayLabels = overlayLabels.map((l) => {
+              if (!l) return l;
+              if (CORRECT_LABELS[l]) return CORRECT_LABELS[l];
+              const cleaned = stripReplacement(l);
+              if (CORRECT_LABELS[cleaned]) return CORRECT_LABELS[cleaned];
+              return cleaned;
+            });
 
             // Add door selection to overlay
             if (doorsFromStorage) {
