@@ -58,7 +58,7 @@ type SessionSummary = {
   satisfactionLevel?: string; // ระดับความพึงพอใจ
   ask05Comment?: string; // ข้อเสนอเพิ่มเติมต่อรัฐ
   fakeNewsResponse?: string; // การตอบสนองต่อข่าวปลอม
-  sourceSelected?: string; // แหล่งข่าวที่ผู้ใช้เลือก
+  sourceSelected?: string; // แหล่งข่าวที��ผู้ใช้เลือก
   endDecision?: string; // การเข้าร่วมลุ้นรางวัล
   endDecisionText?: string;
   contactName?: string;
@@ -304,7 +304,7 @@ export default function UkDashboard() {
               aria-hidden="true"
             />
           )}
-          {error && <div className="text-red-400">เกิดข้อผิดพลาด: {error}</div>}
+          {error && <div className="text-red-400">เกิดข��อผิดพลาด: {error}</div>}
 
           {stats && (
             <div className="space-y-6">
@@ -371,7 +371,7 @@ export default function UkDashboard() {
                   </div>
                 </Card>
 
-                <Card title="เริ่มฉาก (Variants)">
+                <Card title="เริ่มฉ���ก (Variants)">
                   <div className="w-full h-[260px] md:h-[320px] min-w-0">
                     <ResponsiveContainer width="100%" height="100%">
                       <BarChart
@@ -454,7 +454,7 @@ export default function UkDashboard() {
 
               {/* User Journey: Topics as accordion */}
               {journey && (
-                <Card title="หัวข้อข้��มูล (Topics)">
+                <Card title="หัวข้อข้อมูล (Topics)">
                   <Accordion
                     type="single"
                     collapsible
@@ -616,7 +616,7 @@ export default function UkDashboard() {
                     {/* MN3 selected */}
                     <AccordionItem value="mn3sel">
                       <AccordionTrigger>
-                        Minigame 3 : นโ���บายที่เลือก
+                        Minigame 3 : นโยบายที่เลือก
                       </AccordionTrigger>
                       <AccordionContent>
                         <ul className="space-y-1 text-sm">
@@ -702,7 +702,7 @@ export default function UkDashboard() {
               )}
 
               {/* Per-user (individual) results */}
-              <Card title="ผลรายบุคคล (ล่าสุด)">
+              <Card title="ผลร���ยบุคคล (ล่าสุด)">
                 <div className="overflow-x-auto">
                   <table className="min-w-full text-sm rounded-md overflow-hidden">
                     <thead className="bg-white/5 backdrop-blur">
@@ -776,15 +776,15 @@ export default function UkDashboard() {
                       "อธิบายอื่น ๆ ที่ช่วยอธิบายความคิดเห็น",
                       "บอกเราหน่อยว่าคุณเดินทางเข้าเมืองด้วยวิธีการใดบ่อยที่สุด",
                       "จากนโยบายที่คุณฟังเมื่อสักครู่ คุณมีความคิดเห็นอย่างไร",
-                      "คุณคิดว่านโยบายปัจจุบัน ควรปรับเปลี่ยนประเด็นอะไรบาง (ลดค่าโดยสาร, ปรับปรุงคุณภาพ, ขึ้นราคา, เพิ่มขบวน, เพิ่มความถี่ ���ลฯ)",
+                      "คุณคิดว่านโยบายปัจจุบัน ควรปรับเปลี่ยนประเด็นอะไรบาง (ลดค่าโดยสาร, ปรับปรุงคุณภาพ, ขึ้นราคา, เพิ่มขบวน, เพิ่มความถี่ ฯลฯ)",
                       "คุณคิดว่าใครควรได้รับการลดค่าโดยสารรถไฟฟ้าบ้าง (ทุกคน, ผู้สูงอายุ, นักเรียน, คนทำงาน ฯลฯ)",
-                      "คุณคิดว่าควรใช้เงินที่ได้จากการเก็บไปพัฒนาอะไร ก่อน 3 อันดับแรก",
+                      "คุณคิดว่าคว��ใช้เงินที่ได้จากการเก็บไปพัฒนาอะไร ก่อน 3 อันดับแรก",
                       "คุณจะให้งบประมาณแต่ละข้อเท่าไร (งบทั้งหมด 100)",
                       "คุณพอใจกับผลลัพธ์ที่เกิดขึ้นหรือไม่ (พอใจ / ไม่พอใจ)",
                       "คุณคิดว่ารัฐควรทำอะไรที่จะทำให้นโยบายนี้เกิดขึ้นได้จริง และเป็นประโยชน์ต่อประชาชนอย่างแท้จริง",
-                      "ตอนนี้มีข้อมูลที่ผิ��พลาด เช่น ข่าวปลอมเกี่ยวกับนโยบาย คุณคิดว่าอ���่างไร",
+                      "ตอนนี้มีข้อมูลที่ผิดพลาด เช่น ข่าวปลอมเกี่ยวกับนโยบาย คุณคิดว่าอย่างไร",
                       "คุณจะติดตามข่าว หรือเชื่อจากแหล่งไหนมากที่สุด",
-                      "ขอบคุณที่ร่วมเป็นส่วนหนึ่ง → ต้องการลุ้นรับรางวัลหรือไม่",
+                      "ขอบคุณที่ร่วมเป็นส่วนหนึ่ง → ต้องการลุ้นรับรางวัล���รือไม่",
                       "กรอกข้อมูลเพื่อลุ้นรางวัล (ชื่อ)",
                       "กรอกข้อมูลเพื่อลุ้นรางวัล (เบอร์โทร)",
                       "Time Stamp (First)",
