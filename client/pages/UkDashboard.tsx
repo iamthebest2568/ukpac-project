@@ -47,11 +47,11 @@ type SessionSummary = {
   travelMethod?: string; // ยานพาหนะที่ใช้
   opinionLevel?: string; // ระดับความคิดเห็น
   ask02Choice?: string; // เหตุผลหลัก
-  ask02CustomReason?: string; // เหตุผลพิมพ์เอง
+  ask02CustomReason?: string; // เหตุผลพิมพ์���อง
   reasonOther01?: string; // คำอธิบายเพิ่มเติม
   keyMessage1?: string; // Key message 1
   mn1Selected: string[]; // ลำดับความสำคัญของประเด็น
-  mn2Selections?: Record<string, string[]>; // กลุ่มเป้าหมายที่คว��ได้รับสิทธิ์
+  mn2Selections?: Record<string, string[]>; // กลุ่มเป้าหมายที่ควรได้รับสิทธิ์
   mn3Selected?: string[]; // ประเด็นนโยบายที่ผู้ใช้เลือก
   mn3BudgetAllocation?: Record<string, number>; // การจัดสรรงบประมาณ
   mn3BudgetTotal?: number;
@@ -160,7 +160,7 @@ export default function UkDashboard() {
       }
       setLastUpdated(new Date().toLocaleString());
     } catch (e: any) {
-      setError(e?.message || "โหลดข้อมูลล้มเ��ลว");
+      setError(e?.message || "โหลดข้อมูลล้มเหลว");
     } finally {
       if (firstLoad) setLoading(false);
       setFirstLoad(false);
@@ -232,7 +232,7 @@ export default function UkDashboard() {
               className="mt-4 w-full rounded-full bg-[#EFBA31] text-black font-medium px-5 py-2 border border-black"
               onClick={() => {
                 if (!expected) {
-                  setPwErr("ยังไม่ได���ตั้งรหัสผ่าน (VITE_DASHBOARD_PASSWORD)");
+                  setPwErr("ยังไม่ได้ตั้งรหัสผ่าน (VITE_DASHBOARD_PASSWORD)");
                   return;
                 }
                 if (pw === expected) {
@@ -707,7 +707,7 @@ export default function UkDashboard() {
                   <table className="min-w-full text-sm rounded-md overflow-hidden">
                     <thead className="bg-white/5 backdrop-blur">
                       <tr className="text-left text-white/80">
-                        <th className="py-2 pr-4">เวลา</th>
+                        <th className="py-2 pr-4">��วลา</th>
                         <th className="py-2 pr-4">Session</th>
                         <th className="py-2 pr-4">Intro</th>
                         <th className="py-2 pr-4">MN1</th>
@@ -774,13 +774,13 @@ export default function UkDashboard() {
                       "จากข้อความข้างต้น คุณมีความคิดเห็นอย่างไร (เห็นด้วย/กลางๆ/ไม่เห็นด้วย)",
                       "ทำไมคุณถึงคิดอย่างนั้น (นโยบายไม่ครอบคลุม / เก็บไปก็ไม่มีอะไรดีขึ้น / อื่นๆ)",
                       "อธิบายอื่น ๆ ที่ช่วยอธิบายความคิดเห็น",
-                      "บอกเราหน่อยว่าคุณเดินทางเข้าเมืองด้วยวิธีการใดบ่อยที่สุด",
+                      "บอกเราหน่อยว่าคุณเดินทางเข้า���มืองด้วยวิธีการใดบ่อยที่สุด",
                       "จากนโยบายที่คุณฟังเมื่อสักครู่ คุณมีความคิดเห็นอย่างไร",
                       "คุณคิดว่านโยบา��ปัจจุบัน ควรปรับเปลี่ยนประเด็นอะไรบาง (ลดค่าโดยสาร, ปรับปรุงคุณภาพ, ขึ้นราคา, เพิ่มขบวน, เพิ่มความถี่ ฯลฯ)",
                       "คุณคิดว่าใครควรได้รับการลดค่าโดยสารรถไฟฟ้าบ้าง (ทุกคน, ผู้สูงอายุ, นักเรียน, คนทำงาน ฯลฯ)",
                       "คุณคิดว่าควรใช้เงินที่ได้จากการเก็บไปพัฒนาอะไร ก่อน 3 อันดับแรก",
                       "คุณจะให้งบประมาณแต่ละข้อเท่าไร (งบทั้งหมด 100)",
-                      "คุณพอใจกับผลลัพธ์ที่เกิดขึ้นหรือไม่ (พอใจ / ไม่พอใจ)",
+                      "คุณพอใจกับผล���ัพธ์ที่เกิดขึ้นหรือไม่ (พอใจ / ไม่พอใจ)",
                       "คุณคิดว่ารัฐควรทำอะไรที่จะทำให้นโยบายนี้เกิดขึ้นได้จริง และเป็นประโยชน์���่อประชาชนอย่างแท้จริง",
                       "ตอนนี้มีข้อมูลที่ผิดพลาด เช่น ข่าวปลอมเกี่ยวกับนโยบาย คุณคิดว่าอย่างไร",
                       "คุณจะติดตามข่าว หรือเชื่อจากแหล่งไหนมากที่สุด",
@@ -788,7 +788,7 @@ export default function UkDashboard() {
                       "กรอกข้อมูลเพื่อลุ้นรางวัล (ชื่อ)",
                       "กรอกข้อมูลเพื่อลุ้นรางวัล (เบอร์โทร)",
                       "Time Stamp (First)",
-                      "แชร์ให้เพื่อนไหม (ครั้งแรก)",
+                      "แช���์ให้เพื่อนไหม (ครั้งแรก)",
                       "Time Stamp (Last)",
                       "แชร์ให้เพื่อนไหม (เคยแชร์ไหม)",
                       "Session ID",
