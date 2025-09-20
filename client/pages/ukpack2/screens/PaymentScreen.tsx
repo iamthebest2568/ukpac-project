@@ -166,7 +166,7 @@ const IconWifi = () => (
 const IconPlug = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F09a78e31a3de44e98772b0eef382af6f?format=webp&width=800"
-    alt="ช่องชาร์จม���อถือ/USB"
+    alt="ช่องชาร์จมือถือ/USB"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -246,6 +246,8 @@ const TOUCH_ICON_ACTIVE =
   "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8cad04d43a934610ad263ec567710f38?format=webp&width=800";
 const MONTHLY_ICON =
   "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F317d08ac637c469183e11074bb390d6b?format=webp&width=800";
+const MONTHLY_ICON_ACTIVE =
+  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc45bc2c52e35481b82d7f164bab3cf7c?format=webp&width=800";
 const BUS_EMPLOY_ICON =
   "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F70ea0f54beea4e5291e4838094456c19?format=webp&width=800";
 const BUS_EMPLOY_ICON_ACTIVE =
