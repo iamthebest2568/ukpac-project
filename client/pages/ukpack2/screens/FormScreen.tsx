@@ -80,7 +80,7 @@ const FormScreen: React.FC = () => {
     >
       <div className="max-w-xl mx-auto pt-4 space-y-5 font-sarabun text-[17.6px] form-no-focus">
         <style>{`.form-no-focus *:focus{outline:none !important;box-shadow:none !important;}`}</style>
-        <div className="w-full flex justify-center -mt-24 md:-mt-32">
+        <div className="w-full flex justify-center -mt-32 md:-mt-40">
           <img
             src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F33272924342744429f8155587f834f20?format=webp&width=800"
             alt="รถเมล์ในฝัน"
