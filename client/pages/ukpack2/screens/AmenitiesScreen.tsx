@@ -85,6 +85,15 @@ const IconPlug = () => (
     loading="eager"
   />
 );
+const IconPlugAlt = () => (
+  <img
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F76d2422a6fb84d0bb752cd149518a87b?format=webp&width=800"
+    alt="ช่องชาร์จมือถือ/USB (กดแล้ว)"
+    className="object-contain select-none h-full w-full"
+    decoding="async"
+    loading="eager"
+  />
+);
 const IconTv = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F6e87ff91650a4c828cd5286cfaa34bb7?format=webp&width=800"
@@ -107,7 +116,7 @@ const IconCup = () => (
 const AMENITIES = [
   { key: "air", label: "แอร์", icon: <IconAir />, iconActive: <IconAirAlt /> },
   { key: "fan", label: "พัดลม", icon: <IconFan />, iconActive: <IconFanAlt /> },
-  { key: "seat", label: "ที่นั่งพิเศษ", icon: <IconSeat />, iconActive: <IconSeatAlt /> },
+  { key: "seat", label: "ที่นั่งพิ���ศษ", icon: <IconSeat />, iconActive: <IconSeatAlt /> },
   { key: "wifi", label: "ที่จับ/ราวยืนที่ปลอดภัย", icon: <IconWifi />, iconActive: <IconWifiAlt /> },
   { key: "plug", label: "ช่องชาร์จมือถือ/USB", icon: <IconPlug />, iconActive: <IconPlug /> },
   { key: "tv", label: "Wi‑Fi ฟรี", icon: <IconTv />, iconActive: <IconTv /> },
