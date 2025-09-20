@@ -219,7 +219,7 @@ const IconCam = () => (
 
 const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   "แอร์": <IconAir />,
-  "พัดล���": <IconFan />,
+  "พัดลม": <IconFan />,
   "ที่นั่งพิเศษ": <IconSeat />,
   "ที่จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
   "ช่องชาร์จมือถือ/USB": <IconPlug />,
@@ -629,7 +629,7 @@ const PaymentScreen: React.FC = () => {
                   const iconNode =
                     o.key === "cash" ? (
                       <img
-                        src={MONEY_ICON}
+                        src={isSel ? MONEY_ICON_ACTIVE : MONEY_ICON}
                         alt={o.label}
                         className={`h-8 w-8 object-contain select-none ${isSel ? "" : "grayscale opacity-60"}`}
                         decoding="async"
