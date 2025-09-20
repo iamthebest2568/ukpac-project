@@ -61,7 +61,7 @@ const IconSeatAlt = () => (
 const IconWifi = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fdfbb7f3adfa04596916b9ea1950acef1?format=webp&width=800"
-    alt="ที่จับ/ราวยืน"
+    alt="ที่จับ/ราวยื��"
     className="object-contain select-none h-full w-full"
     decoding="async"
     loading="eager"
@@ -96,7 +96,7 @@ const IconPlugAlt = () => (
 );
 const IconTv = () => (
   <img
-    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F6e87ff91650a4c828cd5286cfaa34bb7?format=webp&width=800"
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F1fb83749171e40fdb6fd8e6d75d46504?format=webp&width=800"
     alt="Wi‑Fi ฟรี"
     className="object-contain select-none h-full w-full"
     decoding="async"
