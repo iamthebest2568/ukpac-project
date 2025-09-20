@@ -19,7 +19,7 @@ const SkipEnd: React.FC = () => {
         <div className="space-y-6">
           <div className="w-full flex justify-center">
             <img
-              src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc36f7d2aca87432f90a5a36fb28b97ed?format=webp&width=1600"
+              src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F7c947cc5d81340288731f731c651e76b?format=webp&width=800"
               alt="ภาพขอบคุณ"
               className="w-full h-auto max-w-[720px] mb-6"
             />
