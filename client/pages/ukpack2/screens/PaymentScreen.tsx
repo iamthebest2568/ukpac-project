@@ -316,7 +316,7 @@ const PaymentScreen: React.FC = () => {
           {(() => {
             const CHASSIS_LABELS: Record<string, string> = {
               small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
-              medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
+              medium: "รถเมล์มาตร���าน 30–50 ที่นั่ง",
               large: "รถตู้โดยสาร 9–15 ที่นั่ง",
               extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
             };
@@ -639,7 +639,7 @@ const PaymentScreen: React.FC = () => {
                       />
                     ) : o.key === "scan" ? (
                       <img
-                        src={SCAN_ICON}
+                        src={isSel ? SCAN_ICON_ACTIVE : SCAN_ICON}
                         alt={o.label}
                         className={`object-contain select-none h-full w-full `}
                         decoding="async"
