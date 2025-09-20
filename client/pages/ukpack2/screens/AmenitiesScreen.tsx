@@ -78,7 +78,7 @@ const IconCup = () => (
 );
 
 const AMENITIES = [
-  { key: "air", label: "แอร์", icon: <IconAir />, iconActive: <IconAir /> },
+  { key: "air", label: "แอร์", icon: <IconAir />, iconActive: <IconAirAlt /> },
   { key: "fan", label: "พัดลม", icon: <IconFan />, iconActive: <IconFan /> },
   { key: "seat", label: "ที่นั่งพิเศษ", icon: <IconSeat />, iconActive: <IconSeat /> },
   { key: "wifi", label: "ที่จับ/ราวยืนที่ปลอดภัย", icon: <IconWifi />, iconActive: <IconWifi /> },
