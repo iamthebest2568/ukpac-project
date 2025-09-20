@@ -80,7 +80,7 @@ const BUS_EMPLOY_ICON =
 const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   แอร์: <IconAir />,
   พัดลม: <IconFan />,
-  ที่นั่งพิเศษ: <IconSeat />,
+  ที���นั่งพิเศษ: <IconSeat />,
   "ที่จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
   "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
@@ -172,7 +172,7 @@ const SummaryDetails: React.FC = () => {
       if (raw === "1") return "1 ประตู";
       if (raw === "2") return "2 ประตู";
       if (raw === "ramp") return "ทางลาดสำหรับรถเข็น/ผู้พิการ";
-      if (raw === "emergency") return "ประตูฉุกเฉิน";
+      if (raw === "emergency") return "ประตูฉุกเฉ���น";
       return raw;
     }
     if (typeof raw === "object") {
@@ -242,12 +242,12 @@ const SummaryDetails: React.FC = () => {
       <div className="bg-[#e6e7e8] rounded-lg p-4 text-sm text-gray-800 shadow-sm">
         <div className="flex flex-col gap-3">
           <div className="flex items-start gap-3">
-            <div className="w-28 md:w-36 text-sm text-[#003366] truncate">รูปแบบรถ</div>
+            <div className="w-28 md:w-36 text-sm text-[#003366] truncate font-sarabun font-semibold">รูปแบบรถ</div>
             <div className="flex-1 font-sarabun font-semibold text-sm text-[#003366] break-words">{chassisLabel}</div>
           </div>
 
           <div className="flex items-start gap-3">
-            <div className="w-28 md:w-36 text-sm text-[#003366] truncate">ที่นั่ง</div>
+            <div className="w-28 md:w-36 text-sm text-[#003366] truncate font-sarabun font-semibold">ที่นั่ง</div>
             <div className="flex-1 font-sarabun font-semibold text-sm text-[#003366] break-words">{data.seating ? (typeof data.seating === "object" ? data.seating.totalSeats : String(data.seating)) : "-"}</div>
           </div>
 
@@ -267,7 +267,7 @@ const SummaryDetails: React.FC = () => {
           </div>
 
           <div className="flex items-start gap-3">
-            <div className="w-28 md:w-36 text-sm text-[#003366] truncate">ลักษณะพิเศษ</div>
+            <div className="w-28 md:w-36 text-sm text-[#003366] truncate font-sarabun font-semibold">ลักษณะพิเศษ</div>
             <div className="flex-1 font-sarabun font-semibold text-sm text-[#003366] break-words">{data.slogan || "-"}</div>
           </div>
 
