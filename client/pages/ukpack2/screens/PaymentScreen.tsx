@@ -377,6 +377,13 @@ const PaymentScreen: React.FC = () => {
               ...(amenitiesFromStorage || []),
               ...(selected || []),
             ];
+            // Normalize known corrupted label encodings (in case values were stored with encoding issues)
+            const CORRECT_LABELS: Record<string, string> = {
+              "สแกนจ่��ย 2": "สแกนจ่าย 2",
+              "แ��ะบัตร": "แตะบัตร",
+              "กระ��ป๋ารถเมล์": "กระเป๋ารถเมล์",
+            };
+            const normalizedOverlayLabels = overlayLabels.map((l) => CORRECT_LABELS[l] || l);
 
             // Add door selection to overlay
             if (doorsFromStorage) {
@@ -586,7 +593,7 @@ const PaymentScreen: React.FC = () => {
                         className="h-full w-full object-contain"
                       />
                     ),
-                    "สแกนจ่าย 2": (
+                    "���แกนจ่าย 2": (
                       <img
                         src={"https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F95e4291272564bf2b9d1b522cd4bf75e?format=webp&width=800"}
                         alt="สแกนจ่าย 2"
@@ -607,7 +614,7 @@ const PaymentScreen: React.FC = () => {
                         className="h-full w-full object-contain"
                       />
                     ),
-                    "ตั๋วรายเดือน/รอบ": (
+                    "ตั๋วรายเดือน/���อบ": (
                       <img
                         src={"https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8a53d9e6b6284ac19efb0e61c1025784?format=webp&width=800"}
                         alt="ตั๋วรายเดือน/รอบ"
