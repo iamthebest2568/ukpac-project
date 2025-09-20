@@ -144,10 +144,10 @@ onBlur={() => logEvent({ event: "FORM_PHONE_BLUR", payload: { phoneLen: phone.le
         <div className="max-w-4xl mx-auto flex items-end justify-center h-full">
           <div className="flex flex-col items-center gap-3 pb-8">
             <div style={{ width: '220px', marginTop: '16px' }}>
-              <CtaButton className="w-full" text="ลุ้นรับรางวัล" onClick={submit} />
+              <CtaButton className="w-full" text="ลุ้นรับรางวัล" onClick={submit} style={{ width: '220px', height: '48px' }} />
             </div>
             <div style={{ width: '220px' }}>
-              <SecondaryButton className="w-full" text="ไม่รับรางวัล" onClick={skip} className="bg-[#ffe000] text-black hover:bg-[#000d59] hover:text-white" />
+              <SecondaryButton className="w-full h-12" text="ไม่รับรางวัล" onClick={skip} />
             </div>
           </div>
         </div>
