@@ -24,7 +24,7 @@ const TOPDOWN_IMAGE: Record<string, string | undefined> = {
 const CHASSIS_LABELS: Record<string, string> = {
   small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
   medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
-  large: "รถตู้โดยสาร 9–15 ที่น��่ง",
+  large: "รถตู้โดยสาร 9–15 ที่นั่ง",
   extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
 };
 
@@ -110,7 +110,7 @@ const SeatingScreen: React.FC = () => {
     if (!(total >= minCapacityLocal && total <= maxCapacityLocal)) {
       const chassisLabel = CHASSIS_LABELS[selectedChassis] || selectedChassis;
       setErrorTitle("จำนวนที่นั่งไม่ถูกต้องสำหรับประเภทรถที่เลือก");
-      setErrorMessage(`คุณเลือก: ${chassisLabel}. ค่าที่ถูกต้องคือ ${minCapacityLocal} ถึง ${maxCapacityLocal} ที่นั่ง แต่คุณกรอก ${total}`);
+      setErrorMessage(`คุณเลือก: ${chassisLabel}. ค่า��ี่ถูกต้องคือ ${minCapacityLocal} ถึง ${maxCapacityLocal} ที่นั่ง แต่คุณกรอก ${total}`);
       setErrorModalOpen(true);
       return false;
     }
