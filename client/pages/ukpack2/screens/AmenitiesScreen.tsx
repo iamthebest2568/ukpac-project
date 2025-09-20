@@ -69,13 +69,13 @@ const IconCup = () => (
 );
 
 const AMENITIES = [
-  { key: "air", label: "แอร์", icon: <IconAir /> },
-  { key: "fan", label: "พัดลม", icon: <IconFan /> },
-  { key: "seat", label: "ที่นั่งพิเศษ", icon: <IconSeat /> },
-  { key: "wifi", label: "ที่จับ/ราวยืนที่ปลอดภัย", icon: <IconWifi /> },
-  { key: "plug", label: "ช่องชาร์จมือถือ/USB", icon: <IconPlug /> },
-  { key: "tv", label: "Wi‑Fi ฟรี", icon: <IconTv /> },
-  { key: "cup", label: "ระบบประกาศบอกป้าย(เสียง/จอ)", icon: <IconCup /> },
+  { key: "air", label: "แอร์", icon: <IconAir />, iconActive: <IconAir /> },
+  { key: "fan", label: "พัดลม", icon: <IconFan />, iconActive: <IconFan /> },
+  { key: "seat", label: "ที่นั่งพิเศษ", icon: <IconSeat />, iconActive: <IconSeat /> },
+  { key: "wifi", label: "ที่จับ/ราวยืนที่ปลอดภัย", icon: <IconWifi />, iconActive: <IconWifi /> },
+  { key: "plug", label: "ช่องชาร์จมือถือ/USB", icon: <IconPlug />, iconActive: <IconPlug /> },
+  { key: "tv", label: "Wi‑Fi ฟรี", icon: <IconTv />, iconActive: <IconTv /> },
+  { key: "cup", label: "ระบบประกาศบอกป้าย(เสียง/จอ)", icon: <IconCup />, iconActive: <IconCup /> },
 ];
 
 import { useNavigate } from "react-router-dom";
@@ -230,7 +230,7 @@ const AmenitiesScreen: React.FC = () => {
                 {AMENITIES.map((a) => (
                   <SelectionCard
                     key={a.key}
-                    icon={a.icon}
+                    icon={selected.includes(a.label) ? (a.iconActive || a.icon) : a.icon}
                     label={a.label}
                     isSelected={selected.includes(a.label)}
                     onClick={() => toggle(a.label)}
