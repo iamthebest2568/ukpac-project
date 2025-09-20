@@ -136,7 +136,7 @@ const AMENITIES = [
   { key: "fan", label: "พัดลม", icon: <IconFan />, iconActive: <IconFanAlt /> },
   { key: "seat", label: "ที่นั่งพิเศษ", icon: <IconSeat />, iconActive: <IconSeatAlt /> },
   { key: "wifi", label: "ที่จับ/ราวยืนที่ปลอดภัย", icon: <IconWifi />, iconActive: <IconWifiAlt /> },
-  { key: "plug", label: "ช่องชาร์จ��ือถือ/USB", icon: <IconPlug />, iconActive: <IconPlugAlt /> },
+  { key: "plug", label: "ช่องชาร์จมือถือ/USB", icon: <IconPlug />, iconActive: <IconPlugAlt /> },
   { key: "tv", label: "Wi‑Fi ฟรี", icon: <IconTv />, iconActive: <IconTvAlt /> },
   { key: "cup", label: "ระบบประกาศบอกป้าย(เสียง/จอ)", icon: <IconCup />, iconActive: <IconCupAlt /> },
 ];
@@ -222,11 +222,11 @@ const AmenitiesScreen: React.FC = () => {
     พัดลม:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F4e8932e864664a7f8a454d61f4e87ca9?format=webp&width=800",
     ที่นั่งพิเศษ:
-      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb35efe05833149089a2df21cf61300b4?format=webp&width=800", // ใช้ไอคอนหน้าต่างเปิ��ได้
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb35efe05833149089a2df21cf61300b4?format=webp&width=800", // ใช้ไอคอนหน้าต่างเปิดได้
     หน้าต่างเปิดได้:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb35efe05833149089a2df21cf61300b4?format=webp&width=800",
     "ที่จับ/ราวยืนที่ปลอดภัย":
-      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F1cae4f7306834a6eb0d86be09e05bfdd?format=webp&width=800",
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F2ea6db6de8904f6f9cb279f96f470250?format=webp&width=800",
     "ช่องชาร์จมือถือ/USB":
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fba274e72720c4a1b9695e83dbf8c1fe9?format=webp&width=800",
     "Wi‑Fi ฟรี":
@@ -237,7 +237,7 @@ const AmenitiesScreen: React.FC = () => {
     air: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F43ef2946e5324cb981bc063db02fe5bc?format=webp&width=800",
     fan: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F4e8932e864664a7f8a454d61f4e87ca9?format=webp&width=800",
     seat: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb35efe05833149089a2df21cf61300b4?format=webp&width=800",
-    wifi: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F1cae4f7306834a6eb0d86be09e05bfdd?format=webp&width=800",
+    wifi: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F2ea6db6de8904f6f9cb279f96f470250?format=webp&width=800",
     plug: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fba274e72720c4a1b9695e83dbf8c1fe9?format=webp&width=800",
     tv: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F4ac1a198d950430b9ad73c0cba9c7fd6?format=webp&width=800",
     cup: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8cb34953cb154a96b61c6c6a5352056c?format=webp&width=800",
