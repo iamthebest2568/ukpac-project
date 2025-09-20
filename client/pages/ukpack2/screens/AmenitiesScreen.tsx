@@ -43,7 +43,7 @@ const IconWifi = () => (
 const IconPlug = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F69ce70e36cc043d2b124a20e34d33b06?format=webp&width=800"
-    alt="ช���องชาร์จมือถือ/USB"
+    alt="ช่องชาร์จมือถือ/USB"
     className="object-contain select-none h-full w-full"
     decoding="async"
     loading="eager"
