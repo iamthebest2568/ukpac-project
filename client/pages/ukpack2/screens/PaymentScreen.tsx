@@ -574,7 +574,7 @@ const PaymentScreen: React.FC = () => {
                     "สแกนจ่าย": (
                       <img
                         src={SCAN_ICON}
-                        alt="ส���กนจ่าย"
+                        alt="สแกนจ่าย"
                         className="h-5 w-5 object-contain"
                       />
                     ),
