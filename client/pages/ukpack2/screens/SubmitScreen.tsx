@@ -155,7 +155,7 @@ const SubmitScreen: React.FC = () => {
           </div>
 
           <h2 className="text-lg font-prompt font-semibold text-[#003366] mt-2">
-            ��ารบริการของรถเมล์
+            การบริการของรถเมล์
           </h2>
 
           <div className="space-y-4">
@@ -207,7 +207,7 @@ const SubmitScreen: React.FC = () => {
 
       <ConfirmModal
         isOpen={isExitModalOpen}
-        title="ออกจากหน้า���อ"
+        title="ออกจ��กหน้าจอ"
         message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
         onConfirm={() => navigate("/")}
         onCancel={() => setExitModalOpen(false)}
