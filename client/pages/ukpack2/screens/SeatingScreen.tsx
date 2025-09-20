@@ -101,7 +101,7 @@ const SeatingScreen: React.FC = () => {
     const total = typeof totalSeats === "number" ? totalSeats : totalSeats === "" ? NaN : Number(totalSeats);
 
     if (Number.isNaN(total)) {
-      setErrorTitle("กรุณาระบุจำนวนที่นั่งทั้งหมด");
+      setErrorTitle("กรุณ���ระบุจำนวนที่นั่งทั้งหมด");
       setErrorMessage(`กรุณากรอกจำนวนที่นั่งทั้งหมดในช่วง ${minCapacityLocal} ถึง ${maxCapacityLocal} ที���นั่ง`);
       setErrorModalOpen(true);
       return false;
@@ -122,7 +122,7 @@ const SeatingScreen: React.FC = () => {
     const sWheel = Number(wheelchairBikeSpaces) || 0;
     const sumSubs = sSpecial + sChild + sPreg + sMonk + sWheel;
     if (sumSubs !== total) {
-      setErrorTitle("ผลรวมของที่นั่งย่อยไม่ตรงกัน");
+      setErrorTitle("ผลรวมของที่��ั่งย่อยไม่ตรงกัน");
       setErrorMessage(`ผลรวมของที่นั่งย่อยทั้งหมด (${sumSubs}) ไม่ตรงกับจำนวนที่นั่งทั้งหมด (${total})`);
       setErrorModalOpen(true);
       return false;
@@ -203,7 +203,7 @@ const SeatingScreen: React.FC = () => {
                         const parsed = Math.min(maxCapacity, Math.max(0, parseInt(raw || "0", 10)));
                         handleTotalSeatsChange(parsed);
                       }}
-                      className="w-24 px-3 py-2 text-[#000D59] bg-transparent text-right font-sarabun text-[17.6px] outline-none"
+                      className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-full text-[#000D59] bg-white text-right font-sarabun text-[17.6px]"
                       min={0}
                       max={maxCapacity}
                     />
