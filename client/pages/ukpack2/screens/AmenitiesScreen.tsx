@@ -51,7 +51,7 @@ const IconSeat = () => (
 );
 const IconSeatAlt = () => (
   <img
-    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fa2e2c44acf9340069f09f361139b4ffa?format=webp&width=800"
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fd7356cef99f243198fe91182cd1fea19?format=webp&width=800"
     alt="ที่จับ/ราวยืน (กดแล้ว)"
     className="object-contain select-none h-full w-full"
     decoding="async"
@@ -195,7 +195,7 @@ const AmenitiesScreen: React.FC = () => {
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fba274e72720c4a1b9695e83dbf8c1fe9?format=webp&width=800",
     "Wi‑Fi ฟรี":
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F63dc13fe1fab446a9da88bfb297d9c6d?format=webp&width=800",
-    "ระบบประกาศบอกป้าย(เสียง/จอ)":
+    "ระบบประกาศบอกป้าย(เสียง/���อ)":
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F35b324f49ad84b71a92ae80b0b39f7cd?format=webp&width=800",
     // keys (fallback)
     air: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F02548238f8184e808929075a27733533?format=webp&width=800",
@@ -209,7 +209,7 @@ const AmenitiesScreen: React.FC = () => {
 
   return (
     <CustomizationScreen
-      title="ปรับแต่งรถเมล์ของคุณ"
+      title="ปรับแต่งรถเมล์ของ���ุณ"
       theme="light"
       fullWidth
       footerContent={
