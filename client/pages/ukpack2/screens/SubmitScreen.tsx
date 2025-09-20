@@ -86,7 +86,7 @@ const SubmitScreen: React.FC = () => {
   const chassisLabel = CHASSIS_LABELS[selectedChassis] || "";
   const heroImg = HERO_IMAGE[selectedChassis];
 
-  const storedColor = (() => {
+  const storedColor = state?.exterior?.color || (() => {
     try {
       const raw = sessionStorage.getItem("design.color");
       return raw ? JSON.parse(raw) : null;
@@ -181,7 +181,7 @@ const SubmitScreen: React.FC = () => {
 
             <div className="flex items-center gap-3 min-w-0">
               <label className="w-28 md:w-36 text-sm text-[#003366] truncate">
-                พ���้นที่ที่วิ่ง
+                พื้นที่ที่วิ่ง
               </label>
               <input
                 type="text"
