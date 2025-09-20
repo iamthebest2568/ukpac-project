@@ -328,7 +328,7 @@ const PaymentScreen: React.FC = () => {
               small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
               medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
               large: "รถตู้โดยสาร 9–15 ที่นั่ง",
-              extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
+              extra: "รถกะบะดัดแปลง 8–12 ที่นั่��",
             };
             const HERO_IMAGE: Record<string, string> = {
               small:
@@ -576,42 +576,42 @@ const PaymentScreen: React.FC = () => {
                       <img
                         src={CASH_OVERLAY_ICON}
                         alt="เงินสด"
-                        className="h-5 w-5 object-contain"
+                        className="h-full w-full object-contain"
                       />
                     ),
                     "สแกนจ่าย": (
                       <img
                         src={"https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F125e79ee890243308489d0acbb1eef2b?format=webp&width=800"}
                         alt="สแกนจ่าย"
-                        className="h-5 w-5 object-contain"
+                        className="h-full w-full object-contain"
                       />
                     ),
-                    "สแกนจ่าย 2": (
+                    "สแกนจ่��ย 2": (
                       <img
                         src={"https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F95e4291272564bf2b9d1b522cd4bf75e?format=webp&width=800"}
                         alt="สแกนจ่าย 2"
-                        className="h-5 w-5 object-contain"
+                        className="h-full w-full object-contain"
                       />
                     ),
                     "แตะบัตร": (
                       <img
                         src={"https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F6b3a398ec0ee41b9b59accc97f8057bf?format=webp&width=800"}
                         alt="แตะบัตร"
-                        className="h-5 w-5 object-contain"
+                        className="h-full w-full object-contain"
                       />
                     ),
                     "กระเป๋ารถเมล์": (
                       <img
                         src={"https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F422e4242064b4e6cac52945deb072145?format=webp&width=800"}
                         alt="กระเป๋ารถเมล์"
-                        className="h-5 w-5 object-contain"
+                        className="h-full w-full object-contain"
                       />
                     ),
                     "ตั๋วรายเดือน/รอบ": (
                       <img
                         src={"https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8a53d9e6b6284ac19efb0e61c1025784?format=webp&width=800"}
                         alt="ตั๋วรายเดือน/รอบ"
-                        className="h-5 w-5 object-contain"
+                        className="h-full w-full object-contain"
                       />
                     ),
                   }}
