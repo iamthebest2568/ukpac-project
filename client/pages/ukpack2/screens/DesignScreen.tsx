@@ -237,7 +237,7 @@ const DesignScreen: React.FC = () => {
     <>
       <MetaUpdater
         title="UK PACT - กรุงเทพฯ ลดติด"
-        description="ออกแบบรถเมล์เพื่อช่วยลดปัญหาการจราจรในกรุงเทพฯ — เลือกขนาดรถ สี และสิ่งอำ���วยความสะดวกที่ต้องการ"
+        description="ออกแบบร���เมล์เพื่อช่วยลดปัญหาการจราจรในกรุงเทพฯ — เลือกขนาดรถ สี และสิ่งอำ���วยความสะดวกที่ต้องการ"
         image="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F44cea8aeb6d4415e899494a90c6f59b1?format=webp&width=1200"
       />
       <CustomizationScreen
@@ -256,7 +256,7 @@ const DesignScreen: React.FC = () => {
                 small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
                 medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
                 large: "รถตู้โดยสาร 9–15 ที่นั่ง",
-                extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
+                extra: "รถกะบะ���ัดแปลง 8–12 ที่นั่ง",
               };
               const HERO_IMAGE: Record<string, string> = {
                 small:
@@ -376,7 +376,7 @@ const DesignScreen: React.FC = () => {
                       "���แกนจ่าย": (
                         <img
                           src={SCAN_ICON}
-                          alt="ส���กนจ่าย"
+                          alt="สแกนจ่าย"
                           className="h-5 w-5 object-contain"
                         />
                       ),
@@ -477,7 +477,7 @@ const DesignScreen: React.FC = () => {
               />
 
               <h2 className="text-xl font-prompt font-semibold text-[#003366] mt-4">
-                ลักษณะพิเศษอื่น ๆ ของรถคุณ
+                ลักษณะพิเศ��อื่น ๆ ของรถคุณ
               </h2>
               <div>
                 <input
@@ -523,7 +523,7 @@ const DesignScreen: React.FC = () => {
                           className="px-4 py-2 rounded-xl bg-[#000D59] hover:bg-[#ffe000] transition-colors save-btn-modal"
                           style={{ color: isSaveHover ? '#000D59' : '#ffffff' }}
                         >
-                          บันทึก
+                          <span style={{ color: isSaveHover ? '#000D59' : '#ffffff' }}>บันทึก</span>
                         </button>
                       </div>
                     </div>
