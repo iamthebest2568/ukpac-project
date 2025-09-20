@@ -13,7 +13,7 @@ const ThankYouScreen: React.FC = () => {
         <div className="w-full flex justify-center mb-2">
           <img
             src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fda6359656dee4bb3bf9d0e68709cafbf?format=webp&width=800"
-            alt="ขอบคุณที่ร่วมสร้างสรรค์รถเมล์"
+            alt="ขอบคุณที่ร่วม���ร้างสรรค์รถเมล์"
             className="w-full max-w-[640px] h-auto object-contain"
           />
         </div>
@@ -38,11 +38,13 @@ const ThankYouScreen: React.FC = () => {
       </div>
 
       <footer
-        className="rounded-t-3xl py-12 px-6 bg-no-repeat bg-top bg-cover w-screen"
+        className="rounded-t-3xl py-12 px-6 bg-no-repeat bg-top bg-cover"
         style={{
           backgroundImage:
             "url('https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc3874bf37db54abeb4a13c308b0df9a4?format=webp&width=1600')",
-          minHeight: '320px'
+          minHeight: '320px',
+          width: '100vw',
+          marginLeft: 'calc(50% - 50vw)'
         }}
       >
         <div className="max-w-4xl mx-auto flex items-center justify-center h-full">
