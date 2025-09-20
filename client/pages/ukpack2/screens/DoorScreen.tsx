@@ -199,6 +199,16 @@ const IconHighLow = () => (
   />
 );
 
+const IconHighLowActive = () => (
+  <img
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F3fb1340fa1014575ad118c4c94ab882e?format=webp&width=800"
+    alt="ประตูฉุกเฉิน (selected)"
+    className="object-contain select-none max-h-full w-auto"
+    decoding="async"
+    loading="eager"
+  />
+);
+
 const DoorScreen: React.FC = () => {
   const navigate = useNavigate();
   const [selectedOption, setSelectedOption] = useState<string>(() => {
@@ -463,7 +473,7 @@ const DoorScreen: React.FC = () => {
                         className="h-5 w-5 object-contain"
                       />
                     ),
-                    สแกนจ่าย: (
+                    สแก���จ่าย: (
                       <img
                         src={SCAN_ICON}
                         alt="สแกนจ่าย"
