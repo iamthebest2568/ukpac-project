@@ -88,7 +88,7 @@ const IconPlug = () => (
 const IconPlugAlt = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F76d2422a6fb84d0bb752cd149518a87b?format=webp&width=800"
-    alt="ช่องชาร์จมือถือ/USB (กดแล้ว)"
+    alt="ช่องชาร์จม���อถือ/USB (กดแล้ว)"
     className="object-contain select-none h-full w-full"
     decoding="async"
     loading="eager"
@@ -226,7 +226,7 @@ const AmenitiesScreen: React.FC = () => {
     หน้าต่างเปิดได้:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb35efe05833149089a2df21cf61300b4?format=webp&width=800",
     "ที่จับ/ราวยืนที่ปลอดภัย":
-      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F2ea6db6de8904f6f9cb279f96f470250?format=webp&width=800",
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fa9c2a350877e46c3a49f0f6cd867ae99?format=webp&width=800",
     "ช่องชาร์จมือถือ/USB":
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F2d38a737cf2c4bf29f8764e48a93d404?format=webp&width=800",
     "Wi‑Fi ฟรี":
@@ -237,7 +237,7 @@ const AmenitiesScreen: React.FC = () => {
     air: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F43ef2946e5324cb981bc063db02fe5bc?format=webp&width=800",
     fan: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F4e8932e864664a7f8a454d61f4e87ca9?format=webp&width=800",
     seat: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb35efe05833149089a2df21cf61300b4?format=webp&width=800",
-    wifi: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F2ea6db6de8904f6f9cb279f96f470250?format=webp&width=800",
+    wifi: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fa9c2a350877e46c3a49f0f6cd867ae99?format=webp&width=800",
     plug: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F2d38a737cf2c4bf29f8764e48a93d404?format=webp&width=800",
     tv: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F3704368ab32542b7a31e3eba186adc57?format=webp&width=800",
     cup: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F0623bd2f3e75452cbf76a828b416d275?format=webp&width=800",
