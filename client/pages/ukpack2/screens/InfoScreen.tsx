@@ -60,7 +60,7 @@ const InfoScreen: React.FC = () => {
           </div>
         </div>
         <div className="space-y-6">
-          <div className="w-full flex justify-center">
+          <div className="w-full flex justify-center mt-6 md:mt-10">
             <div className="w-full max-w-[900px] relative h-[140px] md:h-[200px] flex items-center justify-center">
               <img
                 src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe0d645d03e674262a48ecc18869e1901?format=webp&width=1600"
