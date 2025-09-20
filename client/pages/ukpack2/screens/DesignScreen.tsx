@@ -506,12 +506,6 @@ const DesignScreen: React.FC = () => {
                       />
                       <div className="mt-3 flex justify-end gap-2">
                         <button
-                          onClick={() => setShowTextarea(false)}
-                          className="px-4 py-2 rounded-xl bg-[#ffe000] text-[#000D59] hover:bg-[#000D59] hover:text-white transition-colors"
-                        >
-                          ยกเลิก
-                        </button>
-                        <button
                           onClick={() => {
                             setSlogan(sloganDraft);
                             setShowTextarea(false);
@@ -519,6 +513,12 @@ const DesignScreen: React.FC = () => {
                           className="px-4 py-2 rounded-xl bg-[#000D59] text-white hover:bg-[#ffe000] hover:text-[#000D59] transition-colors"
                         >
                           บันทึก
+                        </button>
+                        <button
+                          onClick={() => setShowTextarea(false)}
+                          className="px-4 py-2 rounded-xl bg-[#ffe000] text-[#000D59] hover:bg-[#000D59] hover:text-white transition-colors"
+                        >
+                          ยกเลิก
                         </button>
                       </div>
                     </div>
