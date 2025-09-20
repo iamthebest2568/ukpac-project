@@ -179,6 +179,8 @@ const AmenitiesScreen: React.FC = () => {
     <CustomizationScreen
       title="ปรับแต่งรถเมล์ของคุณ"
       theme="light"
+      fullWidth
+      containerPaddingClass={styles.containerPadding}
       footerContent={
         <div className="flex justify-center">
           <CtaButton text="ถัดไป" onClick={handleNext} />
