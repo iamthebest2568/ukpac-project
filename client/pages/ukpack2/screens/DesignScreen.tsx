@@ -236,7 +236,7 @@ const DesignScreen: React.FC = () => {
     <>
       <MetaUpdater
         title="UK PACT - กรุงเทพฯ ลดติด"
-        description="ออกแบบรถเมล์��พื่อช่วยลดปัญหาการจราจรในกรุงเทพฯ — เลือกขนาดรถ สี และสิ่งอำนวยความสะดวกที่ต้องการ"
+        description="ออกแบบรถเมล์เพื่อช่วยลดปัญหาการจราจรในกรุงเทพฯ — เลือกขนาดรถ สี และสิ่งอำนวยความสะดวกที่ต้องการ"
         image="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F44cea8aeb6d4415e899494a90c6f59b1?format=webp&width=1200"
       />
       <CustomizationScreen
@@ -274,6 +274,23 @@ const DesignScreen: React.FC = () => {
                 medium: null,
                 large: null,
                 extra: null,
+              };
+
+              // Optional: pre-rendered full-vehicle images per chassis per colorHex.
+              // If provided, clicking a swatch will swap the vehicle image to the pre-rendered one.
+              const PRE_RENDERED: Record<string, Record<string, string>> = {
+                // Example: medium: { "7d53a2": "https://.../medium-7d53a2.png" }
+                small: {},
+                medium: {},
+                large: {},
+                extra: {},
+              };
+
+              const findPreRendered = (ch: string, hex: string | undefined | null) => {
+                if (!hex) return undefined;
+                const key = hex.replace(/^#/, "").toLowerCase();
+                const byCh = PRE_RENDERED[ch] || {};
+                return byCh[key] || byCh[hex] || undefined;
               };
               let selected = "medium";
               try {
