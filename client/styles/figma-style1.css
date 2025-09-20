@@ -1230,6 +1230,52 @@
   padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 20px) !important;
 }
 
+/* Source-selection specific: make content non-scrollable and fit on one viewport */
+.figma-style1-container.source-selection-root .figma-style1-main {
+  display: grid !important;
+  grid-template-rows: 1fr auto !important;
+  height: 100svh !important;
+}
+.figma-style1-container.source-selection-root .figma-style1-content-area {
+  overflow: visible !important;
+  -webkit-overflow-scrolling: unset !important;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 12px !important;
+  padding: 12px !important;
+  max-height: none !important;
+}
+.figma-style1-container.source-selection-root .figma-style1-title {
+  font-size: clamp(18px, 4.2vw, 22px) !important;
+  margin-top: 8px !important;
+  margin-bottom: 6px !important;
+  line-height: 1.15 !important;
+}
+.figma-style1-container.source-selection-root .figma-style1-button-container {
+  position: static !important;
+  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 12px) !important;
+  margin-top: 8px !important;
+  gap: 10px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+}
+
+/* On very small devices, slightly reduce spacing to ensure all fits */
+@media (max-height: 640px) {
+  .figma-style1-container.source-selection-root .figma-style1-title {
+    font-size: clamp(16px, 4.5vw, 20px) !important;
+    margin-top: 6px !important;
+  }
+  .figma-style1-container.source-selection-root .figma-style1-content-area {
+    gap: 8px !important;
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+  }
+}
+
 /* Mobile-first full-bleed adjustments (no side whitespace) ----------------------------------
    Makes figma-style1 pages use the full viewport width on phones so there is no
    left/right whitespace. Keeps safe-area insets for notches but removes fixed
