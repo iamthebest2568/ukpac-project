@@ -297,7 +297,7 @@ const PaymentScreen: React.FC = () => {
 
   return (
     <CustomizationScreen
-      title="ปรับแต่งรถเมล์ของคุณ"
+      title="���รับแต่งรถเมล์ของคุณ"
       theme="light"
       fullWidth
       footerContent={
@@ -561,6 +561,7 @@ const PaymentScreen: React.FC = () => {
                       {label}
                     </>
                   }
+                  showSelectedText
                   overlayLabels={overlayLabels}
                   overlayIconMap={{
                     ...AMENITIES_ICON_MAP,
