@@ -30,7 +30,7 @@ const SubmitScreen: React.FC = () => {
 
   // chassis labels and images (same mapping as DesignScreen)
   const CHASSIS_LABELS: Record<string, string> = {
-    small: "รถเมล์ขนาดเล็ก 16–30 ท���่นั่ง",
+    small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
     medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
     large: "รถตู้โดยสาร 9–15 ที่นั่ง",
     extra: "รถกะบะดัดแปลง 8–12 ที��นั่ง",
@@ -155,7 +155,7 @@ const SubmitScreen: React.FC = () => {
           </div>
 
           <h2 className="text-lg font-prompt font-semibold text-[#003366] mt-2">
-            การบริการของรถเมล์
+            ��ารบริการของรถเมล์
           </h2>
 
           <div className="space-y-4">
@@ -168,7 +168,7 @@ const SubmitScreen: React.FC = () => {
                 placeholder="พิมพ์"
                 value={interval}
                 onChange={(e) => setInterval(e.target.value)}
-                className="flex-1 min-w-0 max-w-[220px] rounded-xl px-3 py-1.5 border-2 border-[#000D59] h-9 text-center placeholder-gray-400"
+                className="flex-1 min-w-0 max-w-[220px] rounded-xl px-3 py-1.5 border-[3px] border-[#000D59] h-9 text-center placeholder-gray-400"
                 style={{ fontFamily: 'Sarabun, sans-serif', fontSize: '17.6px' }}
               />
               <span className="w-12 text-sm text-[#003366]" style={{ fontFamily: 'Sarabun, sans-serif', fontSize: '17.6px' }}>นาที</span>
@@ -183,7 +183,7 @@ const SubmitScreen: React.FC = () => {
                 placeholder="พิมพ์"
                 value={route}
                 onChange={(e) => setRoute(e.target.value)}
-                className="flex-1 min-w-0 max-w-[220px] rounded-xl px-3 py-1.5 border-2 border-[#000D59] h-9 text-center placeholder-gray-400"
+                className="flex-1 min-w-0 max-w-[220px] rounded-xl px-3 py-1.5 border-[3px] border-[#000D59] h-9 text-center placeholder-gray-400"
                 style={{ fontFamily: 'Sarabun, sans-serif', fontSize: '17.6px' }}
               />
             </div>
@@ -197,7 +197,7 @@ const SubmitScreen: React.FC = () => {
                 placeholder="พิมพ์"
                 value={area}
                 onChange={(e) => setArea(e.target.value)}
-                className="flex-1 min-w-0 max-w-[220px] rounded-xl px-3 py-1.5 border-2 border-[#000D59] h-9 text-center placeholder-gray-400"
+                className="flex-1 min-w-0 max-w-[220px] rounded-xl px-3 py-1.5 border-[3px] border-[#000D59] h-9 text-center placeholder-gray-400"
                 style={{ fontFamily: 'Sarabun, sans-serif', fontSize: '17.6px' }}
               />
             </div>
@@ -207,7 +207,7 @@ const SubmitScreen: React.FC = () => {
 
       <ConfirmModal
         isOpen={isExitModalOpen}
-        title="ออกจากหน้าจอ"
+        title="ออกจากหน้า���อ"
         message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
         onConfirm={() => navigate("/")}
         onCancel={() => setExitModalOpen(false)}
