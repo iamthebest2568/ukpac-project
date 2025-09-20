@@ -25,7 +25,7 @@ const IconAirAlt = () => (
 const IconFan = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F891faed3bf8a457fbcdd936181ed2b7a?format=webp&width=800"
-    alt="พัด��ม"
+    alt="พัด�����"
     className="object-contain select-none h-full w-full"
     decoding="async"
     loading="eager"
@@ -34,7 +34,7 @@ const IconFan = () => (
 const IconFanAlt = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F280e585e2bdc4134acc70eeb143c6c69?format=webp&width=800"
-    alt="พัดลม (กดแ��้ว)"
+    alt="พัดลม (กดแล้ว)"
     className="object-contain select-none h-full w-full"
     decoding="async"
     loading="eager"
@@ -134,7 +134,7 @@ const IconCupAlt = () => (
 const AMENITIES = [
   { key: "air", label: "แอร์", icon: <IconAir />, iconActive: <IconAirAlt /> },
   { key: "fan", label: "พัดลม", icon: <IconFan />, iconActive: <IconFanAlt /> },
-  { key: "seat", label: "ท���่นั่งพิเศษ", icon: <IconSeat />, iconActive: <IconSeatAlt /> },
+  { key: "seat", label: "ที่นั่งพิเศษ", icon: <IconSeat />, iconActive: <IconSeatAlt /> },
   { key: "wifi", label: "ที่จับ/ราวยืนที่ปลอดภัย", icon: <IconWifi />, iconActive: <IconWifiAlt /> },
   { key: "plug", label: "ช่องชาร์จมือถือ/USB", icon: <IconPlug />, iconActive: <IconPlugAlt /> },
   { key: "tv", label: "Wi‑Fi ฟรี", icon: <IconTv />, iconActive: <IconTvAlt /> },
@@ -230,7 +230,7 @@ const AmenitiesScreen: React.FC = () => {
     "ช่องชาร์จมือถือ/USB":
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fba274e72720c4a1b9695e83dbf8c1fe9?format=webp&width=800",
     "Wi‑Fi ฟรี":
-      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F63dc13fe1fab446a9da88bfb297d9c6d?format=webp&width=800",
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F4ac1a198d950430b9ad73c0cba9c7fd6?format=webp&width=800",
     "ระบบประกาศบอกป���าย(เสียง/���อ)":
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F35b324f49ad84b71a92ae80b0b39f7cd?format=webp&width=800",
     // keys (fallback)
@@ -239,7 +239,7 @@ const AmenitiesScreen: React.FC = () => {
     seat: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F788c9e78d6944fc8a5088cc00aa40697?format=webp&width=800",
     wifi: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F1cae4f7306834a6eb0d86be09e05bfdd?format=webp&width=800",
     plug: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fba274e72720c4a1b9695e83dbf8c1fe9?format=webp&width=800",
-    tv: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F63dc13fe1fab446a9da88bfb297d9c6d?format=webp&width=800",
+    tv: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F4ac1a198d950430b9ad73c0cba9c7fd6?format=webp&width=800",
     cup: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F35b324f49ad84b71a92ae80b0b39f7cd?format=webp&width=800",
   };
 
@@ -272,7 +272,7 @@ const AmenitiesScreen: React.FC = () => {
               />
             ) : (
               <div className="w-full h-48 bg-[#081042] rounded-md flex items-center justify-center text-sm text-gray-300">
-                Bus image preview (ภาพสำหรับรุ่นนี้จะถูกเพิ่มภายหลัง)
+                Bus image preview (ภาพสำหรับรุ่นนี้จะ��ูกเพิ่มภายหลัง)
               </div>
             )}
           </div>
@@ -286,7 +286,7 @@ const AmenitiesScreen: React.FC = () => {
           <div className={styles.controlsBox}>
             <div className={styles.controlsContent}>
               <h2 className="text-xl font-prompt font-semibold text-[#003366] mt-2">
-                ความสะดวกสบา��
+                ความสะดวกสบาย
               </h2>
 
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
