@@ -110,7 +110,7 @@ const SeatingScreen: React.FC = () => {
     if (!(total >= minCapacityLocal && total <= maxCapacityLocal)) {
       const chassisLabel = CHASSIS_LABELS[selectedChassis] || selectedChassis;
       setErrorTitle("จำนวนที่นั่งไม่ถูกต้องสำหรับประเภทรถที่เลือก");
-      setErrorMessage(`คุณเลือก: ${chassisLabel}. ค่าที่ถูกต้องคือ ${minCapacityLocal} ถึง ${maxCapacityLocal} ที่นั่ง แต่คุณกรอก ${total}`);
+      setErrorMessage(`คุณเลือก: ${chassisLabel}. ค่าที่ถูกต้องคือ ${minCapacityLocal} ถึง ${maxCapacityLocal} ที่นั่ง ��ต่คุณกรอก ${total}`);
       setErrorModalOpen(true);
       return false;
     }
@@ -188,7 +188,7 @@ const SeatingScreen: React.FC = () => {
 
             <div className={styles.controlsBox}>
               <div className={styles.controlsContent}>
-                <div className="space-y-2 mt-2">
+                <div className="space-y-1 mt-1">
                   <div className="flex items-center justify-between">
                     <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">จำนวนที่นั่งทั้งหมด</div>
                     <input
@@ -231,7 +231,7 @@ const SeatingScreen: React.FC = () => {
                   </div>
 
                   <div className="flex items-center justify-between">
-                    <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">พื้นที่สำหรับรถเข็น/จักรยาน</div>
+                    <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">พื���นที่สำหรับรถเข็น/จักรยาน</div>
                     <NumericPlaceholderInput value={wheelchairBikeSpaces} onChange={(v) => setWheelchairBikeSpaces(v)} min={0} max={maxCapacity} className="w-24 px-3 py-2 text-[#003366] bg-transparent text-right font-sarabun text-[17.6px] outline-none" />
                   </div>
                 </div>
