@@ -113,7 +113,7 @@ const IconExtra = () => (
 );
 const IconExtraAlt = () => (
   <img
-    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F0ed01deb92a745c8bdf82be5c749bb9?format=webp&width=800"
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fd57a13dc07be4731a71396e6301fc7b5?format=webp&width=800"
     alt=""
     aria-hidden="true"
     className="h-full w-auto object-contain select-none -translate-y-0.5"
@@ -144,12 +144,12 @@ const OPTIONS = [
         9-15 ที่นั่ง
       </>
     ),
-    labelText: "รถตู้โดยสาร 9-15 ที่นั่ง",
+    labelText: "รถตู้โดยสาร 9-15 ที่นั���ง",
     icon: <IconLarge />,
   },
   {
     key: "extra",
-    label: "รถกะบะด��ดแปลง 8–12 ที่นั่ง",
+    label: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
     labelText: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
     icon: <IconExtra />,
   },
