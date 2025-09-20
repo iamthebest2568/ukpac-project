@@ -244,7 +244,7 @@ const DesignScreen: React.FC = () => {
         theme="light"
         footerContent={
           <div className="flex justify-center">
-            <CtaButton text="ออกแบบเ���ร็จแล้ว" onClick={handleFinish} />
+            <CtaButton text="ออกแบบเสร็จแล้ว" onClick={handleFinish} />
           </div>
         }
       >
