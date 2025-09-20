@@ -183,7 +183,7 @@ const SummaryDetails: React.FC = () => {
             ? "2 ประตู"
             : String(raw.doorChoice);
       if (raw.hasRamp) return "ทางลาดสำหรับรถเข็น/ผู้พิการ";
-      if (raw.highLow) return "ประตูฉุกเฉิน";
+      if (raw.highLow) return "ประ��ูฉุกเฉิน";
     }
     return String(raw);
   };
@@ -194,8 +194,6 @@ const SummaryDetails: React.FC = () => {
         <div className="flex flex-col items-center mb-6">
           <VehiclePreview
             imageSrc={heroImg}
-            colorFilter={storedColorLocal?.filter ?? null}
-            colorHex={storedColorLocal?.colorHex ?? null}
             label={chassisLabel}
             showSelectedText
             overlayLabels={(() => {
