@@ -1,11 +1,11 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import CustomizationScreen from "../../ukpack2/components/CustomizationScreen";
-import SelectionCard from "../../ukpack2/components/SelectionCard";
-import CtaButton from "../../ukpack2/components/CtaButton";
-import StepTabs from "../../ukpack2/components/StepTabs";
+import CustomizationScreen from "../components/CustomizationScreen";
+import SelectionCard from "../components/SelectionCard";
+import CtaButton from "../components/CtaButton";
+import StepTabs from "../components/StepTabs";
 import ConfirmModal from "../components/ConfirmModal";
-import { clearDesignStorage } from "../../ukpack2/utils/clearDesign";
+import { clearDesignStorage } from "../utils/clearDesign";
 import VehiclePreview from "../components/VehiclePreview";
 import styles from "./chassis.module.css";
 import { useBusDesign } from "../context/BusDesignContext";
@@ -26,7 +26,7 @@ const PAYMENT_ICON_SMALL: Record<string, string> = {
     "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb8992da4be824b339d3df5f0a076ed93?format=webp&width=800",
   "สแกนจ่าย 2":
     "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F56620e798eb94153b2390271f30d0dae?format=webp&width=800",
-  แตะบัต��:
+  แตะบัตร:
     "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fdb2e47a586b841d1af014e9196f3c411?format=webp&width=800",
   กระเป๋ารถเมล์:
     "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F41c089c5dd4b448993c4e02c02cdf7ac?format=webp&width=800",
@@ -279,7 +279,7 @@ const ChassisScreen: React.FC = () => {
   return (
     <>
       <CustomizationScreen
-        title="ปรับ��ต่งรถเมล์ของคุณ"
+        title="ปรับแต่งรถเมล์ของคุณ"
         theme="light"
         fullWidth
         footerContent={
@@ -374,7 +374,7 @@ const ChassisScreen: React.FC = () => {
       <ConfirmModal
         isOpen={isExitModalOpen}
         title="ออกจากหน้าจอ"
-        message="คุณแน่ใจหรื���ไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
+        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
         onConfirm={confirmExit}
         onCancel={() => setExitModalOpen(false)}
         contentClassName={`${styles.containerPadding} ${styles.modalContent}`}
