@@ -124,6 +124,7 @@
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
   border: 2px solid #000D59; /* restored fixed border width */
+  border-color: transparent; /* visually hidden while keeping border layout */
   border-radius: 8px;
   background: #ffffff;
   overflow: visible;
