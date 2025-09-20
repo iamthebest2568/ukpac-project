@@ -184,8 +184,8 @@
 
 /* Provide inner horizontal padding for stacked controls so inputs sit inside the frame */
 .controlsContent .space-y-2 {
-  /* 5px horizontal padding so content sits 5px from the frame edge */
-  padding: 10px 5px 12px 5px;
+  /* More breathing room: 12px horizontal padding so content sits away from frame edge */
+  padding: 10px 12px 12px 12px;
   box-sizing: border-box;
 }
 
