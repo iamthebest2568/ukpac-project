@@ -474,7 +474,7 @@ const DoorScreen: React.FC = () => {
                         className="h-5 w-5 object-contain"
                       />
                     ),
-                    "กระเ��๋ารถเมล์": (
+                    "กระเป๋ารถเมล์": (
                       <img
                         src={BUS_EMPLOY_ICON}
                         alt="กระเป๋ารถเมล์"
@@ -541,7 +541,7 @@ const DoorScreen: React.FC = () => {
                 {(() => {
                   const DOOR_OPTIONS = [
                     { key: "1", label: "1 ประตู", icon: <IconDoor1 />, iconActive: <IconDoor1Active /> },
-                    { key: "2", label: "2 ประตู", icon: <IconDoor2 />, iconActive: <IconDoor2 /> },
+                    { key: "2", label: "2 ประตู", icon: <IconDoor2 />, iconActive: <IconDoor2Active /> },
                     { key: "ramp", label: "ทางลาดสำหรับรถเข็น/ผู้พิการ", icon: <IconRamp />, iconActive: <IconRamp /> },
                     { key: "emergency", label: "ประตูฉุกเฉิน", icon: <IconHighLow />, iconActive: <IconHighLow /> },
                   ];
