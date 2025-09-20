@@ -38,7 +38,15 @@ const InfoScreen: React.FC = () => {
   return (
     <>
       <CustomizationScreen
-        title="ปรับแต่งรถเมล์ของคุณ"
+        headerContent={
+          <div className="w-full flex items-center justify-center">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F52698823cbc246e1af117998994b74be?format=webp&width=800"
+              alt="ปรับแต่งรถเมล์ของคุณ"
+              className="h-8 md:h-12 object-contain"
+            />
+          </div>
+        }
         theme="light"
         fullWidth
         footerContent={
@@ -113,7 +121,7 @@ const InfoScreen: React.FC = () => {
             <p>
               ในญี่ปุ่นมี Community Bus รถเมล์ขนาดเล็กที่วิ่งเข้าซอยและพื้นที่
               ที่รถใหญ่เข้าไม่ถึง ค่าโดยสารถูกมาก บางแห่งนั่งได้ทั้งสายเพียง 100
-              เยน ทำให้ผู้สูงอา��ุและเด็กเข้าถึงบริการสำคัญ เช่น
+              เยน ทำให้ผู้สูงอายุและเด็กเข้าถึงบริการสำคัญ เช่น
               โรงพยาบาลและศูนย์ชุมชนได้สะดวกขึ้น
             </p>
           </div>
