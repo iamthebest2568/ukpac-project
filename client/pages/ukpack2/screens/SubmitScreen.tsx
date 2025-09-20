@@ -112,12 +112,7 @@ const SubmitScreen: React.FC = () => {
               <VehiclePreview
                 imageSrc={heroImg}
                 colorFilter={storedColor?.filter}
-                label={
-                  <>
-                    <span className="chassis-label-mobile">รถที่เลือก : </span>
-                    {chassisLabel}
-                  </>
-                }
+                label={chassisLabel}
                 showSelectedText
                 overlayLabels={((): string[] => {
                   const amenities = (() => {
