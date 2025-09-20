@@ -105,7 +105,7 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
   "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
-  "กล้องวงจรปิด": <IconCamSmall />,
+  "���ล้องวงจรปิด": <IconCamSmall />,
 };
 
 const MONEY_ICON =
@@ -254,7 +254,7 @@ const DesignScreen: React.FC = () => {
               const CHASSIS_LABELS: Record<string, string> = {
                 small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
                 medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
-                large: "รถตู้โดยสาร 9–15 ที่นั่ง",
+                large: "รถตู้โดย��าร 9–15 ที่นั่ง",
                 extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
               };
               const HERO_IMAGE: Record<string, string> = {
@@ -365,7 +365,7 @@ const DesignScreen: React.FC = () => {
                     })()}
                     overlayIconMap={{
                       ...AMENITIES_ICON_MAP,
-                      เงินสด: (
+                      เงิน��ด: (
                         <img
                           src={MONEY_ICON}
                           alt="เงินสด"
@@ -396,7 +396,7 @@ const DesignScreen: React.FC = () => {
                       กระเป๋ารถเมล์: (
                         <img
                           src={BUS_EMPLOY_ICON}
-                          alt="กระเป๋ารถเมล์"
+                          alt="ก���ะเป๋ารถเมล์"
                           className="h-5 w-5 object-contain"
                         />
                       ),
@@ -488,12 +488,12 @@ const DesignScreen: React.FC = () => {
                     setShowTextarea(true);
                   }}
                   placeholder="พิมพ์ คุณสมบัติพิเศษ"
-                  className="w-full rounded-md px-4 py-2 bg-white border border-[#e5e7eb] text-[#003366] placeholder-gray-400 cursor-text"
+                  className="w-full rounded-xl px-4 py-2 bg-white border-2 border-[#e5e7eb] text-[#003366] placeholder-gray-400 cursor-text"
                 />
 
                 {showTextarea && (
                   <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-                    <div className="bg-white rounded-lg p-4 max-w-lg w-full mx-4">
+                    <div className="bg-white rounded-xl p-4 max-w-lg w-full mx-4">
                       <h3 className="text-lg font-prompt font-semibold text-[#000d59]">
                         ลักษณะพิเศษอื่นๆ
                       </h3>
@@ -501,13 +501,13 @@ const DesignScreen: React.FC = () => {
                         ref={textareaRef}
                         value={sloganDraft}
                         onChange={(e) => setSloganDraft(e.target.value)}
-                        placeholder="พิมพ์คุณสมบัติพิเศษอื่นๆ ของรถเมล์ในฝันของคุณ"
-                        className="mt-3 w-full h-36 p-3 border rounded-md text-sm resize-none"
+                        placeholder="พิมพ์ค��ณสมบัติพิเศษอื่นๆ ของรถเมล์ในฝันของคุณ"
+                        className="mt-3 w-full h-36 p-3 border-2 rounded-xl text-sm resize-none"
                       />
                       <div className="mt-3 flex justify-end gap-2">
                         <button
                           onClick={() => setShowTextarea(false)}
-                          className="px-4 py-2 rounded-md bg-[#ffe000] text-black hover:bg-[#000d59] hover:text-white transition-colors"
+                          className="px-4 py-2 rounded-xl bg-[#000D59] text-white transition-colors"
                         >
                           ยกเลิก
                         </button>
@@ -516,7 +516,7 @@ const DesignScreen: React.FC = () => {
                             setSlogan(sloganDraft);
                             setShowTextarea(false);
                           }}
-                          className="px-4 py-2 rounded-md bg-[#ffe000] text-black hover:bg-[#000d59] hover:text-white transition-colors"
+                          className="px-4 py-2 rounded-xl bg-[#ffe000] text-black hover:bg-[#000d59] hover:text-white transition-colors"
                         >
                           บันทึก
                         </button>
