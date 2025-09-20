@@ -236,7 +236,7 @@ const DesignScreen: React.FC = () => {
     <>
       <MetaUpdater
         title="UK PACT - กรุงเทพฯ ลดติด"
-        description="ออกแบบรถเมล์เพื่อช่วยลดปัญหาการจราจรในกรุงเทพฯ — เลือกขนาดรถ สี และสิ่งอำ���วยความสะดวกที่ต้องการ"
+        description="ออกแบบรถเมล์เพื่อช่วยลดปัญหาการจราจรในกรุงเทพฯ — เลือกขนาดรถ สี และสิ่งอำ����วยความสะดวกที่ต้องการ"
         image="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F44cea8aeb6d4415e899494a90c6f59b1?format=webp&width=1200"
       />
       <CustomizationScreen
@@ -506,6 +506,12 @@ const DesignScreen: React.FC = () => {
                       />
                       <div className="mt-3 flex justify-end gap-2">
                         <button
+                          onClick={() => setShowTextarea(false)}
+                          className="px-4 py-2 rounded-xl bg-[#ffe000] text-[#000D59] hover:bg-[#000D59] hover:text-white transition-colors"
+                        >
+                          ยกเลิก
+                        </button>
+                        <button
                           onClick={() => {
                             setSlogan(sloganDraft);
                             setShowTextarea(false);
@@ -513,12 +519,6 @@ const DesignScreen: React.FC = () => {
                           className="px-4 py-2 rounded-xl bg-[#000D59] text-white hover:bg-[#ffe000] hover:text-[#000D59] transition-colors"
                         >
                           บันทึก
-                        </button>
-                        <button
-                          onClick={() => setShowTextarea(false)}
-                          className="px-4 py-2 rounded-xl bg-[#ffe000] text-[#000D59] hover:bg-[#000D59] hover:text-white transition-colors"
-                        >
-                          ยกเลิก
                         </button>
                       </div>
                     </div>
