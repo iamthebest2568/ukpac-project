@@ -143,7 +143,7 @@ onBlur={() => logEvent({ event: "FORM_PHONE_BLUR", payload: { phoneLen: phone.le
       >
         <div className="max-w-4xl mx-auto flex items-end justify-center h-full">
           <div className="flex flex-col items-center gap-3 pb-12">
-            <div style={{ width: '220px', marginTop: '16px' }}>
+            <div style={{ width: '220px', marginTop: '32px' }}>
               <CtaButton className="w-full" text="ลุ้นรับรางวัล" onClick={submit} style={{ width: '220px', height: '48px' }} />
             </div>
             <div style={{ width: '220px' }}>
