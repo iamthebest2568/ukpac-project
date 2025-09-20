@@ -80,7 +80,7 @@ const BUS_EMPLOY_ICON =
 const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   แอร์: <IconAir />,
   พัดลม: <IconFan />,
-  ที���นั่งพิเศษ: <IconSeat />,
+  ที่นั่งพิเศษ: <IconSeat />,
   "ที่จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
   "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
@@ -172,7 +172,7 @@ const SummaryDetails: React.FC = () => {
       if (raw === "1") return "1 ประตู";
       if (raw === "2") return "2 ประตู";
       if (raw === "ramp") return "ทางลาดสำหรับรถเข็น/ผู้พิการ";
-      if (raw === "emergency") return "ประตูฉุกเฉ���น";
+      if (raw === "emergency") return "ประตูฉุกเฉิน";
       return raw;
     }
     if (typeof raw === "object") {
