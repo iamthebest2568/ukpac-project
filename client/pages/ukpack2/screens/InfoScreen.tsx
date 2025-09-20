@@ -5,7 +5,7 @@ import CtaButton from "../components/CtaButton";
 import ConfirmModal from "../components/ConfirmModal";
 
 const CHASSIS_LABELS: Record<string, string> = {
-  small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
+  small: "รถเมล��ขนาดเล็ก 16–30 ที่นั่ง",
   medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
   large: "รถตู้โดยสาร 9–15 ที่นั่ง",
   extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
@@ -165,7 +165,7 @@ const InfoScreen: React.FC = () => {
           </div>
 
           <div className="prose text-[#001a73] font-sarabun">
-            <h2 className="font-prompt font-semibold text-xl">รู้หรือไม่!</h2>
+            <h2 className="font-sarabun font-semibold text-xl text-center">รู้หรือไม่!</h2>
             <p>
               ในญี่ปุ่นมี Community Bus รถเมล์ขนาดเล็กที่วิ่งเข้าซอยและพื้นที่
               ที่รถใหญ่เข้าไม่ถึง ค่าโดยสารถูกมาก บางแห่งนั่งได้ทั้งสายเพียง 100
