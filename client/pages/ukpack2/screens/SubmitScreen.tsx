@@ -33,7 +33,7 @@ const SubmitScreen: React.FC = () => {
     small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
     medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
     large: "รถตู้โดยสาร 9–15 ที่นั่ง",
-    extra: "รถกะบะดัดแปลง 8–12 ที��นั่ง",
+    extra: "รถกะบะดัดแปลง 8–12 ท�����นั่ง",
   };
   const HERO_IMAGE: Record<string, string> = {
     small:
@@ -142,7 +142,7 @@ const SubmitScreen: React.FC = () => {
                   สแกนจ่าย: SCAN_ICON,
                   "สแกนจ่าย 2": SCAN2_ICON,
                   แตะบัตร: TOUCH_ICON,
-                  "ตั๋วรายเดือน/รอบ": MONTHLY_ICON,
+                  "ตั��วรายเดือน/รอบ": MONTHLY_ICON,
                   กระเป๋ารถเมล์: BUS_EMPLOY_ICON,
                 }}
               />
@@ -168,7 +168,7 @@ const SubmitScreen: React.FC = () => {
                 placeholder="พิมพ์"
                 value={interval}
                 onChange={(e) => setInterval(e.target.value)}
-                className="flex-1 min-w-0 max-w-[220px] rounded-xl px-3 py-1.5 border-2 border-[#000D59] h-9 text-center placeholder-gray-400"
+                className="flex-1 min-w-0 max-w-[220px] rounded-xl px-3 py-1.5 border-4 border-[#000D59] h-9 text-center placeholder-gray-400"
                 style={{ fontFamily: 'Sarabun, sans-serif', fontSize: '17.6px' }}
               />
               <span className="w-12 text-sm text-[#003366]" style={{ fontFamily: 'Sarabun, sans-serif', fontSize: '17.6px' }}>นาที</span>
@@ -183,7 +183,7 @@ const SubmitScreen: React.FC = () => {
                 placeholder="พิมพ์"
                 value={route}
                 onChange={(e) => setRoute(e.target.value)}
-                className="flex-1 min-w-0 max-w-[220px] rounded-xl px-3 py-1.5 border-2 border-[#000D59] h-9 text-center placeholder-gray-400"
+                className="flex-1 min-w-0 max-w-[220px] rounded-xl px-3 py-1.5 border-4 border-[#000D59] h-9 text-center placeholder-gray-400"
                 style={{ fontFamily: 'Sarabun, sans-serif', fontSize: '17.6px' }}
               />
             </div>
@@ -197,7 +197,7 @@ const SubmitScreen: React.FC = () => {
                 placeholder="พิมพ์"
                 value={area}
                 onChange={(e) => setArea(e.target.value)}
-                className="flex-1 min-w-0 max-w-[220px] rounded-xl px-3 py-1.5 border-2 border-[#000D59] h-9 text-center placeholder-gray-400"
+                className="flex-1 min-w-0 max-w-[220px] rounded-xl px-3 py-1.5 border-4 border-[#000D59] h-9 text-center placeholder-gray-400"
                 style={{ fontFamily: 'Sarabun, sans-serif', fontSize: '17.6px' }}
               />
             </div>
