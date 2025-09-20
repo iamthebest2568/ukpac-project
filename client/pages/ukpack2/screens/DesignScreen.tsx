@@ -298,7 +298,9 @@ const DesignScreen: React.FC = () => {
                 if (saved) selected = saved;
               } catch (e) {}
               const label = CHASSIS_LABELS[selected] || "";
-              const img = HERO_IMAGE[selected];
+              // prefer pre-rendered vehicle for selected chassis+color if available
+              const pre = findPreRendered(selected, color?.colorHex || undefined);
+              const img = pre || HERO_IMAGE[selected];
               return img ? (
                 <>
                   <VehiclePreview
@@ -485,7 +487,7 @@ const DesignScreen: React.FC = () => {
                     setSloganDraft(slogan);
                     setShowTextarea(true);
                   }}
-                  placeholder="พิมพ์ คุณสมบัติพิเศษ"
+                  placeholder="พิมพ์ คุณสม���ัติพิเศษ"
                   className="w-full rounded-md px-4 py-2 bg-white border border-[#e5e7eb] text-[#003366] placeholder-gray-400 cursor-text"
                 />
 
