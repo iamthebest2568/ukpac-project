@@ -157,7 +157,7 @@ const IconSeat = () => (
 const IconWifi = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb0789bfd1100472f8351704764607d31?format=webp&width=800"
-    alt="ที่จับ/ราวยืน"
+    alt="ที���จับ/ราวยืน"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -516,7 +516,7 @@ const PaymentScreen: React.FC = () => {
                     className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
                   >
                     <img
-                      src={selected.includes("แตะบัตร") ? TOUCH_ICON_ACTIVE : TOUCH_ICON}
+                      src={selected.includes("แ��ะบัตร") ? TOUCH_ICON_ACTIVE : TOUCH_ICON}
                       alt={label}
                       className="h-6 w-6 md:h-7 md:w-7 object-contain"
                     />
@@ -542,10 +542,10 @@ const PaymentScreen: React.FC = () => {
                     className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
                   >
                     <img
-                      src={MONTHLY_ICON}
-                      alt={label}
-                      className="h-6 w-6 md:h-7 md:w-7 object-contain"
-                    />
+                        src={selected.includes("ตั๋วรายเดือน/รอบ") ? MONTHLY_ICON_ACTIVE : MONTHLY_ICON}
+                        alt={label}
+                        className="h-6 w-6 md:h-7 md:w-7 object-contain"
+                      />
                   </div>
                 );
               // default to provided icon node
@@ -607,7 +607,7 @@ const PaymentScreen: React.FC = () => {
                     ),
                     "ตั๋วรายเดือน/รอบ": (
                       <img
-                        src={MONTHLY_ICON}
+                        src={selected.includes("ตั๋วรายเดือน/รอบ") ? MONTHLY_ICON_ACTIVE : MONTHLY_ICON}
                         alt="ตั๋วรายเดือน/รอบ"
                         className="h-5 w-5 object-contain"
                       />
@@ -679,7 +679,7 @@ const PaymentScreen: React.FC = () => {
                       />
                     ) : o.key === "monthly" ? (
                       <img
-                        src={MONTHLY_ICON}
+                        src={isSel ? MONTHLY_ICON_ACTIVE : MONTHLY_ICON}
                         alt={o.label}
                         className={`object-contain select-none h-full w-full `}
                         decoding="async"
