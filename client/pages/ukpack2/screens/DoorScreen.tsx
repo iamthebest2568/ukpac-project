@@ -460,10 +460,10 @@ const DoorScreen: React.FC = () => {
                         className="h-5 w-5 object-contain"
                       />
                     ),
-                    กระเป๋���รถเมล์: (
+                    "กระเป๋ารถเมล์": (
                       <img
                         src={BUS_EMPLOY_ICON}
-                        alt="���ระเป๋ารถเมล์"
+                        alt="กระเป๋ารถเมล์"
                         className="h-5 w-5 object-contain"
                       />
                     ),
