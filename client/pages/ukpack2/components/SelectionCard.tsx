@@ -69,7 +69,7 @@ const SelectionCard: React.FC<SelectionCardProps> = ({
         className={`inline-flex items-center justify-center p-0 ${layout === 'horizontal' ? 'horizontal' : 'vertical'}`}
         aria-pressed={isSelected}
       >
-        <div className={`${boxSize} flex items-center justify-center border border-transparent bg-transparent`}>
+        <div className={`${boxSize} flex items-center justify-center border border-transparent bg-transparent iconContainer`}>
           <div className="w-full h-full flex items-center justify-center">
             {normalizedIcon}
           </div>
