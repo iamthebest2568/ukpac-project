@@ -8,7 +8,7 @@ const CHASSIS_LABELS: Record<string, string> = {
   small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
   medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
   large: "รถตู้โดยสาร 9–15 ที่นั่ง",
-  extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
+  extra: "รถก���บะดัดแปลง 8–12 ที่นั่ง",
 };
 const HERO_IMAGE: Record<string, string> = {
   small:
@@ -41,9 +41,10 @@ const InfoScreen: React.FC = () => {
         headerContent={
           <div className="w-full flex items-center justify-center">
             <img
-              src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F52698823cbc246e1af117998994b74be?format=webp&width=800"
+              src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F52698823cbc246e1af117998994b74be?format=webp&width=1600"
               alt="ปรับแต่งรถเมล์ของคุณ"
-              className="h-8 md:h-12 object-contain"
+              className="w-full h-16 object-cover"
+              style={{ maxWidth: '1400px' }}
             />
           </div>
         }
@@ -83,7 +84,7 @@ const InfoScreen: React.FC = () => {
                   })();
                   const overlay = [ ...(amenities || []), ...(payments || []), ...(doors ? [doors as string] : []) ];
                   const ICONS: Record<string, string> = {
-                    เงินสด: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fbc8b22cedfbb4640a702f724881f196d?format=webp&width=800",
+                    เงินส���: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fbc8b22cedfbb4640a702f724881f196d?format=webp&width=800",
                     สแกนจ่าย: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb8992da4be824b339d3df5f0a076ed93?format=webp&width=800",
                     "สแกนจ่าย 2": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F56620e798eb94153b2390271f30d0dae?format=webp&width=800",
                     แตะบัตร: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fdb2e47a586b841d1af014e9196f3c411?format=webp&width=800",
@@ -116,14 +117,16 @@ const InfoScreen: React.FC = () => {
             </div>
           </div>
 
-          <div className="bg-[#e6e7e8] rounded-xl p-4 text-[#001a73] font-sarabun">
-            <h2 className="font-sarabun font-semibold text-xl text-center">รู้หรือไม่!</h2>
-            <p>
-              ในญี่ปุ่นมี Community Bus รถเมล์ขนาดเล็กที่วิ่งเข้าซอยและพื้นที่
-              ที่รถใหญ่เข้าไม่ถึง ค่าโดยสารถูกมาก บางแห่งนั่งได้ทั้งสายเพียง 100
-              เยน ทำให้ผู้สูงอายุและเด็กเข้าถึงบริการสำคัญ เช่น
-              โรงพยาบาลและศูนย์ชุมชนได้สะดวกขึ้น
-            </p>
+          <div className="px-4 sm:px-6 md:px-8 max-w-[900px] mx-auto">
+            <div className="bg-[#e6e7e8] rounded-xl p-4 text-[#001a73] font-sarabun">
+              <h2 className="font-sarabun font-semibold text-xl text-center">รู้หรือไม่!</h2>
+              <p>
+                ในญี่ปุ่นมี Community Bus รถเมล์ขนาดเล็กที่วิ่งเข้าซอยและพื้นที่
+                ที่รถใหญ่เข้าไม่ถึง ค่าโดยสารถูกมาก บางแห่งนั่งได้ทั้งสายเพียง 100
+                เยน ทำให้ผู้สูงอายุและเด็กเข้าถึงบริการสำคัญ เช่น
+                โรงพยาบาลและศูนย์ชุมชนได้สะดวกขึ้น
+              </p>
+            </div>
           </div>
         </div>
       </CustomizationScreen>
