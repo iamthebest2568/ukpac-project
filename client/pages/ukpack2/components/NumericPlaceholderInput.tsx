@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import React, { useState } from "react";
+
 type Props = {
   id?: string;
   value: number | "";
@@ -12,23 +14,24 @@ type Props = {
 const NumericPlaceholderInput: React.FC<Props> = ({ id, value, onChange, min = 0, max = Infinity, className = "" }) => {
   const [focused, setFocused] = useState(false);
 
+  // When not focused we show a display value of 00 (or padded number)
   const displayValue = value === "" ? "00" : String(value).padStart(2, "0");
   const inputValue = focused ? (value === "" ? "" : String(value)) : displayValue;
 
   return (
     <input
       id={id}
-      type="number"
+      type="text"
+      inputMode="numeric"
+      pattern="[0-9]*"
       value={inputValue}
-      onFocus={() => {
-        setFocused(true);
-      }}
+      onFocus={() => setFocused(true)}
       onBlur={(e) => {
         setFocused(false);
         if (e.currentTarget.value === "") onChange("");
       }}
       onChange={(e) => {
-        const raw = e.target.value;
+        const raw = e.target.value.replace(/[^0-9]/g, "");
         if (raw === "") {
           onChange("");
           return;
@@ -37,8 +40,7 @@ const NumericPlaceholderInput: React.FC<Props> = ({ id, value, onChange, min = 0
         onChange(parsed);
       }}
       className={className}
-      min={min}
-      max={Number.isFinite(max) ? max : undefined}
+      aria-label={id}
     />
   );
 };
