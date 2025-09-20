@@ -87,7 +87,7 @@ const FormScreen: React.FC = () => {
             className="block max-w-[520px] w-[75%] md:w-[60%] h-auto object-contain"
           />
         </div>
-        <div className="w-full flex justify-center -mt-20 md:-mt-24">
+        <div className="w-full flex justify-center -mt-28 md:-mt-32">
           <img
             src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe788f24196524b1daad2340de622d2d6?format=webp&width=800"
             alt="ภาพรถเมล์"
