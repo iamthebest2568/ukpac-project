@@ -43,7 +43,7 @@ const SeatingScreen: React.FC = () => {
 
   const CHASSIS_LABELS: Record<string, string> = {
     small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
-    medium: "ร��เมล์มาตรฐาน 30–50 ที��นั่ง",
+    medium: "รถเมล์มาตรฐาน 30–50 ที��นั่ง",
     large: "รถตู้โดยสาร 9–15 ที่นั่ง",
     extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
   };
@@ -188,7 +188,7 @@ const SeatingScreen: React.FC = () => {
     // Inclusive range check: total must be >= min and <= max
     if (!(total >= minCapacityLocal && total <= maxCapacityLocal)) {
       const chassisLabel = CHASSIS_LABELS[selectedChassis] || selectedChassis;
-      setErrorTitle("จำนวนที่นั่งไม่ถูกต้องสำหรับประเภทรถที่เลือก");
+      setErrorTitle("จำนวนที่นั่งไม่ถูกต้องสำหรับปร��เภทรถที่เลือก");
       setErrorMessage(
         `คุณเลือก: ${chassisLabel}. ค่าที่ถ��กต้องคือ ${minCapacityLocal} ถึง ${maxCapacityLocal} ที่นั่ง แต่คุณกรอก ${total}`,
       );
@@ -252,6 +252,8 @@ const SeatingScreen: React.FC = () => {
       <CustomizationScreen
         title="ปรับแต่งรถเมล์ของคุณ"
         theme="light"
+        fullWidth
+        containerPaddingClass={styles.containerPadding}
         footerContent={
           <div className="flex justify-center">
             <CtaButton text="ถัดไป" onClick={handleNext} />
