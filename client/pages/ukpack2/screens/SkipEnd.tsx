@@ -30,16 +30,18 @@ const SkipEnd: React.FC = () => {
         </div>
 
         <footer
-          className="rounded-t-3xl py-12 px-6 bg-no-repeat bg-top bg-cover w-screen"
+          className="rounded-t-3xl py-12 px-6 bg-no-repeat bg-top bg-cover"
           style={{
             backgroundImage:
               "url('https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc3874bf37db54abeb4a13c308b0df9a4?format=webp&width=1600')",
-            minHeight: '320px',
+            minHeight: '360px',
+            width: '100vw',
+            marginLeft: 'calc(50% - 50vw)'
           }}
         >
-          <div className="max-w-4xl mx-auto flex items-end justify-center h-full">
-            <div className="flex flex-col items-stretch gap-3 w-full max-w-sm pb-6">
-              <div className="w-full">
+          <div className="max-w-4xl mx-auto flex items-center justify-center h-full">
+            <div className="flex flex-col items-center gap-3 py-6">
+              <div style={{ width: '220px' }}>
                 <CtaButton
                   className="w-full"
                   text="จบเกม"
@@ -51,7 +53,7 @@ const SkipEnd: React.FC = () => {
                   }}
                 />
               </div>
-              <div className="w-full">
+              <div style={{ width: '220px' }}>
                 <SecondaryButton
                   className="w-full"
                   text="แชร์เกมนี้กับเพื่อน"
