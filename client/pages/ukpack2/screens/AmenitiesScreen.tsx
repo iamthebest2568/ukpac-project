@@ -15,7 +15,7 @@ const IconAir = () => (
 );
 const IconAirAlt = () => (
   <img
-    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F214f32e9828e4ed5a2d789142cb65df4?format=webp&width=800"
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Ff0fe8436ac954fd6b49da127a89b7d76?format=webp&width=800"
     alt="แอร์ (กดแล้ว)"
     className="object-contain select-none h-full w-full"
     decoding="async"
@@ -61,7 +61,7 @@ const IconPlug = () => (
 const IconTv = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F6e87ff91650a4c828cd5286cfaa34bb7?format=webp&width=800"
-    alt="Wi‑Fi ฟรี"
+    alt="Wi‑Fi ฟร���"
     className="object-contain select-none h-full w-full"
     decoding="async"
     loading="eager"
@@ -124,7 +124,7 @@ const AmenitiesScreen: React.FC = () => {
   // Selected chassis preview (reusing mapping from SeatingScreen)
   const CHASSIS_LABELS: Record<string, string> = {
     small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
-    medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
+    medium: "รถ���มล์มาตรฐาน 30–50 ที่นั่ง",
     large: "รถตู้โดยสาร 9–15 ที่นั่ง",
     extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
   };
