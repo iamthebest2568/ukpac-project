@@ -9,11 +9,7 @@ interface Props {
   overlayLabels?: string[];
   overlayIconMap?: Record<string, string | React.ReactNode>;
   placeholderText?: string;
-  colorFilter?: string | null;
-  // direct hex color overlay (eg. "#7d53a2"). If provided, takes precedence over colorFilter.
-  colorHex?: string | null;
-  // optional URL to an image mask that defines which parts of the vehicle receive the color overlay
-  colorMaskSrc?: string | null;
+  // color overlay props removed — color matching disabled
   // optional className to allow page-scoped padding/alignment
   className?: string;
   // when true, VehiclePreview will render a "รถที่เลือก : {label}" line beneath the preview
