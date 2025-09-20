@@ -106,8 +106,8 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   "ที่จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
   "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
-  "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
-  "กล้องวงจรปิ��": <IconCamSmall />,
+  "ระบ���ประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
+  "กล้องวงจรปิด": <IconCamSmall />,
 };
 
 const MONEY_ICON =
@@ -152,7 +152,7 @@ const IconDoor2 = () => (
 );
 const IconRamp = () => (
   <img
-    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fece2b6fc843340f0997f2fd7d3ca0aea?format=webp&width=800"
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F245ff72a7c3b468293c517a934e4e839?format=webp&width=800"
     alt="ทางสำหรับรถเข็น/ผู้พิการ"
     className="object-contain select-none max-h-full w-auto"
     decoding="async"
@@ -325,7 +325,7 @@ const DoorScreen: React.FC = () => {
                     />
                   </div>
                 );
-              if (label === "กระเป๋ารถเ��ล์")
+              if (label === "กระเป๋ารถเมล์")
                 return (
                   <div
                     key={`${label}-${idx}`}
