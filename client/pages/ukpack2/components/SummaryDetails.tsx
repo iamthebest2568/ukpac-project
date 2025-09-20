@@ -189,7 +189,7 @@ const SummaryDetails: React.FC = () => {
   };
 
   return (
-    <>
+    <div className="font-sarabun">
       {heroImg && (
         <div className="flex flex-col items-center mb-6">
           <VehiclePreview
@@ -277,7 +277,7 @@ const SummaryDetails: React.FC = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
