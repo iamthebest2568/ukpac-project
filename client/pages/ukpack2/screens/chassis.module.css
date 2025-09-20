@@ -218,7 +218,7 @@
   --icon-cell-height: 140px; /* mobile default icon height (increased) */
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* fill available width */
-  gap: 12px; /* slightly larger gap for breathing room */
+  gap: 6px; /* tighter gap for compact layout */
   width: 100%;
   box-sizing: border-box;
   padding: 0.1px; /* fill up to the border */
