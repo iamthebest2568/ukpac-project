@@ -9,6 +9,8 @@ interface SelectionCardProps {
   hideLabel?: boolean;
   appearance?: "card" | "bare" | "group";
   size?: "sm" | "md" | "lg";
+  /** Controls the size of the group appearance specifically */
+  groupSize?: "sm" | "md" | "lg";
   layout?: "vertical" | "horizontal";
 }
 
@@ -49,8 +51,19 @@ const SelectionCard: React.FC<SelectionCardProps> = ({
 
   // Group appearance: icon-only (no background circle or shadow)
   if (appearance === "group") {
-    // Fixed icon container to control size while keeping no decorative background
-    const boxSize = "w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28";
+    // Icon-only appearance with configurable sizes to avoid changing global styles
+    const gs = ("groupSize" in (arguments[0] || {}) ? (arguments[0] as any).groupSize : undefined) as string | undefined;
+    // fallback to prop 'groupSize' passed to the component
+    // determine box size based on provided groupSize prop
+    const map: Record<string, string> = {
+      sm: "w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24",
+      md: "w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28",
+      lg: "w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32",
+    };
+    // prefer explicit prop, otherwise default to md
+    const chosenSize = (typeof (arguments[0] === 'object' && (arguments[0] as any).groupSize) !== 'undefined') ? (arguments[0] as any).groupSize : undefined;
+    // But we have access to local variable 'groupSize' from props; use that
+    const boxSize = map[(typeof (groupSize) === 'string' ? groupSize : 'md')];
 
     return (
       <button
