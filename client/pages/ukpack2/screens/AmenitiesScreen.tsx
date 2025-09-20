@@ -42,7 +42,7 @@ const IconFanAlt = () => (
 );
 const IconSeat = () => (
   <img
-    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb101ad9f32f94ecebf2dda6bd7e56974?format=webp&width=800"
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F54f4c944e6ab4e84800e14b2a1105b94?format=webp&width=800"
     alt="หน้าต่างเปิดได้"
     className="object-contain select-none h-full w-full"
     decoding="async"
@@ -100,7 +100,7 @@ const AMENITIES = [
   { key: "fan", label: "พัดลม", icon: <IconFan />, iconActive: <IconFanAlt /> },
   { key: "seat", label: "ที่นั่งพิเศษ", icon: <IconSeat />, iconActive: <IconSeatAlt /> },
   { key: "wifi", label: "ที่จับ/ราวยืนที่ปลอดภัย", icon: <IconWifi />, iconActive: <IconWifi /> },
-  { key: "plug", label: "ช่องชาร์จมือถือ/USB", icon: <IconPlug />, iconActive: <IconPlug /> },
+  { key: "plug", label: "ช่องชาร์จ���ือถือ/USB", icon: <IconPlug />, iconActive: <IconPlug /> },
   { key: "tv", label: "Wi‑Fi ฟรี", icon: <IconTv />, iconActive: <IconTv /> },
   { key: "cup", label: "ระบบประกาศบอกป้าย(เสียง/จอ)", icon: <IconCup />, iconActive: <IconCup /> },
 ];
@@ -186,7 +186,7 @@ const AmenitiesScreen: React.FC = () => {
     พัดลม:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fdcae7affa4fe43e38aa5c78ca608e39e?format=webp&width=800",
     ที่นั่งพิเศษ:
-      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F788c9e78d6944fc8a5088cc00aa40697?format=webp&width=800", // ใช้ไอคอนหน้าต่างเปิดได้
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F788c9e78d6944fc8a5088cc00aa40697?format=webp&width=800", // ใช้ไอคอนหน้าต่างเปิดได���
     หน้าต่างเปิดได้:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F788c9e78d6944fc8a5088cc00aa40697?format=webp&width=800",
     "ที่จับ/ราวยืนที่ปลอดภัย":
