@@ -197,7 +197,8 @@ const AmenitiesScreen: React.FC = () => {
             {selectedBusImage ? (
               <VehiclePreview
                 imageSrc={selectedBusImage}
-                colorFilter={storedColor?.filter}
+                colorFilter={null}
+                colorHex={null}
                 label={
                   <>
                     <p className="mb-0">รถที่เลือก :</p>
