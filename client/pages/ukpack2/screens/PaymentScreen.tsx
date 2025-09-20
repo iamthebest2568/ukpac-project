@@ -600,9 +600,9 @@ const PaymentScreen: React.FC = () => {
                         className="h-5 w-5 object-contain"
                       />
                     ),
-                    "กระ��ป๋ารถเมล์": (
+                    "กระเป๋ารถเมล์": (
                       <img
-                        src={selected.includes("กระเป๋ารถเมล์") ? BUS_EMPLOY_ICON_ACTIVE : BUS_EMPLOY_ICON}
+                        src={"https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F422e4242064b4e6cac52945deb072145?format=webp&width=800"}
                         alt="กระเป๋ารถเมล์"
                         className="h-5 w-5 object-contain"
                       />
