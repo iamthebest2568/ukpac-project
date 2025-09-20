@@ -51,7 +51,7 @@ const IconSeat = () => (
 );
 const IconSeatAlt = () => (
   <img
-    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fd7356cef99f243198fe91182cd1fea19?format=webp&width=800"
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc77592bc38c64c329faeec1cffd7bbca?format=webp&width=800"
     alt="ที่จับ/ราวยืน (กดแล้ว)"
     className="object-contain select-none h-full w-full"
     decoding="async"
