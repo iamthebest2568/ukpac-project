@@ -89,7 +89,7 @@
     width: 100%;
     height: 100%;
     background-color: #222; /* Neutral dark background for desktop */
-    font-family: "Prompt" !important;
+    font-family: "Prompt";
   }
 
   body {
@@ -621,7 +621,7 @@
 
   .polaroid-caption {
     @apply text-center text-white font-medium;
-    font-family: "Prompt" !important;
+    font-family: "Prompt";
     font-size: clamp(11px, 2.5vw, 14px);
     margin-top: 6px;
     white-space: nowrap;
