@@ -321,10 +321,11 @@
   width: auto !important;
 }
 
-/* Selected state: visible border + subtle background */
+/* Selected state: neutral (no yellow frame) */
 .selectionGrid > button.selected {
-  border: 2px solid #f7c948 !important; /* warm yellow border */
-  background: #fff7d6 !important; /* light yellow background */
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
 }
 
 /* Fixed footer that uses same horizontal padding as content */
