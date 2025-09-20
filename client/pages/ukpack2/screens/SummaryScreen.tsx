@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import CustomizationScreen from "../components/CustomizationScreen";
 import SummaryDetails from "../components/SummaryDetails";
 import SecondaryButton from "../components/SecondaryButton";
 import CtaButton from "../components/CtaButton";
@@ -86,27 +87,10 @@ const SummaryScreen: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-white text-black flex flex-col">
-      {/* Scrollable content area */}
-      <div className="flex-1 overflow-y-auto pb-4">
-        <div className="max-w-4xl mx-auto px-4 py-8">
-          <header className="mb-6 text-center">
-            <h1 className="text-2xl md:text-3xl font-prompt font-semibold">
-              ปรับแต่งรถเมล์ของคุณ
-            </h1>
-            <p className="mt-2 text-sm text-gray-700">
-              นี่คือรถเมล์ในฝันของคุณ
-            </p>
-          </header>
-
-          <SummaryDetails />
-        </div>
-      </div>
-
-      {/* Fixed footer */}
-      <footer className="w-full bg-[#00d5f9] drop-shadow-lg rounded-t-3xl sticky bottom-[50px] z-10">
-        <div className="max-w-4xl mx-auto px-4">
-          <div className="p-4 md:p-6 flex flex-col items-center justify-center gap-3 max-w-sm mx-auto">
+    <CustomizationScreen title="" theme="light" footerContent={
+      <div className="flex justify-center">
+        <div className="w-full max-w-sm mx-auto">
+          <div className="p-4 md:p-6 flex flex-col items-center justify-center gap-3">
             <div className="w-full">
               <SecondaryButton
                 text="กลับไปแก้ไข"
@@ -124,8 +108,21 @@ const SummaryScreen: React.FC = () => {
             </div>
           </div>
         </div>
-      </footer>
-    </div>
+      </div>
+    }>
+      <div className="max-w-4xl mx-auto px-4 py-8">
+        <header className="mb-6 text-center">
+          <h1 className="text-2xl md:text-3xl font-prompt font-semibold">
+            ปรับแต่งรถเมล์ของคุณ
+          </h1>
+          <p className="mt-2 text-sm text-gray-700">
+            นี่คือรถเมล์ในฝันของคุณ
+          </p>
+        </header>
+
+        <SummaryDetails />
+      </div>
+    </CustomizationScreen>
   );
 };
 
