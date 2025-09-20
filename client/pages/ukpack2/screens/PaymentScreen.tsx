@@ -5,6 +5,7 @@ import CtaButton from "../components/CtaButton";
 import VehiclePreview from "../components/VehiclePreview";
 import { useNavigate } from "react-router-dom";
 import StepTabs from "../components/StepTabs";
+import styles from "./chassis.module.css";
 
 const IconCash = () => (
   <svg
