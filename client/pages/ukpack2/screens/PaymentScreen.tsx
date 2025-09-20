@@ -609,7 +609,7 @@ const PaymentScreen: React.FC = () => {
                     ),
                     "ตั๋วรายเดือน/รอบ": (
                       <img
-                        src={selected.includes("ตั๋วรายเดือน/รอบ") ? MONTHLY_ICON_ACTIVE : MONTHLY_ICON}
+                        src={"https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8a53d9e6b6284ac19efb0e61c1025784?format=webp&width=800"}
                         alt="ตั๋วรายเดือน/รอบ"
                         className="h-5 w-5 object-contain"
                       />
