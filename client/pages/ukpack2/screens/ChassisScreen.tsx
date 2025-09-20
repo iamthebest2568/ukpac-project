@@ -8,6 +8,7 @@ import ConfirmModal from "../components/ConfirmModal";
 import { clearDesignStorage } from "../../ukpack2/utils/clearDesign";
 import VehiclePreview from "../components/VehiclePreview";
 import styles from "./chassis.module.css";
+import { useBusDesign } from "../context/BusDesignContext";
 
 const AMENITIES_ICON_SMALL = {
   แอร์: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fee1c18a935564e92bb49991fac3b76df?format=webp&width=800",
@@ -171,7 +172,21 @@ const HERO_STAR =
 
 const ChassisScreen: React.FC = () => {
   const navigate = useNavigate();
-  const [selected, setSelected] = useState<string>(OPTIONS[0].key);
+  const { state, dispatch } = useBusDesign();
+
+  const [selected, setSelected] = useState<string>(() => {
+    try {
+      // prefer context value, fallback to sessionStorage, then default
+      if (typeof window !== "undefined") {
+        const saved = sessionStorage.getItem("design.chassis");
+        return (saved || OPTIONS[0].key) as string;
+      }
+    } catch (e) {
+      // ignore
+    }
+    return OPTIONS[0].key;
+  });
+
   const [firstIconClicked, setFirstIconClicked] = useState<boolean>(false);
   const [secondIconClicked, setSecondIconClicked] = useState<boolean>(false);
   const [thirdIconClicked, setThirdIconClicked] = useState<boolean>(false);
@@ -194,7 +209,24 @@ const ChassisScreen: React.FC = () => {
     } catch (e) {
       // ignore
     }
-  }, [selected]);
+
+    try {
+      dispatch({ type: "SET_CHASSIS", payload: selected });
+    } catch (e) {
+      // ignore
+    }
+  }, [selected, dispatch]);
+
+  // If context chassis changes externally, update local selected
+  React.useEffect(() => {
+    try {
+      if (state?.chassis && state.chassis !== selected) {
+        setSelected(state.chassis);
+      }
+    } catch (e) {
+      // ignore
+    }
+  }, [state?.chassis]);
 
   const handleNext = () => {
     // navigation will use the already persisted "design.chassis"
