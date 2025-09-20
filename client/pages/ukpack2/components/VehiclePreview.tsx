@@ -44,7 +44,8 @@ const VehiclePreview: React.FC<Props> = ({
     const carEl = carRef.current;
     const shadowEl = shadowRef.current;
     const containerEl = containerRef.current;
-    if (!carEl || !shadowEl || !containerEl) return;
+    if (!carEl || !containerEl) return;
+    if (!shadowEl) return; // nothing to update when shadow disabled
     const carRect = carEl.getBoundingClientRect();
     const containerRect = containerEl.getBoundingClientRect();
     const width = Math.round(carRect.width);
