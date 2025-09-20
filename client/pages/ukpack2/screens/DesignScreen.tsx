@@ -237,7 +237,7 @@ const DesignScreen: React.FC = () => {
     <>
       <MetaUpdater
         title="UK PACT - กรุงเทพฯ ลดติด"
-        description="ออกแบบรถเมล์เพื่อช่วยลดปัญหาการจราจรในกรุงเทพฯ — เลือกขนาดรถ สี และสิ่งอำ���วยความสะดวกที่ต้องการ"
+        description="ออกแบบรถเมล์เพื่อช่วยลดปัญหาการจราจรในกรุงเทพฯ — เลือกขนาดรถ สี และสิ่งอำ����วยความสะดวกที่ต้องการ"
         image="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F44cea8aeb6d4415e899494a90c6f59b1?format=webp&width=1200"
       />
       <CustomizationScreen
@@ -495,6 +495,7 @@ const DesignScreen: React.FC = () => {
                 {showTextarea && (
                   <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
                     <div className="bg-white rounded-xl p-4 max-w-lg w-full mx-4">
+                      <style>{`.save-btn-modal:hover { color: #000D59 !important; }`}</style>
                       <h3 className="text-lg font-prompt font-semibold text-[#000d59]">
                         ลักษณะพิเศษอื่นๆ
                       </h3>
