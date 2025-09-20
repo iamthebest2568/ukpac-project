@@ -237,7 +237,7 @@ const SCAN_ICON =
 const SCAN_ICON_ACTIVE =
   "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F37c0e26d7e834005a5d7c26bb0de8bf7?format=webp&width=800";
 const SCAN2_ICON =
-  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F73370cb5f352472abbed78743b555331?format=webp&width=1600";
+  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb49d8647d7754dc98655081f6a829b15?format=webp&width=800";
 const TOUCH_ICON =
   "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F4e22405c00c84fbfb1cd43fea6d8f8b4?format=webp&width=800";
 const MONTHLY_ICON =
