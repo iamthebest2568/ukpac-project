@@ -80,14 +80,14 @@ const FormScreen: React.FC = () => {
     >
       <div className="max-w-xl mx-auto pt-4 space-y-5 font-sarabun text-[17.6px] form-no-focus">
         <style>{`.form-no-focus *:focus{outline:none !important;box-shadow:none !important;}`}</style>
-        <div className="w-full flex justify-center -mt-8 md:-mt-12">
+        <div className="w-full flex justify-center -mt-16 md:-mt-24">
           <img
             src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F33272924342744429f8155587f834f20?format=webp&width=800"
             alt="รถเมล์ในฝัน"
             className="block max-w-[520px] w-[75%] md:w-[60%] h-auto object-contain"
           />
         </div>
-        <div className="w-full flex justify-center -mt-6 md:-mt-10">
+        <div className="w-full flex justify-center -mt-12 md:-mt-16">
           <img
             src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe788f24196524b1daad2340de622d2d6?format=webp&width=800"
             alt="ภาพรถเมล์"
@@ -144,7 +144,7 @@ onBlur={() => logEvent({ event: "FORM_PHONE_BLUR", payload: { phoneLen: phone.le
         <div className="max-w-4xl mx-auto flex items-center justify-center h-full">
           <div className="flex flex-col items-center gap-3 py-6">
             <div style={{ width: '220px' }}>
-              <CtaButton className="w-full" text="ลุ���นรับรางวัล" onClick={submit} />
+              <CtaButton className="w-full" text="ลุ้นรับรางวัล" onClick={submit} />
             </div>
             <div style={{ width: '220px' }}>
               <SecondaryButton className="w-full" text="ไม่รับรางวัล" onClick={skip} className="bg-[#ffe000] text-black hover:bg-[#000d59] hover:text-white" />
