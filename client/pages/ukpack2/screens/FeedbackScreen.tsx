@@ -20,7 +20,7 @@ const FeedbackScreen: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-white text-[#000d59] flex flex-col">
-      <div className="max-w-4xl w-full mx-auto px-4 py-8 flex-1">
+      <div className="max-w-4xl w-full mx-auto px-6 py-12 flex-1">
         <header className="mb-6 text-center">
           <h1 className="text-2xl font-prompt font-semibold">
             บอกเราหน่อยทำไมถึงไม่แน่ใจ
