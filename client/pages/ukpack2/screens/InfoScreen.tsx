@@ -38,16 +38,6 @@ const InfoScreen: React.FC = () => {
   return (
     <>
       <CustomizationScreen
-        headerContent={
-          <div className="w-full flex items-center justify-center">
-            <img
-              src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F52698823cbc246e1af117998994b74be?format=webp&width=1600"
-              alt="ปรับแต่งรถเมล์ของคุณ"
-              className="w-full h-16 object-cover"
-              style={{ maxWidth: '1400px' }}
-            />
-          </div>
-        }
         theme="light"
         fullWidth
         footerContent={
