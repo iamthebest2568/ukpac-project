@@ -102,7 +102,7 @@ const SeatingScreen: React.FC = () => {
 
     if (Number.isNaN(total)) {
       setErrorTitle("กรุณาระบุจำนวนที่นั่งทั้งหมด");
-      setErrorMessage(`กรุณากรอกจำนวนที่นั่งทั้งหมดในช่วง ${minCapacityLocal} ถึง ${maxCapacityLocal} ที่นั่ง`);
+      setErrorMessage(`กรุณากรอกจำนวนที่นั่งทั้งหมดในช่วง ${minCapacityLocal} ถึง ${maxCapacityLocal} ที���นั่ง`);
       setErrorModalOpen(true);
       return false;
     }
@@ -190,21 +190,20 @@ const SeatingScreen: React.FC = () => {
               <div className={styles.controlsContent}>
                 <div className="space-y-2 mt-2">
                   <div className="flex items-center justify-between">
-                    <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">จำนวนที่นั่งทั้งหมด</div>
+                    <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">จำ��วนที่นั่งทั้งหมด</div>
                     <input
                       type="number"
-                      placeholder="ระบุ..."
+                      placeholder="พิมพ์"
                       value={totalSeats}
                       onFocus={(e) => { e.currentTarget.placeholder = ''; }}
-                      onBlur={(e) => { if (e.currentTarget.value === '') e.currentTarget.placeholder = 'ระบุ...'; }}
+                      onBlur={(e) => { if (e.currentTarget.value === '') e.currentTarget.placeholder = 'พิมพ์'; }}
                       onChange={(e) => {
                         const raw = e.target.value;
                         if (raw === "") { handleTotalSeatsChange(""); return; }
                         const parsed = Math.min(maxCapacity, Math.max(0, parseInt(raw || "0", 10)));
                         handleTotalSeatsChange(parsed);
                       }}
-                      className="w-24 px-3 py-2 rounded-full text-[#000D59] bg-white text-right"
-                      style={{ borderWidth: 3, borderColor: "rgba(0,13,89,1)" }}
+                      className="w-24 px-3 py-2 text-[#000D59] bg-transparent text-right font-sarabun text-[17.6px] outline-none"
                       min={0}
                       max={maxCapacity}
                     />
@@ -212,27 +211,27 @@ const SeatingScreen: React.FC = () => {
 
                   <div className="flex items-center justify-between mt-4">
                     <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">จำนวนที่นั่งพิเศษ</div>
-                    <NumericPlaceholderInput id="specialSeats" value={specialSeats} onChange={(v) => setSpecialSeats(v)} min={0} max={maxCapacity} className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-full text-[#003366] bg-white text-right" />
+                    <NumericPlaceholderInput id="specialSeats" value={specialSeats} onChange={(v) => setSpecialSeats(v)} min={0} max={maxCapacity} className="w-24 px-3 py-2 text-[#003366] bg-transparent text-right font-sarabun text-[17.6px] outline-none" />
                   </div>
 
                   <div className="flex items-center justify-between">
                     <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">เด็ก / ผู้สูงอายุ</div>
-                    <NumericPlaceholderInput value={childElderSeats} onChange={(v) => setChildElderSeats(v)} min={0} max={maxCapacity} className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-full text-[#003366] bg-white text-right" />
+                    <NumericPlaceholderInput value={childElderSeats} onChange={(v) => setChildElderSeats(v)} min={0} max={maxCapacity} className="w-24 px-3 py-2 text-[#003366] bg-transparent text-right font-sarabun text-[17.6px] outline-none" />
                   </div>
 
                   <div className="flex items-center justify-between">
-                    <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">สตรีมพครรภ์</div>
-                    <NumericPlaceholderInput value={pregnantSeats} onChange={(v) => setPregnantSeats(v)} min={0} max={maxCapacity} className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-full text-[#003366] bg-white text-right" />
+                    <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">สตรีมีครรภ์</div>
+                    <NumericPlaceholderInput value={pregnantSeats} onChange={(v) => setPregnantSeats(v)} min={0} max={maxCapacity} className="w-24 px-3 py-2 text-[#003366] bg-transparent text-right font-sarabun text-[17.6px] outline-none" />
                   </div>
 
                   <div className="flex items-center justify-between">
                     <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">พระภิกษุสงฆ์</div>
-                    <NumericPlaceholderInput value={monkSeats} onChange={(v) => setMonkSeats(v)} min={0} max={maxCapacity} className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-full text-[#003366] bg-white text-right" />
+                    <NumericPlaceholderInput value={monkSeats} onChange={(v) => setMonkSeats(v)} min={0} max={maxCapacity} className="w-24 px-3 py-2 text-[#003366] bg-transparent text-right font-sarabun text-[17.6px] outline-none" />
                   </div>
 
                   <div className="flex items-center justify-between">
                     <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">พื้นที่สำหรับรถเข็น/จักรยาน</div>
-                    <NumericPlaceholderInput value={wheelchairBikeSpaces} onChange={(v) => setWheelchairBikeSpaces(v)} min={0} max={maxCapacity} className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-full text-[#003366] bg-white text-right" />
+                    <NumericPlaceholderInput value={wheelchairBikeSpaces} onChange={(v) => setWheelchairBikeSpaces(v)} min={0} max={maxCapacity} className="w-24 px-3 py-2 text-[#003366] bg-transparent text-right font-sarabun text-[17.6px] outline-none" />
                   </div>
                 </div>
               </div>
