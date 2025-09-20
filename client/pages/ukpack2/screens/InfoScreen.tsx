@@ -5,7 +5,7 @@ import CtaButton from "../components/CtaButton";
 import ConfirmModal from "../components/ConfirmModal";
 
 const CHASSIS_LABELS: Record<string, string> = {
-  small: "รถเมล์ขนาดเล็ก 16–30 ที่���ั่ง",
+  small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
   medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
   large: "รถตู้โดยสาร 9–15 ที่นั่ง",
   extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
@@ -61,7 +61,7 @@ const InfoScreen: React.FC = () => {
                 loading="eager"
               />
 
-              <div className="absolute left-1/2 top-[52%] transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center z-10 pointer-events-auto" style={{ width: '72%', maxWidth: 420 }}>
+              <div className="absolute left-1/2 top-[52%] transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center pointer-events-auto" style={{ width: '72%', maxWidth: 420, zIndex: 120 }}>
                 {(() => {
                   const amenities = (() => {
                     try { const raw = sessionStorage.getItem("design.amenities"); return raw ? (JSON.parse(raw) as string[]) : []; } catch { return [] as string[]; }
@@ -86,7 +86,7 @@ const InfoScreen: React.FC = () => {
                     emergency: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F98de0624be3d4ae6b96d83edcf8891f9?format=webp&width=800",
                   };
                   return overlay.length > 0 ? (
-                    <div className="absolute left-1/2 transform -translate-x-1/2 -top-24 flex flex-wrap justify-center gap-2 z-20 max-w-[80%]">
+                    <div className="absolute left-1/2 transform -translate-x-1/2 -top-24 flex flex-wrap justify-center gap-2 max-w-[80%]" style={{ zIndex: 130 }}>
                       {overlay.map((lab, i) => (
                         <div key={`${lab}-${i}`} className="bg-white/95 backdrop-blur rounded-full h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">
                           {ICONS[lab] ? <img src={ICONS[lab]} alt={lab} className="h-6 w-6 md:h-7 md:w-7 object-contain" /> : <div className="text-xs">{lab}</div>}
@@ -98,8 +98,8 @@ const InfoScreen: React.FC = () => {
                 <img
                   src={HERO_IMAGE[selected]}
                   alt={selectedLabel}
-                  className="w-full h-auto object-contain select-none z-40"
-                  style={{ position: 'relative', zIndex: 60 }}
+                  className="w-full h-auto object-contain select-none"
+                  style={{ position: 'relative', zIndex: 50 }}
                   decoding="async"
                   loading="eager"
                 />
