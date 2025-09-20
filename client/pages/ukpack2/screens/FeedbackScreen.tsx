@@ -41,7 +41,7 @@ const FeedbackScreen: React.FC = () => {
         className="rounded-t-3xl p-6 bg-no-repeat bg-top bg-cover w-screen"
         style={{
           backgroundImage:
-            "url('https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F7e994bb254cb408c86bed190e97b659e?format=webp&width=1600')"
+            "url('https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc3874bf37db54abeb4a13c308b0df9a4?format=webp&width=1600')"
         }}
       >
         <div className="max-w-4xl mx-auto flex items-center justify-center">
