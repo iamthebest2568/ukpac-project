@@ -53,7 +53,7 @@ type SessionSummary = {
   mn1Selected: string[]; // ลำดับความสำคัญของประเด็น
   mn2Selections?: Record<string, string[]>; // กลุ่มเป้าหมายที่ควรได้รับสิทธิ์
   mn3Selected?: string[]; // ประเด็นนโยบายที่ผู้ใช้เลือก
-  mn3BudgetAllocation?: Record<string, number>; // การจัดส��รงบประมาณ
+  mn3BudgetAllocation?: Record<string, number>; // การจัดสรรงบประมาณ
   mn3BudgetTotal?: number;
   satisfactionLevel?: string; // ระดับความพึงพอใจ
   ask05Comment?: string; // ข้อเสนอเพิ่มเติมต่อรัฐ
@@ -160,7 +160,7 @@ export default function UkDashboard() {
       }
       setLastUpdated(new Date().toLocaleString());
     } catch (e: any) {
-      setError(e?.message || "โหลดข้อมูลล้มเหลว");
+      setError(e?.message || "โหลดข้อมูลล้มเ��ลว");
     } finally {
       if (firstLoad) setLoading(false);
       setFirstLoad(false);
@@ -265,7 +265,7 @@ export default function UkDashboard() {
                   {ingest.app.lastTs
                     ? new Date(ingest.app.lastTs).toLocaleString()
                     : "-"}{" "}
-                  • วิดี���อ: {ingest.video.count} เหตุการณ์, ล่าสุด{" "}
+                  • วิดีโอ: {ingest.video.count} เหตุการณ์, ล่าสุด{" "}
                   {ingest.video.lastTs
                     ? new Date(ingest.video.lastTs).toLocaleString()
                     : "-"}
@@ -454,7 +454,7 @@ export default function UkDashboard() {
 
               {/* User Journey: Topics as accordion */}
               {journey && (
-                <Card title="หัวข้��ข้อมูล (Topics)">
+                <Card title="หัวข้อข้อมูล (Topics)">
                   <Accordion
                     type="single"
                     collapsible
@@ -639,7 +639,7 @@ export default function UkDashboard() {
                     {/* MN3 money */}
                     <AccordionItem value="mn3money">
                       <AccordionTrigger>
-                        Minigame 3 : เงินที่ใส่
+                        Minigame 3 : เงินท��่ใส่
                       </AccordionTrigger>
                       <AccordionContent>
                         <ul className="space-y-1 text-sm">
@@ -768,15 +768,15 @@ export default function UkDashboard() {
                     rows.push([
                       "IP",
                       "Access Time",
-                      "ทำไมคุณถึงต้องเข้าเมืองบ���อย ๆ ?",
-                      "คุณใช้รถแบบไหนเดินทางเข้าเมือง ?",
-                      "คุณคิดเห็��อย่างไรกับนโยบายนี้ ?",
+                      "ทำไมคุณถึงต้องเข้าเมืองบ่อย ๆ ?",
+                      "คุณใช้รถแบบไหนเดินทางเข้าเม���อง ?",
+                      "คุณคิดเห็นอย่างไรกับนโยบายนี้ ?",
                       "จากข้อความข้างต้น คุณมีความคิดเห็นอย่างไร (เห็นด้วย/กลางๆ/ไม่เห็นด้วย)",
                       "ทำไมคุณถึงคิดอย่างนั้น (นโยบายไม่ครอบคลุม / เก็บไปก็ไม่มีอะไรดีขึ้น / อื่นๆ)",
                       "อธิบายอื่น ๆ ที่ช่วยอธิบายความคิดเห็น",
                       "บอกเราหน่อยว่าคุณเดินทางเข้าเมืองด้วยวิธีการใดบ่อยที่สุด",
                       "จากนโยบายที่คุณฟังเมื่อสักครู่ คุณมีความคิดเห็นอย่างไร",
-                      "คุณคิดว่านโยบายปัจจุบัน ควรปรับเปลี่ยนประเด็นอะไรบาง (ลดค่าโดยสาร, ปรับปรุงคุณภาพ, ขึ้นราคา, เพ��่มขบวน, เพิ่มความถี่ ฯลฯ)",
+                      "คุณคิดว่านโยบายปัจจุบัน ควรปรับเปลี่ยนประเด็นอะไรบาง (ลดค่าโดยสาร, ปรั���ปรุงคุณภาพ, ขึ้นราคา, เพิ่มขบวน, เพิ่มความถี่ ฯลฯ)",
                       "คุณคิดว่าใครควรได้รับการลดค่าโดยสารรถไฟฟ้าบ้าง (ทุกคน, ผู้สูงอายุ, นักเรียน, คนทำงาน ฯลฯ)",
                       "คุณคิดว่าคว��ใช้เงินที่ได้จากการเก็บไปพัฒนาอะไร ก่อน 3 อันดับแรก",
                       "คุณจะให้งบประมาณแต่ละข้อเท่าไร (งบทั้งหมด 100)",
@@ -883,7 +883,7 @@ export default function UkDashboard() {
           >
             <div className="flex items-center justify-between mb-2">
               <div className="text-lg font-medium">
-                รายละเอียดเซสชัน: {detailSession?.slice(0, 12)}…
+                รายละเอียดเซสชั��: {detailSession?.slice(0, 12)}…
               </div>
               <button
                 className="text-white/70 hover:text-white"
