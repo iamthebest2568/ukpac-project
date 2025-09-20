@@ -156,7 +156,7 @@ const IconFan = () => (
 const IconSeat = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F93439b2533284cdf914fc93cafa1cf26?format=webp&width=800"
-    alt="ที่นั่งพิเศษ"
+    alt="ที่น���่งพิเศษ"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -252,10 +252,10 @@ const BUS_EMPLOY_ICON =
 const OPTIONS = [
   { key: "cash", label: "เงินสด", icon: <IconCash /> },
   { key: "scan", label: "สแกนจ่าย", icon: <IconScan /> },
-  { key: "scan2", label: "สแกนจ��าย 2", icon: null },
+  { key: "scan2", label: "สแกนจ่าย 2", icon: null },
   { key: "tap", label: "แตะบัตร", icon: <IconTap /> },
   { key: "qr", label: "กระเป๋ารถเมล์", icon: <IconQr /> },
-  { key: "monthly", label: "ตั๋วรายเดือน/รอบ", icon: null },
+  { key: "monthly", label: "ตั๋���รายเดือน/รอบ", icon: null },
 ];
 
 const PaymentScreen: React.FC = () => {
@@ -324,10 +324,13 @@ const PaymentScreen: React.FC = () => {
               extra:
                 "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9a8a7536ced24db19a65409fbba1c6b6?format=webp&width=800",
             };
-            let selectedChassis = "medium";
+            const { state } = useBusDesign();
+            let selectedChassis = state?.chassis || "medium";
             try {
-              const saved = sessionStorage.getItem("design.chassis");
-              if (saved) selectedChassis = saved;
+              if (!state?.chassis) {
+                const saved = sessionStorage.getItem("design.chassis");
+                if (saved) selectedChassis = saved;
+              }
             } catch (e) {}
             const label = CHASSIS_LABELS[selectedChassis] || "";
             const img = HERO_IMAGE[selectedChassis];
@@ -590,7 +593,7 @@ const PaymentScreen: React.FC = () => {
                     กระเป๋ารถเมล์: (
                       <img
                         src={BUS_EMPLOY_ICON}
-                        alt="กระเป๋ารถ���มล์"
+                        alt="กระเป๋ารถเมล์"
                         className="h-5 w-5 object-contain"
                       />
                     ),
