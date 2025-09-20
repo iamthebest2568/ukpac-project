@@ -574,7 +574,7 @@ const PaymentScreen: React.FC = () => {
                     ...AMENITIES_ICON_MAP,
                     "เงินสด": (
                       <img
-                        src={selected.includes("เงินสด") ? MONEY_ICON_ACTIVE : MONEY_ICON}
+                        src={CASH_OVERLAY_ICON}
                         alt="เงินสด"
                         className="h-5 w-5 object-contain"
                       />
