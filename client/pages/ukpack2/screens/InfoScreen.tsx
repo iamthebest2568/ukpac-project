@@ -87,7 +87,7 @@ const InfoScreen: React.FC = () => {
                     emergency: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F98de0624be3d4ae6b96d83edcf8891f9?format=webp&width=800",
                   };
                   return overlay.length > 0 ? (
-                    <div className="absolute left-1/2 transform -translate-x-1/2 -top-24 flex flex-wrap justify-center gap-2 max-w-[80%]" style={{ zIndex: 130 }}>
+                    <div className="absolute left-1/2 transform -translate-x-1/2 flex flex-wrap justify-center gap-2 max-w-[80%]" style={{ zIndex: 130, top: '10%' }}>
                       {overlay.map((lab, i) => (
                         <div key={`${lab}-${i}`} className="bg-white/95 backdrop-blur rounded-full h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">
                           {ICONS[lab] ? <img src={ICONS[lab]} alt={lab} className="h-6 w-6 md:h-7 md:w-7 object-contain" /> : <div className="text-xs">{lab}</div>}
@@ -113,7 +113,7 @@ const InfoScreen: React.FC = () => {
             <p>
               ในญี่ปุ่นมี Community Bus รถเมล์ขนาดเล็กที่วิ่งเข้าซอยและพื้นที่
               ที่รถใหญ่เข้าไม่ถึง ค่าโดยสารถูกมาก บางแห่งนั่งได้ทั้งสายเพียง 100
-              เยน ทำให้ผู้สูงอายุและเด็กเข้าถึงบริการสำคัญ เช่น
+              เยน ทำให้ผู้สูงอา��ุและเด็กเข้าถึงบริการสำคัญ เช่น
               โรงพยาบาลและศูนย์ชุมชนได้สะดวกขึ้น
             </p>
           </div>
