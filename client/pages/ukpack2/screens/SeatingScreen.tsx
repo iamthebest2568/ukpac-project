@@ -24,7 +24,7 @@ const TOPDOWN_IMAGE: Record<string, string | undefined> = {
 const CHASSIS_LABELS: Record<string, string> = {
   small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
   medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
-  large: "รถตู้โดยสาร 9–15 ที่นั่ง",
+  large: "รถตู้โดยสาร 9–15 ที่น��่ง",
   extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
 };
 
@@ -176,7 +176,7 @@ const SeatingScreen: React.FC = () => {
           <div className={styles.previewWrapper}>
             <div className={styles.previewInner}>
               <div style={{ position: "relative" }}>
-                <VehiclePreview imageSrc={selectedTopdown} label={selectedLabel} showSelectedText overlayLabels={overlay} overlayIconMap={{}} colorHex={null} />
+                <VehiclePreview imageSrc={selectedTopdown} label={selectedLabel} showSelectedText overlayLabels={overlay} overlayIconMap={{}} colorHex={null} showShadow={false} />
               </div>
             </div>
           </div>
