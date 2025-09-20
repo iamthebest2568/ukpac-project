@@ -27,24 +27,40 @@ const SkipEnd: React.FC = () => {
           <p className="text-[#001a73] font-prompt font-semibold text-center">
             ขอบคุณ ที่ร่วมเป็นส่วนหนึ่งในการพัฒนาเม��อง
           </p>
-          <div className="flex flex-col items-stretch gap-3 pt-2 w-full max-w-sm mx-auto">
-            <CtaButton
-              className="w-full"
-              text="จบเกม"
-              onClick={() => {
-                try {
-                  clearDesignStorage();
-                } catch (e) {}
-                navigate("/ukpack2");
-              }}
-            />
-            <SecondaryButton
-              className="w-full"
-              text="แชร์เกมนี้กับเพื่อน"
-              onClick={() => setShareOpen(true)}
-            />
-          </div>
         </div>
+
+        <footer
+          className="rounded-t-3xl py-12 px-6 bg-no-repeat bg-top bg-cover w-screen"
+          style={{
+            backgroundImage:
+              "url('https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc3874bf37db54abeb4a13c308b0df9a4?format=webp&width=1600')",
+            minHeight: '320px',
+          }}
+        >
+          <div className="max-w-4xl mx-auto flex items-end justify-center h-full">
+            <div className="flex flex-col items-stretch gap-3 w-full max-w-sm pb-6">
+              <div className="w-full">
+                <CtaButton
+                  className="w-full"
+                  text="จบเกม"
+                  onClick={() => {
+                    try {
+                      clearDesignStorage();
+                    } catch (e) {}
+                    navigate("/ukpack2");
+                  }}
+                />
+              </div>
+              <div className="w-full">
+                <SecondaryButton
+                  className="w-full"
+                  text="แชร์เกมนี้กับเพื่อน"
+                  onClick={() => setShareOpen(true)}
+                />
+              </div>
+            </div>
+          </div>
+        </footer>
       </CustomizationScreen>
 
       <ShareModal
