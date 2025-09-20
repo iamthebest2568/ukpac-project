@@ -109,7 +109,7 @@ const SeatingScreen: React.FC = () => {
 
     if (!(total >= minCapacityLocal && total <= maxCapacityLocal)) {
       const chassisLabel = CHASSIS_LABELS[selectedChassis] || selectedChassis;
-      setErrorTitle("จำนวนที่นั่งไม่ถูกต้องสำหรับประเภทรถที่เลือก");
+      setErrorTitle("จำ���วนที่นั่งไม่ถูกต้องสำหรับประเภทรถที่เลือก");
       setErrorMessage(`คุณเลือก: ${chassisLabel}. ค่าที่ถูกต้องคือ ${minCapacityLocal} ถึง ${maxCapacityLocal} ที่นั่ง แต่คุณกรอก ${total}`);
       setErrorModalOpen(true);
       return false;
@@ -176,7 +176,7 @@ const SeatingScreen: React.FC = () => {
           <div className={styles.previewWrapper}>
             <div className={styles.previewInner}>
               <div style={{ position: "relative" }}>
-                <VehiclePreview imageSrc={selectedTopdown} label={selectedLabel} showSelectedText overlayLabels={overlay} overlayIconMap={{}} colorHex={null} showShadow={false} />
+                <VehiclePreview imageSrc={selectedTopdown} label={selectedLabel} showSelectedText overlayLabels={overlay} overlayIconMap={{}} showShadow={false} />
               </div>
             </div>
           </div>
