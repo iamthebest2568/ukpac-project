@@ -52,7 +52,7 @@ const IconSeat = () => (
 const IconSeatAlt = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb486238ba25f4078a86915b3db2688eb?format=webp&width=800"
-    alt="หน้าต่างเปิดได้ (��ดแล้ว)"
+    alt="หน้าต่างเปิดได้ (กดแล้ว)"
     className="object-contain select-none h-full w-full"
     decoding="async"
     loading="eager"
@@ -128,7 +128,7 @@ const AMENITIES = [
   { key: "seat", label: "ที่นั่งพิเศษ", icon: <IconSeat />, iconActive: <IconSeatAlt /> },
   { key: "wifi", label: "ที่จับ/ราวยืนที่ปลอดภัย", icon: <IconWifi />, iconActive: <IconWifiAlt /> },
   { key: "plug", label: "ช่องชาร์จมือถือ/USB", icon: <IconPlug />, iconActive: <IconPlugAlt /> },
-  { key: "tv", label: "Wi‑Fi ฟรี", icon: <IconTv />, iconActive: <IconTv /> },
+  { key: "tv", label: "Wi‑Fi ฟรี", icon: <IconTv />, iconActive: <IconTvAlt /> },
   { key: "cup", label: "ระบบประกาศบอกป้าย(เสียง/จอ)", icon: <IconCup />, iconActive: <IconCup /> },
 ];
 
@@ -169,7 +169,7 @@ const AmenitiesScreen: React.FC = () => {
   // Selected chassis preview (reusing mapping from SeatingScreen)
   const CHASSIS_LABELS: Record<string, string> = {
     small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
-    medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
+    medium: "รถเมล��มาตรฐาน 30–50 ที่นั่ง",
     large: "รถตู้โดยสาร 9–15 ที่นั่ง",
     extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
   };
