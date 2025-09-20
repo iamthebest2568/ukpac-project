@@ -23,7 +23,7 @@ const ThankYouScreen: React.FC = () => {
             รถประจำทางให้ดียิ่งขึ้น
           </p>
           <hr className="my-6 border-[#e5e7eb]" />
-          <div className="font-sarabun leading-relaxed">
+          <div className="font-prompt font-semibold text-[18px] leading-relaxed">
             <p>คุณอยากกรอกข้อมูลเพิ่ม</p>
             <p>เพื่อลุ้นรับรางวัล</p>
             <p>ลุ้นรางวัลบัตรขนส่งสาธารณะ</p>
