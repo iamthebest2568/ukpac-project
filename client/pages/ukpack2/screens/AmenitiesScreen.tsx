@@ -138,7 +138,7 @@ const AMENITIES = [
   { key: "wifi", label: "ที่จับ/ราวยืนที่ปลอดภัย", icon: <IconWifi />, iconActive: <IconWifiAlt /> },
   { key: "plug", label: "ช่องชาร์จมือถือ/USB", icon: <IconPlug />, iconActive: <IconPlugAlt /> },
   { key: "tv", label: "Wi‑Fi ฟรี", icon: <IconTv />, iconActive: <IconTvAlt /> },
-  { key: "cup", label: "ระบบประกาศบอกป้าย(เสียง/จอ)", icon: <IconCup />, iconActive: <IconCup /> },
+  { key: "cup", label: "ระบบประกาศบอกป้าย(เสียง/จอ)", icon: <IconCup />, iconActive: <IconCupAlt /> },
 ];
 
 import { useNavigate } from "react-router-dom";
@@ -178,7 +178,7 @@ const AmenitiesScreen: React.FC = () => {
   // Selected chassis preview (reusing mapping from SeatingScreen)
   const CHASSIS_LABELS: Record<string, string> = {
     small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
-    medium: "ร���เมล์มาตรฐาน 30–50 ที่นั่ง",
+    medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
     large: "รถตู้โดยสาร 9–15 ที่นั่ง",
     extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
   };
