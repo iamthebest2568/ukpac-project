@@ -14,21 +14,21 @@ const IconPerson = () => (
     xmlns="http://www.w3.org/2000/svg"
   >
     <circle
-      cx="30"
-      cy="20"
-      r="12"
-      stroke="#000D59"
-      strokeWidth="3"
-      fill="none"
-    />
-    <path
-      d="M8 55c3-12 15-18 22-18s19 6 22 18"
-      stroke="#000D59"
-      strokeWidth="3"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      fill="none"
-    />
+    cx="30"
+    cy="20"
+    r="12"
+    stroke="#FFE000"
+    strokeWidth="3"
+    fill="none"
+  />
+  <path
+    d="M8 55c3-12 15-18 22-18s19 6 22 18"
+    stroke="#FFE000"
+    strokeWidth="3"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    fill="none"
+  />
   </svg>
 );
 
