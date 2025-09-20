@@ -81,6 +81,7 @@ const AMENITIES = [
 import { useNavigate } from "react-router-dom";
 import StepTabs from "../components/StepTabs";
 import VehiclePreview from "../components/VehiclePreview";
+import styles from "./chassis.module.css";
 
 const AmenitiesScreen: React.FC = () => {
   const navigate = useNavigate();
