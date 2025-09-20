@@ -5,7 +5,7 @@ import CtaButton from "../components/CtaButton";
 import ConfirmModal from "../components/ConfirmModal";
 
 const CHASSIS_LABELS: Record<string, string> = {
-  small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
+  small: "รถเมล์ขนาดเล็ก 16–30 ที่���ั่ง",
   medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
   large: "รถตู้โดยสาร 9–15 ที่นั่ง",
   extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
@@ -86,7 +86,7 @@ const InfoScreen: React.FC = () => {
                     emergency: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F98de0624be3d4ae6b96d83edcf8891f9?format=webp&width=800",
                   };
                   return overlay.length > 0 ? (
-                    <div className="absolute left-1/2 transform -translate-x-1/2 -top-24 flex flex-wrap justify-center gap-2 z-30 max-w-[80%]">
+                    <div className="absolute left-1/2 transform -translate-x-1/2 -top-24 flex flex-wrap justify-center gap-2 z-20 max-w-[80%]">
                       {overlay.map((lab, i) => (
                         <div key={`${lab}-${i}`} className="bg-white/95 backdrop-blur rounded-full h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">
                           {ICONS[lab] ? <img src={ICONS[lab]} alt={lab} className="h-6 w-6 md:h-7 md:w-7 object-contain" /> : <div className="text-xs">{lab}</div>}
