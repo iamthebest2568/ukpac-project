@@ -96,7 +96,7 @@ const VehiclePreview: React.FC<Props> = ({
                   return (
                     <div
                     key={`${lab}-${i}`}
-                    className="h-8 w-8 flex items-center justify-center inline-flex flex-shrink-0" // Removed background styling
+                    className="h-10 w-10 sm:h-12 sm:w-12 flex items-center justify-center inline-flex flex-shrink-0" // Removed background styling
                   >
                       {typeof srcOrNode === "string" && srcOrNode ? (
                         (() => {
