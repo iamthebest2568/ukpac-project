@@ -89,7 +89,7 @@ const InfoNextScreen: React.FC = () => {
     }>
       <div className="max-w-4xl mx-auto px-4 py-8">
         {/* Top header image (75% width centered) */}
-        <div className="w-full flex justify-center mb-6">
+        <div className="w-full flex justify-center mb-6 -mt-8 md:-mt-12">
           <div className="w-[75%] mx-auto px-4">
             <img
               src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8252bd27b98340349ac37000716c83db?format=webp&width=800"
