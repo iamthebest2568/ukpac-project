@@ -225,7 +225,7 @@ const DesignScreen: React.FC = () => {
 
   const handleFinish = () => {
     try {
-      sessionStorage.setItem("design.color", JSON.stringify(color));
+      // design.color storage removed — color matching disabled
       sessionStorage.setItem("design.slogan", slogan);
     } catch (e) {}
     navigate("/ukpack2/submit");
@@ -371,7 +371,7 @@ const DesignScreen: React.FC = () => {
                       "สแกนจ่าย 2": (
                         <img
                           src={SCAN2_ICON}
-                          alt="��แกนจ่า�� 2"
+                          alt="��แกนจ่าย 2"
                           className="h-5 w-5 object-contain"
                         />
                       ),
@@ -480,7 +480,7 @@ const DesignScreen: React.FC = () => {
               />
 
               <h2 className="text-xl font-prompt font-semibold text-[#003366] mt-4">
-                ลักษณะ���ิเศษอื่น ๆ ของรถคุณ
+                ลักษณะพิเศษอื่น ๆ ของรถคุณ
               </h2>
               <div>
                 <input
