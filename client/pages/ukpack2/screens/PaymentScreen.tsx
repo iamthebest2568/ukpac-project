@@ -225,14 +225,14 @@ const IconCam = () => (
 );
 
 const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
-  แ��ร์: <IconAir />,
-  พัดลม: <IconFan />,
-  ที่นั่งพิเศษ: <IconSeat />,
+  "แอร์": <IconAir />,
+  "พัดลม": <IconFan />,
+  "ที่นั่งพิเศษ": <IconSeat />,
   "ที่จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
   "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
   "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
-  กล้องวงจรปิด: <IconCam />,
+  "กล้องวงจรปิด": <IconCam />,
 };
 
 const MONEY_ICON =
@@ -253,7 +253,7 @@ const OPTIONS = [
   { key: "scan", label: "สแกนจ่าย", icon: <IconScan /> },
   { key: "scan2", label: "สแกนจ่าย 2", icon: null },
   { key: "tap", label: "แตะบัตร", icon: <IconTap /> },
-  { key: "qr", label: "กระเป๋ารถเมล์", icon: <IconQr /> },
+  { key: "qr", label: "กระ���ป๋ารถเมล์", icon: <IconQr /> },
   { key: "monthly", label: "ตั๋วรายเดือน/รอบ", icon: null },
 ];
 
@@ -294,7 +294,7 @@ const PaymentScreen: React.FC = () => {
 
   return (
     <CustomizationScreen
-      title="ปรับแต่งรถเมล์ของคุณ"
+      title="ปรับแต่งร���เมล์ของคุณ"
       theme="light"
       fullWidth
       containerPaddingClass={styles.containerPadding}
