@@ -179,6 +179,16 @@ const IconRamp = () => (
     loading="eager"
   />
 );
+
+const IconRampActive = () => (
+  <img
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F199c45ef45704addad6c7b113f14b7da?format=webp&width=800"
+    alt="ทางสำหรับรถเข็น/ผู้พิการ (selected)"
+    className="object-contain select-none max-h-full w-auto"
+    decoding="async"
+    loading="eager"
+  />
+);
 const IconHighLow = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F38e094ce2f914f2089d04349bc6f386b?format=webp&width=800"
@@ -223,7 +233,7 @@ const DoorScreen: React.FC = () => {
     fullWidth
     footerContent={
         <div className="flex justify-center">
-          <CtaButton text="ถัดไป" onClick={handleNext} />
+          <CtaButton text="���ัดไป" onClick={handleNext} />
         </div>
       }
     >
@@ -542,7 +552,7 @@ const DoorScreen: React.FC = () => {
                   const DOOR_OPTIONS = [
                     { key: "1", label: "1 ประตู", icon: <IconDoor1 />, iconActive: <IconDoor1Active /> },
                     { key: "2", label: "2 ประตู", icon: <IconDoor2 />, iconActive: <IconDoor2Active /> },
-                    { key: "ramp", label: "ทางลาดสำหรับรถเข็น/ผู้พิการ", icon: <IconRamp />, iconActive: <IconRamp /> },
+                    { key: "ramp", label: "ทางลาดสำหรับรถเข็น/ผู้พิกา���", icon: <IconRamp />, iconActive: <IconRamp /> },
                     { key: "emergency", label: "ประตูฉุกเฉิน", icon: <IconHighLow />, iconActive: <IconHighLow /> },
                   ];
 
