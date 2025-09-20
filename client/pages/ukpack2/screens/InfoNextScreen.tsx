@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import CustomizationScreen from "../components/CustomizationScreen";
 import SummaryDetails from "../components/SummaryDetails";
 import SecondaryButton from "../components/SecondaryButton";
 import CtaButton from "../components/CtaButton";
@@ -64,8 +65,23 @@ const InfoNextScreen: React.FC = () => {
   const heroImg = HERO_IMAGE[selected];
 
   return (
-    <div className="min-h-screen bg-white text-black py-8 px-4">
-      <div className="max-w-4xl mx-auto">
+    <CustomizationScreen title="" theme="light" footerContent={
+      <div className="flex justify-center">
+        <div className="w-full max-w-4xl mx-auto flex items-center justify-center">
+          <div className="flex items-center gap-3">
+            <SecondaryButton
+              text="ใช้บริการแน่นอน"
+              onClick={() => navigate("/ukpack2/thank-you")}
+            />
+            <CtaButton
+              text="ไม่แน่ใจ"
+              onClick={() => navigate("/ukpack2/feedback")}
+            />
+          </div>
+        </div>
+      </div>
+    }>
+      <div className="max-w-4xl mx-auto px-4 py-8">
         <div className="mb-6 flex justify-center">
           <img
             src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F6ae44b82429e406e837c47f4ec6aa5f4?format=webp&width=800"
@@ -76,28 +92,13 @@ const InfoNextScreen: React.FC = () => {
 
         <SummaryDetails />
 
-        <p className="mt-4 font-prompt font-bold text-[#003366] text-center">
-          ถ้ามีรถประจำทางแบบนี้คุณคิดว่าจะใช้บริการหรือไม่
+        <p className="mt-4 font-sarabun font-bold text-[#003366] text-center">
+          <span>ถ้ามีรถประจำทางแบบนี้คุณคิด</span>
+          <br />
+          <span>ว่าจะใช้บริการหรือไม่</span>
         </p>
-
-        <footer className="mt-6">
-          <div className="bg-[#00d5f9] rounded-t-3xl p-6 drop-shadow-lg">
-            <div className="max-w-4xl mx-auto flex items-center justify-center">
-              <div className="flex items-center gap-3">
-                <SecondaryButton
-                  text="ใช้บริการแน่นอน"
-                  onClick={() => navigate("/ukpack2/thank-you")}
-                />
-                <CtaButton
-                  text="ไม่แน่ใจ"
-                  onClick={() => navigate("/ukpack2/feedback")}
-                />
-              </div>
-            </div>
-          </div>
-        </footer>
       </div>
-    </div>
+    </CustomizationScreen>
   );
 };
 
