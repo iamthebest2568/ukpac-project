@@ -12,7 +12,7 @@ const ConfirmationScreen: React.FC = () => {
   return (
     <>
       <CustomizationScreen title="" theme="light">
-        <div className="max-w-4xl mx-auto pb-32 -mt-20">
+        <div className="max-w-4xl mx-auto pb-40 -mt-8">
           <div className="w-full flex justify-center mb-2">
             <img
               src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F6b62374327d643178ab7f4a913ddc1b1?format=webp&width=800"
@@ -32,7 +32,7 @@ const ConfirmationScreen: React.FC = () => {
             />
           </div>
         </div>
-        <div className="fixed bottom-0 left-0 right-0 z-10">
+        <div className="fixed left-0 right-0 z-10" style={{ bottom: '20px' }}>
           <div className="max-w-4xl mx-auto px-6 pb-[env(safe-area-inset-bottom,1rem)]">
             <div className="w-full flex flex-col items-stretch gap-3 bg-white py-4">
               <div className="w-full max-w-sm mx-auto">
