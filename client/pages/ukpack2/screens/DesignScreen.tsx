@@ -210,9 +210,7 @@ const DEFAULT_COLORS = [
 
 const DesignScreen: React.FC = () => {
   const navigate = useNavigate();
-  const [color, setColor] = useState<(typeof DEFAULT_COLORS)[0]>(
-    DEFAULT_COLORS[0],
-  );
+  // color selection and matching removed — color swatches are now inert (no state)
   const [slogan, setSlogan] = useState<string>("");
   const [showTextarea, setShowTextarea] = useState<boolean>(false);
   const [sloganDraft, setSloganDraft] = useState<string>("");
@@ -373,7 +371,7 @@ const DesignScreen: React.FC = () => {
                       "สแกนจ่าย 2": (
                         <img
                           src={SCAN2_ICON}
-                          alt="��แกนจ่าย 2"
+                          alt="��แกนจ่า�� 2"
                           className="h-5 w-5 object-contain"
                         />
                       ),
@@ -482,7 +480,7 @@ const DesignScreen: React.FC = () => {
               />
 
               <h2 className="text-xl font-prompt font-semibold text-[#003366] mt-4">
-                ลักษณะพิเศษอื่น ๆ ของรถคุณ
+                ลักษณะ���ิเศษอื่น ๆ ของรถคุณ
               </h2>
               <div>
                 <input
