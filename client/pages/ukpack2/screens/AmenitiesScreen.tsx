@@ -42,7 +42,7 @@ const IconFanAlt = () => (
 );
 const IconSeat = () => (
   <img
-    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F93439b2533284cdf914fc93cafa1cf26?format=webp&width=800"
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb101ad9f32f94ecebf2dda6bd7e56974?format=webp&width=800"
     alt="หน้าต่างเปิดได้"
     className="object-contain select-none h-full w-full"
     decoding="async"
