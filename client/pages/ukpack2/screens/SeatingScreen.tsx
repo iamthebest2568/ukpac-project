@@ -102,7 +102,7 @@ const SeatingScreen: React.FC = () => {
 
     if (Number.isNaN(total)) {
       setErrorTitle("กรุณาระบุจำนวนที่นั่งทั้งหมด");
-      setErrorMessage(`กรุณากรอกจำนวนที่นั่งทั้งหมดใ��ช่วง ${minCapacityLocal} ถึง ${maxCapacityLocal} ที่นั่ง`);
+      setErrorMessage(`กรุณากรอกจำนวนที่นั่งทั้งหมดในช่วง ${minCapacityLocal} ถึง ${maxCapacityLocal} ที่นั่ง`);
       setErrorModalOpen(true);
       return false;
     }
@@ -123,7 +123,7 @@ const SeatingScreen: React.FC = () => {
     const sumSubs = sSpecial + sChild + sPreg + sMonk + sWheel;
     if (sumSubs !== total) {
       setErrorTitle("ผลรวมของที่นั่งย่อยไม่ตรงกัน");
-      setErrorMessage(`ผลรวมของที่นั่งย่อยทั้งหมด (${sumSubs}) ไม่ตรงกั���จำนวนที่นั่งทั้งหมด (${total})`);
+      setErrorMessage(`ผลรวมของที่นั่งย่อยทั้งหมด (${sumSubs}) ไม่ตรงกับจำนวนที่นั่งทั้งหมด (${total})`);
       setErrorModalOpen(true);
       return false;
     }
@@ -193,7 +193,7 @@ const SeatingScreen: React.FC = () => {
                     <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">จำนวนที่นั่งทั้งหมด</div>
                     <input
                       type="number"
-                      placeholder="พิมพ์"
+                      placeholder="พิมพ��"
                       value={totalSeats}
                       onFocus={(e) => { e.currentTarget.placeholder = ''; }}
                       onBlur={(e) => { if (e.currentTarget.value === '') e.currentTarget.placeholder = 'พิมพ์'; }}
