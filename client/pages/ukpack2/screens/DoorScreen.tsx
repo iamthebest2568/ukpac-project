@@ -254,7 +254,7 @@ const DoorScreen: React.FC = () => {
               small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
               medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
               large: "รถตู้โดยสาร 9–15 ที่นั่ง",
-              extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
+              extra: "ร���กะบะดัดแปลง 8–12 ที่นั่ง",
             };
             const HERO_IMAGE: Record<string, string> = {
               small:
@@ -494,7 +494,7 @@ const DoorScreen: React.FC = () => {
                         className="h-5 w-5 object-contain"
                       />
                     ),
-                    "กระเป๋ารถเมล์": (
+                    "กระเป๋ารถเมล���": (
                       <img
                         src={BUS_EMPLOY_ICON}
                         alt="กระเป๋ารถเมล์"
@@ -557,7 +557,7 @@ const DoorScreen: React.FC = () => {
                 ประตู
               </h2>
 
-              <div className="grid grid-cols-2 gap-2 justify-items-center">
+              <div className={`${styles.selectionGrid}`}>
                 {(() => {
                   const DOOR_OPTIONS = [
                     { key: "1", label: "1 ประตู", icon: <IconDoor1 />, iconActive: <IconDoor1Active /> },
