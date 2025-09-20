@@ -132,9 +132,6 @@ const VehiclePreview: React.FC<Props> = ({
                   try { updateShadow(); } catch (e) { /* ignore */ }
                 }, 10);
               }}
-              style={
-                colorFilter && !colorMaskSrc ? { filter: colorFilter } : undefined
-              }
             />
 
             {/** optional star overlay placed at top-right of the vehicle image container */}
