@@ -35,7 +35,7 @@ const SummaryScreen: React.FC = () => {
     small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
     medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
     large: "รถตู้โดยสาร 9–15 ที่นั่ง",
-    extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
+    extra: "ร��กะบะดัดแปลง 8–12 ที่นั่ง",
   };
 
   const HERO_IMAGE: Record<string, string> = {
@@ -114,9 +114,6 @@ const SummaryScreen: React.FC = () => {
           <h1 className="text-2xl md:text-3xl font-prompt font-semibold">
             ปรับแต่งรถเมล์ของคุณ
           </h1>
-          <p className="mt-2 text-sm text-gray-700">
-            นี่คือรถเมล์ในฝันของคุณ
-          </p>
         </header>
 
         <SummaryDetails />
