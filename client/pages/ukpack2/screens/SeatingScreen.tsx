@@ -8,6 +8,7 @@ import ErrorModal from "../components/ErrorModal";
 import { useBusDesign } from "../context/BusDesignContext";
 import StepTabs from "../components/StepTabs";
 import VehiclePreview from "../components/VehiclePreview";
+import styles from "./chassis.module.css";
 
 const SeatingScreen: React.FC = () => {
   const navigate = useNavigate();
@@ -189,7 +190,7 @@ const SeatingScreen: React.FC = () => {
       const chassisLabel = CHASSIS_LABELS[selectedChassis] || selectedChassis;
       setErrorTitle("จำนวนที่นั่งไม่ถูกต้องสำหรับประเภทรถที่เลือก");
       setErrorMessage(
-        `คุณเลือก: ${chassisLabel}. ค่าที่ถูกต้องคือ ${minCapacityLocal} ถึง ${maxCapacityLocal} ที่นั่ง แต่คุณกรอก ${total}`,
+        `คุณเลือก: ${chassisLabel}. ค่าที่ถ��กต้องคือ ${minCapacityLocal} ถึง ${maxCapacityLocal} ที่นั่ง แต่คุณกรอก ${total}`,
       );
       setErrorModalOpen(true);
       return false;
@@ -499,7 +500,7 @@ const SeatingScreen: React.FC = () => {
       <ConfirmModal
         isOpen={isExitModalOpen}
         title="ออกจากหน้าจอ"
-        message="คุณแน่ใจหรื��ไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
+        message="คุณแน่ใจหรื��ไม่ว่าต้อ���การออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
         onConfirm={() => navigate("/")}
         onCancel={() => setExitModalOpen(false)}
       />
