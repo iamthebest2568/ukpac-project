@@ -88,7 +88,7 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   "กล้องวงจรปิด": <IconCamSmall />,
   เงินสด: <img src={MONEY_ICON} alt="เงินสด" className="h-5 w-5 object-contain" />,
   สแกนจ่าย: <img src={SCAN_ICON} alt="สแกนจ่าย" className="h-5 w-5 object-contain" />,
-  "สแกนจ่าย 2": <img src={SCAN2_ICON} alt="สแกนจ���าย 2" className="h-5 w-5 object-contain" />,
+  "สแกนจ่าย 2": <img src={SCAN2_ICON} alt="สแกนจ่าย 2" className="h-5 w-5 object-contain" />,
   แตะบัตร: <img src={TOUCH_ICON} alt="แตะบัตร" className="h-5 w-5 object-contain" />,
   กระเป๋ารถเมล์: <img src={BUS_EMPLOY_ICON} alt="กระเป๋ารถเมล์" className="h-5 w-5 object-contain" />,
   "ตั๋วรายเดือน/รอบ": <img src={MONTHLY_ICON} alt="ตั๋วรายเดือน/รอบ" className="h-5 w-5 object-contain" />,
@@ -178,7 +178,7 @@ const SummaryDetails: React.FC = () => {
     if (typeof raw === "object") {
       if (raw.doorChoice)
         return raw.doorChoice === "1"
-          ? "1 ��ระตู"
+          ? "1 ประตู"
           : raw.doorChoice === "2"
             ? "2 ประตู"
             : String(raw.doorChoice);
@@ -263,7 +263,7 @@ const SummaryDetails: React.FC = () => {
 
           <div className="flex items-start gap-3">
             <div className="w-28 md:w-36 text-sm text-[#003366] truncate">ทางขึ้น</div>
-            <div className="flex-1 font-sarabun font-semibold text-sm text-[#003366] break-words">{data.doors ? (typeof data.doors === "string" ? displayDoor(data.doors) : typeof data.doors === "object" ? (data.doors.doorChoice ? (data.doors.doorChoice === "1" ? "1 ประตู" : data.doors.doorChoice === "2" ? "2 ประตู" : String(data.doors.doorChoice)) : data.doors.hasRamp ? "ทา��ลาดสำหรับรถเข็น/ผู้พิการ" : data.doors.highLow ? "ประตูฉุกเฉิน" : JSON.stringify(data.doors)) : String(data.doors)) : "-"}</div>
+            <div className="flex-1 font-sarabun font-semibold text-sm text-[#003366] break-words">{data.doors ? (typeof data.doors === "string" ? displayDoor(data.doors) : typeof data.doors === "object" ? (data.doors.doorChoice ? (data.doors.doorChoice === "1" ? "1 ประตู" : data.doors.doorChoice === "2" ? "2 ประตู" : String(data.doors.doorChoice)) : data.doors.hasRamp ? "ทางลาดสำหรับรถเข็น/ผู้พิการ" : data.doors.highLow ? "ประตูฉุกเฉิน" : JSON.stringify(data.doors)) : String(data.doors)) : "-"}</div>
           </div>
 
           <div className="flex items-start gap-3">
