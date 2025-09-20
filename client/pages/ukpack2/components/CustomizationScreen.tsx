@@ -25,6 +25,18 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
   const isLight = theme === "light";
   const contentRef = useRef<HTMLDivElement | null>(null);
 
+  // When fullWidth is requested, add a body-level class so the outer app container
+  // can remove its overflow/padding and allow full-bleed children to extend to viewport edges.
+  React.useEffect(() => {
+    const className = 'full-bleed-page';
+    if (fullWidth) {
+      try { document.body.classList.add(className); } catch (e) {}
+    }
+    return () => {
+      try { document.body.classList.remove(className); } catch (e) {}
+    };
+  }, [fullWidth]);
+
   return (
     <div
       className={`h-screen flex flex-col overflow-hidden ${isLight ? "bg-white text-black" : "bg-[#000d59] text-white"}`}
