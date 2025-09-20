@@ -250,6 +250,36 @@
   background: transparent;
 }
 
+/* Door screen specific overrides to clear conflicting styles and enforce layout */
+.doorControls .selectionGrid {
+  --icon-cell-height: 160px !important; /* larger default for door icons */
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important; /* force 2 columns */
+  gap: 8px !important; /* slightly larger gap */
+  padding: 0 !important;
+  justify-content: center !important; /* center grid in frame */
+  justify-items: center !important; /* buttons centered in each cell */
+  align-items: start !important;
+}
+
+.doorControls .selectionGrid > button {
+  padding: 2px !important;
+  width: auto !important; /* allow buttons to size to content */
+  max-width: 160px !important;
+}
+
+.doorControls .selectionGrid > button > div.iconContainer {
+  height: var(--icon-cell-height) !important;
+  width: 120px !important; /* fixed icon width to make icons larger */
+}
+
+.doorControls .selectionGrid img,
+.doorControls .selectionGrid svg {
+  height: 100% !important;
+  width: auto !important;
+  object-fit: contain !important;
+}
+
 /* Icon container: fixed uniform height, width flexible (fills column) */
 .selectionGrid > button > div.iconContainer {
   height: var(--icon-cell-height) !important;
