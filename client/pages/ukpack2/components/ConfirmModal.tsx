@@ -32,7 +32,7 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({
             className="px-4 py-2 rounded-md bg-[#ffe000] text-black hover:bg-[#000d59] hover:text-white transition-colors"
             onClick={onCancel}
           >
-            ยกเลิ���
+            ยกเลิก
           </button>
           <button
             className="px-4 py-2 rounded-md bg-[#ffe000] text-black hover:bg-[#000d59] hover:text-white transition-colors"
