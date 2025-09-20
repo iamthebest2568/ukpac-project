@@ -286,7 +286,7 @@ const DoorScreen: React.FC = () => {
                     />
                   </div>
                 );
-              if (label === "สแกนจ่า���")
+              if (label === "สแกนจ่าย")
                 return (
                   <div
                     key={`${label}-${idx}`}
@@ -518,45 +518,27 @@ const DoorScreen: React.FC = () => {
               </h2>
 
               <div className="grid grid-cols-2 gap-3">
-                {/* Radio group for 1 or 2 doors */}
-                <SelectionCard
-                  icon={<IconDoor1 />}
-                  label={"1 ประตู"}
-                  isSelected={selectedOption === "1"}
-                  onClick={() => setSelectedOption("1")}
-                  variant="light"
-                  hideLabel
-                  appearance="group"
-                />
-                <SelectionCard
-                  icon={<IconDoor2 />}
-                  label={"2 ประตู"}
-                  isSelected={selectedOption === "2"}
-                  onClick={() => setSelectedOption("2")}
-                  variant="light"
-                  hideLabel
-                  appearance="group"
-                />
+                {(() => {
+                  const DOOR_OPTIONS = [
+                    { key: "1", label: "1 ประตู", icon: <IconDoor1 />, iconActive: <IconDoor1 /> },
+                    { key: "2", label: "2 ประตู", icon: <IconDoor2 />, iconActive: <IconDoor2 /> },
+                    { key: "ramp", label: "ทางลาดสำหรับรถเข็น/ผู้พิการ", icon: <IconRamp />, iconActive: <IconRamp /> },
+                    { key: "emergency", label: "ประตูฉุกเฉิน", icon: <IconHighLow />, iconActive: <IconHighLow /> },
+                  ];
 
-                {/* Single-choice options */}
-                <SelectionCard
-                  icon={<IconRamp />}
-                  label={"ทางลาดสำหรับรถเข็น/ผู้พิการ"}
-                  isSelected={selectedOption === "ramp"}
-                  onClick={() => setSelectedOption("ramp")}
-                  variant="light"
-                  hideLabel
-                  appearance="group"
-                />
-                <SelectionCard
-                  icon={<IconHighLow />}
-                  label={"ประตูฉุกเฉิน"}
-                  isSelected={selectedOption === "emergency"}
-                  onClick={() => setSelectedOption("emergency")}
-                  variant="light"
-                  hideLabel
-                  appearance="group"
-                />
+                  return DOOR_OPTIONS.map((opt) => (
+                    <SelectionCard
+                      key={opt.key}
+                      icon={selectedOption === opt.key ? (opt.iconActive || opt.icon) : opt.icon}
+                      label={opt.label}
+                      isSelected={selectedOption === opt.key}
+                      onClick={() => setSelectedOption(opt.key)}
+                      variant="light"
+                      hideLabel
+                      appearance="group"
+                    />
+                  ));
+                })()}
               </div>
             </div>
           </div>
