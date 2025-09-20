@@ -62,7 +62,7 @@ const InfoScreen: React.FC = () => {
                 loading="eager"
               />
 
-              <div className="absolute left-1/2 top-[52%] transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center pointer-events-auto" style={{ width: '72%', maxWidth: 420, zIndex: 120 }}>
+              <div className="absolute left-1/2 top-[48%] transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center pointer-events-auto" style={{ width: '72%', maxWidth: 420, zIndex: 120 }}>
                 {(() => {
                   const amenities = (() => {
                     try { const raw = sessionStorage.getItem("design.amenities"); return raw ? (JSON.parse(raw) as string[]) : []; } catch { return [] as string[]; }
