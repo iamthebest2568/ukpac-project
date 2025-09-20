@@ -119,10 +119,10 @@
 
 /* Controls box: frame around tabs + content. Tabs will visually sit above the top border */
 .controlsBox {
-  /* full-bleed like tabs */
+  /* full-bleed like tabs - center using left + transform to avoid calc issues inside transformed parents */
   width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
+  left: 50%;
+  transform: translateX(-50%);
   border: 2px solid #000D59; /* restored fixed border width */
   border-color: #000D59;
   border-radius: 8px;
@@ -146,12 +146,12 @@
 
 /* Move tabs up to overlap the top border so the border appears under the tabs */
 .tabsWrapper {
-  /* make tabs truly full-bleed irrespective of parent centering */
+  /* make tabs truly full-bleed irrespective of parent centering - use left/transform to avoid calc issues */
   position: relative;
   z-index: 10; /* ensure tabs sit above the frame */
   width: 100vw;
-  margin-left: calc(50% - 50vw); /* shift to viewport left edge */
-  margin-right: calc(50% - 50vw);
+  left: 50%;
+  transform: translateX(-50%);
   margin: 0 0 -16px 0; /* overlap so tabs sit on top of border */
   padding: 0;
 }
@@ -295,13 +295,14 @@
 .bg-white.rounded-2xl,
 .bg-white.rounded-2xl.-mt-2 {
   width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
+  left: 50%;
+  transform: translateX(-50%);
   box-sizing: border-box;
   overflow: visible;
   border: 2px solid var(--chassis-accent); /* show border like controlsBox */
   border-radius: 8px;
   background: #ffffff;
+  position: relative;
 }
 
 /* Make StepTabs inside those panels full-bleed like .tabsWrapper */
@@ -311,8 +312,8 @@
   position: relative;
   z-index: 10;
   width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
+  left: 50%;
+  transform: translateX(-50%);
   margin: 0 0 -16px 0; /* overlap so tabs sit on top of border */
   padding: 0;
 }
