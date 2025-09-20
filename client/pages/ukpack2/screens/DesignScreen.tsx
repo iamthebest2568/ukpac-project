@@ -28,7 +28,7 @@ const IconFan = () => (
 const IconSeat = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F93439b2533284cdf914fc93cafa1cf26?format=webp&width=800"
-    alt="ที่นั่งพิ��ศษ"
+    alt="ที่นั่งพิเศษ"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -64,7 +64,7 @@ const IconTv = () => (
 const IconCup = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe903bdf27bab4175824c159bc19a02ba?format=webp&width=800"
-    alt="��ะบบประกาศ"
+    alt="ระบบประกาศ"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -105,7 +105,7 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
   "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
-  "กล้องวงจรปิด": <IconCamSmall />,
+  "กล้อง��งจรปิด": <IconCamSmall />,
 };
 
 const MONEY_ICON =
@@ -235,7 +235,7 @@ const DesignScreen: React.FC = () => {
     <>
       <MetaUpdater
         title="UK PACT - กรุงเทพฯ ลดติด"
-        description="ออกแบบรถเมล์เพื่อช่วยลดปัญห��การจราจรในกรุงเทพฯ — เลือกขนาดรถ สี ���ละสิ่งอำนวยความสะดวกที่ต้อง���าร"
+        description="ออกแบบรถเมล์เพื่อช่วยลดปัญหาการจราจรในกรุงเทพฯ — เลือกขนาดรถ สี ���ละสิ่งอำนวยความสะดวกที่ต้อง���าร"
         image="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F44cea8aeb6d4415e899494a90c6f59b1?format=webp&width=1200"
       />
       <CustomizationScreen
@@ -438,42 +438,8 @@ const DesignScreen: React.FC = () => {
               </h2>
               <ColorPalette
                 colors={DEFAULT_COLORS}
-                selectedColor={color?.preview || DEFAULT_COLORS[0].preview}
-                onColorSelect={(colorHex, preview) => {
-                  // Find color by preview URL first, then by colorHex
-                  let foundColor = undefined as (typeof DEFAULT_COLORS)[0] | undefined;
-
-                  if (preview) {
-                    foundColor = DEFAULT_COLORS.find((c) => c.preview === preview);
-                  }
-
-                  if (!foundColor && colorHex) {
-                    foundColor = DEFAULT_COLORS.find((c) => c.colorHex === colorHex);
-                  }
-
-                  if (foundColor) {
-                    // Always set the complete color object with all properties
-                    setColor(foundColor);
-                  } else if (colorHex) {
-                    // Create synthetic object with basic properties
-                    setColor({
-                      preview: preview || color?.preview || "",
-                      filter: null,
-                      id: colorHex.replace('#', ''),
-                      colorHex
-                    } as any);
-                  }
-
-                  // NOTE: Removed behavior that overrode the preview image when the
-                  // first color swatch was clicked. Current behavior: selecting a
-                  // color only updates the color state (colorHex / filter) and
-                  // VehiclePreview applies the tint/overlay. If you need to swap
-                  // the vehicle image for certain swatches, reintroduce a mapping
-                  // and set the imageSrc accordingly here.
-
-                  // Log for debugging
-                  console.log('Color selected:', foundColor || { colorHex, preview });
-                }}
+                // color matching removed: swatches are inert and do not update state
+                onColorSelect={() => { /* noop */ }}
               />
 
               <h2 className="text-xl font-prompt font-semibold text-[#003366] mt-4">
