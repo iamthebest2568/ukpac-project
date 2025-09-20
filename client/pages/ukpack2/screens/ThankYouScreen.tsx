@@ -18,16 +18,13 @@ const ThankYouScreen: React.FC = () => {
           />
         </div>
         <div className="inline-block bg-white rounded-xl p-6 text-[#001a73]">
-          <h2 className="text-2xl font-prompt font-bold">
-            ขอบคุณที่ร่วมสร้างสรรค์รถเมล์
-          </h2>
-          <p className="mt-3 font-sarabun text-gray-700">
-            เราจะนำข้อมูลเหล่านี้รวบรวม เป็นขอเสนอส่งต่อเพื่อการพัฒนา
+          <p className="mt-3 font-prompt font-bold text-[18px]">
+            เราจะนำข้อมูลเหล่านี้รวบรวม เป็นข้อเสนอส่งต่อเพื่อการพัฒนา
             รถประจำทางให้ดียิ่งขึ้น
           </p>
           <hr className="my-6 border-[#e5e7eb]" />
           <div className="font-sarabun leading-relaxed">
-            <p>คุณอยากกรอกข้อมูลเพิ่��</p>
+            <p>คุณอยากกรอกข้อมูลเพิ่ม</p>
             <p>เพื่อลุ้นรับรางวัล</p>
             <p>ลุ้นรางวัลบัตรขนส่งสาธารณะ</p>
             <p>
