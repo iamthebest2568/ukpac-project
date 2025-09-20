@@ -230,6 +230,8 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
 
 const MONEY_ICON =
   "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fedd20330d80c48ec8b9d209a2451b32e?format=webp&width=800";
+const CASH_OVERLAY_ICON =
+  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe05d5e81984848ed830fcea15421622d?format=webp&width=800";
 const MONEY_ICON_ACTIVE =
   "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F10731bbf75d54bd78e73242174e90687?format=webp&width=800";
 const SCAN_ICON =
