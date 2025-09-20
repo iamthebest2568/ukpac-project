@@ -586,7 +586,7 @@ const PaymentScreen: React.FC = () => {
                         className="h-5 w-5 object-contain"
                       />
                     ),
-                    "กระเป๋ารถเมล์": (
+                    "กระ��ป๋ารถเมล์": (
                       <img
                         src={BUS_EMPLOY_ICON}
                         alt="กระเป๋ารถเมล์"
@@ -618,7 +618,7 @@ const PaymentScreen: React.FC = () => {
           <div className={styles.controlsBox}>
             <div className={styles.controlsContent}>
               <h2 className="text-xl font-prompt font-semibold text-[#003366] mt-2">
-                การจ่ายเงิน
+                ก���รจ่ายเงิน
               </h2>
 
               <div className="grid grid-cols-3 gap-4">
@@ -684,6 +684,8 @@ const PaymentScreen: React.FC = () => {
                       isSelected={isSel}
                       onClick={() => toggle(o.label)}
                       variant="light"
+                      hideLabel
+                      appearance="group"
                     />
                   );
                 })}
