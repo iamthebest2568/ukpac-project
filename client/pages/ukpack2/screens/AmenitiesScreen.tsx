@@ -52,7 +52,7 @@ const IconSeat = () => (
 const IconSeatAlt = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb486238ba25f4078a86915b3db2688eb?format=webp&width=800"
-    alt="หน้าต่างเปิดได้ (กดแล้ว)"
+    alt="หน้าต่างเปิดได้ (��ดแล้ว)"
     className="object-contain select-none h-full w-full"
     decoding="async"
     loading="eager"
@@ -61,7 +61,7 @@ const IconSeatAlt = () => (
 const IconWifi = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fdfbb7f3adfa04596916b9ea1950acef1?format=webp&width=800"
-    alt="ที่จับ/ราวยื��"
+    alt="ที่จับ/ราวยืน"
     className="object-contain select-none h-full w-full"
     decoding="async"
     loading="eager"
@@ -98,6 +98,15 @@ const IconTv = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F1fb83749171e40fdb6fd8e6d75d46504?format=webp&width=800"
     alt="Wi‑Fi ฟรี"
+    className="object-contain select-none h-full w-full"
+    decoding="async"
+    loading="eager"
+  />
+);
+const IconTvAlt = () => (
+  <img
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F6e2f3a1c18de4c0187b9cd255fbf38a7?format=webp&width=800"
+    alt="Wi‑Fi ฟรี (กดแล้ว)"
     className="object-contain select-none h-full w-full"
     decoding="async"
     loading="eager"
