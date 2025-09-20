@@ -38,7 +38,7 @@ const InfoScreen: React.FC = () => {
   return (
     <>
       <CustomizationScreen
-        title="ปรับ���ต่งรถเมล์ของคุณ"
+        title="ปรับแต่งรถเมล์ของคุณ"
         theme="light"
         footerContent={
           <div className="flex justify-center">
@@ -53,7 +53,7 @@ const InfoScreen: React.FC = () => {
           <div className="w-full flex justify-center">
             <div className="w-full max-w-[900px] relative" style={{ height: '220px' }}>
               <img
-                src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4f5915a8ee85de9?format=webp&width=1600"
+                src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe0d645d03e674262a48ecc18869e1901?format=webp&width=1600"
                 alt="bg"
                 className="absolute inset-0 w-full h-full object-cover rounded-xl pointer-events-none select-none"
                 decoding="async"
@@ -116,7 +116,7 @@ const InfoScreen: React.FC = () => {
                       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F56620e798eb94153b2390271f30d0dae?format=webp&width=800",
                     แตะบัตร:
                       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fdb2e47a586b841d1af014e9196f3c411?format=webp&width=800",
-                    กระเป๋ารถเมล์:
+                    กระเ���๋ารถเมล์:
                       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F41c089c5dd4b448993c4e02c02cdf7ac?format=webp&width=800",
                     "ตั๋วรายเดือน/รอบ":
                       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fca6467eff0c74a77a8e5757f25a24e41?format=webp&width=800",
@@ -161,7 +161,7 @@ const InfoScreen: React.FC = () => {
           <div className="bg-[#e6e7e8] rounded-xl p-4 text-[#001a73] font-sarabun">
             <h2 className="font-sarabun font-semibold text-xl text-center">รู้หรือไม่!</h2>
             <p>
-              ในญี่ปุ่นมี Community Bus รถเมล์ขนาดเ���็กที่วิ่งเข้าซอยและพื้นที่
+              ในญี่ปุ่นมี Community Bus รถเมล์ขนาดเล็กที่วิ่งเข้าซอยและพื้นที่
               ที่รถใหญ่เข้าไม่ถึง ค่าโดยสารถูกมาก บางแห่งนั่งได้ทั้งสายเพียง 100
               เยน ทำให้ผู้สูงอายุและเด็กเข้าถึงบริการสำคัญ เช่น
               โรงพยาบาลและศูนย์ชุมชนได้สะดวกขึ้น
