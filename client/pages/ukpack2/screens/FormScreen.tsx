@@ -130,6 +130,28 @@ onBlur={() => logEvent({ event: "FORM_PHONE_BLUR", payload: { phoneLen: phone.le
           </div>
         </div>
       </div>
+
+      <footer
+        className="rounded-t-3xl py-12 px-6 bg-no-repeat bg-top bg-cover"
+        style={{
+          backgroundImage:
+            "url('https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc3874bf37db54abeb4a13c308b0df9a4?format=webp&width=1600')",
+          minHeight: '320px',
+          width: '100vw',
+          marginLeft: 'calc(50% - 50vw)'
+        }}
+      >
+        <div className="max-w-4xl mx-auto flex items-center justify-center h-full">
+          <div className="flex flex-col items-center gap-3 py-6">
+            <div style={{ width: '220px' }}>
+              <CtaButton className="w-full" text="ลุ้นรับรางวัล" onClick={submit} />
+            </div>
+            <div style={{ width: '220px' }}>
+              <SecondaryButton className="w-full" text="ไม่รับรางวัล" onClick={skip} className="bg-[#ffe000] text-black hover:bg-[#000d59] hover:text-white" />
+            </div>
+          </div>
+        </div>
+      </footer>
     </CustomizationScreen>
   );
 };
