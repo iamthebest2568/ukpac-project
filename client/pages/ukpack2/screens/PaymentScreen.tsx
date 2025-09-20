@@ -233,7 +233,7 @@ const MONEY_ICON =
 const MONEY_ICON_ACTIVE =
   "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F10731bbf75d54bd78e73242174e90687?format=webp&width=800";
 const SCAN_ICON =
-  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fbc97b87e6027435fb25a72f5478406cd?format=webp&width=800";
+  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F1def81c8453e4753b63c9ae1ce9bcd4e?format=webp&width=800";
 const SCAN2_ICON =
   "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F73370cb5f352472abbed78743b555331?format=webp&width=1600";
 const TOUCH_ICON =
@@ -313,7 +313,7 @@ const PaymentScreen: React.FC = () => {
           {/* show selected hero bus image from chassis selection with overlays from previous steps */}
           {(() => {
             const CHASSIS_LABELS: Record<string, string> = {
-              small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
+              small: "รถเมล์��นาดเล็ก 16–30 ที่นั่ง",
               medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
               large: "รถตู้โดยสาร 9–15 ที่นั่ง",
               extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
