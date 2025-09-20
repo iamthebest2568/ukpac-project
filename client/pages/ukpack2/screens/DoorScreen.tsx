@@ -365,7 +365,7 @@ const DoorScreen: React.FC = () => {
                     />
                   </div>
                 );
-              if (label === "กระเป๋ารถเมล์")
+              if (label === "กระเป๋าร��เมล์")
                 return (
                   <div
                     key={`${label}-${idx}`}
@@ -460,7 +460,6 @@ const DoorScreen: React.FC = () => {
               <>
                 <VehiclePreview
                   imageSrc={img}
-                  colorFilter={storedColor?.filter}
                   label={label}
                   showSelectedText
                   overlayLabels={overlayLabels}
