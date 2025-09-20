@@ -52,7 +52,7 @@ type SessionSummary = {
   keyMessage1?: string; // Key message 1
   mn1Selected: string[]; // ลำดับความสำคัญของประเด็น
   mn2Selections?: Record<string, string[]>; // กลุ่มเป้าหมายที่ควรได้รับสิทธิ์
-  mn3Selected?: string[]; // ประเด็นนโยบายที่ผู้ใช้เลื��ก
+  mn3Selected?: string[]; // ประเด็นนโยบายที่ผู้ใช้เลือก
   mn3BudgetAllocation?: Record<string, number>; // การจัดสรรงบประมาณ
   mn3BudgetTotal?: number;
   satisfactionLevel?: string; // ระดับความพึงพอใจ
@@ -160,7 +160,7 @@ export default function UkDashboard() {
       }
       setLastUpdated(new Date().toLocaleString());
     } catch (e: any) {
-      setError(e?.message || "โหลดข้อมูลล้��เหลว");
+      setError(e?.message || "โหลดข้อมูลล้มเหลว");
     } finally {
       if (firstLoad) setLoading(false);
       setFirstLoad(false);
@@ -304,7 +304,7 @@ export default function UkDashboard() {
               aria-hidden="true"
             />
           )}
-          {error && <div className="text-red-400">เกิดข��อผิดพลาด: {error}</div>}
+          {error && <div className="text-red-400">เกิดข้อผิดพลาด: {error}</div>}
 
           {stats && (
             <div className="space-y-6">
@@ -505,7 +505,7 @@ export default function UkDashboard() {
                                   </span>
                                 </li>
                                 <li className="flex justify-between">
-                                  <span>ล่า���ุด</span>
+                                  <span>ล่าสุด</span>
                                   <span className="text-white/70">{max}</span>
                                 </li>
                               </>
@@ -713,7 +713,7 @@ export default function UkDashboard() {
                         <th className="py-2 pr-4">MN1</th>
                         <th className="py-2 pr-4">ตัดสินใจ</th>
                         <th className="py-2 pr-4">ติดต่อ</th>
-                        <th className="py-2 pr-4">ความคิดเห็น</th>
+                        <th className="py-2 pr-4">คว��มคิดเห็น</th>
                         <th className="py-2 pr-4">ดู</th>
                       </tr>
                     </thead>
@@ -768,8 +768,8 @@ export default function UkDashboard() {
                     rows.push([
                       "IP",
                       "Access Time",
-                      "ทำไมคุณถึงต้องเข้าเมืองบ่อย ๆ ?",
-                      "คุณใช้รถแบบ��หนเดินทางเข้าเมือง ?",
+                      "ทำไมคุณถึงต้องเข้าเมืองบ���อย ๆ ?",
+                      "คุณใช้รถแบบไหนเดินทางเข้าเมือง ?",
                       "คุณคิดเห็นอย่างไรกับนโยบายนี้ ?",
                       "จากข้อความข้างต้น คุณมีความคิดเห็นอย่างไร (เห็นด้วย/กลางๆ/ไม่เห็นด้วย)",
                       "ทำไมคุณถึงคิดอย่างนั้น (นโยบายไม่ครอบคลุม / เก็บไปก็ไม่มีอะไรดีขึ้น / อื่นๆ)",
@@ -782,7 +782,7 @@ export default function UkDashboard() {
                       "คุณจะให้งบประมาณแต่ละข้อเท่าไร (งบทั้งหมด 100)",
                       "คุณพอใจกับผลลัพธ์ที่เกิดขึ้นหรือไม่ (พอใจ / ไม่พอใจ)",
                       "คุณคิดว่ารัฐควรทำอะไรที่จะทำให้นโยบายนี้เกิดขึ้นได้จริง และเป็นประโยชน์ต่อประชาชนอย่างแท้จริง",
-                      "ตอนน���้มีข้อมูลที่ผิดพลาด เช่น ข่าวปลอมเกี่ยวกับนโยบาย คุณคิดว่าอย่างไร",
+                      "ตอนนี้มีข้อมูลที่ผิดพลาด เช่น ข่าวปลอมเกี่ยวกับนโยบาย คุณคิดว่าอย่างไร",
                       "คุณจะติดตามข่าว หรือเชื่อจากแหล่งไหนมากที่สุด",
                       "ขอบคุณที่ร่วมเป็นส่วนหนึ่ง → ต้องการลุ้นรับรางวัล���รือไม่",
                       "กรอกข้อมูลเพื่อลุ้นรางวัล (ชื่อ)",
