@@ -21,7 +21,7 @@ const FeedbackSkipScreen: React.FC = () => {
         footerBgImage={'https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F7e994bb254cb408c86bed190e97b659e?format=webp&width=1600'}
         footerContent={
           <div className="flex flex-col items-stretch gap-3 w-full max-w-sm mx-auto">
-            <SecondaryButton className="w-full" text="แชร์เกมนี้ให้เพื่อน" onClick={() => setShareOpen(true)} />
+            <SecondaryButton className="w-full" text="แชร์เกมนี้ให้เ��ื่อน" onClick={() => setShareOpen(true)} />
             <CtaButton className="w-full" text="จบเกม" onClick={handleEnd} />
           </div>
         }
@@ -44,26 +44,6 @@ const FeedbackSkipScreen: React.FC = () => {
               alt="ภาพประกาศรางวัล"
               className="mt-3 w-full max-w-[640px] h-auto object-contain"
             />
-          </div>
-        </div>
-        <div className="fixed bottom-0 left-0 right-0 z-10">
-          <div className="max-w-4xl mx-auto px-6 pb-[env(safe-area-inset-bottom,1rem)]">
-            <div className="w-full flex flex-col items-stretch gap-3 bg-white py-4">
-              <div className="w-full max-w-sm mx-auto">
-                <CtaButton
-                  className="w-full"
-                  text="จบเกม"
-                  onClick={handleEnd}
-                />
-              </div>
-              <div className="w-full max-w-sm mx-auto">
-                <SecondaryButton
-                  className="w-full"
-                  text="แชร์เกมนี้กับเพื่อน"
-                  onClick={() => setShareOpen(true)}
-                />
-              </div>
-            </div>
           </div>
         </div>
       </CustomizationScreen>
