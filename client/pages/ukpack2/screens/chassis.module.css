@@ -229,7 +229,7 @@
 
 @media (min-width: 768px) {
   .selectionGrid {
-    --icon-cell-height: 160px; /* larger icon height on wider screens */
+    --icon-cell-height: 200px; /* larger icon height on wider screens (increased) */
     grid-template-columns: repeat(4, 1fr); /* 4 columns on md+ */
     gap: 12px; /* match gap on larger screens */
     padding: 0.1px; /* ensure grid stretches to border */
