@@ -51,7 +51,7 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
         style={{
           height:
             "calc(100vh - 64px - (56px + env(safe-area-inset-bottom, 0px)))",
-          overflow: "hidden",
+          overflow: fullWidth ? "visible" : "hidden",
         }}
       >
         {children}
