@@ -70,7 +70,7 @@ const IconWifi = () => (
 const IconWifiAlt = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F70d82d5dddd54c909edc9bddb202fc6e?format=webp&width=800"
-    alt="ที่จับ/ราวยืน (กดแล้ว)"
+    alt="ที่จับ/ราวยืน (กด��ล้ว)"
     className="object-contain select-none h-full w-full"
     decoding="async"
     loading="eager"
@@ -135,7 +135,7 @@ const AMENITIES = [
   { key: "air", label: "แอร์", icon: <IconAir />, iconActive: <IconAirAlt /> },
   { key: "fan", label: "พัดลม", icon: <IconFan />, iconActive: <IconFanAlt /> },
   { key: "seat", label: "ที่นั่งพิเศษ", icon: <IconSeat />, iconActive: <IconSeatAlt /> },
-  { key: "wifi", label: "ที่จ��บ/ราวยืนที่ปลอดภัย", icon: <IconWifi />, iconActive: <IconWifiAlt /> },
+  { key: "wifi", label: "ที่จับ/ราวยืนที่ปลอดภัย", icon: <IconWifi />, iconActive: <IconWifiAlt /> },
   { key: "plug", label: "ช่องชาร์จมือถือ/USB", icon: <IconPlug />, iconActive: <IconPlugAlt /> },
   { key: "tv", label: "Wi‑Fi ฟรี", icon: <IconTv />, iconActive: <IconTvAlt /> },
   { key: "cup", label: "ระบบประกาศบอกป้าย(เสียง/จอ)", icon: <IconCup />, iconActive: <IconCupAlt /> },
