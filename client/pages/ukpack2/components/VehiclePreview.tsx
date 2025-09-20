@@ -71,10 +71,23 @@ const VehiclePreview: React.FC<Props> = ({
           style={{ minHeight: "100px" }}
           ref={containerRef}
         >
-          <div
-            className="relative w-[60%] sm:w-[65%] md:w-[70%] lg:w-[75%] max-w-[320px] sm:max-w-[380px] md:max-w-[480px]"
-            style={{ height: "120px" }}
-          >
+          {showShadow && (
+          <img
+            ref={shadowRef}
+            src={SHADOW_URL}
+            alt="เงา"
+            className="absolute pointer-events-none select-none"
+            style={{ bottom: "8px" }}
+            decoding="async"
+            loading="eager"
+            aria-hidden="true"
+          />
+        )}
+
+        <div
+          className="relative w-[60%] sm:w-[65%] md:w-[70%] lg:w-[75%] max-w-[320px] sm:max-w-[380px] md:max-w-[480px]"
+          style={{ height: "120px" }}
+        >
             {overlayLabels && overlayLabels.length > 0 && (
               <div className="absolute left-1/2 transform -translate-x-1/2 -top-4 flex flex-wrap justify-center items-center gap-2 z-20 w-[95%] sm:w-[90%] md:w-[100%]">
                 {overlayLabels.map((lab, i) => {
