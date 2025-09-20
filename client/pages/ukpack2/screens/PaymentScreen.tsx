@@ -397,7 +397,7 @@ const PaymentScreen: React.FC = () => {
                   >
                     <img
                       src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9811f9bca05c43feae9eafdcbab3c8d9?format=webp&width=800"
-                      alt="1 ประต��"
+                      alt="1 ประตู"
                       className="h-6 w-6 md:h-7 md:w-7 object-contain"
                     />
                   </div>
