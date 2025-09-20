@@ -110,7 +110,7 @@ const SeatingScreen: React.FC = () => {
     if (!(total >= minCapacityLocal && total <= maxCapacityLocal)) {
       const chassisLabel = CHASSIS_LABELS[selectedChassis] || selectedChassis;
       setErrorTitle("จำนวนที่นั่งไม่ถูกต้องสำหรับประเภทรถที่เลือก");
-      setErrorMessage(`คุณเลือก: ${chassisLabel}. ค่าที่ถูกต้องคือ ${minCapacityLocal} ถึง ${maxCapacityLocal} ��ี่นั่ง แต่คุณกรอก ${total}`);
+      setErrorMessage(`คุณเลือก: ${chassisLabel}. ค่าที่ถูกต้องคือ ${minCapacityLocal} ถึง ${maxCapacityLocal} ที่นั่ง แต่คุณกรอก ${total}`);
       setErrorModalOpen(true);
       return false;
     }
@@ -211,11 +211,11 @@ const SeatingScreen: React.FC = () => {
 
                   <div className="flex items-center justify-between mt-4">
                     <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">จำนวนที่นั่งพิเศษ</div>
-                    <input id="specialSeats" type="number" min={0} max={maxCapacity} value={specialSeats === "" ? "" : specialSeats} onFocus={() => { if (specialSeats === 0) setSpecialSeats(""); }} onChange={(e) => { const raw = e.target.value; if (raw === "") { setSpecialSeats(""); return; } const parsed = Math.max(0, Math.min(maxCapacity, parseInt(raw || "0", 10))); setSpecialSeats(parsed); }} className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-full text-[#003366] bg-white text-right" />
+                    <input id="specialSeats" type="number" min={0} max={maxCapacity} placeholder="00" value={specialSeats === "" ? "" : specialSeats} onFocus={() => { if (specialSeats === 0) setSpecialSeats(""); }} onChange={(e) => { const raw = e.target.value; if (raw === "") { setSpecialSeats(""); return; } const parsed = Math.max(0, Math.min(maxCapacity, parseInt(raw || "0", 10))); setSpecialSeats(parsed); }} className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-full text-[#003366] bg-white text-right" />
                   </div>
 
                   <div className="flex items-center justify-between">
-                    <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">เด็��� / ผู้สูงอายุ</div>
+                    <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">เด็ก / ผู้สูงอายุ</div>
                     <input type="number" value={childElderSeats === "" ? "" : childElderSeats} onFocus={() => { if (childElderSeats === 0) setChildElderSeats(""); }} onChange={(e) => { const raw = e.target.value; if (raw === "") { setChildElderSeats(""); return; } const parsed = Math.max(0, Math.min(maxCapacity, parseInt(raw || "0", 10))); setChildElderSeats(parsed); }} className="w-24 px-3 py-2 border border-[#e5e7eb] rounded-full text-[#003366] bg-white text-right" min={0} max={maxCapacity} />
                   </div>
 
@@ -240,7 +240,7 @@ const SeatingScreen: React.FC = () => {
         </div>
       </CustomizationScreen>
 
-      <ConfirmModal isOpen={isExitModalOpen} title="ออกจากหน้าจอ" message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก" onConfirm={() => navigate("/")} onCancel={() => setExitModalOpen(false)} />
+      <ConfirmModal isOpen={isExitModalOpen} title="ออกจากหน้าจอ" message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบั��ทึก" onConfirm={() => navigate("/")} onCancel={() => setExitModalOpen(false)} />
 
       <ErrorModal isOpen={isErrorModalOpen} title={errorTitle} message={errorMessage} onClose={() => setErrorModalOpen(false)} />
     </div>
