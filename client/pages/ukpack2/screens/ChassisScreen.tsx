@@ -187,10 +187,8 @@ const ChassisScreen: React.FC = () => {
     return OPTIONS[0].key;
   });
 
-  const [firstIconClicked, setFirstIconClicked] = useState<boolean>(false);
-  const [secondIconClicked, setSecondIconClicked] = useState<boolean>(false);
-  const [thirdIconClicked, setThirdIconClicked] = useState<boolean>(false);
-  const [fourthIconClicked, setFourthIconClicked] = useState<boolean>(false);
+  // icon variant shown is derived directly from `selected` to avoid stale click flags
+  // (show the Alt variant when the option is the current selected chassis)
   const selectedLabel = useMemo(() => {
     const found = OPTIONS.find((o) => o.key === selected)?.labelText || "";
     return String(found).replace(/(\d+)-(\d+)/, "$1–$2");
