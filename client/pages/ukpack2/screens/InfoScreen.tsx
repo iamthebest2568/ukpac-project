@@ -38,7 +38,7 @@ const InfoScreen: React.FC = () => {
   return (
     <>
       <CustomizationScreen
-        title="ปรับแต่งรถเมล์ของคุณ"
+        title="ปรับ���ต่งรถเมล์ของคุณ"
         theme="light"
         footerContent={
           <div className="flex justify-center">
@@ -52,23 +52,13 @@ const InfoScreen: React.FC = () => {
         <div className="space-y-6">
           <div className="w-full flex justify-center">
             <div className="w-full max-w-[900px] relative" style={{ height: '220px' }}>
-              <svg
-                className="absolute inset-0 w-full h-full"
-                viewBox="0 0 900 220"
-                preserveAspectRatio="xMidYMid slice"
-                xmlns="http://www.w3.org/2000/svg"
-                role="img"
-                aria-hidden="true"
-              >
-                <defs>
-                  <clipPath id="ukpack2-info-clip">
-                    <rect width="900" height="220" rx="16" ry="16" />
-                  </clipPath>
-                </defs>
-                <g clipPath="url(#ukpack2-info-clip)">
-                  <image href="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4f5915a8ee85de9?format=webp&width=800" x="0" y="0" width="900" height="220" preserveAspectRatio="xMidYMid slice" />
-                </g>
-              </svg>
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4f5915a8ee85de9?format=webp&width=1600"
+                alt="bg"
+                className="absolute inset-0 w-full h-full object-cover rounded-xl pointer-events-none select-none"
+                decoding="async"
+                loading="eager"
+              />
             </div>
           </div>
 
@@ -171,7 +161,7 @@ const InfoScreen: React.FC = () => {
           <div className="bg-[#e6e7e8] rounded-xl p-4 text-[#001a73] font-sarabun">
             <h2 className="font-sarabun font-semibold text-xl text-center">รู้หรือไม่!</h2>
             <p>
-              ในญี่ปุ่นมี Community Bus รถเมล์ขนาดเล็กที่วิ่งเข้าซอยและพื้นที่
+              ในญี่ปุ่นมี Community Bus รถเมล์ขนาดเ���็กที่วิ่งเข้าซอยและพื้นที่
               ที่รถใหญ่เข้าไม่ถึง ค่าโดยสารถูกมาก บางแห่งนั่งได้ทั้งสายเพียง 100
               เยน ทำให้ผู้สูงอายุและเด็กเข้าถึงบริการสำคัญ เช่น
               โรงพยาบาลและศูนย์ชุมชนได้สะดวกขึ้น
