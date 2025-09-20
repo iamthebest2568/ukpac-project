@@ -63,12 +63,15 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
             style={{ height: "calc(80px + env(safe-area-inset-bottom, 0px))" }}
           >
             <div
-              className={containerPaddingClass ? `w-full ${containerPaddingClass}` : `w-full ${fullWidth ? "px-4 sm:px-6" : "max-w-4xl mx-auto w-full px-4 sm:px-6"}`}
+              className={containerPaddingClass ? `w-full ${containerPaddingClass}` : (fullWidth ? `w-full px-0` : `max-w-4xl mx-auto w-full px-4 sm:px-6`)}
               style={{
                 height: "80px",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
+                ...(fullWidth
+                  ? { width: '100vw', marginLeft: 'calc(50% - 50vw)', marginRight: 'calc(50% - 50vw)' }
+                  : {}),
               }}
             >
               <div className="w-full flex items-center justify-center">
