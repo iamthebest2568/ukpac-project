@@ -225,7 +225,7 @@ const IconCam = () => (
 );
 
 const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
-  แอร์: <IconAir />,
+  แ��ร์: <IconAir />,
   พัดลม: <IconFan />,
   ที่นั่งพิเศษ: <IconSeat />,
   "ที่จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
@@ -398,7 +398,7 @@ const PaymentScreen: React.FC = () => {
                   >
                     <img
                       src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9811f9bca05c43feae9eafdcbab3c8d9?format=webp&width=800"
-                      alt="1 ประตู"
+                      alt="1 ประต��"
                       className="h-6 w-6 md:h-7 md:w-7 object-contain"
                     />
                   </div>
@@ -611,81 +611,87 @@ const PaymentScreen: React.FC = () => {
             );
           })()}
         </div>
-        <div className="bg-white rounded-2xl -mt-2 p-4 border border-gray-400">
-          <StepTabs active={4} />
-
-          <h2 className="text-xl font-prompt font-semibold text-[#003366] mt-2">
-            การจ่ายเงิน
-          </h2>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {OPTIONS.map((o) => {
-              const isSel = selected.includes(o.label);
-              const iconNode =
-                o.key === "cash" ? (
-                  <img
-                    src={MONEY_ICON}
-                    alt={o.label}
-                    className={`h-8 w-8 object-contain select-none ${isSel ? "" : "grayscale opacity-60"}`}
-                    decoding="async"
-                    loading="eager"
-                  />
-                ) : o.key === "scan" ? (
-                  <img
-                    src={SCAN_ICON}
-                    alt={o.label}
-                    className={`h-8 w-8 object-contain select-none ${isSel ? "" : "grayscale opacity-60"}`}
-                    decoding="async"
-                    loading="eager"
-                  />
-                ) : o.key === "scan2" ? (
-                  <img
-                    src={SCAN2_ICON}
-                    alt={o.label}
-                    className={`h-8 w-8 object-contain select-none ${isSel ? "" : "grayscale opacity-60"}`}
-                    decoding="async"
-                    loading="eager"
-                  />
-                ) : o.key === "tap" ? (
-                  <img
-                    src={TOUCH_ICON}
-                    alt={o.label}
-                    className={`h-8 w-8 object-contain select-none ${isSel ? "" : "grayscale opacity-60"}`}
-                    decoding="async"
-                    loading="eager"
-                  />
-                ) : o.key === "qr" ? (
-                  <img
-                    src={BUS_EMPLOY_ICON}
-                    alt={o.label}
-                    className={`h-8 w-8 object-contain select-none ${isSel ? "" : "grayscale opacity-60"}`}
-                    decoding="async"
-                    loading="eager"
-                  />
-                ) : o.key === "monthly" ? (
-                  <img
-                    src={MONTHLY_ICON}
-                    alt={o.label}
-                    className={`h-8 w-8 object-contain select-none ${isSel ? "" : "grayscale opacity-60"}`}
-                    decoding="async"
-                    loading="eager"
-                  />
-                ) : (
-                  o.icon
-                );
-              return (
-                <SelectionCard
-                  key={o.key}
-                  icon={iconNode}
-                  label={o.label}
-                  isSelected={isSel}
-                  onClick={() => toggle(o.label)}
-                  variant="light"
-                />
-              );
-            })}
+        <section className={`${styles.controlsSection} ${styles.controlsWrapper}`}>
+          <div className={styles.tabsWrapper}>
+            <StepTabs active={4} />
           </div>
-        </div>
+
+          <div className={styles.controlsBox}>
+            <div className={styles.controlsContent}>
+              <h2 className="text-xl font-prompt font-semibold text-[#003366] mt-2">
+                การจ่ายเงิน
+              </h2>
+
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                {OPTIONS.map((o) => {
+                  const isSel = selected.includes(o.label);
+                  const iconNode =
+                    o.key === "cash" ? (
+                      <img
+                        src={MONEY_ICON}
+                        alt={o.label}
+                        className={`h-8 w-8 object-contain select-none ${isSel ? "" : "grayscale opacity-60"}`}
+                        decoding="async"
+                        loading="eager"
+                      />
+                    ) : o.key === "scan" ? (
+                      <img
+                        src={SCAN_ICON}
+                        alt={o.label}
+                        className={`h-8 w-8 object-contain select-none ${isSel ? "" : "grayscale opacity-60"}`}
+                        decoding="async"
+                        loading="eager"
+                      />
+                    ) : o.key === "scan2" ? (
+                      <img
+                        src={SCAN2_ICON}
+                        alt={o.label}
+                        className={`h-8 w-8 object-contain select-none ${isSel ? "" : "grayscale opacity-60"}`}
+                        decoding="async"
+                        loading="eager"
+                      />
+                    ) : o.key === "tap" ? (
+                      <img
+                        src={TOUCH_ICON}
+                        alt={o.label}
+                        className={`h-8 w-8 object-contain select-none ${isSel ? "" : "grayscale opacity-60"}`}
+                        decoding="async"
+                        loading="eager"
+                      />
+                    ) : o.key === "qr" ? (
+                      <img
+                        src={BUS_EMPLOY_ICON}
+                        alt={o.label}
+                        className={`h-8 w-8 object-contain select-none ${isSel ? "" : "grayscale opacity-60"}`}
+                        decoding="async"
+                        loading="eager"
+                      />
+                    ) : o.key === "monthly" ? (
+                      <img
+                        src={MONTHLY_ICON}
+                        alt={o.label}
+                        className={`h-8 w-8 object-contain select-none ${isSel ? "" : "grayscale opacity-60"}`}
+                        decoding="async"
+                        loading="eager"
+                      />
+                    ) : (
+                      o.icon
+                    );
+                  return (
+                    <SelectionCard
+                      key={o.key}
+                      icon={iconNode}
+                      label={o.label}
+                      isSelected={isSel}
+                      onClick={() => toggle(o.label)}
+                      variant="light"
+                    />
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
     </CustomizationScreen>
   );

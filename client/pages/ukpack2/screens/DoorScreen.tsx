@@ -512,47 +512,53 @@ const DoorScreen: React.FC = () => {
             );
           })()}
         </div>
-        <div className="bg-white rounded-2xl -mt-2 p-4 border border-gray-400">
-          <StepTabs active={5} />
-
-          <h2 className="text-xl font-prompt font-semibold text-[#003366] mt-2">
-            ประตู
-          </h2>
-
-          <div className="grid grid-cols-2 gap-4">
-            {/* Radio group for 1 or 2 doors */}
-            <SelectionCard
-              icon={<IconDoor1 />}
-              label={"1 ประตู"}
-              isSelected={selectedOption === "1"}
-              onClick={() => setSelectedOption("1")}
-              variant="light"
-            />
-            <SelectionCard
-              icon={<IconDoor2 />}
-              label={"2 ประตู"}
-              isSelected={selectedOption === "2"}
-              onClick={() => setSelectedOption("2")}
-              variant="light"
-            />
-
-            {/* Single-choice options */}
-            <SelectionCard
-              icon={<IconRamp />}
-              label={"ทางลาดสำหรับรถเข็น/ผู้พิการ"}
-              isSelected={selectedOption === "ramp"}
-              onClick={() => setSelectedOption("ramp")}
-              variant="light"
-            />
-            <SelectionCard
-              icon={<IconHighLow />}
-              label={"ประตูฉุกเฉิน"}
-              isSelected={selectedOption === "emergency"}
-              onClick={() => setSelectedOption("emergency")}
-              variant="light"
-            />
+        <section className={`${styles.controlsSection} ${styles.controlsWrapper}`}>
+          <div className={styles.tabsWrapper}>
+            <StepTabs active={5} />
           </div>
-        </div>
+
+          <div className={styles.controlsBox}>
+            <div className={styles.controlsContent}>
+              <h2 className="text-xl font-prompt font-semibold text-[#003366] mt-2">
+                ประตู
+              </h2>
+
+              <div className="grid grid-cols-2 gap-4">
+                {/* Radio group for 1 or 2 doors */}
+                <SelectionCard
+                  icon={<IconDoor1 />}
+                  label={"1 ประตู"}
+                  isSelected={selectedOption === "1"}
+                  onClick={() => setSelectedOption("1")}
+                  variant="light"
+                />
+                <SelectionCard
+                  icon={<IconDoor2 />}
+                  label={"2 ประตู"}
+                  isSelected={selectedOption === "2"}
+                  onClick={() => setSelectedOption("2")}
+                  variant="light"
+                />
+
+                {/* Single-choice options */}
+                <SelectionCard
+                  icon={<IconRamp />}
+                  label={"ทางลาดสำหรับรถเข็น/ผู้พิการ"}
+                  isSelected={selectedOption === "ramp"}
+                  onClick={() => setSelectedOption("ramp")}
+                  variant="light"
+                />
+                <SelectionCard
+                  icon={<IconHighLow />}
+                  label={"ประตูฉุกเฉิน"}
+                  isSelected={selectedOption === "emergency"}
+                  onClick={() => setSelectedOption("emergency")}
+                  variant="light"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
     </CustomizationScreen>
   );
