@@ -182,7 +182,7 @@ const SummaryDetails: React.FC = () => {
           : raw.doorChoice === "2"
             ? "2 ประตู"
             : String(raw.doorChoice);
-      if (raw.hasRamp) return "ทางลาดสำหรับรถเข็น/ผู้พิการ";
+      if (raw.hasRamp) return "ทาง��าดสำหรับรถเข็น/ผู้พิการ";
       if (raw.highLow) return "ประตูฉุกเฉิน";
     }
     return String(raw);
@@ -197,6 +197,7 @@ const SummaryDetails: React.FC = () => {
             colorFilter={storedColorLocal?.filter ?? null}
             colorHex={storedColorLocal?.colorHex ?? null}
             label={`รถที่เลือก : ${chassisLabel}`}
+            showSelectedText
             overlayLabels={(() => {
               const amenities = (() => {
                 try {
