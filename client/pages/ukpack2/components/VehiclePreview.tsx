@@ -95,9 +95,9 @@ const VehiclePreview: React.FC<Props> = ({
                   const srcOrNode = overlayIconMap[lab];
                   return (
                     <div
-                      key={`${lab}-${i}`}
-                      className="bg-white/90 rounded-full p-1 h-8 w-8 flex items-center justify-center inline-flex flex-shrink-0"
-                    >
+                    key={`${lab}-${i}`}
+                    className="h-8 w-8 flex items-center justify-center inline-flex flex-shrink-0" // Removed background styling
+                  >
                       {typeof srcOrNode === "string" && srcOrNode ? (
                         (() => {
                           const src = srcOrNode as string;
