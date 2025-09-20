@@ -54,7 +54,7 @@ const IconSmall = () => (
 const IconSmallAlt = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fed2dc7373da74a8caeaca4fcb33205a3?format=webp&width=800"
-    alt="ไอคอนรถเมล์ขนาดเล็ก (กด���ล้ว)"
+    alt="ไอคอนรถเมล์ขนา���เล็ก (กดแล้ว)"
     aria-hidden="true"
     className="h-full w-auto object-contain select-none"
     decoding="async"
@@ -73,8 +73,8 @@ const IconMedium = () => (
 );
 const IconMediumAlt = () => (
   <img
-    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F7e854e4440014ff5ad1f9e6b6f982923?format=webp&width=800"
-    alt=""
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F94752305ff8b454798b09b76d9ff98b5?format=webp&width=800"
+    alt="ไอคอนรถเมล์มาตรฐาน (กดแล้ว)"
     aria-hidden="true"
     className="h-full w-auto object-contain select-none"
     decoding="async"
