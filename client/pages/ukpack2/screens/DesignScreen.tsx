@@ -383,7 +383,7 @@ const DesignScreen: React.FC = () => {
                       "สแกนจ่าย 2": (
                         <img
                           src={SCAN2_ICON}
-                          alt="สแก���จ่าย 2"
+                          alt="สแกนจ่าย 2"
                           className="h-5 w-5 object-contain"
                         />
                       ),
@@ -432,7 +432,7 @@ const DesignScreen: React.FC = () => {
                       emergency: (
                         <img
                           src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F98de0624be3d4ae6b96d83edcf8891f9?format=webp&width=800"
-                          alt="ประตูฉุกเฉิน"
+                          alt="ประตูฉุกเ��ิน"
                           className="h-5 w-5 object-contain"
                         />
                       ),
