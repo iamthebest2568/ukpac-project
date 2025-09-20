@@ -34,7 +34,7 @@ const SummaryScreen: React.FC = () => {
   const CHASSIS_LABELS: Record<string, string> = {
     small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
     medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
-    large: "รถตู้โดย���าร 9–15 ที่นั่ง",
+    large: "รถตู้โดยสาร 9–15 ที่นั่ง",
     extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
   };
 
@@ -90,7 +90,7 @@ const SummaryScreen: React.FC = () => {
     <CustomizationScreen title="" theme="light" footerContent={
       <div className="flex justify-center">
         <div className="w-full max-w-4xl mx-auto flex items-center justify-center">
-          <div className="w-full max-w-sm p-4 md:p-6 flex flex-col items-center gap-3">
+          <div className="w-full max-w-sm p-4 md:p-6 flex flex-col items-stretch gap-3">
             <div className="w-full">
               <SecondaryButton
                 text="กลับไปแก้ไข"
