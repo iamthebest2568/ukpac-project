@@ -1,0 +1,12 @@
+.ukpack2-secondary-btn {
+  background-color: #000D59 !important;
+  color: #FFFFFF !important;
+}
+.ukpack2-secondary-btn:hover {
+  background-color: #FFE000 !important;
+  color: #000D59 !important;
+}
+.ukpack2-secondary-btn:focus {
+  outline: 2px solid #FFE000 !important;
+  outline-offset: 2px !important;
+}
