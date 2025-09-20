@@ -28,7 +28,7 @@ const IconFan = () => (
 const IconSeat = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F93439b2533284cdf914fc93cafa1cf26?format=webp&width=800"
-    alt="ที���นั่งพิเศษ"
+    alt="ที่นั่งพิเศษ"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -46,7 +46,7 @@ const IconWifi = () => (
 const IconPlug = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F09a78e31a3de44e98772b0eef382af6f?format=webp&width=800"
-    alt="ช่องช���ร์จมือถือ/USB"
+    alt="ช่องชาร์จมือถือ/USB"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -102,10 +102,10 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   พัดลม: <IconFan />,
   ที่นั่งพิเศษ: <IconSeat />,
   "ที่จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
-  "ช่��งชาร์จมือถือ/USB": <IconPlug />,
+  "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
   "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
-  ก���้องวงจรปิด: <IconCamSmall />,
+  "กล้องวงจรปิด": <IconCamSmall />,
 };
 
 const MONEY_ICON =
@@ -235,12 +235,12 @@ const DesignScreen: React.FC = () => {
   return (
     <>
       <MetaUpdater
-        title="UK PACT - ���รุงเทพฯ ลดติด"
+        title="UK PACT - กรุงเทพฯ ลดติด"
         description="ออกแบบรถเมล์เพื่อช่วยลดปัญหาการจราจรในกรุงเทพฯ — เลือกขนาดรถ สี และสิ่งอำนวยความสะดวกที่ต้องการ"
         image="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F44cea8aeb6d4415e899494a90c6f59b1?format=webp&width=1200"
       />
       <CustomizationScreen
-        title="ปรับ���ต่งรถเมล์ของคุณ"
+        title="ปรับแต่งรถเมล์ของคุณ"
         theme="light"
         footerContent={
           <div className="flex justify-center">
@@ -254,7 +254,7 @@ const DesignScreen: React.FC = () => {
               const CHASSIS_LABELS: Record<string, string> = {
                 small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
                 medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
-                large: "รถตู้โ���ยสาร 9–15 ที่นั่ง",
+                large: "รถตู้โดยสาร 9–15 ที่นั่ง",
                 extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
               };
               const HERO_IMAGE: Record<string, string> = {
@@ -350,7 +350,7 @@ const DesignScreen: React.FC = () => {
                           className="h-5 w-5 object-contain"
                         />
                       ),
-                      "สแ���นจ่าย 2": (
+                      "สแกนจ่าย 2": (
                         <img
                           src={SCAN2_ICON}
                           alt="สแกนจ่าย 2"
@@ -371,7 +371,7 @@ const DesignScreen: React.FC = () => {
                           className="h-5 w-5 object-contain"
                         />
                       ),
-                      "ตั๋วรา���เดือน/รอบ": (
+                      "ตั๋วรายเดือน/รอบ": (
                         <img
                           src={MONTHLY_ICON}
                           alt="ตั๋วรายเดือน/รอบ"
@@ -388,7 +388,7 @@ const DesignScreen: React.FC = () => {
                       "2": (
                         <img
                           src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8f9b21942af243b3b80b0e5ac8b12631?format=webp&width=800"
-                          alt="2 ประตู"
+                          alt="2 ประต��"
                           className="h-5 w-5 object-contain"
                         />
                       ),
@@ -472,7 +472,7 @@ const DesignScreen: React.FC = () => {
                         ref={textareaRef}
                         value={sloganDraft}
                         onChange={(e) => setSloganDraft(e.target.value)}
-                        placeholder="พิมพ์คุณส���บัติพิเศษอื่นๆ ของรถเมล์ในฝันของคุณ"
+                        placeholder="พิมพ์คุณสมบัติพิเศษอื่นๆ ของรถเมล์ในฝันของคุณ"
                         className="mt-3 w-full h-36 p-3 border rounded-md text-sm resize-none"
                       />
                       <div className="mt-3 flex justify-end gap-2">
