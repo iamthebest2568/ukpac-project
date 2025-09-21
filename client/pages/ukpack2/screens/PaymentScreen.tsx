@@ -297,10 +297,38 @@ const PaymentScreen: React.FC = () => {
     } catch {}
   }, []);
 
+  const ICON_SETS: Record<string, string[]> = {
+    "เงินสด": [
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9990d6a9de5745c4984f9086e1bb669b?format=webp&width=800",
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F31bf12526755463cb2602efd743d7f38?format=webp&width=800",
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fdf91e2e565b1435597c2f62ea1b3c0d7?format=webp&width=800",
+    ],
+  };
+
   const toggle = (label: string) => {
-    setSelected((prev) =>
-      prev.includes(label) ? prev.filter((l) => l !== label) : [...prev, label],
-    );
+    setSelected((prev) => {
+      const isSelected = prev.includes(label);
+      const next = isSelected ? prev.filter((l) => l !== label) : [...prev, label];
+
+      // update sessionStorage overlayIconMap immediately when selecting/unselecting
+      try {
+        const raw = sessionStorage.getItem("design.overlayIconMap");
+        const map = raw ? (JSON.parse(raw) as Record<string, string>) : {};
+        if (!isSelected) {
+          // selecting — persist icon3 if available
+          const set = ICON_SETS[label];
+          if (set && set[2]) map[label] = set[2];
+        } else {
+          // unselecting — remove overlay mapping
+          if (map[label]) delete map[label];
+        }
+        sessionStorage.setItem("design.overlayIconMap", JSON.stringify(map));
+      } catch (e) {
+        // ignore
+      }
+
+      return next;
+    });
   };
 
   const PAYMENT_BUTTON_SRC: Record<string, string> = {
@@ -400,7 +428,7 @@ const PaymentScreen: React.FC = () => {
             const CORRECT_LABELS: Record<string, string> = {
               "สแกนจ่าย 2": "สแกนจ่าย 2",
               "แตะบัตร": "แตะบัตร",
-              "กระเป๋ารถเมล์": "กระเป๋ารถเมล์",
+              "กระเป๋ารถเมล์": "กระเป��ารถเมล์",
               "เงินสด": "เงินสด",
             };
             const stripReplacement = (s: string) =>
