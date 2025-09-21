@@ -154,7 +154,7 @@ const IconDoor1Active = () => (
 );
 const IconDoor2 = () => (
   <img
-    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fad85d6b0010f404ca1b5581d76257fd9?format=webp&width=800"
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Faee46c4c7271461dadfd68c9eb3aec69?format=webp&width=800"
     alt="image"
     className="object-contain select-none max-h-full w-auto"
     decoding="async"
@@ -231,7 +231,7 @@ const DoorScreen: React.FC = () => {
 
   const DOOR_BUTTON_SRC: Record<string, string> = {
     "1": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fbfe398b713cf4650810c0e346f6c03e3?format=webp&width=800",
-    "2": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fad85d6b0010f404ca1b5581d76257fd9?format=webp&width=800",
+    "2": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Faee46c4c7271461dadfd68c9eb3aec69?format=webp&width=800",
     ramp: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F245ff72a7c3b468293c517a934e4e839?format=webp&width=800",
     emergency: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F38e094ce2f914f2089d04349bc6f386b?format=webp&width=800",
   };
@@ -565,7 +565,7 @@ const DoorScreen: React.FC = () => {
                     { key: "1", label: "1 ประตู", icon: <IconDoor1 />, iconActive: <IconDoor1Active /> },
                     { key: "2", label: "2 ประตู", icon: <IconDoor2 />, iconActive: <IconDoor2Active /> },
                     { key: "ramp", label: "ทางลาดสำหรับรถเข็น/ผู้พิาการ", icon: <IconRamp />, iconActive: <IconRampActive /> },
-                    { key: "emergency", label: "ประตูฉุกเฉิน", icon: <IconHighLow />, iconActive: <IconHighLowActive /> },
+                    { key: "emergency", label: "ประต���ฉุกเฉิน", icon: <IconHighLow />, iconActive: <IconHighLowActive /> },
                   ];
 
                   // helper to normalize and set variants into overlayIconMap in sessionStorage
