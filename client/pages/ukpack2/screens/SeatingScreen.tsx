@@ -44,8 +44,8 @@ const SeatingScreen: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [errorTitle, setErrorTitle] = useState("ข้อผิดพลาด");
 
-  const maxByChassis: Record<string, number> = { small: 30, medium: 40, large: 50, extra: 12 };
-  const minByChassis: Record<string, number> = { small: 16, medium: 31, large: 41, extra: 8 };
+  const maxByChassis: Record<string, number> = { small: 30, medium: 50, large: 15, extra: 12 };
+  const minByChassis: Record<string, number> = { small: 16, medium: 30, large: 9, extra: 8 };
 
   const currentChassis = state.chassis || "medium";
 
