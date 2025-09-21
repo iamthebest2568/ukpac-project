@@ -40,6 +40,8 @@ function getSessionID() {
  * @param {string} eventData.event - Event type (e.g., 'ASK01_CHOICE', 'MINIGAME_MN1_COMPLETE')
  * @param {Object} eventData.payload - Event-specific data
  */
+import { sendEventToFirestore } from "../lib/firebase";
+
 export function logEvent(eventData) {
   try {
     // 1. Retrieve existing events from localStorage, or start a new array (safe parse)
@@ -79,6 +81,17 @@ export function logEvent(eventData) {
 
     // 5. Also log to console for debugging (can be removed in production)
     console.log("📊 Event Logged:", enrichedEvent);
+
+    // 6. If PDPA accepted, try to send event to Firestore (client-side)
+    try {
+      const pdpa = (enrichedEvent.payload && (enrichedEvent.payload.PDPA || enrichedEvent.payload.pdpa)) || enrichedEvent.PDPA || enrichedEvent.pdpa;
+      if (pdpa === true || pdpa === "accepted" || pdpa === "1") {
+        // fire-and-forget
+        try { sendEventToFirestore(enrichedEvent); } catch (e) { /* ignore */ }
+      }
+    } catch (e) {
+      /* ignore */
+    }
 
     // Event logged successfully to localStorage
   } catch (error) {
