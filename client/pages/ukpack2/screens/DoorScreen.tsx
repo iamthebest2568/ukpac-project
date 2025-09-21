@@ -307,7 +307,8 @@ const DoorScreen: React.FC = () => {
               ...(amenitiesFromStorage || []),
               ...(paymentsFromStorage || []),
             ];
-            if (selectedOption) overlayLabels.push(selectedOption);
+            // Do not include current door selection as an overlay label — doors should not create overlays
+            // (overlay icons come only from previous steps: amenities and payments)
 
             const renderOverlayIcon = (label: string, idx: number) => {
               // amenities
@@ -515,7 +516,7 @@ const DoorScreen: React.FC = () => {
                   }
 
                   // Ensure explicit keys exist
-                  const explicit = ['เงินสด','สแกนจ่าย','สแกนจ่าย 2','แตะบัตร','กระ��ป๋ารถเมล์','ตั๋วรายเดือน/รอบ','1','2','ramp','emergency'];
+                  const explicit = ['เงินสด','สแกนจ่าย','สแกนจ่าย 2','แตะบัตร','กระ��ป๋ารถเมล์','ตั๋วรายเดื���น/รอบ','1','2','ramp','emergency'];
                   for (const k of explicit) {
                     if (!merged[k]) {
                       if (storedMapRaw[k]) setVariants(k, storedMapRaw[k]);
