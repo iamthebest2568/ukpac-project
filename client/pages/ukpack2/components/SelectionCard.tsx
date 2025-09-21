@@ -12,6 +12,8 @@ interface SelectionCardProps {
   /** Controls the size of the group appearance specifically */
   groupSize?: "sm" | "md" | "lg";
   layout?: "vertical" | "horizontal";
+  /** If true, the group appearance will stretch to fill its container */
+  fill?: boolean;
 }
 
 const SelectionCard: React.FC<SelectionCardProps> = ({
