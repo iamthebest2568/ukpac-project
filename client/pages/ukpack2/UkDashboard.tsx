@@ -191,6 +191,7 @@ const UkDashboard: React.FC = () => {
                     },
                   };
                   await sendEventToFirestore(sample);
+                  setLastSentResult({ sentCount: 1, skippedCount: 0, sampleSent: [sample], errors: [] });
                   alert("Test event sent to Firestore");
                 } catch (err) {
                   console.error(err);
@@ -200,6 +201,20 @@ const UkDashboard: React.FC = () => {
               className="bg-[#60a5fa] text-white px-4 py-2 rounded font-semibold"
             >
               Send Test Event
+            </button>
+
+            <button
+              onClick={handleSendAll}
+              className="bg-[#34d399] text-[#064e3b] px-4 py-2 rounded font-semibold"
+            >
+              Send All Events (no PDPA filter)
+            </button>
+
+            <button
+              onClick={() => handleSendBatch(20)}
+              className="bg-[#7dd3fc] text-[#0f172a] px-4 py-2 rounded font-semibold"
+            >
+              Send Batch (20)
             </button>
             <button
               onClick={handleClear}
