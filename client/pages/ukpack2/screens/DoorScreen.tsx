@@ -135,7 +135,7 @@ const storedColor = (() => {
 
 const IconDoor1 = () => (
   <img
-    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F20b45db4b1fc4fdaa7c2f8874aea451d?format=webp&width=800"
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fbfe398b713cf4650810c0e346f6c03e3?format=webp&width=800"
     alt="image"
     className="object-contain select-none max-h-full w-auto"
     decoding="async"
@@ -145,7 +145,7 @@ const IconDoor1 = () => (
 
 const IconDoor1Active = () => (
   <img
-    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F462ae98cbc00484fb2afe9c14ad6f9b6?format=webp&width=800"
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F98d04b20f971412fb6a7d60950f0e4c9?format=webp&width=800"
     alt="image"
     className="object-contain select-none max-h-full w-auto"
     decoding="async"
