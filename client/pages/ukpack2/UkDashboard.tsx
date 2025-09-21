@@ -161,7 +161,7 @@ const UkDashboard: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#0b0b0b] text-white p-6">
+    <div className="uk2-scroll overflow-auto min-h-0 bg-[#0b0b0b] text-white p-6">
       <div className="max-w-4xl mx-auto bg-[#071227] rounded-xl p-6">
         <div className="flex items-center justify-between mb-6">
           <h1 className="text-xl font-semibold">UKPACK2 Dashboard</h1>
