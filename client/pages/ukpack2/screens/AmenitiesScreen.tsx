@@ -124,7 +124,7 @@ const IconCup = () => (
 const IconCupAlt = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F2c2b4af39249468d92e4252d584cf2fd?format=webp&width=800"
-    alt="ระบบประกาศบอกป้าย(กดแล้ว)"
+    alt="ระบบประกาศบอก���้าย(กดแล้ว)"
     className="object-contain select-none h-full w-full"
     decoding="async"
     loading="eager"
@@ -245,9 +245,9 @@ const AmenitiesScreen: React.FC = () => {
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F4e8932e864664a7f8a454d61f4e87ca9?format=webp&width=800",
     ที่นั่งพิเศษ:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb35efe05833149089a2df21cf61300b4?format=webp&width=800", // ใช้ไอคอนหน้าต่างเปิดได้
-    ห���้าต่างเปิดได้:
+    หน้าต่างเปิดได้:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb35efe05833149089a2df21cf61300b4?format=webp&width=800",
-    "ที่จับ/ราวยืนที่ปลอดภัย":
+    "ที่จับ/ราวยืนที่ปลอด���ัย":
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fa9c2a350877e46c3a49f0f6cd867ae99?format=webp&width=800",
     "ช่องชาร์จมือถือ/USB":
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F2d38a737cf2c4bf29f8764e48a93d404?format=webp&width=800",

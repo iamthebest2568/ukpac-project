@@ -40,7 +40,7 @@ const IconSeat = () => (
 const IconWifi = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb0789bfd1100472f8351704764607d31?format=webp&width=800"
-    alt="���ี่จับ/ราวยืน"
+    alt="ที่จับ/ราวยืน"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -107,7 +107,7 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   "ที่จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
   "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
-  "ร���บบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
+  "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
   "กล้องวงจรปิด": <IconCamSmall />,
 };
 
@@ -184,7 +184,7 @@ const IconRamp = () => (
 const IconRampActive = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F199c45ef45704addad6c7b113f14b7da?format=webp&width=800"
-    alt="ทางสำหรับรถ��ข็น/ผู้พิการ (selected)"
+    alt="ทางสำหรับรถเข็น/ผู้พิการ (selected)"
     className="object-contain select-none max-h-full w-auto"
     decoding="async"
     loading="eager"
@@ -368,7 +368,7 @@ const DoorScreen: React.FC = () => {
                     />
                   </div>
                 );
-              if (label === "��ตะบัตร")
+              if (label === "แตะบัตร")
                 return (
                   <div
                     key={`${label}-${idx}`}
@@ -502,7 +502,7 @@ const DoorScreen: React.FC = () => {
                         className="h-5 w-5 object-contain"
                       />
                     ),
-                    แตะบัตร: (
+                    แตะ���ัตร: (
                       <img
                         src={TOUCH_ICON}
                         alt="แตะบัตร"

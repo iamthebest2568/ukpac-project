@@ -38,7 +38,7 @@ const IconSeat = () => (
 const IconWifi = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb0789bfd1100472f8351704764607d31?format=webp&width=800"
-    alt="ที่จับ/ราว���ืน"
+    alt="ที่จับ/ราวยืน"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -56,7 +56,7 @@ const IconPlug = () => (
 const IconTv = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fcb0cbf9ef6764e2d9e6f06e87827f5e9?format=webp&width=800"
-    alt="Wi‑Fi ��รี"
+    alt="Wi‑Fi ฟรี"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -103,10 +103,10 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   "พัดลม": <IconFan />,
   "ที่นั่งพิเศษ": <IconSeat />,
   "ที่จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
-  "ช่องชาร์จมือถือ/USB": <IconPlug />,
+  "ช่องชาร��จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
   "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
-  "กล้อง��งจรปิด": <IconCamSmall />,
+  "กล้องวงจรปิด": <IconCamSmall />,
 };
 
 const MONEY_ICON =
@@ -363,7 +363,7 @@ const DesignScreen: React.FC = () => {
           <div className="max-w-4xl w-full mx-auto">
             <div className="bg-white rounded-xl p-6 border-2 border-[#000D59]">
               <h2 className="text-xl font-prompt font-semibold text-[#003366] mt-2">
-                ออ���แบบสี
+                ออกแบบสี
               </h2>
               <ColorPalette
                 colors={DEFAULT_COLORS}
@@ -383,7 +383,7 @@ const DesignScreen: React.FC = () => {
                     setSloganDraft(slogan);
                     setShowTextarea(true);
                   }}
-                  placeholder="พิมพ์ คุณสมบัติพิเศษ"
+                  placeholder="พิมพ์ คุณ���มบัติพิเศษ"
                   className="w-full rounded-xl px-4 py-2 bg-white border-2 border-[#000D59] text-[#003366] placeholder-gray-400 cursor-text"
                 />
 
@@ -406,7 +406,7 @@ const DesignScreen: React.FC = () => {
                           onClick={() => setShowTextarea(false)}
                           className="px-4 py-2 rounded-xl bg-[#ffe000] text-[#000D59] hover:bg-[#000D59] hover:text-white transition-colors"
                         >
-                          ยกเลิก
+                          ยกเ��ิก
                         </button>
                         <button
                           onMouseEnter={() => setIsSaveHover(true)}

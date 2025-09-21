@@ -140,7 +140,7 @@ const IconAir = () => (
 const IconFan = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe01792ee89e240808ed47d8576b55d71?format=webp&width=800"
-    alt="พัดลม"
+    alt="พัด���ม"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -158,7 +158,7 @@ const IconSeat = () => (
 const IconWifi = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb0789bfd1100472f8351704764607d31?format=webp&width=800"
-    alt="ที���จับ/ราวยืน"
+    alt="ที่จับ/ราวยืน"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -346,8 +346,8 @@ const PaymentScreen: React.FC = () => {
             const CHASSIS_LABELS: Record<string, string> = {
               small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
               medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
-              large: "รถตู้โดยสาร 9–15 ที่น��่ง",
-              extra: "รถกะบะดัดแป���ง 8–12 ที่นั่��",
+              large: "รถตู้โดยสาร 9–15 ที่นั่ง",
+              extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
             };
             const HERO_IMAGE: Record<string, string> = {
               small:
@@ -399,9 +399,8 @@ const PaymentScreen: React.FC = () => {
             // Normalize known corrupted label encodings (in case values were stored with encoding issues)
             const CORRECT_LABELS: Record<string, string> = {
               "สแกนจ่าย 2": "สแกนจ่าย 2",
-              "���แกนจ่าย 2": "สแกนจ่าย 2",
               "แตะบัตร": "แตะบัตร",
-              "กระเป๋ารถเมล��": "กระเป๋ารถเมล์",
+              "กระเป๋ารถเมล์": "กระเป๋ารถเมล์",
               "เงินสด": "เงินสด",
             };
             const stripReplacement = (s: string) => (s || "").replace(/�|\uFFFD/g, "").trim();
@@ -477,7 +476,7 @@ const PaymentScreen: React.FC = () => {
                   >
                     <img
                       src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fece2b6fc843340f0997f2fd7d3ca0aea?format=webp&width=800"
-                      alt="��างลาด"
+                      alt="ทางลาด"
                       className="h-6 w-6 md:h-7 md:w-7 object-contain"
                     />
                   </div>
@@ -490,7 +489,7 @@ const PaymentScreen: React.FC = () => {
                   >
                     <img
                       src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F98de0624be3d4ae6b96d83edcf8891f9?format=webp&width=800"
-                      alt="ประตูุกเฉิน"
+                      alt="ประตูฉุกเฉิน"
                       className="h-6 w-6 md:h-7 md:w-7 object-contain"
                     />
                   </div>
@@ -615,7 +614,7 @@ const PaymentScreen: React.FC = () => {
                     "สแกนจ่าย": (
                       <img
                         src={"https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F125e79ee890243308489d0acbb1eef2b?format=webp&width=800"}
-                        alt="��แกนจ่าย"
+                        alt="สแกนจ่าย"
                         className="h-full w-full object-contain"
                       />
                     ),
