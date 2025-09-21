@@ -1147,3 +1147,12 @@
     color: var(--color-text-primary);
   }
 }
+
+/* Utilities: hide scrollbars for overlay scrollers */
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE/Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
