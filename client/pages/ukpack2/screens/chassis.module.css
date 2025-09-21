@@ -263,14 +263,18 @@
 }
 
 .doorControls .selectionGrid > button {
-  padding: 4px !important;
+  padding: 0 !important;
   width: 100% !important; /* fill the column for consistent spacing */
   max-width: none !important;
+  height: var(--icon-cell-height) !important; /* ensure button is same height as icon cell */
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
 .doorControls .selectionGrid > button > div.iconContainer {
-  height: var(--icon-cell-height) !important;
-  width: 140px !important; /* slightly reduced fixed icon width for balanced layout */
+  height: 100% !important;
+  width: 100% !important; /* let the icon container fill the button */
 }
 
 .doorControls .selectionGrid img,
