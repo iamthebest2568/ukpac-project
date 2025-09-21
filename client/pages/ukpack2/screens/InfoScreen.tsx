@@ -5,7 +5,7 @@ import CtaButton from "../components/CtaButton";
 import ConfirmModal from "../components/ConfirmModal";
 
 const CHASSIS_LABELS: Record<string, string> = {
-  small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
+  small: "รถเมล��ขนาดเล็ก 16–30 ที่นั่ง",
   medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
   large: "รถตู้โดยสาร 9–15 ที่นั่ง",
   extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
@@ -148,11 +148,12 @@ const InfoScreen: React.FC = () => {
                         {overlay.map((lab, i) => {
                           const srcOrNode = merged[lab] ?? merged[normalizeKey(lab)] ?? merged[normalizeKey(lab).replace(/\s/g, "")];
                           return (
-                            <div key={`${lab}-${i}`} className="inline-flex items-center justify-center" style={{ width: 36 }}>
+                            <div key={`${lab}-${i}`} className="inline-flex items-center justify-center h-9 w-9 md:h-10 md:w-10" style={{ flex: '0 0 auto' }}>
                               {typeof srcOrNode === 'string' ? (
-                                <img src={srcOrNode as string} alt={lab} className="h-6 w-6 md:h-7 md:w-7 object-contain" />
+                                <img src={srcOrNode as string} alt={lab} className="h-full w-full object-contain" />
                               ) : srcOrNode ? (
-                                <>{srcOrNode}</>
+                                // if it's a JSX node (Icon component), wrap in container to size it
+                                <div className="h-full w-full flex items-center justify-center">{srcOrNode}</div>
                               ) : (
                                 <div className="text-xs">{lab}</div>
                               )}
@@ -203,7 +204,7 @@ const InfoScreen: React.FC = () => {
       <ConfirmModal
         isOpen={isExitModalOpen}
         title="ออกจากหน้าจอ"
-        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
+        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงขอ���คุณจะไม่ถูกบันทึก"
         onConfirm={() => navigate("/")}
         onCancel={() => setExitModalOpen(false)}
       />
