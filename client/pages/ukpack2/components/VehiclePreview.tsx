@@ -107,42 +107,77 @@ const VehiclePreview: React.FC<Props> = ({
                 }
               })();
 
+              // Create scrollable single-row container with left/right controls
+              const scrollRef = React.createRef<HTMLDivElement>();
+
+              const scrollByAmount = (dir: 'left' | 'right') => {
+                const el = scrollRef.current;
+                if (!el) return;
+                const amount = el.clientWidth * 0.6; // scroll by a fraction of the visible width
+                el.scrollBy({ left: dir === 'left' ? -amount : amount, behavior: 'smooth' });
+              };
+
               return (
-                <div className="absolute left-1/2 transform -translate-x-1/2 -top-4 flex flex-wrap justify-center items-center gap-2 z-20 w-[110%] sm:w-[120%] md:w-[130%] lg:w-[140%]">
-                  {overlayLabels.map((lab, i) => {
-                    const propVal = overlayIconMap ? overlayIconMap[lab] : undefined;
-                    const storedVal = storedMap ? storedMap[lab] : undefined;
-                    const srcOrNode = storedVal || propVal;
-                    return (
-                      <div
-                      key={`${lab}-${i}`}
-                      className={`${sizeClass} flex items-center justify-center inline-flex flex-shrink-0`} // size depends on chassis
-                    >
-                        {typeof srcOrNode === "string" && srcOrNode ? (
-                          (() => {
-                            const src = srcOrNode as string;
-                            const srcSet = src.includes("width=")
-                              ? `${src} 1x, ${src.replace(/width=\d+/, "width=1600")} 2x`
-                              : undefined;
-                            return (
-                              <img
-                                src={src}
-                                srcSet={srcSet}
-                                alt={lab}
-                                className="h-full w-full object-contain"
-                                decoding="async"
-                                loading="eager"
-                              />
-                            );
-                          })()
-                        ) : srcOrNode ? (
-                          <>{srcOrNode}</>
-                        ) : (
-                          <div className="text-xs inline-block">{lab}</div>
-                        )}
-                      </div>
-                    );
-                  })}
+                <div className="absolute left-1/2 transform -translate-x-1/2 -top-4 z-20 w-[110%] sm:w-[120%] md:w-[130%] lg:w-[140%] flex items-center justify-center">
+                  <button
+                    type="button"
+                    aria-label="Prev icons"
+                    onClick={() => scrollByAmount('left')}
+                    className="p-2 bg-white/80 rounded-full shadow-sm mr-2 text-[#003366]"
+                  >
+                    ‹
+                  </button>
+
+                  <div
+                    ref={scrollRef}
+                    className="flex gap-2 overflow-x-auto no-scrollbar whitespace-nowrap items-center py-1"
+                    style={{ scrollBehavior: 'smooth' }}
+                  >
+                    {overlayLabels.map((lab, i) => {
+                      const propVal = overlayIconMap ? overlayIconMap[lab] : undefined;
+                      const storedVal = storedMap ? storedMap[lab] : undefined;
+                      const srcOrNode = storedVal || propVal;
+                      return (
+                        <div
+                          key={`${lab}-${i}`}
+                          className={`${sizeClass} flex items-center justify-center inline-flex flex-shrink-0`}
+                          style={{ display: 'inline-flex' }}
+                        >
+                          {typeof srcOrNode === "string" && srcOrNode ? (
+                            (() => {
+                              const src = srcOrNode as string;
+                              const srcSet = src.includes("width=")
+                                ? `${src} 1x, ${src.replace(/width=\d+/, "width=1600")} 2x`
+                                : undefined;
+                              return (
+                                <img
+                                  src={src}
+                                  srcSet={srcSet}
+                                  alt={lab}
+                                  className="h-full w-full object-contain"
+                                  decoding="async"
+                                  loading="eager"
+                                />
+                              );
+                            })()
+                          ) : srcOrNode ? (
+                            <>{srcOrNode}</>
+                          ) : (
+                            <div className="text-xs inline-block">{lab}</div>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  <button
+                    type="button"
+                    aria-label="Next icons"
+                    onClick={() => scrollByAmount('right')}
+                    className="p-2 bg-white/80 rounded-full shadow-sm ml-2 text-[#003366]"
+                  >
+                    ›
+                  </button>
                 </div>
               );
             })()}
