@@ -674,73 +674,70 @@ const PaymentScreen: React.FC = () => {
               </h2>
 
               <div className="grid grid-cols-3 gap-4">
-                {OPTIONS.map((o) => {
-                  const isSel = selected.includes(o.label);
-                  const iconNode =
-                    o.key === "cash" ? (
-                      <img
-                        src={isSel ? MONEY_ICON_ACTIVE : MONEY_ICON}
-                        alt={o.label}
-                        className={`object-contain select-none h-full w-full `}
-                        decoding="async"
-                        loading="eager"
-                      />
-                    ) : o.key === "scan" ? (
-                      <img
-                        src={isSel ? SCAN_ICON_ACTIVE : SCAN_ICON}
-                        alt={o.label}
-                        className={`object-contain select-none h-full w-full `}
-                        decoding="async"
-                        loading="eager"
-                      />
-                    ) : o.key === "scan2" ? (
-                      <img
-                        src={isSel ? SCAN2_ICON_ACTIVE : SCAN2_ICON}
-                        alt={o.label}
-                        className={`object-contain select-none h-full w-full `}
-                        decoding="async"
-                        loading="eager"
-                      />
-                    ) : o.key === "tap" ? (
-                      <img
-                        src={isSel ? TOUCH_ICON_ACTIVE : TOUCH_ICON}
-                        alt={o.label}
-                        className={`object-contain select-none h-full w-full `}
-                        decoding="async"
-                        loading="eager"
-                      />
-                    ) : o.key === "qr" ? (
-                      <img
-                        src={isSel ? BUS_EMPLOY_ICON_ACTIVE : BUS_EMPLOY_ICON}
-                        alt={o.label}
-                        className={`object-contain select-none h-full w-full `}
-                        decoding="async"
-                        loading="eager"
-                      />
-                    ) : o.key === "monthly" ? (
-                      <img
-                        src={isSel ? MONTHLY_ICON_ACTIVE : MONTHLY_ICON}
-                        alt={o.label}
-                        className={`object-contain select-none h-full w-full `}
-                        decoding="async"
-                        loading="eager"
-                      />
+                {(() => {
+                  // Prefer overlayIconMap URLs from sessionStorage when available
+                  let storedMap: Record<string, string | null> = {};
+                  try {
+                    const raw = sessionStorage.getItem("design.overlayIconMap");
+                    if (raw) storedMap = JSON.parse(raw) as Record<string, string>;
+                  } catch {}
+
+                  const normalize = (s: string) => (s || "").replace(/\uFFFD/g, "").replace(/\u2011/g, "-").replace(/\u00A0/g, " ").replace(/\s+/g, " ").trim();
+
+                  return OPTIONS.map((o) => {
+                    const isSel = selected.includes(o.label);
+
+                    // Lookup order: storedMap[label], storedMap[key], overlay constants
+                    const overlayUrl = (() => {
+                      try {
+                        if (storedMap[o.label]) return storedMap[o.label] as string;
+                        if (storedMap[o.key]) return storedMap[o.key] as string;
+                        // try normalized matches
+                        const target = normalize(o.label).toLowerCase();
+                        for (const k of Object.keys(storedMap)) {
+                          if (normalize(k).toLowerCase() === target) return storedMap[k] as string;
+                        }
+                      } catch {}
+                      return undefined;
+                    })();
+
+                    const baseIcon =
+                      o.key === "cash"
+                        ? (isSel ? MONEY_ICON_ACTIVE : MONEY_ICON)
+                        : o.key === "scan"
+                        ? (isSel ? SCAN_ICON_ACTIVE : SCAN_ICON)
+                        : o.key === "scan2"
+                        ? (isSel ? SCAN2_ICON_ACTIVE : SCAN2_ICON)
+                        : o.key === "tap"
+                        ? (isSel ? TOUCH_ICON_ACTIVE : TOUCH_ICON)
+                        : o.key === "qr"
+                        ? (isSel ? BUS_EMPLOY_ICON_ACTIVE : BUS_EMPLOY_ICON)
+                        : o.key === "monthly"
+                        ? (isSel ? MONTHLY_ICON_ACTIVE : MONTHLY_ICON)
+                        : null;
+
+                    const iconNode = overlayUrl ? (
+                      <img src={overlayUrl} alt={o.label} className={`object-contain select-none h-full w-full `} decoding="async" loading="eager" />
+                    ) : baseIcon ? (
+                      <img src={baseIcon} alt={o.label} className={`object-contain select-none h-full w-full `} decoding="async" loading="eager" />
                     ) : (
                       o.icon
                     );
-                  return (
-                    <SelectionCard
-                      key={o.key}
-                      icon={iconNode}
-                      label={o.label}
-                      isSelected={isSel}
-                      onClick={() => toggle(o.label)}
-                      variant="light"
-                      hideLabel
-                      appearance="group"
-                    />
-                  );
-                })}
+
+                    return (
+                      <SelectionCard
+                        key={o.key}
+                        icon={iconNode}
+                        label={o.label}
+                        isSelected={isSel}
+                        onClick={() => toggle(o.label)}
+                        variant="light"
+                        hideLabel
+                        appearance="group"
+                      />
+                    );
+                  });
+                })()}
               </div>
             </div>
           </div>
