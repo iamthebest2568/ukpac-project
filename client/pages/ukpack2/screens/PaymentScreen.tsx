@@ -728,51 +728,53 @@ const PaymentScreen: React.FC = () => {
                   label={label}
                   showSelectedText
                   overlayLabels={normalizedOverlayLabels}
-                  overlayIconMap={{
-                    ...AMENITIES_ICON_MAP,
-                    "เงินสด": (
-                      <img
-                        src={CASH_OVERLAY_ICON}
-                        alt="image"
-                        className="h-full w-full object-contain"
-                      />
-                    ),
-                    "สแกนจ่าย": (
-                      <img
-                        src={"https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F125e79ee890243308489d0acbb1eef2b?format=webp&width=800"}
-                        alt="image"
-                        className="h-full w-full object-contain"
-                      />
-                    ),
-                    "สแกนจ่าย 2": (
-                      <img
-                        src={"https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F95e4291272564bf2b9d1b522cd4bf75e?format=webp&width=800"}
-                        alt="image"
-                        className="h-full w-full object-contain"
-                      />
-                    ),
-                    "แตะบัตร": (
-                      <img
-                        src={"https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F6b3a398ec0ee41b9b59accc97f8057bf?format=webp&width=800"}
-                        alt="image"
-                        className="h-full w-full object-contain"
-                      />
-                    ),
-                    "กระเป๋ารถเมล์": (
-                      <img
-                        src={"https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F422e4242064b4e6cac52945deb072145?format=webp&width=800"}
-                        alt="image"
-                        className="h-full w-full object-contain"
-                      />
-                    ),
-                    "ตั๋วรายเดือน/รอบ": (
-                      <img
-                        src={"https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8a53d9e6b6284ac19efb0e61c1025784?format=webp&width=800"}
-                        alt="image"
-                        className="h-full w-full object-contain"
-                      />
-                    ),
-                  }}
+                  overlayIconMap={(() => {
+                    // Prefer stored session URLs, then canonical OVERLAY_ICON_SRC constants (strings)
+                    let storedMapRaw: Record<string, string> = {};
+                    try {
+                      const raw = sessionStorage.getItem("design.overlayIconMap");
+                      if (raw) storedMapRaw = JSON.parse(raw) as Record<string, string>;
+                    } catch {}
+
+                    const normalizeKey = (s: string) =>
+                      (s || "")
+                        .replace(/\uFFFD/g, "")
+                        .replace(/\u2011/g, "-")
+                        .replace(/\u00A0/g, " ")
+                        .replace(/&amp;/g, "&")
+                        .replace(/\s+/g, " ")
+                        .trim()
+                        .toLowerCase();
+
+                    const merged: Record<string, string> = {};
+                    const setVariants = (key: string, val: string) => {
+                      merged[key] = val;
+                      try {
+                        const nk = normalizeKey(key);
+                        if (nk) merged[nk] = val;
+                        const nkNoSpace = nk.replace(/\s/g, "");
+                        if (nkNoSpace) merged[nkNoSpace] = val;
+                      } catch {}
+                    };
+
+                    for (const k of Object.keys(storedMapRaw)) {
+                      try { setVariants(k, storedMapRaw[k]); } catch {}
+                    }
+
+                    try {
+                      for (const k of Object.keys(OVERLAY_ICON_SRC)) {
+                        if (!merged[k]) setVariants(k, OVERLAY_ICON_SRC[k]);
+                      }
+                    } catch {}
+
+                    // Ensure payment-specific keys are present
+                    const explicit = ["เงินสด","สแกนจ่าย","สแกนจ่าย 2","แตะบัตร","กระเป���ารถเมล์","ตั๋วรายเดือน/รอบ"];
+                    for (const k of explicit) {
+                      if (!merged[k] && (OVERLAY_ICON_SRC as any)[k]) setVariants(k, (OVERLAY_ICON_SRC as any)[k]);
+                    }
+
+                    return merged;
+                  })()}
                 />
               </>
             ) : (
