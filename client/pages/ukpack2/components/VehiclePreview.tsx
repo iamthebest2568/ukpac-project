@@ -27,6 +27,8 @@ const VehiclePreview: React.FC<Props> = ({
   overlayLabels = [],
   overlayIconMap = {},
   placeholderText = "ภาพสำหรับรุ่นนี้จะถูกเพิ่มภายหลัง",
+  colorHex = null,
+  colorMaskSrc = null,
   className,
   showSelectedText = false,
   starSrc = null,
@@ -257,6 +259,31 @@ const VehiclePreview: React.FC<Props> = ({
                 }, 10);
               }}
             />
+
+            {/* color overlay: covers the same area as the image and uses mask-image */}
+            {colorHex && colorMaskSrc && (
+              <div
+                aria-hidden="true"
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  width: '100%',
+                  height: '100%',
+                  backgroundColor: colorHex,
+                  pointerEvents: 'none',
+                  mixBlendMode: 'multiply',
+                  WebkitMaskImage: `url(${colorMaskSrc})`,
+                  WebkitMaskSize: 'contain',
+                  WebkitMaskRepeat: 'no-repeat',
+                  WebkitMaskPosition: 'center',
+                  maskImage: `url(${colorMaskSrc})`,
+                  maskSize: 'contain',
+                  maskRepeat: 'no-repeat',
+                  maskPosition: 'center',
+                  opacity: 1,
+                }}
+              />
+            )}
 
             {/** optional star overlay placed at top-right of the vehicle image container */}
             {/** starSrc is measured relative to this inner container (position: relative) */}
