@@ -339,13 +339,52 @@ const PaymentScreen: React.FC = () => {
       try {
         const raw = sessionStorage.getItem("design.overlayIconMap");
         const map = raw ? (JSON.parse(raw) as Record<string, string>) : {};
+
+        const normalizeKey = (s: string) =>
+          (s || "")
+            .replace(/\uFFFD/g, "")
+            .replace(/\u2011/g, "-")
+            .replace(/\u00A0/g, " ")
+            .replace(/&amp;/g, "&")
+            .replace(/\s+/g, " ")
+            .trim()
+            .toLowerCase();
+
+        const setVariants = (key: string, val: string) => {
+          try {
+            map[key] = val;
+            const nk = normalizeKey(key);
+            if (nk) map[nk] = val;
+            const nkNoSpace = nk.replace(/\s/g, "");
+            if (nkNoSpace) map[nkNoSpace] = val;
+          } catch (e) {
+            // ignore
+          }
+        };
+
         if (!isSelected) {
           // selecting — persist icon3 if available
           const set = ICON_SETS[label];
-          if (set && set[2]) map[label] = set[2];
+          if (set && set[2]) {
+            setVariants(label, set[2]);
+            // also map by option key if exists (cash/scan/...)
+            const opt = OPTIONS.find((o) => o.label === label);
+            if (opt && opt.key) setVariants(opt.key, set[2]);
+          }
         } else {
-          // unselecting — remove overlay mapping
-          if (map[label]) delete map[label];
+          // unselecting — remove overlay mapping (remove variants we set)
+          try {
+            const opt = OPTIONS.find((o) => o.label === label);
+            const keysToRemove = [label];
+            if (opt && opt.key) keysToRemove.push(opt.key);
+            const nk = normalizeKey(label);
+            keysToRemove.push(nk, nk.replace(/\s/g, ""));
+            for (const k of keysToRemove) {
+              if (k && map[k]) delete map[k];
+            }
+          } catch (e) {
+            // ignore
+          }
         }
         sessionStorage.setItem("design.overlayIconMap", JSON.stringify(map));
       } catch (e) {
@@ -454,7 +493,7 @@ const PaymentScreen: React.FC = () => {
             const CORRECT_LABELS: Record<string, string> = {
               "สแกนจ่าย 2": "สแกนจ่าย 2",
               "แตะบัตร": "แตะบัตร",
-              "กระเป๋ารถเมล์": "กระเป���ารถเมล์",
+              "กระเป๋ารถเมล์": "กระเป๋ารถเมล์",
               "เงินสด": "เงินสด",
             };
             const stripReplacement = (s: string) =>
