@@ -28,21 +28,22 @@ const ConfirmationScreen: React.FC = () => {
             <img
               src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9989e3bd2f31458aa7691b01a3a08b12?format=webp&width=800"
               alt="image"
-              className="w-full max-w-[640px] h-auto object-contain" style={{ marginTop: 'calc(2rem - 5px)' }}
+              className="w-full max-w-[640px] h-auto object-contain"
+              style={{ marginTop: "calc(2rem - 5px)" }}
             />
           </div>
         </div>
-        <div className="fixed left-0 right-0 z-10" style={{ bottom: '20px' }}>
+        <div className="fixed left-0 right-0 z-10" style={{ bottom: "20px" }}>
           <div className="max-w-4xl mx-auto px-6 pb-[env(safe-area-inset-bottom,1rem)]">
             <div className="w-full flex flex-col items-center gap-[2px] bg-white py-4">
-              <div style={{ width: '220px' }}>
+              <div style={{ width: "220px" }}>
                 <CtaButton
                   className="w-full"
                   text="จบเกม"
                   onClick={() => navigate("/ukpack2")}
                 />
               </div>
-              <div style={{ width: '220px' }}>
+              <div style={{ width: "220px" }}>
                 <SecondaryButton
                   className="w-full"
                   text="แชร์เกมนี้กับเพื่อน"

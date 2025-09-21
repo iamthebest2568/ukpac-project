@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect } from "react";
 
 const SHADOW_URL =
   "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb1e30b1544304677996b179fc27ae5c7?format=webp&width=800";
@@ -63,7 +63,9 @@ const VehiclePreview: React.FC<Props> = ({
   }, [imageSrc]);
 
   return (
-    <div className={`w-full rounded-md flex flex-col items-center justify-center gap-2 ${className || ""}`}>
+    <div
+      className={`w-full rounded-md flex flex-col items-center justify-center gap-2 ${className || ""}`}
+    >
       {imageSrc ? (
         <div
           className="relative w-full flex items-center justify-center"
@@ -71,191 +73,220 @@ const VehiclePreview: React.FC<Props> = ({
           ref={containerRef}
         >
           {showShadow && (
-          <img
-            ref={shadowRef}
-            src={SHADOW_URL}
-            alt=""
-            className="absolute pointer-events-none select-none"
-            style={{ bottom: "8px" }}
-            decoding="async"
-            loading="eager"
-            aria-hidden="true"
-          />
-        )}
+            <img
+              ref={shadowRef}
+              src={SHADOW_URL}
+              alt=""
+              className="absolute pointer-events-none select-none"
+              style={{ bottom: "8px" }}
+              decoding="async"
+              loading="eager"
+              aria-hidden="true"
+            />
+          )}
 
-        <div
-          className="relative w-[60%] sm:w-[65%] md:w-[70%] lg:w-[75%] max-w-[320px] sm:max-w-[380px] md:max-w-[480px]"
-          style={{ height: "120px" }}
-        >
-            {overlayLabels && overlayLabels.length > 0 && (() => {
-              // Allow stored overlay icon mappings (set by selection pages) to override
-              // the overlayIconMap prop. Stored mapping is expected at
-              // sessionStorage.design.overlayIconMap as { [label]: string }
-              let storedMap: Record<string, string> = {};
-              try {
-                const raw = sessionStorage.getItem("design.overlayIconMap");
-                if (raw) storedMap = JSON.parse(raw) as Record<string, string>;
-              } catch {}
+          <div
+            className="relative w-[60%] sm:w-[65%] md:w-[70%] lg:w-[75%] max-w-[320px] sm:max-w-[380px] md:max-w-[480px]"
+            style={{ height: "120px" }}
+          >
+            {overlayLabels &&
+              overlayLabels.length > 0 &&
+              (() => {
+                // Allow stored overlay icon mappings (set by selection pages) to override
+                // the overlayIconMap prop. Stored mapping is expected at
+                // sessionStorage.design.overlayIconMap as { [label]: string }
+                let storedMap: Record<string, string> = {};
+                try {
+                  const raw = sessionStorage.getItem("design.overlayIconMap");
+                  if (raw)
+                    storedMap = JSON.parse(raw) as Record<string, string>;
+                } catch {}
 
-              // Build a normalized lookup map to avoid mismatches from NBSP/no-break-hyphen or casing
-              const normalizeKey = (s: string) =>
-                (s || "")
-                  .replace(/\uFFFD/g, "")
-                  .replace(/\u2011/g, "-")
-                  .replace(/\u00A0/g, " ")
-                  .replace(/&amp;/g, "&")
-                  .replace(/\s+/g, " ")
-                  .trim()
-                  .toLowerCase();
+                // Build a normalized lookup map to avoid mismatches from NBSP/no-break-hyphen or casing
+                const normalizeKey = (s: string) =>
+                  (s || "")
+                    .replace(/\uFFFD/g, "")
+                    .replace(/\u2011/g, "-")
+                    .replace(/\u00A0/g, " ")
+                    .replace(/&amp;/g, "&")
+                    .replace(/\s+/g, " ")
+                    .trim()
+                    .toLowerCase();
 
-              const normalizedStoredMap: Record<string, string> = {};
-              try {
-                for (const k of Object.keys(storedMap || {})) {
+                const normalizedStoredMap: Record<string, string> = {};
+                try {
+                  for (const k of Object.keys(storedMap || {})) {
+                    try {
+                      const nk = normalizeKey(k);
+                      if (nk) normalizedStoredMap[nk] = storedMap[k];
+                    } catch {}
+                  }
+                } catch {}
+
+                // choose size classes based on selected chassis (stored in sessionStorage.design.chassis)
+                const chassis = (() => {
                   try {
-                    const nk = normalizeKey(k);
-                    if (nk) normalizedStoredMap[nk] = storedMap[k];
-                  } catch {}
-                }
-              } catch {}
+                    return (
+                      sessionStorage.getItem("design.chassis") || undefined
+                    );
+                  } catch {
+                    return undefined;
+                  }
+                })();
+                const sizeClass = (() => {
+                  switch (chassis) {
+                    case "small":
+                      return "h-8 w-8 sm:h-10 sm:w-10";
+                    case "large":
+                      return "h-12 w-12 sm:h-14 sm:w-14";
+                    case "extra":
+                      return "h-12 w-12 sm:h-14 sm:w-14";
+                    case "medium":
+                    default:
+                      return "h-10 w-10 sm:h-12 sm:w-12";
+                  }
+                })();
 
+                // Create scrollable single-row container with left/right controls
+                const scrollRef = React.createRef<HTMLDivElement>();
 
-              // choose size classes based on selected chassis (stored in sessionStorage.design.chassis)
-              const chassis = (() => {
-                try { return sessionStorage.getItem("design.chassis") || undefined; } catch { return undefined; }
-              })();
-              const sizeClass = (() => {
-                switch (chassis) {
-                  case "small": return "h-8 w-8 sm:h-10 sm:w-10";
-                  case "large": return "h-12 w-12 sm:h-14 sm:w-14";
-                  case "extra": return "h-12 w-12 sm:h-14 sm:w-14";
-                  case "medium":
-                  default:
-                    return "h-10 w-10 sm:h-12 sm:w-12";
-                }
-              })();
+                const scrollByAmount = (dir: "left" | "right") => {
+                  const el = scrollRef.current;
+                  if (!el) return;
+                  const amount = el.clientWidth * 0.6; // scroll by a fraction of the visible width
+                  el.scrollBy({
+                    left: dir === "left" ? -amount : amount,
+                    behavior: "smooth",
+                  });
+                };
 
-              // Create scrollable single-row container with left/right controls
-              const scrollRef = React.createRef<HTMLDivElement>();
+                return (
+                  <div className="absolute left-1/2 transform -translate-x-1/2 -top-4 z-20 w-[110%] sm:w-[120%] md:w-[130%] lg:w-[140%] flex items-center justify-center">
+                    <button
+                      type="button"
+                      aria-label="Prev icons"
+                      onClick={() => scrollByAmount("left")}
+                      className="p-2 bg-white/80 rounded-full shadow-sm mr-2 text-[#003366]"
+                    >
+                      ‹
+                    </button>
 
-              const scrollByAmount = (dir: 'left' | 'right') => {
-                const el = scrollRef.current;
-                if (!el) return;
-                const amount = el.clientWidth * 0.6; // scroll by a fraction of the visible width
-                el.scrollBy({ left: dir === 'left' ? -amount : amount, behavior: 'smooth' });
-              };
+                    <div
+                      ref={scrollRef}
+                      className="flex gap-2 overflow-x-auto no-scrollbar whitespace-nowrap items-center py-1"
+                      style={{ scrollBehavior: "smooth" }}
+                    >
+                      {(() => {
+                        const normalize = (s: string) =>
+                          (s || "")
+                            .replace(/\uFFFD/g, "")
+                            .replace(/\u2011/g, "-")
+                            .replace(/\u00A0/g, " ")
+                            .replace(/\s+/g, " ")
+                            .trim()
+                            .toLowerCase();
 
-              return (
-                <div className="absolute left-1/2 transform -translate-x-1/2 -top-4 z-20 w-[110%] sm:w-[120%] md:w-[130%] lg:w-[140%] flex items-center justify-center">
-                  <button
-                    type="button"
-                    aria-label="Prev icons"
-                    onClick={() => scrollByAmount('left')}
-                    className="p-2 bg-white/80 rounded-full shadow-sm mr-2 text-[#003366]"
-                  >
-                    ‹
-                  </button>
+                        const lookup = (label: string) => {
+                          if (!label) return undefined;
+                          const nk = normalizeKey(label);
 
-                  <div
-                    ref={scrollRef}
-                    className="flex gap-2 overflow-x-auto no-scrollbar whitespace-nowrap items-center py-1"
-                    style={{ scrollBehavior: 'smooth' }}
-                  >
-                    {(() => {
-                      const normalize = (s: string) =>
-                        (s || "")
-                          .replace(/\uFFFD/g, "")
-                          .replace(/\u2011/g, "-")
-                          .replace(/\u00A0/g, " ")
-                          .replace(/\s+/g, " ")
-                          .trim()
-                          .toLowerCase();
+                          // 1) direct normalized stored map lookup
+                          if (normalizedStoredMap[nk])
+                            return normalizedStoredMap[nk];
 
-                      const lookup = (label: string) => {
-                        if (!label) return undefined;
-                        const nk = normalizeKey(label);
-
-                        // 1) direct normalized stored map lookup
-                        if (normalizedStoredMap[nk]) return normalizedStoredMap[nk];
-
-                        // 2) try overlayIconMap by normalized key (prefer string URLs)
-                        if (overlayIconMap) {
-                          for (const k of Object.keys(overlayIconMap)) {
-                            if (normalizeKey(k) === nk && typeof overlayIconMap[k] === 'string') return overlayIconMap[k] as string;
+                          // 2) try overlayIconMap by normalized key (prefer string URLs)
+                          if (overlayIconMap) {
+                            for (const k of Object.keys(overlayIconMap)) {
+                              if (
+                                normalizeKey(k) === nk &&
+                                typeof overlayIconMap[k] === "string"
+                              )
+                                return overlayIconMap[k] as string;
+                            }
+                            for (const k of Object.keys(overlayIconMap)) {
+                              if (normalizeKey(k) === nk)
+                                return overlayIconMap[k];
+                            }
                           }
-                          for (const k of Object.keys(overlayIconMap)) {
-                            if (normalizeKey(k) === nk) return overlayIconMap[k];
-                          }
-                        }
 
-                        // 3) try slight variant (no spaces) on normalizedStoredMap
-                        const nkNoSpace = nk.replace(/\s/g, "");
-                        if (normalizedStoredMap[nkNoSpace]) return normalizedStoredMap[nkNoSpace];
+                          // 3) try slight variant (no spaces) on normalizedStoredMap
+                          const nkNoSpace = nk.replace(/\s/g, "");
+                          if (normalizedStoredMap[nkNoSpace])
+                            return normalizedStoredMap[nkNoSpace];
 
-                        // 4) as last resort, try direct storedMap raw keys
-                        if (storedMap[label]) return storedMap[label];
+                          // 4) as last resort, try direct storedMap raw keys
+                          if (storedMap[label]) return storedMap[label];
 
-                        return undefined;
-                      };
+                          return undefined;
+                        };
 
-                      return overlayLabels.map((lab, i) => {
-                        const srcOrNode = lookup(lab as string);
-                        return (
-                          <div
-                            key={`${lab}-${i}`}
-                            className={`${sizeClass} flex items-center justify-center inline-flex flex-shrink-0`}
-                            style={{ display: 'inline-flex' }}
-                          >
-                            {typeof srcOrNode === "string" && srcOrNode ? (
-                              (() => {
-                                const src = srcOrNode as string;
-                                const srcSet = src.includes("width=")
-                                  ? `${src} 1x, ${src.replace(/width=\d+/, "width=1600")} 2x`
-                                  : undefined;
-                                return (
-                                  <img
-                                    src={src}
-                                    srcSet={srcSet}
-                                    alt={lab}
-                                    className="h-full w-full object-contain"
-                                    decoding="async"
-                                    loading="eager"
-                                  />
-                                );
-                              })()
-                            ) : srcOrNode ? (
-                              <>{srcOrNode}</>
-                            ) : (
-                              <div className="text-xs inline-block">{lab}</div>
-                            )}
-                          </div>
-                        );
-                      });
-                    })()}
+                        return overlayLabels.map((lab, i) => {
+                          const srcOrNode = lookup(lab as string);
+                          return (
+                            <div
+                              key={`${lab}-${i}`}
+                              className={`${sizeClass} flex items-center justify-center inline-flex flex-shrink-0`}
+                              style={{ display: "inline-flex" }}
+                            >
+                              {typeof srcOrNode === "string" && srcOrNode ? (
+                                (() => {
+                                  const src = srcOrNode as string;
+                                  const srcSet = src.includes("width=")
+                                    ? `${src} 1x, ${src.replace(/width=\d+/, "width=1600")} 2x`
+                                    : undefined;
+                                  return (
+                                    <img
+                                      src={src}
+                                      srcSet={srcSet}
+                                      alt={lab}
+                                      className="h-full w-full object-contain"
+                                      decoding="async"
+                                      loading="eager"
+                                    />
+                                  );
+                                })()
+                              ) : srcOrNode ? (
+                                <>{srcOrNode}</>
+                              ) : (
+                                <div className="text-xs inline-block">
+                                  {lab}
+                                </div>
+                              )}
+                            </div>
+                          );
+                        });
+                      })()}
+                    </div>
+
+                    <button
+                      type="button"
+                      aria-label="Next icons"
+                      onClick={() => scrollByAmount("right")}
+                      className="p-2 bg-white/80 rounded-full shadow-sm ml-2 text-[#003366]"
+                    >
+                      ›
+                    </button>
                   </div>
-
-                  <button
-                    type="button"
-                    aria-label="Next icons"
-                    onClick={() => scrollByAmount('right')}
-                    className="p-2 bg-white/80 rounded-full shadow-sm ml-2 text-[#003366]"
-                  >
-                    ›
-                  </button>
-                </div>
-              );
-            })()}
+                );
+              })()}
 
             <img
               ref={carRef}
               src={imageSrc}
-              alt={typeof label === "string" ? `bus image - ${label}` : "bus image"}
+              alt={
+                typeof label === "string" ? `bus image - ${label}` : "bus image"
+              }
               className="h-full w-auto object-contain mx-auto select-none"
               decoding="async"
               loading="eager"
               onLoad={() => {
                 // update shadow once image dimensions are available
                 setTimeout(() => {
-                  try { updateShadow(); } catch (e) { /* ignore */ }
+                  try {
+                    updateShadow();
+                  } catch (e) {
+                    /* ignore */
+                  }
                 }, 10);
               }}
             />
@@ -265,21 +296,21 @@ const VehiclePreview: React.FC<Props> = ({
               <div
                 aria-hidden="true"
                 style={{
-                  position: 'absolute',
+                  position: "absolute",
                   inset: 0,
-                  width: '100%',
-                  height: '100%',
+                  width: "100%",
+                  height: "100%",
                   backgroundColor: colorHex,
-                  pointerEvents: 'none',
-                  mixBlendMode: 'multiply',
+                  pointerEvents: "none",
+                  mixBlendMode: "multiply",
                   WebkitMaskImage: `url(${colorMaskSrc})`,
-                  WebkitMaskSize: 'contain',
-                  WebkitMaskRepeat: 'no-repeat',
-                  WebkitMaskPosition: 'center',
+                  WebkitMaskSize: "contain",
+                  WebkitMaskRepeat: "no-repeat",
+                  WebkitMaskPosition: "center",
                   maskImage: `url(${colorMaskSrc})`,
-                  maskSize: 'contain',
-                  maskRepeat: 'no-repeat',
-                  maskPosition: 'center',
+                  maskSize: "contain",
+                  maskRepeat: "no-repeat",
+                  maskPosition: "center",
                   opacity: 1,
                 }}
               />
@@ -319,7 +350,6 @@ const VehiclePreview: React.FC<Props> = ({
           {label}
         </div>
       )}
-
     </div>
   );
 };

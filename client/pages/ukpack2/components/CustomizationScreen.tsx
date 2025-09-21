@@ -28,12 +28,16 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
   // When fullWidth is requested, add a body-level class so the outer app container
   // can remove its overflow/padding and allow full-bleed children to extend to viewport edges.
   React.useEffect(() => {
-    const className = 'full-bleed-page';
+    const className = "full-bleed-page";
     if (fullWidth) {
-      try { document.body.classList.add(className); } catch (e) {}
+      try {
+        document.body.classList.add(className);
+      } catch (e) {}
     }
     return () => {
-      try { document.body.classList.remove(className); } catch (e) {}
+      try {
+        document.body.classList.remove(className);
+      } catch (e) {}
     };
   }, [fullWidth]);
 
@@ -42,8 +46,12 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
       className={`flex flex-col min-h-0 ${isLight ? "bg-white text-black" : "bg-[#000d59] text-white"}`}
     >
       {title?.trim() || headerContent ? (
-        <header className={`${fullWidth ? "px-0" : "px-6"} flex items-center justify-center h-16`}>
-          <div className={`${fullWidth ? "w-full" : "max-w-4xl w-full"} flex items-center justify-center ${containerPaddingClass || ""}`}>
+        <header
+          className={`${fullWidth ? "px-0" : "px-6"} flex items-center justify-center h-16`}
+        >
+          <div
+            className={`${fullWidth ? "w-full" : "max-w-4xl w-full"} flex items-center justify-center ${containerPaddingClass || ""}`}
+          >
             {headerContent ? (
               <div className="w-full flex items-center justify-center">
                 {headerContent}
@@ -59,7 +67,7 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
 
       <div
         ref={contentRef}
-        className={`flex-1 min-h-0 overflow-auto uk2-scroll ${containerPaddingClass ? containerPaddingClass : (fullWidth ? "px-0 py-6" : "px-6 py-6")}` }
+        className={`flex-1 min-h-0 overflow-auto uk2-scroll ${containerPaddingClass ? containerPaddingClass : fullWidth ? "px-0 py-6" : "px-6 py-6"}`}
         style={{
           // keep space for the fixed footer so content isn't hidden behind it
           paddingBottom: footerContent ? "140px" : undefined,
@@ -76,14 +84,24 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
             style={{ height: "calc(110px + env(safe-area-inset-bottom, 0px))" }}
           >
             <div
-              className={containerPaddingClass ? `w-full ${containerPaddingClass}` : (fullWidth ? `w-full px-0` : `max-w-4xl mx-auto w-full px-4 sm:px-6`)}
+              className={
+                containerPaddingClass
+                  ? `w-full ${containerPaddingClass}`
+                  : fullWidth
+                    ? `w-full px-0`
+                    : `max-w-4xl mx-auto w-full px-4 sm:px-6`
+              }
               style={{
                 height: "110px",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
                 ...(fullWidth
-                  ? { width: '100vw', marginLeft: 'calc(50% - 50vw)', marginRight: 'calc(50% - 50vw)' }
+                  ? {
+                      width: "100vw",
+                      marginLeft: "calc(50% - 50vw)",
+                      marginRight: "calc(50% - 50vw)",
+                    }
                   : {}),
               }}
             >

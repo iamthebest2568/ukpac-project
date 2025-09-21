@@ -56,7 +56,7 @@ const InfoScreen: React.FC = () => {
               src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8252bd27b98340349ac37000716c83db?format=webp&width=800"
               alt="image"
               className="w-full h-auto object-contain rounded-b-xl max-h-[220px] md:max-h-[360px] mx-auto"
-              style={{ objectPosition: 'center' }}
+              style={{ objectPosition: "center" }}
             />
           </div>
         </div>
@@ -67,29 +67,65 @@ const InfoScreen: React.FC = () => {
                 src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe0d645d03e674262a48ecc18869e1901?format=webp&width=1600"
                 alt="image"
                 className="absolute inset-0 mx-auto h-full object-contain rounded-xl pointer-events-none select-none"
-                style={{ objectPosition: 'center 45%', maxWidth: 560, zIndex: 0 }}
+                style={{
+                  objectPosition: "center 45%",
+                  maxWidth: 560,
+                  zIndex: 0,
+                }}
                 decoding="async"
                 loading="eager"
               />
 
-              <div className="absolute left-1/2 top-[48%] transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center pointer-events-auto" style={{ width: '72%', maxWidth: 420, zIndex: 120 }}>
+              <div
+                className="absolute left-1/2 top-[48%] transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center pointer-events-auto"
+                style={{ width: "72%", maxWidth: 420, zIndex: 120 }}
+              >
                 {(() => {
                   const amenities = (() => {
-                    try { const raw = sessionStorage.getItem("design.amenities"); return raw ? (JSON.parse(raw) as string[]) : []; } catch { return [] as string[]; }
+                    try {
+                      const raw = sessionStorage.getItem("design.amenities");
+                      return raw ? (JSON.parse(raw) as string[]) : [];
+                    } catch {
+                      return [] as string[];
+                    }
                   })();
                   const payments = (() => {
-                    try { const raw = sessionStorage.getItem("design.payment"); return raw ? (JSON.parse(raw) as string[]) : []; } catch { return [] as string[]; }
+                    try {
+                      const raw = sessionStorage.getItem("design.payment");
+                      return raw ? (JSON.parse(raw) as string[]) : [];
+                    } catch {
+                      return [] as string[];
+                    }
                   })();
                   const doors = (() => {
-                    try { const raw = sessionStorage.getItem("design.doors"); if (!raw) return null; const parsed = JSON.parse(raw); return typeof parsed === "string" ? parsed : parsed?.doorChoice || (parsed?.hasRamp ? "ramp" : parsed?.highLow ? "emergency" : null); } catch { return sessionStorage.getItem("design.doors"); }
+                    try {
+                      const raw = sessionStorage.getItem("design.doors");
+                      if (!raw) return null;
+                      const parsed = JSON.parse(raw);
+                      return typeof parsed === "string"
+                        ? parsed
+                        : parsed?.doorChoice ||
+                            (parsed?.hasRamp
+                              ? "ramp"
+                              : parsed?.highLow
+                                ? "emergency"
+                                : null);
+                    } catch {
+                      return sessionStorage.getItem("design.doors");
+                    }
                   })();
-                  const overlay = [ ...(amenities || []), ...(payments || []), ...(doors ? [doors as string] : []) ];
+                  const overlay = [
+                    ...(amenities || []),
+                    ...(payments || []),
+                    ...(doors ? [doors as string] : []),
+                  ];
 
                   // Build merged overlay map: prefer stored session URLs, then canonical OVERLAY_ICON_SRC, then AMENITIES_ICON_MAP nodes
                   let storedMapRaw: Record<string, string> = {};
                   try {
                     const raw = sessionStorage.getItem("design.overlayIconMap");
-                    if (raw) storedMapRaw = JSON.parse(raw) as Record<string, string>;
+                    if (raw)
+                      storedMapRaw = JSON.parse(raw) as Record<string, string>;
                   } catch {}
 
                   const normalizeKey = (s: string) =>
@@ -103,7 +139,10 @@ const InfoScreen: React.FC = () => {
                       .toLowerCase();
 
                   const merged: Record<string, string | React.ReactNode> = {};
-                  const setVariants = (key: string, val: string | React.ReactNode) => {
+                  const setVariants = (
+                    key: string,
+                    val: string | React.ReactNode,
+                  ) => {
                     merged[key] = val;
                     try {
                       const nk = normalizeKey(key as string);
@@ -114,11 +153,15 @@ const InfoScreen: React.FC = () => {
                   };
 
                   for (const k of Object.keys(storedMapRaw)) {
-                    try { setVariants(k, storedMapRaw[k]); } catch {}
+                    try {
+                      setVariants(k, storedMapRaw[k]);
+                    } catch {}
                   }
 
                   try {
-                    const { OVERLAY_ICON_SRC } = require("../utils/overlayIcons");
+                    const {
+                      OVERLAY_ICON_SRC,
+                    } = require("../utils/overlayIcons");
                     for (const k of Object.keys(OVERLAY_ICON_SRC)) {
                       if (!merged[k]) setVariants(k, OVERLAY_ICON_SRC[k]);
                     }
@@ -132,28 +175,55 @@ const InfoScreen: React.FC = () => {
                   } catch {}
 
                   return overlay.length > 0 ? (
-                    <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center w-[80%]" style={{ zIndex: 130, top: '10%' }}>
+                    <div
+                      className="absolute left-1/2 transform -translate-x-1/2 flex items-center w-[80%]"
+                      style={{ zIndex: 130, top: "10%" }}
+                    >
                       <button
                         type="button"
                         aria-label="Prev overlay"
                         onClick={() => {
-                          try { const el = scrollRef.current; if (el) el.scrollBy({ left: -el.clientWidth * 0.6, behavior: 'smooth' }); } catch (e) {}
+                          try {
+                            const el = scrollRef.current;
+                            if (el)
+                              el.scrollBy({
+                                left: -el.clientWidth * 0.6,
+                                behavior: "smooth",
+                              });
+                          } catch (e) {}
                         }}
                         className="p-2 rounded-full mr-2 text-[#003366]"
                       >
                         ‹
                       </button>
 
-                      <div ref={scrollRef} className="flex gap-2 overflow-x-auto no-scrollbar whitespace-nowrap items-center py-1 mx-2" style={{ scrollBehavior: 'smooth' }}>
+                      <div
+                        ref={scrollRef}
+                        className="flex gap-2 overflow-x-auto no-scrollbar whitespace-nowrap items-center py-1 mx-2"
+                        style={{ scrollBehavior: "smooth" }}
+                      >
                         {overlay.map((lab, i) => {
-                          const srcOrNode = merged[lab] ?? merged[normalizeKey(lab)] ?? merged[normalizeKey(lab).replace(/\s/g, "")];
+                          const srcOrNode =
+                            merged[lab] ??
+                            merged[normalizeKey(lab)] ??
+                            merged[normalizeKey(lab).replace(/\s/g, "")];
                           return (
-                            <div key={`${lab}-${i}`} className="inline-flex items-center justify-center h-9 w-9 md:h-10 md:w-10" style={{ flex: '0 0 auto' }}>
-                              {typeof srcOrNode === 'string' ? (
-                                <img src={srcOrNode as string} alt={lab} className="h-full w-full object-contain" />
+                            <div
+                              key={`${lab}-${i}`}
+                              className="inline-flex items-center justify-center h-9 w-9 md:h-10 md:w-10"
+                              style={{ flex: "0 0 auto" }}
+                            >
+                              {typeof srcOrNode === "string" ? (
+                                <img
+                                  src={srcOrNode as string}
+                                  alt={lab}
+                                  className="h-full w-full object-contain"
+                                />
                               ) : srcOrNode ? (
                                 // if it's a JSX node (Icon component), wrap in container to size it
-                                <div className="h-full w-full flex items-center justify-center">{srcOrNode}</div>
+                                <div className="h-full w-full flex items-center justify-center">
+                                  {srcOrNode}
+                                </div>
                               ) : (
                                 <div className="text-xs">{lab}</div>
                               )}
@@ -166,7 +236,14 @@ const InfoScreen: React.FC = () => {
                         type="button"
                         aria-label="Next overlay"
                         onClick={() => {
-                          try { const el = scrollRef.current; if (el) el.scrollBy({ left: el.clientWidth * 0.6, behavior: 'smooth' }); } catch (e) {}
+                          try {
+                            const el = scrollRef.current;
+                            if (el)
+                              el.scrollBy({
+                                left: el.clientWidth * 0.6,
+                                behavior: "smooth",
+                              });
+                          } catch (e) {}
                         }}
                         className="p-2 rounded-full ml-2 text-[#003366]"
                       >
@@ -179,7 +256,7 @@ const InfoScreen: React.FC = () => {
                   src={HERO_IMAGE[selected]}
                   alt={selectedLabel}
                   className="w-full h-auto object-contain select-none"
-                  style={{ position: 'relative', zIndex: 50 }}
+                  style={{ position: "relative", zIndex: 50 }}
                   decoding="async"
                   loading="eager"
                 />
@@ -189,10 +266,13 @@ const InfoScreen: React.FC = () => {
 
           <div className="px-4 sm:px-6 md:px-8 max-w-[900px] mx-auto">
             <div className="bg-[#e6e7e8] rounded-xl p-4 text-[#001a73] font-sarabun">
-              <h2 className="font-sarabun font-semibold text-xl text-center">รู้หรือไม่!</h2>
+              <h2 className="font-sarabun font-semibold text-xl text-center">
+                รู้หรือไม่!
+              </h2>
               <p>
                 ในญี่ปุ่นมี Community Bus รถเมล์ขนาดเล็กที่วิ่งเข้าซอยและพื้นที่
-                ที่รถใหญ่เข้าไม่ถึง ค่าโดยสารถูกมาก บางแห่งนั่งได้ทั้งสาย เพียง 100 เยน ทำให้ผู้สูงอายุและเด็กเข้าถึงบริการสำคัญ เช่น
+                ที่รถใหญ่เข้าไม่ถึง ค่าโดยสารถูกมาก บางแห่งนั่งได้ทั้งสาย เพียง
+                100 เยน ทำให้ผู้สูงอายุและเด็กเข้าถึงบริการสำคัญ เช่น
                 โรงพยาบาลและศูนย์ชุมชนได้สะดวกขึ้น
               </p>
             </div>

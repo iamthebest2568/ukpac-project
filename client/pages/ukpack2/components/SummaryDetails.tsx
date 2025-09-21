@@ -59,8 +59,22 @@ const IconCamSmall = () => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <rect x="3" y="7" width="14" height="10" rx="2" stroke="currentColor" strokeWidth="2" />
-    <path d="M19 8l2-2v10l-2-2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    <rect
+      x="3"
+      y="7"
+      width="14"
+      height="10"
+      rx="2"
+      stroke="currentColor"
+      strokeWidth="2"
+    />
+    <path
+      d="M19 8l2-2v10l-2-2"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
   </svg>
 );
 
@@ -87,7 +101,7 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
   "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
-  "กล้องวงจรปิด": <IconCamSmall />,
+  กล้องวงจรปิด: <IconCamSmall />,
 };
 
 const CHASSIS_LABELS: Record<string, string> = {
@@ -98,10 +112,14 @@ const CHASSIS_LABELS: Record<string, string> = {
 };
 
 const HERO_IMAGE: Record<string, string> = {
-  small: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F5ea1b3d990e44d49aa5441bc3a4b3bcc?format=webp&width=800",
-  medium: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fab8ddd78f9a0478bb27f5818928665f3?format=webp&width=800",
-  large: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc4ba360c1fe64492b71fc207c9dfd328?format=webp&width=800",
-  extra: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9a8a7536ced24db19a65409fbba1c6b6?format=webp&width=800",
+  small:
+    "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F5ea1b3d990e44d49aa5441bc3a4b3bcc?format=webp&width=800",
+  medium:
+    "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fab8ddd78f9a0478bb27f5818928665f3?format=webp&width=800",
+  large:
+    "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc4ba360c1fe64492b71fc207c9dfd328?format=webp&width=800",
+  extra:
+    "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9a8a7536ced24db19a65409fbba1c6b6?format=webp&width=800",
 };
 
 const SummaryDetails: React.FC = () => {
@@ -119,7 +137,8 @@ const SummaryDetails: React.FC = () => {
 
     if (chassis) data.chassis = chassis;
     if (seating) data.seating = seating ? JSON.parse(seating) : undefined;
-    if (amenities) data.amenities = amenities ? JSON.parse(amenities) : undefined;
+    if (amenities)
+      data.amenities = amenities ? JSON.parse(amenities) : undefined;
     if (payment) data.payment = payment ? JSON.parse(payment) : undefined;
     if (doors)
       data.doors = doors
@@ -149,14 +168,16 @@ const SummaryDetails: React.FC = () => {
   const chassisLabel = CHASSIS_LABELS[selected] || "";
   const heroImg = HERO_IMAGE[selected];
 
-  const storedColorLocal = state?.exterior?.color || (() => {
-    try {
-      const raw = sessionStorage.getItem("design.color");
-      return raw ? JSON.parse(raw) : null;
-    } catch {
-      return null;
-    }
-  })();
+  const storedColorLocal =
+    state?.exterior?.color ||
+    (() => {
+      try {
+        const raw = sessionStorage.getItem("design.color");
+        return raw ? JSON.parse(raw) : null;
+      } catch {
+        return null;
+      }
+    })();
 
   const displayDoor = (raw: any) => {
     if (!raw) return "-";
@@ -209,7 +230,11 @@ const SummaryDetails: React.FC = () => {
               const doorsRaw = (() => {
                 try {
                   const raw = sessionStorage.getItem("design.doors");
-                  return raw ? (JSON.parse(raw) as any) : raw ? String(raw) : null;
+                  return raw
+                    ? (JSON.parse(raw) as any)
+                    : raw
+                      ? String(raw)
+                      : null;
                 } catch {
                   return sessionStorage.getItem("design.doors");
                 }
@@ -222,7 +247,12 @@ const SummaryDetails: React.FC = () => {
                 overlayLabels.push(
                   typeof doorsRaw === "string"
                     ? doorsRaw
-                    : doorsRaw.doorChoice || (doorsRaw.hasRamp ? "ramp" : doorsRaw.highLow ? "emergency" : ""),
+                    : doorsRaw.doorChoice ||
+                        (doorsRaw.hasRamp
+                          ? "ramp"
+                          : doorsRaw.highLow
+                            ? "emergency"
+                            : ""),
                 );
               return overlayLabels;
             })()}
@@ -234,38 +264,100 @@ const SummaryDetails: React.FC = () => {
       <div className="bg-[#e6e7e8] rounded-xl p-3 text-sm text-gray-800 shadow-sm">
         <div className="flex flex-col gap-2">
           <div className="flex items-start gap-2">
-            <div className="w-24 md:w-32 text-sm text-[#003366] truncate font-sarabun font-semibold">รูปแบบรถ</div>
-            <div className="flex-1 font-sarabun font-semibold text-sm text-[#003366] break-words">{chassisLabel}</div>
+            <div className="w-24 md:w-32 text-sm text-[#003366] truncate font-sarabun font-semibold">
+              รูปแบบรถ
+            </div>
+            <div className="flex-1 font-sarabun font-semibold text-sm text-[#003366] break-words">
+              {chassisLabel}
+            </div>
           </div>
 
           <div className="flex items-start gap-2">
-            <div className="w-24 md:w-32 text-sm text-[#003366] truncate font-sarabun font-semibold">ที่นั่ง</div>
-            <div className="flex-1 font-sarabun font-semibold text-sm text-[#003366] break-words">{data.seating ? (typeof data.seating === "object" ? data.seating.totalSeats : String(data.seating)) : "-"}</div>
+            <div className="w-24 md:w-32 text-sm text-[#003366] truncate font-sarabun font-semibold">
+              ที่นั่ง
+            </div>
+            <div className="flex-1 font-sarabun font-semibold text-sm text-[#003366] break-words">
+              {data.seating
+                ? typeof data.seating === "object"
+                  ? data.seating.totalSeats
+                  : String(data.seating)
+                : "-"}
+            </div>
           </div>
 
           <div className="flex items-start gap-2">
-            <div className="w-24 md:w-32 text-sm text-[#003366] truncate">การจ่ายเงิน</div>
-            <div className="flex-1 font-sarabun font-semibold text-sm text-[#003366] break-words">{data.payment ? (Array.isArray(data.payment) ? data.payment.join(", ") : String(data.payment)) : "-"}</div>
+            <div className="w-24 md:w-32 text-sm text-[#003366] truncate">
+              การจ่ายเงิน
+            </div>
+            <div className="flex-1 font-sarabun font-semibold text-sm text-[#003366] break-words">
+              {data.payment
+                ? Array.isArray(data.payment)
+                  ? data.payment.join(", ")
+                  : String(data.payment)
+                : "-"}
+            </div>
           </div>
 
           <div className="flex items-start gap-2">
-            <div className="w-24 md:w-32 text-sm text-[#003366] truncate">ความสะดวก</div>
-            <div className="flex-1 font-sarabun font-semibold text-sm text-[#003366] break-words">{data.amenities ? (Array.isArray(data.amenities) ? data.amenities.join(", ") : String(data.amenities)) : "-"}</div>
+            <div className="w-24 md:w-32 text-sm text-[#003366] truncate">
+              ความสะดวก
+            </div>
+            <div className="flex-1 font-sarabun font-semibold text-sm text-[#003366] break-words">
+              {data.amenities
+                ? Array.isArray(data.amenities)
+                  ? data.amenities.join(", ")
+                  : String(data.amenities)
+                : "-"}
+            </div>
           </div>
 
           <div className="flex items-start gap-2">
-            <div className="w-24 md:w-32 text-sm text-[#003366] truncate">ทางขึ้น</div>
-            <div className="flex-1 font-sarabun font-semibold text-sm text-[#003366] break-words">{data.doors ? (typeof data.doors === "string" ? displayDoor(data.doors) : typeof data.doors === "object" ? (data.doors.doorChoice ? (data.doors.doorChoice === "1" ? "1 ประตู" : data.doors.doorChoice === "2" ? "2 ประตู" : String(data.doors.doorChoice)) : data.doors.hasRamp ? "ทางลาดสำหรับรถเข็น/ผู้พิการ" : data.doors.highLow ? "ประตูฉุกเฉิน" : JSON.stringify(data.doors)) : String(data.doors)) : "-"}</div>
+            <div className="w-24 md:w-32 text-sm text-[#003366] truncate">
+              ทางขึ้น
+            </div>
+            <div className="flex-1 font-sarabun font-semibold text-sm text-[#003366] break-words">
+              {data.doors
+                ? typeof data.doors === "string"
+                  ? displayDoor(data.doors)
+                  : typeof data.doors === "object"
+                    ? data.doors.doorChoice
+                      ? data.doors.doorChoice === "1"
+                        ? "1 ประตู"
+                        : data.doors.doorChoice === "2"
+                          ? "2 ประตู"
+                          : String(data.doors.doorChoice)
+                      : data.doors.hasRamp
+                        ? "ทางลาดสำหรับรถเข็น/ผู้พิการ"
+                        : data.doors.highLow
+                          ? "ประตูฉุกเฉิน"
+                          : JSON.stringify(data.doors)
+                    : String(data.doors)
+                : "-"}
+            </div>
           </div>
 
           <div className="flex items-start gap-2">
-            <div className="w-24 md:w-32 text-sm text-[#003366] truncate font-sarabun font-semibold">ลักษณะพิเศษ</div>
-            <div className="flex-1 font-sarabun font-semibold text-sm text-[#003366] break-words">{data.slogan || "-"}</div>
+            <div className="w-24 md:w-32 text-sm text-[#003366] truncate font-sarabun font-semibold">
+              ลักษณะพิเศษ
+            </div>
+            <div className="flex-1 font-sarabun font-semibold text-sm text-[#003366] break-words">
+              {data.slogan || "-"}
+            </div>
           </div>
 
           <div className="flex items-start gap-2">
-            <div className="w-24 md:w-32 text-sm text-[#003366] truncate">สี</div>
-            <div className="flex-1 font-sarabun font-semibold text-sm text-[#003366] break-words">{(state?.exterior?.color?.colorHex) || (data.color ? (typeof data.color === "string" ? JSON.parse(String(data.color)).colorHex ?? String(data.color) : String(data.color)) : "-")}</div>
+            <div className="w-24 md:w-32 text-sm text-[#003366] truncate">
+              สี
+            </div>
+            <div className="flex-1 font-sarabun font-semibold text-sm text-[#003366] break-words">
+              {state?.exterior?.color?.colorHex ||
+                (data.color
+                  ? typeof data.color === "string"
+                    ? (JSON.parse(String(data.color)).colorHex ??
+                      String(data.color))
+                    : String(data.color)
+                  : "-")}
+            </div>
           </div>
         </div>
       </div>

@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { exportEventsAsCSV, exportSessionsAsCSV, getEventSummary, getLoggedEvents, clearEventLogs, sendLocalEventsToFirestore } from "../../services/dataLogger.js";
+import {
+  exportEventsAsCSV,
+  exportSessionsAsCSV,
+  getEventSummary,
+  getLoggedEvents,
+  clearEventLogs,
+  sendLocalEventsToFirestore,
+} from "../../services/dataLogger.js";
 import { sendEventToFirestore } from "../../lib/firebase";
 
 const DASH_PASSWORD = "ukpact2dash"; // access code as requested
@@ -81,7 +88,10 @@ const UkDashboard: React.FC = () => {
   const handleSendAll = async () => {
     setIsSending(true);
     try {
-      const res = await sendLocalEventsToFirestore({ batchSize: 50, onlyPDPA: false });
+      const res = await sendLocalEventsToFirestore({
+        batchSize: 50,
+        onlyPDPA: false,
+      });
       setLastSentResult(res);
       alert(`Sent ${res.sentCount} events (skipped ${res.skippedCount})`);
       refreshSummary();
@@ -95,9 +105,14 @@ const UkDashboard: React.FC = () => {
   const handleSendPDPAOnly = async () => {
     setIsSending(true);
     try {
-      const res = await sendLocalEventsToFirestore({ batchSize: 50, onlyPDPA: true });
+      const res = await sendLocalEventsToFirestore({
+        batchSize: 50,
+        onlyPDPA: true,
+      });
       setLastSentResult(res);
-      alert(`Sent ${res.sentCount} PDPA-accepted events (skipped ${res.skippedCount})`);
+      alert(
+        `Sent ${res.sentCount} PDPA-accepted events (skipped ${res.skippedCount})`,
+      );
       refreshSummary();
     } catch (e) {
       alert("Send failed: " + String(e));
@@ -109,9 +124,14 @@ const UkDashboard: React.FC = () => {
   const handleSendBatch = async (size = 20) => {
     setIsSending(true);
     try {
-      const res = await sendLocalEventsToFirestore({ batchSize: size, onlyPDPA: true });
+      const res = await sendLocalEventsToFirestore({
+        batchSize: size,
+        onlyPDPA: true,
+      });
       setLastSentResult(res);
-      alert(`Batch send complete: ${res.sentCount} sent (skipped ${res.skippedCount})`);
+      alert(
+        `Batch send complete: ${res.sentCount} sent (skipped ${res.skippedCount})`,
+      );
       refreshSummary();
     } catch (e) {
       alert("Send failed: " + String(e));
@@ -130,19 +150,74 @@ const UkDashboard: React.FC = () => {
   // ===== Readability helpers: extract big inline handlers into named functions =====
   const handleCopySchema = () => {
     const schema = {
-      documentFields: ["createdAt","sessionID","timestamp","event","url","userAgent","viewport","payload"],
-      payloadFields: ["PDPA","chassis","seating","amenities","payment","doors","color","frequency","route","area","decisionUseService","reasonNotUse","enterPrize","prizeName","prizePhone","shared"],
-      csvColumns: ["sessionID","ip","firstTimestamp","lastTimestamp","PDPA_acceptance","chassis_type","total_seats","special_seats","children_count","pregnant_count","monk_count","features","payment_types","doors","color","frequency","route","area","decision_use_service","reason_not_use","decision_enter_prize","prize_name","prize_phone","prize_timestamp","shared_with_friends","shared_timestamp"]
+      documentFields: [
+        "createdAt",
+        "sessionID",
+        "timestamp",
+        "event",
+        "url",
+        "userAgent",
+        "viewport",
+        "payload",
+      ],
+      payloadFields: [
+        "PDPA",
+        "chassis",
+        "seating",
+        "amenities",
+        "payment",
+        "doors",
+        "color",
+        "frequency",
+        "route",
+        "area",
+        "decisionUseService",
+        "reasonNotUse",
+        "enterPrize",
+        "prizeName",
+        "prizePhone",
+        "shared",
+      ],
+      csvColumns: [
+        "sessionID",
+        "ip",
+        "firstTimestamp",
+        "lastTimestamp",
+        "PDPA_acceptance",
+        "chassis_type",
+        "total_seats",
+        "special_seats",
+        "children_count",
+        "pregnant_count",
+        "monk_count",
+        "features",
+        "payment_types",
+        "doors",
+        "color",
+        "frequency",
+        "route",
+        "area",
+        "decision_use_service",
+        "reason_not_use",
+        "decision_enter_prize",
+        "prize_name",
+        "prize_phone",
+        "prize_timestamp",
+        "shared_with_friends",
+        "shared_timestamp",
+      ],
     };
     try {
       navigator.clipboard.writeText(JSON.stringify(schema, null, 2));
-      alert('Schema copied to clipboard');
+      alert("Schema copied to clipboard");
     } catch (e) {
-      const blob = new Blob([JSON.stringify(schema, null, 2)], { type: 'application/json' });
+      const blob = new Blob([JSON.stringify(schema, null, 2)], {
+        type: "application/json",
+      });
       const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
+      const a = document.createElement("a");
       a.href = url;
-      a.download = 'ukpack2-schema.json';
+      a.download = "ukpack2-schema.json";
       a.click();
       URL.revokeObjectURL(url);
     }
@@ -152,34 +227,41 @@ const UkDashboard: React.FC = () => {
     try {
       const summary = getEventSummary();
       const all = getLoggedEvents();
-      const publicItems = all.filter((ev) => {
-        const p = ev.payload || {};
-        const pdpa = p.PDPA || p.pdpa || ev.PDPA || ev.pdpa;
-        return pdpa === true;
-      }).slice(-50).map((ev) => ({
-        sessionID: ev.sessionID,
-        timestamp: ev.timestamp,
-        event: ev.event,
-        payload: {
-          imageUrl: ev.payload?.imageUrl || ev.payload?.image || null,
-          slogan: ev.payload?.slogan || ev.payload?.prizeName || null,
-        }
-      }));
+      const publicItems = all
+        .filter((ev) => {
+          const p = ev.payload || {};
+          const pdpa = p.PDPA || p.pdpa || ev.PDPA || ev.pdpa;
+          return pdpa === true;
+        })
+        .slice(-50)
+        .map((ev) => ({
+          sessionID: ev.sessionID,
+          timestamp: ev.timestamp,
+          event: ev.event,
+          payload: {
+            imageUrl: ev.payload?.imageUrl || ev.payload?.image || null,
+            slogan: ev.payload?.slogan || ev.payload?.prizeName || null,
+          },
+        }));
 
-      const payload = { summary, publicItems, publishedAt: new Date().toISOString() };
-      const resp = await fetch('/api/ukpack2/publish', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const payload = {
+        summary,
+        publicItems,
+        publishedAt: new Date().toISOString(),
+      };
+      const resp = await fetch("/api/ukpack2/publish", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
       const j = await resp.json();
       if (j.ok) {
-        alert('Published public aggregation');
+        alert("Published public aggregation");
       } else {
-        alert('Failed to publish: ' + (j.error || 'unknown'));
+        alert("Failed to publish: " + (j.error || "unknown"));
       }
     } catch (e) {
-      alert('Publish failed: ' + String(e));
+      alert("Publish failed: " + String(e));
     }
   };
 
@@ -209,7 +291,12 @@ const UkDashboard: React.FC = () => {
         },
       };
       await sendEventToFirestore(sample);
-      setLastSentResult({ sentCount: 1, skippedCount: 0, sampleSent: [sample], errors: [] });
+      setLastSentResult({
+        sentCount: 1,
+        skippedCount: 0,
+        sampleSent: [sample],
+        errors: [],
+      });
       alert("Test event sent to Firestore");
       refreshSummary();
     } catch (err) {
@@ -225,7 +312,9 @@ const UkDashboard: React.FC = () => {
       <div className="uk2-scroll overflow-auto min-h-0 bg-[#0b0b0b] text-white flex items-center justify-center p-6">
         <form onSubmit={handleAuth} className="w-full max-w-md">
           <div className="bg-white text-black rounded-xl p-6">
-            <h2 className="text-lg font-semibold mb-2">เข้าสู่แดชบอร์ด ukpack2</h2>
+            <h2 className="text-lg font-semibold mb-2">
+              เข้าสู่แดชบอร์ด ukpack2
+            </h2>
             <p className="text-sm mb-4">ป้อนรหัสเพื่อเข้าถึงแดชบอร์ด</p>
             <input
               type="password"
@@ -236,12 +325,17 @@ const UkDashboard: React.FC = () => {
               autoFocus
             />
             <div className="flex gap-2">
-              <button type="submit" className="flex-1 bg-[#ffe000] text-black py-2 rounded font-semibold">
+              <button
+                type="submit"
+                className="flex-1 bg-[#ffe000] text-black py-2 rounded font-semibold"
+              >
                 เข้าสู่ระบบ
               </button>
               <button
                 type="button"
-                onClick={() => { setInput(""); }}
+                onClick={() => {
+                  setInput("");
+                }}
                 className="flex-1 bg-[#e5e7eb] text-black py-2 rounded font-semibold"
               >
                 ยกเลิก
@@ -272,21 +366,31 @@ const UkDashboard: React.FC = () => {
               Export Mapped CSV
             </button>
 
-            <button onClick={handleCopySchema} className="bg-[#a78bfa] text-white px-4 py-2 rounded font-semibold">
+            <button
+              onClick={handleCopySchema}
+              className="bg-[#a78bfa] text-white px-4 py-2 rounded font-semibold"
+            >
               Copy schema / Download JSON
             </button>
 
-            <button onClick={handlePublishAggregation} className="bg-[#60a5fa] text-white px-4 py-2 rounded font-semibold">
+            <button
+              onClick={handlePublishAggregation}
+              className="bg-[#60a5fa] text-white px-4 py-2 rounded font-semibold"
+            >
               Publish Aggregation
             </button>
-            <button onClick={handleSendTestEvent} disabled={isSending} className={`bg-[#60a5fa] text-white px-4 py-2 rounded font-semibold ${isSending ? 'opacity-60' : ''}`}>
+            <button
+              onClick={handleSendTestEvent}
+              disabled={isSending}
+              className={`bg-[#60a5fa] text-white px-4 py-2 rounded font-semibold ${isSending ? "opacity-60" : ""}`}
+            >
               Send Test Event
             </button>
 
             <button
               onClick={handleSendAll}
               disabled={isSending}
-              className={`bg-[#34d399] text-[#064e3b] px-4 py-2 rounded font-semibold ${isSending ? 'opacity-60' : ''}`}
+              className={`bg-[#34d399] text-[#064e3b] px-4 py-2 rounded font-semibold ${isSending ? "opacity-60" : ""}`}
             >
               Send All Events (no PDPA filter)
             </button>
@@ -294,7 +398,7 @@ const UkDashboard: React.FC = () => {
             <button
               onClick={() => handleSendBatch(20)}
               disabled={isSending}
-              className={`bg-[#7dd3fc] text-[#0f172a] px-4 py-2 rounded font-semibold ${isSending ? 'opacity-60' : ''}`}
+              className={`bg-[#7dd3fc] text-[#0f172a] px-4 py-2 rounded font-semibold ${isSending ? "opacity-60" : ""}`}
             >
               Send Batch (20)
             </button>
@@ -310,20 +414,28 @@ const UkDashboard: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
           <div className="bg-[#021827] rounded p-3">
             <div className="text-sm text-gray-300">Total Events</div>
-            <div className="text-2xl font-bold">{summary?.totalEvents ?? 0}</div>
+            <div className="text-2xl font-bold">
+              {summary?.totalEvents ?? 0}
+            </div>
           </div>
           <div className="bg-[#021827] rounded p-3">
             <div className="text-sm text-gray-300">Total Sessions</div>
-            <div className="text-2xl font-bold">{summary?.totalSessions ?? 0}</div>
+            <div className="text-2xl font-bold">
+              {summary?.totalSessions ?? 0}
+            </div>
           </div>
           <div className="bg-[#021827] rounded p-3">
             <div className="text-sm text-gray-300">Current Session</div>
-            <div className="text-sm break-all">{summary?.currentSession ?? "-"}</div>
+            <div className="text-sm break-all">
+              {summary?.currentSession ?? "-"}
+            </div>
           </div>
         </div>
 
         <div className="mb-4">
-          <h3 className="text-lg font-semibold mb-2">Recent events (last 10)</h3>
+          <h3 className="text-lg font-semibold mb-2">
+            Recent events (last 10)
+          </h3>
           <div className="bg-[#021827] rounded p-3 max-h-64 overflow-auto">
             {eventsSample.length === 0 ? (
               <div className="text-gray-400">No events logged yet</div>
@@ -331,9 +443,13 @@ const UkDashboard: React.FC = () => {
               <ul className="text-sm space-y-2">
                 {eventsSample.map((ev, idx) => (
                   <li key={idx} className="border-b border-white/5 pb-2">
-                    <div className="text-xs text-gray-400">{ev.timestamp} • {ev.sessionID}</div>
-                    <div className="font-medium">{ev.event || 'EVENT'}</div>
-                    <div className="text-xs text-gray-300">{JSON.stringify(ev.payload || {})}</div>
+                    <div className="text-xs text-gray-400">
+                      {ev.timestamp} • {ev.sessionID}
+                    </div>
+                    <div className="font-medium">{ev.event || "EVENT"}</div>
+                    <div className="text-xs text-gray-300">
+                      {JSON.stringify(ev.payload || {})}
+                    </div>
                   </li>
                 ))}
               </ul>
@@ -346,16 +462,23 @@ const UkDashboard: React.FC = () => {
               <div className="bg-[#021827] rounded p-3 text-sm max-h-48 overflow-auto">
                 <div>Sent: {lastSentResult.sentCount}</div>
                 <div>Skipped: {lastSentResult.skippedCount}</div>
-                <div>Errors: {lastSentResult.errors && lastSentResult.errors.length}</div>
+                <div>
+                  Errors:{" "}
+                  {lastSentResult.errors && lastSentResult.errors.length}
+                </div>
                 <div className="mt-2">Sample sent items:</div>
-                <pre className="text-xs mt-2 whitespace-pre-wrap">{JSON.stringify(lastSentResult.sampleSent || [], null, 2)}</pre>
+                <pre className="text-xs mt-2 whitespace-pre-wrap">
+                  {JSON.stringify(lastSentResult.sampleSent || [], null, 2)}
+                </pre>
               </div>
             </div>
           )}
         </div>
 
         <div className="mb-6">
-          <h3 className="text-lg font-semibold mb-2">Data schema & usage (สรุปสคีมา)</h3>
+          <h3 className="text-lg font-semibold mb-2">
+            Data schema & usage (สรุปสคีมา)
+          </h3>
           <div className="bg-[#021827] rounded p-4 text-sm text-gray-200">
             <div className="mb-3">
               <strong>Document fields (ukpack2_events)</strong>
@@ -374,7 +497,10 @@ const UkDashboard: React.FC = () => {
               <ul className="list-disc pl-5 mt-1 text-xs text-gray-300">
                 <li>PDPA (boolean)</li>
                 <li>chassis (string)</li>
-                <li>seating (map: totalSeats, specialSeats, children?, pregnant?, monk?)</li>
+                <li>
+                  seating (map: totalSeats, specialSeats, children?, pregnant?,
+                  monk?)
+                </li>
                 <li>amenities (array[string])</li>
                 <li>payment (array[string])</li>
                 <li>doors (string or map)</li>
@@ -388,20 +514,40 @@ const UkDashboard: React.FC = () => {
 
             <div className="mb-3">
               <strong>How we send</strong>
-              <div className="text-xs text-gray-300 mt-1">Client constructs a plain JS object (map/array/primitives) and we call addDoc(collection, obj). Images must be stored in Storage and referenced by URL in payload.imageUrl.</div>
+              <div className="text-xs text-gray-300 mt-1">
+                Client constructs a plain JS object (map/array/primitives) and
+                we call addDoc(collection, obj). Images must be stored in
+                Storage and referenced by URL in payload.imageUrl.
+              </div>
             </div>
 
             <div className="mb-3">
               <strong>CSV export columns (mapped)</strong>
-              <pre className="text-xs mt-1 whitespace-pre-wrap bg-[#001927] p-2 rounded">sessionID, ip, firstTimestamp, lastTimestamp, PDPA_acceptance, chassis_type, total_seats, special_seats, children_count, pregnant_count, monk_count, features, payment_types, doors, color, frequency, route, area, decision_use_service, reason_not_use, decision_enter_prize, prize_name, prize_phone, prize_timestamp, shared_with_friends, shared_timestamp</pre>
+              <pre className="text-xs mt-1 whitespace-pre-wrap bg-[#001927] p-2 rounded">
+                sessionID, ip, firstTimestamp, lastTimestamp, PDPA_acceptance,
+                chassis_type, total_seats, special_seats, children_count,
+                pregnant_count, monk_count, features, payment_types, doors,
+                color, frequency, route, area, decision_use_service,
+                reason_not_use, decision_enter_prize, prize_name, prize_phone,
+                prize_timestamp, shared_with_friends, shared_timestamp
+              </pre>
             </div>
 
             <div>
               <strong>Landing page usage</strong>
               <ul className="list-disc pl-5 mt-1 text-xs text-gray-300">
-                <li>For images: store in Firebase Storage → save public URL in payload.imageUrl → render &lt;img src="..." /&gt;</li>
-                <li>For user text (slogans, comments): fetch doc.payload.field and sanitize before rendering</li>
-                <li>Prefer server-side endpoint to aggregate & sanitize public data for landing page (recommended)</li>
+                <li>
+                  For images: store in Firebase Storage → save public URL in
+                  payload.imageUrl → render &lt;img src="..." /&gt;
+                </li>
+                <li>
+                  For user text (slogans, comments): fetch doc.payload.field and
+                  sanitize before rendering
+                </li>
+                <li>
+                  Prefer server-side endpoint to aggregate & sanitize public
+                  data for landing page (recommended)
+                </li>
               </ul>
             </div>
           </div>
@@ -409,7 +555,10 @@ const UkDashboard: React.FC = () => {
 
         <div className="text-right mt-4">
           <button
-            onClick={() => { sessionStorage.removeItem("ukpack2_dash_auth"); setAuthorized(false); }}
+            onClick={() => {
+              sessionStorage.removeItem("ukpack2_dash_auth");
+              setAuthorized(false);
+            }}
             className="text-sm underline text-gray-300"
           >
             Logout

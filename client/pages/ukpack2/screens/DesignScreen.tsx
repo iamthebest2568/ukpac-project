@@ -99,14 +99,14 @@ const IconCamSmall = () => (
 );
 
 const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
-  "แอร์": <IconAir />,
-  "พัดลม": <IconFan />,
-  "ที่นั่งพิเศษ": <IconSeat />,
+  แอร์: <IconAir />,
+  พัดลม: <IconFan />,
+  ที่นั่งพิเศษ: <IconSeat />,
   "ที่จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
   "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
   "��ะบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
-  "กล้องวงจรปิด": <IconCamSmall />,
+  กล้องวงจรปิด: <IconCamSmall />,
 };
 
 const MONEY_ICON =
@@ -212,17 +212,21 @@ const DEFAULT_COLORS = [
 const DesignScreen: React.FC = () => {
   const navigate = useNavigate();
   // color selection state: selected color preview and hex (persisted to sessionStorage)
-  const [selectedColorHex, setSelectedColorHex] = useState<string | null>(() => {
-    try {
-      const raw = sessionStorage.getItem("design.color");
-      if (raw) {
-        const parsed = JSON.parse(raw);
-        return parsed?.colorHex ?? null;
-      }
-    } catch (e) {}
-    return null;
-  });
-  const [selectedColorPreview, setSelectedColorPreview] = useState<string | null>(() => {
+  const [selectedColorHex, setSelectedColorHex] = useState<string | null>(
+    () => {
+      try {
+        const raw = sessionStorage.getItem("design.color");
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          return parsed?.colorHex ?? null;
+        }
+      } catch (e) {}
+      return null;
+    },
+  );
+  const [selectedColorPreview, setSelectedColorPreview] = useState<
+    string | null
+  >(() => {
     try {
       const raw = sessionStorage.getItem("design.color");
       if (raw) {
@@ -290,7 +294,8 @@ const DesignScreen: React.FC = () => {
 
               const MASKS: Record<string, string | null> = {
                 // Upload mask images (black=masked area) for each chassis variant and paste URLs here.
-                small: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F52a0e0b5f83341cf9dfc9ff4f7abf046?format=webp&width=800",
+                small:
+                  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F52a0e0b5f83341cf9dfc9ff4f7abf046?format=webp&width=800",
                 medium: null,
                 large: null,
                 extra: null,
@@ -389,10 +394,13 @@ const DesignScreen: React.FC = () => {
               </h2>
               <ColorPalette
                 colors={DEFAULT_COLORS}
-                selectedColor={selectedColorPreview || (selectedColorHex || "")}
+                selectedColor={selectedColorPreview || selectedColorHex || ""}
                 onColorSelect={(colorHex?: string | null, preview?: string) => {
                   try {
-                    sessionStorage.setItem("design.color", JSON.stringify({ colorHex, preview }));
+                    sessionStorage.setItem(
+                      "design.color",
+                      JSON.stringify({ colorHex, preview }),
+                    );
                   } catch (e) {}
                   setSelectedColorHex(colorHex ?? null);
                   setSelectedColorPreview(preview ?? null);
@@ -444,9 +452,15 @@ const DesignScreen: React.FC = () => {
                             setShowTextarea(false);
                           }}
                           className="px-4 py-2 rounded-xl bg-[#000D59] hover:bg-[#ffe000] transition-colors save-btn-modal"
-                          style={{ color: isSaveHover ? '#000D59' : '#ffffff' }}
+                          style={{ color: isSaveHover ? "#000D59" : "#ffffff" }}
                         >
-                          <span style={{ color: isSaveHover ? '#000D59' : '#ffffff' }}>บันทึก</span>
+                          <span
+                            style={{
+                              color: isSaveHover ? "#000D59" : "#ffffff",
+                            }}
+                          >
+                            บันทึก
+                          </span>
                         </button>
                       </div>
                     </div>

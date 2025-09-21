@@ -3,7 +3,8 @@
    - Mobile: 16px (1rem) -> px-4
    - Tablet (>=640px): 24px (1.5rem) -> px-6
    - Desktop (>=1024px): 32px (2rem) -> px-8
-*/:root{
+*/
+:root {
   --chassis-gap: 16px;
   --chassis-accent: #001a73;
 }
@@ -118,7 +119,6 @@
   margin: 0 !important;
 }
 
-
 /* Controls box: frame around tabs + content. Tabs will visually sit above the top border */
 .controlsBox {
   /* full-bleed like tabs - align to viewport using calc to avoid transformed ancestor issues */
@@ -127,8 +127,8 @@
   margin-right: calc(50% - 50vw) !important;
   padding-left: 0 !important;
   padding-right: 0 !important;
-  border: 2px solid #000D59; /* restored fixed border width */
-  border-color: #000D59;
+  border: 2px solid #000d59; /* restored fixed border width */
+  border-color: #000d59;
   border-radius: 8px;
   background: #ffffff;
   overflow: visible;
@@ -137,15 +137,21 @@
   z-index: 0; /* default stacking for frame */
   padding: 2px 0 6px 0; /* reduced bottom padding to bring icons closer to border */
   min-height: 128px; /* ensure a minimum visible area for controls */
-  transition: border-color 150ms ease, border-width 150ms ease;
+  transition:
+    border-color 150ms ease,
+    border-width 150ms ease;
 }
 
 @media (max-width: 639px) {
-  .controlsBox { min-height: 110px; }
+  .controlsBox {
+    min-height: 110px;
+  }
 }
 
 @media (min-width: 1024px) {
-  .controlsBox { min-height: 160px; }
+  .controlsBox {
+    min-height: 160px;
+  }
 }
 
 /* Move tabs up to overlap the top border so the border appears under the tabs */
@@ -165,7 +171,10 @@
 }
 
 /* ensure inner tab items stretch to fill full-bleed container and small gap between tabs */
-.tabsWrapper > .flex { width: 100%; gap: 1px !important; }
+.tabsWrapper > .flex {
+  width: 100%;
+  gap: 1px !important;
+}
 
 /* increase tab inner height to scale with width increase */
 .tabInner {
@@ -173,7 +182,9 @@
 }
 
 @media (min-width: 768px) {
-  .tabInner { height: 45px; } /* desktop: increased */
+  .tabInner {
+    height: 45px;
+  } /* desktop: increased */
 }
 
 /* per-tab horizontal padding to increase width by ~4px (2px each side) */
@@ -254,7 +265,10 @@
 .doorControls .selectionGrid {
   --icon-cell-height: 220px !important; /* larger default for door icons */
   display: grid !important;
-  grid-template-columns: repeat(2, minmax(140px, 1fr)) !important; /* constrained columns */
+  grid-template-columns: repeat(
+    2,
+    minmax(140px, 1fr)
+  ) !important; /* constrained columns */
   gap: 8px !important; /* slightly larger but balanced gap */
   padding: 0 !important;
   justify-content: start !important; /* align grid to the left so items are not widely spaced */
@@ -266,7 +280,9 @@
   padding: 0 !important;
   width: 100% !important; /* fill the column for consistent spacing */
   max-width: none !important;
-  height: var(--icon-cell-height) !important; /* ensure button is same height as icon cell */
+  height: var(
+    --icon-cell-height
+  ) !important; /* ensure button is same height as icon cell */
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -328,7 +344,6 @@
   min-height: 0; /* allow flex children to shrink properly */
 }
 
-
 /* Horizontal inline card layout (matches example) */
 .selectionGrid > button.horizontal {
   flex-direction: row !important;
@@ -385,18 +400,27 @@
 }
 
 /* Small helpers */
-.center { display:flex; align-items:center; justify-content:center; }
-.hidden { display:none; }
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hidden {
+  display: none;
+}
 
 /* Prevent content overflow in controls and preview areas */
-.controlsBox, .controlsContent {
+.controlsBox,
+.controlsContent {
   max-width: 100%;
   box-sizing: border-box;
   overflow: auto; /* allow internal scrolling if content too tall */
 }
 
 /* Make sure preview images never overflow their container */
-.previewInner, .previewInner img, .previewInner svg {
+.previewInner,
+.previewInner img,
+.previewInner svg {
   max-width: 100%;
   box-sizing: border-box;
 }

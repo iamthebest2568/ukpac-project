@@ -87,28 +87,34 @@ const SummaryScreen: React.FC = () => {
   }
 
   return (
-    <CustomizationScreen title="ปรับแต่งรถเมล์ของคุณ" theme="light" fullWidth containerPaddingClass="px-4 py-2" footerContent={
-      <div className="flex justify-center">
-        <div className="w-full max-w-4xl mx-auto flex items-center justify-center">
-          <div className="w-full max-w-sm p-4 md:p-6 flex flex-col items-stretch gap-3">
-            <div className="w-full">
-              <SecondaryButton
-                text="กลับไปแก้ไข"
-                onClick={() => navigate("/ukpack2/design")}
-                className="w-full"
-              />
-            </div>
-            <div className="w-full">
-              <CtaButton
-                text="ออกแบบเสร็จแล้ว"
-                onClick={() => navigate("/ukpack2/info")}
-                className="w-full"
-              />
+    <CustomizationScreen
+      title="ปรับแต่งรถเมล์ของคุณ"
+      theme="light"
+      fullWidth
+      containerPaddingClass="px-4 py-2"
+      footerContent={
+        <div className="flex justify-center">
+          <div className="w-full max-w-4xl mx-auto flex items-center justify-center">
+            <div className="w-full max-w-sm p-4 md:p-6 flex flex-col items-stretch gap-3">
+              <div className="w-full">
+                <SecondaryButton
+                  text="กลับไปแก้ไข"
+                  onClick={() => navigate("/ukpack2/design")}
+                  className="w-full"
+                />
+              </div>
+              <div className="w-full">
+                <CtaButton
+                  text="ออกแบบเสร็จแล้ว"
+                  onClick={() => navigate("/ukpack2/info")}
+                  className="w-full"
+                />
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    }>
+      }
+    >
       <div className="max-w-5xl mx-auto px-4 py-2">
         <SummaryDetails />
       </div>
