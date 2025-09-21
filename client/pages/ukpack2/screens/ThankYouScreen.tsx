@@ -9,7 +9,7 @@ const ThankYouScreen: React.FC = () => {
 
   return (
     <CustomizationScreen title="" theme="light">
-      <div className="max-w-2xl mx-auto pt-4 pb-8 px-6 text-center">
+      <div className="max-w-2xl mx-auto pt-4 pb-8 text-center" style={{paddingLeft: 20, paddingRight: 20}}>
         <div className="w-full flex justify-center mb-2">
           <img
             src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fda6359656dee4bb3bf9d0e68709cafbf?format=webp&width=800"
@@ -52,7 +52,7 @@ const ThankYouScreen: React.FC = () => {
             <div style={{ width: '220px' }}>
               <SecondaryButton
                 className="w-full"
-                text="ลุ้น���ับรางวัล"
+                text="ลุ้นรับรางวัล"
                 onClick={() => navigate("/ukpack2/form")}
               />
             </div>
