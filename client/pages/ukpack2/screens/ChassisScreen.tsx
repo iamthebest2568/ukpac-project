@@ -16,7 +16,7 @@ const AMENITIES_ICON_SMALL = {
     "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe01792ee89e240808ed47d8576b55d71?format=webp&width=800",
   ที่นั่งพิเศษ:
     "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F93439b2533284cdf914fc93cafa1cf26?format=webp&width=800",
-  "ที��จับ/ราวยืนที่ปลอดภัย":
+  "ที่จับ/ราวยืนที่ปลอดภัย":
     "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb0789bfd1100472f8351704764607d31?format=webp&width=800",
 };
 const PAYMENT_ICON_SMALL: Record<string, string> = {
@@ -321,7 +321,7 @@ const ChassisScreen: React.FC = () => {
                     isSelected={selected === OPTIONS[0].key}
                     onClick={() => { setSelected(OPTIONS[0].key); }}
                     variant="light"
-                    appearance="card"
+                    appearance="group"
                     hideLabel={true}
                     size="sm"
                     layout="horizontal"
@@ -334,7 +334,7 @@ const ChassisScreen: React.FC = () => {
                     isSelected={selected === OPTIONS[1].key}
                     onClick={() => { setSelected(OPTIONS[1].key); }}
                     variant="light"
-                    appearance="card"
+                    appearance="group"
                     hideLabel={true}
                     size="lg"
                     layout="horizontal"
@@ -347,7 +347,7 @@ const ChassisScreen: React.FC = () => {
                     isSelected={selected === OPTIONS[2].key}
                     onClick={() => { setSelected(OPTIONS[2].key); }}
                     variant="light"
-                    appearance="card"
+                    appearance="group"
                     hideLabel={true}
                     size="sm"
                     layout="horizontal"
@@ -360,7 +360,7 @@ const ChassisScreen: React.FC = () => {
                     isSelected={selected === OPTIONS[3].key}
                     onClick={() => { setSelected(OPTIONS[3].key); }}
                     variant="light"
-                    appearance="card"
+                    appearance="group"
                     hideLabel={true}
                     size="sm"
                     layout="horizontal"
