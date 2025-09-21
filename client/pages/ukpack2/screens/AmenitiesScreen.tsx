@@ -200,8 +200,8 @@ const AmenitiesScreen: React.FC = () => {
   // Selected chassis preview (reusing mapping from SeatingScreen)
   const CHASSIS_LABELS: Record<string, string> = {
     small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
-    medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
-    large: "รถตู้โด��สาร 9–15 ที่นั่ง",
+    medium: "รถเมล์���าตรฐาน 30–50 ที่นั่ง",
+    large: "รถตู้โดยสาร 9–15 ที่นั่ง",
     extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
   };
   const HERO_IMAGE: Record<string, string> = {
@@ -292,7 +292,7 @@ const AmenitiesScreen: React.FC = () => {
               />
             ) : (
               <div className="w-full h-48 bg-[#081042] rounded-md flex items-center justify-center text-sm text-gray-300">
-                Bus image preview (ภาพสำหรับรุ่นนี้จะถูกเ���ิ่มภายหลัง)
+                Bus image preview (ภาพสำหรับรุ่นนี้จะถูกเพิ่มภายหลัง)
               </div>
             )}
           </div>
