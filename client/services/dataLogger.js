@@ -197,6 +197,182 @@ export function exportEventsAsCSV() {
   return csvRows.join("\n");
 }
 
+// New: export aggregated session CSV matching requested schema
+export function exportSessionsAsCSV() {
+  const events = getLoggedEvents();
+  if (!events || events.length === 0) return "";
+
+  // group by sessionID
+  const sessions = {};
+  events.forEach((ev) => {
+    const sid = ev.sessionID || "unknown";
+    sessions[sid] = sessions[sid] || [];
+    sessions[sid].push(ev);
+  });
+
+  const headers = [
+    "sessionID",
+    "ip",
+    "firstTimestamp",
+    "lastTimestamp",
+    "PDPA_acceptance",
+    "chassis_type",
+    "total_seats",
+    "special_seats",
+    "children_elder_count",
+    "pregnant_count",
+    "monk_count",
+    "features",
+    "payment_types",
+    "doors",
+    "color",
+    "frequency",
+    "route",
+    "area",
+    "decision_use_service",
+    "reason_not_use",
+    "decision_enter_prize",
+    "prize_name",
+    "prize_phone",
+    "prize_timestamp",
+    "shared_with_friends",
+    "shared_timestamp",
+  ];
+
+  const csvRows = [headers.join(",")];
+
+  Object.keys(sessions).forEach((sid) => {
+    const evs = sessions[sid].sort((a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime());
+
+    const row = {
+      sessionID: sid,
+      ip: "",
+      firstTimestamp: evs[0]?.timestamp || "",
+      lastTimestamp: evs[evs.length - 1]?.timestamp || "",
+      PDPA_acceptance: "",
+      chassis_type: "",
+      total_seats: "",
+      special_seats: "",
+      children_elder_count: "",
+      pregnant_count: "",
+      monk_count: "",
+      features: [],
+      payment_types: [],
+      doors: "",
+      color: "",
+      frequency: "",
+      route: "",
+      area: "",
+      decision_use_service: "",
+      reason_not_use: "",
+      decision_enter_prize: "",
+      prize_name: "",
+      prize_phone: "",
+      prize_timestamp: "",
+      shared_with_friends: "",
+      shared_timestamp: "",
+    };
+
+    evs.forEach((e) => {
+      const p = e.payload || {};
+      // PDPA
+      if (row.PDPA_acceptance === "" && (p.PDPA === true || p.pdpa === true || p.PDPA === "accepted" || p.pdpa === "accepted")) row.PDPA_acceptance = "1";
+      if (row.PDPA_acceptance === "" && (p.PDPA === false || p.pdpa === false || p.PDPA === "declined")) row.PDPA_acceptance = "0";
+
+      // chassis
+      if (!row.chassis_type && (p.chassis || (p.design && p.design.chassis) || p.chassisType)) row.chassis_type = p.chassis || (p.design && p.design.chassis) || p.chassisType;
+
+      // seating
+      if (!row.total_seats) {
+        if (p.seating && p.seating.totalSeats) row.total_seats = String(p.seating.totalSeats);
+        else if (p.totalSeats) row.total_seats = String(p.totalSeats);
+      }
+      if (!row.special_seats && p.seating && p.seating.specialSeats) row.special_seats = String(p.seating.specialSeats);
+
+      // demographics counts
+      if (!row.children_elder_count && p.seating && p.seating.children) row.children_elder_count = String(p.seating.children);
+      if (!row.pregnant_count && (p.seating && p.seating.pregnant || p.pregnant)) row.pregnant_count = String((p.seating && p.seating.pregnant) || p.pregnant || "");
+      if (!row.monk_count && (p.seating && p.seating.monk || p.monk)) row.monk_count = String((p.seating && p.seating.monk) || p.monk || "");
+
+      // features (amenities)
+      if (Array.isArray(p.amenities)) row.features = Array.from(new Set((row.features || []).concat(p.amenities)));
+      if (Array.isArray(p.features)) row.features = Array.from(new Set((row.features || []).concat(p.features)));
+
+      // payment
+      if (Array.isArray(p.payment)) row.payment_types = Array.from(new Set((row.payment_types || []).concat(p.payment)));
+      if (p.paymentType) row.payment_types = Array.from(new Set((row.payment_types || []).concat([p.paymentType])));
+
+      // doors
+      if (!row.doors && (p.doors || p.doorChoice || (p.doors && p.doors.doorChoice))) {
+        if (typeof p.doors === 'string') row.doors = p.doors;
+        else if (p.doorChoice) row.doors = p.doorChoice;
+        else if (p.doors && p.doors.doorChoice) row.doors = p.doors.doorChoice;
+      }
+
+      // color
+      if (!row.color && (p.color && p.color.colorHex || (p.exterior && p.exterior.color && p.exterior.color.colorHex) || p.colorHex)) row.color = (p.color && p.color.colorHex) || (p.exterior && p.exterior.color && p.exterior.color.colorHex) || p.colorHex || "";
+
+      // schedule
+      if (!row.frequency && (p.interval || p.frequency)) row.frequency = p.interval || p.frequency;
+      if (!row.route && (p.route)) row.route = p.route;
+      if (!row.area && (p.area)) row.area = p.area;
+
+      // decision use service
+      if (!row.decision_use_service && (p.decisionUseService !== undefined || p.useService !== undefined)) row.decision_use_service = (p.decisionUseService ?? p.useService) ? "1" : "0";
+
+      // reason not use
+      if (!row.reason_not_use && (p.reasonNotUse || p.reason || p.reason_not_use)) row.reason_not_use = p.reasonNotUse || p.reason || p.reason_not_use;
+
+      // prize fields
+      if (!row.decision_enter_prize && (p.enterPrize !== undefined || p.prizeEnter !== undefined || p.wantsPrize !== undefined)) row.decision_enter_prize = (p.enterPrize ?? p.prizeEnter ?? p.wantsPrize) ? "1" : "0";
+      if (!row.prize_name && (p.prizeName || p.name)) row.prize_name = p.prizeName || p.name;
+      if (!row.prize_phone && (p.prizePhone || p.phone)) row.prize_phone = p.prizePhone || p.phone;
+      if (!row.prize_timestamp && e.timestamp && (p.prizeName || p.prizePhone || p.enterPrize || p.wantsPrize)) row.prize_timestamp = e.timestamp;
+
+      // shared
+      if (!row.shared_with_friends && (p.shared === true || p.sharedTo)) row.shared_with_friends = "1";
+      if (!row.shared_timestamp && (p.shared === true || p.sharedTo)) row.shared_timestamp = e.timestamp;
+    });
+
+    const featuresStr = Array.isArray(row.features) ? row.features.join(" | ") : (row.features || "");
+    const paymentStr = Array.isArray(row.payment_types) ? row.payment_types.join(" | ") : (row.payment_types || "");
+
+    const vals = [
+      row.sessionID,
+      row.ip || "",
+      row.firstTimestamp,
+      row.lastTimestamp,
+      row.PDPA_acceptance,
+      row.chassis_type,
+      row.total_seats,
+      row.special_seats,
+      row.children_elder_count,
+      row.pregnant_count,
+      row.monk_count,
+      featuresStr,
+      paymentStr,
+      row.doors,
+      row.color,
+      row.frequency,
+      row.route,
+      row.area,
+      row.decision_use_service,
+      row.reason_not_use,
+      row.decision_enter_prize,
+      row.prize_name,
+      row.prize_phone,
+      row.prize_timestamp,
+      row.shared_with_friends,
+      row.shared_timestamp,
+    ];
+
+    const safe = vals.map((f) => `"${String(f || "").replace(/"/g, '""')}"`);
+    csvRows.push(safe.join(","));
+  });
+
+  return csvRows.join("\n");
+}
+
 // Initialize logging service
 console.log("📊 UK PACK Data Logger initialized");
 
