@@ -236,7 +236,7 @@ const DesignScreen: React.FC = () => {
     <>
       <MetaUpdater
         title="UK PACT - กรุงเทพฯ ลดติด"
-        description="ออกแบบรถเมล์เพื่อช่วยลดปัญหาการจราจรในกรุงเทพฯ — เลือกขนาดรถ สี และสิ่งอำนวยความสะดวกที่ต้องการ"
+        description="ออกแบบรถเมล์เพื่อช่วยลดปัญหาการจราจรในกรุงเทพฯ — เล��อกขนาดรถ สี และสิ่งอำนวยความสะดวกที่ต้องการ"
         image="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F44cea8aeb6d4415e899494a90c6f59b1?format=webp&width=1200"
       />
       <CustomizationScreen
@@ -252,7 +252,7 @@ const DesignScreen: React.FC = () => {
           <div className="w-full rounded-md flex flex-col items-center justify-center gap-2">
             {(() => {
               const CHASSIS_LABELS: Record<string, string> = {
-                small: "รถเมล���ขนาดเล็ก 16–30 ที่นั่ง",
+                small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
                 medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
                 large: "รถตู้โดยสาร 9–15 ที่นั่ง",
                 extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
@@ -383,7 +383,7 @@ const DesignScreen: React.FC = () => {
                     setSloganDraft(slogan);
                     setShowTextarea(true);
                   }}
-                  placeholder="พิมพ์ คุณ���มบัติพิเศษ"
+                  placeholder="พิมพ์ คุณสมบัติพิเศษ"
                   className="w-full rounded-xl px-4 py-2 bg-white border-2 border-[#000D59] text-[#003366] placeholder-gray-400 cursor-text"
                 />
 
@@ -392,7 +392,7 @@ const DesignScreen: React.FC = () => {
                     <div className="bg-white rounded-xl p-4 max-w-lg w-full mx-4">
                       <style>{`.save-btn-modal:hover { color: #000D59 !important; }`}</style>
                       <h3 className="text-lg font-prompt font-semibold text-[#000d59]">
-                        ลักษณะพิเศษอื่นๆ
+                        ลักษณะพิ��ศษอื่นๆ
                       </h3>
                       <textarea
                         ref={textareaRef}
