@@ -159,6 +159,15 @@ const VehiclePreview: React.FC<Props> = ({
                         }
 
                         // Next prefer overlayIconMap entries that are strings (URLs)
+                        // But before that, attempt normalized matches against storedMap keys (to catch case/space/hyphen variants)
+                        if (storedMap) {
+                          const keys = Object.keys(storedMap);
+                          const target = normalize(label);
+                          for (const k of keys) {
+                            if (normalize(k) === target && typeof storedMap[k] === 'string') return storedMap[k];
+                          }
+                        }
+
                         for (const c of candidates) {
                           if (overlayIconMap && typeof overlayIconMap[c] === 'string' && overlayIconMap[c]) return overlayIconMap[c] as string;
                         }
