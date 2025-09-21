@@ -61,6 +61,7 @@ const UkDashboard: React.FC = () => {
   };
 
   const [lastSentResult, setLastSentResult] = useState<any | null>(null);
+  const [isSending, setIsSending] = useState(false);
 
   const handleExportMapped = () => {
     const csv = exportSessionsAsCSV();
@@ -111,7 +112,7 @@ const UkDashboard: React.FC = () => {
     if (!confirm("แน่ใจหรือไม่ว่าต้องการลบข้อมูลทั้งหมด?")) return;
     clearEventLogs();
     refreshSummary();
-    alert("ลบข้อมูลเรียบร้อย");
+    alert("ลบข้อม���ลเรียบร้อย");
   };
 
   if (!authorized) {
@@ -138,7 +139,7 @@ const UkDashboard: React.FC = () => {
                 onClick={() => { setInput(""); }}
                 className="flex-1 bg-[#e5e7eb] text-black py-2 rounded font-semibold"
               >
-                ยกเลิก
+                ��กเลิก
               </button>
             </div>
           </div>
