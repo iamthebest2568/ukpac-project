@@ -236,6 +236,37 @@ const DoorScreen: React.FC = () => {
     emergency: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fcc69b8718f934fbb8059e036ca6cb93f?format=webp&width=800",
   };
 
+  useEffect(() => {
+    // Remove any door-related entries from the overlayIconMap so door clicks never show overlays
+    try {
+      const raw = sessionStorage.getItem("design.overlayIconMap");
+      if (!raw) return;
+      const map = JSON.parse(raw) as Record<string, string>;
+      const normalizeKey = (s: string) =>
+        (s || "")
+          .replace(/\uFFFD/g, "")
+          .replace(/\u2011/g, "-")
+          .replace(/\u00A0/g, " ")
+          .replace(/&amp;/g, "&")
+          .replace(/\s+/g, " ")
+          .trim()
+          .toLowerCase();
+      const removeKeyVariants = (k: string) => {
+        try {
+          if (map[k]) delete map[k];
+          const nk = normalizeKey(k);
+          if (map[nk]) delete map[nk];
+          const nkNoSpace = nk.replace(/\s/g, "");
+          if (map[nkNoSpace]) delete map[nkNoSpace];
+        } catch (e) {}
+      };
+      ["1", "2", "ramp", "emergency"].forEach(removeKeyVariants);
+      sessionStorage.setItem("design.overlayIconMap", JSON.stringify(map));
+    } catch (e) {
+      // ignore
+    }
+  }, []);
+
   const handleNext = () => {
     try {
       // store single selected option (string) for doors
@@ -516,7 +547,7 @@ const DoorScreen: React.FC = () => {
                   }
 
                   // Ensure explicit keys exist
-                  const explicit = ['เงินสด','สแกนจ่าย','สแกนจ่าย 2','แตะบัตร','กระ��ป๋ารถเมล์','ตั๋วรายเดื���น/รอบ','1','2','ramp','emergency'];
+                  const explicit = ['เงินสด','สแกนจ่าย','สแกนจ่าย 2','แตะบัตร','กระ��ป๋ารถเมล์','ตั๋วรายเดือน/รอบ','1','2','ramp','emergency'];
                   for (const k of explicit) {
                     if (!merged[k]) {
                       if (storedMapRaw[k]) setVariants(k, storedMapRaw[k]);
