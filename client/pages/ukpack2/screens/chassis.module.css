@@ -270,11 +270,17 @@
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
+  background: transparent !important; /* ensure no frame background */
+  border: none !important;
 }
 
 .doorControls .selectionGrid > button > div.iconContainer {
   height: 100% !important;
   width: 100% !important; /* let the icon container fill the button */
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
 .doorControls .selectionGrid img,
