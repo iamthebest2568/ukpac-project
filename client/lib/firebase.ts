@@ -14,17 +14,26 @@ const firebaseConfig = {
 };
 
 let db: ReturnType<typeof getFirestore> | null = null;
-try {
-  const app = initializeApp(firebaseConfig);
-  db = getFirestore(app);
-  // don't initialize analytics on server/environment where window may be undefined
-} catch (e) {
-  console.warn("Firebase init failed", e);
+
+function initFirebase() {
+  if (db) return;
+  try {
+    // In case code runs in SSR or before window exists, guard
+    if (typeof window === 'undefined') return;
+    const app = initializeApp(firebaseConfig);
+    db = getFirestore(app);
+  } catch (e) {
+    console.warn("Firebase init failed", e);
+  }
 }
 
 export async function sendEventToFirestore(event: any) {
+  if (!db) initFirebase();
   if (!db) throw new Error('Firestore not initialized');
   const col = collection(db, "ukpack2_events");
   // write enriched event; add server timestamp
   return addDoc(col, { ...event, createdAt: serverTimestamp() });
 }
+
+// also export init for manual init from UI
+export { initFirebase };
