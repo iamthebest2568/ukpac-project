@@ -184,7 +184,7 @@ const IconRamp = () => (
 const IconRampActive = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F199c45ef45704addad6c7b113f14b7da?format=webp&width=800"
-    alt="ทางสำหรับรถเข็น/ผ���้พิการ (selected)"
+    alt="ทางสำหรับรถเข็น/ผู้พิการ (selected)"
     className="object-contain select-none max-h-full w-auto"
     decoding="async"
     loading="eager"
