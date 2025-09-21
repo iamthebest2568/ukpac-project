@@ -143,7 +143,7 @@ const SeatingScreen: React.FC = () => {
 
   const handleTotalSeatsChange = (v: number | "") => {
     if (v === "") { setTotalSeats(""); return; }
-    const clamped = Math.min(maxCapacity, Math.max(0, v as number));
+    const clamped = Math.min(maxCapacity, Math.max(minCapacity, v as number));
     setTotalSeats(clamped);
   };
 
