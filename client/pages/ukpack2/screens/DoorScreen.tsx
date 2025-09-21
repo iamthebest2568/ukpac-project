@@ -106,7 +106,7 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   "ที่จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
   "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
-  "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
+  "ร���บบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
   "กล้องวงจรปิด": <IconCamSmall />,
 };
 
@@ -244,7 +244,7 @@ const DoorScreen: React.FC = () => {
         const raw = sessionStorage.getItem("design.overlayIconMap");
         const map = raw ? (JSON.parse(raw) as Record<string, string>) : {};
         const key = selectedOption;
-        if (DOOR_BUTTON_SRC[key]) map[key] = DOOR_BUTTON_SRC[key];
+        if (OVERLAY_ICON_SRC[key]) map[key] = OVERLAY_ICON_SRC[key];
         sessionStorage.setItem("design.overlayIconMap", JSON.stringify(map));
       } catch (e) {}
     } catch (e) {}

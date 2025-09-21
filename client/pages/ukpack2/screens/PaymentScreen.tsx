@@ -319,7 +319,7 @@ const PaymentScreen: React.FC = () => {
         const raw = sessionStorage.getItem("design.overlayIconMap");
         const map = raw ? (JSON.parse(raw) as Record<string, string>) : {};
         selected.forEach((lab) => {
-          if (PAYMENT_BUTTON_SRC[lab]) map[lab] = PAYMENT_BUTTON_SRC[lab];
+          if (OVERLAY_ICON_SRC[lab]) map[lab] = OVERLAY_ICON_SRC[lab];
         });
         sessionStorage.setItem("design.overlayIconMap", JSON.stringify(map));
       } catch (e) {}

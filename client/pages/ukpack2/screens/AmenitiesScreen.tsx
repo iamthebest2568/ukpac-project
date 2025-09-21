@@ -187,7 +187,7 @@ const AmenitiesScreen: React.FC = () => {
         const raw = sessionStorage.getItem("design.overlayIconMap");
         const map = raw ? (JSON.parse(raw) as Record<string, string>) : {};
         selected.forEach((lab) => {
-          if (AMENITIES_BUTTON_SRC[lab]) map[lab] = AMENITIES_BUTTON_SRC[lab];
+          if (OVERLAY_ICON_SRC[lab]) map[lab] = OVERLAY_ICON_SRC[lab];
         });
         sessionStorage.setItem("design.overlayIconMap", JSON.stringify(map));
       } catch (e) {
@@ -245,7 +245,7 @@ const AmenitiesScreen: React.FC = () => {
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F4e8932e864664a7f8a454d61f4e87ca9?format=webp&width=800",
     ที่นั่งพิเศษ:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb35efe05833149089a2df21cf61300b4?format=webp&width=800", // ใช้ไอคอนหน้าต่างเปิดได้
-    หน้าต่างเปิดได้:
+    ห���้าต่างเปิดได้:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb35efe05833149089a2df21cf61300b4?format=webp&width=800",
     "ที่จับ/ราวยืนที่ปลอดภัย":
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fa9c2a350877e46c3a49f0f6cd867ae99?format=webp&width=800",
