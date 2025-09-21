@@ -233,7 +233,7 @@ const DoorScreen: React.FC = () => {
     "1": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fbfe398b713cf4650810c0e346f6c03e3?format=webp&width=800",
     "2": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Faee46c4c7271461dadfd68c9eb3aec69?format=webp&width=800",
     ramp: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F245ff72a7c3b468293c517a934e4e839?format=webp&width=800",
-    emergency: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F38e094ce2f914f2089d04349bc6f386b?format=webp&width=800",
+    emergency: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fcc69b8718f934fbb8059e036ca6cb93f?format=webp&width=800",
   };
 
   const handleNext = () => {
@@ -254,7 +254,7 @@ const DoorScreen: React.FC = () => {
 
   return (
     <CustomizationScreen
-    title="ปรับแต่งรถเมล์ของคุณ"
+    title="ปรับแต่งรถเมล์ของ��ุณ"
     theme="light"
     fullWidth
     footerContent={
@@ -521,7 +521,7 @@ const DoorScreen: React.FC = () => {
                   }
 
                   // Ensure explicit keys exist
-                  const explicit = ['เงินสด','สแกนจ่าย','สแกนจ่าย 2','แตะบัตร','กระ��ป๋ารถเมล์','ตั๋วรายเดือน/รอบ','1','2','ramp','emergency'];
+                  const explicit = ['เงินสด','สแกนจ่าย','สแ���นจ่าย 2','แตะบัตร','กระ��ป๋ารถเมล์','ตั๋วรายเดือน/รอบ','1','2','ramp','emergency'];
                   for (const k of explicit) {
                     if (!merged[k]) {
                       if (storedMapRaw[k]) setVariants(k, storedMapRaw[k]);
