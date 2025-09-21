@@ -93,6 +93,28 @@ const VehiclePreview: React.FC<Props> = ({
                 if (raw) storedMap = JSON.parse(raw) as Record<string, string>;
               } catch {}
 
+              // Build a normalized lookup map to avoid mismatches from NBSP/no-break-hyphen or casing
+              const normalizeKey = (s: string) =>
+                (s || "")
+                  .replace(/\uFFFD/g, "")
+                  .replace(/\u2011/g, "-")
+                  .replace(/\u00A0/g, " ")
+                  .replace(/&amp;/g, "&")
+                  .replace(/\s+/g, " ")
+                  .trim()
+                  .toLowerCase();
+
+              const normalizedStoredMap: Record<string, string> = {};
+              try {
+                for (const k of Object.keys(storedMap || {})) {
+                  try {
+                    const nk = normalizeKey(k);
+                    if (nk) normalizedStoredMap[nk] = storedMap[k];
+                  } catch {}
+                }
+              } catch {}
+
+
               // choose size classes based on selected chassis (stored in sessionStorage.design.chassis)
               const chassis = (() => {
                 try { return sessionStorage.getItem("design.chassis") || undefined; } catch { return undefined; }
