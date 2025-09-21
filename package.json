@@ -11,8 +11,8 @@
     ]
   },
   "scripts": {
-    "fix-ukpack2-alts": "node scripts/fix-alt-ukpack2.js",
-    "fix-ukpack2-encoding": "node scripts/utf8-safeguard.js",
+    "fix-ukpack2-alts": "node scripts/fix-alt-ukpack2.cjs",
+    "fix-ukpack2-encoding": "node scripts/utf8-safeguard.cjs",
     "dev": "vite",
     "build": "npm run build:client && npm run build:server",
     "build:client": "vite build",
