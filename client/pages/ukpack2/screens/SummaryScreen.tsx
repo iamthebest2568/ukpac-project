@@ -35,7 +35,7 @@ const SummaryScreen: React.FC = () => {
     small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
     medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
     large: "รถตู้โดยสาร 9–15 ที่นั่ง",
-    extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
+    extra: "รถกะบะดัดแ��ลง 8–12 ที่นั่ง",
   };
 
   const HERO_IMAGE: Record<string, string> = {
@@ -69,7 +69,7 @@ const SummaryScreen: React.FC = () => {
     if (typeof raw === "string") {
       if (raw === "1") return "1 ประตู";
       if (raw === "2") return "2 ประตู";
-      if (raw === "ramp") return "ทางลาดสำหรับรถเข็น/ผู้พิการ";
+      if (raw === "ramp") return "ท���งลาดสำหรับรถเข็น/ผู้พิการ";
       if (raw === "emergency") return "ประตูฉุกเฉิน";
       return raw;
     }
@@ -109,7 +109,7 @@ const SummaryScreen: React.FC = () => {
         </div>
       </div>
     }>
-      <div className="max-w-5xl mx-auto px-4 py-4">
+      <div className="max-w-5xl mx-auto px-4 py-2">
         <SummaryDetails />
       </div>
     </CustomizationScreen>
