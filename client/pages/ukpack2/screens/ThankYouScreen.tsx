@@ -8,7 +8,7 @@ const ThankYouScreen: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <CustomizationScreen title="" theme="light">
+    <CustomizationScreen title="" theme="light" fullWidth>
       <div className="max-w-2xl mx-auto pt-4 pb-8 text-center" style={{paddingLeft: 20, paddingRight: 20}}>
         <div className="w-full flex justify-center mb-2">
           <img
@@ -26,7 +26,7 @@ const ThankYouScreen: React.FC = () => {
           <div className="font-prompt font-semibold text-[18px] leading-relaxed">
             <p>คุณอยากกรอกข้อมูลเพิ่ม</p>
             <p>เพื่อลุ้นรับรางวัล</p>
-            <p>ลุ้นรางวั���บัตรขนส่งสาธารณะ</p>
+            <p>ลุ้นรางวัลบัตรขนส่งสาธารณะ</p>
             <p>
               <span className="text-3xl md:text-4xl font-extrabold text-[#001a73]">
                 300
