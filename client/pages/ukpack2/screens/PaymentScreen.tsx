@@ -299,9 +299,34 @@ const PaymentScreen: React.FC = () => {
 
   const ICON_SETS: Record<string, string[]> = {
     "เงินสด": [
-      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9990d6a9de5745c4984f9086e1bb669b?format=webp&width=800",
-      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F31bf12526755463cb2602efd743d7f38?format=webp&width=800",
-      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fdf91e2e565b1435597c2f62ea1b3c0d7?format=webp&width=800",
+      MONEY_ICON,
+      MONEY_ICON_ACTIVE,
+      CASH_OVERLAY_ICON,
+    ],
+    "สแกนจ่าย": [
+      SCAN_ICON,
+      SCAN_ICON_ACTIVE,
+      OVERLAY_ICON_SRC["สแกนจ่าย"],
+    ],
+    "สแกนจ่าย 2": [
+      SCAN2_ICON,
+      SCAN2_ICON_ACTIVE,
+      OVERLAY_ICON_SRC["สแกนจ่าย 2"],
+    ],
+    "แตะบัตร": [
+      TOUCH_ICON,
+      TOUCH_ICON_ACTIVE,
+      OVERLAY_ICON_SRC["แตะบัตร"],
+    ],
+    "กระเป๋ารถเมล์": [
+      BUS_EMPLOY_ICON,
+      BUS_EMPLOY_ICON_ACTIVE,
+      OVERLAY_ICON_SRC["กระเป๋ารถเมล์"],
+    ],
+    "ตั๋วรายเดือน/รอบ": [
+      MONTHLY_ICON,
+      MONTHLY_ICON_ACTIVE,
+      OVERLAY_ICON_SRC["ตั๋วรายเดือน/���อบ"],
     ],
   };
 
@@ -374,7 +399,7 @@ const PaymentScreen: React.FC = () => {
           {(() => {
             const CHASSIS_LABELS: Record<string, string> = {
               small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
-              medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
+              medium: "รถเมล์มาตรฐาน 30–50 ที��นั่ง",
               large: "รถตู้โดยสาร 9–15 ที่นั่ง",
               extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
             };
