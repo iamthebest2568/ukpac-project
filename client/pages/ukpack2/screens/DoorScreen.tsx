@@ -544,18 +544,27 @@ const DoorScreen: React.FC = () => {
                       if (raw) storedMap = JSON.parse(raw) as Record<string, string>;
                     } catch {}
 
-                    const normalize = (s: string) => (s || "").replace(/\uFFFD/g, "").replace(/\u2011/g, "-").replace(/\u00A0/g, " ").replace(/\s+/g, " ").trim();
-                    const candidateUrl = (() => {
-                      try {
-                        if (storedMap[opt.key]) return storedMap[opt.key] as string;
-                        if (storedMap[opt.label]) return storedMap[opt.label] as string;
-                        const target = normalize(opt.label).toLowerCase();
-                        for (const k of Object.keys(storedMap)) {
-                          if (normalize(k).toLowerCase() === target) return storedMap[k] as string;
-                        }
-                      } catch {}
+                    const normalizeKey = (s: string) =>
+                      (s || "")
+                        .replace(/\uFFFD/g, "")
+                        .replace(/\u2011/g, "-")
+                        .replace(/\u00A0/g, " ")
+                        .replace(/&amp;/g, "&")
+                        .replace(/\s+/g, " ")
+                        .trim()
+                        .toLowerCase();
+
+                    const lookupStored = (labelOrKey: string) => {
+                      if (!labelOrKey) return undefined;
+                      if (storedMap[labelOrKey]) return storedMap[labelOrKey] as string;
+                      const target = normalizeKey(labelOrKey);
+                      for (const k of Object.keys(storedMap)) {
+                        if (normalizeKey(k) === target) return storedMap[k] as string;
+                      }
                       return undefined;
-                    })();
+                    };
+
+                    const candidateUrl = lookupStored(opt.key) || lookupStored(opt.label);
 
                     const iconNode = candidateUrl ? (
                       <img src={candidateUrl} alt={opt.label} className="h-full w-full object-contain" decoding="async" loading="eager" />
