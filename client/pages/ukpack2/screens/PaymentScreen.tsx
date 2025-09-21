@@ -221,7 +221,7 @@ const IconCam = () => (
 const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   "แอร์": <IconAir />,
   "พัดลม": <IconFan />,
-  "ที่นั่งพิเศษ": <IconSeat />,
+  "ที่นั่งพ���เศษ": <IconSeat />,
   "ที่จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
   "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
@@ -330,7 +330,7 @@ const PaymentScreen: React.FC = () => {
 
   return (
     <CustomizationScreen
-      title="ปรับแต่งรถเมล์ขอ��คุณ"
+      title="ปรับแต่งรถเมล์ของคุณ"
       theme="light"
       fullWidth
       footerContent={
@@ -632,7 +632,7 @@ const PaymentScreen: React.FC = () => {
                         className="h-full w-full object-contain"
                       />
                     ),
-                    "กระเป๋��รถเมล์": (
+                    "กระเป๋ารถเมล์": (
                       <img
                         src={"https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F422e4242064b4e6cac52945deb072145?format=webp&width=800"}
                         alt="กระเป๋ารถเมล์"
