@@ -420,14 +420,26 @@ export async function sendLocalEventsToFirestore(options = {}) {
     // cause transport errors in some network/environments. Introduce a small delay
     // between writes.
     for (const ev of chunk) {
-      try {
-        await sendEventToFirestore(ev);
-        sentCount += 1;
-        if (sampleSent.length < 5) sampleSent.push(ev);
-        // small delay to avoid hammering
-        await new Promise((res) => setTimeout(res, 150));
-      } catch (err) {
-        errors.push({ event: ev, error: String(err) });
+      let attempt = 0;
+      let success = false;
+      let lastErr = null;
+      while (attempt < 3 && !success) {
+        try {
+          await sendEventToFirestore(ev);
+          sentCount += 1;
+          if (sampleSent.length < 5) sampleSent.push(ev);
+          success = true;
+          // polite delay between writes
+          await new Promise((res) => setTimeout(res, 800));
+        } catch (err) {
+          lastErr = err;
+          attempt += 1;
+          // exponential backoff
+          await new Promise((res) => setTimeout(res, 500 * attempt));
+        }
+      }
+      if (!success) {
+        errors.push({ event: ev, error: String(lastErr) });
       }
     }
   }
