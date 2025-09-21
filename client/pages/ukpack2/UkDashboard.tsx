@@ -178,6 +178,74 @@ const UkDashboard: React.FC = () => {
             >
               Export Mapped CSV
             </button>
+
+            <button
+              onClick={() => {
+                // Copy schema JSON to clipboard
+                const schema = {
+                  documentFields: ["createdAt","sessionID","timestamp","event","url","userAgent","viewport","payload"],
+                  payloadFields: ["PDPA","chassis","seating","amenities","payment","doors","color","frequency","route","area","decisionUseService","reasonNotUse","enterPrize","prizeName","prizePhone","shared"],
+                  csvColumns: ["sessionID","ip","firstTimestamp","lastTimestamp","PDPA_acceptance","chassis_type","total_seats","special_seats","children_count","pregnant_count","monk_count","features","payment_types","doors","color","frequency","route","area","decision_use_service","reason_not_use","decision_enter_prize","prize_name","prize_phone","prize_timestamp","shared_with_friends","shared_timestamp"]
+                };
+                try {
+                  navigator.clipboard.writeText(JSON.stringify(schema, null, 2));
+                  alert('Schema copied to clipboard');
+                } catch (e) {
+                  const blob = new Blob([JSON.stringify(schema, null, 2)], { type: 'application/json' });
+                  const url = URL.createObjectURL(blob);
+                  const a = document.createElement('a');
+                  a.href = url;
+                  a.download = 'ukpack2-schema.json';
+                  a.click();
+                  URL.revokeObjectURL(url);
+                }
+              }}
+              className="bg-[#a78bfa] text-white px-4 py-2 rounded font-semibold"
+            >
+              Copy schema / Download JSON
+            </button>
+
+            <button
+              onClick={async () => {
+                // Build aggregation and publish to server endpoint
+                try {
+                  const summary = getEventSummary();
+                  const all = getLoggedEvents();
+                  const publicItems = all.filter((ev) => {
+                    const p = ev.payload || {};
+                    const pdpa = p.PDPA || p.pdpa || ev.PDPA || ev.pdpa;
+                    return pdpa === true;
+                  }).slice(-50).map((ev) => ({
+                    sessionID: ev.sessionID,
+                    timestamp: ev.timestamp,
+                    event: ev.event,
+                    payload: {
+                      // pick fields safe for public
+                      imageUrl: ev.payload?.imageUrl || ev.payload?.image || null,
+                      slogan: ev.payload?.slogan || ev.payload?.prizeName || null,
+                    }
+                  }));
+
+                  const payload = { summary, publicItems, publishedAt: new Date().toISOString() };
+                  const resp = await fetch('/api/ukpack2/publish', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload),
+                  });
+                  const j = await resp.json();
+                  if (j.ok) {
+                    alert('Published public aggregation');
+                  } else {
+                    alert('Failed to publish: ' + (j.error || 'unknown'));
+                  }
+                } catch (e) {
+                  alert('Publish failed: ' + String(e));
+                }
+              }}
+              className="bg-[#60a5fa] text-white px-4 py-2 rounded font-semibold"
+            >
+              Publish Aggregation
+            </button>
             <button
               onClick={async () => {
                 setIsSending(true);
