@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { exportEventsAsCSV, getEventSummary, getLoggedEvents, clearEventLogs } from "../../services/dataLogger.js";
+import { exportEventsAsCSV, exportSessionsAsCSV, getEventSummary, getLoggedEvents, clearEventLogs } from "../../services/dataLogger.js";
 
 const DASH_PASSWORD = "ukpact2dash"; // access code as requested
 
