@@ -167,61 +167,28 @@ const VehiclePreview: React.FC<Props> = ({
                           .toLowerCase();
 
                       const lookup = (label: string) => {
-                        // candidates: exact, normalized, no-spaces
-                        const candidates = [label];
-                        try {
-                          const n = normalize(label);
-                          candidates.push(n);
-                          candidates.push(n.replace(/\s/g, ""));
-                        } catch {}
+                        if (!label) return undefined;
+                        const nk = normalizeKey(label);
 
-                        // Prefer storedMap (session) entries first (usually URLs)
-                        for (const c of candidates) {
-                          if (storedMap && typeof storedMap[c] === 'string' && storedMap[c]) return storedMap[c];
-                        }
+                        // 1) direct normalized stored map lookup
+                        if (normalizedStoredMap[nk]) return normalizedStoredMap[nk];
 
-                        // Next prefer overlayIconMap entries that are strings (URLs)
-                        // But before that, attempt normalized matches against storedMap keys (to catch case/space/hyphen variants)
-                        if (storedMap) {
-                          const keys = Object.keys(storedMap);
-                          const target = normalize(label);
-                          for (const k of keys) {
-                            if (normalize(k) === target && typeof storedMap[k] === 'string') return storedMap[k];
-                          }
-                        }
-
-                        for (const c of candidates) {
-                          if (overlayIconMap && typeof overlayIconMap[c] === 'string' && overlayIconMap[c]) return overlayIconMap[c] as string;
-                        }
-
-                        // If no string URLs found, fall back to JSX nodes from overlayIconMap or storedMap
-                        for (const c of candidates) {
-                          if (overlayIconMap && overlayIconMap[c]) return overlayIconMap[c];
-                          if (storedMap && storedMap[c]) return storedMap[c];
-                        }
-
-                        // fallback: search overlayIconMap keys for normalized match (strings preferred)
+                        // 2) try overlayIconMap by normalized key (prefer string URLs)
                         if (overlayIconMap) {
-                          const keys = Object.keys(overlayIconMap);
-                          const target = normalize(label);
-                          // check for string match first
-                          for (const k of keys) {
-                            if (normalize(k) === target && typeof overlayIconMap[k] === 'string') return overlayIconMap[k];
+                          for (const k of Object.keys(overlayIconMap)) {
+                            if (normalizeKey(k) === nk && typeof overlayIconMap[k] === 'string') return overlayIconMap[k] as string;
                           }
-                          // then JSX
-                          for (const k of keys) {
-                            if (normalize(k) === target) return overlayIconMap[k];
+                          for (const k of Object.keys(overlayIconMap)) {
+                            if (normalizeKey(k) === nk) return overlayIconMap[k];
                           }
                         }
 
-                        // fallback: search storedMap keys for normalized match
-                        if (storedMap) {
-                          const keys = Object.keys(storedMap);
-                          const target = normalize(label);
-                          for (const k of keys) {
-                            if (normalize(k) === target) return storedMap[k];
-                          }
-                        }
+                        // 3) try slight variant (no spaces) on normalizedStoredMap
+                        const nkNoSpace = nk.replace(/\s/g, "");
+                        if (normalizedStoredMap[nkNoSpace]) return normalizedStoredMap[nkNoSpace];
+
+                        // 4) as last resort, try direct storedMap raw keys
+                        if (storedMap[label]) return storedMap[label];
 
                         return undefined;
                       };
