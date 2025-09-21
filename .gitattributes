@@ -1,0 +1,10 @@
+# Ensure files in ukpack2 are stored/checked out as UTF-8
+client/pages/ukpack2/** text working-tree-encoding=UTF-8
+
+# Ensure typical text files are normalized
+*.ts text
+*.tsx text
+*.js text
+*.jsx text
+*.css text
+*.html text
