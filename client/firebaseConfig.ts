@@ -12,7 +12,18 @@ const firebaseConfig = {
   appId: 'REPLACE_WITH_APP_ID',
 };
 
-const app = initializeApp(firebaseConfig);
-export const database = getDatabase(app);
+// Only initialize here if the template values have been replaced.
+let app = null;
+let database = null;
+try {
+  const shouldInit = typeof firebaseConfig.projectId === 'string' && !firebaseConfig.projectId.includes('REPLACE_WITH');
+  if (shouldInit) {
+    app = initializeApp(firebaseConfig);
+    database = getDatabase(app);
+  }
+} catch (e) {
+  // swallow — other module (client/lib/firebase.ts) will init properly
+}
 
+export { database };
 export default app;
