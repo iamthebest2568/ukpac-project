@@ -254,23 +254,23 @@
 .doorControls .selectionGrid {
   --icon-cell-height: 220px !important; /* larger default for door icons */
   display: grid !important;
-  grid-template-columns: repeat(2, 1fr) !important; /* force 2 columns */
-  gap: 2px !important; /* tight gap */
+  grid-template-columns: repeat(2, minmax(140px, 1fr)) !important; /* constrained columns */
+  gap: 8px !important; /* slightly larger but balanced gap */
   padding: 0 !important;
-  justify-content: center !important; /* center grid in frame */
+  justify-content: start !important; /* align grid to the left so items are not widely spaced */
   justify-items: center !important; /* buttons centered in each cell */
   align-items: start !important;
 }
 
 .doorControls .selectionGrid > button {
-  padding: 0 !important;
-  width: auto !important; /* allow buttons to size to content */
-  max-width: 200px !important;
+  padding: 4px !important;
+  width: 100% !important; /* fill the column for consistent spacing */
+  max-width: none !important;
 }
 
 .doorControls .selectionGrid > button > div.iconContainer {
   height: var(--icon-cell-height) !important;
-  width: 160px !important; /* fixed icon width to make icons larger */
+  width: 140px !important; /* slightly reduced fixed icon width for balanced layout */
 }
 
 .doorControls .selectionGrid img,
