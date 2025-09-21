@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import StepTabs from "../components/StepTabs";
 import styles from "./chassis.module.css";
 import { useBusDesign } from "../context/BusDesignContext";
+import { OVERLAY_ICON_SRC } from "../utils/overlayIcons";
 
 const IconCash = () => (
   <svg
@@ -345,7 +346,7 @@ const PaymentScreen: React.FC = () => {
             const CHASSIS_LABELS: Record<string, string> = {
               small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
               medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
-              large: "รถตู้โดยสาร 9–15 ที่นั่ง",
+              large: "รถตู้โดยสาร 9–15 ที่น��่ง",
               extra: "รถกะบะดัดแป���ง 8–12 ที่นั่��",
             };
             const HERO_IMAGE: Record<string, string> = {
@@ -400,7 +401,7 @@ const PaymentScreen: React.FC = () => {
               "สแกนจ่าย 2": "สแกนจ่าย 2",
               "���แกนจ่าย 2": "สแกนจ่าย 2",
               "แตะบัตร": "แตะบัตร",
-              "กระเป๋ารถเมล์": "กระเป๋ารถเมล์",
+              "กระเป๋ารถเมล��": "กระเป๋ารถเมล์",
               "เงินสด": "เงินสด",
             };
             const stripReplacement = (s: string) => (s || "").replace(/�|\uFFFD/g, "").trim();
