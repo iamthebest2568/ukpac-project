@@ -181,10 +181,11 @@ const SummaryDetails: React.FC = () => {
   };
 
   return (
-    <div className="font-sarabun text-[17.6px] font-bold">
+    <div className="font-sarabun text-[15px]">
       {heroImg && (
-        <div className="flex flex-col items-center mb-1">
+        <div className="flex flex-col items-center mb-0">
           <VehiclePreview
+            className="max-w-[260px]"
             imageSrc={heroImg}
             label={chassisLabel}
             showSelectedText
@@ -230,39 +231,39 @@ const SummaryDetails: React.FC = () => {
         </div>
       )}
 
-      <div className="bg-[#e6e7e8] rounded-xl p-4 text-sm text-gray-800 shadow-sm">
-        <div className="flex flex-col gap-3">
-          <div className="flex items-start gap-3">
-            <div className="w-28 md:w-36 text-sm text-[#003366] truncate font-sarabun font-semibold">รูปแบบรถ</div>
+      <div className="bg-[#e6e7e8] rounded-xl p-3 text-sm text-gray-800 shadow-sm">
+        <div className="flex flex-col gap-2">
+          <div className="flex items-start gap-2">
+            <div className="w-24 md:w-32 text-sm text-[#003366] truncate font-sarabun font-semibold">รูปแบบรถ</div>
             <div className="flex-1 font-sarabun font-semibold text-sm text-[#003366] break-words">{chassisLabel}</div>
           </div>
 
-          <div className="flex items-start gap-3">
-            <div className="w-28 md:w-36 text-sm text-[#003366] truncate font-sarabun font-semibold">ที่นั่ง</div>
+          <div className="flex items-start gap-2">
+            <div className="w-24 md:w-32 text-sm text-[#003366] truncate font-sarabun font-semibold">ที่นั่ง</div>
             <div className="flex-1 font-sarabun font-semibold text-sm text-[#003366] break-words">{data.seating ? (typeof data.seating === "object" ? data.seating.totalSeats : String(data.seating)) : "-"}</div>
           </div>
 
-          <div className="flex items-start gap-3">
+          <div className="flex items-start gap-2">
             <div className="w-28 md:w-36 text-sm text-[#003366] truncate">การจ่ายเงิน</div>
             <div className="flex-1 font-sarabun font-semibold text-sm text-[#003366] break-words">{data.payment ? (Array.isArray(data.payment) ? data.payment.join(", ") : String(data.payment)) : "-"}</div>
           </div>
 
-          <div className="flex items-start gap-3">
+          <div className="flex items-start gap-2">
             <div className="w-28 md:w-36 text-sm text-[#003366] truncate">ความสะดวก</div>
             <div className="flex-1 font-sarabun font-semibold text-sm text-[#003366] break-words">{data.amenities ? (Array.isArray(data.amenities) ? data.amenities.join(", ") : String(data.amenities)) : "-"}</div>
           </div>
 
-          <div className="flex items-start gap-3">
+          <div className="flex items-start gap-2">
             <div className="w-28 md:w-36 text-sm text-[#003366] truncate">ทางขึ้น</div>
             <div className="flex-1 font-sarabun font-semibold text-sm text-[#003366] break-words">{data.doors ? (typeof data.doors === "string" ? displayDoor(data.doors) : typeof data.doors === "object" ? (data.doors.doorChoice ? (data.doors.doorChoice === "1" ? "1 ประตู" : data.doors.doorChoice === "2" ? "2 ประตู" : String(data.doors.doorChoice)) : data.doors.hasRamp ? "ทางลาดสำหรับรถเ      /ผู้พิการ" : data.doors.highLow ? "ประตูฉุกเฉิน" : JSON.stringify(data.doors)) : String(data.doors)) : "-"}</div>
           </div>
 
-          <div className="flex items-start gap-3">
-            <div className="w-28 md:w-36 text-sm text-[#003366] truncate font-sarabun font-semibold">ลักษณะพิเศษ</div>
+          <div className="flex items-start gap-2">
+            <div className="w-24 md:w-32 text-sm text-[#003366] truncate font-sarabun font-semibold">ลักษณะพิเศษ</div>
             <div className="flex-1 font-sarabun font-semibold text-sm text-[#003366] break-words">{data.slogan || "-"}</div>
           </div>
 
-          <div className="flex items-start gap-3">
+          <div className="flex items-start gap-2">
             <div className="w-28 md:w-36 text-sm text-[#003366] truncate">สี</div>
             <div className="flex-1 font-sarabun font-semibold text-sm text-[#003366] break-words">{(state?.exterior?.color?.colorHex) || (data.color ? (typeof data.color === "string" ? JSON.parse(String(data.color)).colorHex ?? String(data.color) : String(data.color)) : "-")}</div>
           </div>
