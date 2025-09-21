@@ -69,7 +69,7 @@ const VehiclePreview: React.FC<Props> = ({
           <img
             ref={shadowRef}
             src={SHADOW_URL}
-            alt="เงา"
+            alt="shadow"
             className="absolute pointer-events-none select-none"
             style={{ bottom: "8px" }}
             decoding="async"
