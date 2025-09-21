@@ -138,7 +138,7 @@ const AMENITIES = [
   { key: "wifi", label: "ที่จับ/ราวยืนที่ปลอดภัย", icon: <IconWifi />, iconActive: <IconWifiAlt /> },
   { key: "plug", label: "ช่องชาร์จมือถือ/USB", icon: <IconPlug />, iconActive: <IconPlugAlt /> },
   { key: "tv", label: "Wi‑Fi ฟรี", icon: <IconTv />, iconActive: <IconTvAlt /> },
-  { key: "cup", label: "ระบบประกาศบอ��ป้าย(เสียง/จอ)", icon: <IconCup />, iconActive: <IconCupAlt /> },
+  { key: "cup", label: "ระบบประกาศบอกป้าย(เสียง/จอ)", icon: <IconCup />, iconActive: <IconCupAlt /> },
 ];
 
 import { useNavigate } from "react-router-dom";
@@ -267,7 +267,7 @@ const AmenitiesScreen: React.FC = () => {
 
   return (
     <CustomizationScreen
-      title="ปรับแต��งรถเมล์ของ���ุณ"
+      title="ปรับแต่งรถเมล์ของคุณ"
       theme="light"
       fullWidth
       footerContent={
