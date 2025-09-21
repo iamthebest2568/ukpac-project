@@ -150,7 +150,7 @@ const VehiclePreview: React.FC<Props> = ({
             <img
               ref={carRef}
               src={imageSrc}
-              alt={typeof label === "string" ? `ภาพรถ - ${label}` : "ภาพรถ"}
+              alt={typeof label === "string" ? `bus image - ${label}` : "bus image"}
               className="h-full w-auto object-contain mx-auto select-none"
               decoding="async"
               loading="eager"
