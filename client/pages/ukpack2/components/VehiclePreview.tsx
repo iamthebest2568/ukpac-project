@@ -1,5 +1,3 @@
-import React, { useEffect, useRef } from "react";
-
 import React, { useRef, useEffect } from 'react';
 
 const SHADOW_URL =
