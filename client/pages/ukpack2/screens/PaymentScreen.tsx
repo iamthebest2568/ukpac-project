@@ -682,24 +682,33 @@ const PaymentScreen: React.FC = () => {
                     if (raw) storedMap = JSON.parse(raw) as Record<string, string>;
                   } catch {}
 
-                  const normalize = (s: string) => (s || "").replace(/\uFFFD/g, "").replace(/\u2011/g, "-").replace(/\u00A0/g, " ").replace(/\s+/g, " ").trim();
+                  const normalizeKey = (s: string) =>
+                    (s || "")
+                      .replace(/\uFFFD/g, "")
+                      .replace(/\u2011/g, "-")
+                      .replace(/\u00A0/g, " ")
+                      .replace(/&amp;/g, "&")
+                      .replace(/\s+/g, " ")
+                      .trim()
+                      .toLowerCase();
+
+                  const lookupStored = (labelOrKey: string) => {
+                    if (!labelOrKey) return undefined;
+                    // direct match
+                    if (storedMap[labelOrKey]) return storedMap[labelOrKey] as string;
+                    // normalized match
+                    const target = normalizeKey(labelOrKey);
+                    for (const k of Object.keys(storedMap)) {
+                      if (normalizeKey(k) === target) return storedMap[k] as string;
+                    }
+                    return undefined;
+                  };
 
                   return OPTIONS.map((o) => {
                     const isSel = selected.includes(o.label);
 
-                    // Lookup order: storedMap[label], storedMap[key], overlay constants
-                    const overlayUrl = (() => {
-                      try {
-                        if (storedMap[o.label]) return storedMap[o.label] as string;
-                        if (storedMap[o.key]) return storedMap[o.key] as string;
-                        // try normalized matches
-                        const target = normalize(o.label).toLowerCase();
-                        for (const k of Object.keys(storedMap)) {
-                          if (normalize(k).toLowerCase() === target) return storedMap[k] as string;
-                        }
-                      } catch {}
-                      return undefined;
-                    })();
+                    // Lookup order: normalized storedMap(label), storedMap(key), explicit constants
+                    const overlayUrl = lookupStored(o.label) || lookupStored(o.key);
 
                     const baseIcon =
                       o.key === "cash"
