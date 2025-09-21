@@ -93,22 +93,30 @@ const UkDashboard: React.FC = () => {
   };
 
   const handleSendPDPAOnly = async () => {
+    setIsSending(true);
     try {
       const res = await sendLocalEventsToFirestore({ batchSize: 50, onlyPDPA: true });
       setLastSentResult(res);
       alert(`Sent ${res.sentCount} PDPA-accepted events (skipped ${res.skippedCount})`);
+      refreshSummary();
     } catch (e) {
       alert("Send failed: " + String(e));
+    } finally {
+      setIsSending(false);
     }
   };
 
   const handleSendBatch = async (size = 20) => {
+    setIsSending(true);
     try {
       const res = await sendLocalEventsToFirestore({ batchSize: size, onlyPDPA: true });
       setLastSentResult(res);
       alert(`Batch send complete: ${res.sentCount} sent (skipped ${res.skippedCount})`);
+      refreshSummary();
     } catch (e) {
       alert("Send failed: " + String(e));
+    } finally {
+      setIsSending(false);
     }
   };
 
