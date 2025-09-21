@@ -301,32 +301,32 @@ const PaymentScreen: React.FC = () => {
     "เงินสด": [
       MONEY_ICON,
       MONEY_ICON_ACTIVE,
-      CASH_OVERLAY_ICON,
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F29e4422ee7ff4d72a3f359831ac92c32?format=webp&width=800",
     ],
     "สแกนจ่าย": [
       SCAN_ICON,
       SCAN_ICON_ACTIVE,
-      OVERLAY_ICON_SRC["สแกนจ่าย"],
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe9e95c0ee1cf44c782478f7ca3e7cac9?format=webp&width=800",
     ],
     "สแกนจ่าย 2": [
       SCAN2_ICON,
       SCAN2_ICON_ACTIVE,
-      OVERLAY_ICON_SRC["สแกนจ่าย 2"],
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F450e64db5b824f5c92cb33d5993705f6?format=webp&width=800",
     ],
     "แตะบัตร": [
       TOUCH_ICON,
       TOUCH_ICON_ACTIVE,
-      OVERLAY_ICON_SRC["แตะบัตร"],
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc25d540d10cc44e6922d714177b11d94?format=webp&width=800",
     ],
     "กระเป๋ารถเมล์": [
       BUS_EMPLOY_ICON,
       BUS_EMPLOY_ICON_ACTIVE,
-      OVERLAY_ICON_SRC["กระเป๋ารถเมล์"],
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc672415acf294449bc41d44cd9434120?format=webp&width=800",
     ],
     "ตั๋วรายเดือน/รอบ": [
       MONTHLY_ICON,
       MONTHLY_ICON_ACTIVE,
-      OVERLAY_ICON_SRC["ตั๋วรายเดือน/���อบ"],
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb7f2ac177a8848c18451c8d3f5109582?format=webp&width=800",
     ],
   };
 
@@ -454,7 +454,7 @@ const PaymentScreen: React.FC = () => {
             const CORRECT_LABELS: Record<string, string> = {
               "สแกนจ่าย 2": "สแกนจ่าย 2",
               "แตะบัตร": "แตะบัตร",
-              "กระเป๋ารถเมล์": "กระเป๋ารถเมล์",
+              "กระเป๋ารถเมล์": "กระเป���ารถเมล์",
               "เงินสด": "เงินสด",
             };
             const stripReplacement = (s: string) =>
