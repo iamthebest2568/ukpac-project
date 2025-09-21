@@ -134,41 +134,85 @@ const VehiclePreview: React.FC<Props> = ({
                     className="flex gap-2 overflow-x-auto no-scrollbar whitespace-nowrap items-center py-1"
                     style={{ scrollBehavior: 'smooth' }}
                   >
-                    {overlayLabels.map((lab, i) => {
-                      const propVal = overlayIconMap ? overlayIconMap[lab] : undefined;
-                      const storedVal = storedMap ? storedMap[lab] : undefined;
-                      const srcOrNode = storedVal || propVal;
-                      return (
-                        <div
-                          key={`${lab}-${i}`}
-                          className={`${sizeClass} flex items-center justify-center inline-flex flex-shrink-0`}
-                          style={{ display: 'inline-flex' }}
-                        >
-                          {typeof srcOrNode === "string" && srcOrNode ? (
-                            (() => {
-                              const src = srcOrNode as string;
-                              const srcSet = src.includes("width=")
-                                ? `${src} 1x, ${src.replace(/width=\d+/, "width=1600")} 2x`
-                                : undefined;
-                              return (
-                                <img
-                                  src={src}
-                                  srcSet={srcSet}
-                                  alt={lab}
-                                  className="h-full w-full object-contain"
-                                  decoding="async"
-                                  loading="eager"
-                                />
-                              );
-                            })()
-                          ) : srcOrNode ? (
-                            <>{srcOrNode}</>
-                          ) : (
-                            <div className="text-xs inline-block">{lab}</div>
-                          )}
-                        </div>
-                      );
-                    })}
+                    {(() => {
+                      const normalize = (s: string) =>
+                        (s || "")
+                          .replace(/\uFFFD/g, "")
+                          .replace(/\u2011/g, "-")
+                          .replace(/\u00A0/g, " ")
+                          .replace(/\s+/g, " ")
+                          .trim()
+                          .toLowerCase();
+
+                      const lookup = (label: string) => {
+                        // candidates: exact, normalized, no-spaces
+                        const candidates = [label];
+                        try {
+                          const n = normalize(label);
+                          candidates.push(n);
+                          candidates.push(n.replace(/\s/g, ""));
+                        } catch {}
+
+                        for (const c of candidates) {
+                          if (storedMap && storedMap[c]) return storedMap[c];
+                          if (overlayIconMap && overlayIconMap[c]) return overlayIconMap[c];
+                        }
+
+                        // fallback: search overlayIconMap keys for normalized match
+                        if (overlayIconMap) {
+                          const keys = Object.keys(overlayIconMap);
+                          const target = normalize(label);
+                          for (const k of keys) {
+                            if (normalize(k) === target) return overlayIconMap[k];
+                          }
+                        }
+
+                        // fallback: search storedMap keys for normalized match
+                        if (storedMap) {
+                          const keys = Object.keys(storedMap);
+                          const target = normalize(label);
+                          for (const k of keys) {
+                            if (normalize(k) === target) return storedMap[k];
+                          }
+                        }
+
+                        return undefined;
+                      };
+
+                      return overlayLabels.map((lab, i) => {
+                        const srcOrNode = lookup(lab as string);
+                        return (
+                          <div
+                            key={`${lab}-${i}`}
+                            className={`${sizeClass} flex items-center justify-center inline-flex flex-shrink-0`}
+                            style={{ display: 'inline-flex' }}
+                          >
+                            {typeof srcOrNode === "string" && srcOrNode ? (
+                              (() => {
+                                const src = srcOrNode as string;
+                                const srcSet = src.includes("width=")
+                                  ? `${src} 1x, ${src.replace(/width=\d+/, "width=1600")} 2x`
+                                  : undefined;
+                                return (
+                                  <img
+                                    src={src}
+                                    srcSet={srcSet}
+                                    alt={lab}
+                                    className="h-full w-full object-contain"
+                                    decoding="async"
+                                    loading="eager"
+                                  />
+                                );
+                              })()
+                            ) : srcOrNode ? (
+                              <>{srcOrNode}</>
+                            ) : (
+                              <div className="text-xs inline-block">{lab}</div>
+                            )}
+                          </div>
+                        );
+                      });
+                    })()}
                   </div>
 
                   <button
