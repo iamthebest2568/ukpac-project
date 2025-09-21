@@ -348,7 +348,8 @@ const PaymentScreen: React.FC = () => {
         const raw = sessionStorage.getItem("design.overlayIconMap");
         const map = raw ? (JSON.parse(raw) as Record<string, string>) : {};
         selected.forEach((lab) => {
-          if (OVERLAY_ICON_SRC[lab]) map[lab] = OVERLAY_ICON_SRC[lab];
+          // do not overwrite any existing stored overlay URL (user-selected overrides)
+          if (!map[lab] && OVERLAY_ICON_SRC[lab]) map[lab] = OVERLAY_ICON_SRC[lab];
         });
         sessionStorage.setItem("design.overlayIconMap", JSON.stringify(map));
       } catch (e) {}
