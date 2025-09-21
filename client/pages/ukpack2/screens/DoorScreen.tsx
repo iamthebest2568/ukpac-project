@@ -565,7 +565,7 @@ const DoorScreen: React.FC = () => {
                     { key: "1", label: "1 ประตู", icon: <IconDoor1 />, iconActive: <IconDoor1Active /> },
                     { key: "2", label: "2 ประตู", icon: <IconDoor2 />, iconActive: <IconDoor2Active /> },
                     { key: "ramp", label: "ทางลาดสำหรับรถเข็น/ผู้พิาการ", icon: <IconRamp />, iconActive: <IconRampActive /> },
-                    { key: "emergency", label: "ประตูฉุกเฉิน", icon: <IconHighLow />, iconActive: <IconHighLowActive /> },
+                    { key: "emergency", label: "ปร���ตูฉุกเฉิน", icon: <IconHighLow />, iconActive: <IconHighLowActive /> },
                   ];
 
                   // helper to normalize and set variants into overlayIconMap in sessionStorage
@@ -649,13 +649,8 @@ const DoorScreen: React.FC = () => {
 
                     const candidateUrl = lookupStored(opt.key) || lookupStored(opt.label) || DOOR_BUTTON_SRC[opt.key];
 
-                    const iconNode = candidateUrl ? (
-                      <img src={candidateUrl} alt={opt.label} className="h-full w-full object-contain" decoding="async" loading="eager" />
-                    ) : selectedOption === opt.key ? (
-                      opt.iconActive || opt.icon
-                    ) : (
-                      opt.icon
-                    );
+                    // match Amenities behavior: use iconActive when selected, otherwise icon; candidateUrl (override) should be used for overlay mapping but not replace selected appearance
+                    const iconNode = selectedOption === opt.key ? (opt.iconActive || opt.icon) : (opt.icon);
 
                     return (
                       <SelectionCard
