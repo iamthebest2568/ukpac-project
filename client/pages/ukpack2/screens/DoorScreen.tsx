@@ -164,7 +164,7 @@ const IconDoor2 = () => (
 
 const IconDoor2Active = () => (
   <img
-    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F978c8d677ffa44f4977862f58a16ec0c?format=webp&width=800"
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F0b451e5d181749a3859f155297f384b3?format=webp&width=800"
     alt="image"
     className="object-contain select-none max-h-full w-auto"
     decoding="async"
@@ -521,7 +521,7 @@ const DoorScreen: React.FC = () => {
                   }
 
                   // Ensure explicit keys exist
-                  const explicit = ['เงินสด','สแกนจ่าย','สแกนจ่าย 2','แตะบัตร','กระเป๋ารถเมล์','ตั๋วรายเดือน/รอบ','1','2','ramp','emergency'];
+                  const explicit = ['เงินสด','สแกนจ่าย','สแกนจ่��ย 2','แตะบัตร','กระเป๋ารถเมล์','ตั๋วรายเดือน/รอบ','1','2','ramp','emergency'];
                   for (const k of explicit) {
                     if (!merged[k]) {
                       if (storedMapRaw[k]) setVariants(k, storedMapRaw[k]);
@@ -565,7 +565,7 @@ const DoorScreen: React.FC = () => {
                     { key: "1", label: "1 ประตู", icon: <IconDoor1 />, iconActive: <IconDoor1Active /> },
                     { key: "2", label: "2 ประตู", icon: <IconDoor2 />, iconActive: <IconDoor2Active /> },
                     { key: "ramp", label: "ทางลาดสำหรับรถเข็น/ผู้พิาการ", icon: <IconRamp />, iconActive: <IconRampActive /> },
-                    { key: "emergency", label: "ประต���ฉุกเฉิน", icon: <IconHighLow />, iconActive: <IconHighLowActive /> },
+                    { key: "emergency", label: "ประตูฉุกเฉิน", icon: <IconHighLow />, iconActive: <IconHighLowActive /> },
                   ];
 
                   // helper to normalize and set variants into overlayIconMap in sessionStorage
