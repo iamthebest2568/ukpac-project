@@ -69,7 +69,7 @@ const VehiclePreview: React.FC<Props> = ({
           <img
             ref={shadowRef}
             src={SHADOW_URL}
-            alt="shadow"
+            alt=""
             className="absolute pointer-events-none select-none"
             style={{ bottom: "8px" }}
             decoding="async"
@@ -168,7 +168,7 @@ const VehiclePreview: React.FC<Props> = ({
             {starSrc && (
               <img
                 src={starSrc}
-                alt="star"
+                alt=""
                 className="absolute pointer-events-none select-none"
                 style={{ top: -8, right: -8, width: 28, height: 28 }}
                 decoding="async"

@@ -130,7 +130,7 @@ const IconQr = () => (
 const IconAir = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fee1c18a935564e92bb49991fac3b76df?format=webp&width=800"
-    alt="App"
+    alt="image"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -140,7 +140,7 @@ const IconAir = () => (
 const IconFan = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe01792ee89e240808ed47d8576b55d71?format=webp&width=800"
-    alt="Fan"
+    alt="image"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -149,7 +149,7 @@ const IconFan = () => (
 const IconSeat = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F93439b2533284cdf914fc93cafa1cf26?format=webp&width=800"
-    alt="Priority seat"
+    alt="image"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -158,7 +158,7 @@ const IconSeat = () => (
 const IconWifi = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb0789bfd1100472f8351704764607d31?format=webp&width=800"
-    alt="Handrail"
+    alt="image"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -167,7 +167,7 @@ const IconWifi = () => (
 const IconPlug = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F09a78e31a3de44e98772b0eef382af6f?format=webp&width=800"
-    alt="USB charger"
+    alt="image"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -176,7 +176,7 @@ const IconPlug = () => (
 const IconTv = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fcb0cbf9ef6764e2d9e6f06e87827f5e9?format=webp&width=800"
-    alt="Wi-Fi"
+    alt="image"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -185,7 +185,7 @@ const IconTv = () => (
 const IconCup = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe903bdf27bab4175824c159bc19a02ba?format=webp&width=800"
-    alt="Announcement system"
+    alt="image"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -403,7 +403,7 @@ const PaymentScreen: React.FC = () => {
               "กระเป๋ารถเมล์": "กระเป๋ารถเมล์",
               "เงินสด": "เงินสด",
             };
-            const stripReplacement = (s: string) => (s || "").replace(/�|\uFFFD/g, "").trim();
+            const stripReplacement = (s: string) => (s || "").replace(/ |\uFFFD/g, "").trim();
             const normalizedOverlayLabels = overlayLabels.map((l) => {
               if (!l) return l;
               if (CORRECT_LABELS[l]) return CORRECT_LABELS[l];
@@ -450,7 +450,7 @@ const PaymentScreen: React.FC = () => {
                   >
                     <img
                       src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9811f9bca05c43feae9eafdcbab3c8d9?format=webp&width=800"
-                      alt="1 ���ระตู"
+                      alt="image"
                       className="h-6 w-6 md:h-7 md:w-7 object-contain"
                     />
                   </div>
@@ -463,7 +463,7 @@ const PaymentScreen: React.FC = () => {
                   >
                     <img
                       src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8f9b21942af243b3b80b0e5ac8b12631?format=webp&width=800"
-                      alt="2 ประตู"
+                      alt="image"
                       className="h-6 w-6 md:h-7 md:w-7 object-contain"
                     />
                   </div>
@@ -476,7 +476,7 @@ const PaymentScreen: React.FC = () => {
                   >
                     <img
                       src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fece2b6fc843340f0997f2fd7d3ca0aea?format=webp&width=800"
-                      alt="Ramp"
+                      alt="image"
                       className="h-6 w-6 md:h-7 md:w-7 object-contain"
                     />
                   </div>
@@ -489,7 +489,7 @@ const PaymentScreen: React.FC = () => {
                   >
                     <img
                       src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F98de0624be3d4ae6b96d83edcf8891f9?format=webp&width=800"
-                      alt="ประตูฉุกเฉิน"
+                      alt="image"
                       className="h-6 w-6 md:h-7 md:w-7 object-contain"
                     />
                   </div>
@@ -607,42 +607,42 @@ const PaymentScreen: React.FC = () => {
                     "เงินสด": (
                       <img
                         src={CASH_OVERLAY_ICON}
-                        alt="Cash"
+                        alt="image"
                         className="h-full w-full object-contain"
                       />
                     ),
                     "สแกนจ่าย": (
                       <img
                         src={"https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F125e79ee890243308489d0acbb1eef2b?format=webp&width=800"}
-                        alt="Scan to pay"
+                        alt="image"
                         className="h-full w-full object-contain"
                       />
                     ),
                     "สแกนจ่าย 2": (
                       <img
                         src={"https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F95e4291272564bf2b9d1b522cd4bf75e?format=webp&width=800"}
-                        alt="Scan to pay 2"
+                        alt="image"
                         className="h-full w-full object-contain"
                       />
                     ),
                     "แตะบัตร": (
                       <img
                         src={"https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F6b3a398ec0ee41b9b59accc97f8057bf?format=webp&width=800"}
-                        alt="Tap card"
+                        alt="image"
                         className="h-full w-full object-contain"
                       />
                     ),
                     "กระเป๋ารถเมล์": (
                       <img
                         src={"https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F422e4242064b4e6cac52945deb072145?format=webp&width=800"}
-                        alt="Conductor"
+                        alt="image"
                         className="h-full w-full object-contain"
                       />
                     ),
                     "ตั๋วรายเดือน/รอบ": (
                       <img
                         src={"https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8a53d9e6b6284ac19efb0e61c1025784?format=webp&width=800"}
-                        alt="Monthly pass"
+                        alt="image"
                         className="h-full w-full object-contain"
                       />
                     ),

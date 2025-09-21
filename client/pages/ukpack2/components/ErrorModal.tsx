@@ -12,7 +12,7 @@ const ErrorModal: React.FC<ErrorModalProps> = ({ isOpen, title = 'Error', messag
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black/50" style={{ zIndex: 99999 }}>
       <div className="bg-white rounded-xl p-6 mx-auto" style={{ width: 'min(90vw,560px)', zIndex: 100000 }}>
-        <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F73d809c28e294624af386bf84a9a2d75?format=webp&width=800" alt="notice" className="mx-auto mb-4 w-24 h-24 object-contain" />
+        <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F73d809c28e294624af386bf84a9a2d75?format=webp&width=800" alt="image" className="mx-auto mb-4 w-24 h-24 object-contain" />
         <h3 className="text-lg font-prompt font-semibold text-[#000d59] text-center">{title}</h3>
         <p className="mt-2 text-sm text-gray-700 text-center">{message}</p>
         <div className="mt-4 flex justify-center">

@@ -32,7 +32,7 @@ const SplashScreen: React.FC = () => {
       >
         <img
           src={HERO_SRC}
-          alt="bus"
+          alt="image"
           style={{
             display: "block",
             margin: "0 auto",

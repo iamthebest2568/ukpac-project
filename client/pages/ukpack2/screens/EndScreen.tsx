@@ -20,7 +20,7 @@ const EndScreen: React.FC = () => {
           <div className="w-full flex justify-center">
             <img
               src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc36f7d2aca87432f90a5a36fb28b97ed?format=webp&width=1600"
-              alt="ภาพขอบคุณ"
+              alt="image"
               className="w-full h-auto max-w-[720px]"
             />
           </div>
@@ -30,7 +30,7 @@ const EndScreen: React.FC = () => {
           <div className="w-full flex justify-center">
             <img
               src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F3d54db27cd9f49bf946e4a1ed5688fb3?format=webp&width=800"
-              alt="เราจะประกาศรางวัล"
+              alt="image"
               className="w-full h-auto max-w-[420px] mt-2"
             />
           </div>

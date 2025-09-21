@@ -83,14 +83,14 @@ const FormScreen: React.FC = () => {
         <div className="w-full flex justify-center -mt-40 md:-mt-48" style={{ marginTop: '-15px' }}>
           <img
             src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F33272924342744429f8155587f834f20?format=webp&width=800"
-            alt="dream bus"
+            alt="image"
             className="block max-w-[520px] w-[75%] md:w-[60%] h-auto object-contain"
           />
         </div>
         <div className="w-full flex justify-center -mt-36 md:-mt-40" style={{ marginTop: '-15px' }}>
           <img
             src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe788f24196524b1daad2340de622d2d6?format=webp&width=800"
-            alt="bus image"
+            alt="image"
             className="block max-w-[520px] w-[75%] md:w-[60%] h-auto object-contain"
           />
         </div>

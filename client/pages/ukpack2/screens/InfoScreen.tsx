@@ -53,7 +53,7 @@ const InfoScreen: React.FC = () => {
           <div className="w-[75%] mx-auto px-4">
             <img
               src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8252bd27b98340349ac37000716c83db?format=webp&width=800"
-              alt="header image"
+              alt="image"
               className="w-full h-auto object-contain rounded-b-xl max-h-[220px] md:max-h-[360px] mx-auto"
               style={{ objectPosition: 'center' }}
             />
@@ -64,7 +64,7 @@ const InfoScreen: React.FC = () => {
             <div className="w-full max-w-[900px] relative h-[140px] md:h-[200px] flex items-center justify-center">
               <img
                 src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe0d645d03e674262a48ecc18869e1901?format=webp&width=1600"
-                alt="bg"
+                alt="image"
                 className="absolute inset-0 mx-auto h-full object-contain rounded-xl pointer-events-none select-none"
                 style={{ objectPosition: 'center 45%', maxWidth: 560, zIndex: 0 }}
                 decoding="async"

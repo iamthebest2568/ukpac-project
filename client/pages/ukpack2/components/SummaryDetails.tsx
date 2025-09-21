@@ -5,49 +5,49 @@ import { useBusDesign } from "../context/BusDesignContext";
 const IconAir = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fee1c18a935564e92bb49991fac3b76df?format=webp&width=800"
-    alt="Air"
+    alt="image"
     className="h-6 w-6 object-contain select-none"
   />
 );
 const IconFan = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe01792ee89e240808ed47d8576b55d71?format=webp&width=800"
-    alt="Fan"
+    alt="image"
     className="h-6 w-6 object-contain select-none"
   />
 );
 const IconSeat = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F93439b2533284cdf914fc93cafa1cf26?format=webp&width=800"
-    alt="Priority seat"
+    alt="image"
     className="h-6 w-6 object-contain select-none"
   />
 );
 const IconWifi = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb0789bfd1100472f8351704764607d31?format=webp&width=800"
-    alt="Handrail"
+    alt="image"
     className="h-6 w-6 object-contain select-none"
   />
 );
 const IconPlug = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F09a78e31a3de44e98772b0eef382af6f?format=webp&width=800"
-    alt="USB charger"
+    alt="image"
     className="h-6 w-6 object-contain select-none"
   />
 );
 const IconTv = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fcb0cbf9ef6764e2d9e6f06e87827f5e9?format=webp&width=800"
-    alt="Wi-Fi"
+    alt="image"
     className="h-6 w-6 object-contain select-none"
   />
 );
 const IconCup = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe903bdf27bab4175824c159bc19a02ba?format=webp&width=800"
-    alt="Announcement system"
+    alt="image"
     className="h-6 w-6 object-contain select-none"
   />
 );
@@ -86,16 +86,16 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   "Wi‑Fi ฟรี": <IconTv />,
   "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
   "กล้องวงจรปิด": <IconCamSmall />,
-  เงินสด: <img src={MONEY_ICON} alt="Cash" className="h-5 w-5 object-contain" />,
-  สแกนจ่าย: <img src={SCAN_ICON} alt="Scan to pay" className="h-5 w-5 object-contain" />,
-  "สแกนจ่าย 2": <img src={SCAN2_ICON} alt="Scan to pay 2" className="h-5 w-5 object-contain" />,
-  ���ตะบัตร: <img src={TOUCH_ICON} alt="Tap card" className="h-5 w-5 object-contain" />,
-  กระเป๋ารถเมล์: <img src={BUS_EMPLOY_ICON} alt="Conductor" className="h-5 w-5 object-contain" />,
-  "ตั๋วรายเดือน/รอบ": <img src={MONTHLY_ICON} alt="Monthly pass" className="h-5 w-5 object-contain" />,
-  "1": <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9811f9bca05c43feae9eafdcbab3c8d9?format=webp&width=800" alt="1 door" className="h-5 w-5 object-contain" />,
-  "2": <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8f9b21942af243b3b80b0e5ac8b12631?format=webp&width=800" alt="2 doors" className="h-5 w-5 object-contain" />,
-  ramp: <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fece2b6fc843340f0997f2fd7d3ca0aea?format=webp&width=800" alt="Ramp" className="h-5 w-5 object-contain" />,
-  emergency: <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F98de0624be3d4ae6b96d83edcf8891f9?format=webp&width=800" alt="Emergency door" className="h-5 w-5 object-contain" />,
+  เงินสด: <img src={MONEY_ICON} alt="image" className="h-5 w-5 object-contain" />,
+  สแกนจ่าย: <img src={SCAN_ICON} alt="image" className="h-5 w-5 object-contain" />,
+  "สแกนจ่าย 2": <img src={SCAN2_ICON} alt="image" className="h-5 w-5 object-contain" />,
+     ตะบัตร: <img src={TOUCH_ICON} alt="image" className="h-5 w-5 object-contain" />,
+  กระเป๋ารถเมล์: <img src={BUS_EMPLOY_ICON} alt="image" className="h-5 w-5 object-contain" />,
+  "ตั๋วรายเดือน/รอบ": <img src={MONTHLY_ICON} alt="image" className="h-5 w-5 object-contain" />,
+  "1": <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9811f9bca05c43feae9eafdcbab3c8d9?format=webp&width=800" alt="image" className="h-5 w-5 object-contain" />,
+  "2": <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8f9b21942af243b3b80b0e5ac8b12631?format=webp&width=800" alt="image" className="h-5 w-5 object-contain" />,
+  ramp: <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fece2b6fc843340f0997f2fd7d3ca0aea?format=webp&width=800" alt="image" className="h-5 w-5 object-contain" />,
+  emergency: <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F98de0624be3d4ae6b96d83edcf8891f9?format=webp&width=800" alt="image" className="h-5 w-5 object-contain" />,
 };
 
 const CHASSIS_LABELS: Record<string, string> = {
@@ -262,7 +262,7 @@ const SummaryDetails: React.FC = () => {
 
           <div className="flex items-start gap-3">
             <div className="w-28 md:w-36 text-sm text-[#003366] truncate">ทางขึ้น</div>
-            <div className="flex-1 font-sarabun font-semibold text-sm text-[#003366] break-words">{data.doors ? (typeof data.doors === "string" ? displayDoor(data.doors) : typeof data.doors === "object" ? (data.doors.doorChoice ? (data.doors.doorChoice === "1" ? "1 ประตู" : data.doors.doorChoice === "2" ? "2 ประตู" : String(data.doors.doorChoice)) : data.doors.hasRamp ? "ทางลาดสำหรับรถเ������/ผู้พิการ" : data.doors.highLow ? "ประตูฉุกเฉิน" : JSON.stringify(data.doors)) : String(data.doors)) : "-"}</div>
+            <div className="flex-1 font-sarabun font-semibold text-sm text-[#003366] break-words">{data.doors ? (typeof data.doors === "string" ? displayDoor(data.doors) : typeof data.doors === "object" ? (data.doors.doorChoice ? (data.doors.doorChoice === "1" ? "1 ประตู" : data.doors.doorChoice === "2" ? "2 ประตู" : String(data.doors.doorChoice)) : data.doors.hasRamp ? "ทางลาดสำหรับรถเ      /ผู้พิการ" : data.doors.highLow ? "ประตูฉุกเฉิน" : JSON.stringify(data.doors)) : String(data.doors)) : "-"}</div>
           </div>
 
           <div className="flex items-start gap-3">

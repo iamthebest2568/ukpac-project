@@ -7,7 +7,7 @@ import CtaButton from "../components/CtaButton";
 const IconAir = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F717ae5876456493a97f29b6d6684c104?format=webp&width=800"
-    alt="Air"
+    alt="image"
     className="object-contain select-none h-full w-full"
     decoding="async"
     loading="eager"
@@ -16,7 +16,7 @@ const IconAir = () => (
 const IconAirAlt = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Ff0fe8436ac954fd6b49da127a89b7d76?format=webp&width=800"
-    alt="Air (active)"
+    alt="image"
     className="object-contain select-none h-full w-full"
     decoding="async"
     loading="eager"
@@ -25,7 +25,7 @@ const IconAirAlt = () => (
 const IconFan = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F891faed3bf8a457fbcdd936181ed2b7a?format=webp&width=800"
-    alt="Fan"
+    alt="image"
     className="object-contain select-none h-full w-full"
     decoding="async"
     loading="eager"
@@ -34,7 +34,7 @@ const IconFan = () => (
 const IconFanAlt = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F280e585e2bdc4134acc70eeb143c6c69?format=webp&width=800"
-    alt="Fan (active)"
+    alt="image"
     className="object-contain select-none h-full w-full"
     decoding="async"
     loading="eager"
@@ -43,7 +43,7 @@ const IconFanAlt = () => (
 const IconSeat = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F54f4c944e6ab4e84800e14b2a1105b94?format=webp&width=800"
-    alt="Window (openable)"
+    alt="image"
     className="object-contain select-none h-full w-full"
     decoding="async"
     loading="eager"
@@ -52,7 +52,7 @@ const IconSeat = () => (
 const IconSeatAlt = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb486238ba25f4078a86915b3db2688eb?format=webp&width=800"
-    alt="Window (openable - active)"
+    alt="image"
     className="object-contain select-none h-full w-full"
     decoding="async"
     loading="eager"
@@ -61,7 +61,7 @@ const IconSeatAlt = () => (
 const IconWifi = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fdfbb7f3adfa04596916b9ea1950acef1?format=webp&width=800"
-    alt="Handrail"
+    alt="image"
     className="object-contain select-none h-full w-full"
     decoding="async"
     loading="eager"
@@ -70,7 +70,7 @@ const IconWifi = () => (
 const IconWifiAlt = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F70d82d5dddd54c909edc9bddb202fc6e?format=webp&width=800"
-    alt="Handrail (active)"
+    alt="image"
     className="object-contain select-none h-full w-full"
     decoding="async"
     loading="eager"
@@ -79,7 +79,7 @@ const IconWifiAlt = () => (
 const IconPlug = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fae1e15679ac4476a9e82f163e7eab121?format=webp&width=800"
-    alt="USB charger"
+    alt="image"
     className="object-contain select-none h-full w-full"
     decoding="async"
     loading="eager"
@@ -88,7 +88,7 @@ const IconPlug = () => (
 const IconPlugAlt = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F76d2422a6fb84d0bb752cd149518a87b?format=webp&width=800"
-    alt="USB charger (active)"
+    alt="image"
     className="object-contain select-none h-full w-full"
     decoding="async"
     loading="eager"
@@ -97,7 +97,7 @@ const IconPlugAlt = () => (
 const IconTv = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F1fb83749171e40fdb6fd8e6d75d46504?format=webp&width=800"
-    alt="Wi-Fi"
+    alt="image"
     className="object-contain select-none h-full w-full"
     decoding="async"
     loading="eager"
@@ -106,7 +106,7 @@ const IconTv = () => (
 const IconTvAlt = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F6e2f3a1c18de4c0187b9cd255fbf38a7?format=webp&width=800"
-    alt="Wi-Fi (active)"
+    alt="image"
     className="object-contain select-none h-full w-full"
     decoding="async"
     loading="eager"
@@ -115,7 +115,7 @@ const IconTvAlt = () => (
 const IconCup = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F48d62d5384e148bf8fe718dd2287d55f?format=webp&width=800"
-    alt="Announcement system"
+    alt="image"
     className="object-contain select-none h-full w-full"
     decoding="async"
     loading="eager"
@@ -124,7 +124,7 @@ const IconCup = () => (
 const IconCupAlt = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F2c2b4af39249468d92e4252d584cf2fd?format=webp&width=800"
-    alt="Announcement system (active)"
+    alt="image"
     className="object-contain select-none h-full w-full"
     decoding="async"
     loading="eager"

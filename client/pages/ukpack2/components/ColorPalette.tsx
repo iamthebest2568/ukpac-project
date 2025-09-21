@@ -46,7 +46,7 @@ const ColorPalette: React.FC<ColorPaletteProps> = ({
                     <img
                       src={c}
                       srcSet={srcSet}
-                      alt="color swatch"
+                      alt="image"
                       className="w-full h-full object-contain select-none"
                       decoding="async"
                       loading="eager"

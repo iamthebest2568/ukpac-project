@@ -30,7 +30,7 @@ const FeedbackSkipScreen: React.FC = () => {
           <div className="w-full flex justify-center mb-2">
             <img
               src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F6b62374327d643178ab7f4a913ddc1b1?format=webp&width=800"
-              alt="ยืนยันข้อมูลสำเร็จ"
+              alt="image"
               className="w-full max-w-[900px] h-auto object-contain mx-auto"
             />
           </div>
@@ -41,7 +41,7 @@ const FeedbackSkipScreen: React.FC = () => {
             </p>
             <img
               src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9989e3bd2f31458aa7691b01a3a08b12?format=webp&width=800"
-              alt="ภาพประกาศรางวัล"
+              alt="image"
               className="mt-3 w-full max-w-[640px] h-auto object-contain"
             />
           </div>

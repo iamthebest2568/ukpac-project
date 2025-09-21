@@ -13,7 +13,7 @@ import { OVERLAY_ICON_SRC } from "../utils/overlayIcons";
 const IconAir = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fee1c18a935564e92bb49991fac3b76df?format=webp&width=800"
-    alt="Air"
+    alt="image"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -22,7 +22,7 @@ const IconAir = () => (
 const IconFan = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe01792ee89e240808ed47d8576b55d71?format=webp&width=800"
-    alt="Fan"
+    alt="image"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -31,7 +31,7 @@ const IconFan = () => (
 const IconSeat = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F93439b2533284cdf914fc93cafa1cf26?format=webp&width=800"
-    alt="Priority seat"
+    alt="image"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -40,7 +40,7 @@ const IconSeat = () => (
 const IconWifi = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb0789bfd1100472f8351704764607d31?format=webp&width=800"
-    alt="Handrail"
+    alt="image"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -49,7 +49,7 @@ const IconWifi = () => (
 const IconPlug = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F09a78e31a3de44e98772b0eef382af6f?format=webp&width=800"
-    alt="USB charger"
+    alt="image"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -58,7 +58,7 @@ const IconPlug = () => (
 const IconTv = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fcb0cbf9ef6764e2d9e6f06e87827f5e9?format=webp&width=800"
-    alt="Wi-Fi"
+    alt="image"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -67,7 +67,7 @@ const IconTv = () => (
 const IconCup = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe903bdf27bab4175824c159bc19a02ba?format=webp&width=800"
-    alt="Announcement system"
+    alt="image"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -136,7 +136,7 @@ const storedColor = (() => {
 const IconDoor1 = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F20b45db4b1fc4fdaa7c2f8874aea451d?format=webp&width=800"
-    alt="Door 1"
+    alt="image"
     className="object-contain select-none max-h-full w-auto"
     decoding="async"
     loading="eager"
@@ -146,7 +146,7 @@ const IconDoor1 = () => (
 const IconDoor1Active = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F462ae98cbc00484fb2afe9c14ad6f9b6?format=webp&width=800"
-    alt="Door 1 (selected)"
+    alt="image"
     className="object-contain select-none max-h-full w-auto"
     decoding="async"
     loading="eager"
@@ -155,7 +155,7 @@ const IconDoor1Active = () => (
 const IconDoor2 = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fad85d6b0010f404ca1b5581d76257fd9?format=webp&width=800"
-    alt="Door 2"
+    alt="image"
     className="object-contain select-none max-h-full w-auto"
     decoding="async"
     loading="eager"
@@ -165,7 +165,7 @@ const IconDoor2 = () => (
 const IconDoor2Active = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F978c8d677ffa44f4977862f58a16ec0c?format=webp&width=800"
-    alt="Door 2 (selected)"
+    alt="image"
     className="object-contain select-none max-h-full w-auto"
     decoding="async"
     loading="eager"
@@ -174,7 +174,7 @@ const IconDoor2Active = () => (
 const IconRamp = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F245ff72a7c3b468293c517a934e4e839?format=webp&width=800"
-    alt="Ramp for wheelchair/disabled"
+    alt="image"
     className="object-contain select-none max-h-full w-auto"
     decoding="async"
     loading="eager"
@@ -184,7 +184,7 @@ const IconRamp = () => (
 const IconRampActive = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F199c45ef45704addad6c7b113f14b7da?format=webp&width=800"
-    alt="Ramp for wheelchair/disabled (selected)"
+    alt="image"
     className="object-contain select-none max-h-full w-auto"
     decoding="async"
     loading="eager"
@@ -193,7 +193,7 @@ const IconRampActive = () => (
 const IconHighLow = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F38e094ce2f914f2089d04349bc6f386b?format=webp&width=800"
-    alt="Emergency door"
+    alt="image"
     className="object-contain select-none max-h-full w-auto"
     decoding="async"
     loading="eager"
@@ -203,7 +203,7 @@ const IconHighLow = () => (
 const IconHighLowActive = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F3fb1340fa1014575ad118c4c94ab882e?format=webp&width=800"
-    alt="ประตูฉุกเฉิน (selected)"
+    alt="image"
     className="object-contain select-none max-h-full w-auto"
     decoding="async"
     loading="eager"
@@ -417,7 +417,7 @@ const DoorScreen: React.FC = () => {
                   >
                     <img
                       src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9811f9bca05c43feae9eafdcbab3c8d9?format=webp&width=800"
-                      alt="1 ประตู"
+                      alt="image"
                       className="h-6 w-6 md:h-7 md:w-7 object-contain"
                     />
                   </div>
@@ -430,7 +430,7 @@ const DoorScreen: React.FC = () => {
                   >
                     <img
                       src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8f9b21942af243b3b80b0e5ac8b12631?format=webp&width=800"
-                      alt="2 ประตู"
+                      alt="image"
                       className="h-6 w-6 md:h-7 md:w-7 object-contain"
                     />
                   </div>
@@ -443,7 +443,7 @@ const DoorScreen: React.FC = () => {
                   >
                     <img
                       src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fece2b6fc843340f0997f2fd7d3ca0aea?format=webp&width=800"
-                      alt="ทางลาด"
+                      alt="image"
                       className="h-6 w-6 md:h-7 md:w-7 object-contain"
                     />
                   </div>
@@ -456,7 +456,7 @@ const DoorScreen: React.FC = () => {
                   >
                     <img
                       src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F98de0624be3d4ae6b96d83edcf8891f9?format=webp&width=800"
-                      alt="Emergency door"
+                      alt="image"
                       className="h-6 w-6 md:h-7 md:w-7 object-contain"
                     />
                   </div>
@@ -484,70 +484,70 @@ const DoorScreen: React.FC = () => {
                     เงินสด: (
                       <img
                         src={MONEY_ICON}
-                        alt="เงินสด"
+                        alt="image"
                         className="h-5 w-5 object-contain"
                       />
                     ),
                     สแกนจ่าย: (
                       <img
                         src={SCAN_ICON}
-                        alt="สแกนจ่าย"
+                        alt="image"
                         className="h-5 w-5 object-contain"
                       />
                     ),
                     "สแกนจ่าย 2": (
                       <img
                         src={SCAN2_ICON}
-                        alt="สแกนจ่าย 2"
+                        alt="image"
                         className="h-5 w-5 object-contain"
                       />
                     ),
                     "แตะบัตร": (
                       <img
                         src={TOUCH_ICON}
-                        alt="แตะบัตร"
+                        alt="image"
                         className="h-5 w-5 object-contain"
                       />
                     ),
                     "กระเป๋ารถเมล์": (
                       <img
                         src={BUS_EMPLOY_ICON}
-                        alt="กระเป๋ารถเมล์"
+                        alt="image"
                         className="h-5 w-5 object-contain"
                       />
                     ),
                     "ตั๋วรายเดือน/รอบ": (
                       <img
                         src={MONTHLY_ICON}
-                        alt="ตั๋วรายเดือน/รอบ"
+                        alt="image"
                         className="h-5 w-5 object-contain"
                       />
                     ),
                     "1": (
                       <img
                         src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9811f9bca05c43feae9eafdcbab3c8d9?format=webp&width=800"
-                        alt="1 ประตู"
+                        alt="image"
                         className="h-5 w-5 object-contain"
                       />
                     ),
                     "2": (
                       <img
                         src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8f9b21942af243b3b80b0e5ac8b12631?format=webp&width=800"
-                        alt="2 ประตู"
+                        alt="image"
                         className="h-5 w-5 object-contain"
                       />
                     ),
                     ramp: (
                       <img
                         src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fece2b6fc843340f0997f2fd7d3ca0aea?format=webp&width=800"
-                        alt="ทางลาด"
+                        alt="image"
                         className="h-5 w-5 object-contain"
                       />
                     ),
                     emergency: (
                       <img
                         src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F98de0624be3d4ae6b96d83edcf8891f9?format=webp&width=800"
-                        alt="Emergency door"
+                        alt="image"
                         className="h-5 w-5 object-contain"
                       />
                     ),

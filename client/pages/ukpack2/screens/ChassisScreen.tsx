@@ -44,7 +44,7 @@ const DOOR_ICON_SMALL: Record<string, string> = {
 const IconSmall = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F268d81cb81c4464295f29a6a61c9661d?format=webp&width=800"
-    alt="ไอคอนรถเมล์ขนาดเล็ก"
+    alt=""
     aria-hidden="true"
     className="h-full w-auto object-contain select-none"
     decoding="async"
@@ -54,7 +54,7 @@ const IconSmall = () => (
 const IconSmallAlt = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fed2dc7373da74a8caeaca4fcb33205a3?format=webp&width=800"
-    alt="ไอคอนรถเมล์ขนาดเล็ก (กดแล้ว)"
+    alt=""
     aria-hidden="true"
     className="h-full w-auto object-contain select-none"
     decoding="async"
@@ -64,7 +64,7 @@ const IconSmallAlt = () => (
 const IconMedium = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F5ccfe58691384931afc1faff1d8b5a08?format=webp&width=800"
-    alt="ไอคอนรถเมล์มาตรฐาน"
+    alt=""
     aria-hidden="true"
     className="h-full w-auto object-contain select-none"
     decoding="async"
@@ -74,7 +74,7 @@ const IconMedium = () => (
 const IconMediumAlt = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F94752305ff8b454798b09b76d9ff98b5?format=webp&width=800"
-    alt="ไอคอนรถเมล์มาตรฐาน (กดแล้ว)"
+    alt=""
     aria-hidden="true"
     className="h-full w-auto object-contain select-none"
     decoding="async"
