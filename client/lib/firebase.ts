@@ -1,5 +1,5 @@
 // Client-side Firebase initialization (modular SDK)
-import { initializeApp } from "firebase/app";
+import { initializeApp, getApps, getApp } from "firebase/app";
 import { getFirestore, collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 // Firebase config provided by user
