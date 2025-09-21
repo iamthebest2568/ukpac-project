@@ -107,7 +107,7 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   "ที่จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
   "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
-  "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
+  "ระบบประกาศบอกป้าย(เสี��ง/จอ)": <IconCup />,
   "กล้องวงจรปิด": <IconCamSmall />,
 };
 
@@ -480,77 +480,18 @@ const DoorScreen: React.FC = () => {
                   showSelectedText
                   overlayLabels={overlayLabels}
                   overlayIconMap={{
-                    ...AMENITIES_ICON_MAP,
-                    เงินสด: (
-                      <img
-                        src={MONEY_ICON}
-                        alt="image"
-                        className="h-5 w-5 object-contain"
-                      />
-                    ),
-                    สแกนจ่าย: (
-                      <img
-                        src={SCAN_ICON}
-                        alt="image"
-                        className="h-5 w-5 object-contain"
-                      />
-                    ),
-                    "สแกนจ่าย 2": (
-                      <img
-                        src={SCAN2_ICON}
-                        alt="image"
-                        className="h-5 w-5 object-contain"
-                      />
-                    ),
-                    "แตะบัตร": (
-                      <img
-                        src={TOUCH_ICON}
-                        alt="image"
-                        className="h-5 w-5 object-contain"
-                      />
-                    ),
-                    "กระเป๋ารถเมล์": (
-                      <img
-                        src={BUS_EMPLOY_ICON}
-                        alt="image"
-                        className="h-5 w-5 object-contain"
-                      />
-                    ),
-                    "ตั๋วรายเดือน/รอบ": (
-                      <img
-                        src={MONTHLY_ICON}
-                        alt="image"
-                        className="h-5 w-5 object-contain"
-                      />
-                    ),
-                    "1": (
-                      <img
-                        src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9811f9bca05c43feae9eafdcbab3c8d9?format=webp&width=800"
-                        alt="image"
-                        className="h-5 w-5 object-contain"
-                      />
-                    ),
-                    "2": (
-                      <img
-                        src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8f9b21942af243b3b80b0e5ac8b12631?format=webp&width=800"
-                        alt="image"
-                        className="h-5 w-5 object-contain"
-                      />
-                    ),
-                    ramp: (
-                      <img
-                        src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fece2b6fc843340f0997f2fd7d3ca0aea?format=webp&width=800"
-                        alt="image"
-                        className="h-5 w-5 object-contain"
-                      />
-                    ),
-                    emergency: (
-                      <img
-                        src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F98de0624be3d4ae6b96d83edcf8891f9?format=webp&width=800"
-                        alt="image"
-                        className="h-5 w-5 object-contain"
-                      />
-                    ),
+                    // prefer overlay assets (strings) from OVERLAY_ICON_SRC when available
+                    ...Object.fromEntries(Object.entries(AMENITIES_ICON_MAP).map(([k]) => [k, OVERLAY_ICON_SRC[k] || AMENITIES_ICON_MAP[k]])),
+                    เงินสด: OVERLAY_ICON_SRC['เงินสด'] || MONEY_ICON,
+                    สแกนจ่าย: OVERLAY_ICON_SRC['สแกนจ่าย'] || SCAN_ICON,
+                    "สแกนจ่าย 2": OVERLAY_ICON_SRC['สแกนจ่าย 2'] || SCAN2_ICON,
+                    "แตะบัตร": OVERLAY_ICON_SRC['แตะบัตร'] || TOUCH_ICON,
+                    "กระเป๋ารถเมล์": OVERLAY_ICON_SRC['กระเป๋ารถเมล์'] || BUS_EMPLOY_ICON,
+                    "ตั๋วรายเดือน/รอบ": OVERLAY_ICON_SRC['ตั๋วรายเดือน/รอบ'] || MONTHLY_ICON,
+                    "1": OVERLAY_ICON_SRC['1'] || "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9811f9bca05c43feae9eafdcbab3c8d9?format=webp&width=800",
+                    "2": OVERLAY_ICON_SRC['2'] || "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8f9b21942af243b3b80b0e5ac8b12631?format=webp&width=800",
+                    ramp: OVERLAY_ICON_SRC['ramp'] || "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fece2b6fc843340f0997f2fd7d3ca0aea?format=webp&width=800",
+                    emergency: OVERLAY_ICON_SRC['emergency'] || "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F98de0624be3d4ae6b96d83edcf8891f9?format=webp&width=800",
                   }}
                 />
               </>
@@ -577,7 +518,7 @@ const DoorScreen: React.FC = () => {
                   const DOOR_OPTIONS = [
                     { key: "1", label: "1 ประตู", icon: <IconDoor1 />, iconActive: <IconDoor1Active /> },
                     { key: "2", label: "2 ประตู", icon: <IconDoor2 />, iconActive: <IconDoor2Active /> },
-                    { key: "ramp", label: "ทางลาดสำหรับรถเข็น/ผู้พิาการ", icon: <IconRamp />, iconActive: <IconRampActive /> },
+                    { key: "ramp", label: "ทางลาดสำหรับรถเข���น/ผู้พิาการ", icon: <IconRamp />, iconActive: <IconRampActive /> },
                     { key: "emergency", label: "ประตูฉุกเฉิน", icon: <IconHighLow />, iconActive: <IconHighLowActive /> },
                   ];
 
