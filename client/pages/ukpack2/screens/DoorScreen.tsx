@@ -183,7 +183,7 @@ const IconRamp = () => (
 
 const IconRampActive = () => (
   <img
-    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F199c45ef45704addad6c7b113f14b7da?format=webp&width=800"
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8780c6420dd24e34acb822419b5e4086?format=webp&width=800"
     alt="image"
     className="object-contain select-none max-h-full w-auto"
     decoding="async"
@@ -254,7 +254,7 @@ const DoorScreen: React.FC = () => {
 
   return (
     <CustomizationScreen
-    title="ปรับแต่งรถเมล��ของคุณ"
+    title="ปรับแต่งรถเมล์ของคุณ"
     theme="light"
     fullWidth
     footerContent={
@@ -342,7 +342,7 @@ const DoorScreen: React.FC = () => {
                     />
                   </div>
                 );
-              if (label === "สแกนจ่าย")
+              if (label === "สแ��นจ่าย")
                 return (
                   <div
                     key={`${label}-${idx}`}
@@ -521,7 +521,7 @@ const DoorScreen: React.FC = () => {
                   }
 
                   // Ensure explicit keys exist
-                  const explicit = ['เงินสด','สแกนจ่าย','สแกนจ่าย 2','แตะบัตร','กระเป๋ารถเมล์','ตั๋วรายเดือน/รอบ','1','2','ramp','emergency'];
+                  const explicit = ['เงินสด','สแกนจ่าย','สแกนจ่าย 2','แตะบัตร','กระ��ป๋ารถเมล์','ตั๋วรายเดือน/รอบ','1','2','ramp','emergency'];
                   for (const k of explicit) {
                     if (!merged[k]) {
                       if (storedMapRaw[k]) setVariants(k, storedMapRaw[k]);
