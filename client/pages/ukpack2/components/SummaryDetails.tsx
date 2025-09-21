@@ -77,6 +77,8 @@ const MONTHLY_ICON =
 const BUS_EMPLOY_ICON =
   "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F47fc617541cf45f28b7aa2d1b8deaf64?format=webp&width=800";
 
+import { OVERLAY_ICON_SRC } from "../utils/overlayIcons";
+
 const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   แอร์: <IconAir />,
   พัดลม: <IconFan />,
@@ -86,16 +88,6 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   "Wi‑Fi ฟรี": <IconTv />,
   "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
   "กล้องวงจรปิด": <IconCamSmall />,
-  เงินสด: <img src={MONEY_ICON} alt="image" className="h-5 w-5 object-contain" />,
-  สแกนจ่าย: <img src={SCAN_ICON} alt="image" className="h-5 w-5 object-contain" />,
-  "สแกนจ่าย 2": <img src={SCAN2_ICON} alt="image" className="h-5 w-5 object-contain" />,
-     ตะบัตร: <img src={TOUCH_ICON} alt="image" className="h-5 w-5 object-contain" />,
-  กระเป๋ารถเมล์: <img src={BUS_EMPLOY_ICON} alt="image" className="h-5 w-5 object-contain" />,
-  "ตั๋วรายเดือน/รอบ": <img src={MONTHLY_ICON} alt="image" className="h-5 w-5 object-contain" />,
-  "1": <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9811f9bca05c43feae9eafdcbab3c8d9?format=webp&width=800" alt="image" className="h-5 w-5 object-contain" />,
-  "2": <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8f9b21942af243b3b80b0e5ac8b12631?format=webp&width=800" alt="image" className="h-5 w-5 object-contain" />,
-  ramp: <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fece2b6fc843340f0997f2fd7d3ca0aea?format=webp&width=800" alt="image" className="h-5 w-5 object-contain" />,
-  emergency: <img src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F98de0624be3d4ae6b96d83edcf8891f9?format=webp&width=800" alt="image" className="h-5 w-5 object-contain" />,
 };
 
 const CHASSIS_LABELS: Record<string, string> = {
