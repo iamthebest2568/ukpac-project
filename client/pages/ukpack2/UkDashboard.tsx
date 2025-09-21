@@ -134,6 +134,42 @@ const UkDashboard: React.FC = () => {
               Export Mapped CSV
             </button>
             <button
+              onClick={async () => {
+                try {
+                  const sample = {
+                    sessionID: `session_test_${Date.now()}`,
+                    timestamp: new Date().toISOString(),
+                    event: "TEST_EVENT",
+                    payload: {
+                      PDPA: true,
+                      chassis: "extra",
+                      seating: { totalSeats: 12, specialSeats: 2 },
+                      amenities: ["แอร์", "Wi‑Fi ฟรี"],
+                      payment: ["เงินสด"],
+                      doors: "1",
+                      color: "#ff0000",
+                      interval: "10",
+                      route: "3",
+                      area: "Downtown",
+                      decisionUseService: true,
+                      enterPrize: true,
+                      prizeName: "ทดสอบ",
+                      prizePhone: "0812345678",
+                      shared: true,
+                    },
+                  };
+                  await sendEventToFirestore(sample);
+                  alert("Test event sent to Firestore");
+                } catch (err) {
+                  console.error(err);
+                  alert("Failed to send test event: " + String(err));
+                }
+              }}
+              className="bg-[#60a5fa] text-white px-4 py-2 rounded font-semibold"
+            >
+              Send Test Event
+            </button>
+            <button
               onClick={handleClear}
               className="bg-[#ef4444] text-white px-4 py-2 rounded font-semibold"
             >
