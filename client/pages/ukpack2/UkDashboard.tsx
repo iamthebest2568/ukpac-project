@@ -129,7 +129,7 @@ const UkDashboard: React.FC = () => {
 
   if (!authorized) {
     return (
-      <div className="min-h-screen bg-[#0b0b0b] text-white flex items-center justify-center p-6">
+      <div className="uk2-scroll overflow-auto min-h-0 bg-[#0b0b0b] text-white flex items-center justify-center p-6">
         <form onSubmit={handleAuth} className="w-full max-w-md">
           <div className="bg-white text-black rounded-xl p-6">
             <h2 className="text-lg font-semibold mb-2">เข้าสู่แดชบอร์ด ukpack2</h2>
