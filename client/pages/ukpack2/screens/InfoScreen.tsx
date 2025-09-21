@@ -5,7 +5,7 @@ import CtaButton from "../components/CtaButton";
 import ConfirmModal from "../components/ConfirmModal";
 
 const CHASSIS_LABELS: Record<string, string> = {
-  small: "รถเมล์ขนาดเล็ก 16��30 ที่นั่ง",
+  small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
   medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
   large: "รถตู้โดยสาร 9–15 ที่นั่ง",
   extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
@@ -132,21 +132,45 @@ const InfoScreen: React.FC = () => {
                   } catch {}
 
                   return overlay.length > 0 ? (
-                    <div className="absolute left-1/2 transform -translate-x-1/2 flex flex-wrap justify-center gap-2 max-w-[80%]" style={{ zIndex: 130, top: '10%' }}>
-                      {overlay.map((lab, i) => {
-                        const srcOrNode = merged[lab] ?? merged[normalizeKey(lab)] ?? merged[normalizeKey(lab).replace(/\s/g, "")];
-                        return (
-                          <div key={`${lab}-${i}`} className="bg-white/95 backdrop-blur rounded-full h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">
-                            {typeof srcOrNode === 'string' ? (
-                              <img src={srcOrNode as string} alt={lab} className="h-6 w-6 md:h-7 md:w-7 object-contain" />
-                            ) : srcOrNode ? (
-                              <>{srcOrNode}</>
-                            ) : (
-                              <div className="text-xs">{lab}</div>
-                            )}
-                          </div>
-                        );
-                      })}
+                    <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center w-[80%]" style={{ zIndex: 130, top: '10%' }}>
+                      <button
+                        type="button"
+                        aria-label="Prev overlay"
+                        onClick={() => {
+                          try { const el = scrollRef.current; if (el) el.scrollBy({ left: -el.clientWidth * 0.6, behavior: 'smooth' }); } catch (e) {}
+                        }}
+                        className="p-2 rounded-full mr-2 text-[#003366]"
+                      >
+                        ‹
+                      </button>
+
+                      <div ref={scrollRef} className="flex gap-2 overflow-x-auto no-scrollbar whitespace-nowrap items-center py-1 mx-2" style={{ scrollBehavior: 'smooth' }}>
+                        {overlay.map((lab, i) => {
+                          const srcOrNode = merged[lab] ?? merged[normalizeKey(lab)] ?? merged[normalizeKey(lab).replace(/\s/g, "")];
+                          return (
+                            <div key={`${lab}-${i}`} className="inline-flex items-center justify-center" style={{ width: 36 }}>
+                              {typeof srcOrNode === 'string' ? (
+                                <img src={srcOrNode as string} alt={lab} className="h-6 w-6 md:h-7 md:w-7 object-contain" />
+                              ) : srcOrNode ? (
+                                <>{srcOrNode}</>
+                              ) : (
+                                <div className="text-xs">{lab}</div>
+                              )}
+                            </div>
+                          );
+                        })}
+                      </div>
+
+                      <button
+                        type="button"
+                        aria-label="Next overlay"
+                        onClick={() => {
+                          try { const el = scrollRef.current; if (el) el.scrollBy({ left: el.clientWidth * 0.6, behavior: 'smooth' }); } catch (e) {}
+                        }}
+                        className="p-2 rounded-full ml-2 text-[#003366]"
+                      >
+                        ›
+                      </button>
                     </div>
                   ) : null;
                 })()}
