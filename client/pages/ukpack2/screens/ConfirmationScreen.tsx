@@ -28,7 +28,7 @@ const ConfirmationScreen: React.FC = () => {
             <img
               src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9989e3bd2f31458aa7691b01a3a08b12?format=webp&width=800"
               alt="image"
-              className="mt-8 w-full max-w-[640px] h-auto object-contain"
+              className="w-full max-w-[640px] h-auto object-contain" style={{ marginTop: 'calc(2rem - 5px)' }}
             />
           </div>
         </div>
