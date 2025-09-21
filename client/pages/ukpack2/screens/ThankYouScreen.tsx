@@ -13,7 +13,7 @@ const ThankYouScreen: React.FC = () => {
         <div className="w-full flex justify-center mb-2">
           <img
             src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fda6359656dee4bb3bf9d0e68709cafbf?format=webp&width=800"
-            alt="ขอบคุณที่ร่วมสร้างสรรค์รถเมล์"
+            alt="Thank you"
             className="w-full max-w-[640px] h-auto object-contain"
           />
         </div>
