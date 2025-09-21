@@ -168,7 +168,7 @@ const VehiclePreview: React.FC<Props> = ({
             {starSrc && (
               <img
                 src={starSrc}
-                alt="สัญลักษณ์ดาว"
+                alt="star"
                 className="absolute pointer-events-none select-none"
                 style={{ top: -8, right: -8, width: 28, height: 28 }}
                 decoding="async"
