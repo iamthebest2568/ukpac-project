@@ -44,7 +44,8 @@ const ThankYouScreen: React.FC = () => {
             "url('https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc3874bf37db54abeb4a13c308b0df9a4?format=webp&width=1600')",
           minHeight: '375px',
           width: '100vw',
-          marginLeft: 'calc(50% - 50vw)'
+          marginLeft: 'calc(50% - 50vw)',
+          marginTop: '-60px'
         }}
       >
         <div className="max-w-4xl mx-auto flex items-center justify-center h-full" style={{paddingLeft: 20, paddingRight: 20}}>
