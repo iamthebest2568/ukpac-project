@@ -225,7 +225,7 @@ const SummaryDetails: React.FC = () => {
                 );
               return overlayLabels;
             })()}
-            overlayIconMap={AMENITIES_ICON_MAP}
+            overlayIconMap={OVERLAY_ICON_SRC}
           />
         </div>
       )}
