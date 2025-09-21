@@ -34,7 +34,7 @@ const ConfirmationScreen: React.FC = () => {
         </div>
         <div className="fixed left-0 right-0 z-10" style={{ bottom: '20px' }}>
           <div className="max-w-4xl mx-auto px-6 pb-[env(safe-area-inset-bottom,1rem)]">
-            <div className="w-full flex flex-col items-center gap-3 bg-white py-4">
+            <div className="w-full flex flex-col items-center gap-[2px] bg-white py-4">
               <div style={{ width: '220px' }}>
                 <CtaButton
                   className="w-full"
