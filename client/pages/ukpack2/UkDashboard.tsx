@@ -60,6 +60,8 @@ const UkDashboard: React.FC = () => {
     URL.revokeObjectURL(url);
   };
 
+  const [lastSentResult, setLastSentResult] = useState<any | null>(null);
+
   const handleExportMapped = () => {
     const csv = exportSessionsAsCSV();
     if (!csv) {
@@ -73,6 +75,36 @@ const UkDashboard: React.FC = () => {
     a.download = `ukpack2-sessions-${Date.now()}.csv`;
     a.click();
     URL.revokeObjectURL(url);
+  };
+
+  const handleSendAll = async () => {
+    try {
+      const res = await sendLocalEventsToFirestore({ batchSize: 50, onlyPDPA: false });
+      setLastSentResult(res);
+      alert(`Sent ${res.sentCount} events (skipped ${res.skippedCount})`);
+    } catch (e) {
+      alert("Send failed: " + String(e));
+    }
+  };
+
+  const handleSendPDPAOnly = async () => {
+    try {
+      const res = await sendLocalEventsToFirestore({ batchSize: 50, onlyPDPA: true });
+      setLastSentResult(res);
+      alert(`Sent ${res.sentCount} PDPA-accepted events (skipped ${res.skippedCount})`);
+    } catch (e) {
+      alert("Send failed: " + String(e));
+    }
+  };
+
+  const handleSendBatch = async (size = 20) => {
+    try {
+      const res = await sendLocalEventsToFirestore({ batchSize: size, onlyPDPA: true });
+      setLastSentResult(res);
+      alert(`Batch send complete: ${res.sentCount} sent (skipped ${res.skippedCount})`);
+    } catch (e) {
+      alert("Send failed: " + String(e));
+    }
   };
 
   const handleClear = () => {
