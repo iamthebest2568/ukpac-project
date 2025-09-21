@@ -42,7 +42,7 @@ const ThankYouScreen: React.FC = () => {
         style={{
           backgroundImage:
             "url('https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc3874bf37db54abeb4a13c308b0df9a4?format=webp&width=1600')",
-          minHeight: '320px',
+          minHeight: '375px',
           width: '100vw',
           marginLeft: 'calc(50% - 50vw)'
         }}
@@ -52,7 +52,7 @@ const ThankYouScreen: React.FC = () => {
             <div style={{ width: '220px' }}>
               <SecondaryButton
                 className="w-full"
-                text="ลุ้นรับรางวัล"
+                text="ลุ้น���ับรางวัล"
                 onClick={() => navigate("/ukpack2/form")}
               />
             </div>
