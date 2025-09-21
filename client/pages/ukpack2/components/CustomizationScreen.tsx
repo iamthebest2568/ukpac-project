@@ -39,7 +39,7 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
 
   return (
     <div
-      className={`h-screen flex flex-col overflow-hidden ${isLight ? "bg-white text-black" : "bg-[#000d59] text-white"}`}
+      className={`flex flex-col min-h-0 ${isLight ? "bg-white text-black" : "bg-[#000d59] text-white"}`}
     >
       {title?.trim() || headerContent ? (
         <header className={`${fullWidth ? "px-0" : "px-6"} flex items-center justify-center h-16`}>
