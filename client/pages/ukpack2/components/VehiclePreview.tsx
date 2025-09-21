@@ -16,6 +16,7 @@ interface Props {
   showSelectedText?: boolean;
   // optional star icon to overlay on the top-right of the vehicle image
   starSrc?: string | null;
+  showShadow?: boolean;
 }
 
 const VehiclePreview: React.FC<Props> = ({
