@@ -559,7 +559,7 @@ const DoorScreen: React.FC = () => {
                 ประตู
               </h2>
 
-              <div className={`${styles.selectionGrid}`}>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                 {(() => {
                   const DOOR_OPTIONS = [
                     { key: "1", label: "1 ประตู", icon: <IconDoor1 />, iconActive: <IconDoor1Active /> },
