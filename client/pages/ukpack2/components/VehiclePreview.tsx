@@ -153,15 +153,31 @@ const VehiclePreview: React.FC<Props> = ({
                           candidates.push(n.replace(/\s/g, ""));
                         } catch {}
 
+                        // Prefer storedMap (session) entries first (usually URLs)
                         for (const c of candidates) {
-                          if (storedMap && storedMap[c]) return storedMap[c];
-                          if (overlayIconMap && overlayIconMap[c]) return overlayIconMap[c];
+                          if (storedMap && typeof storedMap[c] === 'string' && storedMap[c]) return storedMap[c];
                         }
 
-                        // fallback: search overlayIconMap keys for normalized match
+                        // Next prefer overlayIconMap entries that are strings (URLs)
+                        for (const c of candidates) {
+                          if (overlayIconMap && typeof overlayIconMap[c] === 'string' && overlayIconMap[c]) return overlayIconMap[c] as string;
+                        }
+
+                        // If no string URLs found, fall back to JSX nodes from overlayIconMap or storedMap
+                        for (const c of candidates) {
+                          if (overlayIconMap && overlayIconMap[c]) return overlayIconMap[c];
+                          if (storedMap && storedMap[c]) return storedMap[c];
+                        }
+
+                        // fallback: search overlayIconMap keys for normalized match (strings preferred)
                         if (overlayIconMap) {
                           const keys = Object.keys(overlayIconMap);
                           const target = normalize(label);
+                          // check for string match first
+                          for (const k of keys) {
+                            if (normalize(k) === target && typeof overlayIconMap[k] === 'string') return overlayIconMap[k];
+                          }
+                          // then JSX
                           for (const k of keys) {
                             if (normalize(k) === target) return overlayIconMap[k];
                           }
