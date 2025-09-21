@@ -601,31 +601,7 @@ const DoorScreen: React.FC = () => {
                   };
 
                   const handleSelect = (opt: any) => {
-                    // choose best candidate url: stored override, otherwise door button src
-                    let storedMap = loadStoredMap();
-                    const lookupStored = (labelOrKey: string) => {
-                      if (!labelOrKey) return undefined;
-                      if (storedMap[labelOrKey]) return storedMap[labelOrKey] as string;
-                      const target = normalizeKey(labelOrKey);
-                      for (const k of Object.keys(storedMap)) {
-                        if (normalizeKey(k) === target) return storedMap[k] as string;
-                      }
-                      return undefined;
-                    };
-
-                    const candidateUrl = lookupStored(opt.key) || lookupStored(opt.label) || DOOR_BUTTON_SRC[opt.key];
-
-                    // persist mapping for this selection (key + label + normalized variants)
-                    try {
-                      const raw = sessionStorage.getItem("design.overlayIconMap");
-                      const map = raw ? (JSON.parse(raw) as Record<string, string>) : {};
-                      if (candidateUrl) {
-                        setVariantsToStorage(map, opt.key, candidateUrl);
-                        setVariantsToStorage(map, opt.label, candidateUrl);
-                      }
-                      sessionStorage.setItem("design.overlayIconMap", JSON.stringify(map));
-                    } catch (e) {}
-
+                    // Only update the selected option. Do NOT persist overlay mapping when clicking.
                     setSelectedOption(opt.key);
                   };
 
