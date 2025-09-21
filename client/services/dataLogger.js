@@ -416,14 +416,18 @@ export async function sendLocalEventsToFirestore(options = {}) {
   for (let i = 0; i < toSend.length; i += batchSize) {
     const chunk = toSend.slice(i, i + batchSize);
     // send concurrently within chunk
-    const promises = chunk.map((ev) => sendEventToFirestore(ev).then(() => ({ ok: true, ev })).catch((err) => ({ ok: false, ev, err: String(err) })));
-    const results = await Promise.all(promises);
-    for (const r of results) {
-      if (r.ok) {
+    // Send sequentially to avoid opening many concurrent write streams which can
+    // cause transport errors in some network/environments. Introduce a small delay
+    // between writes.
+    for (const ev of chunk) {
+      try {
+        await sendEventToFirestore(ev);
         sentCount += 1;
-        if (sampleSent.length < 5) sampleSent.push(r.ev);
-      } else {
-        errors.push({ event: r.ev, error: r.err });
+        if (sampleSent.length < 5) sampleSent.push(ev);
+        // small delay to avoid hammering
+        await new Promise((res) => setTimeout(res, 150));
+      } catch (err) {
+        errors.push({ event: ev, error: String(err) });
       }
     }
   }
