@@ -168,13 +168,13 @@ const UkDashboard: React.FC = () => {
           <div className="flex gap-2">
             <button
               onClick={handleExport}
-              className="bg-[#ffe000] text-[#000d59] px-4 py-2 rounded font-semibold"
+              className="bg-[#ffe000] text-[#0b6b3f] px-4 py-2 rounded font-semibold"
             >
               Export CSV
             </button>
             <button
               onClick={handleExportMapped}
-              className="bg-[#ffd27a] text-[#000d59] px-4 py-2 rounded font-semibold"
+              className="bg-[#ffd27a] text-[#0b6b3f] px-4 py-2 rounded font-semibold"
             >
               Export Mapped CSV
             </button>
