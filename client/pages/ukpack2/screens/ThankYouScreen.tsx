@@ -49,7 +49,7 @@ const ThankYouScreen: React.FC = () => {
         }}
       >
         <div className="max-w-4xl mx-auto flex items-center justify-center h-full" style={{paddingLeft: 20, paddingRight: 20}}>
-          <div className="flex flex-col items-center gap-3 py-6">
+          <div className="flex flex-col items-center gap-3 py-6" style={{ marginTop: '-20px' }}>
             <div style={{ width: '220px' }}>
               <SecondaryButton
                 className="w-full"
