@@ -107,7 +107,7 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   "ที่จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
   "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
-  "ระบบประกาศบอกป้าย(เสี��ง/จอ)": <IconCup />,
+  "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
   "กล้องวงจรปิด": <IconCamSmall />,
 };
 
@@ -486,7 +486,7 @@ const DoorScreen: React.FC = () => {
                     สแกนจ่าย: OVERLAY_ICON_SRC['สแกนจ่าย'] || SCAN_ICON,
                     "สแกนจ่าย 2": OVERLAY_ICON_SRC['สแกนจ่าย 2'] || SCAN2_ICON,
                     "แตะบัตร": OVERLAY_ICON_SRC['แตะบัตร'] || TOUCH_ICON,
-                    "กระเป๋ารถเมล์": OVERLAY_ICON_SRC['กระเป๋ารถเมล์'] || BUS_EMPLOY_ICON,
+                    "กระเป๋ารถเมล์": OVERLAY_ICON_SRC['กระเป๋���รถเมล์'] || BUS_EMPLOY_ICON,
                     "ตั๋วรายเดือน/รอบ": OVERLAY_ICON_SRC['ตั๋วรายเดือน/รอบ'] || MONTHLY_ICON,
                     "1": OVERLAY_ICON_SRC['1'] || "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9811f9bca05c43feae9eafdcbab3c8d9?format=webp&width=800",
                     "2": OVERLAY_ICON_SRC['2'] || "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8f9b21942af243b3b80b0e5ac8b12631?format=webp&width=800",
@@ -518,23 +518,53 @@ const DoorScreen: React.FC = () => {
                   const DOOR_OPTIONS = [
                     { key: "1", label: "1 ประตู", icon: <IconDoor1 />, iconActive: <IconDoor1Active /> },
                     { key: "2", label: "2 ประตู", icon: <IconDoor2 />, iconActive: <IconDoor2Active /> },
-                    { key: "ramp", label: "ทางลาดสำหรับรถเข���น/ผู้พิาการ", icon: <IconRamp />, iconActive: <IconRampActive /> },
+                    { key: "ramp", label: "ทางลาดสำหรับรถเข็น/ผู้พิาการ", icon: <IconRamp />, iconActive: <IconRampActive /> },
                     { key: "emergency", label: "ประตูฉุกเฉิน", icon: <IconHighLow />, iconActive: <IconHighLowActive /> },
                   ];
 
-                  return DOOR_OPTIONS.map((opt) => (
-                    <SelectionCard
-                      key={opt.key}
-                      icon={selectedOption === opt.key ? (opt.iconActive || opt.icon) : opt.icon}
-                      label={opt.label}
-                      isSelected={selectedOption === opt.key}
-                      onClick={() => setSelectedOption(opt.key)}
-                      variant="light"
-                      hideLabel
-                      appearance="group"
-                      groupSize="lg"
-                    />
-                  ));
+                  return DOOR_OPTIONS.map((opt) => {
+                    // try to use stored overlay URL if available (by key or label)
+                    let storedMap: Record<string, string | null> = {};
+                    try {
+                      const raw = sessionStorage.getItem("design.overlayIconMap");
+                      if (raw) storedMap = JSON.parse(raw) as Record<string, string>;
+                    } catch {}
+
+                    const normalize = (s: string) => (s || "").replace(/\uFFFD/g, "").replace(/\u2011/g, "-").replace(/\u00A0/g, " ").replace(/\s+/g, " ").trim();
+                    const candidateUrl = (() => {
+                      try {
+                        if (storedMap[opt.key]) return storedMap[opt.key] as string;
+                        if (storedMap[opt.label]) return storedMap[opt.label] as string;
+                        const target = normalize(opt.label).toLowerCase();
+                        for (const k of Object.keys(storedMap)) {
+                          if (normalize(k).toLowerCase() === target) return storedMap[k] as string;
+                        }
+                      } catch {}
+                      return undefined;
+                    })();
+
+                    const iconNode = candidateUrl ? (
+                      <img src={candidateUrl} alt={opt.label} className="h-full w-full object-contain" decoding="async" loading="eager" />
+                    ) : selectedOption === opt.key ? (
+                      opt.iconActive || opt.icon
+                    ) : (
+                      opt.icon
+                    );
+
+                    return (
+                      <SelectionCard
+                        key={opt.key}
+                        icon={iconNode}
+                        label={opt.label}
+                        isSelected={selectedOption === opt.key}
+                        onClick={() => setSelectedOption(opt.key)}
+                        variant="light"
+                        hideLabel
+                        appearance="group"
+                        groupSize="lg"
+                      />
+                    );
+                  });
                 })()}
               </div>
             </div>
