@@ -105,7 +105,7 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   "ที่จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
   "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
-  "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
+  "��ะบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
   "กล้องวงจรปิด": <IconCamSmall />,
 };
 
@@ -211,7 +211,27 @@ const DEFAULT_COLORS = [
 
 const DesignScreen: React.FC = () => {
   const navigate = useNavigate();
-  // color selection and matching removed — color swatches are now inert (no state)
+  // color selection state: selected color preview and hex (persisted to sessionStorage)
+  const [selectedColorHex, setSelectedColorHex] = useState<string | null>(() => {
+    try {
+      const raw = sessionStorage.getItem("design.color");
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        return parsed?.colorHex ?? null;
+      }
+    } catch (e) {}
+    return null;
+  });
+  const [selectedColorPreview, setSelectedColorPreview] = useState<string | null>(() => {
+    try {
+      const raw = sessionStorage.getItem("design.color");
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        return parsed?.preview ?? null;
+      }
+    } catch (e) {}
+    return null;
+  });
   const [slogan, setSlogan] = useState<string>("");
   const [showTextarea, setShowTextarea] = useState<boolean>(false);
   const [sloganDraft, setSloganDraft] = useState<string>("");
@@ -303,6 +323,8 @@ const DesignScreen: React.FC = () => {
                     imageSrc={img}
                     label={label}
                     showSelectedText
+                    colorHex={selectedColorHex}
+                    colorMaskSrc={MASKS[selected]}
                     overlayLabels={(() => {
                       const amenities = (() => {
                         try {
@@ -367,8 +389,14 @@ const DesignScreen: React.FC = () => {
               </h2>
               <ColorPalette
                 colors={DEFAULT_COLORS}
-                // color matching removed: swatches are inert and do not update state
-                onColorSelect={() => { /* noop */ }}
+                selectedColor={selectedColorPreview || (selectedColorHex || "")}
+                onColorSelect={(colorHex?: string | null, preview?: string) => {
+                  try {
+                    sessionStorage.setItem("design.color", JSON.stringify({ colorHex, preview }));
+                  } catch (e) {}
+                  setSelectedColorHex(colorHex ?? null);
+                  setSelectedColorPreview(preview ?? null);
+                }}
               />
 
               <h2 className="text-xl font-prompt font-semibold text-[#003366] mt-4">
