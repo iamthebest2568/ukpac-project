@@ -386,6 +386,58 @@ export function exportSessionsAsCSV() {
   return csvRows.join("\n");
 }
 
+/**
+ * Send local stored events to Firestore in batches.
+ * options: { batchSize = 50, onlyPDPA = true }
+ * Returns summary { sentCount, skippedCount, errors, sampleSent }
+ */
+export async function sendLocalEventsToFirestore(options = {}) {
+  const { batchSize = 50, onlyPDPA = true } = options;
+  const events = getLoggedEvents();
+  if (!events || events.length === 0) return { sentCount: 0, skippedCount: 0, errors: [], sampleSent: [] };
+
+  const toSend = events.filter((ev) => {
+    if (!onlyPDPA) return true;
+    try {
+      const p = ev.payload || {};
+      const pdpa = p.PDPA || p.pdpa || ev.PDPA || ev.pdpa;
+      return pdpa === true || pdpa === "accepted" || pdpa === "1";
+    } catch (e) {
+      return false;
+    }
+  });
+
+  let sentCount = 0;
+  let skippedCount = events.length - toSend.length;
+  const errors = [];
+  const sampleSent = [];
+
+  // chunk and send
+  for (let i = 0; i < toSend.length; i += batchSize) {
+    const chunk = toSend.slice(i, i + batchSize);
+    // send concurrently within chunk
+    const promises = chunk.map((ev) => {
+      try {
+        return sendEventToFirestore(ev);
+      } catch (e) {
+        return Promise.reject(e);
+      }
+    });
+    try {
+      await Promise.all(promises.map((p) => p.catch((e) => ({ __err: String(e) }))));
+      sentCount += chunk.length;
+      for (const ev of chunk) {
+        if (sampleSent.length < 5) sampleSent.push(ev);
+      }
+    } catch (e) {
+      // should not reach here because we handle rejects, but capture generic
+      errors.push(String(e));
+    }
+  }
+
+  return { sentCount, skippedCount, errors, sampleSent };
+}
+
 // Initialize logging service
 console.log("📊 UK PACK Data Logger initialized");
 
