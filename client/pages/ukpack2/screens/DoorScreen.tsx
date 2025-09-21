@@ -565,7 +565,7 @@ const DoorScreen: React.FC = () => {
                     { key: "1", label: "1 ประตู", icon: <IconDoor1 />, iconActive: <IconDoor1Active /> },
                     { key: "2", label: "2 ประตู", icon: <IconDoor2 />, iconActive: <IconDoor2Active /> },
                     { key: "ramp", label: "ทางลาดสำหรับรถเข็น/ผู้พิาการ", icon: <IconRamp />, iconActive: <IconRampActive /> },
-                    { key: "emergency", label: "ปร���ตูฉุกเฉิน", icon: <IconHighLow />, iconActive: <IconHighLowActive /> },
+                    { key: "emergency", label: "ประตูฉุกเฉิน", icon: <IconHighLow />, iconActive: <IconHighLowActive /> },
                   ];
 
                   // helper to normalize and set variants into overlayIconMap in sessionStorage
@@ -663,6 +663,7 @@ const DoorScreen: React.FC = () => {
                         hideLabel
                         appearance="group"
                         groupSize="lg"
+                        fill
                       />
                     );
                   });
