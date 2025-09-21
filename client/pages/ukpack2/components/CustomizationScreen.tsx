@@ -72,12 +72,12 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
         <div className="fixed left-0 right-0 z-50" style={{ bottom: "50px" }}>
           <div
             className="bg-[#00d5f9] w-full"
-            style={{ height: "calc(80px + env(safe-area-inset-bottom, 0px))" }}
+            style={{ height: "calc(110px + env(safe-area-inset-bottom, 0px))" }}
           >
             <div
               className={containerPaddingClass ? `w-full ${containerPaddingClass}` : (fullWidth ? `w-full px-0` : `max-w-4xl mx-auto w-full px-4 sm:px-6`)}
               style={{
-                height: "80px",
+                height: "110px",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
