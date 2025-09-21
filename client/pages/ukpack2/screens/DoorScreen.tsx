@@ -479,20 +479,34 @@ const DoorScreen: React.FC = () => {
                   label={label}
                   showSelectedText
                   overlayLabels={overlayLabels}
-                  overlayIconMap={{
-                    // prefer overlay assets (strings) from OVERLAY_ICON_SRC when available
-                    ...Object.fromEntries(Object.entries(AMENITIES_ICON_MAP).map(([k]) => [k, OVERLAY_ICON_SRC[k] || AMENITIES_ICON_MAP[k]])),
-                    เงินสด: OVERLAY_ICON_SRC['เงินสด'] || MONEY_ICON,
-                    สแกนจ่าย: OVERLAY_ICON_SRC['สแกนจ่าย'] || SCAN_ICON,
-                    "สแกนจ่าย 2": OVERLAY_ICON_SRC['สแกนจ่าย 2'] || SCAN2_ICON,
-                    "แตะบัตร": OVERLAY_ICON_SRC['แตะบัตร'] || TOUCH_ICON,
-                    "กระเป๋ารถเมล์": OVERLAY_ICON_SRC['กระเป๋���รถเมล์'] || BUS_EMPLOY_ICON,
-                    "ตั๋วรายเดือน/รอบ": OVERLAY_ICON_SRC['ตั๋วรายเดือน/รอบ'] || MONTHLY_ICON,
-                    "1": OVERLAY_ICON_SRC['1'] || "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9811f9bca05c43feae9eafdcbab3c8d9?format=webp&width=800",
-                    "2": OVERLAY_ICON_SRC['2'] || "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8f9b21942af243b3b80b0e5ac8b12631?format=webp&width=800",
-                    ramp: OVERLAY_ICON_SRC['ramp'] || "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fece2b6fc843340f0997f2fd7d3ca0aea?format=webp&width=800",
-                    emergency: OVERLAY_ICON_SRC['emergency'] || "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F98de0624be3d4ae6b96d83edcf8891f9?format=webp&width=800",
-                  }}
+                  overlayIconMap={(() => {
+                    // Build overlayIconMap preferring stored session URLs, then OVERLAY_ICON_SRC constants, then small JSX icons
+                    let storedMap: Record<string, string | React.ReactNode> = {};
+                    try {
+                      const raw = sessionStorage.getItem('design.overlayIconMap');
+                      if (raw) storedMap = JSON.parse(raw) as Record<string, string>;
+                    } catch {}
+                    const result: Record<string, string | React.ReactNode> = {};
+
+                    // keys from OVERLAY_ICON_SRC
+                    for (const k of Object.keys(OVERLAY_ICON_SRC)) {
+                      if (storedMap[k]) result[k] = storedMap[k];
+                      else if (OVERLAY_ICON_SRC[k]) result[k] = OVERLAY_ICON_SRC[k];
+                    }
+
+                    // include amenities small nodes for fallback
+                    for (const k of Object.keys(AMENITIES_ICON_MAP)) {
+                      if (!result[k]) result[k] = storedMap[k] || AMENITIES_ICON_MAP[k];
+                    }
+
+                    // include explicit payment keys
+                    const explicit = ['เงินสด','สแกนจ่าย','สแกนจ่าย 2','แตะบัตร','กระเป๋ารถเมล์','ตั๋วรายเดือน/รอบ','1','2','ramp','emergency'];
+                    for (const k of explicit) {
+                      if (!result[k]) result[k] = storedMap[k] || OVERLAY_ICON_SRC[k] || AMENITIES_ICON_MAP[k] || undefined;
+                    }
+
+                    return result;
+                  })()}
                 />
               </>
             ) : (
