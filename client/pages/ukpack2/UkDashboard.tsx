@@ -132,7 +132,7 @@ const UkDashboard: React.FC = () => {
       <div className="min-h-screen bg-[#0b0b0b] text-white flex items-center justify-center p-6">
         <form onSubmit={handleAuth} className="w-full max-w-md">
           <div className="bg-white text-black rounded-xl p-6">
-            <h2 className="text-lg font-semibold mb-2">เข้าสู่แดชบอร์ด ukpack2</h2>
+            <h2 className="text-lg font-semibold mb-2">���ข้าสู่แดชบอร์ด ukpack2</h2>
             <p className="text-sm mb-4">ป้อนรหัสเพื่อเข้าถึงแดชบอร์ด</p>
             <input
               type="password"
@@ -180,6 +180,7 @@ const UkDashboard: React.FC = () => {
             </button>
             <button
               onClick={async () => {
+                setIsSending(true);
                 try {
                   const sample = {
                     sessionID: `session_test_${Date.now()}`,
@@ -206,12 +207,16 @@ const UkDashboard: React.FC = () => {
                   await sendEventToFirestore(sample);
                   setLastSentResult({ sentCount: 1, skippedCount: 0, sampleSent: [sample], errors: [] });
                   alert("Test event sent to Firestore");
+                  refreshSummary();
                 } catch (err) {
                   console.error(err);
                   alert("Failed to send test event: " + String(err));
+                } finally {
+                  setIsSending(false);
                 }
               }}
-              className="bg-[#60a5fa] text-white px-4 py-2 rounded font-semibold"
+              disabled={isSending}
+              className={`bg-[#60a5fa] text-white px-4 py-2 rounded font-semibold ${isSending ? 'opacity-60' : ''}`}
             >
               Send Test Event
             </button>
