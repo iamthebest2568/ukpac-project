@@ -240,14 +240,8 @@ const DoorScreen: React.FC = () => {
     try {
       // store single selected option (string) for doors
       sessionStorage.setItem("design.doors", JSON.stringify(selectedOption));
-      // persist overlay icon for door selection
-      try {
-        const raw = sessionStorage.getItem("design.overlayIconMap");
-        const map = raw ? (JSON.parse(raw) as Record<string, string>) : {};
-        const key = selectedOption;
-        if (OVERLAY_ICON_SRC[key]) map[key] = OVERLAY_ICON_SRC[key];
-        sessionStorage.setItem("design.overlayIconMap", JSON.stringify(map));
-      } catch (e) {}
+      // NOTE: Do NOT persist overlay icon for door selection here — door clicks must not write overlay mappings
+      // (overlayIconMap is left unchanged by this screen)
     } catch (e) {}
     navigate("/ukpack2/design");
   };
