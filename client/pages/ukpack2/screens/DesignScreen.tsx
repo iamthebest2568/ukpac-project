@@ -11,7 +11,7 @@ import VehiclePreview from "../components/VehiclePreview";
 const IconAir = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fee1c18a935564e92bb49991fac3b76df?format=webp&width=800"
-    alt="แอร์"
+    alt="Air"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -20,7 +20,7 @@ const IconAir = () => (
 const IconFan = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe01792ee89e240808ed47d8576b55d71?format=webp&width=800"
-    alt="พัดลม"
+    alt="Fan"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -29,7 +29,7 @@ const IconFan = () => (
 const IconSeat = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F93439b2533284cdf914fc93cafa1cf26?format=webp&width=800"
-    alt="ที่นั่งพิเศษ"
+    alt="Priority seat"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -38,7 +38,7 @@ const IconSeat = () => (
 const IconWifi = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb0789bfd1100472f8351704764607d31?format=webp&width=800"
-    alt="ที่จับ/ราวยืน"
+    alt="Handrail"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -47,7 +47,7 @@ const IconWifi = () => (
 const IconPlug = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F09a78e31a3de44e98772b0eef382af6f?format=webp&width=800"
-    alt="ช่องชาร์จมือถือ/USB"
+    alt="USB charger"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -56,7 +56,7 @@ const IconPlug = () => (
 const IconTv = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fcb0cbf9ef6764e2d9e6f06e87827f5e9?format=webp&width=800"
-    alt="Wi‑Fi ฟรี"
+    alt="Wi-Fi"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
@@ -65,7 +65,7 @@ const IconTv = () => (
 const IconCup = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe903bdf27bab4175824c159bc19a02ba?format=webp&width=800"
-    alt="ระบบประกาศ"
+    alt="Announcement system"
     className="h-6 w-6 object-contain select-none"
     decoding="async"
     loading="eager"
