@@ -23,12 +23,8 @@ try {
 }
 
 export async function sendEventToFirestore(event: any) {
-  if (!db) return;
-  try {
-    const col = collection(db, "ukpack2_events");
-    // write enriched event; add server timestamp
-    await addDoc(col, { ...event, createdAt: serverTimestamp() });
-  } catch (err) {
-    console.error("Failed to send event to Firestore", err);
-  }
+  if (!db) throw new Error('Firestore not initialized');
+  const col = collection(db, "ukpack2_events");
+  // write enriched event; add server timestamp
+  return addDoc(col, { ...event, createdAt: serverTimestamp() });
 }
