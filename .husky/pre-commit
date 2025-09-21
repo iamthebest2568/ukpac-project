@@ -1,0 +1,5 @@
+#!/bin/sh
+set -e
+
+# Run ukpack2 fixes before commit
+npm run fix-ukpack2-alts && npm run fix-ukpack2-encoding
