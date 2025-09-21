@@ -416,22 +416,15 @@ export async function sendLocalEventsToFirestore(options = {}) {
   for (let i = 0; i < toSend.length; i += batchSize) {
     const chunk = toSend.slice(i, i + batchSize);
     // send concurrently within chunk
-    const promises = chunk.map((ev) => {
-      try {
-        return sendEventToFirestore(ev);
-      } catch (e) {
-        return Promise.reject(e);
+    const promises = chunk.map((ev) => sendEventToFirestore(ev).then(() => ({ ok: true, ev })).catch((err) => ({ ok: false, ev, err: String(err) })));
+    const results = await Promise.all(promises);
+    for (const r of results) {
+      if (r.ok) {
+        sentCount += 1;
+        if (sampleSent.length < 5) sampleSent.push(r.ev);
+      } else {
+        errors.push({ event: r.ev, error: r.err });
       }
-    });
-    try {
-      await Promise.all(promises.map((p) => p.catch((e) => ({ __err: String(e) }))));
-      sentCount += chunk.length;
-      for (const ev of chunk) {
-        if (sampleSent.length < 5) sampleSent.push(ev);
-      }
-    } catch (e) {
-      // should not reach here because we handle rejects, but capture generic
-      errors.push(String(e));
     }
   }
 
