@@ -325,6 +325,7 @@ const ChassisScreen: React.FC = () => {
                     hideLabel={true}
                     size="sm"
                     layout="horizontal"
+                    fill
                   />
 
                   <SelectionCard
@@ -338,6 +339,7 @@ const ChassisScreen: React.FC = () => {
                     hideLabel={true}
                     size="lg"
                     layout="horizontal"
+                    fill
                   />
 
                   <SelectionCard
@@ -351,6 +353,7 @@ const ChassisScreen: React.FC = () => {
                     hideLabel={true}
                     size="sm"
                     layout="horizontal"
+                    fill
                   />
 
                   <SelectionCard
@@ -364,6 +367,7 @@ const ChassisScreen: React.FC = () => {
                     hideLabel={true}
                     size="sm"
                     layout="horizontal"
+                    fill
                   />
                 </div>
               </div>
