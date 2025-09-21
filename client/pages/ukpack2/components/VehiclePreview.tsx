@@ -9,10 +9,12 @@ interface Props {
   overlayLabels?: string[];
   overlayIconMap?: Record<string, string | React.ReactNode>;
   placeholderText?: string;
-  // color overlay props removed — color matching disabled
+  // optional color overlay props
+  colorHex?: string | null; // e.g. "#ff0000"
+  colorMaskSrc?: string | null; // mask image where masked area will be filled with colorHex
   // optional className to allow page-scoped padding/alignment
   className?: string;
-  // when true, VehiclePreview will render a "รถที่เลือก : {label}" line beneath the preview
+  // when true, VehiclePreview will render a "���ถที่เลือก : {label}" line beneath the preview
   showSelectedText?: boolean;
   // optional star icon to overlay on the top-right of the vehicle image
   starSrc?: string | null;
