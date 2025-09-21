@@ -131,7 +131,7 @@ const VehiclePreview: React.FC<Props> = ({
 
                   <div
                     ref={scrollRef}
-                    className="flex gap-2 overflow-x-auto whitespace-nowrap items-center py-1"
+                    className="flex gap-2 overflow-x-auto no-scrollbar whitespace-nowrap items-center py-1"
                     style={{ scrollBehavior: 'smooth' }}
                   >
                     {overlayLabels.map((lab, i) => {
