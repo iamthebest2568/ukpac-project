@@ -257,6 +257,19 @@ const UkDashboard: React.FC = () => {
               </ul>
             )}
           </div>
+
+          {lastSentResult && (
+            <div className="mt-4">
+              <h3 className="text-lg font-semibold mb-2">Last send summary</h3>
+              <div className="bg-[#021827] rounded p-3 text-sm max-h-48 overflow-auto">
+                <div>Sent: {lastSentResult.sentCount}</div>
+                <div>Skipped: {lastSentResult.skippedCount}</div>
+                <div>Errors: {lastSentResult.errors && lastSentResult.errors.length}</div>
+                <div className="mt-2">Sample sent items:</div>
+                <pre className="text-xs mt-2 whitespace-pre-wrap">{JSON.stringify(lastSentResult.sampleSent || [], null, 2)}</pre>
+              </div>
+            </div>
+          )}
         </div>
 
         <div className="text-right mt-4">
