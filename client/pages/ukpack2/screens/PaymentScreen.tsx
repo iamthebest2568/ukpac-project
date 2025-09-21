@@ -428,7 +428,7 @@ const PaymentScreen: React.FC = () => {
             const CORRECT_LABELS: Record<string, string> = {
               "สแกนจ่าย 2": "สแกนจ่าย 2",
               "แตะบัตร": "แตะบัตร",
-              "กระเป๋ารถเมล์": "กระเป��ารถเมล์",
+              "กระเป๋ารถเมล์": "กระเป๋ารถเมล์",
               "เงินสด": "เงินสด",
             };
             const stripReplacement = (s: string) =>
@@ -599,7 +599,7 @@ const PaymentScreen: React.FC = () => {
                     className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
                   >
                     <img
-                      src={selected.includes("กระเป๋ารถเมล์") ? BUS_EMPLOY_ICON_ACTIVE : BUS_EMPLOY_ICON}
+                      src={selected.includes("กระเป๋ารถเม���์") ? BUS_EMPLOY_ICON_ACTIVE : BUS_EMPLOY_ICON}
                       alt={label}
                       className="h-6 w-6 md:h-7 md:w-7 object-contain"
                     />
@@ -753,7 +753,13 @@ const PaymentScreen: React.FC = () => {
                         ? (isSel ? MONTHLY_ICON_ACTIVE : MONTHLY_ICON)
                         : null;
 
-                    const iconNode = overlayUrl ? (
+                    // If selected and ICON_SETS provides a second icon (index 1), prefer that for the selected card appearance.
+                    const selectedIconOverride = isSel && ICON_SETS[o.label] && ICON_SETS[o.label][1] ? ICON_SETS[o.label][1] : undefined;
+
+                    const iconNode = selectedIconOverride ? (
+                      <img src={selectedIconOverride} alt={o.label} className={`object-contain select-none h-full w-full `} decoding="async" loading="eager" />
+                    ) : overlayUrl ? (
+                      // overlayUrl should be used for overlays across pages, but not to replace the selected card appearance
                       <img src={overlayUrl} alt={o.label} className={`object-contain select-none h-full w-full `} decoding="async" loading="eager" />
                     ) : baseIcon ? (
                       <img src={baseIcon} alt={o.label} className={`object-contain select-none h-full w-full `} decoding="async" loading="eager" />
