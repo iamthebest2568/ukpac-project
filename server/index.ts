@@ -170,6 +170,33 @@ export function createServer() {
     }
   });
 
+  // Publish public aggregation for Landing (saved to DATA_DIR/public_ukpack2.json)
+  app.post("/api/ukpack2/publish", async (req, res) => {
+    try {
+      const DATA_DIR = process.env.DATA_DIR || path.join(process.cwd(), ".data");
+      await fs.promises.mkdir(DATA_DIR, { recursive: true });
+      const file = path.join(DATA_DIR, "public_ukpack2.json");
+      const payload = req.body;
+      await fs.promises.writeFile(file, JSON.stringify(payload, null, 2), "utf-8");
+      res.status(200).json({ ok: true, file });
+    } catch (e: any) {
+      res.status(500).json({ ok: false, error: e?.message || "failed to publish" });
+    }
+  });
+
+  app.get("/api/ukpack2/public", async (_req, res) => {
+    try {
+      const DATA_DIR = process.env.DATA_DIR || path.join(process.cwd(), ".data");
+      const file = path.join(DATA_DIR, "public_ukpack2.json");
+      if (!fs.existsSync(file)) return res.status(404).json({ ok: false, error: "not found" });
+      const buf = await fs.promises.readFile(file, "utf-8");
+      const json = JSON.parse(buf);
+      res.status(200).json({ ok: true, data: json });
+    } catch (e: any) {
+      res.status(500).json({ ok: false, error: e?.message || "failed to read public aggregation" });
+    }
+  });
+
   // Clear analytics data: local files and Supabase (if configured)
   app.delete("/api/clear-data", async (_req, res) => {
     try {
