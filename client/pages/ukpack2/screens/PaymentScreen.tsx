@@ -403,7 +403,13 @@ const PaymentScreen: React.FC = () => {
               "กระเป๋ารถเมล์": "กระเป๋ารถเมล์",
               "เงินสด": "เงินสด",
             };
-            const stripReplacement = (s: string) => (s || "").replace(/ |\uFFFD/g, "").trim();
+            const stripReplacement = (s: string) =>
+              (s || "")
+                .replace(/\uFFFD/g, "") // remove replacement chars only
+                .replace(/\u2011/g, "-") // normalize no-break hyphen to normal hyphen
+                .replace(/\s+/g, " ")
+                .trim();
+
             const normalizedOverlayLabels = overlayLabels.map((l) => {
               if (!l) return l;
               if (CORRECT_LABELS[l]) return CORRECT_LABELS[l];
