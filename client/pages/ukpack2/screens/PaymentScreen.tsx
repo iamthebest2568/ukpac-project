@@ -398,7 +398,7 @@ const PaymentScreen: React.FC = () => {
   const PAYMENT_BUTTON_SRC: Record<string, string> = {
     เงินสด: MONEY_ICON,
     สแกนจ่าย: SCAN_ICON,
-    "สแกนจ่าย 2": SCAN2_ICON,
+    "สแกน��่าย 2": SCAN2_ICON,
     แตะบัตร: TOUCH_ICON,
     "ตั๋วรายเดือน/รอบ": MONTHLY_ICON,
     กระเป๋ารถเมล์: BUS_EMPLOY_ICON,
@@ -411,9 +411,36 @@ const PaymentScreen: React.FC = () => {
       try {
         const raw = sessionStorage.getItem("design.overlayIconMap");
         const map = raw ? (JSON.parse(raw) as Record<string, string>) : {};
+
+        const normalizeKey = (s: string) =>
+          (s || "")
+            .replace(/\uFFFD/g, "")
+            .replace(/\u2011/g, "-")
+            .replace(/\u00A0/g, " ")
+            .replace(/&amp;/g, "&")
+            .replace(/\s+/g, " ")
+            .trim()
+            .toLowerCase();
+
+        const setVariantsIfEmpty = (key: string, val: string) => {
+          try {
+            if (!map[key]) map[key] = val;
+            const nk = normalizeKey(key);
+            if (nk && !map[nk]) map[nk] = val;
+            const nkNoSpace = nk.replace(/\s/g, "");
+            if (nkNoSpace && !map[nkNoSpace]) map[nkNoSpace] = val;
+          } catch (e) {
+            // ignore
+          }
+        };
+
         selected.forEach((lab) => {
-          // do not overwrite any existing stored overlay URL (user-selected overrides)
-          if (!map[lab] && OVERLAY_ICON_SRC[lab]) map[lab] = OVERLAY_ICON_SRC[lab];
+          if (OVERLAY_ICON_SRC[lab]) {
+            // prefer not overwriting any user-set values, but populate normalized variants when empty
+            setVariantsIfEmpty(lab, OVERLAY_ICON_SRC[lab]);
+            const opt = OPTIONS.find((o) => o.label === lab);
+            if (opt && opt.key) setVariantsIfEmpty(opt.key, OVERLAY_ICON_SRC[lab]);
+          }
         });
         sessionStorage.setItem("design.overlayIconMap", JSON.stringify(map));
       } catch (e) {}
