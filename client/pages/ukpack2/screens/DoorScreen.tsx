@@ -568,6 +568,67 @@ const DoorScreen: React.FC = () => {
                     { key: "emergency", label: "ประตูฉุกเฉิน", icon: <IconHighLow />, iconActive: <IconHighLowActive /> },
                   ];
 
+                  // helper to normalize and set variants into overlayIconMap in sessionStorage
+                  const normalizeKey = (s: string) =>
+                    (s || "")
+                      .replace(/\uFFFD/g, "")
+                      .replace(/\u2011/g, "-")
+                      .replace(/\u00A0/g, " ")
+                      .replace(/&amp;/g, "&")
+                      .replace(/\s+/g, " ")
+                      .trim()
+                      .toLowerCase();
+
+                  const loadStoredMap = () => {
+                    try {
+                      const raw = sessionStorage.getItem("design.overlayIconMap");
+                      return raw ? (JSON.parse(raw) as Record<string, string>) : {};
+                    } catch {
+                      return {} as Record<string, string>;
+                    }
+                  };
+
+                  const setVariantsToStorage = (map: Record<string, string>, key: string, val: string) => {
+                    try {
+                      map[key] = val;
+                      const nk = normalizeKey(key);
+                      if (nk) map[nk] = val;
+                      const nkNoSpace = nk.replace(/\s/g, "");
+                      if (nkNoSpace) map[nkNoSpace] = val;
+                    } catch (e) {
+                      // ignore
+                    }
+                  };
+
+                  const handleSelect = (opt: any) => {
+                    // choose best candidate url: stored override, otherwise door button src
+                    let storedMap = loadStoredMap();
+                    const lookupStored = (labelOrKey: string) => {
+                      if (!labelOrKey) return undefined;
+                      if (storedMap[labelOrKey]) return storedMap[labelOrKey] as string;
+                      const target = normalizeKey(labelOrKey);
+                      for (const k of Object.keys(storedMap)) {
+                        if (normalizeKey(k) === target) return storedMap[k] as string;
+                      }
+                      return undefined;
+                    };
+
+                    const candidateUrl = lookupStored(opt.key) || lookupStored(opt.label) || DOOR_BUTTON_SRC[opt.key];
+
+                    // persist mapping for this selection (key + label + normalized variants)
+                    try {
+                      const raw = sessionStorage.getItem("design.overlayIconMap");
+                      const map = raw ? (JSON.parse(raw) as Record<string, string>) : {};
+                      if (candidateUrl) {
+                        setVariantsToStorage(map, opt.key, candidateUrl);
+                        setVariantsToStorage(map, opt.label, candidateUrl);
+                      }
+                      sessionStorage.setItem("design.overlayIconMap", JSON.stringify(map));
+                    } catch (e) {}
+
+                    setSelectedOption(opt.key);
+                  };
+
                   return DOOR_OPTIONS.map((opt) => {
                     // try to use stored overlay URL if available (by key or label)
                     let storedMap: Record<string, string | null> = {};
@@ -575,16 +636,6 @@ const DoorScreen: React.FC = () => {
                       const raw = sessionStorage.getItem("design.overlayIconMap");
                       if (raw) storedMap = JSON.parse(raw) as Record<string, string>;
                     } catch {}
-
-                    const normalizeKey = (s: string) =>
-                      (s || "")
-                        .replace(/\uFFFD/g, "")
-                        .replace(/\u2011/g, "-")
-                        .replace(/\u00A0/g, " ")
-                        .replace(/&amp;/g, "&")
-                        .replace(/\s+/g, " ")
-                        .trim()
-                        .toLowerCase();
 
                     const lookupStored = (labelOrKey: string) => {
                       if (!labelOrKey) return undefined;
@@ -596,7 +647,7 @@ const DoorScreen: React.FC = () => {
                       return undefined;
                     };
 
-                    const candidateUrl = lookupStored(opt.key) || lookupStored(opt.label);
+                    const candidateUrl = lookupStored(opt.key) || lookupStored(opt.label) || DOOR_BUTTON_SRC[opt.key];
 
                     const iconNode = candidateUrl ? (
                       <img src={candidateUrl} alt={opt.label} className="h-full w-full object-contain" decoding="async" loading="eager" />
@@ -612,7 +663,7 @@ const DoorScreen: React.FC = () => {
                         icon={iconNode}
                         label={opt.label}
                         isSelected={selectedOption === opt.key}
-                        onClick={() => setSelectedOption(opt.key)}
+                        onClick={() => handleSelect(opt)}
                         variant="light"
                         hideLabel
                         appearance="group"
