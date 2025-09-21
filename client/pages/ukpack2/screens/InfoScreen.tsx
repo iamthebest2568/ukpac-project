@@ -83,25 +83,69 @@ const InfoScreen: React.FC = () => {
                     try { const raw = sessionStorage.getItem("design.doors"); if (!raw) return null; const parsed = JSON.parse(raw); return typeof parsed === "string" ? parsed : parsed?.doorChoice || (parsed?.hasRamp ? "ramp" : parsed?.highLow ? "emergency" : null); } catch { return sessionStorage.getItem("design.doors"); }
                   })();
                   const overlay = [ ...(amenities || []), ...(payments || []), ...(doors ? [doors as string] : []) ];
-                  const ICONS: Record<string, string> = {
-                    เงินสด: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fbc8b22cedfbb4640a702f724881f196d?format=webp&width=800",
-                    สแกนจ่าย: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb8992da4be824b339d3df5f0a076ed93?format=webp&width=800",
-                    "สแกนจ่าย 2": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F56620e798eb94153b2390271f30d0dae?format=webp&width=800",
-                    แตะบัตร: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fdb2e47a586b841d1af014e9196f3c411?format=webp&width=800",
-                    กระเป๋ารถเมล์: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F41c089c5dd4b448993c4e02c02cdf7ac?format=webp&width=800",
-                    "ตั๋วรายเดือน/รอบ": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fca6467eff0c74a77a8e5757f25a24e41?format=webp&width=800",
-                    "1": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9811f9bca05c43feae9eafdcbab3c8d9?format=webp&width=800",
-                    "2": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8f9b21942af243b3b80b0e5ac8b12631?format=webp&width=800",
-                    ramp: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fece2b6fc843340f0997f2fd7d3ca0aea?format=webp&width=800",
-                    emergency: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F98de0624be3d4ae6b96d83edcf8891f9?format=webp&width=800",
+
+                  // Build merged overlay map: prefer stored session URLs, then canonical OVERLAY_ICON_SRC, then AMENITIES_ICON_MAP nodes
+                  let storedMapRaw: Record<string, string> = {};
+                  try {
+                    const raw = sessionStorage.getItem("design.overlayIconMap");
+                    if (raw) storedMapRaw = JSON.parse(raw) as Record<string, string>;
+                  } catch {}
+
+                  const normalizeKey = (s: string) =>
+                    (s || "")
+                      .replace(/\uFFFD/g, "")
+                      .replace(/\u2011/g, "-")
+                      .replace(/\u00A0/g, " ")
+                      .replace(/&amp;/g, "&")
+                      .replace(/\s+/g, " ")
+                      .trim()
+                      .toLowerCase();
+
+                  const merged: Record<string, string | React.ReactNode> = {};
+                  const setVariants = (key: string, val: string | React.ReactNode) => {
+                    merged[key] = val;
+                    try {
+                      const nk = normalizeKey(key as string);
+                      if (nk) merged[nk] = val;
+                      const nkNoSpace = nk.replace(/\s/g, "");
+                      if (nkNoSpace) merged[nkNoSpace] = val;
+                    } catch {}
                   };
+
+                  for (const k of Object.keys(storedMapRaw)) {
+                    try { setVariants(k, storedMapRaw[k]); } catch {}
+                  }
+
+                  try {
+                    const { OVERLAY_ICON_SRC } = require("../utils/overlayIcons");
+                    for (const k of Object.keys(OVERLAY_ICON_SRC)) {
+                      if (!merged[k]) setVariants(k, OVERLAY_ICON_SRC[k]);
+                    }
+                  } catch {}
+
+                  // include AMENITIES_ICON_MAP JSX nodes as fallback
+                  try {
+                    for (const k of Object.keys(AMENITIES_ICON_MAP)) {
+                      if (!merged[k]) setVariants(k, AMENITIES_ICON_MAP[k]);
+                    }
+                  } catch {}
+
                   return overlay.length > 0 ? (
                     <div className="absolute left-1/2 transform -translate-x-1/2 flex flex-wrap justify-center gap-2 max-w-[80%]" style={{ zIndex: 130, top: '10%' }}>
-                      {overlay.map((lab, i) => (
-                        <div key={`${lab}-${i}`} className="bg-white/95 backdrop-blur rounded-full h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">
-                          {ICONS[lab] ? <img src={ICONS[lab]} alt={lab} className="h-6 w-6 md:h-7 md:w-7 object-contain" /> : <div className="text-xs">{lab}</div>}
-                        </div>
-                      ))}
+                      {overlay.map((lab, i) => {
+                        const srcOrNode = merged[lab] ?? merged[normalizeKey(lab)] ?? merged[normalizeKey(lab).replace(/\s/g, "")];
+                        return (
+                          <div key={`${lab}-${i}`} className="bg-white/95 backdrop-blur rounded-full h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10">
+                            {typeof srcOrNode === 'string' ? (
+                              <img src={srcOrNode as string} alt={lab} className="h-6 w-6 md:h-7 md:w-7 object-contain" />
+                            ) : srcOrNode ? (
+                              <>{srcOrNode}</>
+                            ) : (
+                              <div className="text-xs">{lab}</div>
+                            )}
+                          </div>
+                        );
+                      })}
                     </div>
                   ) : null;
                 })()}
@@ -122,7 +166,7 @@ const InfoScreen: React.FC = () => {
               <h2 className="font-sarabun font-semibold text-xl text-center">รู้หรือไม่!</h2>
               <p>
                 ในญี่ปุ่นมี Community Bus รถเมล์ขนาดเล็กที่วิ่งเข้าซอยและพื้นที่
-                ที่รถใหญ่เข้าไม่ถึง ค่าโดยสารถูกมาก บางแห่งนั่งได้ทั้งสายเพียง 100
+                ที่รถใหญ่เข้าไม่ถึง ค่าโดยสารถูกมาก บางแห่งนั่งได้ทั้งสา��เพียง 100
                 เยน ทำให้ผู้สูงอายุและเด็กเข้าถึงบริการสำคัญ เช่น
                 โรงพยาบาลและศูนย์ชุมชนได้สะดวกขึ้น
               </p>
