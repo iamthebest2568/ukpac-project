@@ -124,7 +124,7 @@ const IconCup = () => (
 const IconCupAlt = () => (
   <img
     src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F2c2b4af39249468d92e4252d584cf2fd?format=webp&width=800"
-    alt="ระบบประกาศบอก���้าย(กดแล้ว)"
+    alt="ระบบประกาศบอกป้าย(กดแล้ว)"
     className="object-contain select-none h-full w-full"
     decoding="async"
     loading="eager"
@@ -201,7 +201,7 @@ const AmenitiesScreen: React.FC = () => {
   const CHASSIS_LABELS: Record<string, string> = {
     small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
     medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
-    large: "รถตู้โดยสาร 9–15 ที่นั่ง",
+    large: "รถตู้โด��สาร 9–15 ที่นั่ง",
     extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
   };
   const HERO_IMAGE: Record<string, string> = {
@@ -247,7 +247,7 @@ const AmenitiesScreen: React.FC = () => {
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb35efe05833149089a2df21cf61300b4?format=webp&width=800", // ใช้ไอคอนหน้าต่างเปิดได้
     หน้าต่างเปิดได้:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb35efe05833149089a2df21cf61300b4?format=webp&width=800",
-    "ที่จับ/ราวยืนที่ปลอด���ัย":
+    "ที่จับ/ราวยืนที่ปลอดภัย":
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fa9c2a350877e46c3a49f0f6cd867ae99?format=webp&width=800",
     "ช่องชาร์จมือถือ/USB":
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F2d38a737cf2c4bf29f8764e48a93d404?format=webp&width=800",
@@ -292,7 +292,7 @@ const AmenitiesScreen: React.FC = () => {
               />
             ) : (
               <div className="w-full h-48 bg-[#081042] rounded-md flex items-center justify-center text-sm text-gray-300">
-                Bus image preview (ภาพสำหรับรุ่นนี้จะถูกเพิ่มภายหลัง)
+                Bus image preview (ภาพสำหรับรุ่นนี้จะถูกเ���ิ่มภายหลัง)
               </div>
             )}
           </div>
