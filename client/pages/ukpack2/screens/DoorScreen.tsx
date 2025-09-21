@@ -474,40 +474,72 @@ const DoorScreen: React.FC = () => {
 
             return img ? (
               <>
-                <VehiclePreview
-                  imageSrc={img}
-                  label={label}
-                  showSelectedText
-                  overlayLabels={overlayLabels}
-                  overlayIconMap={(() => {
-                    // Build overlayIconMap preferring stored session URLs, then OVERLAY_ICON_SRC constants, then small JSX icons
-                    let storedMap: Record<string, string | React.ReactNode> = {};
+                {(() => {
+                  // Build a robust merged overlay map that includes normalized keys and fallbacks
+                  let storedMapRaw: Record<string, string> = {};
+                  try {
+                    const raw = sessionStorage.getItem('design.overlayIconMap');
+                    if (raw) storedMapRaw = JSON.parse(raw) as Record<string, string>;
+                  } catch {}
+
+                  const normalizeKey = (s: string) =>
+                    (s || '')
+                      .replace(/\uFFFD/g, '')
+                      .replace(/\u2011/g, '-')
+                      .replace(/\u00A0/g, ' ')
+                      .replace(/&amp;/g, '&')
+                      .replace(/\s+/g, ' ')
+                      .trim()
+                      .toLowerCase();
+
+                  const merged: Record<string, string | React.ReactNode> = {};
+
+                  // Helper to set multiple variants
+                  const setVariants = (key: string, val: string | React.ReactNode) => {
+                    merged[key] = val;
                     try {
-                      const raw = sessionStorage.getItem('design.overlayIconMap');
-                      if (raw) storedMap = JSON.parse(raw) as Record<string, string>;
+                      const nk = normalizeKey(key);
+                      if (nk) merged[nk] = val;
+                      const nkNoSpace = nk.replace(/\s/g, '');
+                      if (nkNoSpace) merged[nkNoSpace] = val;
                     } catch {}
-                    const result: Record<string, string | React.ReactNode> = {};
+                  };
 
-                    // keys from OVERLAY_ICON_SRC
-                    for (const k of Object.keys(OVERLAY_ICON_SRC)) {
-                      if (storedMap[k]) result[k] = storedMap[k];
-                      else if (OVERLAY_ICON_SRC[k]) result[k] = OVERLAY_ICON_SRC[k];
+                  // Favor storedMapRaw entries (URLs)
+                  for (const k of Object.keys(storedMapRaw)) {
+                    setVariants(k, storedMapRaw[k]);
+                  }
+
+                  // Then overlay constants
+                  for (const k of Object.keys(OVERLAY_ICON_SRC)) {
+                    if (!merged[k]) setVariants(k, OVERLAY_ICON_SRC[k]);
+                  }
+
+                  // Then amenities small JSX nodes as fallback
+                  for (const k of Object.keys(AMENITIES_ICON_MAP)) {
+                    if (!merged[k]) setVariants(k, AMENITIES_ICON_MAP[k]);
+                  }
+
+                  // Ensure explicit keys exist
+                  const explicit = ['เงินสด','สแกนจ่าย','สแกนจ่าย 2','แตะบัตร','กระเป๋ารถเมล์','ตั๋วรายเดือน/รอบ','1','2','ramp','emergency'];
+                  for (const k of explicit) {
+                    if (!merged[k]) {
+                      if (storedMapRaw[k]) setVariants(k, storedMapRaw[k]);
+                      else if (OVERLAY_ICON_SRC[k]) setVariants(k, OVERLAY_ICON_SRC[k]);
+                      else if (AMENITIES_ICON_MAP[k]) setVariants(k, AMENITIES_ICON_MAP[k]);
                     }
+                  }
 
-                    // include amenities small nodes for fallback
-                    for (const k of Object.keys(AMENITIES_ICON_MAP)) {
-                      if (!result[k]) result[k] = storedMap[k] || AMENITIES_ICON_MAP[k];
-                    }
-
-                    // include explicit payment keys
-                    const explicit = ['เงินสด','สแกนจ่าย','สแกนจ่าย 2','แตะบัตร','กระเป๋ารถเมล์','ตั๋วรายเดือน/รอบ','1','2','ramp','emergency'];
-                    for (const k of explicit) {
-                      if (!result[k]) result[k] = storedMap[k] || OVERLAY_ICON_SRC[k] || AMENITIES_ICON_MAP[k] || undefined;
-                    }
-
-                    return result;
-                  })()}
-                />
+                  return (
+                    <VehiclePreview
+                      imageSrc={img}
+                      label={label}
+                      showSelectedText
+                      overlayLabels={overlayLabels}
+                      overlayIconMap={merged}
+                    />
+                  );
+                })()}
               </>
             ) : (
               <div className="w-full h-48 bg-[#081042] rounded-md flex items-center justify-center text-sm text-gray-300">
