@@ -244,18 +244,18 @@ const SummaryDetails: React.FC = () => {
           </div>
 
           <div className="flex items-start gap-2">
-            <div className="w-28 md:w-36 text-sm text-[#003366] truncate">การจ่ายเงิน</div>
+            <div className="w-24 md:w-32 text-sm text-[#003366] truncate">การจ่ายเงิน</div>
             <div className="flex-1 font-sarabun font-semibold text-sm text-[#003366] break-words">{data.payment ? (Array.isArray(data.payment) ? data.payment.join(", ") : String(data.payment)) : "-"}</div>
           </div>
 
           <div className="flex items-start gap-2">
-            <div className="w-28 md:w-36 text-sm text-[#003366] truncate">ความสะดวก</div>
+            <div className="w-24 md:w-32 text-sm text-[#003366] truncate">ความสะดวก</div>
             <div className="flex-1 font-sarabun font-semibold text-sm text-[#003366] break-words">{data.amenities ? (Array.isArray(data.amenities) ? data.amenities.join(", ") : String(data.amenities)) : "-"}</div>
           </div>
 
           <div className="flex items-start gap-2">
-            <div className="w-28 md:w-36 text-sm text-[#003366] truncate">ทางขึ้น</div>
-            <div className="flex-1 font-sarabun font-semibold text-sm text-[#003366] break-words">{data.doors ? (typeof data.doors === "string" ? displayDoor(data.doors) : typeof data.doors === "object" ? (data.doors.doorChoice ? (data.doors.doorChoice === "1" ? "1 ประตู" : data.doors.doorChoice === "2" ? "2 ประตู" : String(data.doors.doorChoice)) : data.doors.hasRamp ? "ทางลาดสำหรับรถเ      /ผู้พิการ" : data.doors.highLow ? "ประตูฉุกเฉิน" : JSON.stringify(data.doors)) : String(data.doors)) : "-"}</div>
+            <div className="w-24 md:w-32 text-sm text-[#003366] truncate">ทางขึ้น</div>
+            <div className="flex-1 font-sarabun font-semibold text-sm text-[#003366] break-words">{data.doors ? (typeof data.doors === "string" ? displayDoor(data.doors) : typeof data.doors === "object" ? (data.doors.doorChoice ? (data.doors.doorChoice === "1" ? "1 ประตู" : data.doors.doorChoice === "2" ? "2 ประตู" : String(data.doors.doorChoice)) : data.doors.hasRamp ? "ทางลาดสำหรับรถเข็น/ผู��พิการ" : data.doors.highLow ? "ประตูฉุกเฉิน" : JSON.stringify(data.doors)) : String(data.doors)) : "-"}</div>
           </div>
 
           <div className="flex items-start gap-2">
@@ -264,7 +264,7 @@ const SummaryDetails: React.FC = () => {
           </div>
 
           <div className="flex items-start gap-2">
-            <div className="w-28 md:w-36 text-sm text-[#003366] truncate">สี</div>
+            <div className="w-24 md:w-32 text-sm text-[#003366] truncate">สี</div>
             <div className="flex-1 font-sarabun font-semibold text-sm text-[#003366] break-words">{(state?.exterior?.color?.colorHex) || (data.color ? (typeof data.color === "string" ? JSON.parse(String(data.color)).colorHex ?? String(data.color) : String(data.color)) : "-")}</div>
           </div>
         </div>
