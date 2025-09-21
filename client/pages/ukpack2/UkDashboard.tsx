@@ -87,7 +87,7 @@ const UkDashboard: React.FC = () => {
         <form onSubmit={handleAuth} className="w-full max-w-md">
           <div className="bg-white text-black rounded-xl p-6">
             <h2 className="text-lg font-semibold mb-2">เข้าสู่แดชบอร์ด ukpack2</h2>
-            <p className="text-sm mb-4">ป้อนรหัสเพื่อเข้าถึงแดช���อร์ด</p>
+            <p className="text-sm mb-4">ป้อนรหัสเพื่อเข้าถึงแดชบอร์ด</p>
             <input
               type="password"
               value={input}
@@ -125,6 +125,12 @@ const UkDashboard: React.FC = () => {
               className="bg-[#ffe000] text-[#000d59] px-4 py-2 rounded font-semibold"
             >
               Export CSV
+            </button>
+            <button
+              onClick={handleExportMapped}
+              className="bg-[#ffd27a] text-[#000d59] px-4 py-2 rounded font-semibold"
+            >
+              Export Mapped CSV
             </button>
             <button
               onClick={handleClear}
