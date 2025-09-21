@@ -240,7 +240,7 @@ const DesignScreen: React.FC = () => {
         image="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F44cea8aeb6d4415e899494a90c6f59b1?format=webp&width=1200"
       />
       <CustomizationScreen
-        title="ปรับ��ต่งรถเมล์ของคุณ"
+        title="ปรับแต่งรถเมล์ของคุณ"
         theme="light"
         footerContent={
           <div className="flex justify-center">
@@ -398,7 +398,7 @@ const DesignScreen: React.FC = () => {
                         ref={textareaRef}
                         value={sloganDraft}
                         onChange={(e) => setSloganDraft(e.target.value)}
-                        placeholder="พิมพ์คุณสมบัติพิเศษอื่���ๆ ของรถเม��์ในฝันของคุณ"
+                        placeholder="พิมพ์คุณสมบัติพิเศษอื่นๆ ของรถเมล์ในฝันของคุณ"
                         className="mt-3 w-full h-36 p-3 border-2 border-[#000D59] rounded-xl text-sm resize-none"
                       />
                       <div className="mt-3 flex justify-end gap-2">
