@@ -59,7 +59,7 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
 
       <div
         ref={contentRef}
-        className={`flex-1 min-h-0 ${containerPaddingClass ? containerPaddingClass : (fullWidth ? "px-0" : "px-6")} py-6`}
+        className={`flex-1 min-h-0 ${containerPaddingClass ? containerPaddingClass : (fullWidth ? "px-0 py-6" : "px-6 py-6")}` }
         style={{
           height:
             "calc(100vh - 64px - (56px + env(safe-area-inset-bottom, 0px)))",
