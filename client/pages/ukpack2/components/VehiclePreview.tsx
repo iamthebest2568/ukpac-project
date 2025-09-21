@@ -108,7 +108,7 @@ const VehiclePreview: React.FC<Props> = ({
               })();
 
               return (
-                <div className="absolute left-1/2 transform -translate-x-1/2 -top-4 flex flex-wrap justify-center items-center gap-2 z-20 w-[95%] sm:w-[90%] md:w-[100%]">
+                <div className="absolute left-1/2 transform -translate-x-1/2 -top-4 flex flex-wrap justify-center items-center gap-2 z-20 w-[110%] sm:w-[120%] md:w-[130%] lg:w-[140%]">
                   {overlayLabels.map((lab, i) => {
                     const propVal = overlayIconMap ? overlayIconMap[lab] : undefined;
                     const storedVal = storedMap ? storedMap[lab] : undefined;
