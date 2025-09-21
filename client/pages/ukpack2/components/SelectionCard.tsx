@@ -97,7 +97,7 @@ const SelectionCard: React.FC<SelectionCardProps> = ({
   const layoutClass = layout === "horizontal" ? "horizontal" : "vertical";
 
   if (layout === "horizontal") {
-    const iconBox = `flex-shrink-0 ${FIXED_ICON_HEIGHT_CLASS} w-auto flex items-center justify-center`;
+    const iconBox = fill ? `w-full h-full flex items-center justify-center` : `flex-shrink-0 ${FIXED_ICON_HEIGHT_CLASS} w-auto flex items-center justify-center`;
     return (
       <button
         type="button"
