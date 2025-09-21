@@ -108,7 +108,7 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
   "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
-  "กล้องวงจรปิด": <IconCamSmall />,
+  "กล้องวงจรปิ��": <IconCamSmall />,
 };
 
 const MONEY_ICON =
@@ -502,7 +502,7 @@ const DoorScreen: React.FC = () => {
                         className="h-5 w-5 object-contain"
                       />
                     ),
-                    แตะ���ัตร: (
+                    "แตะบัตร": (
                       <img
                         src={TOUCH_ICON}
                         alt="แตะบัตร"
