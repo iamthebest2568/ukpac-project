@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import CustomizationScreen from "../components/CustomizationScreen";
 import SelectionCard from "../components/SelectionCard";
@@ -109,7 +108,7 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
   "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
-  "กล้องวงจรปิด": <IconCamSmall />,
+  "กล้องวงจรป��ด": <IconCamSmall />,
 };
 
 const MONEY_ICON =
@@ -280,7 +279,7 @@ const DoorScreen: React.FC = () => {
 
   return (
     <CustomizationScreen
-    title="ปรับแต่งรถเมล์ของคุณ"
+    title="���รับแต่งรถเมล์ของคุณ"
     theme="light"
     fullWidth
     footerContent={
