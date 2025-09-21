@@ -292,6 +292,59 @@ const UkDashboard: React.FC = () => {
           )}
         </div>
 
+        <div className="mb-6">
+          <h3 className="text-lg font-semibold mb-2">Data schema & usage (สรุปสคีมา)</h3>
+          <div className="bg-[#021827] rounded p-4 text-sm text-gray-200">
+            <div className="mb-3">
+              <strong>Document fields (ukpack2_events)</strong>
+              <ul className="list-disc pl-5 mt-1 text-xs text-gray-300">
+                <li>createdAt (Firestore Timestamp)</li>
+                <li>sessionID (string)</li>
+                <li>timestamp (string ISO)</li>
+                <li>event (string)</li>
+                <li>url, userAgent, viewport (meta)</li>
+                <li>payload (map) — fields listed below</li>
+              </ul>
+            </div>
+
+            <div className="mb-3">
+              <strong>Payload suggested fields</strong>
+              <ul className="list-disc pl-5 mt-1 text-xs text-gray-300">
+                <li>PDPA (boolean)</li>
+                <li>chassis (string)</li>
+                <li>seating (map: totalSeats, specialSeats, children?, pregnant?, monk?)</li>
+                <li>amenities (array[string])</li>
+                <li>payment (array[string])</li>
+                <li>doors (string or map)</li>
+                <li>color (string, hex)</li>
+                <li>frequency / interval, route, area (strings)</li>
+                <li>decisionUseService (boolean), reasonNotUse (string)</li>
+                <li>enterPrize (boolean), prizeName, prizePhone</li>
+                <li>shared (boolean)</li>
+              </ul>
+            </div>
+
+            <div className="mb-3">
+              <strong>How we send</strong>
+              <div className="text-xs text-gray-300 mt-1">Client constructs a plain JS object (map/array/primitives) and we call addDoc(collection, obj). Images must be stored in Storage and referenced by URL in payload.imageUrl.</div>
+            </div>
+
+            <div className="mb-3">
+              <strong>CSV export columns (mapped)</strong>
+              <pre className="text-xs mt-1 whitespace-pre-wrap bg-[#001927] p-2 rounded">sessionID, ip, firstTimestamp, lastTimestamp, PDPA_acceptance, chassis_type, total_seats, special_seats, children_count, pregnant_count, monk_count, features, payment_types, doors, color, frequency, route, area, decision_use_service, reason_not_use, decision_enter_prize, prize_name, prize_phone, prize_timestamp, shared_with_friends, shared_timestamp</pre>
+            </div>
+
+            <div>
+              <strong>Landing page usage</strong>
+              <ul className="list-disc pl-5 mt-1 text-xs text-gray-300">
+                <li>For images: store in Firebase Storage → save public URL in payload.imageUrl → render &lt;img src="..." /&gt;</li>
+                <li>For user text (slogans, comments): fetch doc.payload.field and sanitize before rendering</li>
+                <li>Prefer server-side endpoint to aggregate & sanitize public data for landing page (recommended)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
         <div className="text-right mt-4">
           <button
             onClick={() => { sessionStorage.removeItem("ukpack2_dash_auth"); setAuthorized(false); }}
