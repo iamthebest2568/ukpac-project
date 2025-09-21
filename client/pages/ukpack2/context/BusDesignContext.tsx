@@ -124,10 +124,33 @@ export const BusDesignProvider = ({ children }: { children: ReactNode }) => {
       ...(stateOverride || state),
       timestamp: Date.now(),
     } as any;
-    const submissionsRef = ref(database, "submissions");
-    const newRef = push(submissionsRef);
-    await set(newRef, payload);
-    return newRef.key || "";
+
+    // Guard: if Firebase Realtime Database isn't initialized, persist locally
+    try {
+      if (!database) {
+        // fallback: persist to localStorage for later submission
+        try {
+          const pending = JSON.parse(localStorage.getItem("ukpack2_pending_submissions") || "[]");
+          const id = `local_${Date.now()}_${Math.random().toString(36).slice(2, 9)}`;
+          pending.push({ id, payload });
+          localStorage.setItem("ukpack2_pending_submissions", JSON.stringify(pending));
+          console.warn("Firebase database not initialized — saved submission locally", id);
+          return id;
+        } catch (err) {
+          console.error("Failed to persist locally", err);
+          throw new Error("Firebase not initialized and local persistence failed");
+        }
+      }
+
+      const submissionsRef = ref(database, "submissions");
+      const newRef = push(submissionsRef);
+      await set(newRef, payload);
+      return newRef.key || "";
+    } catch (err) {
+      console.error("submitDesignToFirebase failed", err);
+      // rethrow to allow callers to handle user-visible errors
+      throw err;
+    }
   }
 
   return (
