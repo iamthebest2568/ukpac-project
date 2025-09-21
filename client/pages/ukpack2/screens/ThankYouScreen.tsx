@@ -26,7 +26,7 @@ const ThankYouScreen: React.FC = () => {
           <div className="font-prompt font-semibold text-[18px] leading-relaxed">
             <p>คุณอยากกรอกข้อมูลเพิ่ม</p>
             <p>เพื่อลุ้นรับรางวัล</p>
-            <p>ลุ้นรางวัลบัตรขนส่งสาธารณะ</p>
+            <p>ลุ้นรางวั���บัตรขนส่งสาธารณะ</p>
             <p>
               <span className="text-3xl md:text-4xl font-extrabold text-[#001a73]">
                 300
@@ -47,7 +47,7 @@ const ThankYouScreen: React.FC = () => {
           marginLeft: 'calc(50% - 50vw)'
         }}
       >
-        <div className="max-w-4xl mx-auto flex items-center justify-center h-full">
+        <div className="max-w-4xl mx-auto flex items-center justify-center h-full" style={{paddingLeft: 20, paddingRight: 20}}>
           <div className="flex flex-col items-center gap-3 py-6">
             <div style={{ width: '220px' }}>
               <SecondaryButton
