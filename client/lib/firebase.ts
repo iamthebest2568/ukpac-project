@@ -20,7 +20,12 @@ function initFirebase() {
   try {
     // In case code runs in SSR or before window exists, guard
     if (typeof window === 'undefined') return;
-    const app = initializeApp(firebaseConfig);
+    let app;
+    if (getApps && getApps().length > 0) {
+      app = getApp();
+    } else {
+      app = initializeApp(firebaseConfig);
+    }
     db = getFirestore(app);
   } catch (e) {
     console.warn("Firebase init failed", e);
