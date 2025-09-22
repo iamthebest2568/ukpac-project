@@ -215,3 +215,34 @@ export async function getVideoIngestStatus(): Promise<{
     return { count: 0, lastTs: null };
   }
 }
+
+// New: generic stats reader for any collection/document events subcollection
+export async function getFirestoreStatsFor(
+  colName: string,
+  docId: string,
+  limit = 20,
+): Promise<{ count: number | null; lastTs: string | null; sample: any[] }> {
+  try {
+    initFirestore();
+    if (!firestoreDb) return { count: null, lastTs: null, sample: [] };
+    const colDoc = doc(firestoreDb, String(colName), String(docId));
+    const eventsCol = collection(colDoc, 'events');
+    const q = query(eventsCol, orderBy('createdAt', 'desc'), limitFn(limit));
+    const snap = await getDocs(q as any);
+    const sample: any[] = [];
+    let lastTs: string | null = null;
+    snap.forEach((d) => {
+      const data = d.data() as any;
+      if (!lastTs) {
+        const ts = data.timestamp || data.createdAt || null;
+        if (ts && typeof ts.toDate === 'function') lastTs = ts.toDate().toISOString();
+        else if (ts) lastTs = String(ts);
+      }
+      sample.push({ id: d.id, data });
+    });
+    return { count: null, lastTs, sample };
+  } catch (e) {
+    console.warn('Failed to fetch Firestore stats for', colName, docId, e);
+    return { count: null, lastTs: null, sample: [] };
+  }
+}
