@@ -215,19 +215,38 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     } catch (_) {}
   }
 
-  // Show tablet mockup only when viewport is >= 810px
+  // Show tablet mockup only when viewport is >= 810px and not inside embedded iframe
+  const isEmbedded = React.useMemo(() => {
+    try {
+      return new URLSearchParams(location.search).get("embedded") === "1";
+    } catch (e) {
+      return false;
+    }
+  }, [location.search]);
+
   const [useMock, setUseMock] = React.useState<boolean>(
-    typeof window !== "undefined" && window.innerWidth >= 810,
+    typeof window !== "undefined" && window.innerWidth >= 810 && !isEmbedded,
   );
   React.useEffect(() => {
     const onResize = () => {
       try {
-        setUseMock(window.innerWidth >= 810);
+        setUseMock(window.innerWidth >= 810 && !isEmbedded);
       } catch (e) {}
     };
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
-  }, []);
+  }, [isEmbedded]);
+
+  // compute iframe src for embedding current route (add embedded=1 to avoid recursive mock)
+  const iframeSrc = React.useMemo(() => {
+    try {
+      const sp = new URLSearchParams(location.search);
+      if (!sp.has("embedded")) sp.set("embedded", "1");
+      return location.pathname + "?" + sp.toString();
+    } catch (e) {
+      return location.pathname;
+    }
+  }, [location.pathname, location.search]);
 
   return (
     <div
