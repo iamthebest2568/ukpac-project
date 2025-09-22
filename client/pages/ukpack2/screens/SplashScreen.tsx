@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import PrivacyModal from "../components/PrivacyModal";
 import CtaButton from "../components/CtaButton";
 
 const HERO_SRC =
@@ -8,7 +7,6 @@ const HERO_SRC =
 
 const SplashScreen: React.FC = () => {
   const navigate = useNavigate();
-  const [showPrivacy, setShowPrivacy] = useState(false);
 
   return (
     <div
@@ -103,22 +101,9 @@ const SplashScreen: React.FC = () => {
             />
           </div>
 
-          <div>
-            <button
-              type="button"
-              onClick={() => setShowPrivacy(true)}
-              style={{ textDecoration: "underline" }}
-            >
-              นโยบายและความเป็นส่วนตัว
-            </button>
-          </div>
         </div>
       </div>
 
-      <PrivacyModal
-        isOpen={showPrivacy}
-        onClose={() => setShowPrivacy(false)}
-      />
     </div>
   );
 };
