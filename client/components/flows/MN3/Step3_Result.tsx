@@ -185,7 +185,7 @@ const Step3_Result = ({
       backgroundImage={backgroundImage}
       className="mn3-step3-page figma-style1-ukpack1 fake-news-page"
       imageLoading="eager"
-      title={"ภาพเมืองในอนาคตใกล้เคียงกับภาพในอุดมคติของค��ณแล้วหรือไม่"}
+      title={"ภาพเมืองในอนาคตใกล้เคียงกับภาพในอุดมคติของคุณแล้วหรือไม่"}
     >
       {/* Minimal content -- only elements required for flow and logic */}
       <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
@@ -257,7 +257,7 @@ const Step3_Result = ({
       </div>
 
       <div style={{ textAlign: "center", width: "100%", marginTop: 20 }}>
-        <h2 style={{ marginBottom: 12, color: "#000D59" }}>ภาพเมืองในอนาคตใกล้เคียงกับภาพในอุดมคติของคุณแล้วหรือไ��่</h2>
+        <h2 style={{ marginBottom: 12, color: "#000D59" }}>ภาพเมืองในอนาคตใกล้เคียงกับภาพในอุดมคติของคุณแล้วหรือไม่</h2>
 
         <div
           className="figma-style1-button-container"
