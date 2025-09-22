@@ -106,7 +106,7 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   พัดลม: <IconFan />,
   ที่นั่งพิเศษ: <IconSeat />,
   "ที่จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
-  "��่องชาร์จมือถือ/USB": <IconPlug />,
+  "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
   "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
   "กล้องวงจรปิด": <IconCamSmall />,
@@ -368,7 +368,7 @@ const DoorScreen: React.FC = () => {
               }
 
               // payment labels
-              if (label === "เงิ��สด")
+              if (label === "เงินสด")
                 return (
                   <div
                     key={`${label}-${idx}`}
@@ -710,7 +710,7 @@ const DoorScreen: React.FC = () => {
                       (newSelection.highLow ? 1 : 0);
 
                     if (newCount > 3) {
-                      setErrorMessage("สามารถเลือกได้สูงสุด 3 รายก���รเท่านั้น");
+                      setErrorMessage("สามารถเลือกได้สูงสุด 3 รายการเท่านั้น");
                       setErrorModalOpen(true);
                       return;
                     }
