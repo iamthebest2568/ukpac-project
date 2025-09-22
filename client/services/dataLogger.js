@@ -92,7 +92,7 @@ export function logEvent(eventData) {
       if (pdpa === true || pdpa === "accepted" || pdpa === "1") {
         // fire-and-forget
         try {
-          sendEventToFirestore(enrichedEvent);
+          sendEventToFirestore(enrichedEvent, "minigame1_events");
         } catch (e) {
           /* ignore */
         }
