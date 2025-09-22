@@ -41,10 +41,11 @@ service cloud.firestore {
         && (!('userAgent' in resource) || (resource.userAgent is string && resource.userAgent.size() <= 1024));
     }
 
-    // Rules for minigame1_events collection (accept client writes; restrict reads/updates)
+    // Rules for minigame1_events collection: disallow direct top-level writes.
+    // We only accept writes to the 'events' subcollection under the fixed document id 'minigame1-di'.
     match /minigame1_events/{eventId} {
-      // Allow create from clients but validate structure to avoid abuse
-      allow create: if isValidEventEntry(request.resource.data);
+      // Disallow client-created documents at top-level to prevent accidental doc ids (e.g., minigame2-di)
+      allow create: if false;
 
       // Restrict read/update/delete to admins only
       allow get, list, update, delete: if isAdmin();
