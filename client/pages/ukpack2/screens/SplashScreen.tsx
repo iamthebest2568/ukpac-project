@@ -92,10 +92,7 @@ const SplashScreen: React.FC = () => {
             <CtaButton
               text="เริ่มออกแบบ"
               onClick={() => {
-                try {
-                  sessionStorage.setItem("pdpa_accepted", "true");
-                } catch (_) {}
-                navigate("/ukpack2/chassis");
+                navigate("/ukpack2/pdpa");
               }}
               style={{ width: "70%" }}
             />

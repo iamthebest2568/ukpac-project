@@ -50,6 +50,7 @@ const HowDoYouThinkPage = lazy(
   () => import("./pages/ukpack1/HowDoYouThinkPage"),
 );
 const SplashScreen = lazy(() => import("./pages/ukpack2/screens/SplashScreen"));
+const PdpaScreen = lazy(() => import("./pages/ukpack2/screens/PdpaScreen"));
 const AmenitiesScreen = lazy(
   () => import("./pages/ukpack2/screens/AmenitiesScreen"),
 );
@@ -293,6 +294,7 @@ const App = () => {
                   element={<Navigate to="/ukpack1/uk-stornaway" replace />}
                 />
                 <Route path="/ukpack2" element={<SplashScreen />} />
+                <Route path="/ukpack2/pdpa" element={<PdpaScreen />} />
                 <Route
                   path="/ukpack2/dashboard"
                   element={<UkPack2Dashboard />}
