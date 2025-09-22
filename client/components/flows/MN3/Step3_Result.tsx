@@ -130,6 +130,13 @@ const Step3_Result = ({
         });
     } catch {}
 
+    try {
+      sessionStorage.setItem(
+        "mn3_resultSummary",
+        JSON.stringify(data.budget_step3_result?.resultSummary || resultSummary),
+      );
+    } catch (e) {}
+
     proceedAfterSelect("/ukpack1/ask04-budget", data);
   };
 
