@@ -455,7 +455,7 @@ const PaymentScreen: React.FC = () => {
 
   return (
     <CustomizationScreen
-      title="ปรับแต่งรถเมล์ของคุณ"
+      title="ออกแบบรถเมล์ของคุณ"
       theme="light"
       fullWidth
       footerContent={
