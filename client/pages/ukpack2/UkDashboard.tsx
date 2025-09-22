@@ -512,6 +512,31 @@ const UkDashboard: React.FC = () => {
         </div>
 
         <div className="mb-6">
+          <h3 className="text-lg font-semibold mb-2">Public submissions (landing)</h3>
+          <div className="bg-[#021827] rounded p-3 text-sm text-gray-200 mb-4">
+            {publicSubmissions.length === 0 ? (
+              <div className="text-gray-400">No public submissions yet</div>
+            ) : (
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                {publicSubmissions.map((s, i) => (
+                  <div key={s.id || i} className="bg-[#001a22] rounded p-2 text-xs">
+                    {s.imageUrl ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={s.imageUrl} alt={s.exterior?.customText || 'design'} className="w-full h-28 object-cover rounded" />
+                    ) : (
+                      <div className="w-full h-28 bg-[#001f2a] rounded flex items-center justify-center text-gray-500">No image</div>
+                    )}
+                    <div className="mt-2">
+                      <div className="font-medium">{s.exterior?.customText || s.serviceInfo?.routeName || 'Design'}</div>
+                      <div className="text-xs text-gray-400">{s.exterior?.color || ''} • {s.serviceInfo?.area || ''}</div>
+                      <div className="text-xs text-gray-400">{s.timestamp ? new Date(s.timestamp).toLocaleString() : ''}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
           <h3 className="text-lg font-semibold mb-2">
             Data schema & usage (สรุปสคีมา)
           </h3>
