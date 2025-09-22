@@ -56,7 +56,7 @@ const Ask02_2 = ({ sessionID, onNavigate }: Ask02_2Props) => {
               padding: "clamp(12px, 2.2vw, 20px)",
             }}
           >
-            {/* Centered placeholder overlay when input is empty */}
+            {/* Top-centered placeholder overlay when input is empty */}
             <div
               onClick={() => {
                 const el = document.getElementById("ask02-2-textarea") as HTMLTextAreaElement | null;
@@ -65,19 +65,24 @@ const Ask02_2 = ({ sessionID, onNavigate }: Ask02_2Props) => {
               style={{
                 display: textInput.trim().length > 0 ? "none" : "flex",
                 position: "absolute",
-                inset: 0,
-                alignItems: "center",
+                left: 0,
+                right: 0,
+                top: 0,
+                // keep bottom free so textarea content isn't covered
+                alignItems: "flex-start",
                 justifyContent: "center",
-                padding: "clamp(12px, 2.2vw, 20px)",
+                paddingTop: "clamp(12px, 2.2vh, 24px)",
+                paddingLeft: "clamp(12px, 2.2vw, 20px)",
+                paddingRight: "clamp(12px, 2.2vw, 20px)",
                 pointerEvents: "auto",
                 textAlign: "center",
                 color: "#6b7280",
-                fontSize: "clamp(16px, 3.6vw, 38px)",
+                fontSize: "clamp(16px, 3.6vw, 24px)",
                 lineHeight: 1.3,
               }}
               aria-hidden={textInput.trim().length > 0}
             >
-              พิมพ์ข้อความของคุณที่นี่...
+              พิมพ์ข้อความของ��ุณที่นี่
             </div>
 
             <textarea
