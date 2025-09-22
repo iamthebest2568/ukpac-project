@@ -141,7 +141,7 @@ const Step2_Allocation = ({
             />
             <div className="mn3-budget-text">
               <div className="mn3-budget-label">งบทั้งหมด</div>
-              <div className="mn3-budget-amount">100</div>
+              <div className="mn3-budget-amount">{totalBudget} <span style={{ marginLeft: 6 }}>%</span></div>
             </div>
           </div>
         </div>
