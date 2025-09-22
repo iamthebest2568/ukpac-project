@@ -482,7 +482,7 @@ const UkDashboard: React.FC = () => {
           {lastSentResult && (
             <div className="mt-4">
               <h3 className="text-lg font-semibold mb-2">Last send summary</h3>
-              <div className="bg-[#021827] rounded p-3 text-sm max-h-48 overflow-auto">
+              <div className="bg-[#021827] rounded p-3 text-sm max-h-96 overflow-auto">
                 <div>Sent: {lastSentResult.sentCount}</div>
                 <div>Skipped: {lastSentResult.skippedCount}</div>
                 <div>
