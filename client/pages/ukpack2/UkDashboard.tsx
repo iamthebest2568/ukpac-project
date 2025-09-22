@@ -42,24 +42,25 @@ const UkDashboard: React.FC = () => {
       // Fetch Firestore-backed recent events for ukpack2 with resilient fallbacks
       try {
         const candidates = [
-          window.location.origin + '/api/firestore-stats?project=ukpack2',
-          '/api/firestore-stats?project=ukpack2',
-          window.location.pathname.replace(/\/$/, '') + '/api/firestore-stats?project=ukpack2',
-          '/.netlify/functions/api/firestore-stats?project=ukpack2',
+          window.location.origin + "/api/firestore-stats?project=ukpack2",
+          "/api/firestore-stats?project=ukpack2",
+          window.location.pathname.replace(/\/$/, "") +
+            "/api/firestore-stats?project=ukpack2",
+          "/.netlify/functions/api/firestore-stats?project=ukpack2",
         ];
 
         async function tryFetchJson(paths: string[]) {
           for (const p of paths) {
             try {
-              const resp = await fetch(p, { credentials: 'same-origin' });
+              const resp = await fetch(p, { credentials: "same-origin" });
               if (!resp.ok) {
                 const body = await resp.text().catch(() => null);
-                console.warn('fetch non-ok', p, resp.status, body);
+                console.warn("fetch non-ok", p, resp.status, body);
                 continue;
               }
               return await resp.json();
             } catch (err) {
-              console.warn('fetch error', p, err);
+              console.warn("fetch error", p, err);
               // try next candidate
             }
           }
@@ -68,43 +69,48 @@ const UkDashboard: React.FC = () => {
 
         const j = await tryFetchJson(candidates);
         if (j && j.ok && j.stats && Array.isArray(j.stats.sample)) {
-          try { setCollectionInfo({col: j.col || 'minigame2_events', docId: j.docId || 'minigame2-di'}); } catch(_){ }
+          try {
+            setCollectionInfo({
+              col: j.col || "minigame2_events",
+              docId: j.docId || "minigame2-di",
+            });
+          } catch (_) {}
           const sample = j.stats.sample.map((s: any) => ({
-            sessionId: s.data.sessionID || s.data.sessionId || '',
-            eventName: s.data.event || s.data.eventName || '',
-            timestamp: s.data.timestamp || s.data.createdAt || '',
+            sessionId: s.data.sessionID || s.data.sessionId || "",
+            eventName: s.data.event || s.data.eventName || "",
+            timestamp: s.data.timestamp || s.data.createdAt || "",
             payload: s.data.payload || {},
           }));
           setEventsSample(sample.slice(0, 10));
         } else if (j === null) {
-          console.warn('All firestore-stats fetch attempts failed');
+          console.warn("All firestore-stats fetch attempts failed");
         } else {
-          console.warn('firestore-stats returned unexpected payload', j);
+          console.warn("firestore-stats returned unexpected payload", j);
         }
       } catch (err) {
-        console.error('fetch firestore-stats error', err);
+        console.error("fetch firestore-stats error", err);
       }
 
       // fetch public submissions (landing assets) with fallbacks
       try {
         const candidates2 = [
-          window.location.origin + '/api/public-submissions?limit=20',
-          '/api/public-submissions?limit=20',
-          '/.netlify/functions/api/public-submissions?limit=20',
+          window.location.origin + "/api/public-submissions?limit=20",
+          "/api/public-submissions?limit=20",
+          "/.netlify/functions/api/public-submissions?limit=20",
         ];
 
         const j2 = await (async () => {
           for (const p of candidates2) {
             try {
-              const resp = await fetch(p, { credentials: 'same-origin' });
+              const resp = await fetch(p, { credentials: "same-origin" });
               if (!resp.ok) {
                 const body = await resp.text().catch(() => null);
-                console.warn('public-submissions non-ok', p, resp.status, body);
+                console.warn("public-submissions non-ok", p, resp.status, body);
                 continue;
               }
               return await resp.json();
             } catch (err) {
-              console.warn('public-submissions fetch error', p, err);
+              console.warn("public-submissions fetch error", p, err);
             }
           }
           return null;
@@ -113,12 +119,15 @@ const UkDashboard: React.FC = () => {
         if (j2 && j2.ok && Array.isArray(j2.items)) {
           setPublicSubmissions(j2.items.slice(0, 6));
         } else if (j2 === null) {
-          console.warn('All public-submissions fetch attempts failed');
+          console.warn("All public-submissions fetch attempts failed");
         } else {
-          console.warn('/api/public-submissions returned unexpected payload', j2);
+          console.warn(
+            "/api/public-submissions returned unexpected payload",
+            j2,
+          );
         }
       } catch (err) {
-        console.error('fetch public-submissions error', err);
+        console.error("fetch public-submissions error", err);
       }
     } catch (e) {
       console.error("refreshSummary top-level error", e);
