@@ -528,7 +528,7 @@ export async function sendLocalEventsToFirestore(options = {}) {
       let lastErr = null;
       while (attempt < 3 && !success) {
         try {
-          await sendEventToFirestore(ev, "mydream/bus");
+          await sendEventToFirestore(ev, "minigame2_events/minigame2-di");
           sentCount += 1;
           if (sampleSent.length < 5) sampleSent.push(ev);
           success = true;
