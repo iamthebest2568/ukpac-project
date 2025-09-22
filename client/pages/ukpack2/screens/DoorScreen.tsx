@@ -271,10 +271,18 @@ const DoorScreen: React.FC = () => {
     }
   }, []);
 
+  const [isErrorModalOpen, setErrorModalOpen] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
   const handleNext = () => {
     try {
-      // store single selected option (string) for doors
-      sessionStorage.setItem("design.doors", JSON.stringify(selectedOption));
+      // store door selection object
+      const payload = {
+        doorChoice: selectedOption.doorChoice,
+        hasRamp: selectedOption.hasRamp,
+        highLow: selectedOption.highLow,
+      };
+      sessionStorage.setItem("design.doors", JSON.stringify(payload));
       // NOTE: Do NOT persist overlay icon for door selection here — door clicks must not write overlay mappings
       // (overlayIconMap is left unchanged by this screen)
     } catch (e) {}
