@@ -37,7 +37,7 @@ const Step2_Summary = ({
         "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb51d5d0d87d5482cbe4ae3a2df0c65c9?format=webp&width=188",
     },
     locals: {
-      label: "คนในพื้นที่",
+      label: "คน��นพื้นที่",
       iconSrc:
         "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fd0e13c552a39418eb25993c7d87905c8?format=webp&width=140",
     },
@@ -274,32 +274,40 @@ const Step2_Summary = ({
             className="font-prompt font-bold text-center"
             style={{
               color: "#000D59",
-              fontSize: "clamp(24px, 5.6vw, 60px)",
+              fontSize: "clamp(22px, 4.6vw, 44px)",
               fontWeight: 700,
-              lineHeight: "normal",
+              lineHeight: "1.2",
             }}
           >
-            คุณพอใจหรือไม่
+            นโยบายเพิ่มเติมที่คุณเสนอตรงใจคุณแล้วหรือไม่
           </h2>
 
           <div
             className="figma-style1-button-container mt-6"
-            style={{ maxWidth: 360, margin: "0 auto" }}
+            style={{ maxWidth: 420, margin: "0 auto", display: "flex", gap: 12, justifyContent: "center" }}
           >
             <button
               onClick={handleEndGame}
               className="figma-style1-button"
-              aria-label="ใช่"
+              aria-label="ใช่, ไปต่อ"
             >
-              <span className="figma-style1-button-text">ใช่</span>
+              <span className="figma-style1-button-text">ใช่, ไปต่อ</span>
             </button>
 
             <button
-              onClick={handleNo}
+              onClick={() => {
+                // Log and navigate back to MN1 to try again
+                logEvent({ event: "MINIGAME_MN2_SUMMARY_RETRY", payload: { sessionID, summaryCards } });
+                try {
+                  navigateToPage("/minigame-mn1");
+                } catch (e) {
+                  console.warn('navigate to mn1 failed', e);
+                }
+              }}
               className="figma-style1-button"
-              aria-label="ไม่ใช่"
+              aria-label="ไม่ใช่, ลองอีกครั้ง"
             >
-              <span className="figma-style1-button-text">ไม่ใช่</span>
+              <span className="figma-style1-button-text">ไม่ใช่, ลองอีกครั้ง</span>
             </button>
           </div>
         </div>
