@@ -185,6 +185,7 @@ const Step2_Allocation = ({
                     }}
                     className="mn3-allocation-input"
                   />
+                  <div className="mn3-allocation-suffix" aria-hidden style={{ color: '#000D59', fontWeight: 600 }}>%</div>
                 </div>
               </div>
             ))}
