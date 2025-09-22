@@ -30,23 +30,12 @@ const SourceSelection = ({ sessionID, onNavigate }: SourceSelectionProps) => {
     });
   };
 
-  const handleSubmit = () => {
-    // Log and navigate with selected sources
-    logEvent({
-      event: "SOURCE_SELECTION_SUBMIT",
-      payload: { selected, sessionID },
-    });
-    onNavigate("Flow_EndSequence", { selected });
-  };
 
-  const handleReplay = () => {
-    logEvent({ event: "SOURCE_SELECTION_REPLAY", payload: { sessionID } });
-  };
 
   return (
     <FigmaStyle1Layout
       backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fa9dea989b2c347318a49bb8e9f717a35?format=webp&width=800"
-      backgroundAlt="รถไฟใต้ดินและป้ายข่าว"
+      backgroundAlt="รถไฟใต���ดินและป้ายข่าว"
       title={
         <>
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
@@ -88,19 +77,6 @@ const SourceSelection = ({ sessionID, onNavigate }: SourceSelectionProps) => {
           })}
         </div>
 
-        <div style={{ marginTop: 12, color: "#6b7280", fontSize: 14 }}>
-          หมายเหตุ ผู้ใช้ สามารถเลือกได้แค่ 3 อย่างเท่านั้น
-        </div>
-
-        {/* Footer action buttons: Replay and Continue */}
-        <div style={{ marginTop: 20, display: "flex", gap: 12 }}>
-          <button onClick={handleReplay} className="figma-style1-button" style={{ flex: 1 }}>
-            <span className="figma-style1-button-text">ดูอีกครั้ง</span>
-          </button>
-          <button onClick={handleSubmit} className="figma-style1-button" style={{ flex: 1 }}>
-            <span className="figma-style1-button-text">ไปต่อ</span>
-          </button>
-        </div>
       </div>
     </FigmaStyle1Layout>
   );
