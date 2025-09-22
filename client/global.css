@@ -3,6 +3,7 @@
 @import "./styles/responsive-utils.css";
 @import "./styles/mn3-buttons.css";
 @import "./styles/mn3-fixes.css";
+@import "./styles/ukpack2-embedded.css";
 
 @tailwind base;
 @tailwind components;
