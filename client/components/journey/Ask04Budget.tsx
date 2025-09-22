@@ -90,10 +90,26 @@ const Ask04Budget = ({
   ];
 
   useEffect(() => {
+    // Prefer journeyData if available, otherwise fallback to sessionStorage (set by MN3 Step3)
     const allocationData =
       journeyData?.budget_step2_allocation?.budgetAllocation || {};
     const selectedPriorities =
       journeyData?.budget_step2_allocation?.selectedPriorities || [];
+
+    // If no selectedPriorities in journeyData, try to read from sessionStorage (mn3_resultSummary)
+    if ((!selectedPriorities || selectedPriorities.length === 0) && typeof window !== "undefined") {
+      try {
+        const stored = sessionStorage.getItem("mn3_resultSummary");
+        if (stored) {
+          const parsed: ResultSummary[] = JSON.parse(stored);
+          setResultSummary(parsed);
+          return;
+        }
+      } catch (e) {
+        // noop
+      }
+    }
+
     const totalBudget = 100;
 
     const summary: ResultSummary[] = selectedPriorities.map(
