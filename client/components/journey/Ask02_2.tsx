@@ -32,7 +32,12 @@ const Ask02_2 = ({ sessionID, onNavigate }: Ask02_2Props) => {
   return (
     <FigmaStyle1Layout
       backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F463cb2fbbefd410cac31721ec26e22e5?format=webp&width=800"
-      title="อื่น ๆ คืออะไรช่วยบอกเราหน่อยได้ไหม"
+      title={
+        <>
+          <div>เหตุผลอื่นๆ</div>
+          <div>คืออะไรช่วยบอกเราหน่อยได้ไหม</div>
+        </>
+      }
       className="source-selection-page ask02-2-page"
       imageLoading="eager"
     >
@@ -51,10 +56,36 @@ const Ask02_2 = ({ sessionID, onNavigate }: Ask02_2Props) => {
               padding: "clamp(12px, 2.2vw, 20px)",
             }}
           >
+            {/* Centered placeholder overlay when input is empty */}
+            <div
+              onClick={() => {
+                const el = document.getElementById("ask02-2-textarea") as HTMLTextAreaElement | null;
+                if (el) el.focus();
+              }}
+              style={{
+                display: textInput.trim().length > 0 ? "none" : "flex",
+                position: "absolute",
+                inset: 0,
+                alignItems: "center",
+                justifyContent: "center",
+                padding: "clamp(12px, 2.2vw, 20px)",
+                pointerEvents: "auto",
+                textAlign: "center",
+                color: "#6b7280",
+                fontSize: "clamp(16px, 3.6vw, 38px)",
+                lineHeight: 1.3,
+              }}
+              aria-hidden={textInput.trim().length > 0}
+            >
+              พิมพ์ข้อความของคุณที่นี่...
+            </div>
+
             <textarea
+              id="ask02-2-textarea"
               value={textInput}
               onChange={(e) => setTextInput(e.target.value)}
-              placeholder="พิมพ์ข้อความของคุณที่นี่..."
+              placeholder={""}
+              aria-label={"กรอกเหตุผลอื่นๆ"}
               className="w-full h-full resize-none border-none outline-none font-prompt bg-transparent"
               style={{
                 fontSize: "clamp(16px, 3.6vw, 38px)",
@@ -62,6 +93,8 @@ const Ask02_2 = ({ sessionID, onNavigate }: Ask02_2Props) => {
                 minHeight: "clamp(150px, 18vh, 340px)",
                 color: "#000D59",
                 lineHeight: 1.3,
+                // ensure textarea content starts from top when user types
+                paddingTop: 0,
               }}
             />
           </div>
