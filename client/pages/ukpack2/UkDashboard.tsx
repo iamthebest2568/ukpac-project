@@ -41,6 +41,8 @@ const UkDashboard: React.FC = () => {
         if (resp.ok) {
           const j = await resp.json();
           if (j && j.ok && j.stats && Array.isArray(j.stats.sample)) {
+            // set collection info
+            try { setCollectionInfo({col: j.col || 'minigame2_events', docId: j.docId || 'minigame2-di'}); } catch(_){}
             // convert sample to expected shape
             const sample = j.stats.sample.map((s: any) => ({
               sessionId: s.data.sessionID || s.data.sessionId || '',
