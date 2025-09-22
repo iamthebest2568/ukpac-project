@@ -430,6 +430,10 @@ const DesignScreen: React.FC = () => {
                       <h3 className="text-lg font-prompt font-semibold text-[#000d59]">
                         ลักษณะพิเศษอื่นๆ
                       </h3>
+                      <div className="mt-1 text-sm text-[#003366] font-prompt">
+                        <div>พิมพ์คุณสมบัติพิเศษอื่นๆของ</div>
+                        <div>รถเมล์ในฝันของคุณ</div>
+                      </div>
                       <textarea
                         ref={textareaRef}
                         value={sloganDraft}
