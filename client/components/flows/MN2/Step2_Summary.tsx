@@ -174,7 +174,7 @@ const Step2_Summary = ({
       useBlueOverlay={false}
       className="mn2-summary-page mn2-summary-minimal figma-style1-ukpack1 fake-news-page"
       imageLoading="eager"
-      title={<span style={{ color: "#000D59" }}>นโยบายที่คุณเสนอ</span>}
+      title={<span style={{ color: "#000D59", position: 'relative' as any, zIndex: 9999, textShadow: 'none' }}>นโยบายที่คุณเสนอ</span>}
     >
       <div
         className="relative z-10 w-full max-w-full mx-auto px-4 py-6"
