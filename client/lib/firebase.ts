@@ -21,9 +21,10 @@ const firebaseConfig = {
 };
 
 let db: ReturnType<typeof getFirestore> | null = null;
+let appInstance: any = null;
 
 function initFirebase() {
-  if (db) return;
+  if (db && appInstance) return;
   try {
     // In case code runs in SSR or before window exists, guard
     if (typeof window === "undefined") return;
@@ -33,9 +34,25 @@ function initFirebase() {
     } else {
       app = initializeApp(firebaseConfig);
     }
+    appInstance = app;
     db = getFirestore(app);
   } catch (e) {
     console.warn("Firebase init failed", e);
+  }
+}
+
+export async function uploadFileToStorage(file: Blob | Uint8Array, path: string) {
+  try {
+    if (!appInstance) initFirebase();
+    if (!appInstance) throw new Error('Firebase app not initialized');
+    const storage = getStorage(appInstance);
+    const ref = storageRef(storage, path);
+    await uploadBytes(ref, file as any);
+    const url = await getDownloadURL(ref);
+    return url;
+  } catch (e) {
+    console.warn('uploadFileToStorage failed', e);
+    throw e;
   }
 }
 
