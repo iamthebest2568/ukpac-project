@@ -142,7 +142,7 @@ const SeatingScreen: React.FC = () => {
       const chassisLabel = CHASSIS_LABELS[selectedChassis] || selectedChassis;
       setErrorTitle("จำนวนที่นั่งไม่ถูกต้องสำหรับประเภทรถที่เลือก");
       setErrorMessage(
-        `คุณเลือก: ${chassisLabel}. ค่า���ี่ถูกต้องคือ ${minCapacityLocal} ถึง ${maxCapacityLocal} ที่นั่ง แต่คุณกรอก ${total}`,
+        `คุณเลือก: ${chassisLabel}. ค่าที่ถูกต้องคือ ${minCapacityLocal} ถึง ${maxCapacityLocal} ที่นั่ง แต่คุณกรอก ${total}`,
       );
       setErrorModalOpen(true);
       return false;
@@ -155,7 +155,7 @@ const SeatingScreen: React.FC = () => {
     const sWheel = Number(wheelchairBikeSpaces) || 0;
     const sumSubs = sSpecial + sChild + sPreg + sMonk + sWheel;
     if (sumSubs !== total) {
-      setErrorTitle("ผลรวมของที่นั่งย่อยไม่ต��งกัน");
+      setErrorTitle("ผลรวมของที่นั่งย่อยไม่ตรงกัน");
       setErrorMessage(
         `ผลรวมของที่นั่งย่อยทั้งหมด (${sumSubs}) ไม่ตรงกับจำนวนที่นั่งทั้งหมด (${total})`,
       );
@@ -229,7 +229,7 @@ const SeatingScreen: React.FC = () => {
   return (
     <div>
       <CustomizationScreen
-        title="ปรับแต่งรถเมล์าของคุณ"
+        title="ออกแบบรถเมล์ของคุณ"
         theme="light"
         fullWidth
         footerContent={
