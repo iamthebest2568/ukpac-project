@@ -155,7 +155,7 @@ const SeatingScreen: React.FC = () => {
     const sWheel = Number(wheelchairBikeSpaces) || 0;
     const sumSubs = sSpecial + sChild + sPreg + sMonk + sWheel;
     if (sumSubs !== total) {
-      setErrorTitle("ผลรวมของที่นั่งย่อยไม่ตรงกัน");
+      setErrorTitle("ผลรวมของที่นั่งย่อยไม่ต��งกัน");
       setErrorMessage(
         `ผลรวมของที่นั่งย่อยทั้งหมด (${sumSubs}) ไม่ตรงกับจำนวนที่นั่งทั้งหมด (${total})`,
       );
@@ -299,9 +299,7 @@ const SeatingScreen: React.FC = () => {
                   </div>
 
                   <div className="flex items-center justify-between">
-                    <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">
-                      จำนวนที่นั่งพิเศษ
-                    </div>
+                    <div style={{ width: 0 }} />
                     <NumericPlaceholderInput
                       id="specialSeats"
                       value={specialSeats}
