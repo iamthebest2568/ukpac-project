@@ -527,6 +527,13 @@ export async function sendLocalEventsToFirestore(options = {}) {
         } catch (err) {
           lastErr = err;
           attempt += 1;
+          const msg = String(err && err.message ? err.message : err);
+          // If permission error, abort further attempts — rules likely blocking writes
+          if (/permission|insufficient permissions|permission-denied/i.test(msg)) {
+            errors.push({ event: ev, error: msg });
+            // abort whole send to avoid spamming errors
+            return { sentCount, skippedCount, errors, sampleSent, fatal: true };
+          }
           // exponential backoff
           await new Promise((res) => setTimeout(res, 500 * attempt));
         }
