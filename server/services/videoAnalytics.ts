@@ -4,6 +4,19 @@ import path from "node:path";
 import { z } from "zod";
 import fetch from "node-fetch";
 
+// Firebase client SDK used server-side
+import { initializeApp, getApps, getApp } from "firebase/app";
+import {
+  getFirestore,
+  collection,
+  doc,
+  addDoc,
+  serverTimestamp,
+  query,
+  orderBy,
+  getDocs,
+} from "firebase/firestore";
+
 const sanitizeThai = (text: any): any => {
   if (typeof text !== "string") return text;
   return text
