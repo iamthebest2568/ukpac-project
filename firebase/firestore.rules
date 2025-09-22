@@ -1,0 +1,47 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Rules for the minigame1_events collection
+    match /minigame1_events/{eventId} {
+      // Allow create if authenticated OR if PDPA flag is present and true
+      allow create: if isAuthenticated() || (request.resource.data.PDPA == true);
+
+      // Allow update only for authenticated users (admins) to avoid tampering
+      allow update: if isAuthenticated() && request.auth.token.admin == true;
+
+      // Allow delete only for admins
+      allow delete: if isAuthenticated() && request.auth.token.admin == true;
+
+      // Allow read only to admins (server-side or users with custom claim)
+      allow get, list: if isAuthenticated() && request.auth.token.admin == true;
+
+      // Validation: ensure required fields and types
+      function isValidEntry() {
+        return request.resource.data.keys().hasAll(['sessionID','timestamp','event','payload'])
+          && request.resource.data.sessionID is string
+          && request.resource.data.sessionID.size() <= 128
+          && request.resource.data.timestamp is int
+          && request.resource.data.event is string
+          && request.resource.data.event.size() <= 64
+          && request.resource.data.payload is map
+          // optional PDPA must be boolean if present
+          && (!('PDPA' in request.resource.data) || request.resource.data.PDPA is bool)
+          // optional ip/userAgent length limits
+          && (!('ip' in request.resource.data) || request.resource.data.ip is string && request.resource.data.ip.size() <= 64)
+          && (!('userAgent' in request.resource.data) || request.resource.data.userAgent is string && request.resource.data.userAgent.size() <= 1024);
+      }
+
+      allow create: if (isAuthenticated() || (request.resource.data.PDPA == true)) && isValidEntry();
+    }
+
+    // Helper to identify authenticated users
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    // Deny everything else by default
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
