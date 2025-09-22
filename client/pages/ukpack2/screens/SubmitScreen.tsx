@@ -22,7 +22,6 @@ const BUS_EMPLOY_ICON =
 const SubmitScreen: React.FC = () => {
   const navigate = useNavigate();
   const [interval, setInterval] = useState("");
-  const [route, setRoute] = useState("");
   const [area, setArea] = useState("");
   const [isExitModalOpen, setExitModalOpen] = useState(false);
 
@@ -57,7 +56,17 @@ const SubmitScreen: React.FC = () => {
     })();
 
   const handleFinish = () => {
-    const submitData = { interval, route, area };
+    // Validate required numeric fields: interval and area
+    if (interval === "" || Number.isNaN(Number(interval))) {
+      window.alert("กรุณากรอกจำนวน (นาที) ของความถี่การมาของรถเป็นตัวเลข");
+      return;
+    }
+    if (area === "" || Number.isNaN(Number(area))) {
+      window.alert("กรุณากรอกพื้นที่ที่วิ่งเป็นตัวเลข");
+      return;
+    }
+
+    const submitData = { interval: Number(interval), area: Number(area) };
     try {
       sessionStorage.setItem("design.submit", JSON.stringify(submitData));
     } catch (e) {}
@@ -67,7 +76,7 @@ const SubmitScreen: React.FC = () => {
       if (dispatch) {
         dispatch({
           type: "SET_SERVICE_INFO",
-          payload: { routeName: route, area, frequency: interval },
+          payload: { routeName: null, area: Number(area), frequency: Number(interval) },
         });
       }
     } catch (e) {}
@@ -87,7 +96,7 @@ const SubmitScreen: React.FC = () => {
           submitDesignToFirebase(
             {
               ...(state || {}),
-              serviceInfo: { routeName: route, area, frequency: interval },
+              serviceInfo: { routeName: null, area: Number(area), frequency: Number(interval) },
             },
             blob,
           ).catch(() => {});
@@ -119,7 +128,7 @@ const SubmitScreen: React.FC = () => {
         theme="light"
         footerContent={
           <div className="flex justify-center">
-            <CtaButton text="���อกแบบเสร็จแล้ว" onClick={handleFinish} />
+            <CtaButton text="ออกแบบเสร็จแล้ว" onClick={handleFinish} />
           </div>
         }
       >
@@ -186,13 +195,14 @@ const SubmitScreen: React.FC = () => {
                   overflow: "visible",
                 }}
               >
-                รถจะมาทุก
+                รถจะมาทุกกี่นาที
               </label>
               <input
-                type="text"
+                type="number"
+                inputMode="numeric"
                 placeholder="พิมพ์"
                 value={interval}
-                onChange={(e) => setInterval(e.target.value)}
+                onChange={(e) => setInterval(e.target.value.replace(/[^0-9]/g, ""))}
                 className="flex-1 min-w-0 max-w-[220px] rounded-xl px-3 py-1.5 border-[3px] border-[#000D59] h-9 text-center placeholder-gray-400"
                 style={{
                   fontFamily: "Sarabun, sans-serif",
@@ -218,36 +228,6 @@ const SubmitScreen: React.FC = () => {
               </span>
             </div>
 
-            <div className="flex items-center gap-3 min-w-0">
-              <label
-                className="w-28 md:w-36 text-sm text-[#003366] truncate"
-                style={{
-                  fontFamily: "Sarabun, sans-serif",
-                  fontSize: "17.6px",
-                  lineHeight: "1.2",
-                  paddingTop: 6,
-                  paddingBottom: 6,
-                  overflow: "visible",
-                }}
-              >
-                สายรถเมล์
-              </label>
-              <input
-                type="text"
-                placeholder="พิมพ์"
-                value={route}
-                onChange={(e) => setRoute(e.target.value)}
-                className="flex-1 min-w-0 max-w-[220px] rounded-xl px-3 py-1.5 border-[3px] border-[#000D59] h-9 text-center placeholder-gray-400"
-                style={{
-                  fontFamily: "Sarabun, sans-serif",
-                  fontSize: "17.6px",
-                  lineHeight: "1.2",
-                  paddingTop: 6,
-                  paddingBottom: 6,
-                  overflow: "visible",
-                }}
-              />
-            </div>
 
             <div className="flex items-center gap-3 min-w-0">
               <label
@@ -264,10 +244,11 @@ const SubmitScreen: React.FC = () => {
                 พื้นที่ที่วิ่ง
               </label>
               <input
-                type="text"
+                type="number"
+                inputMode="numeric"
                 placeholder="พิมพ์"
                 value={area}
-                onChange={(e) => setArea(e.target.value)}
+                onChange={(e) => setArea(e.target.value.replace(/[^0-9]/g, ""))}
                 className="flex-1 min-w-0 max-w-[220px] rounded-xl px-3 py-1.5 border-[3px] border-[#000D59] h-9 text-center placeholder-gray-400"
                 style={{
                   fontFamily: "Sarabun, sans-serif",
@@ -286,7 +267,7 @@ const SubmitScreen: React.FC = () => {
       <ConfirmModal
         isOpen={isExitModalOpen}
         title="ออกจากหน้าจอ"
-        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบั���ทึก"
+        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
         onConfirm={() => navigate("/")}
         onCancel={() => setExitModalOpen(false)}
       />
