@@ -212,21 +212,24 @@ const IconHighLowActive = () => (
 
 const DoorScreen: React.FC = () => {
   const navigate = useNavigate();
-  const [selectedOption, setSelectedOption] = useState<string>(() => {
+  type DoorSelection = { doorChoice: string | null; hasRamp: boolean; highLow: boolean };
+  const [selectedOption, setSelectedOption] = useState<DoorSelection>(() => {
     try {
       const raw = sessionStorage.getItem("design.doors");
-      if (!raw) return "1";
+      if (!raw) return { doorChoice: "1", hasRamp: false, highLow: false };
       const parsed = JSON.parse(raw);
-      if (typeof parsed === "string") return parsed;
+      if (typeof parsed === "string") return { doorChoice: parsed, hasRamp: false, highLow: false };
       if (parsed && typeof parsed === "object") {
-        if (parsed.doorChoice) return parsed.doorChoice as string;
-        if (parsed.hasRamp) return "ramp";
-        if (parsed.highLow) return "emergency";
+        return {
+          doorChoice: parsed.doorChoice ?? (typeof parsed === "string" ? parsed : null),
+          hasRamp: Boolean(parsed.hasRamp),
+          highLow: Boolean(parsed.highLow),
+        } as DoorSelection;
       }
     } catch (e) {
       // ignore
     }
-    return "1";
+    return { doorChoice: "1", hasRamp: false, highLow: false };
   });
 
   const DOOR_BUTTON_SRC: Record<string, string> = {
