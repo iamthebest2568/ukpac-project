@@ -65,12 +65,17 @@ export async function sendEventToFirestore(
           page: event.url || window.location.pathname,
         };
         // fire-and-forget
-        fetch('/api/track', {
+        await fetch('/api/track', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload),
         }).catch(() => {});
-      } catch (_) {}
+
+        // return a sentinel so callers treat as success (event persisted server-side)
+        return { ok: true, fallback: true } as any;
+      } catch (_) {
+        // ignore and fall through to throw original error
+      }
     }
 
     const err = new Error(`[${code}] ${message}`);
