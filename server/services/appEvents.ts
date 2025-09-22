@@ -95,6 +95,31 @@ export async function appendAppEvent(ev: AppEvent) {
       if (res.ok) return;
     } catch {}
   }
+
+  // Attempt to write to Firestore under minigame1_events/minigame1-di/events
+  try {
+    initServerFirestore();
+    if (firestoreDb) {
+      const colDoc = doc(firestoreDb, "minigame1_events", "minigame1-di");
+      const eventsCol = collection(colDoc, "events");
+      const payload = {
+        sessionID: ev.sessionId,
+        event: ev.event,
+        timestamp: ev.timestamp,
+        page: ev.page ?? null,
+        payload: ev.payload ?? null,
+        userAgent: ev.userAgent ?? null,
+        ip: ev.ip ?? null,
+        createdAt: serverTimestamp(),
+      } as any;
+      await addDoc(eventsCol, payload);
+      return;
+    }
+  } catch (e) {
+    // ignore and fall back to file
+    console.warn("Failed to write app event to Firestore", e);
+  }
+
   ensureDir();
   const line =
     JSON.stringify({
@@ -195,7 +220,7 @@ export interface SessionSummary {
   ask05Comment?: string; // ข้อเสนอเพิ่มเติมต่อรัฐ
   fakeNewsResponse?: string; // การตอบสนองต่อข่าวปลอม
   sourceSelected?: string; // แหล่งข่าวที่ผู้ใช้เลือก
-  endDecision?: string; // การเข้าร่��มลุ้นรางวัล
+  endDecision?: string; // การเ���้าร่วมลุ้นรางวัล
   endDecisionText?: string;
   // End sequence contact details
   contactName?: string;
