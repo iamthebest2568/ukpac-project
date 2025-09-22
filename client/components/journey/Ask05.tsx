@@ -59,7 +59,7 @@ const Ask05 = ({ sessionID, onNavigate }: Ask05Props) => {
       backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F2027d04252804378a79493387966cef1?format=webp&width=800"
       className="ask05-page"
       imageLoading="eager"
-      title={`คุณคิดว่ารัฐควรทำอะไรบ้างเพื่อที่จะทำให้นโยบายนี้เกิดขึ้นได้และเป็นประโยชน์ต่อประชาชนอย่างแท้จริง`}
+      title={`คุณคิดว่ารัฐควรทำอะไรบ้างเพื่อที่จะทำให้นโยบา���นี้เกิดขึ้นได้และเป็นประโยชน์ต่อประชาชนอย่างแท้จริง`}
     >
       <div className="ask05-content">
         <div className="w-full max-w-[890px] mx-auto">
@@ -73,13 +73,15 @@ const Ask05 = ({ sessionID, onNavigate }: Ask05Props) => {
             <textarea
               value={suggestion}
               onChange={(e) => setSuggestion(e.target.value)}
-              placeholder="พิมพ์ข้อความของคุณที่นี่..."
+              placeholder="พิมพ์ข้อความของคุณที่นี่"
               className="w-full h-full resize-none border-none outline-none font-prompt bg-transparent"
               style={{
                 fontSize: "clamp(16px, 3.7vw, 40px)",
                 fontWeight: 400,
                 minHeight: "clamp(160px, 20vh, 360px)",
                 color: "#000",
+                textAlign: "center",
+                paddingTop: suggestion ? undefined : "18%",
               }}
             />
           </div>
