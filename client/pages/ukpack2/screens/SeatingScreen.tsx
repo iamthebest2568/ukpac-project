@@ -33,7 +33,6 @@ const SeatingScreen: React.FC = () => {
   const { state } = useBusDesign();
 
   const [totalSeats, setTotalSeats] = useState<number | "">("");
-  const [specialSeats, setSpecialSeats] = useState<number | "">("");
   const [pregnantSeats, setPregnantSeats] = useState<number | "">("");
   const [childElderSeats, setChildElderSeats] = useState<number | "">("");
   const [monkSeats, setMonkSeats] = useState<number | "">("");
@@ -44,7 +43,7 @@ const SeatingScreen: React.FC = () => {
   const [isExitModalOpen, setExitModalOpen] = useState(false);
   const [isErrorModalOpen, setErrorModalOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const [errorTitle, setErrorTitle] = useState("ข้อผิดพลาด");
+  const [errorTitle, setErrorTitle] = useState("ข้อผิดพ���าด");
 
   const maxByChassis: Record<string, number> = {
     small: 30,
@@ -88,7 +87,6 @@ const SeatingScreen: React.FC = () => {
             Math.max(minCapacity, parsed.totalSeats),
           );
           setTotalSeats(clampedTotal);
-          setSpecialSeats(parsed.specialSeats ?? "");
           setPregnantSeats(parsed.pregnantSeats ?? "");
           setChildElderSeats(parsed.childElderSeats ?? "");
           setMonkSeats(parsed.monkSeats ?? "");
@@ -100,7 +98,6 @@ const SeatingScreen: React.FC = () => {
       // ignore
     }
     setTotalSeats("");
-    setSpecialSeats("");
     setPregnantSeats("");
     setChildElderSeats("");
     setMonkSeats("");
@@ -130,7 +127,7 @@ const SeatingScreen: React.FC = () => {
           : Number(totalSeats);
 
     if (Number.isNaN(total)) {
-      setErrorTitle("กรุณาระบุจำนวนที่นั่งทั้งหมด");
+      setErrorTitle("กรุณาระบุจำนวนที่นั่งท��้งหมด");
       setErrorMessage(
         `กรุณากรอกจำนวนที่นั่งทั้งหมดในช่วง ${minCapacityLocal} ถึง ${maxCapacityLocal} ที่นั่ง`,
       );
@@ -148,12 +145,11 @@ const SeatingScreen: React.FC = () => {
       return false;
     }
 
-    const sSpecial = Number(specialSeats) || 0;
     const sChild = Number(childElderSeats) || 0;
     const sPreg = Number(pregnantSeats) || 0;
     const sMonk = Number(monkSeats) || 0;
     const sWheel = Number(wheelchairBikeSpaces) || 0;
-    const sumSubs = sSpecial + sChild + sPreg + sMonk + sWheel;
+    const sumSubs = sChild + sPreg + sMonk + sWheel;
     if (sumSubs !== total) {
       setErrorTitle("ผลรวมของที่นั่งย่อยไม่ตรงกัน");
       setErrorMessage(
@@ -170,7 +166,6 @@ const SeatingScreen: React.FC = () => {
     try {
       const seating = {
         totalSeats,
-        specialSeats,
         pregnantSeats,
         childElderSeats,
         monkSeats,
@@ -188,7 +183,7 @@ const SeatingScreen: React.FC = () => {
       setTotalSeats("");
       return;
     }
-    const clamped = Math.min(maxCapacity, Math.max(minCapacity, v as number));
+    const clamped = Math.min(maxCapacity, Math.max(0, v as number));
     setTotalSeats(clamped);
   };
 
@@ -294,7 +289,7 @@ const SeatingScreen: React.FC = () => {
                       className="w-24 px-3 py-2 rounded-full text-[#000D59] bg-white text-right font-sarabun text-[17.6px]"
                       style={{ borderWidth: 2, borderColor: "#000D59" }}
                       min={minCapacity}
-                      max={maxCapacity}
+                      max={typeof totalSeats === "number" && totalSeats !== "" ? totalSeats : maxCapacity}
                     />
                   </div>
 
@@ -307,7 +302,7 @@ const SeatingScreen: React.FC = () => {
                       value={childElderSeats}
                       onChange={(v) => setChildElderSeats(v)}
                       min={0}
-                      max={maxCapacity}
+                      max={typeof totalSeats === "number" && totalSeats !== "" ? totalSeats : maxCapacity}
                       className="w-24 px-3 py-2 text-[#003366] bg-transparent text-right font-sarabun text-[17.6px] outline-none"
                     />
                   </div>
@@ -320,7 +315,7 @@ const SeatingScreen: React.FC = () => {
                       value={pregnantSeats}
                       onChange={(v) => setPregnantSeats(v)}
                       min={0}
-                      max={maxCapacity}
+                      max={typeof totalSeats === "number" && totalSeats !== "" ? totalSeats : maxCapacity}
                       className="w-24 px-3 py-2 text-[#003366] bg-transparent text-right font-sarabun text-[17.6px] outline-none"
                     />
                   </div>
@@ -333,7 +328,7 @@ const SeatingScreen: React.FC = () => {
                       value={monkSeats}
                       onChange={(v) => setMonkSeats(v)}
                       min={0}
-                      max={maxCapacity}
+                      max={typeof totalSeats === "number" && totalSeats !== "" ? totalSeats : maxCapacity}
                       className="w-24 px-3 py-2 text-[#003366] bg-transparent text-right font-sarabun text-[17.6px] outline-none"
                     />
                   </div>
@@ -346,7 +341,7 @@ const SeatingScreen: React.FC = () => {
                       value={wheelchairBikeSpaces}
                       onChange={(v) => setWheelchairBikeSpaces(v)}
                       min={0}
-                      max={maxCapacity}
+                      max={typeof totalSeats === "number" && totalSeats !== "" ? totalSeats : maxCapacity}
                       className="w-24 px-3 py-2 text-[#003366] bg-transparent text-right font-sarabun text-[17.6px] outline-none"
                     />
                   </div>
@@ -360,7 +355,7 @@ const SeatingScreen: React.FC = () => {
       <ConfirmModal
         isOpen={isExitModalOpen}
         title="ออกจากหน้าจอ"
-        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
+        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การ���ปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
         onConfirm={() => navigate("/")}
         onCancel={() => setExitModalOpen(false)}
       />
