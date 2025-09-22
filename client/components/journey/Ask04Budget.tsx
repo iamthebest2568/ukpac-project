@@ -25,7 +25,7 @@ const Ask04Budget = ({
   const handleChoice = (choice: "satisfied" | "unsatisfied") => {
     const choiceText = {
       satisfied: "พอใจ",
-      unsatisfied: "ไม่พอใจ",
+      unsatisfied: "ไม่พอใ���",
     }[choice];
 
     const data = { choice, choiceText };
@@ -53,7 +53,6 @@ const Ask04Budget = ({
     {
       text: "พอใจ",
       onClick: () => handleChoice("satisfied"),
-      ariaLabel: "พอใจกับผลลัพธ์ที่ได้จากการตอบคำถาม",
     },
     {
       text: "ไม่พอใจ",
