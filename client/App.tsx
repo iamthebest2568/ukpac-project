@@ -269,7 +269,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           ข้ามไปยังเนื้อหาหลัก
         </a>
         {useMock ? (
-          <TabletMockup>
+          <TabletMockup iframeSrc={iframeSrc}>
             <main
               id="main-content"
               role="main"
