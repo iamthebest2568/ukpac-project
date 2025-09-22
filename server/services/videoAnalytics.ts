@@ -98,36 +98,7 @@ export async function appendEvent(ev: VideoEvent) {
     console.warn("Failed to write video event to Firestore", e);
   }
 
-  // Fallback: write to Supabase if configured, otherwise local file
-  const supabaseUrl = process.env.SUPABASE_URL;
-  const supabaseKey = process.env.SUPABASE_ANON_KEY;
-  if (supabaseUrl && supabaseKey) {
-    // PostgREST insert
-    const res = await fetch(`${supabaseUrl}/rest/v1/video_events`, {
-      method: "POST",
-      headers: {
-        apikey: supabaseKey,
-        Authorization: `Bearer ${supabaseKey}`,
-        "Content-Type": "application/json",
-        Prefer: "return=minimal",
-      },
-      body: JSON.stringify({
-        session_id: sanitizeThai(ev.sessionId),
-        event_name: sanitizeThai(ev.eventName),
-        timestamp: ev.timestamp,
-        choice_text: sanitizeThai(ev.choiceText ?? null),
-        variant_id: (ev.variantId ?? null)?.toString() ?? null,
-        variant_name: sanitizeThai(ev.variantName ?? null),
-      }),
-    });
-    if (!res.ok) {
-      // fallback to file
-      ensureDir();
-      const line = JSON.stringify(ev) + "\n";
-      await fs.promises.appendFile(EVENTS_FILE, line, "utf8");
-    }
-    return;
-  }
+  // Fallback: write to local file only
   ensureDir();
   const line = JSON.stringify(ev) + "\n";
   await fs.promises.appendFile(EVENTS_FILE, line, "utf8");
