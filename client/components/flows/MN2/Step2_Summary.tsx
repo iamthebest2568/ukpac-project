@@ -178,7 +178,7 @@ const Step2_Summary = ({
     >
       <div
         className="relative z-10 w-full max-w-full mx-auto px-4 py-6"
-        style={{ paddingTop: "clamp(80px, 18vh, 140px)" }}
+        style={{ paddingTop: "clamp(56px, 12vh, 120px)", height: 'calc(100vh - 80px)', boxSizing: 'border-box', display: 'flex', flexDirection: 'column' }}
       >
         {/* Policy Cards */}
         <div className="space-y-6 mb-12" style={{ maxHeight: 'calc(100vh - 360px)', overflowY: 'auto', paddingRight: 8 }}>
