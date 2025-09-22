@@ -181,23 +181,23 @@ const Step2_Summary = ({
         style={{ paddingTop: "clamp(80px, 18vh, 140px)" }}
       >
         {/* Policy Cards */}
-        <div className="space-y-6 mb-12">
+        <div className="space-y-6 mb-12" style={{ maxHeight: 'calc(100vh - 360px)', overflowY: 'auto', paddingRight: 8 }}>
           {summaryCards.map((card, index) => (
             <div
               key={index}
               className="w-full max-w-[903px] mx-auto rounded-[20px] border-2 border-[#000D59] bg-transparent"
               style={{
-                minHeight: "clamp(200px, 25vw, 328px)",
-                padding: "clamp(16px, 3vw, 24px)",
+                minHeight: "clamp(180px, 22vw, 300px)",
+                padding: "clamp(12px, 2.6vw, 20px)",
               }}
             >
               {/* Policy Title */}
-              <div className="text-center mb-6">
+              <div className="text-center mb-4">
                 <h2
                   className="font-prompt font-bold text-center"
                   style={{
                     color: "#000D59",
-                    fontSize: "clamp(18px, 3.7vw, 40px)",
+                    fontSize: "clamp(18px, 3.2vw, 36px)",
                     fontWeight: 700,
                     letterSpacing: "0.4px",
                   }}
@@ -206,13 +206,13 @@ const Step2_Summary = ({
                 </h2>
               </div>
 
-              {/* Beneficiary Icons - Responsive Grid */}
+              {/* Beneficiary Icons - 3 per row, tighter spacing, slightly larger icons */}
               <div
-                className={`grid justify-items-center items-center grid-cols-3 gap-3`}
+                className={`grid justify-items-center items-center grid-cols-3 gap-2`}
                 style={{
                   maxWidth: "100%",
                   margin: "0 auto",
-                  padding: "0 clamp(8px, 2vw, 16px)",
+                  padding: "0 clamp(6px, 1.6vw, 12px)",
                 }}
               >
                 {card.beneficiaries.map((beneficiary, beneficiaryIndex) => (
@@ -221,19 +221,19 @@ const Step2_Summary = ({
                     className="flex flex-col items-center justify-center"
                     style={{
                       width: "100%",
-                      maxWidth: "clamp(80px, 22vw, 140px)",
+                      maxWidth: "clamp(100px, 30vw, 160px)",
                     }}
                   >
-                    {/* Circle with icon - smaller responsive size */}
-                    <div className="relative mb-2">
+                    {/* Circle with icon - slightly larger responsive size */}
+                    <div className="relative mb-1">
                       {beneficiary.iconSrc && (
                         <img
                           src={beneficiary.iconSrc}
                           alt={beneficiary.label}
                           className="object-contain"
                           style={{
-                            width: "clamp(48px, 12vw, 80px)",
-                            height: "clamp(48px, 12vw, 80px)",
+                            width: "clamp(64px, 16vw, 110px)",
+                            height: "clamp(64px, 16vw, 110px)",
                             display: "block",
                             margin: "0 auto",
                           }}
