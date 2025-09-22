@@ -141,7 +141,7 @@ const Step2_Allocation = ({
             />
             <div className="mn3-budget-text">
               <div className="mn3-budget-label">งบทั้งหมด</div>
-              <div className="mn3-budget-amount">{totalBudget} <span style={{ marginLeft: 6 }}>%</span></div>
+              <div className="mn3-budget-amount">{totalBudget}<span style={{ marginLeft: 2 }}>%</span></div>
             </div>
           </div>
         </div>
@@ -152,7 +152,7 @@ const Step2_Allocation = ({
             {selectedPriorities.map((priority, index) => (
               <div key={priority} className="mn3-allocation-item">
                 <div className="mn3-allocation-label">{priority}</div>
-                <div className="mn3-allocation-input-container" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                <div className="mn3-allocation-input-container" style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
                   <input
                     type="number"
                     min="0"
