@@ -250,7 +250,7 @@ const Step2_Summary = ({
         </div>
 
         {/* Bottom Question Section */}
-        <div className="text-center mb-8">
+        <div className="text-center mb-8" style={{ marginTop: 24 }}>
           <h2
             className="font-prompt font-bold text-center"
             style={{
