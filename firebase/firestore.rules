@@ -41,18 +41,18 @@ service cloud.firestore {
         && (!('userAgent' in resource) || (resource.userAgent is string && resource.userAgent.size() <= 1024));
     }
 
-    // Rules for minigame1_events collection
+    // Rules for minigame1_events collection (accept client writes; restrict reads/updates)
     match /minigame1_events/{eventId} {
-      // Create allowed if authenticated OR PDPA accepted in payload/top-level, and entry passes validation
-      allow create: if (isAuthenticated() || pdpaAcceptedFor(request.resource.data)) && isValidEventEntry(request.resource.data);
+      // Allow create from clients but validate structure to avoid abuse
+      allow create: if isValidEventEntry(request.resource.data);
 
-      // Read/list/update/delete reserved for admins (use custom claim `admin: true` on service accounts/users)
+      // Restrict read/update/delete to admins only
       allow get, list, update, delete: if isAdmin();
     }
 
-    // Rules for ukpack2_events collection (same policy)
+    // (Legacy) ukpack2_events preserved but locked down to admin-only
     match /ukpack2_events/{eventId} {
-      allow create: if (isAuthenticated() || pdpaAcceptedFor(request.resource.data)) && isValidEventEntry(request.resource.data);
+      allow create: if false;
       allow get, list, update, delete: if isAdmin();
     }
 
