@@ -82,7 +82,7 @@ const Ask02_2 = ({ sessionID, onNavigate }: Ask02_2Props) => {
               }}
               aria-hidden={textInput.trim().length > 0}
             >
-              พิมพ์ข้อความของ��ุณที่นี่
+              พิมพ์ข้อความของคุณที่นี่
             </div>
 
             <textarea
