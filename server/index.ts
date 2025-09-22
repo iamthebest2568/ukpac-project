@@ -14,6 +14,7 @@ import {
   listRecentEvents,
   listVideoEventsBySession,
   getVideoIngestStatus,
+  getFirestoreStatsFor,
 } from "./services/videoAnalytics.extras";
 import {
   AppEventSchema,
