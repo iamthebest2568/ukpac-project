@@ -276,8 +276,8 @@ const DesignScreen: React.FC = () => {
           <div className="w-full rounded-md flex flex-col items-center justify-center gap-2">
             {(() => {
               const CHASSIS_LABELS: Record<string, string> = {
-                small: "ร���เมล์ขนาดเล็ก 16–30 ที่นั่ง",
-                medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
+                small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
+                medium: "รถเมล์มาต���ฐาน 30–50 ที่นั่ง",
                 large: "รถตู้โดยสาร 9–15 ที่นั่ง",
                 extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
               };
@@ -420,7 +420,7 @@ const DesignScreen: React.FC = () => {
                     setShowTextarea(true);
                   }}
                   placeholder="พิมพ์ คุณสมบัติพิเศษ"
-                  className="w-full rounded-xl px-4 py-2 bg-white border-2 border-[#000D59] text-[#003366] placeholder-gray-400 cursor-text"
+                  className="w-full rounded-xl px-4 py-2 bg-white border-2 border-[#000D59] text-[#003366] placeholder-gray-400 cursor-text text-center"
                 />
 
                 {showTextarea && (
