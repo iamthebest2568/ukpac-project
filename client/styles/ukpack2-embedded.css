@@ -1,0 +1,94 @@
+/* Styles applied only when running embedded inside the 810x1080 tablet mockup */
+.embedded-ukpack2 .app-container {
+  width: 810px !important;
+  height: 1080px !important;
+  max-width: 810px !important;
+  max-height: 1080px !important;
+  overflow: hidden !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.embedded-ukpack2 main#main-content {
+  width: 810px !important;
+  height: 1080px !important;
+  overflow: auto !important; /* allow inner scrolling */
+}
+
+/* Ensure full-bleed pages occupy the full iframe screen */
+.embedded-ukpack2 .full-bleed-page .app-container {
+  width: 810px !important;
+}
+
+/* Reduce header size slightly so long titles wrap but fit */
+.embedded-ukpack2 .customization-title {
+  font-size: 18px !important;
+  line-height: 1.1 !important;
+}
+
+/* Constrain large hero images to avoid overflow */
+.embedded-ukpack2 img {
+  max-width: 100% !important;
+  height: auto !important;
+  object-fit: contain !important;
+}
+
+/* Make sure fixed footers (sticky CTA) don't cover main content: allow internal padding */
+.embedded-ukpack2 .uk2-scroll,
+.embedded-ukpack2 .responsive-content,
+.embedded-ukpack2 .prose {
+  box-sizing: border-box !important;
+}
+
+/* Reduce wide padding on big containers to fit the viewport */
+.embedded-ukpack2 .px-6,
+.embedded-ukpack2 .px-4 {
+  padding-left: 12px !important;
+  padding-right: 12px !important;
+}
+
+/* Ensure long text areas wrap and remain readable */
+.embedded-ukpack2 textarea,
+.embedded-ukpack2 input,
+.embedded-ukpack2 .prose p {
+  word-break: break-word !important;
+}
+
+/* Make buttons slightly smaller to avoid overflow */
+.embedded-ukpack2 .w-full.max-w-sm .w-full,
+.embedded-ukpack2 .w-full.max-w-sm button,
+.embedded-ukpack2 .w-full.max-w-sm .ukpack2-secondary-btn {
+  font-size: 14px !important;
+  padding: 10px 12px !important;
+}
+
+/* Ensure summary cards and grids shrink to fit */
+.embedded-ukpack2 .max-w-5xl,
+.embedded-ukpack2 .max-w-4xl,
+.embedded-ukpack2 .max-w-sm {
+  max-width: 760px !important;
+}
+
+/* Force overflow for any overly large elements to keep layout intact */
+.embedded-ukpack2 .overflow-hidden {
+  overflow: auto !important;
+}
+
+/* Make sure typography scales down a bit */
+.embedded-ukpack2 body,
+.embedded-ukpack2 .font-prompt,
+.embedded-ukpack2 .font-sarabun {
+  font-size: 15px !important;
+}
+
+/* Fine tuning for vehicle preview and summary details */
+.embedded-ukpack2 .vehicle-preview img,
+.embedded-ukpack2 .vehicle-preview {
+  max-height: 260px !important;
+}
+
+/* Ensure CTA footer inside customization screen doesn't overlap content */
+.embedded-ukpack2 .customization-screen-footer,
+.embedded-ukpack2 [data-testid="customization-footer"] {
+  position: relative !important;
+}
