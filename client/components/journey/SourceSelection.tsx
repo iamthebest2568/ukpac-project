@@ -43,7 +43,7 @@ const SourceSelection = ({ sessionID, onNavigate }: SourceSelectionProps) => {
         <>
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
             <div style={{ textAlign: "center" }}>
-              <span>ถ้าคุณจะหาข่าวต่อ คุณจะติดตามข่าวจากแหล่งข่าวไหนเป็นหลักรายการข่าวโทรทัศน์</span>
+              <span>ถ้าคุณจะหาข่าวต่อ คุณจะติดตามข่าวจากแหล่งข่าวไหนเป��นหลักรายการข่าวโทรทัศน์</span>
             </div>
             <div style={{ fontSize: 14, marginTop: 8, color: "#374151" }}>
               เลือกได้ไม่เกิน 3 ข้อ
@@ -63,21 +63,7 @@ const SourceSelection = ({ sessionID, onNavigate }: SourceSelectionProps) => {
                 onClick={() => toggle(opt.id, opt.label)}
                 className="figma-style1-button"
                 aria-pressed={isSelected}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  width: "100%",
-                  minHeight: "clamp(56px, 9vh, 88px)",
-                  padding: "12px 10px",
-                  gap: 8,
-                  background: isSelected ? "#000D59" : "#ffffff",
-                  border: "1px solid #e5e7eb",
-                  borderRadius: 8,
-                  boxSizing: "border-box",
-                  cursor: !isSelected && selected.length >= 3 ? "not-allowed" : "pointer",
-                  opacity: !isSelected && selected.length >= 3 ? 0.6 : 1,
-                }}
+                style={{ width: "100%" }}
               >
                 <span className="figma-style1-button-text" style={{ color: isSelected ? "#fff" : undefined }}>
                   {opt.label}
