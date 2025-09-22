@@ -82,7 +82,7 @@ export async function appendEvent(ev: VideoEvent) {
   try {
     initServerFirestore();
     if (firestoreDb) {
-      const colDoc = doc(firestoreDb, "minigame1_events", "minigame1-di");
+      const colDoc = doc(firestoreDb, "picture", "future");
       const eventsCol = collection(colDoc, "events");
       const payload: any = {
         sessionID: ev.sessionId,
@@ -136,7 +136,7 @@ export async function computeStats(
   try {
     initServerFirestore();
     if (firestoreDb) {
-      const colDoc = doc(firestoreDb, "minigame1_events", "minigame1-di");
+      const colDoc = doc(firestoreDb, "picture", "future");
       const eventsCol = collection(colDoc, "events");
       const q = query(eventsCol, orderBy("createdAt", "asc"));
       const snap = await getDocs(q as any);

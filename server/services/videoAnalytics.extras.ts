@@ -58,7 +58,7 @@ export async function listRecentEvents(limit = 50): Promise<VideoEvent[]> {
   try {
     initFirestore();
     if (firestoreDb) {
-      const colDoc = doc(firestoreDb, "minigame1_events", "minigame1-di");
+      const colDoc = doc(firestoreDb, "picture", "future");
       const eventsCol = collection(colDoc, "events");
       const q = query(eventsCol, orderBy("createdAt", "desc"), limitFn(limit));
       const snap = await getDocs(q as any);
@@ -114,7 +114,7 @@ export async function listVideoEventsBySession(
   try {
     initFirestore();
     if (firestoreDb) {
-      const colDoc = doc(firestoreDb, "minigame1_events", "minigame1-di");
+      const colDoc = doc(firestoreDb, "picture", "future");
       const eventsCol = collection(colDoc, "events");
       const q = query(eventsCol, orderBy("createdAt", "asc"));
       const snap = await getDocs(q as any);
@@ -174,7 +174,7 @@ export async function getVideoIngestStatus(): Promise<{
   try {
     initFirestore();
     if (firestoreDb) {
-      const colDoc = doc(firestoreDb, "minigame1_events", "minigame1-di");
+      const colDoc = doc(firestoreDb, "picture", "future");
       const eventsCol = collection(colDoc, "events");
       const q = query(eventsCol, orderBy("createdAt", "desc"), limitFn(1));
       const snap = await getDocs(q as any);

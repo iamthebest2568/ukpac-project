@@ -80,7 +80,7 @@ export async function appendAppEvent(ev: AppEvent) {
   try {
     initServerFirestore();
     if (firestoreDb) {
-      const colDoc = doc(firestoreDb, "minigame1_events", "minigame1-di");
+      const colDoc = doc(firestoreDb, "picture", "future");
       const eventsCol = collection(colDoc, "events");
       const payload = {
         sessionID: ev.sessionId,
@@ -115,7 +115,7 @@ export async function readAllAppEvents(): Promise<AppEvent[]> {
   try {
     initServerFirestore();
     if (firestoreDb) {
-      const colDoc = doc(firestoreDb, "minigame1_events", "minigame1-di");
+      const colDoc = doc(firestoreDb, "picture", "future");
       const eventsCol = collection(colDoc, "events");
       const q = query(eventsCol, orderBy("createdAt", "asc"), limitFn(5000));
       const snap = await getDocs(q as any);
@@ -192,7 +192,7 @@ export interface SessionSummary {
   lastSeen: string;
   introWho?: string; // บทบาทในการเดินทางเข้าเมือง
   travelMethod?: string; // ยานพาหนะที่ใช้
-  opinionLevel?: string; // ระดับความคิดเห็น (เห็นด้วย/กลางๆ/ไม่เห็นด้วย)
+  opinionLevel?: string; // ระดับ���วามคิดเห็น (เห็นด้วย/กลางๆ/ไม่เห็นด้วย)
   ask02Choice?: string; // เหตุผลหลัก
   ask02CustomReason?: string; // เหตุผลเพิ่มเติม (พิมพ์เอง)
   reasonOther01?: string; // คำอธิบายเพิ่มเติม
@@ -207,7 +207,7 @@ export interface SessionSummary {
   satisfactionLevel?: string; // ระด��บ���วามพึงพอใจ
   ask05Comment?: string; // ข้อเสนอเพิ่มเติมต่อรัฐ
   fakeNewsResponse?: string; // การตอบสนองต่อข่าวปลอม
-  sourceSelected?: string; // แหล่งข่าวที่ผู้ใช้เลือก
+  sourceSelected?: string; // แหล่งข่าวที���ผู้ใช้เลือก
   endDecision?: string; // การเข้าร่วมลุ้นรางวัล
   endDecisionText?: string;
   // End sequence contact details
@@ -282,7 +282,7 @@ export async function computeSessionSummaries(
   try {
     initServerFirestore();
     if (firestoreDb) {
-      const colDoc = doc(firestoreDb, "minigame1_events", "minigame1-di");
+      const colDoc = doc(firestoreDb, "picture", "future");
       const eventsCol = collection(colDoc, "events");
       const q = query(eventsCol, orderBy("createdAt", "asc"));
       const snap = await getDocs(q as any);
