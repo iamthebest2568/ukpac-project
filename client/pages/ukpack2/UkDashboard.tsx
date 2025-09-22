@@ -16,6 +16,7 @@ const UkDashboard: React.FC = () => {
   const [input, setInput] = useState("");
   const [summary, setSummary] = useState<any>(null);
   const [eventsSample, setEventsSample] = useState<any[]>([]);
+  const [collectionInfo, setCollectionInfo] = useState<{col:string;docId:string}>({col:'minigame2_events',docId:'minigame2-di'});
 
   useEffect(() => {
     try {
