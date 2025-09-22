@@ -40,6 +40,29 @@ export type AppEvent = z.infer<typeof AppEventSchema> & { timestamp: string };
 const DATA_DIR = process.env.DATA_DIR || path.join(process.cwd(), ".data");
 const APP_EVENTS_FILE = path.join(DATA_DIR, "app-events.jsonl");
 
+// Server-side Firestore client (non-admin) initialization — used when replacing Supabase storage
+let firestoreDb: ReturnType<typeof getFirestore> | null = null;
+function initServerFirestore() {
+  if (firestoreDb) return;
+  try {
+    const firebaseConfig = {
+      apiKey: process.env.FIREBASE_API_KEY || "AIzaSyBdMPQP9DVM1S9bh70dFuMAsyzPJPOYXnk",
+      authDomain: process.env.FIREBASE_AUTH_DOMAIN || "uk-pact.firebaseapp.com",
+      projectId: process.env.FIREBASE_PROJECT_ID || "uk-pact",
+      storageBucket: process.env.FIREBASE_STORAGE_BUCKET || "uk-pact.firebasestorage.app",
+      messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID || "534142958499",
+      appId: process.env.FIREBASE_APP_ID || "1:534142958499:web:3cf0b2380c055f7a747816",
+    };
+    let app;
+    if (getApps && getApps().length > 0) app = getApp();
+    else app = initializeApp(firebaseConfig as any);
+    firestoreDb = getFirestore(app);
+  } catch (e) {
+    console.warn("Server Firestore init failed", e);
+    firestoreDb = null;
+  }
+}
+
 function ensureDir() {
   try {
     fs.mkdirSync(DATA_DIR, { recursive: true });
@@ -172,7 +195,7 @@ export interface SessionSummary {
   ask05Comment?: string; // ข้อเสนอเพิ่มเติมต่อรัฐ
   fakeNewsResponse?: string; // การตอบสนองต่อข่าวปลอม
   sourceSelected?: string; // แหล่งข่าวที่ผู้ใช้เลือก
-  endDecision?: string; // การเข้าร่วมลุ้นรางวัล
+  endDecision?: string; // การเข้าร่��มลุ้นรางวัล
   endDecisionText?: string;
   // End sequence contact details
   contactName?: string;
