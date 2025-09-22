@@ -115,7 +115,7 @@ const SubmitScreen: React.FC = () => {
   return (
     <>
       <CustomizationScreen
-        title="ปรับแต่งรถเมล์ของคุณ"
+        title="ออกแบบรถเมล์ของคุณ"
         theme="light"
         footerContent={
           <div className="flex justify-center">
