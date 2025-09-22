@@ -7,6 +7,7 @@ import {
   serverTimestamp,
   doc,
 } from "firebase/firestore";
+import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "firebase/storage";
 
 // Firebase config provided by user
 const firebaseConfig = {
