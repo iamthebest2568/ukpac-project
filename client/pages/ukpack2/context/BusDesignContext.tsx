@@ -130,7 +130,7 @@ export const BusDesignProvider = ({ children }: { children: ReactNode }) => {
       if (imageBlob) {
         try {
           // dynamic import to avoid double-initialization issues
-          const mod = await import("../../lib/firebase");
+          const mod = await import("../../../lib/firebase");
           const path = `designs/ukpack2_${Date.now()}_${Math.random().toString(36).slice(2,9)}.png`;
           const url = await mod.uploadFileToStorage(imageBlob, path);
           payload.imageUrl = url;
