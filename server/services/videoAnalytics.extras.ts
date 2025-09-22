@@ -246,3 +246,47 @@ export async function getFirestoreStatsFor(
     return { count: null, lastTs: null, sample: [] };
   }
 }
+
+// Compute simple aggregation (totals + timeseries by day) for a given events subcollection
+export async function computeStatsForProject(
+  colName: string,
+  docId: string,
+): Promise<{
+  totals: { totalEvents: number; totalSessions: number };
+  timeseries: Array<{ date: string; events: number }>;
+  sample: any[];
+}> {
+  try {
+    initFirestore();
+    if (!firestoreDb) return { totals: { totalEvents: 0, totalSessions: 0 }, timeseries: [], sample: [] };
+    const colDoc = doc(firestoreDb, String(colName), String(docId));
+    const eventsCol = collection(colDoc, 'events');
+    const q = query(eventsCol, orderBy('createdAt', 'asc'));
+    const snap = await getDocs(q as any);
+    const events: any[] = [];
+    snap.forEach((d) => {
+      events.push(d.data());
+    });
+    // simple aggregates
+    const totalEvents = events.length;
+    const sessions = new Set<string>();
+    const perDay = new Map<string, number>();
+    for (const e of events) {
+      const sid = String(e.sessionID || e.sessionId || '');
+      if (sid) sessions.add(sid);
+      const ts = e.timestamp || e.createdAt || new Date().toISOString();
+      let iso = ts;
+      try {
+        if (ts && typeof ts.toDate === 'function') iso = ts.toDate().toISOString();
+      } catch (_) {}
+      const date = String(iso).slice(0, 10);
+      perDay.set(date, (perDay.get(date) || 0) + 1);
+    }
+    const timeseries = Array.from(perDay.entries()).sort(([a], [b]) => (a < b ? -1 : 1)).map(([date, events]) => ({ date, events }));
+    const sample = events.slice(-20).reverse();
+    return { totals: { totalEvents, totalSessions: sessions.size }, timeseries, sample };
+  } catch (e) {
+    console.warn('Failed to compute stats for project', colName, docId, e);
+    return { totals: { totalEvents: 0, totalSessions: 0 }, timeseries: [], sample: [] };
+  }
+}
