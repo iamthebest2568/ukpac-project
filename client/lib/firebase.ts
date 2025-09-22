@@ -45,7 +45,15 @@ export async function sendEventToFirestore(
   if (!db) throw new Error("Firestore not initialized");
   const col = collection(db, collectionName);
   // write enriched event; add server timestamp
-  return addDoc(col, { ...event, createdAt: serverTimestamp() });
+  try {
+    return await addDoc(col, { ...event, createdAt: serverTimestamp() });
+  } catch (e: any) {
+    const code = e?.code || e?.status || 'unknown';
+    const message = e?.message || String(e);
+    const err = new Error(`[${code}] ${message}`);
+    try { (err as any).original = e; } catch (_) {}
+    throw err;
+  }
 }
 
 // also export init for manual init from UI
