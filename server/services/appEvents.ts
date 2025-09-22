@@ -131,6 +131,40 @@ export async function appendAppEvent(ev: AppEvent) {
 }
 
 export async function readAllAppEvents(): Promise<AppEvent[]> {
+  // Prefer Firestore (ukpack1) if available
+  try {
+    initServerFirestore();
+    if (firestoreDb) {
+      const colDoc = doc(firestoreDb, "minigame1_events", "minigame1-di");
+      const eventsCol = collection(colDoc, "events");
+      const q = query(eventsCol, orderBy("createdAt", "asc"), limitFn(5000));
+      const snap = await getDocs(q as any);
+      const events: AppEvent[] = [];
+      snap.forEach((d) => {
+        const data = d.data() as any;
+        const ts = data.timestamp || data.createdAt || new Date().toISOString();
+        let timestamp = ts;
+        // handle Firestore Timestamp
+        if (timestamp && typeof timestamp.toDate === "function") {
+          timestamp = timestamp.toDate().toISOString();
+        }
+        events.push({
+          sessionId: sanitizeThai(String(data.sessionID || data.sessionId || "")),
+          event: sanitizeThai(String(data.event || "")),
+          timestamp: String(timestamp || new Date().toISOString()),
+          page: sanitizeThai(data.page ?? undefined),
+          payload: data.payload ?? undefined,
+          userAgent: sanitizeThai(data.userAgent ?? data.user_agent ?? undefined),
+          ip: sanitizeThai(data.ip ?? undefined),
+        });
+      });
+      return events;
+    }
+  } catch (e) {
+    // ignore and fall back
+    console.warn("Failed to read app events from Firestore", e);
+  }
+
   // Prefer Supabase if configured
   const supabaseUrl = process.env.SUPABASE_URL as string | undefined;
   const supabaseKey = process.env.SUPABASE_ANON_KEY as string | undefined;
@@ -220,7 +254,7 @@ export interface SessionSummary {
   ask05Comment?: string; // ข้อเสนอเพิ่มเติมต่อรัฐ
   fakeNewsResponse?: string; // การตอบสนองต่อข่าวปลอม
   sourceSelected?: string; // แหล่งข่าวที่ผู้ใช้เลือก
-  endDecision?: string; // การเ���้าร่วมลุ้นรางวัล
+  endDecision?: string; // การเข้าร่วมลุ้นรางวัล
   endDecisionText?: string;
   // End sequence contact details
   contactName?: string;
