@@ -17,6 +17,7 @@ const UkDashboard: React.FC = () => {
   const [summary, setSummary] = useState<any>(null);
   const [eventsSample, setEventsSample] = useState<any[]>([]);
   const [collectionInfo, setCollectionInfo] = useState<{col:string;docId:string}>({col:'minigame2_events',docId:'minigame2-di'});
+  const [publicSubmissions, setPublicSubmissions] = useState<any[]>([]);
 
   useEffect(() => {
     try {
@@ -108,7 +109,7 @@ const UkDashboard: React.FC = () => {
   const handleExportMapped = () => {
     const csv = exportSessionsAsCSV();
     if (!csv) {
-      alert("ไม่��ีข้อมูลให้ส่งออก");
+      alert("ไม่มีข้อมูลให้ส่งออก");
       return;
     }
     const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
@@ -350,7 +351,7 @@ const UkDashboard: React.FC = () => {
             <h2 className="text-lg font-semibold mb-2">
               เข้าสู่แดชบอร์ด ukpack2
             </h2>
-            <p className="text-sm mb-4">ป้อนรหัสเพื่อเข้าถึงแดชบอร์ด</p>
+            <p className="text-sm mb-4">ป้อนรหัสเพ���่อเข้าถึงแดชบอร์ด</p>
             <input
               type="password"
               value={input}
@@ -373,7 +374,7 @@ const UkDashboard: React.FC = () => {
                 }}
                 className="flex-1 bg-[#e5e7eb] text-black py-2 rounded font-semibold"
               >
-                ยก��ลิก
+                ยกเลิก
               </button>
             </div>
           </div>
