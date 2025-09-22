@@ -26,12 +26,12 @@ const Step1_Choice = ({
   // Define priorities exactly as in Figma design
   const priorityList = [
     "ลดค่าโดยสารรถไฟฟ้า",
-    "ปรับปรุงคุณภาพรถเมล์",
+    "เพิ่มความถี่รถไฟฟ้า",
     "ตั๋วร่วม",
     "เพิ่มความถี่รถเมล์",
+    "ปรับปรุงคุณภาพรถเมล์",
     "เพิ่มที่จอดรถ",
-    "เพิ่มความถี่รถไฟฟ้า",
-    "เพิ่ม Feeder ในซอย",
+    "เพิ่มรถเล็กเชื่อมต่อรถไฟฟ้าในซอย",
   ];
 
   const handlePriorityToggle = (priority: string) => {
