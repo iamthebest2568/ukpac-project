@@ -1,241 +1,28 @@
-/* MN3 page z-index and title visibility fixes */
-
-/* Ensure the figma-style1 title for Step2 (mn3-step2-page) stays above any overlays */
-.figma-style1-container.mn3-step2-page .figma-style1-title-container {
-  position: relative !important;
-  z-index: 1001 !important;
-}
-
-/* Force title color and remove text-shadow for readability on custom background */
-.figma-style1-container.mn3-step2-page .figma-style1-title {
-  color: #000d59 !important;
-  text-shadow: none !important;
-}
-
-/* Ensure the sticky title and allocation content are above the mn3 fixed content */
-.figma-style1-container.mn3-step2-page .mn3-allocation-content,
-.figma-style1-container.mn3-step2-page .mn3-allocation-content * {
-  position: relative !important;
-  z-index: 1000 !important;
-}
-
-/* Lower blue overlay specifically for this page so it doesn't cover title */
-.figma-style1-container.mn3-step2-page .figma-style1-background-overlay--blue {
-  z-index: 1 !important;
-}
-
-/* If mn3-content is present and fixed, ensure buttons remain clickable by placing them above */
-.figma-style1-container.mn3-step2-page .mn3-continue-button {
-  position: relative !important;
-  z-index: 1002 !important;
-}
-
-/* Ensure main content is placed above the curved overlay and not pinned to bottom */
-.figma-style1-container.mn3-step2-page .figma-style1-main {
-  align-items: flex-start !important;
-}
-
-/* Add safe top padding so the curved overlay doesn't intrude into content area */
-.figma-style1-container.mn3-step2-page .figma-style1-content-area {
-  padding-top: 28px !important;
-  overflow: visible !important;
-}
-
-/* Reduce blue overlay height slightly on this page to avoid covering mid-content */
-.figma-style1-container.mn3-step2-page .figma-style1-background-overlay--blue {
-  height: 28% !important;
-}
-
-/* MN2 icon/color rules: ensure icon groups use #000D59 */
-.figma-style1-container.mn2-summary-page svg circle,
-.figma-style1-container.mn2-summary-page svg path,
-.figma-style1-container.mn2-summary-page .mn3-summary-icon {
-  stroke: #000d59 !important;
-  color: #000d59 !important;
-  fill: none !important;
-}
-
-/* Ensure labels under icons use brand color */
-.figma-style1-container.mn2-step1-page span {
-  color: #000d59 !important;
-}
-
-/* Push title and icon rows down on MN2 Step1 so they are lower in the viewport */
-.figma-style1-container.mn2-step1-page .figma-style1-content-area {
-  /* Increased to push content further down */
-  padding-top: clamp(200px, 38vh, 420px) !important;
-}
-
-/* Minimal debug mode for MN2 summary: hide decorative backgrounds and overlays */
-.figma-style1-container.mn2-summary-minimal .figma-style1-background-image,
-.figma-style1-container.mn2-summary-minimal .figma-style1-background-overlay,
-.figma-style1-container.mn2-summary-minimal .figma-style1-wave-overlay {
-  display: none !important;
-}
-
-/* Also remove any CSS background-image on the background container */
-.figma-style1-container.mn2-summary-minimal .figma-style1-background,
-.figma-style1-container.mn2-summary-minimal .figma-style1-background-image,
-.figma-style1-container.mn2-summary-minimal::before,
-.figma-style1-container.mn2-summary-minimal .mn2-summary-page::before,
-.figma-style1-container.mn2-summary-minimal .mn3-page-bg::before {
-  background-image: none !important;
-  background-color: transparent !important;
-  display: none !important;
-  content: none !important;
-}
-
-/* Ensure main layout panels are transparent */
-.figma-style1-container.mn2-summary-minimal,
-.figma-style1-container.mn2-summary-minimal .figma-style1-content,
-.figma-style1-container.mn2-summary-minimal .figma-style1-main,
-.figma-style1-container.mn2-summary-minimal .figma-style1-content-area {
-  background: transparent !important;
-  background-color: transparent !important;
-}
-
-/* Override overflow hiding that might clip summary cards */
-.figma-style1-container.mn2-summary-minimal .figma-style1-content,
-.figma-style1-container.mn2-summary-minimal .figma-style1-main,
-.figma-style1-container.mn2-summary-minimal .figma-style1-content-area,
-.figma-style1-container.mn2-summary-minimal .figma-style1-content-area > * {
-  overflow: visible !important;
-  max-height: none !important;
-}
-
-/* Ensure summary cards are above any background layers */
-.figma-style1-container.mn2-summary-minimal .mn3-summary-list,
-.figma-style1-container.mn2-summary-minimal .space-y-6,
-.figma-style1-container.mn2-summary-minimal .mn3-summary-card {
-  position: relative !important;
-  z-index: 1000 !important;
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  transform: none !important;
-}
-
-/* Remove any pointer-events:none that may prevent interaction */
-.figma-style1-container.mn2-summary-minimal *,
-.figma-style1-container.mn2-summary-minimal *::before,
-.figma-style1-container.mn2-summary-minimal *::after {
-  pointer-events: auto !important;
-}
-
-/* Ensure main aligns top so content isn't pushed out of view */
-.figma-style1-container.mn2-summary-minimal .figma-style1-main {
-  align-items: flex-start !important;
-}
-
-/* Remove any residual pseudo overlays */
-.figma-style1-container.mn2-summary-minimal::before,
-.figma-style1-container.mn2-summary-minimal .figma-style1-content::before,
-.figma-style1-container.mn2-summary-minimal .figma-style1-content-area::before {
-  display: none !important;
-  content: none !important;
-  background: transparent !important;
-}
-
-/* Remove ring/border styling if any remains */
-.figma-style1-container.mn2-summary-minimal .mn3-summary-card,
-.figma-style1-container.mn2-summary-minimal .mn3-summary-card-left,
-.figma-style1-container.mn2-summary-minimal svg {
-  box-shadow: none !important;
-  border: none !important;
-}
-
-/* Remove clickable checkbox focus rectangle on MN2 beneficiary options */
-.figma-style1-container.mn2-step1-page [role="checkbox"],
-.figma-style1-container.mn2-step1-page [role="checkbox"] * {
-  outline: none !important;
-  box-shadow: none !important;
-}
-
-/* ---------- MN3 Step2: force remove background and overlays ---------- */
-.figma-style1-container.mn3-step2-page .figma-style1-background,
-.figma-style1-container.mn3-step2-page .figma-style1-background-image,
-.figma-style1-container.mn3-step2-page .figma-style1-background-overlay,
-.figma-style1-container.mn3-step2-page .figma-style1-wave-overlay,
-.figma-style1-container.mn3-step2-page::before {
+/* =========================
+   Specific override: Ask04Budget (remove background)
+   ========================= */
+.figma-style1-container.ask04-budget-page .figma-style1-background,
+.figma-style1-container.ask04-budget-page .figma-style1-background-image,
+.figma-style1-container.ask04-budget-page .figma-style1-background-overlay,
+.figma-style1-container.ask04-budget-page .figma-style1-wave-overlay,
+.figma-style1-container.ask04-budget-page::before {
   display: none !important;
   background: transparent !important;
   background-image: none !important;
   content: none !important;
 }
 
-.figma-style1-container.mn3-step2-page,
-.figma-style1-container.mn3-step2-page .figma-style1-content,
-.figma-style1-container.mn3-step2-page .figma-style1-main,
-.figma-style1-container.mn3-step2-page .figma-style1-content-area {
+.figma-style1-container.ask04-budget-page,
+.figma-style1-container.ask04-budget-page .figma-style1-content,
+.figma-style1-container.ask04-budget-page .figma-style1-main,
+.figma-style1-container.ask04-budget-page .figma-style1-content-area {
   background: transparent !important;
   background-color: transparent !important;
-  overflow: visible !important;
 }
 
-/* Also apply same rules for mn3-step2-minimal class */
-.figma-style1-container.mn3-step2-minimal .figma-style1-background,
-.figma-style1-container.mn3-step2-minimal .figma-style1-background-image,
-.figma-style1-container.mn3-step2-minimal .figma-style1-background-overlay,
-.figma-style1-container.mn3-step2-minimal .figma-style1-wave-overlay,
-.figma-style1-container.mn3-step2-minimal::before {
+/* Extra high-specificity rule to override fake-news-page settings if needed */
+.figma-style1-container.ask04-budget-page.figma-style1-ukpack1.fake-news-page .figma-style1-background,
+.figma-style1-container.ask04-budget-page.figma-style1-ukpack1.fake-news-page .figma-style1-background-image,
+.figma-style1-container.ask04-budget-page.figma-style1-ukpack1.fake-news-page .figma-style1-background-overlay {
   display: none !important;
-  background: transparent !important;
-  background-image: none !important;
-  content: none !important;
-}
-
-.figma-style1-container.mn3-step2-minimal,
-.figma-style1-container.mn3-step2-minimal .figma-style1-content,
-.figma-style1-container.mn3-step2-minimal .figma-style1-main,
-.figma-style1-container.mn3-step2-minimal .figma-style1-content-area {
-  background: transparent !important;
-  background-color: transparent !important;
-  overflow: visible !important;
-}
-
-.figma-style1-container.mn2-step1-page [role="checkbox"]:focus,
-.figma-style1-container.mn2-step1-page [role="checkbox"]:focus-visible {
-  outline: none !important;
-  box-shadow: none !important;
-}
-
-/* MN3 step2 minimal: hide decorative backgrounds/overlays and ensure content visible */
-.figma-style1-container.mn3-step2-minimal .figma-style1-background-image,
-.figma-style1-container.mn3-step2-minimal .figma-style1-background-overlay,
-.figma-style1-container.mn3-step2-minimal .figma-style1-wave-overlay,
-.figma-style1-container.mn3-step2-minimal::before,
-.figma-style1-container.mn3-step2-minimal .figma-style1-background::before {
-  display: none !important;
-  background: transparent !important;
-  content: none !important;
-}
-
-.figma-style1-container.mn3-step2-minimal .figma-style1-background {
-  background-image: none !important;
-  background-color: transparent !important;
-}
-
-.figma-style1-container.mn3-step2-minimal .figma-style1-content,
-.figma-style1-container.mn3-step2-minimal .figma-style1-main,
-.figma-style1-container.mn3-step2-minimal .figma-style1-content-area {
-  overflow: visible !important;
-  max-height: none !important;
-  background: transparent !important;
-}
-
-.figma-style1-container.mn3-step2-minimal .mn3-allocation-content,
-.figma-style1-container.mn3-step2-minimal .mn3-allocation-list,
-.figma-style1-container.mn3-step2-minimal .mn3-allocation-item {
-  position: relative !important;
-  z-index: 1000 !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  transform: none !important;
-}
-
-/* Ensure continue button is visible and clickable */
-.figma-style1-container.mn3-step2-minimal .mn3-continue-button {
-  position: relative !important;
-  z-index: 1001 !important;
-  pointer-events: auto !important;
 }
