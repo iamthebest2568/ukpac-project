@@ -62,11 +62,6 @@ service cloud.firestore {
       allow get, list, update, delete: if isAdmin();
     }
 
-    // (Legacy) ukpack2_events preserved but locked down to admin-only
-    match /ukpack2_events/{eventId} {
-      allow create: if false;
-      allow get, list, update, delete: if isAdmin();
-    }
 
     // Deny all other reads/writes by default
     match /{document=**} {
