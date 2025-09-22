@@ -79,6 +79,21 @@
   }
 }
 
+/* Responsive horizontal padding variable for customization header */
+:root {
+  --page-horizontal-padding: 20px;
+}
+@media (min-width: 768px) {
+  :root {
+    --page-horizontal-padding: 32px;
+  }
+}
+@media (min-width: 1280px) {
+  :root {
+    --page-horizontal-padding: 48px;
+  }
+}
+
 /* Desktop and larger - maintain original design */
 @media (min-width: 1280px) {
   .figma-style1-content {
