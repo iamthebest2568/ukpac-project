@@ -154,30 +154,35 @@ export async function computeStats(
   fromISO?: string,
   toISO?: string,
 ): Promise<StatsResponse> {
-  const supabaseUrl = process.env.SUPABASE_URL;
-  const supabaseKey = process.env.SUPABASE_ANON_KEY;
   let events: VideoEvent[] = [];
-  if (supabaseUrl && supabaseKey) {
-    try {
-      const res = await fetch(`${supabaseUrl}/rest/v1/video_events?select=*`, {
-        headers: {
-          apikey: supabaseKey,
-          Authorization: `Bearer ${supabaseKey}`,
-        },
+  // Try Firestore first
+  try {
+    initServerFirestore();
+    if (firestoreDb) {
+      const colDoc = doc(firestoreDb, "minigame1_events", "minigame1-di");
+      const eventsCol = collection(colDoc, "events");
+      const q = query(eventsCol, orderBy("createdAt", "asc"));
+      const snap = await getDocs(q as any);
+      snap.forEach((d) => {
+        const data = d.data() as any;
+        const ts = data.timestamp || data.createdAt || new Date().toISOString();
+        let timestamp = ts;
+        if (timestamp && typeof timestamp.toDate === "function") timestamp = timestamp.toDate().toISOString();
+        events.push({
+          sessionId: sanitizeThai(String(data.sessionID || data.sessionId || "")),
+          eventName: sanitizeThai(String(data.eventName || data.event || "")),
+          timestamp: String(timestamp),
+          choiceText: sanitizeThai(data.choiceText ?? undefined),
+          variantId: data.variantId ?? undefined,
+          variantName: sanitizeThai(data.variantName ?? undefined),
+          page: sanitizeThai(data.page ?? undefined),
+        });
       });
-      if (res.ok) {
-        const rows = await res.json();
-        events = (rows as any[]).map((r) => ({
-          sessionId: sanitizeThai(String(r.session_id ?? "")),
-          eventName: sanitizeThai(String(r.event_name ?? "")),
-          timestamp: r.timestamp,
-          choiceText: sanitizeThai(r.choice_text ?? undefined),
-          variantId: r.variant_id ?? undefined,
-          variantName: sanitizeThai(r.variant_name ?? undefined),
-        }));
-      }
-    } catch {}
+    }
+  } catch (e) {
+    console.warn("Failed to read video events from Firestore", e);
   }
+
   if (events.length === 0) {
     ensureDir();
     let lines: string[] = [];
