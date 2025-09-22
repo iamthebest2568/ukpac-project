@@ -103,7 +103,7 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   พัดลม: <IconFan />,
   ที่นั่งพิเศษ: <IconSeat />,
   "ที่จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
-  "ช่องชาร์จมือถือ/USB": <IconPlug />,
+  "ช่องชาร์จ���ือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
   "��ะบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
   กล้องวงจรปิด: <IconCamSmall />,
@@ -277,7 +277,7 @@ const DesignScreen: React.FC = () => {
             {(() => {
               const CHASSIS_LABELS: Record<string, string> = {
                 small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
-                medium: "รถเมล์มาต���ฐาน 30–50 ที่นั่ง",
+                medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
                 large: "รถตู้โดยสาร 9–15 ที่นั่ง",
                 extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
               };
@@ -435,7 +435,8 @@ const DesignScreen: React.FC = () => {
                         value={sloganDraft}
                         onChange={(e) => setSloganDraft(e.target.value)}
                         placeholder={"พิมพ์คุณสมบัติพิเศษอื่นๆของ\nรถเมล์ในฝันของคุณ"}
-                        className="mt-3 w-full h-36 p-3 border-2 border-[#000D59] rounded-xl text-sm resize-none"
+                        className="mt-3 w-full h-36 p-3 border-2 border-[#000D59] rounded-xl text-sm resize-none text-center"
+                        style={{ whiteSpace: 'pre-wrap' }}
                       />
                       <div className="mt-3 flex justify-end gap-2">
                         <button
