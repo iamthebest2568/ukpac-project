@@ -1,8 +1,6 @@
 import React from "react";
 
-const TabletMockup: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
+const TabletMockup: React.FC<{ children?: React.ReactNode; iframeSrc?: string }> = ({ children, iframeSrc }) => {
   return (
     <div
       style={{
