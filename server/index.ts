@@ -168,6 +168,26 @@ export function createServer() {
     }
   });
 
+  // Firestore stats for project collections
+  app.get('/api/firestore-stats', async (req, res) => {
+    try {
+      const project = String(req.query.project || '');
+      let col = 'minigame1_events';
+      let docId = 'minigame1-di';
+      if (project === 'ukpack2') {
+        col = 'minigame2_events';
+        docId = 'minigame2-di';
+      } else if (project === 'ukpack1') {
+        col = 'minigame1_events';
+        docId = 'minigame1-di';
+      }
+      const stats = await getFirestoreStatsFor(col, docId, 20);
+      res.status(200).json({ ok: true, project, col, docId, stats });
+    } catch (e: any) {
+      res.status(500).json({ ok: false, error: e?.message || 'failed to fetch firestore stats' });
+    }
+  });
+
   // Recent events for dashboard
   app.get("/api/video-events", async (req, res) => {
     try {
