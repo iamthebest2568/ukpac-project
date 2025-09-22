@@ -276,7 +276,7 @@ const DesignScreen: React.FC = () => {
           <div className="w-full rounded-md flex flex-col items-center justify-center gap-2">
             {(() => {
               const CHASSIS_LABELS: Record<string, string> = {
-                small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
+                small: "ร���เมล์ขนาดเล็ก 16–30 ที่นั่ง",
                 medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
                 large: "รถตู้โดยสาร 9–15 ที่นั่ง",
                 extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
@@ -430,15 +430,11 @@ const DesignScreen: React.FC = () => {
                       <h3 className="text-lg font-prompt font-semibold text-[#000d59]">
                         ลักษณะพิเศษอื่นๆ
                       </h3>
-                      <div className="mt-1 text-sm text-[#003366] font-prompt">
-                        <div>พิมพ์คุณสมบัติพิเศษอื่นๆของ</div>
-                        <div>รถเมล์ในฝันของคุณ</div>
-                      </div>
                       <textarea
                         ref={textareaRef}
                         value={sloganDraft}
                         onChange={(e) => setSloganDraft(e.target.value)}
-                        placeholder="พิมพ์คุณสมบัติพิเศษอื่นๆ ของรถเมล์ในฝันของคุณ"
+                        placeholder={"พิมพ์คุณสมบัติพิเศษอื่นๆของ\nรถเมล์ในฝันของคุณ"}
                         className="mt-3 w-full h-36 p-3 border-2 border-[#000D59] rounded-xl text-sm resize-none"
                       />
                       <div className="mt-3 flex justify-end gap-2">
