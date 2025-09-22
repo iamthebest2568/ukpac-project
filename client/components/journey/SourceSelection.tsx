@@ -54,7 +54,7 @@ const SourceSelection = ({ sessionID, onNavigate }: SourceSelectionProps) => {
       className="source-selection-page source-selection-root"
     >
       <div style={{ padding: "0 16px", maxWidth: 980, margin: "0 auto" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 12 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12 }}>
           {options.map((opt) => {
             const isSelected = selected.includes(opt.id);
             return (
