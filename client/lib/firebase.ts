@@ -5,6 +5,7 @@ import {
   collection,
   addDoc,
   serverTimestamp,
+  doc,
 } from "firebase/firestore";
 
 // Firebase config provided by user
