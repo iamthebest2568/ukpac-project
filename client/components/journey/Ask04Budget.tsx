@@ -112,7 +112,7 @@ const Ask04Budget = ({
   return (
     <FigmaStyle1Layout
       title={`คุณพอใจภาพเมืองในอนาคตที่อาจจะเกิดขึ้นหรือไม่`}
-      className="ask04-budget-page"
+      className="ask04-budget-page mn3-step2-minimal"
     >
       {/* Children: collage + buttons (we render buttons here because providing children disables automatic button rendering) */}
       <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
