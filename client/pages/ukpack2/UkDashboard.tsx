@@ -34,17 +34,19 @@ const UkDashboard: React.FC = () => {
     try {
       setSummary(getEventSummary());
       const all = getLoggedEvents();
-      // default to local events
       setEventsSample(all.slice(-10).reverse());
-      // also try to fetch Firestore-backed recent events for ukpack2 if authorized
+
+      // Fetch Firestore-backed recent events for ukpack2 (use absolute origin)
       try {
-        const resp = await fetch('/api/firestore-stats?project=ukpack2');
-        if (resp.ok) {
+        const url = window.location.origin + '/api/firestore-stats?project=ukpack2';
+        const resp = await fetch(url);
+        if (!resp.ok) {
+          const body = await resp.text().catch(() => null);
+          console.error('firestore-stats fetch failed', resp.status, body);
+        } else {
           const j = await resp.json();
           if (j && j.ok && j.stats && Array.isArray(j.stats.sample)) {
-            // set collection info
             try { setCollectionInfo({col: j.col || 'minigame2_events', docId: j.docId || 'minigame2-di'}); } catch(_){}
-            // convert sample to expected shape
             const sample = j.stats.sample.map((s: any) => ({
               sessionId: s.data.sessionID || s.data.sessionId || '',
               eventName: s.data.event || s.data.eventName || '',
@@ -54,22 +56,29 @@ const UkDashboard: React.FC = () => {
             setEventsSample(sample.slice(0, 10));
           }
         }
-      } catch (e) {
-        // ignore
+      } catch (err) {
+        console.error('fetch firestore-stats error', err);
       }
 
       // fetch public submissions (landing assets)
       try {
-        const r = await fetch('/api/public-submissions?limit=20');
-        if (r.ok) {
+        const url2 = window.location.origin + '/api/public-submissions?limit=20';
+        const r = await fetch(url2);
+        if (!r.ok) {
+          const body = await r.text().catch(() => null);
+          console.error('/api/public-submissions failed', r.status, body);
+        } else {
           const j = await r.json();
           if (j && j.ok && Array.isArray(j.items)) {
-            // expose sample submissions on dashboard
             setPublicSubmissions(j.items.slice(0, 6));
           }
         }
-      } catch (e) {}
+      } catch (err) {
+        console.error('fetch public-submissions error', err);
+      }
+
     } catch (e) {
+      console.error('refreshSummary top-level error', e);
       setSummary(null);
       setEventsSample([]);
     }
