@@ -248,6 +248,23 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     }
   }, [location.pathname, location.search]);
 
+  // When running inside the embedded iframe for ukpack2, add a body class to apply special responsive CSS
+  React.useEffect(() => {
+    try {
+      const isUkpack2 = location.pathname.startsWith("/ukpack2");
+      if (isEmbedded && isUkpack2) {
+        document.body.classList.add("embedded-ukpack2");
+      } else {
+        document.body.classList.remove("embedded-ukpack2");
+      }
+    } catch (e) {}
+    return () => {
+      try {
+        document.body.classList.remove("embedded-ukpack2");
+      } catch (e) {}
+    };
+  }, [isEmbedded, location.pathname]);
+
   return (
     <div
       className={`min-h-screen flex justify-center ${isFullBleed ? "bg-white full-bleed-page" : "bg-[#2a2a2a]"}`}
