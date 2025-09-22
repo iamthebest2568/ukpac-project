@@ -3,6 +3,10 @@ import path from "node:path";
 import fetch from "node-fetch";
 import type { VideoEvent } from "./videoAnalytics";
 
+// Firestore client
+import { initializeApp, getApps, getApp } from "firebase/app";
+import { getFirestore, collection, doc, query, orderBy, limit as limitFn, getDocs } from "firebase/firestore";
+
 const DATA_DIR = process.env.DATA_DIR || path.join(process.cwd(), ".data");
 const sanitizeThai = (text: any): any => {
   if (typeof text !== "string") return text;
@@ -12,6 +16,28 @@ const sanitizeThai = (text: any): any => {
     .replace(/\uFFFD/g, "");
 };
 const EVENTS_FILE = path.join(DATA_DIR, "events.jsonl");
+
+let firestoreDb: ReturnType<typeof getFirestore> | null = null;
+function initFirestore() {
+  if (firestoreDb) return;
+  try {
+    const firebaseConfig = {
+      apiKey: process.env.FIREBASE_API_KEY || "AIzaSyBdMPQP9DVM1S9bh70dFuMAsyzPJPOYXnk",
+      authDomain: process.env.FIREBASE_AUTH_DOMAIN || "uk-pact.firebaseapp.com",
+      projectId: process.env.FIREBASE_PROJECT_ID || "uk-pact",
+      storageBucket: process.env.FIREBASE_STORAGE_BUCKET || "uk-pact.firebasestorage.app",
+      messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID || "534142958499",
+      appId: process.env.FIREBASE_APP_ID || "1:534142958499:web:3cf0b2380c055f7a747816",
+    };
+    let app;
+    if (getApps && getApps().length > 0) app = getApp();
+    else app = initializeApp(firebaseConfig as any);
+    firestoreDb = getFirestore(app);
+  } catch (e) {
+    console.warn("Init Firestore failed", e);
+    firestoreDb = null;
+  }
+}
 
 export async function listRecentEvents(limit = 50): Promise<VideoEvent[]> {
   const supabaseUrl = process.env.SUPABASE_URL as string | undefined;
