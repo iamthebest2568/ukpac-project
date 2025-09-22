@@ -237,5 +237,13 @@ export function createServer() {
     }
   });
 
+  app.get('/api/dashboard-password', (_req, res) => {
+    try {
+      res.status(200).json({ password: process.env.VITE_DASHBOARD_PASSWORD || null });
+    } catch (e: any) {
+      res.status(500).json({ password: null });
+    }
+  });
+
   return app;
 }

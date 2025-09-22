@@ -107,15 +107,33 @@ export default function UkDashboard() {
     return () => window.removeEventListener("resize", onResize);
   }, []);
 
-  // Password gate
-  const expected = (import.meta as any).env?.VITE_DASHBOARD_PASSWORD as
-    | string
-    | undefined;
+  // Password gate (load expected from runtime endpoint first, fall back to build-time env)
+  const [expected, setExpected] = useState<string | undefined>(
+    (import.meta as any).env?.VITE_DASHBOARD_PASSWORD as string | undefined,
+  );
   const [authed, setAuthed] = useState<boolean>(
     () => sessionStorage.getItem("ukdash_authed") === "true",
   );
   const [pw, setPw] = useState("");
   const [pwErr, setPwErr] = useState<string | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        const resp = await fetch('/api/dashboard-password');
+        if (!resp.ok) return;
+        const json = await resp.json();
+        if (cancelled) return;
+        if (json && typeof json.password === 'string' && json.password.length > 0) {
+          setExpected(json.password);
+        }
+      } catch (e) {}
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   async function load() {
     if (firstLoad) setLoading(true);
@@ -830,7 +848,7 @@ export default function UkDashboard() {
                       "Time Stamp (First)",
                       "แช���์ให้เพื่อนไหม (ครั้งแรก)",
                       "Time Stamp (Last)",
-                      "แชร์ให้เพื่อนไหม (เคยแชร์ไหม)",
+                      "แชร์ให้เ��ื่อนไหม (เคยแชร์ไหม)",
                       "Session ID",
                     ]);
                     const perRows = sessions.map((s) => {
