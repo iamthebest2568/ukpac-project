@@ -59,7 +59,7 @@ export function logEvent(eventData) {
     // 2. Prepare the event with required metadata
     const enrichedEvent = {
       sessionID: getSessionID(),
-      timestamp: new Date().toISOString(),
+      timestamp: Date.now(),
       userAgent: navigator.userAgent,
       url: window.location.href,
       viewport: {
@@ -116,7 +116,7 @@ export function logEvent(eventData) {
           JSON.stringify([
             {
               sessionID: getSessionID(),
-              timestamp: new Date().toISOString(),
+              timestamp: Date.now(),
               ...eventData,
             },
           ]),
