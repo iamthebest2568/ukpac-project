@@ -185,7 +185,7 @@ const Step3_Result = ({
       backgroundImage={backgroundImage}
       className="mn3-step3-page figma-style1-ukpack1 fake-news-page"
       imageLoading="eager"
-      title={"ภาพเมืองในอนาคตใกล้เคียงกับภาพในอุดมคติของคุณแล้วหรือไม่"}
+      title={"ภาพเมืองในอนาคตใกล้เคียงกับภาพในอุดมค���ิของคุณแล้วหรือไม่"}
     >
       {/* Minimal content -- only elements required for flow and logic */}
       <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
@@ -249,17 +249,12 @@ const Step3_Result = ({
                       inset: 0,
                       width: "100%",
                       height: "100%",
-                      objectFit: "cover",
+                      objectFit: "contain",
+                      objectPosition: "center center",
+                      backgroundColor: "#fff",
+                      padding: 8,
                     }}
                   />
-                </div>
-                <div style={{ padding: "8px 10px", textAlign: "center" }}>
-                  <div style={{ fontWeight: 700, color: "#000D59" }}>
-                    {s.priority}
-                  </div>
-                  <div style={{ color: "#6b7280", fontSize: 14 }}>
-                    {Math.round(s.percentage)}% of budget
-                  </div>
                 </div>
               </div>
             );
