@@ -61,13 +61,11 @@ const SourceSelection = ({ sessionID, onNavigate }: SourceSelectionProps) => {
               <button
                 key={opt.id}
                 onClick={() => toggle(opt.id, opt.label)}
-                className="figma-style1-button"
+                className={`figma-style1-button ${isSelected ? "figma-style1-button--selected" : ""}`}
                 aria-pressed={isSelected}
-                style={{ width: "100%", background: isSelected ? "#000" : undefined }}
+                style={{ width: "100%" }}
               >
-                <span className="figma-style1-button-text" style={{ color: isSelected ? "#fff" : undefined }}>
-                  {opt.label}
-                </span>
+                <span className="figma-style1-button-text">{opt.label}</span>
               </button>
             );
           })}
