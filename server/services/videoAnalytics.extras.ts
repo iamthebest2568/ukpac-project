@@ -152,37 +152,31 @@ export async function getVideoIngestStatus(): Promise<{
   count: number;
   lastTs: string | null;
 }> {
-  const supabaseUrl = process.env.SUPABASE_URL as string | undefined;
-  const supabaseKey = process.env.SUPABASE_ANON_KEY as string | undefined;
-  if (supabaseUrl && supabaseKey) {
-    const params = new URLSearchParams({
-      select: "*",
-      order: "id.desc",
-      limit: "1",
-    });
-    const res = await fetch(
-      `${supabaseUrl}/rest/v1/video_events?${params.toString()}`,
-      {
-        headers: {
-          apikey: supabaseKey,
-          Authorization: `Bearer ${supabaseKey}`,
-          Prefer: "count=exact",
-          Range: "0-0",
-        } as any,
-      },
-    );
-    if (res.ok) {
-      const cr = res.headers.get("content-range");
-      const total = cr ? Number(cr.split("/")[1]) : NaN;
-      const rows = await res.json();
-      const lastTs =
-        Array.isArray(rows) && rows[0]?.timestamp ? rows[0].timestamp : null;
-      return {
-        count: Number.isFinite(total) ? total : rows.length || 0,
-        lastTs,
-      };
+  // Try Firestore first
+  try {
+    initFirestore();
+    if (firestoreDb) {
+      const colDoc = doc(firestoreDb, "minigame1_events", "minigame1-di");
+      const eventsCol = collection(colDoc, "events");
+      const q = query(eventsCol, orderBy("createdAt", "desc"), limitFn(1));
+      const snap = await getDocs(q as any);
+      let lastTs: string | null = null;
+      let count = 0;
+      const docs = snap.docs || [];
+      if (docs.length > 0) {
+        const d = docs[0].data() as any;
+        const ts = d.timestamp || d.createdAt || null;
+        if (ts && typeof ts.toDate === "function") lastTs = ts.toDate().toISOString();
+        else if (ts) lastTs = String(ts);
+      }
+      // Count: Firestore does not support count easily without aggregation; approximate via docs length with a warning
+      // We'll return -1 for unknown count
+      return { count: -1, lastTs };
     }
+  } catch (e) {
+    console.warn("Failed to read ingest status from Firestore", e);
   }
+
   try {
     fs.mkdirSync(DATA_DIR, { recursive: true });
   } catch {}
