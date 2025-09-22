@@ -291,6 +291,7 @@ const DoorScreen: React.FC = () => {
   };
 
   return (
+    <>
     <CustomizationScreen
       title="ปรับแต่งรถเมล์ของคุณ"
       theme="light"
@@ -710,7 +711,7 @@ const DoorScreen: React.FC = () => {
                       (newSelection.highLow ? 1 : 0);
 
                     if (newCount > 3) {
-                      setErrorMessage("สามารถเลือกได้สูงสุด 3 รายการเท่านั้น");
+                      setErrorMessage("สามารถเลือกได้สูงสุด 3 รายการเท่านั้��");
                       setErrorModalOpen(true);
                       return;
                     }
@@ -792,6 +793,14 @@ const DoorScreen: React.FC = () => {
         </section>
       </div>
     </CustomizationScreen>
+
+      <ErrorModal
+        isOpen={isErrorModalOpen}
+        title="ข้อผิดพลาด"
+        message={errorMessage}
+        onClose={() => setErrorModalOpen(false)}
+      />
+    </>
   );
 };
 
