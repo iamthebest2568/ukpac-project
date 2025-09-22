@@ -56,6 +56,18 @@ const UkDashboard: React.FC = () => {
       } catch (e) {
         // ignore
       }
+
+      // fetch public submissions (landing assets)
+      try {
+        const r = await fetch('/api/public-submissions?limit=20');
+        if (r.ok) {
+          const j = await r.json();
+          if (j && j.ok && Array.isArray(j.items)) {
+            // expose sample submissions on dashboard
+            setPublicSubmissions(j.items.slice(0, 6));
+          }
+        }
+      } catch (e) {}
     } catch (e) {
       setSummary(null);
       setEventsSample([]);
@@ -96,7 +108,7 @@ const UkDashboard: React.FC = () => {
   const handleExportMapped = () => {
     const csv = exportSessionsAsCSV();
     if (!csv) {
-      alert("ไม่มีข้อมูลให้ส่งออก");
+      alert("ไม่��ีข้อมูลให้ส่งออก");
       return;
     }
     const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
@@ -361,7 +373,7 @@ const UkDashboard: React.FC = () => {
                 }}
                 className="flex-1 bg-[#e5e7eb] text-black py-2 rounded font-semibold"
               >
-                ยกเลิก
+                ยก��ลิก
               </button>
             </div>
           </div>
