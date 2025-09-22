@@ -152,7 +152,7 @@ const Step2_Allocation = ({
             {selectedPriorities.map((priority, index) => (
               <div key={priority} className="mn3-allocation-item">
                 <div className="mn3-allocation-label">{priority}</div>
-                <div className="mn3-allocation-input-container">
+                <div className="mn3-allocation-input-container" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                   <input
                     type="number"
                     min="0"
