@@ -29,7 +29,7 @@ const SubmitScreen: React.FC = () => {
 
   // chassis labels and images (same mapping as DesignScreen)
   const CHASSIS_LABELS: Record<string, string> = {
-    small: "รถเมล์ขนาดเล็ก 16–30 ���ี่นั่ง",
+    small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
     medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
     large: "รถตู้โดยสาร 9–15 ที่นั่ง",
     extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
@@ -164,7 +164,7 @@ const SubmitScreen: React.FC = () => {
                   "สแกนจ่าย 2": SCAN2_ICON,
                   แตะบัตร: TOUCH_ICON,
                   "ตั๋วรายเดือน/รอบ": MONTHLY_ICON,
-                  กระเป๋ารถเมล์: BUS_EMPLOY_ICON,
+                  กระเป๋า���ถเมล์: BUS_EMPLOY_ICON,
                 }}
               />
             </div>
@@ -241,7 +241,7 @@ const SubmitScreen: React.FC = () => {
                   overflow: "visible",
                 }}
               >
-                พื้นที่ที่วิ่ง
+                พื้นที่วิ่ง
               </label>
               <input
                 type="number"
