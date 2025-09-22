@@ -173,7 +173,7 @@ const Step3_Result = ({
         });
     } catch {}
 
-    proceedAfterSelect("/ukpack1/ask05", data);
+    proceedAfterSelect("/ukpack1/minigame-mn3", data);
   };
 
   // Use provided background image for MN3 final step
@@ -185,7 +185,7 @@ const Step3_Result = ({
       backgroundImage={backgroundImage}
       className="mn3-step3-page figma-style1-ukpack1 fake-news-page"
       imageLoading="eager"
-      title={"จากงบประมาณของคุณ นี่คือสิ่งที่จะเกิดขึ้นในอนาคต"}
+      title={"ภาพเมืองในอนาคตใกล้เคียงกับภาพในอุดมคติของคุณแล้วหรือไม่"}
     >
       {/* Minimal content -- only elements required for flow and logic */}
       <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
@@ -268,7 +268,7 @@ const Step3_Result = ({
       </div>
 
       <div style={{ textAlign: "center", width: "100%", marginTop: 20 }}>
-        <h2 style={{ marginBottom: 12, color: "#000D59" }}>คุณพอใจหรือไม่</h2>
+        <h2 style={{ marginBottom: 12, color: "#000D59" }}>ภาพเมืองในอนาคตใกล้เคียงกับภาพในอุดมคติของคุณแล้วหรือไม่</h2>
 
         <div
           className="figma-style1-button-container"
@@ -286,8 +286,9 @@ const Step3_Result = ({
             aria-pressed={selected === "yes"}
             className="figma-style1-button"
             style={{ width: "100%" }}
+            aria-label="ใช่, ไปต่อ"
           >
-            <span className="figma-style1-button-text">ใช่</span>
+            <span className="figma-style1-button-text">ใช่, ไปต่อ</span>
           </button>
 
           <button
@@ -295,8 +296,9 @@ const Step3_Result = ({
             aria-pressed={selected === "no"}
             className="figma-style1-button"
             style={{ width: "100%" }}
+            aria-label="ไม่ใช่, ลองอีกครั้ง"
           >
-            <span className="figma-style1-button-text">ไม่ใช่</span>
+            <span className="figma-style1-button-text">ไม่ใช่, ลองอีกครั้ง</span>
           </button>
         </div>
       </div>
