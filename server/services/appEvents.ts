@@ -4,6 +4,20 @@ import path from "node:path";
 import fetch from "node-fetch";
 import { z } from "zod";
 
+// Firebase client SDK (used server-side for simple writes to Firestore)
+import { initializeApp, getApps, getApp } from "firebase/app";
+import {
+  getFirestore,
+  collection,
+  doc,
+  addDoc,
+  serverTimestamp,
+  query,
+  orderBy,
+  limit as limitFn,
+  getDocs,
+} from "firebase/firestore";
+
 const sanitizeThai = (text: any): any => {
   if (typeof text !== "string") return text;
   return text
@@ -154,7 +168,7 @@ export interface SessionSummary {
   mn3Selected?: string[]; // ประเด็นนโยบายที่ผู้ใช้เลือก
   mn3BudgetAllocation?: Record<string, number>; // การจัดสรรงบประมาณ
   mn3BudgetTotal?: number;
-  satisfactionLevel?: string; // ระดับความพึงพอใจ
+  satisfactionLevel?: string; // ระด��บความพึงพอใจ
   ask05Comment?: string; // ข้อเสนอเพิ่มเติมต่อรัฐ
   fakeNewsResponse?: string; // การตอบสนองต่อข่าวปลอม
   sourceSelected?: string; // แหล่งข่าวที่ผู้ใช้เลือก
