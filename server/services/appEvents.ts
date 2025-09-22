@@ -70,32 +70,6 @@ function ensureDir() {
 }
 
 export async function appendAppEvent(ev: AppEvent) {
-  const supabaseUrl = process.env.SUPABASE_URL as string | undefined;
-  const supabaseKey = process.env.SUPABASE_ANON_KEY as string | undefined;
-  if (supabaseUrl && supabaseKey) {
-    try {
-      const res = await fetch(`${supabaseUrl}/rest/v1/app_events`, {
-        method: "POST",
-        headers: {
-          apikey: supabaseKey,
-          Authorization: `Bearer ${supabaseKey}`,
-          "Content-Type": "application/json",
-          Prefer: "return=minimal",
-        },
-        body: JSON.stringify({
-          session_id: ev.sessionId,
-          event: ev.event,
-          timestamp: ev.timestamp,
-          page: ev.page ?? null,
-          payload: ev.payload ?? null,
-          user_agent: ev.userAgent ?? null,
-          ip: ev.ip ?? null,
-        }),
-      });
-      if (res.ok) return;
-    } catch {}
-  }
-
   // Attempt to write to Firestore under minigame1_events/minigame1-di/events
   try {
     initServerFirestore();
