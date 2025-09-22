@@ -105,10 +105,10 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   พัดลม: <IconFan />,
   ที่นั่งพิเศษ: <IconSeat />,
   "ที่จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
-  "ช่องชาร์จมือถือ/USB": <IconPlug />,
+  "��่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
   "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
-  "กล้องวงจรป��ด": <IconCamSmall />,
+  "กล้องวงจรปิด": <IconCamSmall />,
 };
 
 const MONEY_ICON =
@@ -280,7 +280,7 @@ const DoorScreen: React.FC = () => {
 
   return (
     <CustomizationScreen
-      title="���รับแต่งรถเมล์ของคุณ"
+      title="ปรับแต่งรถเมล์ของคุณ"
       theme="light"
       fullWidth
       footerContent={
@@ -293,7 +293,7 @@ const DoorScreen: React.FC = () => {
         <div className="w-full rounded-md flex flex-col items-center justify-center gap-2">
           {(() => {
             const CHASSIS_LABELS: Record<string, string> = {
-              small: "รถเมล์ขนาดเล็ก 16–30 ท��่นั่ง",
+              small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
               medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
               large: "รถตู้โดยสาร 9–15 ที่นั่ง",
               extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
@@ -369,7 +369,7 @@ const DoorScreen: React.FC = () => {
                     />
                   </div>
                 );
-              if (label === "สแ��นจ่าย")
+              if (label === "สแกนจ่าย")
                 return (
                   <div
                     key={`${label}-${idx}`}
@@ -557,7 +557,7 @@ const DoorScreen: React.FC = () => {
                     "สแกนจ่าย",
                     "สแกนจ่าย 2",
                     "แตะบัตร",
-                    "กระ��ป๋ารถเมล์",
+                    "กระเป๋ารถเมล์",
                     "ตั๋วรายเดือน/รอบ",
                     "1",
                     "2",
