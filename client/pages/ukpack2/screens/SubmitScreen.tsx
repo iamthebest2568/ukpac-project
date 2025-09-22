@@ -159,12 +159,12 @@ const SubmitScreen: React.FC = () => {
                   return [...(amenities || []), ...(payments || [])];
                 })()}
                 overlayIconMap={{
-                  เงินสด: MONEY_ICON,
-                  สแกนจ่าย: SCAN_ICON,
+                  "เงินสด": MONEY_ICON,
+                  "สแกนจ่าย": SCAN_ICON,
                   "สแกนจ่าย 2": SCAN2_ICON,
-                  แตะบัตร: TOUCH_ICON,
+                  "แตะบัตร": TOUCH_ICON,
                   "ตั๋วรายเดือน/รอบ": MONTHLY_ICON,
-                  กระเป๋า���ถเมล์: BUS_EMPLOY_ICON,
+                  "กระเป๋ารถเมล์": BUS_EMPLOY_ICON,
                 }}
               />
             </div>
