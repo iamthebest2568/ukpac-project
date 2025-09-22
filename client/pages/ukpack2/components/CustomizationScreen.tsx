@@ -59,7 +59,7 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
               </div>
             ) : (
               <h1 className="text-2xl font-prompt font-semibold customization-title text-center w-full">
-                {title === 'ปรับแต่งรถเมล์ของคุณ' ? 'ออกแบบรถเมล์ของคุณ' : title}
+                {title}
               </h1>
             )}
           </div>
