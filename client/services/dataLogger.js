@@ -70,6 +70,16 @@ export function logEvent(eventData) {
     };
 
     // 3. Add the new event
+    // Attach PDPA from session flag if present so events are marked when user accepted on start
+    try {
+      const sessionPdpa = (typeof window !== 'undefined' && sessionStorage.getItem('pdpa_accepted') === 'true');
+      if (sessionPdpa) {
+        enrichedEvent.PDPA = true;
+        enrichedEvent.payload = enrichedEvent.payload || {};
+        enrichedEvent.payload.PDPA = true;
+      }
+    } catch (_) {}
+
     existingEvents.push(enrichedEvent);
 
     // 4. Save the updated array back to localStorage (tolerate failures)
