@@ -7,7 +7,12 @@ import {
   serverTimestamp,
   doc,
 } from "firebase/firestore";
-import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "firebase/storage";
+import {
+  getStorage,
+  ref as storageRef,
+  uploadBytes,
+  getDownloadURL,
+} from "firebase/storage";
 
 // Firebase config provided by user
 const firebaseConfig = {
@@ -41,17 +46,20 @@ function initFirebase() {
   }
 }
 
-export async function uploadFileToStorage(file: Blob | Uint8Array, path: string) {
+export async function uploadFileToStorage(
+  file: Blob | Uint8Array,
+  path: string,
+) {
   try {
     if (!appInstance) initFirebase();
-    if (!appInstance) throw new Error('Firebase app not initialized');
+    if (!appInstance) throw new Error("Firebase app not initialized");
     const storage = getStorage(appInstance);
     const ref = storageRef(storage, path);
     await uploadBytes(ref, file as any);
     const url = await getDownloadURL(ref);
     return url;
   } catch (e) {
-    console.warn('uploadFileToStorage failed', e);
+    console.warn("uploadFileToStorage failed", e);
     throw e;
   }
 }

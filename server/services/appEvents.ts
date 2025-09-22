@@ -75,15 +75,21 @@ function ensureDir() {
   } catch {}
 }
 
-export async function appendAppEvent(ev: AppEvent, targetCollectionPath?: string) {
+export async function appendAppEvent(
+  ev: AppEvent,
+  targetCollectionPath?: string,
+) {
   // Attempt to write to Firestore; targetCollectionPath example: "minigame2_events/minigame2-di"
   try {
     initServerFirestore();
     if (firestoreDb) {
       let colDocPath = ["minigame1_events", "minigame1-di"]; // default
       try {
-        if (targetCollectionPath && typeof targetCollectionPath === 'string') {
-          const parts = targetCollectionPath.replace(/^\/+/, '').split('/').filter(Boolean);
+        if (targetCollectionPath && typeof targetCollectionPath === "string") {
+          const parts = targetCollectionPath
+            .replace(/^\/+/, "")
+            .split("/")
+            .filter(Boolean);
           if (parts.length >= 2) colDocPath = [parts[0], parts[1]];
         }
       } catch (_) {}

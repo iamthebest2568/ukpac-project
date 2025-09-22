@@ -16,7 +16,10 @@ const UkDashboard: React.FC = () => {
   const [input, setInput] = useState("");
   const [summary, setSummary] = useState<any>(null);
   const [eventsSample, setEventsSample] = useState<any[]>([]);
-  const [collectionInfo, setCollectionInfo] = useState<{col:string;docId:string}>({col:'minigame2_events',docId:'minigame2-di'});
+  const [collectionInfo, setCollectionInfo] = useState<{
+    col: string;
+    docId: string;
+  }>({ col: "minigame2_events", docId: "minigame2-di" });
   const [publicSubmissions, setPublicSubmissions] = useState<any[]>([]);
 
   useEffect(() => {
@@ -38,35 +41,42 @@ const UkDashboard: React.FC = () => {
 
       // Fetch Firestore-backed recent events for ukpack2 (use absolute origin)
       try {
-        const url = window.location.origin + '/api/firestore-stats?project=ukpack2';
+        const url =
+          window.location.origin + "/api/firestore-stats?project=ukpack2";
         const resp = await fetch(url);
         if (!resp.ok) {
           const body = await resp.text().catch(() => null);
-          console.error('firestore-stats fetch failed', resp.status, body);
+          console.error("firestore-stats fetch failed", resp.status, body);
         } else {
           const j = await resp.json();
           if (j && j.ok && j.stats && Array.isArray(j.stats.sample)) {
-            try { setCollectionInfo({col: j.col || 'minigame2_events', docId: j.docId || 'minigame2-di'}); } catch(_){}
+            try {
+              setCollectionInfo({
+                col: j.col || "minigame2_events",
+                docId: j.docId || "minigame2-di",
+              });
+            } catch (_) {}
             const sample = j.stats.sample.map((s: any) => ({
-              sessionId: s.data.sessionID || s.data.sessionId || '',
-              eventName: s.data.event || s.data.eventName || '',
-              timestamp: s.data.timestamp || s.data.createdAt || '',
+              sessionId: s.data.sessionID || s.data.sessionId || "",
+              eventName: s.data.event || s.data.eventName || "",
+              timestamp: s.data.timestamp || s.data.createdAt || "",
               payload: s.data.payload || {},
             }));
             setEventsSample(sample.slice(0, 10));
           }
         }
       } catch (err) {
-        console.error('fetch firestore-stats error', err);
+        console.error("fetch firestore-stats error", err);
       }
 
       // fetch public submissions (landing assets)
       try {
-        const url2 = window.location.origin + '/api/public-submissions?limit=20';
+        const url2 =
+          window.location.origin + "/api/public-submissions?limit=20";
         const r = await fetch(url2);
         if (!r.ok) {
           const body = await r.text().catch(() => null);
-          console.error('/api/public-submissions failed', r.status, body);
+          console.error("/api/public-submissions failed", r.status, body);
         } else {
           const j = await r.json();
           if (j && j.ok && Array.isArray(j.items)) {
@@ -74,11 +84,10 @@ const UkDashboard: React.FC = () => {
           }
         }
       } catch (err) {
-        console.error('fetch public-submissions error', err);
+        console.error("fetch public-submissions error", err);
       }
-
     } catch (e) {
-      console.error('refreshSummary top-level error', e);
+      console.error("refreshSummary top-level error", e);
       setSummary(null);
       setEventsSample([]);
     }
@@ -521,24 +530,45 @@ const UkDashboard: React.FC = () => {
         </div>
 
         <div className="mb-6">
-          <h3 className="text-lg font-semibold mb-2">Public submissions (landing)</h3>
+          <h3 className="text-lg font-semibold mb-2">
+            Public submissions (landing)
+          </h3>
           <div className="bg-[#021827] rounded p-3 text-sm text-gray-200 mb-4">
             {publicSubmissions.length === 0 ? (
               <div className="text-gray-400">No public submissions yet</div>
             ) : (
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                 {publicSubmissions.map((s, i) => (
-                  <div key={s.id || i} className="bg-[#001a22] rounded p-2 text-xs">
+                  <div
+                    key={s.id || i}
+                    className="bg-[#001a22] rounded p-2 text-xs"
+                  >
                     {s.imageUrl ? (
                       // eslint-disable-next-line @next/next/no-img-element
-                      <img src={s.imageUrl} alt={s.exterior?.customText || 'design'} className="w-full h-28 object-cover rounded" />
+                      <img
+                        src={s.imageUrl}
+                        alt={s.exterior?.customText || "design"}
+                        className="w-full h-28 object-cover rounded"
+                      />
                     ) : (
-                      <div className="w-full h-28 bg-[#001f2a] rounded flex items-center justify-center text-gray-500">No image</div>
+                      <div className="w-full h-28 bg-[#001f2a] rounded flex items-center justify-center text-gray-500">
+                        No image
+                      </div>
                     )}
                     <div className="mt-2">
-                      <div className="font-medium">{s.exterior?.customText || s.serviceInfo?.routeName || 'Design'}</div>
-                      <div className="text-xs text-gray-400">{s.exterior?.color || ''} • {s.serviceInfo?.area || ''}</div>
-                      <div className="text-xs text-gray-400">{s.timestamp ? new Date(s.timestamp).toLocaleString() : ''}</div>
+                      <div className="font-medium">
+                        {s.exterior?.customText ||
+                          s.serviceInfo?.routeName ||
+                          "Design"}
+                      </div>
+                      <div className="text-xs text-gray-400">
+                        {s.exterior?.color || ""} • {s.serviceInfo?.area || ""}
+                      </div>
+                      <div className="text-xs text-gray-400">
+                        {s.timestamp
+                          ? new Date(s.timestamp).toLocaleString()
+                          : ""}
+                      </div>
                     </div>
                   </div>
                 ))}
@@ -551,7 +581,9 @@ const UkDashboard: React.FC = () => {
           </h3>
           <div className="bg-[#021827] rounded p-4 text-sm text-gray-200">
             <div className="mb-3">
-              <strong>Document fields ({collectionInfo.col}/{collectionInfo.docId})</strong>
+              <strong>
+                Document fields ({collectionInfo.col}/{collectionInfo.docId})
+              </strong>
               <ul className="list-disc pl-5 mt-1 text-xs text-gray-300">
                 <li>createdAt (Firestore Timestamp)</li>
                 <li>sessionID (string)</li>

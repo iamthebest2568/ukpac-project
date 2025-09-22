@@ -119,7 +119,10 @@ export const BusDesignProvider = ({ children }: { children: ReactNode }) => {
     loadStateFromSession() || initialState,
   );
 
-  async function submitDesignToFirebase(stateOverride?: BusDesignState, imageBlob?: Blob | null) {
+  async function submitDesignToFirebase(
+    stateOverride?: BusDesignState,
+    imageBlob?: Blob | null,
+  ) {
     const payload = {
       ...(stateOverride || state),
       timestamp: Date.now(),
@@ -131,7 +134,7 @@ export const BusDesignProvider = ({ children }: { children: ReactNode }) => {
         try {
           // dynamic import to avoid double-initialization issues
           const mod = await import("../../../lib/firebase");
-          const path = `designs/ukpack2_${Date.now()}_${Math.random().toString(36).slice(2,9)}.png`;
+          const path = `designs/ukpack2_${Date.now()}_${Math.random().toString(36).slice(2, 9)}.png`;
           const url = await mod.uploadFileToStorage(imageBlob, path);
           payload.imageUrl = url;
         } catch (e) {

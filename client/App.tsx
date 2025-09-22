@@ -119,7 +119,10 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         // lazy-import to avoid circular deps
         import("./services/dataLogger").then((m) => {
           try {
-            m.logEvent({ event: "PAGE_VIEW", payload: { path, ts: new Date().toISOString() } });
+            m.logEvent({
+              event: "PAGE_VIEW",
+              payload: { path, ts: new Date().toISOString() },
+            });
           } catch (_) {}
         });
       } catch (_) {}
@@ -133,7 +136,11 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             try {
               m.logEvent({
                 event: "PAGE_EXIT",
-                payload: { path: prev, durationMs: now - enteredAt, ts: new Date().toISOString() },
+                payload: {
+                  path: prev,
+                  durationMs: now - enteredAt,
+                  ts: new Date().toISOString(),
+                },
               });
             } catch (_) {}
           });
@@ -149,12 +156,26 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           if (p) {
             // Fire-and-forget synchronous navigator.sendBeacon if available
             try {
-              const payload = JSON.stringify({ event: "PAGE_EXIT", payload: { path: p, durationMs: Date.now() - entered, ts: new Date().toISOString() } });
-              if (navigator && typeof (navigator as any).sendBeacon === "function") {
+              const payload = JSON.stringify({
+                event: "PAGE_EXIT",
+                payload: {
+                  path: p,
+                  durationMs: Date.now() - entered,
+                  ts: new Date().toISOString(),
+                },
+              });
+              if (
+                navigator &&
+                typeof (navigator as any).sendBeacon === "function"
+              ) {
                 (navigator as any).sendBeacon("/api/track", payload);
               } else {
                 // best-effort fetch
-                fetch("/api/track", { method: "POST", headers: { "Content-Type": "application/json" }, body: payload }).catch(() => {});
+                fetch("/api/track", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: payload,
+                }).catch(() => {});
               }
             } catch (_) {}
           }

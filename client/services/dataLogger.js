@@ -62,14 +62,15 @@ export function logEvent(eventData) {
       // canonical fields
       sessionID: getSessionID(),
       timestamp: new Date(now).toISOString(),
-      userAgent: typeof navigator !== 'undefined' ? navigator.userAgent : undefined,
-      url: typeof window !== 'undefined' ? window.location.href : undefined,
+      userAgent:
+        typeof navigator !== "undefined" ? navigator.userAgent : undefined,
+      url: typeof window !== "undefined" ? window.location.href : undefined,
       viewport:
-        typeof window !== 'undefined'
+        typeof window !== "undefined"
           ? { width: window.innerWidth, height: window.innerHeight }
           : undefined,
       // default event type when not provided
-      event: eventData && eventData.event ? eventData.event : 'UNKNOWN',
+      event: eventData && eventData.event ? eventData.event : "UNKNOWN",
       // include original payload if any
       payload: eventData && eventData.payload ? eventData.payload : {},
       // merge other custom fields
@@ -78,18 +79,27 @@ export function logEvent(eventData) {
 
     // attach project tag based on path if not set
     try {
-      const path = (enrichedEvent.url && new URL(enrichedEvent.url).pathname) || (typeof window !== 'undefined' && window.location && window.location.pathname) || '';
+      const path =
+        (enrichedEvent.url && new URL(enrichedEvent.url).pathname) ||
+        (typeof window !== "undefined" &&
+          window.location &&
+          window.location.pathname) ||
+        "";
       if (!enrichedEvent.payload) enrichedEvent.payload = {};
       if (!enrichedEvent.payload.project) {
-        if (String(path).startsWith('/ukpack2')) enrichedEvent.payload.project = 'ukpack2';
-        else if (String(path).startsWith('/ukpack1')) enrichedEvent.payload.project = 'ukpack1';
-        else enrichedEvent.payload.project = 'site';
+        if (String(path).startsWith("/ukpack2"))
+          enrichedEvent.payload.project = "ukpack2";
+        else if (String(path).startsWith("/ukpack1"))
+          enrichedEvent.payload.project = "ukpack1";
+        else enrichedEvent.payload.project = "site";
       }
     } catch (_) {}
 
     // Attach PDPA from session flag if present so events are marked when user accepted on start
     try {
-      const sessionPdpa = (typeof window !== 'undefined' && sessionStorage.getItem('pdpa_accepted') === 'true');
+      const sessionPdpa =
+        typeof window !== "undefined" &&
+        sessionStorage.getItem("pdpa_accepted") === "true";
       if (sessionPdpa) {
         enrichedEvent.PDPA = true;
         enrichedEvent.payload = enrichedEvent.payload || {};
@@ -99,7 +109,7 @@ export function logEvent(eventData) {
 
     // Ensure event type normalization
     try {
-      const t = (enrichedEvent.event || '').toString().toUpperCase();
+      const t = (enrichedEvent.event || "").toString().toUpperCase();
       enrichedEvent.event = t;
     } catch (_) {}
 
@@ -122,9 +132,9 @@ export function logEvent(eventData) {
       const pdpa = p.PDPA || p.pdpa || enrichedEvent.PDPA || enrichedEvent.pdpa;
       if (pdpa === true || pdpa === "accepted" || pdpa === "1") {
         // choose collection based on project tag
-        const project = p.project || 'site';
-        let target = 'minigame1_events/minigame1-di';
-        if (project === 'ukpack2') target = 'minigame2_events/minigame2-di';
+        const project = p.project || "site";
+        let target = "minigame1_events/minigame1-di";
+        if (project === "ukpack2") target = "minigame2_events/minigame2-di";
         // fire-and-forget
         try {
           sendEventToFirestore(enrichedEvent, target);

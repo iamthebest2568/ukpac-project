@@ -84,10 +84,13 @@ const SubmitScreen: React.FC = () => {
               if (r.ok) blob = await r.blob();
             } catch (_) {}
           }
-          submitDesignToFirebase({
-            ...(state || {}),
-            serviceInfo: { routeName: route, area, frequency: interval },
-          }, blob).catch(() => {});
+          submitDesignToFirebase(
+            {
+              ...(state || {}),
+              serviceInfo: { routeName: route, area, frequency: interval },
+            },
+            blob,
+          ).catch(() => {});
         } catch (_) {}
       })();
     } catch (e) {}

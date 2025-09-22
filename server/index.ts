@@ -65,7 +65,8 @@ export function createServer() {
   app.post("/api/track", async (req, res) => {
     try {
       const ua = String(req.headers["user-agent"] || "");
-      const ip = (req.headers["x-forwarded-for"] as string) || req.ip || undefined;
+      const ip =
+        (req.headers["x-forwarded-for"] as string) || req.ip || undefined;
       const page = String(req.headers["referer"] || "");
       const parsed = AppEventSchema.parse(req.body);
       const withMeta = {
@@ -80,11 +81,14 @@ export function createServer() {
       let target: string | undefined = undefined;
       try {
         const p = String(withMeta.page || "") || "";
-        const payloadProject = (withMeta.payload && (withMeta.payload.project || withMeta.payload.projectName)) || undefined;
-        if (p.includes('/ukpack2') || payloadProject === 'ukpack2') {
-          target = 'minigame2_events/minigame2-di';
-        } else if (p.includes('/ukpack1') || payloadProject === 'ukpack1') {
-          target = 'minigame1_events/minigame1-di';
+        const payloadProject =
+          (withMeta.payload &&
+            (withMeta.payload.project || withMeta.payload.projectName)) ||
+          undefined;
+        if (p.includes("/ukpack2") || payloadProject === "ukpack2") {
+          target = "minigame2_events/minigame2-di";
+        } else if (p.includes("/ukpack1") || payloadProject === "ukpack1") {
+          target = "minigame1_events/minigame1-di";
         }
       } catch (_) {}
 
@@ -113,23 +117,37 @@ export function createServer() {
   });
 
   // Aggregated stats for a project (ukpack2/ukpack1) - totals + timeseries
-  app.get('/api/video-stats-project', async (req, res) => {
+  app.get("/api/video-stats-project", async (req, res) => {
     try {
-      const project = String(req.query.project || '');
-      let col = 'minigame1_events';
-      let docId = 'minigame1-di';
-      if (project === 'ukpack2') {
-        col = 'minigame2_events';
-        docId = 'minigame2-di';
-      } else if (project === 'ukpack1') {
-        col = 'minigame1_events';
-        docId = 'minigame1-di';
+      const project = String(req.query.project || "");
+      let col = "minigame1_events";
+      let docId = "minigame1-di";
+      if (project === "ukpack2") {
+        col = "minigame2_events";
+        docId = "minigame2-di";
+      } else if (project === "ukpack1") {
+        col = "minigame1_events";
+        docId = "minigame1-di";
       }
       const stats = await getFirestoreStatsFor(col, docId, 100);
       const agg = await computeStatsForProject(col, docId);
-      res.status(200).json({ ok: true, project, col, docId, firestoreSample: stats, aggregation: agg });
+      res
+        .status(200)
+        .json({
+          ok: true,
+          project,
+          col,
+          docId,
+          firestoreSample: stats,
+          aggregation: agg,
+        });
     } catch (e: any) {
-      res.status(500).json({ ok: false, error: e?.message || 'failed to compute project stats' });
+      res
+        .status(500)
+        .json({
+          ok: false,
+          error: e?.message || "failed to compute project stats",
+        });
     }
   });
 
@@ -191,33 +209,47 @@ export function createServer() {
   });
 
   // Firestore stats for project collections
-  app.get('/api/firestore-stats', async (req, res) => {
+  app.get("/api/firestore-stats", async (req, res) => {
     try {
-      const project = String(req.query.project || '');
-      let col = 'minigame1_events';
-      let docId = 'minigame1-di';
-      if (project === 'ukpack2') {
-        col = 'minigame2_events';
-        docId = 'minigame2-di';
-      } else if (project === 'ukpack1') {
-        col = 'minigame1_events';
-        docId = 'minigame1-di';
+      const project = String(req.query.project || "");
+      let col = "minigame1_events";
+      let docId = "minigame1-di";
+      if (project === "ukpack2") {
+        col = "minigame2_events";
+        docId = "minigame2-di";
+      } else if (project === "ukpack1") {
+        col = "minigame1_events";
+        docId = "minigame1-di";
       }
       const stats = await getFirestoreStatsFor(col, docId, 20);
       res.status(200).json({ ok: true, project, col, docId, stats });
     } catch (e: any) {
-      res.status(500).json({ ok: false, error: e?.message || 'failed to fetch firestore stats' });
+      res
+        .status(500)
+        .json({
+          ok: false,
+          error: e?.message || "failed to fetch firestore stats",
+        });
     }
   });
 
   // Public submissions from Realtime DB (sanitized)
-  app.get('/api/public-submissions', async (req, res) => {
+  app.get("/api/public-submissions", async (req, res) => {
     try {
-      const limit = req.query.limit ? Math.max(1, Math.min(200, Number(req.query.limit))) : 20;
-      const items = await (await import('./services/submissions')).listPublicSubmissions(limit);
+      const limit = req.query.limit
+        ? Math.max(1, Math.min(200, Number(req.query.limit)))
+        : 20;
+      const items = await (
+        await import("./services/submissions")
+      ).listPublicSubmissions(limit);
       res.status(200).json({ ok: true, items });
     } catch (e: any) {
-      res.status(500).json({ ok: false, error: e?.message || 'failed to fetch submissions' });
+      res
+        .status(500)
+        .json({
+          ok: false,
+          error: e?.message || "failed to fetch submissions",
+        });
     }
   });
 
@@ -303,9 +335,11 @@ export function createServer() {
     }
   });
 
-  app.get('/api/dashboard-password', (_req, res) => {
+  app.get("/api/dashboard-password", (_req, res) => {
     try {
-      res.status(200).json({ password: process.env.VITE_DASHBOARD_PASSWORD || null });
+      res
+        .status(200)
+        .json({ password: process.env.VITE_DASHBOARD_PASSWORD || null });
     } catch (e: any) {
       res.status(500).json({ password: null });
     }
