@@ -26,3 +26,9 @@
 .figma-style1-container.ask04-budget-page.figma-style1-ukpack1.fake-news-page .figma-style1-background-overlay {
   display: none !important;
 }
+
+/* Ensure the container background color is transparent even if fake-news-page sets a color */
+.figma-style1-container.ask04-budget-page.figma-style1-ukpack1.fake-news-page {
+  background: transparent !important;
+  background-color: transparent !important;
+}
