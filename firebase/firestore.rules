@@ -32,7 +32,7 @@ service cloud.firestore {
       return resource.keys().hasAll(['sessionID','timestamp','event','payload'])
         && resource.sessionID is string
         && resource.sessionID.size() <= 128
-        && resource.timestamp is int
+        && (resource.timestamp is int || resource.timestamp is string)
         && resource.event is string
         && resource.event.size() <= 64
         && resource.payload is map
