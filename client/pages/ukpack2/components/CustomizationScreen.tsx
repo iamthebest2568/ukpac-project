@@ -58,7 +58,7 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
                 {headerContent}
               </div>
             ) : (
-              <h1 className="text-2xl font-prompt font-semibold customization-title text-center w-full">
+              <h1 className="text-lg md:text-2xl font-prompt font-semibold customization-title text-center w-full break-words leading-tight" style={{whiteSpace: 'normal'}}>
                 {title}
               </h1>
             )}
