@@ -37,10 +37,10 @@ function initFirebase() {
   }
 }
 
-export async function sendEventToFirestore(event: any) {
+export async function sendEventToFirestore(event: any, collectionName: string = "minigame1_events") {
   if (!db) initFirebase();
   if (!db) throw new Error("Firestore not initialized");
-  const col = collection(db, "ukpack2_events");
+  const col = collection(db, collectionName);
   // write enriched event; add server timestamp
   return addDoc(col, { ...event, createdAt: serverTimestamp() });
 }
