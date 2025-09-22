@@ -64,7 +64,7 @@ export function createServer() {
   app.post("/api/track", async (req, res) => {
     try {
       const ua = String(req.headers["user-agent"] || "");
-      const ip = (req.headers["x-forwarded-for"] as string) || req.ip || "";
+      const ip = (req.headers["x-forwarded-for"] as string) || req.ip || undefined;
       const page = String(req.headers["referer"] || "");
       const parsed = AppEventSchema.parse(req.body);
       const withMeta = {
@@ -74,7 +74,20 @@ export function createServer() {
         page: parsed.page || page,
         timestamp: parsed.timestamp || new Date().toISOString(),
       };
-      await appendAppEvent(withMeta);
+
+      // Decide target collection: if page or payload indicates ukpack2, route to minigame2
+      let target: string | undefined = undefined;
+      try {
+        const p = String(withMeta.page || "") || "";
+        const payloadProject = (withMeta.payload && (withMeta.payload.project || withMeta.payload.projectName)) || undefined;
+        if (p.includes('/ukpack2') || payloadProject === 'ukpack2') {
+          target = 'minigame2_events/minigame2-di';
+        } else if (p.includes('/ukpack1') || payloadProject === 'ukpack1') {
+          target = 'minigame1_events/minigame1-di';
+        }
+      } catch (_) {}
+
+      await appendAppEvent(withMeta, target);
       res.status(200).json({ ok: true });
     } catch (e: any) {
       res
