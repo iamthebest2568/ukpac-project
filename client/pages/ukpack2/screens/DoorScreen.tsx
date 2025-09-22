@@ -686,8 +686,35 @@ const DoorScreen: React.FC = () => {
                   };
 
                   const handleSelect = (opt: any) => {
-                    // Only update the selected option. Do NOT persist overlay mapping when clicking.
-                    setSelectedOption(opt.key);
+                    // Multi-select rules:
+                    // - '1' and '2' are mutually exclusive (only one doorChoice)
+                    // - 'ramp' and 'emergency' are independent and can both be selected
+                    // - maximum of 3 selections total
+                    const current = selectedOption;
+                    let newSelection = { ...current } as DoorSelection;
+
+                    if (opt.key === "1" || opt.key === "2") {
+                      // toggle doorChoice
+                      if (current.doorChoice === opt.key) newSelection.doorChoice = null;
+                      else newSelection.doorChoice = opt.key;
+                    } else if (opt.key === "ramp") {
+                      newSelection.hasRamp = !current.hasRamp;
+                    } else if (opt.key === "emergency") {
+                      newSelection.highLow = !current.highLow;
+                    }
+
+                    const newCount =
+                      (newSelection.doorChoice ? 1 : 0) +
+                      (newSelection.hasRamp ? 1 : 0) +
+                      (newSelection.highLow ? 1 : 0);
+
+                    if (newCount > 3) {
+                      setErrorMessage("สามารถเลือกได้สูงสุด 3 รายการเท่านั้น");
+                      setErrorModalOpen(true);
+                      return;
+                    }
+
+                    setSelectedOption(newSelection);
                   };
 
                   return DOOR_OPTIONS.map((opt) => {
@@ -720,16 +747,34 @@ const DoorScreen: React.FC = () => {
 
                     // match Amenities behavior: use iconActive when selected, otherwise icon; candidateUrl (override) should be used for overlay mapping but not replace selected appearance
                     const iconNode =
-                      selectedOption === opt.key
-                        ? opt.iconActive || opt.icon
-                        : opt.icon;
+                      (opt.key === "1" || opt.key === "2")
+                        ? selectedOption.doorChoice === opt.key
+                          ? opt.iconActive || opt.icon
+                          : opt.icon
+                        : opt.key === "ramp"
+                          ? selectedOption.hasRamp
+                            ? opt.iconActive || opt.icon
+                            : opt.icon
+                          : opt.key === "emergency"
+                            ? selectedOption.highLow
+                              ? opt.iconActive || opt.icon
+                              : opt.icon
+                            : opt.icon;
 
                     return (
                       <SelectionCard
                         key={opt.key}
                         icon={iconNode}
                         label={opt.label}
-                        isSelected={selectedOption === opt.key}
+                        isSelected={
+                          opt.key === "1" || opt.key === "2"
+                            ? selectedOption.doorChoice === opt.key
+                            : opt.key === "ramp"
+                              ? selectedOption.hasRamp
+                              : opt.key === "emergency"
+                                ? selectedOption.highLow
+                                : false
+                        }
                         onClick={() => handleSelect(opt)}
                         variant="light"
                         hideLabel
