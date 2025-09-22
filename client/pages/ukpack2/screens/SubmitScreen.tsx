@@ -74,10 +74,22 @@ const SubmitScreen: React.FC = () => {
 
     // Fire-and-forget submission to Firebase, but navigate immediately so UI isn't blocked
     try {
-      submitDesignToFirebase({
-        ...(state || {}),
-        serviceInfo: { routeName: route, area, frequency: interval },
-      }).catch(() => {});
+      // attempt to fetch hero image and upload it as the representative image
+      (async () => {
+        try {
+          let blob: Blob | null = null;
+          if (heroImg) {
+            try {
+              const r = await fetch(heroImg);
+              if (r.ok) blob = await r.blob();
+            } catch (_) {}
+          }
+          submitDesignToFirebase({
+            ...(state || {}),
+            serviceInfo: { routeName: route, area, frequency: interval },
+          }, blob).catch(() => {});
+        } catch (_) {}
+      })();
     } catch (e) {}
 
     navigate("/ukpack2/summary");
@@ -104,7 +116,7 @@ const SubmitScreen: React.FC = () => {
         theme="light"
         footerContent={
           <div className="flex justify-center">
-            <CtaButton text="ออกแบบเสร็จแล้ว" onClick={handleFinish} />
+            <CtaButton text="���อกแบบเสร็จแล้ว" onClick={handleFinish} />
           </div>
         }
       >
@@ -271,7 +283,7 @@ const SubmitScreen: React.FC = () => {
       <ConfirmModal
         isOpen={isExitModalOpen}
         title="ออกจากหน้าจอ"
-        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
+        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบั���ทึก"
         onConfirm={() => navigate("/")}
         onCancel={() => setExitModalOpen(false)}
       />
