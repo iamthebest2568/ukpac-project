@@ -93,32 +93,37 @@ export async function listRecentEvents(limit = 50): Promise<VideoEvent[]> {
 export async function listVideoEventsBySession(
   sessionId: string,
 ): Promise<VideoEvent[]> {
-  const supabaseUrl = process.env.SUPABASE_URL as string | undefined;
-  const supabaseKey = process.env.SUPABASE_ANON_KEY as string | undefined;
-  if (supabaseUrl && supabaseKey) {
-    const params = new URLSearchParams({ select: "*", order: "id.asc" });
-    params.append("session_id", `eq.${sessionId}`);
-    const res = await fetch(
-      `${supabaseUrl}/rest/v1/video_events?${params.toString()}`,
-      {
-        headers: {
-          apikey: supabaseKey,
-          Authorization: `Bearer ${supabaseKey}`,
-        },
-      },
-    );
-    if (res.ok) {
-      const rows = await res.json();
-      return (rows as any[]).map((r) => ({
-        sessionId: sanitizeThai(String(r.session_id ?? "")),
-        eventName: sanitizeThai(String(r.event_name ?? "")),
-        timestamp: r.timestamp,
-        choiceText: sanitizeThai(r.choice_text ?? undefined),
-        variantId: r.variant_id ?? undefined,
-        variantName: sanitizeThai(r.variant_name ?? undefined),
-      }));
+  // Try Firestore first
+  try {
+    initFirestore();
+    if (firestoreDb) {
+      const colDoc = doc(firestoreDb, "minigame1_events", "minigame1-di");
+      const eventsCol = collection(colDoc, "events");
+      const q = query(eventsCol, orderBy("createdAt", "asc"));
+      const snap = await getDocs(q as any);
+      const out: VideoEvent[] = [];
+      snap.forEach((d) => {
+        const data = d.data() as any;
+        const sid = String(data.sessionID || data.sessionId || "");
+        if (sid !== sessionId) return;
+        const ts = data.timestamp || data.createdAt || new Date().toISOString();
+        let timestamp = ts;
+        if (timestamp && typeof timestamp.toDate === "function") timestamp = timestamp.toDate().toISOString();
+        out.push({
+          sessionId: sanitizeThai(sid),
+          eventName: sanitizeThai(String(data.eventName || data.event || "")),
+          timestamp: String(timestamp),
+          choiceText: sanitizeThai(data.choiceText ?? undefined),
+          variantId: data.variantId ?? undefined,
+          variantName: sanitizeThai(data.variantName ?? undefined),
+        });
+      });
+      return out;
     }
+  } catch (e) {
+    console.warn("Failed to read session events from Firestore", e);
   }
+
   try {
     fs.mkdirSync(DATA_DIR, { recursive: true });
   } catch {}
