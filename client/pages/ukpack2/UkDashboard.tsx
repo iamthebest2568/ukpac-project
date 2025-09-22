@@ -290,7 +290,7 @@ const UkDashboard: React.FC = () => {
           shared: true,
         },
       };
-      await sendEventToFirestore(sample, "mydream/bus");
+      await sendEventToFirestore(sample, "minigame2_events/minigame2-di");
       setLastSentResult({
         sentCount: 1,
         skippedCount: 0,
