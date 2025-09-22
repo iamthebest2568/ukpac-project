@@ -1,6 +1,9 @@
 import React from "react";
 
-const TabletMockup: React.FC<{ children?: React.ReactNode; iframeSrc?: string }> = ({ children, iframeSrc }) => {
+const TabletMockup: React.FC<{
+  children?: React.ReactNode;
+  iframeSrc?: string;
+}> = ({ children, iframeSrc }) => {
   return (
     <div
       style={{
@@ -58,7 +61,12 @@ const TabletMockup: React.FC<{ children?: React.ReactNode; iframeSrc?: string }>
                   title="Tablet viewport"
                   width={810}
                   height={1080}
-                  style={{ border: "none", display: "block", width: 810, height: 1080 }}
+                  style={{
+                    border: "none",
+                    display: "block",
+                    width: 810,
+                    height: 1080,
+                  }}
                 />
               ) : (
                 children
