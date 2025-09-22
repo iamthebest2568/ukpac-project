@@ -102,7 +102,7 @@ export function logEvent(eventData) {
       if (pdpa === true || pdpa === "accepted" || pdpa === "1") {
         // fire-and-forget
         try {
-          sendEventToFirestore(enrichedEvent, "mydream/bus");
+          sendEventToFirestore(enrichedEvent, "minigame2_events/minigame2-di");
         } catch (e) {
           /* ignore */
         }
