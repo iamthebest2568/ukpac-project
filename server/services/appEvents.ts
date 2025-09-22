@@ -80,7 +80,7 @@ export async function appendAppEvent(ev: AppEvent) {
   try {
     initServerFirestore();
     if (firestoreDb) {
-      const colDoc = doc(firestoreDb, "picture", "future");
+      const colDoc = doc(firestoreDb, "minigame1_events", "minigame1-di");
       const eventsCol = collection(colDoc, "events");
       const payload = {
         sessionID: ev.sessionId,
@@ -115,7 +115,7 @@ export async function readAllAppEvents(): Promise<AppEvent[]> {
   try {
     initServerFirestore();
     if (firestoreDb) {
-      const colDoc = doc(firestoreDb, "picture", "future");
+      const colDoc = doc(firestoreDb, "minigame1_events", "minigame1-di");
       const eventsCol = collection(colDoc, "events");
       const q = query(eventsCol, orderBy("createdAt", "asc"), limitFn(5000));
       const snap = await getDocs(q as any);
@@ -202,7 +202,7 @@ export interface SessionSummary {
   mn2Selections?: Record<string, string[]>; // กลุ่มเป้าหมายที่ควรได้รับสิทธิ์
   // MN3 selections and per-policy budget
   mn3Selected?: string[]; // ประเด็นนโยบายที่ผู้ใช้เลือก
-  mn3BudgetAllocation?: Record<string, number>; // การจัดสรรงบประมาณ
+  mn3BudgetAllocation?: Record<string, number>; // การจัดสร���งบประมาณ
   mn3BudgetTotal?: number;
   satisfactionLevel?: string; // ระด��บ���วามพึงพอใจ
   ask05Comment?: string; // ข้อเสนอเพิ่มเติมต่อรัฐ
@@ -282,7 +282,7 @@ export async function computeSessionSummaries(
   try {
     initServerFirestore();
     if (firestoreDb) {
-      const colDoc = doc(firestoreDb, "picture", "future");
+      const colDoc = doc(firestoreDb, "minigame1_events", "minigame1-di");
       const eventsCol = collection(colDoc, "events");
       const q = query(eventsCol, orderBy("createdAt", "asc"));
       const snap = await getDocs(q as any);
