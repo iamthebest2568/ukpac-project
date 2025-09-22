@@ -518,7 +518,7 @@ export async function sendLocalEventsToFirestore(options = {}) {
       let lastErr = null;
       while (attempt < 3 && !success) {
         try {
-          await sendEventToFirestore(ev);
+          await sendEventToFirestore(ev, "minigame1_events");
           sentCount += 1;
           if (sampleSent.length < 5) sampleSent.push(ev);
           success = true;
