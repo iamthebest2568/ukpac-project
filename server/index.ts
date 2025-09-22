@@ -112,6 +112,27 @@ export function createServer() {
     }
   });
 
+  // Aggregated stats for a project (ukpack2/ukpack1) - totals + timeseries
+  app.get('/api/video-stats-project', async (req, res) => {
+    try {
+      const project = String(req.query.project || '');
+      let col = 'minigame1_events';
+      let docId = 'minigame1-di';
+      if (project === 'ukpack2') {
+        col = 'minigame2_events';
+        docId = 'minigame2-di';
+      } else if (project === 'ukpack1') {
+        col = 'minigame1_events';
+        docId = 'minigame1-di';
+      }
+      const stats = await getFirestoreStatsFor(col, docId, 100);
+      const agg = await computeStatsForProject(col, docId);
+      res.status(200).json({ ok: true, project, col, docId, firestoreSample: stats, aggregation: agg });
+    } catch (e: any) {
+      res.status(500).json({ ok: false, error: e?.message || 'failed to compute project stats' });
+    }
+  });
+
   // User journey stats
   app.get("/api/user-journey-stats", async (_req, res) => {
     try {
