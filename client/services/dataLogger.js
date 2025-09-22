@@ -92,7 +92,7 @@ export function logEvent(eventData) {
       if (pdpa === true || pdpa === "accepted" || pdpa === "1") {
         // fire-and-forget
         try {
-          sendEventToFirestore(enrichedEvent, "minigame1_events");
+          sendEventToFirestore(enrichedEvent, "minigame1_events/minigame1-id");
         } catch (e) {
           /* ignore */
         }
@@ -518,7 +518,7 @@ export async function sendLocalEventsToFirestore(options = {}) {
       let lastErr = null;
       while (attempt < 3 && !success) {
         try {
-          await sendEventToFirestore(ev, "minigame1_events");
+          await sendEventToFirestore(ev, "minigame1_events/minigame1-id");
           sentCount += 1;
           if (sampleSent.length < 5) sampleSent.push(ev);
           success = true;
