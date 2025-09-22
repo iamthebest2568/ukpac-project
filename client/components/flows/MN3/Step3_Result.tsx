@@ -194,67 +194,67 @@ const Step3_Result = ({
 
       {/* Selected priorities visual summary - overlapping collage */}
       <div className="w-full px-4 mb-6">
-        <div
-          className="max-w-[980px] mx-auto relative"
-          style={{
-            height: 320,
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          {resultSummary.map((s, i) => {
-            const imgSrc =
-              priorityImageMap[s.priority] ||
-              "https://cdn.builder.io/api/v1/image/assets/TEMP/placeholder.png?width=720";
-            const offset = collageOffsets[i] || {
-              left: `50%`,
-              top: `${i * 2}%`,
-              rotate: `${(i - 1) * 4}deg`,
-              z: i + 1,
-              scale: 1,
-            };
-            const count = resultSummary.length;
-            const spacing = count === 1 ? 0 : count === 2 ? 160 : 140; // px spacing between centers
-            const offsetX = Math.round((i - (count - 1) / 2) * spacing);
-            const width = count === 1 ? "64%" : count === 2 ? "52%" : "40%";
-            return (
-              <div
-                key={s.priority}
-                style={{
-                  position: "absolute",
-                  left: "50%",
-                  top: offset.top,
-                  transform: `translate(calc(-50% + ${offsetX}px), 0) rotate(${offset.rotate}) scale(${offset.scale})`,
-                  width,
-                  zIndex: offset.z,
-                }}
-              >
+          <div
+            className="max-w-[980px] mx-auto relative"
+            style={{
+              height: 420,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            {resultSummary.map((s, i) => {
+              const imgSrc =
+                priorityImageMap[s.priority] ||
+                "https://cdn.builder.io/api/v1/image/assets/TEMP/placeholder.png?width=720";
+              const offset = collageOffsets[i] || {
+                left: `50%`,
+                top: `50%`,
+                rotate: `0deg`,
+                z: i + 1,
+                scale: 1,
+              };
+              const count = resultSummary.length;
+              const spacing = count === 1 ? 0 : count === 2 ? 40 : -60; // smaller/negative spacing to create overlay
+              const offsetX = Math.round((i - (count - 1) / 2) * spacing);
+              const width = count === 1 ? "68%" : count === 2 ? "55%" : "46%";
+              return (
                 <div
+                  key={s.priority}
                   style={{
-                    width: "100%",
-                    paddingBottom: "80%",
-                    position: "relative",
+                    position: "absolute",
+                    left: "50%",
+                    top: offset.top,
+                    transform: `translate(calc(-50% + ${offsetX}px), -50%) rotate(${offset.rotate}) scale(${offset.scale})`,
+                    width,
+                    zIndex: offset.z,
                   }}
                 >
-                  <img
-                    src={imgSrc}
-                    alt={s.priority}
+                  <div
                     style={{
-                      position: "absolute",
-                      inset: 0,
                       width: "100%",
-                      height: "100%",
-                      objectFit: "contain",
-                      objectPosition: "center center",
+                      paddingBottom: "80%",
+                      position: "relative",
                     }}
-                  />
+                  >
+                    <img
+                      src={imgSrc}
+                      alt={s.priority}
+                      style={{
+                        position: "absolute",
+                        inset: 0,
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "contain",
+                        objectPosition: "center center",
+                      }}
+                    />
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
-      </div>
 
       <div style={{ textAlign: "center", width: "100%", marginTop: 20 }}>
         <h2 style={{ marginBottom: 12, color: "#000D59" }}>ภาพเมืองในอนาคตใกล้เคียงกับภาพในอุดมคติของคุณแล้วหรือไม่</h2>
