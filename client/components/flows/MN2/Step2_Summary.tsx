@@ -181,7 +181,8 @@ const Step2_Summary = ({
         style={{ paddingTop: "clamp(56px, 12vh, 120px)", height: 'calc(100vh - 80px)', boxSizing: 'border-box', display: 'flex', flexDirection: 'column' }}
       >
         {/* Policy Cards */}
-        <div className="space-y-6 mb-12" style={{ maxHeight: 'calc(100vh - 360px)', overflowY: 'auto', paddingRight: 8 }}>
+        <div style={{ overflowY: 'auto', flex: 1, paddingRight: 8 }}>
+          <div className="space-y-6 mb-6">
           {summaryCards.map((card, index) => (
             <div
               key={index}
@@ -247,6 +248,7 @@ const Step2_Summary = ({
               </div>
             </div>
           ))}
+          </div>
         </div>
 
         {/* Bottom Question Section */}
