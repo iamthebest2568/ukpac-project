@@ -104,6 +104,71 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     /^\/ukpack1\/(uk-dashboard|ukdashboard\.html|UkDashboard)$/.test(
       location.pathname,
     );
+
+  // Page view / navigation logging for ukpack2
+  const prevPathRef = React.useRef<string | null>(null);
+  const enterTsRef = React.useRef<number>(Date.now());
+
+  React.useEffect(() => {
+    try {
+      // Only track ukpack2 routes (project scope)
+      const path = location.pathname + (location.search || "");
+      const now = Date.now();
+      // send PAGE_VIEW
+      try {
+        // lazy-import to avoid circular deps
+        import("./services/dataLogger").then((m) => {
+          try {
+            m.logEvent({ event: "PAGE_VIEW", payload: { path, ts: new Date().toISOString() } });
+          } catch (_) {}
+        });
+      } catch (_) {}
+
+      // if previous path exists, send PAGE_EXIT with duration
+      const prev = prevPathRef.current;
+      const enteredAt = enterTsRef.current || now;
+      if (prev && prev !== path) {
+        try {
+          import("./services/dataLogger").then((m) => {
+            try {
+              m.logEvent({
+                event: "PAGE_EXIT",
+                payload: { path: prev, durationMs: now - enteredAt, ts: new Date().toISOString() },
+              });
+            } catch (_) {}
+          });
+        } catch (_) {}
+      }
+      prevPathRef.current = path;
+      enterTsRef.current = now;
+
+      const onUnload = () => {
+        try {
+          const p = prevPathRef.current;
+          const entered = enterTsRef.current || Date.now();
+          if (p) {
+            // Fire-and-forget synchronous navigator.sendBeacon if available
+            try {
+              const payload = JSON.stringify({ event: "PAGE_EXIT", payload: { path: p, durationMs: Date.now() - entered, ts: new Date().toISOString() } });
+              if (navigator && typeof (navigator as any).sendBeacon === "function") {
+                (navigator as any).sendBeacon("/api/track", payload);
+              } else {
+                // best-effort fetch
+                fetch("/api/track", { method: "POST", headers: { "Content-Type": "application/json" }, body: payload }).catch(() => {});
+              }
+            } catch (_) {}
+          }
+        } catch (_) {}
+      };
+      window.addEventListener("pagehide", onUnload);
+      window.addEventListener("beforeunload", onUnload);
+      return () => {
+        window.removeEventListener("pagehide", onUnload);
+        window.removeEventListener("beforeunload", onUnload);
+      };
+    } catch (_) {}
+  }, [location]);
+
   if (isDashboard) {
     return (
       <div className="min-h-screen w-screen bg-[#0b0b0b] text-white">
@@ -144,7 +209,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           className="skip-link sr-only focus:not-sr-only absolute top-2 left-2 z-50 bg-yellow-400 text-black px-2 py-1 rounded touch-target"
           aria-label="ข้ามไปยังเนื้อหาหลัก"
         >
-          ข้ามไปยังเนื้อ��าหลัก
+          ข้ามไปยังเนื้อ��า��ลัก
         </a>
         <main
           id="main-content"
