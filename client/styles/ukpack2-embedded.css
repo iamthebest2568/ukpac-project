@@ -92,3 +92,99 @@
 .embedded-ukpack2 [data-testid="customization-footer"] {
   position: relative !important;
 }
+
+/* Additional tablet-specific layout tweaks */
+.embedded-ukpack2 .app-container {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  padding: 0 !important;
+}
+
+.embedded-ukpack2 .max-w-5xl,
+.embedded-ukpack2 .max-w-4xl {
+  width: 760px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* Reduce fixed footer height so more content fits above the fold */
+.embedded-ukpack2 .fixed[left],
+.embedded-ukpack2 .fixed,
+.embedded-ukpack2 div[style*="height: 110px"] {
+  height: 90px !important;
+}
+
+/* Ensure content areas reserve space for footer */
+.embedded-ukpack2 .uk2-scroll,
+.embedded-ukpack2 .responsive-content {
+  padding-bottom: 110px !important;
+}
+
+/* Make grid cards stack better on tablet: default to single column unless a two-column layout fits */
+.embedded-ukpack2 .grid {
+  grid-template-columns: 1fr !important;
+  gap: 12px !important;
+}
+
+/* For components that expect two columns, allow a 2-col layout when enough width exists */
+.embedded-ukpack2 .grid.two-col,
+.embedded-ukpack2 .grid.md\:grid-cols-2 {
+  grid-template-columns: 1fr 1fr !important;
+}
+
+/* Tighter spacing for sections to avoid empty space */
+.embedded-ukpack2 .py-12,
+.embedded-ukpack2 .py-10,
+.embedded-ukpack2 .py-8 {
+  padding-top: 12px !important;
+  padding-bottom: 12px !important;
+}
+
+/* Limit hero and preview heights to keep content visible */
+.embedded-ukpack2 .max-h-360px,
+.embedded-ukpack2 .hero img,
+.embedded-ukpack2 .vehicle-preview img {
+  max-height: 300px !important;
+  height: auto !important;
+}
+
+/* Ensure footer CTA buttons are visible and not too large */
+.embedded-ukpack2 .w-full.max-w-sm .w-full,
+.embedded-ukpack2 .cta-button,
+.embedded-ukpack2 button.btn {
+  max-width: 340px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* Force inner scroll where elements are too tall */
+.embedded-ukpack2 .overflow-auto,
+.embedded-ukpack2 .overflow-y-auto {
+  overflow: auto !important;
+}
+
+/* Slightly reduce global font sizes for better fit */
+.embedded-ukpack2 h1,
+.embedded-ukpack2 h2 {
+  font-size: 18px !important;
+}
+
+/* Ensure any decorative fixed backgrounds do not push content
+   and remain sized to container */
+.embedded-ukpack2 [style*="backgroundImage"] {
+  background-position: top center !important;
+  background-size: cover !important;
+}
+
+/* Keep inputs and textareas readable */
+.embedded-ukpack2 textarea,
+.embedded-ukpack2 input {
+  font-size: 15px !important;
+}
+
+/* Final safety: ensure no element exceeds iframe width */
+.embedded-ukpack2 * {
+  max-width: 810px !important;
+  box-sizing: border-box !important;
+}
