@@ -37,7 +37,7 @@ const Step2_Summary = ({
         "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb51d5d0d87d5482cbe4ae3a2df0c65c9?format=webp&width=188",
     },
     locals: {
-      label: "คน��นพื้นที่",
+      label: "คนในพื้นที่",
       iconSrc:
         "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fd0e13c552a39418eb25993c7d87905c8?format=webp&width=140",
     },
@@ -208,13 +208,7 @@ const Step2_Summary = ({
 
               {/* Beneficiary Icons - Responsive Grid */}
               <div
-                className={`grid justify-items-center items-center ${
-                  card.beneficiaries.length <= 2
-                    ? "grid-cols-2 gap-4"
-                    : card.beneficiaries.length === 3
-                      ? "grid-cols-3 gap-3"
-                      : "grid-cols-2 md:grid-cols-4 gap-3"
-                }`}
+                className={`grid justify-items-center items-center grid-cols-3 gap-3`}
                 style={{
                   maxWidth: "100%",
                   margin: "0 auto",
@@ -227,40 +221,27 @@ const Step2_Summary = ({
                     className="flex flex-col items-center justify-center"
                     style={{
                       width: "100%",
-                      maxWidth: "clamp(120px, 15vw, 176px)",
+                      maxWidth: "clamp(80px, 22vw, 140px)",
                     }}
                   >
-                    {/* Circle with icon - Responsive SVG */}
-                    <div className="relative mb-3">
+                    {/* Circle with icon - smaller responsive size */}
+                    <div className="relative mb-2">
                       {beneficiary.iconSrc && (
                         <img
                           src={beneficiary.iconSrc}
                           alt={beneficiary.label}
                           className="object-contain"
                           style={{
-                            width: "clamp(80px, 12vw, 132px)",
-                            height: "clamp(80px, 12vw, 132px)",
+                            width: "clamp(48px, 12vw, 80px)",
+                            height: "clamp(48px, 12vw, 80px)",
                             display: "block",
                             margin: "0 auto",
                           }}
                         />
                       )}
                     </div>
-                    {/* Label - Responsive Text */}
-                    <span
-                      className="font-prompt font-bold text-center whitespace-pre-line"
-                      style={{
-                        color: "#000D59",
-                        fontSize: "clamp(12px, 2.2vw, 30px)",
-                        fontWeight: 700,
-                        letterSpacing: "0.4px",
-                        lineHeight: "1.2",
-                        maxWidth: "100%",
-                        wordBreak: "break-word",
-                      }}
-                    >
-                      {beneficiary.label}
-                    </span>
+                    {/* Visually hide textual label (accessible to screen-readers) */}
+                    <span className="sr-only">{beneficiary.label}</span>
                   </div>
                 ))}
               </div>
