@@ -504,7 +504,7 @@ const UkDashboard: React.FC = () => {
           </h3>
           <div className="bg-[#021827] rounded p-4 text-sm text-gray-200">
             <div className="mb-3">
-              <strong>Document fields (ukpack2_events)</strong>
+              <strong>Document fields ({collectionInfo.col}/{collectionInfo.docId})</strong>
               <ul className="list-disc pl-5 mt-1 text-xs text-gray-300">
                 <li>createdAt (Firestore Timestamp)</li>
                 <li>sessionID (string)</li>
