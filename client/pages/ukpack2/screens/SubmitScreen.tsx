@@ -29,7 +29,7 @@ const SubmitScreen: React.FC = () => {
 
   // chassis labels and images (same mapping as DesignScreen)
   const CHASSIS_LABELS: Record<string, string> = {
-    small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
+    small: "รถเมล์ขนาดเล็ก 16–30 ���ี่นั่ง",
     medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
     large: "รถตู้โดยสาร 9–15 ที่นั่ง",
     extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
@@ -203,7 +203,7 @@ const SubmitScreen: React.FC = () => {
                 placeholder="พิมพ์"
                 value={interval}
                 onChange={(e) => setInterval(e.target.value.replace(/[^0-9]/g, ""))}
-                className="flex-1 min-w-0 max-w-[220px] rounded-xl px-3 py-1.5 border-[3px] border-[#000D59] h-9 text-center placeholder-gray-400"
+                className="flex-1 min-w-0 max-w-[220px] rounded-xl px-3 py-1.5 border-2 border-[#000D59] h-9 text-center placeholder-gray-400"
                 style={{
                   fontFamily: "Sarabun, sans-serif",
                   fontSize: "17.6px",
@@ -249,7 +249,7 @@ const SubmitScreen: React.FC = () => {
                 placeholder="พิมพ์"
                 value={area}
                 onChange={(e) => setArea(e.target.value.replace(/[^0-9]/g, ""))}
-                className="flex-1 min-w-0 max-w-[220px] rounded-xl px-3 py-1.5 border-[3px] border-[#000D59] h-9 text-center placeholder-gray-400"
+                className="flex-1 min-w-0 max-w-[220px] rounded-xl px-3 py-1.5 border-2 border-[#000D59] h-9 text-center placeholder-gray-400"
                 style={{
                   fontFamily: "Sarabun, sans-serif",
                   fontSize: "17.6px",
