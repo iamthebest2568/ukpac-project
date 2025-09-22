@@ -32,3 +32,31 @@
   background: transparent !important;
   background-color: transparent !important;
 }
+
+/* Footer for Ask04Budget: pin buttons to bottom of viewport */
+.ask04-footer {
+  position: fixed !important;
+  left: 0;
+  right: 0;
+  bottom: env(safe-area-inset-bottom, 12px);
+  display: flex;
+  justify-content: center;
+  pointer-events: none; /* allow inner buttons to control pointer-events */
+  z-index: 2200;
+  padding: 12px;
+}
+
+.ask04-footer .figma-style1-button-container {
+  pointer-events: auto;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 420px;
+  gap: 12px;
+}
+
+/* Ensure content area has bottom padding so collage is not covered */
+.figma-style1-container.ask04-budget-page .figma-style1-content-area {
+  padding-bottom: calc(env(safe-area-inset-bottom, 12px) + 96px) !important;
+}
