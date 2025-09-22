@@ -225,58 +225,12 @@ export function createServer() {
         files.map((fp) => fs.promises.rm(fp, { force: true }).catch(() => {})),
       );
 
-      // Attempt to purge Supabase tables if env provided
-      const supabaseUrl = process.env.SUPABASE_URL as string | undefined;
-      const supabaseKey = process.env.SUPABASE_ANON_KEY as string | undefined;
-      let supabaseDeleted = null as null | {
-        video_events: number;
-        app_events: number;
-      };
-      if (supabaseUrl && supabaseKey) {
-        let videoDeleted = 0;
-        let appDeleted = 0;
-        try {
-          const urlV = new URL(`${supabaseUrl}/rest/v1/video_events`);
-          urlV.searchParams.set("session_id", "not.is.null");
-          const respV = await fetch(urlV.toString(), {
-            method: "DELETE",
-            headers: {
-              apikey: supabaseKey,
-              Authorization: `Bearer ${supabaseKey}`,
-              Prefer: "return=representation",
-            },
-          });
-          if (respV.ok) {
-            const json = (await respV.json()) as any[];
-            videoDeleted = Array.isArray(json) ? json.length : 0;
-          }
-        } catch {}
-        try {
-          const urlA = new URL(`${supabaseUrl}/rest/v1/app_events`);
-          urlA.searchParams.set("session_id", "not.is.null");
-          const respA = await fetch(urlA.toString(), {
-            method: "DELETE",
-            headers: {
-              apikey: supabaseKey,
-              Authorization: `Bearer ${supabaseKey}`,
-              Prefer: "return=representation",
-            },
-          });
-          if (respA.ok) {
-            const json = (await respA.json()) as any[];
-            appDeleted = Array.isArray(json) ? json.length : 0;
-          }
-        } catch {}
-        supabaseDeleted = {
-          video_events: videoDeleted,
-          app_events: appDeleted,
-        };
-      }
+      // No Supabase configured — only local files cleared
 
       res.status(200).json({
         ok: true,
         cleared: files.map((f) => path.basename(f)),
-        supabaseDeleted,
+        supabaseDeleted: null,
       });
     } catch (e: any) {
       res
