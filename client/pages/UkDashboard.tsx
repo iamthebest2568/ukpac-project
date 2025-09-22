@@ -50,7 +50,7 @@ type SessionSummary = {
   ask02CustomReason?: string; // เหตุผลพิมพ์���อง
   reasonOther01?: string; // คำอธิบายเพิ่มเติม
   keyMessage1?: string; // Key message 1
-  mn1Selected: string[]; // ลำดับความสำคัญของประเด็น
+  mn1Selected: string[]; // ลำดับความสำค��ญของประเด็น
   mn2Selections?: Record<string, string[]>; // กลุ่มเป้าหมายที่ควรได้รับสิทธิ์
   mn3Selected?: string[]; // ประเด็นนโยบายที่ผู้ใช้เลือก
   mn3BudgetAllocation?: Record<string, number>; // การจัดสรรงบประมาณ
@@ -58,7 +58,7 @@ type SessionSummary = {
   satisfactionLevel?: string; // ระดับความพึงพอใจ
   ask05Comment?: string; // ข้อเสนอเพิ่มเติมต่อรัฐ
   fakeNewsResponse?: string; // การตอบสนองต่อข่าวปลอม
-  sourceSelected?: string; // แหล่งข่า���ที่ผู้ใช้เลือก
+  sourceSelected?: string; // แหล่งข่าวที่ผู้ใช้เลือก
   endDecision?: string; // การเข้าร่วมลุ้นรางวัล
   endDecisionText?: string;
   contactName?: string;
@@ -280,6 +280,43 @@ export default function UkDashboard() {
               >
                 รีเฟรช
               </button>
+
+              <button
+                onClick={async () => {
+                  try {
+                    if (isSending) return;
+                    setIsSending(true);
+                    const sample = {
+                      sessionId: `session_test_${Date.now()}`,
+                      timestamp: new Date().toISOString(),
+                      event: "TEST_EVENT",
+                      page: "/ukpack1/dashboard",
+                      payload: {
+                        PDPA: true,
+                        note: "Test event from ukpack1 dashboard",
+                      },
+                    };
+                    const resp = await fetch("/api/track", {
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify(sample),
+                    });
+                    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+                    alert("Test event sent to server (ukpack1)");
+                    await load();
+                  } catch (e: any) {
+                    alert("Failed to send test event: " + (e?.message || String(e)));
+                  } finally {
+                    setIsSending(false);
+                  }
+                }}
+                className={`rounded-md bg-blue-600/80 hover:bg-blue-600 border border-blue-500 px-3 py-2 text-sm ${isSending ? "opacity-60" : ""}`}
+                disabled={isSending}
+                title="ส่งเหตุการณ์ทดสอบไปยัง ukpack1"
+              >
+                {isSending ? "กำลังส่���..." : "Send Test Event (ukpack1)"}
+              </button>
+
               <button
                 className="rounded-md bg-red-600/80 hover:bg-red-600 border border-red-500 px-3 py-2 text-sm"
                 onClick={clearData}
@@ -708,7 +745,7 @@ export default function UkDashboard() {
                   <table className="min-w-full text-sm rounded-md overflow-hidden">
                     <thead className="bg-white/5 backdrop-blur">
                       <tr className="text-left text-white/80">
-                        <th className="py-2 pr-4">��วลา</th>
+                        <th className="py-2 pr-4">����ลา</th>
                         <th className="py-2 pr-4">Session</th>
                         <th className="py-2 pr-4">Intro</th>
                         <th className="py-2 pr-4">MN1</th>
@@ -773,20 +810,20 @@ export default function UkDashboard() {
                       "คุณใช้รถแบบไหนเดินทางเข้าเมือง ?",
                       "คุณคิดเห็นอย่างไรกับนโยบายนี้ ?",
                       "จากข้อความข้างต้น คุณมีความคิดเห็นอย่างไร (เห็นด้วย/กลางๆ/ไม่เห็นด้วย)",
-                      "���ำไมคุณถึงคิดอย่างนั้น (นโยบายไม่ครอบคลุม / เก็บไปก็ไม่มีอะไรดีขึ้น / อื่นๆ)",
+                      "ทำไมคุณถึงคิดอย่างนั้น (นโยบายไม่ครอบคลุม / เก็บไปก็ไม่มีอะไรดีขึ้น / อื��นๆ)",
                       "อธิบายอื่น ๆ ที่ช่วยอธิบายความคิดเห็น",
                       "บอกเราหน่อยว่าคุณเดินทางเข้า���มืองด้วยวิธีการใดบ่อยที่สุด",
                       "จากนโยบายที่คุณฟังเมื่อสักครู่ คุณมีความคิดเห็นอย่างไร",
                       "คุณคิดว่านโยบา��ปัจจุบัน ควรปรับเปลี่ยนประเด็นอะไรบาง (ลดค่าโดยสาร, ปรับปรุงคุณภาพ, ขึ้นราคา, เพิ่มขบวน, เพิ่มความถี่ ฯลฯ)",
-                      "คุณคิดว่าใครควรได้รับการลดค่าโดยสารรถไฟฟ้าบ้าง (ทุกคน, ผู้สูงอายุ, นักเรีย���, คนทำงาน ฯลฯ)",
-                      "คุณคิดว่าควรใช้เงินที่ได้จากการเก็บไปพัฒนาอะไร ก่อน 3 อันดับแรก",
+                      "คุณคิดว่าใครควรได้รับการลดค่าโดยสารรถไฟฟ้าบ้าง (ทุกคน, ผู้สูงอายุ, นักเรียน, คนทำงาน ฯลฯ)",
+                      "คุณคิดว่าควรใช้เงินที่ได้จากการเก็บไปพัฒนาอะไ��� ก่อน 3 อันดับแรก",
                       "คุณจะให้งบประมาณแต่ละข้อเท่าไร (งบทั้งหมด 100)",
                       "คุณพอใจกับผล���ัพธ์ที่เกิดขึ้นหรือไม่ (พอใจ / ไม่พอใจ)",
                       "คุณคิดว่ารัฐควรทำอะไรที่จะทำให้นโยบายนี้เกิดขึ้นได้จริง และเป็นประโยชน์���่อประชาชนอย่างแท้จริง",
                       "ตอนนี้มีข้อมูลที่ผิดพลาด เช่น ข่าวปลอมเกี่ยวกับนโยบาย คุณคิดว่าอย่างไร",
                       "คุณจะติดตามข่าว หรือเชื่อจากแหล่งไหนมากที่สุด",
-                      "ขอบคุณที่ร��วมเป็นส่วนหนึ่ง → ต้องการลุ้นรับรางวัล���รือไม่",
-                      "กรอกข้อมูลเพื่อลุ้นรางวัล (ชื่อ)",
+                      "ขอบคุณที่ร่วมเป็นส่วนหนึ่ง → ต้องการลุ้นรับรางวัล���รือไม่",
+                      "กรอกข้อมูลเ���ื่อลุ้นรางวัล (ชื่อ)",
                       "กรอกข้อมูลเพื่อลุ้นรางวัล (เบอร์โทร)",
                       "Time Stamp (First)",
                       "แช���์ให้เพื่อนไหม (ครั้งแรก)",
@@ -865,7 +902,7 @@ export default function UkDashboard() {
                     exportCsv("uk_export_all.csv", rows);
                   }}
                 >
-                  ดาวน์โหลด CSV (สรุปรวม)
+                  ดาวน์โห��ด CSV (สรุปรวม)
                 </button>
               </div>
             </div>
