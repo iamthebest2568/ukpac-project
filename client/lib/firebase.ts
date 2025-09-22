@@ -96,7 +96,7 @@ export async function sendEventToFirestore(
             : new Date().toISOString(),
           payload: event.payload || {},
           userAgent: event.userAgent || navigator.userAgent || null,
-          ip: null,
+          ip: event.ip || undefined,
           page: event.url || window.location.pathname,
         };
         // fire-and-forget
