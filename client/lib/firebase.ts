@@ -50,6 +50,29 @@ export async function sendEventToFirestore(
   } catch (e: any) {
     const code = e?.code || e?.status || 'unknown';
     const message = e?.message || String(e);
+    // If permission denied, attempt to fallback to server-side ingestion endpoint
+    if (/permission|insufficient permissions|permission-denied/i.test(message)) {
+      try {
+        // Fire a best-effort POST to /api/track so server can persist the event
+        // Normalize event shape expected by server: sessionId vs sessionID
+        const payload = {
+          sessionId: event.sessionID || event.sessionId || null,
+          event: event.event || 'UNKNOWN',
+          timestamp: event.timestamp ? (typeof event.timestamp === 'number' ? new Date(event.timestamp).toISOString() : event.timestamp) : new Date().toISOString(),
+          payload: event.payload || {},
+          userAgent: event.userAgent || navigator.userAgent || null,
+          ip: null,
+          page: event.url || window.location.pathname,
+        };
+        // fire-and-forget
+        fetch('/api/track', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        }).catch(() => {});
+      } catch (_) {}
+    }
+
     const err = new Error(`[${code}] ${message}`);
     try { (err as any).original = e; } catch (_) {}
     throw err;
