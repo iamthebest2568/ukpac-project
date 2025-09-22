@@ -171,12 +171,12 @@ const Ask04Budget = ({
         </div>
       </div>
 
-      {/* Buttons area (kept consistent with FigmaStyle1Layout styles) */}
-      <div style={{ textAlign: "center", width: "100%", marginTop: 20 }}>
-        <div
-          className="figma-style1-button-container"
-          style={{ width: "100%", maxWidth: 360, margin: "0 auto", display: "flex", flexDirection: "column", gap: 12 }}
-        >
+      {/* Spacer so content doesn't collide with footer */}
+      <div style={{ height: 140 }} />
+
+      {/* Footer: fixed buttons pinned to bottom */}
+      <div className="ask04-footer">
+        <div className="figma-style1-button-container">
           {buttons.map((button, index) => (
             <div key={index}>
               <button onClick={button.onClick} className="figma-style1-button" aria-describedby={`button-description-${index}`}>
