@@ -75,12 +75,20 @@ function ensureDir() {
   } catch {}
 }
 
-export async function appendAppEvent(ev: AppEvent) {
-  // Attempt to write to Firestore under minigame1_events/minigame1-di/events
+export async function appendAppEvent(ev: AppEvent, targetCollectionPath?: string) {
+  // Attempt to write to Firestore; targetCollectionPath example: "minigame2_events/minigame2-di"
   try {
     initServerFirestore();
     if (firestoreDb) {
-      const colDoc = doc(firestoreDb, "minigame1_events", "minigame1-di");
+      let colDocPath = ["minigame1_events", "minigame1-di"]; // default
+      try {
+        if (targetCollectionPath && typeof targetCollectionPath === 'string') {
+          const parts = targetCollectionPath.replace(/^\/+/, '').split('/').filter(Boolean);
+          if (parts.length >= 2) colDocPath = [parts[0], parts[1]];
+        }
+      } catch (_) {}
+
+      const colDoc = doc(firestoreDb, colDocPath[0], colDocPath[1]);
       const eventsCol = collection(colDoc, "events");
       const payload = {
         sessionID: ev.sessionId,
@@ -202,7 +210,7 @@ export interface SessionSummary {
   mn2Selections?: Record<string, string[]>; // กลุ่มเป้าหมายที่ควรได้รับสิทธิ์
   // MN3 selections and per-policy budget
   mn3Selected?: string[]; // ประเด็นนโยบายที่ผู้ใช้เลือก
-  mn3BudgetAllocation?: Record<string, number>; // การจัดสร���งบประมาณ
+  mn3BudgetAllocation?: Record<string, number>; // การจัดสรรงบประมาณ
   mn3BudgetTotal?: number;
   satisfactionLevel?: string; // ระด��บ���วามพึงพอใจ
   ask05Comment?: string; // ข้อเสนอเพิ่มเติมต่อรัฐ
