@@ -118,6 +118,12 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     );
   }
   const isFullBleed = location.pathname.startsWith("/ukpack2");
+  // initialize ukpack2 analytics only on ukpack2 routes
+  if (isFullBleed) {
+    try {
+      import("./pages/ukpack2/uk2Analytics").then((m) => m.initUkpack2Analytics()).catch(() => {});
+    } catch (_) {}
+  }
   return (
     <div
       className={`min-h-screen flex justify-center ${isFullBleed ? "bg-white full-bleed-page" : "bg-[#2a2a2a]"}`}
