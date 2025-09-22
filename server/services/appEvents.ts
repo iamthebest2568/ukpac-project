@@ -194,7 +194,7 @@ export interface SessionSummary {
   mn3Selected?: string[]; // ประเด็นนโยบายที่ผู้ใช้เลือก
   mn3BudgetAllocation?: Record<string, number>; // การจัดสรรงบประมาณ
   mn3BudgetTotal?: number;
-  satisfactionLevel?: string; // ระด��บความพึงพอใจ
+  satisfactionLevel?: string; // ระด��บ���วามพึงพอใจ
   ask05Comment?: string; // ข้อเสนอเพิ่มเติมต่อรัฐ
   fakeNewsResponse?: string; // การตอบสนองต่อข่าวปลอม
   sourceSelected?: string; // แหล่งข่าวที่ผู้ใช้เลือก
@@ -268,58 +268,43 @@ export async function computeSessionSummaries(
       } catch {}
     }
   } catch {}
-  // 2) Supabase (if configured)
+  // 2) Firestore (if available) — read video events for additional session analysis
   try {
-    const supabaseUrl = process.env.SUPABASE_URL as string | undefined;
-    const supabaseKey = process.env.SUPABASE_ANON_KEY as string | undefined;
-    if (supabaseUrl && supabaseKey) {
-      const params = new URLSearchParams({
-        select:
-          "session_id,event_name,choice_text,variant_name,variant_id,timestamp",
-        order: "id.asc",
-      });
-      const res = await fetch(
-        `${supabaseUrl}/rest/v1/video_events?${params.toString()}`,
-        {
-          headers: {
-            apikey: supabaseKey,
-            Authorization: `Bearer ${supabaseKey}`,
-          },
-        } as any,
-      );
-      if (res.ok) {
-        const rows = (await res.json()) as any[];
-        for (const r of rows) {
-          const sid = String(r.session_id ?? "");
-          if (!sid) continue;
-          const ts = new Date(
-            r.timestamp || new Date().toISOString(),
-          ).getTime();
-          if (r.event_name === "sw.story.start") {
-            const cur = firstStoryTs.get(sid);
-            if (cur === undefined || ts < cur) firstStoryTs.set(sid, ts);
-          }
+    initServerFirestore();
+    if (firestoreDb) {
+      const colDoc = doc(firestoreDb, "minigame1_events", "minigame1-di");
+      const eventsCol = collection(colDoc, "events");
+      const q = query(eventsCol, orderBy("createdAt", "asc"));
+      const snap = await getDocs(q as any);
+      const rows: any[] = [];
+      snap.forEach((d) => rows.push(d.data()));
+      for (const r of rows) {
+        const sid = String(r.sessionID || r.sessionId || "");
+        if (!sid) continue;
+        const ts = new Date(r.timestamp || r.createdAt || new Date().toISOString()).getTime();
+        if (r.eventName === "sw.story.start" || r.event === "sw.story.start") {
+          const cur = firstStoryTs.get(sid);
+          if (cur === undefined || ts < cur) firstStoryTs.set(sid, ts);
         }
-        for (const r of rows) {
-          const sid = String(r.session_id ?? "");
-          if (!sid) continue;
-          if (r.event_name !== "sw.choice.selected") continue;
-          const ts = new Date(
-            r.timestamp || new Date().toISOString(),
-          ).getTime();
-          const startTs = firstStoryTs.get(sid);
-          if (startTs === undefined) continue;
-          if (ts < startTs) continue;
-          if (!firstChoiceAfterStory.has(sid)) {
-            const name = String(
-              r.choice_text ?? r.variant_name ?? r.variant_id ?? "",
-            );
-            if (name) firstChoiceAfterStory.set(sid, { ts, name });
-          }
+      }
+      for (const r of rows) {
+        const sid = String(r.sessionID || r.sessionId || "");
+        if (!sid) continue;
+        const en = r.eventName || r.event;
+        if (en !== "sw.choice.selected") continue;
+        const ts = new Date(r.timestamp || r.createdAt || new Date().toISOString()).getTime();
+        const startTs = firstStoryTs.get(sid);
+        if (startTs === undefined) continue;
+        if (ts < startTs) continue;
+        if (!firstChoiceAfterStory.has(sid)) {
+          const name = String(r.choiceText ?? r.choice_text ?? r.variantName ?? r.variant_name ?? r.variantId ?? r.variant_id ?? "");
+          if (name) firstChoiceAfterStory.set(sid, { ts, name });
         }
       }
     }
-  } catch {}
+  } catch (e) {
+    console.warn("Failed to read video events from Firestore for session summaries", e);
+  }
 
   const summaries: SessionSummary[] = [];
   for (const [sid, arr] of bySession) {
