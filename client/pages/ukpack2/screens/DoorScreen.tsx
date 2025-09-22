@@ -109,7 +109,7 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
   "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
-  "กล้องวงจรปิด": <IconCamSmall />,
+  กล้องวงจรปิด: <IconCamSmall />,
 };
 
 const MONEY_ICON =
@@ -213,16 +213,22 @@ const IconHighLowActive = () => (
 
 const DoorScreen: React.FC = () => {
   const navigate = useNavigate();
-  type DoorSelection = { doorChoice: string | null; hasRamp: boolean; highLow: boolean };
+  type DoorSelection = {
+    doorChoice: string | null;
+    hasRamp: boolean;
+    highLow: boolean;
+  };
   const [selectedOption, setSelectedOption] = useState<DoorSelection>(() => {
     try {
       const raw = sessionStorage.getItem("design.doors");
       if (!raw) return { doorChoice: "1", hasRamp: false, highLow: false };
       const parsed = JSON.parse(raw);
-      if (typeof parsed === "string") return { doorChoice: parsed, hasRamp: false, highLow: false };
+      if (typeof parsed === "string")
+        return { doorChoice: parsed, hasRamp: false, highLow: false };
       if (parsed && typeof parsed === "object") {
         return {
-          doorChoice: parsed.doorChoice ?? (typeof parsed === "string" ? parsed : null),
+          doorChoice:
+            parsed.doorChoice ?? (typeof parsed === "string" ? parsed : null),
           hasRamp: Boolean(parsed.hasRamp),
           highLow: Boolean(parsed.highLow),
         } as DoorSelection;
@@ -292,507 +298,515 @@ const DoorScreen: React.FC = () => {
 
   return (
     <>
-    <CustomizationScreen
-      title="ปรับแต่งรถเมล์ของคุณ"
-      theme="light"
-      fullWidth
-      footerContent={
-        <div className="flex justify-center">
-          <CtaButton text="ถัดไป" onClick={handleNext} />
-        </div>
-      }
-    >
-      <div className={styles.contentGrid}>
-        <div className="w-full rounded-md flex flex-col items-center justify-center gap-2">
-          {(() => {
-            const CHASSIS_LABELS: Record<string, string> = {
-              small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
-              medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
-              large: "รถตู้โดยสาร 9–15 ที่นั่ง",
-              extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
-            };
-            const HERO_IMAGE: Record<string, string> = {
-              small:
-                "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F5ea1b3d990e44d49aa5441bc3a4b3bcc?format=webp&width=800",
-              medium:
-                "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fab8ddd78f9a0478bb27f5818928665f3?format=webp&width=800",
-              large:
-                "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc4ba360c1fe64492b71fc207c9dfd328?format=webp&width=800",
-              extra:
-                "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9a8a7536ced24db19a65409fbba1c6b6?format=webp&width=800",
-            };
-            let selected = "medium";
-            try {
-              const saved = sessionStorage.getItem("design.chassis");
-              if (saved) selected = saved;
-            } catch (e) {}
-            const label = CHASSIS_LABELS[selected] || "";
-            const img = HERO_IMAGE[selected];
-
-            // read previous selections
-            const amenitiesFromStorage = (() => {
-              try {
-                const raw = sessionStorage.getItem("design.amenities");
-                return raw ? (JSON.parse(raw) as string[]) : [];
-              } catch {
-                return [] as string[];
-              }
-            })();
-            const paymentsFromStorage = (() => {
-              try {
-                const raw = sessionStorage.getItem("design.payment");
-                return raw ? (JSON.parse(raw) as string[]) : [];
-              } catch {
-                return [] as string[];
-              }
-            })();
-
-            // build overlay labels: amenities + payments + current door selection
-            const overlayLabels = [
-              ...(amenitiesFromStorage || []),
-              ...(paymentsFromStorage || []),
-            ];
-            // Do not include current door selection as an overlay label — doors should not create overlays
-            // (overlay icons come only from previous steps: amenities and payments)
-
-            const renderOverlayIcon = (label: string, idx: number) => {
-              // amenities
-              if (AMENITIES_ICON_MAP[label]) {
-                return (
-                  <div
-                    key={`${label}-${idx}`}
-                    className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
-                  >
-                    {AMENITIES_ICON_MAP[label]}
-                  </div>
-                );
-              }
-
-              // payment labels
-              if (label === "เงินสด")
-                return (
-                  <div
-                    key={`${label}-${idx}`}
-                    className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
-                  >
-                    <img
-                      src={MONEY_ICON}
-                      alt={label}
-                      className="h-5 w-5 object-contain"
-                    />
-                  </div>
-                );
-              if (label === "สแกนจ่าย")
-                return (
-                  <div
-                    key={`${label}-${idx}`}
-                    className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
-                  >
-                    <img
-                      src={SCAN_ICON}
-                      alt={label}
-                      className="h-5 w-5 object-contain"
-                    />
-                  </div>
-                );
-              if (label === "สแกนจ่าย 2")
-                return (
-                  <div
-                    key={`${label}-${idx}`}
-                    className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
-                  >
-                    <img
-                      src={SCAN2_ICON}
-                      alt={label}
-                      className="h-5 w-5 object-contain"
-                    />
-                  </div>
-                );
-              if (label === "แตะบัตร")
-                return (
-                  <div
-                    key={`${label}-${idx}`}
-                    className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
-                  >
-                    <img
-                      src={TOUCH_ICON}
-                      alt={label}
-                      className="h-5 w-5 object-contain"
-                    />
-                  </div>
-                );
-              if (label === "กระเป๋ารถเมล์")
-                return (
-                  <div
-                    key={`${label}-${idx}`}
-                    className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
-                  >
-                    <img
-                      src={BUS_EMPLOY_ICON}
-                      alt={label}
-                      className="h-5 w-5 object-contain"
-                    />
-                  </div>
-                );
-              if (label === "ตั๋วรายเดือน/รอบ")
-                return (
-                  <div
-                    key={`${label}-${idx}`}
-                    className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
-                  >
-                    <img
-                      src={MONTHLY_ICON}
-                      alt={label}
-                      className="h-5 w-5 object-contain"
-                    />
-                  </div>
-                );
-
-              // door option keys
-              if (label === "1")
-                return (
-                  <div
-                    key={`${label}-${idx}`}
-                    className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
-                  >
-                    <img
-                      src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fbfe398b713cf4650810c0e346f6c03e3?format=webp&width=800"
-                      alt="image"
-                      className="h-6 w-6 md:h-7 md:w-7 object-contain"
-                    />
-                  </div>
-                );
-              if (label === "2")
-                return (
-                  <div
-                    key={`${label}-${idx}`}
-                    className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
-                  >
-                    <img
-                      src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8f9b21942af243b3b80b0e5ac8b12631?format=webp&width=800"
-                      alt="image"
-                      className="h-6 w-6 md:h-7 md:w-7 object-contain"
-                    />
-                  </div>
-                );
-              if (label === "ramp")
-                return (
-                  <div
-                    key={`${label}-${idx}`}
-                    className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
-                  >
-                    <img
-                      src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fece2b6fc843340f0997f2fd7d3ca0aea?format=webp&width=800"
-                      alt="image"
-                      className="h-6 w-6 md:h-7 md:w-7 object-contain"
-                    />
-                  </div>
-                );
-              if (label === "emergency")
-                return (
-                  <div
-                    key={`${label}-${idx}`}
-                    className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
-                  >
-                    <img
-                      src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F98de0624be3d4ae6b96d83edcf8891f9?format=webp&width=800"
-                      alt="image"
-                      className="h-6 w-6 md:h-7 md:w-7 object-contain"
-                    />
-                  </div>
-                );
-
-              return (
-                <div
-                  key={`${label}-${idx}`}
-                  className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10 text-xs"
-                >
-                  ?
-                </div>
-              );
-            };
-
-            return img ? (
-              <>
-                {(() => {
-                  // Build a robust merged overlay map that includes normalized keys and fallbacks
-                  let storedMapRaw: Record<string, string> = {};
-                  try {
-                    const raw = sessionStorage.getItem("design.overlayIconMap");
-                    if (raw)
-                      storedMapRaw = JSON.parse(raw) as Record<string, string>;
-                  } catch {}
-
-                  const normalizeKey = (s: string) =>
-                    (s || "")
-                      .replace(/\uFFFD/g, "")
-                      .replace(/\u2011/g, "-")
-                      .replace(/\u00A0/g, " ")
-                      .replace(/&amp;/g, "&")
-                      .replace(/\s+/g, " ")
-                      .trim()
-                      .toLowerCase();
-
-                  const merged: Record<string, string | React.ReactNode> = {};
-
-                  // Helper to set multiple variants
-                  const setVariants = (
-                    key: string,
-                    val: string | React.ReactNode,
-                  ) => {
-                    merged[key] = val;
-                    try {
-                      const nk = normalizeKey(key);
-                      if (nk) merged[nk] = val;
-                      const nkNoSpace = nk.replace(/\s/g, "");
-                      if (nkNoSpace) merged[nkNoSpace] = val;
-                    } catch {}
-                  };
-
-                  // Favor storedMapRaw entries (URLs)
-                  for (const k of Object.keys(storedMapRaw)) {
-                    setVariants(k, storedMapRaw[k]);
-                  }
-
-                  // Then overlay constants
-                  for (const k of Object.keys(OVERLAY_ICON_SRC)) {
-                    if (!merged[k]) setVariants(k, OVERLAY_ICON_SRC[k]);
-                  }
-
-                  // Then amenities small JSX nodes as fallback
-                  for (const k of Object.keys(AMENITIES_ICON_MAP)) {
-                    if (!merged[k]) setVariants(k, AMENITIES_ICON_MAP[k]);
-                  }
-
-                  // Ensure explicit keys exist
-                  const explicit = [
-                    "เงินสด",
-                    "สแกนจ่าย",
-                    "สแกนจ่าย 2",
-                    "แตะบัตร",
-                    "กระเป๋ารถเมล์",
-                    "ตั๋วรายเดือน/รอบ",
-                    "1",
-                    "2",
-                    "ramp",
-                    "emergency",
-                  ];
-                  for (const k of explicit) {
-                    if (!merged[k]) {
-                      if (storedMapRaw[k]) setVariants(k, storedMapRaw[k]);
-                      else if (OVERLAY_ICON_SRC[k])
-                        setVariants(k, OVERLAY_ICON_SRC[k]);
-                      else if (AMENITIES_ICON_MAP[k])
-                        setVariants(k, AMENITIES_ICON_MAP[k]);
-                    }
-                  }
-
-                  return (
-                    <VehiclePreview
-                      imageSrc={img}
-                      label={label}
-                      showSelectedText
-                      overlayLabels={overlayLabels}
-                      overlayIconMap={merged}
-                    />
-                  );
-                })()}
-              </>
-            ) : (
-              <div className="w-full h-48 bg-[#081042] rounded-md flex items-center justify-center text-sm text-gray-300">
-                Bus image preview
-              </div>
-            );
-          })()}
-        </div>
-        <section
-          className={`${styles.controlsSection} ${styles.controlsWrapper} ${styles.doorControls}`}
-        >
-          <div className={styles.tabsWrapper}>
-            <StepTabs active={5} />
+      <CustomizationScreen
+        title="ปรับแต่งรถเมล์ของคุณ"
+        theme="light"
+        fullWidth
+        footerContent={
+          <div className="flex justify-center">
+            <CtaButton text="ถัดไป" onClick={handleNext} />
           </div>
+        }
+      >
+        <div className={styles.contentGrid}>
+          <div className="w-full rounded-md flex flex-col items-center justify-center gap-2">
+            {(() => {
+              const CHASSIS_LABELS: Record<string, string> = {
+                small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
+                medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
+                large: "รถตู้โดยสาร 9–15 ที่นั่ง",
+                extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
+              };
+              const HERO_IMAGE: Record<string, string> = {
+                small:
+                  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F5ea1b3d990e44d49aa5441bc3a4b3bcc?format=webp&width=800",
+                medium:
+                  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fab8ddd78f9a0478bb27f5818928665f3?format=webp&width=800",
+                large:
+                  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc4ba360c1fe64492b71fc207c9dfd328?format=webp&width=800",
+                extra:
+                  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9a8a7536ced24db19a65409fbba1c6b6?format=webp&width=800",
+              };
+              let selected = "medium";
+              try {
+                const saved = sessionStorage.getItem("design.chassis");
+                if (saved) selected = saved;
+              } catch (e) {}
+              const label = CHASSIS_LABELS[selected] || "";
+              const img = HERO_IMAGE[selected];
 
-          <div className={styles.controlsBox}>
-            <div className={styles.controlsContent}>
-              <h2 className="text-xl font-prompt font-semibold text-[#003366] mt-2">
-                ประตู
-              </h2>
+              // read previous selections
+              const amenitiesFromStorage = (() => {
+                try {
+                  const raw = sessionStorage.getItem("design.amenities");
+                  return raw ? (JSON.parse(raw) as string[]) : [];
+                } catch {
+                  return [] as string[];
+                }
+              })();
+              const paymentsFromStorage = (() => {
+                try {
+                  const raw = sessionStorage.getItem("design.payment");
+                  return raw ? (JSON.parse(raw) as string[]) : [];
+                } catch {
+                  return [] as string[];
+                }
+              })();
 
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                {(() => {
-                  const DOOR_OPTIONS = [
-                    {
-                      key: "1",
-                      label: "1 ประตู",
-                      icon: <IconDoor1 />,
-                      iconActive: <IconDoor1Active />,
-                    },
-                    {
-                      key: "2",
-                      label: "2 ประตู",
-                      icon: <IconDoor2 />,
-                      iconActive: <IconDoor2Active />,
-                    },
-                    {
-                      key: "ramp",
-                      label: "ทางลาดสำหรับรถเข็น/ผู้พิาการ",
-                      icon: <IconRamp />,
-                      iconActive: <IconRampActive />,
-                    },
-                    {
-                      key: "emergency",
-                      label: "ประตูฉุกเฉิน",
-                      icon: <IconHighLow />,
-                      iconActive: <IconHighLowActive />,
-                    },
-                  ];
+              // build overlay labels: amenities + payments + current door selection
+              const overlayLabels = [
+                ...(amenitiesFromStorage || []),
+                ...(paymentsFromStorage || []),
+              ];
+              // Do not include current door selection as an overlay label — doors should not create overlays
+              // (overlay icons come only from previous steps: amenities and payments)
 
-                  // helper to normalize and set variants into overlayIconMap in sessionStorage
-                  const normalizeKey = (s: string) =>
-                    (s || "")
-                      .replace(/\uFFFD/g, "")
-                      .replace(/\u2011/g, "-")
-                      .replace(/\u00A0/g, " ")
-                      .replace(/&amp;/g, "&")
-                      .replace(/\s+/g, " ")
-                      .trim()
-                      .toLowerCase();
+              const renderOverlayIcon = (label: string, idx: number) => {
+                // amenities
+                if (AMENITIES_ICON_MAP[label]) {
+                  return (
+                    <div
+                      key={`${label}-${idx}`}
+                      className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
+                    >
+                      {AMENITIES_ICON_MAP[label]}
+                    </div>
+                  );
+                }
 
-                  const loadStoredMap = () => {
-                    try {
-                      const raw = sessionStorage.getItem(
-                        "design.overlayIconMap",
-                      );
-                      return raw
-                        ? (JSON.parse(raw) as Record<string, string>)
-                        : {};
-                    } catch {
-                      return {} as Record<string, string>;
-                    }
-                  };
+                // payment labels
+                if (label === "เงินสด")
+                  return (
+                    <div
+                      key={`${label}-${idx}`}
+                      className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
+                    >
+                      <img
+                        src={MONEY_ICON}
+                        alt={label}
+                        className="h-5 w-5 object-contain"
+                      />
+                    </div>
+                  );
+                if (label === "สแกนจ่าย")
+                  return (
+                    <div
+                      key={`${label}-${idx}`}
+                      className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
+                    >
+                      <img
+                        src={SCAN_ICON}
+                        alt={label}
+                        className="h-5 w-5 object-contain"
+                      />
+                    </div>
+                  );
+                if (label === "สแกนจ่าย 2")
+                  return (
+                    <div
+                      key={`${label}-${idx}`}
+                      className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
+                    >
+                      <img
+                        src={SCAN2_ICON}
+                        alt={label}
+                        className="h-5 w-5 object-contain"
+                      />
+                    </div>
+                  );
+                if (label === "แตะบัตร")
+                  return (
+                    <div
+                      key={`${label}-${idx}`}
+                      className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
+                    >
+                      <img
+                        src={TOUCH_ICON}
+                        alt={label}
+                        className="h-5 w-5 object-contain"
+                      />
+                    </div>
+                  );
+                if (label === "กระเป๋ารถเมล์")
+                  return (
+                    <div
+                      key={`${label}-${idx}`}
+                      className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
+                    >
+                      <img
+                        src={BUS_EMPLOY_ICON}
+                        alt={label}
+                        className="h-5 w-5 object-contain"
+                      />
+                    </div>
+                  );
+                if (label === "ตั๋วรายเดือน/รอบ")
+                  return (
+                    <div
+                      key={`${label}-${idx}`}
+                      className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
+                    >
+                      <img
+                        src={MONTHLY_ICON}
+                        alt={label}
+                        className="h-5 w-5 object-contain"
+                      />
+                    </div>
+                  );
 
-                  const setVariantsToStorage = (
-                    map: Record<string, string>,
-                    key: string,
-                    val: string,
-                  ) => {
-                    try {
-                      map[key] = val;
-                      const nk = normalizeKey(key);
-                      if (nk) map[nk] = val;
-                      const nkNoSpace = nk.replace(/\s/g, "");
-                      if (nkNoSpace) map[nkNoSpace] = val;
-                    } catch (e) {
-                      // ignore
-                    }
-                  };
+                // door option keys
+                if (label === "1")
+                  return (
+                    <div
+                      key={`${label}-${idx}`}
+                      className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
+                    >
+                      <img
+                        src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fbfe398b713cf4650810c0e346f6c03e3?format=webp&width=800"
+                        alt="image"
+                        className="h-6 w-6 md:h-7 md:w-7 object-contain"
+                      />
+                    </div>
+                  );
+                if (label === "2")
+                  return (
+                    <div
+                      key={`${label}-${idx}`}
+                      className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
+                    >
+                      <img
+                        src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8f9b21942af243b3b80b0e5ac8b12631?format=webp&width=800"
+                        alt="image"
+                        className="h-6 w-6 md:h-7 md:w-7 object-contain"
+                      />
+                    </div>
+                  );
+                if (label === "ramp")
+                  return (
+                    <div
+                      key={`${label}-${idx}`}
+                      className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
+                    >
+                      <img
+                        src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fece2b6fc843340f0997f2fd7d3ca0aea?format=webp&width=800"
+                        alt="image"
+                        className="h-6 w-6 md:h-7 md:w-7 object-contain"
+                      />
+                    </div>
+                  );
+                if (label === "emergency")
+                  return (
+                    <div
+                      key={`${label}-${idx}`}
+                      className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
+                    >
+                      <img
+                        src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F98de0624be3d4ae6b96d83edcf8891f9?format=webp&width=800"
+                        alt="image"
+                        className="h-6 w-6 md:h-7 md:w-7 object-contain"
+                      />
+                    </div>
+                  );
 
-                  const handleSelect = (opt: any) => {
-                    // Multi-select rules:
-                    // - '1' and '2' are mutually exclusive (only one doorChoice)
-                    // - 'ramp' and 'emergency' are independent and can both be selected
-                    // - maximum of 3 selections total
-                    const current = selectedOption;
-                    let newSelection = { ...current } as DoorSelection;
+                return (
+                  <div
+                    key={`${label}-${idx}`}
+                    className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10 text-xs"
+                  >
+                    ?
+                  </div>
+                );
+              };
 
-                    if (opt.key === "1" || opt.key === "2") {
-                      // toggle doorChoice
-                      if (current.doorChoice === opt.key) newSelection.doorChoice = null;
-                      else newSelection.doorChoice = opt.key;
-                    } else if (opt.key === "ramp") {
-                      newSelection.hasRamp = !current.hasRamp;
-                    } else if (opt.key === "emergency") {
-                      newSelection.highLow = !current.highLow;
-                    }
-
-                    const newCount =
-                      (newSelection.doorChoice ? 1 : 0) +
-                      (newSelection.hasRamp ? 1 : 0) +
-                      (newSelection.highLow ? 1 : 0);
-
-                    if (newCount > 3) {
-                      setErrorMessage("สามารถเลือกได้สูงสุด 3 รายการเท่านั้น");
-                      setErrorModalOpen(true);
-                      return;
-                    }
-
-                    setSelectedOption(newSelection);
-                  };
-
-                  return DOOR_OPTIONS.map((opt) => {
-                    // try to use stored overlay URL if available (by key or label)
-                    let storedMap: Record<string, string | null> = {};
+              return img ? (
+                <>
+                  {(() => {
+                    // Build a robust merged overlay map that includes normalized keys and fallbacks
+                    let storedMapRaw: Record<string, string> = {};
                     try {
                       const raw = sessionStorage.getItem(
                         "design.overlayIconMap",
                       );
                       if (raw)
-                        storedMap = JSON.parse(raw) as Record<string, string>;
+                        storedMapRaw = JSON.parse(raw) as Record<
+                          string,
+                          string
+                        >;
                     } catch {}
 
-                    const lookupStored = (labelOrKey: string) => {
-                      if (!labelOrKey) return undefined;
-                      if (storedMap[labelOrKey])
-                        return storedMap[labelOrKey] as string;
-                      const target = normalizeKey(labelOrKey);
-                      for (const k of Object.keys(storedMap)) {
-                        if (normalizeKey(k) === target)
-                          return storedMap[k] as string;
-                      }
-                      return undefined;
+                    const normalizeKey = (s: string) =>
+                      (s || "")
+                        .replace(/\uFFFD/g, "")
+                        .replace(/\u2011/g, "-")
+                        .replace(/\u00A0/g, " ")
+                        .replace(/&amp;/g, "&")
+                        .replace(/\s+/g, " ")
+                        .trim()
+                        .toLowerCase();
+
+                    const merged: Record<string, string | React.ReactNode> = {};
+
+                    // Helper to set multiple variants
+                    const setVariants = (
+                      key: string,
+                      val: string | React.ReactNode,
+                    ) => {
+                      merged[key] = val;
+                      try {
+                        const nk = normalizeKey(key);
+                        if (nk) merged[nk] = val;
+                        const nkNoSpace = nk.replace(/\s/g, "");
+                        if (nkNoSpace) merged[nkNoSpace] = val;
+                      } catch {}
                     };
 
-                    const candidateUrl =
-                      lookupStored(opt.key) ||
-                      lookupStored(opt.label) ||
-                      DOOR_BUTTON_SRC[opt.key];
+                    // Favor storedMapRaw entries (URLs)
+                    for (const k of Object.keys(storedMapRaw)) {
+                      setVariants(k, storedMapRaw[k]);
+                    }
 
-                    // match Amenities behavior: use iconActive when selected, otherwise icon; candidateUrl (override) should be used for overlay mapping but not replace selected appearance
-                    const iconNode =
-                      (opt.key === "1" || opt.key === "2")
-                        ? selectedOption.doorChoice === opt.key
-                          ? opt.iconActive || opt.icon
-                          : opt.icon
-                        : opt.key === "ramp"
-                          ? selectedOption.hasRamp
-                            ? opt.iconActive || opt.icon
-                            : opt.icon
-                          : opt.key === "emergency"
-                            ? selectedOption.highLow
-                              ? opt.iconActive || opt.icon
-                              : opt.icon
-                            : opt.icon;
+                    // Then overlay constants
+                    for (const k of Object.keys(OVERLAY_ICON_SRC)) {
+                      if (!merged[k]) setVariants(k, OVERLAY_ICON_SRC[k]);
+                    }
+
+                    // Then amenities small JSX nodes as fallback
+                    for (const k of Object.keys(AMENITIES_ICON_MAP)) {
+                      if (!merged[k]) setVariants(k, AMENITIES_ICON_MAP[k]);
+                    }
+
+                    // Ensure explicit keys exist
+                    const explicit = [
+                      "เงินสด",
+                      "สแกนจ่าย",
+                      "สแกนจ่าย 2",
+                      "แตะบัตร",
+                      "กระเป๋ารถเมล์",
+                      "ตั๋วรายเดือน/รอบ",
+                      "1",
+                      "2",
+                      "ramp",
+                      "emergency",
+                    ];
+                    for (const k of explicit) {
+                      if (!merged[k]) {
+                        if (storedMapRaw[k]) setVariants(k, storedMapRaw[k]);
+                        else if (OVERLAY_ICON_SRC[k])
+                          setVariants(k, OVERLAY_ICON_SRC[k]);
+                        else if (AMENITIES_ICON_MAP[k])
+                          setVariants(k, AMENITIES_ICON_MAP[k]);
+                      }
+                    }
 
                     return (
-                      <SelectionCard
-                        key={opt.key}
-                        icon={iconNode}
-                        label={opt.label}
-                        isSelected={
-                          opt.key === "1" || opt.key === "2"
-                            ? selectedOption.doorChoice === opt.key
-                            : opt.key === "ramp"
-                              ? selectedOption.hasRamp
-                              : opt.key === "emergency"
-                                ? selectedOption.highLow
-                                : false
-                        }
-                        onClick={() => handleSelect(opt)}
-                        variant="light"
-                        hideLabel
-                        appearance="group"
-                        groupSize="lg"
-                        fill
+                      <VehiclePreview
+                        imageSrc={img}
+                        label={label}
+                        showSelectedText
+                        overlayLabels={overlayLabels}
+                        overlayIconMap={merged}
                       />
                     );
-                  });
-                })()}
+                  })()}
+                </>
+              ) : (
+                <div className="w-full h-48 bg-[#081042] rounded-md flex items-center justify-center text-sm text-gray-300">
+                  Bus image preview
+                </div>
+              );
+            })()}
+          </div>
+          <section
+            className={`${styles.controlsSection} ${styles.controlsWrapper} ${styles.doorControls}`}
+          >
+            <div className={styles.tabsWrapper}>
+              <StepTabs active={5} />
+            </div>
+
+            <div className={styles.controlsBox}>
+              <div className={styles.controlsContent}>
+                <h2 className="text-xl font-prompt font-semibold text-[#003366] mt-2">
+                  ประตู
+                </h2>
+
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                  {(() => {
+                    const DOOR_OPTIONS = [
+                      {
+                        key: "1",
+                        label: "1 ประตู",
+                        icon: <IconDoor1 />,
+                        iconActive: <IconDoor1Active />,
+                      },
+                      {
+                        key: "2",
+                        label: "2 ประตู",
+                        icon: <IconDoor2 />,
+                        iconActive: <IconDoor2Active />,
+                      },
+                      {
+                        key: "ramp",
+                        label: "ทางลาดสำหรับรถเข็น/ผู้พิาการ",
+                        icon: <IconRamp />,
+                        iconActive: <IconRampActive />,
+                      },
+                      {
+                        key: "emergency",
+                        label: "ประตูฉุกเฉิน",
+                        icon: <IconHighLow />,
+                        iconActive: <IconHighLowActive />,
+                      },
+                    ];
+
+                    // helper to normalize and set variants into overlayIconMap in sessionStorage
+                    const normalizeKey = (s: string) =>
+                      (s || "")
+                        .replace(/\uFFFD/g, "")
+                        .replace(/\u2011/g, "-")
+                        .replace(/\u00A0/g, " ")
+                        .replace(/&amp;/g, "&")
+                        .replace(/\s+/g, " ")
+                        .trim()
+                        .toLowerCase();
+
+                    const loadStoredMap = () => {
+                      try {
+                        const raw = sessionStorage.getItem(
+                          "design.overlayIconMap",
+                        );
+                        return raw
+                          ? (JSON.parse(raw) as Record<string, string>)
+                          : {};
+                      } catch {
+                        return {} as Record<string, string>;
+                      }
+                    };
+
+                    const setVariantsToStorage = (
+                      map: Record<string, string>,
+                      key: string,
+                      val: string,
+                    ) => {
+                      try {
+                        map[key] = val;
+                        const nk = normalizeKey(key);
+                        if (nk) map[nk] = val;
+                        const nkNoSpace = nk.replace(/\s/g, "");
+                        if (nkNoSpace) map[nkNoSpace] = val;
+                      } catch (e) {
+                        // ignore
+                      }
+                    };
+
+                    const handleSelect = (opt: any) => {
+                      // Multi-select rules:
+                      // - '1' and '2' are mutually exclusive (only one doorChoice)
+                      // - 'ramp' and 'emergency' are independent and can both be selected
+                      // - maximum of 3 selections total
+                      const current = selectedOption;
+                      let newSelection = { ...current } as DoorSelection;
+
+                      if (opt.key === "1" || opt.key === "2") {
+                        // toggle doorChoice
+                        if (current.doorChoice === opt.key)
+                          newSelection.doorChoice = null;
+                        else newSelection.doorChoice = opt.key;
+                      } else if (opt.key === "ramp") {
+                        newSelection.hasRamp = !current.hasRamp;
+                      } else if (opt.key === "emergency") {
+                        newSelection.highLow = !current.highLow;
+                      }
+
+                      const newCount =
+                        (newSelection.doorChoice ? 1 : 0) +
+                        (newSelection.hasRamp ? 1 : 0) +
+                        (newSelection.highLow ? 1 : 0);
+
+                      if (newCount > 3) {
+                        setErrorMessage(
+                          "สามารถเลือกได้สูงสุด 3 รายการเท่านั้น",
+                        );
+                        setErrorModalOpen(true);
+                        return;
+                      }
+
+                      setSelectedOption(newSelection);
+                    };
+
+                    return DOOR_OPTIONS.map((opt) => {
+                      // try to use stored overlay URL if available (by key or label)
+                      let storedMap: Record<string, string | null> = {};
+                      try {
+                        const raw = sessionStorage.getItem(
+                          "design.overlayIconMap",
+                        );
+                        if (raw)
+                          storedMap = JSON.parse(raw) as Record<string, string>;
+                      } catch {}
+
+                      const lookupStored = (labelOrKey: string) => {
+                        if (!labelOrKey) return undefined;
+                        if (storedMap[labelOrKey])
+                          return storedMap[labelOrKey] as string;
+                        const target = normalizeKey(labelOrKey);
+                        for (const k of Object.keys(storedMap)) {
+                          if (normalizeKey(k) === target)
+                            return storedMap[k] as string;
+                        }
+                        return undefined;
+                      };
+
+                      const candidateUrl =
+                        lookupStored(opt.key) ||
+                        lookupStored(opt.label) ||
+                        DOOR_BUTTON_SRC[opt.key];
+
+                      // match Amenities behavior: use iconActive when selected, otherwise icon; candidateUrl (override) should be used for overlay mapping but not replace selected appearance
+                      const iconNode =
+                        opt.key === "1" || opt.key === "2"
+                          ? selectedOption.doorChoice === opt.key
+                            ? opt.iconActive || opt.icon
+                            : opt.icon
+                          : opt.key === "ramp"
+                            ? selectedOption.hasRamp
+                              ? opt.iconActive || opt.icon
+                              : opt.icon
+                            : opt.key === "emergency"
+                              ? selectedOption.highLow
+                                ? opt.iconActive || opt.icon
+                                : opt.icon
+                              : opt.icon;
+
+                      return (
+                        <SelectionCard
+                          key={opt.key}
+                          icon={iconNode}
+                          label={opt.label}
+                          isSelected={
+                            opt.key === "1" || opt.key === "2"
+                              ? selectedOption.doorChoice === opt.key
+                              : opt.key === "ramp"
+                                ? selectedOption.hasRamp
+                                : opt.key === "emergency"
+                                  ? selectedOption.highLow
+                                  : false
+                          }
+                          onClick={() => handleSelect(opt)}
+                          variant="light"
+                          hideLabel
+                          appearance="group"
+                          groupSize="lg"
+                          fill
+                        />
+                      );
+                    });
+                  })()}
+                </div>
               </div>
             </div>
-          </div>
-        </section>
-      </div>
-    </CustomizationScreen>
+          </section>
+        </div>
+      </CustomizationScreen>
 
       <ErrorModal
         isOpen={isErrorModalOpen}

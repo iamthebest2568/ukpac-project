@@ -31,7 +31,10 @@ const SourceSelection = ({ sessionID, onNavigate }: SourceSelectionProps) => {
   };
 
   const handleSubmit = () => {
-    logEvent({ event: "SOURCE_SELECTION_SUBMIT", payload: { selected, sessionID } });
+    logEvent({
+      event: "SOURCE_SELECTION_SUBMIT",
+      payload: { selected, sessionID },
+    });
     onNavigate("Flow_EndSequence", { selected });
   };
 
@@ -41,9 +44,18 @@ const SourceSelection = ({ sessionID, onNavigate }: SourceSelectionProps) => {
       backgroundAlt="รถไฟใต้ดินและป้ายข่าว"
       title={
         <>
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
             <div style={{ textAlign: "center" }}>
-              <span>ถ้าคุณจะหาข่าวต่อ คุณจะติดตามข่าวจากแหล่งข่าวไหนเป็นหลักรายการข่าวโทรทัศน์</span>
+              <span>
+                ถ้าคุณจะหาข่าวต่อ
+                คุณจะติดตามข่าวจากแหล่งข่าวไหนเป็นหลักรายการข่าวโทรทัศน์
+              </span>
             </div>
             <div style={{ fontSize: 14, marginTop: 8, color: "#374151" }}>
               เลือกได้ไม่เกิน 3 ข้อ
@@ -54,7 +66,13 @@ const SourceSelection = ({ sessionID, onNavigate }: SourceSelectionProps) => {
       className="source-selection-page source-selection-root"
     >
       <div style={{ padding: "0 16px", maxWidth: 980, margin: "0 auto" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12 }}>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(3, 1fr)",
+            gap: 12,
+          }}
+        >
           {options.map((opt) => {
             const isSelected = selected.includes(opt.id);
             return (
@@ -71,7 +89,9 @@ const SourceSelection = ({ sessionID, onNavigate }: SourceSelectionProps) => {
           })}
         </div>
 
-        <div style={{ marginTop: 20, display: "flex", justifyContent: "center" }}>
+        <div
+          style={{ marginTop: 20, display: "flex", justifyContent: "center" }}
+        >
           <div style={{ width: "100%", maxWidth: 420 }}>
             <button
               onClick={handleSubmit}
@@ -84,7 +104,6 @@ const SourceSelection = ({ sessionID, onNavigate }: SourceSelectionProps) => {
             </button>
           </div>
         </div>
-
       </div>
     </FigmaStyle1Layout>
   );

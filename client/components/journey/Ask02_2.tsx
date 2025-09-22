@@ -59,7 +59,9 @@ const Ask02_2 = ({ sessionID, onNavigate }: Ask02_2Props) => {
             {/* Top-centered placeholder overlay when input is empty */}
             <div
               onClick={() => {
-                const el = document.getElementById("ask02-2-textarea") as HTMLTextAreaElement | null;
+                const el = document.getElementById(
+                  "ask02-2-textarea",
+                ) as HTMLTextAreaElement | null;
                 if (el) el.focus();
               }}
               style={{

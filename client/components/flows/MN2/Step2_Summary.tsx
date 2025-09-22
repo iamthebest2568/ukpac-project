@@ -174,85 +174,105 @@ const Step2_Summary = ({
       useBlueOverlay={false}
       className="mn2-summary-page mn2-summary-minimal figma-style1-ukpack1 fake-news-page"
       imageLoading="eager"
-      title={<span style={{ color: "#000D59", position: 'relative' as any, zIndex: 9999, textShadow: 'none' }}>นโยบายที่คุณเสนอ</span>}
+      title={
+        <span
+          style={{
+            color: "#000D59",
+            position: "relative" as any,
+            zIndex: 9999,
+            textShadow: "none",
+          }}
+        >
+          นโยบายที่คุณเสนอ
+        </span>
+      }
     >
       <div
         className="relative z-10 w-full max-w-full mx-auto px-4 py-6"
-        style={{ paddingTop: "clamp(56px, 12vh, 120px)", height: 'calc(100vh - 80px)', boxSizing: 'border-box', display: 'flex', flexDirection: 'column' }}
+        style={{
+          paddingTop: "clamp(56px, 12vh, 120px)",
+          height: "calc(100vh - 80px)",
+          boxSizing: "border-box",
+          display: "flex",
+          flexDirection: "column",
+        }}
       >
         {/* Policy Cards */}
-        <div style={{ overflowY: 'auto', flex: 1, paddingRight: 8 }}>
+        <div style={{ overflowY: "auto", flex: 1, paddingRight: 8 }}>
           <div className="space-y-6 mb-6">
-          {summaryCards.map((card, index) => (
-            <div
-              key={index}
-              className="w-full max-w-[903px] mx-auto rounded-[20px] border-2 border-[#000D59] bg-transparent"
-              style={{
-                minHeight: "clamp(180px, 22vw, 300px)",
-                padding: "clamp(12px, 2.6vw, 20px)",
-              }}
-            >
-              {/* Policy Title */}
-              <div className="text-center mb-4">
-                <h2
-                  className="font-prompt font-bold text-center"
-                  style={{
-                    color: "#000D59",
-                    fontSize: "clamp(18px, 3.2vw, 36px)",
-                    fontWeight: 700,
-                    letterSpacing: "0.4px",
-                  }}
-                >
-                  {card.priority}
-                </h2>
-              </div>
-
-              {/* Beneficiary Icons - 3 per row, tighter spacing, slightly larger icons */}
+            {summaryCards.map((card, index) => (
               <div
-                className={`grid justify-items-center items-center grid-cols-3 gap-2`}
+                key={index}
+                className="w-full max-w-[903px] mx-auto rounded-[20px] border-2 border-[#000D59] bg-transparent"
                 style={{
-                  maxWidth: "100%",
-                  margin: "0 auto",
-                  padding: "0 clamp(6px, 1.6vw, 12px)",
+                  minHeight: "clamp(180px, 22vw, 300px)",
+                  padding: "clamp(12px, 2.6vw, 20px)",
                 }}
               >
-                {card.beneficiaries.map((beneficiary, beneficiaryIndex) => (
-                  <div
-                    key={beneficiaryIndex}
-                    className="flex flex-col items-center justify-center"
+                {/* Policy Title */}
+                <div className="text-center mb-4">
+                  <h2
+                    className="font-prompt font-bold text-center"
                     style={{
-                      width: "100%",
-                      maxWidth: "clamp(100px, 30vw, 160px)",
+                      color: "#000D59",
+                      fontSize: "clamp(18px, 3.2vw, 36px)",
+                      fontWeight: 700,
+                      letterSpacing: "0.4px",
                     }}
                   >
-                    {/* Circle with icon - slightly larger responsive size */}
-                    <div className="relative mb-1">
-                      {beneficiary.iconSrc && (
-                        <img
-                          src={beneficiary.iconSrc}
-                          alt={beneficiary.label}
-                          className="object-contain"
-                          style={{
-                            width: "clamp(64px, 16vw, 110px)",
-                            height: "clamp(64px, 16vw, 110px)",
-                            display: "block",
-                            margin: "0 auto",
-                          }}
-                        />
-                      )}
+                    {card.priority}
+                  </h2>
+                </div>
+
+                {/* Beneficiary Icons - 3 per row, tighter spacing, slightly larger icons */}
+                <div
+                  className={`grid justify-items-center items-center grid-cols-3 gap-2`}
+                  style={{
+                    maxWidth: "100%",
+                    margin: "0 auto",
+                    padding: "0 clamp(6px, 1.6vw, 12px)",
+                  }}
+                >
+                  {card.beneficiaries.map((beneficiary, beneficiaryIndex) => (
+                    <div
+                      key={beneficiaryIndex}
+                      className="flex flex-col items-center justify-center"
+                      style={{
+                        width: "100%",
+                        maxWidth: "clamp(100px, 30vw, 160px)",
+                      }}
+                    >
+                      {/* Circle with icon - slightly larger responsive size */}
+                      <div className="relative mb-1">
+                        {beneficiary.iconSrc && (
+                          <img
+                            src={beneficiary.iconSrc}
+                            alt={beneficiary.label}
+                            className="object-contain"
+                            style={{
+                              width: "clamp(64px, 16vw, 110px)",
+                              height: "clamp(64px, 16vw, 110px)",
+                              display: "block",
+                              margin: "0 auto",
+                            }}
+                          />
+                        )}
+                      </div>
+                      {/* Visually hide textual label (accessible to screen-readers) */}
+                      <span className="sr-only">{beneficiary.label}</span>
                     </div>
-                    {/* Visually hide textual label (accessible to screen-readers) */}
-                    <span className="sr-only">{beneficiary.label}</span>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
           </div>
         </div>
 
         {/* Bottom Question Section */}
-        <div className="text-center mb-8" style={{ marginTop: 'auto', paddingBottom: 'clamp(16px, 4vh, 48px)' }}>
+        <div
+          className="text-center mb-8"
+          style={{ marginTop: "auto", paddingBottom: "clamp(16px, 4vh, 48px)" }}
+        >
           <h2
             className="font-prompt font-bold text-center"
             style={{
@@ -267,7 +287,13 @@ const Step2_Summary = ({
 
           <div
             className="figma-style1-button-container mt-6"
-            style={{ maxWidth: 420, margin: "0 auto", display: "flex", gap: 12, justifyContent: "center" }}
+            style={{
+              maxWidth: 420,
+              margin: "0 auto",
+              display: "flex",
+              gap: 12,
+              justifyContent: "center",
+            }}
           >
             <button
               onClick={handleEndGame}
@@ -280,17 +306,22 @@ const Step2_Summary = ({
             <button
               onClick={() => {
                 // Log and navigate back to MN1 to try again
-                logEvent({ event: "MINIGAME_MN2_SUMMARY_RETRY", payload: { sessionID, summaryCards } });
+                logEvent({
+                  event: "MINIGAME_MN2_SUMMARY_RETRY",
+                  payload: { sessionID, summaryCards },
+                });
                 try {
                   navigateToPage("/minigame-mn1");
                 } catch (e) {
-                  console.warn('navigate to mn1 failed', e);
+                  console.warn("navigate to mn1 failed", e);
                 }
               }}
               className="figma-style1-button"
               aria-label="ไม่ใช่, ลองอีกครั้ง"
             >
-              <span className="figma-style1-button-text">ไม่ใช่, ลองอีกครั้ง</span>
+              <span className="figma-style1-button-text">
+                ไม่ใช่, ลองอีกครั้ง
+              </span>
             </button>
           </div>
         </div>

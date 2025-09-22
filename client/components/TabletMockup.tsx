@@ -1,6 +1,8 @@
 import React from "react";
 
-const TabletMockup: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+const TabletMockup: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   return (
     <div
       style={{
@@ -17,7 +19,8 @@ const TabletMockup: React.FC<{ children: React.ReactNode }> = ({ children }) => 
           borderRadius: 28,
           padding: 10,
           background: "linear-gradient(180deg,#f7f8fb,#eef2f7)",
-          boxShadow: "0 30px 60px rgba(2,6,23,0.16), 0 8px 20px rgba(2,6,23,0.08)",
+          boxShadow:
+            "0 30px 60px rgba(2,6,23,0.16), 0 8px 20px rgba(2,6,23,0.08)",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
@@ -50,7 +53,9 @@ const TabletMockup: React.FC<{ children: React.ReactNode }> = ({ children }) => 
             className="tablet-mockup-screen"
           >
             {/* This inner wrapper ensures the app content fits exactly into the viewport */}
-            <div style={{ width: "100%", height: "100%", overflow: "auto" }}>{children}</div>
+            <div style={{ width: "100%", height: "100%", overflow: "auto" }}>
+              {children}
+            </div>
           </div>
         </div>
       </div>

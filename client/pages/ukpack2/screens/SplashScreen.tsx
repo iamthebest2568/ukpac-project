@@ -97,10 +97,8 @@ const SplashScreen: React.FC = () => {
               style={{ width: "70%" }}
             />
           </div>
-
         </div>
       </div>
-
     </div>
   );
 };

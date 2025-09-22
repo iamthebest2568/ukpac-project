@@ -133,7 +133,9 @@ const Step3_Result = ({
     try {
       sessionStorage.setItem(
         "mn3_resultSummary",
-        JSON.stringify(data.budget_step3_result?.resultSummary || resultSummary),
+        JSON.stringify(
+          data.budget_step3_result?.resultSummary || resultSummary,
+        ),
       );
     } catch (e) {}
 
@@ -201,70 +203,72 @@ const Step3_Result = ({
 
       {/* Selected priorities visual summary - overlapping collage */}
       <div className="w-full px-4 mb-6">
-          <div
-            className="max-w-[980px] mx-auto relative"
-            style={{
-              height: 420,
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            {resultSummary.map((s, i) => {
-              const imgSrc =
-                priorityImageMap[s.priority] ||
-                "https://cdn.builder.io/api/v1/image/assets/TEMP/placeholder.png?width=720";
-              const offset = collageOffsets[i] || {
-                left: `50%`,
-                top: `50%`,
-                rotate: `0deg`,
-                z: i + 1,
-                scale: 1,
-              };
-              const count = resultSummary.length;
-              const spacing = count === 1 ? 0 : count === 2 ? 40 : -60; // smaller/negative spacing to create overlay
-              const offsetX = Math.round((i - (count - 1) / 2) * spacing);
-              const width = count === 1 ? "68%" : count === 2 ? "55%" : "46%";
-              return (
+        <div
+          className="max-w-[980px] mx-auto relative"
+          style={{
+            height: 420,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          {resultSummary.map((s, i) => {
+            const imgSrc =
+              priorityImageMap[s.priority] ||
+              "https://cdn.builder.io/api/v1/image/assets/TEMP/placeholder.png?width=720";
+            const offset = collageOffsets[i] || {
+              left: `50%`,
+              top: `50%`,
+              rotate: `0deg`,
+              z: i + 1,
+              scale: 1,
+            };
+            const count = resultSummary.length;
+            const spacing = count === 1 ? 0 : count === 2 ? 40 : -60; // smaller/negative spacing to create overlay
+            const offsetX = Math.round((i - (count - 1) / 2) * spacing);
+            const width = count === 1 ? "68%" : count === 2 ? "55%" : "46%";
+            return (
+              <div
+                key={s.priority}
+                style={{
+                  position: "absolute",
+                  left: "50%",
+                  top: offset.top,
+                  transform: `translate(calc(-50% + ${offsetX}px), -50%) rotate(${offset.rotate}) scale(${offset.scale})`,
+                  width,
+                  zIndex: offset.z,
+                }}
+              >
                 <div
-                  key={s.priority}
                   style={{
-                    position: "absolute",
-                    left: "50%",
-                    top: offset.top,
-                    transform: `translate(calc(-50% + ${offsetX}px), -50%) rotate(${offset.rotate}) scale(${offset.scale})`,
-                    width,
-                    zIndex: offset.z,
+                    width: "100%",
+                    paddingBottom: "80%",
+                    position: "relative",
                   }}
                 >
-                  <div
+                  <img
+                    src={imgSrc}
+                    alt={s.priority}
                     style={{
+                      position: "absolute",
+                      inset: 0,
                       width: "100%",
-                      paddingBottom: "80%",
-                      position: "relative",
+                      height: "100%",
+                      objectFit: "contain",
+                      objectPosition: "center center",
                     }}
-                  >
-                    <img
-                      src={imgSrc}
-                      alt={s.priority}
-                      style={{
-                        position: "absolute",
-                        inset: 0,
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "contain",
-                        objectPosition: "center center",
-                      }}
-                    />
-                  </div>
+                  />
                 </div>
-              );
-            })}
-          </div>
+              </div>
+            );
+          })}
         </div>
+      </div>
 
       <div style={{ textAlign: "center", width: "100%", marginTop: 20 }}>
-        <h2 style={{ marginBottom: 12, color: "#000D59" }}>ภาพเมืองในอนาคตใกล้เคียงกับภาพในอุดมคติของคุณแล้วหรือไม่</h2>
+        <h2 style={{ marginBottom: 12, color: "#000D59" }}>
+          ภาพเมืองในอนาคตใกล้เคียงกับภาพในอุดมคติของคุณแล้วหรือไม่
+        </h2>
 
         <div
           className="figma-style1-button-container"
@@ -294,7 +298,9 @@ const Step3_Result = ({
             style={{ width: "100%" }}
             aria-label="ไม่ใช่, ลองอีกครั้ง"
           >
-            <span className="figma-style1-button-text">ไม่ใช่, ลองอีกครั้ง</span>
+            <span className="figma-style1-button-text">
+              ไม่ใช่, ลองอีกครั้ง
+            </span>
           </button>
         </div>
       </div>

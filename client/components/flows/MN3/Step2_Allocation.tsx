@@ -141,7 +141,10 @@ const Step2_Allocation = ({
             />
             <div className="mn3-budget-text">
               <div className="mn3-budget-label">งบทั้งหมด</div>
-              <div className="mn3-budget-amount">{totalBudget}<span style={{ marginLeft: 2 }}>%</span></div>
+              <div className="mn3-budget-amount">
+                {totalBudget}
+                <span style={{ marginLeft: 2 }}>%</span>
+              </div>
             </div>
           </div>
         </div>
@@ -152,7 +155,10 @@ const Step2_Allocation = ({
             {selectedPriorities.map((priority, index) => (
               <div key={priority} className="mn3-allocation-item">
                 <div className="mn3-allocation-label">{priority}</div>
-                <div className="mn3-allocation-input-container" style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+                <div
+                  className="mn3-allocation-input-container"
+                  style={{ display: "flex", alignItems: "center", gap: 4 }}
+                >
                   <input
                     type="number"
                     min="0"
@@ -185,7 +191,13 @@ const Step2_Allocation = ({
                     }}
                     className="mn3-allocation-input"
                   />
-                  <div className="mn3-allocation-suffix" aria-hidden style={{ color: '#000D59', fontWeight: 600 }}>%</div>
+                  <div
+                    className="mn3-allocation-suffix"
+                    aria-hidden
+                    style={{ color: "#000D59", fontWeight: 600 }}
+                  >
+                    %
+                  </div>
                 </div>
               </div>
             ))}

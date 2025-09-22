@@ -48,7 +48,14 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
       {title?.trim() || headerContent ? (
         <header
           className={`${fullWidth ? "px-0" : "px-6"} flex items-center justify-center py-3 md:py-4`}
-          style={fullWidth ? undefined : { paddingLeft: 'var(--page-horizontal-padding)', paddingRight: 'var(--page-horizontal-padding)' }}
+          style={
+            fullWidth
+              ? undefined
+              : {
+                  paddingLeft: "var(--page-horizontal-padding)",
+                  paddingRight: "var(--page-horizontal-padding)",
+                }
+          }
         >
           <div
             className={`${fullWidth ? "w-full" : "max-w-4xl w-full"} flex items-center justify-center ${containerPaddingClass || ""}`}
@@ -58,7 +65,10 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
                 {headerContent}
               </div>
             ) : (
-              <h1 className="text-lg md:text-2xl font-prompt font-semibold customization-title text-center w-full break-words leading-tight" style={{whiteSpace: 'normal'}}>
+              <h1
+                className="text-lg md:text-2xl font-prompt font-semibold customization-title text-center w-full break-words leading-tight"
+                style={{ whiteSpace: "normal" }}
+              >
                 {title}
               </h1>
             )}

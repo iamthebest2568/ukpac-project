@@ -42,12 +42,16 @@ const FeedbackScreen: React.FC = () => {
         style={{
           backgroundImage:
             "url('https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc3874bf37db54abeb4a13c308b0df9a4?format=webp&width=1600')",
-          minHeight: '320px'
+          minHeight: "320px",
         }}
       >
         <div className="max-w-4xl mx-auto flex items-end justify-center h-full">
           <div className="flex flex-col items-stretch gap-3 w-full max-w-sm pb-6">
-            <SecondaryButton className="w-full" text="ส่งความคิดเห็น" onClick={submit} />
+            <SecondaryButton
+              className="w-full"
+              text="ส่งความคิดเห็น"
+              onClick={submit}
+            />
             <CtaButton className="w-full" text="ข้าม" onClick={skip} />
           </div>
         </div>

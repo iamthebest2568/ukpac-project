@@ -179,7 +179,10 @@ const FigmaStyle1Layout = ({
           >
             {/* Title (always rendered if provided) */}
             {title && (
-              <div className="figma-style1-title-container" style={{ marginTop: isSourceSelection ? "32px" : undefined }}>
+              <div
+                className="figma-style1-title-container"
+                style={{ marginTop: isSourceSelection ? "32px" : undefined }}
+              >
                 <h1
                   className={`figma-style1-title ${isSourceSelection ? "figma-style1-title--black" : ""}`}
                   style={

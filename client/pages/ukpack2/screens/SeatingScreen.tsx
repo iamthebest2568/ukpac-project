@@ -289,10 +289,13 @@ const SeatingScreen: React.FC = () => {
                       className="w-24 px-3 py-2 rounded-full text-[#000D59] bg-white text-right font-sarabun text-[17.6px]"
                       style={{ borderWidth: 2, borderColor: "#000D59" }}
                       min={minCapacity}
-                      max={typeof totalSeats === "number" && totalSeats !== "" ? totalSeats : maxCapacity}
+                      max={
+                        typeof totalSeats === "number" && totalSeats !== ""
+                          ? totalSeats
+                          : maxCapacity
+                      }
                     />
                   </div>
-
 
                   <div className="flex items-center justify-between">
                     <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">
@@ -302,7 +305,11 @@ const SeatingScreen: React.FC = () => {
                       value={childElderSeats}
                       onChange={(v) => setChildElderSeats(v)}
                       min={0}
-                      max={typeof totalSeats === "number" && totalSeats !== "" ? totalSeats : maxCapacity}
+                      max={
+                        typeof totalSeats === "number" && totalSeats !== ""
+                          ? totalSeats
+                          : maxCapacity
+                      }
                       className="w-24 px-3 py-2 text-[#003366] bg-transparent text-right font-sarabun text-[17.6px] outline-none"
                     />
                   </div>
@@ -315,7 +322,11 @@ const SeatingScreen: React.FC = () => {
                       value={pregnantSeats}
                       onChange={(v) => setPregnantSeats(v)}
                       min={0}
-                      max={typeof totalSeats === "number" && totalSeats !== "" ? totalSeats : maxCapacity}
+                      max={
+                        typeof totalSeats === "number" && totalSeats !== ""
+                          ? totalSeats
+                          : maxCapacity
+                      }
                       className="w-24 px-3 py-2 text-[#003366] bg-transparent text-right font-sarabun text-[17.6px] outline-none"
                     />
                   </div>
@@ -328,7 +339,11 @@ const SeatingScreen: React.FC = () => {
                       value={monkSeats}
                       onChange={(v) => setMonkSeats(v)}
                       min={0}
-                      max={typeof totalSeats === "number" && totalSeats !== "" ? totalSeats : maxCapacity}
+                      max={
+                        typeof totalSeats === "number" && totalSeats !== ""
+                          ? totalSeats
+                          : maxCapacity
+                      }
                       className="w-24 px-3 py-2 text-[#003366] bg-transparent text-right font-sarabun text-[17.6px] outline-none"
                     />
                   </div>
@@ -341,7 +356,11 @@ const SeatingScreen: React.FC = () => {
                       value={wheelchairBikeSpaces}
                       onChange={(v) => setWheelchairBikeSpaces(v)}
                       min={0}
-                      max={typeof totalSeats === "number" && totalSeats !== "" ? totalSeats : maxCapacity}
+                      max={
+                        typeof totalSeats === "number" && totalSeats !== ""
+                          ? totalSeats
+                          : maxCapacity
+                      }
                       className="w-24 px-3 py-2 text-[#003366] bg-transparent text-right font-sarabun text-[17.6px] outline-none"
                     />
                   </div>

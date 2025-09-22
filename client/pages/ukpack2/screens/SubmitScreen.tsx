@@ -76,7 +76,11 @@ const SubmitScreen: React.FC = () => {
       if (dispatch) {
         dispatch({
           type: "SET_SERVICE_INFO",
-          payload: { routeName: null, area: Number(area), frequency: Number(interval) },
+          payload: {
+            routeName: null,
+            area: Number(area),
+            frequency: Number(interval),
+          },
         });
       }
     } catch (e) {}
@@ -96,7 +100,11 @@ const SubmitScreen: React.FC = () => {
           submitDesignToFirebase(
             {
               ...(state || {}),
-              serviceInfo: { routeName: null, area: Number(area), frequency: Number(interval) },
+              serviceInfo: {
+                routeName: null,
+                area: Number(area),
+                frequency: Number(interval),
+              },
             },
             blob,
           ).catch(() => {});
@@ -159,12 +167,12 @@ const SubmitScreen: React.FC = () => {
                   return [...(amenities || []), ...(payments || [])];
                 })()}
                 overlayIconMap={{
-                  "เงินสด": MONEY_ICON,
-                  "สแกนจ่าย": SCAN_ICON,
+                  เงินสด: MONEY_ICON,
+                  สแกนจ่าย: SCAN_ICON,
                   "สแกนจ่าย 2": SCAN2_ICON,
-                  "แตะบัตร": TOUCH_ICON,
+                  แตะบัตร: TOUCH_ICON,
                   "ตั๋วรายเดือน/รอบ": MONTHLY_ICON,
-                  "กระเป๋ารถเมล์": BUS_EMPLOY_ICON,
+                  กระเป๋ารถเมล์: BUS_EMPLOY_ICON,
                 }}
               />
             </div>
@@ -202,7 +210,9 @@ const SubmitScreen: React.FC = () => {
                 inputMode="numeric"
                 placeholder="พิมพ์"
                 value={interval}
-                onChange={(e) => setInterval(e.target.value.replace(/[^0-9]/g, ""))}
+                onChange={(e) =>
+                  setInterval(e.target.value.replace(/[^0-9]/g, ""))
+                }
                 className="flex-1 min-w-0 max-w-[220px] rounded-xl px-3 py-1.5 border-2 border-[#000D59] h-9 text-center placeholder-gray-400"
                 style={{
                   fontFamily: "Sarabun, sans-serif",
@@ -227,7 +237,6 @@ const SubmitScreen: React.FC = () => {
                 นาที
               </span>
             </div>
-
 
             <div className="flex items-center gap-3 min-w-0">
               <label

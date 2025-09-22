@@ -21,9 +21,12 @@
 }
 
 /* Extra high-specificity rule to override fake-news-page settings if needed */
-.figma-style1-container.ask04-budget-page.figma-style1-ukpack1.fake-news-page .figma-style1-background,
-.figma-style1-container.ask04-budget-page.figma-style1-ukpack1.fake-news-page .figma-style1-background-image,
-.figma-style1-container.ask04-budget-page.figma-style1-ukpack1.fake-news-page .figma-style1-background-overlay {
+.figma-style1-container.ask04-budget-page.figma-style1-ukpack1.fake-news-page
+  .figma-style1-background,
+.figma-style1-container.ask04-budget-page.figma-style1-ukpack1.fake-news-page
+  .figma-style1-background-image,
+.figma-style1-container.ask04-budget-page.figma-style1-ukpack1.fake-news-page
+  .figma-style1-background-overlay {
   display: none !important;
 }
 

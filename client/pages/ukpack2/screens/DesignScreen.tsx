@@ -434,9 +434,11 @@ const DesignScreen: React.FC = () => {
                         ref={textareaRef}
                         value={sloganDraft}
                         onChange={(e) => setSloganDraft(e.target.value)}
-                        placeholder={"พิมพ์คุณสมบัติพิเศษอื่นๆของ\nรถเมล์ในฝันของคุณ"}
+                        placeholder={
+                          "พิมพ์คุณสมบัติพิเศษอื่นๆของ\nรถเมล์ในฝันของคุณ"
+                        }
                         className="mt-3 w-full h-36 p-3 border-2 border-[#000D59] rounded-xl text-sm resize-none text-center"
-                        style={{ whiteSpace: 'pre-wrap' }}
+                        style={{ whiteSpace: "pre-wrap" }}
                       />
                       <div className="mt-3 flex justify-end gap-2">
                         <button

@@ -259,7 +259,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
               {isFullBleed ? (
                 children
               ) : (
-                <div style={{ height: "100%", overflow: "hidden" }}>{children}</div>
+                <div style={{ height: "100%", overflow: "hidden" }}>
+                  {children}
+                </div>
               )}
             </main>
           </TabletMockup>
@@ -272,7 +274,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             {isFullBleed ? (
               children
             ) : (
-              <div style={{ height: "100%", overflow: "hidden" }}>{children}</div>
+              <div style={{ height: "100%", overflow: "hidden" }}>
+                {children}
+              </div>
             )}
           </main>
         )}
