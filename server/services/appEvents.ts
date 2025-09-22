@@ -139,36 +139,6 @@ export async function readAllAppEvents(): Promise<AppEvent[]> {
     console.warn("Failed to read app events from Firestore", e);
   }
 
-  // Prefer Supabase if configured
-  const supabaseUrl = process.env.SUPABASE_URL as string | undefined;
-  const supabaseKey = process.env.SUPABASE_ANON_KEY as string | undefined;
-  if (supabaseUrl && supabaseKey) {
-    try {
-      const params = new URLSearchParams({ select: "*", order: "id.asc" });
-      const res = await fetch(
-        `${supabaseUrl}/rest/v1/app_events?${params.toString()}`,
-        {
-          headers: {
-            apikey: supabaseKey,
-            Authorization: `Bearer ${supabaseKey}`,
-          },
-        } as any,
-      );
-      if (res.ok) {
-        const rows = (await res.json()) as any[];
-        const events: AppEvent[] = rows.map((r) => ({
-          sessionId: sanitizeThai(String(r.session_id ?? "")),
-          event: sanitizeThai(String(r.event ?? "")),
-          timestamp: r.timestamp || new Date().toISOString(),
-          page: sanitizeThai(r.page ?? undefined),
-          payload: r.payload ?? undefined,
-          userAgent: sanitizeThai(r.user_agent ?? undefined),
-          ip: sanitizeThai(r.ip ?? undefined),
-        }));
-        return events;
-      }
-    } catch {}
-  }
   // Fallback to local file
   ensureDir();
   try {
