@@ -210,6 +210,17 @@ export function createServer() {
     }
   });
 
+  // Public submissions from Realtime DB (sanitized)
+  app.get('/api/public-submissions', async (req, res) => {
+    try {
+      const limit = req.query.limit ? Math.max(1, Math.min(200, Number(req.query.limit))) : 20;
+      const items = await (await import('./services/submissions')).listPublicSubmissions(limit);
+      res.status(200).json({ ok: true, items });
+    } catch (e: any) {
+      res.status(500).json({ ok: false, error: e?.message || 'failed to fetch submissions' });
+    }
+  });
+
   // Recent events for dashboard
   app.get("/api/video-events", async (req, res) => {
     try {
