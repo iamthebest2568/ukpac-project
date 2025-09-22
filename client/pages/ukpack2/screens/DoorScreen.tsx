@@ -711,7 +711,7 @@ const DoorScreen: React.FC = () => {
                       (newSelection.highLow ? 1 : 0);
 
                     if (newCount > 3) {
-                      setErrorMessage("สามารถเลือกได้สูงสุด 3 รายการเท่านั้��");
+                      setErrorMessage("สามารถเลือกได้สูงสุด 3 รายการเท่านั้น");
                       setErrorModalOpen(true);
                       return;
                     }
