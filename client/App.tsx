@@ -3,6 +3,7 @@ import "./global.css";
 import React, { Suspense, lazy, useEffect } from "react";
 import RouteTransition from "./components/shared/RouteTransition";
 import SuspenseFallback from "./components/shared/SuspenseFallback";
+import TabletMockup from "./components/TabletMockup";
 import {
   BrowserRouter,
   Routes,
@@ -213,6 +214,21 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         .catch(() => {});
     } catch (_) {}
   }
+
+  // Show tablet mockup only when viewport is >= 810px
+  const [useMock, setUseMock] = React.useState<boolean>(
+    typeof window !== "undefined" && window.innerWidth >= 810,
+  );
+  React.useEffect(() => {
+    const onResize = () => {
+      try {
+        setUseMock(window.innerWidth >= 810);
+      } catch (e) {}
+    };
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
   return (
     <div
       className={`min-h-screen flex justify-center ${isFullBleed ? "bg-white full-bleed-page" : "bg-[#2a2a2a]"}`}
@@ -233,17 +249,33 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         >
           ข้ามไปยังเนื้อหาหลัก
         </a>
-        <main
-          id="main-content"
-          role="main"
-          className={`w-full responsive-content ${isFullBleed ? "" : "h-full overflow-hidden"}`}
-        >
-          {isFullBleed ? (
-            children
-          ) : (
-            <div style={{ height: "100%", overflow: "hidden" }}>{children}</div>
-          )}
-        </main>
+        {useMock ? (
+          <TabletMockup>
+            <main
+              id="main-content"
+              role="main"
+              className={`w-full responsive-content ${isFullBleed ? "" : "h-full overflow-hidden"}`}
+            >
+              {isFullBleed ? (
+                children
+              ) : (
+                <div style={{ height: "100%", overflow: "hidden" }}>{children}</div>
+              )}
+            </main>
+          </TabletMockup>
+        ) : (
+          <main
+            id="main-content"
+            role="main"
+            className={`w-full responsive-content ${isFullBleed ? "" : "h-full overflow-hidden"}`}
+          >
+            {isFullBleed ? (
+              children
+            ) : (
+              <div style={{ height: "100%", overflow: "hidden" }}>{children}</div>
+            )}
+          </main>
+        )}
       </div>
     </div>
   );
