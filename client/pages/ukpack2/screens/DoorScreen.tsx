@@ -8,6 +8,7 @@ import StepTabs from "../components/StepTabs";
 import styles from "./chassis.module.css";
 import { useBusDesign } from "../context/BusDesignContext";
 import { OVERLAY_ICON_SRC } from "../utils/overlayIcons";
+import ErrorModal from "../components/ErrorModal";
 
 // Amenity icons (small versions)
 const IconAir = () => (
@@ -367,7 +368,7 @@ const DoorScreen: React.FC = () => {
               }
 
               // payment labels
-              if (label === "เงินสด")
+              if (label === "เงิ��สด")
                 return (
                   <div
                     key={`${label}-${idx}`}
@@ -709,7 +710,7 @@ const DoorScreen: React.FC = () => {
                       (newSelection.highLow ? 1 : 0);
 
                     if (newCount > 3) {
-                      setErrorMessage("สามารถเลือกได้สูงสุด 3 รายการเท่านั้น");
+                      setErrorMessage("สามารถเลือกได้สูงสุด 3 รายก���รเท่านั้น");
                       setErrorModalOpen(true);
                       return;
                     }
