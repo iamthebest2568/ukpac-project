@@ -490,7 +490,7 @@ const UkDashboard: React.FC = () => {
                   {lastSentResult.errors && lastSentResult.errors.length}
                 </div>
                 <div className="mt-2">Sample sent items:</div>
-                <pre className="text-xs mt-2 whitespace-pre-wrap">
+                <pre className="text-xs mt-2 whitespace-pre-wrap max-h-64 overflow-auto break-words">
                   {JSON.stringify(lastSentResult.sampleSent || [], null, 2)}
                 </pre>
               </div>
