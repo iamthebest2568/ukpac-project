@@ -40,7 +40,7 @@ function initFirebase() {
 
 export async function sendEventToFirestore(
   event: any,
-  collectionPath: string = "picture/future",
+  collectionPath: string = "minigame1_events/minigame1-id",
 ) {
   if (!db) initFirebase();
   if (!db) throw new Error("Firestore not initialized");
