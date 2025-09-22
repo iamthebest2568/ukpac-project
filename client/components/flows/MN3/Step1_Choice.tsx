@@ -25,7 +25,7 @@ const Step1_Choice = ({
 
   // Define priorities exactly as in Figma design
   const priorityList = [
-    "ลดค่าโดยสารรถไฟฟ้า",
+    "ลดค่าโดยสา��รถไฟฟ้า",
     "เพิ่มความถี่รถไฟฟ้า",
     "ตั๋วร่วม",
     "เพิ่มความถี่รถเมล์",
@@ -136,16 +136,16 @@ const Step1_Choice = ({
             className="font-prompt text-center leading-normal mb-2"
             style={{
               color: "#000D59",
-              fontSize: "clamp(24px, 6vw, 48px)",
+              fontSize: "clamp(22px, 5vw, 44px)",
               lineHeight: "1.2",
               fontWeight: 700,
               width: "100%",
               margin: "0 auto 8px auto",
             }}
           >
-            คุณคิดว่าควรใช้เงินที่ได้
+            คุณคิดว่าถ้าน��ยบายนี้จะเกิดขึ้น
             <br />
-            จากการเก็บไปพัฒนาอะไร
+            ควรมีนโยบายประกอบอะไรบ้าง 3 อันดับแรก
           </h1>
 
           <div style={{ textAlign: "center", marginTop: "12px" }}>
