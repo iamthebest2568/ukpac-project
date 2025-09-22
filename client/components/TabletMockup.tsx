@@ -52,7 +52,17 @@ const TabletMockup: React.FC<{ children?: React.ReactNode; iframeSrc?: string }>
           >
             {/* This inner wrapper ensures the app content fits exactly into the viewport */}
             <div style={{ width: "100%", height: "100%", overflow: "auto" }}>
-              {children}
+              {iframeSrc ? (
+                <iframe
+                  src={iframeSrc}
+                  title="Tablet viewport"
+                  width={810}
+                  height={1080}
+                  style={{ border: "none", display: "block", width: 810, height: 1080 }}
+                />
+              ) : (
+                children
+              )}
             </div>
           </div>
         </div>
