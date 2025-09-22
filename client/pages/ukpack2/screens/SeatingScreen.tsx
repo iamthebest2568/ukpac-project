@@ -37,15 +37,27 @@ const SeatingScreen: React.FC = () => {
   const [pregnantSeats, setPregnantSeats] = useState<number | "">("");
   const [childElderSeats, setChildElderSeats] = useState<number | "">("");
   const [monkSeats, setMonkSeats] = useState<number | "">("");
-  const [wheelchairBikeSpaces, setWheelchairBikeSpaces] = useState<number | "">("");
+  const [wheelchairBikeSpaces, setWheelchairBikeSpaces] = useState<number | "">(
+    "",
+  );
 
   const [isExitModalOpen, setExitModalOpen] = useState(false);
   const [isErrorModalOpen, setErrorModalOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [errorTitle, setErrorTitle] = useState("ข้อผิดพลาด");
 
-  const maxByChassis: Record<string, number> = { small: 30, medium: 50, large: 15, extra: 12 };
-  const minByChassis: Record<string, number> = { small: 16, medium: 30, large: 9, extra: 8 };
+  const maxByChassis: Record<string, number> = {
+    small: 30,
+    medium: 50,
+    large: 15,
+    extra: 12,
+  };
+  const minByChassis: Record<string, number> = {
+    small: 16,
+    medium: 30,
+    large: 9,
+    extra: 8,
+  };
 
   const currentChassis = state.chassis || "medium";
 
@@ -71,7 +83,10 @@ const SeatingScreen: React.FC = () => {
       if (raw && storedChassis === selectedChassis) {
         const parsed = JSON.parse(raw);
         if (parsed && typeof parsed.totalSeats === "number") {
-          const clampedTotal = Math.min(maxCapacity, Math.max(minCapacity, parsed.totalSeats));
+          const clampedTotal = Math.min(
+            maxCapacity,
+            Math.max(minCapacity, parsed.totalSeats),
+          );
           setTotalSeats(clampedTotal);
           setSpecialSeats(parsed.specialSeats ?? "");
           setPregnantSeats(parsed.pregnantSeats ?? "");
@@ -92,17 +107,33 @@ const SeatingScreen: React.FC = () => {
     setWheelchairBikeSpaces("");
   }, [selectedChassis, minCapacity, maxCapacity]);
 
-
   const validateSeating = (): boolean => {
-    const mappingMin: Record<string, number> = { small: 16, medium: 30, large: 9, extra: 8 };
-    const mappingMax: Record<string, number> = { small: 30, medium: 50, large: 15, extra: 12 };
+    const mappingMin: Record<string, number> = {
+      small: 16,
+      medium: 30,
+      large: 9,
+      extra: 8,
+    };
+    const mappingMax: Record<string, number> = {
+      small: 30,
+      medium: 50,
+      large: 15,
+      extra: 12,
+    };
     const minCapacityLocal = mappingMin[selectedChassis] ?? 16;
     const maxCapacityLocal = mappingMax[selectedChassis] ?? 50;
-    const total = typeof totalSeats === "number" ? totalSeats : totalSeats === "" ? NaN : Number(totalSeats);
+    const total =
+      typeof totalSeats === "number"
+        ? totalSeats
+        : totalSeats === ""
+          ? NaN
+          : Number(totalSeats);
 
     if (Number.isNaN(total)) {
       setErrorTitle("กรุณาระบุจำนวนที่นั่งทั้งหมด");
-      setErrorMessage(`กรุณากรอกจำนวนที่นั่งทั้งหมดในช่วง ${minCapacityLocal} ถึง ${maxCapacityLocal} ที่นั่ง`);
+      setErrorMessage(
+        `กรุณากรอกจำนวนที่นั่งทั้งหมดในช่วง ${minCapacityLocal} ถึง ${maxCapacityLocal} ที่นั่ง`,
+      );
       setErrorModalOpen(true);
       return false;
     }
@@ -110,7 +141,9 @@ const SeatingScreen: React.FC = () => {
     if (!(total >= minCapacityLocal && total <= maxCapacityLocal)) {
       const chassisLabel = CHASSIS_LABELS[selectedChassis] || selectedChassis;
       setErrorTitle("จำนวนที่นั่งไม่ถูกต้องสำหรับประเภทรถที่เลือก");
-      setErrorMessage(`คุณเลือก: ${chassisLabel}. ค่า���ี่ถูกต้องคือ ${minCapacityLocal} ถึง ${maxCapacityLocal} ที่นั่ง แต่คุณกรอก ${total}`);
+      setErrorMessage(
+        `คุณเลือก: ${chassisLabel}. ค่า���ี่ถูกต้องคือ ${minCapacityLocal} ถึง ${maxCapacityLocal} ที่นั่ง แต่คุณกรอก ${total}`,
+      );
       setErrorModalOpen(true);
       return false;
     }
@@ -123,7 +156,9 @@ const SeatingScreen: React.FC = () => {
     const sumSubs = sSpecial + sChild + sPreg + sMonk + sWheel;
     if (sumSubs !== total) {
       setErrorTitle("ผลรวมของที่นั่งย่อยไม่ตรงกัน");
-      setErrorMessage(`ผลรวมของที่นั่งย่อยทั้งหมด (${sumSubs}) ไม่ตรงกับจำนวนที่นั่งทั้งหมด (${total})`);
+      setErrorMessage(
+        `ผลรวมของที่นั่งย่อยทั้งหมด (${sumSubs}) ไม่ตรงกับจำนวนที่นั่งทั้งหมด (${total})`,
+      );
       setErrorModalOpen(true);
       return false;
     }
@@ -133,7 +168,14 @@ const SeatingScreen: React.FC = () => {
   const handleNext = () => {
     if (!validateSeating()) return;
     try {
-      const seating = { totalSeats, specialSeats, pregnantSeats, childElderSeats, monkSeats, wheelchairBikeSpaces };
+      const seating = {
+        totalSeats,
+        specialSeats,
+        pregnantSeats,
+        childElderSeats,
+        monkSeats,
+        wheelchairBikeSpaces,
+      };
       sessionStorage.setItem("design.seating", JSON.stringify(seating));
     } catch (e) {
       // ignore
@@ -142,7 +184,10 @@ const SeatingScreen: React.FC = () => {
   };
 
   const handleTotalSeatsChange = (v: number | "") => {
-    if (v === "") { setTotalSeats(""); return; }
+    if (v === "") {
+      setTotalSeats("");
+      return;
+    }
     const clamped = Math.min(maxCapacity, Math.max(minCapacity, v as number));
     setTotalSeats(clamped);
   };
@@ -158,12 +203,24 @@ const SeatingScreen: React.FC = () => {
       if (d) {
         try {
           const parsed = JSON.parse(d);
-          door = typeof parsed === "string" ? parsed : parsed?.doorChoice || (parsed?.hasRamp ? "ramp" : parsed?.highLow ? "emergency" : null);
+          door =
+            typeof parsed === "string"
+              ? parsed
+              : parsed?.doorChoice ||
+                (parsed?.hasRamp
+                  ? "ramp"
+                  : parsed?.highLow
+                    ? "emergency"
+                    : null);
         } catch {
           door = d;
         }
       }
-      return [...(amenities || []), ...(payments || []), ...(door ? [door] : [])];
+      return [
+        ...(amenities || []),
+        ...(payments || []),
+        ...(door ? [door] : []),
+      ];
     } catch {
       return [] as string[];
     }
@@ -171,17 +228,35 @@ const SeatingScreen: React.FC = () => {
 
   return (
     <div>
-      <CustomizationScreen title="ปรับแต่งรถเมล์าของคุณ" theme="light" fullWidth footerContent={<div className="flex justify-center"><CtaButton text="ถัดไป" onClick={handleNext} /></div>}>
+      <CustomizationScreen
+        title="ปรับแต่งรถเมล์าของคุณ"
+        theme="light"
+        fullWidth
+        footerContent={
+          <div className="flex justify-center">
+            <CtaButton text="ถัดไป" onClick={handleNext} />
+          </div>
+        }
+      >
         <div className={styles.contentGrid}>
           <div className={styles.previewWrapper}>
             <div className={styles.previewInner}>
               <div style={{ position: "relative" }}>
-                <VehiclePreview imageSrc={selectedTopdown} label={selectedLabel} showSelectedText overlayLabels={overlay} overlayIconMap={{}} showShadow={false} />
+                <VehiclePreview
+                  imageSrc={selectedTopdown}
+                  label={selectedLabel}
+                  showSelectedText
+                  overlayLabels={overlay}
+                  overlayIconMap={{}}
+                  showShadow={false}
+                />
               </div>
             </div>
           </div>
 
-          <section className={`${styles.controlsSection} ${styles.controlsWrapper}`}>
+          <section
+            className={`${styles.controlsSection} ${styles.controlsWrapper}`}
+          >
             <div className={styles.tabsWrapper}>
               <StepTabs active={2} />
             </div>
@@ -190,49 +265,103 @@ const SeatingScreen: React.FC = () => {
               <div className={styles.controlsContent}>
                 <div className="space-y-1 mt-1">
                   <div className="flex items-center justify-between">
-                    <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">จำนวนที่นั่งทั้งหมด</div>
+                    <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">
+                      จำนวนที่นั่งทั้งหมด
+                    </div>
                     <input
                       type="number"
                       placeholder="พิมพ์"
                       value={totalSeats}
-                      onFocus={(e) => { e.currentTarget.placeholder = ''; }}
-                      onBlur={(e) => { if (e.currentTarget.value === '') e.currentTarget.placeholder = 'พิมพ์'; }}
+                      onFocus={(e) => {
+                        e.currentTarget.placeholder = "";
+                      }}
+                      onBlur={(e) => {
+                        if (e.currentTarget.value === "")
+                          e.currentTarget.placeholder = "พิมพ์";
+                      }}
                       onChange={(e) => {
                         const raw = e.target.value;
-                        if (raw === "") { handleTotalSeatsChange(""); return; }
-                        const parsed = Math.min(maxCapacity, Math.max(0, parseInt(raw || "0", 10)));
+                        if (raw === "") {
+                          handleTotalSeatsChange("");
+                          return;
+                        }
+                        const parsed = Math.min(
+                          maxCapacity,
+                          Math.max(0, parseInt(raw || "0", 10)),
+                        );
                         handleTotalSeatsChange(parsed);
                       }}
                       className="w-24 px-3 py-2 rounded-full text-[#000D59] bg-white text-right font-sarabun text-[17.6px]"
-                      style={{ borderWidth: 2, borderColor: '#000D59' }}
+                      style={{ borderWidth: 2, borderColor: "#000D59" }}
                       min={minCapacity}
                       max={maxCapacity}
                     />
                   </div>
 
                   <div className="flex items-center justify-between">
-                    <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">จำนวนที่นั่งพิเศษ</div>
-                    <NumericPlaceholderInput id="specialSeats" value={specialSeats} onChange={(v) => setSpecialSeats(v)} min={0} max={maxCapacity} className="w-24 px-3 py-2 text-[#003366] bg-transparent text-right font-sarabun text-[17.6px] outline-none" />
+                    <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">
+                      จำนวนที่นั่งพิเศษ
+                    </div>
+                    <NumericPlaceholderInput
+                      id="specialSeats"
+                      value={specialSeats}
+                      onChange={(v) => setSpecialSeats(v)}
+                      min={0}
+                      max={maxCapacity}
+                      className="w-24 px-3 py-2 text-[#003366] bg-transparent text-right font-sarabun text-[17.6px] outline-none"
+                    />
                   </div>
 
                   <div className="flex items-center justify-between">
-                    <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">เด็ก / ผู้สูงอายุ</div>
-                    <NumericPlaceholderInput value={childElderSeats} onChange={(v) => setChildElderSeats(v)} min={0} max={maxCapacity} className="w-24 px-3 py-2 text-[#003366] bg-transparent text-right font-sarabun text-[17.6px] outline-none" />
+                    <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">
+                      เด็ก / ผู้สูงอายุ
+                    </div>
+                    <NumericPlaceholderInput
+                      value={childElderSeats}
+                      onChange={(v) => setChildElderSeats(v)}
+                      min={0}
+                      max={maxCapacity}
+                      className="w-24 px-3 py-2 text-[#003366] bg-transparent text-right font-sarabun text-[17.6px] outline-none"
+                    />
                   </div>
 
                   <div className="flex items-center justify-between">
-                    <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">สตรีมีครรภ์</div>
-                    <NumericPlaceholderInput value={pregnantSeats} onChange={(v) => setPregnantSeats(v)} min={0} max={maxCapacity} className="w-24 px-3 py-2 text-[#003366] bg-transparent text-right font-sarabun text-[17.6px] outline-none" />
+                    <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">
+                      สตรีมีครรภ์
+                    </div>
+                    <NumericPlaceholderInput
+                      value={pregnantSeats}
+                      onChange={(v) => setPregnantSeats(v)}
+                      min={0}
+                      max={maxCapacity}
+                      className="w-24 px-3 py-2 text-[#003366] bg-transparent text-right font-sarabun text-[17.6px] outline-none"
+                    />
                   </div>
 
                   <div className="flex items-center justify-between">
-                    <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">พระภิกษุสงฆ์</div>
-                    <NumericPlaceholderInput value={monkSeats} onChange={(v) => setMonkSeats(v)} min={0} max={maxCapacity} className="w-24 px-3 py-2 text-[#003366] bg-transparent text-right font-sarabun text-[17.6px] outline-none" />
+                    <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">
+                      พระภิกษุสงฆ์
+                    </div>
+                    <NumericPlaceholderInput
+                      value={monkSeats}
+                      onChange={(v) => setMonkSeats(v)}
+                      min={0}
+                      max={maxCapacity}
+                      className="w-24 px-3 py-2 text-[#003366] bg-transparent text-right font-sarabun text-[17.6px] outline-none"
+                    />
                   </div>
 
                   <div className="flex items-center justify-between">
-                    <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">พื้นที่สำหรับรถเข็น/จักรยาน</div>
-                    <NumericPlaceholderInput value={wheelchairBikeSpaces} onChange={(v) => setWheelchairBikeSpaces(v)} min={0} max={maxCapacity} className="w-24 px-3 py-2 text-[#003366] bg-transparent text-right font-sarabun text-[17.6px] outline-none" />
+                    <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">
+                      พื้นที่สำหรับรถเข็น/จักรยาน
+                    </div>
+                    <NumericPlaceholderInput
+                      value={wheelchairBikeSpaces}
+                      onChange={(v) => setWheelchairBikeSpaces(v)}
+                      min={0}
+                      max={maxCapacity}
+                      className="w-24 px-3 py-2 text-[#003366] bg-transparent text-right font-sarabun text-[17.6px] outline-none"
+                    />
                   </div>
                 </div>
               </div>
@@ -241,9 +370,20 @@ const SeatingScreen: React.FC = () => {
         </div>
       </CustomizationScreen>
 
-      <ConfirmModal isOpen={isExitModalOpen} title="ออกจากหน้าจอ" message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก" onConfirm={() => navigate("/")} onCancel={() => setExitModalOpen(false)} />
+      <ConfirmModal
+        isOpen={isExitModalOpen}
+        title="ออกจากหน้าจอ"
+        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
+        onConfirm={() => navigate("/")}
+        onCancel={() => setExitModalOpen(false)}
+      />
 
-      <ErrorModal isOpen={isErrorModalOpen} title={errorTitle} message={errorMessage} onClose={() => setErrorModalOpen(false)} />
+      <ErrorModal
+        isOpen={isErrorModalOpen}
+        title={errorTitle}
+        message={errorMessage}
+        onClose={() => setErrorModalOpen(false)}
+      />
     </div>
   );
 };

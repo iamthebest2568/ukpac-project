@@ -219,14 +219,14 @@ const IconCam = () => (
 );
 
 const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
-  "แอร์": <IconAir />,
-  "พัดลม": <IconFan />,
-  "ที่นั่งพิเศษ": <IconSeat />,
+  แอร์: <IconAir />,
+  พัดลม: <IconFan />,
+  ที่นั่งพิเศษ: <IconSeat />,
   "ที่จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
   "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
   "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
-  "กล้องวงจรปิด": <IconCam />,
+  กล้องวงจรปิด: <IconCam />,
 };
 
 const MONEY_ICON =
@@ -270,14 +270,16 @@ const PaymentScreen: React.FC = () => {
   const { state } = useBusDesign();
   const [selected, setSelected] = useState<string[]>(["เงินสด"]);
 
-  const storedColorLocal = state?.exterior?.color || (() => {
-    try {
-      const raw = sessionStorage.getItem("design.color");
-      return raw ? JSON.parse(raw) : null;
-    } catch {
-      return null;
-    }
-  })();
+  const storedColorLocal =
+    state?.exterior?.color ||
+    (() => {
+      try {
+        const raw = sessionStorage.getItem("design.color");
+        return raw ? JSON.parse(raw) : null;
+      } catch {
+        return null;
+      }
+    })();
   useEffect(() => {
     try {
       const raw = sessionStorage.getItem("design.payment");
@@ -298,12 +300,12 @@ const PaymentScreen: React.FC = () => {
   }, []);
 
   const ICON_SETS: Record<string, string[]> = {
-    "เงินสด": [
+    เงินสด: [
       MONEY_ICON,
       MONEY_ICON_ACTIVE,
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F29e4422ee7ff4d72a3f359831ac92c32?format=webp&width=800",
     ],
-    "สแกนจ่าย": [
+    สแกนจ่าย: [
       SCAN_ICON,
       SCAN_ICON_ACTIVE,
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe9e95c0ee1cf44c782478f7ca3e7cac9?format=webp&width=800",
@@ -313,12 +315,12 @@ const PaymentScreen: React.FC = () => {
       SCAN2_ICON_ACTIVE,
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F450e64db5b824f5c92cb33d5993705f6?format=webp&width=800",
     ],
-    "แตะบัตร": [
+    แตะบัตร: [
       TOUCH_ICON,
       TOUCH_ICON_ACTIVE,
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc25d540d10cc44e6922d714177b11d94?format=webp&width=800",
     ],
-    "กระเป๋ารถเมล์": [
+    กระเป๋ารถเมล์: [
       BUS_EMPLOY_ICON,
       BUS_EMPLOY_ICON_ACTIVE,
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc672415acf294449bc41d44cd9434120?format=webp&width=800",
@@ -333,7 +335,9 @@ const PaymentScreen: React.FC = () => {
   const toggle = (label: string) => {
     setSelected((prev) => {
       const isSelected = prev.includes(label);
-      const next = isSelected ? prev.filter((l) => l !== label) : [...prev, label];
+      const next = isSelected
+        ? prev.filter((l) => l !== label)
+        : [...prev, label];
 
       // update sessionStorage overlayIconMap immediately when selecting/unselecting
       try {
@@ -439,7 +443,8 @@ const PaymentScreen: React.FC = () => {
             // prefer not overwriting any user-set values, but populate normalized variants when empty
             setVariantsIfEmpty(lab, OVERLAY_ICON_SRC[lab]);
             const opt = OPTIONS.find((o) => o.label === lab);
-            if (opt && opt.key) setVariantsIfEmpty(opt.key, OVERLAY_ICON_SRC[lab]);
+            if (opt && opt.key)
+              setVariantsIfEmpty(opt.key, OVERLAY_ICON_SRC[lab]);
           }
         });
         sessionStorage.setItem("design.overlayIconMap", JSON.stringify(map));
@@ -519,9 +524,9 @@ const PaymentScreen: React.FC = () => {
             // Normalize known corrupted label encodings (in case values were stored with encoding issues)
             const CORRECT_LABELS: Record<string, string> = {
               "สแกนจ่าย 2": "สแกนจ่าย 2",
-              "แตะบัตร": "แตะบัตร",
-              "กระเป๋ารถเมล์": "กระเป๋ารถเมล์",
-              "เงินสด": "เงินสด",
+              แตะบัตร: "แตะบัตร",
+              กระเป๋ารถเมล์: "กระเป๋ารถเมล์",
+              เงินสด: "เงินสด",
             };
             const stripReplacement = (s: string) =>
               (s || "")
@@ -652,7 +657,11 @@ const PaymentScreen: React.FC = () => {
                     className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
                   >
                     <img
-                      src={selected.includes("สแกนจ่าย") ? SCAN_ICON_ACTIVE : SCAN_ICON}
+                      src={
+                        selected.includes("สแกนจ่าย")
+                          ? SCAN_ICON_ACTIVE
+                          : SCAN_ICON
+                      }
                       alt={label}
                       className="h-6 w-6 md:h-7 md:w-7 object-contain"
                     />
@@ -665,10 +674,14 @@ const PaymentScreen: React.FC = () => {
                     className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
                   >
                     <img
-                        src={selected.includes("สแกนจ่าย 2") ? SCAN2_ICON_ACTIVE : SCAN2_ICON}
-                        alt={label}
-                        className="h-6 w-6 md:h-7 md:w-7 object-contain"
-                      />
+                      src={
+                        selected.includes("สแกนจ่าย 2")
+                          ? SCAN2_ICON_ACTIVE
+                          : SCAN2_ICON
+                      }
+                      alt={label}
+                      className="h-6 w-6 md:h-7 md:w-7 object-contain"
+                    />
                   </div>
                 );
               if (opt.key === "tap")
@@ -678,7 +691,11 @@ const PaymentScreen: React.FC = () => {
                     className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
                   >
                     <img
-                      src={selected.includes("แตะบัตร") ? TOUCH_ICON_ACTIVE : TOUCH_ICON}
+                      src={
+                        selected.includes("แตะบัตร")
+                          ? TOUCH_ICON_ACTIVE
+                          : TOUCH_ICON
+                      }
                       alt={label}
                       className="h-6 w-6 md:h-7 md:w-7 object-contain"
                     />
@@ -691,7 +708,11 @@ const PaymentScreen: React.FC = () => {
                     className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
                   >
                     <img
-                      src={selected.includes("กระเป๋ารถเม���์") ? BUS_EMPLOY_ICON_ACTIVE : BUS_EMPLOY_ICON}
+                      src={
+                        selected.includes("กระเป๋ารถเม���์")
+                          ? BUS_EMPLOY_ICON_ACTIVE
+                          : BUS_EMPLOY_ICON
+                      }
                       alt={label}
                       className="h-6 w-6 md:h-7 md:w-7 object-contain"
                     />
@@ -704,10 +725,14 @@ const PaymentScreen: React.FC = () => {
                     className="bg-white/95 backdrop-blur rounded-full shadow-md h-9 w-9 md:h-10 md:w-10 flex items-center justify-center ring-1 ring-black/10"
                   >
                     <img
-                        src={selected.includes("ตั๋วรายเดือน/รอบ") ? MONTHLY_ICON_ACTIVE : MONTHLY_ICON}
-                        alt={label}
-                        className="h-6 w-6 md:h-7 md:w-7 object-contain"
-                      />
+                      src={
+                        selected.includes("ตั๋วรายเดือน/รอบ")
+                          ? MONTHLY_ICON_ACTIVE
+                          : MONTHLY_ICON
+                      }
+                      alt={label}
+                      className="h-6 w-6 md:h-7 md:w-7 object-contain"
+                    />
                   </div>
                 );
               // default to provided icon node
@@ -732,8 +757,14 @@ const PaymentScreen: React.FC = () => {
                     // Prefer stored session URLs, then canonical OVERLAY_ICON_SRC constants (strings)
                     let storedMapRaw: Record<string, string> = {};
                     try {
-                      const raw = sessionStorage.getItem("design.overlayIconMap");
-                      if (raw) storedMapRaw = JSON.parse(raw) as Record<string, string>;
+                      const raw = sessionStorage.getItem(
+                        "design.overlayIconMap",
+                      );
+                      if (raw)
+                        storedMapRaw = JSON.parse(raw) as Record<
+                          string,
+                          string
+                        >;
                     } catch {}
 
                     const normalizeKey = (s: string) =>
@@ -758,7 +789,9 @@ const PaymentScreen: React.FC = () => {
                     };
 
                     for (const k of Object.keys(storedMapRaw)) {
-                      try { setVariants(k, storedMapRaw[k]); } catch {}
+                      try {
+                        setVariants(k, storedMapRaw[k]);
+                      } catch {}
                     }
 
                     try {
@@ -768,9 +801,17 @@ const PaymentScreen: React.FC = () => {
                     } catch {}
 
                     // Ensure payment-specific keys are present
-                    const explicit = ["เงินสด","สแกนจ่าย","สแกนจ่าย 2","แตะบัตร","กระเป���ารถเมล์","ตั๋วรายเดือน/รอบ"];
+                    const explicit = [
+                      "เงินสด",
+                      "สแกนจ่าย",
+                      "สแกนจ่าย 2",
+                      "แตะบัตร",
+                      "กระเป���ารถเมล์",
+                      "ตั๋วรายเดือน/รอบ",
+                    ];
                     for (const k of explicit) {
-                      if (!merged[k] && (OVERLAY_ICON_SRC as any)[k]) setVariants(k, (OVERLAY_ICON_SRC as any)[k]);
+                      if (!merged[k] && (OVERLAY_ICON_SRC as any)[k])
+                        setVariants(k, (OVERLAY_ICON_SRC as any)[k]);
                     }
 
                     return merged;
@@ -784,7 +825,9 @@ const PaymentScreen: React.FC = () => {
             );
           })()}
         </div>
-        <section className={`${styles.controlsSection} ${styles.controlsWrapper}`}>
+        <section
+          className={`${styles.controlsSection} ${styles.controlsWrapper}`}
+        >
           <div className={styles.tabsWrapper}>
             <StepTabs active={4} />
           </div>
@@ -801,7 +844,8 @@ const PaymentScreen: React.FC = () => {
                   let storedMap: Record<string, string | null> = {};
                   try {
                     const raw = sessionStorage.getItem("design.overlayIconMap");
-                    if (raw) storedMap = JSON.parse(raw) as Record<string, string>;
+                    if (raw)
+                      storedMap = JSON.parse(raw) as Record<string, string>;
                   } catch {}
 
                   const normalizeKey = (s: string) =>
@@ -817,11 +861,13 @@ const PaymentScreen: React.FC = () => {
                   const lookupStored = (labelOrKey: string) => {
                     if (!labelOrKey) return undefined;
                     // direct match
-                    if (storedMap[labelOrKey]) return storedMap[labelOrKey] as string;
+                    if (storedMap[labelOrKey])
+                      return storedMap[labelOrKey] as string;
                     // normalized match
                     const target = normalizeKey(labelOrKey);
                     for (const k of Object.keys(storedMap)) {
-                      if (normalizeKey(k) === target) return storedMap[k] as string;
+                      if (normalizeKey(k) === target)
+                        return storedMap[k] as string;
                     }
                     return undefined;
                   };
@@ -830,33 +876,67 @@ const PaymentScreen: React.FC = () => {
                     const isSel = selected.includes(o.label);
 
                     // Lookup order: normalized storedMap(label), storedMap(key), explicit constants
-                    const overlayUrl = lookupStored(o.label) || lookupStored(o.key);
+                    const overlayUrl =
+                      lookupStored(o.label) || lookupStored(o.key);
 
                     const baseIcon =
                       o.key === "cash"
-                        ? (isSel ? MONEY_ICON_ACTIVE : MONEY_ICON)
+                        ? isSel
+                          ? MONEY_ICON_ACTIVE
+                          : MONEY_ICON
                         : o.key === "scan"
-                        ? (isSel ? SCAN_ICON_ACTIVE : SCAN_ICON)
-                        : o.key === "scan2"
-                        ? (isSel ? SCAN2_ICON_ACTIVE : SCAN2_ICON)
-                        : o.key === "tap"
-                        ? (isSel ? TOUCH_ICON_ACTIVE : TOUCH_ICON)
-                        : o.key === "qr"
-                        ? (isSel ? BUS_EMPLOY_ICON_ACTIVE : BUS_EMPLOY_ICON)
-                        : o.key === "monthly"
-                        ? (isSel ? MONTHLY_ICON_ACTIVE : MONTHLY_ICON)
-                        : null;
+                          ? isSel
+                            ? SCAN_ICON_ACTIVE
+                            : SCAN_ICON
+                          : o.key === "scan2"
+                            ? isSel
+                              ? SCAN2_ICON_ACTIVE
+                              : SCAN2_ICON
+                            : o.key === "tap"
+                              ? isSel
+                                ? TOUCH_ICON_ACTIVE
+                                : TOUCH_ICON
+                              : o.key === "qr"
+                                ? isSel
+                                  ? BUS_EMPLOY_ICON_ACTIVE
+                                  : BUS_EMPLOY_ICON
+                                : o.key === "monthly"
+                                  ? isSel
+                                    ? MONTHLY_ICON_ACTIVE
+                                    : MONTHLY_ICON
+                                  : null;
 
                     // If selected and ICON_SETS provides a second icon (index 1), prefer that for the selected card appearance.
-                    const selectedIconOverride = isSel && ICON_SETS[o.label] && ICON_SETS[o.label][1] ? ICON_SETS[o.label][1] : undefined;
+                    const selectedIconOverride =
+                      isSel && ICON_SETS[o.label] && ICON_SETS[o.label][1]
+                        ? ICON_SETS[o.label][1]
+                        : undefined;
 
                     const iconNode = selectedIconOverride ? (
-                      <img src={selectedIconOverride} alt={o.label} className={`object-contain select-none h-full w-full `} decoding="async" loading="eager" />
+                      <img
+                        src={selectedIconOverride}
+                        alt={o.label}
+                        className={`object-contain select-none h-full w-full `}
+                        decoding="async"
+                        loading="eager"
+                      />
                     ) : overlayUrl ? (
                       // overlayUrl should be used for overlays across pages, but not to replace the selected card appearance
-                      <img src={overlayUrl} alt={o.label} className={`object-contain select-none h-full w-full `} decoding="async" loading="eager" />
+                      <img
+                        src={overlayUrl}
+                        alt={o.label}
+                        className={`object-contain select-none h-full w-full `}
+                        decoding="async"
+                        loading="eager"
+                      />
                     ) : baseIcon ? (
-                      <img src={baseIcon} alt={o.label} className={`object-contain select-none h-full w-full `} decoding="async" loading="eager" />
+                      <img
+                        src={baseIcon}
+                        alt={o.label}
+                        className={`object-contain select-none h-full w-full `}
+                        decoding="async"
+                        loading="eager"
+                      />
                     ) : (
                       o.icon
                     );

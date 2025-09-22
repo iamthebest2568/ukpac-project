@@ -101,9 +101,9 @@ const IconCamSmall = () => (
 );
 
 const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
-  "แอร์": <IconAir />,
-  "พัดลม": <IconFan />,
-  "ที่นั่งพิเศษ": <IconSeat />,
+  แอร์: <IconAir />,
+  พัดลม: <IconFan />,
+  ที่นั่งพิเศษ: <IconSeat />,
   "ที่จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
   "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
@@ -233,7 +233,8 @@ const DoorScreen: React.FC = () => {
     "1": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fbfe398b713cf4650810c0e346f6c03e3?format=webp&width=800",
     "2": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Faee46c4c7271461dadfd68c9eb3aec69?format=webp&width=800",
     ramp: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F245ff72a7c3b468293c517a934e4e839?format=webp&width=800",
-    emergency: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fcc69b8718f934fbb8059e036ca6cb93f?format=webp&width=800",
+    emergency:
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fcc69b8718f934fbb8059e036ca6cb93f?format=webp&width=800",
   };
 
   useEffect(() => {
@@ -279,10 +280,10 @@ const DoorScreen: React.FC = () => {
 
   return (
     <CustomizationScreen
-    title="���รับแต่งรถเมล์ของคุณ"
-    theme="light"
-    fullWidth
-    footerContent={
+      title="���รับแต่งรถเมล์ของคุณ"
+      theme="light"
+      fullWidth
+      footerContent={
         <div className="flex justify-center">
           <CtaButton text="ถัดไป" onClick={handleNext} />
         </div>
@@ -504,29 +505,33 @@ const DoorScreen: React.FC = () => {
                   // Build a robust merged overlay map that includes normalized keys and fallbacks
                   let storedMapRaw: Record<string, string> = {};
                   try {
-                    const raw = sessionStorage.getItem('design.overlayIconMap');
-                    if (raw) storedMapRaw = JSON.parse(raw) as Record<string, string>;
+                    const raw = sessionStorage.getItem("design.overlayIconMap");
+                    if (raw)
+                      storedMapRaw = JSON.parse(raw) as Record<string, string>;
                   } catch {}
 
                   const normalizeKey = (s: string) =>
-                    (s || '')
-                      .replace(/\uFFFD/g, '')
-                      .replace(/\u2011/g, '-')
-                      .replace(/\u00A0/g, ' ')
-                      .replace(/&amp;/g, '&')
-                      .replace(/\s+/g, ' ')
+                    (s || "")
+                      .replace(/\uFFFD/g, "")
+                      .replace(/\u2011/g, "-")
+                      .replace(/\u00A0/g, " ")
+                      .replace(/&amp;/g, "&")
+                      .replace(/\s+/g, " ")
                       .trim()
                       .toLowerCase();
 
                   const merged: Record<string, string | React.ReactNode> = {};
 
                   // Helper to set multiple variants
-                  const setVariants = (key: string, val: string | React.ReactNode) => {
+                  const setVariants = (
+                    key: string,
+                    val: string | React.ReactNode,
+                  ) => {
                     merged[key] = val;
                     try {
                       const nk = normalizeKey(key);
                       if (nk) merged[nk] = val;
-                      const nkNoSpace = nk.replace(/\s/g, '');
+                      const nkNoSpace = nk.replace(/\s/g, "");
                       if (nkNoSpace) merged[nkNoSpace] = val;
                     } catch {}
                   };
@@ -547,12 +552,25 @@ const DoorScreen: React.FC = () => {
                   }
 
                   // Ensure explicit keys exist
-                  const explicit = ['เงินสด','สแกนจ่าย','สแกนจ่าย 2','แตะบัตร','กระ��ป๋ารถเมล์','ตั๋วรายเดือน/รอบ','1','2','ramp','emergency'];
+                  const explicit = [
+                    "เงินสด",
+                    "สแกนจ่าย",
+                    "สแกนจ่าย 2",
+                    "แตะบัตร",
+                    "กระ��ป๋ารถเมล์",
+                    "ตั๋วรายเดือน/รอบ",
+                    "1",
+                    "2",
+                    "ramp",
+                    "emergency",
+                  ];
                   for (const k of explicit) {
                     if (!merged[k]) {
                       if (storedMapRaw[k]) setVariants(k, storedMapRaw[k]);
-                      else if (OVERLAY_ICON_SRC[k]) setVariants(k, OVERLAY_ICON_SRC[k]);
-                      else if (AMENITIES_ICON_MAP[k]) setVariants(k, AMENITIES_ICON_MAP[k]);
+                      else if (OVERLAY_ICON_SRC[k])
+                        setVariants(k, OVERLAY_ICON_SRC[k]);
+                      else if (AMENITIES_ICON_MAP[k])
+                        setVariants(k, AMENITIES_ICON_MAP[k]);
                     }
                   }
 
@@ -574,7 +592,9 @@ const DoorScreen: React.FC = () => {
             );
           })()}
         </div>
-        <section className={`${styles.controlsSection} ${styles.controlsWrapper} ${styles.doorControls}`}>
+        <section
+          className={`${styles.controlsSection} ${styles.controlsWrapper} ${styles.doorControls}`}
+        >
           <div className={styles.tabsWrapper}>
             <StepTabs active={5} />
           </div>
@@ -588,10 +608,30 @@ const DoorScreen: React.FC = () => {
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                 {(() => {
                   const DOOR_OPTIONS = [
-                    { key: "1", label: "1 ประตู", icon: <IconDoor1 />, iconActive: <IconDoor1Active /> },
-                    { key: "2", label: "2 ประตู", icon: <IconDoor2 />, iconActive: <IconDoor2Active /> },
-                    { key: "ramp", label: "ทางลาดสำหรับรถเข็น/ผู้พิาการ", icon: <IconRamp />, iconActive: <IconRampActive /> },
-                    { key: "emergency", label: "ประตูฉุกเฉิน", icon: <IconHighLow />, iconActive: <IconHighLowActive /> },
+                    {
+                      key: "1",
+                      label: "1 ประตู",
+                      icon: <IconDoor1 />,
+                      iconActive: <IconDoor1Active />,
+                    },
+                    {
+                      key: "2",
+                      label: "2 ประตู",
+                      icon: <IconDoor2 />,
+                      iconActive: <IconDoor2Active />,
+                    },
+                    {
+                      key: "ramp",
+                      label: "ทางลาดสำหรับรถเข็น/ผู้พิาการ",
+                      icon: <IconRamp />,
+                      iconActive: <IconRampActive />,
+                    },
+                    {
+                      key: "emergency",
+                      label: "ประตูฉุกเฉิน",
+                      icon: <IconHighLow />,
+                      iconActive: <IconHighLowActive />,
+                    },
                   ];
 
                   // helper to normalize and set variants into overlayIconMap in sessionStorage
@@ -607,14 +647,22 @@ const DoorScreen: React.FC = () => {
 
                   const loadStoredMap = () => {
                     try {
-                      const raw = sessionStorage.getItem("design.overlayIconMap");
-                      return raw ? (JSON.parse(raw) as Record<string, string>) : {};
+                      const raw = sessionStorage.getItem(
+                        "design.overlayIconMap",
+                      );
+                      return raw
+                        ? (JSON.parse(raw) as Record<string, string>)
+                        : {};
                     } catch {
                       return {} as Record<string, string>;
                     }
                   };
 
-                  const setVariantsToStorage = (map: Record<string, string>, key: string, val: string) => {
+                  const setVariantsToStorage = (
+                    map: Record<string, string>,
+                    key: string,
+                    val: string,
+                  ) => {
                     try {
                       map[key] = val;
                       const nk = normalizeKey(key);
@@ -635,24 +683,35 @@ const DoorScreen: React.FC = () => {
                     // try to use stored overlay URL if available (by key or label)
                     let storedMap: Record<string, string | null> = {};
                     try {
-                      const raw = sessionStorage.getItem("design.overlayIconMap");
-                      if (raw) storedMap = JSON.parse(raw) as Record<string, string>;
+                      const raw = sessionStorage.getItem(
+                        "design.overlayIconMap",
+                      );
+                      if (raw)
+                        storedMap = JSON.parse(raw) as Record<string, string>;
                     } catch {}
 
                     const lookupStored = (labelOrKey: string) => {
                       if (!labelOrKey) return undefined;
-                      if (storedMap[labelOrKey]) return storedMap[labelOrKey] as string;
+                      if (storedMap[labelOrKey])
+                        return storedMap[labelOrKey] as string;
                       const target = normalizeKey(labelOrKey);
                       for (const k of Object.keys(storedMap)) {
-                        if (normalizeKey(k) === target) return storedMap[k] as string;
+                        if (normalizeKey(k) === target)
+                          return storedMap[k] as string;
                       }
                       return undefined;
                     };
 
-                    const candidateUrl = lookupStored(opt.key) || lookupStored(opt.label) || DOOR_BUTTON_SRC[opt.key];
+                    const candidateUrl =
+                      lookupStored(opt.key) ||
+                      lookupStored(opt.label) ||
+                      DOOR_BUTTON_SRC[opt.key];
 
                     // match Amenities behavior: use iconActive when selected, otherwise icon; candidateUrl (override) should be used for overlay mapping but not replace selected appearance
-                    const iconNode = selectedOption === opt.key ? (opt.iconActive || opt.icon) : (opt.icon);
+                    const iconNode =
+                      selectedOption === opt.key
+                        ? opt.iconActive || opt.icon
+                        : opt.icon;
 
                     return (
                       <SelectionCard

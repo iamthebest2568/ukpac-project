@@ -65,28 +65,32 @@ const InfoNext2Screen: React.FC = () => {
   const heroImg = HERO_IMAGE[selected];
 
   return (
-    <CustomizationScreen title="" theme="light" footerContent={
-      <div className="flex justify-center">
-        <div className="w-full max-w-4xl mx-auto flex items-center justify-center">
-          <div className="flex flex-col items-stretch gap-3 w-full max-w-sm p-4 md:p-6 mx-auto">
-            <div className="w-full">
-              <SecondaryButton
-                text="ใช้บริการแน่นอน"
-                onClick={() => navigate("/ukpack2/thank-you")}
-                className="w-full"
-              />
-            </div>
-            <div className="w-full">
-              <CtaButton
-                text="ไม่แน่ใจ"
-                onClick={() => navigate("/ukpack2/feedback")}
-                className="w-full"
-              />
+    <CustomizationScreen
+      title=""
+      theme="light"
+      footerContent={
+        <div className="flex justify-center">
+          <div className="w-full max-w-4xl mx-auto flex items-center justify-center">
+            <div className="flex flex-col items-stretch gap-3 w-full max-w-sm p-4 md:p-6 mx-auto">
+              <div className="w-full">
+                <SecondaryButton
+                  text="ใช้บริการแน่นอน"
+                  onClick={() => navigate("/ukpack2/thank-you")}
+                  className="w-full"
+                />
+              </div>
+              <div className="w-full">
+                <CtaButton
+                  text="ไม่แน่ใจ"
+                  onClick={() => navigate("/ukpack2/feedback")}
+                  className="w-full"
+                />
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    }>
+      }
+    >
       <div className="max-w-4xl mx-auto px-4 py-8">
         {/* Top header image (75% width centered) */}
         <div className="w-full flex justify-center mb-6">
@@ -95,7 +99,7 @@ const InfoNext2Screen: React.FC = () => {
               src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8252bd27b98340349ac37000716c83db?format=webp&width=800"
               alt="image"
               className="w-full h-auto object-contain rounded-b-xl max-h-[220px] md:max-h-[360px] mx-auto"
-              style={{ objectPosition: 'center' }}
+              style={{ objectPosition: "center" }}
             />
           </div>
         </div>

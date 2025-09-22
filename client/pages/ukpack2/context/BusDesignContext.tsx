@@ -130,15 +130,25 @@ export const BusDesignProvider = ({ children }: { children: ReactNode }) => {
       if (!database) {
         // fallback: persist to localStorage for later submission
         try {
-          const pending = JSON.parse(localStorage.getItem("ukpack2_pending_submissions") || "[]");
+          const pending = JSON.parse(
+            localStorage.getItem("ukpack2_pending_submissions") || "[]",
+          );
           const id = `local_${Date.now()}_${Math.random().toString(36).slice(2, 9)}`;
           pending.push({ id, payload });
-          localStorage.setItem("ukpack2_pending_submissions", JSON.stringify(pending));
-          console.warn("Firebase database not initialized — saved submission locally", id);
+          localStorage.setItem(
+            "ukpack2_pending_submissions",
+            JSON.stringify(pending),
+          );
+          console.warn(
+            "Firebase database not initialized — saved submission locally",
+            id,
+          );
           return id;
         } catch (err) {
           console.error("Failed to persist locally", err);
-          throw new Error("Firebase not initialized and local persistence failed");
+          throw new Error(
+            "Firebase not initialized and local persistence failed",
+          );
         }
       }
 

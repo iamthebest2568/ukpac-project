@@ -86,14 +86,16 @@ const SubmitScreen: React.FC = () => {
   const chassisLabel = CHASSIS_LABELS[selectedChassis] || "";
   const heroImg = HERO_IMAGE[selectedChassis];
 
-  const storedColor = state?.exterior?.color || (() => {
-    try {
-      const raw = sessionStorage.getItem("design.color");
-      return raw ? JSON.parse(raw) : null;
-    } catch {
-      return null;
-    }
-  })();
+  const storedColor =
+    state?.exterior?.color ||
+    (() => {
+      try {
+        const raw = sessionStorage.getItem("design.color");
+        return raw ? JSON.parse(raw) : null;
+      } catch {
+        return null;
+      }
+    })();
 
   return (
     <>
@@ -146,7 +148,10 @@ const SubmitScreen: React.FC = () => {
 
           {/* divider between vehicle preview and content */}
           <div className="my-4 flex justify-center">
-            <div className="w-11/12 max-w-[720px] h-1 bg-[#000D59] rounded-full" style={{ height: 6 }} />
+            <div
+              className="w-11/12 max-w-[720px] h-1 bg-[#000D59] rounded-full"
+              style={{ height: 6 }}
+            />
           </div>
 
           <h2 className="text-lg font-prompt font-semibold text-[#003366] mt-2">
@@ -155,7 +160,17 @@ const SubmitScreen: React.FC = () => {
 
           <div className="space-y-4">
             <div className="flex items-center gap-3 min-w-0">
-              <label className="w-28 md:w-36 text-sm text-[#003366] truncate" style={{ fontFamily: 'Sarabun, sans-serif', fontSize: '17.6px', lineHeight: '1.2', paddingTop: 6, paddingBottom: 6, overflow: 'visible' }}>
+              <label
+                className="w-28 md:w-36 text-sm text-[#003366] truncate"
+                style={{
+                  fontFamily: "Sarabun, sans-serif",
+                  fontSize: "17.6px",
+                  lineHeight: "1.2",
+                  paddingTop: 6,
+                  paddingBottom: 6,
+                  overflow: "visible",
+                }}
+              >
                 รถจะมาทุก
               </label>
               <input
@@ -164,13 +179,42 @@ const SubmitScreen: React.FC = () => {
                 value={interval}
                 onChange={(e) => setInterval(e.target.value)}
                 className="flex-1 min-w-0 max-w-[220px] rounded-xl px-3 py-1.5 border-[3px] border-[#000D59] h-9 text-center placeholder-gray-400"
-                style={{ fontFamily: 'Sarabun, sans-serif', fontSize: '17.6px', lineHeight: '1.2', paddingTop: 6, paddingBottom: 6, overflow: 'visible' }}
+                style={{
+                  fontFamily: "Sarabun, sans-serif",
+                  fontSize: "17.6px",
+                  lineHeight: "1.2",
+                  paddingTop: 6,
+                  paddingBottom: 6,
+                  overflow: "visible",
+                }}
               />
-              <span className="w-12 text-sm text-[#003366]" style={{ fontFamily: 'Sarabun, sans-serif', fontSize: '17.6px', lineHeight: '1.2', paddingTop: 6, paddingBottom: 6, overflow: 'visible' }}>นาที</span>
+              <span
+                className="w-12 text-sm text-[#003366]"
+                style={{
+                  fontFamily: "Sarabun, sans-serif",
+                  fontSize: "17.6px",
+                  lineHeight: "1.2",
+                  paddingTop: 6,
+                  paddingBottom: 6,
+                  overflow: "visible",
+                }}
+              >
+                นาที
+              </span>
             </div>
 
             <div className="flex items-center gap-3 min-w-0">
-              <label className="w-28 md:w-36 text-sm text-[#003366] truncate" style={{ fontFamily: 'Sarabun, sans-serif', fontSize: '17.6px', lineHeight: '1.2', paddingTop: 6, paddingBottom: 6, overflow: 'visible' }}>
+              <label
+                className="w-28 md:w-36 text-sm text-[#003366] truncate"
+                style={{
+                  fontFamily: "Sarabun, sans-serif",
+                  fontSize: "17.6px",
+                  lineHeight: "1.2",
+                  paddingTop: 6,
+                  paddingBottom: 6,
+                  overflow: "visible",
+                }}
+              >
                 สายรถเมล์
               </label>
               <input
@@ -179,12 +223,29 @@ const SubmitScreen: React.FC = () => {
                 value={route}
                 onChange={(e) => setRoute(e.target.value)}
                 className="flex-1 min-w-0 max-w-[220px] rounded-xl px-3 py-1.5 border-[3px] border-[#000D59] h-9 text-center placeholder-gray-400"
-                style={{ fontFamily: 'Sarabun, sans-serif', fontSize: '17.6px', lineHeight: '1.2', paddingTop: 6, paddingBottom: 6, overflow: 'visible' }}
+                style={{
+                  fontFamily: "Sarabun, sans-serif",
+                  fontSize: "17.6px",
+                  lineHeight: "1.2",
+                  paddingTop: 6,
+                  paddingBottom: 6,
+                  overflow: "visible",
+                }}
               />
             </div>
 
             <div className="flex items-center gap-3 min-w-0">
-              <label className="w-28 md:w-36 text-sm text-[#003366] truncate" style={{ fontFamily: 'Sarabun, sans-serif', fontSize: '17.6px', lineHeight: '1.2', paddingTop: 6, paddingBottom: 6, overflow: 'visible' }}>
+              <label
+                className="w-28 md:w-36 text-sm text-[#003366] truncate"
+                style={{
+                  fontFamily: "Sarabun, sans-serif",
+                  fontSize: "17.6px",
+                  lineHeight: "1.2",
+                  paddingTop: 6,
+                  paddingBottom: 6,
+                  overflow: "visible",
+                }}
+              >
                 พื้นที่ที่วิ่ง
               </label>
               <input
@@ -193,7 +254,14 @@ const SubmitScreen: React.FC = () => {
                 value={area}
                 onChange={(e) => setArea(e.target.value)}
                 className="flex-1 min-w-0 max-w-[220px] rounded-xl px-3 py-1.5 border-[3px] border-[#000D59] h-9 text-center placeholder-gray-400"
-                style={{ fontFamily: 'Sarabun, sans-serif', fontSize: '17.6px', lineHeight: '1.2', paddingTop: 6, paddingBottom: 6, overflow: 'visible' }}
+                style={{
+                  fontFamily: "Sarabun, sans-serif",
+                  fontSize: "17.6px",
+                  lineHeight: "1.2",
+                  paddingTop: 6,
+                  paddingBottom: 6,
+                  overflow: "visible",
+                }}
               />
             </div>
           </div>

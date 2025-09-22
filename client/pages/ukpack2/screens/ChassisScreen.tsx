@@ -26,7 +26,7 @@ const PAYMENT_ICON_SMALL: Record<string, string> = {
     "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb8992da4be824b339d3df5f0a076ed93?format=webp&width=800",
   "สแกนจ่าย 2":
     "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F56620e798eb94153b2390271f30d0dae?format=webp&width=800",
-  "แตะบัตร":
+  แตะบัตร:
     "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fdb2e47a586b841d1af014e9196f3c411?format=webp&width=800",
   กระเป๋ารถเมล์:
     "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F41c089c5dd4b448993c4e02c02cdf7ac?format=webp&width=800",
@@ -295,31 +295,42 @@ const ChassisScreen: React.FC = () => {
                   imageSrc={HERO_IMAGE[selected]}
                   label={selectedLabel}
                   overlayLabels={overlayLabels}
-                  overlayIconMap={{ ...AMENITIES_ICON_SMALL, ...PAYMENT_ICON_SMALL, ...DOOR_ICON_SMALL }}
+                  overlayIconMap={{
+                    ...AMENITIES_ICON_SMALL,
+                    ...PAYMENT_ICON_SMALL,
+                    ...DOOR_ICON_SMALL,
+                  }}
                   showSelectedText={true}
                   starSrc={HERO_STAR}
                 />
               </div>
             </div>
-
-
           </div>
 
           {/* Right: tabs + selection cards (full width) */}
-          <section className={`${styles.controlsSection} ${styles.controlsWrapper}`}>
-              <div className={styles.tabsWrapper}>
-                <StepTabs active={1} />
-              </div>
+          <section
+            className={`${styles.controlsSection} ${styles.controlsWrapper}`}
+          >
+            <div className={styles.tabsWrapper}>
+              <StepTabs active={1} />
+            </div>
             <div className={styles.controlsBox}>
-
               <div className={styles.controlsContent}>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3 doorControls">
                   <SelectionCard
                     key={OPTIONS[0].key}
-                    icon={selected === OPTIONS[0].key ? <IconSmallAlt /> : <IconSmall />}
+                    icon={
+                      selected === OPTIONS[0].key ? (
+                        <IconSmallAlt />
+                      ) : (
+                        <IconSmall />
+                      )
+                    }
                     label={OPTIONS[0].label}
                     isSelected={selected === OPTIONS[0].key}
-                    onClick={() => { setSelected(OPTIONS[0].key); }}
+                    onClick={() => {
+                      setSelected(OPTIONS[0].key);
+                    }}
                     variant="light"
                     appearance="group"
                     hideLabel={true}
@@ -330,10 +341,18 @@ const ChassisScreen: React.FC = () => {
 
                   <SelectionCard
                     key={OPTIONS[1].key}
-                    icon={selected === OPTIONS[1].key ? <IconMediumAlt /> : <IconMedium />}
+                    icon={
+                      selected === OPTIONS[1].key ? (
+                        <IconMediumAlt />
+                      ) : (
+                        <IconMedium />
+                      )
+                    }
                     label={OPTIONS[1].label}
                     isSelected={selected === OPTIONS[1].key}
-                    onClick={() => { setSelected(OPTIONS[1].key); }}
+                    onClick={() => {
+                      setSelected(OPTIONS[1].key);
+                    }}
                     variant="light"
                     appearance="group"
                     hideLabel={true}
@@ -344,10 +363,18 @@ const ChassisScreen: React.FC = () => {
 
                   <SelectionCard
                     key={OPTIONS[2].key}
-                    icon={selected === OPTIONS[2].key ? <IconLargeAlt /> : <IconLarge />}
+                    icon={
+                      selected === OPTIONS[2].key ? (
+                        <IconLargeAlt />
+                      ) : (
+                        <IconLarge />
+                      )
+                    }
                     label={OPTIONS[2].label}
                     isSelected={selected === OPTIONS[2].key}
-                    onClick={() => { setSelected(OPTIONS[2].key); }}
+                    onClick={() => {
+                      setSelected(OPTIONS[2].key);
+                    }}
                     variant="light"
                     appearance="group"
                     hideLabel={true}
@@ -358,10 +385,18 @@ const ChassisScreen: React.FC = () => {
 
                   <SelectionCard
                     key={OPTIONS[3].key}
-                    icon={selected === OPTIONS[3].key ? <IconExtraAlt /> : <IconExtra />}
+                    icon={
+                      selected === OPTIONS[3].key ? (
+                        <IconExtraAlt />
+                      ) : (
+                        <IconExtra />
+                      )
+                    }
                     label={OPTIONS[3].label}
                     isSelected={selected === OPTIONS[3].key}
-                    onClick={() => { setSelected(OPTIONS[3].key); }}
+                    onClick={() => {
+                      setSelected(OPTIONS[3].key);
+                    }}
                     variant="light"
                     appearance="group"
                     hideLabel={true}

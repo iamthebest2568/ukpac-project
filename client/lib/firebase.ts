@@ -37,7 +37,10 @@ function initFirebase() {
   }
 }
 
-export async function sendEventToFirestore(event: any, collectionName: string = "minigame1_events") {
+export async function sendEventToFirestore(
+  event: any,
+  collectionName: string = "minigame1_events",
+) {
   if (!db) initFirebase();
   if (!db) throw new Error("Firestore not initialized");
   const col = collection(db, collectionName);

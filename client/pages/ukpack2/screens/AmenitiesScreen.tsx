@@ -134,11 +134,36 @@ const IconCupAlt = () => (
 const AMENITIES = [
   { key: "air", label: "แอร์", icon: <IconAir />, iconActive: <IconAirAlt /> },
   { key: "fan", label: "พัดลม", icon: <IconFan />, iconActive: <IconFanAlt /> },
-  { key: "seat", label: "ที่นั่งพิเศษ", icon: <IconSeat />, iconActive: <IconSeatAlt /> },
-  { key: "wifi", label: "ที่จับ/ราวยืนที่ปลอดภัย", icon: <IconWifi />, iconActive: <IconWifiAlt /> },
-  { key: "plug", label: "ช่องชาร์จมือถือ/USB", icon: <IconPlug />, iconActive: <IconPlugAlt /> },
-  { key: "tv", label: "Wi‑Fi ฟรี", icon: <IconTv />, iconActive: <IconTvAlt /> },
-  { key: "cup", label: "ระบบประกาศบอกป้าย(เสียง/จอ)", icon: <IconCup />, iconActive: <IconCupAlt /> },
+  {
+    key: "seat",
+    label: "ที่นั่งพิเศษ",
+    icon: <IconSeat />,
+    iconActive: <IconSeatAlt />,
+  },
+  {
+    key: "wifi",
+    label: "ที่จับ/ราวยืนที่ปลอดภัย",
+    icon: <IconWifi />,
+    iconActive: <IconWifiAlt />,
+  },
+  {
+    key: "plug",
+    label: "ช่องชาร์จมือถือ/USB",
+    icon: <IconPlug />,
+    iconActive: <IconPlugAlt />,
+  },
+  {
+    key: "tv",
+    label: "Wi‑Fi ฟรี",
+    icon: <IconTv />,
+    iconActive: <IconTvAlt />,
+  },
+  {
+    key: "cup",
+    label: "ระบบประกาศบอกป้าย(เสียง/จอ)",
+    icon: <IconCup />,
+    iconActive: <IconCupAlt />,
+  },
 ];
 
 import { useNavigate } from "react-router-dom";
@@ -170,12 +195,18 @@ const AmenitiesScreen: React.FC = () => {
 
   const AMENITIES_BUTTON_SRC: Record<string, string> = {
     แอร์: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F717ae5876456493a97f29b6d6684c104?format=webp&width=800",
-    พัดลม: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F891faed3bf8a457fbcdd936181ed2b7a?format=webp&width=800",
-    ที่นั่งพิเศษ: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F54f4c944e6ab4e84800e14b2a1105b94?format=webp&width=800",
-    "ที่���ับ/ราวยืนที่ปลอดภัย": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fdfbb7f3adfa04596916b9ea1950acef1?format=webp&width=800",
-    "ช่องชาร์จมือถือ/USB": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fae1e15679ac4476a9e82f163e7eab121?format=webp&width=800",
-    "Wi‑Fi ฟรี": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F1fb83749171e40fdb6fd8e6d75d46504?format=webp&width=800",
-    "ระบบประกาศบอกป้าย(เสียง/จอ)": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F48d62d5384e148bf8fe718dd2287d55f?format=webp&width=800",
+    พัดลม:
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F891faed3bf8a457fbcdd936181ed2b7a?format=webp&width=800",
+    ที่นั่งพิเศษ:
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F54f4c944e6ab4e84800e14b2a1105b94?format=webp&width=800",
+    "ที่���ับ/ราวยืนที่ปลอดภัย":
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fdfbb7f3adfa04596916b9ea1950acef1?format=webp&width=800",
+    "ช่องชาร์จมือถือ/USB":
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fae1e15679ac4476a9e82f163e7eab121?format=webp&width=800",
+    "Wi‑Fi ฟรี":
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F1fb83749171e40fdb6fd8e6d75d46504?format=webp&width=800",
+    "ระบบประกาศบอกป้าย(เสียง/จอ)":
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F48d62d5384e148bf8fe718dd2287d55f?format=webp&width=800",
   };
 
   const handleNext = () => {
@@ -298,7 +329,9 @@ const AmenitiesScreen: React.FC = () => {
           </div>
         </div>
 
-        <section className={`${styles.controlsSection} ${styles.controlsWrapper}`}>
+        <section
+          className={`${styles.controlsSection} ${styles.controlsWrapper}`}
+        >
           <div className={styles.tabsWrapper}>
             <StepTabs active={3} />
           </div>
@@ -313,7 +346,11 @@ const AmenitiesScreen: React.FC = () => {
                 {AMENITIES.map((a) => (
                   <SelectionCard
                     key={a.key}
-                    icon={selected.includes(a.label) ? (a.iconActive || a.icon) : a.icon}
+                    icon={
+                      selected.includes(a.label)
+                        ? a.iconActive || a.icon
+                        : a.icon
+                    }
                     label={a.label}
                     isSelected={selected.includes(a.label)}
                     onClick={() => toggle(a.label)}
