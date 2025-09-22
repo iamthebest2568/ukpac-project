@@ -31,7 +31,7 @@ const Step3_Result = ({
     ลดค่าโดยสารรถไฟฟ้า: "🚇",
     ปรับปรุงคุณภาพรถเมล์: "🚌",
     ตั๋วร่วม: "🎫",
-    เพิ่มความถี่รถเมล์: "🚍",
+    เพิ่มความ��ี่รถเมล์: "🚍",
     เพิ่มความถี่รถไฟฟ้า: "🚊",
     เพิ่มที่จอดรถ: "🅿️",
     "เพิ่ม Feeder ในซอย": "🚐",
@@ -227,11 +227,7 @@ const Step3_Result = ({
                   top: offset.top,
                   transform: `translate(calc(-50% + ${offsetX}px), 0) rotate(${offset.rotate}) scale(${offset.scale})`,
                   width,
-                  boxShadow: "0 10px 24px rgba(0,0,0,0.18)",
-                  borderRadius: 12,
-                  overflow: "hidden",
                   zIndex: offset.z,
-                  background: "#fff",
                 }}
               >
                 <div
@@ -251,8 +247,6 @@ const Step3_Result = ({
                       height: "100%",
                       objectFit: "contain",
                       objectPosition: "center center",
-                      backgroundColor: "#fff",
-                      padding: 8,
                     }}
                   />
                 </div>
