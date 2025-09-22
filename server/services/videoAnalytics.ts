@@ -48,7 +48,57 @@ function ensureDir() {
   } catch {}
 }
 
+// Init server Firestore (non-admin) for storing video events under minigame1_events/minigame1-di/events
+let firestoreDb: ReturnType<typeof getFirestore> | null = null;
+function initServerFirestore() {
+  if (firestoreDb) return;
+  try {
+    const firebaseConfig = {
+      apiKey: process.env.FIREBASE_API_KEY || "AIzaSyBdMPQP9DVM1S9bh70dFuMAsyzPJPOYXnk",
+      authDomain: process.env.FIREBASE_AUTH_DOMAIN || "uk-pact.firebaseapp.com",
+      projectId: process.env.FIREBASE_PROJECT_ID || "uk-pact",
+      storageBucket: process.env.FIREBASE_STORAGE_BUCKET || "uk-pact.firebasestorage.app",
+      messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID || "534142958499",
+      appId: process.env.FIREBASE_APP_ID || "1:534142958499:web:3cf0b2380c055f7a747816",
+    };
+    let app;
+    if (getApps && getApps().length > 0) app = getApp();
+    else app = initializeApp(firebaseConfig as any);
+    firestoreDb = getFirestore(app);
+  } catch (e) {
+    console.warn("Server Firestore init failed", e);
+    firestoreDb = null;
+  }
+}
+
 export async function appendEvent(ev: VideoEvent) {
+  // Try Firestore first
+  try {
+    initServerFirestore();
+    if (firestoreDb) {
+      const colDoc = doc(firestoreDb, "minigame1_events", "minigame1-di");
+      const eventsCol = collection(colDoc, "events");
+      const payload: any = {
+        sessionID: ev.sessionId,
+        eventName: ev.eventName,
+        timestamp: ev.timestamp,
+        choiceText: ev.choiceText ?? null,
+        variantId: ev.variantId ?? null,
+        variantName: ev.variantName ?? null,
+        page: ev.page ?? null,
+        userAgent: ev.userAgent ?? null,
+        ip: ev.ip ?? null,
+        payload: ev.payload ?? null,
+        createdAt: serverTimestamp(),
+      };
+      await addDoc(eventsCol, payload);
+      return;
+    }
+  } catch (e) {
+    console.warn("Failed to write video event to Firestore", e);
+  }
+
+  // Fallback: write to Supabase if configured, otherwise local file
   const supabaseUrl = process.env.SUPABASE_URL;
   const supabaseKey = process.env.SUPABASE_ANON_KEY;
   if (supabaseUrl && supabaseKey) {
