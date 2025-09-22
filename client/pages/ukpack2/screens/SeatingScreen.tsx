@@ -298,17 +298,6 @@ const SeatingScreen: React.FC = () => {
                     />
                   </div>
 
-                  <div className="flex items-center justify-between">
-                    <div style={{ width: 0 }} />
-                    <NumericPlaceholderInput
-                      id="specialSeats"
-                      value={specialSeats}
-                      onChange={(v) => setSpecialSeats(v)}
-                      min={0}
-                      max={maxCapacity}
-                      className="w-24 px-3 py-2 text-[#003366] bg-transparent text-right font-sarabun text-[17.6px] outline-none"
-                    />
-                  </div>
 
                   <div className="flex items-center justify-between">
                     <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">
