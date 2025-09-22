@@ -28,11 +28,31 @@ const UkDashboard: React.FC = () => {
     if (authorized) refreshSummary();
   }, [authorized]);
 
-  const refreshSummary = () => {
+  const refreshSummary = async () => {
     try {
       setSummary(getEventSummary());
       const all = getLoggedEvents();
+      // default to local events
       setEventsSample(all.slice(-10).reverse());
+      // also try to fetch Firestore-backed recent events for ukpack2 if authorized
+      try {
+        const resp = await fetch('/api/firestore-stats?project=ukpack2');
+        if (resp.ok) {
+          const j = await resp.json();
+          if (j && j.ok && j.stats && Array.isArray(j.stats.sample)) {
+            // convert sample to expected shape
+            const sample = j.stats.sample.map((s: any) => ({
+              sessionId: s.data.sessionID || s.data.sessionId || '',
+              eventName: s.data.event || s.data.eventName || '',
+              timestamp: s.data.timestamp || s.data.createdAt || '',
+              payload: s.data.payload || {},
+            }));
+            setEventsSample(sample.slice(0, 10));
+          }
+        }
+      } catch (e) {
+        // ignore
+      }
     } catch (e) {
       setSummary(null);
       setEventsSample([]);
