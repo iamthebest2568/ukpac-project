@@ -211,7 +211,7 @@ const Step2_Allocation = ({
                 marginBottom: "8px",
               }}
             >
-              กรุณาจัดสรรงบประมาณให้ครบ {totalBudget} หน่วยเพื่อดำเนินการต่อ
+              กรุณาจัดสรรงบประมาณให้ครบ {totalBudget} % เพื่อดำเนินการต่อ
             </div>
 
             <button
