@@ -305,7 +305,9 @@ export default function UkDashboard() {
                     alert("Test event sent to server (ukpack1)");
                     await load();
                   } catch (e: any) {
-                    alert("Failed to send test event: " + (e?.message || String(e)));
+                    alert(
+                      "Failed to send test event: " + (e?.message || String(e)),
+                    );
                   } finally {
                     setIsSending(false);
                   }

@@ -46,12 +46,18 @@ function initServerFirestore() {
   if (firestoreDb) return;
   try {
     const firebaseConfig = {
-      apiKey: process.env.FIREBASE_API_KEY || "AIzaSyBdMPQP9DVM1S9bh70dFuMAsyzPJPOYXnk",
+      apiKey:
+        process.env.FIREBASE_API_KEY ||
+        "AIzaSyBdMPQP9DVM1S9bh70dFuMAsyzPJPOYXnk",
       authDomain: process.env.FIREBASE_AUTH_DOMAIN || "uk-pact.firebaseapp.com",
       projectId: process.env.FIREBASE_PROJECT_ID || "uk-pact",
-      storageBucket: process.env.FIREBASE_STORAGE_BUCKET || "uk-pact.firebasestorage.app",
-      messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID || "534142958499",
-      appId: process.env.FIREBASE_APP_ID || "1:534142958499:web:3cf0b2380c055f7a747816",
+      storageBucket:
+        process.env.FIREBASE_STORAGE_BUCKET || "uk-pact.firebasestorage.app",
+      messagingSenderId:
+        process.env.FIREBASE_MESSAGING_SENDER_ID || "534142958499",
+      appId:
+        process.env.FIREBASE_APP_ID ||
+        "1:534142958499:web:3cf0b2380c055f7a747816",
     };
     let app;
     if (getApps && getApps().length > 0) app = getApp();
@@ -123,12 +129,16 @@ export async function readAllAppEvents(): Promise<AppEvent[]> {
           timestamp = timestamp.toDate().toISOString();
         }
         events.push({
-          sessionId: sanitizeThai(String(data.sessionID || data.sessionId || "")),
+          sessionId: sanitizeThai(
+            String(data.sessionID || data.sessionId || ""),
+          ),
           event: sanitizeThai(String(data.event || "")),
           timestamp: String(timestamp || new Date().toISOString()),
           page: sanitizeThai(data.page ?? undefined),
           payload: data.payload ?? undefined,
-          userAgent: sanitizeThai(data.userAgent ?? data.user_agent ?? undefined),
+          userAgent: sanitizeThai(
+            data.userAgent ?? data.user_agent ?? undefined,
+          ),
           ip: sanitizeThai(data.ip ?? undefined),
         });
       });
@@ -281,7 +291,9 @@ export async function computeSessionSummaries(
       for (const r of rows) {
         const sid = String(r.sessionID || r.sessionId || "");
         if (!sid) continue;
-        const ts = new Date(r.timestamp || r.createdAt || new Date().toISOString()).getTime();
+        const ts = new Date(
+          r.timestamp || r.createdAt || new Date().toISOString(),
+        ).getTime();
         if (r.eventName === "sw.story.start" || r.event === "sw.story.start") {
           const cur = firstStoryTs.get(sid);
           if (cur === undefined || ts < cur) firstStoryTs.set(sid, ts);
@@ -292,18 +304,31 @@ export async function computeSessionSummaries(
         if (!sid) continue;
         const en = r.eventName || r.event;
         if (en !== "sw.choice.selected") continue;
-        const ts = new Date(r.timestamp || r.createdAt || new Date().toISOString()).getTime();
+        const ts = new Date(
+          r.timestamp || r.createdAt || new Date().toISOString(),
+        ).getTime();
         const startTs = firstStoryTs.get(sid);
         if (startTs === undefined) continue;
         if (ts < startTs) continue;
         if (!firstChoiceAfterStory.has(sid)) {
-          const name = String(r.choiceText ?? r.choice_text ?? r.variantName ?? r.variant_name ?? r.variantId ?? r.variant_id ?? "");
+          const name = String(
+            r.choiceText ??
+              r.choice_text ??
+              r.variantName ??
+              r.variant_name ??
+              r.variantId ??
+              r.variant_id ??
+              "",
+          );
           if (name) firstChoiceAfterStory.set(sid, { ts, name });
         }
       }
     }
   } catch (e) {
-    console.warn("Failed to read video events from Firestore for session summaries", e);
+    console.warn(
+      "Failed to read video events from Firestore for session summaries",
+      e,
+    );
   }
 
   const summaries: SessionSummary[] = [];

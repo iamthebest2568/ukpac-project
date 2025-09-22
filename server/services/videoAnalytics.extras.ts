@@ -5,7 +5,15 @@ import type { VideoEvent } from "./videoAnalytics";
 
 // Firestore client
 import { initializeApp, getApps, getApp } from "firebase/app";
-import { getFirestore, collection, doc, query, orderBy, limit as limitFn, getDocs } from "firebase/firestore";
+import {
+  getFirestore,
+  collection,
+  doc,
+  query,
+  orderBy,
+  limit as limitFn,
+  getDocs,
+} from "firebase/firestore";
 
 const DATA_DIR = process.env.DATA_DIR || path.join(process.cwd(), ".data");
 const sanitizeThai = (text: any): any => {
@@ -22,12 +30,18 @@ function initFirestore() {
   if (firestoreDb) return;
   try {
     const firebaseConfig = {
-      apiKey: process.env.FIREBASE_API_KEY || "AIzaSyBdMPQP9DVM1S9bh70dFuMAsyzPJPOYXnk",
+      apiKey:
+        process.env.FIREBASE_API_KEY ||
+        "AIzaSyBdMPQP9DVM1S9bh70dFuMAsyzPJPOYXnk",
       authDomain: process.env.FIREBASE_AUTH_DOMAIN || "uk-pact.firebaseapp.com",
       projectId: process.env.FIREBASE_PROJECT_ID || "uk-pact",
-      storageBucket: process.env.FIREBASE_STORAGE_BUCKET || "uk-pact.firebasestorage.app",
-      messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID || "534142958499",
-      appId: process.env.FIREBASE_APP_ID || "1:534142958499:web:3cf0b2380c055f7a747816",
+      storageBucket:
+        process.env.FIREBASE_STORAGE_BUCKET || "uk-pact.firebasestorage.app",
+      messagingSenderId:
+        process.env.FIREBASE_MESSAGING_SENDER_ID || "534142958499",
+      appId:
+        process.env.FIREBASE_APP_ID ||
+        "1:534142958499:web:3cf0b2380c055f7a747816",
     };
     let app;
     if (getApps && getApps().length > 0) app = getApp();
@@ -53,9 +67,12 @@ export async function listRecentEvents(limit = 50): Promise<VideoEvent[]> {
         const data = d.data() as any;
         const ts = data.timestamp || data.createdAt || new Date().toISOString();
         let timestamp = ts;
-        if (timestamp && typeof timestamp.toDate === "function") timestamp = timestamp.toDate().toISOString();
+        if (timestamp && typeof timestamp.toDate === "function")
+          timestamp = timestamp.toDate().toISOString();
         out.push({
-          sessionId: sanitizeThai(String(data.sessionID || data.sessionId || "")),
+          sessionId: sanitizeThai(
+            String(data.sessionID || data.sessionId || ""),
+          ),
           eventName: sanitizeThai(String(data.eventName || data.event || "")),
           timestamp: String(timestamp),
           choiceText: sanitizeThai(data.choiceText ?? undefined),
@@ -108,7 +125,8 @@ export async function listVideoEventsBySession(
         if (sid !== sessionId) return;
         const ts = data.timestamp || data.createdAt || new Date().toISOString();
         let timestamp = ts;
-        if (timestamp && typeof timestamp.toDate === "function") timestamp = timestamp.toDate().toISOString();
+        if (timestamp && typeof timestamp.toDate === "function")
+          timestamp = timestamp.toDate().toISOString();
         out.push({
           sessionId: sanitizeThai(sid),
           eventName: sanitizeThai(String(data.eventName || data.event || "")),
@@ -166,7 +184,8 @@ export async function getVideoIngestStatus(): Promise<{
       if (docs.length > 0) {
         const d = docs[0].data() as any;
         const ts = d.timestamp || d.createdAt || null;
-        if (ts && typeof ts.toDate === "function") lastTs = ts.toDate().toISOString();
+        if (ts && typeof ts.toDate === "function")
+          lastTs = ts.toDate().toISOString();
         else if (ts) lastTs = String(ts);
       }
       // Count: Firestore does not support count easily without aggregation; approximate via docs length with a warning

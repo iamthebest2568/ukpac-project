@@ -121,7 +121,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   // initialize ukpack2 analytics only on ukpack2 routes
   if (isFullBleed) {
     try {
-      import("./pages/ukpack2/uk2Analytics").then((m) => m.initUkpack2Analytics()).catch(() => {});
+      import("./pages/ukpack2/uk2Analytics")
+        .then((m) => m.initUkpack2Analytics())
+        .catch(() => {});
     } catch (_) {}
   }
   return (

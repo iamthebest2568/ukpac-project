@@ -202,12 +202,10 @@ export function createServer() {
       const json = JSON.parse(buf);
       res.status(200).json({ ok: true, data: json });
     } catch (e: any) {
-      res
-        .status(500)
-        .json({
-          ok: false,
-          error: e?.message || "failed to read public aggregation",
-        });
+      res.status(500).json({
+        ok: false,
+        error: e?.message || "failed to read public aggregation",
+      });
     }
   });
 

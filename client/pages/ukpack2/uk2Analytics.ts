@@ -28,10 +28,15 @@ export function initUkpack2Analytics() {
       try {
         const target = e.target as HTMLElement;
         if (!target) return;
-        const el = target.closest && (target.closest("[data-uk2-ignore]") as HTMLElement);
+        const el =
+          target.closest &&
+          (target.closest("[data-uk2-ignore]") as HTMLElement);
         if (el) return; // ignore
 
-        const btn = (target.closest && target.closest("button, a, [role=button], [data-uk2-event]")) as HTMLElement;
+        const btn = (target.closest &&
+          target.closest(
+            "button, a, [role=button], [data-uk2-event]",
+          )) as HTMLElement;
         if (!btn) return;
 
         const tag = btn.tagName.toLowerCase();
@@ -39,12 +44,20 @@ export function initUkpack2Analytics() {
         const classes = btn.className || null;
         const text = safeText(btn);
         const ds = datasetToObj(btn.dataset || {});
-        const definedEvent = btn.dataset && (btn.dataset["uk2Event"] || btn.dataset["event"]);
+        const definedEvent =
+          btn.dataset && (btn.dataset["uk2Event"] || btn.dataset["event"]);
         const evName = definedEvent || `CLICK_${tag.toUpperCase()}`;
 
         logEvent({
           event: evName,
-          payload: { tag, id, classes, text, dataset: ds, url: window.location.pathname },
+          payload: {
+            tag,
+            id,
+            classes,
+            text,
+            dataset: ds,
+            url: window.location.pathname,
+          },
         });
       } catch (_) {}
     },
@@ -56,15 +69,24 @@ export function initUkpack2Analytics() {
     "change",
     (e) => {
       try {
-        const target = e.target as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
+        const target = e.target as
+          | HTMLInputElement
+          | HTMLSelectElement
+          | HTMLTextAreaElement;
         if (!target) return;
         const tag = target.tagName.toLowerCase();
-        const name = (target as HTMLInputElement).name || (target as any).id || null;
+        const name =
+          (target as HTMLInputElement).name || (target as any).id || null;
         const type = (target as HTMLInputElement).type || null;
-        const allow = target.dataset && (target.dataset["uk2AllowValue"] === "true");
+        const allow =
+          target.dataset && target.dataset["uk2AllowValue"] === "true";
         let value: string | null = null;
         if (allow) value = String((target as any).value).slice(0, 500);
-        else value = (type === "checkbox" || type === "radio") ? String((target as any).checked) : "[REDACTED]";
+        else
+          value =
+            type === "checkbox" || type === "radio"
+              ? String((target as any).checked)
+              : "[REDACTED]";
 
         logEvent({
           event: "INPUT_CHANGE",
@@ -86,7 +108,9 @@ export function initUkpack2Analytics() {
         const name = form.getAttribute("name") || null;
         const fields: string[] = [];
         try {
-          const elements = Array.from(form.elements || [] as any) as HTMLInputElement[];
+          const elements = Array.from(
+            form.elements || ([] as any),
+          ) as HTMLInputElement[];
           for (const el of elements) {
             if (el && (el.name || el.id)) fields.push(el.name || el.id);
           }
