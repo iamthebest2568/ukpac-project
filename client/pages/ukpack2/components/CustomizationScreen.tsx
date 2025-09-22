@@ -47,7 +47,7 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
     >
       {title?.trim() || headerContent ? (
         <header
-          className={`${fullWidth ? "px-0" : "px-6"} flex items-center justify-center h-16`}
+          className={`${fullWidth ? "px-0" : "px-6"} flex items-center justify-center py-3 md:py-4`}
           style={fullWidth ? undefined : { paddingLeft: 'var(--page-horizontal-padding)', paddingRight: 'var(--page-horizontal-padding)' }}
         >
           <div
