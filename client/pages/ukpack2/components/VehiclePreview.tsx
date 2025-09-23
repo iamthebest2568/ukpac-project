@@ -26,7 +26,7 @@ const VehiclePreview: React.FC<Props> = ({
   label,
   overlayLabels = [],
   overlayIconMap = {},
-  placeholderText = "ภาพสำห���ับรุ่นนี้จะถูกเพิ่มภายหลัง",
+  placeholderText = "ภาพสำหรับรุ่นนี้จะถูกเพิ่มภายหลัง",
   colorHex = null,
   colorMaskSrc = null,
   className,
@@ -85,7 +85,7 @@ const VehiclePreview: React.FC<Props> = ({
     <div
       className={`w-full rounded-md flex flex-col items-center justify-center gap-2 ${className || ""}`}
     >
-      {imageSrc ? (
+      {effectiveImageSrc ? (
         <div
           className="relative w-full flex items-center justify-center"
           style={{ minHeight: "100px" }}
