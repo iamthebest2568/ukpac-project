@@ -155,16 +155,7 @@ const OPTIONS = [
   },
 ];
 
-const HERO_IMAGE: Record<string, string> = {
-  small:
-    "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F20092528ba1e4f2eb4562515ccb6f75a?format=webp&width=800",
-  medium:
-    "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fbcd1013232914b39b73ebd2bd35d7bbd",
-  large:
-    "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F297c5816ab8c4adeb3cc73b6f66ab9e0",
-  extra:
-    "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8b4be3122d774f95b4c5e5bde1cd7c49",
-};
+import { HERO_IMAGE, CHASSIS_LABELS } from "../utils/heroImages";
 const HERO_SHADOW =
   "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb1e30b1544304677996b179fc27ae5c7?format=webp&width=800";
 const HERO_STAR =
@@ -277,7 +268,7 @@ const ChassisScreen: React.FC = () => {
   return (
     <>
       <CustomizationScreen
-        title="ออกแบบรถเมล์ของคุณ เลือกประเภทรถ"
+        title="ออกแบบรถเมล์ของคุณ เลือกปร���เภทรถ"
         theme="light"
         fullWidth
         footerContent={
