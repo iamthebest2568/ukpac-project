@@ -22,12 +22,6 @@ const TOPDOWN_IMAGE: Record<string, string | undefined> = {
     "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F16775ed18f2a4cd2ad40106fb2f788b6?format=webp&width=800",
 };
 
-const CHASSIS_LABELS: Record<string, string> = {
-  small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
-  medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
-  large: "รถตู้โดยสาร 9–15 ที่นั่ง",
-  extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
-};
 
 const SeatingScreen: React.FC = () => {
   const navigate = useNavigate();
@@ -262,7 +256,7 @@ const SeatingScreen: React.FC = () => {
                 <div className="space-y-1 mt-1">
                   <div className="flex items-center justify-between">
                     <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">
-                      จำนวนที่นั่งทั้งหมด
+                      ��ำนวนที่นั่งทั้งหมด
                     </div>
                     <input
                       type="number"
@@ -317,7 +311,7 @@ const SeatingScreen: React.FC = () => {
 
                   <div className="flex items-center justify-between">
                     <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">
-                      สตรีมีครรภ์
+                      สตรีมีค��รภ์
                     </div>
                     <NumericPlaceholderInput
                       value={pregnantSeats}
