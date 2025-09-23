@@ -137,6 +137,10 @@ export const BusDesignProvider = ({ children }: { children: ReactNode }) => {
           const path = `designs/ukpack2_${Date.now()}_${Math.random().toString(36).slice(2, 9)}.png`;
           const url = await mod.uploadFileToStorage(imageBlob, path);
           payload.imageUrl = url;
+          try {
+            const { addDesignImageUrlToFirestore } = await import("../../../lib/firebase");
+            await addDesignImageUrlToFirestore(url);
+          } catch (_) {}
         } catch (e) {
           console.warn("Image upload failed", e);
         }
