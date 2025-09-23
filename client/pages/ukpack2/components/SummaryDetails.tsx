@@ -92,13 +92,14 @@ const BUS_EMPLOY_ICON =
   "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F47fc617541cf45f28b7aa2d1b8deaf64?format=webp&width=800";
 
 import { OVERLAY_ICON_SRC } from "../utils/overlayIcons";
+import { HERO_IMAGE, CHASSIS_LABELS } from "../utils/heroImages";
 
 const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   แอร์: <IconAir />,
   พัดลม: <IconFan />,
   ที่นั่งพิเศษ: <IconSeat />,
   "ที่จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
-  "ช่องชาร์จมือถือ/USB": <IconPlug />,
+  "ช่องชาร���จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
   "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
   กล้องวงจรปิด: <IconCamSmall />,
