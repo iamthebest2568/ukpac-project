@@ -206,3 +206,36 @@
   max-width: 810px !important;
   box-sizing: border-box !important;
 }
+
+/* Force single-column layout for vehicle pages to avoid split preview/control columns */
+.embedded-ukpack2 .contentGrid,
+.embedded-ukpack2 .content-grid,
+.embedded-ukpack2 .chassis-grid {
+  display: block !important;
+  grid-template-columns: none !important;
+}
+
+.embedded-ukpack2 .previewWrapper,
+.embedded-ukpack2 .previewInner,
+.embedded-ukpack2 .controlsWrapper,
+.embedded-ukpack2 .controlsSection {
+  width: 100% !important;
+  max-width: 760px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  box-sizing: border-box !important;
+}
+
+/* Stack preview above controls */
+.embedded-ukpack2 .previewWrapper { order: 0 !important; }
+.embedded-ukpack2 .controlsWrapper { order: 1 !important; margin-top: 12px !important; }
+
+/* Ensure vehicle preview stays centered and not stretched */
+.embedded-ukpack2 .previewInner { display: flex !important; align-items: center !important; justify-content: center !important; }
+.embedded-ukpack2 .vehicle-preview, .embedded-ukpack2 .vehicle-preview img { max-width: 100% !important; height: auto !important; }
+
+/* Reduce selectionGrid columns to avoid dense multi-column that breaks layout */
+.embedded-ukpack2 .selectionGrid { grid-template-columns: repeat(2, 1fr) !important; }
+
+/* Ensure tabs remain above frame and centered within the reduced width */
+.embedded-ukpack2 .tabsWrapper { width: 100% !important; max-width: 760px !important; margin-left: auto !important; margin-right: auto !important; }
