@@ -273,11 +273,14 @@ const DesignScreen: React.FC = () => {
       if (cached) {
         setExtraMaskUrl(cached);
       } else {
-        const templateUrl = "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fcff745fa9fbf4b468dbef9bc16106083?format=webp&width=800";
+        const templateUrl =
+          "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fcff745fa9fbf4b468dbef9bc16106083?format=webp&width=800";
         generateMaskFromColor(templateUrl, "#fd8b00", 60).then((url) => {
           if (url) {
             setExtraMaskUrl(url);
-            try { sessionStorage.setItem(key, url); } catch (_) {}
+            try {
+              sessionStorage.setItem(key, url);
+            } catch (_) {}
           }
         });
       }
@@ -296,7 +299,9 @@ const DesignScreen: React.FC = () => {
         generateMaskFromColor(templateUrl, "#fd8b00", 100).then((url) => {
           if (url) {
             setLargeMaskUrl(url);
-            try { sessionStorage.setItem(key, url); } catch (_) {}
+            try {
+              sessionStorage.setItem(key, url);
+            } catch (_) {}
           }
         });
       }
@@ -315,7 +320,9 @@ const DesignScreen: React.FC = () => {
         generateMaskFromColor(templateUrl, "#fd8b00", 100).then((url) => {
           if (url) {
             setMediumMaskUrl(url);
-            try { sessionStorage.setItem(key, url); } catch (_) {}
+            try {
+              sessionStorage.setItem(key, url);
+            } catch (_) {}
           }
         });
       }
@@ -334,7 +341,9 @@ const DesignScreen: React.FC = () => {
         generateMaskFromColor(templateUrl, "#fd8b00", 100).then((url) => {
           if (url) {
             setSmallMaskUrl(url);
-            try { sessionStorage.setItem(key, url); } catch (_) {}
+            try {
+              sessionStorage.setItem(key, url);
+            } catch (_) {}
           }
         });
       }
@@ -342,7 +351,11 @@ const DesignScreen: React.FC = () => {
   }, []);
 
   // Write imageUrl to Firestore (once per chassis per session) and show confirmation
-  const [savedInfo, setSavedInfo] = useState<{ id: string; url: string; col?: string } | null>(null);
+  const [savedInfo, setSavedInfo] = useState<{
+    id: string;
+    url: string;
+    col?: string;
+  } | null>(null);
   useEffect(() => {
     try {
       let selected = "medium";
@@ -350,7 +363,14 @@ const DesignScreen: React.FC = () => {
         const saved = sessionStorage.getItem("design.chassis");
         if (saved) selected = saved;
       } catch (_) {}
-      const url = selected === "large" ? VAN_TEMPLATE_NEW : (selected === "medium" ? STANDARD_TEMPLATE_NEW : (selected === "small" ? MINIBUS_TEMPLATE_NEW : HERO_IMAGE[selected]));
+      const url =
+        selected === "large"
+          ? VAN_TEMPLATE_NEW
+          : selected === "medium"
+            ? STANDARD_TEMPLATE_NEW
+            : selected === "small"
+              ? MINIBUS_TEMPLATE_NEW
+              : HERO_IMAGE[selected];
       if (!url) return;
       const key = `ukpack2_design_image_sent_${selected}`;
       const existing = sessionStorage.getItem(key);
@@ -358,7 +378,11 @@ const DesignScreen: React.FC = () => {
         try {
           const parsed = JSON.parse(existing);
           if (parsed && parsed.url) {
-            setSavedInfo({ id: parsed.id || "", url: parsed.url, col: parsed.col });
+            setSavedInfo({
+              id: parsed.id || "",
+              url: parsed.url,
+              col: parsed.col,
+            });
             return;
           }
         } catch (_) {}
@@ -367,10 +391,15 @@ const DesignScreen: React.FC = () => {
         .then((res) => {
           setSavedInfo({ id: res.id, url, col: (res as any).collection });
           try {
-            sessionStorage.setItem(key, JSON.stringify({ id: res.id, url, col: (res as any).collection }));
+            sessionStorage.setItem(
+              key,
+              JSON.stringify({ id: res.id, url, col: (res as any).collection }),
+            );
           } catch (_) {}
         })
-        .catch((err) => console.warn("addDesignImageUrlToFirestore error", err));
+        .catch((err) =>
+          console.warn("addDesignImageUrlToFirestore error", err),
+        );
     } catch (_) {}
     // run on mount only
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -394,7 +423,13 @@ const DesignScreen: React.FC = () => {
               return "medium";
             }
           })();
-          return chassis === "large" ? VAN_TEMPLATE_NEW : (chassis === "medium" ? STANDARD_TEMPLATE_NEW : (chassis === "small" ? MINIBUS_TEMPLATE_NEW : HERO_IMAGE[chassis]));
+          return chassis === "large"
+            ? VAN_TEMPLATE_NEW
+            : chassis === "medium"
+              ? STANDARD_TEMPLATE_NEW
+              : chassis === "small"
+                ? MINIBUS_TEMPLATE_NEW
+                : HERO_IMAGE[chassis];
         })(),
         chassis: (() => {
           try {
@@ -462,13 +497,26 @@ const DesignScreen: React.FC = () => {
           {/* Firestore confirmation panel (trial) */}
           {savedInfo && (
             <div className="max-w-2xl w-full mx-auto bg-white border-2 border-[#000D59] rounded-xl p-3 mb-2">
-              <div className="text-sm text-[#001a73] font-medium">บันทึกภาพตัวอย่างไปยัง Firestore ���ล้ว</div>
-              <div className="mt-1 text-[11px] text-[#001a73]">Collection: {savedInfo.col || "(unknown)"}</div>
+              <div className="text-sm text-[#001a73] font-medium">
+                บันทึกภาพตัวอย่างไปยัง Firestore ���ล้ว
+              </div>
+              <div className="mt-1 text-[11px] text-[#001a73]">
+                Collection: {savedInfo.col || "(unknown)"}
+              </div>
               <div className="mt-2 flex gap-3 items-start">
-                <img src={savedInfo.url} alt="image" className="w-32 h-20 object-contain rounded border" />
+                <img
+                  src={savedInfo.url}
+                  alt="image"
+                  className="w-32 h-20 object-contain rounded border"
+                />
                 <div className="text-xs break-words flex-1">
-                  <div><span className="font-semibold">Doc ID:</span> {savedInfo.id || "(ไม่ทราบ)"}</div>
-                  <div className="mt-1"><span className="font-semibold">URL:</span> {savedInfo.url}</div>
+                  <div>
+                    <span className="font-semibold">Doc ID:</span>{" "}
+                    {savedInfo.id || "(ไม่ทราบ)"}
+                  </div>
+                  <div className="mt-1">
+                    <span className="font-semibold">URL:</span> {savedInfo.url}
+                  </div>
                 </div>
               </div>
             </div>
@@ -504,7 +552,14 @@ const DesignScreen: React.FC = () => {
               const label = CHASSIS_LABELS[selected] || "";
               // Use the base hero image for the selected chassis. For 'large' (van) and 'medium' (standard), use the new design templates.
               // Color overlay is handled by VehiclePreview via colorFilter / colorHex.
-              const img = selected === "large" ? VAN_TEMPLATE_NEW : (selected === "medium" ? STANDARD_TEMPLATE_NEW : (selected === "small" ? MINIBUS_TEMPLATE_NEW : HERO_IMAGE[selected]));
+              const img =
+                selected === "large"
+                  ? VAN_TEMPLATE_NEW
+                  : selected === "medium"
+                    ? STANDARD_TEMPLATE_NEW
+                    : selected === "small"
+                      ? MINIBUS_TEMPLATE_NEW
+                      : HERO_IMAGE[selected];
               return img ? (
                 <>
                   <VehiclePreview

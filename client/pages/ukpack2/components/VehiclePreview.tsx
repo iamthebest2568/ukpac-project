@@ -313,7 +313,7 @@ const VehiclePreview: React.FC<Props> = ({
             />
 
             {/* color overlay: covers the same area as the image. If a mask image is available, use mask-image to only color masked areas; otherwise apply a full-image tint as a fallback so uploaded vehicle types are colored too */}
-            {effectiveColorHex && (
+            {effectiveColorHex &&
               (() => {
                 // Determine chassis to optionally adjust blend mode for accuracy
                 let selectedChassis: string | null = null;
@@ -322,7 +322,10 @@ const VehiclePreview: React.FC<Props> = ({
                     (persistedFinal?.chassis as string) ||
                     sessionStorage.getItem("design.chassis");
                 } catch {}
-                const useNormalBlend = selectedChassis === "medium" || selectedChassis === "small" || selectedChassis === "large"; // ensure exact color for standard, small, and van buses
+                const useNormalBlend =
+                  selectedChassis === "medium" ||
+                  selectedChassis === "small" ||
+                  selectedChassis === "large"; // ensure exact color for standard, small, and van buses
                 const baseStyle: React.CSSProperties = {
                   position: "absolute",
                   inset: 0,
@@ -338,8 +341,8 @@ const VehiclePreview: React.FC<Props> = ({
                 return (
                   <div
                     aria-hidden="true"
-                    style=
-                      {effectiveColorMaskSrc
+                    style={
+                      effectiveColorMaskSrc
                         ? {
                             ...blended,
                             WebkitMaskImage: `url(${effectiveColorMaskSrc})`,
@@ -358,8 +361,7 @@ const VehiclePreview: React.FC<Props> = ({
                     }
                   />
                 );
-              })()
-            )}
+              })()}
 
             {/** optional star overlay placed at top-right of the vehicle image container */}
             {/** starSrc is measured relative to this inner container (position: relative) */}
