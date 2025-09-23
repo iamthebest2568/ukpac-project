@@ -61,7 +61,7 @@ const InfoScreen: React.FC = () => {
           <div className="w-full flex justify-center mt-6 md:mt-10">
             <div className="w-full max-w-[900px] relative h-[140px] md:h-[200px] flex items-center justify-center">
               <img
-                src={effectiveHero}
+                src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe0d645d03e674262a48ecc18869e1901?format=webp&width=1600"
                 alt="image"
                 className="absolute inset-0 mx-auto h-full object-contain rounded-xl pointer-events-none select-none"
                 style={{
@@ -298,7 +298,7 @@ const InfoScreen: React.FC = () => {
                   รถตู้โดยสาร 14–30 ที่นั่งที่วิ่งยืดหยุ่นตามผู้โดยสาร
                   แม้จะวุ่นวาย
                   แต่ก็เป็นทางเลือกการเดินทางราคาถูกที่เข้าถึงทุกพื้นที่
-                  ทำให้คนทุกระดับรายได้มีโอกาสเดินทางสะด��ก
+                  ทำให้คนทุกระดับรายได้มีโอกาสเดินทางสะดวก
                 </p>
               </div>
             ) : (
