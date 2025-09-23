@@ -302,7 +302,7 @@ const DesignScreen: React.FC = () => {
   // Generate dynamic mask for standard (medium) by detecting #fd8b00 areas
   useEffect(() => {
     try {
-      const key = "design.dynamicMask.medium.v2";
+      const key = "design.dynamicMask.medium.v3";
       const cached = sessionStorage.getItem(key);
       if (cached) {
         setMediumMaskUrl(cached);
@@ -423,7 +423,7 @@ const DesignScreen: React.FC = () => {
     <>
       <MetaUpdater
         title="UK PACT - กรุงเทพฯ ลดติด"
-        description="ออกแบบรถเมล์เพื่อช่วยลดปัญห��การจราจรในกรุงเทพฯ — เลือกขนาดรถ สี แ��ะสิ่งอำนวยความสะดวกที่ต้องการ"
+        description="ออกแบบรถเมล์เพื่อช่วยลดปัญห��การจราจร���นกรุงเทพฯ — เลือกขนาดรถ สี แ��ะสิ่งอำนวยความสะดวกที่ต้องการ"
         image="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F44cea8aeb6d4415e899494a90c6f59b1?format=webp&width=1200"
       />
       <CustomizationScreen
