@@ -187,7 +187,7 @@ const SummaryDetails: React.FC = () => {
   return (
     <div className="font-sarabun text-[15px]">
       {heroImg && (
-        <div className="flex flex-col items-center -mt-4 mb-0">
+        <div className="flex flex-col items-center mt-4 mb-0">
           <VehiclePreview
             className="max-w-[260px]"
             imageSrc={heroImg}
