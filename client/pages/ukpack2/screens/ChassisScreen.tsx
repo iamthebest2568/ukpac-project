@@ -307,7 +307,7 @@ const ChassisScreen: React.FC = () => {
             </div>
             <div className={styles.controlsBox}>
               <div className={styles.controlsContent}>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 doorControls">
+                <div className={`${styles.selectionGrid} doorControls`}>
                   <SelectionCard
                     key={OPTIONS[0].key}
                     icon={
