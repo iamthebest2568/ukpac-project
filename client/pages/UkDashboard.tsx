@@ -51,8 +51,8 @@ type SessionSummary = {
   reasonOther01?: string; // คำอธิบายเพิ่มเติม
   keyMessage1?: string; // Key message 1
   mn1Selected: string[]; // ลำดับความสำคัญของประเด็น
-  mn2Selections?: Record<string, string[]>; // กลุ่ม���ป้าหมายที่ควรได้รับสิทธิ์
-  mn3Selected?: string[]; // ประเด็นนโยบายที่ผู้ใช้เลือก
+  mn2Selections?: Record<string, string[]>; // กลุ่มเป้าหมายที่ควรได้รับสิทธิ์
+  mn3Selected?: string[]; // ประเด็นน���ยบายที่ผู้ใช้เลือก
   mn3BudgetAllocation?: Record<string, number>; // การจัดสรรงบประมาณ
   mn3BudgetTotal?: number;
   satisfactionLevel?: string; // ระดับความพึงพอใจ
@@ -389,7 +389,7 @@ export default function UkDashboard() {
 
               {/* Charts */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                <Card title="แนวโน้มการเล่น (รายวัน)">
+                <Card title="แนวโน้มการเล่น (ราย���ัน)">
                   <div className="w-full h-[240px] md:h-[320px] min-w-0">
                     <ResponsiveContainer width="100%" height="100%">
                       <LineChart
