@@ -223,29 +223,6 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     }
   }, [location.search]);
 
-  const [useMock, setUseMock] = React.useState<boolean>(
-    typeof window !== "undefined" && window.innerWidth >= 810 && !isEmbedded,
-  );
-  React.useEffect(() => {
-    const onResize = () => {
-      try {
-        setUseMock(window.innerWidth >= 810 && !isEmbedded);
-      } catch (e) {}
-    };
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
-  }, [isEmbedded]);
-
-  // compute iframe src for embedding current route (add embedded=1 to avoid recursive mock)
-  const iframeSrc = React.useMemo(() => {
-    try {
-      const sp = new URLSearchParams(location.search);
-      if (!sp.has("embedded")) sp.set("embedded", "1");
-      return location.pathname + "?" + sp.toString();
-    } catch (e) {
-      return location.pathname;
-    }
-  }, [location.pathname, location.search]);
 
   // When running inside the embedded iframe for ukpack2, add a body class to apply special responsive CSS
   React.useEffect(() => {
@@ -280,7 +257,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         <a
           href="#main-content"
           className="skip-link sr-only focus:not-sr-only absolute top-2 left-2 z-50 bg-yellow-400 text-black px-2 py-1 rounded touch-target"
-          aria-label="ข้ามไปยังเน���้อหาหลัก"
+          aria-label="ข้ามไปยังเนื้อหาหลัก"
         >
           ข้ามไปยังเนื้อหาหลัก
         </a>
