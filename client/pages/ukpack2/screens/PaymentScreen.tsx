@@ -8,6 +8,7 @@ import StepTabs from "../components/StepTabs";
 import styles from "./chassis.module.css";
 import { useBusDesign } from "../context/BusDesignContext";
 import { OVERLAY_ICON_SRC } from "../utils/overlayIcons";
+import { HERO_IMAGE, CHASSIS_LABELS } from "../utils/heroImages";
 
 const IconCash = () => (
   <svg
@@ -472,7 +473,7 @@ const PaymentScreen: React.FC = () => {
               small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
               medium: "รถเมล์มาตรฐาน 30–50 ที��นั่ง",
               large: "รถตู้โดยสาร 9–15 ที่นั่ง",
-              extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
+              extra: "รถกะบะ��ัดแปลง 8–12 ที่นั่ง",
             };
             const HERO_IMAGE: Record<string, string> = {
               small:
