@@ -108,35 +108,35 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
         {children}
       </div>
       {footerContent ? (
-        <div ref={footerRef} className="fixed left-0 right-0 z-50" style={{ bottom: 0 }} role="contentinfo">
+        <div
+          ref={footerRef}
+          className={`${footerBgClass || "bg-[#00d5f9]"} fixed left-0 right-0 z-50`}
+          style={{ bottom: 0, paddingTop: "12px", paddingBottom: "calc(12px + env(safe-area-inset-bottom, 0px))" }}
+          role="contentinfo"
+        >
           <div
-            className={`${footerBgClass || "bg-[#00d5f9]"} w-full`}
-            style={{ paddingTop: "12px", paddingBottom: "calc(12px + env(safe-area-inset-bottom, 0px))" }}
+            className={
+              containerPaddingClass
+                ? `w-full ${containerPaddingClass}`
+                : fullWidth
+                  ? `w-full px-0`
+                  : `max-w-4xl mx-auto w-full px-4 sm:px-6`
+            }
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              ...(fullWidth
+                ? {
+                    width: "100vw",
+                    marginLeft: "calc(50% - 50vw)",
+                    marginRight: "calc(50% - 50vw)",
+                  }
+                : {}),
+            }}
           >
-            <div
-              className={
-                containerPaddingClass
-                  ? `w-full ${containerPaddingClass}`
-                  : fullWidth
-                    ? `w-full px-0`
-                    : `max-w-4xl mx-auto w-full px-4 sm:px-6`
-              }
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                ...(fullWidth
-                  ? {
-                      width: "100vw",
-                      marginLeft: "calc(50% - 50vw)",
-                      marginRight: "calc(50% - 50vw)",
-                    }
-                  : {}),
-              }}
-            >
-              <div className="w-full flex items-center justify-center">
-                {footerContent}
-              </div>
+            <div className="w-full flex items-center justify-center">
+              {footerContent}
             </div>
           </div>
         </div>
