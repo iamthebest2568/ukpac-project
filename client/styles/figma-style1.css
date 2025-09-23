@@ -1198,6 +1198,83 @@
   max-width: var(--figma-button-max-width) !important;
 }
 
+/* Tablet: force single-column vertical layout, avoid overflow and scaled images */
+@media (min-width: 768px) and (max-width: 1080px) {
+  .figma-style1-content {
+    max-width: min(92vw, 900px) !important;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .figma-style1-main {
+    align-items: start !important;
+    justify-items: center;
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+
+  .figma-style1-content-area {
+    justify-content: flex-start !important;
+    align-items: center !important;
+    padding: 24px !important;
+    max-width: 880px;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: visible !important;
+  }
+
+  .figma-style1-title-container {
+    max-width: 880px !important;
+    padding: 0 16px !important;
+    text-align: center !important;
+  }
+
+  .figma-style1-button-container {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+    max-width: 680px !important;
+    width: 100% !important;
+    padding: 16px !important;
+    box-sizing: border-box;
+    align-items: center !important;
+  }
+
+  .figma-style1-button {
+    width: 100% !important;
+    max-width: 640px !important;
+  }
+
+  .figma-style1-background-image {
+    object-fit: contain !important;
+    height: auto !important;
+    max-height: calc(100vh - 120px) !important;
+    object-position: center top !important;
+  }
+
+  /* Ensure option grids become single column on tablet */
+  .option-row {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+  .option-btn {
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+
+  /* Make summary grid single column for tablet to avoid overflow */
+  .mn3-summary-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .responsive-container {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+}
+
 .figma-style1-ukpack1 .figma-style1-title {
   font: var(--figma-title-font) !important;
 }
