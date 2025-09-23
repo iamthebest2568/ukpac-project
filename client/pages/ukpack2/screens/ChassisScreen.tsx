@@ -133,7 +133,7 @@ const OPTIONS = [
   {
     key: "medium",
     label: "รถเมล์มาตรฐาน 30-50 ที่นั่ง",
-    labelText: "รถเมล์มาตรฐาน 30-50 ที่นั่ง",
+    labelText: "รถเมล์มาตรฐา��� 30-50 ที่นั่ง",
     icon: <IconMedium />,
   },
   {
@@ -268,7 +268,7 @@ const ChassisScreen: React.FC = () => {
   return (
     <>
       <CustomizationScreen
-        title="ออกแบบรถเมล์ของคุณ เลือกปร���เภทรถ"
+        title="ออกแบบรถเมล์ของคุณ เลือกประเภทรถ"
         theme="light"
         fullWidth
         footerContent={
