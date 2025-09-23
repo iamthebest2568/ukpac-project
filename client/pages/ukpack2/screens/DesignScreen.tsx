@@ -125,6 +125,10 @@ const MONTHLY_ICON =
 const BUS_EMPLOY_ICON =
   "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F47fc617541cf45f28b7aa2d1b8deaf64?format=webp&width=800";
 
+// New van template used only on Design page for 'large' chassis
+const VAN_TEMPLATE_NEW =
+  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F6e3fda4ab8a540c083f6ca22ff8d5a60?format=webp&width=800";
+
 const DEFAULT_COLORS = [
   {
     id: "353635-new",
@@ -280,7 +284,7 @@ const DesignScreen: React.FC = () => {
       if (cached) {
         setLargeMaskUrl(cached);
       } else {
-        const templateUrl = "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F6e3fda4ab8a540c083f6ca22ff8d5a60?format=webp&width=800";
+        const templateUrl = VAN_TEMPLATE_NEW;
         generateMaskFromColor(templateUrl, "#fd8b00", 60).then((url) => {
           if (url) {
             setLargeMaskUrl(url);
@@ -335,17 +339,17 @@ const DesignScreen: React.FC = () => {
     try {
       // Persist final rendered image & state so subsequent pages use the design image
       const final = {
-        imageSrc:
-          HERO_IMAGE[
-            (() => {
-              try {
-                const saved = sessionStorage.getItem("design.chassis");
-                return saved || "medium";
-              } catch (e) {
-                return "medium";
-              }
-            })()
-          ],
+        imageSrc: (() => {
+          const chassis = (() => {
+            try {
+              const saved = sessionStorage.getItem("design.chassis");
+              return saved || "medium";
+            } catch (e) {
+              return "medium";
+            }
+          })();
+          return chassis === "large" ? VAN_TEMPLATE_NEW : HERO_IMAGE[chassis];
+        })(),
         chassis: (() => {
           try {
             return sessionStorage.getItem("design.chassis") || "medium";
@@ -452,9 +456,9 @@ const DesignScreen: React.FC = () => {
                 if (saved) selected = saved;
               } catch (e) {}
               const label = CHASSIS_LABELS[selected] || "";
-              // Use the base hero image for the selected chassis. Color overlay
-              // is handled by VehiclePreview via colorFilter / colorHex.
-              const img = HERO_IMAGE[selected];
+              // Use the base hero image for the selected chassis. For 'large' (van), use the new design template.
+              // Color overlay is handled by VehiclePreview via colorFilter / colorHex.
+              const img = selected === "large" ? VAN_TEMPLATE_NEW : HERO_IMAGE[selected];
               return img ? (
                 <>
                   <VehiclePreview
