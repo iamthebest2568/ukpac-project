@@ -125,12 +125,16 @@ export async function sendEventToFirestore(
           ip: event.ip || undefined,
           page: event.url || window.location.pathname,
         };
-        // fire-and-forget
-        await fetch("/api/track", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        }).catch(() => {});
+        // fire-and-forget (tolerate sync and async failures)
+        try {
+          await fetch("/api/track", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+          });
+        } catch (_) {
+          // ignore network/CORS errors entirely in client fallback
+        }
 
         // return a sentinel so callers treat as success (event persisted server-side)
         return { ok: true, fallback: true } as any;
