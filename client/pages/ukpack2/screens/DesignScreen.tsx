@@ -130,7 +130,7 @@ const VAN_TEMPLATE_NEW =
   "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F6e3fda4ab8a540c083f6ca22ff8d5a60?format=webp&width=800";
 // New standard bus template used only on Design page for 'medium' chassis
 const STANDARD_TEMPLATE_NEW =
-  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F6c88533075f44926a4627f0a4b716243?format=webp&width=800";
+  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F0191441489bd48f4b3fe378328c36744?format=webp&width=800";
 
 const DEFAULT_COLORS = [
   {
@@ -302,7 +302,7 @@ const DesignScreen: React.FC = () => {
   // Generate dynamic mask for standard (medium) by detecting #fd8b00 areas
   useEffect(() => {
     try {
-      const key = "design.dynamicMask.medium";
+      const key = "design.dynamicMask.medium.v2";
       const cached = sessionStorage.getItem(key);
       if (cached) {
         setMediumMaskUrl(cached);
@@ -423,7 +423,7 @@ const DesignScreen: React.FC = () => {
     <>
       <MetaUpdater
         title="UK PACT - กรุงเทพฯ ลดติด"
-        description="ออกแบบรถเมล์เพื่อช่วยลดปัญห��การจราจรในกรุงเทพฯ — เลือกขนาดรถ สี และสิ่งอำนวยความสะดวกที่ต้องการ"
+        description="ออกแบบรถเมล์เพื่อช่วยลดปัญห��การจราจรในกรุงเทพฯ — เลือกขนาดรถ สี แ��ะสิ่งอำนวยความสะดวกที่ต้องการ"
         image="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F44cea8aeb6d4415e899494a90c6f59b1?format=webp&width=1200"
       />
       <CustomizationScreen
