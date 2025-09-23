@@ -18,7 +18,7 @@ const PdpaScreen: React.FC = () => {
             <div className="w-full max-w-sm p-4 md:p-6 flex flex-col items-stretch gap-3">
               <div className="w-full">
                 <CtaButton
-                  text=">>> ยอมรับและเริ่มเล่นเกม"
+                  text="ยอมรับและเริ่มเล่นเกม"
                   onClick={() => {
                     try {
                       sessionStorage.setItem("pdpa_accepted", "true");
@@ -41,7 +41,7 @@ const PdpaScreen: React.FC = () => {
           </p>
 
           <p>
-            ข้อมูลที่เก็บจะถูก จัดเก็บอย่างปลอดภัย นำมาใช้เฉพาะภาพรวม
+            ข้อมูลที่เก��บจะถูก จัดเก็บอย่างปลอดภัย นำมาใช้เฉพาะภาพรวม
             และไม่สามารถระบุตัวตนได้ โดยข้อมูลจะถูกเก็บ ไม่เกิน 2 ปี
             หรือจนกว่าจะเสร็จสิ้นกระบวนการวิเคราะห์
           </p>
