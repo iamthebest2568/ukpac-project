@@ -36,4 +36,42 @@ if (import.meta.env && (import.meta as any).env.DEV) {
       }
     }
   }, 0);
+
+  // Normalize global errors to ensure Vite's overlay receives Error objects
+  window.addEventListener("error", (ev) => {
+    try {
+      // some errors may be strings or missing stack/frame info — wrap them
+      if (!ev.error || !(ev.error instanceof Error)) {
+        const message = ev.message || "Uncaught error";
+        const e = new Error(typeof ev.error === "string" ? ev.error : message);
+        // attach original to help debugging
+        (e as any).original = ev.error || null;
+        // log and rethrow so Vite overlay can capture a proper Error
+        // eslint-disable-next-line no-console
+        console.error("Normalized window.onerror:", e, "original:", ev.error);
+        throw e;
+      }
+    } catch (err) {
+      // If normalizing causes an exception, log it but don't break the app
+      // eslint-disable-next-line no-console
+      console.error("Error normalizing window.onerror", err);
+    }
+  });
+
+  window.addEventListener("unhandledrejection", (ev) => {
+    try {
+      const reason = (ev as any).reason;
+      if (!reason || !(reason instanceof Error)) {
+        const e = new Error(typeof reason === "string" ? reason : "Unhandled promise rejection");
+        (e as any).original = reason;
+        // eslint-disable-next-line no-console
+        console.error("Normalized unhandledrejection:", e, "original:", reason);
+        // rethrow so overlay can pick it up
+        throw e;
+      }
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.error("Error normalizing unhandledrejection", err);
+    }
+  });
 }
