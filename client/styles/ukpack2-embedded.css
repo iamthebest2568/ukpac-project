@@ -15,6 +15,29 @@
   overflow: auto !important; /* allow inner scrolling */
 }
 
+/* Prevent horizontal overflow inside embedded iframe */
+.embedded-ukpack2,
+.embedded-ukpack2 html,
+.embedded-ukpack2 body,
+.embedded-ukpack2 .app-container {
+  overflow-x: hidden !important;
+}
+
+/* Normalize any elements that attempt to use viewport-width spanning (100vw) or negative margins */
+.embedded-ukpack2 [style*="100vw"],
+.embedded-ukpack2 [style*="50vw"],
+.embedded-ukpack2 .controlsBox,
+.embedded-ukpack2 .tabsWrapper,
+.embedded-ukpack2 .full-bleed-like,
+.embedded-ukpack2 .full-bleed {
+  max-width: 760px !important;
+  width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  left: auto !important;
+  transform: none !important;
+}
+
 /* Ensure full-bleed pages occupy the full iframe screen */
 .embedded-ukpack2 .full-bleed-page .app-container {
   width: 810px !important;
