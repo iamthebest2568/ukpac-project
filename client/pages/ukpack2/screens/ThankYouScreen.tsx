@@ -8,7 +8,29 @@ const ThankYouScreen: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <CustomizationScreen title="" theme="light" fullWidth>
+    <CustomizationScreen
+      title=""
+      theme="light"
+      fullWidth
+      footerContent={
+        <div className="flex flex-col items-center gap-3 py-6">
+          <div style={{ width: "220px" }}>
+            <SecondaryButton
+              className="w-full"
+              text="ลุ้นรับรางวัล"
+              onClick={() => navigate("/ukpack2/form")}
+            />
+          </div>
+          <div style={{ width: "220px" }}>
+            <CtaButton
+              className="w-full"
+              text="ไม่ลุ้นรับรางวัล"
+              onClick={() => navigate("/ukpack2/feedback-skip")}
+            />
+          </div>
+        </div>
+      }
+    >
       <div
         className="max-w-2xl mx-auto pt-4 pb-8 text-center"
         style={{ paddingLeft: 20, paddingRight: 20 }}
@@ -22,7 +44,7 @@ const ThankYouScreen: React.FC = () => {
         </div>
         <div className="inline-block bg-white rounded-xl p-6 text-[#001a73]">
           <p className="mt-3 font-prompt font-semibold text-[18px]">
-            เราจะนำข้อมูลเหล่านี้รวบรวม เป็นข้อเสนอส่งต่อเพื่อการ��ัฒนา
+            เราจะนำข้อมูลเหล่านี้รวบรวม เป็นข้อเสนอส่งต่อเพื่อการพัฒนา
             รถประจำทางให้ดียิ่งขึ้น
           </p>
           <hr className="my-6 border-t-4 border-[#000D59] w-full" />
@@ -39,44 +61,6 @@ const ThankYouScreen: React.FC = () => {
           </div>
         </div>
       </div>
-
-      <footer
-        className="rounded-t-3xl py-12 px-6 bg-no-repeat bg-top bg-cover"
-        style={{
-          backgroundImage:
-            "url('https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc3874bf37db54abeb4a13c308b0df9a4?format=webp&width=1600')",
-          minHeight: "375px",
-          width: "100%",
-          marginLeft: 0,
-          marginTop: "-60px",
-          overflowX: "hidden",
-        }}
-      >
-        <div
-          className="max-w-4xl mx-auto flex items-center justify-center h-full"
-          style={{ paddingLeft: 20, paddingRight: 20 }}
-        >
-          <div
-            className="flex flex-col items-center gap-3 py-6"
-            style={{ marginTop: "-20px" }}
-          >
-            <div style={{ width: "220px" }}>
-              <SecondaryButton
-                className="w-full"
-                text="ลุ้นรับรางวัล"
-                onClick={() => navigate("/ukpack2/form")}
-              />
-            </div>
-            <div style={{ width: "220px" }}>
-              <CtaButton
-                className="w-full"
-                text="ไม่ลุ้นรับรางวัล"
-                onClick={() => navigate("/ukpack2/feedback-skip")}
-              />
-            </div>
-          </div>
-        </div>
-      </footer>
     </CustomizationScreen>
   );
 };
