@@ -147,5 +147,17 @@ export async function sendEventToFirestore(
   }
 }
 
+// Write-only helper for saving design image URL (no PDPA gating)
+export async function addDesignImageUrlToFirestore(imageUrl: string) {
+  if (!db) initFirebase();
+  if (!db) throw new Error("Firestore not initialized");
+  const colRef = collection(db as any, "ukpact-gamebus-imagedesign-events");
+  const docRef = await addDoc(colRef as any, {
+    imageUrl,
+    createdAt: serverTimestamp(),
+  });
+  return { id: docRef.id };
+}
+
 // also export init for manual init from UI
 export { initFirebase };
