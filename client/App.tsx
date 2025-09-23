@@ -261,23 +261,6 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         >
           ข้ามไปยังเนื้อหาหลัก
         </a>
-        {useMock ? (
-          <TabletMockup iframeSrc={iframeSrc}>
-            <main
-              id="main-content"
-              role="main"
-              className={`w-full responsive-content ${isFullBleed ? "" : "h-full overflow-hidden"}`}
-            >
-              {isFullBleed ? (
-                children
-              ) : (
-                <div style={{ height: "100%", overflow: "hidden" }}>
-                  {children}
-                </div>
-              )}
-            </main>
-          </TabletMockup>
-        ) : (
           <main
             id="main-content"
             role="main"
@@ -291,7 +274,6 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
               </div>
             )}
           </main>
-        )}
       </div>
     </div>
   );
