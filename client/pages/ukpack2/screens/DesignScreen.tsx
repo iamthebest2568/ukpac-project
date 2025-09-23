@@ -267,16 +267,16 @@ const DesignScreen: React.FC = () => {
         try {
           const parsed = JSON.parse(existing);
           if (parsed && parsed.url) {
-            setSavedInfo({ id: parsed.id || "", url: parsed.url });
+            setSavedInfo({ id: parsed.id || "", url: parsed.url, col: parsed.col });
             return;
           }
         } catch (_) {}
       }
       addDesignImageUrlToFirestore(url)
         .then((res) => {
-          setSavedInfo({ id: res.id, url });
+          setSavedInfo({ id: res.id, url, col: (res as any).collection });
           try {
-            sessionStorage.setItem(key, JSON.stringify({ id: res.id, url }));
+            sessionStorage.setItem(key, JSON.stringify({ id: res.id, url, col: (res as any).collection }));
           } catch (_) {}
         })
         .catch((err) => console.warn("addDesignImageUrlToFirestore error", err));
@@ -359,7 +359,7 @@ const DesignScreen: React.FC = () => {
     <>
       <MetaUpdater
         title="UK PACT - กรุงเทพฯ ลดติด"
-        description="ออกแบบรถเมล์เพื่อช่วยลดปัญหาการจราจรในกรุงเทพฯ — เลือ��ขนาดรถ สี และสิ่งอำนวยความสะดวกที่ต้องการ"
+        description="ออกแบบรถเมล์เพื่อช่วยลดปัญหาการจราจรในกรุงเทพฯ — เลือกขนาดรถ สี และสิ่งอำนวยความสะดว���ที่ต้องการ"
         image="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F44cea8aeb6d4415e899494a90c6f59b1?format=webp&width=1200"
       />
       <CustomizationScreen
