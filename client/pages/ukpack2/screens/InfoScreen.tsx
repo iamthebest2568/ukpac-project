@@ -50,7 +50,7 @@ const InfoScreen: React.FC = () => {
         <div className="w-full flex justify-center">
           <div className="w-[75%] mx-auto px-4">
             <img
-              src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8252bd27b98340349ac37000716c83db?format=webp&width=800"
+              src={effectiveHero}
               alt="image"
               className="w-full h-auto object-contain rounded-b-xl max-h-[220px] md:max-h-[360px] mx-auto"
               style={{ objectPosition: "center" }}
@@ -61,7 +61,7 @@ const InfoScreen: React.FC = () => {
           <div className="w-full flex justify-center mt-6 md:mt-10">
             <div className="w-full max-w-[900px] relative h-[140px] md:h-[200px] flex items-center justify-center">
               <img
-                src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe0d645d03e674262a48ecc18869e1901?format=webp&width=1600"
+                src={effectiveHero}
                 alt="image"
                 className="absolute inset-0 mx-auto h-full object-contain rounded-xl pointer-events-none select-none"
                 style={{
@@ -250,7 +250,7 @@ const InfoScreen: React.FC = () => {
                   ) : null;
                 })()}
                 <img
-                  src={HERO_IMAGE[selected]}
+                  src={effectiveHero}
                   alt={selectedLabel}
                   className="w-full h-auto object-contain select-none"
                   style={{ position: "relative", zIndex: 50 }}
@@ -269,7 +269,7 @@ const InfoScreen: React.FC = () => {
                 </h2>
                 <p>
                   ในญี่ปุ่นมี Community Bus
-                  รถเมล์ขนาดเล็กที่วิ่งเข้าซอยแล���พื้นที่ ที่รถใหญ่เข้าไม่ถึง
+                  รถเมล์ขนาดเล็กที่วิ่งเข้าซอยและพื้นที่ ที่รถใหญ่เข้าไม่ถึง
                   ค่าโดยสารถูกมาก บางแห่งนั่งได้ทั้งสาย เพียง 100 เยน
                   ทำให้ผู้สูงอายุและเด็กเข้าถึงบริการสำคัญ เช่น
                   โรงพยาบาลและศูนย์ชุมชนได้สะดวกขึ้น
@@ -284,7 +284,7 @@ const InfoScreen: React.FC = () => {
                   ฟิลิปปินส์ – Jeepney Modernization รู้หรือไม่! ฟิลิปปินส์พัฒนา
                   Jeepney แบบดั้งเดิมให้กลายเป็นมินิบัสขนาด 20–25
                   ที่นั่งที่ปลอดภัยและลดมลพิษกว่าเดิม
-                  การเปลี่ยนโฉม���ี้ยังคงค่าโดยสารถูก เหมาะกับคนเมือง
+                  การเปลี่ยนโฉมนี้ยังคงค่าโดยสารถูก เหมาะกับคนเมือง
                   และช่วยลดปัญหาสิ่งแวดล้อมไปพร้อมกัน
                 </p>
               </div>
@@ -322,7 +322,7 @@ const InfoScreen: React.FC = () => {
       <ConfirmModal
         isOpen={isExitModalOpen}
         title="ออกจากหน้าจอ"
-        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไ��่ถูกบันทึก"
+        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
         onConfirm={() => navigate("/")}
         onCancel={() => setExitModalOpen(false)}
       />
