@@ -104,7 +104,7 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   พัดลม: <IconFan />,
   ที่นั่งพิเศษ: <IconSeat />,
   "ที่จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
-  "ช่องชาร์จ���ือถือ/USB": <IconPlug />,
+  "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
   "��ะบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
   กล้องวงจรปิด: <IconCamSmall />,
