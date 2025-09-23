@@ -50,7 +50,7 @@ const InfoScreen: React.FC = () => {
         <div className="w-full flex justify-center">
           <div className="w-[75%] mx-auto px-4">
             <img
-              src={effectiveHero}
+              src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8252bd27b98340349ac37000716c83db?format=webp&width=800"
               alt="image"
               className="w-full h-auto object-contain rounded-b-xl max-h-[220px] md:max-h-[360px] mx-auto"
               style={{ objectPosition: "center" }}
@@ -283,7 +283,7 @@ const InfoScreen: React.FC = () => {
                 <p>
                   ฟิลิปปินส์ – Jeepney Modernization รู้หรือไม่! ฟิลิปปินส์พัฒนา
                   Jeepney แบบดั้งเดิมให้กลายเป็นมินิบัสขนาด 20–25
-                  ที่นั่งที่ปลอดภัยและลดมลพิษกว่าเดิม
+                  ที่นั่งที่ปลอดภัยและลดมล���ิษกว่าเดิม
                   การเปลี่ยนโฉมนี้ยังคงค่าโดยสารถูก เหมาะกับคนเมือง
                   และช่วยลดปัญหาสิ่งแวดล้อมไปพร้อมกัน
                 </p>
@@ -298,7 +298,7 @@ const InfoScreen: React.FC = () => {
                   รถตู้โดยสาร 14–30 ที่นั่งที่วิ่งยืดหยุ่นตามผู้โดยสาร
                   แม้จะวุ่นวาย
                   แต่ก็เป็นทางเลือกการเดินทางราคาถูกที่เข้าถึงทุกพื้นที่
-                  ทำให้คนทุกระดับรายได้มีโอกาสเดินทางสะดวก
+                  ทำให้คนทุกระดับรายได้มีโอกาสเดินทางสะด��ก
                 </p>
               </div>
             ) : (
