@@ -14,7 +14,7 @@ function walk(dir) {
         const orig = content;
         // Replace replacement characters with a single space
         content = content.replace(/\uFFFD/g, ' ');
-        content = content.replace(/�/g, ' ');
+        content = content.replace(/\uFFFD/g, ' ');
         if (content !== orig) {
           fs.writeFileSync(full, content, { encoding: 'utf8' });
           console.log('Fixed encoding chars in', full);
