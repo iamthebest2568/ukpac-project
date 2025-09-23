@@ -9,6 +9,7 @@ import { useBusDesign } from "../context/BusDesignContext";
 import VehiclePreview from "../components/VehiclePreview";
 import NumericPlaceholderInput from "../components/NumericPlaceholderInput";
 import styles from "./chassis.module.css";
+import { CHASSIS_LABELS } from "../utils/heroImages";
 
 const TOPDOWN_IMAGE: Record<string, string | undefined> = {
   small:
