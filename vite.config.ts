@@ -21,6 +21,7 @@ export default defineConfig(async ({ mode }) => {
     server: {
       host: "::",
       port: 8080,
+      hmr: { overlay: false },
       fs: {
         allow: ["./client", "./shared", "./node_modules", "./"],
         deny: [".env", ".env.*", "*.{crt,pem}", "**/.git/**", "server/**"],
