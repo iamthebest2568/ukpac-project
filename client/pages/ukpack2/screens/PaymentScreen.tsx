@@ -224,7 +224,7 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   พัดลม: <IconFan />,
   ที่นั่งพิเศษ: <IconSeat />,
   "ที่จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
-  "ช่องชาร์จมือถือ/USB": <IconPlug />,
+  "ช่องชาร���จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
   "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
   กล้องวงจรปิด: <IconCam />,
@@ -269,7 +269,7 @@ const OPTIONS = [
 const PaymentScreen: React.FC = () => {
   const navigate = useNavigate();
   const { state } = useBusDesign();
-  const [selected, setSelected] = useState<string[]>(["เงินสด"]);
+  const [selected, setSelected] = useState<string[]>([]);
 
   const storedColorLocal =
     state?.exterior?.color ||
@@ -406,7 +406,7 @@ const PaymentScreen: React.FC = () => {
     "สแกน��่าย 2": SCAN2_ICON,
     แตะบัตร: TOUCH_ICON,
     "ตั๋วรายเดือน/รอบ": MONTHLY_ICON,
-    กระเป๋ารถเมล์: BUS_EMPLOY_ICON,
+    ���ระเป๋ารถเมล์: BUS_EMPLOY_ICON,
   };
 
   const handleNext = () => {
