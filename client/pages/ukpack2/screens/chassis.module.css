@@ -432,9 +432,24 @@
 .scrollableDetails {
   max-height: 48vh; /* limit height relative to viewport */
   overflow-y: auto;
+  overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
   padding-right: 8px; /* avoid content hiding under scrollbar */
   box-sizing: border-box;
+  position: relative; /* ensure scrollbar is inside this element */
+  scrollbar-gutter: stable; /* reserve space for scrollbar so content doesn't shift */
+}
+
+/* Make scrollbar visible on right side within the card (WebKit) */
+.scrollableDetails::-webkit-scrollbar {
+  width: 10px;
+}
+.scrollableDetails::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.12);
+  border-radius: 6px;
+}
+.scrollableDetails::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 /* Support pages that didn't use controlsSection wrapper: make their white panels full-bleed */
