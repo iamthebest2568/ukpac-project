@@ -247,7 +247,7 @@ const SCAN2_ICON_ACTIVE =
 const TOUCH_ICON =
   "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F4c7862dfe0cb436e88451219585438e2?format=webp&width=800";
 const TOUCH_ICON_ACTIVE =
-  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8cad04d43a934610ad263ec567710f38?format=webp&width=800";
+  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Ff34b222b6a6c4646803fe5fb4c27b2fb?format=webp&width=800";
 const MONTHLY_ICON =
   "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F317d08ac637c469183e11074bb390d6b?format=webp&width=800";
 const MONTHLY_ICON_ACTIVE =
