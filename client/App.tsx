@@ -3,6 +3,7 @@ import "./global.css";
 import React, { Suspense, lazy, useEffect } from "react";
 import RouteTransition from "./components/shared/RouteTransition";
 import SuspenseFallback from "./components/shared/SuspenseFallback";
+import ErrorBoundary from "./components/shared/ErrorBoundary";
 import {
   BrowserRouter,
   Routes,
