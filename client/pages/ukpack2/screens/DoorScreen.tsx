@@ -312,12 +312,6 @@ const DoorScreen: React.FC = () => {
         <div className={styles.contentGrid}>
           <div className="w-full rounded-md flex flex-col items-center justify-center gap-2">
             {(() => {
-              const CHASSIS_LABELS: Record<string, string> = {
-                small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
-                medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
-                large: "รถตู้โดยสาร 9–15 ที่นั่ง",
-                extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
-              };
               let selected = "medium";
               try {
                 const saved = sessionStorage.getItem("design.chassis");
