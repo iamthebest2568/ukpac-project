@@ -154,7 +154,7 @@ const SubmitScreen: React.FC = () => {
                   "สแกนจ่าย 2": SCAN2_ICON,
                   แตะบัตร: TOUCH_ICON,
                   "ตั๋วรายเดือน/รอบ": MONTHLY_ICON,
-                  "กระเป๋ารถเมล์": BUS_EMPLOY_ICON,
+                  กระเป๋ารถเมล์: BUS_EMPLOY_ICON,
                 }}
               />
             </div>

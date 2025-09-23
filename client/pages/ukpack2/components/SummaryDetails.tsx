@@ -105,7 +105,6 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   กล้องวงจรปิด: <IconCamSmall />,
 };
 
-
 const SummaryDetails: React.FC = () => {
   const { state } = useBusDesign();
 

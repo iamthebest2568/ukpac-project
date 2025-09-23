@@ -32,7 +32,6 @@ const SummaryScreen: React.FC = () => {
     setDesignData(data);
   }, []);
 
-
   const selected = (() => {
     try {
       return (

@@ -33,7 +33,6 @@ const InfoNextScreen: React.FC = () => {
     setDesignData(data);
   }, []);
 
-
   const selected = (() => {
     try {
       return (

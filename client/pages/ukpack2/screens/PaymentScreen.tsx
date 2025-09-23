@@ -471,7 +471,11 @@ const PaymentScreen: React.FC = () => {
           {(() => {
             const selectedChassis = (() => {
               try {
-                return state?.chassis || sessionStorage.getItem("design.chassis") || "medium";
+                return (
+                  state?.chassis ||
+                  sessionStorage.getItem("design.chassis") ||
+                  "medium"
+                );
               } catch (e) {
                 return "medium";
               }

@@ -5,7 +5,6 @@ import CtaButton from "../components/CtaButton";
 import ConfirmModal from "../components/ConfirmModal";
 import { HERO_IMAGE, CHASSIS_LABELS } from "../utils/heroImages";
 
-
 const InfoScreen: React.FC = () => {
   const navigate = useNavigate();
 
