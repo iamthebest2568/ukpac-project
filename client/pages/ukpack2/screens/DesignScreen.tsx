@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import CustomizationScreen from "../components/CustomizationScreen";
 import ColorPalette from "../components/ColorPalette";
+import { sendDesignImageUrl } from "../utils/collect";
 import MetaUpdater from "../../../components/MetaUpdater";
 import { OVERLAY_ICON_SRC } from "../utils/overlayIcons";
 import CtaButton from "../components/CtaButton";
@@ -248,6 +249,29 @@ const DesignScreen: React.FC = () => {
       setTimeout(() => textareaRef.current?.focus(), 0);
     }
   }, [showTextarea]);
+
+  // Trial data collection: send base image URL for /design once per chassis
+  useEffect(() => {
+    try {
+      let selected = "medium";
+      try {
+        const saved = sessionStorage.getItem("design.chassis");
+        if (saved) selected = saved;
+      } catch (_) {}
+      const url = HERO_IMAGE[selected];
+      if (!url) return;
+      const key = `ukpack2_design_image_sent_${selected}`;
+      const already = sessionStorage.getItem(key);
+      if (already === url) return;
+      sendDesignImageUrl(url).then(() => {
+        try {
+          sessionStorage.setItem(key, url);
+        } catch (_) {}
+      });
+    } catch (_) {}
+    // run on mount only
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleFinish = () => {
     try {
