@@ -183,6 +183,24 @@
   font-size: 15px !important;
 }
 
+/* Specific fixes: avoid full-bleed tab behavior inside embedded iframe */
+.embedded-ukpack2 .controlsBox,
+.embedded-ukpack2 .tabsWrapper {
+  width: 100% !important;
+  max-width: 760px !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  left: auto !important;
+  transform: none !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* Ensure tab wrapper overlap spacing is reduced inside the iframe */
+.embedded-ukpack2 .tabsWrapper {
+  margin: 0 0 -8px 0 !important;
+}
+
 /* Final safety: ensure no element exceeds iframe width */
 .embedded-ukpack2 * {
   max-width: 810px !important;
