@@ -22,7 +22,7 @@ const ThankYouScreen: React.FC = () => {
         </div>
         <div className="inline-block bg-white rounded-xl p-6 text-[#001a73]">
           <p className="mt-3 font-prompt font-semibold text-[18px]">
-            เราจะนำข้อมูลเหล่านี้รวบรวม เป็นข้อเสนอส่งต่อเพื่อการพัฒนา
+            เราจะนำข้อมูลเหล่านี้รวบรวม เป็นข้อเสนอส่งต่อเพื่อการ��ัฒนา
             รถประจำทางให้ดียิ่งขึ้น
           </p>
           <hr className="my-6 border-t-4 border-[#000D59] w-full" />
@@ -46,9 +46,10 @@ const ThankYouScreen: React.FC = () => {
           backgroundImage:
             "url('https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc3874bf37db54abeb4a13c308b0df9a4?format=webp&width=1600')",
           minHeight: "375px",
-          width: "100vw",
-          marginLeft: "calc(50% - 50vw)",
+          width: "100%",
+          marginLeft: 0,
           marginTop: "-60px",
+          overflowX: "hidden",
         }}
       >
         <div
