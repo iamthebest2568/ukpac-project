@@ -93,6 +93,7 @@ const BUS_EMPLOY_ICON =
 
 import { OVERLAY_ICON_SRC } from "../utils/overlayIcons";
 import { HERO_IMAGE, CHASSIS_LABELS } from "../utils/heroImages";
+import styles from "../screens/chassis.module.css";
 
 const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   แอร์: <IconAir />,
