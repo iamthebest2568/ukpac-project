@@ -137,7 +137,9 @@ export function logEvent(eventData) {
         if (project === "ukpack2") target = "minigame2_events/minigame2-di";
         // fire-and-forget
         try {
-          sendEventToFirestore(enrichedEvent, target);
+          // call and swallow any promise rejection to prevent uncaught errors
+          const p = sendEventToFirestore(enrichedEvent, target);
+          if (p && typeof p.then === "function") p.catch(() => {});
         } catch (e) {
           /* ignore */
         }
