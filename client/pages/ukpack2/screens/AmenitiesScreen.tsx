@@ -3,6 +3,7 @@ import CustomizationScreen from "../components/CustomizationScreen";
 import ConfirmModal from "../components/ConfirmModal";
 import SelectionCard from "../components/SelectionCard";
 import CtaButton from "../components/CtaButton";
+import { HERO_IMAGE, CHASSIS_LABELS } from "../utils/heroImages";
 
 const IconAir = () => (
   <img
@@ -303,7 +304,7 @@ const AmenitiesScreen: React.FC = () => {
       fullWidth
       footerContent={
         <div className="flex justify-center">
-          <CtaButton text="ถัดไป" onClick={handleNext} />
+          <CtaButton text="���ัดไป" onClick={handleNext} />
         </div>
       }
     >
