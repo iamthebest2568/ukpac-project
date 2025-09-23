@@ -324,14 +324,11 @@ const DesignScreen: React.FC = () => {
           try {
             const saved = sessionStorage.getItem("design.chassis") || "medium";
             const MASKS: Record<string, string | null> = {
-              small:
-                "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F52a0e0b5f83341cf9dfc9ff4f7abf046?format=webp&width=800",
-              medium:
-                "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F52a0e0b5f83341cf9dfc9ff4f7abf046?format=webp&width=800",
+              small: null,
+              medium: null,
               large:
                 "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8dff3e4ee7624e1e89adb673d57f0913?format=webp&width=800",
-              extra:
-                "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F52a0e0b5f83341cf9dfc9ff4f7abf046?format=webp&width=800",
+              extra: null,
             };
             return MASKS[saved] || null;
           } catch (e) {
@@ -391,14 +388,11 @@ const DesignScreen: React.FC = () => {
             {(() => {
               const MASKS: Record<string, string | null> = {
                 // Upload mask images (black=masked area) for each chassis variant and paste URLs here.
-                small:
-                  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F52a0e0b5f83341cf9dfc9ff4f7abf046?format=webp&width=800",
-                medium:
-                  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F52a0e0b5f83341cf9dfc9ff4f7abf046?format=webp&width=800",
+                small: null,
+                medium: null,
                 large:
                   "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8dff3e4ee7624e1e89adb673d57f0913?format=webp&width=800",
-                extra:
-                  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F52a0e0b5f83341cf9dfc9ff4f7abf046?format=webp&width=800",
+                extra: null,
               };
 
               // NOTE: Pre-rendered image swapping and first-swatch override removed.
