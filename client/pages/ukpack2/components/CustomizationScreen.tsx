@@ -20,6 +20,7 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
   footerContent,
   theme = "dark",
   footerBgImage,
+  footerBgClass,
   headerContent,
   fullWidth = false,
   containerPaddingClass,
