@@ -469,22 +469,15 @@ const PaymentScreen: React.FC = () => {
         <div className="w-full rounded-md flex flex-col items-center justify-center gap-2">
           {/* show selected hero bus image from chassis selection with overlays from previous steps */}
           {(() => {
-            const CHASSIS_LABELS: Record<string, string> = {
-              small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
-              medium: "รถเมล์มาตรฐาน 30–50 ที��นั่ง",
-              large: "รถตู้โดยสาร 9–15 ที่นั่ง",
-              extra: "รถกะบะ��ัดแปลง 8–12 ที่นั่ง",
-            };
-            const HERO_IMAGE: Record<string, string> = {
-              small:
-                "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F20092528ba1e4f2eb4562515ccb6f75a?format=webp&width=800",
-              medium:
-                "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fbcd1013232914b39b73ebd2bd35d7bbd?format=webp&width=800",
-              large:
-                "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F297c5816ab8c4adeb3cc73b6f66ab9e0?format=webp&width=800",
-              extra:
-                "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8b4be3122d774f95b4c5e5bde1cd7c49?format=webp&width=800",
-            };
+            const selectedChassis = (() => {
+              try {
+                return state?.chassis || sessionStorage.getItem("design.chassis") || "medium";
+              } catch (e) {
+                return "medium";
+              }
+            })();
+            const label = CHASSIS_LABELS[selectedChassis] || "";
+            const img = HERO_IMAGE[selectedChassis];
             let selectedChassis = state?.chassis || "medium";
             try {
               if (!state?.chassis) {
