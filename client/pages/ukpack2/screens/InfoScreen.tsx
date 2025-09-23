@@ -20,6 +20,19 @@ const InfoScreen: React.FC = () => {
   }, []);
   const selectedLabel = CHASSIS_LABELS[selected] || "";
 
+  // prefer persisted final image when available (set by DesignScreen) so visuals remain consistent
+  const persistedFinal = (() => {
+    try {
+      const raw = sessionStorage.getItem("design.finalImage");
+      if (!raw) return null;
+      return JSON.parse(raw);
+    } catch (e) {
+      return null;
+    }
+  })();
+
+  const effectiveHero = persistedFinal?.imageSrc || HERO_IMAGE[selected];
+
   return (
     <>
       <CustomizationScreen
@@ -256,7 +269,7 @@ const InfoScreen: React.FC = () => {
                 </h2>
                 <p>
                   ในญี่ปุ่นมี Community Bus
-                  รถเมล์ขนาดเล็กที่วิ่งเข้าซอยและพื้นที่ ที่รถใหญ่เข้าไม่ถึง
+                  รถเมล์ขนาดเล็กที่วิ่งเข้าซอยแล���พื้นที่ ที่รถใหญ่เข้าไม่ถึง
                   ค่าโดยสารถูกมาก บางแห่งนั่งได้ทั้งสาย เพียง 100 เยน
                   ทำให้ผู้สูงอายุและเด็กเข้าถึงบริการสำคัญ เช่น
                   โรงพยาบาลและศูนย์ชุมชนได้สะดวกขึ้น
@@ -271,7 +284,7 @@ const InfoScreen: React.FC = () => {
                   ฟิลิปปินส์ – Jeepney Modernization รู้หรือไม่! ฟิลิปปินส์พัฒนา
                   Jeepney แบบดั้งเดิมให้กลายเป็นมินิบัสขนาด 20–25
                   ที่นั่งที่ปลอดภัยและลดมลพิษกว่าเดิม
-                  การเปลี่ยนโฉมนี้ยังคงค่าโดยสารถูก เหมาะกับคนเมือง
+                  การเปลี่ยนโฉม���ี้ยังคงค่าโดยสารถูก เหมาะกับคนเมือง
                   และช่วยลดปัญหาสิ่งแวดล้อมไปพร้อมกัน
                 </p>
               </div>
@@ -309,7 +322,7 @@ const InfoScreen: React.FC = () => {
       <ConfirmModal
         isOpen={isExitModalOpen}
         title="ออกจากหน้าจอ"
-        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
+        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไ��่ถูกบันทึก"
         onConfirm={() => navigate("/")}
         onCancel={() => setExitModalOpen(false)}
       />
