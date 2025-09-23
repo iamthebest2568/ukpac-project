@@ -245,6 +245,7 @@ const DesignScreen: React.FC = () => {
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
   const [isSaveHover, setIsSaveHover] = useState(false);
   const [extraMaskUrl, setExtraMaskUrl] = useState<string | null>(null);
+  const [largeMaskUrl, setLargeMaskUrl] = useState<string | null>(null);
 
   useEffect(() => {
     if (showTextarea) {
@@ -264,6 +265,25 @@ const DesignScreen: React.FC = () => {
         generateMaskFromColor(templateUrl, "#fd8b00", 60).then((url) => {
           if (url) {
             setExtraMaskUrl(url);
+            try { sessionStorage.setItem(key, url); } catch (_) {}
+          }
+        });
+      }
+    } catch (_) {}
+  }, []);
+
+  // Generate dynamic mask for van (large) from provided template by detecting #fd8b00 areas
+  useEffect(() => {
+    try {
+      const key = "design.dynamicMask.large";
+      const cached = sessionStorage.getItem(key);
+      if (cached) {
+        setLargeMaskUrl(cached);
+      } else {
+        const templateUrl = "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F6e3fda4ab8a540c083f6ca22ff8d5a60?format=webp&width=800";
+        generateMaskFromColor(templateUrl, "#fd8b00", 60).then((url) => {
+          if (url) {
+            setLargeMaskUrl(url);
             try { sessionStorage.setItem(key, url); } catch (_) {}
           }
         });
@@ -347,8 +367,7 @@ const DesignScreen: React.FC = () => {
             const MASKS: Record<string, string | null> = {
               small: null,
               medium: null,
-              large:
-                "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8dff3e4ee7624e1e89adb673d57f0913?format=webp&width=800",
+              large: largeMaskUrl,
               extra: extraMaskUrl,
             };
             return MASKS[saved] || null;
@@ -411,8 +430,7 @@ const DesignScreen: React.FC = () => {
                 // Upload mask images (black=masked area) for each chassis variant and paste URLs here.
                 small: null,
                 medium: null,
-                large:
-                  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8dff3e4ee7624e1e89adb673d57f0913?format=webp&width=800",
+                large: largeMaskUrl,
                 extra: extraMaskUrl,
               };
 
