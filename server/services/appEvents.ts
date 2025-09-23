@@ -206,10 +206,10 @@ export interface SessionSummary {
   lastSeen: string;
   introWho?: string; // บทบาทในการเดินทางเข้าเมือง
   travelMethod?: string; // ยานพาหนะที่ใช้
-  opinionLevel?: string; // ระดับ���วามคิดเห็น (เห็นด้วย/กลางๆ/ไม่เห็นด้วย)
+  opinionLevel?: string; // ระดับความคิดเห็น (เห็นด้วย/กลางๆ/ไม่เห็นด้วย)
   ask02Choice?: string; // เหตุผลหลัก
   ask02CustomReason?: string; // เหตุผลเพิ่มเติม (พิมพ์เอง)
-  reasonOther01?: string; // คำอธิบายเพิ่มเติม
+  reasonOther01?: string; // คำ���ธิบายเพิ่มเติม
   keyMessage1?: string; // Key message 1 (จาก Stornaway)
   mn1Selected: string[]; // ลำดับความสำคัญของประเด็น
   // MN2 selections keyed by MN1 priority
