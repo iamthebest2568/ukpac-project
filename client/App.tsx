@@ -65,7 +65,8 @@ const PaymentScreen = lazy(
   () => import("./pages/ukpack2/screens/PaymentScreen"),
 );
 const DoorScreen = lazy(() => import("./pages/ukpack2/screens/DoorScreen"));
-const DesignScreen = lazy(() => import("./pages/ukpack2/screens/DesignScreen"));
+import lazyWithRetry from "./lib/lazyWithRetry";
+const DesignScreen = lazy(() => lazyWithRetry(() => import("./pages/ukpack2/screens/DesignScreen"), 2, 500));
 const SummaryScreen = lazy(
   () => import("./pages/ukpack2/screens/SummaryScreen"),
 );
