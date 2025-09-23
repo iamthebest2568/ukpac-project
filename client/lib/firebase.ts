@@ -151,12 +151,26 @@ export async function sendEventToFirestore(
 export async function addDesignImageUrlToFirestore(imageUrl: string) {
   if (!db) initFirebase();
   if (!db) throw new Error("Firestore not initialized");
-  const colRef = collection(db as any, "ukpact-gamebus-imagedesign-events");
-  const docRef = await addDoc(colRef as any, {
-    imageUrl,
-    createdAt: serverTimestamp(),
-  });
-  return { id: docRef.id };
+
+  async function tryWrite(colName: string) {
+    const colRef = collection(db as any, colName);
+    const docRef = await addDoc(colRef as any, {
+      imageUrl,
+      createdAt: serverTimestamp(),
+    });
+    return { id: docRef.id, collection: colName } as const;
+  }
+
+  // Prefer user's requested collection name; fallback to previous one if needed
+  try {
+    return await tryWrite("kpact-gamebus-imagedesign-events");
+  } catch (e) {
+    try {
+      return await tryWrite("ukpact-gamebus-imagedesign-events");
+    } catch (e2) {
+      throw e2 || e;
+    }
+  }
 }
 
 // also export init for manual init from UI
