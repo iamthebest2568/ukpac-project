@@ -1,18 +1,13 @@
 import React from "react";
 
+import { CHASSIS_LABELS } from "../utils/heroImages";
+
 interface SummaryCardProps {
   designData: Record<string, any>;
 }
 
 const SummaryCard: React.FC<SummaryCardProps> = ({ designData }) => {
   const entries = Object.entries(designData || {});
-
-  const CHASSIS_LABELS: Record<string, string> = {
-    small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
-    medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
-    large: "รถตู้โดยสาร 9–15 ที่นั่ง",
-    extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
-  };
 
   const formatValue = (key: string, value: any) => {
     if (key === "chassis")
