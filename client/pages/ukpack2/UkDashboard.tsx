@@ -412,7 +412,7 @@ const UkDashboard: React.FC = () => {
             <h2 className="text-lg font-semibold mb-2">
               เข้าสู่แดชบอร์ด ukpack2
             </h2>
-            <p className="text-sm mb-4">ป้อนรหัสเพ���่อเข้าถึงแดชบอร์ด</p>
+            <p className="text-sm mb-4">ป้อนรหัสเพื่อเข้าถึงแดชบอร์ด</p>
             <input
               type="password"
               value={input}
