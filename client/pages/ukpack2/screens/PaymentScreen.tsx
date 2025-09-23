@@ -224,7 +224,7 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   พัดลม: <IconFan />,
   ที่นั่งพิเศษ: <IconSeat />,
   "ที่จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
-  "ช่องชาร���จมือถือ/USB": <IconPlug />,
+  "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
   "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
   กล้องวงจรปิด: <IconCam />,
@@ -401,12 +401,12 @@ const PaymentScreen: React.FC = () => {
   };
 
   const PAYMENT_BUTTON_SRC: Record<string, string> = {
-    เงินสด: MONEY_ICON,
-    สแกนจ่าย: SCAN_ICON,
-    "สแกน��่าย 2": SCAN2_ICON,
-    แตะบัตร: TOUCH_ICON,
+    "เงินสด": MONEY_ICON,
+    "สแกนจ่าย": SCAN_ICON,
+    "สแกนจ่าย 2": SCAN2_ICON,
+    "แตะบัตร": TOUCH_ICON,
     "ตั๋วรายเดือน/รอบ": MONTHLY_ICON,
-    ���ระเป๋ารถเมล์: BUS_EMPLOY_ICON,
+    "กระเป๋ารถเมล์": BUS_EMPLOY_ICON,
   };
 
   const handleNext = () => {
@@ -514,7 +514,7 @@ const PaymentScreen: React.FC = () => {
             const CORRECT_LABELS: Record<string, string> = {
               "สแกนจ่าย 2": "สแกนจ่าย 2",
               แตะบัตร: "แตะบัตร",
-              กระเป๋ารถเมล์: "กระเ���๋ารถเมล์",
+              กระเป๋ารถเมล์: "กระเป๋ารถเมล์",
               เงินสด: "เงินสด",
             };
             const stripReplacement = (s: string) =>
@@ -698,7 +698,7 @@ const PaymentScreen: React.FC = () => {
                   >
                     <img
                       src={
-                        selected.includes("กระเป๋ารถเม���์")
+                        selected.includes("กระเป๋ารถเมล์")
                           ? BUS_EMPLOY_ICON_ACTIVE
                           : BUS_EMPLOY_ICON
                       }
@@ -795,7 +795,7 @@ const PaymentScreen: React.FC = () => {
                       "สแกนจ่าย",
                       "สแกนจ่าย 2",
                       "แตะบัตร",
-                      "กระเป���ารถเมล์",
+                      "กระเป๋ารถเมล์",
                       "ตั๋วรายเดือน/รอบ",
                     ];
                     for (const k of explicit) {
