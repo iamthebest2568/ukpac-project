@@ -291,7 +291,7 @@ const VehiclePreview: React.FC<Props> = ({
 
             <img
               ref={carRef}
-              src={imageSrc}
+              src={effectiveImageSrc}
               alt={
                 typeof label === "string" ? `bus image - ${label}` : "bus image"
               }
@@ -311,7 +311,7 @@ const VehiclePreview: React.FC<Props> = ({
             />
 
             {/* color overlay: covers the same area as the image and uses mask-image */}
-            {colorHex && colorMaskSrc && (
+            {effectiveColorHex && effectiveColorMaskSrc && (
               <div
                 aria-hidden="true"
                 style={{
@@ -319,14 +319,14 @@ const VehiclePreview: React.FC<Props> = ({
                   inset: 0,
                   width: "100%",
                   height: "100%",
-                  backgroundColor: colorHex,
+                  backgroundColor: effectiveColorHex,
                   pointerEvents: "none",
                   mixBlendMode: "multiply",
-                  WebkitMaskImage: `url(${colorMaskSrc})`,
+                  WebkitMaskImage: `url(${effectiveColorMaskSrc})`,
                   WebkitMaskSize: "contain",
                   WebkitMaskRepeat: "no-repeat",
                   WebkitMaskPosition: "center",
-                  maskImage: `url(${colorMaskSrc})`,
+                  maskImage: `url(${effectiveColorMaskSrc})`,
                   maskSize: "contain",
                   maskRepeat: "no-repeat",
                   maskPosition: "center",
