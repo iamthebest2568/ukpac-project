@@ -95,11 +95,16 @@ export async function sendEventToFirestore(
           userAgent: navigator.userAgent || null,
           page: window.location.pathname,
         };
-        await fetch("/api/track", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        }).catch(() => {});
+        const ok = (() => {
+          try {
+            const blob = new Blob([JSON.stringify(payload)], { type: "application/json" });
+            // sendBeacon returns boolean, does not throw on network errors
+            return navigator.sendBeacon && navigator.sendBeacon("/api/track", blob);
+          } catch (_) {
+            return false;
+          }
+        })();
+        void ok;
       } catch (_) {}
       return { ok: false, skipped: true } as any;
     }
@@ -153,13 +158,9 @@ export async function sendEventToFirestore(
         };
         // fire-and-forget (tolerate sync and async failures)
         try {
-          await fetch("/api/track", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(payload),
-          });
+          const blob = new Blob([JSON.stringify(payload)], { type: "application/json" });
+          navigator.sendBeacon && navigator.sendBeacon("/api/track", blob);
         } catch (_) {
-          // ignore network/CORS errors entirely in client fallback
         }
 
         // return a sentinel so callers treat as success (event persisted server-side)
