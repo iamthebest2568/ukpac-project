@@ -209,7 +209,7 @@ export interface SessionSummary {
   opinionLevel?: string; // ระดับความคิดเห็น (เห็นด้วย/กลางๆ/ไม่เห็นด้วย)
   ask02Choice?: string; // เหตุผลหลัก
   ask02CustomReason?: string; // เหตุผลเพิ่มเติม (พิมพ์เอง)
-  reasonOther01?: string; // คำ���ธิบายเพิ่มเติม
+  reasonOther01?: string; // คำอธิบายเพิ่มเติม
   keyMessage1?: string; // Key message 1 (จาก Stornaway)
   mn1Selected: string[]; // ลำดับความสำคัญของประเด็น
   // MN2 selections keyed by MN1 priority
@@ -218,7 +218,7 @@ export interface SessionSummary {
   mn3Selected?: string[]; // ประเด็นนโยบายที่ผู้ใช้เลือก
   mn3BudgetAllocation?: Record<string, number>; // การจัดสรรงบประมาณ
   mn3BudgetTotal?: number;
-  satisfactionLevel?: string; // ระด��บ���วามพึงพอใจ
+  satisfactionLevel?: string; // ระดับความพึงพอใจ
   ask05Comment?: string; // ข้อเสนอเพิ่มเติมต่อรัฐ
   fakeNewsResponse?: string; // การตอบสนองต่อข่าวปลอม
   sourceSelected?: string; // แหล่งข่าวที���ผู้ใช้เลือก
