@@ -189,7 +189,6 @@ const SummaryDetails: React.FC = () => {
       {heroImg && (
         <div className="flex flex-col items-center mt-4 mb-0">
           <VehiclePreview
-            className="max-w-[260px]"
             imageSrc={heroImg}
             label={chassisLabel}
             showSelectedText
