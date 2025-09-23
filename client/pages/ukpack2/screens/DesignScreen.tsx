@@ -251,7 +251,7 @@ const DesignScreen: React.FC = () => {
   }, [showTextarea]);
 
   // Write imageUrl to Firestore (once per chassis per session) and show confirmation
-  const [savedInfo, setSavedInfo] = useState<{ id: string; url: string } | null>(null);
+  const [savedInfo, setSavedInfo] = useState<{ id: string; url: string; col?: string } | null>(null);
   useEffect(() => {
     try {
       let selected = "medium";
@@ -359,7 +359,7 @@ const DesignScreen: React.FC = () => {
     <>
       <MetaUpdater
         title="UK PACT - กรุงเทพฯ ลดติด"
-        description="ออกแบบรถเมล์เพื่อช่วยลดปัญหาการจราจรในกรุงเทพฯ — เลือกขนาดรถ สี และสิ่งอำนวยความสะดวกที่ต้องการ"
+        description="ออกแบบรถเมล์เพื่อช่วยลดปัญหาการจราจรในกรุงเทพฯ — เลือ��ขนาดรถ สี และสิ่งอำนวยความสะดวกที่ต้องการ"
         image="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F44cea8aeb6d4415e899494a90c6f59b1?format=webp&width=1200"
       />
       <CustomizationScreen
