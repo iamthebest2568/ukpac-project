@@ -251,9 +251,68 @@ const DesignScreen: React.FC = () => {
 
   const handleFinish = () => {
     try {
-      // design.color storage removed — color matching disabled
+      // Persist final slogan
       sessionStorage.setItem("design.slogan", slogan);
     } catch (e) {}
+
+    try {
+      // Persist final rendered image & state so subsequent pages use the design image
+      const final = {
+        imageSrc: HERO_IMAGE[(() => {
+          try {
+            const saved = sessionStorage.getItem("design.chassis");
+            return saved || "medium";
+          } catch (e) {
+            return "medium";
+          }
+        })()],
+        chassis: (() => {
+          try {
+            return sessionStorage.getItem("design.chassis") || "medium";
+          } catch (e) {
+            return "medium";
+          }
+        })(),
+        color: (() => {
+          try {
+            const raw = sessionStorage.getItem("design.color");
+            return raw ? JSON.parse(raw) : null;
+          } catch (e) {
+            return null;
+          }
+        })(),
+        colorMaskSrc: (() => {
+          try {
+            const saved = sessionStorage.getItem("design.chassis") || "medium";
+            const MASKS: Record<string, string | null> = {
+              small:
+                "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F52a0e0b5f83341cf9dfc9ff4f7abf046?format=webp&width=800",
+              medium:
+                "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F52a0e0b5f83341cf9dfc9ff4f7abf046?format=webp&width=800",
+              large:
+                "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F52a0e0b5f83341cf9dfc9ff4f7abf046?format=webp&width=800",
+              extra:
+                "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F52a0e0b5f83341cf9dfc9ff4f7abf046?format=webp&width=800",
+            };
+            return MASKS[saved] || null;
+          } catch (e) {
+            return null;
+          }
+        })(),
+        overlayIconMap: (() => {
+          try {
+            const raw = sessionStorage.getItem("design.overlayIconMap");
+            return raw ? JSON.parse(raw) : null;
+          } catch (e) {
+            return null;
+          }
+        })(),
+      };
+      sessionStorage.setItem("design.finalImage", JSON.stringify(final));
+      // mark finalized so other pages prefer final image over chassis-only previews
+      sessionStorage.setItem("design.finalized", "1");
+    } catch (e) {}
+
     navigate("/ukpack2/submit");
   };
 
@@ -261,7 +320,7 @@ const DesignScreen: React.FC = () => {
     <>
       <MetaUpdater
         title="UK PACT - กรุงเทพฯ ลดติด"
-        description="ออกแบบรถเมล์เพื่อช่วยลดปัญหาการจราจรในกรุงเทพฯ — เลือกขนาดรถ สี และสิ่งอำนวยความสะดวกที่ต้องการ"
+        description="ออกแบบรถเมล์เพื่อช่วยลดปัญหาการจราจรในกรุงเทพฯ — เลือกขนาดรถ สี และสิ่งอำนวยความสะดวกที่ต��องการ"
         image="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F44cea8aeb6d4415e899494a90c6f59b1?format=webp&width=1200"
       />
       <CustomizationScreen
@@ -422,7 +481,7 @@ const DesignScreen: React.FC = () => {
                         value={sloganDraft}
                         onChange={(e) => setSloganDraft(e.target.value)}
                         placeholder={
-                          "พิมพ์คุณสมบัติพิเศษอื่นๆของ\nรถเมล์ในฝันของคุณ"
+                          "พิมพ์คุณสมบัติพิเศษอื่นๆของ\nรถเมล์��นฝันของคุณ"
                         }
                         className="mt-3 w-full h-36 p-3 border-2 border-[#000D59] rounded-xl text-sm resize-none text-center"
                         style={{ whiteSpace: "pre-wrap" }}
