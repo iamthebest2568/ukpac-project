@@ -6,6 +6,8 @@ interface CustomizationScreenProps {
   footerContent?: React.ReactNode;
   theme?: "dark" | "light";
   footerBgImage?: string;
+  // optional tailwind/css class to override footer background for specific pages (e.g. 'bg-white')
+  footerBgClass?: string;
   headerContent?: React.ReactNode;
   fullWidth?: boolean;
   // optional CSS module class to enforce consistent horizontal padding
