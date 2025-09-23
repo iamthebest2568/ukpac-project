@@ -4,6 +4,7 @@
 @import "./styles/mn3-buttons.css";
 @import "./styles/mn3-fixes.css";
 @import "./styles/ukpack2-embedded.css";
+@import "./styles/ukpack2-tablet.css";
 
 @tailwind base;
 @tailwind components;
