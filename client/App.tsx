@@ -230,6 +230,11 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   React.useEffect(() => {
     try {
       const isUkpack2 = location.pathname.startsWith("/ukpack2");
+      if (isUkpack2) {
+        document.body.classList.add("page-ukpack2");
+      } else {
+        document.body.classList.remove("page-ukpack2");
+      }
       if (isEmbedded && isUkpack2) {
         document.body.classList.add("embedded-ukpack2");
       } else {
@@ -238,6 +243,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     } catch (e) {}
     return () => {
       try {
+        document.body.classList.remove("page-ukpack2");
         document.body.classList.remove("embedded-ukpack2");
       } catch (e) {}
     };
