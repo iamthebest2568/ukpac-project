@@ -109,7 +109,7 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
       {footerContent ? (
         <div ref={footerRef} className="fixed left-0 right-0 z-50" style={{ bottom: 0 }} role="contentinfo">
           <div
-            className="bg-[#00d5f9] w-full"
+            className={`${footerBgClass || "bg-[#00d5f9]"} w-full`}
             style={{ paddingTop: "12px", paddingBottom: "calc(12px + env(safe-area-inset-bottom, 0px))" }}
           >
             <div
