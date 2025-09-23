@@ -133,7 +133,7 @@ const OPTIONS = [
   {
     key: "medium",
     label: "รถเมล์มาตรฐาน 30-50 ที่นั่ง",
-    labelText: "รถเมล์มาตรฐา��� 30-50 ที่นั่ง",
+    labelText: "รถเมล์มาตรฐาน 30-50 ที่นั่ง",
     icon: <IconMedium />,
   },
   {
