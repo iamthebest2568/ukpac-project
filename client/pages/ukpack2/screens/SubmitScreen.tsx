@@ -47,12 +47,12 @@ const SubmitScreen: React.FC = () => {
       window.alert("กรุณากรอกจำนวน (นาที) ของความถี่การมาของรถเป็นตัวเลข");
       return;
     }
-    if (area === "" || Number.isNaN(Number(area))) {
-      window.alert("กรุณากรอกพื้นที่ที่วิ่งเป็นตัวเลข");
+    if (area === "") {
+      window.alert("กรุณาระบุพื้นที่วิ่ง");
       return;
     }
 
-    const submitData = { interval: Number(interval), area: Number(area) };
+    const submitData = { interval: Number(interval), area };
     try {
       sessionStorage.setItem("design.submit", JSON.stringify(submitData));
     } catch (e) {}
@@ -64,7 +64,7 @@ const SubmitScreen: React.FC = () => {
           type: "SET_SERVICE_INFO",
           payload: {
             routeName: null,
-            area: Number(area),
+            area,
             frequency: Number(interval),
           },
         });
@@ -235,11 +235,11 @@ const SubmitScreen: React.FC = () => {
                 พื้นที่วิ่ง
               </label>
               <input
-                type="number"
-                inputMode="numeric"
+                type="text"
+                inputMode="text"
                 placeholder="พิมพ์"
                 value={area}
-                onChange={(e) => setArea(e.target.value.replace(/[^0-9]/g, ""))}
+                onChange={(e) => setArea(e.target.value)}
                 className="flex-1 min-w-0 max-w-[220px] rounded-xl px-3 py-1.5 border-2 border-[#000D59] h-9 text-center placeholder-gray-400"
                 style={{
                   fontFamily: "Sarabun, sans-serif",
