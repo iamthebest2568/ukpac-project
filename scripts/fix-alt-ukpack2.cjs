@@ -1,7 +1,11 @@
 const fs = require('fs');
 const path = require('path');
+const fs = require('fs');
 
-const ROOT = path.join(__dirname, '..', 'client', 'pages', 'ukpack2');
+const ROOTS = [
+  path.join(__dirname, '..', 'client', 'pages', 'ukpack2'),
+  path.join(__dirname, '..', 'client', 'pages', 'ukpack1'),
+];
 
 function walk(dir) {
   const entries = fs.readdirSync(dir, { withFileTypes: true });
@@ -33,5 +37,7 @@ function walk(dir) {
   }
 }
 
-walk(ROOT);
+for (const r of ROOTS) {
+  if (fs.existsSync(r)) walk(r);
+}
 console.log('Alt-fix complete');
