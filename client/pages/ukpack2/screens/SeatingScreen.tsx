@@ -123,7 +123,7 @@ const SeatingScreen: React.FC = () => {
     if (Number.isNaN(total)) {
       setErrorTitle("กรุณาระบุจำนวนที่นั่งทั้งหมด");
       setErrorMessage(
-        `กรุณากรอกจำนวนที่���ั่งทั้งหมดในช่วง ${minCapacityLocal} ถึง ${maxCapacityLocal} ที่นั่ง`,
+        `กรุณากรอกจำนวนที่นั่งทั้งหมดในช่วง ${minCapacityLocal} ถึง ${maxCapacityLocal} ที่นั่ง`,
       );
       setErrorModalOpen(true);
       return false;
@@ -147,7 +147,7 @@ const SeatingScreen: React.FC = () => {
     if (sumSubs !== total) {
       setErrorTitle("ผลรวมของที่นั่งย่อยไม่ตรงกัน");
       setErrorMessage(
-        `ผลรวมของที่นั่งย่อยทั้งหมด (${sumSubs}) ไม่���รงกับจำนวนที่นั่งทั้งหมด (${total})`,
+        `ผลรวมของที่นั่งย่อยทั้งหมด (${sumSubs}) ไม่ตรงกับจำนวนที่นั่งทั้งหมด (${total})`,
       );
       setErrorModalOpen(true);
       return false;
