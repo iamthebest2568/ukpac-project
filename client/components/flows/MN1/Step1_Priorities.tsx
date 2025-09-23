@@ -185,7 +185,7 @@ const Step1_Priorities = ({
               style={{
                 width: "46.3%", // 500/1080
                 height: "clamp(60px, 4.7vw, 90px)",
-                backgroundColor: getButtonColor("ปรับปรุงคุณภาพรถเมล์"),
+                backgroundColor: getButtonColor("ปรับปรุงคุณภาพรถเ��ล์"),
                 opacity: isSelectionDisabled("ปรับปรุงคุณภาพรถเมล์") ? 0.5 : 1,
               }}
               onClick={() =>
@@ -267,7 +267,7 @@ const Step1_Priorities = ({
                 width: "27.1%", // 293/1080
                 height: "clamp(60px, 4.7vw, 90px)",
                 backgroundColor: getButtonColor("เพิ่มที่จอดรถ"),
-                opacity: isSelectionDisabled("เพิ่มที่จอดรถ") ? 0.5 : 1,
+                opacity: isSelectionDisabled("เพิ่มที่���อดรถ") ? 0.5 : 1,
               }}
               onClick={() =>
                 !isSelectionDisabled("เพิ่มที่จอดรถ") &&
@@ -295,7 +295,7 @@ const Step1_Priorities = ({
               style={{
                 width: "43.1%", // 465/1080
                 height: "clamp(60px, 4.7vw, 90px)",
-                backgroundColor: getButtonColor("เพิ่มความถี่รถไฟฟ้า"),
+                backgroundColor: getButtonColor("เพิ่มความถ��่รถไฟฟ้า"),
                 opacity: isSelectionDisabled("เพิ่มความถี่รถไฟฟ้า") ? 0.5 : 1,
               }}
               onClick={() =>
@@ -322,7 +322,7 @@ const Step1_Priorities = ({
                 width: "44.4%", // 480/1080
                 height: "clamp(60px, 4.7vw, 90px)",
                 backgroundColor: getButtonColor("เพิ่ม Feeder ในซอย"),
-                opacity: isSelectionDisabled("เพิ��ม Feeder ในซอย") ? 0.5 : 1,
+                opacity: isSelectionDisabled("เพิ่ม Feeder ในซอย") ? 0.5 : 1,
               }}
               onClick={() =>
                 !isSelectionDisabled("เพิ่ม Feeder ในซอย") &&
