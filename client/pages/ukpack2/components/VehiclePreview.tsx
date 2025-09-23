@@ -322,7 +322,7 @@ const VehiclePreview: React.FC<Props> = ({
                     (persistedFinal?.chassis as string) ||
                     sessionStorage.getItem("design.chassis");
                 } catch {}
-                const useNormalBlend = selectedChassis === "medium"; // ensure exact color for standard bus
+                const useNormalBlend = selectedChassis === "medium" || selectedChassis === "small"; // ensure exact color for standard and small buses
                 const baseStyle: React.CSSProperties = {
                   position: "absolute",
                   inset: 0,
