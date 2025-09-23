@@ -244,8 +244,8 @@ const SummaryDetails: React.FC = () => {
         </div>
       )}
 
-      <div className={`bg-[#e6e7e8] rounded-xl p-3 text-sm text-gray-800 shadow-sm ${styles.scrollableDetails}`}>
-        <div className="flex flex-col gap-2">
+      <div className={`bg-[#e6e7e8] rounded-xl p-3 text-sm text-gray-800 shadow-sm`}>
+        <div className={`flex flex-col gap-2 ${styles.scrollableDetails}`}>
           <div className="flex items-start gap-2">
             <div className="w-24 md:w-32 text-sm text-[#003366] truncate font-sarabun font-semibold">
               รูปแบบรถ
