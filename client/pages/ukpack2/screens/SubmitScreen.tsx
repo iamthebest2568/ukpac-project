@@ -38,16 +38,6 @@ const SubmitScreen: React.FC = () => {
       }
     })();
 
-  const selectedChassis =
-    state?.chassis ||
-    (() => {
-      try {
-        return sessionStorage.getItem("design.chassis") || "medium";
-      } catch (e) {
-        return "medium";
-      }
-    })();
-
   const handleFinish = () => {
     // Validate required numeric fields: interval and area
     if (interval === "" || Number.isNaN(Number(interval))) {
@@ -165,7 +155,7 @@ const SubmitScreen: React.FC = () => {
                   "สแกนจ่าย 2": SCAN2_ICON,
                   แตะบัตร: TOUCH_ICON,
                   "ตั๋วรายเดือน/รอบ": MONTHLY_ICON,
-                  กระเป๋ารถเมล์: BUS_EMPLOY_ICON,
+                  กระเป๋ารถเม���์: BUS_EMPLOY_ICON,
                 }}
               />
             </div>
