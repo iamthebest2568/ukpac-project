@@ -287,13 +287,13 @@ const DesignScreen: React.FC = () => {
   // Generate dynamic mask for van (large) from provided template by detecting #fd8b00 areas
   useEffect(() => {
     try {
-      const key = "design.dynamicMask.large";
+      const key = "design.dynamicMask.large.v2";
       const cached = sessionStorage.getItem(key);
       if (cached) {
         setLargeMaskUrl(cached);
       } else {
         const templateUrl = VAN_TEMPLATE_NEW;
-        generateMaskFromColor(templateUrl, "#fd8b00", 60).then((url) => {
+        generateMaskFromColor(templateUrl, "#fd8b00", 100).then((url) => {
           if (url) {
             setLargeMaskUrl(url);
             try { sessionStorage.setItem(key, url); } catch (_) {}
@@ -462,7 +462,7 @@ const DesignScreen: React.FC = () => {
           {/* Firestore confirmation panel (trial) */}
           {savedInfo && (
             <div className="max-w-2xl w-full mx-auto bg-white border-2 border-[#000D59] rounded-xl p-3 mb-2">
-              <div className="text-sm text-[#001a73] font-medium">บันทึกภาพตัวอย่างไปยัง Firestore แล้ว</div>
+              <div className="text-sm text-[#001a73] font-medium">บันทึกภาพตัวอย่างไปยัง Firestore ���ล้ว</div>
               <div className="mt-1 text-[11px] text-[#001a73]">Collection: {savedInfo.col || "(unknown)"}</div>
               <div className="mt-2 flex gap-3 items-start">
                 <img src={savedInfo.url} alt="image" className="w-32 h-20 object-contain rounded border" />
@@ -618,7 +618,7 @@ const DesignScreen: React.FC = () => {
                         value={sloganDraft}
                         onChange={(e) => setSloganDraft(e.target.value)}
                         placeholder={
-                          "พิมพ์คุณสมบัติพิเศษอื่นๆของ\nรถเมล์ในฝันของคุณ"
+                          "พิมพ์คุณสมบัติพิเศษอื่นๆของ\nรถเมล์ในฝันของค��ณ"
                         }
                         className="mt-3 w-full h-36 p-3 border-2 border-[#000D59] rounded-xl text-sm resize-none text-center"
                         style={{ whiteSpace: "pre-wrap" }}
