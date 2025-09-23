@@ -7,6 +7,7 @@ import MetaUpdater from "../../../components/MetaUpdater";
 import { OVERLAY_ICON_SRC } from "../utils/overlayIcons";
 import CtaButton from "../components/CtaButton";
 import { HERO_IMAGE, CHASSIS_LABELS } from "../utils/heroImages";
+import { generateMaskFromColor } from "../utils/generateMaskFromColor";
 import VehiclePreview from "../components/VehiclePreview";
 
 // small amenity icons (same assets as other screens)
@@ -243,12 +244,32 @@ const DesignScreen: React.FC = () => {
   const [sloganDraft, setSloganDraft] = useState<string>("");
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
   const [isSaveHover, setIsSaveHover] = useState(false);
+  const [extraMaskUrl, setExtraMaskUrl] = useState<string | null>(null);
 
   useEffect(() => {
     if (showTextarea) {
       setTimeout(() => textareaRef.current?.focus(), 0);
     }
   }, [showTextarea]);
+
+  // Generate dynamic mask for pickup (extra) from provided template by detecting #fd8b00 areas
+  useEffect(() => {
+    try {
+      const key = "design.dynamicMask.extra";
+      const cached = sessionStorage.getItem(key);
+      if (cached) {
+        setExtraMaskUrl(cached);
+      } else {
+        const templateUrl = "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fcff745fa9fbf4b468dbef9bc16106083?format=webp&width=800";
+        generateMaskFromColor(templateUrl, "#fd8b00", 60).then((url) => {
+          if (url) {
+            setExtraMaskUrl(url);
+            try { sessionStorage.setItem(key, url); } catch (_) {}
+          }
+        });
+      }
+    } catch (_) {}
+  }, []);
 
   // Write imageUrl to Firestore (once per chassis per session) and show confirmation
   const [savedInfo, setSavedInfo] = useState<{ id: string; url: string; col?: string } | null>(null);
@@ -328,7 +349,7 @@ const DesignScreen: React.FC = () => {
               medium: null,
               large:
                 "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8dff3e4ee7624e1e89adb673d57f0913?format=webp&width=800",
-              extra: null,
+              extra: extraMaskUrl,
             };
             return MASKS[saved] || null;
           } catch (e) {
@@ -392,7 +413,7 @@ const DesignScreen: React.FC = () => {
                 medium: null,
                 large:
                   "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8dff3e4ee7624e1e89adb673d57f0913?format=webp&width=800",
-                extra: null,
+                extra: extraMaskUrl,
               };
 
               // NOTE: Pre-rendered image swapping and first-swatch override removed.
@@ -522,7 +543,7 @@ const DesignScreen: React.FC = () => {
                     <div className="bg-white rounded-xl p-4 max-w-lg w-full mx-4">
                       <style>{`.save-btn-modal:hover { color: #000D59 !important; }`}</style>
                       <h3 className="text-lg font-prompt font-semibold text-[#000d59]">
-                        ลักษณะพิเศษอื่นๆ
+                        ลั���ษณะพิเศษอื่นๆ
                       </h3>
                       <textarea
                         ref={textareaRef}
