@@ -314,40 +314,51 @@ const VehiclePreview: React.FC<Props> = ({
 
             {/* color overlay: covers the same area as the image. If a mask image is available, use mask-image to only color masked areas; otherwise apply a full-image tint as a fallback so uploaded vehicle types are colored too */}
             {effectiveColorHex && (
-              <div
-                aria-hidden="true"
-                style={
-                  effectiveColorMaskSrc
-                    ? {
-                        position: "absolute",
-                        inset: 0,
-                        width: "100%",
-                        height: "100%",
-                        backgroundColor: effectiveColorHex,
-                        pointerEvents: "none",
-                        mixBlendMode: "multiply",
-                        WebkitMaskImage: `url(${effectiveColorMaskSrc})`,
-                        WebkitMaskSize: "contain",
-                        WebkitMaskRepeat: "no-repeat",
-                        WebkitMaskPosition: "center",
-                        maskImage: `url(${effectiveColorMaskSrc})`,
-                        maskSize: "contain",
-                        maskRepeat: "no-repeat",
-                        maskPosition: "center",
-                        opacity: 1,
-                      }
-                    : {
-                        position: "absolute",
-                        inset: 0,
-                        width: "100%",
-                        height: "100%",
-                        backgroundColor: effectiveColorHex,
-                        pointerEvents: "none",
-                        mixBlendMode: "multiply",
-                        opacity: 0.75,
-                      }
-                }
-              />
+              (() => {
+                // Determine chassis to optionally adjust blend mode for accuracy
+                let selectedChassis: string | null = null;
+                try {
+                  selectedChassis =
+                    (persistedFinal?.chassis as string) ||
+                    sessionStorage.getItem("design.chassis");
+                } catch {}
+                const useNormalBlend = selectedChassis === "medium"; // ensure exact color for standard bus
+                const baseStyle: React.CSSProperties = {
+                  position: "absolute",
+                  inset: 0,
+                  width: "100%",
+                  height: "100%",
+                  backgroundColor: effectiveColorHex,
+                  pointerEvents: "none",
+                  opacity: 1,
+                };
+                const blended: React.CSSProperties = useNormalBlend
+                  ? baseStyle
+                  : { ...baseStyle, mixBlendMode: "multiply" };
+                return (
+                  <div
+                    aria-hidden="true"
+                    style=
+                      {effectiveColorMaskSrc
+                        ? {
+                            ...blended,
+                            WebkitMaskImage: `url(${effectiveColorMaskSrc})`,
+                            WebkitMaskSize: "contain",
+                            WebkitMaskRepeat: "no-repeat",
+                            WebkitMaskPosition: "center",
+                            maskImage: `url(${effectiveColorMaskSrc})`,
+                            maskSize: "contain",
+                            maskRepeat: "no-repeat",
+                            maskPosition: "center",
+                          }
+                        : {
+                            ...blended,
+                            opacity: useNormalBlend ? 0.9 : 0.75,
+                          }
+                    }
+                  />
+                );
+              })()
             )}
 
             {/** optional star overlay placed at top-right of the vehicle image container */}
