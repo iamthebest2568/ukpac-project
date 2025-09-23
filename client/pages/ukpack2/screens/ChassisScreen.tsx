@@ -74,7 +74,7 @@ const IconMedium = () => (
 );
 const IconMediumAlt = () => (
   <img
-    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F94752305ff8b454798b09b76d9ff98b5?format=webp&width=800"
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F1584a1ddf1bb4afaaed9f37f0f949e95?format=webp&width=800"
     alt=""
     aria-hidden="true"
     className="h-full w-auto object-contain select-none"
@@ -126,7 +126,7 @@ const IconExtraAlt = () => (
 const OPTIONS = [
   {
     key: "small",
-    label: "รถเ���ล์ขนาดเล็ก 16-30 ที่นั่ง",
+    label: "รถเมล์ขนาดเล็ก 16-30 ที่นั่ง",
     labelText: "รถเมล์ขนาดเล็ก 16-30 ที่นั่ง",
     icon: <IconSmall />,
   },
