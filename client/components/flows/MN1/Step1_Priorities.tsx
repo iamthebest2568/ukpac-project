@@ -120,7 +120,7 @@ const Step1_Priorities = ({
         >
           คุณคิดว่าควรใช้เงินที่ได้
           <br />
-          จากการเก็บไปพัฒนาอะไร
+          จากก���รเก็บไปพัฒนาอะไร
         </h1>
       </div>
 
@@ -186,7 +186,7 @@ const Step1_Priorities = ({
                 width: "46.3%", // 500/1080
                 height: "clamp(60px, 4.7vw, 90px)",
                 backgroundColor: getButtonColor("ปรับปรุงคุณภาพรถเมล์"),
-                opacity: isSelectionDisabled("ปรับปรงคุ��ภาพรถเมล์")
+                opacity: isSelectionDisabled("ปรับปรุงคุณภาพรถเมล์")
                   ? 0.5
                   : 1,
               }}
@@ -243,7 +243,7 @@ const Step1_Priorities = ({
                 width: "35.6%", // 385/1080
                 height: "clamp(60px, 4.7vw, 90px)",
                 backgroundColor: getButtonColor("เพิ่มความถี่รถเมล์"),
-                opacity: isSelectionDisabled("���พิ่มความถี่รถเมล์") ? 0.5 : 1,
+                opacity: isSelectionDisabled("เพิ่มความถี่รถเมล์") ? 0.5 : 1,
               }}
               onClick={() =>
                 !isSelectionDisabled("เพิ่มความถี่รถเมล์") &&
