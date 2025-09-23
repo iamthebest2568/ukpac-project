@@ -1,0 +1,47 @@
+/* Tablet-only responsive overrides for /ukpack2 (768px–1023px)
+   Mobile (<=767px): unchanged
+   Desktop (>=1024px): unchanged */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  body.page-ukpack2 .app-container {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  /* Constrain very wide containers to comfortable tablet width and center */
+  body.page-ukpack2 .max-w-5xl,
+  body.page-ukpack2 .max-w-4xl,
+  body.page-ukpack2 .max-w-3xl {
+    max-width: 900px !important;
+    width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* Vehicle preview sizing: make image a bit larger on tablet */
+  body.page-ukpack2 .vehicle-preview > .relative {
+    width: 80% !important; /* override inline w-[60-75%] */
+    max-width: 560px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* Ensure sticky footers do not overlap content on tablet */
+  body.page-ukpack2 .customization-screen-footer,
+  body.page-ukpack2 [data-testid="customization-footer"] {
+    position: sticky !important;
+    bottom: 0 !important;
+  }
+
+  /* Slightly increase base font size for readability on tablet */
+  body.page-ukpack2,
+  body.page-ukpack2 .font-prompt,
+  body.page-ukpack2 .font-sarabun {
+    font-size: 16.5px !important;
+  }
+
+  /* Color palette: keep density but add small gap for breathing room */
+  body.page-ukpack2 .grid.grid-cols-6 {
+    gap: 12px !important;
+  }
+}
