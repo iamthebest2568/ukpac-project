@@ -29,7 +29,7 @@ const SubmitScreen: React.FC = () => {
   const { state, dispatch, submitDesignToFirebase } = useBusDesign() as any;
 
   const selectedChassis =
-    state?.chassis ||
+    (state && state.chassis) ||
     (() => {
       try {
         return sessionStorage.getItem("design.chassis") || "medium";
@@ -37,6 +37,9 @@ const SubmitScreen: React.FC = () => {
         return "medium";
       }
     })();
+
+  const chassisLabel = CHASSIS_LABELS[selectedChassis] || "";
+  const heroImg = HERO_IMAGE[selectedChassis];
 
   const handleFinish = () => {
     // Validate required numeric fields: interval and area
@@ -70,7 +73,6 @@ const SubmitScreen: React.FC = () => {
 
     // Fire-and-forget submission to Firebase, but navigate immediately so UI isn't blocked
     try {
-      // attempt to fetch hero image and upload it as the representative image
       (async () => {
         try {
           let blob: Blob | null = null;
@@ -97,9 +99,6 @@ const SubmitScreen: React.FC = () => {
 
     navigate("/ukpack2/summary");
   };
-
-  const chassisLabel = CHASSIS_LABELS[selectedChassis] || "";
-  const heroImg = HERO_IMAGE[selectedChassis];
 
   const storedColor =
     state?.exterior?.color ||
@@ -155,7 +154,7 @@ const SubmitScreen: React.FC = () => {
                   "สแกนจ่าย 2": SCAN2_ICON,
                   แตะบัตร: TOUCH_ICON,
                   "ตั๋วรายเดือน/รอบ": MONTHLY_ICON,
-                  กระเป๋ารถเม���์: BUS_EMPLOY_ICON,
+                  "กระเป๋ารถเมล์": BUS_EMPLOY_ICON,
                 }}
               />
             </div>
