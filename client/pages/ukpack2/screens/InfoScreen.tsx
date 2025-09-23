@@ -3,9 +3,10 @@ import { useNavigate } from "react-router-dom";
 import CustomizationScreen from "../components/CustomizationScreen";
 import CtaButton from "../components/CtaButton";
 import ConfirmModal from "../components/ConfirmModal";
+import { HERO_IMAGE, CHASSIS_LABELS } from "../utils/heroImages";
 
 const CHASSIS_LABELS: Record<string, string> = {
-  small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
+  small: "รถเมล์ขนาดเล��ก 16–30 ที่นั่ง",
   medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
   large: "รถตู้โดยสาร 9–15 ที่นั่ง",
   extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
@@ -273,7 +274,7 @@ const InfoScreen: React.FC = () => {
                 <p>
                   ในญี่ปุ่นมี Community Bus
                   รถเมล์ขนาดเล็กที่วิ่งเข้าซอยและพื้นที่ ที่รถใหญ่เข้าไม่ถึง
-                  ค่าโดยสารถูกมาก บางแห่งนั่งได้ทั้งสาย เพียง 100 เยน
+                  ค่าโดยสารถูกม���ก บางแห่งนั่งได้ทั้งสาย เพียง 100 เยน
                   ทำให้ผู้สูงอายุและเด็กเข้าถึงบริการสำคัญ เช่น
                   โรงพยาบาลแ���ะศูนย์ชุมชนได้สะดวกขึ้น
                 </p>
@@ -288,7 +289,7 @@ const InfoScreen: React.FC = () => {
                   Jeepney แบบดั้งเดิมให้กลายเป็นมินิบัสขนาด 20–25
                   ที่นั่งที่ปลอดภัยและลดมลพิษกว่าเดิม
                   การเปลี่ยนโฉมนี้ยังคงค่าโดยสารถูก เหมาะกับคนเมือง
-                  และช่วยลดปัญหาสิ่งแวดล้อมไปพร้อมกัน
+                  และ���่วยลดปัญหาสิ่งแวดล้อมไปพร้อมกัน
                 </p>
               </div>
             ) : selected === "large" ? (
