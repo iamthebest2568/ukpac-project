@@ -268,7 +268,7 @@ const ChassisScreen: React.FC = () => {
   return (
     <>
       <CustomizationScreen
-        title="ออกแบบรถเมล์ของ���ุณ เลือกประเภทรถ"
+        title="ออกแบบรถเมล์ของคุณ เลือกประเภทรถ"
         theme="light"
         fullWidth
         footerContent={
