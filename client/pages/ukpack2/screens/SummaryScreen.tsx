@@ -52,7 +52,7 @@ const SummaryScreen: React.FC = () => {
     if (typeof raw === "string") {
       if (raw === "1") return "1 ประตู";
       if (raw === "2") return "2 ประตู";
-      if (raw === "ramp") return "ท���ง����ดสำหรับรถเข็น/ผู้พิการ";
+      if (raw === "ramp") return "ทางลาดสำหรับรถเข็น/ผู้พิการ";
       if (raw === "emergency") return "ประตูฉุกเฉิน";
       return raw;
     }
