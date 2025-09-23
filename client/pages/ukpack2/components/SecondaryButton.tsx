@@ -6,9 +6,10 @@ interface SecondaryButtonProps {
   text: string;
   onClick?: () => void;
   className?: string;
+  style?: React.CSSProperties;
 }
 
-const SecondaryButton: React.FC<SecondaryButtonProps> = ({ text, onClick, className = '' }) => {
+const SecondaryButton: React.FC<SecondaryButtonProps> = ({ text, onClick, className = '', style }) => {
   return (
     <button
       type="button"
@@ -16,6 +17,7 @@ const SecondaryButton: React.FC<SecondaryButtonProps> = ({ text, onClick, classN
       className={
         `bg-[#000d59] text-white rounded-full px-5 py-2 inline-flex items-center justify-center shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#ffe000] hover:bg-[#ffe000] hover:text-[#000d59] transition-colors font-prompt font-semibold ukpack2-secondary-btn ${className}`
       }
+      style={style}
     >
       {text}
     </button>
