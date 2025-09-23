@@ -273,7 +273,7 @@
 }
 
 /* Door screen specific overrides to clear conflicting styles and enforce layout */
-.doorControls .selectionGrid {
+:global(.doorControls) .selectionGrid {
   --icon-cell-height: 220px !important; /* larger default for door icons */
   display: grid !important;
   grid-template-columns: repeat(
@@ -356,7 +356,7 @@
 }
 
 /* Horizontal inline card layout (matches example) */
-.selectionGrid > button.horizontal {
+.selectionGrid > :global(.horizontal) {
   flex-direction: row !important;
   align-items: center !important;
   justify-content: flex-start !important;
@@ -365,7 +365,7 @@
 }
 
 /* Inline icon sizing: smaller uniform height for inline cards */
-.selectionGrid > button.horizontal > div.iconContainer {
+.selectionGrid > :global(.horizontal) > div.iconContainer {
   height: 80px !important; /* mobile inline icon height increased */
   width: auto !important;
   flex-shrink: 0;
@@ -375,14 +375,14 @@
 }
 
 @media (min-width: 768px) {
-  .selectionGrid > button.horizontal > div.iconContainer {
+  .selectionGrid > :global(.horizontal) > div.iconContainer {
     height: 96px !important; /* larger inline height on md+ */
   }
 }
 
 /* Ensure images inside horizontal cards respect the container height */
-.selectionGrid > button.horizontal img,
-.selectionGrid > button.horizontal svg {
+.selectionGrid > :global(.horizontal) img,
+.selectionGrid > :global(.horizontal) svg {
   height: 100% !important;
   width: auto !important;
 }
