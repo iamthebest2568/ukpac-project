@@ -131,6 +131,9 @@ const VAN_TEMPLATE_NEW =
 // New standard bus template used only on Design page for 'medium' chassis
 const STANDARD_TEMPLATE_NEW =
   "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F0191441489bd48f4b3fe378328c36744?format=webp&width=800";
+// New mini-bus template used only on Design page for 'small' chassis
+const MINIBUS_TEMPLATE_NEW =
+  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fcc8259bc3e1145879149fb51f3517521?format=webp&width=800";
 
 const DEFAULT_COLORS = [
   {
@@ -322,12 +325,12 @@ const DesignScreen: React.FC = () => {
   // Generate dynamic mask for small by detecting #fd8b00 areas
   useEffect(() => {
     try {
-      const key = "design.dynamicMask.small.v1";
+      const key = "design.dynamicMask.small.v2";
       const cached = sessionStorage.getItem(key);
       if (cached) {
         setSmallMaskUrl(cached);
       } else {
-        const templateUrl = HERO_IMAGE.small;
+        const templateUrl = MINIBUS_TEMPLATE_NEW;
         generateMaskFromColor(templateUrl, "#fd8b00", 100).then((url) => {
           if (url) {
             setSmallMaskUrl(url);
@@ -347,7 +350,7 @@ const DesignScreen: React.FC = () => {
         const saved = sessionStorage.getItem("design.chassis");
         if (saved) selected = saved;
       } catch (_) {}
-      const url = selected === "large" ? VAN_TEMPLATE_NEW : (selected === "medium" ? STANDARD_TEMPLATE_NEW : HERO_IMAGE[selected]);
+      const url = selected === "large" ? VAN_TEMPLATE_NEW : (selected === "medium" ? STANDARD_TEMPLATE_NEW : (selected === "small" ? MINIBUS_TEMPLATE_NEW : HERO_IMAGE[selected]));
       if (!url) return;
       const key = `ukpack2_design_image_sent_${selected}`;
       const existing = sessionStorage.getItem(key);
@@ -391,7 +394,7 @@ const DesignScreen: React.FC = () => {
               return "medium";
             }
           })();
-          return chassis === "large" ? VAN_TEMPLATE_NEW : (chassis === "medium" ? STANDARD_TEMPLATE_NEW : HERO_IMAGE[chassis]);
+          return chassis === "large" ? VAN_TEMPLATE_NEW : (chassis === "medium" ? STANDARD_TEMPLATE_NEW : (chassis === "small" ? MINIBUS_TEMPLATE_NEW : HERO_IMAGE[chassis]));
         })(),
         chassis: (() => {
           try {
@@ -501,7 +504,7 @@ const DesignScreen: React.FC = () => {
               const label = CHASSIS_LABELS[selected] || "";
               // Use the base hero image for the selected chassis. For 'large' (van) and 'medium' (standard), use the new design templates.
               // Color overlay is handled by VehiclePreview via colorFilter / colorHex.
-              const img = selected === "large" ? VAN_TEMPLATE_NEW : (selected === "medium" ? STANDARD_TEMPLATE_NEW : HERO_IMAGE[selected]);
+              const img = selected === "large" ? VAN_TEMPLATE_NEW : (selected === "medium" ? STANDARD_TEMPLATE_NEW : (selected === "small" ? MINIBUS_TEMPLATE_NEW : HERO_IMAGE[selected]));
               return img ? (
                 <>
                   <VehiclePreview
