@@ -26,7 +26,7 @@ const VehiclePreview: React.FC<Props> = ({
   label,
   overlayLabels = [],
   overlayIconMap = {},
-  placeholderText = "ภาพสำหรับรุ่นนี้จะถูกเพิ่มภายหลัง",
+  placeholderText = "ภาพสำห���ับรุ่นนี้จะถูกเพิ่มภายหลัง",
   colorHex = null,
   colorMaskSrc = null,
   className,
@@ -52,6 +52,25 @@ const VehiclePreview: React.FC<Props> = ({
     shadowEl.style.left = `${carRect.left - containerRect.left + carRect.width / 2}px`;
     shadowEl.style.transform = `translateX(-50%)`;
   };
+
+  // If a final design image has been persisted by the DesignScreen, prefer that
+  // image for subsequent pages (Submit, Summary, End) so visuals remain consistent.
+  const persistedFinal = (() => {
+    try {
+      const raw = sessionStorage.getItem("design.finalImage");
+      if (!raw) return null;
+      return JSON.parse(raw);
+    } catch (e) {
+      return null;
+    }
+  })();
+
+  const effectiveImageSrc = persistedFinal?.imageSrc || imageSrc;
+  const effectiveColorHex = colorHex ?? persistedFinal?.color?.colorHex ?? null;
+  const effectiveColorMaskSrc = colorMaskSrc || persistedFinal?.colorMaskSrc || null;
+  const effectiveLabel = (persistedFinal && persistedFinal.chassis && typeof label === "string")
+    ? label
+    : label;
 
   useEffect(() => {
     // update when imageSrc changes and on resize
