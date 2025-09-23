@@ -81,7 +81,7 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
         className={`flex-1 min-h-0 overflow-auto uk2-scroll ${containerPaddingClass ? containerPaddingClass : fullWidth ? "px-0 py-6" : "px-6 py-6"}`}
         style={{
           // keep space for the fixed footer so content isn't hidden behind it
-          paddingBottom: footerContent ? "140px" : undefined,
+          paddingBottom: footerContent ? "calc(110px + env(safe-area-inset-bottom, 0px))" : undefined,
           // when fullWidth, allow content to expand and let page-level scrolling handle it
           overflow: fullWidth ? "visible" : undefined,
         }}
@@ -89,7 +89,7 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
         {children}
       </div>
       {footerContent ? (
-        <div className="fixed left-0 right-0 z-50" style={{ bottom: "50px" }}>
+        <div className="fixed left-0 right-0 z-50" style={{ bottom: fullWidth ? "0" : "50px" }} role="contentinfo">
           <div
             className="bg-[#00d5f9] w-full"
             style={{ height: "calc(110px + env(safe-area-inset-bottom, 0px))" }}
