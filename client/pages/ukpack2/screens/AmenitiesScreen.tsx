@@ -200,7 +200,7 @@ const AmenitiesScreen: React.FC = () => {
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F891faed3bf8a457fbcdd936181ed2b7a?format=webp&width=800",
     ที่นั่งพิเศษ:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F54f4c944e6ab4e84800e14b2a1105b94?format=webp&width=800",
-    "ที่���ับ/ราวยืนที่ปลอดภัย":
+    "ที่จับ/ราวยืนที่ปลอดภัย":
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fdfbb7f3adfa04596916b9ea1950acef1?format=webp&width=800",
     "ช่องชาร์จมือถือ/USB":
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fae1e15679ac4476a9e82f163e7eab121?format=webp&width=800",
@@ -268,7 +268,7 @@ const AmenitiesScreen: React.FC = () => {
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F2d38a737cf2c4bf29f8764e48a93d404?format=webp&width=800",
     "Wi‑Fi ฟรี":
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F3704368ab32542b7a31e3eba186adc57?format=webp&width=800",
-    "ระบบประกาศบอกป้าย(เสียง/จอ)":
+    "ระบบประกาศบอกป้าย(เสีย���/จอ)":
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F0623bd2f3e75452cbf76a828b416d275?format=webp&width=800",
     // keys (fallback)
     air: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F43ef2946e5324cb981bc063db02fe5bc?format=webp&width=800",
