@@ -67,10 +67,12 @@ const VehiclePreview: React.FC<Props> = ({
 
   const effectiveImageSrc = persistedFinal?.imageSrc || imageSrc;
   const effectiveColorHex = colorHex ?? persistedFinal?.color?.colorHex ?? null;
-  const effectiveColorMaskSrc = colorMaskSrc || persistedFinal?.colorMaskSrc || null;
-  const effectiveLabel = (persistedFinal && persistedFinal.chassis && typeof label === "string")
-    ? label
-    : label;
+  const effectiveColorMaskSrc =
+    colorMaskSrc || persistedFinal?.colorMaskSrc || null;
+  const effectiveLabel =
+    persistedFinal && persistedFinal.chassis && typeof label === "string"
+      ? label
+      : label;
 
   useEffect(() => {
     // update when imageSrc changes and on resize

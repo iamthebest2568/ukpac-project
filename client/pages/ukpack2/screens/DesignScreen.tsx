@@ -258,14 +258,17 @@ const DesignScreen: React.FC = () => {
     try {
       // Persist final rendered image & state so subsequent pages use the design image
       const final = {
-        imageSrc: HERO_IMAGE[(() => {
-          try {
-            const saved = sessionStorage.getItem("design.chassis");
-            return saved || "medium";
-          } catch (e) {
-            return "medium";
-          }
-        })()],
+        imageSrc:
+          HERO_IMAGE[
+            (() => {
+              try {
+                const saved = sessionStorage.getItem("design.chassis");
+                return saved || "medium";
+              } catch (e) {
+                return "medium";
+              }
+            })()
+          ],
         chassis: (() => {
           try {
             return sessionStorage.getItem("design.chassis") || "medium";
