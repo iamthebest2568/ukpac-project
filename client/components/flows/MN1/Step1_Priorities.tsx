@@ -120,7 +120,7 @@ const Step1_Priorities = ({
         >
           คุณคิดว่าควรใช้เงินที่ได้
           <br />
-          จากก���รเก็บไปพัฒนาอะไร
+          จากการเก็บไปพัฒ���าอะไร
         </h1>
       </div>
 
@@ -266,7 +266,7 @@ const Step1_Priorities = ({
               style={{
                 width: "27.1%", // 293/1080
                 height: "clamp(60px, 4.7vw, 90px)",
-                backgroundColor: getButtonColor("เพิ่มที่จอดรถ"),
+                backgroundColor: getButtonColor("เพิ่ม���ี่จอดรถ"),
                 opacity: isSelectionDisabled("เพิ่มที่จอดรถ") ? 0.5 : 1,
               }}
               onClick={() =>
