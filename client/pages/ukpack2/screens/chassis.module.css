@@ -239,6 +239,10 @@
 }
 
 @media (min-width: 1024px) {
+  /* Stack preview above controls on desktop */
+  .contentGrid {
+    grid-template-columns: 1fr; /* single column (preview first, then controls) */
+  }
   .selectionGrid {
     --icon-cell-height: 220px; /* larger icon height on desktop */
     grid-template-columns: repeat(4, 1fr); /* 4 columns on desktop */
