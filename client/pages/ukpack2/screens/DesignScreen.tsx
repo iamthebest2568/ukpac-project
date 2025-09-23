@@ -498,7 +498,7 @@ const DesignScreen: React.FC = () => {
           {savedInfo && (
             <div className="max-w-2xl w-full mx-auto bg-white border-2 border-[#000D59] rounded-xl p-3 mb-2">
               <div className="text-sm text-[#001a73] font-medium">
-                บันทึกภาพตัวอย่างไปยัง Firestore ���ล้ว
+                ���ันทึกภาพตัวอย่างไปยัง Firestore ���ล้ว
               </div>
               <div className="mt-1 text-[11px] text-[#001a73]">
                 Collection: {savedInfo.col || "(unknown)"}
@@ -563,6 +563,7 @@ const DesignScreen: React.FC = () => {
               return img ? (
                 <>
                   <VehiclePreview
+                    className="vehicle-preview"
                     imageSrc={img}
                     label={label}
                     showSelectedText
