@@ -72,7 +72,7 @@ const SummaryScreen: React.FC = () => {
 
   return (
     <CustomizationScreen
-      title="รถเมล์คันนี้ที่คุณออกแบบใกล้เคียงกับรถเมล์ในฝันของคุณแล้��หรือไม่"
+      title="รถเมล์คันนี้ที่คุณออกแบบใกล้เคียงกับรถเมล์ในฝันของคุณแล้วหรือไม่"
       theme="light"
       fullWidth
       containerPaddingClass="px-4 py-2"
@@ -99,7 +99,7 @@ const SummaryScreen: React.FC = () => {
         </div>
       }
     >
-      <div className="max-w-5xl mx-auto px-4 py-2">
+      <div className={`${styles.previewInner} mx-auto px-4 py-2`}>
         <SummaryDetails />
       </div>
     </CustomizationScreen>
