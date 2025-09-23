@@ -310,6 +310,28 @@ const App = () => {
     }
   }, []);
 
+  // Global handlers to prevent unhandled promise rejections and unexpected fetch errors
+  useEffect(() => {
+    const onUnhandledRejection = (e: PromiseRejectionEvent) => {
+      try {
+        console.warn("Unhandled promise rejection:", e.reason);
+        // prevent the browser default (spam) if possible
+        if (e && typeof e.preventDefault === "function") e.preventDefault();
+      } catch (_) {}
+    };
+    const onError = (ev: ErrorEvent) => {
+      try {
+        console.warn("Global error:", ev.error || ev.message);
+      } catch (_) {}
+    };
+    window.addEventListener("unhandledrejection", onUnhandledRejection as any);
+    window.addEventListener("error", onError as any);
+    return () => {
+      window.removeEventListener("unhandledrejection", onUnhandledRejection as any);
+      window.removeEventListener("error", onError as any);
+    };
+  }, []);
+
   return (
     <BrowserRouter>
       <Layout>
