@@ -34,7 +34,7 @@ const PdpaScreen: React.FC = () => {
       }
     >
       <div className="max-w-5xl mx-auto px-4 py-6">
-        <div className="prose prose-sm text-[#000d59]">
+        <div className="prose prose-sm text-[#000d59] text-center mx-auto">
           <p>
             เกมนี้จะเก็บข้อมูลพฤติกรรมการเล่นและ ที่อยู่ IP ของอุปกรณ์
             เพื่อใช้ในการ วิเคราะห์ พัฒนา และสรุปผลความคิดเห็นในภาพรวมของผู้เล่น
