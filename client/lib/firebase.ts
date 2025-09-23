@@ -97,9 +97,13 @@ export async function sendEventToFirestore(
         };
         const ok = (() => {
           try {
-            const blob = new Blob([JSON.stringify(payload)], { type: "application/json" });
+            const blob = new Blob([JSON.stringify(payload)], {
+              type: "application/json",
+            });
             // sendBeacon returns boolean, does not throw on network errors
-            return navigator.sendBeacon && navigator.sendBeacon("/api/track", blob);
+            return (
+              navigator.sendBeacon && navigator.sendBeacon("/api/track", blob)
+            );
           } catch (_) {
             return false;
           }
@@ -158,10 +162,11 @@ export async function sendEventToFirestore(
         };
         // fire-and-forget (tolerate sync and async failures)
         try {
-          const blob = new Blob([JSON.stringify(payload)], { type: "application/json" });
+          const blob = new Blob([JSON.stringify(payload)], {
+            type: "application/json",
+          });
           navigator.sendBeacon && navigator.sendBeacon("/api/track", blob);
-        } catch (_) {
-        }
+        } catch (_) {}
 
         // return a sentinel so callers treat as success (event persisted server-side)
         return { ok: true, fallback: true } as any;
