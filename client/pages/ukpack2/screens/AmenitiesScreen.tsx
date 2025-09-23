@@ -242,19 +242,6 @@ const AmenitiesScreen: React.FC = () => {
   })();
   const selectedLabel = CHASSIS_LABELS[selectedChassis] || "";
   const selectedBusImage = HERO_IMAGE[selectedChassis];
-  const selectedChassis = (() => {
-    try {
-      // prefer value from context state, fallback to sessionStorage
-      const ctx = state?.chassis;
-      if (ctx) return ctx as keyof typeof CHASSIS_LABELS;
-      const saved = sessionStorage.getItem("design.chassis");
-      return (saved || "medium") as keyof typeof CHASSIS_LABELS;
-    } catch {
-      return "medium" as const;
-    }
-  })();
-  const selectedLabel = CHASSIS_LABELS[selectedChassis] || "";
-  const selectedBusImage = HERO_IMAGE[selectedChassis];
   const [isExitModalOpen, setExitModalOpen] = useState(false);
 
   const storedColor = (() => {
