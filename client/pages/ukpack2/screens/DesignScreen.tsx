@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import CustomizationScreen from "../components/CustomizationScreen";
 import ColorPalette from "../components/ColorPalette";
-import { sendDesignImageUrl } from "../utils/collect";
+import { addDesignImageUrlToFirestore } from "../../../lib/firebase";
 import MetaUpdater from "../../../components/MetaUpdater";
 import { OVERLAY_ICON_SRC } from "../utils/overlayIcons";
 import CtaButton from "../components/CtaButton";
@@ -250,7 +250,8 @@ const DesignScreen: React.FC = () => {
     }
   }, [showTextarea]);
 
-  // Trial data collection: send base image URL for /design once per chassis
+  // Write imageUrl to Firestore (once per chassis per session) and show confirmation
+  const [savedInfo, setSavedInfo] = useState<{ id: string; url: string } | null>(null);
   useEffect(() => {
     try {
       let selected = "medium";
@@ -261,13 +262,24 @@ const DesignScreen: React.FC = () => {
       const url = HERO_IMAGE[selected];
       if (!url) return;
       const key = `ukpack2_design_image_sent_${selected}`;
-      const already = sessionStorage.getItem(key);
-      if (already === url) return;
-      sendDesignImageUrl(url).then(() => {
+      const existing = sessionStorage.getItem(key);
+      if (existing) {
         try {
-          sessionStorage.setItem(key, url);
+          const parsed = JSON.parse(existing);
+          if (parsed && parsed.url) {
+            setSavedInfo({ id: parsed.id || "", url: parsed.url });
+            return;
+          }
         } catch (_) {}
-      });
+      }
+      addDesignImageUrlToFirestore(url)
+        .then((res) => {
+          setSavedInfo({ id: res.id, url });
+          try {
+            sessionStorage.setItem(key, JSON.stringify({ id: res.id, url }));
+          } catch (_) {}
+        })
+        .catch((err) => console.warn("addDesignImageUrlToFirestore error", err));
     } catch (_) {}
     // run on mount only
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -360,6 +372,20 @@ const DesignScreen: React.FC = () => {
         }
       >
         <div className="space-y-6">
+          {/* Firestore confirmation panel (trial) */}
+          {savedInfo && (
+            <div className="max-w-2xl w-full mx-auto bg-white border-2 border-[#000D59] rounded-xl p-3 mb-2">
+              <div className="text-sm text-[#001a73] font-medium">บันทึกภาพตัวอย่างไปยัง Firestore แล้ว</div>
+              <div className="mt-2 flex gap-3 items-start">
+                <img src={savedInfo.url} alt="image" className="w-32 h-20 object-contain rounded border" />
+                <div className="text-xs break-words flex-1">
+                  <div><span className="font-semibold">Doc ID:</span> {savedInfo.id || "(ไม่ทราบ)"}</div>
+                  <div className="mt-1"><span className="font-semibold">URL:</span> {savedInfo.url}</div>
+                </div>
+              </div>
+            </div>
+          )}
+
           <div className="w-full rounded-md flex flex-col items-center justify-center gap-2">
             {(() => {
               const MASKS: Record<string, string | null> = {
