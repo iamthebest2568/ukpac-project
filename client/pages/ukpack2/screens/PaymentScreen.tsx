@@ -239,7 +239,7 @@ const MONEY_ICON_ACTIVE =
 const SCAN_ICON =
   "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fbb681a2c2eb2482fb548f473f88a7f6c?format=webp&width=800";
 const SCAN_ICON_ACTIVE =
-  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F37c0e26d7e834005a5d7c26bb0de8bf7?format=webp&width=800";
+  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8da37169df5c447eb8937bd67957a8e9?format=webp&width=800";
 const SCAN2_ICON =
   "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb49d8647d7754dc98655081f6a829b15?format=webp&width=800";
 const SCAN2_ICON_ACTIVE =
@@ -258,7 +258,7 @@ const BUS_EMPLOY_ICON_ACTIVE =
   "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F68666486df5e439b865514466401db22?format=webp&width=800";
 
 const OPTIONS = [
-  { key: "cash", label: "เงินส���", icon: <IconCash /> },
+  { key: "cash", label: "เงินสด", icon: <IconCash /> },
   { key: "scan", label: "สแกนจ่าย", icon: <IconScan /> },
   { key: "scan2", label: "สแกนจ่าย 2", icon: null },
   { key: "tap", label: "แตะบัตร", icon: <IconTap /> },
