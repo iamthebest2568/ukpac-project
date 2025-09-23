@@ -157,8 +157,7 @@ const FormScreen: React.FC = () => {
           width: "100vw",
           marginLeft: "calc(50% - 50vw)",
           backgroundPosition: 'top center',
-          backgroundSize: 'cover',
-          overflowX: 'hidden'
+          backgroundSize: 'cover'
         }}
       >
         <div className="max-w-4xl mx-auto flex items-end justify-center h-full">
