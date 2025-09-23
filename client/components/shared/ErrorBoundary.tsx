@@ -29,7 +29,7 @@ export default class ErrorBoundary extends React.Component<Props, State> {
       return (
         <div className="p-4 text-center">
           <h2 className="text-lg font-semibold">มีข้อผิดพลาดในการโหลดหน้า</h2>
-          <p className="mt-2 text-sm text-gray-600">โปรดลองรีเฟ��ชหน้า หรือกลับไปยังหน้าก่อนหน้า</p>
+          <p className="mt-2 text-sm text-gray-600">โปรดลองรีเฟรชหน้า หรือกลับไปยังหน้าก่อนหน้า</p>
           <div className="mt-4 flex justify-center gap-2">
             <button
               className="px-3 py-2 bg-[#000D59] text-white rounded"
