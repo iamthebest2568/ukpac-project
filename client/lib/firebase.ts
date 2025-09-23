@@ -155,7 +155,8 @@ export async function sendEventToFirestore(
     try {
       (err as any).original = e;
     } catch (_) {}
-    throw err;
+    // Never throw from client analytics path; return a soft-failure result
+    return { ok: false, error: err.message } as any;
   }
 }
 
