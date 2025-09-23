@@ -41,7 +41,14 @@ function initFirebase() {
       app = initializeApp(firebaseConfig);
     }
     appInstance = app;
-    db = getFirestore(app);
+    try {
+      db = initializeFirestore(app, {
+        experimentalForceLongPolling: true,
+        useFetchStreams: false,
+      } as any);
+    } catch (_) {
+      db = getFirestore(app);
+    }
   } catch (e) {
     console.warn("Firebase init failed", e);
   }
