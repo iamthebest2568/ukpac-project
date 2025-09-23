@@ -77,7 +77,7 @@ const Ask04Budget = ({
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F2f0106ff48a44f03b71429502944e9f2?format=webp&width=720",
     เพิ่มที่จอดรถ:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F79ac3a2ac5e84e88b4015fd66aaebe04?format=webp&width=720",
-    เพิ��มความถี่รถไฟฟ้า:
+    เพิ่มความถี่รถไฟฟ้า:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fd90beaca642d4cceba685d933aeb644f?format=webp&width=720",
     ปรับปรุงคุณภาพรถเมล์:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F602cfdd852a147ed852d50b2ed05772d?format=webp&width=720",
@@ -136,7 +136,7 @@ const Ask04Budget = ({
 
   return (
     <FigmaStyle1Layout
-      title={`คุณพอใจภาพเมืองในอ��าคตที่อาจจะเกิดขึ้นหรือไม่`}
+      title={`คุณพอใจภาพเมืองในอนาคตที่อาจจะเกิดขึ้นหรือไม่`}
       className="ask04-budget-page mn3-step2-minimal"
     >
       {/* Children: collage + buttons (we render buttons here because providing children disables automatic button rendering) */}
