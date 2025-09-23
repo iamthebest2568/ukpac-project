@@ -4,6 +4,7 @@ import CustomizationScreen from "../components/CustomizationScreen";
 import CtaButton from "../components/CtaButton";
 import ConfirmModal from "../components/ConfirmModal";
 import { HERO_IMAGE, CHASSIS_LABELS } from "../utils/heroImages";
+import styles from "./chassis.module.css";
 
 const InfoScreen: React.FC = () => {
   const navigate = useNavigate();
@@ -309,7 +310,7 @@ const InfoScreen: React.FC = () => {
                 <p>
                   ในญี่ปุ่นมี Community Bus
                   รถเมล์ขนาดเล็กที่วิ่งเข้าซอยและพื้นที่ ที่รถใหญ่เข้าไม่ถึง
-                  ค่าโดยสารถูกมาก บางแห่งนั่งได้ทั้งสาย เพียง 100 เยน
+                  ค่าโดยสารถูกมาก บางแห่งนั่��ได้ทั้งสาย เพียง 100 เยน
                   ทำให้ผู้สูงอายุและเด็กเข้าถึงบริการสำคัญ เช่น
                   โรงพยาบาลและศูนย์ชุมชนได้สะดวกขึ้น
                 </p>
