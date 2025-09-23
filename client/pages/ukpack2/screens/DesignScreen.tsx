@@ -261,7 +261,7 @@ const DesignScreen: React.FC = () => {
     <>
       <MetaUpdater
         title="UK PACT - กรุงเทพฯ ลดติด"
-        description="ออกแบบรถเมล์เพื่อช่วยลดปัญหาการจราจรในกรุงเทพฯ — เลือกขนาดรถ สี และสิ่งอำนวยความสะดวกที่ต้องการ"
+        description="ออกแบบรถเมล์เพื่อช่วยลดปัญหาก��รจราจรในกรุงเทพฯ — เลือกขนาดรถ สี และสิ่งอำนวยความสะดวกที่ต้องการ"
         image="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F44cea8aeb6d4415e899494a90c6f59b1?format=webp&width=1200"
       />
       <CustomizationScreen
@@ -276,22 +276,6 @@ const DesignScreen: React.FC = () => {
         <div className="space-y-6">
           <div className="w-full rounded-md flex flex-col items-center justify-center gap-2">
             {(() => {
-              const CHASSIS_LABELS: Record<string, string> = {
-                small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
-                medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
-                large: "รถตู้โดยสาร 9–15 ที่นั่ง",
-                extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
-              };
-              const HERO_IMAGE: Record<string, string> = {
-                small:
-                  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F7009b0178b564d22ad5111730dd33022?format=webp&width=800",
-                medium:
-                  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fada3699e9e324993a811e668bfc19891?format=webp&width=800",
-                large:
-                  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc4ba360c1fe64492b71fc207c9dfd328?format=webp&width=800",
-                extra:
-                  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Faa7d15f5f97141ee8446eba62e919c07?format=webp&width=800",
-              };
 
               const MASKS: Record<string, string | null> = {
                 // Upload mask images (black=masked area) for each chassis variant and paste URLs here.
