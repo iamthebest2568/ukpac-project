@@ -254,6 +254,7 @@ const DesignScreen: React.FC = () => {
   const [extraMaskUrl, setExtraMaskUrl] = useState<string | null>(null);
   const [largeMaskUrl, setLargeMaskUrl] = useState<string | null>(null);
   const [mediumMaskUrl, setMediumMaskUrl] = useState<string | null>(null);
+  const [smallMaskUrl, setSmallMaskUrl] = useState<string | null>(null);
 
   useEffect(() => {
     if (showTextarea) {
@@ -311,6 +312,25 @@ const DesignScreen: React.FC = () => {
         generateMaskFromColor(templateUrl, "#fd8b00", 100).then((url) => {
           if (url) {
             setMediumMaskUrl(url);
+            try { sessionStorage.setItem(key, url); } catch (_) {}
+          }
+        });
+      }
+    } catch (_) {}
+  }, []);
+
+  // Generate dynamic mask for small by detecting #fd8b00 areas
+  useEffect(() => {
+    try {
+      const key = "design.dynamicMask.small.v1";
+      const cached = sessionStorage.getItem(key);
+      if (cached) {
+        setSmallMaskUrl(cached);
+      } else {
+        const templateUrl = HERO_IMAGE.small;
+        generateMaskFromColor(templateUrl, "#fd8b00", 100).then((url) => {
+          if (url) {
+            setSmallMaskUrl(url);
             try { sessionStorage.setItem(key, url); } catch (_) {}
           }
         });
@@ -392,7 +412,7 @@ const DesignScreen: React.FC = () => {
           try {
             const saved = sessionStorage.getItem("design.chassis") || "medium";
             const MASKS: Record<string, string | null> = {
-              small: null,
+              small: smallMaskUrl,
               medium: mediumMaskUrl,
               large: largeMaskUrl,
               extra: extraMaskUrl,
@@ -455,7 +475,7 @@ const DesignScreen: React.FC = () => {
             {(() => {
               const MASKS: Record<string, string | null> = {
                 // Upload mask images (black=masked area) for each chassis variant and paste URLs here.
-                small: null,
+                small: smallMaskUrl,
                 medium: mediumMaskUrl,
                 large: largeMaskUrl,
                 extra: extraMaskUrl,
