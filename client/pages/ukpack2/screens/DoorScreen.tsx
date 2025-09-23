@@ -9,6 +9,7 @@ import styles from "./chassis.module.css";
 import { useBusDesign } from "../context/BusDesignContext";
 import { OVERLAY_ICON_SRC } from "../utils/overlayIcons";
 import ErrorModal from "../components/ErrorModal";
+import { HERO_IMAGE, CHASSIS_LABELS } from "../utils/heroImages";
 
 // Amenity icons (small versions)
 const IconAir = () => (
@@ -440,7 +441,7 @@ const DoorScreen: React.FC = () => {
                       />
                     </div>
                   );
-                if (label === "ตั๋วรายเดือน/รอบ")
+                if (label === "��ั๋วรายเดือน/รอบ")
                   return (
                     <div
                       key={`${label}-${idx}`}
