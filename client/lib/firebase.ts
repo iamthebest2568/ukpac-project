@@ -77,7 +77,6 @@ export async function sendEventToFirestore(
   collectionPath: string = "minigame1_events/minigame1-id",
 ) {
   if (!db) initFirebase();
-  if (!db) throw new Error("Firestore not initialized");
   // normalize path (strip leading slashes)
   const normalized = String(collectionPath || "")
     .replace(/^\/+/, "")
@@ -85,6 +84,25 @@ export async function sendEventToFirestore(
   const parts = normalized.split("/").filter(Boolean);
 
   try {
+    if (!db) {
+      // Firestore unavailable: best-effort server fallback only
+      try {
+        const payload = {
+          sessionId: event?.sessionID || event?.sessionId || null,
+          event: event?.event || "UNKNOWN",
+          timestamp: new Date().toISOString(),
+          payload: event?.payload || {},
+          userAgent: navigator.userAgent || null,
+          page: window.location.pathname,
+        };
+        await fetch("/api/track", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        }).catch(() => {});
+      } catch (_) {}
+      return { ok: false, skipped: true } as any;
+    }
     let colRef;
     if (parts.length === 0) {
       colRef = collection(db, "minigame1_events");
