@@ -37,7 +37,7 @@ const SeatingScreen: React.FC = () => {
   const [isExitModalOpen, setExitModalOpen] = useState(false);
   const [isErrorModalOpen, setErrorModalOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const [errorTitle, setErrorTitle] = useState("ข้อผิดพ���าด");
+  const [errorTitle, setErrorTitle] = useState("ข้อผิดพลาด");
 
   const maxByChassis: Record<string, number> = {
     small: 30,
@@ -121,9 +121,9 @@ const SeatingScreen: React.FC = () => {
           : Number(totalSeats);
 
     if (Number.isNaN(total)) {
-      setErrorTitle("กรุณาระบุจำนวนที่นั่งท��้งหมด");
+      setErrorTitle("กรุณาระบุจำนวนที่นั่งทั้งหมด");
       setErrorMessage(
-        `กรุณากรอกจำนวนที่นั่งทั้งหมดในช่วง ${minCapacityLocal} ถึง ${maxCapacityLocal} ที่นั่ง`,
+        `กรุณากรอกจำนวนที่���ั่งทั้งหมดในช่วง ${minCapacityLocal} ถึง ${maxCapacityLocal} ที่นั่ง`,
       );
       setErrorModalOpen(true);
       return false;
@@ -147,7 +147,7 @@ const SeatingScreen: React.FC = () => {
     if (sumSubs !== total) {
       setErrorTitle("ผลรวมของที่นั่งย่อยไม่ตรงกัน");
       setErrorMessage(
-        `ผลรวมของที่นั่งย่อยทั้งหมด (${sumSubs}) ไม่ตรงกับจำนวนที่นั่งทั้งหมด (${total})`,
+        `ผลรวมของที่นั่งย่อยทั้งหมด (${sumSubs}) ไม่���รงกับจำนวนที่นั่งทั้งหมด (${total})`,
       );
       setErrorModalOpen(true);
       return false;
@@ -255,7 +255,7 @@ const SeatingScreen: React.FC = () => {
                 <div className="space-y-1 mt-1">
                   <div className="flex items-center justify-between">
                     <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">
-                      ��ำนวนที่นั่งทั้งหมด
+                      จำนวนที่นั่งทั้งหมด
                     </div>
                     <input
                       type="number"
@@ -310,7 +310,7 @@ const SeatingScreen: React.FC = () => {
 
                   <div className="flex items-center justify-between">
                     <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">
-                      สตรีมีค��รภ์
+                      สตรีมีครรภ์
                     </div>
                     <NumericPlaceholderInput
                       value={pregnantSeats}
@@ -368,7 +368,7 @@ const SeatingScreen: React.FC = () => {
       <ConfirmModal
         isOpen={isExitModalOpen}
         title="ออกจากหน้าจอ"
-        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การ���ปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
+        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
         onConfirm={() => navigate("/")}
         onCancel={() => setExitModalOpen(false)}
       />
