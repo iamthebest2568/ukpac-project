@@ -20,7 +20,7 @@ function walk(dir) {
         // Replace replacement characters (U+FFFD) with empty string and trim
         content = content.replace(/\uFFFD/g, '');
         // Also replace the visible replacement glyph if present
-        content = content.replace(/�/g, '');
+        content = content.replace(/\uFFFD/g, '');
         if (content !== orig) {
           fs.writeFileSync(full, content, { encoding: 'utf8' });
           console.log('Fixed encoding chars in', full);
