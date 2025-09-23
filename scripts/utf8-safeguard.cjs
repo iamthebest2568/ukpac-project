@@ -1,7 +1,12 @@
 const fs = require('fs');
 const path = require('path');
+const fs = require('fs');
 
-const ROOT = path.join(__dirname, '..', 'client', 'pages', 'ukpack2');
+// Walk both ukpack1 and ukpack2 pages to sanitize replacement chars
+const ROOTS = [
+  path.join(__dirname, '..', 'client', 'pages', 'ukpack2'),
+  path.join(__dirname, '..', 'client', 'pages', 'ukpack1'),
+];
 
 function walk(dir) {
   const entries = fs.readdirSync(dir, { withFileTypes: true });
@@ -12,9 +17,10 @@ function walk(dir) {
       try {
         let content = fs.readFileSync(full, { encoding: 'utf8' });
         const orig = content;
-        // Replace replacement characters with a single space
-        content = content.replace(/\uFFFD/g, ' ');
-        content = content.replace(/�/g, ' ');
+        // Replace replacement characters (U+FFFD) with empty string and trim
+        content = content.replace(/\uFFFD/g, '');
+        // Also replace the visible replacement glyph if present
+        content = content.replace(/�/g, '');
         if (content !== orig) {
           fs.writeFileSync(full, content, { encoding: 'utf8' });
           console.log('Fixed encoding chars in', full);
@@ -26,5 +32,7 @@ function walk(dir) {
   }
 }
 
-walk(ROOT);
+for (const r of ROOTS) {
+  if (fs.existsSync(r)) walk(r);
+}
 console.log('UTF-8 safeguard complete');
