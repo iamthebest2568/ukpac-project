@@ -4,6 +4,7 @@ import CustomizationScreen from "../components/CustomizationScreen";
 import SummaryDetails from "../components/SummaryDetails";
 import SecondaryButton from "../components/SecondaryButton";
 import CtaButton from "../components/CtaButton";
+import { HERO_IMAGE, CHASSIS_LABELS } from "../utils/heroImages";
 
 const SummaryScreen: React.FC = () => {
   const navigate = useNavigate();
