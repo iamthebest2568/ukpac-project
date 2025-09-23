@@ -128,6 +128,9 @@ const BUS_EMPLOY_ICON =
 // New van template used only on Design page for 'large' chassis
 const VAN_TEMPLATE_NEW =
   "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F6e3fda4ab8a540c083f6ca22ff8d5a60?format=webp&width=800";
+// New standard bus template used only on Design page for 'medium' chassis
+const STANDARD_TEMPLATE_NEW =
+  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F6c88533075f44926a4627f0a4b716243?format=webp&width=800";
 
 const DEFAULT_COLORS = [
   {
@@ -250,6 +253,7 @@ const DesignScreen: React.FC = () => {
   const [isSaveHover, setIsSaveHover] = useState(false);
   const [extraMaskUrl, setExtraMaskUrl] = useState<string | null>(null);
   const [largeMaskUrl, setLargeMaskUrl] = useState<string | null>(null);
+  const [mediumMaskUrl, setMediumMaskUrl] = useState<string | null>(null);
 
   useEffect(() => {
     if (showTextarea) {
@@ -295,6 +299,25 @@ const DesignScreen: React.FC = () => {
     } catch (_) {}
   }, []);
 
+  // Generate dynamic mask for standard (medium) by detecting #fd8b00 areas
+  useEffect(() => {
+    try {
+      const key = "design.dynamicMask.medium";
+      const cached = sessionStorage.getItem(key);
+      if (cached) {
+        setMediumMaskUrl(cached);
+      } else {
+        const templateUrl = STANDARD_TEMPLATE_NEW;
+        generateMaskFromColor(templateUrl, "#fd8b00", 60).then((url) => {
+          if (url) {
+            setMediumMaskUrl(url);
+            try { sessionStorage.setItem(key, url); } catch (_) {}
+          }
+        });
+      }
+    } catch (_) {}
+  }, []);
+
   // Write imageUrl to Firestore (once per chassis per session) and show confirmation
   const [savedInfo, setSavedInfo] = useState<{ id: string; url: string; col?: string } | null>(null);
   useEffect(() => {
@@ -304,7 +327,7 @@ const DesignScreen: React.FC = () => {
         const saved = sessionStorage.getItem("design.chassis");
         if (saved) selected = saved;
       } catch (_) {}
-      const url = HERO_IMAGE[selected];
+      const url = selected === "large" ? VAN_TEMPLATE_NEW : (selected === "medium" ? STANDARD_TEMPLATE_NEW : HERO_IMAGE[selected]);
       if (!url) return;
       const key = `ukpack2_design_image_sent_${selected}`;
       const existing = sessionStorage.getItem(key);
@@ -348,7 +371,7 @@ const DesignScreen: React.FC = () => {
               return "medium";
             }
           })();
-          return chassis === "large" ? VAN_TEMPLATE_NEW : HERO_IMAGE[chassis];
+          return chassis === "large" ? VAN_TEMPLATE_NEW : (chassis === "medium" ? STANDARD_TEMPLATE_NEW : HERO_IMAGE[chassis]);
         })(),
         chassis: (() => {
           try {
@@ -433,7 +456,7 @@ const DesignScreen: React.FC = () => {
               const MASKS: Record<string, string | null> = {
                 // Upload mask images (black=masked area) for each chassis variant and paste URLs here.
                 small: null,
-                medium: null,
+                medium: mediumMaskUrl,
                 large: largeMaskUrl,
                 extra: extraMaskUrl,
               };
@@ -456,9 +479,9 @@ const DesignScreen: React.FC = () => {
                 if (saved) selected = saved;
               } catch (e) {}
               const label = CHASSIS_LABELS[selected] || "";
-              // Use the base hero image for the selected chassis. For 'large' (van), use the new design template.
+              // Use the base hero image for the selected chassis. For 'large' (van) and 'medium' (standard), use the new design templates.
               // Color overlay is handled by VehiclePreview via colorFilter / colorHex.
-              const img = selected === "large" ? VAN_TEMPLATE_NEW : HERO_IMAGE[selected];
+              const img = selected === "large" ? VAN_TEMPLATE_NEW : (selected === "medium" ? STANDARD_TEMPLATE_NEW : HERO_IMAGE[selected]);
               return img ? (
                 <>
                   <VehiclePreview
