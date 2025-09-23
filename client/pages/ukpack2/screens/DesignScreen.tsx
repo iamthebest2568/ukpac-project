@@ -5,6 +5,7 @@ import ColorPalette from "../components/ColorPalette";
 import MetaUpdater from "../../../components/MetaUpdater";
 import { OVERLAY_ICON_SRC } from "../utils/overlayIcons";
 import CtaButton from "../components/CtaButton";
+import { HERO_IMAGE, CHASSIS_LABELS } from "../utils/heroImages";
 import VehiclePreview from "../components/VehiclePreview";
 
 // small amenity icons (same assets as other screens)
