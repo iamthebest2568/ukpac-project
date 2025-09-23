@@ -312,28 +312,41 @@ const VehiclePreview: React.FC<Props> = ({
               }}
             />
 
-            {/* color overlay: covers the same area as the image and uses mask-image */}
-            {effectiveColorHex && effectiveColorMaskSrc && (
+            {/* color overlay: covers the same area as the image. If a mask image is available, use mask-image to only color masked areas; otherwise apply a full-image tint as a fallback so uploaded vehicle types are colored too */}
+            {effectiveColorHex && (
               <div
                 aria-hidden="true"
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  width: "100%",
-                  height: "100%",
-                  backgroundColor: effectiveColorHex,
-                  pointerEvents: "none",
-                  mixBlendMode: "multiply",
-                  WebkitMaskImage: `url(${effectiveColorMaskSrc})`,
-                  WebkitMaskSize: "contain",
-                  WebkitMaskRepeat: "no-repeat",
-                  WebkitMaskPosition: "center",
-                  maskImage: `url(${effectiveColorMaskSrc})`,
-                  maskSize: "contain",
-                  maskRepeat: "no-repeat",
-                  maskPosition: "center",
-                  opacity: 1,
-                }}
+                style={
+                  effectiveColorMaskSrc
+                    ? {
+                        position: "absolute",
+                        inset: 0,
+                        width: "100%",
+                        height: "100%",
+                        backgroundColor: effectiveColorHex,
+                        pointerEvents: "none",
+                        mixBlendMode: "multiply",
+                        WebkitMaskImage: `url(${effectiveColorMaskSrc})`,
+                        WebkitMaskSize: "contain",
+                        WebkitMaskRepeat: "no-repeat",
+                        WebkitMaskPosition: "center",
+                        maskImage: `url(${effectiveColorMaskSrc})`,
+                        maskSize: "contain",
+                        maskRepeat: "no-repeat",
+                        maskPosition: "center",
+                        opacity: 1,
+                      }
+                    : {
+                        position: "absolute",
+                        inset: 0,
+                        width: "100%",
+                        height: "100%",
+                        backgroundColor: effectiveColorHex,
+                        pointerEvents: "none",
+                        mixBlendMode: "multiply",
+                        opacity: 0.75,
+                      }
+                }
               />
             )}
 
