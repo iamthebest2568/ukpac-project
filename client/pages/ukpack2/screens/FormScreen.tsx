@@ -153,8 +153,11 @@ const FormScreen: React.FC = () => {
           backgroundImage:
             "url('https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc3874bf37db54abeb4a13c308b0df9a4?format=webp&width=1600')",
           minHeight: "380px",
-          width: "100vw",
-          marginLeft: "calc(50% - 50vw)",
+          /* Use normal width (inside container) instead of full-bleed to avoid layout issues on this page */
+          width: "100%",
+          marginLeft: 0,
+          backgroundPosition: 'top center',
+          backgroundSize: 'cover',
         }}
       >
         <div className="max-w-4xl mx-auto flex items-end justify-center h-full">
