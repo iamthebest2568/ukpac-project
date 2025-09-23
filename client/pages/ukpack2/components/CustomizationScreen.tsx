@@ -105,10 +105,10 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
         {children}
       </div>
       {footerContent ? (
-        <div className="fixed left-0 right-0 z-50" style={{ bottom: fullWidth ? "0" : "50px" }} role="contentinfo">
+        <div ref={footerRef} className="fixed left-0 right-0 z-50" style={{ bottom: 0 }} role="contentinfo">
           <div
             className="bg-[#00d5f9] w-full"
-            style={{ height: "calc(110px + env(safe-area-inset-bottom, 0px))" }}
+            style={{ paddingTop: "12px", paddingBottom: "calc(12px + env(safe-area-inset-bottom, 0px))" }}
           >
             <div
               className={
@@ -119,7 +119,6 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
                     : `max-w-4xl mx-auto w-full px-4 sm:px-6`
               }
               style={{
-                height: "110px",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
