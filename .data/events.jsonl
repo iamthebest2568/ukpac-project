@@ -4,3 +4,12 @@
 {"sessionId":"session_1758544433912_wotg4lsr4","eventName":"sw.story.start","timestamp":"2025-09-23T03:25:43.661Z","variantId":"02fe3354","variantName":"Opening Scene"}
 {"sessionId":"session_1758544433912_wotg4lsr4","eventName":"sw.story.start","timestamp":"2025-09-23T03:25:55.873Z","variantId":"02fe3354","variantName":"Opening Scene"}
 {"sessionId":"session_1758544433912_wotg4lsr4","eventName":"sw.variant.start","timestamp":"2025-09-23T03:25:55.872Z","variantId":"02fe3354","variantName":"Opening Scene"}
+{"sessionId":"session_1758544433912_wotg4lsr4","eventName":"sw.story.start","timestamp":"2025-09-23T06:10:35.467Z","variantId":"a59ef133","variantName":"Intro"}
+{"sessionId":"session_1758544433912_wotg4lsr4","eventName":"sw.variant.start","timestamp":"2025-09-23T06:10:35.465Z","variantId":"a59ef133","variantName":"Intro"}
+{"sessionId":"session_1758544433912_wotg4lsr4","eventName":"sw.choice.selected","timestamp":"2025-09-23T06:11:11.447Z","choiceText":"","variantId":"a59ef133","variantName":"Intro"}
+{"sessionId":"session_1758544433912_wotg4lsr4","eventName":"sw.story.start","timestamp":"2025-09-23T06:11:12.254Z","variantId":"e61429e0","variantName":"PDPA"}
+{"sessionId":"session_1758544433912_wotg4lsr4","eventName":"sw.variant.start","timestamp":"2025-09-23T06:11:12.253Z","variantId":"e61429e0","variantName":"PDPA"}
+{"sessionId":"session_1758544433912_wotg4lsr4","eventName":"sw.choice.selected","timestamp":"2025-09-23T06:11:18.414Z","choiceText":"ยอมรับและเริ่มเล่นเกม","variantId":"e61429e0","variantName":"PDPA"}
+{"sessionId":"session_1758544433912_wotg4lsr4","eventName":"sw.variant.start","timestamp":"2025-09-23T06:11:20.272Z","variantId":"02fe3354","variantName":"Opening Scene"}
+{"sessionId":"session_1758544433912_wotg4lsr4","eventName":"sw.choice.selected","timestamp":"2025-09-23T06:11:48.929Z","choiceText":"เริ่มเล่น","variantId":"02fe3354","variantName":"Opening Scene"}
+{"sessionId":"session_1758544433912_wotg4lsr4","eventName":"sw.variant.start","timestamp":"2025-09-23T06:11:48.941Z","variantId":"333faf2b","variantName":"เหตุผลหลักในการเดินทางเข้าเมือง"}

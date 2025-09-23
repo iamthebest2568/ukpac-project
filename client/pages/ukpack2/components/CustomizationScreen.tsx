@@ -24,6 +24,22 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
 }) => {
   const isLight = theme === "light";
   const contentRef = useRef<HTMLDivElement | null>(null);
+  const footerRef = useRef<HTMLDivElement | null>(null);
+  const [footerHeight, setFooterHeight] = React.useState<number>(0);
+
+  React.useEffect(() => {
+    const update = () => {
+      try {
+        // measure footer height and set padding for content to avoid overlap
+        const h = footerRef.current?.offsetHeight || 0;
+        setFooterHeight(h);
+      } catch (e) {}
+    };
+    // schedule measurement after render
+    setTimeout(update, 0);
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, [footerContent, fullWidth]);
 
   // When fullWidth is requested, add a body-level class so the outer app container
   // can remove its overflow/padding and allow full-bleed children to extend to viewport edges.
