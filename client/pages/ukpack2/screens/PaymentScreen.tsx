@@ -478,15 +478,6 @@ const PaymentScreen: React.FC = () => {
             })();
             const label = CHASSIS_LABELS[selectedChassis] || "";
             const img = HERO_IMAGE[selectedChassis];
-            let selectedChassis = state?.chassis || "medium";
-            try {
-              if (!state?.chassis) {
-                const saved = sessionStorage.getItem("design.chassis");
-                if (saved) selectedChassis = saved;
-              }
-            } catch (e) {}
-            const label = CHASSIS_LABELS[selectedChassis] || "";
-            const img = HERO_IMAGE[selectedChassis];
 
             // read selected amenities from sessionStorage
             const [amenitiesFromStorage] = (() => {
@@ -519,7 +510,7 @@ const PaymentScreen: React.FC = () => {
             const CORRECT_LABELS: Record<string, string> = {
               "สแกนจ่าย 2": "สแกนจ่าย 2",
               แตะบัตร: "แตะบัตร",
-              กระเป๋ารถเมล์: "กระเป๋ารถเมล์",
+              กระเป๋ารถเมล์: "กระเ���๋ารถเมล์",
               เงินสด: "เงินสด",
             };
             const stripReplacement = (s: string) =>
