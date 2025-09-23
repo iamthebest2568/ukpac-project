@@ -5,6 +5,7 @@ import SummaryDetails from "../components/SummaryDetails";
 import SecondaryButton from "../components/SecondaryButton";
 import CtaButton from "../components/CtaButton";
 import { HERO_IMAGE, CHASSIS_LABELS } from "../utils/heroImages";
+import { HERO_IMAGE, CHASSIS_LABELS } from "../utils/heroImages";
 
 const InfoNextScreen: React.FC = () => {
   const navigate = useNavigate();
