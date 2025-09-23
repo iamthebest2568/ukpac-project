@@ -225,18 +225,7 @@
   border-radius: 9999px;
 }
 
-.selectionGrid {
-  --icon-cell-height: 140px; /* mobile default icon height (increased) */
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* fill available width */
-  gap: 6px; /* tighter gap for compact layout */
-  width: 100%;
-  box-sizing: border-box;
-  padding: 0; /* remove inner padding so icons sit near border */
-  justify-content: start; /* align the group to the left edge of the frame */
-  justify-items: stretch; /* let buttons fill horizontally */
-  align-items: start; /* align cells to start so height control comes from icon container */
-}
+.selectionGrid{--icon-cell-height:140px;display:grid;grid-template-columns:repeat(2,1fr);gap:6px;width:100%;box-sizing:border-box;padding:0;justify-content:start;justify-items:stretch;align-items:start;align-content:stretch}
 
 @media (min-width: 768px) and (max-width: 1023px) {
   /* Tablet: keep two columns like mobile to match UX requirement */
@@ -287,7 +276,7 @@
   align-items: start !important;
 }
 
-.doorControls .selectionGrid > button {
+::global(.doorControls) .selectionGrid > button {
   padding: 0 !important;
   width: 100% !important; /* fill the column for consistent spacing */
   max-width: none !important;
@@ -301,7 +290,7 @@
   border: none !important;
 }
 
-.doorControls .selectionGrid > button > div.iconContainer {
+::global(.doorControls) .selectionGrid > button > div.iconContainer {
   height: 100% !important;
   width: 100% !important; /* let the icon container fill the button */
   padding: 0 !important;
@@ -310,8 +299,8 @@
   justify-content: center !important;
 }
 
-.doorControls .selectionGrid img,
-.doorControls .selectionGrid svg {
+::global(.doorControls) .selectionGrid img,
+::global(.doorControls) .selectionGrid svg {
   height: 100% !important;
   width: auto !important;
   object-fit: contain !important;
@@ -347,9 +336,6 @@
 }
 
 /* ensure grid stretches and rows are uniform where possible */
-.selectionGrid {
-  align-content: stretch;
-}
 
 .selectionGrid > button > div.iconContainer {
   min-height: 0; /* allow flex children to shrink properly */
