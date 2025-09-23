@@ -14,6 +14,7 @@ const ConfirmationScreen: React.FC = () => {
       <CustomizationScreen
         title=""
         theme="light"
+        footerBgClass="bg-white"
         footerContent={
           <div className="flex flex-col items-center gap-2 py-4">
             <div style={{ width: "220px" }}>
