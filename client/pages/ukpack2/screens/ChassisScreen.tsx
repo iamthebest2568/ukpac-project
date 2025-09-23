@@ -156,7 +156,6 @@ const OPTIONS = [
   },
 ];
 
-import { HERO_IMAGE, CHASSIS_LABELS } from "../utils/heroImages";
 const HERO_SHADOW =
   "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb1e30b1544304677996b179fc27ae5c7?format=webp&width=800";
 const HERO_STAR =
