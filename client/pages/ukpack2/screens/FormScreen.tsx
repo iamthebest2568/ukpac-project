@@ -158,8 +158,7 @@ const FormScreen: React.FC = () => {
           marginLeft: "calc(50% - 50vw)",
           backgroundPosition: 'top center',
           backgroundSize: 'cover',
-          overflowX: 'hidden',
-          backgroundColor: '#00d5f9', /* ensure solid blue behind image to avoid seams */
+          overflowX: 'hidden'
         }}
       >
         <div className="max-w-4xl mx-auto flex items-end justify-center h-full">
