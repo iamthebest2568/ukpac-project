@@ -428,6 +428,15 @@
   box-sizing: border-box;
 }
 
+/* Scrollable details used on summary details card to allow internal scrolling when content is large */
+.scrollableDetails {
+  max-height: 48vh; /* limit height relative to viewport */
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-right: 8px; /* avoid content hiding under scrollbar */
+  box-sizing: border-box;
+}
+
 /* Support pages that didn't use controlsSection wrapper: make their white panels full-bleed */
 .bg-white.rounded-t-3xl,
 .bg-white.rounded-2xl,
