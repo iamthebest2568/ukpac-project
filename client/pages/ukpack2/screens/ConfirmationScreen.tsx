@@ -11,8 +11,29 @@ const ConfirmationScreen: React.FC = () => {
 
   return (
     <>
-      <CustomizationScreen title="" theme="light">
-        <div className="max-w-4xl mx-auto pb-40 -mt-8">
+      <CustomizationScreen
+        title=""
+        theme="light"
+        footerContent={
+          <div className="flex flex-col items-center gap-2 py-4">
+            <div style={{ width: "220px" }}>
+              <CtaButton
+                className="w-full"
+                text="จบเกม"
+                onClick={() => navigate("/ukpack2")}
+              />
+            </div>
+            <div style={{ width: "220px" }}>
+              <SecondaryButton
+                className="w-full"
+                text="แชร์เกมนี้กับเพื่อน"
+                onClick={() => setShareOpen(true)}
+              />
+            </div>
+          </div>
+        }
+      >
+        <div className="max-w-4xl mx-auto pb-8 -mt-8">
           <div className="w-full flex justify-center mt-6 mb-2">
             <img
               src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F6b62374327d643178ab7f4a913ddc1b1?format=webp&width=800"
@@ -31,26 +52,6 @@ const ConfirmationScreen: React.FC = () => {
               className="w-full max-w-[640px] h-auto object-contain"
               style={{ marginTop: "calc(2rem - 5px)" }}
             />
-          </div>
-        </div>
-        <div className="fixed left-0 right-0 z-10" style={{ bottom: "20px" }}>
-          <div className="max-w-4xl mx-auto px-6 pb-[env(safe-area-inset-bottom,1rem)]">
-            <div className="w-full flex flex-col items-center gap-[2px] bg-white py-4">
-              <div style={{ width: "220px" }}>
-                <CtaButton
-                  className="w-full"
-                  text="จบเกม"
-                  onClick={() => navigate("/ukpack2")}
-                />
-              </div>
-              <div style={{ width: "220px" }}>
-                <SecondaryButton
-                  className="w-full"
-                  text="แชร์เกมนี้กับเพื่อน"
-                  onClick={() => setShareOpen(true)}
-                />
-              </div>
-            </div>
           </div>
         </div>
       </CustomizationScreen>
