@@ -230,22 +230,18 @@ const AmenitiesScreen: React.FC = () => {
   };
 
   // Selected chassis preview (reusing mapping from SeatingScreen)
-  const CHASSIS_LABELS: Record<string, string> = {
-    small: "รถเมล์ขนาดเล็ก 16–30 ที่นั่ง",
-    medium: "รถเมล์มาตรฐาน 30–50 ที่นั่ง",
-    large: "รถตู้โดยสาร 9–15 ที่นั่ง",
-    extra: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
-  };
-  const HERO_IMAGE: Record<string, string> = {
-    small:
-      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F20092528ba1e4f2eb4562515ccb6f75a?format=webp&width=800",
-    medium:
-      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fbcd1013232914b39b73ebd2bd35d7bbd?format=webp&width=800",
-    large:
-      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F297c5816ab8c4adeb3cc73b6f66ab9e0?format=webp&width=800",
-    extra:
-      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8b4be3122d774f95b4c5e5bde1cd7c49?format=webp&width=800",
-  };
+  const selectedChassis = (() => {
+    try {
+      const ctx = state?.chassis;
+      if (ctx) return ctx as keyof typeof CHASSIS_LABELS;
+      const saved = sessionStorage.getItem("design.chassis");
+      return (saved || "medium") as keyof typeof CHASSIS_LABELS;
+    } catch {
+      return "medium" as const;
+    }
+  })();
+  const selectedLabel = CHASSIS_LABELS[selectedChassis] || "";
+  const selectedBusImage = HERO_IMAGE[selectedChassis];
   const selectedChassis = (() => {
     try {
       // prefer value from context state, fallback to sessionStorage
@@ -279,7 +275,7 @@ const AmenitiesScreen: React.FC = () => {
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb35efe05833149089a2df21cf61300b4?format=webp&width=800", // ใช้ไอคอนหน้าต่างเปิดได้
     หน้าต่างเปิดได้:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb35efe05833149089a2df21cf61300b4?format=webp&width=800",
-    "ที่จับ/ราวยืนที่ปลอดภัย":
+    "ที่จับ/ราว��ืนที่ปลอดภัย":
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fa9c2a350877e46c3a49f0f6cd867ae99?format=webp&width=800",
     "ช่องชาร์จมือถือ/USB":
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F2d38a737cf2c4bf29f8764e48a93d404?format=webp&width=800",
@@ -304,7 +300,7 @@ const AmenitiesScreen: React.FC = () => {
       fullWidth
       footerContent={
         <div className="flex justify-center">
-          <CtaButton text="���ัดไป" onClick={handleNext} />
+          <CtaButton text="ถัดไป" onClick={handleNext} />
         </div>
       }
     >
