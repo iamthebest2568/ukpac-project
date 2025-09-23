@@ -238,10 +238,21 @@
   align-items: start; /* align cells to start so height control comes from icon container */
 }
 
-@media (min-width: 768px) {
+@media (min-width: 768px) and (max-width: 1023px) {
+  /* Tablet: keep two columns like mobile to match UX requirement */
   .selectionGrid {
-    --icon-cell-height: 200px; /* larger icon height on wider screens (increased) */
-    grid-template-columns: repeat(4, 1fr); /* 4 columns on md+ */
+    --icon-cell-height: 200px; /* slightly larger icon height for tablet */
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on tablet */
+    gap: 8px;
+    padding: 0; /* ensure grid stretches to border */
+    justify-content: start;
+  }
+}
+
+@media (min-width: 1024px) {
+  .selectionGrid {
+    --icon-cell-height: 220px; /* larger icon height on desktop */
+    grid-template-columns: repeat(4, 1fr); /* 4 columns on desktop */
     gap: 6px; /* tighter gap on larger screens */
     padding: 0; /* ensure grid stretches to border */
     justify-content: start;
