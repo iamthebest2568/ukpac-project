@@ -62,7 +62,9 @@ if (import.meta.env && (import.meta as any).env.DEV) {
     try {
       const reason = (ev as any).reason;
       if (!reason || !(reason instanceof Error)) {
-        const e = new Error(typeof reason === "string" ? reason : "Unhandled promise rejection");
+        const e = new Error(
+          typeof reason === "string" ? reason : "Unhandled promise rejection",
+        );
         (e as any).original = reason;
         // eslint-disable-next-line no-console
         console.error("Normalized unhandledrejection:", e, "original:", reason);

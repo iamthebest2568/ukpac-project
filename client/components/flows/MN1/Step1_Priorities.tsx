@@ -186,9 +186,7 @@ const Step1_Priorities = ({
                 width: "46.3%", // 500/1080
                 height: "clamp(60px, 4.7vw, 90px)",
                 backgroundColor: getButtonColor("ปรับปรุงคุณภาพรถเมล์"),
-                opacity: isSelectionDisabled("ปรับปรุงคุณภาพรถเมล์")
-                  ? 0.5
-                  : 1,
+                opacity: isSelectionDisabled("ปรับปรุงคุณภาพรถเมล์") ? 0.5 : 1,
               }}
               onClick={() =>
                 !isSelectionDisabled("ปรับปรุงคุณภาพรถเมล์") &&

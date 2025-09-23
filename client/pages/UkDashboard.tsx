@@ -121,11 +121,15 @@ export default function UkDashboard() {
     let cancelled = false;
     (async () => {
       try {
-        const resp = await fetch('/api/dashboard-password');
+        const resp = await fetch("/api/dashboard-password");
         if (!resp.ok) return;
         const json = await resp.json();
         if (cancelled) return;
-        if (json && typeof json.password === 'string' && json.password.length > 0) {
+        if (
+          json &&
+          typeof json.password === "string" &&
+          json.password.length > 0
+        ) {
           setExpected(json.password);
         }
       } catch (e) {}
