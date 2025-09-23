@@ -5,6 +5,7 @@ import SummaryDetails from "../components/SummaryDetails";
 import SecondaryButton from "../components/SecondaryButton";
 import CtaButton from "../components/CtaButton";
 import { HERO_IMAGE, CHASSIS_LABELS } from "../utils/heroImages";
+import styles from "./chassis.module.css";
 
 const SummaryScreen: React.FC = () => {
   const navigate = useNavigate();
@@ -71,7 +72,7 @@ const SummaryScreen: React.FC = () => {
 
   return (
     <CustomizationScreen
-      title="รถเมล์คันนี้ที่คุณออกแบบใกล้เคียงกับรถเมล์ในฝันของคุณแล้วหรือไม่"
+      title="รถเมล์คันนี้ที่คุณออกแบบใกล้เคียงกับรถเมล์ในฝันของคุณแล้��หรือไม่"
       theme="light"
       fullWidth
       containerPaddingClass="px-4 py-2"
