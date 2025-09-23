@@ -315,7 +315,7 @@ const App = () => {
       <Layout>
         <Suspense fallback={<SuspenseFallback />}>
           {/* Smooth client-side route transitions without changing logic */}
-          <RouteTransition>
+          <ErrorBoundary><RouteTransition>
             <BusDesignProvider>
               <Routes>
                 {/* Main entry */}
@@ -689,7 +689,7 @@ const App = () => {
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </BusDesignProvider>
-          </RouteTransition>
+          </RouteTransition></ErrorBoundary>
         </Suspense>
       </Layout>
     </BrowserRouter>
