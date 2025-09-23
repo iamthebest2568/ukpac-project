@@ -261,7 +261,7 @@ const DesignScreen: React.FC = () => {
     <>
       <MetaUpdater
         title="UK PACT - กรุงเทพฯ ลดติด"
-        description="ออกแบบรถเมล์เพื่อช่วยลดปัญหาก��รจราจรในกรุงเทพฯ — เลือกขนาดรถ สี และสิ่งอำนวยความสะดวกที่ต้องการ"
+        description="ออกแบบรถเมล์เ��ื่อช่วยลดปัญหาก��รจราจรในกรุงเทพฯ — เลือกขนาดรถ สี และสิ่งอำนวยความสะดวกที่ต้องการ"
         image="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F44cea8aeb6d4415e899494a90c6f59b1?format=webp&width=1200"
       />
       <CustomizationScreen
@@ -280,9 +280,12 @@ const DesignScreen: React.FC = () => {
                 // Upload mask images (black=masked area) for each chassis variant and paste URLs here.
                 small:
                   "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F52a0e0b5f83341cf9dfc9ff4f7abf046?format=webp&width=800",
-                medium: null,
-                large: null,
-                extra: null,
+                medium:
+                  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F52a0e0b5f83341cf9dfc9ff4f7abf046?format=webp&width=800",
+                large:
+                  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F52a0e0b5f83341cf9dfc9ff4f7abf046?format=webp&width=800",
+                extra:
+                  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F52a0e0b5f83341cf9dfc9ff4f7abf046?format=webp&width=800",
               };
 
               // NOTE: Pre-rendered image swapping and first-swatch override removed.
