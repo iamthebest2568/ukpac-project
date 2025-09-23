@@ -4,6 +4,7 @@ import CustomizationScreen from "../components/CustomizationScreen";
 import CtaButton from "../components/CtaButton";
 import ConfirmModal from "../components/ConfirmModal";
 import { HERO_IMAGE, CHASSIS_LABELS } from "../utils/heroImages";
+import VehiclePreview from "../components/VehiclePreview";
 import styles from "./chassis.module.css";
 
 const InfoScreen: React.FC = () => {
@@ -179,7 +180,7 @@ const InfoScreen: React.FC = () => {
                 <p>
                   ฟิลิปปินส์ – Jeepney Modernization รู้หรือไม่! ฟิลิปปินส์พัฒนา
                   Jeepney แบบดั้งเดิมให้กลายเป็นมินิบัสขนาด 20–25
-                  ที่นั่งท���่ปลอดภัยและลดมล���ิษกว่าเดิม
+                  ที่นั่งที่ปลอดภัยและลดมล���ิษกว่าเดิม
                   การเปลี่ยนโฉมนี้ยังคงค่าโดยสารถูก เหมาะกับคนเมือง
                   และช่วยลดปัญหาสิ่งแวดล้อมไปพร้อมกัน
                 </p>
@@ -194,7 +195,7 @@ const InfoScreen: React.FC = () => {
                   รถตู้โดยสาร 14–30 ที่นั่งที่วิ่งยืดหยุ่นตามผู้โดยสาร
                   แม้จะวุ่นวาย
                   แต่ก็เป็นทางเลือกการเดินทางราคาถูกที่เข้าถึงทุกพื้นที่
-                  ทำให้คนทุกระดับรายได้ม���โอกาสเดินทางสะดวก
+                  ทำให้คนทุกระดับรายได้มีโอกาสเดินทางสะดวก
                 </p>
               </div>
             ) : (
@@ -218,7 +219,7 @@ const InfoScreen: React.FC = () => {
       <ConfirmModal
         isOpen={isExitModalOpen}
         title="ออกจากหน้าจอ"
-        message="คุณ��น่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
+        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
         onConfirm={() => navigate("/")}
         onCancel={() => setExitModalOpen(false)}
       />
