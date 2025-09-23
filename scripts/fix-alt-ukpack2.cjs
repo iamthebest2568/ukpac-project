@@ -1,10 +1,10 @@
-const fs = require('fs');
-const path = require('path');
-const fs = require('fs');
+const fs = require("fs");
+const path = require("path");
+const fs = require("fs");
 
 const ROOTS = [
-  path.join(__dirname, '..', 'client', 'pages', 'ukpack2'),
-  path.join(__dirname, '..', 'client', 'pages', 'ukpack1'),
+  path.join(__dirname, "..", "client", "pages", "ukpack2"),
+  path.join(__dirname, "..", "client", "pages", "ukpack1"),
 ];
 
 function walk(dir) {
@@ -14,7 +14,7 @@ function walk(dir) {
     if (e.isDirectory()) walk(full);
     else if (/\.(ts|tsx|js|jsx|html)$/.test(e.name)) {
       try {
-        let content = fs.readFileSync(full, { encoding: 'utf8' });
+        let content = fs.readFileSync(full, { encoding: "utf8" });
         const orig = content;
         // Replace alt="...". If aria-hidden exists on same tag, set alt="" (decorative)
         content = content.replace(/<img([\s\S]*?)>/g, (match) => {
@@ -27,11 +27,11 @@ function walk(dir) {
         });
 
         if (content !== orig) {
-          fs.writeFileSync(full, content, { encoding: 'utf8' });
-          console.log('Updated alts in', full);
+          fs.writeFileSync(full, content, { encoding: "utf8" });
+          console.log("Updated alts in", full);
         }
       } catch (err) {
-        console.error('Error processing', full, err.message);
+        console.error("Error processing", full, err.message);
       }
     }
   }
@@ -40,4 +40,4 @@ function walk(dir) {
 for (const r of ROOTS) {
   if (fs.existsSync(r)) walk(r);
 }
-console.log('Alt-fix complete');
+console.log("Alt-fix complete");
