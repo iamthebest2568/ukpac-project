@@ -12,6 +12,7 @@ import {
   useLocation,
 } from "react-router-dom";
 import { BusDesignProvider } from "./pages/ukpack2/context/BusDesignContext";
+import TabletMockup from "./pages/ukpack2/components/TabletMockup";
 
 // Minimal set of pages (dashboard/backend removed)
 const NotFound = lazy(() => import("./pages/NotFound"));
@@ -276,7 +277,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           className={`w-full responsive-content ${isFullBleed ? "" : "h-full overflow-hidden"}`}
         >
           {isFullBleed ? (
-            children
+            <TabletMockup>{children}</TabletMockup>
           ) : (
             <div style={{ height: "100%", overflow: "hidden" }}>{children}</div>
           )}
