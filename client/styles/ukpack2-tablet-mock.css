@@ -55,7 +55,7 @@
   min-height: 0 !important;
   overflow-x: hidden !important;
   overflow-y: auto !important;
-  padding-bottom: 96px !important; /* reserve space for sticky footer */
+  padding-bottom: 12px !important; /* content owns spacing; CustomizationScreen adds measured padding when footer exists */
 }
 
 /* Neutralize full-bleed hacks inside the mock, including CSS-module hashed classes */
