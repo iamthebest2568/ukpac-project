@@ -106,7 +106,7 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
         className={`flex-1 min-h-0 overflow-auto uk2-scroll ${containerPaddingClass ? containerPaddingClass : fullWidth ? "px-0 py-4" : "px-4 py-4"}`}
         style={{
           // keep space for the footer: measure only outside tablet mock; inside mock, minimal extra space
-          paddingBottom: footerContent ? (inTabletMock ? "12px" : `calc(${footerHeight}px + 12px)`) : undefined,
+          paddingBottom: footerContent ? `calc(${footerHeight}px + 12px)` : undefined,
           // when inside tablet mock or fullWidth, let outer viewport handle scrolling
           overflow: inTabletMock || fullWidth ? "visible" : undefined,
         }}
