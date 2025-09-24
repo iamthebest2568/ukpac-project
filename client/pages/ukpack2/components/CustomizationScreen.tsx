@@ -26,9 +26,11 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
   containerPaddingClass,
 }) => {
   const isLight = theme === "light";
+  const rootRef = useRef<HTMLDivElement | null>(null);
   const contentRef = useRef<HTMLDivElement | null>(null);
   const footerRef = useRef<HTMLDivElement | null>(null);
   const [footerHeight, setFooterHeight] = React.useState<number>(0);
+  const [inTabletMock, setInTabletMock] = React.useState<boolean>(false);
 
   React.useEffect(() => {
     const update = () => {
