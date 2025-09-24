@@ -25,9 +25,14 @@
 
 /* Sticky footer behavior inside mockup */
 .tablet-mock-env .customization-screen-footer,
-.tablet-mock-env [data-testid="customization-footer"] {
+.tablet-mock-env [data-testid="customization-footer"],
+.tablet-mock-env [role="contentinfo"] {
   position: sticky !important;
   bottom: 0 !important;
+  left: auto !important;
+  right: auto !important;
+  width: 100% !important;
+  z-index: 10;
 }
 
 /* Slightly larger base font for readability */
