@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
+import RouteTransition from "../../../components/shared/RouteTransition";
 
 interface TabletMockupProps {
   children: React.ReactNode;
