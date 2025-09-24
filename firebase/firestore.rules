@@ -73,6 +73,17 @@ service cloud.firestore {
     }
 
 
+    // Image design writes (DesignScreen)
+    match /kpact-gamebus-imagedesign-events/{docId} {
+      // Allow anonymous create with strict shape; no read/update/delete
+      allow create: if isValidImageDesignEntry(request.resource.data);
+      allow get, list, update, delete: if isAdmin();
+    }
+    match /ukpact-gamebus-imagedesign-events/{docId} {
+      allow create: if isValidImageDesignEntry(request.resource.data);
+      allow get, list, update, delete: if isAdmin();
+    }
+
     // Deny all other reads/writes by default
     match /{document=**} {
       allow read, write: if false;
