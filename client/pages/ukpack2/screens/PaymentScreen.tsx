@@ -456,7 +456,7 @@ const PaymentScreen: React.FC = () => {
 
   return (
     <CustomizationScreen
-      title="ออกแบบรถเมล์ของคุณ"
+      title="ออกแบบรถเม��์ของคุณ"
       theme="light"
       fullWidth
       footerContent={
@@ -909,18 +909,18 @@ const PaymentScreen: React.FC = () => {
                         decoding="async"
                         loading="eager"
                       />
-                    ) : overlayUrl ? (
-                      // overlayUrl should be used for overlays across pages, but not to replace the selected card appearance
+                    ) : baseIcon ? (
                       <img
-                        src={overlayUrl}
+                        src={baseIcon}
                         alt={o.label}
                         className={`object-contain select-none h-full w-full `}
                         decoding="async"
                         loading="eager"
                       />
-                    ) : baseIcon ? (
+                    ) : overlayUrl ? (
+                      // overlayUrl should be used for overlays across pages, not to replace the primary card icon if base icon exists
                       <img
-                        src={baseIcon}
+                        src={overlayUrl}
                         alt={o.label}
                         className={`object-contain select-none h-full w-full `}
                         decoding="async"
