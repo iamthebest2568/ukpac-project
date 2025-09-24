@@ -194,7 +194,7 @@ const VehiclePreview: React.FC<Props> = ({
 
                     <div
                       ref={scrollRef}
-                      className="flex gap-2 overflow-x-auto no-scrollbar whitespace-nowrap items-center py-1"
+                      className="overlay-ribbon-track flex gap-2 overflow-x-auto no-scrollbar whitespace-nowrap items-center py-1"
                       style={{ scrollBehavior: "smooth" }}
                     >
                       {(() => {
