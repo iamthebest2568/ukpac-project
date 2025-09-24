@@ -59,7 +59,15 @@ const TabletMockup: React.FC<TabletMockupProps> = ({ children }) => {
     <div className="fixed inset-0 flex items-center justify-center h-screen bg-neutral-100/60 overflow-hidden">
       <div
         className="relative"
-        style={{ width: OUTER_W, height: OUTER_H, transform: `scale(${scale})`, transformOrigin: "center" }}
+        style={{
+          width: OUTER_W,
+          height: OUTER_H,
+          aspectRatio: "3 / 4",
+          transform: `scale(${scale}) rotate(0deg)`,
+          transformOrigin: "center",
+          maxWidth: "100vw",
+          maxHeight: "100vh",
+        }}
         aria-label="tablet-mockup"
       >
         {/* Outer tablet frame (uniform thin bezel look) */}
