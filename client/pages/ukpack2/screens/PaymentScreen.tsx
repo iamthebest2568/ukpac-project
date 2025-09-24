@@ -243,7 +243,7 @@ const SCAN_ICON_ACTIVE =
 const SCAN2_ICON =
   "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F624c968962fb4fe4b44d1a45a4ed38ff?format=webp&width=800";
 const SCAN2_ICON_ACTIVE =
-  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb128b8b4b90940efbe43f37b3ab27b3e?format=webp&width=800";
+  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F3457f67ed4ae4534bcdd4bd84ea928ae?format=webp&width=800";
 const TOUCH_ICON =
   "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F4c7862dfe0cb436e88451219585438e2?format=webp&width=800";
 const TOUCH_ICON_ACTIVE =
@@ -401,7 +401,7 @@ const PaymentScreen: React.FC = () => {
   };
 
   const PAYMENT_BUTTON_SRC: Record<string, string> = {
-    เงินสด: MONEY_ICON,
+    เ��ินสด: MONEY_ICON,
     สแกนจ่าย: SCAN_ICON,
     "สแกนจ่าย 2": SCAN2_ICON,
     แตะบัตร: TOUCH_ICON,
