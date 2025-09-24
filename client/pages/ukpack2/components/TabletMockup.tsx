@@ -102,7 +102,7 @@ const TabletMockup: React.FC<TabletMockupProps> = ({ children }) => {
               className="rounded-[22px] bg-white overflow-y-auto overflow-x-hidden tablet-mock-env"
               style={{ width: `${BASE_W}px`, height: `${BASE_H}px`, aspectRatio: "3 / 4", transform: "rotate(0deg)" }}
             >
-              {children}
+              <RouteTransition>{children}</RouteTransition>
             </div>
             {/* Bottom gesture bar (decorative) */}
             <div className="absolute bottom-2 left-1/2 -translate-x-1/2 h-1.5 w-24 rounded-full bg-neutral-700/80" aria-hidden />
