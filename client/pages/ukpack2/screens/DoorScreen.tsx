@@ -565,7 +565,7 @@ const DoorScreen: React.FC = () => {
                       "เงินสด",
                       "สแกนจ่าย",
                       "ตู้อัตโนมัติ",
-                      "แตะบัตร",
+                      "���ตะบัตร",
                       "กระเป๋ารถเมล์",
                       "ตั๋วรายเดือน/รอบ",
                       "1",
@@ -631,7 +631,7 @@ const DoorScreen: React.FC = () => {
                       },
                       {
                         key: "ramp",
-                        label: "ทางลาดสำหรับรถเข็น/ผู้พิาการ",
+                        label: "ท��งลาดสำหรับรถเข็น/ผู้พิาการ",
                         icon: <IconRamp />,
                         iconActive: <IconRampActive />,
                       },
@@ -718,73 +718,86 @@ const DoorScreen: React.FC = () => {
                       setSelectedOption(newSelection);
                     };
 
-                    return DOOR_OPTIONS.map((opt) => {
-                      // try to use stored overlay URL if available (by key or label)
-                      let storedMap: Record<string, string | null> = {};
-                      try {
-                        const raw = sessionStorage.getItem(
-                          "design.overlayIconMap",
-                        );
-                        if (raw)
-                          storedMap = JSON.parse(raw) as Record<string, string>;
-                      } catch {}
+                    {
+                      const nodes: React.ReactNode[] = [];
+                      DOOR_OPTIONS.forEach((opt, idx) => {
+                        // try to use stored overlay URL if available (by key or label)
+                        let storedMap: Record<string, string | null> = {};
+                        try {
+                          const raw = sessionStorage.getItem(
+                            "design.overlayIconMap",
+                          );
+                          if (raw)
+                            storedMap = JSON.parse(raw) as Record<string, string>;
+                        } catch {}
 
-                      const lookupStored = (labelOrKey: string) => {
-                        if (!labelOrKey) return undefined;
-                        if (storedMap[labelOrKey])
-                          return storedMap[labelOrKey] as string;
-                        const target = normalizeKey(labelOrKey);
-                        for (const k of Object.keys(storedMap)) {
-                          if (normalizeKey(k) === target)
-                            return storedMap[k] as string;
-                        }
-                        return undefined;
-                      };
+                        const lookupStored = (labelOrKey: string) => {
+                          if (!labelOrKey) return undefined;
+                          if (storedMap[labelOrKey])
+                            return storedMap[labelOrKey] as string;
+                          const target = normalizeKey(labelOrKey);
+                          for (const k of Object.keys(storedMap)) {
+                            if (normalizeKey(k) === target)
+                              return storedMap[k] as string;
+                          }
+                          return undefined;
+                        };
 
-                      const candidateUrl =
-                        lookupStored(opt.key) ||
-                        lookupStored(opt.label) ||
-                        DOOR_BUTTON_SRC[opt.key];
+                        const candidateUrl =
+                          lookupStored(opt.key) ||
+                          lookupStored(String(opt.label)) ||
+                          DOOR_BUTTON_SRC[opt.key];
 
-                      // match Amenities behavior: use iconActive when selected, otherwise icon; candidateUrl (override) should be used for overlay mapping but not replace selected appearance
-                      const iconNode =
-                        opt.key === "1" || opt.key === "2"
-                          ? selectedOption.doorChoice === opt.key
-                            ? opt.iconActive || opt.icon
-                            : opt.icon
-                          : opt.key === "ramp"
-                            ? selectedOption.hasRamp
+                        // match Amenities behavior: use iconActive when selected, otherwise icon; candidateUrl (override) should be used for overlay mapping but not replace selected appearance
+                        const iconNode =
+                          opt.key === "1" || opt.key === "2"
+                            ? selectedOption.doorChoice === opt.key
                               ? opt.iconActive || opt.icon
                               : opt.icon
-                            : opt.key === "emergency"
-                              ? selectedOption.highLow
+                            : opt.key === "ramp"
+                              ? selectedOption.hasRamp
                                 ? opt.iconActive || opt.icon
                                 : opt.icon
-                              : opt.icon;
+                              : opt.key === "emergency"
+                                ? selectedOption.highLow
+                                  ? opt.iconActive || opt.icon
+                                  : opt.icon
+                                : opt.icon;
 
-                      return (
-                        <SelectionCard
-                          key={opt.key}
-                          icon={iconNode}
-                          label={opt.label}
-                          isSelected={
-                            opt.key === "1" || opt.key === "2"
-                              ? selectedOption.doorChoice === opt.key
-                              : opt.key === "ramp"
-                                ? selectedOption.hasRamp
-                                : opt.key === "emergency"
-                                  ? selectedOption.highLow
-                                  : false
-                          }
-                          onClick={() => handleSelect(opt)}
-                          variant="light"
-                          hideLabel
-                          appearance="group"
-                          groupSize="lg"
-                          fill
-                        />
-                      );
-                    });
+                        nodes.push(
+                          <SelectionCard
+                            key={opt.key}
+                            icon={iconNode}
+                            label={opt.label}
+                            isSelected={
+                              opt.key === "1" || opt.key === "2"
+                                ? selectedOption.doorChoice === opt.key
+                                : opt.key === "ramp"
+                                  ? selectedOption.hasRamp
+                                  : opt.key === "emergency"
+                                    ? selectedOption.highLow
+                                    : false
+                            }
+                            onClick={() => handleSelect(opt)}
+                            variant="light"
+                            hideLabel
+                            appearance="group"
+                            groupSize="lg"
+                            fill
+                          />,
+                        );
+
+                        // After the second icon (index 1), insert the heading "ทางอื่นๆ"
+                        if (idx === 1) {
+                          nodes.push(
+                            <div key="other-heading" className="col-span-2 md:col-span-4">
+                              <h3 className="text-xl font-prompt font-semibold text-[#003366] mt-2">ทางอื่นๆ</h3>
+                            </div>,
+                          );
+                        }
+                      });
+                      return nodes;
+                    }
                   })()}
                 </div>
               </div>
