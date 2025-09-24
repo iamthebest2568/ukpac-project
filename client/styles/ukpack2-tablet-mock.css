@@ -6,6 +6,8 @@
   width: 100% !important;
   height: 100% !important;
   overflow-x: hidden !important;
+  display: flex;
+  flex-direction: column;
 }
 .tablet-mock-env *, .tablet-mock-env *::before, .tablet-mock-env *::after {
   box-sizing: border-box;
@@ -15,6 +17,10 @@
   overflow-wrap: anywhere;
   word-break: break-word;
 }
+
+/* Header tuning */
+.tablet-mock-env header { padding: 12px 16px !important; }
+.tablet-mock-env .customization-title { font-size: 20px !important; line-height: 1.2 !important; }
 
 .tablet-mock-env .app-container,
 .tablet-mock-env .responsive-container {
@@ -27,6 +33,7 @@
 .tablet-mock-env .responsive-content,
 .tablet-mock-env .uk2-scroll {
   overflow-x: hidden !important;
+  padding-bottom: 96px !important; /* reserve space for sticky footer */
 }
 
 /* Neutralize full-bleed hacks inside the mock */
@@ -40,6 +47,8 @@
   left: auto !important;
   transform: none !important;
 }
+.tablet-mock-env .controlsBox { border-width: 2px !important; border-radius: 8px !important; }
+.tablet-mock-env .tabsWrapper { margin: 0 0 6px 0 !important; }
 
 .tablet-mock-env img,
 .tablet-mock-env svg,
@@ -54,9 +63,13 @@
   margin-right: auto !important;
 }
 
+/* Stack preview above controls consistently */
+.tablet-mock-env .contentGrid { display: block !important; grid-template-columns: none !important; }
+
 /* Vehicle preview sizing on tablet */
+.tablet-mock-env .vehicle-preview { margin-top: 6px !important; }
 .tablet-mock-env .vehicle-preview > .relative {
-  width: 80% !important;
+  width: 78% !important;
   max-width: 560px !important;
   margin-left: auto !important;
   margin-right: auto !important;
