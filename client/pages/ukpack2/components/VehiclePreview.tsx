@@ -187,7 +187,7 @@ const VehiclePreview: React.FC<Props> = ({
                       type="button"
                       aria-label="Prev icons"
                       onClick={() => scrollByAmount("left")}
-                      className="p-2 bg-white/80 rounded-full shadow-sm mr-2 text-[#003366]"
+                      className="overlay-ribbon-prev p-2 bg-white/80 rounded-full shadow-sm mr-2 text-[#003366]"
                     >
                       ‹
                     </button>
