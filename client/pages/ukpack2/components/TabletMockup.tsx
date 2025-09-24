@@ -42,10 +42,8 @@ const TabletMockup: React.FC<TabletMockupProps> = ({ children }) => {
   }, [active]);
 
   const viewportClass = useMemo(() => {
-    if (width >= 1024) return "w-[900px] h-[1200px]";
-    if (width >= 900) return "w-[810px] h-[1080px]";
-    return "w-[768px] h-[1024px]";
-  }, [width]);
+    return "w-[810px] h-[1080px]";
+  }, []);
 
   if (!active) {
     return <>{children}</>;
