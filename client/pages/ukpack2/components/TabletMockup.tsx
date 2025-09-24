@@ -51,13 +51,29 @@ const TabletMockup: React.FC<TabletMockupProps> = ({ children }) => {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center h-screen bg-neutral-100/60">
-      <div
-        className={[
-          viewportClass,
-          "rounded-3xl border-2 border-neutral-300 shadow-2xl drop-shadow-lg bg-white overflow-auto",
-        ].join(" ")}
-      >
-        {children}
+      <div className="relative">
+        {/* Outer frame */}
+        <div className="rounded-[40px] border border-neutral-300 shadow-2xl drop-shadow-lg bg-gradient-to-b from-neutral-200 to-neutral-100 p-2">
+          {/* Inner bezel */}
+          <div className="relative rounded-[32px] bg-neutral-900 p-2">
+            {/* Top sensors (decorative) */}
+            <div className="absolute top-2 left-1/2 -translate-x-1/2 flex items-center gap-3 pointer-events-none" aria-hidden>
+              <div className="h-1 w-16 rounded-full bg-neutral-700" />
+              <div className="h-2 w-2 rounded-full bg-neutral-800 ring-2 ring-neutral-700" />
+            </div>
+            {/* Viewport */}
+            <div
+              className={[
+                viewportClass,
+                "rounded-[28px] bg-white overflow-auto",
+              ].join(" ")}
+            >
+              {children}
+            </div>
+            {/* Bottom gesture bar (decorative) */}
+            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 h-1.5 w-24 rounded-full bg-neutral-700/80" aria-hidden />
+          </div>
+        </div>
       </div>
     </div>
   );
