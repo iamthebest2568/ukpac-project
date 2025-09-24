@@ -91,10 +91,6 @@ const TabletMockup: React.FC<TabletMockupProps> = ({ children }) => {
         <div className="rounded-[48px] border-[2px] border-neutral-300 shadow-2xl drop-shadow-lg bg-neutral-200/60 p-2" style={{ width: "100%", height: "100%" }}>
           {/* Inner bezel */}
           <div className="relative rounded-[40px] bg-neutral-900 p-1" style={{ width: "100%", height: "100%" }}>
-            {/* Notch / sensor area (iPhone-like) */}
-            <div className="absolute top-2 left-1/2 -translate-x-1/2 flex items-center justify-center pointer-events-none" aria-hidden>
-              <div className="bg-neutral-800 rounded-b-md" style={{ width: 160, height: 26, borderBottomLeftRadius: 14, borderBottomRightRadius: 14 }} />
-            </div>
 
             {/* Viewport (portrait 414x896) */}
             <div
