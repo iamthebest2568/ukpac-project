@@ -88,7 +88,7 @@ const TabletMockup: React.FC<TabletMockupProps> = ({ children }) => {
             </div>
             {/* Viewport */}
             <div
-              className="rounded-[28px] bg-white overflow-auto"
+              className="rounded-[28px] bg-white overflow-auto tablet-mock-env"
               style={{ width: `${viewport.w}px`, height: `${viewport.h}px` }}
             >
               {children}
