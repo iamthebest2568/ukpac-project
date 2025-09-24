@@ -103,5 +103,7 @@
   font-size: 16.5px !important;
 }
 
-/* Color palette spacing */
+/* Color palette spacing and grid safety */
 .tablet-mock-env .grid.grid-cols-6 { gap: 12px !important; }
+.tablet-mock-env .grid { max-width: 100% !important; }
+.tablet-mock-env .grid.grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; }
