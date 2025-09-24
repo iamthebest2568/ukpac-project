@@ -6,6 +6,7 @@
 @import "./styles/ukpack2-embedded.css";
 @import "./styles/ukpack2-tablet.css";
 @import "./styles/ukpack2-desktop.css";
+@import "./styles/ukpack2-tablet-mock.css";
 
 @tailwind base;
 @tailwind components;
