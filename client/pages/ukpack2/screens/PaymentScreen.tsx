@@ -224,7 +224,7 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   พัดลม: <IconFan />,
   ที่นั่งพิเศษ: <IconSeat />,
   "ที่จับ/ราวยืนท���่ปลอดภัย": <IconWifi />,
-  "ช่องชาร์จมือถือ/USB": <IconPlug />,
+  "ช่องชาร์จม���อถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
   "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
   กล้องวงจรปิด: <IconCam />,
@@ -261,9 +261,9 @@ const OPTIONS = [
   { key: "cash", label: "เงินสด", icon: <IconCash /> },
   { key: "scan", label: "สแกนจ่าย", icon: <IconScan /> },
   { key: "tap", label: "แตะบัตร", icon: <IconTap /> },
-  { key: "scan2", label: "สแกนจ่าย 2", icon: null },
-  { key: "monthly", label: "ตั๋วรายเดือน/รอบ", icon: null },
+  { key: "scan2", label: "ส���กนจ่าย 2", icon: null },
   { key: "qr", label: "กระเป๋ารถเมล์", icon: <IconQr /> },
+  { key: "monthly", label: "ตั๋วรายเดือน/รอบ", icon: null },
 ];
 
 const PaymentScreen: React.FC = () => {
@@ -406,7 +406,7 @@ const PaymentScreen: React.FC = () => {
     "สแกนจ่าย 2": SCAN2_ICON,
     แตะบัตร: TOUCH_ICON,
     "��ั๋วรายเดือน/รอบ": MONTHLY_ICON,
-    กระเป๋ารถเมล์: BUS_EMPLOY_ICON,
+    กระ���ป๋ารถเมล์: BUS_EMPLOY_ICON,
   };
 
   const handleNext = () => {
