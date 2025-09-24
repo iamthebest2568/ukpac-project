@@ -85,7 +85,7 @@ const VehiclePreview: React.FC<Props> = ({
 
   return (
     <div
-      className={`w-full rounded-md flex flex-col items-center justify-center gap-2 ${className || ""}`}
+      className={`vehicle-preview w-full rounded-md flex flex-col items-center justify-center gap-2 ${className || ""}`}
     >
       {effectiveImageSrc ? (
         <div
