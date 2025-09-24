@@ -138,7 +138,9 @@ export const BusDesignProvider = ({ children }: { children: ReactNode }) => {
           const url = await mod.uploadFileToStorage(imageBlob, path);
           payload.imageUrl = url;
           try {
-            const { addDesignImageUrlToFirestore } = await import("../../../lib/firebase");
+            const { addDesignImageUrlToFirestore } = await import(
+              "../../../lib/firebase"
+            );
             await addDesignImageUrlToFirestore(url);
           } catch (_) {}
         } catch (e) {
@@ -168,7 +170,8 @@ export const BusDesignProvider = ({ children }: { children: ReactNode }) => {
             return /quota/i.test(msg) || /exceeded/i.test(msg);
           };
 
-          const pendingRaw = localStorage.getItem("ukpack2_pending_submissions") || "[]";
+          const pendingRaw =
+            localStorage.getItem("ukpack2_pending_submissions") || "[]";
           const pending = Array.isArray(JSON.parse(pendingRaw))
             ? (JSON.parse(pendingRaw) as any[])
             : [];
@@ -208,7 +211,10 @@ export const BusDesignProvider = ({ children }: { children: ReactNode }) => {
                 }
               }
               // If we get here, we couldn't persist even after trimming
-              console.error("Failed to persist locally after trimming", lastError);
+              console.error(
+                "Failed to persist locally after trimming",
+                lastError,
+              );
               throw lastError;
             }
 
@@ -277,7 +283,10 @@ function loadStateFromSession(): BusDesignState | null {
                 sessionStorage.setItem("design.payment.bak", raw);
               } catch (_) {}
               try {
-                sessionStorage.setItem("design.payment", JSON.stringify(migrated));
+                sessionStorage.setItem(
+                  "design.payment",
+                  JSON.stringify(migrated),
+                );
               } catch (_) {}
             }
           }
@@ -305,7 +314,10 @@ function loadStateFromSession(): BusDesignState | null {
               sessionStorage.setItem("design.overlayIconMap.bak", rawMap);
             } catch (_) {}
             try {
-              sessionStorage.setItem("design.overlayIconMap", JSON.stringify(map));
+              sessionStorage.setItem(
+                "design.overlayIconMap",
+                JSON.stringify(map),
+              );
             } catch (_) {}
           }
         }

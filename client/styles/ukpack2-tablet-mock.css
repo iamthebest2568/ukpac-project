@@ -9,32 +9,62 @@
   display: flex;
   flex-direction: column;
 }
-.tablet-mock-env *, .tablet-mock-env *::before, .tablet-mock-env *::after {
+.tablet-mock-env *,
+.tablet-mock-env *::before,
+.tablet-mock-env *::after {
   box-sizing: border-box;
   max-width: 100% !important;
 }
-.tablet-mock-env p, .tablet-mock-env h1, .tablet-mock-env h2, .tablet-mock-env h3, .tablet-mock-env h4, .tablet-mock-env .prose {
+.tablet-mock-env p,
+.tablet-mock-env h1,
+.tablet-mock-env h2,
+.tablet-mock-env h3,
+.tablet-mock-env h4,
+.tablet-mock-env .prose {
   overflow-wrap: anywhere;
   word-break: break-word;
 }
 
 /* Header tuning */
-.tablet-mock-env header { padding: 12px 16px !important; margin-bottom: 8px !important; }
-.tablet-mock-env .customization-title { font-size: 20px !important; line-height: 1.2 !important; }
+.tablet-mock-env header {
+  padding: 12px 16px !important;
+  margin-bottom: 8px !important;
+}
+.tablet-mock-env .customization-title {
+  font-size: 20px !important;
+  line-height: 1.2 !important;
+}
 
 /* Vehicle preview spacing */
-.tablet-mock-env [aria-label="vehicle-label"] { margin-top: 4px !important; margin-bottom: 10px !important; }
-.tablet-mock-env .vehicle-preview { margin-top: 6px !important; margin-bottom: 8px !important; }
+.tablet-mock-env [aria-label="vehicle-label"] {
+  margin-top: 4px !important;
+  margin-bottom: 10px !important;
+}
+.tablet-mock-env .vehicle-preview {
+  margin-top: 6px !important;
+  margin-bottom: 8px !important;
+}
 
 /* Tabs spacing */
-.tablet-mock-env [class*="tabsWrapper"] { margin-top: 4px !important; margin-bottom: 8px !important; }
+.tablet-mock-env [class*="tabsWrapper"] {
+  margin-top: 4px !important;
+  margin-bottom: 8px !important;
+}
 
 /* Controls box spacing */
-.tablet-mock-env [class*="controlsBox"] { padding-top: 6px !important; padding-bottom: 6px !important; }
-.tablet-mock-env [class*="controlsContent"] > * + * { margin-top: 10px !important; }
+.tablet-mock-env [class*="controlsBox"] {
+  padding-top: 6px !important;
+  padding-bottom: 6px !important;
+}
+.tablet-mock-env [class*="controlsContent"] > * + * {
+  margin-top: 10px !important;
+}
 
 /* Headings inside controls */
-.tablet-mock-env [class*="controlsContent"] h2 { margin-top: 6px !important; margin-bottom: 8px !important; }
+.tablet-mock-env [class*="controlsContent"] h2 {
+  margin-top: 6px !important;
+  margin-bottom: 8px !important;
+}
 
 .tablet-mock-env .app-container,
 .tablet-mock-env .responsive-container {
@@ -69,12 +99,20 @@
   left: auto !important;
   transform: none !important;
 }
-.tablet-mock-env [class*="controlsBox"] { border-width: 2px !important; border-radius: 8px !important; }
-.tablet-mock-env [class*="tabsWrapper"] { margin: 0 0 6px 0 !important; }
+.tablet-mock-env [class*="controlsBox"] {
+  border-width: 2px !important;
+  border-radius: 8px !important;
+}
+.tablet-mock-env [class*="tabsWrapper"] {
+  margin: 0 0 6px 0 !important;
+}
 
 .tablet-mock-env img,
 .tablet-mock-env svg,
-.tablet-mock-env video { max-width: 100% !important; height: auto !important; }
+.tablet-mock-env video {
+  max-width: 100% !important;
+  height: auto !important;
+}
 
 .tablet-mock-env .max-w-5xl,
 .tablet-mock-env .max-w-4xl,
@@ -99,8 +137,12 @@
 }
 
 /* Vehicle preview sizing on tablet */
-.tablet-mock-env .previewInner { max-width: 100% !important; }
-.tablet-mock-env .vehicle-preview { margin-top: 6px !important; }
+.tablet-mock-env .previewInner {
+  max-width: 100% !important;
+}
+.tablet-mock-env .vehicle-preview {
+  margin-top: 6px !important;
+}
 .tablet-mock-env .vehicle-preview > .relative {
   width: min(78%, 560px) !important;
   max-width: 100% !important;
@@ -182,6 +224,12 @@
 }
 
 /* Color palette spacing and grid safety */
-.tablet-mock-env .grid.grid-cols-6 { gap: 12px !important; }
-.tablet-mock-env .grid { max-width: 100% !important; }
-.tablet-mock-env .grid.grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; }
+.tablet-mock-env .grid.grid-cols-6 {
+  gap: 12px !important;
+}
+.tablet-mock-env .grid {
+  max-width: 100% !important;
+}
+.tablet-mock-env .grid.grid-cols-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+}

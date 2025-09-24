@@ -18,7 +18,8 @@ const TabletMockup: React.FC<TabletMockupProps> = ({ children }) => {
   }));
 
   useEffect(() => {
-    const onResize = () => setWin({ w: window.innerWidth, h: window.innerHeight });
+    const onResize = () =>
+      setWin({ w: window.innerWidth, h: window.innerHeight });
     onResize();
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
@@ -88,20 +89,33 @@ const TabletMockup: React.FC<TabletMockupProps> = ({ children }) => {
         aria-label="mobile-mockup"
       >
         {/* Outer phone frame */}
-        <div className="rounded-[48px] border-[2px] border-neutral-300 shadow-2xl drop-shadow-lg bg-neutral-200/60 p-2" style={{ width: "100%", height: "100%" }}>
+        <div
+          className="rounded-[48px] border-[2px] border-neutral-300 shadow-2xl drop-shadow-lg bg-neutral-200/60 p-2"
+          style={{ width: "100%", height: "100%" }}
+        >
           {/* Inner bezel */}
-          <div className="relative rounded-[40px] bg-neutral-900 p-1" style={{ width: "100%", height: "100%" }}>
-
+          <div
+            className="relative rounded-[40px] bg-neutral-900 p-1"
+            style={{ width: "100%", height: "100%" }}
+          >
             {/* Viewport (portrait 414x896) */}
             <div
               className="rounded-[30px] bg-white overflow-y-auto overflow-x-hidden tablet-mock-env"
-              style={{ position: 'relative', width: `${BASE_W}px`, height: `${BASE_H}px`, aspectRatio: `${BASE_W} / ${BASE_H}` }}
+              style={{
+                position: "relative",
+                width: `${BASE_W}px`,
+                height: `${BASE_H}px`,
+                aspectRatio: `${BASE_W} / ${BASE_H}`,
+              }}
             >
               <RouteTransition>{children}</RouteTransition>
             </div>
 
             {/* Bottom home indicator (iPhone gesture bar) */}
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 h-1.5 w-28 rounded-full bg-neutral-700/80" aria-hidden />
+            <div
+              className="absolute bottom-4 left-1/2 -translate-x-1/2 h-1.5 w-28 rounded-full bg-neutral-700/80"
+              aria-hidden
+            />
           </div>
         </div>
       </div>

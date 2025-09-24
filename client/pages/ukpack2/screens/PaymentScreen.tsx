@@ -311,7 +311,7 @@ const PaymentScreen: React.FC = () => {
       SCAN_ICON_ACTIVE,
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe9e95c0ee1cf44c782478f7ca3e7cac9?format=webp&width=800",
     ],
-    "ตู้อัตโนมัติ": [
+    ตู้อัตโนมัติ: [
       SCAN2_ICON,
       SCAN2_ICON_ACTIVE,
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F450e64db5b824f5c92cb33d5993705f6?format=webp&width=800",
@@ -401,12 +401,12 @@ const PaymentScreen: React.FC = () => {
   };
 
   const PAYMENT_BUTTON_SRC: Record<string, string> = {
-    "เงินสด": MONEY_ICON,
+    เงินสด: MONEY_ICON,
     "สแกนจ่า��": SCAN_ICON,
-    "ตู้อัตโนมัติ": SCAN2_ICON,
-    "แตะบัตร": TOUCH_ICON,
+    ตู้อัตโนมัติ: SCAN2_ICON,
+    แตะบัตร: TOUCH_ICON,
     "ตั๋วรายเดือน/รอบ": MONTHLY_ICON,
-    "กระเป๋ารถเมล์": BUS_EMPLOY_ICON,
+    กระเป๋ารถเมล์: BUS_EMPLOY_ICON,
   };
 
   const handleNext = () => {
@@ -512,7 +512,7 @@ const PaymentScreen: React.FC = () => {
             ];
             // Normalize known corrupted label encodings (in case values were stored with encoding issues)
             const CORRECT_LABELS: Record<string, string> = {
-              "ตู้อัตโนมัติ": "ตู้อัตโนมัติ",
+              ตู้อัตโนมัติ: "ตู้อัตโนมัติ",
               แตะบัตร: "แตะบัตร",
               กระเป๋ารถเมล์: "กระเป๋ารถเมล์",
               เงินสด: "เงินสด",

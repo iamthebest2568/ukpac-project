@@ -106,7 +106,9 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
         className={`flex-1 min-h-0 overflow-auto uk2-scroll ${containerPaddingClass ? containerPaddingClass : fullWidth ? "px-0 py-4" : "px-4 py-4"}`}
         style={{
           // keep space for the footer: measure only outside tablet mock; inside mock, minimal extra space
-          paddingBottom: footerContent ? `calc(${footerHeight}px + 12px)` : undefined,
+          paddingBottom: footerContent
+            ? `calc(${footerHeight}px + 12px)`
+            : undefined,
           // when inside tablet mock or fullWidth, let outer viewport handle scrolling
           overflow: inTabletMock || fullWidth ? "visible" : undefined,
         }}
@@ -117,8 +119,16 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
         <div
           ref={footerRef}
           className={`${footerBgClass || "bg-[#00d5f9]"} ${inTabletMock ? "absolute left-0 right-0" : "fixed left-0 right-0"} z-50`}
-          style={{ position: inTabletMock ? "absolute" : "fixed", bottom: 0, left: 0, right: 0, paddingTop: "12px", paddingBottom: "calc(12px + env(safe-area-inset-bottom, 0px))" }}
-          role="contentinfo" data-mock-footer={inTabletMock ? "absolute" : undefined}
+          style={{
+            position: inTabletMock ? "absolute" : "fixed",
+            bottom: 0,
+            left: 0,
+            right: 0,
+            paddingTop: "12px",
+            paddingBottom: "calc(12px + env(safe-area-inset-bottom, 0px))",
+          }}
+          role="contentinfo"
+          data-mock-footer={inTabletMock ? "absolute" : undefined}
         >
           <div
             className={

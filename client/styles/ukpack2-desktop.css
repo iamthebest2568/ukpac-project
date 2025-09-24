@@ -1,5 +1,6 @@
 /* Desktop overrides disabled: Desktop (>=1024px) for /ukpack2 will mirror Tablet styles inside the mockup.
    This avoids conflicts; all layout is driven by tablet-mock-env styles. */
 @media (min-width: 1024px) {
-  body.page-ukpack2 {}
+  body.page-ukpack2 {
+  }
 }

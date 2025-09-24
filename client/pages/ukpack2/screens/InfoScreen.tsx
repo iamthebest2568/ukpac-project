@@ -49,7 +49,9 @@ const InfoScreen: React.FC = () => {
           </div>
         }
       >
-        <div className={`${styles.previewInner} mx-auto px-4 py-2 flex justify-center`}>
+        <div
+          className={`${styles.previewInner} mx-auto px-4 py-2 flex justify-center`}
+        >
           <div className="w-[75%] mx-auto px-4">
             <img
               src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8252bd27b98340349ac37000716c83db?format=webp&width=800"
@@ -62,100 +64,122 @@ const InfoScreen: React.FC = () => {
         <div className="space-y-6">
           <div className="w-full flex justify-center mt-4 md:mt-6">
             <div className="w-full max-w-[900px] relative h-[140px] md:h-[200px] flex items-center justify-center">
-            {/* Use VehiclePreview so selected color overlays are applied when present */}
-            {(() => {
-              const amenities = (() => {
-                try {
-                  const raw = sessionStorage.getItem("design.amenities");
-                  return raw ? (JSON.parse(raw) as string[]) : [];
-                } catch {
-                  return [] as string[];
-                }
-              })();
-              const payments = (() => {
-                try {
-                  const raw = sessionStorage.getItem("design.payment");
-                  return raw ? (JSON.parse(raw) as string[]) : [];
-                } catch {
-                  return [] as string[];
-                }
-              })();
-              const doors = (() => {
-                try {
-                  const raw = sessionStorage.getItem("design.doors");
-                  if (!raw) return null;
-                  const parsed = JSON.parse(raw);
-                  return typeof parsed === "string"
-                    ? parsed
-                    : parsed?.doorChoice || (parsed?.hasRamp ? "ramp" : parsed?.highLow ? "emergency" : null);
-                } catch {
-                  return sessionStorage.getItem("design.doors");
-                }
-              })();
+              {/* Use VehiclePreview so selected color overlays are applied when present */}
+              {(() => {
+                const amenities = (() => {
+                  try {
+                    const raw = sessionStorage.getItem("design.amenities");
+                    return raw ? (JSON.parse(raw) as string[]) : [];
+                  } catch {
+                    return [] as string[];
+                  }
+                })();
+                const payments = (() => {
+                  try {
+                    const raw = sessionStorage.getItem("design.payment");
+                    return raw ? (JSON.parse(raw) as string[]) : [];
+                  } catch {
+                    return [] as string[];
+                  }
+                })();
+                const doors = (() => {
+                  try {
+                    const raw = sessionStorage.getItem("design.doors");
+                    if (!raw) return null;
+                    const parsed = JSON.parse(raw);
+                    return typeof parsed === "string"
+                      ? parsed
+                      : parsed?.doorChoice ||
+                          (parsed?.hasRamp
+                            ? "ramp"
+                            : parsed?.highLow
+                              ? "emergency"
+                              : null);
+                  } catch {
+                    return sessionStorage.getItem("design.doors");
+                  }
+                })();
 
-              const overlayLabels = [...(amenities || []), ...(payments || []), ...(doors ? [doors as string] : [])];
+                const overlayLabels = [
+                  ...(amenities || []),
+                  ...(payments || []),
+                  ...(doors ? [doors as string] : []),
+                ];
 
-              // stored overlay map
-              let storedMapRaw: Record<string, string> = {};
-              try {
-                const raw = sessionStorage.getItem("design.overlayIconMap");
-                if (raw) storedMapRaw = JSON.parse(raw) as Record<string, string>;
-              } catch {}
-
-              const normalizeKey = (s: string) => (s || "").replace(/\uFFFD/g, "").replace(/\u2011/g, "-").replace(/\u00A0/g, " ").replace(/&amp;/g, "&").replace(/\s+/g, " ").trim().toLowerCase();
-
-              const merged: Record<string, string | React.ReactNode> = {};
-              const setVariants = (key: string, val: string | React.ReactNode) => {
-                merged[key] = val;
+                // stored overlay map
+                let storedMapRaw: Record<string, string> = {};
                 try {
-                  const nk = normalizeKey(key as string);
-                  if (nk) merged[nk] = val;
-                  const nkNoSpace = nk.replace(/\s/g, "");
-                  if (nkNoSpace) merged[nkNoSpace] = val;
+                  const raw = sessionStorage.getItem("design.overlayIconMap");
+                  if (raw)
+                    storedMapRaw = JSON.parse(raw) as Record<string, string>;
                 } catch {}
-              };
 
-              for (const k of Object.keys(storedMapRaw)) {
+                const normalizeKey = (s: string) =>
+                  (s || "")
+                    .replace(/\uFFFD/g, "")
+                    .replace(/\u2011/g, "-")
+                    .replace(/\u00A0/g, " ")
+                    .replace(/&amp;/g, "&")
+                    .replace(/\s+/g, " ")
+                    .trim()
+                    .toLowerCase();
+
+                const merged: Record<string, string | React.ReactNode> = {};
+                const setVariants = (
+                  key: string,
+                  val: string | React.ReactNode,
+                ) => {
+                  merged[key] = val;
+                  try {
+                    const nk = normalizeKey(key as string);
+                    if (nk) merged[nk] = val;
+                    const nkNoSpace = nk.replace(/\s/g, "");
+                    if (nkNoSpace) merged[nkNoSpace] = val;
+                  } catch {}
+                };
+
+                for (const k of Object.keys(storedMapRaw)) {
+                  try {
+                    setVariants(k, storedMapRaw[k]);
+                  } catch {}
+                }
+
                 try {
-                  setVariants(k, storedMapRaw[k]);
+                  const { OVERLAY_ICON_SRC } = require("../utils/overlayIcons");
+                  for (const k of Object.keys(OVERLAY_ICON_SRC)) {
+                    if (!merged[k]) setVariants(k, OVERLAY_ICON_SRC[k]);
+                  }
                 } catch {}
-              }
 
-              try {
-                const { OVERLAY_ICON_SRC } = require("../utils/overlayIcons");
-                for (const k of Object.keys(OVERLAY_ICON_SRC)) {
-                  if (!merged[k]) setVariants(k, OVERLAY_ICON_SRC[k]);
-                }
-              } catch {}
+                // parse selected color
+                let effectiveColorHex: string | null = null;
+                let effectiveColorMaskSrc: string | null = null;
+                try {
+                  const raw = sessionStorage.getItem("design.color");
+                  if (raw) {
+                    const parsed = JSON.parse(raw);
+                    effectiveColorHex = parsed?.colorHex || null;
+                    effectiveColorMaskSrc =
+                      parsed?.colorMaskSrc || parsed?.mask || null;
+                  }
+                } catch {}
 
-              // parse selected color
-              let effectiveColorHex: string | null = null;
-              let effectiveColorMaskSrc: string | null = null;
-              try {
-                const raw = sessionStorage.getItem("design.color");
-                if (raw) {
-                  const parsed = JSON.parse(raw);
-                  effectiveColorHex = parsed?.colorHex || null;
-                  effectiveColorMaskSrc = parsed?.colorMaskSrc || parsed?.mask || null;
-                }
-              } catch {}
-
-              return (
-                <div className="w-full">
-                  <VehiclePreview
-                    imageSrc={effectiveHero}
-                    label={selectedLabel}
-                    overlayLabels={overlayLabels}
-                    overlayIconMap={merged}
-                    colorHex={effectiveColorHex}
-                    colorMaskSrc={effectiveColorMaskSrc}
-                    showSelectedText={true}
-                    className="w-full"
-                  />
-                </div>
-              );
-            })()}
-          </div>
+                return (
+                  <div className="w-full">
+                    <VehiclePreview
+                      imageSrc={effectiveHero}
+                      label={selectedLabel}
+                      overlayLabels={overlayLabels}
+                      overlayIconMap={merged}
+                      colorHex={effectiveColorHex}
+                      colorMaskSrc={effectiveColorMaskSrc}
+                      showSelectedText={true}
+                      className="w-full"
+                    />
+                  </div>
+                );
+              })()}
+            </div>
           </div>
 
           <div className="px-4 sm:px-6 md:px-8 max-w-[900px] mx-auto">

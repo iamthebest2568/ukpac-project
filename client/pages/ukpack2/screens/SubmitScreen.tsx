@@ -79,7 +79,9 @@ const SubmitScreen: React.FC = () => {
 
           // Prefer a client-side rendered final image (mask + color overlay) stored in session
           const persistedFinalRaw = sessionStorage.getItem("design.finalImage");
-          const persistedFinal = persistedFinalRaw ? JSON.parse(persistedFinalRaw) : null;
+          const persistedFinal = persistedFinalRaw
+            ? JSON.parse(persistedFinalRaw)
+            : null;
 
           async function loadImage(url: string) {
             return new Promise<HTMLImageElement>((resolve, reject) => {
@@ -109,7 +111,10 @@ const SubmitScreen: React.FC = () => {
               ctx.drawImage(baseImg, 0, 0, w, h);
 
               const colorHex = persistedFinal?.color?.colorHex || null;
-              const maskSrc = persistedFinal?.colorMaskSrc || persistedFinal?.colorMaskSrc || null;
+              const maskSrc =
+                persistedFinal?.colorMaskSrc ||
+                persistedFinal?.colorMaskSrc ||
+                null;
 
               if (colorHex) {
                 if (maskSrc) {
@@ -252,7 +257,7 @@ const SubmitScreen: React.FC = () => {
                 overlayIconMap={{
                   เงินสด: MONEY_ICON,
                   สแกนจ่าย: SCAN_ICON,
-                  "ตู้อัตโนมัติ": SCAN2_ICON,
+                  ตู้อัตโนมัติ: SCAN2_ICON,
                   แตะบัตร: TOUCH_ICON,
                   "ตั๋วรายเดือน/รอบ": MONTHLY_ICON,
                   กระเป๋ารถเมล์: BUS_EMPLOY_ICON,
