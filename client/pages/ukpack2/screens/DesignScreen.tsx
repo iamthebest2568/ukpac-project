@@ -667,14 +667,14 @@ const DesignScreen: React.FC = () => {
                     <div className="bg-white rounded-xl p-4 max-w-lg w-full mx-4">
                       <style>{`.save-btn-modal:hover { color: #000D59 !important; }`}</style>
                       <h3 className="text-lg font-prompt font-semibold text-[#000d59]">
-                        ลั���ษณะพิเศษอื่นๆ
+                        ลักษณะพิเศษอื่นๆของรถคุณ
                       </h3>
                       <textarea
                         ref={textareaRef}
                         value={sloganDraft}
                         onChange={(e) => setSloganDraft(e.target.value)}
                         placeholder={
-                          "พิมพ์คุณสมบัติพิเศษอื่นๆของ\nรถเมล์ในฝันของค��ณ"
+                          "[____พิมพ์คุณสมบัติพิเศษอื่นๆของรถเมล์ในฝันของคุณ____]"
                         }
                         className="mt-3 w-full h-36 p-3 border-2 border-[#000D59] rounded-xl text-sm resize-none text-center"
                         style={{ whiteSpace: "pre-wrap" }}
