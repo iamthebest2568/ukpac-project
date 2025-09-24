@@ -76,10 +76,9 @@ const TabletMockup: React.FC<TabletMockupProps> = ({ children }) => {
   return (
     <div className="fixed inset-0 grid place-items-center w-screen h-screen bg-neutral-100/60 overflow-hidden">
       <div
+        ref={frameRef}
         className="relative"
         style={{
-          width: OUTER_W,
-          height: OUTER_H,
           aspectRatio: "3 / 4",
           transform: `scale(${scale}) rotate(0deg)`,
           transformOrigin: "center",
