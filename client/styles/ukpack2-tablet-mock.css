@@ -1,0 +1,41 @@
+/* Scoped tablet overrides for content rendered inside the TabletMockup.
+   These apply only within .tablet-mock-env, regardless of window width. */
+
+.tablet-mock-env .app-container {
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+}
+
+.tablet-mock-env .max-w-5xl,
+.tablet-mock-env .max-w-4xl,
+.tablet-mock-env .max-w-3xl {
+  max-width: 900px !important;
+  width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* Vehicle preview sizing on tablet */
+.tablet-mock-env .vehicle-preview > .relative {
+  width: 80% !important;
+  max-width: 560px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* Sticky footer behavior inside mockup */
+.tablet-mock-env .customization-screen-footer,
+.tablet-mock-env [data-testid="customization-footer"] {
+  position: sticky !important;
+  bottom: 0 !important;
+}
+
+/* Slightly larger base font for readability */
+.tablet-mock-env,
+.tablet-mock-env .font-prompt,
+.tablet-mock-env .font-sarabun {
+  font-size: 16.5px !important;
+}
+
+/* Color palette spacing */
+.tablet-mock-env .grid.grid-cols-6 { gap: 12px !important; }
