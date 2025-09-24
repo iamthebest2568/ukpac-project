@@ -203,6 +203,60 @@ export function useBusDesign() {
 
 function loadStateFromSession(): BusDesignState | null {
   try {
+    // Migrate legacy sessionStorage keys/values safely (do not overwrite existing new keys)
+    try {
+      const LEGACY_KEY_MAP: Record<string, string> = {
+        "สแกนจ่าย 2": "ตู้อัตโนมัติ",
+      };
+
+      // Migrate design.payment (array of labels)
+      try {
+        const raw = sessionStorage.getItem("design.payment");
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (Array.isArray(parsed)) {
+            const migrated = parsed.map((it) => LEGACY_KEY_MAP[it] || it);
+            if (JSON.stringify(migrated) !== JSON.stringify(parsed)) {
+              // Backup original then write migrated
+              try {
+                sessionStorage.setItem("design.payment.bak", raw);
+              } catch (_) {}
+              try {
+                sessionStorage.setItem("design.payment", JSON.stringify(migrated));
+              } catch (_) {}
+            }
+          }
+        }
+      } catch (_) {}
+
+      // Migrate overlayIconMap keys
+      try {
+        const rawMap = sessionStorage.getItem("design.overlayIconMap");
+        if (rawMap) {
+          const map = JSON.parse(rawMap) as Record<string, string>;
+          let changed = false;
+          for (const oldKey of Object.keys(LEGACY_KEY_MAP)) {
+            if (Object.prototype.hasOwnProperty.call(map, oldKey)) {
+              const newKey = LEGACY_KEY_MAP[oldKey];
+              if (!map[newKey]) {
+                map[newKey] = map[oldKey];
+              }
+              delete map[oldKey];
+              changed = true;
+            }
+          }
+          if (changed) {
+            try {
+              sessionStorage.setItem("design.overlayIconMap.bak", rawMap);
+            } catch (_) {}
+            try {
+              sessionStorage.setItem("design.overlayIconMap", JSON.stringify(map));
+            } catch (_) {}
+          }
+        }
+      } catch (_) {}
+    } catch (_) {}
+
     const chassis = sessionStorage.getItem("design.chassis");
     const seatingRaw = sessionStorage.getItem("design.seating");
     const amenitiesRaw = sessionStorage.getItem("design.amenities");
