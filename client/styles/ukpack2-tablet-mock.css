@@ -44,9 +44,9 @@
   padding-bottom: 96px !important; /* reserve space for sticky footer */
 }
 
-/* Neutralize full-bleed hacks inside the mock */
-.tablet-mock-env .tabsWrapper,
-.tablet-mock-env .controlsBox,
+/* Neutralize full-bleed hacks inside the mock, including CSS-module hashed classes */
+.tablet-mock-env [class*="tabsWrapper"],
+.tablet-mock-env [class*="controlsBox"],
 .tablet-mock-env [style*="100vw"],
 .tablet-mock-env [style*="50vw"] {
   width: 100% !important;
@@ -55,8 +55,8 @@
   left: auto !important;
   transform: none !important;
 }
-.tablet-mock-env .controlsBox { border-width: 2px !important; border-radius: 8px !important; }
-.tablet-mock-env .tabsWrapper { margin: 0 0 6px 0 !important; }
+.tablet-mock-env [class*="controlsBox"] { border-width: 2px !important; border-radius: 8px !important; }
+.tablet-mock-env [class*="tabsWrapper"] { margin: 0 0 6px 0 !important; }
 
 .tablet-mock-env img,
 .tablet-mock-env svg,
