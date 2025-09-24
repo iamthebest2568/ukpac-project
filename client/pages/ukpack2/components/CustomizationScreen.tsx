@@ -107,8 +107,8 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
         style={{
           // keep space for the footer: measure only outside tablet mock; inside mock, minimal extra space
           paddingBottom: footerContent ? (inTabletMock ? "12px" : `calc(${footerHeight}px + 12px)`) : undefined,
-          // when fullWidth, allow content to expand and let page-level scrolling handle it
-          overflow: fullWidth ? "visible" : undefined,
+          // when inside tablet mock or fullWidth, let outer viewport handle scrolling
+          overflow: inTabletMock || fullWidth ? "visible" : undefined,
         }}
       >
         {children}
