@@ -67,6 +67,7 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
 
   return (
     <div
+      ref={rootRef}
       className={`flex flex-col min-h-0 ${isLight ? "bg-white text-black" : "bg-[#000d59] text-white"}`}
     >
       {title?.trim() || headerContent ? (
