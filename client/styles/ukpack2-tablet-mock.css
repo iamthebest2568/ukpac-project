@@ -1,10 +1,42 @@
 /* Scoped tablet overrides for content rendered inside the TabletMockup.
    These apply only within .tablet-mock-env, regardless of window width. */
 
-.tablet-mock-env .app-container {
+/* Ensure the inner app never overflows horizontally */
+.tablet-mock-env {
+  width: 100% !important;
+  height: 100% !important;
+  overflow-x: hidden !important;
+}
+.tablet-mock-env * { box-sizing: border-box; }
+
+.tablet-mock-env .app-container,
+.tablet-mock-env .responsive-container {
+  width: 100% !important;
+  max-width: 100% !important;
   padding-left: 16px !important;
   padding-right: 16px !important;
 }
+
+.tablet-mock-env .responsive-content,
+.tablet-mock-env .uk2-scroll {
+  overflow-x: hidden !important;
+}
+
+/* Neutralize full-bleed hacks inside the mock */
+.tablet-mock-env .tabsWrapper,
+.tablet-mock-env .controlsBox,
+.tablet-mock-env [style*="100vw"],
+.tablet-mock-env [style*="50vw"] {
+  width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  left: auto !important;
+  transform: none !important;
+}
+
+.tablet-mock-env img,
+.tablet-mock-env svg,
+.tablet-mock-env video { max-width: 100% !important; height: auto !important; }
 
 .tablet-mock-env .max-w-5xl,
 .tablet-mock-env .max-w-4xl,
