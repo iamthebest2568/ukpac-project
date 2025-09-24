@@ -12,7 +12,7 @@ export const OVERLAY_ICON_SRC: Record<string, string> = {
   // Payment
   "เงินสด": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fedd20330d80c48ec8b9d209a2451b32e?format=webp&width=800",
   "สแกนจ่าย": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb8992da4be824b339d3df5f0a076ed93?format=webp&width=800",
-  "สแกนจ่าย 2": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F56620e798eb94153b2390271f30d0dae?format=webp&width=800",
+  "ตู้อัตโนมัติ": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F56620e798eb94153b2390271f30d0dae?format=webp&width=800",
   "แตะบัตร": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F17a8f3fe1df04db28a257c97c30c9959?format=webp&width=800",
   "กระเป๋ารถเมล์": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F70ea0f54beea4e5291e4838094456c19?format=webp&width=800",
   "ตั๋วรายเดือน/รอบ": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F317d08ac637c469183e11074bb390d6b?format=webp&width=800",

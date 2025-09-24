@@ -25,7 +25,7 @@ const PAYMENT_ICON_SMALL: Record<string, string> = {
     "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fbc8b22cedfbb4640a702f724881f196d?format=webp&width=800",
   สแกนจ่าย:
     "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb8992da4be824b339d3df5f0a076ed93?format=webp&width=800",
-  "สแกนจ่าย 2":
+  "ตู้อัตโนมัติ":
     "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F56620e798eb94153b2390271f30d0dae?format=webp&width=800",
   แตะบัตร:
     "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fdb2e47a586b841d1af014e9196f3c411?format=webp&width=800",
@@ -132,7 +132,7 @@ const OPTIONS = [
   },
   {
     key: "medium",
-    label: "รถเมล์มาตรฐาน 30-50 ที่นั่ง",
+    label: "รถเมล์มาตรฐาน 30-50 ท���่นั่ง",
     labelText: "รถเมล์มาตรฐาน 30-50 ที่นั่ง",
     icon: <IconMedium />,
   },
@@ -268,7 +268,7 @@ const ChassisScreen: React.FC = () => {
   return (
     <>
       <CustomizationScreen
-        title="ออกแบบรถเมล์ของคุณ เลือกประเภทรถ"
+        title="ออกแบบรถเมล์ของคุณ เลือกปร��เภทรถ"
         theme="light"
         fullWidth
         footerContent={

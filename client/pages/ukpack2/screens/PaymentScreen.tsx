@@ -261,7 +261,7 @@ const OPTIONS = [
   { key: "cash", label: "เงินสด", icon: <IconCash /> },
   { key: "scan", label: "สแกนจ่าย", icon: <IconScan /> },
   { key: "tap", label: "แตะบัตร", icon: <IconTap /> },
-  { key: "scan2", label: "สแกนจ่าย 2", icon: null },
+  { key: "scan2", label: "ตู้อัตโนมัติ", icon: null },
   { key: "monthly", label: "ตั๋วรายเดือน/รอบ", icon: null },
   { key: "qr", label: "กระเป๋ารถเมล์", icon: <IconQr /> },
 ];
@@ -311,7 +311,7 @@ const PaymentScreen: React.FC = () => {
       SCAN_ICON_ACTIVE,
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe9e95c0ee1cf44c782478f7ca3e7cac9?format=webp&width=800",
     ],
-    "สแกนจ่าย 2": [
+    "ตู้อัตโนมัติ": [
       SCAN2_ICON,
       SCAN2_ICON_ACTIVE,
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F450e64db5b824f5c92cb33d5993705f6?format=webp&width=800",
@@ -403,7 +403,7 @@ const PaymentScreen: React.FC = () => {
   const PAYMENT_BUTTON_SRC: Record<string, string> = {
     "เงินสด": MONEY_ICON,
     "สแกนจ่าย": SCAN_ICON,
-    "สแกนจ่าย 2": SCAN2_ICON,
+    "ตู้อัตโนมัติ": SCAN2_ICON,
     "แตะบัตร": TOUCH_ICON,
     "ตั๋วรายเดือน/รอบ": MONTHLY_ICON,
     "กระเป๋ารถเมล์": BUS_EMPLOY_ICON,
@@ -512,7 +512,7 @@ const PaymentScreen: React.FC = () => {
             ];
             // Normalize known corrupted label encodings (in case values were stored with encoding issues)
             const CORRECT_LABELS: Record<string, string> = {
-              "สแกนจ่าย 2": "สแกนจ่าย 2",
+              "ตู้อัตโนมัติ": "ตู้อัตโนมัติ",
               แตะบัตร: "แตะบัตร",
               กระเป๋ารถเมล์: "กระเป๋ารถเมล์",
               เงินสด: "เงินสด",
@@ -664,7 +664,7 @@ const PaymentScreen: React.FC = () => {
                   >
                     <img
                       src={
-                        selected.includes("สแกนจ่าย 2")
+                        selected.includes("ตู้อัตโนมัติ")
                           ? SCAN2_ICON_ACTIVE
                           : SCAN2_ICON
                       }
@@ -698,7 +698,7 @@ const PaymentScreen: React.FC = () => {
                   >
                     <img
                       src={
-                        selected.includes("กระเป๋ารถเมล์")
+                        selected.includes("กระเป๋���รถเมล์")
                           ? BUS_EMPLOY_ICON_ACTIVE
                           : BUS_EMPLOY_ICON
                       }
@@ -793,8 +793,8 @@ const PaymentScreen: React.FC = () => {
                     const explicit = [
                       "เงินสด",
                       "สแกนจ่าย",
-                      "สแกนจ่าย 2",
-                      "แตะบัตร",
+                      "ตู้อัตโนมัติ",
+                      "แ��ะบัตร",
                       "กระเป๋ารถเมล์",
                       "ตั๋วรายเดือน/รอบ",
                     ];
