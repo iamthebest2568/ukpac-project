@@ -108,6 +108,49 @@
   margin-right: auto !important;
 }
 
+/* NEW: Consistent vehicle canvas, shadow, and overlay positions */
+.tablet-mock-env .vehicle-preview .vehicle-canvas {
+  width: min(75%, 560px) !important;
+  max-width: 560px !important;
+  height: 120px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  z-index: 1;
+}
+.tablet-mock-env .vehicle-preview .vehicle-shadow {
+  bottom: 8px !important;
+  z-index: 0 !important;
+}
+.tablet-mock-env .vehicle-preview .overlay-ribbon {
+  top: -10px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: min(120%, 640px) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  z-index: 2 !important;
+}
+.tablet-mock-env .vehicle-preview .overlay-ribbon-prev,
+.tablet-mock-env .vehicle-preview .overlay-ribbon-next {
+  width: 32px !important;
+  height: 32px !important;
+  min-width: 32px !important;
+  min-height: 32px !important;
+}
+.tablet-mock-env .vehicle-preview .overlay-ribbon-track {
+  gap: 8px !important;
+  padding-top: 2px !important;
+  padding-bottom: 2px !important;
+}
+
+/* Ensure label never overlaps vehicle */
+.tablet-mock-env .vehicle-preview [aria-label="vehicle-label"] {
+  position: relative !important;
+  z-index: 3 !important;
+  margin-top: 10px !important;
+}
+
 /* Sticky footer behavior inside mockup */
 .tablet-mock-env .customization-screen-footer,
 .tablet-mock-env [data-testid="customization-footer"],
