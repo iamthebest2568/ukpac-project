@@ -7,7 +7,14 @@
   height: 100% !important;
   overflow-x: hidden !important;
 }
-.tablet-mock-env * { box-sizing: border-box; }
+.tablet-mock-env *, .tablet-mock-env *::before, .tablet-mock-env *::after {
+  box-sizing: border-box;
+  max-width: 100% !important;
+}
+.tablet-mock-env p, .tablet-mock-env h1, .tablet-mock-env h2, .tablet-mock-env h3, .tablet-mock-env h4, .tablet-mock-env .prose {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
 
 .tablet-mock-env .app-container,
 .tablet-mock-env .responsive-container {
