@@ -28,16 +28,34 @@ const TabletMockup: React.FC<TabletMockupProps> = ({ children }) => {
 
   const BASE_W = 810; // viewport
   const BASE_H = 1080; // viewport
-  const FRAME_X = 34; // approx bezel+border both sides
-  const FRAME_Y = 34;
-  const OUTER_W = BASE_W + FRAME_X;
-  const OUTER_H = BASE_H + FRAME_Y;
-  const margin = 24;
-  const scale = Math.min(
-    (win.w - margin) / OUTER_W,
-    (win.h - margin) / OUTER_H,
-    1,
-  );
+  const [scale, setScale] = useState(1);
+  const frameRef = React.useRef<HTMLDivElement | null>(null);
+
+  const recomputeScale = React.useCallback(() => {
+    const margin = 32; // include soft shadow space
+    const wv = Math.max(0, win.w - margin);
+    const hv = Math.max(0, win.h - margin);
+    const node = frameRef.current;
+    if (!node) return;
+    // Temporarily reset transform to measure natural size
+    const prev = node.style.transform;
+    node.style.transform = "none";
+    const rect = node.getBoundingClientRect();
+    const naturalW = rect.width || BASE_W + 40;
+    const naturalH = rect.height || BASE_H + 40;
+    node.style.transform = prev;
+    const s = Math.min(wv / naturalW, hv / naturalH, 1);
+    setScale(s);
+  }, [win.w, win.h]);
+
+  React.useLayoutEffect(() => {
+    recomputeScale();
+  }, [recomputeScale]);
+
+  useEffect(() => {
+    const id = requestAnimationFrame(recomputeScale);
+    return () => cancelAnimationFrame(id);
+  }, [win.w, win.h, recomputeScale]);
 
   const active = win.w >= 810;
 
