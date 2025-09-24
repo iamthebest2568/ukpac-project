@@ -274,7 +274,7 @@ const ChassisScreen: React.FC = () => {
               ออกแบบรถเมล์ของคุณ
             </div>
             <div style={{ fontSize: 20, fontWeight: 700 }} className="font-prompt">
-              เลือกปรเภทรถ
+              เลือกประเภทรถ
             </div>
           </div>
         }
