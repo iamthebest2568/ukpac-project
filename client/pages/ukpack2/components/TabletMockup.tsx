@@ -14,59 +14,40 @@ interface TabletMockupProps {
  *   - >=1024px   -> 900x1200
  */
 const TabletMockup: React.FC<TabletMockupProps> = ({ children }) => {
-  const [viewport, setViewport] = useState<{ w: number; h: number; vw: number }>(() => {
-    if (typeof window === "undefined") return { w: 0, h: 0, vw: 0 };
-    const vw = window.innerWidth;
-    const vh = window.innerHeight;
-    const targetW = 810;
-    const targetH = 1080;
-    const margin = 24; // breathing space around the mockup
-    const availW = Math.max(0, vw - margin);
-    const availH = Math.max(0, vh - margin);
-    // maintain 3:4 ratio and fit within viewport
-    let w = Math.min(targetW, availW);
-    let h = Math.round((w * 4) / 3);
-    if (h > availH) {
-      h = availH;
-      w = Math.round((h * 3) / 4);
-    }
-    return { w, h, vw };
-  });
+  const [win, setWin] = useState<{ w: number; h: number }>(() => ({
+    w: typeof window === "undefined" ? 0 : window.innerWidth,
+    h: typeof window === "undefined" ? 0 : window.innerHeight,
+  }));
 
   useEffect(() => {
-    const onResize = () => {
-      const vw = window.innerWidth;
-      const vh = window.innerHeight;
-      const targetW = 810;
-      const targetH = 1080;
-      const margin = 24;
-      const availW = Math.max(0, vw - margin);
-      const availH = Math.max(0, vh - margin);
-      let w = Math.min(targetW, availW);
-      let h = Math.round((w * 4) / 3);
-      if (h > availH) {
-        h = availH;
-        w = Math.round((h * 3) / 4);
-      }
-      setViewport({ w, h, vw });
-    };
+    const onResize = () => setWin({ w: window.innerWidth, h: window.innerHeight });
     onResize();
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
   }, []);
 
-  const active = viewport.vw >= 810;
+  const BASE_W = 810; // viewport
+  const BASE_H = 1080; // viewport
+  const FRAME_X = 34; // approx bezel+border both sides
+  const FRAME_Y = 34;
+  const OUTER_W = BASE_W + FRAME_X;
+  const OUTER_H = BASE_H + FRAME_Y;
+  const margin = 24;
+  const scale = Math.min(
+    (win.w - margin) / OUTER_W,
+    (win.h - margin) / OUTER_H,
+    1,
+  );
 
-  // Prevent body scrolling only when active
+  const active = win.w >= 810;
+
+  // Prevent body scrolling only when active (do not touch html element)
   useEffect(() => {
     if (!active) return;
     const prevBodyOverflow = document.body.style.overflow;
-    const prevHtmlOverflow = document.documentElement.style.overflow;
     document.body.style.overflow = "hidden";
-    document.documentElement.style.overflow = "hidden";
     return () => {
       document.body.style.overflow = prevBodyOverflow;
-      document.documentElement.style.overflow = prevHtmlOverflow;
     };
   }, [active]);
 
@@ -76,7 +57,10 @@ const TabletMockup: React.FC<TabletMockupProps> = ({ children }) => {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center h-screen bg-neutral-100/60 overflow-hidden">
-      <div className="relative max-w-[100vw] max-h-[100vh]">
+      <div
+        className="relative"
+        style={{ width: OUTER_W, height: OUTER_H, transform: `scale(${scale})`, transformOrigin: "center" }}
+      >
         {/* Outer frame */}
         <div className="rounded-[40px] border border-neutral-300 shadow-2xl drop-shadow-lg bg-gradient-to-b from-neutral-200 to-neutral-100 p-2">
           {/* Inner bezel */}
@@ -89,7 +73,7 @@ const TabletMockup: React.FC<TabletMockupProps> = ({ children }) => {
             {/* Viewport */}
             <div
               className="rounded-[28px] bg-white overflow-auto tablet-mock-env"
-              style={{ width: `${viewport.w}px`, height: `${viewport.h}px` }}
+              style={{ width: `${BASE_W}px`, height: `${BASE_H}px` }}
             >
               {children}
             </div>
