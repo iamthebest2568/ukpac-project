@@ -35,7 +35,10 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
   React.useEffect(() => {
     const update = () => {
       try {
-        // measure footer height and set padding for content to avoid overlap
+        // detect tablet mock environment
+        const inside = !!rootRef.current?.closest(".tablet-mock-env");
+        setInTabletMock(inside);
+        // measure footer height for non-mock environments (fixed footer)
         const h = footerRef.current?.offsetHeight || 0;
         setFooterHeight(h);
       } catch (e) {}
