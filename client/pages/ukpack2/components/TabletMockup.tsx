@@ -56,7 +56,7 @@ const TabletMockup: React.FC<TabletMockupProps> = ({ children }) => {
   }
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center h-screen bg-neutral-100/60 overflow-hidden">
+    <div className="fixed inset-0 grid place-items-center w-screen h-screen bg-neutral-100/60 overflow-hidden">
       <div
         className="relative"
         style={{
