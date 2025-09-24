@@ -149,7 +149,7 @@ const InfoScreen: React.FC = () => {
                     overlayIconMap={merged}
                     colorHex={effectiveColorHex}
                     colorMaskSrc={effectiveColorMaskSrc}
-                    showSelectedText={false}
+                    showSelectedText={true}
                     className="w-full"
                   />
                 </div>
@@ -180,7 +180,7 @@ const InfoScreen: React.FC = () => {
                 <p>
                   ฟิลิปปินส์ – Jeepney Modernization รู้หรือไม่! ฟิลิปปินส์พัฒนา
                   Jeepney แบบดั้งเดิมให้กลายเป็นมินิบัสขนาด 20–25
-                  ที่นั่งที่ปลอดภัยและลดมลพิษกว่าเดิม
+                  ที่นั่งที่ปลอดภ��ยและลดมลพิษกว่าเดิม
                   การเปลี่ยนโฉมนี้ยังคงค่าโดยสารถูก เหมาะกับคนเมือง
                   และช่วยลดปัญหาสิ่งแวดล้อมไปพร้อมกัน
                 </p>
@@ -195,7 +195,7 @@ const InfoScreen: React.FC = () => {
                   รถตู้โดยสาร 14–30 ที่นั่งที่วิ่งยืดหยุ่นตามผู้โดยสาร
                   แม้จะวุ่นวาย
                   แต่ก็เป็นทางเลือกการเดินทางราคาถูกที่เข้าถึงทุกพื้นที่
-                  ทำให้คนทุกระดับรายได้มีโอกาสเดินทางสะดวก
+                  ทำให้คนทุกระดับรายได้มีโอกาสเดิ��ทางสะดวก
                 </p>
               </div>
             ) : (
