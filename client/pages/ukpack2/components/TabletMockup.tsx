@@ -14,19 +14,48 @@ interface TabletMockupProps {
  *   - >=1024px   -> 900x1200
  */
 const TabletMockup: React.FC<TabletMockupProps> = ({ children }) => {
-  const [width, setWidth] = useState<number>(() => {
-    if (typeof window === "undefined") return 0;
-    return window.innerWidth;
+  const [viewport, setViewport] = useState<{ w: number; h: number; vw: number }>(() => {
+    if (typeof window === "undefined") return { w: 0, h: 0, vw: 0 };
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    const targetW = 810;
+    const targetH = 1080;
+    const margin = 24; // breathing space around the mockup
+    const availW = Math.max(0, vw - margin);
+    const availH = Math.max(0, vh - margin);
+    // maintain 3:4 ratio and fit within viewport
+    let w = Math.min(targetW, availW);
+    let h = Math.round((w * 4) / 3);
+    if (h > availH) {
+      h = availH;
+      w = Math.round((h * 3) / 4);
+    }
+    return { w, h, vw };
   });
 
   useEffect(() => {
-    const onResize = () => setWidth(window.innerWidth);
+    const onResize = () => {
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+      const targetW = 810;
+      const targetH = 1080;
+      const margin = 24;
+      const availW = Math.max(0, vw - margin);
+      const availH = Math.max(0, vh - margin);
+      let w = Math.min(targetW, availW);
+      let h = Math.round((w * 4) / 3);
+      if (h > availH) {
+        h = availH;
+        w = Math.round((h * 3) / 4);
+      }
+      setViewport({ w, h, vw });
+    };
     onResize();
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
   }, []);
 
-  const active = width >= 810;
+  const active = viewport.vw >= 810;
 
   // Prevent body scrolling only when active
   useEffect(() => {
@@ -40,10 +69,6 @@ const TabletMockup: React.FC<TabletMockupProps> = ({ children }) => {
       document.documentElement.style.overflow = prevHtmlOverflow;
     };
   }, [active]);
-
-  const viewportClass = useMemo(() => {
-    return "w-[810px] h-[1080px]";
-  }, []);
 
   if (!active) {
     return <>{children}</>;
