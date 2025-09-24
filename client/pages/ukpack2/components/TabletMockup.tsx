@@ -75,8 +75,8 @@ const TabletMockup: React.FC<TabletMockupProps> = ({ children }) => {
   }
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center h-screen bg-neutral-100/60">
-      <div className="relative">
+    <div className="fixed inset-0 flex items-center justify-center h-screen bg-neutral-100/60 overflow-hidden">
+      <div className="relative max-w-[100vw] max-h-[100vh]">
         {/* Outer frame */}
         <div className="rounded-[40px] border border-neutral-300 shadow-2xl drop-shadow-lg bg-gradient-to-b from-neutral-200 to-neutral-100 p-2">
           {/* Inner bezel */}
@@ -88,10 +88,8 @@ const TabletMockup: React.FC<TabletMockupProps> = ({ children }) => {
             </div>
             {/* Viewport */}
             <div
-              className={[
-                viewportClass,
-                "rounded-[28px] bg-white overflow-auto",
-              ].join(" ")}
+              className="rounded-[28px] bg-white overflow-auto"
+              style={{ width: `${viewport.w}px`, height: `${viewport.h}px` }}
             >
               {children}
             </div>
