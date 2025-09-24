@@ -386,7 +386,7 @@ const DoorScreen: React.FC = () => {
                       />
                     </div>
                   );
-                if (label === "สแกนจ่าย 2")
+                if (label === "ตู้อัตโนมัติ")
                   return (
                     <div
                       key={`${label}-${idx}`}
@@ -564,7 +564,7 @@ const DoorScreen: React.FC = () => {
                     const explicit = [
                       "เงินสด",
                       "สแกนจ่าย",
-                      "สแกนจ่าย 2",
+                      "ตู้อัตโนมัติ",
                       "แตะบัตร",
                       "กระเป๋ารถเมล์",
                       "ตั๋วรายเดือน/รอบ",
