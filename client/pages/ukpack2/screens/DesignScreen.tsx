@@ -674,7 +674,7 @@ const DesignScreen: React.FC = () => {
                         value={sloganDraft}
                         onChange={(e) => setSloganDraft(e.target.value)}
                         placeholder={
-                          "[____พิมพ์คุณสมบัติพิเศษอื่นๆของรถเมล์ในฝันของคุณ____]"
+                          "[____พิมพ์คุณสมบัติพิเศษอื่นๆ ของรถเมล์ในฝันของคุณ____]"
                         }
                         className="mt-3 w-full h-36 p-3 border-2 border-[#000D59] rounded-xl text-sm resize-none text-center"
                         style={{ whiteSpace: "pre-wrap" }}
