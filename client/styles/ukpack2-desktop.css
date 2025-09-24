@@ -1,43 +1,5 @@
-/* Desktop-only overrides for /ukpack2 (>=1024px). Mobile and tablet remain unchanged. */
-
+/* Desktop overrides disabled: Desktop (>=1024px) for /ukpack2 will mirror Tablet styles inside the mockup.
+   This avoids conflicts; all layout is driven by tablet-mock-env styles. */
 @media (min-width: 1024px) {
-  body.page-ukpack2 .app-container {
-    max-width: 1200px !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    padding-left: 24px !important;
-    padding-right: 24px !important;
-  }
-
-  /* Keep UI centered and readable on wide screens */
-  body.page-ukpack2 .max-w-5xl,
-  body.page-ukpack2 .max-w-4xl,
-  body.page-ukpack2 .max-w-3xl {
-    max-width: 1100px !important;
-    width: 100% !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-  }
-
-  /* Vehicle preview a bit larger on desktop */
-  body.page-ukpack2 .vehicle-preview > .relative {
-    width: 70% !important;
-    max-width: 680px !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-  }
-
-  /* Tabs frame should not be full-bleed on desktop; center within container */
-  body.page-ukpack2 .tabsWrapper,
-  body.page-ukpack2 .controlsBox {
-    width: 100% !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-    left: auto !important;
-    transform: none !important;
-    max-width: 1100px !important;
-  }
-
-  /* Slightly increase gaps for dense grids */
-  body.page-ukpack2 .grid.grid-cols-6 { gap: 14px !important; }
+  body.page-ukpack2 {}
 }
