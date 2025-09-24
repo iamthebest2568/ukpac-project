@@ -19,8 +19,22 @@
 }
 
 /* Header tuning */
-.tablet-mock-env header { padding: 12px 16px !important; }
+.tablet-mock-env header { padding: 12px 16px !important; margin-bottom: 8px !important; }
 .tablet-mock-env .customization-title { font-size: 20px !important; line-height: 1.2 !important; }
+
+/* Vehicle preview spacing */
+.tablet-mock-env [aria-label="vehicle-label"] { margin-top: 4px !important; margin-bottom: 10px !important; }
+.tablet-mock-env .vehicle-preview { margin-top: 6px !important; margin-bottom: 8px !important; }
+
+/* Tabs spacing */
+.tablet-mock-env [class*="tabsWrapper"] { margin-top: 4px !important; margin-bottom: 8px !important; }
+
+/* Controls box spacing */
+.tablet-mock-env [class*="controlsBox"] { padding-top: 6px !important; padding-bottom: 6px !important; }
+.tablet-mock-env [class*="controlsContent"] > * + * { margin-top: 10px !important; }
+
+/* Headings inside controls */
+.tablet-mock-env [class*="controlsContent"] h2 { margin-top: 6px !important; margin-bottom: 8px !important; }
 
 .tablet-mock-env .app-container,
 .tablet-mock-env .responsive-container {
