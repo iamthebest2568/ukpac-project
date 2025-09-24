@@ -75,10 +75,11 @@
 .tablet-mock-env .contentGrid { display: block !important; grid-template-columns: none !important; }
 
 /* Vehicle preview sizing on tablet */
+.tablet-mock-env .previewInner { max-width: 100% !important; }
 .tablet-mock-env .vehicle-preview { margin-top: 6px !important; }
 .tablet-mock-env .vehicle-preview > .relative {
-  width: 78% !important;
-  max-width: 560px !important;
+  width: min(78%, 560px) !important;
+  max-width: 100% !important;
   margin-left: auto !important;
   margin-right: auto !important;
 }
