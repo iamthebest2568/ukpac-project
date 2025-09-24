@@ -121,7 +121,7 @@ const SeatingScreen: React.FC = () => {
           : Number(totalSeats);
 
     if (Number.isNaN(total)) {
-      setErrorTitle("กรุณาระบุจำนวนที่นั่งทั้งหมด");
+      setErrorTitle("กรุณาระบุจำนวนที่นั่งท���้งหมด");
       setErrorMessage(
         `กรุณากรอกจำนวนที่นั่งทั้งหมดในช่วง ${minCapacityLocal} ถึง ${maxCapacityLocal} ที่นั่ง`,
       );
@@ -295,16 +295,32 @@ const SeatingScreen: React.FC = () => {
                     <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">
                       เด็ก / ผู้สูงอายุ
                     </div>
-                    <NumericPlaceholderInput
+                    <input
+                      type="number"
+                      placeholder="��ิมพ์"
                       value={childElderSeats}
-                      onChange={(v) => setChildElderSeats(v)}
+                      onFocus={(e) => {
+                        e.currentTarget.placeholder = "";
+                      }}
+                      onBlur={(e) => {
+                        if (e.currentTarget.value === "") e.currentTarget.placeholder = "พิมพ์";
+                      }}
+                      onChange={(e) => {
+                        const raw = e.target.value;
+                        if (raw === "") {
+                          setChildElderSeats("");
+                          return;
+                        }
+                        const parsed = Math.min(
+                          typeof totalSeats === "number" && totalSeats !== "" ? totalSeats : maxCapacity,
+                          Math.max(0, parseInt(raw || "0", 10)),
+                        );
+                        setChildElderSeats(parsed);
+                      }}
+                      className="w-24 px-3 py-2 rounded-full text-[#000D59] bg-white text-right font-sarabun text-[17.6px]"
+                      style={{ borderWidth: 2, borderColor: "#000D59" }}
                       min={0}
-                      max={
-                        typeof totalSeats === "number" && totalSeats !== ""
-                          ? totalSeats
-                          : maxCapacity
-                      }
-                      className="w-24 px-3 py-2 text-[#003366] bg-transparent text-right font-sarabun text-[17.6px] outline-none"
+                      max={typeof totalSeats === "number" && totalSeats !== "" ? totalSeats : maxCapacity}
                     />
                   </div>
 
@@ -312,16 +328,32 @@ const SeatingScreen: React.FC = () => {
                     <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">
                       สตรีมีครรภ์
                     </div>
-                    <NumericPlaceholderInput
+                    <input
+                      type="number"
+                      placeholder="พิมพ์"
                       value={pregnantSeats}
-                      onChange={(v) => setPregnantSeats(v)}
+                      onFocus={(e) => {
+                        e.currentTarget.placeholder = "";
+                      }}
+                      onBlur={(e) => {
+                        if (e.currentTarget.value === "") e.currentTarget.placeholder = "พิมพ์";
+                      }}
+                      onChange={(e) => {
+                        const raw = e.target.value;
+                        if (raw === "") {
+                          setPregnantSeats("");
+                          return;
+                        }
+                        const parsed = Math.min(
+                          typeof totalSeats === "number" && totalSeats !== "" ? totalSeats : maxCapacity,
+                          Math.max(0, parseInt(raw || "0", 10)),
+                        );
+                        setPregnantSeats(parsed);
+                      }}
+                      className="w-24 px-3 py-2 rounded-full text-[#000D59] bg-white text-right font-sarabun text-[17.6px]"
+                      style={{ borderWidth: 2, borderColor: "#000D59" }}
                       min={0}
-                      max={
-                        typeof totalSeats === "number" && totalSeats !== ""
-                          ? totalSeats
-                          : maxCapacity
-                      }
-                      className="w-24 px-3 py-2 text-[#003366] bg-transparent text-right font-sarabun text-[17.6px] outline-none"
+                      max={typeof totalSeats === "number" && totalSeats !== "" ? totalSeats : maxCapacity}
                     />
                   </div>
 
@@ -329,16 +361,32 @@ const SeatingScreen: React.FC = () => {
                     <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">
                       พระภิกษุสงฆ์
                     </div>
-                    <NumericPlaceholderInput
+                    <input
+                      type="number"
+                      placeholder="พิมพ์"
                       value={monkSeats}
-                      onChange={(v) => setMonkSeats(v)}
+                      onFocus={(e) => {
+                        e.currentTarget.placeholder = "";
+                      }}
+                      onBlur={(e) => {
+                        if (e.currentTarget.value === "") e.currentTarget.placeholder = "พิมพ์";
+                      }}
+                      onChange={(e) => {
+                        const raw = e.target.value;
+                        if (raw === "") {
+                          setMonkSeats("");
+                          return;
+                        }
+                        const parsed = Math.min(
+                          typeof totalSeats === "number" && totalSeats !== "" ? totalSeats : maxCapacity,
+                          Math.max(0, parseInt(raw || "0", 10)),
+                        );
+                        setMonkSeats(parsed);
+                      }}
+                      className="w-24 px-3 py-2 rounded-full text-[#000D59] bg-white text-right font-sarabun text-[17.6px]"
+                      style={{ borderWidth: 2, borderColor: "#000D59" }}
                       min={0}
-                      max={
-                        typeof totalSeats === "number" && totalSeats !== ""
-                          ? totalSeats
-                          : maxCapacity
-                      }
-                      className="w-24 px-3 py-2 text-[#003366] bg-transparent text-right font-sarabun text-[17.6px] outline-none"
+                      max={typeof totalSeats === "number" && totalSeats !== "" ? totalSeats : maxCapacity}
                     />
                   </div>
 
@@ -346,16 +394,32 @@ const SeatingScreen: React.FC = () => {
                     <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">
                       พื้นที่สำหรับรถเข็น/จักรยาน
                     </div>
-                    <NumericPlaceholderInput
+                    <input
+                      type="number"
+                      placeholder="พิมพ์"
                       value={wheelchairBikeSpaces}
-                      onChange={(v) => setWheelchairBikeSpaces(v)}
+                      onFocus={(e) => {
+                        e.currentTarget.placeholder = "";
+                      }}
+                      onBlur={(e) => {
+                        if (e.currentTarget.value === "") e.currentTarget.placeholder = "พิมพ์";
+                      }}
+                      onChange={(e) => {
+                        const raw = e.target.value;
+                        if (raw === "") {
+                          setWheelchairBikeSpaces("");
+                          return;
+                        }
+                        const parsed = Math.min(
+                          typeof totalSeats === "number" && totalSeats !== "" ? totalSeats : maxCapacity,
+                          Math.max(0, parseInt(raw || "0", 10)),
+                        );
+                        setWheelchairBikeSpaces(parsed);
+                      }}
+                      className="w-24 px-3 py-2 rounded-full text-[#000D59] bg-white text-right font-sarabun text-[17.6px]"
+                      style={{ borderWidth: 2, borderColor: "#000D59" }}
                       min={0}
-                      max={
-                        typeof totalSeats === "number" && totalSeats !== ""
-                          ? totalSeats
-                          : maxCapacity
-                      }
-                      className="w-24 px-3 py-2 text-[#003366] bg-transparent text-right font-sarabun text-[17.6px] outline-none"
+                      max={typeof totalSeats === "number" && totalSeats !== "" ? totalSeats : maxCapacity}
                     />
                   </div>
                 </div>
