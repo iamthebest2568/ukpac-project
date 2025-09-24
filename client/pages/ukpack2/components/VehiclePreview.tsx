@@ -107,7 +107,7 @@ const VehiclePreview: React.FC<Props> = ({
           )}
 
           <div
-            className="relative w-[60%] sm:w-[65%] md:w-[70%] lg:w-[75%] max-w-[320px] sm:max-w-[380px] md:max-w-[480px]"
+            className="vehicle-canvas relative w-[60%] sm:w-[65%] md:w-[70%] lg:w-[75%] max-w-[320px] sm:max-w-[380px] md:max-w-[480px]"
             style={{ height: "120px" }}
           >
             {overlayLabels &&
