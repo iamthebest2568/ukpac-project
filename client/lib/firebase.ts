@@ -7,6 +7,9 @@ import {
   addDoc,
   serverTimestamp,
   doc,
+  query,
+  where,
+  getDocs,
 } from "firebase/firestore";
 import {
   getStorage,
@@ -189,8 +192,21 @@ export async function addDesignImageUrlToFirestore(imageUrl: string) {
   if (!db) initFirebase();
   if (!db) throw new Error("Firestore not initialized");
 
-  async function tryWrite(colName: string) {
+  async function findOrWrite(colName: string) {
     const colRef = collection(db as any, colName);
+
+    // Check for existing document with same imageUrl to avoid duplicates
+    try {
+      const q = query(colRef as any, where("imageUrl", "==", imageUrl));
+      const snap = await getDocs(q as any);
+      if (snap && snap.size > 0) {
+        const docRef = snap.docs[0];
+        return { id: docRef.id, collection: colName } as const;
+      }
+    } catch (err) {
+      // ignore query errors and fall back to write
+    }
+
     const docRef = await addDoc(colRef as any, {
       imageUrl,
       createdAt: serverTimestamp(),
@@ -200,10 +216,10 @@ export async function addDesignImageUrlToFirestore(imageUrl: string) {
 
   // Prefer user's requested collection name; fallback to previous one if needed
   try {
-    return await tryWrite("kpact-gamebus-imagedesign-events");
+    return await findOrWrite("kpact-gamebus-imagedesign-events");
   } catch (e) {
     try {
-      return await tryWrite("ukpact-gamebus-imagedesign-events");
+      return await findOrWrite("ukpact-gamebus-imagedesign-events");
     } catch (e2) {
       throw e2 || e;
     }
