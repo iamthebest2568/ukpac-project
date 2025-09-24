@@ -94,7 +94,7 @@ const SplashScreen: React.FC = () => {
               onClick={() => {
                 navigate("/ukpack2/pdpa");
               }}
-              style={{ width: "70%" }}
+              style={{ width: "70%", marginTop: "-5px" }}
             />
           </div>
         </div>
