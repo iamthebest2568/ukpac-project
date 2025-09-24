@@ -321,7 +321,7 @@ const PaymentScreen: React.FC = () => {
       TOUCH_ICON_ACTIVE,
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc25d540d10cc44e6922d714177b11d94?format=webp&width=800",
     ],
-    กระเป๋ารถเมล์: [
+    ��ระเป๋ารถเมล์: [
       BUS_EMPLOY_ICON,
       BUS_EMPLOY_ICON_ACTIVE,
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc672415acf294449bc41d44cd9434120?format=webp&width=800",
@@ -401,7 +401,7 @@ const PaymentScreen: React.FC = () => {
   };
 
   const PAYMENT_BUTTON_SRC: Record<string, string> = {
-    เ��ินสด: MONEY_ICON,
+    เงินสด: MONEY_ICON,
     สแกนจ่าย: SCAN_ICON,
     "สแกนจ่าย 2": SCAN2_ICON,
     แตะบัตร: TOUCH_ICON,
