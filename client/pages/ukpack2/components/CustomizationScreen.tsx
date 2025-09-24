@@ -118,7 +118,7 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
           ref={footerRef}
           className={`${footerBgClass || "bg-[#00d5f9]"} ${inTabletMock ? "absolute left-0 right-0" : "fixed left-0 right-0"} z-50`}
           style={{ position: inTabletMock ? "absolute" : "fixed", bottom: 0, left: 0, right: 0, paddingTop: "12px", paddingBottom: "calc(12px + env(safe-area-inset-bottom, 0px))" }}
-          role="contentinfo"
+          role="contentinfo" data-mock-footer={inTabletMock ? "absolute" : undefined}
         >
           <div
             className={
