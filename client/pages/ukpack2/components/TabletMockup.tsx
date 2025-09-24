@@ -60,19 +60,20 @@ const TabletMockup: React.FC<TabletMockupProps> = ({ children }) => {
       <div
         className="relative"
         style={{ width: OUTER_W, height: OUTER_H, transform: `scale(${scale})`, transformOrigin: "center" }}
+        aria-label="tablet-mockup"
       >
-        {/* Outer frame */}
-        <div className="rounded-[40px] border border-neutral-300 shadow-2xl drop-shadow-lg bg-gradient-to-b from-neutral-200 to-neutral-100 p-2">
+        {/* Outer tablet frame (uniform thin bezel look) */}
+        <div className="rounded-[32px] border-2 border-neutral-300 shadow-2xl drop-shadow-lg bg-neutral-200/60 p-2">
           {/* Inner bezel */}
-          <div className="relative rounded-[32px] bg-neutral-900 p-2">
-            {/* Top sensors (decorative) */}
+          <div className="relative rounded-[26px] bg-neutral-900 p-2">
+            {/* Top sensors (subtle, tablet-like) */}
             <div className="absolute top-2 left-1/2 -translate-x-1/2 flex items-center gap-3 pointer-events-none" aria-hidden>
-              <div className="h-1 w-16 rounded-full bg-neutral-700" />
-              <div className="h-2 w-2 rounded-full bg-neutral-800 ring-2 ring-neutral-700" />
+              <div className="h-[6px] w-16 rounded-full bg-neutral-700" />
+              <div className="h-[8px] w-[8px] rounded-full bg-neutral-800 ring-2 ring-neutral-700" />
             </div>
-            {/* Viewport */}
+            {/* Viewport (portrait 810x1080, no horizontal scroll) */}
             <div
-              className="rounded-[28px] bg-white overflow-auto tablet-mock-env"
+              className="rounded-[22px] bg-white overflow-y-auto overflow-x-hidden tablet-mock-env"
               style={{ width: `${BASE_W}px`, height: `${BASE_H}px` }}
             >
               {children}
