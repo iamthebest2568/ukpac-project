@@ -152,15 +152,70 @@ export const BusDesignProvider = ({ children }: { children: ReactNode }) => {
       if (!database) {
         // fallback: persist to localStorage for later submission
         try {
-          const pending = JSON.parse(
-            localStorage.getItem("ukpack2_pending_submissions") || "[]",
-          );
+          const MAX_PENDING = 50;
+
+          const isQuotaExceeded = (err: any) => {
+            if (!err) return false;
+            const name = err.name || (err as any).code;
+            if (typeof name === "string") {
+              return (
+                name === "QuotaExceededError" ||
+                name === "QUOTA_EXCEEDED_ERR" ||
+                name === "NS_ERROR_DOM_QUOTA_REACHED"
+              );
+            }
+            const msg = (err && (err.message || "")) as string;
+            return /quota/i.test(msg) || /exceeded/i.test(msg);
+          };
+
+          const pendingRaw = localStorage.getItem("ukpack2_pending_submissions") || "[]";
+          const pending = Array.isArray(JSON.parse(pendingRaw))
+            ? (JSON.parse(pendingRaw) as any[])
+            : [];
+
+          // Ensure we don't grow beyond MAX_PENDING — drop oldest entries first
+          while (pending.length >= MAX_PENDING) pending.shift();
+
           const id = `local_${Date.now()}_${Math.random().toString(36).slice(2, 9)}`;
           pending.push({ id, payload });
-          localStorage.setItem(
-            "ukpack2_pending_submissions",
-            JSON.stringify(pending),
-          );
+
+          // Attempt to persist, and on quota errors try trimming oldest entries and retrying
+          try {
+            localStorage.setItem(
+              "ukpack2_pending_submissions",
+              JSON.stringify(pending),
+            );
+          } catch (e) {
+            // If quota exceeded, iteratively remove oldest items and retry
+            if (isQuotaExceeded(e)) {
+              let lastError: any = e;
+              while (pending.length > 1) {
+                try {
+                  pending.shift();
+                  localStorage.setItem(
+                    "ukpack2_pending_submissions",
+                    JSON.stringify(pending),
+                  );
+                  // success
+                  console.warn(
+                    "Firebase database not initialized — saved submission locally after trimming oldest entries",
+                    id,
+                  );
+                  return id;
+                } catch (innerErr) {
+                  lastError = innerErr;
+                  if (!isQuotaExceeded(innerErr)) break; // some other error
+                }
+              }
+              // If we get here, we couldn't persist even after trimming
+              console.error("Failed to persist locally after trimming", lastError);
+              throw lastError;
+            }
+
+            // If not a quota error, rethrow
+            throw e;
+          }
+
           console.warn(
             "Firebase database not initialized — saved submission locally",
             id,
@@ -169,7 +224,7 @@ export const BusDesignProvider = ({ children }: { children: ReactNode }) => {
         } catch (err) {
           console.error("Failed to persist locally", err);
           throw new Error(
-            "Firebase not initialized and local persistence failed",
+            `Firebase not initialized and local persistence failed: ${(err && (err.message || err)) || err}`,
           );
         }
       }
