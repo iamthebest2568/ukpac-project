@@ -95,7 +95,7 @@ const TabletMockup: React.FC<TabletMockupProps> = ({ children }) => {
             {/* Viewport (portrait 414x896) */}
             <div
               className="rounded-[30px] bg-white overflow-y-auto overflow-x-hidden tablet-mock-env"
-              style={{ width: `${BASE_W}px`, height: `${BASE_H}px`, aspectRatio: `${BASE_W} / ${BASE_H}` }}
+              style={{ position: 'relative', width: `${BASE_W}px`, height: `${BASE_H}px`, aspectRatio: `${BASE_W} / ${BASE_H}` }}
             >
               <RouteTransition>{children}</RouteTransition>
             </div>
