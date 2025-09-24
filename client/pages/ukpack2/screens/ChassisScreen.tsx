@@ -268,7 +268,16 @@ const ChassisScreen: React.FC = () => {
   return (
     <>
       <CustomizationScreen
-        title="ออกแบบรถเมล์ของคุณ เลือกปร��เภทรถ"
+        headerContent={
+          <div style={{ width: "100%", textAlign: "center" }}>
+            <div style={{ fontSize: 22, fontWeight: 700 }} className="font-prompt">
+              ออกแบบรถเมล์ของคุณ
+            </div>
+            <div style={{ fontSize: 20, fontWeight: 700 }} className="font-prompt">
+              เลือกปรเภทรถ
+            </div>
+          </div>
+        }
         theme="light"
         fullWidth
         footerContent={
