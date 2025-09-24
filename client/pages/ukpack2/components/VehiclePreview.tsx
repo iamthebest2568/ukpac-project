@@ -182,7 +182,7 @@ const VehiclePreview: React.FC<Props> = ({
                 };
 
                 return (
-                  <div className="absolute left-1/2 transform -translate-x-1/2 -top-4 z-20 w-[110%] sm:w-[120%] md:w-[130%] lg:w-[140%] flex items-center justify-center">
+                  <div className="overlay-ribbon absolute left-1/2 transform -translate-x-1/2 -top-4 z-20 w-[110%] sm:w-[120%] md:w-[130%] lg:w-[140%] flex items-center justify-center">
                     <button
                       type="button"
                       aria-label="Prev icons"
