@@ -261,8 +261,8 @@ const OPTIONS = [
   { key: "cash", label: "เงินสด", icon: <IconCash /> },
   { key: "scan", label: "สแกนจ่าย", icon: <IconScan /> },
   { key: "tap", label: "แตะบัตร", icon: <IconTap /> },
-  { key: "scan2", label: "ตู้อัตโนมัติ", icon: null },
   { key: "monthly", label: "ตั๋วรายเดือน/รอบ", icon: null },
+  { key: "scan2", label: "ตู้อัตโนมัติ", icon: null },
   { key: "qr", label: "กระเป๋ารถเมล์", icon: <IconQr /> },
 ];
 
@@ -402,7 +402,7 @@ const PaymentScreen: React.FC = () => {
 
   const PAYMENT_BUTTON_SRC: Record<string, string> = {
     "เงินสด": MONEY_ICON,
-    "สแกนจ่าย": SCAN_ICON,
+    "สแกนจ่า��": SCAN_ICON,
     "ตู้อัตโนมัติ": SCAN2_ICON,
     "แตะบัตร": TOUCH_ICON,
     "ตั๋วรายเดือน/รอบ": MONTHLY_ICON,
