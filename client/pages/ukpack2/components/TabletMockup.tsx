@@ -82,7 +82,7 @@ const TabletMockup: React.FC<TabletMockupProps> = ({ children }) => {
             {/* Viewport (portrait 810x1080, no horizontal scroll) */}
             <div
               className="rounded-[22px] bg-white overflow-y-auto overflow-x-hidden tablet-mock-env"
-              style={{ width: `${BASE_W}px`, height: `${BASE_H}px` }}
+              style={{ width: `${BASE_W}px`, height: `${BASE_H}px`, aspectRatio: "3 / 4", transform: "rotate(0deg)" }}
             >
               {children}
             </div>
