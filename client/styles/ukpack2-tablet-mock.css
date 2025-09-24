@@ -71,8 +71,18 @@
   margin-right: auto !important;
 }
 
-/* Stack preview above controls consistently */
-.tablet-mock-env .contentGrid { display: block !important; grid-template-columns: none !important; }
+/* Stack preview above controls consistently (match CSS-module classes) */
+.tablet-mock-env .contentGrid,
+.tablet-mock-env [class*="contentGrid"] {
+  display: block !important;
+  grid-template-columns: none !important;
+}
+/* Clamp inner wrappers */
+.tablet-mock-env [class*="previewInner"],
+.tablet-mock-env [class*="controlsWrapper"],
+.tablet-mock-env [class*="controlsContent"] {
+  max-width: 100% !important;
+}
 
 /* Vehicle preview sizing on tablet */
 .tablet-mock-env .previewInner { max-width: 100% !important; }
