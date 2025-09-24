@@ -262,8 +262,8 @@ const OPTIONS = [
   { key: "scan", label: "สแกนจ่าย", icon: <IconScan /> },
   { key: "tap", label: "แตะบัตร", icon: <IconTap /> },
   { key: "scan2", label: "สแกนจ่าย 2", icon: null },
+  { key: "qr", label: "กระ��ป๋ารถเมล์", icon: <IconQr /> },
   { key: "monthly", label: "ตั๋วรายเดือน/รอบ", icon: null },
-  { key: "qr", label: "กระเป๋ารถเมล์", icon: <IconQr /> },
 ];
 
 const PaymentScreen: React.FC = () => {
@@ -796,7 +796,7 @@ const PaymentScreen: React.FC = () => {
                       "สแกนจ่าย 2",
                       "แตะบัตร",
                       "กระเป๋ารถเมล์",
-                      "ตั๋วร��ยเดือน/รอบ",
+                      "ตั๋วรายเดือน/รอบ",
                     ];
                     for (const k of explicit) {
                       if (!merged[k] && (OVERLAY_ICON_SRC as any)[k])
