@@ -346,10 +346,9 @@ const App = () => {
     <BrowserRouter>
       <Layout>
         <Suspense fallback={<SuspenseFallback />}>
-          {/* Smooth client-side route transitions without changing logic */}
+          {/* Smooth client-side route transitions handled inside TabletMockup for ukpack2 */}
           <ErrorBoundary>
-            <RouteTransition>
-              <BusDesignProvider>
+            <BusDesignProvider>
                 <Routes>
                   {/* Main entry */}
                   <Route path="/" element={<IndexPage />} />
@@ -737,7 +736,6 @@ const App = () => {
                   <Route path="*" element={<NotFound />} />
                 </Routes>
               </BusDesignProvider>
-            </RouteTransition>
           </ErrorBoundary>
         </Suspense>
       </Layout>
