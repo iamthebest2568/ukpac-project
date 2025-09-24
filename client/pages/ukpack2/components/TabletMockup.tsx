@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import RouteTransition from "../../../components/shared/RouteTransition";
 
 interface TabletMockupProps {
@@ -6,13 +6,10 @@ interface TabletMockupProps {
 }
 
 /**
- * TabletMockup
+ * MobileMockup (replaces previous TabletMockup)
  * - Renders children normally when viewport < 810px
- * - When viewport >= 810px, centers a scrollable tablet viewport and prevents body scroll
- * - Sizes (based on current window.innerWidth):
- *   - 810–899px  -> 768x1024
- *   - 900–1023px -> 810x1080
- *   - >=1024px   -> 900x1200
+ * - When viewport >= 810px, centers a phone viewport (iPhone XR base) and prevents body scroll
+ * - iPhone XR base viewport: 414 x 896 (portrait)
  */
 const TabletMockup: React.FC<TabletMockupProps> = ({ children }) => {
   const [win, setWin] = useState<{ w: number; h: number }>(() => ({
@@ -27,8 +24,8 @@ const TabletMockup: React.FC<TabletMockupProps> = ({ children }) => {
     return () => window.removeEventListener("resize", onResize);
   }, []);
 
-  const BASE_W = 810; // viewport
-  const BASE_H = 1080; // viewport
+  const BASE_W = 414; // iPhone XR CSS points (portrait)
+  const BASE_H = 896;
   const [scale, setScale] = useState(1);
   const frameRef = React.useRef<HTMLDivElement | null>(null);
 
@@ -58,6 +55,7 @@ const TabletMockup: React.FC<TabletMockupProps> = ({ children }) => {
     return () => cancelAnimationFrame(id);
   }, [win.w, win.h, recomputeScale]);
 
+  // keep same activation threshold as before: show mockup on larger viewports
   const active = win.w >= 810;
 
   // Prevent body scrolling only when active (do not touch html element)
@@ -80,32 +78,34 @@ const TabletMockup: React.FC<TabletMockupProps> = ({ children }) => {
         ref={frameRef}
         className="relative"
         style={{
-          aspectRatio: "3 / 4",
-          transform: `scale(${scale}) rotate(0deg)`,
+          width: `${BASE_W}px`,
+          height: `${BASE_H}px`,
+          transform: `scale(${scale})`,
           transformOrigin: "center",
           maxWidth: "100vw",
           maxHeight: "100vh",
         }}
-        aria-label="tablet-mockup"
+        aria-label="mobile-mockup"
       >
-        {/* Outer tablet frame (uniform thin bezel look) */}
-        <div className="rounded-[32px] border-2 border-neutral-300 shadow-2xl drop-shadow-lg bg-neutral-200/60 p-2">
+        {/* Outer phone frame */}
+        <div className="rounded-[48px] border-[2px] border-neutral-300 shadow-2xl drop-shadow-lg bg-neutral-200/60 p-2" style={{ width: "100%", height: "100%" }}>
           {/* Inner bezel */}
-          <div className="relative rounded-[26px] bg-neutral-900 p-2">
-            {/* Top sensors (subtle, tablet-like) */}
-            <div className="absolute top-2 left-1/2 -translate-x-1/2 flex items-center gap-3 pointer-events-none" aria-hidden>
-              <div className="h-[6px] w-16 rounded-full bg-neutral-700" />
-              <div className="h-[8px] w-[8px] rounded-full bg-neutral-800 ring-2 ring-neutral-700" />
+          <div className="relative rounded-[40px] bg-neutral-900 p-1" style={{ width: "100%", height: "100%" }}>
+            {/* Notch / sensor area (iPhone-like) */}
+            <div className="absolute top-2 left-1/2 -translate-x-1/2 flex items-center justify-center pointer-events-none" aria-hidden>
+              <div className="bg-neutral-800 rounded-b-md" style={{ width: 160, height: 26, borderBottomLeftRadius: 14, borderBottomRightRadius: 14 }} />
             </div>
-            {/* Viewport (portrait 810x1080, no horizontal scroll) */}
+
+            {/* Viewport (portrait 414x896) */}
             <div
-              className="rounded-[22px] bg-white overflow-y-auto overflow-x-hidden tablet-mock-env"
-              style={{ width: `${BASE_W}px`, height: `${BASE_H}px`, aspectRatio: "3 / 4", transform: "rotate(0deg)" }}
+              className="rounded-[30px] bg-white overflow-y-auto overflow-x-hidden tablet-mock-env"
+              style={{ width: `${BASE_W}px`, height: `${BASE_H}px`, aspectRatio: `${BASE_W} / ${BASE_H}` }}
             >
               <RouteTransition>{children}</RouteTransition>
             </div>
-            {/* Bottom gesture bar (decorative) */}
-            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 h-1.5 w-24 rounded-full bg-neutral-700/80" aria-hidden />
+
+            {/* Bottom home indicator (iPhone gesture bar) */}
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 h-1.5 w-28 rounded-full bg-neutral-700/80" aria-hidden />
           </div>
         </div>
       </div>
