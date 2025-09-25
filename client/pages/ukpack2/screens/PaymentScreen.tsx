@@ -402,7 +402,7 @@ const PaymentScreen: React.FC = () => {
 
   const PAYMENT_BUTTON_SRC: Record<string, string> = {
     เงินสด: MONEY_ICON,
-    "สแกนจ่าย": SCAN_ICON,
+    สแกนจ่าย: SCAN_ICON,
     ตู้อัตโนมัติ: SCAN2_ICON,
     แตะบัตร: TOUCH_ICON,
     "ตั๋วรายเดือน/รอบ": MONTHLY_ICON,

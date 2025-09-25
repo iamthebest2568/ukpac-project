@@ -125,11 +125,13 @@ const Step2_Allocation = ({
       useBlueOverlay={false}
       className="mn3-step2-page mn3-step2-minimal"
       imageLoading="eager"
-      title={<span style={{ color: "#000D59", position: "relative", zIndex: 2000 }}>คุณจะให้งบประมาณแต่ละข้อเท่าไหร่</span>}
+      title={
+        <span style={{ color: "#000D59", position: "relative", zIndex: 2000 }}>
+          คุณจะให้งบประมาณแต่ละข้อเท่าไหร่
+        </span>
+      }
     >
-      <div
-        className="mn3-allocation-content"
-      >
+      <div className="mn3-allocation-content">
         {/* Budget Display Box */}
         <div className="w-full px-4 mb-8">
           <div className="mn3-budget-display">
@@ -218,7 +220,7 @@ const Step2_Allocation = ({
               style={{
                 color: "#000D59",
                 fontSize: "clamp(14px, 3vw, 18px)",
-                fontWeight: 500
+                fontWeight: 500,
               }}
             >
               กรุณาจัดสรรงบประมาณให้ครบ {totalBudget} % เพื่อดำเนินการต่อ

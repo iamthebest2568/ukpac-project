@@ -125,7 +125,9 @@ const FigmaStyle1Layout = ({
                     decoding="async"
                     style={{
                       objectFit: "cover",
-                      objectPosition: pageScope.includes("figma-style1-ukpack1") ? "center 8%" : "center center",
+                      objectPosition: pageScope.includes("figma-style1-ukpack1")
+                        ? "center 8%"
+                        : "center center",
                       width: "100%",
                       height: "100%",
                     }}

@@ -116,14 +116,14 @@ const Step2_Summary = ({
     ) {
       cards = beneficiariesSelections.map((s: any) => {
         const beneficiaryObjects = (s.beneficiaries || [])
-        .filter((id: string) => id !== "other")
-        .map((id: string) => ({
-          id,
-          label: (beneficiaryMapping as any)[id]?.label || "ทุกคน",
-          iconSrc:
-            (beneficiaryMapping as any)[id]?.iconSrc ||
-            beneficiaryMapping.everyone.iconSrc,
-        }));
+          .filter((id: string) => id !== "other")
+          .map((id: string) => ({
+            id,
+            label: (beneficiaryMapping as any)[id]?.label || "ทุกคน",
+            iconSrc:
+              (beneficiaryMapping as any)[id]?.iconSrc ||
+              beneficiaryMapping.everyone.iconSrc,
+          }));
         return {
           priority: s.priority || "(ไม่ระบุ)",
           beneficiaries: beneficiaryObjects,
@@ -303,7 +303,15 @@ const Step2_Summary = ({
           boxShadow: "none",
         }}
       >
-        <div style={{ maxWidth: 420, width: "100%", display: "flex", gap: 12, justifyContent: "center" }}>
+        <div
+          style={{
+            maxWidth: 420,
+            width: "100%",
+            display: "flex",
+            gap: 12,
+            justifyContent: "center",
+          }}
+        >
           <button
             onClick={handleEndGame}
             className="figma-style1-button"
@@ -330,7 +338,9 @@ const Step2_Summary = ({
             aria-label="ไม่ใช่, ลองอีกครั้ง"
             style={{ flex: 1 }}
           >
-            <span className="figma-style1-button-text">ไม่ใช่, ลองอีกครั้ง</span>
+            <span className="figma-style1-button-text">
+              ไม่ใช่, ลองอีกครั้ง
+            </span>
           </button>
         </div>
       </div>

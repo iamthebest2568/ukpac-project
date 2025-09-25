@@ -303,7 +303,8 @@ const SeatingScreen: React.FC = () => {
                         e.currentTarget.placeholder = "";
                       }}
                       onBlur={(e) => {
-                        if (e.currentTarget.value === "") e.currentTarget.placeholder = "พิมพ์";
+                        if (e.currentTarget.value === "")
+                          e.currentTarget.placeholder = "พิมพ์";
                       }}
                       onChange={(e) => {
                         const raw = e.target.value;
@@ -312,7 +313,9 @@ const SeatingScreen: React.FC = () => {
                           return;
                         }
                         const parsed = Math.min(
-                          typeof totalSeats === "number" && totalSeats !== "" ? totalSeats : maxCapacity,
+                          typeof totalSeats === "number" && totalSeats !== ""
+                            ? totalSeats
+                            : maxCapacity,
                           Math.max(0, parseInt(raw || "0", 10)),
                         );
                         setChildElderSeats(parsed);
@@ -320,7 +323,11 @@ const SeatingScreen: React.FC = () => {
                       className="w-24 px-3 py-2 rounded-full text-[#000D59] bg-white text-right font-sarabun text-[17.6px]"
                       style={{ borderWidth: 2, borderColor: "#000D59" }}
                       min={0}
-                      max={typeof totalSeats === "number" && totalSeats !== "" ? totalSeats : maxCapacity}
+                      max={
+                        typeof totalSeats === "number" && totalSeats !== ""
+                          ? totalSeats
+                          : maxCapacity
+                      }
                     />
                   </div>
 
@@ -336,7 +343,8 @@ const SeatingScreen: React.FC = () => {
                         e.currentTarget.placeholder = "";
                       }}
                       onBlur={(e) => {
-                        if (e.currentTarget.value === "") e.currentTarget.placeholder = "พิมพ์";
+                        if (e.currentTarget.value === "")
+                          e.currentTarget.placeholder = "พิมพ์";
                       }}
                       onChange={(e) => {
                         const raw = e.target.value;
@@ -345,7 +353,9 @@ const SeatingScreen: React.FC = () => {
                           return;
                         }
                         const parsed = Math.min(
-                          typeof totalSeats === "number" && totalSeats !== "" ? totalSeats : maxCapacity,
+                          typeof totalSeats === "number" && totalSeats !== ""
+                            ? totalSeats
+                            : maxCapacity,
                           Math.max(0, parseInt(raw || "0", 10)),
                         );
                         setPregnantSeats(parsed);
@@ -353,7 +363,11 @@ const SeatingScreen: React.FC = () => {
                       className="w-24 px-3 py-2 rounded-full text-[#000D59] bg-white text-right font-sarabun text-[17.6px]"
                       style={{ borderWidth: 2, borderColor: "#000D59" }}
                       min={0}
-                      max={typeof totalSeats === "number" && totalSeats !== "" ? totalSeats : maxCapacity}
+                      max={
+                        typeof totalSeats === "number" && totalSeats !== ""
+                          ? totalSeats
+                          : maxCapacity
+                      }
                     />
                   </div>
 
@@ -369,7 +383,8 @@ const SeatingScreen: React.FC = () => {
                         e.currentTarget.placeholder = "";
                       }}
                       onBlur={(e) => {
-                        if (e.currentTarget.value === "") e.currentTarget.placeholder = "พิมพ์";
+                        if (e.currentTarget.value === "")
+                          e.currentTarget.placeholder = "พิมพ์";
                       }}
                       onChange={(e) => {
                         const raw = e.target.value;
@@ -378,7 +393,9 @@ const SeatingScreen: React.FC = () => {
                           return;
                         }
                         const parsed = Math.min(
-                          typeof totalSeats === "number" && totalSeats !== "" ? totalSeats : maxCapacity,
+                          typeof totalSeats === "number" && totalSeats !== ""
+                            ? totalSeats
+                            : maxCapacity,
                           Math.max(0, parseInt(raw || "0", 10)),
                         );
                         setMonkSeats(parsed);
@@ -386,7 +403,11 @@ const SeatingScreen: React.FC = () => {
                       className="w-24 px-3 py-2 rounded-full text-[#000D59] bg-white text-right font-sarabun text-[17.6px]"
                       style={{ borderWidth: 2, borderColor: "#000D59" }}
                       min={0}
-                      max={typeof totalSeats === "number" && totalSeats !== "" ? totalSeats : maxCapacity}
+                      max={
+                        typeof totalSeats === "number" && totalSeats !== ""
+                          ? totalSeats
+                          : maxCapacity
+                      }
                     />
                   </div>
 
@@ -402,7 +423,8 @@ const SeatingScreen: React.FC = () => {
                         e.currentTarget.placeholder = "";
                       }}
                       onBlur={(e) => {
-                        if (e.currentTarget.value === "") e.currentTarget.placeholder = "พิมพ์";
+                        if (e.currentTarget.value === "")
+                          e.currentTarget.placeholder = "พิมพ์";
                       }}
                       onChange={(e) => {
                         const raw = e.target.value;
@@ -411,7 +433,9 @@ const SeatingScreen: React.FC = () => {
                           return;
                         }
                         const parsed = Math.min(
-                          typeof totalSeats === "number" && totalSeats !== "" ? totalSeats : maxCapacity,
+                          typeof totalSeats === "number" && totalSeats !== ""
+                            ? totalSeats
+                            : maxCapacity,
                           Math.max(0, parseInt(raw || "0", 10)),
                         );
                         setWheelchairBikeSpaces(parsed);
@@ -419,7 +443,11 @@ const SeatingScreen: React.FC = () => {
                       className="w-24 px-3 py-2 rounded-full text-[#000D59] bg-white text-right font-sarabun text-[17.6px]"
                       style={{ borderWidth: 2, borderColor: "#000D59" }}
                       min={0}
-                      max={typeof totalSeats === "number" && totalSeats !== "" ? totalSeats : maxCapacity}
+                      max={
+                        typeof totalSeats === "number" && totalSeats !== ""
+                          ? totalSeats
+                          : maxCapacity
+                      }
                     />
                   </div>
                 </div>

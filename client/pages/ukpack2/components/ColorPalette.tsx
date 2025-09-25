@@ -19,7 +19,8 @@ const ColorPalette: React.FC<ColorPaletteProps> = ({
       <div className="grid grid-cols-6 sm:grid-cols-6 md:grid-cols-6 gap-3">
         {colors.map((item) => {
           const c = typeof item === "string" ? item : item.preview;
-          const colorHex = typeof item === "string" ? null : item.colorHex || null;
+          const colorHex =
+            typeof item === "string" ? null : item.colorHex || null;
           const isSelected =
             (c || "").toLowerCase() === (selectedColor || "").toLowerCase();
           const isImage = c.startsWith("http");

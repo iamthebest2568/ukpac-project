@@ -225,7 +225,19 @@
   border-radius: 9999px;
 }
 
-.selectionGrid{--icon-cell-height:140px;display:grid;grid-template-columns:repeat(2,1fr);gap:6px;width:100%;box-sizing:border-box;padding:0;justify-content:start;justify-items:stretch;align-items:start;align-content:stretch}
+.selectionGrid {
+  --icon-cell-height: 140px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0;
+  justify-content: start;
+  justify-items: stretch;
+  align-items: start;
+  align-content: stretch;
+}
 
 @media (min-width: 768px) and (max-width: 1023px) {
   /* Tablet: keep two columns like mobile to match UX requirement */
@@ -449,7 +461,7 @@
   width: 10px;
 }
 .scrollableDetails::-webkit-scrollbar-thumb {
-  background: rgba(0,0,0,0.12);
+  background: rgba(0, 0, 0, 0.12);
   border-radius: 6px;
 }
 .scrollableDetails::-webkit-scrollbar-track {

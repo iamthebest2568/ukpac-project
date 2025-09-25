@@ -517,7 +517,8 @@ const DesignScreen: React.FC = () => {
                       {savedInfo.id || "(ไม่ทราบ)"}
                     </div>
                     <div className="mt-1">
-                      <span className="font-semibold">URL:</span> {savedInfo.url}
+                      <span className="font-semibold">URL:</span>{" "}
+                      {savedInfo.url}
                     </div>
                   </div>
                 </div>

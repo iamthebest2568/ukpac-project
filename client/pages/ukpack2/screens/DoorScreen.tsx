@@ -617,10 +617,30 @@ const DoorScreen: React.FC = () => {
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                   {(() => {
                     const DOOR_OPTIONS = [
-                      { key: "1", label: "1 ประตู", icon: <IconDoor1 />, iconActive: <IconDoor1Active /> },
-                      { key: "2", label: "2 ประตู", icon: <IconDoor2 />, iconActive: <IconDoor2Active /> },
-                      { key: "ramp", label: "ทางลาดสำหรับรถเข็น/ผู้พิการ", icon: <IconRamp />, iconActive: <IconRampActive /> },
-                      { key: "emergency", label: "ประตูฉุกเฉิน", icon: <IconHighLow />, iconActive: <IconHighLowActive /> },
+                      {
+                        key: "1",
+                        label: "1 ประตู",
+                        icon: <IconDoor1 />,
+                        iconActive: <IconDoor1Active />,
+                      },
+                      {
+                        key: "2",
+                        label: "2 ประตู",
+                        icon: <IconDoor2 />,
+                        iconActive: <IconDoor2Active />,
+                      },
+                      {
+                        key: "ramp",
+                        label: "ทางลาดสำหรับรถเข็น/ผู้พิการ",
+                        icon: <IconRamp />,
+                        iconActive: <IconRampActive />,
+                      },
+                      {
+                        key: "emergency",
+                        label: "ประตูฉุกเฉิน",
+                        icon: <IconHighLow />,
+                        iconActive: <IconHighLowActive />,
+                      },
                     ];
 
                     // helper to normalize and set variants into overlayIconMap in sessionStorage
@@ -708,7 +728,10 @@ const DoorScreen: React.FC = () => {
                             "design.overlayIconMap",
                           );
                           if (raw)
-                            storedMap = JSON.parse(raw) as Record<string, string>;
+                            storedMap = JSON.parse(raw) as Record<
+                              string,
+                              string
+                            >;
                         } catch {}
 
                         const lookupStored = (labelOrKey: string) => {
@@ -770,8 +793,13 @@ const DoorScreen: React.FC = () => {
                         // After the second icon (index 1), insert the heading "ทางอื่นๆ"
                         if (idx === 1) {
                           nodes.push(
-                            <div key="other-heading" className="col-span-2 md:col-span-4">
-                              <h3 className="text-xl font-prompt font-semibold text-[#003366] mt-2">ทางอื่นๆ</h3>
+                            <div
+                              key="other-heading"
+                              className="col-span-2 md:col-span-4"
+                            >
+                              <h3 className="text-xl font-prompt font-semibold text-[#003366] mt-2">
+                                ทางอื่นๆ
+                              </h3>
                             </div>,
                           );
                         }
