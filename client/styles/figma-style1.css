@@ -2033,3 +2033,27 @@ body[data-dialog-open] {
     margin-top: 36px !important;
   }
 }
+
+/* MN2 Summary: ensure the background is fixed beneath content and remove overlays */
+.mn2-summary-page .figma-style1-background {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
+}
+.mn2-summary-page .figma-style1-background-image {
+  z-index: 0 !important;
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center bottom !important;
+}
+.mn2-summary-page .figma-style1-background-overlay {
+  display: none !important;
+}
+.mn2-summary-page .figma-style1-main {
+  position: relative !important;
+  z-index: 20 !important;
+}
