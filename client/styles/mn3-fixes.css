@@ -39,15 +39,16 @@
 
 /* Ensure layout places title at top and content below */
 .figma-style1-container.ask04-budget-page .figma-style1-main {
-  align-items: flex-start !important;
+  /* Center main content so the collage sits vertically centered between title and footer */
+  align-items: center !important;
   justify-items: center !important;
-  padding-top: clamp(12px, 6vh, 48px) !important;
+  padding-top: clamp(8px, 3vh, 24px) !important;
 }
 .figma-style1-container.ask04-budget-page .figma-style1-content-area {
   display: flex !important;
   flex-direction: column !important;
   align-items: center !important;
-  justify-content: flex-start !important;
+  justify-content: center !important;
 }
 
 /* Ask04Budget: create a lower stacking context for the collage */
