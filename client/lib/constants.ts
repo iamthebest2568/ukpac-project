@@ -62,7 +62,7 @@ export const CHOICE_LABELS = {
   },
   REASONING: {
     coverage: "นโยบายไม่ครอบคลุม",
-    ineffective: "เก็บไปก็ไม่มีอะไรเกิดขึ้น",
+    ineffective: "เก็บไปก็ไม่มีอะไรดีขึ้น",
     other: "อื่นๆ",
   },
   SATISFACTION: {
@@ -112,7 +112,7 @@ export const STATUS_MESSAGES = {
   SELECTION_COMPLETE: (count: number, max: number) =>
     `เลือกให้ครบ ${max} ข้อ (เลือกแล้ว ${count}/${max})`,
   SELECTION_LIMIT_REACHED: (max: number) =>
-    `คุณเลือกครบจำนวนแล้ว หากต้องการเลือกข้อใหม่ กรุณายกเลิกการเลือกข้อใดข้อหนึ่งก่อน`,
+    `คุณเลือกครบจำนวนแล���ว หากต้องการเลือกข้อใหม่ กรุณายกเลิกการเลือกข้อใดข้อหนึ่งก่อน`,
   BUDGET_OVER_LIMIT: (total: number) =>
     `งบประมาณเกินที่กำหนด! กรุณาปรับลดจำนวนให้อยู่ในงบประมาณ ${total} หน่วย`,
   BUDGET_REMAINING: (remaining: number) =>
