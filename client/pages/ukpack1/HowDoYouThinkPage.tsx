@@ -68,73 +68,75 @@ const HowDoYouThinkPage = () => {
   };
 
   return (
-    <FigmaStyle1Layout
-      backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb5edf32ee2ed476284e73427d3abce51?format=webp&width=800"
-      className="how-do-you-think-page"
-    >
-      {/* Content Section positioned at bottom */}
-      <div
-        className="flex-1 flex flex-col items-center justify-end px-4 py-8 pb-12 relative z-10"
-        style={{ background: "transparent", minHeight: "auto" }}
+    <TabletMockup>
+      <FigmaStyle1Layout
+        backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb5edf32ee2ed476284e73427d3abce51?format=webp&width=800"
+        className="how-do-you-think-page"
       >
-        {/* Bottom-aligned content box */}
+        {/* Content Section positioned at bottom */}
         <div
-          className="w-full max-w-4xl px-4"
-          style={{ paddingBottom: "env(safe-area-inset-bottom,24px)" }}
+          className="flex-1 flex flex-col items-center justify-end px-4 py-8 pb-12 relative z-10"
+          style={{ background: "transparent", minHeight: "auto" }}
         >
-          <div className="text-center mb-4">
-            <h1
-              className="font-prompt text-black text-center leading-tight"
-              style={{
-                fontSize: "clamp(22px, 4.8vw, 52px)",
-                fontWeight: 600,
-                lineHeight: "1.05",
-              }}
-            >
-              จากนโยบายที่คุณฟังเมื่อสักครู่
-              <br />
-              คุณมีความคิดเห็นอย่างไร
-            </h1>
-          </div>
-
-          {/* Options stacked and balanced */}
-          <div className="flex flex-col items-center gap-4 w-full">
-            {[
-              { key: "agree", text: "เห็นด้วย" },
-              { key: "neutral", text: "เฉย ๆ" },
-              { key: "disagree", text: "ไม่เห็นด้วย" },
-            ].map((option) => (
-              <button
-                key={option.key}
-                onClick={() => handleOptionSelect(option.key)}
-                className="w-full max-w-[845px] transition-all duration-150 hover:scale-102 active:scale-98 flex items-center justify-center"
+          {/* Bottom-aligned content box */}
+          <div
+            className="w-full max-w-4xl px-4"
+            style={{ paddingBottom: "env(safe-area-inset-bottom,24px)" }}
+          >
+            <div className="text-center mb-4">
+              <h1
+                className="font-prompt text-black text-center leading-tight"
                 style={{
-                  height: "clamp(56px, 9vw, 96px)",
-                  borderRadius: "999px",
-                  background: "#FFE000",
-                  border: "none",
-                  cursor: "pointer",
-                  boxShadow: "0 6px 18px rgba(0,0,0,0.08)",
+                  fontSize: "clamp(22px, 4.8vw, 52px)",
+                  fontWeight: 600,
+                  lineHeight: "1.05",
                 }}
-                aria-label={`เลือก: ${option.text}`}
               >
-                <span
-                  className="font-prompt text-black text-center"
+                จากนโยบายที่คุณฟังเมื่อสักครู่
+                <br />
+                คุณมีความคิดเห็นอย่างไร
+              </h1>
+            </div>
+
+            {/* Options stacked and balanced */}
+            <div className="flex flex-col items-center gap-4 w-full">
+              {[
+                { key: "agree", text: "เห็นด้วย" },
+                { key: "neutral", text: "เฉย ๆ" },
+                { key: "disagree", text: "ไม่เห็นด้วย" },
+              ].map((option) => (
+                <button
+                  key={option.key}
+                  onClick={() => handleOptionSelect(option.key)}
+                  className="w-full max-w-[845px] transition-all duration-150 hover:scale-102 active:scale-98 flex items-center justify-center"
                   style={{
-                    fontSize: "clamp(18px, 3.8vw, 34px)",
-                    fontWeight: 500,
-                    letterSpacing: "0.4px",
-                    lineHeight: "1",
+                    height: "clamp(56px, 9vw, 96px)",
+                    borderRadius: "999px",
+                    background: "#FFE000",
+                    border: "none",
+                    cursor: "pointer",
+                    boxShadow: "0 6px 18px rgba(0,0,0,0.08)",
                   }}
+                  aria-label={`เลือก: ${option.text}`}
                 >
-                  {option.text}
-                </span>
-              </button>
-            ))}
+                  <span
+                    className="font-prompt text-black text-center"
+                    style={{
+                      fontSize: "clamp(18px, 3.8vw, 34px)",
+                      fontWeight: 500,
+                      letterSpacing: "0.4px",
+                      lineHeight: "1",
+                    }}
+                  >
+                    {option.text}
+                  </span>
+                </button>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
-    </FigmaStyle1Layout>
+      </FigmaStyle1Layout>
+    </TabletMockup>
   );
 };
 
