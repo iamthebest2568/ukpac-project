@@ -1,1 +1,11 @@
-export { default } from "../Ask05Page";
+import React from "react";
+import TabletMockup from "../ukpack2/components/TabletMockup";
+import Page from "../Ask05Page";
+
+const Wrapped = (props: any) => (
+  <TabletMockup>
+    <Page {...props} />
+  </TabletMockup>
+);
+
+export default Wrapped;
