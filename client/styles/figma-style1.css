@@ -122,6 +122,11 @@
   overflow: visible !important; /* allow mockup to show fully */
 }
 
+/* Allow MN3 step2 to show full budget card and content */
+.figma-style1-container.mn3-step2-minimal .figma-style1-content {
+  overflow: visible !important;
+}
+
 .figma-style1-container.mn3-result-page .figma-style1-main {
   z-index: 5 !important; /* keep content above background */
 }
@@ -250,7 +255,7 @@
 
 /* Add top space so content doesn't go under the fixed title */
 .figma-style1-container.mn3-step2-minimal .figma-style1-content-area {
-  padding-top: clamp(64px, 10vh, 120px) !important;
+  padding-top: clamp(88px, 12vh, 160px) !important;
 }
 
 /* Hide accidental overlays that could cover the title on MN3 step2 */
@@ -265,6 +270,8 @@
 .figma-style1-container.mn3-step2-minimal .mn3-allocation-content {
   padding-top: 0 !important;
   margin-top: 0 !important;
+  position: relative !important;
+  z-index: 1 !important;
 }
 .figma-style1-main {
   /* Main content layer - back to grid layout but with better centering */
