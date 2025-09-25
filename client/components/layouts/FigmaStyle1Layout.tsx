@@ -146,7 +146,7 @@ const FigmaStyle1Layout = ({
         {/* Main Content */}
         <div className="figma-style1-main">
           {/* Replay Button (Optional) */}
-          {replayButton && (
+          {replayButton && !pageScope.includes("figma-style1-ukpack1") && (
             <div className="figma-style1-header">
               <button
                 onClick={replayButton.onClick}
