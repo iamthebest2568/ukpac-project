@@ -60,7 +60,7 @@ const SourceSelection = ({ sessionID, onNavigate }: SourceSelectionProps) => {
               </span>
             </div>
             <div style={{ fontSize: 14, marginTop: 8, color: "#374151" }}>
-              เลือกได้ไม��เกิน 3 ข้อ
+              เลือกได้ไม่เกิน 3 ข้อ
             </div>
           </div>
         </>
