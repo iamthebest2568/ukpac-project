@@ -219,21 +219,25 @@ const Step2_Allocation = ({
               style={{
                 color: "#000D59",
                 fontSize: "clamp(14px, 3vw, 18px)",
-                fontWeight: 500,
-                marginBottom: "8px",
+                fontWeight: 500
               }}
             >
               กรุณาจัดสรรงบประมาณให้ครบ {totalBudget} % เพื่อดำเนินการต่อ
             </div>
-
-            <button
-              onClick={handleNext}
-              className="figma-style1-button"
-              aria-label="ดำเนินการต่อ"
-            >
-              <span className="figma-style1-button-text">ไปต่อ</span>
-            </button>
           </div>
+        </div>
+      </div>
+
+      {/* Fixed footer for continue button */}
+      <div className="mn3-step2-footer">
+        <div className="figma-style1-button-container">
+          <button
+            onClick={handleNext}
+            className="figma-style1-button"
+            aria-label="ดำเนินการต่อ"
+          >
+            <span className="figma-style1-button-text">ไปต่อ</span>
+          </button>
         </div>
       </div>
     </FigmaStyle1Layout>
