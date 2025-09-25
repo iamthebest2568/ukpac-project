@@ -47,12 +47,12 @@ type SessionSummary = {
   travelMethod?: string; // ยานพาหนะที่ใช้
   opinionLevel?: string; // ระดับความคิดเห็น
   ask02Choice?: string; // เหตุผลหลัก
-  ask02CustomReason?: string; // เหตุผลพิมพ์อง
+  ask02CustomReason?: string; // ��หตุผลพิมพ์อง
   reasonOther01?: string; // คำอธิบายเพิ่มเติม
   keyMessage1?: string; // Key message 1
   mn1Selected: string[]; // ลำดับความสำคัญของประเด็น
   mn2Selections?: Record<string, string[]>; // กลุ่มเป้าหมายที่ควรได้รับสิทธิ์
-  mn3Selected?: string[]; // ประเด็นนโย���ายที่ผู้ใช้เลือก
+  mn3Selected?: string[]; // ประเด็นนโยบายที่ผู้ใช้เลือก
   mn3BudgetAllocation?: Record<string, number>; // การจัดสรรงบประมาณ
   mn3BudgetTotal?: number;
   satisfactionLevel?: string; // ระดับความพึงพอใจ
@@ -288,7 +288,7 @@ export default function UkDashboard() {
                   {ingest.app.lastTs
                     ? new Date(ingest.app.lastTs).toLocaleString()
                     : "-"}{" "}
-                  • วิดีโอ: {ingest.video.count} เหตุการณ์, ล่าสุด{" "}
+                  • วิดีโอ: {ingest.video.count} เหตุ��ารณ์, ล่าสุด{" "}
                   {ingest.video.lastTs
                     ? new Date(ingest.video.lastTs).toLocaleString()
                     : "-"}
@@ -751,7 +751,7 @@ export default function UkDashboard() {
                             </span>
                           </li>
                           <li className="flex justify-between">
-                            <span>กรอกข้อมูลติดต่อ</span>
+                            <span>กรอกข��อมูลติดต่อ</span>
                             <span className="text-white/70">
                               {journey.endseq?.contacts || 0}
                             </span>
@@ -843,7 +843,7 @@ export default function UkDashboard() {
                       "คุณคิดว่าควรใช้เงินที่ได้จากการเก็บไปพัฒนาอะไร ก่อน 3 อันดับแรก",
                       "คุณจะให้งบประมาณแต่ละข้อเท่าไร (งบทั้งหมด 100)",
                       "คุณพอใจกับผลัพธ์ที่เกิดขึ้นหรือไม่ (พอใจ / ไม่พอใจ)",
-                      "คุณคิดว่ารัฐควรทำอะไรที่จะทำให้นโยบายนี้เกิดขึ้นได้จริง และเป็นประโยชน์ต่อประชาชนอย่างแท้จริง",
+                      "คุณคิดว่ารัฐควรทำอะไรที่จะทำให���นโยบายนี้เกิดขึ้นได้จริง และเป็นประโยชน์ต่อประชาชนอย่างแท้จริง",
                       "ตอนนี้มีข้อมูลที่ผิดพลาด เช่น ข่าวปลอมเกี่ยวกับนโยบาย คุณคิดว่าอย่าง��ร",
                       "คุณจะติดตามข่าว หือเชื่อจากแหลงไหนมากที่สุด",
                       "ขอบคุณที่ร่วมเป็นส่วนหนึ่ง → ต้องการลุ้นรับรางวัลหรือไม่",
