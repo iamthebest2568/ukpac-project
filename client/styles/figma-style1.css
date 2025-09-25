@@ -290,14 +290,12 @@
   z-index: 1 !important;
 }
 
-/* Make the MN3 Step2 content area scrollable and constrained to viewport (single-screen scroll) */
+/* MN3 Step2: keep content on a single screen and positioned below the fixed header */
 .figma-style1-container.mn3-step2-minimal.mn3-step2-page
   .figma-style1-content-area {
-  overflow-y: auto !important;
-  -webkit-overflow-scrolling: touch !important;
+  overflow: visible !important;
   box-sizing: border-box !important;
-  /* Leave space for the fixed title and the fixed footer */
-  max-height: calc(100svh - (env(safe-area-inset-top, 0px) + 140px)) !important;
+  /* padding-top is already set above to clear the fixed title */
 }
 .figma-style1-main {
   /* Main content layer - back to grid layout but with better centering */
