@@ -259,7 +259,7 @@ const SeatingScreen: React.FC = () => {
                     </div>
                     <input
                       type="number"
-                      placeholder="พ��มพ์"
+                      placeholder="พิมพ์"
                       value={totalSeats}
                       onFocus={(e) => {
                         e.currentTarget.placeholder = "";
@@ -297,7 +297,7 @@ const SeatingScreen: React.FC = () => {
                     </div>
                     <input
                       type="number"
-                      placeholder="��ิมพ์"
+                      placeholder="พิมพ์"
                       value={childElderSeats}
                       onFocus={(e) => {
                         e.currentTarget.placeholder = "";
