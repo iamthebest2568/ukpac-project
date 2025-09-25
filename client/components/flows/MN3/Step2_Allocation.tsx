@@ -129,7 +129,6 @@ const Step2_Allocation = ({
     >
       <div
         className="mn3-allocation-content"
-        style={{ paddingTop: "clamp(40px, 8vh, 120px)" }}
       >
         {/* Budget Display Box */}
         <div className="w-full px-4 mb-8">
