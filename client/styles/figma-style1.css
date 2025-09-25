@@ -2058,6 +2058,43 @@ body[data-dialog-open] {
   z-index: 20 !important;
 }
 
+/* Emergency MN2 top-layer override to surface content above any remaining overlays */
+#main-content > .flow-container:has(.mn2-step1-page),
+#main-content > .flow-container:has(.mn2-summary-page) {
+  position: relative !important;
+  z-index: 2147483646 !important;
+}
+
+.mn2-step1-page,
+.mn2-summary-page,
+.mn2-step1-page .figma-style1-main,
+.mn2-summary-page .figma-style1-main,
+.mn2-step1-page .figma-style1-content-area,
+.mn2-summary-page .figma-style1-content-area,
+.mn2-step1-page .figma-style1-title-container,
+.mn2-summary-page .figma-style1-title-container,
+.mn2-step1-page .figma-style1-button-container,
+.mn2-summary-page .figma-style1-button-container {
+  position: relative !important;
+  z-index: 2147483647 !important;
+}
+
+/* Hide any in-page full-screen overlays that might still block clicks/text */
+.mn2-step1-page .figma-style1-background-overlay,
+.mn2-summary-page .figma-style1-background-overlay,
+.mn2-step1-page .figma-style1-wave-overlay,
+.mn2-summary-page .figma-style1-wave-overlay,
+.mn2-step1-page > .absolute.inset-0,
+.mn2-summary-page > .absolute.inset-0,
+.mn2-step1-page .absolute.inset-0,
+.mn2-summary-page .absolute.inset-0,
+.mn2-step1-page::before,
+.mn2-summary-page::before {
+  display: none !important;
+  pointer-events: none !important;
+  z-index: 0 !important;
+}
+
 /* Ensure MN2 content is pinned to the top so title and icons appear above the background */
 .mn2-step1-page .figma-style1-main,
 .mn2-summary-page .figma-style1-main {
