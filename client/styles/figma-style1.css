@@ -127,6 +127,11 @@
   overflow: visible !important;
 }
 
+/* Ensure the route wrapper does not clip MN3 step2 */
+#main-content > .flow-container:has(.figma-style1-container.mn3-step2-minimal) {
+  overflow: visible !important;
+}
+
 .figma-style1-container.mn3-result-page .figma-style1-main {
   z-index: 5 !important; /* keep content above background */
 }
@@ -255,7 +260,7 @@
 
 /* Add top space so content doesn't go under the fixed title */
 .figma-style1-container.mn3-step2-minimal .figma-style1-content-area {
-  padding-top: clamp(88px, 12vh, 160px) !important;
+  padding-top: clamp(96px, 14vh, 180px) !important;
 }
 
 /* Hide accidental overlays that could cover the title on MN3 step2 */
