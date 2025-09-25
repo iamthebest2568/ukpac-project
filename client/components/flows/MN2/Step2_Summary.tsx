@@ -169,7 +169,7 @@ const Step2_Summary = ({
       backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F4cef67ac526c447abe657171a21c6eb1?format=webp&width=800"
       backgroundAlt="พื้นหลังสรุปนโยบาย"
       useBlueOverlay={false}
-      className="mn2-summary-page mn2-summary-minimal figma-style1-ukpack1 fake-news-page"
+      className="ask04-page mn2-summary-page mn2-summary-minimal figma-style1-ukpack1 fake-news-page"
       imageLoading="eager"
       title={
         <span
