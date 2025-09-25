@@ -125,7 +125,7 @@ const Step2_Allocation = ({
       useBlueOverlay={false}
       className="mn3-step2-page mn3-step2-minimal"
       imageLoading="eager"
-      title={"คุณจะให้งบประมาณแต่ละข้อเท่าไหร่"}
+      title={<span style={{ color: "#000D59", position: "relative", zIndex: 2000 }}>คุณจะให้งบประมาณแต่ละข้อเท่าไหร่</span>}
     >
       <div
         className="mn3-allocation-content"
