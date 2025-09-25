@@ -147,7 +147,6 @@ const Ask04Budget = ({
         <div
           className="max-w-[980px] w-full px-4 ask04-collage-wrapper"
           style={{
-            height: 420,
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
@@ -155,7 +154,7 @@ const Ask04Budget = ({
         >
           <div
             className="relative w-full"
-            style={{ maxWidth: 980, height: 420 }}
+            style={{ maxWidth: 980 }}
           >
             {resultSummary.map((s, i) => {
               const imgSrc =
