@@ -2062,7 +2062,7 @@ body[data-dialog-open] {
 #main-content > .flow-container:has(.mn2-step1-page),
 #main-content > .flow-container:has(.mn2-summary-page) {
   position: relative !important;
-  z-index: 2147483646 !important;
+  z-index: 9999 !important;
 }
 
 .mn2-step1-page,
