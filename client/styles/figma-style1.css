@@ -268,7 +268,7 @@
 .figma-style1-container.mn3-step2-minimal.mn3-step2-page
   .figma-style1-content-area {
   padding-top: calc(
-    env(safe-area-inset-top, 0px) + clamp(128px, 18vh, 240px)
+    env(safe-area-inset-top, 0px) + clamp(80px, 12vh, 140px)
   ) !important;
 }
 
