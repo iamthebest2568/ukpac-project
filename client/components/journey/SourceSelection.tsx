@@ -12,7 +12,7 @@ const SourceSelection = ({ sessionID, onNavigate }: SourceSelectionProps) => {
   const [selected, setSelected] = useState<string[]>([]);
 
   const options: { id: string; label: string }[] = [
-    { id: "radio", label: "��ายการวิทยุ" },
+    { id: "radio", label: "รายการวิทยุ" },
     { id: "tv_news", label: "รายการข่าวโทรทัศน์" },
     { id: "online_news", label: "รายการข่าวสื่อออนไลน์" },
     { id: "government", label: "เว็บไซต์ของหน่วยงานรัฐ" },
@@ -55,11 +55,12 @@ const SourceSelection = ({ sessionID, onNavigate }: SourceSelectionProps) => {
             <div style={{ textAlign: "center" }}>
               <span>
                 ถ้าคุณจะหาข่าวต่อ
-                คุณจะติดตามข่าวจากแหล่งข่าวไหนเป็นหลักรายการข่าวโทรทัศน์
+                <br />
+                คุณจะติดตามข่าวจากแหล่งข่าวไหนเป็นหลัก
               </span>
             </div>
             <div style={{ fontSize: 14, marginTop: 8, color: "#374151" }}>
-              เลือกได้ไม่เกิน 3 ข้อ
+              เลือกได้ไม��เกิน 3 ข้อ
             </div>
           </div>
         </>
