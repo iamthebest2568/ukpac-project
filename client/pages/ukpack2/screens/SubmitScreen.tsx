@@ -256,7 +256,7 @@ const SubmitScreen: React.FC = () => {
                 })()}
                 overlayIconMap={{
                   เงินสด: MONEY_ICON,
-                  สแก��จ่าย: SCAN_ICON,
+                  สแกนจ่าย: SCAN_ICON,
                   ตู้อัตโนมัติ: SCAN2_ICON,
                   แตะบัตร: TOUCH_ICON,
                   "ตั๋วรายเดือน/รอบ": MONTHLY_ICON,
