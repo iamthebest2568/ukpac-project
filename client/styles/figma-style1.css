@@ -636,6 +636,43 @@
 
 /* === End overrides === */
 
+/* === Ask04Budget: ensure the header/title is visible and fixed like Step2 === */
+.figma-style1-container.ask04-budget-page .figma-style1-title {
+  color: #000 !important;
+  margin-top: 0 !important;
+  margin-bottom: 6px !important;
+  position: relative !important;
+  z-index: 1002 !important;
+}
+
+.figma-style1-container.ask04-budget-page .figma-style1-title-container {
+  padding-top: 4px !important;
+  padding-bottom: 6px !important;
+  max-width: 980px !important;
+  position: fixed !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  top: calc(env(safe-area-inset-top, 0px) + 8px) !important;
+  z-index: 1005 !important;
+  width: 100% !important;
+  pointer-events: none !important;
+  box-sizing: border-box !important;
+}
+
+/* Push content down so it doesn't get hidden under the fixed title */
+.figma-style1-container.ask04-budget-page .figma-style1-content-area {
+  justify-content: flex-start !important;
+  padding-top: calc(env(safe-area-inset-top, 0px) + clamp(80px, 12vh, 140px)) !important;
+  align-items: flex-start !important;
+}
+
+/* Lower the z-index of collage so title remains on top */
+.figma-style1-container.ask04-budget-page .ask04-collage-wrapper {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+
 /* Make bottom question text black for readability */
 .figma-style1-container.mn3-step3-page .figma-style1-content-area h2,
 .figma-style1-container.mn3-step3-page .figma-style1-content-area h1 {
