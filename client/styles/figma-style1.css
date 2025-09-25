@@ -594,6 +594,48 @@
   margin-right: auto !important;
 }
 
+/* === Additional overrides: align Step3 spacing/position to match Step2 (จำนวนเงิน) === */
+/* Make title fixed and clear space for content, like Step2 */
+.figma-style1-container.mn3-step3-page .figma-style1-title-container {
+  position: fixed !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  top: calc(env(safe-area-inset-top, 0px) + 8px) !important;
+  z-index: 1005 !important;
+  width: 100% !important;
+  max-width: 980px !important;
+  pointer-events: none !important;
+  padding-top: 4px !important;
+  padding-bottom: 6px !important;
+  box-sizing: border-box !important;
+}
+
+/* Push content down to clear the fixed title using same spacing as Step2 */
+.figma-style1-container.mn3-step3-page .figma-style1-content-area {
+  justify-content: flex-start !important;
+  padding-top: calc(env(safe-area-inset-top, 0px) + clamp(80px, 12vh, 140px)) !important;
+  align-items: flex-start !important;
+}
+
+/* Ensure main aligns items to start so content flows from top */
+.figma-style1-container.mn3-step3-page .figma-style1-main {
+  align-items: start !important;
+  grid-template-rows: auto 1fr !important;
+}
+
+/* Make collage wrapper sit top-left within content area similar to Step2 layout */
+.figma-style1-container.mn3-step3-page .max-w-\[980px\].mx-auto.relative {
+  margin-top: 0 !important;
+}
+
+/* Ensure collage container height doesn't push title off-screen on small viewports */
+.figma-style1-container.mn3-step3-page .max-w-\[980px\] > div[style] {
+  height: auto !important;
+  min-height: 260px !important;
+}
+
+/* === End overrides === */
+
 /* Make bottom question text black for readability */
 .figma-style1-container.mn3-step3-page .figma-style1-content-area h2,
 .figma-style1-container.mn3-step3-page .figma-style1-content-area h1 {
