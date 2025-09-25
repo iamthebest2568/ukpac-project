@@ -1066,8 +1066,23 @@
 /* Remove overlay/wave decorations for this page (keep the background image itself) */
 .figma-style1-container.ask04-budget-page .figma-style1-background-overlay,
 .figma-style1-container.ask04-budget-page .figma-style1-wave-overlay,
-.figma-style1-container.ask04-budget-page::before {
+.figma-style1-container.ask04-budget-page::before,
+.figma-style1-container.ask04-budget-page .absolute.inset-0,
+.figma-style1-container.ask04-budget-page > .absolute.inset-0,
+.figma-style1-container.ask04-budget-page .figma-style1-background > .absolute.inset-0,
+.figma-style1-container.ask04-budget-page .bg-overlay,
+.figma-style1-container.ask04-budget-page .bg-overlay--blue,
+.figma-style1-container.ask04-budget-page .bg-overlay--dark,
+.figma-style1-container.ask04-budget-page::after,
+.figma-style1-container.ask04-budget-page .overlay-ribbon,
+.figma-style1-container.ask04-budget-page .overlay-ribbon-prev,
+.figma-style1-container.ask04-budget-page .overlay-ribbon-next {
   display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  width: 0 !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
 }
 
 /* Ensure background image remains visible and centered */
