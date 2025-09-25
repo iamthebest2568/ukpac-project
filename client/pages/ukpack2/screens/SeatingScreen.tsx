@@ -121,7 +121,7 @@ const SeatingScreen: React.FC = () => {
           : Number(totalSeats);
 
     if (Number.isNaN(total)) {
-      setErrorTitle("กรุณาระบุจำนวนที่นั่งท���้งหมด");
+      setErrorTitle("กรุณาระบุจำนวนที่นั่งทั้งหมด");
       setErrorMessage(
         `กรุณากรอกจำนวนที่นั่งทั้งหมดในช่วง ${minCapacityLocal} ถึง ${maxCapacityLocal} ที่นั่ง`,
       );
@@ -259,7 +259,7 @@ const SeatingScreen: React.FC = () => {
                     </div>
                     <input
                       type="number"
-                      placeholder="พิมพ์"
+                      placeholder="พ��มพ์"
                       value={totalSeats}
                       onFocus={(e) => {
                         e.currentTarget.placeholder = "";
