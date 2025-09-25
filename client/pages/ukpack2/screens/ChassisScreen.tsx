@@ -132,7 +132,7 @@ const OPTIONS = [
   },
   {
     key: "medium",
-    label: "รถเมล์มาตรฐาน 30-50 ท���่นั่ง",
+    label: "รถเมล์มาตรฐาน 30-50 ท่นั่ง",
     labelText: "รถเมล์มาตรฐาน 30-50 ที่นั่ง",
     icon: <IconMedium />,
   },
@@ -415,7 +415,7 @@ const ChassisScreen: React.FC = () => {
       <ConfirmModal
         isOpen={isExitModalOpen}
         title="ออกจากหน้าจอ"
-        message="คุณแน่ใจหรือไม่ว่า���้องการออก? กา���เปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
+        message="คุณแน่ใจหรือไม่ว่า้องการออก? กาเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
         onConfirm={confirmExit}
         onCancel={() => setExitModalOpen(false)}
         contentClassName={`${styles.containerPadding} ${styles.modalContent}`}

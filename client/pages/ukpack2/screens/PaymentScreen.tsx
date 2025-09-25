@@ -223,10 +223,10 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   แอร์: <IconAir />,
   พัดลม: <IconFan />,
   ที่นั่งพิเศษ: <IconSeat />,
-  "ที่จับ/ราวยืนท���่ปลอดภัย": <IconWifi />,
-  "ช่องชาร์จม���อถือ/USB": <IconPlug />,
+  "ที่จับ/ราวยืนท่ปลอดภัย": <IconWifi />,
+  "ช่องชาร์จมอถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
-  "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
+  "ระบบประกาศบอกป้า���(เสียง/จอ)": <IconCup />,
   กล้องวงจรปิด: <IconCam />,
 };
 
@@ -402,7 +402,7 @@ const PaymentScreen: React.FC = () => {
 
   const PAYMENT_BUTTON_SRC: Record<string, string> = {
     เงินสด: MONEY_ICON,
-    "สแกนจ่า��": SCAN_ICON,
+    "สแกนจ่า": SCAN_ICON,
     ตู้อัตโนมัติ: SCAN2_ICON,
     แตะบัตร: TOUCH_ICON,
     "ตั๋วรายเดือน/รอบ": MONTHLY_ICON,
@@ -456,7 +456,7 @@ const PaymentScreen: React.FC = () => {
 
   return (
     <CustomizationScreen
-      title="ออกแบบรถเม��์ของคุณ"
+      title="ออกแบบรถเม์ของคุณ"
       theme="light"
       fullWidth
       footerContent={
@@ -698,7 +698,7 @@ const PaymentScreen: React.FC = () => {
                   >
                     <img
                       src={
-                        selected.includes("กระเป๋���รถเมล์")
+                        selected.includes("กระเป๋รถเมล์")
                           ? BUS_EMPLOY_ICON_ACTIVE
                           : BUS_EMPLOY_ICON
                       }
@@ -794,7 +794,7 @@ const PaymentScreen: React.FC = () => {
                       "เงินสด",
                       "สแกนจ่าย",
                       "ตู้อัตโนมัติ",
-                      "แ��ะบัตร",
+                      "แะบัตร",
                       "กระเป๋ารถเมล์",
                       "ตั๋วรายเดือน/รอบ",
                     ];

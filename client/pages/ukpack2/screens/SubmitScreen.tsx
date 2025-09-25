@@ -224,7 +224,7 @@ const SubmitScreen: React.FC = () => {
         theme="light"
         footerContent={
           <div className="flex justify-center">
-            <CtaButton text="ออกแบบเสร็จแล้ว" onClick={handleFinish} />
+            <CtaButton text="ออกแบ��เสร็จแล้ว" onClick={handleFinish} />
           </div>
         }
       >
@@ -364,7 +364,7 @@ const SubmitScreen: React.FC = () => {
       <ConfirmModal
         isOpen={isExitModalOpen}
         title="ออกจากหน้าจอ"
-        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเป���ี่ยนแปลงของคุณจะไม่ถูกบันทึก"
+        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปี่ยนแปลงของคุณจะไม่ถูกบันทึก"
         onConfirm={() => navigate("/")}
         onCancel={() => setExitModalOpen(false)}
       />
