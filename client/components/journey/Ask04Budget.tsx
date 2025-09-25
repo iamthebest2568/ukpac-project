@@ -67,7 +67,7 @@ const Ask04Budget = ({
     ปรับปรุงคุณภาพรถเมล์: "🚌",
     ตั๋วร่วม: "🎫",
     เพิ่มความถี่รถเมล์: "🚍",
-    เพิ่มความถ��่รถไฟฟ้า: "🚊",
+    เพิ่มความถี่รถไฟฟ้า: "🚊",
     เพิ่มที่จอดรถ: "🅿️",
     "เพิ่ม Feeder ในซอย": "🚐",
   };
@@ -205,17 +205,19 @@ const Ask04Budget = ({
         </div>
       </div>
 
-      <div className="mt-6 flex justify-center gap-4">
-        {buttons.map((b, i) => (
-          <button
-            key={i}
-            onClick={b.onClick}
-            aria-label={b.ariaLabel}
-            className="px-6 py-3 rounded-full bg-[#FFE000] font-semibold"
-          >
-            {b.text}
-          </button>
-        ))}
+      <div className="ask04-footer">
+        <div className="figma-style1-button-container">
+          {buttons.map((b, i) => (
+            <button
+              key={i}
+              onClick={b.onClick}
+              aria-label={b.ariaLabel}
+              className="figma-style1-button"
+            >
+              <span className="figma-style1-button-text">{b.text}</span>
+            </button>
+          ))}
+        </div>
       </div>
     </FigmaStyle1Layout>
   );
