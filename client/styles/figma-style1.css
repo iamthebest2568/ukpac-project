@@ -1073,6 +1073,20 @@
   box-sizing: border-box !important;
 }
 
+/* Remove header on ask02-2 page --------------------------------------------------
+   Hide the title container and title text only for ask02-2 page so the header is removed
+   while preserving layout for all other pages.
+------------------------------------------------------------------------------- */
+.figma-style1-container.ask02-2-page .figma-style1-title-container,
+.figma-style1-container.ask02-2-page .figma-style1-title {
+  display: none !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
+}
+
 /* Mobile specific tweaks: keep buttons reachable and appropriately sized */
 @media (max-width: 430px) {
   .figma-style1-container.ask02-2-page .figma-style1-button-container {
