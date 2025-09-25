@@ -437,6 +437,13 @@
   box-sizing: border-box;
 }
 
+/* Override for MN3 Step2 page: top-align and allow scrolling within content area */
+.figma-style1-container.mn3-step2-minimal.mn3-step2-page .mn3-allocation-content {
+  margin: 0 auto !important;
+  padding: 16px 12px 96px 12px !important; /* keep bottom padding for footer clearance */
+  width: 100% !important;
+}
+
 /* Budget display box matching Figma */
 .mn3-budget-display {
   background-color: #ffe000;
