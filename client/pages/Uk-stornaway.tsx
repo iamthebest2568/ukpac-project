@@ -362,6 +362,7 @@ export default function UkStornaway() {
         loading="eager"
         referrerPolicy="no-referrer-when-downgrade"
         allowFullScreen
+        sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
       />
     </div>
   );
