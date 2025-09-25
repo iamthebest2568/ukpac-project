@@ -564,7 +564,7 @@ const DoorScreen: React.FC = () => {
                     const explicit = [
                       "เงินสด",
                       "สแกนจ่าย",
-                      "ตู้อัตโนม��ติ",
+                      "ตู้อัตโนมัติ",
                       "แตะบัตร",
                       "กระเป๋ารถเมล์",
                       "ตั๋วรายเดือน/รอบ",
@@ -798,7 +798,7 @@ const DoorScreen: React.FC = () => {
                               className="col-span-2 md:col-span-4"
                             >
                               <h3 className="text-xl font-prompt font-semibold text-[#003366] mt-2">
-                                ทางอื่นๆ
+                                ทางอื่นๆ (สามารถเลือกประกอบได้)
                               </h3>
                             </div>,
                           );
