@@ -7,6 +7,8 @@ import { useSession } from "../../hooks/useSession";
 import { logEvent } from "../../services/dataLogger.js";
 import FigmaStyle1Layout from "../../components/layouts/FigmaStyle1Layout";
 
+import TabletMockup from "../ukpack2/components/TabletMockup";
+
 const HowDoYouThinkPage = () => {
   const { sessionID, navigateToPage } = useSession();
   const [selectedOption, setSelectedOption] = useState<string>("");
