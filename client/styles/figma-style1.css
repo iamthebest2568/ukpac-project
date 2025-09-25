@@ -2065,6 +2065,8 @@ body[data-dialog-open] {
   justify-content: flex-start !important;
   padding-top: clamp(12px, 6vh, 48px) !important;
   height: 100% !important;
+  position: relative !important;
+  z-index: 50 !important; /* make sure main sits above any overlays */
 }
 
 .mn2-step1-page .figma-style1-content-area,
@@ -2075,22 +2077,44 @@ body[data-dialog-open] {
   align-items: center !important;
   padding-top: 0 !important;
   padding-bottom: clamp(16px, 10vh, 140px) !important;
-  z-index: 30 !important;
+  z-index: 60 !important; /* content above main overlays */
 }
 
 .mn2-step1-page .figma-style1-title-container,
 .mn2-summary-page .figma-style1-title-container {
   margin-top: 8px !important;
-  z-index: 30 !important;
+  z-index: 70 !important;
   position: relative !important;
 }
 
 .mn2-step1-page .figma-style1-button-container,
 .mn2-summary-page .figma-style1-button-container {
-  z-index: 30 !important;
+  z-index: 70 !important;
 }
 
 .mn2-step1-page .figma-style1-background,
 .mn2-summary-page .figma-style1-background {
   object-position: center top !important;
+  z-index: 0 !important;
+}
+
+/* Hide any decorative overlays or absolute full-screen elements that may block content */
+.mn2-step1-page .figma-style1-background-overlay,
+.mn2-summary-page .figma-style1-background-overlay,
+.mn2-step1-page .figma-style1-wave-overlay,
+.mn2-summary-page .figma-style1-wave-overlay,
+.mn2-step1-page > .absolute.inset-0,
+.mn2-summary-page > .absolute.inset-0,
+.mn2-step1-page .absolute.inset-0,
+.mn2-summary-page .absolute.inset-0,
+.mn2-step1-page::before,
+.mn2-summary-page::before {
+  display: none !important;
+  pointer-events: none !important;
+  z-index: 0 !important;
+}
+
+/* Ensure footer doesn't cover top content; keep footer above content but not obscuring title */
+.mn2-summary-footer {
+  z-index: 80 !important;
 }
