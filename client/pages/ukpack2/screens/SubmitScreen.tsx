@@ -220,7 +220,7 @@ const SubmitScreen: React.FC = () => {
   return (
     <>
       <CustomizationScreen
-        title="ออกแ���บรถเมล์ของคุณ"
+        title="การบริการของรถเมล์"
         theme="light"
         footerContent={
           <div className="flex justify-center">
@@ -256,7 +256,7 @@ const SubmitScreen: React.FC = () => {
                 })()}
                 overlayIconMap={{
                   เงินสด: MONEY_ICON,
-                  สแกนจ่าย: SCAN_ICON,
+                  สแก��จ่าย: SCAN_ICON,
                   ตู้อัตโนมัติ: SCAN2_ICON,
                   แตะบัตร: TOUCH_ICON,
                   "ตั๋วรายเดือน/รอบ": MONTHLY_ICON,
@@ -364,7 +364,7 @@ const SubmitScreen: React.FC = () => {
       <ConfirmModal
         isOpen={isExitModalOpen}
         title="ออกจากหน้าจอ"
-        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
+        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเป���ี่ยนแปลงของคุณจะไม่ถูกบันทึก"
         onConfirm={() => navigate("/")}
         onCancel={() => setExitModalOpen(false)}
       />
