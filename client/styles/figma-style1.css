@@ -576,8 +576,16 @@
   flex-direction: column !important;
   align-items: center !important;
   justify-content: center !important;
-  padding-top: 0 !important;
+  padding-top: calc(env(safe-area-inset-top, 0px) + 12px) !important;
   padding-bottom: 24px !important;
+}
+
+/* Ensure the title container sits below any device notch/status bar */
+.figma-style1-container.mn3-step3-page .figma-style1-title-container {
+  padding-top: calc(env(safe-area-inset-top, 0px) + 8px) !important;
+  padding-bottom: 6px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
 }
 
 /* Ensure collage wrapper sits centered and responsive */
