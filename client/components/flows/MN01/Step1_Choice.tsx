@@ -181,9 +181,9 @@ const Step1_Choice = ({
         {/* Continue Button - displayed directly below the options */}
         <div className="w-full px-4 mt-4 flex justify-center">
           <div
-            className="mx-auto flex flex-col items-center space-y-2"
-            style={{ width: "100%", maxWidth: 980 }}
-          >
+          className="mx-auto flex flex-col items-center space-y-2"
+          style={{ width: "100%", maxWidth: 980, marginTop: "-10px" }}
+        >
             <button
               onClick={handleNext}
               className="mn3-continue-button"
