@@ -794,9 +794,9 @@ const PaymentScreen: React.FC = () => {
                       "เงินสด",
                       "สแกนจ่าย",
                       "ตู้อัตโนมัติ",
-                      "แะบัตร",
+                      "แตะบัตร",
                       "กระเป๋ารถเมล์",
-                      "ตั๋วรายเดือน/รอ��",
+                      "ตั๋วรายเดือน/รอบ",
                     ];
                     for (const k of explicit) {
                       if (!merged[k] && (OVERLAY_ICON_SRC as any)[k])
