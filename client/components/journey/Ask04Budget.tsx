@@ -67,7 +67,7 @@ const Ask04Budget = ({
     ปรับปรุงคุณภาพรถเมล์: "🚌",
     ตั๋วร่วม: "🎫",
     เพิ่มความถี่รถเมล์: "🚍",
-    เพิ่มความถี่รถไฟฟ้า: "🚊",
+    เพิ่มความถ��่รถไฟฟ้า: "🚊",
     เพิ่มที่จอดรถ: "🅿️",
     "เพิ่ม Feeder ในซอย": "🚐",
   };
@@ -136,8 +136,10 @@ const Ask04Budget = ({
 
   return (
     <FigmaStyle1Layout
+      backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fa56996a8dcaa4381bfcf73c46db8134d?format=webp&width=800"
+      backgroundAlt="ผลลัพธ์จากการตอบคำถาม"
       title={`คุณพอใจภาพเมืองในอนาคตที่อาจจะเกิดขึ้นหรือไม่`}
-      className="ask04-budget-page mn3-step2-minimal"
+      className="ask04-page ask04-budget-page mn3-step2-minimal"
     >
       {/* Children: collage + buttons (we render buttons here because providing children disables automatic button rendering) */}
       <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
