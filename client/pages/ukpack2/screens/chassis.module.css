@@ -257,7 +257,7 @@
   }
   .selectionGrid {
     --icon-cell-height: 220px; /* larger icon height on desktop */
-    grid-template-columns: repeat(4, 1fr); /* 4 columns on desktop */
+    grid-template-columns: repeat(2, 1fr); /* force 2 columns on desktop as well */
     gap: 6px; /* tighter gap on larger screens */
     padding: 0; /* ensure grid stretches to border */
     justify-content: start;
