@@ -123,6 +123,12 @@ const FigmaStyle1Layout = ({
                     className="figma-style1-background-image"
                     loading={imageLoading}
                     decoding="async"
+                    style={{
+                      objectFit: "cover",
+                      objectPosition: pageScope.includes("figma-style1-ukpack1") ? "center 8%" : "center center",
+                      width: "100%",
+                      height: "100%",
+                    }}
                   />
                 );
               })()
