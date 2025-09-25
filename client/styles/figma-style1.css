@@ -230,12 +230,25 @@
 .figma-style1-container.mn3-step2-minimal .figma-style1-title {
   margin-top: 0 !important;
   margin-bottom: 6px !important;
+  color: #000 !important;
+  position: relative !important;
+  z-index: 1002 !important;
 }
 
 .figma-style1-container.mn3-step2-minimal .figma-style1-title-container {
   padding-top: 4px !important;
   padding-bottom: 6px !important;
   max-width: 980px !important; /* allow title + content to use wider area */
+  position: relative !important;
+  z-index: 1001 !important;
+}
+
+/* Hide accidental overlays that could cover the title on MN3 step2 */
+.figma-style1-container.mn3-step2-minimal .figma-style1-background-overlay,
+.figma-style1-container.mn3-step2-minimal .absolute.inset-0,
+.figma-style1-container.mn3-step2-minimal::before {
+  display: none !important;
+  pointer-events: none !important;
 }
 
 /* Ensure the allocation content itself sits at the top of the content area */
