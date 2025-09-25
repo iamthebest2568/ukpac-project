@@ -223,7 +223,7 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   แอร์: <IconAir />,
   พัดลม: <IconFan />,
   ที่นั่งพิเศษ: <IconSeat />,
-  "ที��จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
+  "ที่จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
   "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
   "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
@@ -262,7 +262,7 @@ const OPTIONS = [
   { key: "scan", label: "สแกนจ่าย", icon: <IconScan /> },
   { key: "tap", label: "แตะบัตร", icon: <IconTap /> },
   { key: "monthly", label: "ตั๋วรายเดือน/รอบ", icon: null },
-  { key: "scan2", label: "ตู้อัตโนมัติ", icon: null },
+  { key: "scan2", label: "ตู้อัตโนมัต��", icon: null },
   { key: "qr", label: "กระเป๋ารถเมล์", icon: <IconQr /> },
 ];
 
@@ -368,7 +368,7 @@ const PaymentScreen: React.FC = () => {
         };
 
         if (!isSelected) {
-          // selecting �� persist icon3 if available
+          // selecting  persist icon3 if available
           const set = ICON_SETS[label];
           if (set && set[2]) {
             setVariants(label, set[2]);
@@ -512,10 +512,10 @@ const PaymentScreen: React.FC = () => {
             ];
             // Normalize known corrupted label encodings (in case values were stored with encoding issues)
             const CORRECT_LABELS: Record<string, string> = {
-              ตู้อ���ตโนมัติ: "ตู้อัตโนมัติ",
+              ตู้อัตโนมัติ: "ตู้อัตโนมัติ",
               แตะบัตร: "แตะบัตร",
               กระเป๋ารถเมล์: "กระเป๋ารถเมล์",
-              เงินสด: "เงินสด",
+              เงินสด: "เ��ินสด",
             };
             const stripReplacement = (s: string) =>
               (s || "")
