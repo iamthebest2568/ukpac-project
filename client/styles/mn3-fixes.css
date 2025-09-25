@@ -1,40 +1,4 @@
-/* =========================
-   Specific override: Ask04Budget (remove background)
-   ========================= */
-.figma-style1-container.ask04-budget-page .figma-style1-background,
-.figma-style1-container.ask04-budget-page .figma-style1-background-image,
-.figma-style1-container.ask04-budget-page .figma-style1-background-overlay,
-.figma-style1-container.ask04-budget-page .figma-style1-wave-overlay,
-.figma-style1-container.ask04-budget-page::before {
-  display: none !important;
-  background: transparent !important;
-  background-image: none !important;
-  content: none !important;
-}
-
-.figma-style1-container.ask04-budget-page,
-.figma-style1-container.ask04-budget-page .figma-style1-content,
-.figma-style1-container.ask04-budget-page .figma-style1-main,
-.figma-style1-container.ask04-budget-page .figma-style1-content-area {
-  background: transparent !important;
-  background-color: transparent !important;
-}
-
-/* Extra high-specificity rule to override fake-news-page settings if needed */
-.figma-style1-container.ask04-budget-page.figma-style1-ukpack1.fake-news-page
-  .figma-style1-background,
-.figma-style1-container.ask04-budget-page.figma-style1-ukpack1.fake-news-page
-  .figma-style1-background-image,
-.figma-style1-container.ask04-budget-page.figma-style1-ukpack1.fake-news-page
-  .figma-style1-background-overlay {
-  display: none !important;
-}
-
-/* Ensure the container background color is transparent even if fake-news-page sets a color */
-.figma-style1-container.ask04-budget-page.figma-style1-ukpack1.fake-news-page {
-  background: transparent !important;
-  background-color: transparent !important;
-}
+/* Ask04Budget specific background overrides removed so page inherits Ask04 styles. */
 
 /* Footer for Ask04Budget: pin buttons to bottom of viewport */
 .ask04-footer {
