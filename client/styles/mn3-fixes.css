@@ -27,3 +27,17 @@
 .figma-style1-container.ask04-budget-page .figma-style1-content-area {
   padding-bottom: calc(env(safe-area-inset-bottom, 12px) + 96px) !important;
 }
+
+/* Ask04Budget: keep the title above any collage images */
+.figma-style1-container.ask04-budget-page .figma-style1-title,
+.figma-style1-container.ask04-budget-page .figma-style1-title-container {
+  position: relative !important;
+  z-index: 3000 !important;
+  color: #000 !important;
+}
+
+/* Ask04Budget: create a lower stacking context for the collage */
+.figma-style1-container.ask04-budget-page .ask04-collage-wrapper {
+  position: relative !important;
+  z-index: 1 !important;
+}
