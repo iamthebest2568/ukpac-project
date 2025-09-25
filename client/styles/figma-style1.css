@@ -2237,9 +2237,23 @@ body[data-dialog-open] {
 }
 
 .mn2-summary-page .figma-style1-title-container {
-  position: relative !important;
-  z-index: 30 !important;
-  margin-top: 8px !important;
+  /* Fix the title into the header area for MN2 summary page only */
+  position: fixed !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  top: calc(env(safe-area-inset-top, 0px) + 8px) !important;
+  z-index: 1005 !important;
+  width: 100% !important;
+  max-width: 980px !important;
+  pointer-events: none !important;
+  padding-top: 4px !important;
+  padding-bottom: 6px !important;
+  box-sizing: border-box !important;
+}
+
+/* Ensure content starts below the fixed title */
+.mn2-summary-page .figma-style1-content-area {
+  padding-top: calc(env(safe-area-inset-top, 0px) + clamp(80px, 12vh, 140px)) !important;
 }
 
 .mn2-summary-page .figma-style1-button-container {
