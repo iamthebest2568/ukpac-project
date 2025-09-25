@@ -418,7 +418,7 @@
 }
 
 /* Ensure MN3 step2 content isn't hidden behind footer */
-.figma-style1-container.mn3-step2-minimal .figma-style1-content-area {
+.figma-style1-container.mn3-step2-minimal.mn3-step2-page .figma-style1-content-area {
   padding-bottom: calc(env(safe-area-inset-bottom, 12px) + 96px) !important;
 }
 
