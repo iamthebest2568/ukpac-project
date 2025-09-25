@@ -2257,6 +2257,13 @@ body[data-dialog-open] {
   margin: 0 auto !important;
 }
 
+/* Constrain MN2 summary content to viewport and allow internal scrolling to prevent content escaping off-screen */
+.mn2-summary-page .figma-style1-content-area {
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  max-height: calc(100svh - (env(safe-area-inset-top, 0px) + 140px + env(safe-area-inset-bottom, 12px))) !important;
+}
+
 /* Footer fixed at bottom, above content but below any critical modals */
 .mn2-summary-footer {
   position: fixed !important;
