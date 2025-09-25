@@ -57,7 +57,7 @@ const Ask04Budget = ({
     {
       text: "ไม่พอใจ",
       onClick: () => handleChoice("unsatisfied"),
-      ariaLabel: "ไม่พอใจกับผลลัพธ์และต้องการให้ข้อเสนอแนะ",
+      ariaLabel: "ไม่พอใจกับผลลัพธ์���ละต้องการให้ข้อเสนอแนะ",
     },
   ];
 
@@ -166,16 +166,24 @@ const Ask04Budget = ({
               const offsetX = Math.round((i - (count - 1) / 2) * spacing);
               const width = count === 1 ? "68%" : count === 2 ? "55%" : "46%";
 
+              const offset = collageOffsets[i] || {
+                left: `50%`,
+                top: `0%`,
+                rotate: `0deg`,
+                z: i + 1,
+                scale: 1,
+              };
+
               return (
                 <div
                   key={s.priority}
                   style={{
                     position: "absolute",
                     left: "50%",
-                    top: "50%",
-                    transform: `translate(calc(-50% + ${offsetX}px), -50%)`,
+                    top: `calc(50% + ${offset.top})`,
+                    transform: `translate(calc(-50% + ${offsetX}px), -50%) rotate(${offset.rotate}) scale(${offset.scale})`,
                     width,
-                    zIndex: i + 1,
+                    zIndex: offset.z,
                   }}
                 >
                   <div
