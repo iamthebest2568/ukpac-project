@@ -57,7 +57,7 @@ const Ask04Budget = ({
     {
       text: "ไม่พอใจ",
       onClick: () => handleChoice("unsatisfied"),
-      ariaLabel: "ไม่พอใจกับผลลัพธ์���ละต้องการให้ข้อเสนอแนะ",
+      ariaLabel: "ไม่พอใจกับผลลัพธ์และต้องการให้ข้อเสนอแนะ",
     },
   ];
 
@@ -145,7 +145,7 @@ const Ask04Budget = ({
       <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
         {/* Collage container */}
         <div
-          className="max-w-[980px] w-full px-4"
+          className="max-w-[980px] w-full px-4 ask04-collage-wrapper"
           style={{
             height: 420,
             display: "flex",
