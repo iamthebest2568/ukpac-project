@@ -12,7 +12,8 @@ const SourceSelection = ({ sessionID, onNavigate }: SourceSelectionProps) => {
   const [selected, setSelected] = useState<string[]>([]);
 
   const options: { id: string; label: string }[] = [
-    { id: "radio", label: "รายการวิทยุ" },
+    { id: "radio", label: "��ายการวิทยุ" },
+    { id: "tv_news", label: "รายการข่าวโทรทัศน์" },
     { id: "online_news", label: "รายการข่าวสื่อออนไลน์" },
     { id: "government", label: "เว็บไซต์ของหน่วยงานรัฐ" },
     { id: "road_sign", label: "ป้ายประกาศ หรือสื่อข้างทาง" },
