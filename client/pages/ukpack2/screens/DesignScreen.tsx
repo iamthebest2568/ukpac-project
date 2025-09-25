@@ -496,26 +496,29 @@ const DesignScreen: React.FC = () => {
         <div className="space-y-6">
           {/* Firestore confirmation panel (trial) */}
           {savedInfo && (
-            <div className="max-w-2xl w-full mx-auto bg-white border-2 border-[#000D59] rounded-xl p-3 mb-2">
-              <div className="text-sm text-[#001a73] font-medium">
-                ���ันทึกภาพตัวอย่างไปยัง Firestore ���ล้ว
-              </div>
-              <div className="mt-1 text-[11px] text-[#001a73]">
-                Collection: {savedInfo.col || "(unknown)"}
-              </div>
-              <div className="mt-2 flex gap-3 items-start">
-                <img
-                  src={savedInfo.url}
-                  alt="image"
-                  className="w-32 h-20 object-contain rounded border"
-                />
-                <div className="text-xs break-words flex-1">
-                  <div>
-                    <span className="font-semibold">Doc ID:</span>{" "}
-                    {savedInfo.id || "(ไม่ทราบ)"}
-                  </div>
-                  <div className="mt-1">
-                    <span className="font-semibold">URL:</span> {savedInfo.url}
+            // Hidden for UI only — functionality and state remain unchanged
+            <div style={{ display: "none" }} aria-hidden="true">
+              <div className="max-w-2xl w-full mx-auto bg-white border-2 border-[#000D59] rounded-xl p-3 mb-2">
+                <div className="text-sm text-[#001a73] font-medium">
+                  บันทึกภาพตัวอย่างไปยัง Firestore แล้ว
+                </div>
+                <div className="mt-1 text-[11px] text-[#001a73]">
+                  Collection: {savedInfo.col || "(unknown)"}
+                </div>
+                <div className="mt-2 flex gap-3 items-start">
+                  <img
+                    src={savedInfo.url}
+                    alt="image"
+                    className="w-32 h-20 object-contain rounded border"
+                  />
+                  <div className="text-xs break-words flex-1">
+                    <div>
+                      <span className="font-semibold">Doc ID:</span>{" "}
+                      {savedInfo.id || "(ไม่ทราบ)"}
+                    </div>
+                    <div className="mt-1">
+                      <span className="font-semibold">URL:</span> {savedInfo.url}
+                    </div>
                   </div>
                 </div>
               </div>
