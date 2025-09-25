@@ -42,7 +42,7 @@ const Step2_Summary = ({
         "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fd0e13c552a39418eb25993c7d87905c8?format=webp&width=140",
     },
     elderly: {
-      label: "��ู้สูงอายุ",
+      label: "ผู้สูงอายุ",
       iconSrc:
         "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fd3f59501f48a452c9298801a0aefebe1?format=webp&width=100",
     },
@@ -187,7 +187,6 @@ const Step2_Summary = ({
       <div
         className="relative w-full max-w-full mx-auto px-4 py-6"
         style={{
-          paddingTop: "clamp(24px, 6vh, 60px)",
           boxSizing: "border-box",
           display: "flex",
           flexDirection: "column",
