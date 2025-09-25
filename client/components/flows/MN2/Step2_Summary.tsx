@@ -185,22 +185,23 @@ const Step2_Summary = ({
       }
     >
       <div
-        className="relative z-10 w-full max-w-full mx-auto px-4 py-6"
+        className="relative w-full max-w-full mx-auto px-4 py-6"
         style={{
           paddingTop: "clamp(56px, 12vh, 120px)",
-          height: "calc(100vh - 80px)",
+          height: "calc(100vh - 140px)",
           boxSizing: "border-box",
           display: "flex",
           flexDirection: "column",
+          zIndex: 9999,
         }}
       >
         {/* Policy Cards */}
-        <div style={{ overflowY: "auto", flex: 1, paddingRight: 8 }}>
+        <div style={{ flex: 1, paddingRight: 8 }}>
           <div className="space-y-6 mb-6">
             {summaryCards.map((card, index) => (
               <div
                 key={index}
-                className="w-full max-w-[903px] mx-auto rounded-[20px] border-2 border-[#000D59] bg-transparent"
+                className="w-full max-w-[903px] mx-auto rounded-[20px] border-2 border-[#000D59] bg-white"
                 style={{
                   minHeight: "clamp(180px, 22vw, 300px)",
                   padding: "clamp(12px, 2.6vw, 20px)",
@@ -267,8 +268,8 @@ const Step2_Summary = ({
 
         {/* Bottom Question Section */}
         <div
-          className="text-center mb-8"
-          style={{ marginTop: "auto", paddingBottom: "clamp(16px, 4vh, 48px)" }}
+          className="text-center mb-2"
+          style={{ marginTop: "auto", paddingBottom: "8px" }}
         >
           <h2
             className="font-prompt font-bold text-center"
@@ -279,48 +280,57 @@ const Step2_Summary = ({
               lineHeight: "1.2",
             }}
           >
-            นโยบายเพิ่มเติมที่คุณเสนอตรงใจคุณแล้วหรือไม่
+            นโยบ���ยเพิ่มเติมที่คุณเสนอตรงใจคุณแล้วหรือไม่
           </h2>
+        </div>
+      </div>
 
-          <div
-            className="figma-style1-button-container mt-6"
-            style={{
-              maxWidth: 420,
-              margin: "0 auto",
-              display: "flex",
-              gap: 12,
-              justifyContent: "center",
-            }}
+      {/* Footer with action buttons (fixed to viewport bottom) */}
+      <div
+        className="mn2-summary-footer"
+        style={{
+          position: "fixed",
+          left: 0,
+          right: 0,
+          bottom: 0,
+          zIndex: 10000,
+          background: "linear-gradient(180deg, rgba(255,255,255,0.0), rgba(255,255,255,0.95))",
+          backdropFilter: "blur(6px)",
+          padding: "12px 16px",
+          display: "flex",
+          justifyContent: "center",
+          boxShadow: "0 -6px 18px rgba(0,13,89,0.08)",
+        }}
+      >
+        <div style={{ maxWidth: 420, width: "100%", display: "flex", gap: 12, justifyContent: "center" }}>
+          <button
+            onClick={handleEndGame}
+            className="figma-style1-button"
+            aria-label="ใช่, ไปต่อ"
+            style={{ flex: 1 }}
           >
-            <button
-              onClick={handleEndGame}
-              className="figma-style1-button"
-              aria-label="ใช่, ไปต่อ"
-            >
-              <span className="figma-style1-button-text">ใช่, ไปต่อ</span>
-            </button>
+            <span className="figma-style1-button-text">ใช่, ไปต่อ</span>
+          </button>
 
-            <button
-              onClick={() => {
-                // Log and navigate back to MN1 to try again
-                logEvent({
-                  event: "MINIGAME_MN2_SUMMARY_RETRY",
-                  payload: { sessionID, summaryCards },
-                });
-                try {
-                  navigateToPage("/minigame-mn1");
-                } catch (e) {
-                  console.warn("navigate to mn1 failed", e);
-                }
-              }}
-              className="figma-style1-button"
-              aria-label="ไม่ใช่, ลองอีกครั้ง"
-            >
-              <span className="figma-style1-button-text">
-                ไม่ใช่, ลองอีกครั้ง
-              </span>
-            </button>
-          </div>
+          <button
+            onClick={() => {
+              // Log and navigate back to MN1 to try again
+              logEvent({
+                event: "MINIGAME_MN2_SUMMARY_RETRY",
+                payload: { sessionID, summaryCards },
+              });
+              try {
+                navigateToPage("/minigame-mn1");
+              } catch (e) {
+                console.warn("navigate to mn1 failed", e);
+              }
+            }}
+            className="figma-style1-button"
+            aria-label="ไม่ใช่, ลองอีกครั้ง"
+            style={{ flex: 1 }}
+          >
+            <span className="figma-style1-button-text">ไม่ใช่, ลองอีกครั้ง</span>
+          </button>
         </div>
       </div>
     </FigmaStyle1Layout>
