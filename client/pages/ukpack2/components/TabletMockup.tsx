@@ -30,6 +30,7 @@ const TabletMockup: React.FC<TabletMockupProps> = ({ children }) => {
   const BASE_H = 896;
   const [scale, setScale] = useState(1);
   const frameRef = React.useRef<HTMLDivElement | null>(null);
+  const navigate = useNavigate();
 
   const recomputeScale = React.useCallback(() => {
     const margin = 32; // include soft shadow space
