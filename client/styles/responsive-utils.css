@@ -390,20 +390,6 @@
   z-index: 0;
 }
 
-.bg-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.1);
-  z-index: 1;
-}
-
-.bg-overlay--dark {
-  background: rgba(0, 0, 0, 0.7);
-}
-
-.bg-overlay--blue {
-  background: #04d9f9;
-}
 
 /* ============================================
   FORM COMPONENTS
