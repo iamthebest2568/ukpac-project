@@ -10,7 +10,7 @@ const Ask02 = ({ sessionID, onNavigate }: Ask02Props) => {
   const handleChoice = (choice: "coverage" | "ineffective" | "other") => {
     const choiceText = {
       coverage: "นโยบายไม่ครอบคลุม",
-      ineffective: "เก็บไปก็ไม่มีอะไรเกิดขึ้น",
+      ineffective: "เก็บไปก็ไม่มีอะไรดีขึ้น",
       other: "อื่นๆ",
     }[choice];
 
@@ -43,7 +43,7 @@ const Ask02 = ({ sessionID, onNavigate }: Ask02Props) => {
       ariaLabel: "เห็นว่านโยบายยังไม่ครอบคลุมประเด็นสำคัญ",
     },
     {
-      text: "เก็บไปก็ไม่มีอะไรเกิดขึ้น",
+      text: "เก็บไปก็ไม่มีอะไรดีขึ้น",
       onClick: () => handleChoice("ineffective"),
       ariaLabel: "เห็นว่าการเก็บเงินอาจไม่ส่งผลต่อการแก้ปัญหา",
     },
