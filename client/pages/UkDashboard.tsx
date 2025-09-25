@@ -55,7 +55,7 @@ type SessionSummary = {
   mn3Selected?: string[]; // ประเด็นนโยบายที่ผู้ใช้เลือก
   mn3BudgetAllocation?: Record<string, number>; // การจัดสรรงบประมาณ
   mn3BudgetTotal?: number;
-  satisfactionLevel?: string; // ระดับความพึงพอใจ
+  satisfactionLevel?: string; // ระด��บความพึงพอใจ
   ask05Comment?: string; // ข้อเสนอเพิ่มเติมต่อรัฐ
   fakeNewsResponse?: string; // การตอบสนองต่อข่าวปลอม
   sourceSelected?: string; // แหล่งข่าวที่ผู้ใช้เลือก
@@ -248,7 +248,7 @@ export default function UkDashboard() {
               className="w-full rounded-md bg-black/40 border border-white/15 px-3 py-2 outline-none"
               value={pw}
               onChange={(e) => setPw(e.target.value)}
-              placeholder="รหัสผ่าน"
+              placeholder="รห���สผ่าน"
             />
             {pwErr && <div className="text-red-400 text-sm mt-2">{pwErr}</div>}
             <button
@@ -288,7 +288,7 @@ export default function UkDashboard() {
                   {ingest.app.lastTs
                     ? new Date(ingest.app.lastTs).toLocaleString()
                     : "-"}{" "}
-                  • วิ��ีโอ: {ingest.video.count} เหตุการณ์, ล่าสุด{" "}
+                  • วิดีโอ: {ingest.video.count} เหตุการณ์, ล่าสุด{" "}
                   {ingest.video.lastTs
                     ? new Date(ingest.video.lastTs).toLocaleString()
                     : "-"}
@@ -345,7 +345,7 @@ export default function UkDashboard() {
                 className="rounded-md bg-red-600/80 hover:bg-red-600 border border-red-500 px-3 py-2 text-sm"
                 onClick={clearData}
                 disabled={clearing}
-                title="ลบ events.jsonl และ app-events.jsonl ในเซิร์ฟเว���ร์"
+                title="ลบ events.jsonl และ app-events.jsonl ในเซิร์ฟเวอร์"
               >
                 {clearing ? "กำลังลบ..." : "ลบข้อมูลทั้งหมด"}
               </button>
@@ -833,13 +833,13 @@ export default function UkDashboard() {
                       "ทำไมคุณถึงต้องเข้าเมืองบ่อย ๆ ?",
                       "คุณใช้รถแบบไหนเดินทางเข้าเมือง ?",
                       "คุณคิดเห็นอย่างไรกับนโยบายนี้ ?",
-                      "จากข้อความข้างต้น คุณมีความคิดเห็นอย่างไร (เห็นด้วย/กลางๆ/ไม่เห็นด้วย)",
-                      "ทำไมคุณถึงคิดอย่างนั้น (นโยบายไม่ครอบคลุม / เก���บไปก็ไม่มีอะไรดีขึ้น / อืนๆ)",
+                      "จากข้อความข้างต้น คุณมีความคิดเห็นอย่างไร (เห็นด้วย/กลางๆ/ไม่เห็น��้วย)",
+                      "ทำไมคุณถึงคิดอย่างนั้น (นโยบายไม่ครอบคลุม / เก็บไปก็ไม่มีอะไรดีขึ้น / อื่นๆ)",
                       "อธิบายอื่น ๆ ที่ช่วยอธิบายความคิดเห็น",
                       "บอกเราหน่อยว่าคุณเดินทางเข้าเมืองด้วยวิธีการใดบ่อยที่สุด",
                       "จากนโยบายที่คุณฟังเมื่อสักครู่ คุณมีความคิดเห็นอย่างไร",
                       "คุณคิดว่านโยบายปัจจุบัน ควรปรับเปลี่ยนประเด็นอะไรบาง (ลดค่าโดยสาร, ปรับปรุงคุณภาพ, ขึ้นราคา, เพิ่มขบวน, เพิ่มความถี่ ฯลฯ)",
-                      "คุณคิดว่าใครควรได้รับการลดค่าโดยสารรถไฟฟ้าบ้าง (ทุกคน, ผู้สูงอายุ, นักเรียน, คนทำงาน ฯลฯ)",
+                      "คุณคิดว่าใครควรได้รับการลดค่าโดยสารรถไฟฟ้าบ้าง (ทุกคน, ผู้สูงอ���ยุ, นักเรียน, คนทำงาน ฯลฯ)",
                       "คุณคิดว่าควรใช้เงินที่ได้จากการเก็บไปพัฒนาอะไร ก่อน 3 อันดับแรก",
                       "คุณจะให้งบประมาณแต่ละข้อเท่าไร (งบทั้งหมด 100)",
                       "คุณพอใจกับผลลัพธ์ที่เกิดขึ้นหรือไม่ (พอใจ / ไม่พอใจ)",
