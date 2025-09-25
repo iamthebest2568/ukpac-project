@@ -191,7 +191,7 @@ export default function UkStornaway() {
             }
             return;
           }
-          if (token === "เก็บไปก็ไม่มีอะไรเกิดขึ้น") {
+          if (token === "เก็บไปก็ไม่มีอะไรดีขึ้น") {
             if (!navigatedRef.current) {
               navigatedRef.current = true;
               setTimeout(() => {
