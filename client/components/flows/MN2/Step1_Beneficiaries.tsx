@@ -137,8 +137,8 @@ const Step1_Beneficiaries = ({
 
   const titleText =
     currentPriority === "ลดค่าโดยสารรถไฟฟ้า"
-      ? "คุณคิดว่าใครควรได้รับ  การลดค่าโดยสารรถไฟฟ้าบ้าง"
-      : `คุณคิดว่าใครควรได้รับประโยชน์จาก ${currentPriority} ?`;
+      ? "คุณคิดว่าใครควรได้รับการลดค่าโดยสารรถไฟฟ้าบ้าง"
+      : `คุณคิดว่าใครควรได้รับประโยชน์จาก ${currentPriority}`;
 
   return (
     <FigmaStyle1Layout
