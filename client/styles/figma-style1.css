@@ -613,7 +613,9 @@
 /* Push content down to clear the fixed title using same spacing as Step2 */
 .figma-style1-container.mn3-step3-page .figma-style1-content-area {
   justify-content: flex-start !important;
-  padding-top: calc(env(safe-area-inset-top, 0px) + clamp(80px, 12vh, 140px)) !important;
+  padding-top: calc(
+    env(safe-area-inset-top, 0px) + clamp(80px, 12vh, 140px)
+  ) !important;
   align-items: flex-start !important;
 }
 
@@ -665,7 +667,9 @@
   flex-direction: column !important;
   justify-content: center !important; /* center vertically under the fixed title */
   align-items: center !important; /* center horizontally */
-  padding-top: calc(env(safe-area-inset-top, 0px) + clamp(80px, 12vh, 140px)) !important;
+  padding-top: calc(
+    env(safe-area-inset-top, 0px) + clamp(80px, 12vh, 140px)
+  ) !important;
 }
 
 /* Lower the z-index of collage so title remains on top and ensure wrapper centers */
@@ -676,7 +680,6 @@
   align-items: center !important;
   justify-content: center !important;
 }
-
 
 /* Make bottom question text black for readability */
 .figma-style1-container.mn3-step3-page .figma-style1-content-area h2,
