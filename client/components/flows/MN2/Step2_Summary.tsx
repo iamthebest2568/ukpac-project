@@ -166,7 +166,7 @@ const Step2_Summary = ({
 
   return (
     <FigmaStyle1Layout
-      backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F93a155f38af546bcaa326ad3f9198e9c?format=webp&width=800"
+      backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F25b8952408b845a2b91a92498b93f24a?format=webp&width=800"
       backgroundAlt="พื้นหลังสรุปนโยบาย"
       useBlueOverlay={false}
       className="ask04-page mn2-summary-page mn2-summary-minimal figma-style1-ukpack1 fake-news-page"
