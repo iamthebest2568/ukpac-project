@@ -239,8 +239,18 @@
   padding-top: 4px !important;
   padding-bottom: 6px !important;
   max-width: 980px !important; /* allow title + content to use wider area */
-  position: relative !important;
-  z-index: 1001 !important;
+  position: fixed !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  top: calc(env(safe-area-inset-top, 0px) + 8px) !important;
+  z-index: 1005 !important;
+  width: 100% !important;
+  pointer-events: none !important; /* avoid blocking inputs below */
+}
+
+/* Add top space so content doesn't go under the fixed title */
+.figma-style1-container.mn3-step2-minimal .figma-style1-content-area {
+  padding-top: clamp(64px, 10vh, 120px) !important;
 }
 
 /* Hide accidental overlays that could cover the title on MN3 step2 */
