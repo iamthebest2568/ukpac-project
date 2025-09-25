@@ -187,12 +187,13 @@ const Step2_Summary = ({
       <div
         className="relative w-full max-w-full mx-auto px-4 py-6"
         style={{
-          paddingTop: "clamp(56px, 12vh, 120px)",
-          height: "calc(100vh - 140px)",
+          paddingTop: "clamp(24px, 6vh, 60px)",
+          height: "calc(100vh - 76px)",
           boxSizing: "border-box",
           display: "flex",
           flexDirection: "column",
           zIndex: 9999,
+          paddingBottom: "100px", // ensure content not covered by footer
         }}
       >
         {/* Policy Cards */}
