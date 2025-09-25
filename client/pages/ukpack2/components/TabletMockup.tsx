@@ -108,6 +108,42 @@ const TabletMockup: React.FC<TabletMockupProps> = ({ children }) => {
                 height: `${BASE_H}px`,
                 aspectRatio: `${BASE_W} / ${BASE_H}`,
               }}
+              onClickCapture={(e: React.MouseEvent) => {
+                try {
+                  // Only intercept left-clicks without modifier keys
+                  if (e.button !== 0) return;
+                  if (e.metaKey || e.ctrlKey || e.altKey || e.shiftKey) return;
+                  const tgt = e.target as HTMLElement | null;
+                  if (!tgt) return;
+                  const a = tgt.closest("a") as HTMLAnchorElement | null;
+                  if (!a) return;
+                  const href = a.getAttribute("href");
+                  if (!href) return;
+                  // Allow explicit targets (new tab) or download links
+                  const target = a.getAttribute("target");
+                  if (target && target !== "_self") return;
+
+                  // If href is absolute, ensure same origin
+                  let url: URL | null = null;
+                  try {
+                    url = new URL(href, window.location.href);
+                  } catch {
+                    url = null;
+                  }
+                  if (url) {
+                    if (url.origin !== window.location.origin) return; // external
+                    // Only intercept internal ukpack1 routes to keep mockup
+                    if (!url.pathname.startsWith("/ukpack1")) return;
+                    e.preventDefault();
+                    // Use react-router navigation to change route without full reload
+                    navigate(url.pathname + url.search + url.hash);
+                  } else {
+                    // relative href without URL parseable? ignore
+                  }
+                } catch (err) {
+                  // swallow
+                }
+              }}
             >
               <RouteTransition>{children}</RouteTransition>
             </div>
