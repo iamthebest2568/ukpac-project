@@ -33,16 +33,6 @@ const Ask01 = ({ sessionID, onNavigate }: Ask01Props) => {
     }
   };
 
-  const handleReplay = () => {
-    // Replay functionality
-    logEvent({
-      event: "ASK01_REPLAY",
-      payload: {
-        sessionID,
-      },
-    });
-  };
-
   // Define buttons for the FigmaStyle1Layout
   const buttons = [
     {
@@ -53,7 +43,7 @@ const Ask01 = ({ sessionID, onNavigate }: Ask01Props) => {
     {
       text: "กลางๆ",
       onClick: () => handleChoice("neutral"),
-      ariaLabel: "มีความเห็นเป็นกลางต่อข้อความดังกล่าว",
+      ariaLabel: "มีความเห็นเป็นกลางต่อข้อความดั��กล่าว",
     },
     {
       text: "ไม่เห็นด้วย",
@@ -69,10 +59,6 @@ const Ask01 = ({ sessionID, onNavigate }: Ask01Props) => {
       title={`จากข้อความดังกล่าว
 คุณมีความคิดเห็นอย่างไร`}
       buttons={buttons}
-      replayButton={{
-        onClick: handleReplay,
-        ariaLabel: "ดูอีกครั้ง",
-      }}
     />
   );
 };
