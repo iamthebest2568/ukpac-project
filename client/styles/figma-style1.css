@@ -1074,11 +1074,10 @@
 }
 
 /* Remove header on ask02-2 page --------------------------------------------------
-   Hide the title container and title text only for ask02-2 page so the header is removed
-   while preserving layout for all other pages.
+   Hide only the header (replay/controls) for ask02-2 page while keeping the page title
+   visible. This preserves the user's heading text but removes extra header controls.
 ------------------------------------------------------------------------------- */
-.figma-style1-container.ask02-2-page .figma-style1-title-container,
-.figma-style1-container.ask02-2-page .figma-style1-title {
+.figma-style1-container.ask02-2-page .figma-style1-header {
   display: none !important;
   height: 0 !important;
   margin: 0 !important;
