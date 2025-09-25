@@ -1033,6 +1033,20 @@
    and ensure content area has sufficient bottom padding so inputs are not covered.
    These rules are scoped to .ask02-2-page so other pages are unaffected.
 ------------------------------------------------------------------------------- */
+/* Center the textarea vertically within the viewport for ask02-2 page only */
+.figma-style1-container.ask02-2-page .figma-style1-main {
+  align-items: center !important; /* center content vertically in the main grid */
+}
+
+.figma-style1-container.ask02-2-page .figma-style1-content-area {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important; /* vertical centering */
+  align-items: center !important; /* horizontal centering */
+  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 96px) !important; /* keep space for fixed footer */
+  box-sizing: border-box !important;
+}
+
 .figma-style1-container.ask02-2-page .figma-style1-button-container {
   position: fixed !important;
   left: 0;
