@@ -223,7 +223,7 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   แอร์: <IconAir />,
   พัดลม: <IconFan />,
   ที่นั่งพิเศษ: <IconSeat />,
-  "ที่จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
+  "ที��จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
   "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
   "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
@@ -260,7 +260,7 @@ const BUS_EMPLOY_ICON_ACTIVE =
 const OPTIONS = [
   { key: "cash", label: "เงินสด", icon: <IconCash /> },
   { key: "scan", label: "สแกนจ่าย", icon: <IconScan /> },
-  { key: "tap", label: "แตะ��ัตร", icon: <IconTap /> },
+  { key: "tap", label: "แตะบัตร", icon: <IconTap /> },
   { key: "monthly", label: "ตั๋วรายเดือน/รอบ", icon: null },
   { key: "scan2", label: "ตู้อัตโนมัติ", icon: null },
   { key: "qr", label: "กระเป๋ารถเมล์", icon: <IconQr /> },
@@ -512,7 +512,7 @@ const PaymentScreen: React.FC = () => {
             ];
             // Normalize known corrupted label encodings (in case values were stored with encoding issues)
             const CORRECT_LABELS: Record<string, string> = {
-              ตู้อัตโนมัติ: "ตู้อัตโนมัติ",
+              ตู้อ���ตโนมัติ: "ตู้อัตโนมัติ",
               แตะบัตร: "แตะบัตร",
               กระเป๋ารถเมล์: "กระเป๋ารถเมล์",
               เงินสด: "เงินสด",
@@ -715,7 +715,7 @@ const PaymentScreen: React.FC = () => {
                   >
                     <img
                       src={
-                        selected.includes("ตั๋วรายเดือน/������บ")
+                        selected.includes("ตั๋วรายเดือน/รอบ")
                           ? MONTHLY_ICON_ACTIVE
                           : MONTHLY_ICON
                       }
