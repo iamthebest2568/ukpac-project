@@ -182,7 +182,25 @@ const Step3_Result = ({
         });
     } catch {}
 
-    proceedAfterSelect("/ukpack1/minigame-mn3", data);
+    try {
+      sessionStorage.setItem(
+        "mn3_resultSummary",
+        JSON.stringify(data.budget_step3_result?.resultSummary || resultSummary),
+      );
+    } catch (e) {}
+
+    // Navigate back to the MN3 page. If already on that route, force a reload to reset the flow.
+    try {
+      if (typeof window !== "undefined" && window.location.pathname === "/ukpack1/minigame-mn3") {
+        // force full reload to reset state
+        window.location.assign("/ukpack1/minigame-mn3");
+      } else {
+        navigate("/ukpack1/minigame-mn3");
+      }
+    } catch (e) {
+      // fallback to proceedAfterSelect as last resort
+      proceedAfterSelect("/ukpack1/minigame-mn3", data);
+    }
   };
 
   // Use provided background image for MN3 final step
