@@ -224,7 +224,7 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   พัดลม: <IconFan />,
   ที่นั่งพิเศษ: <IconSeat />,
   "ที่จับ/ราวยืนท่ปลอดภัย": <IconWifi />,
-  "ช่องชาร์จมอถือ/USB": <IconPlug />,
+  "ช่องชาร์จมอถ��อ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
   "ระบบประกาศบอกป้า���(เสียง/จอ)": <IconCup />,
   กล้องวงจรปิด: <IconCam />,
@@ -456,7 +456,7 @@ const PaymentScreen: React.FC = () => {
 
   return (
     <CustomizationScreen
-      title="ออกแบบรถเม์ของคุณ"
+      title="ออกแบบรถเมล์ของคุณ"
       theme="light"
       fullWidth
       footerContent={
@@ -513,7 +513,7 @@ const PaymentScreen: React.FC = () => {
             // Normalize known corrupted label encodings (in case values were stored with encoding issues)
             const CORRECT_LABELS: Record<string, string> = {
               ตู้อัตโนมัติ: "ตู้อัตโนมัติ",
-              แตะบัตร: "แตะบัตร",
+              แตะบัตร: "แตะบ���ตร",
               กระเป๋ารถเมล์: "กระเป๋ารถเมล์",
               เงินสด: "เงินสด",
             };
