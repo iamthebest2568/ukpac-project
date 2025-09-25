@@ -109,6 +109,15 @@ const Ask02_2 = ({ sessionID, onNavigate }: Ask02_2Props) => {
       </div>
 
       <div className="figma-style1-button-container">
+        {textInput.trim().length === 0 && (
+          <div
+            className="text-center font-prompt mb-2"
+            style={{ color: "#000D59", fontSize: "14px" }}
+          >
+            กรุณากรอกข้อความเพื่อดำเนินการต่อ
+          </div>
+        )}
+
         <button
           onClick={handleNext}
           className="figma-style1-button"
@@ -118,15 +127,6 @@ const Ask02_2 = ({ sessionID, onNavigate }: Ask02_2Props) => {
           <span className="figma-style1-button-text">ไปต่อ</span>
         </button>
       </div>
-
-      {textInput.trim().length === 0 && (
-        <div
-          className="text-center font-prompt mt-2"
-          style={{ color: "#000D59", fontSize: "14px" }}
-        >
-          กรุณากรอกข้อความเพื่อดำเนินการต่อ
-        </div>
-      )}
     </FigmaStyle1Layout>
   );
 };
