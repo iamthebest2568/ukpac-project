@@ -2191,15 +2191,15 @@ body[data-dialog-open] {
   pointer-events: none !important;
 }
 
-.mn2-summary-page .figma-style1-background-image {
-  position: absolute !important;
-  inset: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: cover !important;
-  object-position: top center !important;
-  z-index: 0 !important;
+.mn2-summary-page .figma-style1-background-image,
+.figma-style1-container.mn2-summary-page .figma-style1-background-overlay,
+.figma-style1-container.mn2-summary-page .figma-style1-wave-overlay,
+.figma-style1-container.mn2-summary-page::before {
+  display: none !important;
+  background: transparent !important;
+  background-image: none !important;
   pointer-events: none !important;
+  z-index: 0 !important;
 }
 
 /* Hide decorative overlays only for the summary step */
