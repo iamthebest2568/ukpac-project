@@ -442,7 +442,7 @@
 .figma-style1-container.mn3-step2-minimal.mn3-step2-page
   .mn3-allocation-content {
   margin: 0 auto !important;
-  padding: 16px 12px 96px 12px !important; /* keep bottom padding for footer clearance */
+  padding: 0 12px 96px 12px !important; /* top padding removed to rely on content-area spacing; keep bottom for footer clearance */
   width: 100% !important;
 }
 
