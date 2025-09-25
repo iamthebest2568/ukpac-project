@@ -56,11 +56,6 @@ const Step2_Summary = ({
       iconSrc:
         "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F70716074f73c4374a1f9295afdf5f5b2?format=webp&width=140",
     },
-    other: {
-      label: "อื่นๆ",
-      iconSrc:
-        "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F3d8f458dc3dc476fa622ebcf946e6eb5?format=webp&width=188",
-    },
   };
 
   useEffect(() => {
@@ -97,13 +92,15 @@ const Step2_Summary = ({
     // Create summary cards
     let cards: SummaryCard[] = prioritiesData.map((priority: string) => {
       const beneficiaryIds = lookup[priority] || [];
-      const beneficiaryObjects = beneficiaryIds.map((id: string) => ({
-        id,
-        label: (beneficiaryMapping as any)[id]?.label || "ทุกคน",
-        iconSrc:
-          (beneficiaryMapping as any)[id]?.iconSrc ||
-          beneficiaryMapping.everyone.iconSrc,
-      }));
+      const beneficiaryObjects = beneficiaryIds
+        .filter((id: string) => id !== "other")
+        .map((id: string) => ({
+          id,
+          label: (beneficiaryMapping as any)[id]?.label || "ทุกคน",
+          iconSrc:
+            (beneficiaryMapping as any)[id]?.iconSrc ||
+            beneficiaryMapping.everyone.iconSrc,
+        }));
 
       return {
         priority,
@@ -118,15 +115,15 @@ const Step2_Summary = ({
       beneficiariesSelections.length > 0
     ) {
       cards = beneficiariesSelections.map((s: any) => {
-        const beneficiaryObjects = (s.beneficiaries || []).map(
-          (id: string) => ({
-            id,
-            label: (beneficiaryMapping as any)[id]?.label || "ทุกคน",
-            iconSrc:
-              (beneficiaryMapping as any)[id]?.iconSrc ||
-              beneficiaryMapping.everyone.iconSrc,
-          }),
-        );
+        const beneficiaryObjects = (s.beneficiaries || [])
+        .filter((id: string) => id !== "other")
+        .map((id: string) => ({
+          id,
+          label: (beneficiaryMapping as any)[id]?.label || "ทุกคน",
+          iconSrc:
+            (beneficiaryMapping as any)[id]?.iconSrc ||
+            beneficiaryMapping.everyone.iconSrc,
+        }));
         return {
           priority: s.priority || "(ไม่ระบุ)",
           beneficiaries: beneficiaryObjects,

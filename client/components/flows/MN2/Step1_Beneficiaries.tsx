@@ -66,12 +66,6 @@ const Step1_Beneficiaries = ({
       iconSrc:
         "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F70716074f73c4374a1f9295afdf5f5b2?format=webp&width=100",
     },
-    {
-      id: "other",
-      label: "อื่นๆ",
-      iconSrc:
-        "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F3d8f458dc3dc476fa622ebcf946e6eb5?format=webp&width=100",
-    },
   ];
 
   const handleGroupToggle = (groupId: string) => {
