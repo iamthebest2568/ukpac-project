@@ -295,12 +295,13 @@ const Step2_Summary = ({
           right: 0,
           bottom: 0,
           zIndex: 10000,
-          background: "linear-gradient(180deg, rgba(255,255,255,0.0), rgba(255,255,255,0.95))",
+          height: 76,
+          background: "linear-gradient(180deg, rgba(255,255,255,0.0), rgba(255,255,255,0.6))",
           backdropFilter: "blur(6px)",
-          padding: "12px 16px",
+          padding: "10px 16px",
           display: "flex",
           justifyContent: "center",
-          boxShadow: "0 -6px 18px rgba(0,13,89,0.08)",
+          boxShadow: "0 -6px 18px rgba(0,13,89,0.06)",
         }}
       >
         <div style={{ maxWidth: 420, width: "100%", display: "flex", gap: 12, justifyContent: "center" }}>
@@ -327,7 +328,7 @@ const Step2_Summary = ({
               }
             }}
             className="figma-style1-button"
-            aria-label="ไม่ใช่, ลองอีกครั้ง"
+            aria-label="ไม่ใช่, ลองอีกคร���้ง"
             style={{ flex: 1 }}
           >
             <span className="figma-style1-button-text">ไม่ใช่, ลองอีกครั้ง</span>
