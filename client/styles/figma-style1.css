@@ -2057,3 +2057,40 @@ body[data-dialog-open] {
   position: relative !important;
   z-index: 20 !important;
 }
+
+/* Ensure MN2 content is pinned to the top so title and icons appear above the background */
+.mn2-step1-page .figma-style1-main,
+.mn2-summary-page .figma-style1-main {
+  align-items: flex-start !important;
+  justify-content: flex-start !important;
+  padding-top: clamp(12px, 6vh, 48px) !important;
+  height: 100% !important;
+}
+
+.mn2-step1-page .figma-style1-content-area,
+.mn2-summary-page .figma-style1-content-area {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+  padding-top: 0 !important;
+  padding-bottom: clamp(16px, 10vh, 140px) !important;
+  z-index: 30 !important;
+}
+
+.mn2-step1-page .figma-style1-title-container,
+.mn2-summary-page .figma-style1-title-container {
+  margin-top: 8px !important;
+  z-index: 30 !important;
+  position: relative !important;
+}
+
+.mn2-step1-page .figma-style1-button-container,
+.mn2-summary-page .figma-style1-button-container {
+  z-index: 30 !important;
+}
+
+.mn2-step1-page .figma-style1-background,
+.mn2-summary-page .figma-style1-background {
+  object-position: center top !important;
+}
