@@ -405,7 +405,7 @@ const PaymentScreen: React.FC = () => {
     "สแกนจ่าย": SCAN_ICON,
     ตู้อัตโนมัติ: SCAN2_ICON,
     แตะบัตร: TOUCH_ICON,
-    "ต��๋วรายเดือน/รอบ": MONTHLY_ICON,
+    "ตั๋วรายเดือน/รอบ": MONTHLY_ICON,
     กระเป๋ารถเมล์: BUS_EMPLOY_ICON,
   };
 
