@@ -224,7 +224,7 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   พัดลม: <IconFan />,
   ที่นั่งพิเศษ: <IconSeat />,
   "ที่จับ/รา���ยืนที่ปลอดภัย": <IconWifi />,
-  "ช่องชาร์จมือถือ/USB": <IconPlug />,
+  "ช่องชาร์จมือถื��/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
   "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
   กล้องวงจรปิด: <IconCam />,
@@ -512,8 +512,8 @@ const PaymentScreen: React.FC = () => {
             ];
             // Normalize known corrupted label encodings (in case values were stored with encoding issues)
             const CORRECT_LABELS: Record<string, string> = {
-              ตู้อัตโน���ัติ: "ตู้อัตโนมัติ",
-              แตะบัตร: "แตะบัตร",
+              ตู้อัตโนมัติ: "ตู้อัตโนมัติ",
+              แตะบัตร: "แตะบ���ตร",
               กระเป๋ารถเมล์: "กระเป๋ารถเมล์",
               เงินสด: "เงินสด",
             };
