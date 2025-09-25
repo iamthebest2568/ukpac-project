@@ -451,7 +451,7 @@
   justify-content: space-between;
   width: 100%;
   max-width: clamp(320px, 83.6vw, 903px);
-  margin: 0 auto;
+  margin: 8px auto 0 auto; /* add top margin to clear fixed title */
   gap: clamp(12px, 3vw, 20px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
