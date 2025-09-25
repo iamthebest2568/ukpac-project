@@ -32,8 +32,22 @@
 .figma-style1-container.ask04-budget-page .figma-style1-title,
 .figma-style1-container.ask04-budget-page .figma-style1-title-container {
   position: relative !important;
-  z-index: 3000 !important;
+  z-index: 10000 !important;
   color: #000 !important;
+  margin-top: 8px !important;
+}
+
+/* Ensure layout places title at top and content below */
+.figma-style1-container.ask04-budget-page .figma-style1-main {
+  align-items: flex-start !important;
+  justify-items: center !important;
+  padding-top: clamp(12px, 6vh, 48px) !important;
+}
+.figma-style1-container.ask04-budget-page .figma-style1-content-area {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
 }
 
 /* Ask04Budget: create a lower stacking context for the collage */
