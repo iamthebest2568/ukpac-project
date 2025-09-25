@@ -167,22 +167,10 @@ const Step2_Summary = ({
   return (
     <FigmaStyle1Layout
       backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F25b8952408b845a2b91a92498b93f24a?format=webp&width=800"
-      backgroundAlt="พื้นหลังสรุปนโยบาย"
+      backgroundAlt="พื้นหลังส���ุปนโยบาย"
       useBlueOverlay={false}
       className="ask04-page mn2-summary-page mn2-summary-minimal figma-style1-ukpack1 fake-news-page"
       imageLoading="eager"
-      title={
-        <span
-          style={{
-            color: "#000D59",
-            position: "relative" as any,
-            zIndex: 9999,
-            textShadow: "none",
-          }}
-        >
-          นโยบายที่คุณเสนอ
-        </span>
-      }
     >
       <div
         className="relative w-full max-w-full mx-auto px-4 py-6"
@@ -279,7 +267,7 @@ const Step2_Summary = ({
               lineHeight: "1.2",
             }}
           >
-            นโยบายเพิ่มเติมที่คุณเสนอตรงใจคุณแล้วหรือไม่
+            นโยบายเพิ���มเติมที่คุณเสนอตรงใจคุณแล้วหรือไม่
           </h2>
         </div>
       </div>
