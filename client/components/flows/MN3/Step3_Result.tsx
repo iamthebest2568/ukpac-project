@@ -251,7 +251,7 @@ const Step3_Result = ({
                 style={{
                   position: "absolute",
                   left: "50%",
-                  top: offset.top,
+                  top: `calc(50% + ${offset.top})`,
                   transform: `translate(calc(-50% + ${offsetX}px), -50%) rotate(${offset.rotate}) scale(${offset.scale})`,
                   width,
                   zIndex: offset.z,
