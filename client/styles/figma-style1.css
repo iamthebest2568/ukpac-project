@@ -123,12 +123,12 @@
 }
 
 /* Allow MN3 step2 to show full budget card and content */
-.figma-style1-container.mn3-step2-minimal .figma-style1-content {
+.figma-style1-container.mn3-step2-minimal.mn3-step2-page .figma-style1-content {
   overflow: visible !important;
 }
 
 /* Ensure the route wrapper does not clip MN3 step2 */
-#main-content > .flow-container:has(.figma-style1-container.mn3-step2-minimal) {
+#main-content > .flow-container:has(.figma-style1-container.mn3-step2-minimal.mn3-step2-page) {
   overflow: visible !important;
 }
 
@@ -220,16 +220,16 @@
 
 /* Page-specific override: force MN3 Step2 content to the top */
 /* Use more specific selectors to override other page-scope rules (fake-news / ukpack1) */
-.figma-style1-container.mn3-step2-minimal.figma-style1-ukpack1
+.figma-style1-container.mn3-step2-minimal.mn3-step2-page.figma-style1-ukpack1
   .figma-style1-main,
-.figma-style1-container.mn3-step2-minimal.fake-news-page .figma-style1-main,
-.figma-style1-container.mn3-step2-minimal .figma-style1-main {
+.figma-style1-container.mn3-step2-minimal.mn3-step2-page.fake-news-page .figma-style1-main,
+.figma-style1-container.mn3-step2-minimal.mn3-step2-page .figma-style1-main {
   align-items: start !important;
   grid-template-rows: auto 1fr !important; /* make title and content sit at top */
   justify-items: start !important;
 }
 
-.figma-style1-container.mn3-step2-minimal .figma-style1-content-area {
+.figma-style1-container.mn3-step2-minimal.mn3-step2-page .figma-style1-content-area {
   justify-content: flex-start !important;
   /* remove extra top padding so title and content sit at the very top */
   padding-top: 0 !important;
@@ -237,7 +237,7 @@
 }
 
 /* Reduce title top margin and tighten spacing for Step2 */
-.figma-style1-container.mn3-step2-minimal .figma-style1-title {
+.figma-style1-container.mn3-step2-minimal.mn3-step2-page .figma-style1-title {
   margin-top: 0 !important;
   margin-bottom: 6px !important;
   color: #000 !important;
@@ -245,7 +245,7 @@
   z-index: 1002 !important;
 }
 
-.figma-style1-container.mn3-step2-minimal .figma-style1-title-container {
+.figma-style1-container.mn3-step2-minimal.mn3-step2-page .figma-style1-title-container {
   padding-top: 4px !important;
   padding-bottom: 6px !important;
   max-width: 980px !important; /* allow title + content to use wider area */
@@ -259,20 +259,20 @@
 }
 
 /* Add top space so content doesn't go under the fixed title */
-.figma-style1-container.mn3-step2-minimal .figma-style1-content-area {
+.figma-style1-container.mn3-step2-minimal.mn3-step2-page .figma-style1-content-area {
   padding-top: calc(env(safe-area-inset-top, 0px) + clamp(128px, 18vh, 240px)) !important;
 }
 
 /* Hide accidental overlays that could cover the title on MN3 step2 */
-.figma-style1-container.mn3-step2-minimal .figma-style1-background-overlay,
-.figma-style1-container.mn3-step2-minimal .absolute.inset-0,
-.figma-style1-container.mn3-step2-minimal::before {
+.figma-style1-container.mn3-step2-minimal.mn3-step2-page .figma-style1-background-overlay,
+.figma-style1-container.mn3-step2-minimal.mn3-step2-page .absolute.inset-0,
+.figma-style1-container.mn3-step2-minimal.mn3-step2-page::before {
   display: none !important;
   pointer-events: none !important;
 }
 
 /* Ensure the allocation content itself sits at the top of the content area */
-.figma-style1-container.mn3-step2-minimal .mn3-allocation-content {
+.figma-style1-container.mn3-step2-minimal.mn3-step2-page .mn3-allocation-content {
   padding-top: 0 !important;
   margin-top: 0 !important;
   position: relative !important;
