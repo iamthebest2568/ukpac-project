@@ -402,7 +402,7 @@ const PaymentScreen: React.FC = () => {
 
   const PAYMENT_BUTTON_SRC: Record<string, string> = {
     เงินสด: MONEY_ICON,
-    "สแกนจ่า": SCAN_ICON,
+    "สแกนจ่าย": SCAN_ICON,
     ตู้อัตโนมัติ: SCAN2_ICON,
     แตะบัตร: TOUCH_ICON,
     "ตั๋วรายเดือน/รอบ": MONTHLY_ICON,
@@ -796,7 +796,7 @@ const PaymentScreen: React.FC = () => {
                       "ตู้อัตโนมัติ",
                       "แะบัตร",
                       "กระเป๋ารถเมล์",
-                      "ตั๋วรายเดือน/รอบ",
+                      "ตั๋วรายเดือน/รอ��",
                     ];
                     for (const k of explicit) {
                       if (!merged[k] && (OVERLAY_ICON_SRC as any)[k])
