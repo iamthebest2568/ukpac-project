@@ -661,15 +661,20 @@
 
 /* Push content down so it doesn't get hidden under the fixed title */
 .figma-style1-container.ask04-budget-page .figma-style1-content-area {
-  justify-content: flex-start !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important; /* center vertically under the fixed title */
+  align-items: center !important; /* center horizontally */
   padding-top: calc(env(safe-area-inset-top, 0px) + clamp(80px, 12vh, 140px)) !important;
-  align-items: flex-start !important;
 }
 
-/* Lower the z-index of collage so title remains on top */
+/* Lower the z-index of collage so title remains on top and ensure wrapper centers */
 .figma-style1-container.ask04-budget-page .ask04-collage-wrapper {
   position: relative !important;
   z-index: 1 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
 
