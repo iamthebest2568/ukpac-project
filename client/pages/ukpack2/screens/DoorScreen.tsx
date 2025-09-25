@@ -564,7 +564,7 @@ const DoorScreen: React.FC = () => {
                     const explicit = [
                       "เงินสด",
                       "สแกนจ่าย",
-                      "ตู้อัตโนมัติ",
+                      "ตู้อัตโนม��ติ",
                       "แตะบัตร",
                       "กระเป๋ารถเมล์",
                       "ตั๋วรายเดือน/รอบ",
@@ -611,7 +611,7 @@ const DoorScreen: React.FC = () => {
             <div className={styles.controlsBox}>
               <div className={styles.controlsContent}>
                 <h2 className="text-xl font-prompt font-semibold text-[#003366] mt-2">
-                  ประตู
+                  เลือกทางขึ้น-ลง หลัก
                 </h2>
 
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
