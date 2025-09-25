@@ -224,7 +224,7 @@ const SubmitScreen: React.FC = () => {
         theme="light"
         footerContent={
           <div className="flex justify-center">
-            <CtaButton text="ออกแบ��เสร็จแล้ว" onClick={handleFinish} />
+            <CtaButton text="ออกแบบเสร็จแล้ว" onClick={handleFinish} />
           </div>
         }
       >
