@@ -1033,6 +1033,83 @@
    and ensure content area has sufficient bottom padding so inputs are not covered.
    These rules are scoped to .ask02-2-page so other pages are unaffected.
 ------------------------------------------------------------------------------- */
+
+/* Ask04Budget - Scoped style reset ------------------------------------------------
+   Clear header/content styles only for ask04-budget page without affecting other pages.
+   - Reset title container (keep the title text visible)
+   - Remove background overlays / decorative waves if present (but keep main background image)
+   - Ensure collage images remain and are centered both horizontally and vertically
+   - Preserve image sizing/object-fit as implemented in component
+------------------------------------------------------------------------------- */
+.figma-style1-container.ask04-budget-page .figma-style1-title-container {
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.figma-style1-container.ask04-budget-page .figma-style1-title {
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+}
+
+/* Reset main content area chrome */
+.figma-style1-container.ask04-budget-page .figma-style1-content-area {
+  padding: 0 !important;
+  margin: 0 !important;
+  background: transparent !important;
+  min-height: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Remove overlay/wave decorations for this page (keep the background image itself) */
+.figma-style1-container.ask04-budget-page .figma-style1-background-overlay,
+.figma-style1-container.ask04-budget-page .figma-style1-wave-overlay,
+.figma-style1-container.ask04-budget-page::before {
+  display: none !important;
+}
+
+/* Ensure background image remains visible and centered */
+.figma-style1-container.ask04-budget-page .figma-style1-background-image {
+  object-position: center center !important;
+}
+
+/* Center the collage vertically within viewport and keep images centered */
+.figma-style1-container.ask04-budget-page .figma-style1-main {
+  align-items: center !important;
+}
+.figma-style1-container.ask04-budget-page .figma-style1-content-area {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.figma-style1-container.ask04-budget-page .ask04-collage-wrapper {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100% !important;
+  max-width: 980px !important;
+  margin: 0 auto !important;
+  /* allow the component to control height but keep it responsive */
+  height: auto !important;
+  min-height: 48vh !important;
+}
+
+/* Ensure individual collage images remain positioned relative to the collage container center */
+.figma-style1-container.ask04-budget-page .ask04-collage-wrapper .relative {
+  display: block !important;
+}
+
+@media (max-width: 767px) {
+  .figma-style1-container.ask04-budget-page .ask04-collage-wrapper {
+    min-height: 42vh !important;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+}
+
 /* Center the textarea vertically within the viewport for ask02-2 page only */
 .figma-style1-container.ask02-2-page .figma-style1-main {
   align-items: center !important; /* center content vertically in the main grid */
