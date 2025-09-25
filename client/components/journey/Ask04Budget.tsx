@@ -141,89 +141,105 @@ const Ask04Budget = ({
       title={`คุณพอใจภาพเมืองในอนาคตที่อาจจะเกิดขึ้นหรือไม่`}
       className="ask04-page ask04-budget-page mn3-step2-minimal"
     >
-      {/* Children: collage + buttons (we render buttons here because providing children disables automatic button rendering) */}
+      {/* Children: use MN3 Step3_Result style collage + stacked buttons (scoped copy) */}
+
       <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
-        {/* Collage container */}
+        {/* placeholder area (kept minimal to match MN3 layout) */}
+      </div>
+
+      {/* Overlapping collage (copied from MN3 Step3_Result) */}
+      <div className="w-full px-4 mb-6">
         <div
-          className="max-w-[980px] w-full px-4 ask04-collage-wrapper"
+          className="max-w-[980px] mx-auto relative"
           style={{
+            height: 420,
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
           }}
         >
-          <div
-            className="relative w-full"
-            style={{ maxWidth: 980 }}
-          >
-            {resultSummary.map((s, i) => {
-              const imgSrc =
-                priorityImageMap[s.priority] ||
-                "https://cdn.builder.io/api/v1/image/assets/TEMP/placeholder.png?width=720";
-              const count = resultSummary.length;
-              const spacing = count === 1 ? 0 : count === 2 ? 40 : -60;
-              const offsetX = Math.round((i - (count - 1) / 2) * spacing);
-              const width = count === 1 ? "68%" : count === 2 ? "55%" : "46%";
-
-              const offset = collageOffsets[i] || {
-                left: `50%`,
-                top: `0%`,
-                rotate: `0deg`,
-                z: i + 1,
-                scale: 1,
-              };
-
-              return (
+          {resultSummary.map((s, i) => {
+            const imgSrc =
+              priorityImageMap[s.priority] ||
+              "https://cdn.builder.io/api/v1/image/assets/TEMP/placeholder.png?width=720";
+            const offset = collageOffsets[i] || {
+              left: `50%`,
+              top: `50%`,
+              rotate: `0deg`,
+              z: i + 1,
+              scale: 1,
+            };
+            const count = resultSummary.length;
+            const spacing = count === 1 ? 0 : count === 2 ? 40 : -60; // smaller/negative spacing to create overlay
+            const offsetX = Math.round((i - (count - 1) / 2) * spacing);
+            const width = count === 1 ? "68%" : count === 2 ? "55%" : "46%";
+            return (
+              <div
+                key={s.priority}
+                style={{
+                  position: "absolute",
+                  left: "50%",
+                  top: `calc(50% + ${offset.top})`,
+                  transform: `translate(calc(-50% + ${offsetX}px), -50%) rotate(${offset.rotate}) scale(${offset.scale})`,
+                  width,
+                  zIndex: offset.z,
+                }}
+              >
                 <div
-                  key={s.priority}
                   style={{
-                    position: "absolute",
-                    left: "50%",
-                    top: `calc(50% + ${offset.top})`,
-                    transform: `translate(calc(-50% + ${offsetX}px), -50%) rotate(${offset.rotate}) scale(${offset.scale})`,
-                    width,
-                    zIndex: offset.z,
+                    width: "100%",
+                    paddingBottom: "80%",
+                    position: "relative",
                   }}
                 >
-                  <div
+                  <img
+                    src={imgSrc}
+                    alt={s.priority}
                     style={{
+                      position: "absolute",
+                      inset: 0,
                       width: "100%",
-                      paddingBottom: "80%",
-                      position: "relative",
+                      height: "100%",
+                      objectFit: "contain",
+                      objectPosition: "center center",
                     }}
-                  >
-                    <img
-                      src={imgSrc}
-                      alt={s.priority}
-                      style={{
-                        position: "absolute",
-                        inset: 0,
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "contain",
-                        objectPosition: "center center",
-                      }}
-                    />
-                  </div>
+                  />
                 </div>
-              );
-            })}
-          </div>
+              </div>
+            );
+          })}
         </div>
       </div>
 
-      <div className="ask04-footer">
-        <div className="figma-style1-button-container">
-          {buttons.map((b, i) => (
-            <button
-              key={i}
-              onClick={b.onClick}
-              aria-label={b.ariaLabel}
-              className="figma-style1-button"
-            >
-              <span className="figma-style1-button-text">{b.text}</span>
-            </button>
-          ))}
+      <div style={{ textAlign: "center", width: "100%", marginTop: 20 }}>
+        <div
+          className="figma-style1-button-container"
+          style={{
+            width: "100%",
+            maxWidth: 360,
+            margin: "0 auto",
+            display: "flex",
+            flexDirection: "column",
+            gap: 12,
+          }}
+        >
+          <button
+            onClick={() => handleChoice("satisfied")}
+            className="figma-style1-button"
+            style={{ width: "100%" }}
+            aria-label="พอใจ"
+          >
+            <span className="figma-style1-button-text">พอใจ</span>
+          </button>
+
+          <button
+            onClick={() => handleChoice("unsatisfied")}
+            className="figma-style1-button"
+            style={{ width: "100%" }}
+            aria-label="ไม่พอใจ"
+          >
+            <span className="figma-style1-button-text">ไม่พอใจ</span>
+          </button>
         </div>
       </div>
     </FigmaStyle1Layout>
