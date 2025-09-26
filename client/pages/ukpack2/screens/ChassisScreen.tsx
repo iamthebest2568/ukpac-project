@@ -7,6 +7,7 @@ import StepTabs from "../components/StepTabs";
 import ConfirmModal from "../components/ConfirmModal";
 import { clearDesignStorage } from "../utils/clearDesign";
 import VehiclePreview from "../components/VehiclePreview";
+import Uk2Footer from "../components/Uk2Footer";
 import styles from "./chassis.module.css";
 import { useBusDesign } from "../context/BusDesignContext";
 import { HERO_IMAGE, CHASSIS_LABELS } from "../utils/heroImages";
@@ -150,7 +151,7 @@ const OPTIONS = [
   },
   {
     key: "extra",
-    label: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
+    label: "รถกะบะดัดแปลง 8–12 ที��นั่ง",
     labelText: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
     icon: <IconExtra />,
   },
