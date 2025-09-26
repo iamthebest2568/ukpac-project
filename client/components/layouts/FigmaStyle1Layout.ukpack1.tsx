@@ -77,7 +77,7 @@ const FigmaStyle1Layout = ({
 
   return (
     <div
-      className={`figma-style1-container ${className} ${platformClass} ${pageScope} ${pageScope ? "fake-news-page" : ""}`}
+      className={`figma-style1-container ${className} ${platformClass} ${pageScope} ${className?.includes("fake-news-page") ? "fake-news-page" : ""}`}
     >
       <div className="figma-style1-content">
         <div className="figma-style1-background" style={{ backgroundImage: "none" }}>
