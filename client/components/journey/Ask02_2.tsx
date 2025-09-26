@@ -4,6 +4,7 @@
  */
 
 import { useState } from "react";
+import Uk1Button from "../shared/Uk1Button";
 import { logEvent } from "../../services/dataLogger.js";
 import FigmaStyle1Layout from "../layouts/FigmaStyle1Layout.ukpack1";
 
