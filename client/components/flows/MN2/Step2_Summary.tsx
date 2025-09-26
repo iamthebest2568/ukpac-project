@@ -219,6 +219,7 @@ const Step2_Summary = ({
                     maxWidth: "100%",
                     margin: "0 auto",
                     padding: "0 clamp(6px, 1.6vw, 12px)",
+                    gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
                   }}
                 >
                   {card.beneficiaries.map((beneficiary, beneficiaryIndex) => (
