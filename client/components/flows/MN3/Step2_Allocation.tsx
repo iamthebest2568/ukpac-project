@@ -14,6 +14,7 @@ interface Step2_AllocationProps {
   onNext: (data: any) => void;
   onBack?: () => void;
   journeyData?: any;
+  useUk1Button?: boolean;
 }
 
 interface BudgetAllocation {
