@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { logEvent } from "../../../services/dataLogger.js";
 import FigmaStyle1Layout from "../../layouts/FigmaStyle1Layout.ukpack1";
+import Uk1Button from "../../shared/Uk1Button";
 
 interface Step3_ResultProps {
   sessionID: string | null;
