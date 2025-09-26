@@ -1608,6 +1608,39 @@ body[data-dialog-open] {
   text-align: center !important;
 }
 
+/* Source Selection — tidy option button typography and spacing (scoped to page) */
+.figma-style1-container.source-selection-page .source-selection-root .figma-style1-button,
+.figma-style1-container.source-selection-page .source-selection-root .figma-style1-button--primary,
+.figma-style1-container.source-selection-page .source-selection-root .figma-style1-button--secondary {
+  padding: 12px 14px !important;
+  min-height: 72px !important; /* provide ample tap target */
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  white-space: normal !important;
+  word-break: break-word !important;
+  line-height: 1.25 !important;
+  font-size: clamp(14px, 2.2vw, 16px) !important;
+}
+.figma-style1-container.source-selection-page .source-selection-root .figma-style1-button .figma-style1-button-text {
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2 !important; /* limit to two lines */
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+/* Ensure grid remains 3 columns but with consistent gaps */
+.figma-style1-container.source-selection-page .source-selection-root > div > div {
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 12px !important;
+}
+
+/* Remove weird transform on selected state to keep text aligned */
+.figma-style1-container.source-selection-page .figma-style1-button--selected {
+  transform: none !important;
+}
+
 /* ================================================
    Desktop/Tablet-only background handling for ukpack1
    - Center background images horizontally & vertically
