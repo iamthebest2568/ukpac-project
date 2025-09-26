@@ -4,6 +4,7 @@ import ConfirmModal from "../components/ConfirmModal";
 import SelectionCard from "../components/SelectionCard";
 import CtaButton from "../components/CtaButton";
 import { HERO_IMAGE, CHASSIS_LABELS } from "../utils/heroImages";
+import Uk2Footer from "../components/Uk2Footer";
 
 const IconAir = () => (
   <img
@@ -161,7 +162,7 @@ const AMENITIES = [
   },
   {
     key: "cup",
-    label: "ระบบประกาศบอกป้าย(เสียง/จอ)",
+    label: "ระบบประกาศบอกป้าย(เสียง/��อ)",
     icon: <IconCup />,
     iconActive: <IconCupAlt />,
   },
