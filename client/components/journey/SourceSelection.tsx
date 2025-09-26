@@ -77,12 +77,15 @@ const SourceSelection = ({ sessionID, onNavigate }: SourceSelectionProps) => {
         >
           {options.map((opt) => {
             const isSelected = selected.includes(opt.id);
+            const maxReached = selected.length >= 3;
             return (
               <button
                 key={opt.id}
                 onClick={() => toggle(opt.id, opt.label)}
                 className={`figma-style1-button ${isSelected ? "figma-style1-button--selected" : ""}`}
                 aria-pressed={isSelected}
+                aria-disabled={!isSelected && maxReached}
+                disabled={!isSelected && maxReached}
                 style={{ width: "100%" }}
               >
                 <span className="figma-style1-button-text">{opt.label}</span>
