@@ -8,6 +8,7 @@ import { logEvent } from "../../services/dataLogger.js";
 import FigmaStyle1Layout from "../../components/layouts/FigmaStyle1Layout.ukpack1";
 
 import TabletMockup from "./components/TabletMockup";
+import Uk1Button from "../../components/shared/Uk1Button";
 
 const HowDoYouThinkPage = () => {
   const { sessionID, navigateToPage } = useSession();
@@ -105,15 +106,13 @@ const HowDoYouThinkPage = () => {
                 { key: "neutral", text: "เฉย ๆ" },
                 { key: "disagree", text: "ไม่เห็นด้วย" },
               ].map((option) => (
-                <button
+                <Uk1Button
                   key={option.key}
                   onClick={() => handleOptionSelect(option.key)}
-                  className="w-full max-w-[845px] transition-all duration-150 hover:scale-102 active:scale-98 flex items-center justify-center"
+                  className="w-full max-w-[845px] transition-all duration-150"
                   style={{
                     height: "clamp(56px, 9vw, 96px)",
                     borderRadius: "999px",
-                    background: "#FFE000",
-                    border: "none",
                     cursor: "pointer",
                     boxShadow: "0 6px 18px rgba(0,0,0,0.08)",
                   }}
@@ -130,7 +129,7 @@ const HowDoYouThinkPage = () => {
                   >
                     {option.text}
                   </span>
-                </button>
+                </Uk1Button>
               ))}
             </div>
           </div>
