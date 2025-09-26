@@ -75,6 +75,7 @@ const Flow_MiniGame_MN3 = ({ sessionID, onComplete, onBack }: Flow_MiniGame_MN3P
             onNext={handleStepComplete}
             onBack={handleStepBack}
             journeyData={flowData}
+            useUk1Button={isUkpack1}
           />
         );
       default:
