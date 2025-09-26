@@ -270,7 +270,7 @@ const Step2_Summary = ({
               lineHeight: "1.2",
             }}
           >
-            นโยบายเพิ่มเต���มที่คุณเ��นอตรงใจคุณแล้วหรือไ���่
+            นโยบายเพิ่มเติมที่คุณเ��นอตรงใจคุณแล้วหรือไ���่
           </h2>
         </div>
       </div>
@@ -292,19 +292,10 @@ const Step2_Summary = ({
           boxShadow: "none",
         }}
       >
-        <div
-          style={{
-            maxWidth: 420,
-            width: "100%",
-            display: "flex",
-            gap: 12,
-            justifyContent: "center",
-            flexDirection: "column",
-          }}
-        >
+        <div className="figma-style1-button-container mn2-summary-button-stack" style={{ maxWidth: 420, width: "100%" }}>
           {useUk1Button ? (
             <>
-              <Uk1Button onClick={handleEndGame} aria-label="ใช่, ไปต่อ" style={{ width: "100%", marginBottom: 12 }}>
+              <Uk1Button onClick={handleEndGame} aria-label="ใช่, ไปต่อ">
                 <span className="figma-style1-button-text">ใช่, ไปต่อ</span>
               </Uk1Button>
               <Uk1Button
@@ -320,7 +311,6 @@ const Step2_Summary = ({
                   }
                 }}
                 aria-label="ไม่ใช่, ลองอีกครั้ง"
-                style={{ width: "100%" }}
               >
                 <span className="figma-style1-button-text">ไม่ใช่, ลองอีกครั้ง</span>
               </Uk1Button>
@@ -329,9 +319,8 @@ const Step2_Summary = ({
             <>
               <button
                 onClick={handleEndGame}
-                className="figma-style1-button"
+                className="figma-style1-button w-full"
                 aria-label="ใช่, ไปต่อ"
-                style={{ width: "100%", marginBottom: 12 }}
               >
                 <span className="figma-style1-button-text">ใช่, ไปต่อ</span>
               </button>
@@ -349,9 +338,8 @@ const Step2_Summary = ({
                     console.warn("navigate to mn1 failed", e);
                   }
                 }}
-                className="figma-style1-button"
+                className="figma-style1-button w-full"
                 aria-label="ไม่ใช่, ลองอีกครั้ง"
-                style={{ width: "100%" }}
               >
                 <span className="figma-style1-button-text">ไม่ใช่, ลองอีกครั้ง</span>
               </button>
