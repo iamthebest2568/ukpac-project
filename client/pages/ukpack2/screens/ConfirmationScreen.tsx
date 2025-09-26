@@ -17,7 +17,7 @@ const ConfirmationScreen: React.FC = () => {
         theme="light"
         footerBgClass="bg-white"
         footerContent={
-          <div className="flex flex-col items-center gap-2 py-4">
+          <Uk2Footer className="bg-white">
             <div style={{ width: "220px" }}>
               <CtaButton
                 className="w-full"
@@ -32,7 +32,7 @@ const ConfirmationScreen: React.FC = () => {
                 onClick={() => setShareOpen(true)}
               />
             </div>
-          </div>
+          </Uk2Footer>
         }
       >
         <div className="max-w-4xl mx-auto pb-8 -mt-8">
@@ -44,7 +44,7 @@ const ConfirmationScreen: React.FC = () => {
             />
           </div>
           <div className="flex flex-col items-center text-center text-[#001a73]">
-            <h2 className="font-prompt font-semibold text-[22px]">ขอบคุณ</h2>
+            <h2 className="font-prompt font-semibold text-[22px]">ขอบคุ��</h2>
             <p className="mt-2 font-prompt font-semibold text-[18px]">
               ที่ร่วมเป็นส่วนหนึ่งในการพัฒนาเมือง
             </p>
