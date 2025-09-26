@@ -1685,6 +1685,18 @@ body[data-dialog-open] {
   object-fit: cover !important; /* fill the circle */
   display: block !important;
 }
+
+/* Ensure buttons in MN2 summary use the standard button container but stacked */
+.figma-style1-container.mn2-summary-page .figma-style1-button-container.mn2-summary-button-stack {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+}
+.figma-style1-container.mn2-summary-page .figma-style1-button-container.mn2-summary-button-stack > * {
+  width: 100% !important;
+}
 @media (min-width: 768px) {
   .ask05-page .ask05-content {
     width: 100%;
