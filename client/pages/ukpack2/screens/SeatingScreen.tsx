@@ -222,9 +222,11 @@ const SeatingScreen: React.FC = () => {
         theme="light"
         fullWidth
         footerContent={
-          <div className="flex justify-center">
-            <CtaButton text="ถัดไป" onClick={handleNext} />
-          </div>
+          <Uk2Footer>
+            <div className="w-full flex justify-center">
+              <CtaButton text="ถัดไป" onClick={handleNext} />
+            </div>
+          </Uk2Footer>
         }
       >
         <div className={styles.contentGrid}>
@@ -459,7 +461,7 @@ const SeatingScreen: React.FC = () => {
 
       <ConfirmModal
         isOpen={isExitModalOpen}
-        title="ออกจากหน้าจอ"
+        title="ออกจากหน้าจ��"
         message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
         onConfirm={() => navigate("/")}
         onCancel={() => setExitModalOpen(false)}
