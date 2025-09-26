@@ -54,13 +54,9 @@ const Ask02_2 = ({ sessionID, onNavigate, useUk1Button = false }: Ask02_2Props) 
       className="source-selection-page ask02-2-page"
       imageLoading="eager"
     >
-      <div className="ask02-2-content">
+      <div className="ask02-2-content" style={{ marginTop: "auto", marginBottom: "auto", display: "flex", justifyContent: "center", width: "100%" }}>
         <div
           className="w-full max-w-[890px] mx-auto"
-          style={{
-            marginTop: "clamp(10px, 3vh, 28px)",
-            marginBottom: "clamp(8px, 2vh, 20px)",
-          }}
         >
           <div
             className="ask02-2-textarea-box relative w-full rounded-[20px] border-2 border-[#000D59] bg-white"
