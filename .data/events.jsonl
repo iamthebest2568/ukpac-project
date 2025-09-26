@@ -209,3 +209,55 @@
 {"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.variant.start","timestamp":"2025-09-26T07:40:08.911Z","variantId":"333faf2b","variantName":"เหตุผลหลักในการเดินทางเข้าเมือง"}
 {"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.choice.selected","timestamp":"2025-09-26T07:40:11.465Z","choiceText":"เดินห้างสรรพสินค้า","variantId":"333faf2b","variantName":"เหตุผลหลักในการเดินทางเข้าเมือง"}
 {"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.choice.selected","timestamp":"2025-09-26T07:40:11.464Z","choiceText":"เดินห้างสรรพสินค้า","variantId":"333faf2b","variantName":"เหตุผลหลักในการเดินทางเข้าเมือง"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.variant.start","timestamp":"2025-09-26T07:40:11.478Z","variantId":"4bec38a0","variantName":"คุณใช้รถแบบไหนเดินทางเข้าเมือง?"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.variant.start","timestamp":"2025-09-26T07:40:11.478Z","variantId":"4bec38a0","variantName":"คุณใช้รถแบบไหนเดินทางเข้าเมือง?"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.choice.selected","timestamp":"2025-09-26T07:40:13.418Z","choiceText":"รถประจำทาง","variantId":"4bec38a0","variantName":"คุณใช้รถแบบไหนเดินทางเข้าเมือง?"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.choice.selected","timestamp":"2025-09-26T07:40:13.418Z","choiceText":"รถประจำทาง","variantId":"4bec38a0","variantName":"คุณใช้รถแบบไหนเดินทางเข้าเมือง?"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.variant.start","timestamp":"2025-09-26T07:40:13.425Z","variantId":"4bce647b","variantName":"รถประจำทาง"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.variant.start","timestamp":"2025-09-26T07:40:13.424Z","variantId":"4bce647b","variantName":"รถประจำทาง"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.choice.selected","timestamp":"2025-09-26T07:40:20.285Z","choiceText":"ไม่เชื่อว่าจะได้ผล","variantId":"4bce647b","variantName":"รถประจำทาง"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.choice.selected","timestamp":"2025-09-26T07:40:20.284Z","choiceText":"ไม่เชื่อว่าจะได้ผล","variantId":"4bce647b","variantName":"รถประจำทาง"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.variant.start","timestamp":"2025-09-26T07:40:21.048Z","variantId":"92cbde0a","variantName":"ไม่เชื่อว่าจะได้ผล"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.variant.start","timestamp":"2025-09-26T07:40:21.047Z","variantId":"92cbde0a","variantName":"ไม่เชื่อว่าจะได้ผล"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.variant.start","timestamp":"2025-09-26T07:40:22.847Z","variantId":"3f7925c7","variantName":"ทดสอบ Key message"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.choice.selected","timestamp":"2025-09-26T07:40:22.839Z","choiceText":"อยากรู้อยู่พอดี","variantId":"92cbde0a","variantName":"ไม่เชื่อว่าจะได้ผล"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.choice.selected","timestamp":"2025-09-26T07:40:22.840Z","choiceText":"อยากรู้อยู่พอดี","variantId":"92cbde0a","variantName":"ไม่เชื่อว่าจะได้ผล"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.variant.start","timestamp":"2025-09-26T07:40:22.847Z","variantId":"3f7925c7","variantName":"ทดสอบ Key message"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.choice.selected","timestamp":"2025-09-26T07:40:25.839Z","choiceText":"เฉย ๆ","variantId":"3f7925c7","variantName":"ทดสอบ Key message"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.choice.selected","timestamp":"2025-09-26T07:40:25.839Z","choiceText":"เฉย ๆ","variantId":"3f7925c7","variantName":"ทดสอบ Key message"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.variant.start","timestamp":"2025-09-26T07:40:26.594Z","variantId":"0d274bf8","variantName":"ทำไมคุณถึงคิดแบบนั้น ?"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.variant.start","timestamp":"2025-09-26T07:40:26.594Z","variantId":"0d274bf8","variantName":"ทำไมคุณถึงคิดแบบนั้น ?"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.choice.selected","timestamp":"2025-09-26T07:40:31.605Z","choiceText":"เก็บไปก็ไม่มีอะไรเกิดขึ้น","variantId":"0d274bf8","variantName":"ทำไมคุณถึงคิดแบบนั้น ?"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.choice.selected","timestamp":"2025-09-26T07:40:31.606Z","choiceText":"เก็บไปก็ไม่มีอะไรเกิดขึ้น","variantId":"0d274bf8","variantName":"ทำไมคุณถึงคิดแบบนั้น ?"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.story.start","timestamp":"2025-09-26T07:41:16.410Z","variantId":"a59ef133","variantName":"Intro"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.variant.start","timestamp":"2025-09-26T07:41:16.409Z","variantId":"a59ef133","variantName":"Intro"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.variant.start","timestamp":"2025-09-26T07:41:16.409Z","variantId":"a59ef133","variantName":"Intro"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.story.start","timestamp":"2025-09-26T07:41:16.410Z","variantId":"a59ef133","variantName":"Intro"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.choice.selected","timestamp":"2025-09-26T07:41:27.571Z","choiceText":"PDPA","variantId":"a59ef133","variantName":"Intro"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.variant.start","timestamp":"2025-09-26T07:41:27.582Z","variantId":"e61429e0","variantName":"PDPA"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.story.start","timestamp":"2025-09-26T07:41:27.584Z","variantId":"e61429e0","variantName":"PDPA"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.choice.selected","timestamp":"2025-09-26T07:41:27.572Z","choiceText":"PDPA","variantId":"a59ef133","variantName":"Intro"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.variant.start","timestamp":"2025-09-26T07:41:27.583Z","variantId":"e61429e0","variantName":"PDPA"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.story.start","timestamp":"2025-09-26T07:41:27.586Z","variantId":"e61429e0","variantName":"PDPA"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.choice.selected","timestamp":"2025-09-26T07:41:30.902Z","choiceText":"ยอมรับและเริ่มเล่นเกม","variantId":"e61429e0","variantName":"PDPA"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.choice.selected","timestamp":"2025-09-26T07:41:30.902Z","choiceText":"ยอมรับและเริ่มเล่นเกม","variantId":"e61429e0","variantName":"PDPA"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.variant.start","timestamp":"2025-09-26T07:41:30.913Z","variantId":"02fe3354","variantName":"Opening Scene"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.variant.start","timestamp":"2025-09-26T07:41:30.914Z","variantId":"02fe3354","variantName":"Opening Scene"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.variant.start","timestamp":"2025-09-26T07:41:37.536Z","variantId":"333faf2b","variantName":"เหตุผลหลักในการเดินทางเข้าเมือง"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.choice.selected","timestamp":"2025-09-26T07:41:37.525Z","choiceText":"เริ่มเล่น","variantId":"02fe3354","variantName":"Opening Scene"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.choice.selected","timestamp":"2025-09-26T07:41:37.526Z","choiceText":"เริ่มเล่น","variantId":"02fe3354","variantName":"Opening Scene"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.variant.start","timestamp":"2025-09-26T07:41:37.537Z","variantId":"333faf2b","variantName":"เหตุผลหลักในการเดินทางเข้าเมือง"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.choice.selected","timestamp":"2025-09-26T07:41:47.515Z","choiceText":"ทำงาน","variantId":"333faf2b","variantName":"เหตุผลหลักในการเดินทางเข้าเมือง"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.choice.selected","timestamp":"2025-09-26T07:41:47.514Z","choiceText":"ทำงาน","variantId":"333faf2b","variantName":"เหตุผลหลักในการเดินทางเข้าเมือง"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.variant.start","timestamp":"2025-09-26T07:41:48.278Z","variantId":"4bec38a0","variantName":"คุณใช้รถแบบไหนเดินทางเข้าเมือง?"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.variant.start","timestamp":"2025-09-26T07:41:48.283Z","variantId":"4bec38a0","variantName":"คุณใช้รถแบบไหนเดินทางเข้าเมือง?"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.choice.selected","timestamp":"2025-09-26T07:41:52.372Z","choiceText":"รถไฟฟ้า BTS / MRT","variantId":"4bec38a0","variantName":"คุณใช้รถแบบไหนเดินทางเข้าเมือง?"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.choice.selected","timestamp":"2025-09-26T07:41:52.372Z","choiceText":"รถไฟฟ้า BTS / MRT","variantId":"4bec38a0","variantName":"คุณใช้รถแบบไหนเดินทางเข้าเมือง?"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.variant.start","timestamp":"2025-09-26T07:41:53.136Z","variantId":"0c1a4486","variantName":"รถไฟฟ้า BTS / MRT"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.variant.start","timestamp":"2025-09-26T07:41:53.127Z","variantId":"0c1a4486","variantName":"รถไฟฟ้า BTS / MRT"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.choice.selected","timestamp":"2025-09-26T07:42:17.063Z","choiceText":"เห็นด้วยว่าจะได้ผล","variantId":"0c1a4486","variantName":"รถไฟฟ้า BTS / MRT"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.choice.selected","timestamp":"2025-09-26T07:42:17.063Z","choiceText":"เห็นด้วยว่าจะได้ผล","variantId":"0c1a4486","variantName":"รถไฟฟ้า BTS / MRT"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.variant.start","timestamp":"2025-09-26T07:42:17.805Z","variantId":"0cbd0522","variantName":"ไม่เชื่อว่าจะได้ผล"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.variant.start","timestamp":"2025-09-26T07:42:17.805Z","variantId":"0cbd0522","variantName":"ไม่เชื่อว่าจะได้ผล"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.story.start","timestamp":"2025-09-26T07:42:45.829Z","variantId":"a59ef133","variantName":"Intro"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.variant.start","timestamp":"2025-09-26T07:42:45.824Z","variantId":"a59ef133","variantName":"Intro"}
