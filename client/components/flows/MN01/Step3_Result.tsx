@@ -38,7 +38,7 @@ const Step3_Result = ({
     ปรับปรุงคุณภาพรถเมล์: "🚌",
     ตั๋วร่วม: "🎫",
     เพิ่มความถี่รถเมล์: "🚍",
-    เพิ่มความถี่รถไฟฟ้า: "🚊",
+    เพิ่มความถี่รถไฟ���้า: "🚊",
     เพิ่มที่จอดรถ: "🅿️",
     "เพิ่ม Feeder ในซอย": "🚐",
   };
@@ -197,21 +197,34 @@ const Step3_Result = ({
 
       {/* Buttons included in children so they show when custom children are used */}
       <div className="figma-style1-button-container">
-        <button
-          onClick={handleYes}
-          className="figma-style1-button"
-          aria-label="ตอบใช่ - พอใจกับผลลัพธ์"
-        >
-          <span className="figma-style1-button-text">ใช่</span>
-        </button>
+        {useUk1Button ? (
+          <>
+            <Uk1Button onClick={handleYes} aria-label="ตอบใช่ - พอใจกับผลลัพธ์">
+              <span className="figma-style1-button-text">ใช่</span>
+            </Uk1Button>
+            <Uk1Button onClick={handleNo} aria-label="ตอบไม่ใช่ - ไม่พอใจกับผลลัพธ์">
+              <span className="figma-style1-button-text">ไม่ใช่</span>
+            </Uk1Button>
+          </>
+        ) : (
+          <>
+            <button
+              onClick={handleYes}
+              className="figma-style1-button"
+              aria-label="ตอบใช่ - พอใจกับผลลัพธ์"
+            >
+              <span className="figma-style1-button-text">ใช่</span>
+            </button>
 
-        <button
-          onClick={handleNo}
-          className="figma-style1-button"
-          aria-label="ตอบไม่ใช่ - ไม่พอใจกับผลลัพธ์"
-        >
-          <span className="figma-style1-button-text">ไม่ใช่</span>
-        </button>
+            <button
+              onClick={handleNo}
+              className="figma-style1-button"
+              aria-label="ตอบไม่ใช่ - ไม่พอใจกับผลลัพธ์"
+            >
+              <span className="figma-style1-button-text">ไม่ใช่</span>
+            </button>
+          </>
+        )}
       </div>
     </FigmaStyle1Layout>
   );
