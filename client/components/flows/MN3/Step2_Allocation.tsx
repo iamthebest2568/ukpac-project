@@ -6,6 +6,7 @@
 import { useState, useEffect } from "react";
 import { logEvent } from "../../../services/dataLogger.js";
 import FigmaStyle1Layout from "../../layouts/FigmaStyle1Layout.ukpack1";
+import Uk1Button from "../../shared/Uk1Button";
 import "../../../styles/figma-style1-ukpack1.css";
 
 interface Step2_AllocationProps {
