@@ -13,6 +13,7 @@ import {
 } from "react-router-dom";
 import { BusDesignProvider } from "./pages/ukpack2/context/BusDesignContext";
 const TabletMockupUk2 = React.lazy(() => import("./pages/ukpack2/components/TabletMockup"));
+const TabletMockupUk1 = React.lazy(() => import("./pages/ukpack1/components/TabletMockup"));
 
 // Minimal set of pages (dashboard/backend removed)
 const NotFound = lazy(() => import("./pages/NotFound"));
@@ -210,6 +211,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     );
   }
   const isFullBleed = location.pathname.startsWith("/ukpack2");
+  const isUkpack1 = location.pathname.startsWith("/ukpack1");
   // initialize ukpack2 analytics only on ukpack2 routes
   if (isFullBleed) {
     try {
@@ -279,6 +281,10 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           {isFullBleed ? (
             <React.Suspense fallback={<div style={{ height: "100%" }} />}>
               <TabletMockupUk2>{children}</TabletMockupUk2>
+            </React.Suspense>
+          ) : isUkpack1 ? (
+            <React.Suspense fallback={<div style={{ height: "100%" }} />}>
+              <TabletMockupUk1>{children}</TabletMockupUk1>
             </React.Suspense>
           ) : (
             <div style={{ height: "100%", overflow: "hidden" }}>{children}</div>
