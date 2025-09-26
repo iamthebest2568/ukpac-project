@@ -4,6 +4,7 @@
  */
 
 import { useState, useEffect } from "react";
+import Uk1Button from "../shared/Uk1Button";
 import { logEvent } from "../../services/dataLogger.js";
 import FigmaStyle1Layout from "../layouts/FigmaStyle1Layout.ukpack1";
 
@@ -11,9 +12,10 @@ interface Ask05Props {
   sessionID: string | null;
   onNavigate: (screenId: string, data?: any) => void;
   journeyData?: any;
+  useUk1Button?: boolean;
 }
 
-const Ask05 = ({ sessionID, onNavigate }: Ask05Props) => {
+const Ask05 = ({ sessionID, onNavigate, useUk1Button = false }: Ask05Props) => {
   const [suggestion, setSuggestion] = useState("");
 
   const handleContinue = () => {
@@ -89,9 +91,15 @@ const Ask05 = ({ sessionID, onNavigate }: Ask05Props) => {
       </div>
 
       <div className="figma-style1-button-container">
-        <button onClick={handleContinue} className="figma-style1-button">
-          <span className="figma-style1-button-text">ไปต่อ</span>
-        </button>
+        {useUk1Button ? (
+          <Uk1Button onClick={handleContinue}>
+            <span className="figma-style1-button-text">ไปต่อ</span>
+          </Uk1Button>
+        ) : (
+          <button onClick={handleContinue} className="figma-style1-button">
+            <span className="figma-style1-button-text">ไป��่อ</span>
+          </button>
+        )}
       </div>
     </FigmaStyle1Layout>
   );
