@@ -140,7 +140,7 @@ const Step1_Beneficiaries = ({
 
   const titleText =
     currentPriority === "ลดค่าโดยสารร��ไฟฟ้า"
-      ? "คุณคิดว่าใครควรไ��้รับการลดค่าโดยสารรถไฟฟ้าบ้าง"
+      ? "คุณคิดว่าใครควรได้รับการลดค่า���ดยสารรถไฟฟ้าบ้าง"
       : `คุณคิดว่าใครควรได้รับประโยชน์จาก ${currentPriority}`;
 
   return (
@@ -183,7 +183,7 @@ const Step1_Beneficiaries = ({
                   <img
                     src={group.iconSrc}
                     alt={group.label}
-                    className="w-[68px] h-[68px] object-contain"
+                    className="w-[84px] h-[84px] object-contain"
                   />
                 </div>
               </div>
@@ -222,7 +222,7 @@ const Step1_Beneficiaries = ({
                   <img
                     src={group.iconSrc}
                     alt={group.label}
-                    className="w-[68px] h-[68px] object-contain"
+                    className="w-[84px] h-[84px] object-contain"
                   />
                 </div>
               </div>
