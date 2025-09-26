@@ -182,7 +182,7 @@ const Step2_Summary = ({
           display: "flex",
           flexDirection: "column",
           zIndex: 9999,
-          paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 140px)", // ensure content not covered by footer
+          paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 160px)", // ensure content not covered by footer
         }}
       >
         {/* Policy Cards */}
