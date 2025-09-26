@@ -12,7 +12,7 @@ import {
   useLocation,
 } from "react-router-dom";
 import { BusDesignProvider } from "./pages/ukpack2/context/BusDesignContext";
-import TabletMockup from "./pages/ukpack2/components/TabletMockup";
+const TabletMockupUk2 = React.lazy(() => import("./pages/ukpack2/components/TabletMockup"));
 
 // Minimal set of pages (dashboard/backend removed)
 const NotFound = lazy(() => import("./pages/NotFound"));
