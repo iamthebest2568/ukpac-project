@@ -108,3 +108,9 @@
 {"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.variant.start","timestamp":"2025-09-26T07:36:08.657Z","variantId":"8aa35bfd","variantName":"ทดสอบ Key message"}
 {"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.choice.selected","timestamp":"2025-09-26T07:36:14.295Z","choiceText":"เห็นด้วย","variantId":"8aa35bfd","variantName":"ทดสอบ Key message"}
 {"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.variant.start","timestamp":"2025-09-26T07:37:21.419Z","variantId":"a59ef133","variantName":"Intro"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.variant.start","timestamp":"2025-09-26T07:37:21.423Z","variantId":"a59ef133","variantName":"Intro"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.story.start","timestamp":"2025-09-26T07:37:21.424Z","variantId":"a59ef133","variantName":"Intro"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.story.start","timestamp":"2025-09-26T07:37:21.429Z","variantId":"a59ef133","variantName":"Intro"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.choice.selected","timestamp":"2025-09-26T07:37:23.765Z","choiceText":"PDPA","variantId":"a59ef133","variantName":"Intro"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.choice.selected","timestamp":"2025-09-26T07:37:23.774Z","choiceText":"PDPA","variantId":"a59ef133","variantName":"Intro"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.variant.start","timestamp":"2025-09-26T07:37:24.611Z","variantId":"e61429e0","variantName":"PDPA"}
