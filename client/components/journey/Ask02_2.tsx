@@ -14,7 +14,7 @@ interface Ask02_2Props {
   useUk1Button?: boolean;
 }
 
-const Ask02_2 = ({ sessionID, onNavigate }: Ask02_2Props) => {
+const Ask02_2 = ({ sessionID, onNavigate, useUk1Button = false }: Ask02_2Props) => {
   const [textInput, setTextInput] = useState("");
 
   const handleNext = () => {
@@ -116,7 +116,7 @@ const Ask02_2 = ({ sessionID, onNavigate }: Ask02_2Props) => {
             className="text-center font-prompt mb-2"
             style={{ color: "#000D59", fontSize: "14px" }}
           >
-            กรุณากรอกข้อความเ���ื่อดำเนินการต่อ
+            กรุณากรอกข้อความเพื่อดำเนินการต่อ
           </div>
         )}
 
