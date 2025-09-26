@@ -119,6 +119,7 @@ const Flow_MiniGame_MN2 = ({
           currentStep={currentStep}
           totalPrioritySteps={priorities.length}
           initialBeneficiaries={initialBeneficiaries}
+          useUk1Button={isUkpack1}
         />
       );
     }
