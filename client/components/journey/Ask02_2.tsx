@@ -16,18 +16,29 @@ interface Ask02_2Props {
 
 const Ask02_2 = ({ sessionID, onNavigate, useUk1Button = false }: Ask02_2Props) => {
   const [textInput, setTextInput] = useState("");
+  const [attempted, setAttempted] = useState(false);
 
   const handleNext = () => {
+    const trimmed = textInput.trim();
+    if (trimmed.length === 0) {
+      setAttempted(true);
+      try {
+        const el = document.getElementById("ask02-2-textarea") as HTMLTextAreaElement | null;
+        el?.focus();
+      } catch {}
+      return;
+    }
+
     // Log the user's custom reason
     logEvent({
       event: "ASK02_2_SUBMIT",
       payload: {
-        customReason: textInput,
+        customReason: trimmed,
         sessionID,
       },
     });
 
-    const data = { textInput };
+    const data = { textInput: trimmed };
     onNavigate("ask05", data);
   };
 
@@ -111,7 +122,7 @@ const Ask02_2 = ({ sessionID, onNavigate, useUk1Button = false }: Ask02_2Props) 
       </div>
 
       <div className="figma-style1-button-container">
-        {textInput.trim().length === 0 && (
+        {attempted && textInput.trim().length === 0 && (
           <div
             className="text-center font-prompt mb-2"
             style={{ color: "#000D59", fontSize: "14px" }}
@@ -121,14 +132,13 @@ const Ask02_2 = ({ sessionID, onNavigate, useUk1Button = false }: Ask02_2Props) 
         )}
 
         {useUk1Button ? (
-          <Uk1Button onClick={handleNext} disabled={textInput.trim().length === 0} aria-disabled={textInput.trim().length === 0}>
+          <Uk1Button onClick={handleNext} aria-disabled={textInput.trim().length === 0} className={textInput.trim().length === 0 ? "cursor-not-allowed opacity-60" : ""}>
             <span className="figma-style1-button-text">ไปต่อ</span>
           </Uk1Button>
         ) : (
           <button
             onClick={handleNext}
-            className="figma-style1-button"
-            disabled={textInput.trim().length === 0}
+            className={"figma-style1-button " + (textInput.trim().length === 0 ? "cursor-not-allowed opacity-60" : "")}
             aria-disabled={textInput.trim().length === 0}
           >
             <span className="figma-style1-button-text">ไปต่อ</span>
