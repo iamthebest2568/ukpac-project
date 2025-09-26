@@ -224,9 +224,11 @@ const SubmitScreen: React.FC = () => {
         title="การบริการของรถเมล์"
         theme="light"
         footerContent={
-          <div className="flex justify-center">
-            <CtaButton text="ออกแบบเสร็จแล้ว" onClick={handleFinish} />
-          </div>
+          <Uk2Footer>
+            <div className="w-full flex justify-center">
+              <CtaButton text="ออกแบบเสร็จแล้ว" onClick={handleFinish} />
+            </div>
+          </Uk2Footer>
         }
       >
         <div className="space-y-6">
