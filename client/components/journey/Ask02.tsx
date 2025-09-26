@@ -40,17 +40,14 @@ const Ask02 = ({ sessionID, onNavigate }: Ask02Props) => {
     {
       text: "นโยบายไม่ครอบคลุม",
       onClick: () => handleChoice("coverage"),
-      ariaLabel: "เห็นว่านโยบายยังไม่ครอบคลุมประเด็นสำคัญ",
     },
     {
       text: "เก็บไปก็ไม่มีอะไรดีขึ้น",
       onClick: () => handleChoice("ineffective"),
-      ariaLabel: "เห็นว่าการเก็บเงินอาจไม่ส่งผลต่อการแก้ปัญหา",
     },
     {
       text: "อื่นๆ",
       onClick: () => handleChoice("other"),
-      ariaLabel: "มีเหตุผลอื่นที่ต้องการแสดงความคิดเห็น",
     },
   ];
 
