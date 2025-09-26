@@ -286,9 +286,11 @@ const AmenitiesScreen: React.FC = () => {
       theme="light"
       fullWidth
       footerContent={
-        <div className="flex justify-center">
-          <CtaButton text="ถัดไป" onClick={handleNext} />
-        </div>
+        <Uk2Footer>
+          <div className="w-full flex justify-center">
+            <CtaButton text="ถัดไป" onClick={handleNext} />
+          </div>
+        </Uk2Footer>
       }
     >
       <div className={styles.contentGrid}>
