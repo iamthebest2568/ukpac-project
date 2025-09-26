@@ -132,7 +132,7 @@ const Flow_MiniGame_MN2 = ({
         <div className="figma-style1-content">
           <div className="figma-style1-background">
             <img
-              src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F93a155f38af546bcaa326ad3f9198e9c?format=webp&width=800"
+              src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F27759edd1f334fba98515ddd5c397f69?format=webp&width=800"
               alt="กลุ่มผู้ได้รับประโยชน์"
               className="figma-style1-background-image"
             />
