@@ -1,4 +1,6 @@
 /* Figma Style 1 - Design System (ukpack1 copy) */
+@import "./mn3-buttons.css";
+@import "./mn3-fixes.css";
 
 /* Main Layout Container */
 .figma-style1-container {
