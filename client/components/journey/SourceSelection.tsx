@@ -3,15 +3,28 @@ import { logEvent } from "../../services/dataLogger.js";
 
 interface SourceSelectionProps {
   sessionID: string | null;
-  onNavigate: (screenId: string, data?: any) => void;
+  onNavigate?: (screenId: string, data?: any) => void;
   useUk1Button?: boolean;
 }
 
 import { useState, Fragment } from "react";
 import Uk1Button from "../shared/Uk1Button";
+import FigmaStyle1Layout from "../layouts/FigmaStyle1Layout.ukpack1";
+import { useSession } from "../../hooks/useSession";
 
 const SourceSelection = ({ sessionID, onNavigate, useUk1Button = false }: SourceSelectionProps) => {
   const [selected, setSelected] = useState<string[]>([]);
+  const { navigateToPage } = useSession();
+  const navigate = (screenId: string, data?: any) => {
+    if (typeof onNavigate === "function") {
+      try {
+        return onNavigate(screenId, data);
+      } catch (e) {
+        // fallback
+      }
+    }
+    return navigateToPage(screenId, data);
+  };
 
   const options: { id: string; label: string }[] = [
     { id: "radio", label: "รายการวิทยุ" },
@@ -19,7 +32,7 @@ const SourceSelection = ({ sessionID, onNavigate, useUk1Button = false }: Source
     { id: "online_news", label: "รายการข่าวสื่อออนไลน์" },
     { id: "government", label: "เว็บไซต์ของหน่วยงานรัฐ" },
     { id: "road_sign", label: "ป้ายประกาศ หรือสื่อข้างทาง" },
-    { id: "social", label: "สื่อสังคม���อนไลน์ (Social Media)" },
+    { id: "social", label: "สื่อสังคมออนไลน์ (Social Media)" },
     { id: "community", label: "กลุ่มเครือข่าย / ชุมชน / เพื่อน" },
     { id: "other", label: "อื่นๆ" },
   ];
@@ -38,7 +51,7 @@ const SourceSelection = ({ sessionID, onNavigate, useUk1Button = false }: Source
       event: "SOURCE_SELECTION_SUBMIT",
       payload: { selected, sessionID },
     });
-    onNavigate("Flow_EndSequence", { selected });
+    navigate("Flow_EndSequence", { selected });
   };
 
   return (
