@@ -162,7 +162,7 @@ const AMENITIES = [
   },
   {
     key: "cup",
-    label: "ระบบประกาศบอกป้าย(��สียง/จอ)",
+    label: "ระบบประกาศบอกป้าย(เสียง/จอ)",
     icon: <IconCup />,
     iconActive: <IconCupAlt />,
   },
@@ -256,7 +256,7 @@ const AmenitiesScreen: React.FC = () => {
 
   const OVERLAY_ICON_SRC: Record<string, string> = {
     // labels
-    ���อร์: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F43ef2946e5324cb981bc063db02fe5bc?format=webp&width=800",
+    แอร์: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F43ef2946e5324cb981bc063db02fe5bc?format=webp&width=800",
     พัดลม:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F4e8932e864664a7f8a454d61f4e87ca9?format=webp&width=800",
     ที่นั่งพิเศษ:
@@ -310,7 +310,7 @@ const AmenitiesScreen: React.FC = () => {
               />
             ) : (
               <div className="w-full h-48 bg-[#081042] rounded-md flex items-center justify-center text-sm text-gray-300">
-                Bus image preview (ภาพสำหรับรุ่นนี้จะถูกเพิ่มภายหลัง)
+                Bus image preview (ภาพสำหรับรุ่นนี้จะถูกเพิ่มภายหลั��)
               </div>
             )}
           </div>
