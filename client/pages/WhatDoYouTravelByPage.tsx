@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import FigmaStyle1Layout from "../components/layouts/FigmaStyle1Layout.ukpack1";
+import Uk1Button from "../components/shared/Uk1Button";
 import { useSession } from "../hooks/useSession";
 import { logEvent } from "../services/dataLogger.js";
 
@@ -66,9 +67,7 @@ export default function WhatDoYouTravelByPage() {
       </div>
 
       <div className="figma-style1-button-container">
-        <button onClick={handleContinue} className="figma-style1-button">
-          <span className="figma-style1-button-text">ไปต่อ</span>
-        </button>
+        <Uk1Button onClick={handleContinue}>ไปต่อ</Uk1Button>
       </div>
     </FigmaStyle1Layout>
   );
