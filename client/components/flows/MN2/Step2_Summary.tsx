@@ -284,9 +284,9 @@ const Step2_Summary = ({
           right: 0,
           bottom: 0,
           zIndex: 10000,
-          height: 76,
+          height: "auto",
           background: "transparent",
-          padding: "10px 16px",
+          padding: "16px",
           display: "flex",
           justifyContent: "center",
           boxShadow: "none",
@@ -299,11 +299,12 @@ const Step2_Summary = ({
             display: "flex",
             gap: 12,
             justifyContent: "center",
+            flexDirection: "column",
           }}
         >
           {useUk1Button ? (
             <>
-              <Uk1Button onClick={handleEndGame} aria-label="ใช่, ไปต่อ" style={{ flex: 1 }}>
+              <Uk1Button onClick={handleEndGame} aria-label="ใช่, ไปต่อ" style={{ width: "100%", marginBottom: 12 }}>
                 <span className="figma-style1-button-text">ใช่, ไปต่อ</span>
               </Uk1Button>
               <Uk1Button
@@ -319,7 +320,7 @@ const Step2_Summary = ({
                   }
                 }}
                 aria-label="ไม่ใช่, ลองอีกครั้ง"
-                style={{ flex: 1 }}
+                style={{ width: "100%" }}
               >
                 <span className="figma-style1-button-text">ไม่ใช่, ลองอีกครั้ง</span>
               </Uk1Button>
@@ -330,7 +331,7 @@ const Step2_Summary = ({
                 onClick={handleEndGame}
                 className="figma-style1-button"
                 aria-label="ใช่, ไปต่อ"
-                style={{ flex: 1 }}
+                style={{ width: "100%", marginBottom: 12 }}
               >
                 <span className="figma-style1-button-text">ใช่, ไปต่อ</span>
               </button>
@@ -350,7 +351,7 @@ const Step2_Summary = ({
                 }}
                 className="figma-style1-button"
                 aria-label="ไม่ใช่, ลองอีกครั้ง"
-                style={{ flex: 1 }}
+                style={{ width: "100%" }}
               >
                 <span className="figma-style1-button-text">ไม่ใช่, ลองอีกครั้ง</span>
               </button>
