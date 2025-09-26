@@ -282,3 +282,83 @@ body.page-ukpack2 .full-bleed-page .app-container [role="button"]:hover {
   color: #ffd100 !important; /* yellow */
   text-decoration-color: #ffd100 !important;
 }
+
+/* --------------------------------------------------
+   Namespaced overrides for global figma-style1 selectors
+   Ensure /ukpack2 uses its own layout defaults without editing global files.
+   These rules are intentionally specific (body.page-ukpack2 ...) so they override
+   global figma-style1.css where necessary but do not affect /ukpack1.
+   -------------------------------------------------- */
+
+body.page-ukpack2 .figma-style1-container {
+  /* ensure ukpack2 containers use ukpack2 theming defaults */
+  min-height: 100vh !important;
+  display: flex !important;
+  justify-content: center !important;
+  background: var(--uk2-bg, transparent) !important;
+  color: #000d59 !important;
+}
+
+body.page-ukpack2 .figma-style1-content,
+body.page-ukpack2 .figma-style1-main,
+body.page-ukpack2 .figma-style1-content-area {
+  overflow: visible !important;
+  box-sizing: border-box !important;
+}
+
+body.page-ukpack2 .figma-style1-background {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+}
+
+body.page-ukpack2 .figma-style1-background-image {
+  object-fit: cover !important;
+  object-position: center center !important;
+}
+
+body.page-ukpack2 .figma-style1-background-overlay,
+body.page-ukpack2 .figma-style1-wave-overlay {
+  display: none !important; /* ukpack2 uses its own decorative shapes */
+}
+
+body.page-ukpack2 .figma-style1-title-container,
+body.page-ukpack2 .figma-style1-title {
+  text-align: center !important;
+  margin: 12px 0 !important;
+}
+
+body.page-ukpack2 .figma-style1-button-container {
+  display: flex !important;
+  gap: 12px !important;
+  justify-content: center !important;
+}
+
+body.page-ukpack2 .figma-style1-button {
+  width: 100% !important;
+  max-width: 420px !important;
+}
+
+/* Ensure any fake-news or mn3 specific global rules do not leak into ukpack2 */
+body.page-ukpack2 .figma-style1-container.fake-news-page,
+body.page-ukpack2 .figma-style1-container.mn3-step2-page,
+body.page-ukpack2 .figma-style1-container.mn3-step3-page {
+  /* neutralize MN3 / fake-news specific styling under ukpack2 */
+  background: none !important;
+}
+
+/* Target common utility selectors used across files */
+body.page-ukpack2 .absolute.inset-0 {
+  position: absolute !important;
+}
+
+/* Respect embedded mode tweaks under ukpack2 as well */
+body.page-ukpack2 .embedded-ukpack2 .app-container {
+  width: 810px !important;
+}
+
+/* Final safety: ensure ukpack2 rules have higher specificity than global rules */
+body.page-ukpack2 .figma-style1-container,
+body.page-ukpack2 .figma-style1-container * {
+  -webkit-font-smoothing: antialiased !important;
+}
