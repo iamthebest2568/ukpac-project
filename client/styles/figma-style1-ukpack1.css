@@ -1506,6 +1506,28 @@ body[data-dialog-open] {
   object-position: center center !important;
 }
 
+/* MN2 Step1: lift content and keep CTA visible */
+.figma-style1-container.mn2-step1-page .figma-style1-main {
+  align-items: start !important;
+}
+.figma-style1-container.mn2-step1-page .figma-style1-content-area {
+  justify-content: flex-start !important;
+  align-items: center !important;
+  padding-top: clamp(8px, 6vh, 24px) !important;
+  padding-bottom: 0 !important;
+  max-height: none !important;
+}
+.figma-style1-container.mn2-step1-page .figma-style1-button-container {
+  grid-row: 2 !important;
+  align-self: end !important;
+  width: 100% !important;
+  max-width: 360px !important;
+  margin: 0 auto !important;
+  padding-left: 12px !important;
+  padding-right: 12px !important;
+  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 12px) !important;
+}
+
 .figma-style1-content-area {
   align-items: center !important;
   justify-content: center !important;
