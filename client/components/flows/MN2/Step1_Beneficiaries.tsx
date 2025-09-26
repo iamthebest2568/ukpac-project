@@ -5,7 +5,7 @@
 
 import { useState, useEffect } from "react";
 import { logEvent } from "../../../services/dataLogger.js";
-import FigmaStyle1Layout from "../../layouts/FigmaStyle1Layout";
+import FigmaStyle1Layout from "../../layouts/FigmaStyle1Layout.ukpack1";
 
 interface Step1_BeneficiariesProps {
   sessionID: string | null;
@@ -137,7 +137,7 @@ const Step1_Beneficiaries = ({
 
   const titleText =
     currentPriority === "ลดค่าโดยสารรถไฟฟ้า"
-      ? "คุณคิดว่าใครควรได้รับการลดค่าโดยสารรถไฟฟ้าบ้าง"
+      ? "คุณคิดว่าใครควรได้รับการล��ค่าโดยสารรถไฟฟ้าบ้าง"
       : `คุณคิดว่าใครควรได้รับประโยชน์จาก ${currentPriority}`;
 
   return (
