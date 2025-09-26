@@ -460,9 +460,11 @@ const PaymentScreen: React.FC = () => {
       theme="light"
       fullWidth
       footerContent={
-        <div className="flex justify-center">
-          <CtaButton text="ถัดไป" onClick={handleNext} />
-        </div>
+        <Uk2Footer>
+          <div className="w-full flex justify-center">
+            <CtaButton text="ถัดไป" onClick={handleNext} />
+          </div>
+        </Uk2Footer>
       }
     >
       <div className={styles.contentGrid}>
@@ -647,7 +649,7 @@ const PaymentScreen: React.FC = () => {
                   >
                     <img
                       src={
-                        selected.includes("สแกนจ่าย")
+                        selected.includes("สแกนจ��าย")
                           ? SCAN_ICON_ACTIVE
                           : SCAN_ICON
                       }
