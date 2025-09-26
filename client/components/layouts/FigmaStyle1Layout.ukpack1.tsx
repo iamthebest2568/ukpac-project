@@ -162,7 +162,7 @@ const FigmaStyle1Layout = ({
                 <div className="figma-style1-button-container">
                   {buttons?.map((button, index) => (
     <Fragment key={index}>
-      <Uk1Button onClick={button.onClick} aria-describedby={`button-description-${index}`}>
+      <Uk1Button onClick={button.onClick} aria-describedby={button.ariaLabel ? `button-description-${index}` : undefined}>
         {typeof button.text === "string" && button.text.trim() === "อื่นๆ" ? <p style={{ margin: 0 }}>อื่น ๆ</p> : button.text}
       </Uk1Button>
       {button.ariaLabel && (
