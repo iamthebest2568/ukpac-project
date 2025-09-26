@@ -60,7 +60,7 @@ const Ask04Budget = ({
     {
       text: "ไม่พอใจ",
       onClick: () => handleChoice("unsatisfied"),
-      ariaLabel: "ไม่พอใจกับผ��ลัพธ์และต้องการให้ข้อเสนอแนะ",
+      ariaLabel: "ไม่พอใจกับผลลัพธ์และต้องการให้ข้อเสนอแนะ",
     },
   ];
 
@@ -82,7 +82,7 @@ const Ask04Budget = ({
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F79ac3a2ac5e84e88b4015fd66aaebe04?format=webp&width=720",
     เพิ่มความถี่รถไฟฟ้า:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fd90beaca642d4cceba685d933aeb644f?format=webp&width=720",
-    ปร��บปรุงคุณภาพรถเมล์:
+    ปรับปรุงคุณภาพรถเมล์:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F602cfdd852a147ed852d50b2ed05772d?format=webp&width=720",
     เพิ่มความถี่รถเมล์:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F4e921e92e2c44db7a2ad24ee299e9a6d?format=webp&width=720",
@@ -141,7 +141,7 @@ const Ask04Budget = ({
     <FigmaStyle1Layout
       backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F4eb00ae35ec74ef5928b78875a49f859?format=webp&width=800"
       backgroundAlt="พื้นหลังสรุปนโยบาย"
-      title={`คุณพ���ใจภาพเมืองในอนาคตที่อาจจะเกิดขึ้นหรือไม่`}
+      title={`คุณพอใจภาพเมืองในอนาคตที่อาจจะเกิดขึ้นหรือไม่`}
       className="ask04-page ask04-budget-page mn3-step2-minimal"
     >
       {/* Children: use MN3 Step3_Result style collage + stacked buttons (scoped copy) */}
