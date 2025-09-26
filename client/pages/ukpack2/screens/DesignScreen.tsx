@@ -6,6 +6,7 @@ import { addDesignImageUrlToFirestore } from "../../../lib/firebase";
 import MetaUpdater from "../../../components/MetaUpdater";
 import { OVERLAY_ICON_SRC } from "../utils/overlayIcons";
 import CtaButton from "../components/CtaButton";
+import Uk2Footer from "../components/Uk2Footer";
 import { HERO_IMAGE, CHASSIS_LABELS } from "../utils/heroImages";
 import { generateMaskFromColor } from "../utils/generateMaskFromColor";
 import VehiclePreview from "../components/VehiclePreview";
@@ -678,7 +679,7 @@ const DesignScreen: React.FC = () => {
                         value={sloganDraft}
                         onChange={(e) => setSloganDraft(e.target.value)}
                         placeholder={
-                          "[พิมพ์คุณสมบัติพิเศษอื่นๆของ\nรถเมล์ในฝันของคุณ]"
+                          "[พิมพ์คุ��สมบัติพิเศษอื่นๆของ\nรถเมล์ในฝันของคุณ]"
                         }
                         className="mt-3 w-full h-36 p-3 border-2 border-[#000D59] rounded-xl text-sm resize-none text-center"
                         style={{ whiteSpace: "pre-wrap" }}
