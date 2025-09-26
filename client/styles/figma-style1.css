@@ -1117,6 +1117,21 @@
   display: block !important;
 }
 
+/* Allow collage elements to overflow and be visible above background/overlays */
+.figma-style1-container.ask04-budget-page .figma-style1-content-area {
+  overflow: visible !important;
+  z-index: 9999 !important;
+}
+
+.figma-style1-container.ask04-budget-page .max-w-[980px].mx-auto.relative {
+  overflow: visible !important;
+}
+
+.figma-style1-container.ask04-budget-page .ask04-collage-wrapper > .relative,
+.figma-style1-container.ask04-budget-page .ask04-collage-wrapper .relative > div {
+  overflow: visible !important;
+}
+
 @media (max-width: 767px) {
   .figma-style1-container.ask04-budget-page .ask04-collage-wrapper {
     min-height: 42vh !important;
