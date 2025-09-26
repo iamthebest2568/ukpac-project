@@ -156,7 +156,7 @@ const BudgetAllocationComponent = ({
           <h1
             className="font-prompt font-bold text-center"
             style={{
-              color: "#000D59",
+              color: "var(--uk1-primary)",
               fontSize: titleFontSize,
               fontWeight: 700,
               lineHeight: "normal",
@@ -192,7 +192,7 @@ const BudgetAllocationComponent = ({
               <div
                 className="font-prompt font-bold text-center mb-2"
                 style={{
-                  color: "#000D59",
+                  color: "var(--uk1-primary)",
                   fontSize: labelFontSize,
                   fontWeight: 700,
                   letterSpacing: "0.4px",
@@ -203,7 +203,7 @@ const BudgetAllocationComponent = ({
               <div
                 className="font-prompt font-bold text-center"
                 style={{
-                  color: "#000D59",
+                  color: "var(--uk1-primary)",
                   fontSize: totalFontSize,
                   fontWeight: 700,
                   letterSpacing: "0.4px",
@@ -220,7 +220,7 @@ const BudgetAllocationComponent = ({
           <div className="text-center">
             <div
               className="text-lg font-prompt mb-2"
-              style={{ color: "#000D59" }}
+              style={{ color: "var(--uk1-primary)" }}
             >
               งบที่เหลือ:{" "}
               <span
@@ -259,7 +259,7 @@ const BudgetAllocationComponent = ({
               </div>
               <div
                 className="text-sm mt-2 text-center"
-                style={{ color: "#000D59" }}
+                style={{ color: "var(--uk1-primary)" }}
               >
                 ใช้งบประมาณ {((allocatedBudget / totalBudget) * 100).toFixed(1)}
                 %
@@ -277,7 +277,7 @@ const BudgetAllocationComponent = ({
                 <h3
                   className="font-prompt font-bold"
                   style={{
-                    color: "#000D59",
+                    color: "var(--uk1-primary)",
                     fontSize: labelFontSize,
                     fontWeight: 700,
                     letterSpacing: "0.4px",
@@ -314,7 +314,7 @@ const BudgetAllocationComponent = ({
                     }
                     className="w-full h-full bg-transparent text-center font-prompt font-bold border-none outline-none focus:ring-2 focus:ring-[#FFE000]"
                     style={{
-                      color: "#000D59",
+                      color: "var(--uk1-primary)",
                       fontSize: inputFontSize,
                       fontWeight: 700,
                       letterSpacing: "0.4px",
@@ -399,7 +399,7 @@ const BudgetAllocationComponent = ({
                 id="next-button-description"
                 className="text-center mt-4"
                 style={{
-                  color: "#000D59",
+                  color: "var(--uk1-primary)",
                   fontSize: "clamp(14px, 2.8vw, 18px)",
                 }}
               >
