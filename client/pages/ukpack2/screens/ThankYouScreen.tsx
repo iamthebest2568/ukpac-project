@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import CustomizationScreen from "../components/CustomizationScreen";
 import SecondaryButton from "../components/SecondaryButton";
 import CtaButton from "../components/CtaButton";
+import Uk2Footer from "../components/Uk2Footer";
 
 const ThankYouScreen: React.FC = () => {
   const navigate = useNavigate();
