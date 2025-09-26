@@ -24,7 +24,7 @@ const Step1_Choice = ({
 
   // Define priorities exactly as in Figma design
   const priorityList = [
-    "ลดค่าโดยสารรถไฟฟ้า",
+    "ลดค่า��ดยสารรถไฟฟ้า",
     "เพิ่มความถี่รถไฟฟ้า",
     "ตั๋วร่วม",
     "เพิ่มความถี่รถเมล์",
@@ -87,7 +87,7 @@ const Step1_Choice = ({
   // Define which buttons should be yellow by default (from Figma design)
   const defaultYellowButtons = new Set([
     "ปรับปรุงคุณภาพรถเมล์",
-    "เพิ่มความถี่รถเม���์",
+    "เพิ่มความถี่รถเมล์",
   ]);
 
   const getButtonClasses = (priority: string, index: number) => {
