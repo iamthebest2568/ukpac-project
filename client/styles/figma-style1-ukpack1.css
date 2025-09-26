@@ -1485,6 +1485,27 @@ body[data-dialog-open] {
   }
 }
 
+/* MN2 pages: force full-viewport background coverage and centered cropping */
+.figma-style1-container.mn2-step1-page .figma-style1-background,
+.figma-style1-container.mn2-summary-page .figma-style1-background {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  height: 100svh !important;
+}
+
+.figma-style1-container.mn2-step1-page .figma-style1-background-image,
+.figma-style1-container.mn2-summary-page .figma-style1-background-image {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  height: 100svh !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+}
+
 .figma-style1-content-area {
   align-items: center !important;
   justify-content: center !important;
