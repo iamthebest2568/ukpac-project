@@ -2063,13 +2063,27 @@ body[data-dialog-open] {
   pointer-events: none !important;
   z-index: 0 !important;
 }
-/* MN2 pages: force background image to cover */
+/* MN2 pages: force background image to cover (responsive) */
 .figma-style1-container.mn2-step1-page .figma-style1-background-image,
 .figma-style1-container.mn2-summary-page .figma-style1-background-image {
   object-fit: cover !important;
   object-position: center center !important;
   width: 100% !important;
   height: 100% !important;
+}
+/* Tall/narrow viewports: show more top area */
+@media (max-aspect-ratio: 9/16) {
+  .figma-style1-container.mn2-step1-page .figma-style1-background-image,
+  .figma-style1-container.mn2-summary-page .figma-style1-background-image {
+    object-position: top center !important;
+  }
+}
+/* Wide viewports: center composition */
+@media (min-aspect-ratio: 16/10) {
+  .figma-style1-container.mn2-step1-page .figma-style1-background-image,
+  .figma-style1-container.mn2-summary-page .figma-style1-background-image {
+    object-position: center center !important;
+  }
 }
 
 /* Hide decorative overlays only for the summary step */
