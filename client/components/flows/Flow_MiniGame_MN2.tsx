@@ -149,11 +149,15 @@ const Flow_MiniGame_MN2 = ({
                 </p>
               </div>
               <div className="w-full max-w-[325px]">
-                <button onClick={onBack} className="figma-style1-button">
-                  <span className="figma-style1-button-text">
-                    กลับไปเลือกนโยบาย
-                  </span>
-                </button>
+                {isUkpack1 ? (
+                  <Uk1Button onClick={onBack}>
+                    <span className="figma-style1-button-text">กลับไปเลือกนโยบาย</span>
+                  </Uk1Button>
+                ) : (
+                  <button onClick={onBack} className="figma-style1-button">
+                    <span className="figma-style1-button-text">กลับไปเลือกนโยบาย</span>
+                  </button>
+                )}
               </div>
             </div>
           </div>
