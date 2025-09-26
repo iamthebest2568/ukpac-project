@@ -8,8 +8,9 @@ import { useSession } from "../hooks/useSession";
 
 const Ask05Page = () => {
   const { sessionID, navigateToPage } = useSession();
+  const isUkpack1 = typeof window !== 'undefined' && window.location && window.location.pathname.startsWith('/ukpack1');
 
-  return <Ask05 sessionID={sessionID} onNavigate={navigateToPage} />;
+  return <Ask05 sessionID={sessionID} onNavigate={navigateToPage} useUk1Button={isUkpack1} />;
 };
 
 export default Ask05Page;
