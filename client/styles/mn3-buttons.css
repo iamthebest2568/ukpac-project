@@ -809,3 +809,16 @@
   background-color: #ccc;
   color: #666;
 }
+
+/* ukpack1 tablet mock: avoid fixed content inside transformed mockup */
+.tablet-mock-env .mn3-content {
+  position: static !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  margin-top: auto !important; /* push to bottom within flex parent */
+  padding: 0 16px calc(env(safe-area-inset-bottom, 16px) + 20px) 16px !important; /* keep safe-area spacing */
+  max-height: none !important;
+  overflow: visible !important;
+  z-index: 1 !important; /* normal stacking */
+}
