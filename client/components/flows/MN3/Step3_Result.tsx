@@ -303,27 +303,40 @@ const Step3_Result = ({
             gap: 12,
           }}
         >
-          <button
-            onClick={handleYes}
-            aria-pressed={selected === "yes"}
-            className="figma-style1-button"
-            style={{ width: "100%" }}
-            aria-label="ใช่, ไปต่อ"
-          >
-            <span className="figma-style1-button-text">ใช่, ไปต่อ</span>
-          </button>
+          {useUk1Button ? (
+            <>
+              <Uk1Button onClick={handleYes} aria-pressed={selected === "yes"} aria-label="ใช่, ไปต่อ" style={{ width: "100%" }}>
+                <span className="figma-style1-button-text">ใช่, ไปต่อ</span>
+              </Uk1Button>
+              <Uk1Button onClick={handleNo} aria-pressed={selected === "no"} aria-label="ไม่ใช่, ลองอีกครั้ง" style={{ width: "100%" }}>
+                <span className="figma-style1-button-text">ไม่ใช่, ลองอีกครั้ง</span>
+              </Uk1Button>
+            </>
+          ) : (
+            <>
+              <button
+                onClick={handleYes}
+                aria-pressed={selected === "yes"}
+                className="figma-style1-button"
+                style={{ width: "100%" }}
+                aria-label="ใช่, ไปต่อ"
+              >
+                <span className="figma-style1-button-text">ใช่, ไปต่อ</span>
+              </button>
 
-          <button
-            onClick={handleNo}
-            aria-pressed={selected === "no"}
-            className="figma-style1-button"
-            style={{ width: "100%" }}
-            aria-label="ไม่ใช่, ลองอีกครั้ง"
-          >
-            <span className="figma-style1-button-text">
-              ไม่ใช่, ลองอีกครั้ง
-            </span>
-          </button>
+              <button
+                onClick={handleNo}
+                aria-pressed={selected === "no"}
+                className="figma-style1-button"
+                style={{ width: "100%" }}
+                aria-label="ไม่ใช่, ลองอีกครั้ง"
+              >
+                <span className="figma-style1-button-text">
+                  ไม่ใช่, ลองอีกครั้ง
+                </span>
+              </button>
+            </>
+          )}
         </div>
       </div>
     </FigmaStyle1Layout>
