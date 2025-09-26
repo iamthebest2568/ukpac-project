@@ -59,6 +59,18 @@
   background-color: #FFE000;
 }
 
+/* MN01 page (mn3-page-bg): unify default policy button style to ukpack1 standard */
+.mn3-page-bg .mn3-policy-button {
+  background-color: #FFE000 !important;
+  color: #000000 !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+.mn3-page-bg .mn3-policy-button .mn3-button-text {
+  color: #000000 !important;
+  font-family: "Prompt", sans-serif !important;
+}
+
 /* Selected state (highlighted) */
 .mn3-policy-button--selected {
   background-color: #FFE000 !important;
