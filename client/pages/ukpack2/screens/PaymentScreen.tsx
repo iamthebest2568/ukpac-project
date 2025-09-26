@@ -650,7 +650,7 @@ const PaymentScreen: React.FC = () => {
                   >
                     <img
                       src={
-                        selected.includes("สแกนจ��าย")
+                        selected.includes("สแกนจ่าย")
                           ? SCAN_ICON_ACTIVE
                           : SCAN_ICON
                       }
