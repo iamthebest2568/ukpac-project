@@ -27,7 +27,7 @@ export default function WhatDoYouTravelByPage() {
       className="what-do-you-travel-by-page"
       imageLoading="eager"
       title={
-        <span style={{ color: "#000D59" }}>
+        <span style={{ color: "var(--uk1-primary)" }}>
           บอกเราหน่อยว่าคุณเดินทางเข้าเมือง
           <br />
           ด้วยวิธีการใดบ่อยที่สุด
@@ -53,7 +53,7 @@ export default function WhatDoYouTravelByPage() {
                 fontSize: "clamp(16px, 3.2vw, 36px)",
                 fontWeight: 400,
                 minHeight: "clamp(260px, 30vh, 480px)",
-                color: "#000D59",
+                color: "var(--uk1-primary)",
                 boxSizing: "border-box",
                 lineHeight: 1.4,
                 verticalAlign: "top",
