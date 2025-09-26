@@ -129,7 +129,7 @@ const FigmaStyle1Layout = ({
               <button
                 onClick={replayButton.onClick}
                 className="figma-style1-replay-button"
-                aria-label={replayButton.ariaLabel || "ดูอีกครั้ง"}
+                aria-label={replayButton.ariaLabel || "ดูอี��ครั้ง"}
               >
                 <div className="flex flex-col items-center">
                   <div
@@ -161,19 +161,17 @@ const FigmaStyle1Layout = ({
               <>
                 <div className="figma-style1-button-container">
                   {buttons?.map((button, index) => (
-                    <Fragment key={index}>
-                      <button onClick={button.onClick} className="figma-style1-button" aria-describedby={`button-description-${index}`}>
-                        <span className="figma-style1-button-text">
-                          {typeof button.text === "string" && button.text.trim() === "อื่นๆ" ? <p style={{ margin: 0 }}>อื่น ๆ</p> : button.text}
-                        </span>
-                      </button>
-                      {button.ariaLabel && (
-                        <div id={`button-description-${index}`} className="figma-style1-sr-only">
-                          {button.ariaLabel}
-                        </div>
-                      )}
-                    </Fragment>
-                  ))}
+    <Fragment key={index}>
+      <Uk1Button onClick={button.onClick} aria-describedby={`button-description-${index}`}>
+        {typeof button.text === "string" && button.text.trim() === "อื่นๆ" ? <p style={{ margin: 0 }}>อื่น ๆ</p> : button.text}
+      </Uk1Button>
+      {button.ariaLabel && (
+        <div id={`button-description-${index}`} className="figma-style1-sr-only">
+          {button.ariaLabel}
+        </div>
+      )}
+    </Fragment>
+  ))}
                 </div>
               </>
             )}
