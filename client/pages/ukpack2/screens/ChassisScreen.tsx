@@ -151,7 +151,7 @@ const OPTIONS = [
   },
   {
     key: "extra",
-    label: "รถกะบะดัดแปลง 8–12 ที��นั่ง",
+    label: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
     labelText: "รถกะบะดัดแปลง 8–12 ที่นั่ง",
     icon: <IconExtra />,
   },
@@ -288,9 +288,11 @@ const ChassisScreen: React.FC = () => {
         theme="light"
         fullWidth
         footerContent={
-          <div className="flex justify-center">
-            <CtaButton text="ถัดไป" onClick={handleNext} />
-          </div>
+          <Uk2Footer>
+            <div className="w-full flex justify-center">
+              <CtaButton text="ถัดไป" onClick={handleNext} />
+            </div>
+          </Uk2Footer>
         }
       >
         <div className={styles.contentGrid}>
