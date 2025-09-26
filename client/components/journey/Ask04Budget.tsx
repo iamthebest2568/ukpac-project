@@ -166,9 +166,24 @@ const Ask04Budget = ({
               resultSummary && resultSummary.length > 0
                 ? resultSummary
                 : [
-                    { priority: "เพิ่มความถี่รถเมล์", allocation: 0, percentage: 0, icon: "" },
-                    { priority: "เพิ่มที่จอดรถ", allocation: 0, percentage: 0, icon: "" },
-                    { priority: "ลดค่าโดยสารรถไฟฟ้า", allocation: 0, percentage: 0, icon: "" },
+                    {
+                      priority: "เพิ่มความถี่รถเมล์",
+                      allocation: 0,
+                      percentage: 0,
+                      icon: "",
+                    },
+                    {
+                      priority: "เพิ่มที่จอดรถ",
+                      allocation: 0,
+                      percentage: 0,
+                      icon: "",
+                    },
+                    {
+                      priority: "ลดค่าโดยสารรถไฟฟ้า",
+                      allocation: 0,
+                      percentage: 0,
+                      icon: "",
+                    },
                   ];
 
             return displaySummary.map((s, i) => {
@@ -226,49 +241,57 @@ const Ask04Budget = ({
       </div>
 
       <div style={{ textAlign: "center", width: "100%", marginTop: 20 }}>
-    <div
-      className="figma-style1-button-container"
-      style={{
-        width: "100%",
-        maxWidth: 360,
-        margin: "0 auto",
-        display: "flex",
-        flexDirection: "column",
-        gap: 12,
-      }}
-    >
-      {useUk1Button ? (
-        <>
-          <Uk1Button onClick={() => handleChoice("satisfied")} style={{ width: "100%" }} aria-label="พอใจ">
-            <span className="figma-style1-button-text">พอใจ</span>
-          </Uk1Button>
-          <Uk1Button onClick={() => handleChoice("unsatisfied")} style={{ width: "100%" }} aria-label="ไม่พอใจ">
-            <span className="figma-style1-button-text">ไม่พอใจ</span>
-          </Uk1Button>
-        </>
-      ) : (
-        <>
-          <button
-            onClick={() => handleChoice("satisfied")}
-            className="figma-style1-button"
-            style={{ width: "100%" }}
-            aria-label="พอใจ"
-          >
-            <span className="figma-style1-button-text">พอใจ</span>
-          </button>
+        <div
+          className="figma-style1-button-container"
+          style={{
+            width: "100%",
+            maxWidth: 360,
+            margin: "0 auto",
+            display: "flex",
+            flexDirection: "column",
+            gap: 12,
+          }}
+        >
+          {useUk1Button ? (
+            <>
+              <Uk1Button
+                onClick={() => handleChoice("satisfied")}
+                style={{ width: "100%" }}
+                aria-label="พอใจ"
+              >
+                <span className="figma-style1-button-text">พอใจ</span>
+              </Uk1Button>
+              <Uk1Button
+                onClick={() => handleChoice("unsatisfied")}
+                style={{ width: "100%" }}
+                aria-label="ไม่พอใจ"
+              >
+                <span className="figma-style1-button-text">ไม่พอใจ</span>
+              </Uk1Button>
+            </>
+          ) : (
+            <>
+              <button
+                onClick={() => handleChoice("satisfied")}
+                className="figma-style1-button"
+                style={{ width: "100%" }}
+                aria-label="พอใจ"
+              >
+                <span className="figma-style1-button-text">พอใจ</span>
+              </button>
 
-          <button
-            onClick={() => handleChoice("unsatisfied")}
-            className="figma-style1-button"
-            style={{ width: "100%" }}
-            aria-label="ไม่พอใจ"
-          >
-            <span className="figma-style1-button-text">ไม่พอใจ</span>
-          </button>
-        </>
-      )}
-    </div>
-  </div>
+              <button
+                onClick={() => handleChoice("unsatisfied")}
+                className="figma-style1-button"
+                style={{ width: "100%" }}
+                aria-label="ไม่พอใจ"
+              >
+                <span className="figma-style1-button-text">ไม่พอใจ</span>
+              </button>
+            </>
+          )}
+        </div>
+      </div>
     </FigmaStyle1Layout>
   );
 };

@@ -3,13 +3,14 @@
 @import "./mn3-fixes.css";
 
 /* UKPACK1 Design Tokens - scoped to the ukpack1 layout */
-.figma-style1-ukpack1, .figma-style1-container.figma-style1-ukpack1 {
+.figma-style1-ukpack1,
+.figma-style1-container.figma-style1-ukpack1 {
   /* canonical tokens for ukpack1 - used across the ukpack1 styles */
-  --uk1-primary: #000D59; /* primary brand blue */
-  --uk1-yellow: #FFE000; /* brand yellow */
+  --uk1-primary: #000d59; /* primary brand blue */
+  --uk1-yellow: #ffe000; /* brand yellow */
   --uk1-on-yellow: #000000; /* text on yellow */
   --uk1-bg: #ffffff;
-  --uk1-text: #000D59;
+  --uk1-text: #000d59;
 }
 
 /* Ukpack1 button defaults (based on end-sequence: yellow base, blue hover)
@@ -19,12 +20,15 @@
 .figma-style1-button--secondary,
 .figma-style1-button--dark {
   box-shadow: none !important;
-  transition: background-color 180ms ease, color 180ms ease, transform 120ms ease;
+  transition:
+    background-color 180ms ease,
+    color 180ms ease,
+    transform 120ms ease;
 }
 
 /* Primary variant: yellow base, black text */
 .figma-style1-button--primary {
-  background-color: #FFE000 !important;
+  background-color: #ffe000 !important;
   color: #000000 !important;
 }
 .figma-style1-button--primary .figma-style1-button-text {
@@ -35,7 +39,7 @@
 .figma-style1-button--primary:hover,
 .figma-style1-button--primary:active,
 .figma-style1-button--primary:focus {
-  background-color: #000D59 !important;
+  background-color: #000d59 !important;
   color: #ffffff !important;
   box-shadow: none !important;
   transform: none !important;
@@ -43,11 +47,11 @@
 
 /* Secondary / dark fallbacks */
 .figma-style1-button--secondary {
-  background-color: #FFE000 !important;
+  background-color: #ffe000 !important;
   color: #000000 !important;
 }
 .figma-style1-button--dark {
-  background-color: #000D59 !important;
+  background-color: #000d59 !important;
   color: #ffffff !important;
 }
 
@@ -573,14 +577,14 @@
 .end-sequence-page .figma-style1-title,
 .end-sequence-page h1,
 .end-sequence-page h2 {
-  color: #000D59 !important;
+  color: #000d59 !important;
   letter-spacing: 0.2px !important;
 }
 
 /* Ensure general content text on end-sequence pages uses the same brand color */
 .end-sequence-page .figma-style1-content-area,
 .end-sequence-page .figma-style1-content-area * {
-  color: #000D59 !important;
+  color: #000d59 !important;
 }
 
 /* Final step (MN3) safety overrides - hide decorative backgrounds/overlays and ensure content visible */
@@ -749,7 +753,10 @@
 }
 
 .figma-style1-container.ask04-budget-page .ask04-collage-wrapper > .relative,
-.figma-style1-container.ask04-budget-page .ask04-collage-wrapper .relative > div {
+.figma-style1-container.ask04-budget-page
+  .ask04-collage-wrapper
+  .relative
+  > div {
   overflow: visible !important;
 }
 
@@ -771,7 +778,9 @@
   flex-direction: column !important;
   justify-content: center !important; /* vertical centering */
   align-items: center !important; /* horizontal centering */
-  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 96px) !important; /* keep space for fixed footer */
+  padding-bottom: calc(
+    env(safe-area-inset-bottom, 0px) + 96px
+  ) !important; /* keep space for fixed footer */
   box-sizing: border-box !important;
 }
 
@@ -901,7 +910,7 @@
 .mn3-summary-card-title {
   font-family: "Prompt", sans-serif;
   font-weight: 800;
-  color: #000D59;
+  color: #000d59;
   font-size: 18px;
 }
 
@@ -935,7 +944,7 @@
 
 .mn3-summary-card--yellow .mn3-summary-icon,
 .mn3-summary-card--yellow .mn3-summary-bar {
-  background: linear-gradient(90deg, #FFE000, #ffd54f);
+  background: linear-gradient(90deg, #ffe000, #ffd54f);
 }
 
 .mn3-summary-card--red .mn3-summary-icon,
@@ -1092,7 +1101,7 @@
 .mn3-legend-total {
   margin-top: 8px;
   font-weight: 700;
-  color: #000D59;
+  color: #000d59;
   text-align: center;
 }
 
@@ -1110,12 +1119,12 @@
 .app-container .mn3-policy-button.mn3-policy-button--selected,
 .app-container .mn3-policy-button--selected {
   background-color: #000 !important;
-  color: #FFE000 !important;
+  color: #ffe000 !important;
 }
 
 .app-container .mn3-policy-button.mn3-policy-button--selected .mn3-button-text,
 .app-container .mn3-policy-button--selected .mn3-button-text {
-  color: #FFE000 !important;
+  color: #ffe000 !important;
 }
 
 /* Slightly darker hover for an already selected MN3 policy button */
@@ -1698,17 +1707,32 @@ body[data-dialog-open] {
 .figma-style1-ukpack1 .figma-style1-button:hover .figma-style1-button-text,
 .figma-style1-ukpack1 .figma-style1-button:active .figma-style1-button-text,
 .figma-style1-ukpack1 .figma-style1-button:focus .figma-style1-button-text,
-.figma-style1-ukpack1 .figma-style1-button--primary:hover .figma-style1-button-text,
-.figma-style1-ukpack1 .figma-style1-button--secondary:hover .figma-style1-button-text,
-.figma-style1-ukpack1 .figma-style1-button--dark:hover .figma-style1-button-text {
-  color: #FFE000 !important;
+.figma-style1-ukpack1
+  .figma-style1-button--primary:hover
+  .figma-style1-button-text,
+.figma-style1-ukpack1
+  .figma-style1-button--secondary:hover
+  .figma-style1-button-text,
+.figma-style1-ukpack1
+  .figma-style1-button--dark:hover
+  .figma-style1-button-text {
+  color: #ffe000 !important;
 }
 
 /* Also ensure when buttons are hovered inside app-container and scoped to ukpack1, text becomes yellow */
-.app-container .figma-style1-ukpack1 .figma-style1-button:hover .figma-style1-button-text,
-.app-container .figma-style1-ukpack1 .figma-style1-button:active .figma-style1-button-text,
-.app-container .figma-style1-ukpack1 .figma-style1-button:focus .figma-style1-button-text {
-  color: #FFE000 !important;
+.app-container
+  .figma-style1-ukpack1
+  .figma-style1-button:hover
+  .figma-style1-button-text,
+.app-container
+  .figma-style1-ukpack1
+  .figma-style1-button:active
+  .figma-style1-button-text,
+.app-container
+  .figma-style1-ukpack1
+  .figma-style1-button:focus
+  .figma-style1-button-text {
+  color: #ffe000 !important;
 }
 
 /* Mobile: Ask05 positioning (title top, textarea center, button bottom) */
@@ -2051,7 +2075,9 @@ body[data-dialog-open] {
   flex-direction: column !important;
   justify-content: flex-start !important;
   align-items: center !important;
-  padding-top: calc(env(safe-area-inset-top, 0px) + clamp(72px, 10vh, 120px)) !important;
+  padding-top: calc(
+    env(safe-area-inset-top, 0px) + clamp(72px, 10vh, 120px)
+  ) !important;
   padding-bottom: clamp(16px, 10vh, 140px) !important;
   overflow-y: auto !important;
   -webkit-overflow-scrolling: touch !important;
@@ -2072,7 +2098,6 @@ body[data-dialog-open] {
   box-sizing: border-box !important;
 }
 
-
 .mn2-summary-page .figma-style1-button-container {
   z-index: 30 !important;
 }
@@ -2092,7 +2117,13 @@ body[data-dialog-open] {
 .mn2-summary-page .figma-style1-content-area {
   overflow-y: auto !important;
   -webkit-overflow-scrolling: touch !important;
-  max-height: calc(100svh - (env(safe-area-inset-top, 0px) + 140px + env(safe-area-inset-bottom, 12px))) !important;
+  max-height: calc(
+    100svh -
+      (
+        env(safe-area-inset-top, 0px) + 140px +
+          env(safe-area-inset-bottom, 12px)
+      )
+  ) !important;
 }
 
 /* Footer fixed at bottom, above content but below any critical modals */

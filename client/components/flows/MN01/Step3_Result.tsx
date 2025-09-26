@@ -202,7 +202,10 @@ const Step3_Result = ({
             <Uk1Button onClick={handleYes} aria-label="ตอบใช่ - พอใจกับผลลัพธ์">
               <span className="figma-style1-button-text">ใช่</span>
             </Uk1Button>
-            <Uk1Button onClick={handleNo} aria-label="ตอบไม่ใช่ - ไม่พอใจกับผลลัพธ์">
+            <Uk1Button
+              onClick={handleNo}
+              aria-label="ตอบไม่ใช่ - ไม่พอใจกับผลลัพธ์"
+            >
               <span className="figma-style1-button-text">ไม่ใช่</span>
             </Uk1Button>
           </>
