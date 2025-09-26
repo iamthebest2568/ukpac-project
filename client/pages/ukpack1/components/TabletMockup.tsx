@@ -113,7 +113,7 @@ const TabletMockup: React.FC<TabletMockupProps> = ({ children }) => {
                 width: `${BASE_W}px`,
                 height: `${BASE_H}px`,
                 aspectRatio: `${BASE_W} / ${BASE_H}`,
-                backgroundColor: isUk1Mn01 ? "transparent" : undefined,
+                backgroundColor: isUk1MiniGameNoWhite ? "transparent" : undefined,
               }}
               onClickCapture={(e: React.MouseEvent) => {
                 try {
