@@ -269,7 +269,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           className="skip-link sr-only focus:not-sr-only absolute top-2 left-2 z-50 bg-yellow-400 text-black px-2 py-1 rounded touch-target"
           aria-label="ข้ามไปยังเนื้อหาหลัก"
         >
-          ข้ามไปยังเนื้อหาหลัก
+          ���้ามไปยังเนื้อหาหลัก
         </a>
         <main
           id="main-content"
@@ -277,7 +277,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           className={`w-full responsive-content ${isFullBleed ? "" : "h-full overflow-hidden"}`}
         >
           {isFullBleed ? (
-            <TabletMockup>{children}</TabletMockup>
+            <React.Suspense fallback={<div style={{ height: "100%" }} />}>
+              <TabletMockupUk2>{children}</TabletMockupUk2>
+            </React.Suspense>
           ) : (
             <div style={{ height: "100%", overflow: "hidden" }}>{children}</div>
           )}
