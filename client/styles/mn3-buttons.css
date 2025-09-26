@@ -85,10 +85,8 @@
   box-shadow: none !important;
 }
 
-/* Selected button hover uses same standard hover */
-.mn3-policy-button--selected:hover:not(:disabled) {
-  background-color: #000D59 !important;
-}
+/* Selected button hover handled by ukpack1 theme (figma-style1-ukpack1.css)
+   to darken black selection (#111). No override here to avoid conflicts. */
 
 /* Disabled state */
 .mn3-policy-button:disabled {
