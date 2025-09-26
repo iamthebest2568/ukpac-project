@@ -15,48 +15,66 @@
 
 /* Ukpack1 button defaults (based on end-sequence: yellow base, blue hover)
    and remove shadow (user requested no shadow) */
-.figma-style1-button,
-.figma-style1-button--primary,
-.figma-style1-button--secondary,
-.figma-style1-button--dark {
+.figma-style1-ukpack1 .figma-style1-button,
+.figma-style1-ukpack1 .figma-style1-button--primary,
+.figma-style1-ukpack1 .figma-style1-button--secondary,
+.figma-style1-ukpack1 .figma-style1-button--dark {
   box-shadow: none !important;
+  border: none !important;
   transition:
     background-color 180ms ease,
     color 180ms ease,
     transform 120ms ease;
 }
 
-/* Primary variant: yellow base, black text */
-.figma-style1-button--primary {
-  background-color: #ffe000 !important;
-  color: #000000 !important;
-}
-.figma-style1-button--primary .figma-style1-button-text {
-  color: inherit !important;
-}
-
-/* Hover/active/focus: switch to primary blue with white text, no shadow */
-.figma-style1-button--primary:hover,
-.figma-style1-button--primary:active,
-.figma-style1-button--primary:focus {
-  background-color: #000d59 !important;
-  color: #ffffff !important;
+/* Primary variant: yellow base, black text (no border/shadow) */
+.figma-style1-ukpack1 .figma-style1-button,
+.figma-style1-ukpack1 .figma-style1-button--primary,
+.figma-style1-ukpack1 .figma-style1-button--secondary,
+.figma-style1-ukpack1 .figma-style1-button--dark {
+  border: none !important;
   box-shadow: none !important;
   transform: none !important;
 }
 
-/* Secondary / dark fallbacks */
-.figma-style1-button--secondary {
+.figma-style1-ukpack1 .figma-style1-button,
+.figma-style1-ukpack1 .figma-style1-button--primary {
   background-color: #ffe000 !important;
   color: #000000 !important;
 }
-.figma-style1-button--dark {
-  background-color: #000d59 !important;
-  color: #ffffff !important;
+.figma-style1-ukpack1 .figma-style1-button .figma-style1-button-text,
+.figma-style1-ukpack1 .figma-style1-button--primary .figma-style1-button-text {
+  color: inherit !important;
+  font-family: "Prompt", sans-serif !important;
 }
 
-.figma-style1-button-text {
+/* Hover/active/focus: switch to primary blue with yellow text, no border/shadow, no zoom */
+.figma-style1-ukpack1 .figma-style1-button:hover,
+.figma-style1-ukpack1 .figma-style1-button:active,
+.figma-style1-ukpack1 .figma-style1-button:focus,
+.figma-style1-ukpack1 .figma-style1-button--primary:hover,
+.figma-style1-ukpack1 .figma-style1-button--primary:active,
+.figma-style1-ukpack1 .figma-style1-button--primary:focus {
+  background-color: #000d59 !important;
+  color: #ffe000 !important;
+  border: none !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+/* Secondary / dark fallbacks (ukpack1 forces standard) */
+.figma-style1-ukpack1 .figma-style1-button--secondary {
+  background-color: #ffe000 !important;
+  color: #000000 !important;
+}
+.figma-style1-ukpack1 .figma-style1-button--dark {
+  background-color: #ffe000 !important;
+  color: #000000 !important;
+}
+
+.figma-style1-ukpack1 .figma-style1-button-text {
   color: inherit !important;
+  font-family: "Prompt", sans-serif !important;
 }
 
 /* Main Layout Container */
