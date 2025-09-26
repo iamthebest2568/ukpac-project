@@ -47,7 +47,8 @@ function initFirebase() {
     try {
       db = initializeFirestore(app, {
         experimentalForceLongPolling: true,
-        useFetchStreams: false,
+        experimentalAutoDetectLongPolling: true,
+        useFetchStreams: true,
       } as any);
     } catch (_) {
       db = getFirestore(app);
