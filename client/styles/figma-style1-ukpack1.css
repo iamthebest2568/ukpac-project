@@ -2,6 +2,15 @@
 @import "./mn3-buttons.css";
 @import "./mn3-fixes.css";
 
+/* UKPACK1 Design Tokens - scoped to the ukpack1 layout */
+.figma-style1-ukpack1, .figma-style1-container.figma-style1-ukpack1 {
+  --uk1-primary: var(--uk1-primary);
+  --uk1-yellow: var(--uk1-yellow);
+  --uk1-on-yellow: #000000;
+  --uk1-bg: #ffffff;
+  --uk1-text: var(--uk1-primary);
+}
+
 /* Main Layout Container */
 .figma-style1-container {
   @apply min-h-screen bg-white flex justify-center;
@@ -520,14 +529,14 @@
 .end-sequence-page .figma-style1-title,
 .end-sequence-page h1,
 .end-sequence-page h2 {
-  color: #000d59 !important;
+  color: var(--uk1-primary) !important;
   letter-spacing: 0.2px !important;
 }
 
 /* Ensure general content text on end-sequence pages uses the same brand color */
 .end-sequence-page .figma-style1-content-area,
 .end-sequence-page .figma-style1-content-area * {
-  color: #000d59 !important;
+  color: var(--uk1-primary) !important;
 }
 
 /* Final step (MN3) safety overrides - hide decorative backgrounds/overlays and ensure content visible */
@@ -848,7 +857,7 @@
 .mn3-summary-card-title {
   font-family: "Prompt", sans-serif;
   font-weight: 800;
-  color: #000d59;
+  color: var(--uk1-primary);
   font-size: 18px;
 }
 
@@ -882,7 +891,7 @@
 
 .mn3-summary-card--yellow .mn3-summary-icon,
 .mn3-summary-card--yellow .mn3-summary-bar {
-  background: linear-gradient(90deg, #ffe000, #ffd54f);
+  background: linear-gradient(90deg, var(--uk1-yellow), #ffd54f);
 }
 
 .mn3-summary-card--red .mn3-summary-icon,
@@ -1039,7 +1048,7 @@
 .mn3-legend-total {
   margin-top: 8px;
   font-weight: 700;
-  color: #000d59;
+  color: var(--uk1-primary);
   text-align: center;
 }
 
@@ -1057,12 +1066,12 @@
 .app-container .mn3-policy-button.mn3-policy-button--selected,
 .app-container .mn3-policy-button--selected {
   background-color: #000 !important;
-  color: #ffe000 !important;
+  color: var(--uk1-yellow) !important;
 }
 
 .app-container .mn3-policy-button.mn3-policy-button--selected .mn3-button-text,
 .app-container .mn3-policy-button--selected .mn3-button-text {
-  color: #ffe000 !important;
+  color: var(--uk1-yellow) !important;
 }
 
 /* Slightly darker hover for an already selected MN3 policy button */
