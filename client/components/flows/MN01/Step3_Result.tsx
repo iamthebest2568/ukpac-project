@@ -169,7 +169,7 @@ const Step3_Result = ({
     >
       {/* Title (use layout's title container for consistent styling) */}
       <div className="figma-style1-title-container">
-        <h1 className="figma-style1-title" style={{ color: "var(--uk1-primary)" }}>
+        <h1 className="figma-style1-title" style={{ color: "#000D59" }}>
           จากงบประมาณของคุณ
           <br />
           นี้คือสิ่งที่จะเกิดขึ้นในอนาคต
@@ -187,7 +187,7 @@ const Step3_Result = ({
 
       {/* Question subtitle */}
       <div className="text-center w-full max-w-none px-4 mb-6">
-        <h2 className="figma-style1-subtitle" style={{ color: "var(--uk1-primary)" }}>
+        <h2 className="figma-style1-subtitle" style={{ color: "#000D59" }}>
           คุณพอใจหรือไม่
         </h2>
       </div>
