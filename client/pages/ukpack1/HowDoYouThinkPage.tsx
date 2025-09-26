@@ -5,7 +5,7 @@
 import { useState, useEffect } from "react";
 import { useSession } from "../../hooks/useSession";
 import { logEvent } from "../../services/dataLogger.js";
-import FigmaStyle1Layout from "../../components/layouts/FigmaStyle1Layout";
+import FigmaStyle1Layout from "../../components/layouts/FigmaStyle1Layout.ukpack1";
 
 import TabletMockup from "./components/TabletMockup";
 
