@@ -120,14 +120,20 @@ const Ask02_2 = ({ sessionID, onNavigate, useUk1Button = false }: Ask02_2Props) 
           </div>
         )}
 
-        <button
-          onClick={handleNext}
-          className="figma-style1-button"
-          disabled={textInput.trim().length === 0}
-          aria-disabled={textInput.trim().length === 0}
-        >
-          <span className="figma-style1-button-text">ไปต่อ</span>
-        </button>
+        {useUk1Button ? (
+          <Uk1Button onClick={handleNext} disabled={textInput.trim().length === 0} aria-disabled={textInput.trim().length === 0}>
+            <span className="figma-style1-button-text">ไปต่อ</span>
+          </Uk1Button>
+        ) : (
+          <button
+            onClick={handleNext}
+            className="figma-style1-button"
+            disabled={textInput.trim().length === 0}
+            aria-disabled={textInput.trim().length === 0}
+          >
+            <span className="figma-style1-button-text">ไปต่อ</span>
+          </button>
+        )}
       </div>
     </FigmaStyle1Layout>
   );
