@@ -28,3 +28,26 @@
 {"sessionId":"session_1758871497138_bm960oe5z","eventName":"sw.variant.start","timestamp":"2025-09-26T07:25:50.940Z","variantId":"0c1a4486","variantName":"รถไฟฟ้า BTS / MRT"}
 {"sessionId":"session_1758871497138_bm960oe5z","eventName":"sw.choice.selected","timestamp":"2025-09-26T07:26:15.380Z","choiceText":"ดูอีกรอบ","variantId":"0c1a4486","variantName":"รถไฟฟ้า BTS / MRT"}
 {"sessionId":"session_1758871497138_bm960oe5z","eventName":"sw.variant.start","timestamp":"2025-09-26T07:26:15.398Z","variantId":"0c1a4486","variantName":"รถไฟฟ้า BTS / MRT"}
+{"sessionId":"session_1758871497138_bm960oe5z","eventName":"sw.variant.start","timestamp":"2025-09-26T07:26:49.656Z","variantId":"0cbd0522","variantName":"ไม่เชื่อว่าจะได้ผล"}
+{"sessionId":"session_1758871497138_bm960oe5z","eventName":"sw.choice.selected","timestamp":"2025-09-26T07:26:49.636Z","choiceText":"เห็นด้วยว่าจะได้ผล","variantId":"0c1a4486","variantName":"รถไฟฟ้า BTS / MRT"}
+{"sessionId":"session_1758871497138_bm960oe5z","eventName":"sw.choice.selected","timestamp":"2025-09-26T07:26:55.290Z","choiceText":"ดูแล้ว","variantId":"0cbd0522","variantName":"ไม่เชื่อว่าจะได้ผล"}
+{"sessionId":"session_1758871497138_bm960oe5z","eventName":"sw.variant.start","timestamp":"2025-09-26T07:26:55.308Z","variantId":"8aa35bfd","variantName":"ทดสอบ Key message"}
+{"sessionId":"session_1758871497138_bm960oe5z","eventName":"sw.choice.selected","timestamp":"2025-09-26T07:26:59.583Z","choiceText":"เห็นด้วย","variantId":"8aa35bfd","variantName":"ทดสอบ Key message"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.story.start","timestamp":"2025-09-26T07:29:52.617Z","variantId":"a59ef133","variantName":"Intro"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.variant.start","timestamp":"2025-09-26T07:29:52.616Z","variantId":"a59ef133","variantName":"Intro"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.choice.selected","timestamp":"2025-09-26T07:29:57.670Z","choiceText":"PDPA","variantId":"a59ef133","variantName":"Intro"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.variant.start","timestamp":"2025-09-26T07:29:58.508Z","variantId":"e61429e0","variantName":"PDPA"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.story.start","timestamp":"2025-09-26T07:29:58.509Z","variantId":"e61429e0","variantName":"PDPA"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.variant.start","timestamp":"2025-09-26T07:30:07.189Z","variantId":"02fe3354","variantName":"Opening Scene"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.choice.selected","timestamp":"2025-09-26T07:30:07.182Z","choiceText":"ยอมรับและเริ่มเล่นเกม","variantId":"e61429e0","variantName":"PDPA"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.choice.selected","timestamp":"2025-09-26T07:30:37.959Z","choiceText":"เริ่มเล่น","variantId":"02fe3354","variantName":"Opening Scene"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.variant.start","timestamp":"2025-09-26T07:30:38.728Z","variantId":"333faf2b","variantName":"เหตุผลหลักในการเดินทางเข้าเมือง"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.choice.selected","timestamp":"2025-09-26T07:30:49.152Z","choiceText":"ทำงาน","variantId":"333faf2b","variantName":"เหตุผลหลักในการเดินทางเข้าเมือง"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.variant.start","timestamp":"2025-09-26T07:30:49.159Z","variantId":"4bec38a0","variantName":"คุณใช้รถแบบไหนเดินทางเข้าเมือง?"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.choice.selected","timestamp":"2025-09-26T07:30:59.621Z","choiceText":"รถไฟฟ้า BTS / MRT","variantId":"4bec38a0","variantName":"คุณใช้รถแบบไหนเดินทางเข้าเมือง?"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.variant.start","timestamp":"2025-09-26T07:30:59.626Z","variantId":"0c1a4486","variantName":"รถไฟฟ้า BTS / MRT"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.choice.selected","timestamp":"2025-09-26T07:32:00.228Z","choiceText":"เห็นด้วยว่าจะได้ผล","variantId":"0c1a4486","variantName":"รถไฟฟ้า BTS / MRT"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.variant.start","timestamp":"2025-09-26T07:32:00.236Z","variantId":"0cbd0522","variantName":"ไม่เชื่อว่าจะได้ผล"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.choice.selected","timestamp":"2025-09-26T07:32:07.390Z","choiceText":"ดูแล้ว","variantId":"0cbd0522","variantName":"ไม่เชื่อว่าจะได้ผล"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.variant.start","timestamp":"2025-09-26T07:32:08.152Z","variantId":"8aa35bfd","variantName":"ทดสอบ Key message"}
+{"sessionId":"session_1758871763140_y4j7vljv4","eventName":"sw.choice.selected","timestamp":"2025-09-26T07:32:50.871Z","choiceText":"เห็นด้วย","variantId":"8aa35bfd","variantName":"ทดสอบ Key message"}
