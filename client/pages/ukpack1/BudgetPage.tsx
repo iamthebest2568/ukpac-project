@@ -1,6 +1,6 @@
 import { useSession } from "../../hooks/useSession";
 import BudgetAllocation from "../../components/games/BudgetAllocation";
-import FigmaStyle1Layout from "../../components/layouts/FigmaStyle1Layout";
+import FigmaStyle1Layout from "../../components/layouts/FigmaStyle1Layout.ukpack1";
 import TabletMockup from "./components/TabletMockup";
 
 const Ukpack1BudgetPage = () => {
