@@ -13,6 +13,7 @@ interface Step3_ResultProps {
   onNext: (data: any) => void;
   onBack?: () => void;
   journeyData?: any;
+  useUk1Button?: boolean;
 }
 
 interface ResultSummary {
@@ -173,7 +174,7 @@ const Step3_Result = ({
         <h1 className="figma-style1-title" style={{ color: "#000D59" }}>
           จากงบประมาณของคุณ
           <br />
-          นี้คือสิ่งที่จะเกิดขึ้นในอนาคต
+          นี้คือสิ่งท��่จะเกิดขึ้นในอนาคต
         </h1>
       </div>
 
