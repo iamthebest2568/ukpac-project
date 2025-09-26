@@ -146,7 +146,7 @@ const Step1_Beneficiaries = ({
   return (
     <FigmaStyle1Layout
       backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F93a155f38af546bcaa326ad3f9198e9c?format=webp&width=800"
-      className="ask04-page mn2-step1-page figma-style1-ukpack1 fake-news-page"
+      className="ask04-page mn2-step1-page figma-style1-ukpack1"
       imageLoading="eager"
       title={<span style={{ color: "#000D59" }}>{titleText}</span>}
     >
