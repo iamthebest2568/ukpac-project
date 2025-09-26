@@ -1644,6 +1644,29 @@ body[data-dialog-open] {
 }
 
 /* Ask05 desktop/tablet-only adjustments: keep mobile untouched */
+
+/* MN2 summary - force 3 icons per row and make icons fill grid cell */
+.figma-style1-container.mn2-summary-page .mn2-summary-icon-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 12px !important;
+}
+.figma-style1-container.mn2-summary-page .mn2-beneficiary-card {
+  width: 100% !important;
+  max-width: none !important;
+}
+.figma-style1-container.mn2-summary-page .mn2-beneficiary-figure {
+  width: 100% !important;
+  aspect-ratio: 1 / 1 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+.figma-style1-container.mn2-summary-page .mn2-beneficiary-img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  display: block !important;
+}
 @media (min-width: 768px) {
   .ask05-page .ask05-content {
     width: 100%;
