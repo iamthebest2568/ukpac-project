@@ -1,5 +1,4 @@
-/* Figma Style 1 - UKPACK1 copy (namespaced if needed) */
-/* This is a copy of client/styles/figma-style1.css as a dedicated file for ukpack1 */
+/* Figma Style 1 - Design System (ukpack1 copy) */
 
 /* Main Layout Container */
 .figma-style1-container {
@@ -17,6 +16,7 @@
 }
 
 .figma-style1-content {
+  /* Single screen container aligned within app-container */
   width: 100%;
   height: 100%;
   max-width: 100%;
@@ -28,42 +28,49 @@
   padding: 0;
 }
 
+/* Small phones (320px - 375px) */
 @media (max-width: 375px) {
   .figma-style1-content {
     max-width: 100vw;
   }
 }
 
+/* Large phones (376px - 430px) - iPhone 14 Plus, etc */
 @media (min-width: 376px) and (max-width: 430px) {
   .figma-style1-content {
     max-width: min(100%, 400px);
   }
 }
 
+/* Extra large phones & small tablets (431px - 600px) */
 @media (min-width: 431px) and (max-width: 600px) {
   .figma-style1-content {
     max-width: min(100%, 420px);
   }
 }
 
+/* Medium tablets (601px - 768px) */
 @media (min-width: 601px) and (max-width: 768px) {
   .figma-style1-content {
     max-width: min(100%, 450px);
   }
 }
 
+/* Large tablets (769px - 1024px) */
 @media (min-width: 769px) and (max-width: 1024px) {
   .figma-style1-content {
     max-width: min(100%, 480px);
   }
 }
 
+/* Extra large tablets (1025px - 1279px) */
 @media (min-width: 1025px) and (max-width: 1279px) {
   .figma-style1-content {
     max-width: min(100%, 520px);
   }
 }
 
+/* Responsive horizontal padding variable for customization header */
 :root {
   --page-horizontal-padding: 20px;
 }
@@ -78,13 +85,16 @@
   }
 }
 
+/* Desktop and larger - maintain original design */
 @media (min-width: 1280px) {
   .figma-style1-content {
     max-width: 390px;
   }
 }
 
+/* Background System */
 .figma-style1-background {
+  /* Background fills the viewport; image will be allowed to crop (cover) */
   position: fixed;
   inset: 0;
   z-index: 0;
@@ -98,14 +108,17 @@
   justify-content: center;
 }
 
+/* Reset and safe styles for mn3 result page to avoid cropping of mockup image */
 .figma-style1-container.mn3-result-page .figma-style1-content {
-  overflow: visible !important;
+  overflow: visible !important; /* allow mockup to show fully */
 }
 
+/* Allow MN3 step2 to show full budget card and content */
 .figma-style1-container.mn3-step2-minimal.mn3-step2-page .figma-style1-content {
   overflow: visible !important;
 }
 
+/* Ensure the route wrapper does not clip MN3 step2 */
 #main-content
   > .flow-container:has(
     .figma-style1-container.mn3-step2-minimal.mn3-step2-page
@@ -114,7 +127,7 @@
 }
 
 .figma-style1-container.mn3-result-page .figma-style1-main {
-  z-index: 5 !important;
+  z-index: 5 !important; /* keep content above background */
 }
 
 .figma-style1-container.mn3-result-page .mn3-result-mockup-container {
@@ -129,7 +142,7 @@
   max-width: min(720px, 94vw) !important;
   height: auto !important;
   max-height: calc(100vh - 160px) !important;
-  object-fit: contain !important;
+  object-fit: contain !important; /* don't crop image */
   display: block !important;
   margin: 0 auto !important;
 }
@@ -140,7 +153,7 @@
   width: 100% !important;
   height: 100% !important;
   object-fit: cover !important;
-  object-position: top center !important;
+  object-position: top center !important; /* show top of vertical images on mobile */
   z-index: 0 !important;
   display: block !important;
   pointer-events: none !important;
@@ -153,11 +166,12 @@
   overflow: hidden !important;
 }
 
+/* Ensure full coverage on all devices */
 @media (orientation: landscape) and (max-height: 500px) {
   .figma-style1-background-image {
     object-fit: cover;
     height: 100vh !important;
-    height: 100svh !important;
+    height: 100svh !important; /* prefer svh */
   }
 }
 
@@ -165,20 +179,25 @@
   display: none !important;
 }
 
+/* Blue overlay for source selection page - lower curve (convex bottom edge) */
 .figma-style1-background-overlay--blue {
   background: var(--figma-style1-blue-overlay, #04d9f9) !important;
+  /* fallback if needed */
   z-index: 2;
   pointer-events: none;
 }
 
+/* S-shaped wave overlay SVG */
 .figma-style1-wave-overlay {
   display: none !important;
 }
 
 .figma-style1-wave-overlay path {
+  /* Ensure sharp edges and crisp rendering */
   shape-rendering: geometricPrecision;
 }
 
+/* Slight adjustments for very small and very large screens */
 @media (max-width: 375px) {
   .figma-style1-wave-overlay {
     height: 60%;
@@ -194,23 +213,26 @@
 /* Main Content Layout */
 
 /* Page-specific override: force MN3 Step2 content to the top */
+/* Use more specific selectors to override other page-scope rules (fake-news / ukpack1) */
 .figma-style1-container.mn3-step2-minimal.mn3-step2-page.figma-style1-ukpack1
   .figma-style1-main,
 .figma-style1-container.mn3-step2-minimal.mn3-step2-page.fake-news-page
   .figma-style1-main,
 .figma-style1-container.mn3-step2-minimal.mn3-step2-page .figma-style1-main {
   align-items: start !important;
-  grid-template-rows: auto 1fr !important;
+  grid-template-rows: auto 1fr !important; /* make title and content sit at top */
   justify-items: start !important;
 }
 
 .figma-style1-container.mn3-step2-minimal.mn3-step2-page
   .figma-style1-content-area {
   justify-content: flex-start !important;
+  /* remove extra top padding so title and content sit at the very top */
   padding-top: 0 !important;
   align-items: flex-start !important;
 }
 
+/* Reduce title top margin and tighten spacing for Step2 */
 .figma-style1-container.mn3-step2-minimal.mn3-step2-page .figma-style1-title {
   margin-top: 0 !important;
   margin-bottom: 6px !important;
@@ -223,16 +245,17 @@
   .figma-style1-title-container {
   padding-top: 4px !important;
   padding-bottom: 6px !important;
-  max-width: 980px !important;
+  max-width: 980px !important; /* allow title + content to use wider area */
   position: fixed !important;
   left: 50% !important;
   transform: translateX(-50%) !important;
   top: calc(env(safe-area-inset-top, 0px) + 8px) !important;
   z-index: 1005 !important;
   width: 100% !important;
-  pointer-events: none !important;
+  pointer-events: none !important; /* avoid blocking inputs below */
 }
 
+/* Add top space so content doesn't go under the fixed title */
 .figma-style1-container.mn3-step2-minimal.mn3-step2-page
   .figma-style1-content-area {
   padding-top: calc(
@@ -240,6 +263,7 @@
   ) !important;
 }
 
+/* Hide accidental overlays that could cover the title on MN3 step2 */
 .figma-style1-container.mn3-step2-minimal.mn3-step2-page
   .figma-style1-background-overlay,
 .figma-style1-container.mn3-step2-minimal.mn3-step2-page .absolute.inset-0,
@@ -248,6 +272,7 @@
   pointer-events: none !important;
 }
 
+/* Ensure the allocation content itself sits at the top of the content area */
 .figma-style1-container.mn3-step2-minimal.mn3-step2-page
   .mn3-allocation-content {
   padding-top: 0 !important;
@@ -256,13 +281,15 @@
   z-index: 1 !important;
 }
 
+/* MN3 Step2: keep content on a single screen and positioned below the fixed header */
 .figma-style1-container.mn3-step2-minimal.mn3-step2-page
   .figma-style1-content-area {
   overflow: visible !important;
   box-sizing: border-box !important;
+  /* padding-top is already set above to clear the fixed title */
 }
-
 .figma-style1-main {
+  /* Main content layer - back to grid layout but with better centering */
   position: relative;
   z-index: 10;
   display: grid;
@@ -277,27 +304,29 @@
 .figma-style1-background-image {
   width: 100vw !important;
   height: 100vh !important;
-  height: 100svh !important;
+  height: 100svh !important; /* prefer svh */
   object-fit: cover !important;
   object-position: top center !important;
 }
 
+/* Mobile: pin content to the bottom and make buttons sit below text */
 @media (max-width: 430px) {
   .figma-style1-main {
-    align-items: end !important;
+    align-items: end !important; /* push content to bottom */
     justify-items: center;
   }
 
   .figma-style1-content-area {
     display: flex !important;
     flex-direction: column !important;
-    justify-content: flex-end !important;
-    align-items: center !important;
+    justify-content: flex-end !important; /* place title and children near bottom */
+    align-items: center !important; /* center horizontally */
     padding-bottom: 8px !important;
     box-sizing: border-box !important;
   }
 
   .figma-style1-title {
+    /* Increase width and allow multi-line, keep it visible above buttons */
     font-size: clamp(18px, 5.2vw, 22px) !important;
     margin-bottom: 12px !important;
     text-align: center !important;
@@ -320,4 +349,1692 @@
     box-sizing: border-box !important;
     display: flex !important;
     flex-direction: column !important;
-The read truncated; but copy is large; we may not need full. We wrote figma-style1-ukpack1.css up to truncation but seems fine. Now need to edit TabletMockup to import RouteTransition.ukpack1. Read current TabletMockup file to find import line. We created it earlier; read it. We did not read after creation; but use Read to get exact import line. We did earlier when writing it, it included
+    gap: 12px !important;
+    align-items: center !important; /* center buttons */
+  }
+
+  .figma-style1-button {
+    width: 100% !important;
+    max-width: 340px !important; /* constrain button width and keep centered */
+    margin: 0 auto !important;
+  }
+}
+
+/* Specific tuning for fake-news page: lift content slightly so it doesn't sit under the curved overlay */
+.figma-style1-container.fake-news-page .figma-style1-main {
+  align-items: center; /* move content higher so text/buttons stay visible */
+}
+
+/* On very small mobile screens, push action buttons further down to avoid overlap and improve reachability */
+@media (max-width: 430px) {
+  .figma-style1-container.fake-news-page .figma-style1-button-container {
+    /* account for safe-area + extra spacing so buttons sit lower on short viewports */
+    padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 44px) !important;
+    margin-top: 18px !important;
+  }
+
+  /* Nudge main content toward the bottom so buttons visually sit lower on the screen */
+  .figma-style1-container.fake-news-page .figma-style1-main {
+    align-items: end !important;
+  }
+}
+
+/* Reduce height of blue overlay on small screens to avoid covering buttons */
+.figma-style1-background-overlay--blue {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 42%;
+  z-index: 2;
+}
+
+@media (max-width: 375px) {
+  .figma-style1-background-overlay--blue {
+    height: 36%;
+  }
+}
+
+@media (min-width: 376px) and (max-width: 430px) {
+  .figma-style1-background-overlay--blue {
+    height: 40%;
+  }
+}
+
+@media (min-width: 431px) and (max-width: 768px) {
+  .figma-style1-background-overlay--blue {
+    height: 45%;
+  }
+
+  /* For larger mobile screens, ensure fake-news buttons stay visible and reachable */
+  .figma-style1-container.fake-news-page .figma-style1-main {
+    align-items: end !important; /* pin content to bottom so buttons are within viewport */
+  }
+
+  .figma-style1-container.fake-news-page .figma-style1-button-container {
+    position: sticky !important;
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 20px) !important;
+    padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 12px) !important;
+    margin-top: 12px !important;
+  }
+}
+
+.figma-style1-header {
+  @apply flex justify-start;
+  /* Fluid header padding */
+  padding: min(6vw, 40px);
+}
+
+.figma-style1-content-area {
+  /* Content takes available space above buttons - working layout */
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  /* Put padding back for visibility */
+  padding: 20px;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Typography System - Fluid responsive */
+.figma-style1-title {
+  @apply text-white text-center font-prompt font-bold;
+  /* Responsive font sizing that works on all devices */
+  font-size: clamp(16px, 4.5vw, 28px);
+  line-height: clamp(1.1, 1.3, 1.4);
+  letter-spacing: 0.3px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  margin: 0;
+  padding: 0;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+/* Small vertical nudge for the main title so it sits lower in the layout (specific tweak) */
+.figma-style1-title {
+  margin-top: 36px;
+}
+
+@media (max-width: 640px) {
+  .figma-style1-title {
+    margin-top: 43px;
+  }
+}
+
+/* Black text variant for source selection */
+.figma-style1-title--black {
+  @apply text-black;
+  font-weight: 600;
+}
+
+/* Ensure specific pages (like fake-news) use black title to match Figma */
+.figma-style1-container.fake-news-page .figma-style1-title,
+.figma-style1-container .fake-news-page .figma-style1-title,
+.fake-news-page .figma-style1-title {
+  color: var(--figma-style1-text-dark) !important;
+  font-weight: 700 !important;
+}
+
+/* Make Ask04 and Ask04Budget titles black to improve readability on their backgrounds */
+.ask04-page .figma-style1-title,
+.ask04-budget-page .figma-style1-title,
+.ask05-page .figma-style1-title,
+.ask02-page .figma-style1-title {
+  color: #000 !important;
+  font-weight: 700 !important;
+}
+
+/* End-sequence page: increase spacing between title and action buttons, and allow title to use wider container */
+.end-sequence-page .figma-style1-title-container {
+  max-width: 980px !important;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+}
+
+/* Source selection: make title width match the button area and increase size */
+.source-selection-page .figma-style1-title-container {
+  max-width: 380px !important; /* match button container */
+}
+.source-selection-page .figma-style1-title {
+  font-size: 36px !important;
+  line-height: 1.05 !important;
+}
+.end-sequence-page .figma-style1-title {
+  width: 100% !important;
+  max-width: 980px !important;
+  margin-bottom: 20px !important; /* base spacing from title to following content */
+  text-align: center !important;
+}
+
+/* Target the specific button group spacing on the end-sequence form (uses mt-8 utility) */
+.end-sequence-page .mt-8 {
+  margin-top: clamp(48px, 8vw, 96px) !important;
+}
+
+/* Ensure headings remain readable on all viewports */
+.end-sequence-page .figma-style1-title,
+.end-sequence-page h1,
+.end-sequence-page h2 {
+  color: #000d59 !important;
+  letter-spacing: 0.2px !important;
+}
+
+/* Ensure general content text on end-sequence pages uses the same brand color */
+.end-sequence-page .figma-style1-content-area,
+.end-sequence-page .figma-style1-content-area * {
+  color: #000d59 !important;
+}
+
+/* Final step (MN3) safety overrides - hide decorative backgrounds/overlays and ensure content visible */
+.figma-style1-container.mn3-step3-page .figma-style1-background,
+.figma-style1-container.mn3-step3-page .figma-style1-background-image,
+.figma-style1-container.mn3-step3-page .figma-style1-background-overlay,
+.figma-style1-container.mn3-step3-page .figma-style1-wave-overlay,
+.figma-style1-container.mn3-step3-page::before,
+.figma-style1-container.mn3-step3-page .figma-style1-content::before {
+  display: none !important;
+  background: transparent !important;
+}
+
+/* Keep content visible and above any decorative layers */
+.figma-style1-container.mn3-step3-page .figma-style1-content,
+.figma-style1-container.mn3-step3-page .figma-style1-main,
+.figma-style1-container.mn3-step3-page .figma-style1-content-area {
+  overflow: visible !important;
+  z-index: 9999 !important;
+}
+
+/* Ensure title and interactive elements are accessible on top */
+.figma-style1-container.mn3-step3-page .figma-style1-title,
+.figma-style1-container.mn3-step3-page .figma-style1-button,
+.figma-style1-container.mn3-step3-page .figma-style1-button-text {
+  z-index: 10000 !important;
+}
+
+/* Also make sure mn3-specific allocation content isn't clipped */
+.figma-style1-container.mn3-step3-page .mn3-allocation-content {
+  overflow: visible !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* Center MN3 final step content vertically and horizontally */
+.figma-style1-container.mn3-step3-page.fake-news-page .figma-style1-main,
+.figma-style1-container.mn3-step3-page.fake-news-page
+  .figma-style1-content-area {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding-top: calc(env(safe-area-inset-top, 0px) + 12px) !important;
+  padding-bottom: 24px !important;
+}
+
+/* Ensure the title container sits below any device notch/status bar */
+.figma-style1-container.mn3-step3-page .figma-style1-title-container {
+  padding-top: calc(env(safe-area-inset-top, 0px) + 8px) !important;
+  padding-bottom: 6px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Ensure collage wrapper sits centered and responsive */
+.figma-style1-container.mn3-step3-page .max-w-\[980px\] {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* === Additional overrides: align Step3 spacing/position to match Step2 (จำนวนเงิน) === */
+/* Make title fixed and clear space for content, like Step2 */
+.figma-style1-container.mn3-step3-page .figma-style1-title-container {
+  position: fixed !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  top: calc(env(safe-area-inset-top, 0px) + 8px) !important;
+  z-index: 1005 !important;
+  width: 100% !important;
+  max-width: 980px !important;
+  pointer-events: none !important;
+  padding-top: 4px !important;
+  padding-bottom: 6px !important;
+  box-sizing: border-box !important;
+}
+
+/* Push content down to clear the fixed title using same spacing as Step2 */
+.figma-style1-container.mn3-step3-page .figma-style1-content-area {
+  justify-content: flex-start !important;
+  padding-top: calc(
+    env(safe-area-inset-top, 0px) + clamp(80px, 12vh, 140px)
+  ) !important;
+}
+
+/* Ensure main aligns items to start so content flows from top */
+.figma-style1-container.mn3-step3-page .figma-style1-main {
+  align-items: start !important;
+  grid-template-rows: auto 1fr !important;
+}
+
+/* Make collage wrapper sit top-left within content area similar to Step2 layout */
+.figma-style1-container.mn3-step3-page .max-w-\[980px\].mx-auto.relative {
+  margin-top: 0 !important;
+}
+
+/* Ensure collage container height doesn't push title off-screen on small viewports */
+.figma-style1-container.mn3-step3-page .max-w-\[980px\] > div[style] {
+  height: auto !important;
+  min-height: 260px !important;
+}
+
+/* === End overrides === */
+
+/* === Ask04Budget: ensure the header/title is visible and fixed like Step2 === */
+.figma-style1-container.ask04-budget-page .figma-style1-title {
+  color: #000 !important;
+  margin-top: 0 !important;
+  margin-bottom: 6px !important;
+  position: relative !important;
+  z-index: 1002 !important;
+}
+
+.figma-style1-container.ask04-budget-page .figma-style1-title-container {
+  padding-top: 4px !important;
+  padding-bottom: 6px !important;
+  max-width: 980px !important;
+  position: fixed !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  top: calc(env(safe-area-inset-top, 0px) + 8px) !important;
+  z-index: 1005 !important;
+  width: 100% !important;
+  pointer-events: none !important;
+  box-sizing: border-box !important;
+}
+
+/* Push content down so it doesn't get hidden under the fixed title */
+.figma-style1-container.ask04-budget-page .figma-style1-content-area {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important; /* center vertically under the fixed title */
+  align-items: center !important; /* center horizontally */
+  padding-top: calc(
+    env(safe-area-inset-top, 0px) + clamp(80px, 12vh, 140px)
+  ) !important;
+}
+
+.figma-style1-container.ask04-budget-page .ask04-collage-wrapper {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100% !important;
+  max-width: 980px !important;
+  margin: 0 auto !important;
+  /* allow the component to control height but keep it responsive */
+  height: auto !important;
+  min-height: 48vh !important;
+  position: relative !important;
+  z-index: 10001 !important; /* above title */
+}
+
+/* Ensure individual collage images remain positioned relative to the collage container center */
+.figma-style1-container.ask04-budget-page .ask04-collage-wrapper .relative {
+  display: block !important;
+}
+
+/* Allow collage elements to overflow and be visible above background/overlays */
+.figma-style1-container.ask04-budget-page .figma-style1-content-area {
+  overflow: visible !important;
+  z-index: 9999 !important;
+}
+
+.figma-style1-container.ask04-budget-page .max-w-\[980px\].mx-auto.relative {
+  overflow: visible !important;
+}
+
+.figma-style1-container.ask04-budget-page .ask04-collage-wrapper > .relative,
+.figma-style1-container.ask04-budget-page .ask04-collage-wrapper .relative > div {
+  overflow: visible !important;
+}
+
+@media (max-width: 767px) {
+  .figma-style1-container.ask04-budget-page .ask04-collage-wrapper {
+    min-height: 42vh !important;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+}
+
+/* Center the textarea vertically within the viewport for ask02-2 page only */
+.figma-style1-container.ask02-2-page .figma-style1-main {
+  align-items: center !important; /* center content vertically in the main grid */
+}
+
+.figma-style1-container.ask02-2-page .figma-style1-content-area {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important; /* vertical centering */
+  align-items: center !important; /* horizontal centering */
+  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 96px) !important; /* keep space for fixed footer */
+  box-sizing: border-box !important;
+}
+
+.figma-style1-container.ask02-2-page .figma-style1-button-container {
+  position: fixed !important;
+  left: 0;
+  right: 0;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 12px) !important;
+  z-index: 10050 !important; /* above overlays */
+  display: flex !important;
+  justify-content: center !important;
+  padding: 12px 20px !important;
+  box-sizing: border-box !important;
+  max-width: 420px !important;
+  width: 100%;
+  margin: 0 auto !important;
+}
+
+.figma-style1-container.ask02-2-page .figma-style1-button {
+  max-width: 420px !important;
+  margin: 0 auto !important;
+}
+
+/* Ensure the content area has extra bottom padding to avoid being obscured by the fixed footer */
+.figma-style1-container.ask02-2-page .figma-style1-content-area {
+  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 96px) !important;
+  box-sizing: border-box !important;
+}
+
+/* Remove header on ask02-2 page --------------------------------------------------
+   Hide only the header (replay/controls) for ask02-2 page while keeping the page title
+   visible. This preserves the user's heading text but removes extra header controls.
+------------------------------------------------------------------------------- */
+.figma-style1-container.ask02-2-page .figma-style1-header {
+  display: none !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
+}
+
+/* Mobile specific tweaks: keep buttons reachable and appropriately sized */
+@media (max-width: 430px) {
+  .figma-style1-container.ask02-2-page .figma-style1-button-container {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 10px) !important;
+  }
+
+  .figma-style1-container.ask02-2-page .figma-style1-button {
+    max-width: 360px !important;
+    width: calc(100% - 24px) !important;
+  }
+}
+
+/* Selected state for unified figma-style1 buttons: persistent visual when a button is chosen */
+.app-container .figma-style1-button.figma-style1-button--selected,
+.app-container .figma-style1-button--selected {
+  background-color: #000 !important;
+  color: #fff !important;
+  transform: scale(1.03) !important;
+}
+
+.app-container
+  .figma-style1-button.figma-style1-button--selected
+  .figma-style1-button-text,
+.app-container .figma-style1-button--selected .figma-style1-button-text {
+  color: #fff !important;
+}
+
+/* Keep focus visible for accessibility when toggled */
+.app-container .figma-style1-button.figma-style1-button--selected:focus,
+.app-container .figma-style1-button--selected:focus {
+  outline: 3px solid rgba(255, 255, 255, 0.12);
+  outline-offset: 2px;
+}
+
+/* End selected state styles */
+
+/* Summary cards for MN3 result page */
+.mn3-summary-list {
+  max-width: 880px;
+  margin: 0 auto 10px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mn3-summary-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+}
+
+.mn3-summary-card-left {
+  flex: 0 0 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mn3-summary-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  background: transparent;
+  color: #ffffff; /* emoji/text inside icon should be white for contrast */
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+}
+
+.mn3-summary-card-body {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mn3-summary-card-title {
+  font-family: "Prompt", sans-serif;
+  font-weight: 800;
+  color: #000d59;
+  font-size: 18px;
+}
+
+.mn3-summary-card-meta {
+  font-size: 15px;
+  color: #333;
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+}
+
+.mn3-summary-bar-wrap {
+  width: 100%;
+  height: 10px;
+  background: rgba(0, 0, 0, 0.06);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.mn3-summary-bar {
+  height: 100%;
+  border-radius: 10px;
+  transition: width 400ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* color variants */
+.mn3-summary-card--green .mn3-summary-icon,
+.mn3-summary-card--green .mn3-summary-bar {
+  background: linear-gradient(90deg, #00c853, #66eeb3);
+}
+
+.mn3-summary-card--yellow .mn3-summary-icon,
+.mn3-summary-card--yellow .mn3-summary-bar {
+  background: linear-gradient(90deg, #ffe000, #ffd54f);
+}
+
+.mn3-summary-card--red .mn3-summary-icon,
+.mn3-summary-card--red .mn3-summary-bar {
+  background: linear-gradient(90deg, #ff5252, #ff8a80);
+}
+
+/* subtle card background tints */
+.mn3-summary-card--green {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 200, 83, 0.05),
+    rgba(255, 255, 255, 0.96)
+  );
+}
+.mn3-summary-card--yellow {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 224, 0, 0.04),
+    rgba(255, 255, 255, 0.96)
+  );
+}
+.mn3-summary-card--red {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 82, 82, 0.03),
+    rgba(255, 255, 255, 0.97)
+  );
+}
+
+/* ensure good spacing on small screens */
+@media (max-width: 480px) {
+  .mn3-summary-card {
+    padding: 12px;
+    gap: 10px;
+  }
+
+  .mn3-summary-card-left {
+    flex: 0 0 56px;
+  }
+  .mn3-summary-icon {
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+  }
+  .mn3-summary-card-title {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .mn3-summary-card-left {
+    flex: 0 0 96px;
+  }
+  .mn3-summary-icon {
+    width: 72px;
+    height: 72px;
+    font-size: 32px;
+  }
+  .mn3-summary-card-title {
+    font-size: 20px;
+  }
+  .mn3-summary-bar-wrap {
+    height: 12px;
+  }
+}
+
+/* Image style for summary cards (replace icon) */
+.mn3-summary-image {
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+}
+
+@media (max-width: 480px) {
+  .mn3-summary-image {
+    width: 56px;
+    height: 56px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .mn3-summary-image {
+    width: 96px;
+    height: 96px;
+  }
+}
+
+/* Grid layout for summary + visual */
+.mn3-summary-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 20px;
+  align-items: start;
+  max-width: 980px;
+  margin: 0 auto 12px auto;
+}
+
+.mn3-summary-grid-left {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mn3-summary-grid-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.mn3-result-pie {
+  width: 220px;
+  height: 220px;
+  border-radius: 999px;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+  display: block;
+  margin-bottom: 8px;
+}
+
+.mn3-result-legend {
+  width: 100%;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mn3-legend-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: space-between;
+}
+.mn3-legend-swatch {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  display: inline-block;
+  flex: 0 0 18px;
+}
+.mn3-legend-label {
+  flex: 1 1 auto;
+  color: #222;
+  font-weight: 600;
+}
+.mn3-legend-value {
+  color: #444;
+  font-weight: 700;
+}
+
+.mn3-legend-total {
+  margin-top: 8px;
+  font-weight: 700;
+  color: #000d59;
+  text-align: center;
+}
+
+@media (max-width: 860px) {
+  .mn3-summary-grid {
+    grid-template-columns: 1fr;
+  }
+  .mn3-result-pie {
+    width: 180px;
+    height: 180px;
+  }
+}
+
+/* Ensure MN3 policy buttons keep their selected (black) appearance even after unified overrides */
+.app-container .mn3-policy-button.mn3-policy-button--selected,
+.app-container .mn3-policy-button--selected {
+  background-color: #000 !important;
+  color: #ffe000 !important;
+}
+
+.app-container .mn3-policy-button.mn3-policy-button--selected .mn3-button-text,
+.app-container .mn3-policy-button--selected .mn3-button-text {
+  color: #ffe000 !important;
+}
+
+/* Slightly darker hover for an already selected MN3 policy button */
+.app-container .mn3-policy-button.mn3-policy-button--selected:hover,
+.app-container .mn3-policy-button--selected:hover {
+  background-color: #111 !important;
+}
+
+/* Final compatibility rules: ensure figma-style1 works within app-container */
+.app-container .figma-style1-container {
+  flex: none !important; /* Don't let app-container flex affect us */
+  min-height: 100vh !important; /* Ensure full viewport height */
+}
+
+/* Shared style tokens for ukpack1 pages */
+.figma-style1-ukpack1 {
+  --figma-content-max-width: 720px;
+  --figma-button-max-width: 360px;
+  --figma-title-font: 700 18px/23.4px "Prompt", sans-serif;
+  --figma-footer-height: 360px;
+}
+
+/* Apply shared tokens to layout pieces */
+.figma-style1-ukpack1 .figma-style1-title-container {
+  max-width: var(--figma-content-max-width) !important;
+}
+
+.figma-style1-ukpack1 .figma-style1-button-container {
+  max-width: var(--figma-button-max-width) !important;
+}
+
+/* Tablet: force single-column vertical layout, avoid overflow and scaled images */
+@media (min-width: 768px) and (max-width: 1080px) {
+  .figma-style1-content {
+    max-width: min(92vw, 900px) !important;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .figma-style1-main {
+    align-items: start !important;
+    justify-items: center !important;
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+
+  .figma-style1-content-area {
+    justify-content: flex-start !important;
+    align-items: center !important;
+    padding: 24px !important;
+    max-width: 880px;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: visible !important;
+  }
+
+  .figma-style1-title-container {
+    max-width: 880px !important;
+    padding: 0 16px !important;
+    text-align: center !important;
+  }
+
+  .figma-style1-button-container {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+    max-width: 680px !important;
+    width: 100% !important;
+    padding: 16px !important;
+    box-sizing: border-box;
+    align-items: center !important;
+  }
+
+  .figma-style1-button {
+    width: 100% !important;
+    max-width: 640px !important;
+  }
+
+  .figma-style1-background-image {
+    object-fit: contain !important;
+    height: auto !important;
+    max-height: calc(100vh - 120px) !important;
+    object-position: center top !important;
+  }
+
+  /* Ensure option grids become single column on tablet */
+  .option-row {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+  .option-btn {
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+
+  /* Make summary grid single column for tablet to avoid overflow */
+  .mn3-summary-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .responsive-container {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+}
+
+.figma-style1-ukpack1 .figma-style1-title {
+  font: var(--figma-title-font) !important;
+}
+
+/* Layout guarantees for ukpack1: keep content area scrollable when content is long
+   and ensure buttons stay visible at the bottom. These rules only touch styling. */
+.figma-style1-ukpack1 .figma-style1-main {
+  display: grid !important;
+  grid-template-rows: 1fr auto !important; /* content / actions */
+  height: 100svh !important;
+}
+
+.figma-style1-ukpack1 {
+  box-sizing: border-box !important;
+}
+.figma-style1-ukpack1 *,
+.figma-style1-ukpack1 *::before,
+.figma-style1-ukpack1 *::after {
+  box-sizing: inherit !important;
+}
+
+.figma-style1-ukpack1 .figma-style1-content-area {
+  grid-row: 1 !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  padding: 20px !important;
+  box-sizing: border-box !important;
+  max-height: calc(100svh - var(--figma-footer-height));
+}
+
+/* reset common per-page inline/legacy paddings and fixed heights that cause conflicts */
+.figma-style1-ukpack1 .figma-style1-content-area > * {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.figma-style1-ukpack1 .figma-style1-title-container {
+  padding-left: 12px !important;
+  padding-right: 12px !important;
+}
+
+.figma-style1-ukpack1 .figma-style1-button-container {
+  grid-row: 2 !important;
+  align-self: end !important;
+  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 20px) !important;
+}
+
+/* Source-selection specific: make content non-scrollable and fit on one viewport */
+/* Use a column flex layout so buttons can be pushed to the bottom reliably */
+.figma-style1-container.source-selection-root .figma-style1-main {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100svh !important;
+}
+.figma-style1-container.source-selection-root .figma-style1-content-area {
+  overflow: visible !important;
+  -webkit-overflow-scrolling: unset !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important; /* center content vertically within available space */
+  align-items: center !important;
+  gap: 12px !important;
+  padding: 12px !important;
+  flex: 1 1 auto !important; /* allow content to grow and center properly */
+  min-height: 0 !important; /* allow flex children to shrink on short viewports */
+  max-height: none !important;
+}
+.figma-style1-container.source-selection-root .figma-style1-title {
+  font-size: clamp(18px, 4.2vw, 22px) !important;
+  margin-top: 8px !important;
+  margin-bottom: 6px !important;
+  line-height: 1.15 !important;
+}
+.figma-style1-container.source-selection-root .figma-style1-button-container {
+  position: relative !important;
+  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 12px) !important;
+  margin-top: auto !important; /* pushes buttons to bottom */
+  gap: 10px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  width: 100% !important;
+}
+
+/* On very small devices, slightly reduce spacing to ensure all fits */
+@media (max-height: 640px) {
+  .figma-style1-container.source-selection-root .figma-style1-title {
+    font-size: clamp(16px, 4.5vw, 20px) !important;
+    margin-top: 6px !important;
+  }
+  .figma-style1-container.source-selection-root .figma-style1-content-area {
+    gap: 8px !important;
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+  }
+}
+
+/* Mobile-first full-bleed adjustments (no side whitespace) ----------------------------------
+   Makes figma-style1 pages use the full viewport width on phones so there is no
+   left/right whitespace. Keeps safe-area insets for notches but removes fixed
+   side paddings and per-page max-widths on smaller screens.
+--------------------------------------------------------------------------------------------*/
+@media (max-width: 430px) {
+  /* Make core content truly full-bleed */
+  .figma-style1-content,
+  .app-container .figma-style1-content {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    min-width: 100vw !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Title container spans full width and removes internal horizontal padding */
+  .figma-style1-title-container {
+    max-width: 100vw !important;
+    width: 100% !important;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Buttons: full width, pinned to edges with safe-area padding */
+  .figma-style1-button-container {
+    max-width: 100vw !important;
+    width: 100% !important;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+    padding-bottom: 12px !important;
+    margin: 0 !important;
+    gap: clamp(8px, 2.5vh, 16px) !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Slightly reduce the top content padding so title moves closer to top on small phones */
+  .figma-style1-content-area {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    padding-top: 12px !important;
+    padding-bottom: 8px !important;
+  }
+
+  /* Ensure buttons remain tappable while taking full width */
+  .figma-style1-button {
+    border-radius: 28px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+}
+
+/* Extra-tight full-bleed for very small phones */
+@media (max-width: 375px) {
+  .figma-style1-title-container {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+
+  .figma-style1-button-container {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+}
+
+/* Override any global.css interference without targeting Tailwind classes directly */
+.figma-style1-container,
+.figma-style1-content,
+.figma-style1-main {
+  min-height: 100% !important;
+  height: 100% !important;
+  overflow: hidden !important;
+}
+
+/* Comprehensive centering rules to fix right drift */
+.figma-style1-container {
+  text-align: center !important;
+}
+
+/* Dialog specific styling to ensure proper display */
+[data-radix-dialog-overlay] {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 100 !important;
+  background-color: rgba(0, 0, 0, 0.8) !important;
+}
+
+[data-radix-dialog-content] {
+  position: fixed !important;
+  left: 50% !important;
+  top: 50% !important;
+  z-index: 101 !important;
+  transform: translate(-50%, -50%) !important;
+  width: 90% !important;
+  max-width: 420px !important;
+  max-height: 80vh !important;
+  overflow-y: auto !important;
+  background: white !important;
+  border-radius: 12px !important;
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+}
+
+/* Ensure dialog buttons are properly styled and clickable */
+[data-radix-dialog-content] button {
+  font-family: "Prompt", sans-serif !important;
+  font-weight: 500 !important;
+  min-height: 44px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  user-select: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+/* Prevent body scroll when dialog is open */
+body[data-dialog-open] {
+  overflow: hidden !important;
+}
+
+/* Mobile specific dialog adjustments */
+@media (max-width: 480px) {
+  [data-radix-dialog-content] {
+    width: 95% !important;
+    margin: 16px !important;
+    max-height: calc(100vh - 32px) !important;
+    max-height: calc(100svh - 32px) !important;
+  }
+}
+
+.figma-style1-content-area {
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+}
+
+.figma-style1-title-container {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center !important;
+  box-sizing: border-box !important;
+}
+
+.figma-style1-title {
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.figma-style1-button-container {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center !important;
+  box-sizing: border-box !important;
+}
+
+.figma-style1-button {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center !important;
+}
+
+.figma-style1-button-text {
+  text-align: center !important;
+}
+
+/* ================================================
+   Desktop/Tablet-only background handling for ukpack1
+   - Center background images horizontally & vertically
+   - Use contain so full portrait is visible
+   - Fill side space with matching color variable
+   - Keep mobile (default cover) untouched
+   ================================================ */
+:root {
+  --figma-style1-bg-fill: #ffffff;
+}
+
+@media (min-width: 768px) {
+  .figma-style1-background {
+    background-size: contain !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    background-color: var(--figma-style1-bg-fill, #04d9f9) !important;
+  }
+
+  /* Balance content on larger screens without affecting mobile */
+  .figma-style1-main {
+    align-items: center !important;
+    justify-items: center !important;
+  }
+
+  .figma-style1-content-area {
+    padding-top: clamp(20px, 6vh, 64px) !important;
+    padding-bottom: clamp(20px, 6vh, 64px) !important;
+  }
+
+  .figma-style1-button-container {
+    padding-bottom: clamp(16px, 4vh, 32px) !important;
+  }
+}
+
+/* Ask05 desktop/tablet-only adjustments: keep mobile untouched */
+@media (min-width: 768px) {
+  .ask05-page .ask05-content {
+    width: 100%;
+    max-width: min(92vw, 900px);
+    margin: 0 auto;
+    padding: 16px 20px;
+  }
+  .ask05-page .ask05-textarea-box {
+    min-height: clamp(260px, 32vh, 460px);
+    padding: clamp(12px, 2.2vw, 20px);
+  }
+  .ask05-page .ask05-title {
+    max-width: min(92vw, 900px);
+    margin: 8px auto 12px auto;
+  }
+
+  /* Positioning: title top, textarea centered, button bottom */
+  .ask05-page .figma-style1-content-area {
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 100% !important;
+  }
+  .ask05-page .ask05-content {
+    /* center between title and button */
+    margin-top: auto !important;
+    margin-bottom: auto !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  .ask05-page .figma-style1-button-container {
+    margin-top: auto !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .app-container:has(.figma-style1-container) {
+    max-width: none !important;
+    width: 100% !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .mn2-summary-page::before,
+  .mn3-page-bg::before,
+  .mn3-allocation-bg::before {
+    background-size: contain !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    background-color: var(--figma-style1-bg-fill, #04d9f9) !important;
+  }
+}
+
+/* MN2 Summary page: remove local overlays and use global background */
+.mn2-summary-page {
+  background: transparent !important;
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  padding-bottom: 16px;
+  z-index: 100;
+}
+/* Ensure buttons are on top and clickable */
+.mn2-summary-page button {
+  pointer-events: auto !important;
+  position: relative;
+  z-index: 3;
+}
+.mn2-summary-page::before {
+  /* Remove decorative background for clean summary view */
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background-image: none !important;
+  background: transparent !important;
+  display: none !important;
+  pointer-events: none;
+}
+.mn2-summary-page > .absolute.inset-0 {
+  /* blue + white curved overlays */
+  display: none !important;
+  pointer-events: none !important;
+}
+/* Fallback: disable any absolute overlay inside just in case */
+/* Keep critical bottom question section visible */
+.mn2-summary-page .text-center.mb-8,
+.mn2-summary-page [class*="max-w-[874px]"] {
+  position: relative !important;
+  z-index: 2 !important;
+}
+/* Compact spacing so more cards fit */
+.mn2-summary-page .space-y-6 {
+  display: block !important;
+  row-gap: clamp(8px, 2vw, 12px) !important;
+  margin-bottom: clamp(10px, 3vw, 16px) !important;
+}
+/* Tighter card box sizing on small screens */
+.mn2-summary-page [class*="max-w-[903px]"] {
+  min-height: clamp(130px, 20vw, 240px) !important;
+  padding: clamp(10px, 2vw, 16px) !important;
+  border-width: 3px !important;
+}
+/* Force 3-column icon grid to save space */
+.mn2-summary-page .grid.justify-items-center.items-center {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: clamp(6px, 2vw, 12px) !important;
+}
+@media (max-width: 360px) {
+  .mn2-summary-page .grid.justify-items-center.items-center {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+/* Make the route wrapper not clip when this page is active */
+#main-content > .flow-container:has(.mn2-summary-page) {
+  overflow: visible !important;
+}
+/* Keep the bottom question section above any backgrounds */
+.mn2-summary-page .text-center.mb-8 {
+  position: relative;
+  z-index: 11;
+}
+/* Slightly smaller icon circles */
+.mn2-summary-page svg[viewBox="0 0 133 133"] {
+  width: clamp(60px, 9vw, 100px) !important;
+  height: clamp(60px, 9vw, 100px) !important;
+}
+/* Icon image inside circle */
+.mn2-summary-page .grid.justify-items-center.items-center img {
+  max-width: clamp(28px, 4.5vw, 56px) !important;
+  max-height: clamp(24px, 4vw, 50px) !important;
+}
+/* Beneficiary label text */
+.mn2-summary-page .grid.justify-items-center.items-center span {
+  font-size: clamp(11px, 1.8vw, 18px) !important;
+  line-height: 1.15 !important;
+}
+/* Title typography and spacing */
+.mn2-summary-page h1 {
+  margin-bottom: clamp(6px, 2vw, 12px) !important;
+  font-size: clamp(18px, 4.2vw, 28px) !important;
+}
+.mn2-summary-page h2 {
+  font-size: clamp(14px, 3vw, 22px) !important;
+  margin-bottom: clamp(6px, 2vw, 10px) !important;
+}
+/* Reduce bottom margins to save vertical space */
+.mn2-summary-page .mb-12 {
+  margin-bottom: clamp(8px, 2vw, 12px) !important;
+}
+.mn2-summary-page .mb-8 {
+  margin-bottom: clamp(6px, 2vw, 10px) !important;
+}
+/* Ensure inner content has bottom padding so buttons are reachable */
+.mn2-summary-page .z-10 {
+  padding-bottom: clamp(16px, 10vh, 140px) !important;
+  position: relative;
+  z-index: 10;
+  pointer-events: auto;
+}
+
+/* Mobile: Ask05 positioning (title top, textarea center, button bottom) */
+@media (max-width: 767px) {
+  .ask05-page .figma-style1-content-area,
+  .what-do-you-travel-by-page .figma-style1-content-area {
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 100% !important;
+  }
+
+  .ask05-page .ask05-content,
+  .what-do-you-travel-by-page .wdytb-content {
+    margin-top: auto !important;
+    margin-bottom: auto !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    padding: 0 16px !important;
+  }
+
+  .ask05-page .figma-style1-button-container,
+  .what-do-you-travel-by-page .figma-style1-button-container {
+    margin-top: auto !important;
+    padding-bottom: 16px !important;
+  }
+}
+
+/* Desktop/Tablet: WhatDoYouTravelBy positioning and sizing */
+@media (min-width: 768px) {
+  .what-do-you-travel-by-page .wdytb-content {
+    width: 100%;
+    max-width: min(92vw, 900px);
+    margin: auto;
+    padding: 16px 20px;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  .what-do-you-travel-by-page .wdytb-textarea-box {
+    min-height: clamp(260px, 32vh, 460px);
+    padding: clamp(12px, 2.2vw, 20px);
+  }
+  .what-do-you-travel-by-page .figma-style1-content-area {
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 100% !important;
+  }
+  .what-do-you-travel-by-page .figma-style1-button-container {
+    margin-top: auto !important;
+  }
+}
+
+/* Ensure black title on white background */
+.what-do-you-travel-by-page .figma-style1-title {
+  color: #000 !important;
+  font-weight: 700 !important;
+}
+
+/* Ask02_2: title top, textarea center, button bottom (desktop/tablet) */
+@media (min-width: 768px) {
+  .ask02-2-page .figma-style1-content-area {
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 100% !important;
+  }
+  .ask02-2-page .ask02-2-content {
+    margin-top: auto !important;
+    margin-bottom: auto !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    padding: 0 16px !important;
+  }
+  .ask02-2-page .ask02-2-textarea-box {
+    min-height: clamp(260px, 32vh, 460px);
+    padding: clamp(12px, 2.2vw, 20px);
+  }
+
+  /* Default textarea layout: text left-aligned when typing; use container padding */
+  .ask02-2-page .ask02-2-textarea-box textarea {
+    text-align: left;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 0; /* rely on container padding */
+  }
+
+  /* When the placeholder is shown (empty), center it horizontally and vertically */
+  .ask02-2-page .ask02-2-textarea-box textarea:placeholder-shown {
+    text-align: center;
+    /* Vertical centering: move placeholder down by half the available height minus half line-height */
+    padding-top: calc(50% - 0.65em);
+    padding-bottom: 0;
+  }
+
+  .ask02-2-page .ask02-2-textarea-box textarea::placeholder {
+    text-align: center;
+    opacity: 0.6;
+  }
+  /* Slightly lower the title on desktop/tablet */
+  .ask02-2-page .figma-style1-title-container {
+    margin-top: clamp(12px, 4vh, 40px) !important;
+  }
+  .ask02-2-page .figma-style1-button-container {
+    margin-top: auto !important;
+  }
+}
+
+/* Ask02_2: same positioning for mobile */
+@media (max-width: 767px) {
+  .ask02-2-page .figma-style1-content-area {
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 100% !important;
+  }
+  .ask02-2-page .ask02-2-content {
+    margin-top: auto !important;
+    margin-bottom: auto !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    padding: 0 16px !important;
+  }
+  /* Slightly lower the title on mobile */
+  .ask02-2-page .figma-style1-title-container {
+    margin-top: clamp(10px, 3.5vh, 28px) !important;
+  }
+  .ask02-2-page .figma-style1-button-container {
+    margin-top: auto !important;
+    padding-bottom: 16px !important;
+  }
+}
+
+/* Source selection: tighter spacing between buttons */
+.source-selection-root .figma-style1-button-container {
+  gap: clamp(8px, 1.8vh, 14px) !important;
+}
+.source-selection-root .figma-style1-button-container > * + * {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* ===================================================================
+   Standardized reset & layout for fake-news page
+   - Remove custom background/overlay
+   - Use clean centered layout with content pinned to bottom
+   - Keep buttons centered and constrained for accessibility
+   =================================================================== */
+.figma-style1-container.fake-news-page {
+  background: #04d9f9 !important; /* full screen blue fill */
+  min-height: 100vh !important;
+  width: 100% !important;
+}
+
+/* hide any decorative background layers for this page */
+.figma-style1-container.fake-news-page .figma-style1-background,
+.figma-style1-container.fake-news-page .figma-style1-background-image,
+.figma-style1-container.fake-news-page .figma-style1-background-overlay,
+.figma-style1-container.fake-news-page .figma-style1-wave-overlay {
+  display: block !important;
+  visibility: visible !important;
+  pointer-events: none !important;
+  z-index: 0 !important;
+}
+
+/* Center content vertically and horizontally */
+.figma-style1-container.fake-news-page .figma-style1-main {
+  align-items: end !important; /* pin content to bottom */
+  justify-items: center !important;
+  height: 100vh !important;
+  padding-bottom: calc(
+    env(safe-area-inset-bottom, 0px) + 50px
+  ) !important; /* +30px for iPhone */ /* 20px above bottom + safe-area */
+}
+
+.figma-style1-container.fake-news-page .figma-style1-content-area {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 20px 16px !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-end !important; /* push content to bottom */
+  align-items: center !important; /* center horizontally */
+  gap: 16px !important;
+}
+
+.figma-style1-container.fake-news-page .figma-style1-title-container {
+  width: 100% !important;
+  max-width: 720px !important;
+  margin: 0 auto !important;
+  padding: 0 12px !important;
+}
+
+.figma-style1-container.fake-news-page .figma-style1-title {
+  color: #000 !important;
+  font-size: clamp(18px, 4.5vw, 22px) !important;
+  line-height: 1.3 !important;
+  text-align: center !important;
+  margin: 0 !important;
+  text-shadow: none !important;
+}
+
+/* Buttons centered and constrained */
+.figma-style1-container.fake-news-page .figma-style1-button-container {
+  width: 100% !important;
+  max-width: 360px !important;
+  margin: 0 auto !important;
+  padding: 12px 0 calc(env(safe-area-inset-bottom, 0px) + 20px) 0 !important; /* bottom: safe-area + 20px */
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+  align-items: center !important;
+}
+
+.figma-style1-container.fake-news-page .figma-style1-button {
+  width: 100% !important;
+  max-width: 100% !important;
+  border-radius: 28px !important;
+  height: 52px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.figma-style1-container.fake-news-page .figma-style1-button-text {
+  color: #000 !important;
+  text-align: center !important;
+}
+
+/* Ensure route wrapper won't clip content */
+#main-content > .flow-container:has(.figma-style1-container.fake-news-page) {
+  overflow: visible !important;
+}
+
+/* Remove global/app padding when showing fake-news so content is truly centered */
+.app-container:has(.figma-style1-container.fake-news-page) {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  width: 100vw !important;
+  max-width: 100vw !important;
+}
+
+/* Ensure main content wrapper has no extra offsets */
+#main-content {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.figma-style1-container.fake-news-page .figma-style1-content {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* Platform-specific overrides */
+.is-ios .figma-style1-container.fake-news-page .figma-style1-main {
+  padding-bottom: calc(
+    env(safe-area-inset-bottom, 0px) + 50px
+  ) !important; /* +30px for iPhone */
+}
+
+.is-android .figma-style1-container.fake-news-page .figma-style1-main {
+  padding-bottom: 20px !important;
+}
+
+.is-ios .figma-style1-container.fake-news-page .figma-style1-button-container {
+  padding-bottom: calc(
+    env(safe-area-inset-bottom, 0px) + 50px
+  ) !important; /* +30px for iPhone */
+}
+
+.is-android
+  .figma-style1-container.fake-news-page
+  .figma-style1-button-container {
+  padding-bottom: 20px !important;
+}
+
+@media (max-width: 640px) {
+  .figma-style1-container.fake-news-page .figma-style1-title {
+    margin-top: 36px !important;
+  }
+}
+
+/* MN2 Summary: ensure the background is fixed beneath content and remove overlays (scoped to summary step) */
+.mn2-summary-page .figma-style1-background {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
+}
+
+.mn2-summary-page .figma-style1-background-image,
+.figma-style1-container.mn2-summary-page .figma-style1-background-overlay,
+.figma-style1-container.mn2-summary-page .figma-style1-wave-overlay,
+.figma-style1-container.mn2-summary-page::before {
+  display: none !important;
+  background: transparent !important;
+  background-image: none !important;
+  pointer-events: none !important;
+  z-index: 0 !important;
+}
+
+/* Hide decorative overlays only for the summary step */
+.mn2-summary-page .figma-style1-background-overlay,
+.mn2-summary-page .figma-style1-wave-overlay,
+.mn2-summary-page > .absolute.inset-0,
+.mn2-summary-page .absolute.inset-0,
+.mn2-summary-page::before {
+  display: none !important;
+  pointer-events: none !important;
+  z-index: 0 !important;
+}
+
+/* Main/content stacking for summary: background (0) < main (10) < content (20) < title/buttons (30) < footer (40) */
+.mn2-summary-page .figma-style1-main {
+  position: relative !important;
+  z-index: 10 !important;
+  display: grid !important;
+  grid-template-rows: auto 1fr !important;
+  height: 100% !important;
+  align-items: start !important;
+  justify-items: center !important;
+  padding-top: clamp(12px, 6vh, 48px) !important;
+}
+
+.mn2-summary-page .figma-style1-content-area {
+  position: relative !important;
+  z-index: 20 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+  padding-top: calc(env(safe-area-inset-top, 0px) + clamp(72px, 10vh, 120px)) !important;
+  padding-bottom: clamp(16px, 10vh, 140px) !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+
+.mn2-summary-page .figma-style1-title-container {
+  /* Fix the title into the header area for MN2 summary page only */
+  position: fixed !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  top: calc(env(safe-area-inset-top, 0px) + 8px) !important;
+  z-index: 1005 !important;
+  width: 100% !important;
+  max-width: 980px !important;
+  pointer-events: none !important;
+  padding-top: 4px !important;
+  padding-bottom: 6px !important;
+  box-sizing: border-box !important;
+}
+
+
+.mn2-summary-page .figma-style1-button-container {
+  z-index: 30 !important;
+}
+
+/* Ensure the icon grids are centered and above the background */
+.mn2-summary-page .grid.justify-items-center.items-center {
+  z-index: 30 !important;
+  justify-items: center !important;
+}
+
+.mn2-summary-page .grid.justify-items-center.items-center img {
+  display: block !important;
+  margin: 0 auto !important;
+}
+
+/* Constrain MN2 summary content to viewport and allow internal scrolling to prevent content escaping off-screen */
+.mn2-summary-page .figma-style1-content-area {
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  max-height: calc(100svh - (env(safe-area-inset-top, 0px) + 140px + env(safe-area-inset-bottom, 12px))) !important;
+}
+
+/* Footer fixed at bottom, above content but below any critical modals */
+.mn2-summary-footer {
+  position: fixed !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  z-index: 40 !important;
+  background: transparent !important;
+}
+
+/* Accessibility: ensure buttons and interactive content are clickable */
+.mn2-summary-page button {
+  position: relative !important;
+  z-index: 35 !important;
+}
