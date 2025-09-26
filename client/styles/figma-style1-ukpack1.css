@@ -4,11 +4,55 @@
 
 /* UKPACK1 Design Tokens - scoped to the ukpack1 layout */
 .figma-style1-ukpack1, .figma-style1-container.figma-style1-ukpack1 {
-  --uk1-primary: var(--uk1-primary);
-  --uk1-yellow: var(--uk1-yellow);
-  --uk1-on-yellow: #000000;
+  /* canonical tokens for ukpack1 - used across the ukpack1 styles */
+  --uk1-primary: #000D59; /* primary brand blue */
+  --uk1-yellow: #FFE000; /* brand yellow */
+  --uk1-on-yellow: #000000; /* text on yellow */
   --uk1-bg: #ffffff;
   --uk1-text: var(--uk1-primary);
+}
+
+/* Ukpack1 button defaults (based on end-sequence: yellow base, blue hover)
+   and remove shadow (user requested no shadow) */
+.figma-style1-button,
+.figma-style1-button--primary,
+.figma-style1-button--secondary,
+.figma-style1-button--dark {
+  box-shadow: none !important;
+  transition: background-color 180ms ease, color 180ms ease, transform 120ms ease;
+}
+
+/* Primary variant: yellow base, black text */
+.figma-style1-button--primary {
+  background-color: var(--uk1-yellow) !important;
+  color: var(--uk1-on-yellow) !important;
+}
+.figma-style1-button--primary .figma-style1-button-text {
+  color: inherit !important;
+}
+
+/* Hover/active/focus: switch to primary blue with white text, no shadow */
+.figma-style1-button--primary:hover,
+.figma-style1-button--primary:active,
+.figma-style1-button--primary:focus {
+  background-color: var(--uk1-primary) !important;
+  color: #ffffff !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+/* Secondary / dark fallbacks */
+.figma-style1-button--secondary {
+  background-color: var(--uk1-yellow) !important;
+  color: var(--uk1-on-yellow) !important;
+}
+.figma-style1-button--dark {
+  background-color: var(--uk1-primary) !important;
+  color: #ffffff !important;
+}
+
+.figma-style1-button-text {
+  color: inherit !important;
 }
 
 /* Main Layout Container */
