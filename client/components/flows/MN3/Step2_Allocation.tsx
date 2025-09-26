@@ -126,7 +126,7 @@ const Step2_Allocation = ({
       className="mn3-step2-page mn3-step2-minimal"
       imageLoading="eager"
       title={
-        <span style={{ color: "#000D59", position: "relative", zIndex: 2000 }}>
+        <span style={{ color: "var(--uk1-primary)", position: "relative", zIndex: 2000 }}>
           คุณจะให้งบประมาณแต่ละข้อเท่าไหร่
         </span>
       }
@@ -195,7 +195,7 @@ const Step2_Allocation = ({
                   <div
                     className="mn3-allocation-suffix"
                     aria-hidden
-                    style={{ color: "#000D59", fontWeight: 600 }}
+                    style={{ color: "var(--uk1-primary)", fontWeight: 600 }}
                   >
                     %
                   </div>
@@ -218,7 +218,7 @@ const Step2_Allocation = ({
             <div
               className="text-center font-prompt"
               style={{
-                color: "#000D59",
+                color: "var(--uk1-primary)",
                 fontSize: "clamp(14px, 3vw, 18px)",
                 fontWeight: 500,
               }}
