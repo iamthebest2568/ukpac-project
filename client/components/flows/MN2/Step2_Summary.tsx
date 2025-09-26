@@ -7,12 +7,14 @@ import { useEffect, useState } from "react";
 import { useSession } from "../../../hooks/useSession";
 import { logEvent } from "../../../services/dataLogger.js";
 import FigmaStyle1Layout from "../../layouts/FigmaStyle1Layout.ukpack1";
+import Uk1Button from "../../shared/Uk1Button";
 
 interface Step2_SummaryProps {
   sessionID: string | null;
   onNext: (data: any) => void;
   onBack?: () => void;
   journeyData?: any;
+  useUk1Button?: boolean;
 }
 
 interface SummaryCard {
@@ -25,6 +27,7 @@ const Step2_Summary = ({
   onNext,
   onBack,
   journeyData,
+  useUk1Button = false,
 }: Step2_SummaryProps) => {
   const [summaryCards, setSummaryCards] = useState<SummaryCard[]>([]);
   const { navigateToPage } = useSession();
@@ -298,36 +301,61 @@ const Step2_Summary = ({
             justifyContent: "center",
           }}
         >
-          <button
-            onClick={handleEndGame}
-            className="figma-style1-button"
-            aria-label="ใช่, ไปต่อ"
-            style={{ flex: 1 }}
-          >
-            <span className="figma-style1-button-text">ใช่, ไปต่อ</span>
-          </button>
+          {useUk1Button ? (
+            <>
+              <Uk1Button onClick={handleEndGame} aria-label="ใช่, ไปต่อ" style={{ flex: 1 }}>
+                <span className="figma-style1-button-text">ใช่, ไปต่อ</span>
+              </Uk1Button>
+              <Uk1Button
+                onClick={() => {
+                  logEvent({
+                    event: "MINIGAME_MN2_SUMMARY_RETRY",
+                    payload: { sessionID, summaryCards },
+                  });
+                  try {
+                    navigateToPage("/minigame-mn1");
+                  } catch (e) {
+                    console.warn("navigate to mn1 failed", e);
+                  }
+                }}
+                aria-label="ไม่ใช่, ลองอีกครั้ง"
+                style={{ flex: 1 }}
+              >
+                <span className="figma-style1-button-text">ไม่ใช่, ลองอีกครั้ง</span>
+              </Uk1Button>
+            </>
+          ) : (
+            <>
+              <button
+                onClick={handleEndGame}
+                className="figma-style1-button"
+                aria-label="ใช่, ไปต่อ"
+                style={{ flex: 1 }}
+              >
+                <span className="figma-style1-button-text">ใช่, ไปต่อ</span>
+              </button>
 
-          <button
-            onClick={() => {
-              // Log and navigate back to MN1 to try again
-              logEvent({
-                event: "MINIGAME_MN2_SUMMARY_RETRY",
-                payload: { sessionID, summaryCards },
-              });
-              try {
-                navigateToPage("/minigame-mn1");
-              } catch (e) {
-                console.warn("navigate to mn1 failed", e);
-              }
-            }}
-            className="figma-style1-button"
-            aria-label="ไม่ใช่, ลองอีกครั้ง"
-            style={{ flex: 1 }}
-          >
-            <span className="figma-style1-button-text">
-              ไม่ใช่, ลองอีกครั้ง
-            </span>
-          </button>
+              <button
+                onClick={() => {
+                  // Log and navigate back to MN1 to try again
+                  logEvent({
+                    event: "MINIGAME_MN2_SUMMARY_RETRY",
+                    payload: { sessionID, summaryCards },
+                  });
+                  try {
+                    navigateToPage("/minigame-mn1");
+                  } catch (e) {
+                    console.warn("navigate to mn1 failed", e);
+                  }
+                }}
+                className="figma-style1-button"
+                aria-label="ไม่ใช่, ลองอีกครั้ง"
+                style={{ flex: 1 }}
+              >
+                <span className="figma-style1-button-text">ไม่ใช่, ลองอีกครั้ง</span>
+              </button>
+            </>
+          )}
         </div>
       </div>
     </FigmaStyle1Layout>
