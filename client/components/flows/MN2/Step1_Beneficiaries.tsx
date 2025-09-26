@@ -233,13 +233,19 @@ const Step1_Beneficiaries = ({
 
       {/* Submit Button */}
       <div className="w-full max-w-[325px]">
-        <button
-          onClick={handleNext}
-          disabled={selectedGroups.length === 0}
-          className={`w-full h-[53px] rounded-[40px] border-[1.5px] border-black flex items-center justify-center transition-all duration-200 figma-style1-button ${selectedGroups.length === 0 ? "cursor-not-allowed opacity-60" : ""}`}
-        >
-          <span className={`figma-style1-button-text`}>ไปต่อ</span>
-        </button>
+        {useUk1Button ? (
+          <Uk1Button onClick={handleNext} disabled={selectedGroups.length === 0} className={selectedGroups.length === 0 ? "cursor-not-allowed opacity-60" : ""} style={{ width: "100%", height: "53px" }}>
+            <span className={`figma-style1-button-text`}>ไปต่อ</span>
+          </Uk1Button>
+        ) : (
+          <button
+            onClick={handleNext}
+            disabled={selectedGroups.length === 0}
+            className={`w-full h-[53px] rounded-[40px] border-[1.5px] border-black flex items-center justify-center transition-all duration-200 figma-style1-button ${selectedGroups.length === 0 ? "cursor-not-allowed opacity-60" : ""}`}
+          >
+            <span className={`figma-style1-button-text`}>ไปต่อ</span>
+          </button>
+        )}
       </div>
     </FigmaStyle1Layout>
   );
