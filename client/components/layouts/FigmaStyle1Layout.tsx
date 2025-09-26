@@ -1,6 +1,7 @@
 import React from "react";
 
 import { memo, Fragment, useEffect, useState } from "react";
+import "../../styles/ukpack2-full.css";
 
 interface FigmaStyle1LayoutProps {
   /** Background image URL */
