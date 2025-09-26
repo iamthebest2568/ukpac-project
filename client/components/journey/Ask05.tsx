@@ -66,7 +66,7 @@ const Ask05 = ({ sessionID, onNavigate, useUk1Button = false }: Ask05Props) => {
       <div className="ask05-content">
         <div className="w-full max-w-[890px] mx-auto">
           <div
-            className="ask05-textarea-box relative w-full rounded-[20px] border-[5px] border-[#000D59] bg-white"
+            className="ask05-textarea-box relative w-full rounded-[20px] border-2 border-[#000D59] bg-white"
             style={{
               minHeight: "clamp(220px, 30vh, 420px)",
               padding: "clamp(12px, 2.2vw, 20px)",
