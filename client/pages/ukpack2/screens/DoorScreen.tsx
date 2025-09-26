@@ -304,9 +304,11 @@ const DoorScreen: React.FC = () => {
         theme="light"
         fullWidth
         footerContent={
-          <div className="flex justify-center">
-            <CtaButton text="ถัดไป" onClick={handleNext} />
-          </div>
+          <Uk2Footer>
+            <div className="w-full flex justify-center">
+              <CtaButton text="ถัดไป" onClick={handleNext} />
+            </div>
+          </Uk2Footer>
         }
       >
         <div className={styles.contentGrid}>
@@ -798,7 +800,7 @@ const DoorScreen: React.FC = () => {
                               className="col-span-2 md:col-span-4"
                             >
                               <h3 className="text-xl font-prompt font-semibold text-[#003366] mt-2">
-                                ทางอื่นๆ (สามารถเลือกประกอบได้)
+                                ทางอื่นๆ (���ามารถเลือกประกอบได้)
                               </h3>
                             </div>,
                           );
