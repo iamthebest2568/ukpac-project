@@ -87,7 +87,7 @@ const Step1_Choice = ({
   // Define which buttons should be yellow by default (from Figma design)
   const defaultYellowButtons = new Set([
     "ปรับปรุงคุณภาพรถเมล์",
-    "เพิ่มความถี่รถเมล์",
+    "เพิ่มความถี่รถเม���์",
   ]);
 
   const getButtonClasses = (priority: string, index: number) => {
@@ -137,7 +137,7 @@ const Step1_Choice = ({
           <h1
             className="font-prompt text-center leading-normal mb-4"
             style={{
-              color: "#000D59",
+              color: "var(--uk1-primary)",
               fontSize: "clamp(24px, 6vw, 48px)",
               lineHeight: "1.2",
               fontWeight: 700,
@@ -150,7 +150,7 @@ const Step1_Choice = ({
             จากการเก็บไปพัฒนาอะไร
           </h1>
           <div style={{ textAlign: "center", marginTop: "12px" }}>
-            <p style={{ color: "#000D59", fontSize: "16px", margin: 0 }}>
+            <p style={{ color: "var(--uk1-primary)", fontSize: "16px", margin: 0 }}>
               ไม่เกิน 3 นโยบาย
             </p>
           </div>
