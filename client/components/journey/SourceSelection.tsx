@@ -4,6 +4,7 @@ import { logEvent } from "../../services/dataLogger.js";
 interface SourceSelectionProps {
   sessionID: string | null;
   onNavigate: (screenId: string, data?: any) => void;
+  useUk1Button?: boolean;
 }
 
 import { useState } from "react";
