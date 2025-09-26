@@ -1110,6 +1110,8 @@
   /* allow the component to control height but keep it responsive */
   height: auto !important;
   min-height: 48vh !important;
+  position: relative !important;
+  z-index: 10001 !important; /* above title */
 }
 
 /* Ensure individual collage images remain positioned relative to the collage container center */
