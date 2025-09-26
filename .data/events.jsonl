@@ -13,3 +13,7 @@
 {"sessionId":"session_1758544433912_wotg4lsr4","eventName":"sw.variant.start","timestamp":"2025-09-23T06:11:20.272Z","variantId":"02fe3354","variantName":"Opening Scene"}
 {"sessionId":"session_1758544433912_wotg4lsr4","eventName":"sw.choice.selected","timestamp":"2025-09-23T06:11:48.929Z","choiceText":"เริ่มเล่น","variantId":"02fe3354","variantName":"Opening Scene"}
 {"sessionId":"session_1758544433912_wotg4lsr4","eventName":"sw.variant.start","timestamp":"2025-09-23T06:11:48.941Z","variantId":"333faf2b","variantName":"เหตุผลหลักในการเดินทางเข้าเมือง"}
+{"sessionId":"session_1758871497138_bm960oe5z","eventName":"sw.variant.start","timestamp":"2025-09-26T07:25:03.368Z","variantId":"a59ef133","variantName":"Intro"}
+{"sessionId":"session_1758871497138_bm960oe5z","eventName":"sw.story.start","timestamp":"2025-09-26T07:25:03.369Z","variantId":"a59ef133","variantName":"Intro"}
+{"sessionId":"session_1758871497138_bm960oe5z","eventName":"sw.choice.selected","timestamp":"2025-09-26T07:25:06.906Z","choiceText":"PDPA","variantId":"a59ef133","variantName":"Intro"}
+{"sessionId":"session_1758871497138_bm960oe5z","eventName":"sw.variant.start","timestamp":"2025-09-26T07:25:06.923Z","variantId":"e61429e0","variantName":"PDPA"}
