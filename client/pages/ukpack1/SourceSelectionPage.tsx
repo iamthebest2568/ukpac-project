@@ -1,6 +1,6 @@
 import React from "react";
 import TabletMockup from "./components/TabletMockup";
-import Page from "../SourceSelectionPage";
+import SourceSelection from "../../components/journey/SourceSelection";
 
 const Wrapped = (props: any) => (
   <TabletMockup>
