@@ -70,7 +70,7 @@ const FigmaStyle1Layout = ({
     if (isAndroid) setPlatformClass("is-android");
     else if (isIPhone || isIPad) setPlatformClass("is-ios");
 
-    // Detect if current route belongs to ukpack1 and set page scope class for styling
+    // Detect if current route belongs to ukpack1 or ukpack2 and set page scope class for styling
     try {
       if (
         typeof window !== "undefined" &&
@@ -80,7 +80,23 @@ const FigmaStyle1Layout = ({
         // Skip applying global ukpack1 styling to the uk-stornaway (video) page
         if (!window.location.pathname.includes("uk-stornaway")) {
           setPageScope("figma-style1-ukpack1");
+          // ensure body class for ukpack1 is present
+          document.body.classList.add("page-ukpack1");
+          document.body.classList.remove("page-ukpack2");
         }
+      } else if (
+        typeof window !== "undefined" &&
+        window.location &&
+        window.location.pathname.startsWith("/ukpack2")
+      ) {
+        // set ukpack2 scope and body class so ukpack2-specific styles apply
+        setPageScope("figma-style1-ukpack2");
+        document.body.classList.add("page-ukpack2");
+        document.body.classList.remove("page-ukpack1");
+      } else {
+        // ensure neither page class remains if outside scopes
+        document.body.classList.remove("page-ukpack1");
+        document.body.classList.remove("page-ukpack2");
       }
     } catch (e) {
       // noop
