@@ -77,15 +77,17 @@
   box-shadow: none !important;
 }
 
-/* Hover behavior - selected becomes slightly lighter, non-selected hover -> black bg */
+/* Hover behavior - standardized for ukpack1: brand blue bg, yellow text, no shadow */
 .mn3-policy-button:hover:not(:disabled) {
-  background-color: #000 !important;
+  background-color: #000D59 !important;
   color: #FFE000 !important;
-  transform: scale(1.03);
+  transform: none !important;
+  box-shadow: none !important;
 }
 
+/* Selected button hover uses same standard hover */
 .mn3-policy-button--selected:hover:not(:disabled) {
-  background-color: #111 !important;
+  background-color: #000D59 !important;
 }
 
 /* Disabled state */
@@ -96,25 +98,14 @@
   box-shadow: none !important;
 }
 
-/* Hover effects (matching fake-news) */
-.mn3-policy-button:hover:not(:disabled) {
-  transform: scale(1.05);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
-  background-color: #000;
-}
-
+/* Ensure hover text color inside button */
 .mn3-policy-button:hover:not(:disabled) .mn3-button-text {
-  color: #FFE000;
+  color: #FFE000 !important;
 }
 
 /* Active state */
 .mn3-policy-button:active:not(:disabled) {
-  transform: scale(0.98);
-}
-
-/* Selected button hover (different behavior) */
-.mn3-policy-button--selected:hover:not(:disabled) {
-  background-color: #333;
+  transform: none !important;
 }
 
 /* Button text styling - readable and not truncated */
@@ -124,7 +115,7 @@
   font-size: clamp(12px, 2.6vw, 16px);
   line-height: 1.15;
   letter-spacing: 0px;
-  color: #000D59; /* updated per request */
+  color: #000D59; /* brand blue */
   text-align: center;
   margin: 0;
   padding: 4px 2px; /* small padding inside button */
@@ -241,19 +232,6 @@
 
   .mn3-policy-button:hover:not(:disabled) {
     transform: none;
-  }
-}
-
-/* Remove specific width constraints - let buttons size themselves based on content and available space */
-/* All buttons will use the base flex: 1 sizing from .mn3-policy-button */
-
-/* Optional: Add small adjustments for very specific cases if needed */
-@media (max-width: 480px) {
-  .mn3-policy-button {
-    font-size: clamp(10px, 2.5vw, 14px);
-    height: clamp(35px, 5vw, 50px);
-    min-height: 35px;
-    padding: 0 clamp(6px, 1vw, 12px);
   }
 }
 
@@ -701,12 +679,14 @@
 }
 
 .mn3-result-button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  background-color: #000D59 !important;
+  color: #FFE000 !important;
+  transform: none !important;
+  box-shadow: none !important;
 }
 
 .mn3-result-button:active {
-  transform: scale(0.98);
+  transform: none !important;
 }
 
 /* Mobile responsive adjustments */
@@ -810,15 +790,16 @@
   }
 }
 
+/* Continue button hover standardized */
 .mn3-continue-button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
-  background-color: #000;
-  color: #FFE000;
+  background-color: #000D59 !important;
+  color: #FFE000 !important;
+  transform: none !important;
+  box-shadow: none !important;
 }
 
 .mn3-continue-button:active {
-  transform: scale(0.98);
+  transform: none !important;
 }
 
 .mn3-continue-button:disabled {
