@@ -56,12 +56,12 @@
 
 /* Yellow variant (for specific buttons like ปรับปรุงคุณภาพรถเมล์, เพิ่มความถี่รถเมล์) */
 .mn3-policy-button--yellow {
-  background-color: #ffe000;
+  background-color: var(--uk1-yellow);
 }
 
 /* Selected state (highlighted) */
 .mn3-policy-button--selected {
-  background-color: #ffe000 !important;
+  background-color: var(--uk1-yellow) !important;
   color: #000 !important;
 }
 
@@ -80,7 +80,7 @@
 /* Hover behavior - selected becomes slightly lighter, non-selected hover -> black bg */
 .mn3-policy-button:hover:not(:disabled) {
   background-color: #000 !important;
-  color: #ffe000 !important;
+  color: var(--uk1-yellow) !important;
   transform: scale(1.03);
 }
 
@@ -104,7 +104,7 @@
 }
 
 .mn3-policy-button:hover:not(:disabled) .mn3-button-text {
-  color: #ffe000;
+  color: var(--uk1-yellow);
 }
 
 /* Active state */
@@ -124,7 +124,7 @@
   font-size: clamp(12px, 2.6vw, 16px);
   line-height: 1.15;
   letter-spacing: 0px;
-  color: #000d59; /* updated per request */
+  color: var(--uk1-primary); /* updated per request */
   text-align: center;
   margin: 0;
   padding: 4px 2px; /* small padding inside button */
@@ -222,7 +222,7 @@
 
 /* Focus accessibility */
 .mn3-policy-button:focus {
-  outline: 3px solid #ffe000;
+  outline: 3px solid var(--uk1-yellow);
   outline-offset: 2px;
 }
 
@@ -277,7 +277,7 @@
   min-height: 50px;
   border-radius: 40px; /* Slightly reduced border-radius */
   border: none;
-  background-color: #ffe000;
+  background-color: var(--uk1-yellow);
   box-shadow: none;
   display: flex;
   align-items: center;
@@ -448,7 +448,7 @@
 
 /* Budget display box matching Figma */
 .mn3-budget-display {
-  background-color: #ffe000;
+  background-color: var(--uk1-yellow);
   border-radius: clamp(8px, 1.2vw, 10px); /* reduced roundness */
   padding: clamp(
     20px,
@@ -486,7 +486,7 @@
   font-family: "Prompt", sans-serif;
   font-weight: 700;
   font-size: clamp(24px, 4.6vw, 50px);
-  color: #000d59;
+  color: var(--uk1-primary);
   text-align: center;
   line-height: normal;
   letter-spacing: 0.4px;
@@ -497,7 +497,7 @@
   font-family: "Prompt", sans-serif;
   font-weight: 700;
   font-size: clamp(48px, 9.3vw, 100px);
-  color: #000d59;
+  color: var(--uk1-primary);
   text-align: center;
   line-height: normal;
   letter-spacing: 0.4px;
@@ -528,7 +528,7 @@
   font-family: "Prompt", sans-serif;
   font-weight: 600;
   font-size: clamp(14px, 2.4vw, 18px); /* smaller, more consistent */
-  color: #000d59;
+  color: var(--uk1-primary);
   line-height: 1.2;
   letter-spacing: 0px;
   flex: 1;
@@ -550,13 +550,13 @@
 .mn3-allocation-input {
   width: clamp(80px, 14vw, 120px);
   height: clamp(40px, 6vw, 48px);
-  border: 3px solid #000d59;
+  border: 3px solid var(--uk1-primary);
   border-radius: 10px;
   background-color: transparent;
   font-family: "Prompt", sans-serif;
   font-weight: 600;
   font-size: clamp(14px, 3.2vw, 18px);
-  color: #000d59;
+  color: var(--uk1-primary);
   text-align: center;
   line-height: normal;
   letter-spacing: 0px;
@@ -566,7 +566,7 @@
 }
 
 .mn3-allocation-input:focus {
-  border-color: #ffe000;
+  border-color: var(--uk1-yellow);
   box-shadow: 0 0 0 3px rgba(255, 224, 0, 0.3);
 }
 
@@ -665,7 +665,7 @@
 .mn3-result-button {
   width: min(420px, 86vw);
   height: clamp(52px, 9.5vw, 72px);
-  background-color: #ffe000;
+  background-color: var(--uk1-yellow);
   border-radius: 40px;
   border: none;
   display: flex;
@@ -814,7 +814,7 @@
   transform: scale(1.05);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
   background-color: #000;
-  color: #ffe000;
+  color: var(--uk1-yellow);
 }
 
 .mn3-continue-button:active {
