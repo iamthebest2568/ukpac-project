@@ -1,7 +1,7 @@
 import { useSession } from "../../hooks/useSession";
 import BudgetAllocation from "../../components/games/BudgetAllocation";
 import FigmaStyle1Layout from "../../components/layouts/FigmaStyle1Layout";
-import TabletMockup from "../ukpack2/components/TabletMockup";
+import TabletMockup from "./components/TabletMockup";
 
 const Ukpack1BudgetPage = () => {
   const { sessionID, navigateToPage } = useSession();
