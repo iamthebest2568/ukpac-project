@@ -23,7 +23,7 @@ const FeedbackSkipScreen: React.FC = () => {
           "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F7e994bb254cb408c86bed190e97b659e?format=webp&width=1600"
         }
         footerContent={
-          <Uk2Footer footerBgImage={undefined}>
+          <Uk2Footer>
             <SecondaryButton
               className="w-full"
               text="แชร์เกมนี้ให้เพื่อน"
