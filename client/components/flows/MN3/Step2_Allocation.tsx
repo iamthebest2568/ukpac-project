@@ -26,6 +26,7 @@ const Step2_Allocation = ({
   onNext,
   onBack,
   journeyData,
+  useUk1Button = false,
 }: Step2_AllocationProps) => {
   const [budgetAllocation, setBudgetAllocation] = useState<BudgetAllocation>(
     {},
