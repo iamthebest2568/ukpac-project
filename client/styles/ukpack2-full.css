@@ -174,30 +174,30 @@
 /* ---------- responsive-utils ukpack2 snippets (copied) ---------- */
 @media (min-width: 768px) {
   /* Make the central app container wider on tablets */
-  .responsive-container {
+  body.page-ukpack2 .responsive-container {
     max-width: 100%;
   }
 
   /* Splash top area spacing */
-  .splash-top {
+  body.page-ukpack2 .splash-top {
     padding: 64px 48px 24px;
   }
 
   /* Splash text sizing for tablets */
-  .splash-text {
+  body.page-ukpack2 .splash-text {
     margin-top: 80px;
     font-size: 28px;
     line-height: 36px;
   }
 
   /* CTA appearance for tablets */
-  .cta-button {
+  body.page-ukpack2 .cta-button {
     padding: 14px 36px;
     font-size: 18px;
   }
 
   /* Background banner adjustments */
-  .splash-bg {
+  body.page-ukpack2 .splash-bg {
     background-position: center center;
     background-size: contain; /* preserve full PNG shape to avoid straight edge cropping */
     background-repeat: no-repeat;
@@ -208,27 +208,27 @@
 
 @media (min-width: 1024px) {
   /* Desktop container max width */
-  .responsive-container {
+  body.page-ukpack2 .responsive-container {
     max-width: 100%;
   }
 
   /* More breathing room on desktop */
-  .splash-top {
+  body.page-ukpack2 .splash-top {
     padding: 96px 64px 32px;
   }
 
-  .splash-text {
+  body.page-ukpack2 .splash-text {
     margin-top: 120px;
     font-size: 34px;
     line-height: 44px;
   }
 
-  .cta-button {
+  body.page-ukpack2 .cta-button {
     padding: 16px 48px;
     font-size: 20px;
   }
 
-  .splash-bg {
+  body.page-ukpack2 .splash-bg {
     background-position: center center;
     background-size: contain; /* preserve full PNG shape to avoid straight edge cropping */
     background-repeat: no-repeat;
@@ -238,10 +238,10 @@
 }
 
 /* Splash responsive tweaks */
-.splash-top { background-color: transparent; }
+body.page-ukpack2 .splash-top { background-color: transparent; }
 
 @media (max-width: 640px) {
-  .splash-top {
+  body.page-ukpack2 .splash-top {
     background-color: rgba(255, 255, 255, 1);
     padding-bottom: 20px;
     display: flex;
