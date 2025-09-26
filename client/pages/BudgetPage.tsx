@@ -1,5 +1,5 @@
 import { useSession } from "../hooks/useSession";
-import FigmaStyle1Layout from "../components/layouts/FigmaStyle1Layout";
+import FigmaStyle1Layout from "../components/layouts/FigmaStyle1Layout.ukpack1";
 import BudgetAllocation from "../components/games/BudgetAllocation";
 
 const BudgetPage = () => {
