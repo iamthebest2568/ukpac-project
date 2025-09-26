@@ -116,15 +116,28 @@ const SourceSelection = ({ sessionID, onNavigate, useUk1Button = false }: Source
           style={{ marginTop: 20, display: "flex", justifyContent: "center" }}
         >
           <div style={{ width: "100%", maxWidth: 420 }}>
-            <button
-              onClick={handleSubmit}
-              className="figma-style1-button"
-              disabled={selected.length === 0}
-              aria-disabled={selected.length === 0}
-              style={{ width: "100%" }}
-            >
-              <span className="figma-style1-button-text">ไปต���อ</span>
-            </button>
+            <>
+              {useUk1Button ? (
+                <Uk1Button
+                  onClick={handleSubmit}
+                  disabled={selected.length === 0}
+                  aria-disabled={selected.length === 0}
+                  style={{ width: "100%" }}
+                >
+                  <span className="figma-style1-button-text">ไปต่อ</span>
+                </Uk1Button>
+              ) : (
+                <button
+                  onClick={handleSubmit}
+                  className="figma-style1-button"
+                  disabled={selected.length === 0}
+                  aria-disabled={selected.length === 0}
+                  style={{ width: "100%" }}
+                >
+                  <span className="figma-style1-button-text">ไปต่อ</span>
+                </button>
+              )}
+            </>
           </div>
         </div>
       </div>
