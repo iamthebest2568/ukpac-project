@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import RouteTransition from "../../../components/shared/RouteTransition";
+import RouteTransition from "../../../components/shared/RouteTransition.ukpack1";
 
 interface TabletMockupProps {
   children: React.ReactNode;
