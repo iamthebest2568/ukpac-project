@@ -5,7 +5,7 @@
 
 import { useState } from "react";
 import { logEvent } from "../../../services/dataLogger.js";
-import FigmaStyle1Layout from "../../layouts/FigmaStyle1Layout";
+import FigmaStyle1Layout from "../../layouts/FigmaStyle1Layout.ukpack1";
 
 interface Step1_PrioritiesProps {
   sessionID: string | null;
@@ -159,7 +159,7 @@ const Step1_Priorities = ({
               style={{
                 width: "43.1%", // 465/1080
                 height: "clamp(60px, 4.7vw, 90px)",
-                backgroundColor: getButtonColor("ลดค่าโดยสารรถไฟฟ้า"),
+                backgroundColor: getButtonColor("ลดค่าโดยส��รรถไฟฟ้า"),
                 opacity: isSelectionDisabled("ลดค่าโดยสารรถไฟฟ้า") ? 0.5 : 1,
               }}
               onClick={() =>
@@ -322,7 +322,7 @@ const Step1_Priorities = ({
                 width: "44.4%", // 480/1080
                 height: "clamp(60px, 4.7vw, 90px)",
                 backgroundColor: getButtonColor("เพิ่ม Feeder ในซอย"),
-                opacity: isSelectionDisabled("เพิ่ม Feeder ในซอย") ? 0.5 : 1,
+                opacity: isSelectionDisabled("เพิ่ม Feeder ��นซอย") ? 0.5 : 1,
               }}
               onClick={() =>
                 !isSelectionDisabled("เพิ่ม Feeder ในซอย") &&
