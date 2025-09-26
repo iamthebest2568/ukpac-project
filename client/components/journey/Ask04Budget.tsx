@@ -158,56 +158,67 @@ const Ask04Budget = ({
             alignItems: "center",
           }}
         >
-          {resultSummary.map((s, i) => {
-            const imgSrc =
-              priorityImageMap[s.priority] ||
-              "https://cdn.builder.io/api/v1/image/assets/TEMP/placeholder.png?width=720";
-            const offset = collageOffsets[i] || {
-              left: `50%`,
-              top: `50%`,
-              rotate: `0deg`,
-              z: i + 1,
-              scale: 1,
-            };
-            const count = resultSummary.length;
-            const spacing = count === 1 ? 0 : count === 2 ? 40 : -60; // smaller/negative spacing to create overlay
-            const offsetX = Math.round((i - (count - 1) / 2) * spacing);
-            const width = count === 1 ? "68%" : count === 2 ? "55%" : "46%";
-            return (
-              <div
-                key={s.priority}
-                style={{
-                  position: "absolute",
-                  left: "50%",
-                  top: `calc(50% + ${offset.top})`,
-                  transform: `translate(calc(-50% + ${offsetX}px), -50%) rotate(${offset.rotate}) scale(${offset.scale})`,
-                  width,
-                  zIndex: offset.z,
-                }}
-              >
+          {(() => {
+            const displaySummary =
+              resultSummary && resultSummary.length > 0
+                ? resultSummary
+                : [
+                    { priority: "เพิ่มความถี่รถเมล์", allocation: 0, percentage: 0, icon: "" },
+                    { priority: "เพิ่มที่จอดรถ", allocation: 0, percentage: 0, icon: "" },
+                    { priority: "ลดค่าโดยสารรถไฟฟ้า", allocation: 0, percentage: 0, icon: "" },
+                  ];
+
+            return displaySummary.map((s, i) => {
+              const imgSrc =
+                priorityImageMap[s.priority] ||
+                "https://cdn.builder.io/api/v1/image/assets/TEMP/placeholder.png?width=720";
+              const offset = collageOffsets[i] || {
+                left: `50%`,
+                top: `50%`,
+                rotate: `0deg`,
+                z: i + 1,
+                scale: 1,
+              };
+              const count = displaySummary.length;
+              const spacing = count === 1 ? 0 : count === 2 ? 40 : -60; // smaller/negative spacing to create overlay
+              const offsetX = Math.round((i - (count - 1) / 2) * spacing);
+              const width = count === 1 ? "68%" : count === 2 ? "55%" : "46%";
+              return (
                 <div
+                  key={`${s.priority}-${i}`}
                   style={{
-                    width: "100%",
-                    paddingBottom: "80%",
-                    position: "relative",
+                    position: "absolute",
+                    left: "50%",
+                    top: `calc(50% + ${offset.top})`,
+                    transform: `translate(calc(-50% + ${offsetX}px), -50%) rotate(${offset.rotate}) scale(${offset.scale})`,
+                    width,
+                    zIndex: offset.z,
                   }}
                 >
-                  <img
-                    src={imgSrc}
-                    alt={s.priority}
+                  <div
                     style={{
-                      position: "absolute",
-                      inset: 0,
                       width: "100%",
-                      height: "100%",
-                      objectFit: "contain",
-                      objectPosition: "center center",
+                      paddingBottom: "80%",
+                      position: "relative",
                     }}
-                  />
+                  >
+                    <img
+                      src={imgSrc}
+                      alt={s.priority}
+                      style={{
+                        position: "absolute",
+                        inset: 0,
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "contain",
+                        objectPosition: "center center",
+                      }}
+                    />
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            });
+          })()}
         </div>
       </div>
 
