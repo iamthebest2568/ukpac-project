@@ -139,7 +139,7 @@ const Step1_Beneficiaries = ({
   };
 
   const titleText =
-    currentPriority === "ลดค่าโดยสา��ร��ไฟฟ้า"
+    currentPriority === "ลดค่าโดยสารร��ไฟฟ้า"
       ? "คุณคิดว่าใครควรได้รับการลดค่าโดยสารรถไฟฟ้าบ้าง"
       : `คุณคิดว่าใครควรได้รับประโยชน์จาก ${currentPriority}`;
 
@@ -232,7 +232,7 @@ const Step1_Beneficiaries = ({
       </div>
 
       {/* Submit Button */}
-      <div className="w-full max-w-[325px]">
+      <div className="figma-style1-button-container w-full max-w-[325px]">
         {useUk1Button ? (
           <Uk1Button onClick={handleNext} disabled={selectedGroups.length === 0} className={selectedGroups.length === 0 ? "cursor-not-allowed opacity-60" : ""} style={{ width: "100%", height: "53px" }}>
             <span className={`figma-style1-button-text`}>ไปต่อ</span>
