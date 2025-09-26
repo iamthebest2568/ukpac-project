@@ -67,7 +67,7 @@ const Ask04Budget = ({
   // Reuse the same mappings from Step3_Result to render the collage here
   const priorityIcons: { [key: string]: string } = {
     ลดค่าโดยสารรถไฟฟ้า: "🚇",
-    ปรับปรุงคุณภาพรถเมล์: "🚌",
+    ปรับปรุงคุณภาพรถเมล��: "🚌",
     ตั๋วร่วม: "🎫",
     เพิ่มความถี่รถเมล์: "🚍",
     เพิ่มความถี่รถไฟฟ้า: "🚊",
@@ -226,17 +226,28 @@ const Ask04Budget = ({
       </div>
 
       <div style={{ textAlign: "center", width: "100%", marginTop: 20 }}>
-        <div
-          className="figma-style1-button-container"
-          style={{
-            width: "100%",
-            maxWidth: 360,
-            margin: "0 auto",
-            display: "flex",
-            flexDirection: "column",
-            gap: 12,
-          }}
-        >
+    <div
+      className="figma-style1-button-container"
+      style={{
+        width: "100%",
+        maxWidth: 360,
+        margin: "0 auto",
+        display: "flex",
+        flexDirection: "column",
+        gap: 12,
+      }}
+    >
+      {useUk1Button ? (
+        <>
+          <Uk1Button onClick={() => handleChoice("satisfied")} style={{ width: "100%" }} aria-label="พอใจ">
+            <span className="figma-style1-button-text">พอใจ</span>
+          </Uk1Button>
+          <Uk1Button onClick={() => handleChoice("unsatisfied")} style={{ width: "100%" }} aria-label="ไม่พอใจ">
+            <span className="figma-style1-button-text">ไม่พอใจ</span>
+          </Uk1Button>
+        </>
+      ) : (
+        <>
           <button
             onClick={() => handleChoice("satisfied")}
             className="figma-style1-button"
@@ -254,8 +265,10 @@ const Ask04Budget = ({
           >
             <span className="figma-style1-button-text">ไม่พอใจ</span>
           </button>
-        </div>
-      </div>
+        </>
+      )}
+    </div>
+  </div>
     </FigmaStyle1Layout>
   );
 };
