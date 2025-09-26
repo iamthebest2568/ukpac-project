@@ -10,11 +10,39 @@ const SkipEnd: React.FC = () => {
   const navigate = useNavigate();
   const [isShareOpen, setShareOpen] = React.useState(false);
 
+  const footer = (
+    <div className="max-w-4xl mx-auto flex items-end justify-center h-full">
+      <div className="flex flex-col items-center gap-3 pt-6 pb-10">
+        <div style={{ width: '220px' }}>
+          <CtaButton
+            className="w-full"
+            text="จบเกม"
+            onClick={() => {
+              try {
+                clearDesignStorage();
+              } catch (e) {}
+              navigate("/ukpack2");
+            }}
+          />
+        </div>
+        <div style={{ width: '220px' }}>
+          <SecondaryButton
+            className="w-full"
+            text="แชร์เกมนี้กับเพื่อน"
+            onClick={() => setShareOpen(true)}
+          />
+        </div>
+      </div>
+    </div>
+  );
+
   return (
     <>
       <CustomizationScreen
         title=""
         theme="light"
+        footerBgImage={"https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc3874bf37db54abeb4a13c308b0df9a4?format=webp&width=1600"}
+        footerContent={footer}
       >
         <div className="space-y-6">
           <div className="w-full flex justify-center">
@@ -26,40 +54,6 @@ const SkipEnd: React.FC = () => {
           </div>
         </div>
 
-        <footer
-          className="rounded-t-3xl py-12 px-6 bg-no-repeat bg-top bg-cover"
-          style={{
-            backgroundImage:
-              "url('https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc3874bf37db54abeb4a13c308b0df9a4?format=webp&width=1600')",
-            minHeight: '360px',
-            width: '100vw',
-            marginLeft: 'calc(50% - 50vw)'
-          }}
-        >
-          <div className="max-w-4xl mx-auto flex items-end justify-center h-full">
-            <div className="flex flex-col items-center gap-3 pt-6 pb-10">
-              <div style={{ width: '220px' }}>
-                <CtaButton
-                  className="w-full"
-                  text="จบเกม"
-                  onClick={() => {
-                    try {
-                      clearDesignStorage();
-                    } catch (e) {}
-                    navigate("/ukpack2");
-                  }}
-                />
-              </div>
-              <div style={{ width: '220px' }}>
-                <SecondaryButton
-                  className="w-full"
-                  text="แชร์เกมนี้กับเพื่อน"
-                  onClick={() => setShareOpen(true)}
-                />
-              </div>
-            </div>
-          </div>
-        </footer>
       </CustomizationScreen>
 
       <ShareModal
