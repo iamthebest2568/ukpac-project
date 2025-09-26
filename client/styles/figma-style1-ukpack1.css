@@ -785,18 +785,15 @@
 }
 
 .figma-style1-container.ask02-2-page .figma-style1-button-container {
-  position: fixed !important;
-  left: 0;
-  right: 0;
-  bottom: calc(env(safe-area-inset-bottom, 0px) + 12px) !important;
-  z-index: 10050 !important; /* above overlays */
+  position: static !important; /* avoid fixed inside transformed mockup */
   display: flex !important;
   justify-content: center !important;
+  align-self: center !important;
   padding: 12px 20px !important;
   box-sizing: border-box !important;
   max-width: 420px !important;
-  width: 100%;
-  margin: 0 auto !important;
+  width: 100% !important;
+  margin: 12px auto clamp(10px, 3vh, 24px) auto !important;
 }
 
 .figma-style1-container.ask02-2-page .figma-style1-button {
