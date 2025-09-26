@@ -19,7 +19,7 @@ const SourceSelection = ({ sessionID, onNavigate, useUk1Button = false }: Source
     { id: "online_news", label: "รายการข่าวสื่อออนไลน์" },
     { id: "government", label: "เว็บไซต์ของหน่วยงานรัฐ" },
     { id: "road_sign", label: "ป้ายประกาศ หรือสื่อข้างทาง" },
-    { id: "social", label: "สื่อสังคมออนไลน์ (Social Media)" },
+    { id: "social", label: "สื่อสังคม���อนไลน์ (Social Media)" },
     { id: "community", label: "กลุ่มเครือข่าย / ชุมชน / เพื่อน" },
     { id: "other", label: "อื่นๆ" },
   ];
@@ -81,7 +81,7 @@ const SourceSelection = ({ sessionID, onNavigate, useUk1Button = false }: Source
             const isSelected = selected.includes(opt.id);
             const maxReached = selected.length >= 3;
             return (
-              <>
+              <Fragment key={opt.id}>
                 {useUk1Button ? (
                   <Uk1Button
                     key={opt.id}
@@ -107,7 +107,7 @@ const SourceSelection = ({ sessionID, onNavigate, useUk1Button = false }: Source
                     <span className="figma-style1-button-text">{opt.label}</span>
                   </button>
                 )}
-              </>
+              </Fragment>
             );
           })}
         </div>
