@@ -73,31 +73,29 @@ const SummaryScreen: React.FC = () => {
 
   return (
     <CustomizationScreen
-      title="รถเมล์คันนี้ที่คุณออกแบบใกล้เคียงกับรถเมล์ในฝันของคุณแล้วหรือไม่"
+      title="รถเมล์คันนี้ที่คุณ��อกแบบใกล้เคียงกับรถเมล์ในฝันของคุณแล้วหรือไม่"
       theme="light"
       fullWidth
       containerPaddingClass="px-4 py-2"
       footerContent={
-        <div className="flex justify-center">
-          <div className="w-full max-w-4xl mx-auto flex items-center justify-center">
-            <div className="w-full max-w-sm p-4 md:p-6 flex flex-col items-stretch gap-3">
-              <div className="w-full">
-                <SecondaryButton
-                  text="ใช่, ไปต่อ"
-                  onClick={() => navigate("/ukpack2/info")}
-                  className="w-full"
-                />
-              </div>
-              <div className="w-full">
-                <CtaButton
-                  text="ไม่ใช่, ลองอีกครั้ง"
-                  onClick={() => navigate("/ukpack2/chassis")}
-                  className="w-full"
-                />
-              </div>
+        <Uk2Footer>
+          <div className="w-full max-w-sm p-4 md:p-6 flex flex-col items-stretch gap-3">
+            <div className="w-full">
+              <SecondaryButton
+                text="ใช่, ไปต่อ"
+                onClick={() => navigate("/ukpack2/info")}
+                className="w-full"
+              />
+            </div>
+            <div className="w-full">
+              <CtaButton
+                text="ไม่ใช่, ลองอีกครั้ง"
+                onClick={() => navigate("/ukpack2/chassis")}
+                className="w-full"
+              />
             </div>
           </div>
-        </div>
+        </Uk2Footer>
       }
     >
       <div className={`${styles.previewInner} mx-auto px-4 py-2`}>
