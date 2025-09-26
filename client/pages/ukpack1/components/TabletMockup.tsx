@@ -104,12 +104,13 @@ const TabletMockup: React.FC<TabletMockupProps> = ({ children }) => {
           >
             {/* Viewport (portrait 414x896) */}
             <div
-              className="rounded-[30px] bg-white overflow-y-auto overflow-x-hidden tablet-mock-env"
+              className={`rounded-[30px] overflow-y-auto overflow-x-hidden tablet-mock-env ${isUk1Mn01 ? '' : 'bg-white'}`}
               style={{
                 position: "relative",
                 width: `${BASE_W}px`,
                 height: `${BASE_H}px`,
                 aspectRatio: `${BASE_W} / ${BASE_H}`,
+                backgroundColor: isUk1Mn01 ? "transparent" : undefined,
               }}
               onClickCapture={(e: React.MouseEvent) => {
                 try {
