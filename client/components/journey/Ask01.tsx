@@ -43,7 +43,7 @@ const Ask01 = ({ sessionID, onNavigate }: Ask01Props) => {
     {
       text: "กลางๆ",
       onClick: () => handleChoice("neutral"),
-      ariaLabel: "มีความเห็นเป็นกลางต่อข้อความดั��กล่าว",
+      ariaLabel: "มีความเห็นเป็นกลางต่อข้อความดังกล่าว",
     },
     {
       text: "ไม่เห็นด้วย",
