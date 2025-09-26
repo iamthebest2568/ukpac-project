@@ -9,6 +9,7 @@ interface Step3_ResultProps {
   onNext: (data: any) => void;
   onBack?: () => void;
   journeyData?: any;
+  useUk1Button?: boolean;
 }
 
 interface ResultSummary {
