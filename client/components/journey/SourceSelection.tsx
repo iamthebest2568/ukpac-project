@@ -62,7 +62,7 @@ const SourceSelection = ({ sessionID, onNavigate, useUk1Button = false }: Source
               </span>
             </div>
             <div style={{ fontSize: 14, marginTop: 8, color: "#374151" }}>
-              เลือกได้ไม่เกิน 3 ข้อ
+              เลือกได้��ม่เกิน 3 ข้อ
             </div>
           </div>
         </>
@@ -81,17 +81,31 @@ const SourceSelection = ({ sessionID, onNavigate, useUk1Button = false }: Source
             const isSelected = selected.includes(opt.id);
             const maxReached = selected.length >= 3;
             return (
-              <button
-                key={opt.id}
-                onClick={() => toggle(opt.id, opt.label)}
-                className={`figma-style1-button ${isSelected ? "figma-style1-button--selected" : ""}`}
-                aria-pressed={isSelected}
-                aria-disabled={!isSelected && maxReached}
-                disabled={!isSelected && maxReached}
-                style={{ width: "100%" }}
-              >
-                <span className="figma-style1-button-text">{opt.label}</span>
-              </button>
+              useUk1Button ? (
+                <Uk1Button
+                  key={opt.id}
+                  onClick={() => toggle(opt.id, opt.label)}
+                  aria-pressed={isSelected}
+                  aria-disabled={!isSelected && maxReached}
+                  disabled={!isSelected && maxReached}
+                  className={isSelected ? "figma-style1-button--selected" : ""}
+                  style={{ width: "100%" }}
+                >
+                  <span className="figma-style1-button-text">{opt.label}</span>
+                </Uk1Button>
+              ) : (
+                <button
+                  key={opt.id}
+                  onClick={() => toggle(opt.id, opt.label)}
+                  className={`figma-style1-button ${isSelected ? "figma-style1-button--selected" : ""}`}
+                  aria-pressed={isSelected}
+                  aria-disabled={!isSelected && maxReached}
+                  disabled={!isSelected && maxReached}
+                  style={{ width: "100%" }}
+                >
+                  <span className="figma-style1-button-text">{opt.label}</span>
+                </button>
+              )
             );
           })}
         </div>
