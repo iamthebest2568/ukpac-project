@@ -214,7 +214,7 @@ const Step2_Summary = ({
 
                 {/* Beneficiary Icons - 3 per row, tighter spacing, slightly larger icons */}
                 <div
-                  className={`grid justify-items-center items-center grid-cols-3 gap-2`}
+                  className={`grid justify-items-center items-center grid-cols-3 gap-2 mn2-summary-icon-grid`}
                   style={{
                     maxWidth: "100%",
                     margin: "0 auto",
@@ -225,29 +225,28 @@ const Step2_Summary = ({
                   {card.beneficiaries.map((beneficiary, beneficiaryIndex) => (
                     <div
                       key={beneficiaryIndex}
-                      className="flex flex-col items-center justify-center"
+                      className="mn2-beneficiary-card flex flex-col items-center justify-center"
                       style={{
                         width: "100%",
-                        maxWidth: "clamp(100px, 30vw, 160px)",
+                        maxWidth: "none",
                       }}
                     >
-                      {/* Circle with icon - slightly larger responsive size */}
-                      <div className="relative mb-1">
+                      {/* Full-size square area for icon */}
+                      <div className="mn2-beneficiary-figure relative mb-1" style={{ width: '100%', aspectRatio: '1 / 1', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                         {beneficiary.iconSrc && (
                           <img
                             src={beneficiary.iconSrc}
                             alt={beneficiary.label}
-                            className="object-contain"
+                            className="mn2-beneficiary-img object-contain"
                             style={{
-                              width: "clamp(64px, 16vw, 110px)",
-                              height: "clamp(64px, 16vw, 110px)",
+                              width: "100%",
+                              height: "100%",
                               display: "block",
-                              margin: "0 auto",
+                              objectFit: "contain",
                             }}
                           />
                         )}
                       </div>
-                      {/* Visually hide textual label (accessible to screen-readers) */}
                       <span className="sr-only">{beneficiary.label}</span>
                     </div>
                   ))}
