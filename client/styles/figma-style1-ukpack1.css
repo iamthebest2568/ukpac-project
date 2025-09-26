@@ -1506,14 +1506,14 @@ body[data-dialog-open] {
   object-position: center center !important;
 }
 
-/* MN2 Step1: lift content and keep CTA visible */
+/* MN2 Step1: center content and keep CTA visible */
 .figma-style1-container.mn2-step1-page .figma-style1-main {
-  align-items: start !important;
+  align-items: center !important;
 }
 .figma-style1-container.mn2-step1-page .figma-style1-content-area {
-  justify-content: flex-start !important;
+  justify-content: center !important;
   align-items: center !important;
-  padding-top: clamp(8px, 6vh, 24px) !important;
+  padding-top: 0 !important;
   padding-bottom: 0 !important;
   max-height: none !important;
 }
