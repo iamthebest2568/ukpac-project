@@ -1694,6 +1694,23 @@ body[data-dialog-open] {
   pointer-events: auto;
 }
 
+/* ukpack1: Force button text to yellow on hover/active/focus across the ukpack1 theme */
+.figma-style1-ukpack1 .figma-style1-button:hover .figma-style1-button-text,
+.figma-style1-ukpack1 .figma-style1-button:active .figma-style1-button-text,
+.figma-style1-ukpack1 .figma-style1-button:focus .figma-style1-button-text,
+.figma-style1-ukpack1 .figma-style1-button--primary:hover .figma-style1-button-text,
+.figma-style1-ukpack1 .figma-style1-button--secondary:hover .figma-style1-button-text,
+.figma-style1-ukpack1 .figma-style1-button--dark:hover .figma-style1-button-text {
+  color: #FFE000 !important;
+}
+
+/* Also ensure when buttons are hovered inside app-container and scoped to ukpack1, text becomes yellow */
+.app-container .figma-style1-ukpack1 .figma-style1-button:hover .figma-style1-button-text,
+.app-container .figma-style1-ukpack1 .figma-style1-button:active .figma-style1-button-text,
+.app-container .figma-style1-ukpack1 .figma-style1-button:focus .figma-style1-button-text {
+  color: #FFE000 !important;
+}
+
 /* Mobile: Ask05 positioning (title top, textarea center, button bottom) */
 @media (max-width: 767px) {
   .ask05-page .figma-style1-content-area,
