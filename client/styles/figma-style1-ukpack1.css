@@ -1514,12 +1514,14 @@ body[data-dialog-open] {
   justify-content: flex-end !important;
   align-items: center !important;
   padding-top: 0 !important;
-  padding-bottom: 12px !important; /* ensure at least 12px gap to CTA */
+  padding-bottom: calc(53px + env(safe-area-inset-bottom, 0px) + 28px) !important; /* ensure content sits above fixed CTA */
   gap: 12px !important; /* space between content rows and CTA */
   max-height: none !important;
   display: flex !important;
   flex-direction: column !important;
 }
+
+/* CTA container visual settings */
 .figma-style1-container.mn2-step1-page .figma-style1-button-container {
   grid-row: 2 !important;
   align-self: end !important;
@@ -1534,10 +1536,14 @@ body[data-dialog-open] {
   z-index: 1001 !important; /* ensure CTA is above background overlays */
 }
 
-/* Make CTA behave like a footer: stick to bottom when content scrolls */
+/* Make CTA behave like a footer: fixed to bottom for MN2 */
 .figma-style1-container.mn2-step1-page .figma-style1-button-container {
-  position: sticky !important;
+  position: fixed !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
   bottom: calc(env(safe-area-inset-bottom, 0px) + 24px) !important;
+  z-index: 10010 !important;
+  box-sizing: border-box !important;
 }
 
 .figma-style1-content-area {
