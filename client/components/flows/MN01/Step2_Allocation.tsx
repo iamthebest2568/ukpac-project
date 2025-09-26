@@ -122,7 +122,7 @@ const Step2_Allocation = ({
           <h1
             className="font-prompt text-center leading-normal"
             style={{
-              color: "#000D59",
+              color: "var(--uk1-primary)",
               fontSize: "clamp(28px, 5.5vw, 60px)",
               lineHeight: "1.2",
               fontWeight: 700,
@@ -217,7 +217,7 @@ const Step2_Allocation = ({
               <div
                 className="text-center font-prompt"
                 style={{
-                  color: "#000D59",
+                  color: "var(--uk1-primary)",
                   fontSize: "clamp(14px, 3vw, 18px)",
                   fontWeight: 500,
                   maxWidth: "400px",
