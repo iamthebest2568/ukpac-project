@@ -82,7 +82,7 @@ const FormScreen: React.FC = () => {
         <div style={{ width: "220px", marginTop: "32px" }}>
           <CtaButton
             className="w-full"
-            text="ลุ้��รับรางวัล"
+            text="ลุ้นรับรางวัล"
             onClick={submit}
             style={{ width: "220px", height: "48px", backgroundColor: 'transparent', boxShadow: 'none', color: '#ffffff' }}
           />
@@ -170,40 +170,6 @@ const FormScreen: React.FC = () => {
         </div>
       </div>
 
-      <footer
-        className="rounded-t-3xl py-12 px-6 bg-no-repeat bg-top bg-cover"
-        style={{
-          backgroundImage:
-            "url('https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc3874bf37db54abeb4a13c308b0df9a4?format=webp&width=1600')",
-          minHeight: "380px",
-          /* full-bleed while preventing horizontal overflow */
-          width: "100vw",
-          marginLeft: "calc(50% - 50vw)",
-          backgroundPosition: 'top center',
-          backgroundSize: 'cover'
-        }}
-      >
-        <div className="max-w-4xl mx-auto flex items-end justify-center h-full">
-          <div className="flex flex-col items-center gap-3 pb-12">
-            <div style={{ width: "220px", marginTop: "32px" }}>
-              <CtaButton
-                className="w-full"
-                text="ลุ้นรับรางวัล"
-                onClick={submit}
-                style={{ width: "220px", height: "48px", backgroundColor: 'transparent', boxShadow: 'none', color: '#ffffff' }}
-              />
-            </div>
-            <div style={{ width: "220px" }}>
-              <SecondaryButton
-                className="w-full h-12"
-                text="ไม่รับรางวัล"
-                onClick={skip}
-                style={{ backgroundColor: 'transparent', boxShadow: 'none', color: '#ffffff' }}
-              />
-            </div>
-          </div>
-        </div>
-      </footer>
     </CustomizationScreen>
   );
 };
