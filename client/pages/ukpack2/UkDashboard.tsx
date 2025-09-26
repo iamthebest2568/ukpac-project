@@ -387,7 +387,14 @@ const UkDashboard: React.FC = () => {
           shared: true,
         },
       };
-      await sendEventToFirestore(sample, "minigame2_events/minigame2-di");
+      try {
+        const accepted = sessionStorage.getItem("pdpa_accepted") === "true";
+        if (accepted) {
+          await sendEventToFirestore(sample, "minigame2_events/minigame2-di");
+        }
+      } catch (_) {
+        /* ignore */
+      }
       setLastSentResult({
         sentCount: 1,
         skippedCount: 0,
@@ -418,7 +425,7 @@ const UkDashboard: React.FC = () => {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               className="w-full border px-3 py-2 rounded mb-3"
-              placeholder="รหัสเข้าระบบ"
+              placeholder="รหัส��ข้าระบบ"
               autoFocus
             />
             <div className="flex gap-2">
