@@ -77,7 +77,14 @@ const FigmaStyle1Layout = ({
 
   return (
     <div
-      className={`figma-style1-container ${className} ${platformClass} ${pageScope} ${className?.includes("fake-news-page") ? "fake-news-page" : ""}`}
+      className={`figma-style1-container ${className} ${platformClass} ${pageScope} ${(() => {
+        try {
+          const p = typeof window !== "undefined" ? window.location.pathname || "" : "";
+          return pageScope && !p.startsWith("/ukpack1/minigame-mn2") ? "fake-news-page" : "";
+        } catch {
+          return pageScope ? "fake-news-page" : "";
+        }
+      })()}`}
     >
       <div className="figma-style1-content">
         <div className="figma-style1-background" style={{ backgroundImage: "none" }}>
