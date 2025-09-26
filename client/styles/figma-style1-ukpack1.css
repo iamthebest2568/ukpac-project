@@ -1546,6 +1546,32 @@ body[data-dialog-open] {
   box-sizing: border-box !important;
 }
 
+/* Hide header placeholder on MN2 pages (removes empty sticky at top) */
+.figma-style1-container.mn2-step1-page .figma-style1-header,
+.figma-style1-container.mn2-summary-page .figma-style1-header {
+  display: none !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+/* Ensure title container for MN2 summary doesn't reserve fixed space */
+.figma-style1-container.mn2-summary-page .figma-style1-title-container {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  transform: none !important;
+  padding-top: 12px !important;
+  z-index: 1002 !important;
+}
+
+/* Remove accidental top margin caused by header removal */
+.figma-style1-container.mn2-step1-page .figma-style1-content-area,
+.figma-style1-container.mn2-summary-page .figma-style1-content-area {
+  padding-top: 12px !important;
+}
+
 .figma-style1-content-area {
   align-items: center !important;
   justify-content: center !important;
