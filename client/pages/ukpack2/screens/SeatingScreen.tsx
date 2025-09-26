@@ -7,6 +7,7 @@ import ConfirmModal from "../components/ConfirmModal";
 import ErrorModal from "../components/ErrorModal";
 import { useBusDesign } from "../context/BusDesignContext";
 import VehiclePreview from "../components/VehiclePreview";
+import Uk2Footer from "../components/Uk2Footer";
 import NumericPlaceholderInput from "../components/NumericPlaceholderInput";
 import styles from "./chassis.module.css";
 import { CHASSIS_LABELS } from "../utils/heroImages";
@@ -461,7 +462,7 @@ const SeatingScreen: React.FC = () => {
 
       <ConfirmModal
         isOpen={isExitModalOpen}
-        title="ออกจากหน้าจ��"
+        title="ออกจากหน้าจอ"
         message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
         onConfirm={() => navigate("/")}
         onCancel={() => setExitModalOpen(false)}
