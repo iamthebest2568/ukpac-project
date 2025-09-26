@@ -1697,6 +1697,22 @@ body[data-dialog-open] {
 .figma-style1-container.mn2-summary-page .figma-style1-button-container.mn2-summary-button-stack > * {
   width: 100% !important;
 }
+
+/* Ensure background image does not cover or block content on mn2 summary */
+.figma-style1-container.mn2-summary-page .figma-style1-background-image {
+  z-index: 0 !important;
+  pointer-events: none !important; /* allow interactions with content */
+}
+/* Put main content and footer above the background */
+.figma-style1-container.mn2-summary-page .figma-style1-main,
+.figma-style1-container.mn2-summary-page .figma-style1-content,
+.figma-style1-container.mn2-summary-page .figma-style1-content-area {
+  position: relative !important;
+  z-index: 5 !important;
+}
+.figma-style1-container.mn2-summary-page .mn2-summary-footer {
+  z-index: 10001 !important; /* ensure footer above everything */
+}
 @media (min-width: 768px) {
   .ask05-page .ask05-content {
     width: 100%;
