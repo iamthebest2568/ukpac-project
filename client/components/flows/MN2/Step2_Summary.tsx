@@ -125,7 +125,7 @@ const Step2_Summary = ({
               beneficiaryMapping.everyone.iconSrc,
           }));
         return {
-          priority: s.priority || "(ไ���่ระบุ)",
+          priority: s.priority || "(ไม่ได้ระบุ)",
           beneficiaries: beneficiaryObjects,
         };
       });
