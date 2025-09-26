@@ -3,6 +3,7 @@ import CustomizationScreen from "../components/CustomizationScreen";
 import SelectionCard from "../components/SelectionCard";
 import CtaButton from "../components/CtaButton";
 import VehiclePreview from "../components/VehiclePreview";
+import Uk2Footer from "../components/Uk2Footer";
 import { useNavigate } from "react-router-dom";
 import StepTabs from "../components/StepTabs";
 import styles from "./chassis.module.css";
