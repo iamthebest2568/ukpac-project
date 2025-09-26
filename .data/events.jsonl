@@ -26,3 +26,4 @@
 {"sessionId":"session_1758871497138_bm960oe5z","eventName":"sw.choice.selected","timestamp":"2025-09-26T07:25:44.414Z","choiceText":"อื่น ๆ.","variantId":"333faf2b","variantName":"เหตุผลหลักในการเดินทางเข้าเมือง"}
 {"sessionId":"session_1758871497138_bm960oe5z","eventName":"sw.choice.selected","timestamp":"2025-09-26T07:25:50.923Z","choiceText":"รถไฟฟ้า BTS / MRT","variantId":"4bec38a0","variantName":"คุณใช้รถแบบไหนเดินทางเข้าเมือง?"}
 {"sessionId":"session_1758871497138_bm960oe5z","eventName":"sw.variant.start","timestamp":"2025-09-26T07:25:50.940Z","variantId":"0c1a4486","variantName":"รถไฟฟ้า BTS / MRT"}
+{"sessionId":"session_1758871497138_bm960oe5z","eventName":"sw.choice.selected","timestamp":"2025-09-26T07:26:15.380Z","choiceText":"ดูอีกรอบ","variantId":"0c1a4486","variantName":"รถไฟฟ้า BTS / MRT"}
