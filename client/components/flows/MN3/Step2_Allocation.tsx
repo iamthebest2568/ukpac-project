@@ -235,13 +235,19 @@ const Step2_Allocation = ({
       {/* Fixed footer for continue button */}
       <div className="mn3-step2-footer">
         <div className="figma-style1-button-container">
-          <button
-            onClick={handleNext}
-            className="figma-style1-button"
-            aria-label="ดำเนินการต่อ"
-          >
-            <span className="figma-style1-button-text">ไปต่อ</span>
-          </button>
+          {useUk1Button ? (
+            <Uk1Button onClick={handleNext} aria-label="ดำเนินการต่อ">
+              <span className="figma-style1-button-text">ไปต่อ</span>
+            </Uk1Button>
+          ) : (
+            <button
+              onClick={handleNext}
+              className="figma-style1-button"
+              aria-label="ดำเนินการต่อ"
+            >
+              <span className="figma-style1-button-text">ไปต่อ</span>
+            </button>
+          )}
         </div>
       </div>
     </FigmaStyle1Layout>
