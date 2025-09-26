@@ -9,7 +9,7 @@
   --uk1-yellow: #FFE000; /* brand yellow */
   --uk1-on-yellow: #000000; /* text on yellow */
   --uk1-bg: #ffffff;
-  --uk1-text: var(--uk1-primary);
+  --uk1-text: #000D59;
 }
 
 /* Ukpack1 button defaults (based on end-sequence: yellow base, blue hover)
@@ -24,8 +24,8 @@
 
 /* Primary variant: yellow base, black text */
 .figma-style1-button--primary {
-  background-color: var(--uk1-yellow) !important;
-  color: var(--uk1-on-yellow) !important;
+  background-color: #FFE000 !important;
+  color: #000000 !important;
 }
 .figma-style1-button--primary .figma-style1-button-text {
   color: inherit !important;
@@ -35,7 +35,7 @@
 .figma-style1-button--primary:hover,
 .figma-style1-button--primary:active,
 .figma-style1-button--primary:focus {
-  background-color: var(--uk1-primary) !important;
+  background-color: #000D59 !important;
   color: #ffffff !important;
   box-shadow: none !important;
   transform: none !important;
@@ -43,11 +43,11 @@
 
 /* Secondary / dark fallbacks */
 .figma-style1-button--secondary {
-  background-color: var(--uk1-yellow) !important;
-  color: var(--uk1-on-yellow) !important;
+  background-color: #FFE000 !important;
+  color: #000000 !important;
 }
 .figma-style1-button--dark {
-  background-color: var(--uk1-primary) !important;
+  background-color: #000D59 !important;
   color: #ffffff !important;
 }
 
@@ -573,14 +573,14 @@
 .end-sequence-page .figma-style1-title,
 .end-sequence-page h1,
 .end-sequence-page h2 {
-  color: var(--uk1-primary) !important;
+  color: #000D59 !important;
   letter-spacing: 0.2px !important;
 }
 
 /* Ensure general content text on end-sequence pages uses the same brand color */
 .end-sequence-page .figma-style1-content-area,
 .end-sequence-page .figma-style1-content-area * {
-  color: var(--uk1-primary) !important;
+  color: #000D59 !important;
 }
 
 /* Final step (MN3) safety overrides - hide decorative backgrounds/overlays and ensure content visible */
@@ -901,7 +901,7 @@
 .mn3-summary-card-title {
   font-family: "Prompt", sans-serif;
   font-weight: 800;
-  color: var(--uk1-primary);
+  color: #000D59;
   font-size: 18px;
 }
 
@@ -935,7 +935,7 @@
 
 .mn3-summary-card--yellow .mn3-summary-icon,
 .mn3-summary-card--yellow .mn3-summary-bar {
-  background: linear-gradient(90deg, var(--uk1-yellow), #ffd54f);
+  background: linear-gradient(90deg, #FFE000, #ffd54f);
 }
 
 .mn3-summary-card--red .mn3-summary-icon,
@@ -1092,7 +1092,7 @@
 .mn3-legend-total {
   margin-top: 8px;
   font-weight: 700;
-  color: var(--uk1-primary);
+  color: #000D59;
   text-align: center;
 }
 
@@ -1110,12 +1110,12 @@
 .app-container .mn3-policy-button.mn3-policy-button--selected,
 .app-container .mn3-policy-button--selected {
   background-color: #000 !important;
-  color: var(--uk1-yellow) !important;
+  color: #FFE000 !important;
 }
 
 .app-container .mn3-policy-button.mn3-policy-button--selected .mn3-button-text,
 .app-container .mn3-policy-button--selected .mn3-button-text {
-  color: var(--uk1-yellow) !important;
+  color: #FFE000 !important;
 }
 
 /* Slightly darker hover for an already selected MN3 policy button */
