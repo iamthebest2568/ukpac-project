@@ -100,6 +100,7 @@ const Flow_MiniGame_MN2 = ({
           onNext={handleStepComplete}
           onBack={handleStepBack}
           journeyData={combinedData}
+          useUk1Button={isUkpack1}
         />
       );
     } else {
