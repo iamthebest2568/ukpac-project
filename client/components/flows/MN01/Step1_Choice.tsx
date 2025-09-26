@@ -4,6 +4,7 @@
 
 import { useState } from "react";
 import { logEvent } from "../../../services/dataLogger.js";
+import "../../../styles/mn3-buttons.css";
 
 interface Step1_ChoiceProps {
   sessionID: string | null;
@@ -24,7 +25,7 @@ const Step1_Choice = ({
 
   // Define priorities exactly as in Figma design
   const priorityList = [
-    "ลดค่า��ดยสารรถไฟฟ้า",
+    "ลดค่าโดยสารรถไฟฟ้า",
     "เพิ่มความถี่รถไฟฟ้า",
     "ตั๋วร่วม",
     "เพิ่มความถี่รถเมล์",
