@@ -5,7 +5,7 @@
 
 import { useState } from "react";
 import { logEvent } from "../../services/dataLogger.js";
-import FigmaStyle1Layout from "../layouts/FigmaStyle1Layout";
+import FigmaStyle1Layout from "../layouts/FigmaStyle1Layout.ukpack1";
 
 interface Ask02_2Props {
   sessionID: string | null;
