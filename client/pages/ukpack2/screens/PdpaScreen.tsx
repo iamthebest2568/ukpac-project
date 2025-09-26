@@ -2,13 +2,14 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import CustomizationScreen from "../components/CustomizationScreen";
 import CtaButton from "../components/CtaButton";
+import Uk2Footer from "../components/Uk2Footer";
 
 const PdpaScreen: React.FC = () => {
   const navigate = useNavigate();
 
   return (
     <CustomizationScreen
-      title="ประกาศความเป็นส่วนตัว (PDPA)"
+      title="ประกาศความเป็นส่วนต���ว (PDPA)"
       theme="light"
       fullWidth
       containerPaddingClass="px-4 py-4"
@@ -37,7 +38,7 @@ const PdpaScreen: React.FC = () => {
         <div className="prose prose-sm text-[#000d59] text-center mx-auto">
           <p>
             เกมนี้จะเก็บข้อมูลพฤติกรรมการเล่นและ ที่อยู่ IP ของอุปกรณ์
-            เพื่อใช้ในการ วิเคราะห์ พัฒนา และสรุปผลความคิดเห็นในภาพรวมของผู้เล่น
+            เพื่อใช้ในการ วิเคราะห์ พัฒนา แ��ะสรุปผลความคิดเห็นในภาพรวมของผู้เล่น
           </p>
 
           <p>
@@ -56,7 +57,7 @@ const PdpaScreen: React.FC = () => {
 
           <p>
             โดยการกด “เริ่มเกม”
-            ถือว่าท่านยินยอมให้มีการเก็บและประมวลผลข้อมูลดังกล่าว ตาม
+            ถือว่าท่านยินยอม���ห้มีการเก็บและประมวลผลข้อมูลดังกล่าว ตาม
             พระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562
           </p>
 
