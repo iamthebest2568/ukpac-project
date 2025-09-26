@@ -6,7 +6,7 @@
 import { useEffect, useState } from "react";
 import { useSession } from "../../../hooks/useSession";
 import { logEvent } from "../../../services/dataLogger.js";
-import FigmaStyle1Layout from "../../layouts/FigmaStyle1Layout";
+import FigmaStyle1Layout from "../../layouts/FigmaStyle1Layout.ukpack1";
 
 interface Step2_SummaryProps {
   sessionID: string | null;
@@ -125,7 +125,7 @@ const Step2_Summary = ({
               beneficiaryMapping.everyone.iconSrc,
           }));
         return {
-          priority: s.priority || "(ไม่ระบุ)",
+          priority: s.priority || "(ไ���่ระบุ)",
           beneficiaries: beneficiaryObjects,
         };
       });
