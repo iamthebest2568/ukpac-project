@@ -16,6 +16,7 @@ interface Step1_BeneficiariesProps {
   currentStep: number;
   totalPrioritySteps: number;
   initialBeneficiaries?: string[];
+  useUk1Button?: boolean;
 }
 
 const Step1_Beneficiaries = ({
