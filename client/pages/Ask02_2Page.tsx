@@ -14,7 +14,9 @@ const Ask02_2Page = () => {
     import("./Ask05Page").catch(() => {});
   }, []);
 
-  return <Ask02_2 sessionID={sessionID} onNavigate={navigateToPage} />;
+  const isUkpack1 = typeof window !== 'undefined' && window.location && window.location.pathname.startsWith('/ukpack1');
+
+  return <Ask02_2 sessionID={sessionID} onNavigate={navigateToPage} useUk1Button={isUkpack1} />;
 };
 
 export default Ask02_2Page;
