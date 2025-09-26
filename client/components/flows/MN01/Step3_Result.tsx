@@ -28,6 +28,7 @@ const Step3_Result = ({
   onNext,
   onBack,
   journeyData,
+  useUk1Button = false,
 }: Step3_ResultProps) => {
   const navigate = useNavigate();
   const [resultSummary, setResultSummary] = useState<ResultSummary[]>([]);
@@ -174,7 +175,7 @@ const Step3_Result = ({
         <h1 className="figma-style1-title" style={{ color: "#000D59" }}>
           จากงบประมาณของคุณ
           <br />
-          นี้คือสิ่งท��่จะเกิดขึ้นในอนาคต
+          นี้คือสิ่งที่จะเกิดขึ้นในอนาคต
         </h1>
       </div>
 
