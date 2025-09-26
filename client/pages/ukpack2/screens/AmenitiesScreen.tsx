@@ -5,7 +5,6 @@ import SelectionCard from "../components/SelectionCard";
 import CtaButton from "../components/CtaButton";
 import { HERO_IMAGE, CHASSIS_LABELS } from "../utils/heroImages";
 import Uk2Footer from "../components/Uk2Footer";
-import Uk2Footer from "../components/Uk2Footer";
 
 const IconAir = () => (
   <img
@@ -163,7 +162,7 @@ const AMENITIES = [
   },
   {
     key: "cup",
-    label: "ระบบประกาศบอกป้าย(เสียง/จอ)",
+    label: "ระบบประกาศบอกป้าย(��สียง/จอ)",
     icon: <IconCup />,
     iconActive: <IconCupAlt />,
   },
@@ -257,7 +256,7 @@ const AmenitiesScreen: React.FC = () => {
 
   const OVERLAY_ICON_SRC: Record<string, string> = {
     // labels
-    แอร์: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F43ef2946e5324cb981bc063db02fe5bc?format=webp&width=800",
+    ���อร์: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F43ef2946e5324cb981bc063db02fe5bc?format=webp&width=800",
     พัดลม:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F4e8932e864664a7f8a454d61f4e87ca9?format=webp&width=800",
     ที่นั่งพิเศษ:
