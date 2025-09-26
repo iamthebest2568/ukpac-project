@@ -1647,9 +1647,14 @@ body[data-dialog-open] {
 
 /* MN2 summary - force 3 icons per row and make icons visually large */
 .figma-style1-container.mn2-summary-page .mn2-summary-icon-grid {
+  display: grid !important;
   grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  grid-auto-flow: row !important;
   gap: 16px !important;
   align-items: start !important;
+}
+.figma-style1-container.mn2-summary-page .mn2-summary-icon-grid > * {
+  min-width: 0 !important; /* prevent overflow from forcing fewer columns */
 }
 .figma-style1-container.mn2-summary-page .mn2-beneficiary-card {
   width: 100% !important;
@@ -1658,6 +1663,8 @@ body[data-dialog-open] {
   flex-direction: column !important;
   align-items: center !important;
   justify-content: flex-start !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
 }
 .figma-style1-container.mn2-summary-page .mn2-beneficiary-figure {
   /* make a large circular frame for the icon */
