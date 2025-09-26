@@ -1245,6 +1245,11 @@
   height: 100svh !important;
 }
 
+/* ukpack1: Use only the per-page background <img>, disable the default CSS background-image */
+.figma-style1-ukpack1 .figma-style1-background {
+  background-image: none !important;
+}
+
 .figma-style1-ukpack1 {
   box-sizing: border-box !important;
 }
