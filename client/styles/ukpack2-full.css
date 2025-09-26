@@ -1,0 +1,284 @@
+/* Consolidated UKPACK2 styles (scoped via body.page-ukpack2)
+   This file is a concatenation of ukpack2 specific CSS files and responsive snippets.
+   It is loaded globally but only applies when body has class 'page-ukpack2'.
+*/
+
+/* ---------- ukpack2-desktop.css (copied) ---------- */
+@media (min-width: 1024px) {
+  body.page-ukpack2 {
+  }
+}
+
+/* ---------- ukpack2-tablet.css (copied) ---------- */
+@media (min-width: 768px) and (max-width: 1023px) {
+  body.page-ukpack2 .app-container {
+    padding-left: 16px !important;
+  }
+
+  /* Constrain very wide containers to comfortable tablet width and center */
+  body.page-ukpack2 .max-w-5xl,
+  body.page-ukpack2 .max-w-4xl,
+  body.page-ukpack2 .max-w-3xl {
+    max-width: 900px !important;
+  }
+
+  /* Vehicle preview sizing: make image a bit larger on tablet */
+  body.page-ukpack2 .vehicle-preview > .relative {
+    width: 80% !important; /* override inline w-[60-75%] */
+  }
+
+  /* Ensure sticky footers do not overlap content on tablet */
+  body.page-ukpack2 .customization-screen-footer,
+  body.page-ukpack2 [data-testid="customization-footer"] {
+    position: sticky !important;
+  }
+
+  /* Slightly increase base font size for readability on tablet */
+  body.page-ukpack2,
+  body.page-ukpack2 .font-prompt,
+  body.page-ukpack2 .font-sarabun {
+    font-size: 16.5px !important;
+  }
+
+  /* Color palette: keep density but add small gap for breathing room */
+  body.page-ukpack2 .grid.grid-cols-6 {
+    gap: 12px !important;
+  }
+}
+
+/* ---------- ukpack2-embedded.css (copied) ---------- */
+/* Styles applied only when running embedded inside the 810x1080 tablet mockup */
+.embedded-ukpack2 .app-container {
+  width: 810px !important;
+}
+
+.embedded-ukpack2 main#main-content {
+  width: 810px !important;
+}
+
+/* Prevent horizontal overflow inside embedded iframe */
+.embedded-ukpack2,
+.embedded-ukpack2 html,
+.embedded-ukpack2 body,
+.embedded-ukpack2 .app-container {
+  overflow-x: hidden !important;
+}
+
+/* Normalize any elements that attempt to use viewport-width spanning (100vw) or negative margins */
+.embedded-ukpack2 [style*="100vw"],
+.embedded-ukpack2 [style*="50vw"],
+.embedded-ukpack2 .controlsBox,
+.embedded-ukpack2 .tabsWrapper,
+.embedded-ukpack2 .full-bleed-like,
+.embedded-ukpack2 .full-bleed {
+  max-width: 760px !important;
+}
+
+/* Ensure full-bleed pages occupy the full iframe screen */
+.embedded-ukpack2 .full-bleed-page .app-container {
+  width: 810px !important;
+}
+
+/* Reduce header size slightly so long titles wrap but fit */
+.embedded-ukpack2 .customization-title {
+  font-size: 18px !important;
+}
+
+/* Constrain large hero images to avoid overflow */
+.embedded-ukpack2 img {
+  max-width: 100% !important;
+}
+
+/* Make buttons slightly smaller to avoid overflow */
+.embedded-ukpack2 .w-full.max-w-sm .w-full,
+.embedded-ukpack2 .w-full.max-w-sm button,
+.embedded-ukpack2 .w-full.max-w-sm .ukpack2-secondary-btn {
+  font-size: 14px !important;
+}
+
+/* Ensure summary cards and grids shrink to fit */
+.embedded-ukpack2 .max-w-5xl,
+.embedded-ukpack2 .max-w-4xl,
+.embedded-ukpack2 .max-w-sm {
+  max-width: 760px !important;
+}
+
+/* Force overflow for any overly large elements to keep layout intact */
+.embedded-ukpack2 .overflow-hidden {
+  overflow: auto !important;
+}
+
+/* Make sure typography scales down a bit */
+.embedded-ukpack2 body,
+.embedded-ukpack2 .font-prompt,
+.embedded-ukpack2 .font-sarabun {
+  font-size: 15px !important;
+}
+
+/* Fine tuning for vehicle preview and summary details */
+.embedded-ukpack2 .vehicle-preview img,
+.embedded-ukpack2 .vehicle-preview {
+  max-height: 260px !important;
+}
+
+/* Ensure CTA footer inside customization screen doesn't overlap content */
+.embedded-ukpack2 .customization-screen-footer,
+.embedded-ukpack2 [data-testid="customization-footer"] {
+  position: relative !important;
+}
+
+/* Additional tablet-specific layout tweaks */
+.embedded-ukpack2 .app-container {
+  display: flex !important;
+}
+
+.embedded-ukpack2 .max-w-5xl,
+.embedded-ukpack2 .max-w-4xl {
+  width: 760px !important;
+}
+
+/* Reduce fixed footer height so more content fits above the fold */
+.embedded-ukpack2 .fixed[left],
+.embedded-ukpack2 .fixed,
+.embedded-ukpack2 div[style*="height: 110px"] {
+  height: 90px !important;
+}
+
+/* Ensure content areas reserve space for footer */
+.embedded-ukpack2 .uk2-scroll,
+.embedded-ukpack2 .responsive-content {
+  padding-bottom: 110px !important;
+}
+
+/* Make grid cards stack better on tablet: default to single column unless a two-column layout fits */
+.embedded-ukpack2 .grid {
+  grid-template-columns: 1fr !important;
+}
+
+/* For components that expect two columns, allow a 2-col layout when enough width exists */
+.embedded-ukpack2 .grid.two-col,
+.embedded-ukpack2 .grid.md\:grid-cols-2 {
+  grid-template-columns: 1fr 1fr !important;
+}
+
+/* Ensure vehicle preview stays centered and not stretched */
+.embedded-ukpack2 .previewInner { display: flex !important; align-items: center !important; justify-content: center !important; }
+.embedded-ukpack2 .vehicle-preview, .embedded-ukpack2 .vehicle-preview img { max-width: 100% !important; height: auto !important; }
+
+/* Reduce selectionGrid columns to avoid dense multi-column that breaks layout */
+.embedded-ukpack2 .selectionGrid { grid-template-columns: repeat(2, 1fr) !important; }
+
+/* Ensure tabs remain above frame and centered within the reduced width */
+.embedded-ukpack2 .tabsWrapper { width: 100% !important; max-width: 760px !important; margin-left: auto !important; margin-right: auto !important; }
+
+/* ---------- responsive-utils ukpack2 snippets (copied) ---------- */
+@media (min-width: 768px) {
+  /* Make the central app container wider on tablets */
+  .responsive-container {
+    max-width: 100%;
+  }
+
+  /* Splash top area spacing */
+  .splash-top {
+    padding: 64px 48px 24px;
+  }
+
+  /* Splash text sizing for tablets */
+  .splash-text {
+    margin-top: 80px;
+    font-size: 28px;
+    line-height: 36px;
+  }
+
+  /* CTA appearance for tablets */
+  .cta-button {
+    padding: 14px 36px;
+    font-size: 18px;
+  }
+
+  /* Background banner adjustments */
+  .splash-bg {
+    background-position: center center;
+    background-size: contain; /* preserve full PNG shape to avoid straight edge cropping */
+    background-repeat: no-repeat;
+    position: relative;
+    z-index: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  /* Desktop container max width */
+  .responsive-container {
+    max-width: 100%;
+  }
+
+  /* More breathing room on desktop */
+  .splash-top {
+    padding: 96px 64px 32px;
+  }
+
+  .splash-text {
+    margin-top: 120px;
+    font-size: 34px;
+    line-height: 44px;
+  }
+
+  .cta-button {
+    padding: 16px 48px;
+    font-size: 20px;
+  }
+
+  .splash-bg {
+    background-position: center center;
+    background-size: contain; /* preserve full PNG shape to avoid straight edge cropping */
+    background-repeat: no-repeat;
+    position: relative;
+    z-index: 0;
+  }
+}
+
+/* Splash responsive tweaks */
+.splash-top { background-color: transparent; }
+
+@media (max-width: 640px) {
+  .splash-top {
+    background-color: rgba(255, 255, 255, 1);
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    overflow: auto;
+    width: 100%;
+    height: auto;
+    flex-grow: 1;
+    text-align: center;
+    margin: auto;
+  }
+}
+
+/* UKPACK2: force typography color to brand navy on full-bleed pages */
+body.page-ukpack2 .full-bleed-page,
+body.page-ukpack2 .full-bleed-page .app-container {
+  color: #000d59;
+}
+
+/* Ensure common text elements inherit the ukpack2 color unless explicitly styled */
+body.page-ukpack2 .full-bleed-page .app-container h1,
+body.page-ukpack2 .full-bleed-page .app-container h2,
+body.page-ukpack2 .full-bleed-page .app-container h3,
+body.page-ukpack2 .full-bleed-page .app-container p,
+body.page-ukpack2 .full-bleed-page .app-container span,
+body.page-ukpack2 .full-bleed-page .app-container a,
+body.page-ukpack2 .full-bleed-page .app-container button,
+body.page-ukpack2 .full-bleed-page .app-container label,
+body.page-ukpack2 .full-bleed-page .app-container input,
+body.page-ukpack2 .full-bleed-page .app-container textarea {
+  color: #000d59;
+}
+
+/* Make all interactive text on /ukpack2 become yellow on hover for consistency */
+body.page-ukpack2 .full-bleed-page .app-container button:hover,
+body.page-ukpack2 .full-bleed-page .app-container a:hover,
+body.page-ukpack2 .full-bleed-page .app-container [role="button"]:hover {
+  color: #ffd100 !important; /* yellow */
+  text-decoration-color: #ffd100 !important;
+}
