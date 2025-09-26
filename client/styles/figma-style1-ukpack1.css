@@ -1514,7 +1514,7 @@ body[data-dialog-open] {
   justify-content: flex-end !important;
   align-items: center !important;
   padding-top: 0 !important;
-  padding-bottom: calc(53px + env(safe-area-inset-bottom, 0px) + 28px) !important; /* ensure content sits above fixed CTA */
+  padding-bottom: calc(53px + env(safe-area-inset-bottom, 0px) + 38px) !important; /* ensure content sits above fixed CTA */
   gap: 12px !important; /* space between content rows and CTA */
   max-height: none !important;
   display: flex !important;
