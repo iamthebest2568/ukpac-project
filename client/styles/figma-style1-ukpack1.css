@@ -1645,26 +1645,37 @@ body[data-dialog-open] {
 
 /* Ask05 desktop/tablet-only adjustments: keep mobile untouched */
 
-/* MN2 summary - force 3 icons per row and make icons fill grid cell */
+/* MN2 summary - force 3 icons per row and make icons visually large */
 .figma-style1-container.mn2-summary-page .mn2-summary-icon-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-  gap: 12px !important;
+  gap: 16px !important;
+  align-items: start !important;
 }
 .figma-style1-container.mn2-summary-page .mn2-beneficiary-card {
   width: 100% !important;
   max-width: none !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
 }
 .figma-style1-container.mn2-summary-page .mn2-beneficiary-figure {
-  width: 100% !important;
+  /* make a large circular frame for the icon */
+  width: clamp(96px, 24vw, 220px) !important;
+  height: auto !important;
   aspect-ratio: 1 / 1 !important;
+  border-radius: 9999px !important;
+  overflow: hidden !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
+  background: rgba(255,255,255,0.9) !important;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06) !important;
 }
 .figma-style1-container.mn2-summary-page .mn2-beneficiary-img {
   width: 100% !important;
   height: 100% !important;
-  object-fit: contain !important;
+  object-fit: cover !important; /* fill the circle */
   display: block !important;
 }
 @media (min-width: 768px) {
