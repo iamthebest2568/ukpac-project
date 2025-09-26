@@ -25,7 +25,7 @@ const Step1_Choice = ({
 
   // Define priorities exactly as in Figma design
   const priorityList = [
-    "ลดค่าโดยสารรถไฟฟ้า",
+    "ลดค่า��ดยสารรถไฟฟ้า",
     "เพิ่มความถี่รถไฟฟ้า",
     "ตั๋วร่วม",
     "เพิ่มความถี่รถเมล์",
@@ -135,7 +135,7 @@ const Step1_Choice = ({
           <h1
             className="font-prompt text-center leading-normal mb-2"
             style={{
-              color: "var(--uk1-primary)",
+              color: "#000D59",
               fontSize: "clamp(22px, 5vw, 44px)",
               lineHeight: "1.2",
               fontWeight: 700,
@@ -143,13 +143,13 @@ const Step1_Choice = ({
               margin: "0 auto 8px auto",
             }}
           >
-            คุณคิดว่าถ้านโยบายนี้จะเกิดขึ้น
+            คุณคิดว่��ถ้านโยบายนี้จะเกิดขึ้น
             <br />
             ควรมีนโยบายประกอบอะไรบ้าง 3 อันดับแรก
           </h1>
 
           <div style={{ textAlign: "center", marginTop: "12px" }}>
-            <p style={{ color: "var(--uk1-primary)", fontSize: "16px", margin: 0 }}>
+            <p style={{ color: "#000D59", fontSize: "16px", margin: 0 }}>
               ไม่เกิน 3 นโยบาย
             </p>
           </div>
