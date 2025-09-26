@@ -1,4 +1,3 @@
-import FigmaStyle1Layout from "../layouts/FigmaStyle1Layout";
 import { logEvent } from "../../services/dataLogger.js";
 
 interface SourceSelectionProps {
