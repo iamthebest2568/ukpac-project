@@ -107,7 +107,7 @@ const TabletMockup: React.FC<TabletMockupProps> = ({ children }) => {
           >
             {/* Viewport (portrait 414x896) */}
             <div
-              className={`rounded-[30px] overflow-y-auto overflow-x-hidden tablet-mock-env ${isUk1Mn01 ? '' : 'bg-white'}`}
+              className={`rounded-[30px] overflow-y-auto overflow-x-hidden tablet-mock-env ${isUk1MiniGameNoWhite ? '' : 'bg-white'}`}
               style={{
                 position: "relative",
                 width: `${BASE_W}px`,
