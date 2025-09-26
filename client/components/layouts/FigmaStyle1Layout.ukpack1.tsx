@@ -80,7 +80,7 @@ const FigmaStyle1Layout = ({
       className={`figma-style1-container ${className} ${platformClass} ${pageScope} ${pageScope ? "fake-news-page" : ""}`}
     >
       <div className="figma-style1-content">
-        <div className="figma-style1-background">
+        <div className="figma-style1-background" style={{ backgroundImage: "none" }}>
           {backgroundImage
             ? (() => {
                 const setWidth = (url: string, w: number) => {
