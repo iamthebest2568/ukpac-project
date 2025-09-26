@@ -10,7 +10,7 @@ interface SourceSelectionProps {
 import { useState } from "react";
 import Uk1Button from "../shared/Uk1Button";
 
-const SourceSelection = ({ sessionID, onNavigate }: SourceSelectionProps) => {
+const SourceSelection = ({ sessionID, onNavigate, useUk1Button = false }: SourceSelectionProps) => {
   const [selected, setSelected] = useState<string[]>([]);
 
   const options: { id: string; label: string }[] = [
@@ -107,7 +107,7 @@ const SourceSelection = ({ sessionID, onNavigate }: SourceSelectionProps) => {
               aria-disabled={selected.length === 0}
               style={{ width: "100%" }}
             >
-              <span className="figma-style1-button-text">ไปต่อ</span>
+              <span className="figma-style1-button-text">ไปต���อ</span>
             </button>
           </div>
         </div>
