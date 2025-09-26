@@ -28,6 +28,7 @@ const Step1_Beneficiaries = ({
   totalPrioritySteps,
   initialBeneficiaries = [],
 }: Step1_BeneficiariesProps) => {
+  const useUk1Button = (arguments && (arguments as any)[0] && ((arguments as any)[0].useUk1Button === true)) || false;
   const [selectedGroups, setSelectedGroups] =
     useState<string[]>(initialBeneficiaries);
   const maxSelections = 6; // Allow up to 6 selections
