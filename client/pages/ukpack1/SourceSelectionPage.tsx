@@ -4,7 +4,7 @@ import SourceSelection from "../../components/journey/SourceSelection";
 
 const Wrapped = (props: any) => (
   <TabletMockup>
-    <Page {...props} />
+    <SourceSelection {...props} useUk1Button={true} />
   </TabletMockup>
 );
 
