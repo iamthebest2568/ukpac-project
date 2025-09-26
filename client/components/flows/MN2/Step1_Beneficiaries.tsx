@@ -140,7 +140,7 @@ const Step1_Beneficiaries = ({
 
   const titleText =
     currentPriority === "ลดค่าโดยสารร��ไฟฟ้า"
-      ? "คุณคิดว่าใครควรได้รับการลดค่าโดยสารรถไฟฟ้าบ้าง"
+      ? "คุณคิดว่าใครควรไ��้รับการลดค่าโดยสารรถไฟฟ้าบ้าง"
       : `คุณคิดว่าใครควรได้รับประโยชน์จาก ${currentPriority}`;
 
   return (
@@ -178,7 +178,7 @@ const Step1_Beneficiaries = ({
                 }}
               >
                 <div
-                  className={`w-[68px] h-[68px] mb-2 flex items-center justify-center ${isSelected ? "rounded-full bg-[#EFBA31]" : ""}`}
+                  className={`w-[84px] h-[84px] mb-2 flex items-center justify-center ${isSelected ? "rounded-full bg-[#EFBA31]" : ""}`}
                 >
                   <img
                     src={group.iconSrc}
@@ -217,7 +217,7 @@ const Step1_Beneficiaries = ({
                 }}
               >
                 <div
-                  className={`w-[68px] h-[68px] mb-2 flex items-center justify-center ${isSelected ? "rounded-full bg-[#EFBA31]" : ""}`}
+                  className={`w-[84px] h-[84px] mb-2 flex items-center justify-center ${isSelected ? "rounded-full bg-[#EFBA31]" : ""}`}
                 >
                   <img
                     src={group.iconSrc}
