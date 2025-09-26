@@ -32,7 +32,10 @@ const TabletMockup: React.FC<TabletMockupProps> = ({ children }) => {
   const frameRef = React.useRef<HTMLDivElement | null>(null);
   const navigate = useNavigate();
   const location = useLocation();
-  const isUk1Mn01 = typeof location?.pathname === "string" && location.pathname.startsWith("/ukpack1/minigame-mn1");
+  const isUk1MiniGameNoWhite =
+    typeof location?.pathname === "string" &&
+    (location.pathname.startsWith("/ukpack1/minigame-mn1") ||
+      location.pathname.startsWith("/ukpack1/minigame-mn2"));
 
   const recomputeScale = React.useCallback(() => {
     const margin = 32; // include soft shadow space
