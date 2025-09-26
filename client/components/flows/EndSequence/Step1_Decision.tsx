@@ -4,7 +4,7 @@
  */
 
 import { logEvent } from "../../../services/dataLogger.js";
-import FigmaStyle1Layout from "../../layouts/FigmaStyle1Layout";
+import FigmaStyle1Layout from "../../layouts/FigmaStyle1Layout.ukpack1";
 
 interface Step1_DecisionProps {
   sessionID: string | null;
@@ -62,7 +62,7 @@ const Step1_Decision = ({
   };
 
   const onParticipate = () => {
-    trackDecision("participate", "ลุ้นรับรางวัล");
+    trackDecision("participate", "ลุ้นรับร��งวัล");
     handleChoice("participate");
   };
 
