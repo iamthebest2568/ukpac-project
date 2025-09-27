@@ -252,6 +252,7 @@ const Ask04Budget = ({
             display: "flex",
             flexDirection: "column",
             gap: 12,
+            transform: "translateY(30px)", /* shift buttons down 30px for Ask04Budget */
           }}
         >
           {useUk1Button ? (
