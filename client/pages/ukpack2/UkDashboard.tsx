@@ -32,7 +32,16 @@ const UkDashboard: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    if (authorized) refreshSummary();
+    if (authorized) {
+      // call asynchronously to avoid synchronous state changes during render
+      setTimeout(() => {
+        try {
+          refreshSummary();
+        } catch (e) {
+          console.warn("refreshSummary async call failed", e);
+        }
+      }, 0);
+    }
   }, [authorized]);
 
   const refreshSummary = async () => {
