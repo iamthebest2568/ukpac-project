@@ -53,10 +53,6 @@ const SplashScreen: React.FC = () => {
           alignItems: "center",
           gap: 12,
           boxSizing: "border-box",
-          backgroundImage: `url('https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F85b2817865b54dc8bff385b54fcd5d55?format=webp&width=800')`,
-          backgroundPosition: "top center",
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "100% auto",
         }}
       >
         <div
