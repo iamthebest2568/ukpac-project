@@ -392,7 +392,7 @@
   left: 0 !important;
   right: 0 !important;
   /* Use safe-area inset so the button is visible above device UI */
-  bottom: calc(env(safe-area-inset-bottom, 12px) + 6px) !important;
+  bottom: calc(env(safe-area-inset-bottom, 12px) + 56px) !important;
   /* Ensure footer sits above allocation content and any other high z-index elements */
   z-index: 100020 !important;
   display: flex !important;
@@ -405,7 +405,7 @@
 /* Force footer to be fixed even when fake-news/page scope attempts to change button behavior */
 .figma-style1-container.mn3-step2-minimal.mn3-step2-page .mn3-step2-footer {
   position: fixed !important;
-  bottom: calc(env(safe-area-inset-bottom, 12px) + 6px) !important;
+  bottom: calc(env(safe-area-inset-bottom, 12px) + 56px) !important;
   z-index: 100030 !important;
 }
 
