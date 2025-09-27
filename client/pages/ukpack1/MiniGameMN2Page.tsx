@@ -3,9 +3,9 @@ import DesktopMockup from "./components/DesktopMockup";
 import Page from "../MiniGameMN2Page";
 
 const Wrapped = (props: any) => (
-  <TabletMockup>
+  <DesktopMockup>
     <Page {...props} />
-  </TabletMockup>
+  </DesktopMockup>
 );
 
 export default Wrapped;
