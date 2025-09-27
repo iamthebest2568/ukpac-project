@@ -33,7 +33,7 @@ const Step3_Result = ({
   const priorityIcons: { [key: string]: string } = {
     ลดค่าโดยสารรถไฟฟ้า: "🚇",
     ปรับปรุงคุณภาพรถเมล์: "🚌",
-    ตั๋วร่วม: "🎫",
+    ตั��วร่วม: "🎫",
     เพิ่มความถี่รถเมล์: "🚍",
     เพิ่มความถี่รถไฟฟ้า: "🚊",
     เพิ่มที่จอดรถ: "🅿️",
@@ -261,7 +261,7 @@ const Step3_Result = ({
                   position: "absolute",
                   left: "50%",
                   top: `calc(50% + ${offset.top})`,
-                  transform: `translate(calc(-50% + ${offsetX}px), -50%) rotate(${offset.rotate}) scale(${offset.scale * 1.15 * 1.15})`, /* scale up additional +15% (cumulative) for this page only */
+                  transform: `translate(calc(-50% + ${offsetX}px), -50%) rotate(${offset.rotate}) scale(${offset.scale * 1.15 * 1.15 * 1.1})`, /* scale up additional +10% (cumulative) for this page only */
                   width,
                   zIndex: offset.z,
                 }}
