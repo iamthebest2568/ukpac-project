@@ -103,7 +103,10 @@ const SourceSelection = ({
                 {useUk1Button ? (
                   <Uk1Button
                     key={opt.id}
-                    onClick={() => toggle(opt.id, opt.label)}
+                    onClick={() => {
+                      if (!isSelected && maxReached) return;
+                      toggle(opt.id, opt.label);
+                    }}
                     aria-pressed={isSelected}
                     aria-disabled={!isSelected && maxReached}
                     disabled={!isSelected && maxReached}
