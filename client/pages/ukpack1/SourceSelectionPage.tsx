@@ -1,11 +1,11 @@
 import React from "react";
-import TabletMockup from "./components/TabletMockup";
+import DesktopMockup from "./components/DesktopMockup";
 import SourceSelection from "../../components/journey/SourceSelection";
 
 const Wrapped = (props: any) => (
-  <TabletMockup>
+  <DesktopMockup>
     <SourceSelection {...props} useUk1Button={true} />
-  </TabletMockup>
+  </DesktopMockup>
 );
 
 export default Wrapped;
