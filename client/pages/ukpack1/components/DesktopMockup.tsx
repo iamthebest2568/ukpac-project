@@ -58,8 +58,8 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
     return () => cancelAnimationFrame(id);
   }, [win.w, win.h, recomputeScale]);
 
-  // keep same activation threshold as before: show mockup on larger viewports
-  const active = win.w >= 810;
+  // Show mockup on larger viewports; lower threshold slightly for preview environments
+  const active = win.w >= 700;
 
   // Prevent body scrolling only when active (do not touch html element)
   useEffect(() => {
@@ -74,7 +74,7 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
   if (!active) return <>{children}</>;
 
   return (
-    <div className="fixed inset-0 grid place-items-center w-screen h-screen bg-transparent overflow-hidden">
+    <div className="fixed inset-0 grid place-items-center w-screen h-screen bg-neutral-100/40 overflow-hidden" style={{ zIndex: 9999 }}>
       <div
         ref={frameRef}
         className="relative"
