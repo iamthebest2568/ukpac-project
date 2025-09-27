@@ -132,13 +132,14 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
           >
             {/* Viewport (portrait 414x896) */}
             <div
-              className="rounded-[30px] bg-white overflow-y-auto overflow-x-hidden tablet-mock-env"
+              className="rounded-[30px] bg-white overflow-hidden tablet-mock-env"
               style={{
                 position: "relative",
                 width: `${BASE_W}px`,
                 height: `${BASE_H}px`,
                 aspectRatio: `${BASE_W} / ${BASE_H}`,
                 pointerEvents: "auto",
+                overflow: "hidden",
               }}
               onClickCapture={(e: React.MouseEvent) => {
                 try {
