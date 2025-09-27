@@ -82,7 +82,7 @@ const DesktopMockup: React.FC<TabletMockupProps> = ({ children }) => {
   }
 
   return (
-    <div className="fixed inset-0 grid place-items-center w-screen h-screen bg-neutral-100/60 overflow-hidden">
+    <div className="fixed inset-0 grid place-items-center w-screen h-screen bg-transparent overflow-hidden">
       <div
         ref={frameRef}
         className="relative"
@@ -96,25 +96,25 @@ const DesktopMockup: React.FC<TabletMockupProps> = ({ children }) => {
         }}
         aria-label="desktop-mockup"
       >
-        {/* Outer phone frame */}
+        {/* Outer phone frame - simplified visuals to avoid layout interference */}
         <div
-          className="rounded-[48px] border-[2px] border-neutral-300 shadow-2xl drop-shadow-lg bg-neutral-200/60 p-2"
-          style={{ width: "100%", height: "100%" }}
+          className="rounded-[20px] border-[1px] border-neutral-200 bg-transparent p-0"
+          style={{ width: "100%", height: "100%", boxSizing: "border-box" }}
         >
           {/* Inner bezel */}
           <div
-            className="relative rounded-[40px] bg-neutral-900 p-1"
-            style={{ width: "100%", height: "100%" }}
+            className="relative rounded-[16px] p-0"
+            style={{ width: "100%", height: "100%", backgroundColor: viewportBackground }}
           >
             {/* Viewport (portrait 414x896) */}
             <div
-              className={`rounded-[30px] overflow-y-auto overflow-x-hidden tablet-mock-env ${isUk1MiniGameNoWhite ? '' : 'bg-white'}`}
+              className={`rounded-[12px] overflow-y-auto overflow-x-hidden tablet-mock-env`}
               style={{
                 position: "relative",
                 width: `${BASE_W}px`,
                 height: `${BASE_H}px`,
                 aspectRatio: `${BASE_W} / ${BASE_H}`,
-                backgroundColor: isUk1MiniGameNoWhite ? "transparent" : undefined,
+                backgroundColor: viewportBackground,
               }}
               onClickCapture={(e: React.MouseEvent) => {
                 try {
@@ -156,9 +156,9 @@ const DesktopMockup: React.FC<TabletMockupProps> = ({ children }) => {
               <RouteTransition>{children}</RouteTransition>
             </div>
 
-            {/* Bottom home indicator (iPhone gesture bar) */}
+            {/* Bottom home indicator (iPhone gesture bar) - kept minimal */}
             <div
-              className="absolute bottom-4 left-1/2 -translate-x-1/2 h-1.5 w-28 rounded-full bg-neutral-700/80"
+              style={{ position: "absolute", bottom: 8, left: "50%", transform: "translateX(-50%)", height: 6, width: 112, borderRadius: 999, background: "#e5e7eb", opacity: 0.6 }}
               aria-hidden
             />
           </div>
