@@ -570,26 +570,54 @@
 /* Adjust these % values to fine-tune visual balance. */
 /* -------------------------------------------------------------------------- */
 
-.selectionGrid > button:nth-child(1) > div.iconContainer > div {
-  width: 64% !important; /* smallest */
-}
-.selectionGrid > button:nth-child(2) > div.iconContainer > div {
-  width: 92% !important; /* largest */
-}
-.selectionGrid > button:nth-child(3) > div.iconContainer > div {
-  width: 80% !important; /* medium */
-}
-.selectionGrid > button:nth-child(4) > div.iconContainer > div {
-  width: 72% !important; /* slightly larger than smallest */
+/* Responsive per-card widths — adjust per breakpoint while keeping uniform height */
+
+/* Mobile (<=639px) */
+@media (max-width: 639px) {
+  .selectionGrid {
+    --icon-cell-height: 120px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+  }
+  .selectionGrid > button:nth-child(1) > div.iconContainer > div { width: 56% !important; }
+  .selectionGrid > button:nth-child(2) > div.iconContainer > div { width: 92% !important; }
+  .selectionGrid > button:nth-child(3) > div.iconContainer > div { width: 72% !important; }
+  .selectionGrid > button:nth-child(4) > div.iconContainer > div { width: 68% !important; }
 }
 
-/* Selected state: slight scale without changing height; wrapper width grows for emphasis */
+/* Tablet (640px - 1023px) */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .selectionGrid {
+    --icon-cell-height: 180px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+  .selectionGrid > button:nth-child(1) > div.iconContainer > div { width: 60% !important; }
+  .selectionGrid > button:nth-child(2) > div.iconContainer > div { width: 94% !important; }
+  .selectionGrid > button:nth-child(3) > div.iconContainer > div { width: 80% !important; }
+  .selectionGrid > button:nth-child(4) > div.iconContainer > div { width: 72% !important; }
+}
+
+/* Desktop (>=1024px) */
+@media (min-width: 1024px) {
+  .selectionGrid {
+    --icon-cell-height: 220px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+  }
+  .selectionGrid > button:nth-child(1) > div.iconContainer > div { width: 64% !important; }
+  .selectionGrid > button:nth-child(2) > div.iconContainer > div { width: 92% !important; }
+  .selectionGrid > button:nth-child(3) > div.iconContainer > div { width: 80% !important; }
+  .selectionGrid > button:nth-child(4) > div.iconContainer > div { width: 72% !important; }
+}
+
+/* Selected state: slight grow without changing height */
 .selectionGrid > button[aria-pressed="true"] > div.iconContainer > div {
   width: 96% !important;
 }
 .selectionGrid > button[aria-pressed="true"] img,
 .selectionGrid > button[aria-pressed="true"] svg {
-  transform: none !important; /* keep aspect ratio intact */
+  transform: none !important;
 }
 
 /* End of overrides */
