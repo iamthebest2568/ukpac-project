@@ -1,7 +1,6 @@
 import React from "react";
 import DesktopMockup from "./components/DesktopMockup";
 import Page from "../MiniGameMN01Page";
-import React from "react";
 
 const Wrapped = (props: any) => {
   // If the route is requested with ?embedded=1 we should render the page
