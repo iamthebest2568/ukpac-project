@@ -248,7 +248,7 @@ export function exportEventsAsCSV() {
   const events = getLoggedEvents();
   if (events.length === 0) return "";
 
-  const headers = ["sessionID", "timestamp", "event", "url", "data"];
+  const headers = ["รหัสเซสชัน (sessionID)", "เวลา (timestamp)", "เหตุการณ์ (event)", "URL (url)", "ข้อมูล (data)"];
   const csvRows = [headers.join(",")];
 
   events.forEach((event) => {
@@ -285,7 +285,7 @@ export function exportSessionsAsCSV() {
     "เวลาสิ้นสุด (lastTimestamp)",
     "ยอมรับ PDPA (PDPA_acceptance)",
     "ประเภทรถ (chassis_type)",
-    "จำนวนที่นั่งรวม (total_seats)",
+    "จำนวนที่น��่งรวม (total_seats)",
     "ที่นั่งพิเศษ (special_seats)",
     "จำนวนเด็ก/ผู้สูงอายุ (children_elder_count)",
     "จำนวนผู้ตั้งครรภ์ (pregnant_count)",
