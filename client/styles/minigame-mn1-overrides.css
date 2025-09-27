@@ -1,0 +1,44 @@
+.minigame-mn1-page .figma-style1-content {
+  overflow: visible !important;
+  height: 100% !important;
+  max-height: 100% !important;
+}
+
+.minigame-mn1-page .figma-style1-main {
+  align-items: start !important;
+  overflow: visible !important;
+}
+
+.minigame-mn1-page .figma-style1-content-area {
+  overflow: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  max-height: 100% !important;
+  box-sizing: border-box !important;
+  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 20px) !important;
+}
+
+/* Ensure absolute-positioned sections inside the layout remain visible and scrollable */
+.minigame-mn1-page .figma-style1-content .absolute {
+  position: relative !important;
+}
+
+/* Keep primary action accessible: pin to bottom inside mockup without affecting other pages */
+.minigame-mn1-page .figma-style1-button-container {
+  position: sticky !important;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 12px) !important;
+  display: flex !important;
+  justify-content: center !important;
+  z-index: 10010 !important;
+}
+
+/* Make sure background image doesn't cover interactive content in the mockup */
+.minigame-mn1-page .figma-style1-background-image {
+  object-position: center top !important;
+}
+
+/* Force safe scaling of inner viewport elements */
+.minigame-mn1-page .tablet-mock-env, .minigame-mn1-page .figma-style1-container {
+  width: 100% !important;
+  height: auto !important;
+  min-height: 100% !important;
+}

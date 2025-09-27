@@ -6,6 +6,7 @@
 import { useState } from "react";
 import { logEvent } from "../../../services/dataLogger.js";
 import FigmaStyle1Layout from "../../layouts/FigmaStyle1Layout.ukpack1";
+import "../../styles/minigame-mn1-overrides.css";
 
 interface Step1_PrioritiesProps {
   sessionID: string | null;
@@ -338,7 +339,7 @@ const Step1_Priorities = ({
                   letterSpacing: "0.4px",
                 }}
               >
-                เพิ่ม Feeder ในซอย
+                เพ���่ม Feeder ในซอย
               </span>
             </button>
           </div>
