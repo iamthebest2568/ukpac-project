@@ -1,5 +1,5 @@
 import React from "react";
-import TabletMockup from "./components/TabletMockup";
+import DesktopMockup from "./components/DesktopMockup";
 import Page from "../Index";
 
 const Wrapped = (props: any) => (
