@@ -111,7 +111,7 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
         style={{
           width: `${BASE_W}px`,
           height: `${BASE_H}px`,
-          transform: `scale(${scale})`,
+          transform: `scale(${initialized ? Math.max(scale, 0.6) : 1})`,
           transformOrigin: "center",
           maxWidth: "100vw",
           maxHeight: "100vh",
