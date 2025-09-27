@@ -615,6 +615,18 @@
   transform: none !important;
 }
 
+/* Small icon (first card) slightly reduced max-height so it visually matches others */
+.selectionRow:first-child > button:nth-child(1) img,
+.selectionRow:first-child > button:nth-child(1) svg {
+  max-height: calc(var(--icon-cell-height) * 0.85) !important;
+}
+.selectionRow:first-child > button:nth-child(2) img,
+.selectionRow:first-child > button:nth-child(2) svg,
+.selectionRow:last-child > button img,
+.selectionRow:last-child > button svg {
+  max-height: calc(var(--icon-cell-height) * 0.92) !important;
+}
+
 /* End of overrides */
 
 /* Robust responsive row/grid overrides to ensure two separate rows with 4px gaps */
