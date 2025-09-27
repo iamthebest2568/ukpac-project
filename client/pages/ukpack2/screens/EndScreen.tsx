@@ -16,7 +16,7 @@ const EndScreen: React.FC = () => {
         title=""
         theme="light"
       >
-        <div className="space-y-6 px-4 pb-12 md:pb-20">
+        <div className="space-y-6 px-4 pb-12 md:pb-20" style={{ paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) + 64px)' }}>
           <div className="w-full flex justify-center">
             <img
               src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc36f7d2aca87432f90a5a36fb28b97ed?format=webp&width=1600"
