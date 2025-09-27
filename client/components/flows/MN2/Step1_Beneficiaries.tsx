@@ -166,7 +166,7 @@ const Step1_Beneficiaries = ({
             return (
               <div
                 key={group.id}
-                className="flex flex-col items-center cursor-pointer transition-all duration-200 hover:scale-105 w-[110px] flex-shrink-0"
+                className="flex flex-col items-center cursor-pointer w-[110px] flex-shrink-0"
                 onClick={() => !isDisabled && handleGroupToggle(group.id)}
                 role="checkbox"
                 aria-checked={isSelected}
@@ -205,7 +205,7 @@ const Step1_Beneficiaries = ({
             return (
               <div
                 key={group.id}
-                className="flex flex-col items-center cursor-pointer transition-all duration-200 hover:scale-105 w-[110px] flex-shrink-0"
+                className="flex flex-col items-center cursor-pointer w-[110px] flex-shrink-0"
                 onClick={() => !isDisabled && handleGroupToggle(group.id)}
                 role="checkbox"
                 aria-checked={isSelected}
