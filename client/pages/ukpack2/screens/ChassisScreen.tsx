@@ -18,7 +18,7 @@ const AMENITIES_ICON_SMALL = {
     "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe01792ee89e240808ed47d8576b55d71?format=webp&width=800",
   ที่นั่งพิเศษ:
     "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F93439b2533284cdf914fc93cafa1cf26?format=webp&width=800",
-  "ที่จับ/ราวยืนที่ปลอดภัย":
+  "ที่จั��/ราวยืนที่ปลอดภัย":
     "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb0789bfd1100472f8351704764607d31?format=webp&width=800",
 };
 const PAYMENT_ICON_SMALL: Record<string, string> = {
@@ -141,7 +141,7 @@ const OPTIONS = [
     key: "large",
     label: (
       <>
-        <span>รถตู้โดยสาร</span>
+        <span>รถตู���โดยสาร</span>
         <br />
         9-15 ที่นั่ง
       </>
@@ -327,93 +327,97 @@ const ChassisScreen: React.FC = () => {
             <div className={styles.controlsBox}>
               <div className={styles.controlsContent}>
                 <div className={`${styles.selectionGrid} doorControls`}>
-                  <SelectionCard
-                    key={OPTIONS[0].key}
-                    icon={
-                      selected === OPTIONS[0].key ? (
-                        <IconSmallAlt />
-                      ) : (
-                        <IconSmall />
-                      )
-                    }
-                    label={OPTIONS[0].label}
-                    isSelected={selected === OPTIONS[0].key}
-                    onClick={() => {
-                      setSelected(OPTIONS[0].key);
-                    }}
-                    variant="light"
-                    appearance="group"
-                    hideLabel={true}
-                    size="sm"
-                    layout="horizontal"
-                    fill
-                  />
+                  <div className={styles.selectionRow}>
+                    <SelectionCard
+                      key={OPTIONS[0].key}
+                      icon={
+                        selected === OPTIONS[0].key ? (
+                          <IconSmallAlt />
+                        ) : (
+                          <IconSmall />
+                        )
+                      }
+                      label={OPTIONS[0].label}
+                      isSelected={selected === OPTIONS[0].key}
+                      onClick={() => {
+                        setSelected(OPTIONS[0].key);
+                      }}
+                      variant="light"
+                      appearance="group"
+                      hideLabel={true}
+                      size="sm"
+                      layout="horizontal"
+                      fill
+                    />
 
-                  <SelectionCard
-                    key={OPTIONS[1].key}
-                    icon={
-                      selected === OPTIONS[1].key ? (
-                        <IconMediumAlt />
-                      ) : (
-                        <IconMedium />
-                      )
-                    }
-                    label={OPTIONS[1].label}
-                    isSelected={selected === OPTIONS[1].key}
-                    onClick={() => {
-                      setSelected(OPTIONS[1].key);
-                    }}
-                    variant="light"
-                    appearance="group"
-                    hideLabel={true}
-                    size="lg"
-                    layout="horizontal"
-                    fill
-                  />
+                    <SelectionCard
+                      key={OPTIONS[1].key}
+                      icon={
+                        selected === OPTIONS[1].key ? (
+                          <IconMediumAlt />
+                        ) : (
+                          <IconMedium />
+                        )
+                      }
+                      label={OPTIONS[1].label}
+                      isSelected={selected === OPTIONS[1].key}
+                      onClick={() => {
+                        setSelected(OPTIONS[1].key);
+                      }}
+                      variant="light"
+                      appearance="group"
+                      hideLabel={true}
+                      size="lg"
+                      layout="horizontal"
+                      fill
+                    />
+                  </div>
 
-                  <SelectionCard
-                    key={OPTIONS[2].key}
-                    icon={
-                      selected === OPTIONS[2].key ? (
-                        <IconLargeAlt />
-                      ) : (
-                        <IconLarge />
-                      )
-                    }
-                    label={OPTIONS[2].label}
-                    isSelected={selected === OPTIONS[2].key}
-                    onClick={() => {
-                      setSelected(OPTIONS[2].key);
-                    }}
-                    variant="light"
-                    appearance="group"
-                    hideLabel={true}
-                    size="sm"
-                    layout="horizontal"
-                    fill
-                  />
+                  <div className={styles.selectionRow}>
+                    <SelectionCard
+                      key={OPTIONS[2].key}
+                      icon={
+                        selected === OPTIONS[2].key ? (
+                          <IconLargeAlt />
+                        ) : (
+                          <IconLarge />
+                        )
+                      }
+                      label={OPTIONS[2].label}
+                      isSelected={selected === OPTIONS[2].key}
+                      onClick={() => {
+                        setSelected(OPTIONS[2].key);
+                      }}
+                      variant="light"
+                      appearance="group"
+                      hideLabel={true}
+                      size="sm"
+                      layout="horizontal"
+                      fill
+                    />
 
-                  <SelectionCard
-                    key={OPTIONS[3].key}
-                    icon={
-                      selected === OPTIONS[3].key ? (
-                        <IconExtraAlt />
-                      ) : (
-                        <IconExtra />
-                      )
-                    }
-                    label={OPTIONS[3].label}
-                    isSelected={selected === OPTIONS[3].key}
-                    onClick={() => {
-                      setSelected(OPTIONS[3].key);
-                    }}
-                    variant="light"
-                    appearance="group"
-                    hideLabel={true}
-                    size="sm"
-                    layout="horizontal"
-                    fill
-                  />
+                    <SelectionCard
+                      key={OPTIONS[3].key}
+                      icon={
+                        selected === OPTIONS[3].key ? (
+                          <IconExtraAlt />
+                        ) : (
+                          <IconExtra />
+                        )
+                      }
+                      label={OPTIONS[3].label}
+                      isSelected={selected === OPTIONS[3].key}
+                      onClick={() => {
+                        setSelected(OPTIONS[3].key);
+                      }}
+                      variant="light"
+                      appearance="group"
+                      hideLabel={true}
+                      size="sm"
+                      layout="horizontal"
+                      fill
+                    />
+                  </div>
                 </div>
               </div>
             </div>
