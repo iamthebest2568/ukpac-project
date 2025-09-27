@@ -657,13 +657,16 @@
 }
 .selectionRow button img,
 .selectionRow button svg {
-  /* enforce equal heights across all icons */
-  height: var(--icon-cell-height) !important;
-  max-height: var(--icon-cell-height) !important;
+  /* limit visible icon height but keep intrinsic aspect ratio */
+  height: auto !important;
+  max-height: calc(var(--icon-cell-height) * 0.92) !important; /* keep a small padding */
   width: auto !important;
   max-width: 100% !important;
   object-fit: contain !important;
+  object-position: center !important;
   display: block !important;
+  transform: none !important; /* override any translate classes */
+  margin: 0 !important;
 }
 
 @media (max-width: 639px) {
