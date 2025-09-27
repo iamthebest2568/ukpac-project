@@ -107,38 +107,14 @@ export default function UkDashboard() {
     return () => window.removeEventListener("resize", onResize);
   }, []);
 
-  // Password gate (load expected from runtime endpoint first, fall back to build-time env)
-  const [expected, setExpected] = useState<string | undefined>(
-    (import.meta as any).env?.VITE_DASHBOARD_PASSWORD as string | undefined,
-  );
+  // Password gate — use fixed credentials per request (do not rely on runtime API)
+  const [expected, setExpected] = useState<string | undefined>("Ukdash-Xrz14!");
   const [authed, setAuthed] = useState<boolean>(
     () => sessionStorage.getItem("ukdash_authed") === "true",
   );
   const [user, setUser] = useState("");
   const [pw, setPw] = useState("");
   const [pwErr, setPwErr] = useState<string | null>(null);
-
-  useEffect(() => {
-    let cancelled = false;
-    (async () => {
-      try {
-        const resp = await fetch("/api/dashboard-password");
-        if (!resp.ok) return;
-        const json = await resp.json();
-        if (cancelled) return;
-        if (
-          json &&
-          typeof json.password === "string" &&
-          json.password.length > 0
-        ) {
-          setExpected(json.password);
-        }
-      } catch (e) {}
-    })();
-    return () => {
-      cancelled = true;
-    };
-  }, []);
 
   async function load() {
     if (firstLoad) setLoading(true);
@@ -610,7 +586,7 @@ export default function UkDashboard() {
                     {/* Stornaway choice */}
                     <AccordionItem value="stornaway">
                       <AccordionTrigger>
-                        เมื่ได้ยิ��ข่าวนี้ คุณคิดยังไง
+                        เมื่ได้ยิ��ข่าวนี�� คุณคิดยังไง
                       </AccordionTrigger>
                       <AccordionContent>
                         <ul className="space-y-1 text-sm">
@@ -843,7 +819,7 @@ export default function UkDashboard() {
                       "ทำไมคุณถึงต้องเข้าเมืองบ่อย ๆ ?",
                       "คุณใช้รถแบบไหนเดินทางเข้าเมือง ?",
                       "คุ��คิดเห็นอย่างไรกับนโยบายนี้ ?",
-                      "จากข้อความข้างต้น คุณมีความคิดเห็นอย่างไร (เห็นด้วย/กลางๆ/ไม่เห็นด้วย)",
+                      "จากข้อความข้างต้น คุณมีความคิด���ห็นอย่างไร (เห็นด้วย/กลางๆ/ไม่เห็นด้วย)",
                       "ทำไมคุณถึงคิดอย่างนั้น (นโยบายไม่ครอบคลุม / เก็บไปก็ไม่มีอะไรดีขึ้น / อื่นๆ)",
                       "อธิบายอื่น ๆ ที่ช่วยอธิบายความคิดเห็น",
                       "บอกเราหน่อยว่าคุณเดินทางเข้าเมืองด้วยวิธีการใดบ่อยที่สุด",
