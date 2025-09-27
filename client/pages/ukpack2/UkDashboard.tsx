@@ -65,7 +65,12 @@ const UkDashboard: React.FC = () => {
         const paths = rawPaths.map(normalize);
 
         const fetchWithTimeout = async (url: string, ms: number) => {
+          if (typeof navigator !== "undefined" && navigator.onLine === false) {
+            console.debug("Offline: skipping fetch for", url);
+            return null;
+          }
           try {
+            console.debug("Attempting fetch", url);
             const fetchPromise = fetch(url, { credentials: "same-origin" })
               .then(async (resp) => {
                 if (!resp || !resp.ok) return null;
@@ -75,12 +80,16 @@ const UkDashboard: React.FC = () => {
                   return null;
                 }
               })
-              .catch(() => null);
+              .catch((err) => {
+                console.debug("fetch error for", url, err);
+                return null;
+              });
 
             const timeoutPromise = new Promise((res) => setTimeout(() => res(null), ms));
 
             return await Promise.race([fetchPromise, timeoutPromise]);
           } catch (e) {
+            console.debug("fetchWithTimeout caught", e);
             return null;
           }
         };
@@ -277,7 +286,7 @@ const UkDashboard: React.FC = () => {
   };
 
   const handleClear = () => {
-    if (!confirm("แน่ใจหรือไม่ว่าต้องการลบข้อมูลทั้งหมด?")) return;
+    if (!confirm("แน่ใจหรือไม่ว่าต้องการล���ข้อมูลทั้งหมด?")) return;
     clearEventLogs();
     refreshSummary();
     alert("ลบข้อมูลเรียบร้อย");
