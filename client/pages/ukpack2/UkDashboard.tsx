@@ -141,7 +141,13 @@ const UkDashboard: React.FC = () => {
           "./.netlify/functions/api/public-submissions?limit=20",
         ];
 
-        const j2 = await tryFetchJsonWithFallback(rawCandidates2, 8000);
+        let j2 = null;
+        try {
+          j2 = await tryFetchJsonWithFallback(rawCandidates2, 8000);
+        } catch (e) {
+          console.warn("tryFetchJsonWithFallback (public-submissions) threw", e);
+          j2 = null;
+        }
 
         if (j2 && j2.ok && Array.isArray(j2.items)) {
           setPublicSubmissions(j2.items.slice(0, 6));
