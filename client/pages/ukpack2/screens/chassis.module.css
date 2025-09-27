@@ -550,3 +550,45 @@
 }
 
 /* End of overrides */
+
+/* Per-card stepped sizing — make icons size descend while keeping grid alignment */
+.selectionGrid {
+  /* ensure buttons are centered and rows remain aligned */
+  align-items: start;
+}
+
+.selectionGrid > button img,
+.selectionGrid > button svg {
+  transition: max-width 160ms ease, transform 160ms ease;
+}
+
+/* Step sizes (tune percentages to taste) */
+.selectionGrid > button:nth-child(1) img,
+.selectionGrid > button:nth-child(1) svg {
+  max-width: 64% !important; /* smallest */
+}
+.selectionGrid > button:nth-child(2) img,
+.selectionGrid > button:nth-child(2) svg {
+  max-width: 92% !important; /* largest */
+}
+.selectionGrid > button:nth-child(3) img,
+.selectionGrid > button:nth-child(3) svg {
+  max-width: 80% !important; /* medium */
+}
+.selectionGrid > button:nth-child(4) img,
+.selectionGrid > button:nth-child(4) svg {
+  max-width: 72% !important; /* slightly larger than smallest */
+}
+
+/* Keep horizontal (inline) cards using their own smaller heights */
+.selectionGrid > :global(.horizontal) > div.iconContainer img,
+.selectionGrid > :global(.horizontal) > div.iconContainer svg {
+  max-width: 84% !important;
+}
+
+/* Hover / active emphasis: slightly enlarge selected icon for clarity */
+.selectionGrid > button[aria-pressed="true"] img,
+.selectionGrid > button[aria-pressed="true"] svg {
+  transform: scale(1.06);
+  max-width: 96% !important;
+}
