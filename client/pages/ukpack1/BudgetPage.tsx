@@ -1,14 +1,14 @@
 import { useSession } from "../../hooks/useSession";
 import BudgetAllocation from "../../components/games/BudgetAllocation";
 import FigmaStyle1Layout from "../../components/layouts/FigmaStyle1Layout.ukpack1";
-import TabletMockup from "./components/TabletMockup";
+import DesktopMockup from "./components/DesktopMockup";
 
 const Ukpack1BudgetPage = () => {
   const { sessionID, navigateToPage } = useSession();
 
   // Use the FigmaStyle1Layout wrapper for consistent figma styling
   return (
-    <TabletMockup>
+    <DesktopMockup>
       <FigmaStyle1Layout
         backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F860ef7d79d0449bb9545aefbe3326e2e?format=webp&width=800"
         className="budget-page"
@@ -20,7 +20,7 @@ const Ukpack1BudgetPage = () => {
           layoutMode={true}
         />
       </FigmaStyle1Layout>
-    </TabletMockup>
+    </DesktopMockup>
   );
 };
 
