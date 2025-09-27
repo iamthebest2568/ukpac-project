@@ -112,6 +112,7 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
           maxHeight: "100vh",
           transition: "none",
           visibility: "visible",
+          pointerEvents: "auto",
         }}
         aria-label="desktop-mockup"
       >
