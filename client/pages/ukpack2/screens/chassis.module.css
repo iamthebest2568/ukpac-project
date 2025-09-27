@@ -600,10 +600,10 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 6px;
   }
-  .selectionGrid > button:nth-child(1) > div.iconContainer > div { width: 64% !important; }
-  .selectionGrid > button:nth-child(2) > div.iconContainer > div { width: 92% !important; }
-  .selectionGrid > button:nth-child(3) > div.iconContainer > div { width: 80% !important; }
-  .selectionGrid > button:nth-child(4) > div.iconContainer > div { width: 72% !important; }
+  .selectionRow:first-child > button:nth-child(1) > div.iconContainer > div { width: 60% !important; }
+  .selectionRow:first-child > button:nth-child(2) > div.iconContainer > div { width: 92% !important; }
+  .selectionRow:last-child > button:nth-child(1) > div.iconContainer > div { width: 80% !important; }
+  .selectionRow:last-child > button:nth-child(2) > div.iconContainer > div { width: 76% !important; }
 }
 
 /* Selected state: slight grow without changing height */
