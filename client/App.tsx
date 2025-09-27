@@ -395,7 +395,6 @@ const App = () => {
                 />
                 <Route path="/ukpack2/end" element={<EndScreen />} />
                 <Route path="/ukpack2/skip-end" element={<SkipEndPage />} />
-                <Route path="/test" element={<TestPage />} />
 
                 {/* Survey (Ask01 removed) */}
                 <Route
