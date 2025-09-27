@@ -15,7 +15,18 @@ const Wrapped = (props: any) => {
   }
 
   if (embedded) {
-    return <Page {...props} />;
+    return (
+      <div style={{ width: "100%", height: "100%" }}>
+        <style>{`
+          /* Embedded override: make layout fill iframe */
+          html, body, #root { height: 100% !important; }
+          .figma-style1-container { min-height: 100vh !important; width: 100% !important; }
+          .figma-style1-content { max-width: 100% !important; width: 100% !important; height: 100vh !important; overflow: auto !important; }
+          .figma-style1-background { position: absolute !important; }
+        `}</style>
+        <Page {...props} />
+      </div>
+    );
   }
 
   const src = typeof window !== "undefined" ? window.location.pathname + "?embedded=1" : "/ukpack1/minigame-mn1?embedded=1";
