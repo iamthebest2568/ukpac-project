@@ -691,7 +691,61 @@ const DoorScreen: React.FC = () => {
                         return;
                       }
 
+                      // Persist selection state
                       setSelectedOption(newSelection);
+
+                      // Update overlayIconMap in sessionStorage so clicked door icons appear as overlays
+                      try {
+                        const map = loadStoredMap();
+
+                        const candidateForKey = (key: string, label?: string) => {
+                          // lookup in stored map first
+                          if (map[key]) return map[key];
+                          const nk = normalizeKey(key);
+                          for (const k of Object.keys(map)) {
+                            if (normalizeKey(k) === nk) return map[k];
+                          }
+                          // fallback to DOOR_BUTTON_SRC
+                          if (DOOR_BUTTON_SRC[key]) return DOOR_BUTTON_SRC[key];
+                          if (label && DOOR_BUTTON_SRC[label]) return DOOR_BUTTON_SRC[label];
+                          return undefined;
+                        };
+
+                        const setOrRemove = (key: string, shouldSet: boolean) => {
+                          try {
+                            if (shouldSet) {
+                              const val = candidateForKey(key);
+                              if (val) setVariantsToStorage(map, key, val);
+                            } else {
+                              // remove variants
+                              try {
+                                if (map[key]) delete map[key];
+                                const nk = normalizeKey(key);
+                                if (map[nk]) delete map[nk];
+                                const nkNoSpace = nk.replace(/\s/g, "");
+                                if (map[nkNoSpace]) delete map[nkNoSpace];
+                              } catch (e) {}
+                            }
+                          } catch (e) {
+                            // ignore
+                          }
+                        };
+
+                        // apply for each possible door key
+                        // doorChoice
+                        setOrRemove("1", newSelection.doorChoice === "1");
+                        setOrRemove("2", newSelection.doorChoice === "2");
+                        // ramp / emergency
+                        setOrRemove("ramp", Boolean(newSelection.hasRamp));
+                        setOrRemove("emergency", Boolean(newSelection.highLow));
+
+                        sessionStorage.setItem(
+                          "design.overlayIconMap",
+                          JSON.stringify(map),
+                        );
+                      } catch (e) {
+                        // ignore overlay save errors
+                      }
                     };
 
                     {
@@ -792,7 +846,7 @@ const DoorScreen: React.FC = () => {
 
       <ErrorModal
         isOpen={isErrorModalOpen}
-        title="ข้อผิดพลาด"
+        title="ข้อ���ิดพลาด"
         message={errorMessage}
         onClose={() => setErrorModalOpen(false)}
       />
