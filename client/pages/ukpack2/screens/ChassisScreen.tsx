@@ -45,7 +45,7 @@ const DOOR_ICON_SMALL: Record<string, string> = {
 
 const IconSmall = () => (
   <img
-    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F8905d717134848a4beb868c21594e681?format=webp&width=800"
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F420a5ff990cd41c6a7a452493475fae2?format=webp&width=800"
     alt=""
     aria-hidden="true"
     className="h-full w-auto object-contain select-none"
@@ -55,7 +55,7 @@ const IconSmall = () => (
 );
 const IconSmallAlt = () => (
   <img
-    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F737026eab9ff47308b23e8e87ecf8ff5?format=webp&width=800"
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F3b9901c651b5482cac2b4383e52a8c0b?format=webp&width=800"
     alt=""
     aria-hidden="true"
     className="h-full w-auto object-contain select-none"
@@ -65,7 +65,7 @@ const IconSmallAlt = () => (
 );
 const IconMedium = () => (
   <img
-    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F5bddce1996cf43ea9c39311902e792a0?format=webp&width=800"
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F89f62ca539ba485eb5059b6596bc6b01?format=webp&width=800"
     alt=""
     aria-hidden="true"
     className="h-full w-auto object-contain select-none"
