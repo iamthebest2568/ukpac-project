@@ -1,4 +1,4 @@
-/* Page-scoped layout for /ukpack2/chassis
+/*
    - Isolated CSS module to control horizontal spacing and grid layout
    - Mobile: 16px (1rem) -> px-4
    - Tablet (>=640px): 24px (1.5rem) -> px-6
@@ -278,7 +278,7 @@
 }
 
 /* Door screen specific overrides to clear conflicting styles and enforce layout */
-:global(.doorControls) .selectionGrid {
+::global(.doorControls) .selectionGrid {
   --icon-cell-height: 220px !important; /* larger default for door icons */
   display: grid !important;
   grid-template-columns: repeat(
@@ -292,7 +292,7 @@
   align-items: start !important;
 }
 
-::global(.doorControls) .selectionGrid > button {
+:::global(.doorControls) .selectionGrid > button {
   padding: 0 !important;
   width: 100% !important; /* fill the column for consistent spacing */
   max-width: none !important;
@@ -306,7 +306,7 @@
   border: none !important;
 }
 
-::global(.doorControls) .selectionGrid > button > div.iconContainer {
+:::global(.doorControls) .selectionGrid > button > div.iconContainer {
   height: 100% !important;
   width: 100% !important; /* let the icon container fill the button */
   padding: 0 !important;
@@ -315,8 +315,8 @@
   justify-content: center !important;
 }
 
-::global(.doorControls) .selectionGrid img,
-::global(.doorControls) .selectionGrid svg {
+:::global(.doorControls) .selectionGrid img,
+:::global(.doorControls) .selectionGrid svg {
   height: 100% !important;
   width: auto !important;
   object-fit: contain !important;
@@ -512,3 +512,43 @@
     padding-right: 6px !important;
   }
 }
+
+/* -------------------------------------------------------------------------- */
+/* OVERRIDE: Prefer intrinsic width-based sizing for icons so height adapts */
+/* This ensures each icon keeps its aspect ratio and scales visually balanced */
+/* -------------------------------------------------------------------------- */
+
+.selectionGrid > button > div.iconContainer {
+  /* allow the icon container to size by content width; keep a reasonable min-height */
+  height: auto !important;
+  width: 100% !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 !important;
+  min-height: calc(var(--icon-cell-height) * 0.45) !important;
+}
+
+/* Support both module global syntaxes (triple-colon and single-colon) */
+:::global(.doorControls) .selectionGrid img,
+:global(.doorControls) .selectionGrid img,
+:::global(.doorControls) .selectionGrid svg,
+:global(.doorControls) .selectionGrid svg,
+.selectionGrid > button img,
+.selectionGrid img,
+.selectionGrid > button svg,
+.selectionGrid svg {
+  height: auto !important;
+  width: auto !important;
+  max-width: 80% !important; /* let width drive size */
+  max-height: var(--icon-cell-height) !important; /* cap height to cell height */
+  object-fit: contain !important;
+  display: block !important;
+}
+
+/* Keep inline/horizontal cards consistent: they still use fixed container height so icons remain compact */
+.selectionGrid > :global(.horizontal) > div.iconContainer {
+  height: 80px !important;
+}
+
+/* End of overrides */
