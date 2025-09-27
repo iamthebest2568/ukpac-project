@@ -237,6 +237,7 @@ const Step3_Result = ({
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
+            transform: "translateY(75px)", /* move collage down by 75px for this page only */
           }}
         >
           {resultSummary.map((s, i) => {
