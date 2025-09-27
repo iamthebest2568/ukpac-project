@@ -343,6 +343,13 @@ const VehiclePreview: React.FC<Props> = ({
                   pointerEvents: "none",
                   opacity: 1,
                 };
+
+                // If this is the small chassis on desktop mockup, the generated mask
+                // may require using full-size stretching to align correctly with the
+                // preview image. Apply a special maskSize for that case only.
+                const isDesktop = typeof window !== "undefined" && window.innerWidth >= 1024;
+                const smallChassisForceFullMask = selectedChassis === "small" && isDesktop;
+
                 const blended: React.CSSProperties = useNormalBlend
                   ? baseStyle
                   : { ...baseStyle, mixBlendMode: "multiply" };
@@ -354,11 +361,11 @@ const VehiclePreview: React.FC<Props> = ({
                         ? {
                             ...blended,
                             WebkitMaskImage: `url(${effectiveColorMaskSrc})`,
-                            WebkitMaskSize: "contain",
+                            WebkitMaskSize: smallChassisForceFullMask ? "100% 100%" : "contain",
                             WebkitMaskRepeat: "no-repeat",
                             WebkitMaskPosition: "center",
                             maskImage: `url(${effectiveColorMaskSrc})`,
-                            maskSize: "contain",
+                            maskSize: smallChassisForceFullMask ? "100% 100%" : "contain",
                             maskRepeat: "no-repeat",
                             maskPosition: "center",
                           }
