@@ -1631,6 +1631,9 @@ body[data-dialog-open] {
   -webkit-box-orient: vertical !important;
   overflow: hidden !important;
   text-overflow: ellipsis !important;
+  width: 100% !important;
+  text-align: center !important;
+  padding: 0 4px !important;
 }
 /* Ensure grid remains 3 columns but with consistent gaps */
 .figma-style1-container.source-selection-page .source-selection-root > div > div {
