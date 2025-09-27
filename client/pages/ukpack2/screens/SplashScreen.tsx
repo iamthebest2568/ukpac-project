@@ -60,7 +60,7 @@ const SplashScreen: React.FC = () => {
       >
         <div
           style={{
-            marginTop: -5,
+            marginTop: -45,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
