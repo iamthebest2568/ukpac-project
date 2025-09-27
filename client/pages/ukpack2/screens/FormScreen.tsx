@@ -84,7 +84,7 @@ const FormScreen: React.FC = () => {
             className="w-full"
             text="ลุ้นรับรางวัล"
             onClick={submit}
-            style={{ width: "220px", height: "48px", backgroundColor: 'transparent', boxShadow: 'none', color: '#ffffff' }}
+            style={{ width: "220px", height: "48px" }}
           />
         </div>
         <div style={{ width: "220px" }}>
