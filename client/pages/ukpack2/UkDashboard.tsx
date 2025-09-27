@@ -140,14 +140,14 @@ const UkDashboard: React.FC = () => {
 
   const handleAuth = (e?: React.FormEvent) => {
     if (e) e.preventDefault();
-    if (input.trim() === DASH_PASSWORD) {
+    if (user.trim() === DASH_USER && input.trim() === DASH_PASSWORD) {
       try {
         sessionStorage.setItem("ukpack2_dash_auth", "1");
       } catch (e) {}
       setAuthorized(true);
       refreshSummary();
     } else {
-      alert("รหัสไม่ถูกต้อง");
+      alert("ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง");
     }
   };
 
@@ -421,7 +421,7 @@ const UkDashboard: React.FC = () => {
             <h2 className="text-lg font-semibold mb-2">
               เข้าสู่แดชบอร์ด ukpack2
             </h2>
-            <p className="text-sm mb-4">ป้อนรหัสเพื่อเข้าถึงแด���บอร์ด</p>
+            <p className="text-sm mb-4">ป้อนรหัสเพื่อเข้าถึงแดชบอร์ด</p>
             <input
               type="password"
               value={input}
