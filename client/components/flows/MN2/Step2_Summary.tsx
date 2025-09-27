@@ -270,7 +270,7 @@ const Step2_Summary = ({
               lineHeight: "1.2",
             }}
           >
-            นโยบายเพิ่มเติมที่คุณเ��นอตรงใจคุณแล้วหรือไ���่
+            นโยบายเพิ่���เติมที่คุณเ��นอตรงใจคุณแล้วหรือไ���่
           </h2>
         </div>
       </div>
@@ -282,17 +282,20 @@ const Step2_Summary = ({
           position: "fixed",
           left: 0,
           right: 0,
-          bottom: "calc(env(safe-area-inset-bottom, 0px) + 50px)",
+          bottom: 0,
           zIndex: 10000,
           height: "auto",
           background: "transparent",
           padding: "16px",
+          paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 12px)",
           display: "flex",
           justifyContent: "center",
           boxShadow: "none",
+          // allow the footer to be clickable and not capture unexpected pointer events
+          pointerEvents: "auto",
         }}
       >
-        <div className="figma-style1-button-container mn2-summary-button-stack" style={{ maxWidth: 420, width: "100%" }}>
+        <div className="figma-style1-button-container mn2-summary-button-stack" style={{ maxWidth: 420, width: "100%", padding: "0 8px", boxSizing: "border-box" }}>
           {useUk1Button ? (
             <>
               <Uk1Button onClick={handleEndGame} aria-label="ใช่, ไปต่อ">
@@ -321,6 +324,7 @@ const Step2_Summary = ({
                 onClick={handleEndGame}
                 className="figma-style1-button w-full"
                 aria-label="ใช่, ไปต่อ"
+                style={{ minHeight: 44 }}
               >
                 <span className="figma-style1-button-text">ใช่, ไปต่อ</span>
               </button>
@@ -340,6 +344,7 @@ const Step2_Summary = ({
                 }}
                 className="figma-style1-button w-full"
                 aria-label="ไม่ใช่, ลองอีกครั้ง"
+                style={{ minHeight: 44 }}
               >
                 <span className="figma-style1-button-text">ไม่ใช่, ลองอีกครั้ง</span>
               </button>
