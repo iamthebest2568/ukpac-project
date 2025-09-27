@@ -249,7 +249,7 @@ export function exportEventsAsCSV() {
   if (events.length === 0) return "";
 
   const headers = ["รหัสเซสชัน (sessionID)", "เวลา (timestamp)", "เหตุการณ์ (event)", "URL (url)", "ข้อมูล (data)"];
-  const csvRows = [headers.join(",")];
+  const csvRows = [headers.map((h) => `"${String(h || "").replace(/"/g, '""')}"`).join(",")];
 
   events.forEach((event) => {
     const row = [
@@ -307,7 +307,7 @@ export function exportSessionsAsCSV() {
     "เวลาแชร์ (shared_timestamp)",
   ];
 
-  const csvRows = [headers.join(",")];
+  const csvRows = [headers.map((h) => `"${String(h || "").replace(/"/g, '""')}"`).join(",")];
 
   Object.keys(sessions).forEach((sid) => {
     const evs = sessions[sid].sort(
