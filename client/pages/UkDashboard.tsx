@@ -192,7 +192,7 @@ export default function UkDashboard() {
       "เหตุผล_Stornaway (Stornaway)",
       "ความยอมรับ (accept)",
       "เหตุผล_Webapp (reason)",
-      "เหตุ��ล_อื่นๆ_Webapp (reason_other)",
+      "เหตุผล_อื่นๆ_Webapp (reason_other)",
       "ประเด็นนโยบาย (policy_topic)",
       "กลุ่มเป้าหมาย (target_group)",
       "พัฒนา_ลำดับ (dev_priority)",
@@ -385,7 +385,7 @@ export default function UkDashboard() {
                   {ingest.app.lastTs
                     ? new Date(ingest.app.lastTs).toLocaleString()
                     : "-"}{" "}
-                  • วิดีโอ: {ingest.video.count} เหตุก���รณ์, ล่าสุด{" "}
+                  • วิดีโอ: {ingest.video.count} เหตุการณ์, ล่าสุด{" "}
                   {ingest.video.lastTs
                     ? new Date(ingest.video.lastTs).toLocaleString()
                     : "-"}
@@ -436,6 +436,13 @@ export default function UkDashboard() {
                 title="ส่งเหตุการณ์ทดสอบไปยัง ukpack1"
               >
                 {isSending ? "กำลังส่..." : "Send Test Event (ukpack1)"}
+              </button>
+
+              <button
+                className="rounded-md bg-yellow-400 text-black px-3 py-2 rounded font-semibold"
+                onClick={() => exportMappedCsv(sessions)}
+              >
+                ดาวน์โหลด CSV (สรุป ภาษาไทย)
               </button>
 
               <button
@@ -848,7 +855,7 @@ export default function UkDashboard() {
                             </span>
                           </li>
                           <li className="flex justify-between">
-                            <span>กรอกข้อ���ูลติดต่อ</span>
+                            <span>กรอกข้อมูลติดต่อ</span>
                             <span className="text-white/70">
                               {journey.endseq?.contacts || 0}
                             </span>
@@ -931,10 +938,10 @@ export default function UkDashboard() {
                       "คุณใช้รถแบบไหนเดินทางเข้าเมือง ?",
                       "คุ��คิดเห็นอย่างไรกับนโยบายนี้ ?",
                       "จากข้อความข้างต้น คุณมีความคิดเห็นอย่างไร (เห็นด้วย/กลางๆ/ไม่เห็นด้วย)",
-                      "ทำไมคุณถึงคิดอย่างนั้น (นโยบายไม่ครอบคลุม / เก็บไปก็ไม่มีอะไรดีขึ้น / อื่นๆ)",
+                      "ทำไมคุณถึงคิดอย่างนั้น (นโยบายไม่ครอบคลุม / เก็บไปก็ไม่มีอะไรดีข���้น / อื่นๆ)",
                       "อธิบายอื่น ๆ ที่ช่วยอธิบายความคิดเห็น",
-                      "บอกเราหน่อยว่าคุณเดินทางเข้าเมืองด้วยวิธีการใดบ่อยที่สุด",
-                      "จากนโยบายที่คุณฟังเมื่อสักครู่ ��ุณมีความคิดเห็นอย่างไร",
+                      "บอกเร��หน่อยว่าคุณเดินทางเข้าเมืองด้วยวิธีการใดบ่อยที่สุด",
+                      "จากนโยบายที่คุณฟังเมื่อสักครู่ คุณมีความคิดเห็นอย่างไร",
                       "คุณคิดว่านโยบายปัจจุบัน ควรปรับเปลี่ยนประเด็นอะไรบาง (ลดค่าโดยสาร, ปรับปรุงคุณภาพ, ขึ้น���าคา, เพิ่มขบวน, เพิ่มความถี่ ฯลฯ)",
                       "คุณคิดว่าใครควรได้รับการลดค่าโดยสารรถไฟฟ���าบ้าง (ทุกคน, ผู้สูงอายุ, นักเรียน, คนทำงาน ฯลฯ)",
                       "คุณคิดว่าควรใช้เงินที่ได้จากการเก็บไปพัฒนาอะไร ก่อน 3 อันดับแรก",
