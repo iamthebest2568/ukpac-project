@@ -6,7 +6,7 @@
 import { useState } from "react";
 import { logEvent } from "../../../services/dataLogger.js";
 import FigmaStyle1Layout from "../../layouts/FigmaStyle1Layout.ukpack1";
-import "../../styles/minigame-mn1-overrides.css";
+import "../../../styles/minigame-mn1-overrides.css";
 
 interface Step1_PrioritiesProps {
   sessionID: string | null;
@@ -154,7 +154,7 @@ const Step1_Priorities = ({
             gap: "clamp(16px, 1.2vw, 24px)",
           }}
         >
-          {/* Row 1: ลดค่าโดยสารรถไฟฟ้า (gray), ปรับปรุงคุณภาพรถเมล์ (yellow) */}
+          {/* Row 1: ลดค่าโดยสารรถไฟฟ้า (gray), ปรับ���รุงคุณภาพรถเมล์ (yellow) */}
           <div className="flex" style={{ gap: "clamp(16px, 1.8vw, 19px)" }}>
             <button
               className="transition-all duration-200 flex items-center justify-center rounded-[40px] border-0"
@@ -178,7 +178,7 @@ const Step1_Priorities = ({
                   letterSpacing: "0.4px",
                 }}
               >
-                ลดค่าโดยสารรถไฟฟ้า
+                ลดค่าโด��สารรถไฟฟ้า
               </span>
             </button>
 
@@ -204,7 +204,7 @@ const Step1_Priorities = ({
                   letterSpacing: "0.4px",
                 }}
               >
-                ปรับปรุงคุณภาพรถเมล์
+                ปรับปรุงคุณภาพรถเม��์
               </span>
             </button>
           </div>
@@ -290,7 +290,7 @@ const Step1_Priorities = ({
             </button>
           </div>
 
-          {/* Row 3: เพิ่มความถี่รถไฟฟ้า (gray), เพิ่ม Feeder ในซอย (gray) */}
+          {/* Row 3: เพิ่มความถี่รถไฟฟ้า (gray), เพิ่ม Feeder ใ��ซอย (gray) */}
           <div className="flex" style={{ gap: "clamp(16px, 1.8vw, 19px)" }}>
             <button
               className="transition-all duration-200 flex items-center justify-center rounded-[40px] border-0"
@@ -314,7 +314,7 @@ const Step1_Priorities = ({
                   letterSpacing: "0.4px",
                 }}
               >
-                เพิ่มความถี่รถไฟฟ้า
+                เพิ่มความถี่รถไ��ฟ้า
               </span>
             </button>
 
