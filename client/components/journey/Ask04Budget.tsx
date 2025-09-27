@@ -160,7 +160,7 @@ const Ask04Budget = ({
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            transform: "translateY(75px)",
+            transform: "translateY(45px)",
           }}
         >
           {(() => {
