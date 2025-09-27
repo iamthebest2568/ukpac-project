@@ -574,10 +574,10 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 6px;
   }
-  .selectionGrid > button:nth-child(1) > div.iconContainer > div { width: 56% !important; }
-  .selectionGrid > button:nth-child(2) > div.iconContainer > div { width: 92% !important; }
-  .selectionGrid > button:nth-child(3) > div.iconContainer > div { width: 72% !important; }
-  .selectionGrid > button:nth-child(4) > div.iconContainer > div { width: 68% !important; }
+  .selectionRow:first-child > button:nth-child(1) > div.iconContainer > div { width: 52% !important; }
+  .selectionRow:first-child > button:nth-child(2) > div.iconContainer > div { width: 90% !important; }
+  .selectionRow:last-child > button:nth-child(1) > div.iconContainer > div { width: 74% !important; }
+  .selectionRow:last-child > button:nth-child(2) > div.iconContainer > div { width: 70% !important; }
 }
 
 /* Tablet (640px - 1023px) */
