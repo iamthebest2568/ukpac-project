@@ -28,7 +28,7 @@ const Ask04Budget = ({
   const handleChoice = (choice: "satisfied" | "unsatisfied") => {
     const choiceText = {
       satisfied: "พอใจ",
-      unsatisfied: "ไม่พอใจ",
+      unsatisfied: "���ม่พอใจ",
     }[choice];
 
     const data = { choice, choiceText };
@@ -153,12 +153,14 @@ const Ask04Budget = ({
       {/* Overlapping collage (copied from MN3 Step3_Result) */}
       <div className="w-full px-4 mb-6">
         <div
-          className="max-w-[980px] mx-auto relative"
+          className="max-w-[980px] mx-auto relative mn3-result-collage"
           style={{
-            height: 420,
+            minHeight: "65vh",
+            height: "auto",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
+            transform: "translateY(75px)",
           }}
         >
           {(() => {
