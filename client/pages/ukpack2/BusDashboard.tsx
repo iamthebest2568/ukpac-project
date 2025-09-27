@@ -33,9 +33,9 @@ const THAI_HEADERS = [
   // Prize
   "ลุ้นรางวัล (lucky_draw)",
   "ชื่อ (name)",
-  "เ��อร์ (phone)",
+  "เบอร์ (phone)",
   "เวลาส่งฟอร์ม (time_stamp2)",
-  "แชร์1 (share1)",
+  "แ��ร์1 (share1)",
 
   // End
   "เวลาสิ้นสุดเกม (time_stamp3)",
@@ -314,27 +314,27 @@ export default function BusDashboard() {
               <tr key={s.sessionId} className="odd:bg-white/5">
                 <td className="px-2 py-1">{s.ip || ""}</td>
                 <td className="px-2 py-1">{s.firstSeen || ""}</td>
-                <td className="px-2 py-1">{/* pdpa */}</td>
-                <td className="px-2 py-1">{/* bus_type */}</td>
-                <td className="px-2 py-1">{/* seat_total */}</td>
-                <td className="px-2 py-1">{/* seat_special */}</td>
-                <td className="px-2 py-1">{/* seat_child_elder */}</td>
-                <td className="px-2 py-1">{/* seat_pregnant */}</td>
-                <td className="px-2 py-1">{/* seat_monk */}</td>
-                <td className="px-2 py-1">{/* features */}</td>
-                <td className="px-2 py-1">{/* payment_type */}</td>
-                <td className="px-2 py-1">{/* door_pos */}</td>
-                <td className="px-2 py-1">{/* color */}</td>
-                <td className="px-2 py-1">{/* frequency */}</td>
-                <td className="px-2 py-1">{/* bus_line */}</td>
-                <td className="px-2 py-1">{/* area */}</td>
-                <td className="px-2 py-1">{/* use_service */}</td>
-                <td className="px-2 py-1">{/* reason_not_use */}</td>
-                <td className="px-2 py-1">{/* lucky_draw */}</td>
+                <td className="px-2 py-1">{perSessionData[String(s.sessionId || "")]?.pdpa_accept ? "ใช่" : "ไม่"}</td>
+                <td className="px-2 py-1">{perSessionData[String(s.sessionId || "")]?.bus_type || ""}</td>
+                <td className="px-2 py-1">{perSessionData[String(s.sessionId || "")]?.seat_total ?? ""}</td>
+                <td className="px-2 py-1">{perSessionData[String(s.sessionId || "")]?.seat_special ?? ""}</td>
+                <td className="px-2 py-1">{perSessionData[String(s.sessionId || "")]?.seat_child_elder ?? ""}</td>
+                <td className="px-2 py-1">{perSessionData[String(s.sessionId || "")]?.seat_pregnant ?? ""}</td>
+                <td className="px-2 py-1">{perSessionData[String(s.sessionId || "")]?.seat_monk ?? ""}</td>
+                <td className="px-2 py-1">{Array.isArray(perSessionData[String(s.sessionId || "")]?.features) ? perSessionData[String(s.sessionId || "")]?.features.join(" | ") : perSessionData[String(s.sessionId || "")]?.features || ""}</td>
+                <td className="px-2 py-1">{Array.isArray(perSessionData[String(s.sessionId || "")]?.payment_type) ? perSessionData[String(s.sessionId || "")]?.payment_type.join(" | ") : perSessionData[String(s.sessionId || "")]?.payment_type || ""}</td>
+                <td className="px-2 py-1">{perSessionData[String(s.sessionId || "")]?.door_pos || ""}</td>
+                <td className="px-2 py-1">{perSessionData[String(s.sessionId || "")]?.color || ""}</td>
+                <td className="px-2 py-1">{perSessionData[String(s.sessionId || "")]?.frequency ?? ""}</td>
+                <td className="px-2 py-1">{perSessionData[String(s.sessionId || "")]?.bus_line || ""}</td>
+                <td className="px-2 py-1">{perSessionData[String(s.sessionId || "")]?.area || ""}</td>
+                <td className="px-2 py-1">{perSessionData[String(s.sessionId || "")]?.use_service || ""}</td>
+                <td className="px-2 py-1">{perSessionData[String(s.sessionId || "")]?.reason_not_use || ""}</td>
+                <td className="px-2 py-1">{perSessionData[String(s.sessionId || "")]?.lucky_draw || ""}</td>
                 <td className="px-2 py-1">{s.contactName || ""}</td>
                 <td className="px-2 py-1">{s.contactPhone || ""}</td>
                 <td className="px-2 py-1">{s.lastSeen || ""}</td>
-                <td className="px-2 py-1">{/* share1 */}</td>
+                <td className="px-2 py-1">{perSessionData[String(s.sessionId || "")]?.share1 ? "ใช่" : "ไม่"}</td>
                 <td className="px-2 py-1">{s.lastSeen || ""}</td>
                 <td className="px-2 py-1">{s.sessionId}</td>
               </tr>
