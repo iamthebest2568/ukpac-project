@@ -17,10 +17,6 @@
   padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 20px) !important;
 }
 
-/* Ensure absolute-positioned sections inside the layout remain visible and scrollable */
-.minigame-mn1-page .figma-style1-content .absolute {
-  position: relative !important;
-}
 
 /* Keep primary action accessible: pin to bottom inside mockup without affecting other pages */
 .minigame-mn1-page .figma-style1-button-container {
