@@ -296,9 +296,7 @@
   padding: 0 !important;
   width: 100% !important; /* fill the column for consistent spacing */
   max-width: none !important;
-  height: var(
-    --icon-cell-height
-  ) !important; /* ensure button is same height as icon cell */
+  height: auto !important; /* allow button to size to content (icon) */
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -307,8 +305,8 @@
 }
 
 :::global(.doorControls) .selectionGrid > button > div.iconContainer {
-  height: 100% !important;
-  width: 100% !important; /* let the icon container fill the button */
+  height: auto !important;
+  width: 100% !important; /* keep full width but allow auto height */
   padding: 0 !important;
   display: flex !important;
   align-items: center !important;
@@ -317,14 +315,15 @@
 
 :::global(.doorControls) .selectionGrid img,
 :::global(.doorControls) .selectionGrid svg {
-  height: 100% !important;
+  height: auto !important;
   width: auto !important;
+  max-width: 80% !important;
   object-fit: contain !important;
 }
 
 /* Icon container: fixed uniform height, width flexible (fills column) */
 .selectionGrid > button > div.iconContainer {
-  height: var(--icon-cell-height) !important;
+  height: auto !important;
   width: 100% !important;
   display: flex;
   align-items: center;
@@ -337,12 +336,11 @@
 .selectionGrid > button svg,
 .selectionGrid img,
 .selectionGrid svg {
-  height: 100% !important;
-  max-height: none !important;
+  height: auto !important;
   width: auto !important;
+  max-width: 80% !important;
   object-fit: contain !important;
   display: block !important;
-  max-width: 100%;
 }
 
 /* allow labels below icon to take natural space; grid rows will size accordingly */
