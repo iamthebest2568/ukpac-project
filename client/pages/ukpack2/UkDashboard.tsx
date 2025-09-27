@@ -133,10 +133,12 @@ const UkDashboard: React.FC = () => {
       // fetch public submissions (landing assets) with fallbacks
       try {
         const rawCandidates2 = [
-          window.location.origin + "/api/public-submissions?limit=20",
           "/api/public-submissions?limit=20",
           "./.netlify/functions/api/public-submissions?limit=20",
+          window.location.origin + "/api/public-submissions?limit=20",
         ];
+
+        console.debug("public-submissions candidates:", rawCandidates2);
 
         let j2 = null;
         try {
