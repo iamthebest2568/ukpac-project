@@ -42,6 +42,8 @@ const MiniGameMN01Page = lazy(() => import("./pages/ukpack1/MiniGameMN01Page"));
 import MiniGameMN3Page from "./pages/MiniGameMN3Page";
 const UkStornaway = lazy(() => import("./pages/ukpack1/Uk-stornaway"));
 const UkDashboard = lazy(() => import("./pages/ukpack1/UkDashboard"));
+const UkPact1Dashboard = lazy(() => import("./pages/ukpack1/ukpact1-dashboard"));
+const UkPact2Dashboard = lazy(() => import("./pages/ukpack2/ukpact2-dashboard"));
 const ReasonOther01Page = lazy(
   () => import("./pages/ukpack1/ReasonOther01Page"),
 );
@@ -106,10 +108,7 @@ import EndSequenceSkeleton, {
 } from "./components/shared/skeletons/EndSkeletons";
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
-  const isDashboard =
-    /^\/ukpack1\/(uk-dashboard|ukdashboard\.html|UkDashboard)$/.test(
-      location.pathname,
-    );
+  const isDashboard = /^\/(?:ukpack1\/(?:uk-dashboard|ukdashboard\.html|UkDashboard|ukpact1-dashboard)|ukpack2\/(?:dashboard|ukpact2-dashboard))$/.test(location.pathname);
 
   // Page view / navigation logging for ukpack2
   const prevPathRef = React.useRef<string | null>(null);
@@ -396,6 +395,10 @@ const App = () => {
                   path="/ukpack2/dashboard"
                   element={<UkPack2Dashboard />}
                 />
+                <Route
+                  path="/ukpack2/ukpact2-dashboard"
+                  element={<UkPact2Dashboard />}
+                />
                 <Route path="/ukpack2/chassis" element={<ChassisScreen />} />
                 <Route path="/ukpack2/seating" element={<SeatingScreen />} />
                 <Route
@@ -591,6 +594,14 @@ const App = () => {
                   element={
                     <Suspense fallback={<SuspenseFallback />}>
                       <UkDashboard />
+                    </Suspense>
+                  }
+                />
+                <Route
+                  path="/ukpack1/ukpact1-dashboard"
+                  element={
+                    <Suspense fallback={<SuspenseFallback />}>
+                      <UkPact1Dashboard />
                     </Suspense>
                   }
                 />
