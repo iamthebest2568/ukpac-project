@@ -13,7 +13,7 @@ import {
 } from "react-router-dom";
 import { BusDesignProvider } from "./pages/ukpack2/context/BusDesignContext";
 const TabletMockupUk2 = React.lazy(() => import("./pages/ukpack2/components/TabletMockup"));
-const TabletMockupUk1 = React.lazy(() => import("./pages/ukpack1/components/TabletMockup"));
+const DesktopMockupUk1 = React.lazy(() => import("./pages/ukpack1/components/DesktopMockup"));
 
 // Minimal set of pages (dashboard/backend removed)
 const NotFound = lazy(() => import("./pages/NotFound"));
