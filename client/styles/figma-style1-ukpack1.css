@@ -1608,22 +1608,24 @@ body[data-dialog-open] {
   text-align: center !important;
 }
 
-/* Source Selection — strict button layout (page-scoped) */
+/* Source Selection — compact button layout (scoped to page) */
 .figma-style1-container.source-selection-page .source-selection-root,
 .figma-style1-container.source-selection-page .source-selection-root > div {
   width: 100%;
 }
 .figma-style1-container.source-selection-page .source-selection-root > div > div {
   grid-template-columns: repeat(3, 1fr) !important;
-  gap: 12px !important;
+  gap: 10px !important;
   align-items: stretch !important;
 }
+
+/* Desktop / tablet: compact buttons with reduced width */
 .figma-style1-container.source-selection-page .source-selection-root .figma-style1-button,
 .figma-style1-container.source-selection-page .source-selection-root .figma-style1-button--primary,
 .figma-style1-container.source-selection-page .source-selection-root .figma-style1-button--secondary {
   padding: 6px 10px !important;
-  min-height: 55px !important;
-  max-height: 55px !important;
+  min-height: 48px !important;
+  max-height: 48px !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -1631,8 +1633,10 @@ body[data-dialog-open] {
   overflow: hidden !important;
   white-space: normal !important;
   word-break: break-word !important;
-  font-size: 13px !important;
+  font-size: 12px !important;
   line-height: 1.1 !important;
+  max-width: 240px !important; /* shrink visual width inside 1fr cell */
+  margin: 0 auto !important;
 }
 .figma-style1-container.source-selection-page .source-selection-root .figma-style1-button {
   width: 100% !important;
@@ -1653,6 +1657,21 @@ body[data-dialog-open] {
 }
 .figma-style1-container.source-selection-page .figma-style1-button--selected {
   transform: none !important;
+}
+
+/* Mobile: allow full width buttons for small screens */
+@media (max-width: 430px) {
+  .figma-style1-container.source-selection-page .source-selection-root > div > div {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
+  .figma-style1-container.source-selection-page .source-selection-root .figma-style1-button {
+    max-width: 100% !important;
+    min-height: 54px !important;
+    max-height: 54px !important;
+    font-size: 14px !important;
+    margin: 0 !important;
+  }
 }
 
 /* end source-selection block */
