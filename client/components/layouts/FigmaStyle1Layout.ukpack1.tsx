@@ -42,7 +42,8 @@ const FigmaStyle1Layout = ({
     const isAndroid = /Android/i.test(ua);
     const isIPad =
       /iPad/.test(ua) ||
-      (navigator.platform === "MacIntel" && typeof (window as any).ontouchend === "object");
+      (navigator.platform === "MacIntel" &&
+        typeof (window as any).ontouchend === "object");
     const isIPhone = /iPhone/.test(ua);
     if (isAndroid) setPlatformClass("is-android");
     else if (isIPhone || isIPad) setPlatformClass("is-ios");
@@ -79,15 +80,21 @@ const FigmaStyle1Layout = ({
     <div
       className={`figma-style1-container ${className} ${platformClass} ${pageScope} ${(() => {
         try {
-          const p = typeof window !== "undefined" ? window.location.pathname || "" : "";
-          return pageScope && !p.startsWith("/ukpack1/minigame-mn2") ? "fake-news-page" : "";
+          const p =
+            typeof window !== "undefined" ? window.location.pathname || "" : "";
+          return pageScope && !p.startsWith("/ukpack1/minigame-mn2")
+            ? "fake-news-page"
+            : "";
         } catch {
           return pageScope ? "fake-news-page" : "";
         }
       })()}`}
     >
       <div className="figma-style1-content">
-        <div className="figma-style1-background" style={{ backgroundImage: "none" }}>
+        <div
+          className="figma-style1-background"
+          style={{ backgroundImage: "none" }}
+        >
           {backgroundImage
             ? (() => {
                 const setWidth = (url: string, w: number) => {
@@ -116,7 +123,9 @@ const FigmaStyle1Layout = ({
                     decoding="async"
                     style={{
                       objectFit: "cover",
-                      objectPosition: pageScope.includes("figma-style1-ukpack1") ? "center 8%" : "center center",
+                      objectPosition: pageScope.includes("figma-style1-ukpack1")
+                        ? "center 8%"
+                        : "center center",
                       width: "100%",
                       height: "100%",
                     }}
@@ -126,7 +135,9 @@ const FigmaStyle1Layout = ({
             : null}
 
           {useBlueOverlay ? (
-            <div className={`figma-style1-background-overlay figma-style1-background-overlay--blue`} />
+            <div
+              className={`figma-style1-background-overlay figma-style1-background-overlay--blue`}
+            />
           ) : null}
         </div>
 
@@ -143,21 +154,48 @@ const FigmaStyle1Layout = ({
                     className="w-[50px] h-[50px] rounded-full flex items-center justify-center mb-2 shadow-lg"
                     style={{ backgroundColor: "#FFE000" }}
                   >
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z" fill="black" />
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"
+                        fill="black"
+                      />
                     </svg>
                   </div>
-                  <span className="text-black font-prompt text-sm font-medium">ดูอีกครั้ง</span>
+                  <span className="text-black font-prompt text-sm font-medium">
+                    ดูอีกครั้ง
+                  </span>
                 </div>
               </button>
             </div>
           )}
 
-          <div className={`figma-style1-content-area ${!title ? "justify-center" : ""}`}>
+          <div
+            className={`figma-style1-content-area ${!title ? "justify-center" : ""}`}
+          >
             {title && (
-              <div className="figma-style1-title-container" style={{ marginTop: isSourceSelection ? "32px" : undefined }}>
-                <h1 className={`figma-style1-title ${isSourceSelection ? "figma-style1-title--black" : ""}`} style={isSourceSelection ? { fontSize: "36px", lineHeight: 1.05 } : undefined}>
-                  {typeof title === "string" ? <p style={{ margin: 0 }}>{title}</p> : title}
+              <div
+                className="figma-style1-title-container"
+                style={{ marginTop: isSourceSelection ? "32px" : undefined }}
+              >
+                <h1
+                  className={`figma-style1-title ${isSourceSelection ? "figma-style1-title--black" : ""}`}
+                  style={
+                    isSourceSelection
+                      ? { fontSize: "36px", lineHeight: 1.05 }
+                      : undefined
+                  }
+                >
+                  {typeof title === "string" ? (
+                    <p style={{ margin: 0 }}>{title}</p>
+                  ) : (
+                    title
+                  )}
                 </h1>
               </div>
             )}
@@ -168,17 +206,32 @@ const FigmaStyle1Layout = ({
               <>
                 <div className="figma-style1-button-container">
                   {buttons?.map((button, index) => (
-    <Fragment key={index}>
-      <Uk1Button onClick={button.onClick} aria-describedby={button.ariaLabel ? `button-description-${index}` : undefined}>
-        {typeof button.text === "string" && button.text.trim() === "อื่นๆ" ? <p style={{ margin: 0 }}>อื่น ๆ</p> : button.text}
-      </Uk1Button>
-      {button.ariaLabel && (
-        <div id={`button-description-${index}`} className="figma-style1-sr-only">
-          {button.ariaLabel}
-        </div>
-      )}
-    </Fragment>
-  ))}
+                    <Fragment key={index}>
+                      <Uk1Button
+                        onClick={button.onClick}
+                        aria-describedby={
+                          button.ariaLabel
+                            ? `button-description-${index}`
+                            : undefined
+                        }
+                      >
+                        {typeof button.text === "string" &&
+                        button.text.trim() === "อื่นๆ" ? (
+                          <p style={{ margin: 0 }}>อื่น ๆ</p>
+                        ) : (
+                          button.text
+                        )}
+                      </Uk1Button>
+                      {button.ariaLabel && (
+                        <div
+                          id={`button-description-${index}`}
+                          className="figma-style1-sr-only"
+                        >
+                          {button.ariaLabel}
+                        </div>
+                      )}
+                    </Fragment>
+                  ))}
                 </div>
               </>
             )}

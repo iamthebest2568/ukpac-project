@@ -184,9 +184,12 @@ export const BusDesignProvider = ({ children }: { children: ReactNode }) => {
                 chassis: full.chassis || null,
                 timestamp: full.timestamp || Date.now(),
                 color: full.exterior?.color || null,
-                imageUrl: typeof full.imageUrl === "string" ? full.imageUrl : undefined,
+                imageUrl:
+                  typeof full.imageUrl === "string" ? full.imageUrl : undefined,
                 seating: { totalSeats: full.seating?.totalSeats ?? undefined },
-                overlayCount: Array.isArray(full.overlayLabels) ? full.overlayLabels.length : undefined,
+                overlayCount: Array.isArray(full.overlayLabels)
+                  ? full.overlayLabels.length
+                  : undefined,
               };
             } catch (_) {
               return { timestamp: full.timestamp || Date.now() };
@@ -196,7 +199,8 @@ export const BusDesignProvider = ({ children }: { children: ReactNode }) => {
           const trySerialize = (obj: any) => {
             try {
               const s = JSON.stringify(obj);
-              if (s.length > 120 * 1024) return JSON.stringify(minimizeSubmission(obj));
+              if (s.length > 120 * 1024)
+                return JSON.stringify(minimizeSubmission(obj));
               return s;
             } catch (_) {
               return JSON.stringify(minimizeSubmission(obj));
@@ -223,9 +227,9 @@ export const BusDesignProvider = ({ children }: { children: ReactNode }) => {
           // Attempt to persist, and on quota errors try trimming oldest entries and retrying
           try {
             localStorage.setItem(
-                    "ukpack2_pending_submissions",
-                    trySerialize(pending),
-                  );
+              "ukpack2_pending_submissions",
+              trySerialize(pending),
+            );
           } catch (e) {
             // If quota exceeded, iteratively remove oldest items and retry
             if (isQuotaExceeded(e)) {

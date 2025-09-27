@@ -61,14 +61,14 @@ const PdpaScreen: React.FC = () => {
 
           <p>&nbsp;</p>
 
-          <p className="font-semibold">
-            หากต้องการสอบถามหรือลบข้อมูลของท่าน
-          </p>
+          <p className="font-semibold">หากต้องการสอบถามหรือลบข้อมูลของท่าน</p>
 
           <p className="font-semibold">
             สามารถติดต่อได้ที่: บริษัท ทูลมอโร จำกัด
-            <br />อีเมล media.toolmorrow@gmail.com
-            <br />โทร 081 166 7138
+            <br />
+            อีเมล media.toolmorrow@gmail.com
+            <br />
+            โทร 081 166 7138
           </p>
         </div>
       </div>

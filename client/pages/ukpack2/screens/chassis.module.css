@@ -252,7 +252,10 @@
   }
   .selectionGrid {
     --icon-cell-height: 220px; /* larger icon height on desktop */
-    grid-template-columns: repeat(2, 1fr); /* force 2 columns on desktop as well */
+    grid-template-columns: repeat(
+      2,
+      1fr
+    ); /* force 2 columns on desktop as well */
     gap: 6px; /* tighter gap on larger screens */
     padding: 0; /* ensure grid stretches to border */
     justify-content: start;
@@ -574,10 +577,18 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 6px;
   }
-  .selectionRow:first-child > button:nth-child(1) > div.iconContainer > div { width: 32% !important; }
-  .selectionRow:first-child > button:nth-child(2) > div.iconContainer > div { width: 90% !important; }
-  .selectionRow:last-child > button:nth-child(1) > div.iconContainer > div { width: 74% !important; }
-  .selectionRow:last-child > button:nth-child(2) > div.iconContainer > div { width: 70% !important; }
+  .selectionRow:first-child > button:nth-child(1) > div.iconContainer > div {
+    width: 32% !important;
+  }
+  .selectionRow:first-child > button:nth-child(2) > div.iconContainer > div {
+    width: 90% !important;
+  }
+  .selectionRow:last-child > button:nth-child(1) > div.iconContainer > div {
+    width: 74% !important;
+  }
+  .selectionRow:last-child > button:nth-child(2) > div.iconContainer > div {
+    width: 70% !important;
+  }
 }
 
 /* Tablet (640px - 1023px) */
@@ -587,10 +598,18 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 8px;
   }
-  .selectionRow:first-child > button:nth-child(1) > div.iconContainer > div { width: 34% !important; }
-  .selectionRow:first-child > button:nth-child(2) > div.iconContainer > div { width: 92% !important; }
-  .selectionRow:last-child > button:nth-child(1) > div.iconContainer > div { width: 78% !important; }
-  .selectionRow:last-child > button:nth-child(2) > div.iconContainer > div { width: 74% !important; }
+  .selectionRow:first-child > button:nth-child(1) > div.iconContainer > div {
+    width: 34% !important;
+  }
+  .selectionRow:first-child > button:nth-child(2) > div.iconContainer > div {
+    width: 92% !important;
+  }
+  .selectionRow:last-child > button:nth-child(1) > div.iconContainer > div {
+    width: 78% !important;
+  }
+  .selectionRow:last-child > button:nth-child(2) > div.iconContainer > div {
+    width: 74% !important;
+  }
 }
 
 /* Desktop (>=1024px) */
@@ -600,10 +619,18 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 6px;
   }
-  .selectionRow:first-child > button:nth-child(1) > div.iconContainer > div { width: 36% !important; }
-  .selectionRow:first-child > button:nth-child(2) > div.iconContainer > div { width: 92% !important; }
-  .selectionRow:last-child > button:nth-child(1) > div.iconContainer > div { width: 80% !important; }
-  .selectionRow:last-child > button:nth-child(2) > div.iconContainer > div { width: 76% !important; }
+  .selectionRow:first-child > button:nth-child(1) > div.iconContainer > div {
+    width: 36% !important;
+  }
+  .selectionRow:first-child > button:nth-child(2) > div.iconContainer > div {
+    width: 92% !important;
+  }
+  .selectionRow:last-child > button:nth-child(1) > div.iconContainer > div {
+    width: 80% !important;
+  }
+  .selectionRow:last-child > button:nth-child(2) > div.iconContainer > div {
+    width: 76% !important;
+  }
 }
 
 /* Selected state: slight grow without changing height */
@@ -666,7 +693,9 @@
 .selectionRow button svg {
   /* limit visible icon height but keep intrinsic aspect ratio */
   height: auto !important;
-  max-height: calc(var(--icon-cell-height) * 0.92) !important; /* keep a small padding */
+  max-height: calc(
+    var(--icon-cell-height) * 0.92
+  ) !important; /* keep a small padding */
   width: auto !important;
   max-width: 100% !important;
   object-fit: contain !important;

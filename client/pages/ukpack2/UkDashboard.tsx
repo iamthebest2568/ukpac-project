@@ -42,7 +42,10 @@ const UkDashboard: React.FC = () => {
       setEventsSample(all.slice(-10).reverse());
 
       // Helper: try fetching JSON from multiple candidate URLs with timeout and absolute normalization
-      async function tryFetchJsonWithFallback(rawPaths: string[], timeout = 8000) {
+      async function tryFetchJsonWithFallback(
+        rawPaths: string[],
+        timeout = 8000,
+      ) {
         const normalize = (p: string) => {
           try {
             return new URL(p, window.location.origin).toString();
@@ -55,7 +58,10 @@ const UkDashboard: React.FC = () => {
           try {
             const controller = new AbortController();
             const id = setTimeout(() => controller.abort(), timeout);
-            const resp = await fetch(p, { credentials: "same-origin", signal: controller.signal });
+            const resp = await fetch(p, {
+              credentials: "same-origin",
+              signal: controller.signal,
+            });
             clearTimeout(id);
             if (!resp.ok) {
               const body = await resp.text().catch(() => null);
@@ -578,7 +584,7 @@ const UkDashboard: React.FC = () => {
                 <div>Sent: {lastSentResult.sentCount}</div>
                 <div>Skipped: {lastSentResult.skippedCount}</div>
                 <div>
-                  Errors: {" "}
+                  Errors:{" "}
                   {lastSentResult.errors && lastSentResult.errors.length}
                 </div>
                 <div className="mt-2">Sample sent items:</div>

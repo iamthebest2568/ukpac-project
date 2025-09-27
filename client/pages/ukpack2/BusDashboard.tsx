@@ -50,7 +50,9 @@ function sanitizeCell(v: any) {
   if (typeof v === "boolean") return v ? "ใช่" : "ไม่";
   try {
     // normalize and strip control chars
-    return String(v).normalize("NFC").replace(/[\u0000-\u001F\u007F]/g, "");
+    return String(v)
+      .normalize("NFC")
+      .replace(/[\u0000-\u001F\u007F]/g, "");
   } catch (e) {
     return String(v);
   }
@@ -74,7 +76,9 @@ export default function BusDashboard() {
   const [error, setError] = useState<string | null>(null);
 
   // cache of merged payloads per session for table UI
-  const [perSessionData, setPerSessionData] = useState<Record<string, Record<string, any>>>({});
+  const [perSessionData, setPerSessionData] = useState<
+    Record<string, Record<string, any>>
+  >({});
 
   useEffect(() => {
     let mounted = true;
@@ -105,7 +109,10 @@ export default function BusDashboard() {
     (async () => {
       const results: Record<string, Record<string, any>> = {};
       for (const s of toFetch) {
-        const sid = s.sessionId || s.sessionId === 0 ? String(s.sessionId) : s.sessionId || "";
+        const sid =
+          s.sessionId || s.sessionId === 0
+            ? String(s.sessionId)
+            : s.sessionId || "";
         if (!sid) continue;
         try {
           const detail = await fetchSessionDetail(sid);
@@ -131,7 +138,9 @@ export default function BusDashboard() {
       }
       if (mounted) setPerSessionData((prev) => ({ ...prev, ...results }));
     })();
-    return () => { mounted = false; };
+    return () => {
+      mounted = false;
+    };
   }, [sessions]);
 
   const exportCsv = async () => {
@@ -147,7 +156,10 @@ export default function BusDashboard() {
       // iterate sessions and fetch per-session details to map fields
       for (let i = 0; i < sessions.length; i++) {
         const s = sessions[i];
-        const sid = s.sessionId || s.sessionId === 0 ? String(s.sessionId) : s.sessionId || s.sessionId || "";
+        const sid =
+          s.sessionId || s.sessionId === 0
+            ? String(s.sessionId)
+            : s.sessionId || s.sessionId || "";
         // basic meta
         const ip = sanitizeCell(s.ip || "");
         const time_stamp = sanitizeCell(s.firstSeen || "");
@@ -168,7 +180,8 @@ export default function BusDashboard() {
             }
             // also copy event-specific fields
             if (ev.event && ev.event === "PDPA_ACCEPT") {
-              merged["pdpa_accept"] = ev.payload?.accepted === true ? true : merged["pdpa_accept"];
+              merged["pdpa_accept"] =
+                ev.payload?.accepted === true ? true : merged["pdpa_accept"];
             }
           } catch (e) {}
         }
@@ -187,7 +200,8 @@ export default function BusDashboard() {
         const bus_type = pick(["bus_type", "ประเภทรถ"]) || "";
         const seat_total = pick(["seat_total", "ที่นั่งทั้งหมด"]) || "";
         const seat_special = pick(["seat_special", "ที่นั่งพิเศษ"]) || "";
-        const seat_child_elder = pick(["seat_child_elder", "seat_child_elder"]) || "";
+        const seat_child_elder =
+          pick(["seat_child_elder", "seat_child_elder"]) || "";
         const seat_pregnant = pick(["seat_pregnant"]) || "";
         const seat_monk = pick(["seat_monk"]) || "";
         const features = pick(["features"]) || "";
@@ -204,7 +218,11 @@ export default function BusDashboard() {
         const lucky_draw = pick(["lucky_draw"]) || "";
         const name = pick(["name"]) || pick(["user_name"]) || "";
         const phone = pick(["phone"]) || pick(["user_phone"]) || "";
-        const time_stamp2 = pick(["time_stamp2"]) || pick(["formSubmittedAt"]) || s.lastSeen || "";
+        const time_stamp2 =
+          pick(["time_stamp2"]) ||
+          pick(["formSubmittedAt"]) ||
+          s.lastSeen ||
+          "";
         const share1 = pick(["share1"]) || "";
         const time_stamp3 = pick(["time_stamp3"]) || s.lastSeen || "";
 
@@ -253,11 +271,17 @@ export default function BusDashboard() {
       }
 
       // build CSV
-      const csv = rows.map((r) => r.map((c) => {
-        const s = String(c ?? "");
-        if (/[",\n]/.test(s)) return '"' + s.replace(/"/g, '""') + '"';
-        return s;
-      }).join(",")).join("\n");
+      const csv = rows
+        .map((r) =>
+          r
+            .map((c) => {
+              const s = String(c ?? "");
+              if (/[",\n]/.test(s)) return '"' + s.replace(/"/g, '""') + '"';
+              return s;
+            })
+            .join(","),
+        )
+        .join("\n");
 
       const bom = "\uFEFF";
       const blob = new Blob([bom + csv], { type: "text/csv;charset=utf-8;" });
@@ -281,7 +305,9 @@ export default function BusDashboard() {
 
   return (
     <div className="p-4">
-      <h1 className="text-2xl font-semibold mb-4">Ukpack2 — Bus Dashboard (เรียบง่าย)</h1>
+      <h1 className="text-2xl font-semibold mb-4">
+        Ukpack2 — Bus Dashboard (เรียบง่าย)
+      </h1>
       <div className="mb-4">
         <button
           className="mr-2 rounded bg-[#EFBA31] px-4 py-2 font-medium"
@@ -305,7 +331,9 @@ export default function BusDashboard() {
           <thead>
             <tr>
               {THAI_HEADERS.map((h) => (
-                <th key={h} className="text-left px-2 py-1 border-b">{h}</th>
+                <th key={h} className="text-left px-2 py-1 border-b">
+                  {h}
+                </th>
               ))}
             </tr>
           </thead>
@@ -314,27 +342,84 @@ export default function BusDashboard() {
               <tr key={s.sessionId} className="odd:bg-white/5">
                 <td className="px-2 py-1">{s.ip || ""}</td>
                 <td className="px-2 py-1">{s.firstSeen || ""}</td>
-                <td className="px-2 py-1">{perSessionData[String(s.sessionId || "")]?.pdpa_accept ? "ใช่" : "ไม่"}</td>
-                <td className="px-2 py-1">{perSessionData[String(s.sessionId || "")]?.bus_type || ""}</td>
-                <td className="px-2 py-1">{perSessionData[String(s.sessionId || "")]?.seat_total ?? ""}</td>
-                <td className="px-2 py-1">{perSessionData[String(s.sessionId || "")]?.seat_special ?? ""}</td>
-                <td className="px-2 py-1">{perSessionData[String(s.sessionId || "")]?.seat_child_elder ?? ""}</td>
-                <td className="px-2 py-1">{perSessionData[String(s.sessionId || "")]?.seat_pregnant ?? ""}</td>
-                <td className="px-2 py-1">{perSessionData[String(s.sessionId || "")]?.seat_monk ?? ""}</td>
-                <td className="px-2 py-1">{Array.isArray(perSessionData[String(s.sessionId || "")]?.features) ? perSessionData[String(s.sessionId || "")]?.features.join(" | ") : perSessionData[String(s.sessionId || "")]?.features || ""}</td>
-                <td className="px-2 py-1">{Array.isArray(perSessionData[String(s.sessionId || "")]?.payment_type) ? perSessionData[String(s.sessionId || "")]?.payment_type.join(" | ") : perSessionData[String(s.sessionId || "")]?.payment_type || ""}</td>
-                <td className="px-2 py-1">{perSessionData[String(s.sessionId || "")]?.door_pos || ""}</td>
-                <td className="px-2 py-1">{perSessionData[String(s.sessionId || "")]?.color || ""}</td>
-                <td className="px-2 py-1">{perSessionData[String(s.sessionId || "")]?.frequency ?? ""}</td>
-                <td className="px-2 py-1">{perSessionData[String(s.sessionId || "")]?.bus_line || ""}</td>
-                <td className="px-2 py-1">{perSessionData[String(s.sessionId || "")]?.area || ""}</td>
-                <td className="px-2 py-1">{perSessionData[String(s.sessionId || "")]?.use_service || ""}</td>
-                <td className="px-2 py-1">{perSessionData[String(s.sessionId || "")]?.reason_not_use || ""}</td>
-                <td className="px-2 py-1">{perSessionData[String(s.sessionId || "")]?.lucky_draw || ""}</td>
+                <td className="px-2 py-1">
+                  {perSessionData[String(s.sessionId || "")]?.pdpa_accept
+                    ? "ใช่"
+                    : "ไม่"}
+                </td>
+                <td className="px-2 py-1">
+                  {perSessionData[String(s.sessionId || "")]?.bus_type || ""}
+                </td>
+                <td className="px-2 py-1">
+                  {perSessionData[String(s.sessionId || "")]?.seat_total ?? ""}
+                </td>
+                <td className="px-2 py-1">
+                  {perSessionData[String(s.sessionId || "")]?.seat_special ??
+                    ""}
+                </td>
+                <td className="px-2 py-1">
+                  {perSessionData[String(s.sessionId || "")]
+                    ?.seat_child_elder ?? ""}
+                </td>
+                <td className="px-2 py-1">
+                  {perSessionData[String(s.sessionId || "")]?.seat_pregnant ??
+                    ""}
+                </td>
+                <td className="px-2 py-1">
+                  {perSessionData[String(s.sessionId || "")]?.seat_monk ?? ""}
+                </td>
+                <td className="px-2 py-1">
+                  {Array.isArray(
+                    perSessionData[String(s.sessionId || "")]?.features,
+                  )
+                    ? perSessionData[String(s.sessionId || "")]?.features.join(
+                        " | ",
+                      )
+                    : perSessionData[String(s.sessionId || "")]?.features || ""}
+                </td>
+                <td className="px-2 py-1">
+                  {Array.isArray(
+                    perSessionData[String(s.sessionId || "")]?.payment_type,
+                  )
+                    ? perSessionData[
+                        String(s.sessionId || "")
+                      ]?.payment_type.join(" | ")
+                    : perSessionData[String(s.sessionId || "")]?.payment_type ||
+                      ""}
+                </td>
+                <td className="px-2 py-1">
+                  {perSessionData[String(s.sessionId || "")]?.door_pos || ""}
+                </td>
+                <td className="px-2 py-1">
+                  {perSessionData[String(s.sessionId || "")]?.color || ""}
+                </td>
+                <td className="px-2 py-1">
+                  {perSessionData[String(s.sessionId || "")]?.frequency ?? ""}
+                </td>
+                <td className="px-2 py-1">
+                  {perSessionData[String(s.sessionId || "")]?.bus_line || ""}
+                </td>
+                <td className="px-2 py-1">
+                  {perSessionData[String(s.sessionId || "")]?.area || ""}
+                </td>
+                <td className="px-2 py-1">
+                  {perSessionData[String(s.sessionId || "")]?.use_service || ""}
+                </td>
+                <td className="px-2 py-1">
+                  {perSessionData[String(s.sessionId || "")]?.reason_not_use ||
+                    ""}
+                </td>
+                <td className="px-2 py-1">
+                  {perSessionData[String(s.sessionId || "")]?.lucky_draw || ""}
+                </td>
                 <td className="px-2 py-1">{s.contactName || ""}</td>
                 <td className="px-2 py-1">{s.contactPhone || ""}</td>
                 <td className="px-2 py-1">{s.lastSeen || ""}</td>
-                <td className="px-2 py-1">{perSessionData[String(s.sessionId || "")]?.share1 ? "ใช่" : "ไม่"}</td>
+                <td className="px-2 py-1">
+                  {perSessionData[String(s.sessionId || "")]?.share1
+                    ? "ใช่"
+                    : "ไม่"}
+                </td>
                 <td className="px-2 py-1">{s.lastSeen || ""}</td>
                 <td className="px-2 py-1">{s.sessionId}</td>
               </tr>

@@ -162,14 +162,29 @@
 }
 
 /* Ensure vehicle preview stays centered and not stretched */
-.embedded-ukpack2 .previewInner { display: flex !important; align-items: center !important; justify-content: center !important; }
-.embedded-ukpack2 .vehicle-preview, .embedded-ukpack2 .vehicle-preview img { max-width: 100% !important; height: auto !important; }
+.embedded-ukpack2 .previewInner {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+.embedded-ukpack2 .vehicle-preview,
+.embedded-ukpack2 .vehicle-preview img {
+  max-width: 100% !important;
+  height: auto !important;
+}
 
 /* Reduce selectionGrid columns to avoid dense multi-column that breaks layout */
-.embedded-ukpack2 .selectionGrid { grid-template-columns: repeat(2, 1fr) !important; }
+.embedded-ukpack2 .selectionGrid {
+  grid-template-columns: repeat(2, 1fr) !important;
+}
 
 /* Ensure tabs remain above frame and centered within the reduced width */
-.embedded-ukpack2 .tabsWrapper { width: 100% !important; max-width: 760px !important; margin-left: auto !important; margin-right: auto !important; }
+.embedded-ukpack2 .tabsWrapper {
+  width: 100% !important;
+  max-width: 760px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
 
 /* ---------- responsive-utils ukpack2 snippets (copied) ---------- */
 @media (min-width: 768px) {
@@ -238,7 +253,9 @@
 }
 
 /* Splash responsive tweaks */
-body.page-ukpack2 .splash-top { background-color: transparent; }
+body.page-ukpack2 .splash-top {
+  background-color: transparent;
+}
 
 @media (max-width: 640px) {
   body.page-ukpack2 .splash-top {
@@ -365,7 +382,11 @@ body.page-ukpack2 .figma-style1-container * {
 
 /* Uk2 footer wrapper defaults */
 body.page-ukpack2 .uk2-footer-wrapper {
-  background: linear-gradient(180deg, rgba(0,213,249,0.12), #00D5F9) !important;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 213, 249, 0.12),
+    #00d5f9
+  ) !important;
   padding-top: 12px !important;
   padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px)) !important;
   box-shadow: none !important;

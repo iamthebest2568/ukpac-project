@@ -20,7 +20,8 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
   }));
 
   useEffect(() => {
-    const onResize = () => setWin({ w: window.innerWidth, h: window.innerHeight });
+    const onResize = () =>
+      setWin({ w: window.innerWidth, h: window.innerHeight });
     onResize();
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
@@ -100,7 +101,10 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
   if (typeof document === "undefined") return <>{children}</>;
 
   const mockup = (
-    <div className="fixed inset-0 grid place-items-center w-screen h-screen bg-neutral-100/40 overflow-hidden" style={{ zIndex: 2147483647, pointerEvents: 'none' }}>
+    <div
+      className="fixed inset-0 grid place-items-center w-screen h-screen bg-neutral-100/40 overflow-hidden"
+      style={{ zIndex: 2147483647, pointerEvents: "none" }}
+    >
       <div
         ref={frameRef}
         className="relative"
@@ -113,13 +117,13 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
           maxHeight: "100vh",
           transition: "none",
           visibility: "visible",
-          pointerEvents: 'auto'
+          pointerEvents: "auto",
         }}
         aria-label="desktop-mockup"
       >
         <div
           className="rounded-[48px] border-[2px] border-neutral-300 shadow-2xl drop-shadow-lg bg-neutral-200/60 p-2"
-          style={{ width: "100%", height: "100%", pointerEvents: 'auto' }}
+          style={{ width: "100%", height: "100%", pointerEvents: "auto" }}
         >
           {/* Inner bezel */}
           <div
@@ -134,7 +138,7 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
                 width: `${BASE_W}px`,
                 height: `${BASE_H}px`,
                 aspectRatio: `${BASE_W} / ${BASE_H}`,
-                pointerEvents: 'auto'
+                pointerEvents: "auto",
               }}
               onClickCapture={(e: React.MouseEvent) => {
                 try {
@@ -177,7 +181,17 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
             </div>
 
             <div
-              style={{ position: "absolute", bottom: 8, left: "50%", transform: "translateX(-50%)", height: 6, width: 112, borderRadius: 999, background: "#e5e7eb", opacity: 0.6 }}
+              style={{
+                position: "absolute",
+                bottom: 8,
+                left: "50%",
+                transform: "translateX(-50%)",
+                height: 6,
+                width: 112,
+                borderRadius: 999,
+                background: "#e5e7eb",
+                opacity: 0.6,
+              }}
               aria-hidden
             />
           </div>

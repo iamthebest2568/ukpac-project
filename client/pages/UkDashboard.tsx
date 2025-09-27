@@ -121,7 +121,9 @@ export default function UkDashboard() {
     if (val === undefined || val === null) return "";
     const s = typeof val === "string" ? val : JSON.stringify(val);
     // remove control chars and normalize
-    return String(s).replace(/[\u0000-\u001F\u007F]/g, "").replace(/"/g, '""');
+    return String(s)
+      .replace(/[\u0000-\u001F\u007F]/g, "")
+      .replace(/"/g, '""');
   };
 
   async function load() {
@@ -220,14 +222,26 @@ export default function UkDashboard() {
       const stornaway = s.keyMessage1 || "";
       const accept = s.opinionLevel || "";
       const reason_web = s.ask02Choice || "";
-      const reason_other = [s.ask02CustomReason, s.reasonOther01, s.ask05Comment]
+      const reason_other = [
+        s.ask02CustomReason,
+        s.reasonOther01,
+        s.ask05Comment,
+      ]
         .filter(Boolean)
         .join(" | ");
-      const policy_topic = Array.isArray(s.mn3Selected) ? s.mn3Selected.join(" | ") : "";
+      const policy_topic = Array.isArray(s.mn3Selected)
+        ? s.mn3Selected.join(" | ")
+        : "";
       // mn2Selections is object mapping priority->array; stringify as JSON
-      const target_group = s.mn2Selections ? JSON.stringify(s.mn2Selections) : "";
-      const dev_priority = Array.isArray(s.mn1Selected) ? s.mn1Selected.join(" | ") : "";
-      const budget_alloc = s.mn3BudgetAllocation ? JSON.stringify(s.mn3BudgetAllocation) : "";
+      const target_group = s.mn2Selections
+        ? JSON.stringify(s.mn2Selections)
+        : "";
+      const dev_priority = Array.isArray(s.mn1Selected)
+        ? s.mn1Selected.join(" | ")
+        : "";
+      const budget_alloc = s.mn3BudgetAllocation
+        ? JSON.stringify(s.mn3BudgetAllocation)
+        : "";
       const satisfaction = s.satisfactionLevel || "";
       const gov_suggest = s.ask05Comment || "";
       const fake_react = s.fakeNewsResponse || "";
@@ -265,7 +279,9 @@ export default function UkDashboard() {
         share_first,
         share_last,
         exit_time,
-      ].map((c) => `"${escapeCell(c)}"`).join(",");
+      ]
+        .map((c) => `"${escapeCell(c)}"`)
+        .join(",");
     });
 
     const csv = [headers.map((h) => `"${h}"`).join(","), ...rows].join("\n");
@@ -352,7 +368,8 @@ export default function UkDashboard() {
               className="mt-4 w-full rounded-full bg-[#EFBA31] text-black font-medium px-5 py-2 border border-black"
               onClick={() => {
                 const expectedUser = "ukpact";
-                const expectedPassword = (expected && expected.length > 0) ? expected : "Ukdash-Xrz14!";
+                const expectedPassword =
+                  expected && expected.length > 0 ? expected : "Ukdash-Xrz14!";
                 if (!expectedPassword) {
                   setPwErr("ยังไม่ได้ตั้งรหัสผ่าน (VITE_DASHBOARD_PASSWORD)");
                   return;

@@ -232,12 +232,13 @@ const Step3_Result = ({
         <div
           className="max-w-[980px] mx-auto relative mn3-result-collage"
           style={{
-            minHeight: "65vh", /* center vertically in viewport */
+            minHeight: "65vh" /* center vertically in viewport */,
             height: "auto",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            transform: "translateY(75px)", /* move collage down by 75px for this page only */
+            transform:
+              "translateY(75px)" /* move collage down by 75px for this page only */,
           }}
         >
           {resultSummary.map((s, i) => {
@@ -262,7 +263,7 @@ const Step3_Result = ({
                   position: "absolute",
                   left: "50%",
                   top: `calc(50% + ${offset.top})`,
-                  transform: `translate(calc(-50% + ${offsetX}px), -50%) rotate(${offset.rotate}) scale(${offset.scale * 1.15 * 1.15 * 1.1})`, /* scale up additional +10% (cumulative) for this page only */
+                  transform: `translate(calc(-50% + ${offsetX}px), -50%) rotate(${offset.rotate}) scale(${offset.scale * 1.15 * 1.15 * 1.1})` /* scale up additional +10% (cumulative) for this page only */,
                   width,
                   zIndex: offset.z,
                 }}
@@ -307,11 +308,23 @@ const Step3_Result = ({
         >
           {useUk1Button ? (
             <>
-              <Uk1Button onClick={handleYes} aria-pressed={selected === "yes"} aria-label="ใช่, ไปต่อ" style={{ width: "100%" }}>
+              <Uk1Button
+                onClick={handleYes}
+                aria-pressed={selected === "yes"}
+                aria-label="ใช่, ไปต่อ"
+                style={{ width: "100%" }}
+              >
                 <span className="figma-style1-button-text">ใช่, ไปต่อ</span>
               </Uk1Button>
-              <Uk1Button onClick={handleNo} aria-pressed={selected === "no"} aria-label="ไม่ใช่, ลองอีกครั้ง" style={{ width: "100%" }}>
-                <span className="figma-style1-button-text">ไม่ใช่, ลองอีกครั้ง</span>
+              <Uk1Button
+                onClick={handleNo}
+                aria-pressed={selected === "no"}
+                aria-label="ไม่ใช่, ลองอีกครั้ง"
+                style={{ width: "100%" }}
+              >
+                <span className="figma-style1-button-text">
+                  ไม่ใช่, ลองอีกครั้ง
+                </span>
               </Uk1Button>
             </>
           ) : (

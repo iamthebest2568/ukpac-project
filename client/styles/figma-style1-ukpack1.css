@@ -1522,7 +1522,9 @@ body[data-dialog-open] {
   justify-content: flex-end !important;
   align-items: center !important;
   padding-top: 0 !important;
-  padding-bottom: calc(53px + env(safe-area-inset-bottom, 0px) + 53px) !important; /* ensure content sits above fixed CTA (added 15px gap) */
+  padding-bottom: calc(
+    53px + env(safe-area-inset-bottom, 0px) + 53px
+  ) !important; /* ensure content sits above fixed CTA (added 15px gap) */
   gap: 12px !important; /* space between content rows and CTA */
   max-height: none !important;
   display: flex !important;
@@ -1621,16 +1623,25 @@ body[data-dialog-open] {
 .figma-style1-container.source-selection-page .source-selection-root > div {
   width: 100%;
 }
-.figma-style1-container.source-selection-page .source-selection-root > div > div {
+.figma-style1-container.source-selection-page
+  .source-selection-root
+  > div
+  > div {
   grid-template-columns: repeat(3, 1fr) !important;
   gap: 10px !important;
   align-items: stretch !important;
 }
 
 /* Desktop / tablet: compact buttons with responsive, fitting typography */
-.figma-style1-container.source-selection-page .source-selection-root .figma-style1-button,
-.figma-style1-container.source-selection-page .source-selection-root .figma-style1-button--primary,
-.figma-style1-container.source-selection-page .source-selection-root .figma-style1-button--secondary {
+.figma-style1-container.source-selection-page
+  .source-selection-root
+  .figma-style1-button,
+.figma-style1-container.source-selection-page
+  .source-selection-root
+  .figma-style1-button--primary,
+.figma-style1-container.source-selection-page
+  .source-selection-root
+  .figma-style1-button--secondary {
   padding: 4px 10px !important;
   min-height: 56px !important; /* slightly taller to reliably fit two lines */
   max-height: 56px !important;
@@ -1646,10 +1657,15 @@ body[data-dialog-open] {
   max-width: none !important; /* allow full cell width */
   margin: 0 !important;
 }
-.figma-style1-container.source-selection-page .source-selection-root .figma-style1-button {
+.figma-style1-container.source-selection-page
+  .source-selection-root
+  .figma-style1-button {
   width: 100% !important;
 }
-.figma-style1-container.source-selection-page .source-selection-root .figma-style1-button .figma-style1-button-text {
+.figma-style1-container.source-selection-page
+  .source-selection-root
+  .figma-style1-button
+  .figma-style1-button-text {
   display: -webkit-box !important;
   -webkit-line-clamp: 2 !important;
   -webkit-box-orient: vertical !important;
@@ -1663,13 +1679,20 @@ body[data-dialog-open] {
   max-height: calc(2 * 1.15em) !important; /* ensure two lines fit */
 }
 /* Reset inner element margins that can push text outside */
-.figma-style1-container.source-selection-page .source-selection-root .figma-style1-button .figma-style1-button-text > * {
+.figma-style1-container.source-selection-page
+  .source-selection-root
+  .figma-style1-button
+  .figma-style1-button-text
+  > * {
   margin: 0 !important;
   padding: 0 !important;
   line-height: inherit !important;
 }
 /* ensure children don't force size */
-.figma-style1-container.source-selection-page .source-selection-root .figma-style1-button > * {
+.figma-style1-container.source-selection-page
+  .source-selection-root
+  .figma-style1-button
+  > * {
   max-width: 100% !important;
 }
 .figma-style1-container.source-selection-page .figma-style1-button--selected {
@@ -1678,11 +1701,16 @@ body[data-dialog-open] {
 
 /* Mobile: allow full width buttons for small screens and slightly larger text */
 @media (max-width: 430px) {
-  .figma-style1-container.source-selection-page .source-selection-root > div > div {
+  .figma-style1-container.source-selection-page
+    .source-selection-root
+    > div
+    > div {
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 10px !important;
   }
-  .figma-style1-container.source-selection-page .source-selection-root .figma-style1-button {
+  .figma-style1-container.source-selection-page
+    .source-selection-root
+    .figma-style1-button {
     max-width: 100% !important;
     min-height: 54px !important;
     max-height: 54px !important;
@@ -1692,7 +1720,7 @@ body[data-dialog-open] {
 }
 
 /* end source-selection block */
-   /* Desktop/Tablet-only background handling for ukpack1
+/* Desktop/Tablet-only background handling for ukpack1
    - Center background images horizontally & vertically
    - Use contain so full portrait is visible
    - Fill side space with matching color variable
@@ -1759,8 +1787,8 @@ body[data-dialog-open] {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  background: rgba(255,255,255,0.9) !important;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.06) !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06) !important;
 }
 .figma-style1-container.mn2-summary-page .mn2-beneficiary-img {
   width: 100% !important;
@@ -1770,14 +1798,17 @@ body[data-dialog-open] {
 }
 
 /* Ensure buttons in MN2 summary use the standard button container but stacked */
-.figma-style1-container.mn2-summary-page .figma-style1-button-container.mn2-summary-button-stack {
+.figma-style1-container.mn2-summary-page
+  .figma-style1-button-container.mn2-summary-button-stack {
   display: flex !important;
   flex-direction: column !important;
   gap: 12px !important;
   padding: 0 !important;
   box-sizing: border-box !important;
 }
-.figma-style1-container.mn2-summary-page .figma-style1-button-container.mn2-summary-button-stack > * {
+.figma-style1-container.mn2-summary-page
+  .figma-style1-button-container.mn2-summary-button-stack
+  > * {
   width: 100% !important;
 }
 

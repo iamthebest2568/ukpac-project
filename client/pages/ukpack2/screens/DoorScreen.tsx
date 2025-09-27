@@ -320,7 +320,8 @@ const DoorScreen: React.FC = () => {
                 ...(paymentsFromStorage || []),
               ];
               // Include current door selections so clicked door icons show as overlays
-              if (selectedOption.doorChoice) overlayLabels.push(selectedOption.doorChoice);
+              if (selectedOption.doorChoice)
+                overlayLabels.push(selectedOption.doorChoice);
               if (selectedOption.hasRamp) overlayLabels.push("ramp");
               if (selectedOption.highLow) overlayLabels.push("emergency");
 
@@ -700,7 +701,10 @@ const DoorScreen: React.FC = () => {
                       try {
                         const map = loadStoredMap();
 
-                        const candidateForKey = (key: string, label?: string) => {
+                        const candidateForKey = (
+                          key: string,
+                          label?: string,
+                        ) => {
                           // lookup in stored map first
                           if (map[key]) return map[key];
                           const nk = normalizeKey(key);
@@ -709,11 +713,15 @@ const DoorScreen: React.FC = () => {
                           }
                           // fallback to DOOR_BUTTON_SRC
                           if (DOOR_BUTTON_SRC[key]) return DOOR_BUTTON_SRC[key];
-                          if (label && DOOR_BUTTON_SRC[label]) return DOOR_BUTTON_SRC[label];
+                          if (label && DOOR_BUTTON_SRC[label])
+                            return DOOR_BUTTON_SRC[label];
                           return undefined;
                         };
 
-                        const setOrRemove = (key: string, shouldSet: boolean) => {
+                        const setOrRemove = (
+                          key: string,
+                          shouldSet: boolean,
+                        ) => {
                           try {
                             if (shouldSet) {
                               const val = candidateForKey(key);

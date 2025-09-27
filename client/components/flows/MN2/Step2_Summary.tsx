@@ -219,7 +219,7 @@ const Step2_Summary = ({
                     maxWidth: "100%",
                     margin: "0 auto",
                     padding: "0 clamp(6px, 1.6vw, 12px)",
-                    gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
+                    gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
                   }}
                 >
                   {card.beneficiaries.map((beneficiary, beneficiaryIndex) => (
@@ -232,7 +232,16 @@ const Step2_Summary = ({
                       }}
                     >
                       {/* Full-size square area for icon */}
-                      <div className="mn2-beneficiary-figure relative mb-1" style={{ width: '100%', aspectRatio: '1 / 1', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <div
+                        className="mn2-beneficiary-figure relative mb-1"
+                        style={{
+                          width: "100%",
+                          aspectRatio: "1 / 1",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
                         {beneficiary.iconSrc && (
                           <img
                             src={beneficiary.iconSrc}
@@ -293,7 +302,15 @@ const Step2_Summary = ({
           pointerEvents: "auto",
         }}
       >
-        <div className="figma-style1-button-container mn2-summary-button-stack" style={{ maxWidth: 420, width: "100%", padding: "0 8px", boxSizing: "border-box" }}>
+        <div
+          className="figma-style1-button-container mn2-summary-button-stack"
+          style={{
+            maxWidth: 420,
+            width: "100%",
+            padding: "0 8px",
+            boxSizing: "border-box",
+          }}
+        >
           {useUk1Button ? (
             <>
               <Uk1Button onClick={handleEndGame} aria-label="ใช่, ไปต่อ">
@@ -313,7 +330,9 @@ const Step2_Summary = ({
                 }}
                 aria-label="ไม่ใช่, ลองอีกครั้ง"
               >
-                <span className="figma-style1-button-text">ไม่ใช่, ลองอีกครั้ง</span>
+                <span className="figma-style1-button-text">
+                  ไม่ใช่, ลองอีกครั้ง
+                </span>
               </Uk1Button>
             </>
           ) : (
@@ -344,7 +363,9 @@ const Step2_Summary = ({
                 aria-label="ไม่ใช่, ลองอีกครั้ง"
                 style={{ minHeight: 44 }}
               >
-                <span className="figma-style1-button-text">ไม่ใช่, ลองอีกครั้ง</span>
+                <span className="figma-style1-button-text">
+                  ไม่ใช่, ลองอีกครั้ง
+                </span>
               </button>
             </>
           )}

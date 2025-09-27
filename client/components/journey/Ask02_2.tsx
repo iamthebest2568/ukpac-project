@@ -14,7 +14,11 @@ interface Ask02_2Props {
   useUk1Button?: boolean;
 }
 
-const Ask02_2 = ({ sessionID, onNavigate, useUk1Button = false }: Ask02_2Props) => {
+const Ask02_2 = ({
+  sessionID,
+  onNavigate,
+  useUk1Button = false,
+}: Ask02_2Props) => {
   const [textInput, setTextInput] = useState("");
   const [attempted, setAttempted] = useState(false);
 
@@ -23,7 +27,9 @@ const Ask02_2 = ({ sessionID, onNavigate, useUk1Button = false }: Ask02_2Props) 
     if (trimmed.length === 0) {
       setAttempted(true);
       try {
-        const el = document.getElementById("ask02-2-textarea") as HTMLTextAreaElement | null;
+        const el = document.getElementById(
+          "ask02-2-textarea",
+        ) as HTMLTextAreaElement | null;
         el?.focus();
       } catch {}
       return;
@@ -54,10 +60,17 @@ const Ask02_2 = ({ sessionID, onNavigate, useUk1Button = false }: Ask02_2Props) 
       className="source-selection-page ask02-2-page"
       imageLoading="eager"
     >
-      <div className="ask02-2-content" style={{ marginTop: "auto", marginBottom: "auto", display: "flex", justifyContent: "center", width: "100%" }}>
-        <div
-          className="w-full max-w-[890px] mx-auto"
-        >
+      <div
+        className="ask02-2-content"
+        style={{
+          marginTop: "auto",
+          marginBottom: "auto",
+          display: "flex",
+          justifyContent: "center",
+          width: "100%",
+        }}
+      >
+        <div className="w-full max-w-[890px] mx-auto">
           <div
             className="ask02-2-textarea-box relative w-full rounded-[20px] border-2 border-[#000D59] bg-white"
             style={{
@@ -128,13 +141,26 @@ const Ask02_2 = ({ sessionID, onNavigate, useUk1Button = false }: Ask02_2Props) 
         )}
 
         {useUk1Button ? (
-          <Uk1Button onClick={handleNext} aria-disabled={textInput.trim().length === 0} className={textInput.trim().length === 0 ? "cursor-not-allowed opacity-60" : ""}>
+          <Uk1Button
+            onClick={handleNext}
+            aria-disabled={textInput.trim().length === 0}
+            className={
+              textInput.trim().length === 0
+                ? "cursor-not-allowed opacity-60"
+                : ""
+            }
+          >
             <span className="figma-style1-button-text">ไปต่อ</span>
           </Uk1Button>
         ) : (
           <button
             onClick={handleNext}
-            className={"figma-style1-button " + (textInput.trim().length === 0 ? "cursor-not-allowed opacity-60" : "")}
+            className={
+              "figma-style1-button " +
+              (textInput.trim().length === 0
+                ? "cursor-not-allowed opacity-60"
+                : "")
+            }
             aria-disabled={textInput.trim().length === 0}
           >
             <span className="figma-style1-button-text">ไปต่อ</span>

@@ -131,23 +131,19 @@ export function createServer() {
       }
       const stats = await getFirestoreStatsFor(col, docId, 100);
       const agg = await computeStatsForProject(col, docId);
-      res
-        .status(200)
-        .json({
-          ok: true,
-          project,
-          col,
-          docId,
-          firestoreSample: stats,
-          aggregation: agg,
-        });
+      res.status(200).json({
+        ok: true,
+        project,
+        col,
+        docId,
+        firestoreSample: stats,
+        aggregation: agg,
+      });
     } catch (e: any) {
-      res
-        .status(500)
-        .json({
-          ok: false,
-          error: e?.message || "failed to compute project stats",
-        });
+      res.status(500).json({
+        ok: false,
+        error: e?.message || "failed to compute project stats",
+      });
     }
   });
 
@@ -224,12 +220,10 @@ export function createServer() {
       const stats = await getFirestoreStatsFor(col, docId, 20);
       res.status(200).json({ ok: true, project, col, docId, stats });
     } catch (e: any) {
-      res
-        .status(500)
-        .json({
-          ok: false,
-          error: e?.message || "failed to fetch firestore stats",
-        });
+      res.status(500).json({
+        ok: false,
+        error: e?.message || "failed to fetch firestore stats",
+      });
     }
   });
 
@@ -244,12 +238,10 @@ export function createServer() {
       ).listPublicSubmissions(limit);
       res.status(200).json({ ok: true, items });
     } catch (e: any) {
-      res
-        .status(500)
-        .json({
-          ok: false,
-          error: e?.message || "failed to fetch submissions",
-        });
+      res.status(500).json({
+        ok: false,
+        error: e?.message || "failed to fetch submissions",
+      });
     }
   });
 

@@ -11,7 +11,11 @@ import Uk1Button from "../shared/Uk1Button";
 import FigmaStyle1Layout from "../layouts/FigmaStyle1Layout.ukpack1";
 import { useSession } from "../../hooks/useSession";
 
-const SourceSelection = ({ sessionID, onNavigate, useUk1Button = false }: SourceSelectionProps) => {
+const SourceSelection = ({
+  sessionID,
+  onNavigate,
+  useUk1Button = false,
+}: SourceSelectionProps) => {
   const [selected, setSelected] = useState<string[]>([]);
   const { navigateToPage } = useSession();
   const navigate = (screenId: string, data?: any) => {
@@ -101,10 +105,14 @@ const SourceSelection = ({ sessionID, onNavigate, useUk1Button = false }: Source
                     aria-pressed={isSelected}
                     aria-disabled={!isSelected && maxReached}
                     disabled={!isSelected && maxReached}
-                    className={isSelected ? "figma-style1-button--selected" : ""}
+                    className={
+                      isSelected ? "figma-style1-button--selected" : ""
+                    }
                     style={{ width: "100%" }}
                   >
-                    <span className="figma-style1-button-text">{opt.label}</span>
+                    <span className="figma-style1-button-text">
+                      {opt.label}
+                    </span>
                   </Uk1Button>
                 ) : (
                   <button
@@ -116,7 +124,9 @@ const SourceSelection = ({ sessionID, onNavigate, useUk1Button = false }: Source
                     disabled={!isSelected && maxReached}
                     style={{ width: "100%" }}
                   >
-                    <span className="figma-style1-button-text">{opt.label}</span>
+                    <span className="figma-style1-button-text">
+                      {opt.label}
+                    </span>
                   </button>
                 )}
               </Fragment>

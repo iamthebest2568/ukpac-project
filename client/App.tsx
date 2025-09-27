@@ -12,8 +12,12 @@ import {
   useLocation,
 } from "react-router-dom";
 import { BusDesignProvider } from "./pages/ukpack2/context/BusDesignContext";
-const TabletMockupUk2 = React.lazy(() => import("./pages/ukpack2/components/TabletMockup"));
-const DesktopMockupUk1 = React.lazy(() => import("./pages/ukpack1/components/DesktopMockup"));
+const TabletMockupUk2 = React.lazy(
+  () => import("./pages/ukpack2/components/TabletMockup"),
+);
+const DesktopMockupUk1 = React.lazy(
+  () => import("./pages/ukpack1/components/DesktopMockup"),
+);
 
 // Minimal set of pages (dashboard/backend removed)
 const NotFound = lazy(() => import("./pages/NotFound"));
@@ -42,8 +46,12 @@ const MiniGameMN01Page = lazy(() => import("./pages/ukpack1/MiniGameMN01Page"));
 import MiniGameMN3Page from "./pages/MiniGameMN3Page";
 const UkStornaway = lazy(() => import("./pages/ukpack1/Uk-stornaway"));
 const UkDashboard = lazy(() => import("./pages/ukpack1/UkDashboard"));
-const UkPact1Dashboard = lazy(() => import("./pages/ukpack1/ukpact1-dashboard"));
-const UkPact2Dashboard = lazy(() => import("./pages/ukpack2/ukpact2-dashboard"));
+const UkPact1Dashboard = lazy(
+  () => import("./pages/ukpack1/ukpact1-dashboard"),
+);
+const UkPact2Dashboard = lazy(
+  () => import("./pages/ukpack2/ukpact2-dashboard"),
+);
 const ReasonOther01Page = lazy(
   () => import("./pages/ukpack1/ReasonOther01Page"),
 );
@@ -108,7 +116,10 @@ import EndSequenceSkeleton, {
 } from "./components/shared/skeletons/EndSkeletons";
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
-  const isDashboard = /^\/(?:ukpack1\/(?:uk-dashboard|ukdashboard\.html|UkDashboard|ukpact1-dashboard)|ukpack2\/(?:dashboard|ukpact2-dashboard))$/.test(location.pathname);
+  const isDashboard =
+    /^\/(?:ukpack1\/(?:uk-dashboard|ukdashboard\.html|UkDashboard|ukpact1-dashboard)|ukpack2\/(?:dashboard|ukpact2-dashboard))$/.test(
+      location.pathname,
+    );
 
   // Page view / navigation logging for ukpack2
   const prevPathRef = React.useRef<string | null>(null);
@@ -258,16 +269,23 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     const handler = (ev: PromiseRejectionEvent) => {
       try {
         const reason = (ev && (ev.reason || ev.detail)) || ev;
-        const message = reason && reason.message ? String(reason.message) : String(reason);
+        const message =
+          reason && reason.message ? String(reason.message) : String(reason);
         // If the error is a generic network failure and comes from firebase
         // internals, swallow it to avoid polluting logs/console in the preview env.
-        if (/failed to fetch/i.test(message) || /Failed to fetch/i.test(message)) {
+        if (
+          /failed to fetch/i.test(message) ||
+          /Failed to fetch/i.test(message)
+        ) {
           // If stack includes firebase firestore internals, treat as ignorable
           const stack = reason && reason.stack ? String(reason.stack) : "";
           if (/firebase_firestor|firebase_firestore|firestore/i.test(stack)) {
             // prevent default logging
             ev.preventDefault();
-            console.debug("Suppressed Firestore network error in preview:", message);
+            console.debug(
+              "Suppressed Firestore network error in preview:",
+              message,
+            );
             return;
           }
         }
@@ -275,7 +293,8 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       // otherwise allow default handling
     };
     window.addEventListener("unhandledrejection", handler as any);
-    return () => window.removeEventListener("unhandledrejection", handler as any);
+    return () =>
+      window.removeEventListener("unhandledrejection", handler as any);
   }, []);
 
   return (

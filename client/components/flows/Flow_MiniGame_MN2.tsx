@@ -75,7 +75,10 @@ const Flow_MiniGame_MN2 = ({
     }
   };
 
-  const isUkpack1 = typeof window !== 'undefined' && window.location && window.location.pathname.startsWith('/ukpack1');
+  const isUkpack1 =
+    typeof window !== "undefined" &&
+    window.location &&
+    window.location.pathname.startsWith("/ukpack1");
 
   const handleStepBack = () => {
     if (currentStep > 1) {
@@ -151,11 +154,15 @@ const Flow_MiniGame_MN2 = ({
               <div className="w-full max-w-[325px]">
                 {isUkpack1 ? (
                   <Uk1Button onClick={onBack}>
-                    <span className="figma-style1-button-text">กลับไปเลือกนโยบาย</span>
+                    <span className="figma-style1-button-text">
+                      กลับไปเลือกนโยบาย
+                    </span>
                   </Uk1Button>
                 ) : (
                   <button onClick={onBack} className="figma-style1-button">
-                    <span className="figma-style1-button-text">กลับไปเลือกนโยบาย</span>
+                    <span className="figma-style1-button-text">
+                      กลับไปเลือกนโยบาย
+                    </span>
                   </button>
                 )}
               </div>

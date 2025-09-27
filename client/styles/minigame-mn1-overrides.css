@@ -17,7 +17,6 @@
   padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 20px) !important;
 }
 
-
 /* Keep primary action accessible: pin to bottom inside mockup without affecting other pages */
 .minigame-mn1-page .figma-style1-button-container {
   position: sticky !important;
@@ -33,7 +32,8 @@
 }
 
 /* Force safe scaling of inner viewport elements */
-.minigame-mn1-page .tablet-mock-env, .minigame-mn1-page .figma-style1-container {
+.minigame-mn1-page .tablet-mock-env,
+.minigame-mn1-page .figma-style1-container {
   width: 100% !important;
   height: auto !important;
   min-height: 100% !important;

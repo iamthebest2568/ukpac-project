@@ -210,7 +210,7 @@ const Ask04Budget = ({
                     position: "absolute",
                     left: "50%",
                     top: `calc(50% + ${offset.top})`,
-                    transform: `translate(calc(-50% + ${offsetX}px), -50%) rotate(${offset.rotate}) scale(${offset.scale * 1.15 * 1.15 * 1.1})`, /* match Step3_Result scaling */
+                    transform: `translate(calc(-50% + ${offsetX}px), -50%) rotate(${offset.rotate}) scale(${offset.scale * 1.15 * 1.15 * 1.1})` /* match Step3_Result scaling */,
                     width,
                     zIndex: offset.z,
                   }}
@@ -252,7 +252,8 @@ const Ask04Budget = ({
             display: "flex",
             flexDirection: "column",
             gap: 12,
-            transform: "translateY(30px)", /* shift buttons down 30px for Ask04Budget */
+            transform:
+              "translateY(30px)" /* shift buttons down 30px for Ask04Budget */,
           }}
         >
           {useUk1Button ? (

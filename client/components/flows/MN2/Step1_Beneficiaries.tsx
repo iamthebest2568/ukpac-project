@@ -234,7 +234,14 @@ const Step1_Beneficiaries = ({
       {/* Submit Button */}
       <div className="figma-style1-button-container w-full max-w-[325px]">
         {useUk1Button ? (
-          <Uk1Button onClick={handleNext} disabled={selectedGroups.length === 0} className={selectedGroups.length === 0 ? "cursor-not-allowed opacity-60" : ""} style={{ width: "100%", height: "53px" }}>
+          <Uk1Button
+            onClick={handleNext}
+            disabled={selectedGroups.length === 0}
+            className={
+              selectedGroups.length === 0 ? "cursor-not-allowed opacity-60" : ""
+            }
+            style={{ width: "100%", height: "53px" }}
+          >
             <span className={`figma-style1-button-text`}>ไปต่อ</span>
           </Uk1Button>
         ) : (
