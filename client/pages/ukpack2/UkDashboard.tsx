@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   exportEventsAsCSV,
   exportSessionsAsCSV,
@@ -41,35 +41,51 @@ const UkDashboard: React.FC = () => {
       const all = getLoggedEvents();
       setEventsSample(all.slice(-10).reverse());
 
+      // Helper: try fetching JSON from multiple candidate URLs with timeout and absolute normalization
+      async function tryFetchJsonWithFallback(rawPaths: string[], timeout = 8000) {
+        const normalize = (p: string) => {
+          try {
+            return new URL(p, window.location.origin).toString();
+          } catch (_) {
+            return p;
+          }
+        };
+        const paths = rawPaths.map(normalize);
+        for (const p of paths) {
+          try {
+            const controller = new AbortController();
+            const id = setTimeout(() => controller.abort(), timeout);
+            const resp = await fetch(p, { credentials: "same-origin", signal: controller.signal });
+            clearTimeout(id);
+            if (!resp.ok) {
+              const body = await resp.text().catch(() => null);
+              console.warn("fetch non-ok", p, resp.status, body);
+              continue;
+            }
+            return await resp.json();
+          } catch (err: any) {
+            if (err && err.name === "AbortError") {
+              console.warn("fetch timeout", p);
+            } else {
+              console.warn("fetch error", p, err);
+            }
+            // try next candidate
+          }
+        }
+        return null;
+      }
+
       // Fetch Firestore-backed recent events for ukpack2 with resilient fallbacks
       try {
-        const candidates = [
+        const rawCandidates = [
           window.location.origin + "/api/firestore-stats?project=ukpack2",
           "/api/firestore-stats?project=ukpack2",
-          window.location.pathname.replace(/\/$/, "") +
+          window.location.pathname.replace(/\/\$/, "") +
             "/api/firestore-stats?project=ukpack2",
           "/.netlify/functions/api/firestore-stats?project=ukpack2",
         ];
 
-        async function tryFetchJson(paths: string[]) {
-          for (const p of paths) {
-            try {
-              const resp = await fetch(p, { credentials: "same-origin" });
-              if (!resp.ok) {
-                const body = await resp.text().catch(() => null);
-                console.warn("fetch non-ok", p, resp.status, body);
-                continue;
-              }
-              return await resp.json();
-            } catch (err) {
-              console.warn("fetch error", p, err);
-              // try next candidate
-            }
-          }
-          return null;
-        }
-
-        const j = await tryFetchJson(candidates);
+        const j = await tryFetchJsonWithFallback(rawCandidates, 8000);
         if (j && j.ok && j.stats && Array.isArray(j.stats.sample)) {
           try {
             setCollectionInfo({
@@ -95,28 +111,13 @@ const UkDashboard: React.FC = () => {
 
       // fetch public submissions (landing assets) with fallbacks
       try {
-        const candidates2 = [
+        const rawCandidates2 = [
           window.location.origin + "/api/public-submissions?limit=20",
           "/api/public-submissions?limit=20",
-          "/.netlify/functions/api/public-submissions?limit=20",
+          "./.netlify/functions/api/public-submissions?limit=20",
         ];
 
-        const j2 = await (async () => {
-          for (const p of candidates2) {
-            try {
-              const resp = await fetch(p, { credentials: "same-origin" });
-              if (!resp.ok) {
-                const body = await resp.text().catch(() => null);
-                console.warn("public-submissions non-ok", p, resp.status, body);
-                continue;
-              }
-              return await resp.json();
-            } catch (err) {
-              console.warn("public-submissions fetch error", p, err);
-            }
-          }
-          return null;
-        })();
+        const j2 = await tryFetchJsonWithFallback(rawCandidates2, 8000);
 
         if (j2 && j2.ok && Array.isArray(j2.items)) {
           setPublicSubmissions(j2.items.slice(0, 6));
@@ -421,7 +422,7 @@ const UkDashboard: React.FC = () => {
             <h2 className="text-lg font-semibold mb-2">
               เข้าสู่แดชบอร์ด ukpack2
             </h2>
-            <p className="text-sm mb-4">ป้อนรหัสเพื่อเข้าถึงแดชบอร์ด</p>
+            <p className="text-sm mb-4">ป้อนรหัสเพื่อเข้าถึงแ��ชบอร์ด</p>
             <input
               type="text"
               value={user}
@@ -434,7 +435,7 @@ const UkDashboard: React.FC = () => {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               className="w-full border px-3 py-2 rounded mb-3"
-              placeholder="รหัส��ข้าระบบ"
+              placeholder="รหัสผ่าน"
               autoFocus
             />
             <div className="flex gap-2">
@@ -577,7 +578,7 @@ const UkDashboard: React.FC = () => {
                 <div>Sent: {lastSentResult.sentCount}</div>
                 <div>Skipped: {lastSentResult.skippedCount}</div>
                 <div>
-                  Errors:{" "}
+                  Errors: {" "}
                   {lastSentResult.errors && lastSentResult.errors.length}
                 </div>
                 <div className="mt-2">Sample sent items:</div>
