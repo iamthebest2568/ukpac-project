@@ -226,17 +226,12 @@
 }
 
 .selectionGrid {
-  --icon-cell-height: 140px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 6px;
+  --icon-cell-height: 160px; /* tuned default height */
+  display: block; /* parent wrapper for rows */
+  gap: 4px; /* vertical gap between rows */
   width: 100%;
   box-sizing: border-box;
   padding: 0;
-  justify-content: start;
-  justify-items: stretch;
-  align-items: start;
-  align-content: stretch;
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
