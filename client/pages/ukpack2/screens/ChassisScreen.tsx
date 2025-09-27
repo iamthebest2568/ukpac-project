@@ -75,7 +75,7 @@ const IconMedium = () => (
 );
 const IconMediumAlt = () => (
   <img
-    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F1584a1ddf1bb4afaaed9f37f0f949e95?format=webp&width=800"
+    src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F5dad81672ed34962a53794192bcb896b?format=webp&width=800"
     alt=""
     aria-hidden="true"
     className="h-full w-auto object-contain select-none"
