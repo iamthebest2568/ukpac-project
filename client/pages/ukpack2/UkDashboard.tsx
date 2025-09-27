@@ -55,27 +55,39 @@ const UkDashboard: React.FC = () => {
         };
         const paths = rawPaths.map(normalize);
         for (const p of paths) {
+          const controller = new AbortController();
+          const signal = controller.signal;
+          const id = setTimeout(() => controller.abort(), timeout);
           try {
-            const controller = new AbortController();
-            const id = setTimeout(() => controller.abort(), timeout);
             const resp = await fetch(p, {
               credentials: "same-origin",
-              signal: controller.signal,
+              signal,
             });
             clearTimeout(id);
             if (!resp.ok) {
-              const body = await resp.text().catch(() => null);
+              let body = null;
+              try {
+                body = await resp.text();
+              } catch (e) {
+                body = null;
+              }
               console.warn("fetch non-ok", p, resp.status, body);
               continue;
             }
-            return await resp.json();
+            try {
+              return await resp.json();
+            } catch (e) {
+              console.warn("failed to parse json", p, e);
+              continue;
+            }
           } catch (err: any) {
             if (err && err.name === "AbortError") {
-              console.warn("fetch timeout", p);
+              console.warn("fetch timeout or aborted", p);
             } else {
               console.warn("fetch error", p, err);
             }
-            // try next candidate
+          } finally {
+            clearTimeout(id);
           }
         }
         return null;
