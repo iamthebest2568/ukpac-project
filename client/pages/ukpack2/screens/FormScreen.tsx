@@ -124,7 +124,7 @@ const FormScreen: React.FC = () => {
           style={{ marginTop: "-15px" }}
         >
           <img
-            src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe788f24196524b1daad2340de622d2d6?format=webp&width=800"
+            src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fdbf2af3b7e1d4d449406bb4a5323834b?format=webp&width=800"
             alt="image"
             className="block max-w-[520px] w-[75%] md:w-[60%] h-auto object-contain"
           />
