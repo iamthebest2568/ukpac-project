@@ -145,14 +145,32 @@ const SeatingScreen: React.FC = () => {
     const sMonk = Number(monkSeats) || 0;
     const sWheel = Number(wheelchairBikeSpaces) || 0;
     const sumSubs = sChild + sPreg + sMonk + sWheel;
-    if (sumSubs !== total) {
-      setErrorTitle("ผลรวมของที่นั่งย่อยไม่ตรงกัน");
+
+    // If any individual sub-item exceeds the chassis maximum capacity, alert
+    if (
+      sChild > maxCapacityLocal ||
+      sPreg > maxCapacityLocal ||
+      sMonk > maxCapacityLocal ||
+      sWheel > maxCapacityLocal
+    ) {
+      setErrorTitle("ค่าหัวข้อย่อยเกินเพดานของรถ");
       setErrorMessage(
-        `ผลรวมของที่นั่งย่อยทั้งหมด (${sumSubs}) ไม่ตรงกับจำนวนที่นั่งทั้งหมด (${total})`,
+        `ค่าหนึ่งในหัวข้อย่อยที่คุณระบุมากกว่าจำนวนที่นั่งสูงสุดของยานพาหนะที่เลือก (${maxCapacityLocal}) กรุณาตรวจสอบ`,
       );
       setErrorModalOpen(true);
       return false;
     }
+
+    // Allow proceeding when the sum of sub-items is less than or equal to total
+    if (sumSubs > total) {
+      setErrorTitle("ผลรวมของที่นั่งย่อยมากกว่าจำนวนที่นั่งทั้งหมด");
+      setErrorMessage(
+        `ผลรวมของที่นั่งย่อยทั้งหมด (${sumSubs}) มากกว่าจำนวนที่นั่งทั้งหมดที่ระบุ (${total}) กรุณาตรวจสอบ`,
+      );
+      setErrorModalOpen(true);
+      return false;
+    }
+
     return true;
   };
 
