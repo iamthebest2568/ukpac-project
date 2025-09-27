@@ -259,7 +259,7 @@ export function exportEventsAsCSV() {
       event.url || "",
       JSON.stringify(event.payload || {}).replace(/"/g, '""'),
     ];
-    csvRows.push(row.map((field) => `"${field}"`).join(","));
+    csvRows.push(row.map((field) => `"${String(field || "").replace(/\"/g, '""')}"`).join(","));
   });
 
   return csvRows.join("\n");
