@@ -176,6 +176,33 @@ export const BusDesignProvider = ({ children }: { children: ReactNode }) => {
             ? (JSON.parse(pendingRaw) as any[])
             : [];
 
+          // Serialize helper that will try to keep payload small. If the serialized size
+          // is large, return a minimized payload to avoid filling localStorage with heavy data.
+          const minimizeSubmission = (full: any) => {
+            try {
+              return {
+                chassis: full.chassis || null,
+                timestamp: full.timestamp || Date.now(),
+                color: full.exterior?.color || null,
+                imageUrl: typeof full.imageUrl === "string" ? full.imageUrl : undefined,
+                seating: { totalSeats: full.seating?.totalSeats ?? undefined },
+                overlayCount: Array.isArray(full.overlayLabels) ? full.overlayLabels.length : undefined,
+              };
+            } catch (_) {
+              return { timestamp: full.timestamp || Date.now() };
+            }
+          };
+
+          const trySerialize = (obj: any) => {
+            try {
+              const s = JSON.stringify(obj);
+              if (s.length > 120 * 1024) return JSON.stringify(minimizeSubmission(obj));
+              return s;
+            } catch (_) {
+              return JSON.stringify(minimizeSubmission(obj));
+            }
+          };
+
           // Ensure we don't grow beyond MAX_PENDING — drop oldest entries first
           while (pending.length >= MAX_PENDING) pending.shift();
 
