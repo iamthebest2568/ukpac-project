@@ -103,7 +103,7 @@ const FormScreen: React.FC = () => {
       title=""
       theme="light"
       footerBgImage={
-        "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc3874bf37db54abeb4a13c308b0df9a4?format=webp&width=1600"
+        "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fdbf2af3b7e1d4d449406bb4a5323834b?format=webp&width=1600"
       }
       footerContent={footer}
     >
