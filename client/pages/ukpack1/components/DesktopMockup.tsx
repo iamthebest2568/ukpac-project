@@ -89,7 +89,7 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
         aria-label="desktop-mockup"
       >
         <div
-          className="rounded-[20px] border-[1px] border-neutral-200 bg-transparent p-0"
+          className="rounded-[28px] border-[2px] border-neutral-300 shadow-2xl bg-neutral-50 p-2"
           style={{ width: "100%", height: "100%", boxSizing: "border-box" }}
         >
           <div
