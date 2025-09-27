@@ -1612,16 +1612,16 @@ body[data-dialog-open] {
 .figma-style1-container.source-selection-page .source-selection-root .figma-style1-button,
 .figma-style1-container.source-selection-page .source-selection-root .figma-style1-button--primary,
 .figma-style1-container.source-selection-page .source-selection-root .figma-style1-button--secondary {
-  padding: 12px 14px !important;
-  min-height: 72px !important; /* provide ample tap target */
+  padding: 8px 14px !important;
+  height: 55px !important; /* compact height requested */
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   text-align: center !important;
   white-space: normal !important;
   word-break: break-word !important;
-  line-height: 1.25 !important;
-  font-size: clamp(14px, 2.2vw, 16px) !important;
+  line-height: 1.1 !important;
+  font-size: clamp(13px, 1.8vw, 15px) !important;
 }
 .figma-style1-container.source-selection-page .source-selection-root .figma-style1-button .figma-style1-button-text {
   display: -webkit-box !important;
