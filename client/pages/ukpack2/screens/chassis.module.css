@@ -587,7 +587,7 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 8px;
   }
-  .selectionRow:first-child > button:nth-child(1) > div.iconContainer > div { width: 56% !important; }
+  .selectionRow:first-child > button:nth-child(1) > div.iconContainer > div { width: 34% !important; }
   .selectionRow:first-child > button:nth-child(2) > div.iconContainer > div { width: 92% !important; }
   .selectionRow:last-child > button:nth-child(1) > div.iconContainer > div { width: 78% !important; }
   .selectionRow:last-child > button:nth-child(2) > div.iconContainer > div { width: 74% !important; }
