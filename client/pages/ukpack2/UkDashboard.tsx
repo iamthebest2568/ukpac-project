@@ -9,11 +9,13 @@ import {
 } from "../../services/dataLogger.js";
 import { sendEventToFirestore } from "../../lib/firebase";
 
-const DASH_PASSWORD = "ukpact2dash"; // access code as requested
+const DASH_PASSWORD = "Ukdash-Xrz14!"; // shared password per request
+const DASH_USER = "ukpact";
 
 const UkDashboard: React.FC = () => {
   const [authorized, setAuthorized] = useState<boolean>(false);
   const [input, setInput] = useState("");
+  const [user, setUser] = useState("");
   const [summary, setSummary] = useState<any>(null);
   const [eventsSample, setEventsSample] = useState<any[]>([]);
   const [collectionInfo, setCollectionInfo] = useState<{
@@ -419,7 +421,7 @@ const UkDashboard: React.FC = () => {
             <h2 className="text-lg font-semibold mb-2">
               เข้าสู่แดชบอร์ด ukpack2
             </h2>
-            <p className="text-sm mb-4">ป้อนรหัสเพื่อเข้าถึงแดชบอร์ด</p>
+            <p className="text-sm mb-4">ป้อนรหัสเพื่อเข้าถึงแด���บอร์ด</p>
             <input
               type="password"
               value={input}
