@@ -230,9 +230,10 @@ const Step3_Result = ({
       {/* Selected priorities visual summary - overlapping collage */}
       <div className="w-full px-4 mb-6">
         <div
-          className="max-w-[980px] mx-auto relative"
+          className="max-w-[980px] mx-auto relative mn3-result-collage"
           style={{
-            height: 420,
+            minHeight: "65vh", /* center vertically in viewport */
+            height: "auto",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
@@ -260,7 +261,7 @@ const Step3_Result = ({
                   position: "absolute",
                   left: "50%",
                   top: `calc(50% + ${offset.top})`,
-                  transform: `translate(calc(-50% + ${offsetX}px), -50%) rotate(${offset.rotate}) scale(${offset.scale})`,
+                  transform: `translate(calc(-50% + ${offsetX}px), -50%) rotate(${offset.rotate}) scale(${offset.scale * 1.15})`, /* scale up +15% for this page only */
                   width,
                   zIndex: offset.z,
                 }}
