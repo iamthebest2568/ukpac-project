@@ -109,24 +109,11 @@ const FormScreen: React.FC = () => {
     >
       <div className="max-w-xl mx-auto pt-4 space-y-5 font-sarabun text-[17.6px] form-no-focus">
         <style>{`.form-no-focus *:focus{outline:none !important;box-shadow:none !important;}`}</style>
-        <div
-          className="w-full flex justify-center -mt-40 md:-mt-48"
-          style={{ marginTop: "-15px" }}
-        >
+        <div className="w-full flex justify-center" style={{ marginTop: "-10px" }}>
           <img
             src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fdbf2af3b7e1d4d449406bb4a5323834b?format=webp&width=800"
             alt="image"
-            className="block max-w-[520px] w-[75%] md:w-[60%] h-auto object-contain"
-          />
-        </div>
-        <div
-          className="w-full flex justify-center -mt-36 md:-mt-40"
-          style={{ marginTop: "-15px" }}
-        >
-          <img
-            src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fdbf2af3b7e1d4d449406bb4a5323834b?format=webp&width=800"
-            alt="image"
-            className="block max-w-[520px] w-[75%] md:w-[60%] h-auto object-contain"
+            className="block max-w-[320px] w-[60%] md:w-[45%] h-auto object-contain"
           />
         </div>
 
