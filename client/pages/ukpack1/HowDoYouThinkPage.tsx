@@ -7,7 +7,7 @@ import { useSession } from "../../hooks/useSession";
 import { logEvent } from "../../services/dataLogger.js";
 import FigmaStyle1Layout from "../../components/layouts/FigmaStyle1Layout.ukpack1";
 
-import TabletMockup from "./components/TabletMockup";
+import DesktopMockup from "./components/DesktopMockup";
 import Uk1Button from "../../components/shared/Uk1Button";
 
 const HowDoYouThinkPage = () => {
@@ -69,7 +69,7 @@ const HowDoYouThinkPage = () => {
   };
 
   return (
-    <TabletMockup>
+    <DesktopMockup>
       <FigmaStyle1Layout
         backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb5edf32ee2ed476284e73427d3abce51?format=webp&width=800"
         className="how-do-you-think-page"
@@ -135,7 +135,7 @@ const HowDoYouThinkPage = () => {
           </div>
         </div>
       </FigmaStyle1Layout>
-    </TabletMockup>
+    </DesktopMockup>
   );
 };
 
