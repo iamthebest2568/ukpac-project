@@ -28,7 +28,7 @@ const Ask04Budget = ({
   const handleChoice = (choice: "satisfied" | "unsatisfied") => {
     const choiceText = {
       satisfied: "พอใจ",
-      unsatisfied: "���ม่พอใจ",
+      unsatisfied: "ไม่พอใจ",
     }[choice];
 
     const data = { choice, choiceText };
@@ -140,7 +140,7 @@ const Ask04Budget = ({
   return (
     <FigmaStyle1Layout
       backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F4eb00ae35ec74ef5928b78875a49f859?format=webp&width=800"
-      backgroundAlt="พื้นหลังสรุปนโยบาย"
+      backgroundAlt="พื้นหลัง���รุปนโยบาย"
       title={`คุณพอใจภาพเมืองในอนาคตที่อาจจะเกิดขึ้นหรือไม่`}
       className="ask04-page ask04-budget-page mn3-step2-minimal"
     >
@@ -210,7 +210,7 @@ const Ask04Budget = ({
                     position: "absolute",
                     left: "50%",
                     top: `calc(50% + ${offset.top})`,
-                    transform: `translate(calc(-50% + ${offsetX}px), -50%) rotate(${offset.rotate}) scale(${offset.scale})`,
+                    transform: `translate(calc(-50% + ${offsetX}px), -50%) rotate(${offset.rotate}) scale(${offset.scale * 1.15 * 1.15 * 1.1})`, /* match Step3_Result scaling */
                     width,
                     zIndex: offset.z,
                   }}
