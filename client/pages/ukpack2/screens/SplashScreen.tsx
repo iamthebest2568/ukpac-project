@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import CtaButton from "../components/CtaButton";
 
 const HERO_SRC =
-  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F56cd643a31b04240bbdbdec0b25906a2?format=webp&width=800";
+  "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F59421a7024c24179936b3b194f9c7220?format=webp&width=800";
 
 const SplashScreen: React.FC = () => {
   const navigate = useNavigate();
