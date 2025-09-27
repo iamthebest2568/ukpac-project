@@ -1608,45 +1608,54 @@ body[data-dialog-open] {
   text-align: center !important;
 }
 
-/* Source Selection — tidy option button typography and spacing (scoped to page) */
-.figma-style1-container.source-selection-page .source-selection-root .figma-style1-button,
-.figma-style1-container.source-selection-page .source-selection-root .figma-style1-button--primary,
-.figma-style1-container.source-selection-page .source-selection-root .figma-style1-button--secondary {
-  padding: 6px 12px !important;
-  min-height: 55px !important; /* compact height requested */
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  text-align: center !important;
-  white-space: normal !important;
-  word-break: break-word !important;
-  line-height: 1.1 !important;
-  font-size: clamp(12px, 1.6vw, 14px) !important;
-  box-sizing: border-box !important;
-  overflow: hidden !important; /* prevent text from escaping */
+/* Source Selection — strict button layout (page-scoped) */
+.figma-style1-container.source-selection-page .source-selection-root,
+.figma-style1-container.source-selection-page .source-selection-root > div {
+  width: 100%;
 }
-.figma-style1-container.source-selection-page .source-selection-root .figma-style1-button .figma-style1-button-text {
-  display: -webkit-box !important;
-  -webkit-line-clamp: 2 !important; /* limit to two lines */
-  -webkit-box-orient: vertical !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
-  width: 100% !important;
-  text-align: center !important;
-  padding: 0 4px !important;
-}
-/* Ensure grid remains 3 columns but with consistent gaps */
 .figma-style1-container.source-selection-page .source-selection-root > div > div {
   grid-template-columns: repeat(3, 1fr) !important;
   gap: 12px !important;
+  align-items: stretch !important;
 }
-
-/* Remove weird transform on selected state to keep text aligned */
+.figma-style1-container.source-selection-page .source-selection-root .figma-style1-button,
+.figma-style1-container.source-selection-page .source-selection-root .figma-style1-button--primary,
+.figma-style1-container.source-selection-page .source-selection-root .figma-style1-button--secondary {
+  padding: 6px 10px !important;
+  min-height: 55px !important;
+  max-height: 55px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+  white-space: normal !important;
+  word-break: break-word !important;
+  font-size: 13px !important;
+  line-height: 1.1 !important;
+}
+.figma-style1-container.source-selection-page .source-selection-root .figma-style1-button {
+  width: 100% !important;
+}
+.figma-style1-container.source-selection-page .source-selection-root .figma-style1-button .figma-style1-button-text {
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  padding: 0 6px !important;
+  width: 100% !important;
+  text-align: center !important;
+}
+/* ensure children don't force size */
+.figma-style1-container.source-selection-page .source-selection-root .figma-style1-button > * {
+  max-width: 100% !important;
+}
 .figma-style1-container.source-selection-page .figma-style1-button--selected {
   transform: none !important;
 }
 
-/* ================================================
+/* end source-selection block */
    Desktop/Tablet-only background handling for ukpack1
    - Center background images horizontally & vertically
    - Use contain so full portrait is visible
