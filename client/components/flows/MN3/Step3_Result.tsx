@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { logEvent } from "../../../services/dataLogger.js";
 import FigmaStyle1Layout from "../../layouts/FigmaStyle1Layout.ukpack1";
 import Uk1Button from "../../shared/Uk1Button";
-import { useState, useEffect } from "react";
 
 interface Step3_ResultProps {
   sessionID: string | null;
