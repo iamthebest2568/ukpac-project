@@ -103,6 +103,7 @@ const Step1_Priorities = ({
             src="https://api.builder.io/api/v1/image/assets/TEMP/3b287c4c812ae9bc78f9c5a8da49d3845fd1887f?width=2158"
             alt="Transportation cityscape background"
             className="w-full h-full object-cover"
+            loading="eager"
             style={{ aspectRatio: "9/16" }}
           />
         </div>
@@ -339,7 +340,7 @@ const Step1_Priorities = ({
                   letterSpacing: "0.4px",
                 }}
               >
-                เพ���่ม Feeder ในซอย
+                เพิ่ม Feeder ในซอย
               </span>
             </button>
           </div>
