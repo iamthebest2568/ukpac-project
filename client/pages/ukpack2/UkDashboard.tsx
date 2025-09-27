@@ -103,7 +103,13 @@ const UkDashboard: React.FC = () => {
           "/.netlify/functions/api/firestore-stats?project=ukpack2",
         ];
 
-        const j = await tryFetchJsonWithFallback(rawCandidates, 8000);
+        let j = null;
+        try {
+          j = await tryFetchJsonWithFallback(rawCandidates, 8000);
+        } catch (e) {
+          console.warn("tryFetchJsonWithFallback threw", e);
+          j = null;
+        }
         if (j && j.ok && j.stats && Array.isArray(j.stats.sample)) {
           try {
             setCollectionInfo({
