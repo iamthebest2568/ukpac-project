@@ -1650,6 +1650,14 @@ body[data-dialog-open] {
   padding: 0 6px !important;
   width: 100% !important;
   text-align: center !important;
+  font-size: 12px !important;
+  line-height: 1.15 !important;
+  max-height: 28px !important; /* cap to two lines */
+}
+/* Reset inner element margins that can push text outside */
+.figma-style1-container.source-selection-page .source-selection-root .figma-style1-button .figma-style1-button-text > * {
+  margin: 0 !important;
+  padding: 0 !important;
 }
 /* ensure children don't force size */
 .figma-style1-container.source-selection-page .source-selection-root .figma-style1-button > * {
