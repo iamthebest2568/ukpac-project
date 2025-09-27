@@ -1735,6 +1735,22 @@ body[data-dialog-open] {
 }
 
 /* end source-selection block */
+
+/* Fix: ensure button text wraps and never overflows the button bounds across browsers */
+.figma-style1-container.source-selection-page .source-selection-root .figma-style1-button {
+  box-sizing: border-box !important;
+  overflow: hidden !important; /* safety */
+}
+.figma-style1-container.source-selection-page .source-selection-root .figma-style1-button .figma-style1-button-text {
+  display: block !important;
+  white-space: normal !important;
+  overflow-wrap: break-word !important;
+  word-break: break-word !important;
+  hyphens: auto !important;
+  max-height: calc(2 * 1.15em) !important; /* cap at two lines */
+}
+/* In browsers that support -webkit-line-clamp the earlier rule will apply; for others the text will wrap normally and be clipped by container */
+
 /* Desktop/Tablet-only background handling for ukpack1
    - Center background images horizontally & vertically
    - Use contain so full portrait is visible
