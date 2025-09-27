@@ -38,21 +38,14 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
     const margin = 32; // include soft shadow space
     const wv = Math.max(0, win.w - margin);
     const hv = Math.max(0, win.h - margin);
-    const node = frameRef.current;
-    if (!node) return;
-    // Temporarily remove transform to measure natural size. If measurement
-    // returns zero (element not laid out yet), fall back to BASE values to
-    // avoid computing a near-zero scale which hides the mockup.
-    const prev = node.style.transform;
-    node.style.transform = "none";
-    const rect = node.getBoundingClientRect();
-    const measuredW = rect && rect.width > 8 ? rect.width : BASE_W + 40;
-    const measuredH = rect && rect.height > 8 ? rect.height : BASE_H + 40;
-    node.style.transform = prev;
-    const s = Math.min(wv / measuredW, hv / measuredH, 1);
-    // Avoid extremely small scale values from transient layout states
-    const safeScale = s > 0.05 ? s : 1;
-    setScale(safeScale);
+    // Use BASE dimensions to avoid transient measurement issues caused by
+    // fixed-position children or animated transitions in child content.
+    const naturalW = BASE_W + 40;
+    const naturalH = BASE_H + 40;
+    const s = Math.min(wv / naturalW, hv / naturalH, 1);
+    // Ensure the mockup never collapses to an extremely small size
+    const minVisibleScale = 0.6;
+    setScale(Math.max(s, minVisibleScale));
   }, [win.w, win.h]);
 
   useEffect(() => {
