@@ -50,7 +50,7 @@ const Step2_Summary = ({
         "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fd3f59501f48a452c9298801a0aefebe1?format=webp&width=100",
     },
     students: {
-      label: "นักเรียน/นักศึกษา",
+      label: "นัก���รียน/นักศึกษา",
       iconSrc:
         "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F0cd82b7996e641ee9cf3aaa0ab1cb9f8?format=webp&width=118",
     },
@@ -279,19 +279,17 @@ const Step2_Summary = ({
       <div
         className="mn2-summary-footer"
         style={{
-          position: "fixed",
+          position: "sticky",
+          bottom: "calc(env(safe-area-inset-bottom, 0px) + 12px)",
           left: 0,
           right: 0,
-          bottom: 0,
           zIndex: 10000,
           height: "auto",
           background: "transparent",
-          padding: "16px",
-          paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 12px)",
+          padding: "12px 16px",
           display: "flex",
           justifyContent: "center",
           boxShadow: "none",
-          // allow the footer to be clickable and not capture unexpected pointer events
           pointerEvents: "auto",
         }}
       >
