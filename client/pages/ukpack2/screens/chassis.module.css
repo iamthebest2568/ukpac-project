@@ -657,7 +657,9 @@
 }
 .selectionRow button img,
 .selectionRow button svg {
-  height: 100% !important;
+  /* enforce equal heights across all icons */
+  height: var(--icon-cell-height) !important;
+  max-height: var(--icon-cell-height) !important;
   width: auto !important;
   max-width: 100% !important;
   object-fit: contain !important;
