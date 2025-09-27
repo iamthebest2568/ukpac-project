@@ -319,8 +319,10 @@ const DoorScreen: React.FC = () => {
                 ...(amenitiesFromStorage || []),
                 ...(paymentsFromStorage || []),
               ];
-              // Do not include current door selection as an overlay label — doors should not create overlays
-              // (overlay icons come only from previous steps: amenities and payments)
+              // Include current door selections so clicked door icons show as overlays
+              if (selectedOption.doorChoice) overlayLabels.push(selectedOption.doorChoice);
+              if (selectedOption.hasRamp) overlayLabels.push("ramp");
+              if (selectedOption.highLow) overlayLabels.push("emergency");
 
               const renderOverlayIcon = (label: string, idx: number) => {
                 // amenities
@@ -846,7 +848,7 @@ const DoorScreen: React.FC = () => {
 
       <ErrorModal
         isOpen={isErrorModalOpen}
-        title="ข้อ���ิดพลาด"
+        title="ข้อผิดพลาด"
         message={errorMessage}
         onClose={() => setErrorModalOpen(false)}
       />
