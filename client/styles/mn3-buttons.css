@@ -392,7 +392,8 @@
   left: 0 !important;
   right: 0 !important;
   bottom: 0 !important;
-  z-index: 100000 !important;
+  /* Ensure footer sits above allocation content and any other high z-index elements */
+  z-index: 100010 !important;
   display: flex !important;
   justify-content: center !important;
   padding: 10px 16px !important;
