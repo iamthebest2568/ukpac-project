@@ -512,83 +512,84 @@
 }
 
 /* -------------------------------------------------------------------------- */
-/* OVERRIDE: Prefer intrinsic width-based sizing for icons so height adapts */
-/* This ensures each icon keeps its aspect ratio and scales visually balanced */
+/* OVERRIDE: Enforce uniform icon height, allow width to step per-card */
+/* Each icon container uses the same height (var(--icon-cell-height)) so icons match vertically. */
+/* Per-card inner wrapper widths control visual width without changing height. */
 /* -------------------------------------------------------------------------- */
 
 .selectionGrid > button > div.iconContainer {
-  /* allow the icon container to size by content width; keep a reasonable min-height */
-  height: auto !important;
+  /* fixed uniform icon height */
+  height: var(--icon-cell-height) !important;
   width: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  box-sizing: border-box;
+}
+
+/* Inner wrapper: center image and allow per-card width adjustments */
+.selectionGrid > button > div.iconContainer > div {
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 !important;
-  min-height: calc(var(--icon-cell-height) * 0.45) !important;
+  box-sizing: border-box;
 }
 
-/* Support both module global syntaxes (triple-colon and single-colon) */
-:::global(.doorControls) .selectionGrid img,
+/* Image rules: height fixed to container, width auto, constrained by wrapper width */
+::global(.doorControls) .selectionGrid img,
 :global(.doorControls) .selectionGrid img,
-:::global(.doorControls) .selectionGrid svg,
+::global(.doorControls) .selectionGrid svg,
 :global(.doorControls) .selectionGrid svg,
 .selectionGrid > button img,
 .selectionGrid img,
 .selectionGrid > button svg,
 .selectionGrid svg {
-  height: auto !important;
+  height: 100% !important;
   width: auto !important;
-  max-width: 80% !important; /* let width drive size */
-  max-height: var(--icon-cell-height) !important; /* cap height to cell height */
+  max-width: 100% !important; /* will be limited by wrapper width */
   object-fit: contain !important;
   display: block !important;
 }
 
-/* Keep inline/horizontal cards consistent: they still use fixed container height so icons remain compact */
+/* Keep inline/horizontal cards consistent: fixed smaller height */
 .selectionGrid > :global(.horizontal) > div.iconContainer {
   height: 80px !important;
 }
-
-/* End of overrides */
-
-/* Per-card stepped sizing — make icons size descend while keeping grid alignment */
-.selectionGrid {
-  /* ensure buttons are centered and rows remain aligned */
-  align-items: start;
-}
-
-.selectionGrid > button img,
-.selectionGrid > button svg {
-  transition: max-width 160ms ease, transform 160ms ease;
-}
-
-/* Step sizes (tune percentages to taste) */
-.selectionGrid > button:nth-child(1) img,
-.selectionGrid > button:nth-child(1) svg {
-  max-width: 64% !important; /* smallest */
-}
-.selectionGrid > button:nth-child(2) img,
-.selectionGrid > button:nth-child(2) svg {
-  max-width: 92% !important; /* largest */
-}
-.selectionGrid > button:nth-child(3) img,
-.selectionGrid > button:nth-child(3) svg {
-  max-width: 80% !important; /* medium */
-}
-.selectionGrid > button:nth-child(4) img,
-.selectionGrid > button:nth-child(4) svg {
-  max-width: 72% !important; /* slightly larger than smallest */
-}
-
-/* Keep horizontal (inline) cards using their own smaller heights */
 .selectionGrid > :global(.horizontal) > div.iconContainer img,
 .selectionGrid > :global(.horizontal) > div.iconContainer svg {
+  height: 100% !important;
+  width: auto !important;
   max-width: 84% !important;
 }
 
-/* Hover / active emphasis: slightly enlarge selected icon for clarity */
+/* -------------------------------------------------------------------------- */
+/* Per-card stepped sizing — control available width inside the fixed-height cell */
+/* Adjust these % values to fine-tune visual balance. */
+/* -------------------------------------------------------------------------- */
+
+.selectionGrid > button:nth-child(1) > div.iconContainer > div {
+  width: 64% !important; /* smallest */
+}
+.selectionGrid > button:nth-child(2) > div.iconContainer > div {
+  width: 92% !important; /* largest */
+}
+.selectionGrid > button:nth-child(3) > div.iconContainer > div {
+  width: 80% !important; /* medium */
+}
+.selectionGrid > button:nth-child(4) > div.iconContainer > div {
+  width: 72% !important; /* slightly larger than smallest */
+}
+
+/* Selected state: slight scale without changing height; wrapper width grows for emphasis */
+.selectionGrid > button[aria-pressed="true"] > div.iconContainer > div {
+  width: 96% !important;
+}
 .selectionGrid > button[aria-pressed="true"] img,
 .selectionGrid > button[aria-pressed="true"] svg {
-  transform: scale(1.06);
-  max-width: 96% !important;
+  transform: none !important; /* keep aspect ratio intact */
 }
+
+/* End of overrides */
