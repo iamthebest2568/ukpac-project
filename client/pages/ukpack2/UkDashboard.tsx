@@ -94,7 +94,6 @@ const UkDashboard: React.FC = () => {
           "/.netlify/functions/api/firestore-stats?project=ukpack2",
           window.location.pathname.replace(/\/\$/, "") +
             "/api/firestore-stats?project=ukpack2",
-          window.location.origin + "/api/firestore-stats?project=ukpack2",
         ];
 
         // helpful debug logging for network issues
