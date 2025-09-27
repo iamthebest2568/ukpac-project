@@ -1656,7 +1656,7 @@ body[data-dialog-open] {
 }
 
 /* end source-selection block */
-   Desktop/Tablet-only background handling for ukpack1
+   /* Desktop/Tablet-only background handling for ukpack1
    - Center background images horizontally & vertically
    - Use contain so full portrait is visible
    - Fill side space with matching color variable
