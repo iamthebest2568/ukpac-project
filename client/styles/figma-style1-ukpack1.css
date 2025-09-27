@@ -236,13 +236,9 @@
   pointer-events: none !important;
 }
 
-/* Pages that should anchor background image to bottom so lower edge is visible */
-.figma-style1-container.ask02-page .figma-style1-background-image,
-.figma-style1-container.ask02-2-page .figma-style1-background-image,
-.figma-style1-container.ask05-page .figma-style1-background-image,
-.figma-style1-container.fake-news-page .figma-style1-background-image,
-.figma-style1-container.source-selection-root .figma-style1-background-image,
-.figma-style1-container.source-selection-page .figma-style1-background-image {
+/* UKPACK1: anchor background image to bottom so lower edge is visible across all ukpack1 pages */
+.figma-style1-container.figma-style1-ukpack1 .figma-style1-background-image,
+body.page-ukpack1 .figma-style1-background-image {
   object-position: center bottom !important;
   height: 100vh !important;
   height: 100svh !important;
