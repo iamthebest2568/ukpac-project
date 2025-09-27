@@ -147,7 +147,7 @@ const UkDashboard: React.FC = () => {
       setAuthorized(true);
       refreshSummary();
     } else {
-      alert("ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง");
+      alert("ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต���อง");
     }
   };
 
@@ -421,7 +421,14 @@ const UkDashboard: React.FC = () => {
             <h2 className="text-lg font-semibold mb-2">
               เข้าสู่แดชบอร์ด ukpack2
             </h2>
-            <p className="text-sm mb-4">ป้อนรหัสเพื่อเข้าถึงแดชบอร์ด</p>
+            <p className="text-sm mb-4">ป้อน��หัสเพื่อเข้าถึงแดชบอร์ด</p>
+            <input
+              type="text"
+              value={user}
+              onChange={(e) => setUser(e.target.value)}
+              className="w-full border px-3 py-2 rounded mb-3"
+              placeholder="User ID"
+            />
             <input
               type="password"
               value={input}
