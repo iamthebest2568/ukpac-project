@@ -1,11 +1,11 @@
 import React from "react";
-import TabletMockup from "./components/TabletMockup";
+import DesktopMockup from "./components/DesktopMockup";
 import Page from "../WhatDoYouTravelByPage";
 
 const Wrapped = (props: any) => (
-  <TabletMockup>
+  <DesktopMockup>
     <Page {...props} />
-  </TabletMockup>
+  </DesktopMockup>
 );
 
 export default Wrapped;
