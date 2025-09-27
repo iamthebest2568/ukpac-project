@@ -44,7 +44,7 @@ const SelectionCard: React.FC<SelectionCardProps> = ({
   try {
     if (React.isValidElement(icon)) {
       const originalProps: any = (icon as React.ReactElement).props || {};
-      const mergedStyle = { ...(originalProps.style || {}), height: "100%", width: "100%" };
+      const mergedStyle = { ...(originalProps.style || {}), height: "100%", width: "auto" };
       // ensure icons fill the available box while maintaining aspect ratio
       const mergedClassName = `${originalProps.className || ""} h-full w-full object-contain`.trim();
       normalizedIcon = React.cloneElement(icon as React.ReactElement, { ...originalProps, style: mergedStyle, className: mergedClassName });
