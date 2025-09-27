@@ -252,6 +252,33 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     };
   }, [isEmbedded, location.pathname]);
 
+  // Global: suppress noisy "Failed to fetch" errors originating from
+  // Firestore SDK background network probes which can occur in restricted
+  // hosting environments. We still log other unhandled rejections.
+  React.useEffect(() => {
+    const handler = (ev: PromiseRejectionEvent) => {
+      try {
+        const reason = (ev && (ev.reason || ev.detail)) || ev;
+        const message = reason && reason.message ? String(reason.message) : String(reason);
+        // If the error is a generic network failure and comes from firebase
+        // internals, swallow it to avoid polluting logs/console in the preview env.
+        if (/failed to fetch/i.test(message) || /Failed to fetch/i.test(message)) {
+          // If stack includes firebase firestore internals, treat as ignorable
+          const stack = reason && reason.stack ? String(reason.stack) : "";
+          if (/firebase_firestor|firebase_firestore|firestore/i.test(stack)) {
+            // prevent default logging
+            ev.preventDefault();
+            console.debug("Suppressed Firestore network error in preview:", message);
+            return;
+          }
+        }
+      } catch (_) {}
+      // otherwise allow default handling
+    };
+    window.addEventListener("unhandledrejection", handler as any);
+    return () => window.removeEventListener("unhandledrejection", handler as any);
+  }, []);
+
   return (
     <div
       className={`min-h-screen flex justify-center ${isFullBleed ? "bg-white full-bleed-page" : "bg-[#2a2a2a]"}`}
