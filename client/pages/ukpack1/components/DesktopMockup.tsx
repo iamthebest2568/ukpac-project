@@ -28,6 +28,7 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
   const BASE_W = 414; // iPhone XR CSS points (portrait)
   const BASE_H = 896;
   const [scale, setScale] = useState(1);
+  const [initialized, setInitialized] = useState(false);
   const frameRef = useRef<HTMLDivElement | null>(null);
   const navigate = useNavigate();
   const location = useLocation();
