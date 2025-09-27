@@ -17,7 +17,6 @@ const TabletMockupUk1 = React.lazy(() => import("./pages/ukpack1/components/Tabl
 
 // Minimal set of pages (dashboard/backend removed)
 const NotFound = lazy(() => import("./pages/NotFound"));
-const TestPage = lazy(() => import("./TestPage"));
 
 // Main entry
 const IndexPage = lazy(() => import("./pages/Index"));
