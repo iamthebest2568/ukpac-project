@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
-import React, { useEffect, useState, useRef, useCallback } from "react";
 import { createPortal } from "react-dom";
 import { useNavigate, useLocation } from "react-router-dom";
 import RouteTransition from "../../../components/shared/RouteTransition.ukpack1";
@@ -98,7 +97,9 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
 
   if (!active) return <>{children}</>;
 
-  return (
+  if (typeof document === "undefined") return <>{children}</>;
+
+  const mockup = (
     <div className="fixed inset-0 grid place-items-center w-screen h-screen bg-neutral-100/40 overflow-hidden" style={{ zIndex: 2147483647, pointerEvents: 'none' }}>
       <div
         ref={frameRef}
@@ -112,13 +113,13 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
           maxHeight: "100vh",
           transition: "none",
           visibility: "visible",
-          pointerEvents: "auto",
+          pointerEvents: 'auto'
         }}
         aria-label="desktop-mockup"
       >
         <div
           className="rounded-[48px] border-[2px] border-neutral-300 shadow-2xl drop-shadow-lg bg-neutral-200/60 p-2"
-          style={{ width: "100%", height: "100%" }}
+          style={{ width: "100%", height: "100%", pointerEvents: 'auto' }}
         >
           {/* Inner bezel */}
           <div
@@ -133,6 +134,7 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
                 width: `${BASE_W}px`,
                 height: `${BASE_H}px`,
                 aspectRatio: `${BASE_W} / ${BASE_H}`,
+                pointerEvents: 'auto'
               }}
               onClickCapture={(e: React.MouseEvent) => {
                 try {
@@ -183,6 +185,8 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
       </div>
     </div>
   );
+
+  return createPortal(mockup, document.body);
 };
 
 export default DesktopMockup;
