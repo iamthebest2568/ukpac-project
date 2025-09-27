@@ -114,6 +114,7 @@ export default function UkDashboard() {
   const [authed, setAuthed] = useState<boolean>(
     () => sessionStorage.getItem("ukdash_authed") === "true",
   );
+  const [user, setUser] = useState("");
   const [pw, setPw] = useState("");
   const [pwErr, setPwErr] = useState<string | null>(null);
 
@@ -846,7 +847,7 @@ export default function UkDashboard() {
                       "คุณคิดว่ารัฐควรทำอะไรที่จะทำให้นโยบายนี้เกิดขึ้นได้จริง และเป็นประโยชน์ต่อประชาชนอย่างแท้จริง",
                       "ตอนนี้มีข้อมูลที่ผิดพลาด เช่น ข่าวปลอมเกี่ยวกับนโยบาย คุณคิดว่าอย่างไร",
                       "คุณจะติดตามข่าว หรือเชื่อจากแหล่งไหนมาก���ี่สุด",
-                      "ขอบคุณที่ร่วมเป็นส่วนหนึ่ง → ต้องการลุ้นรับรางวัลหรือไม่",
+                      "ขอบค��ณที่ร่วมเป็นส่วนหนึ่ง → ต้องการลุ้นรับรางวัลหรือไม่",
                       "กรอกข้อมูลเพื่อลุ้นรางวัล (ชื่อ)",
                       "กรอกข้อมูลเพื่อลุ้นรางวัล (เบอร์โทร)",
                       "Time Stamp (First)",
