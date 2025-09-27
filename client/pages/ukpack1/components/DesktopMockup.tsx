@@ -89,24 +89,26 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
         aria-label="desktop-mockup"
       >
         <div
-          className="rounded-[28px] border-[2px] border-neutral-300 shadow-2xl bg-neutral-50 p-2"
-          style={{ width: "100%", height: "100%", boxSizing: "border-box" }}
+          className="rounded-[48px] border-[2px] border-neutral-300 shadow-2xl drop-shadow-lg bg-neutral-200/60 p-2"
+          style={{ width: "100%", height: "100%" }}
         >
+          {/* Inner bezel */}
           <div
-            className="relative rounded-[16px] p-0"
-            style={{ width: "100%", height: "100%", backgroundColor: viewportBackground }}
+            className="relative rounded-[40px] bg-neutral-900 p-1"
+            style={{ width: "100%", height: "100%" }}
           >
+            {/* Viewport (portrait 414x896) */}
             <div
-              className={`rounded-[12px] overflow-y-auto overflow-x-hidden tablet-mock-env`}
+              className="rounded-[30px] bg-white overflow-y-auto overflow-x-hidden tablet-mock-env"
               style={{
                 position: "relative",
                 width: `${BASE_W}px`,
                 height: `${BASE_H}px`,
                 aspectRatio: `${BASE_W} / ${BASE_H}`,
-                backgroundColor: viewportBackground,
               }}
               onClickCapture={(e: React.MouseEvent) => {
                 try {
+                  // Only intercept left-clicks without modifier keys
                   if (e.button !== 0) return;
                   if (e.metaKey || e.ctrlKey || e.altKey || e.shiftKey) return;
                   const tgt = e.target as HTMLElement | null;
@@ -115,8 +117,11 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
                   if (!a) return;
                   const href = a.getAttribute("href");
                   if (!href) return;
+                  // Allow explicit targets (new tab) or download links
                   const target = a.getAttribute("target");
                   if (target && target !== "_self") return;
+
+                  // If href is absolute, ensure same origin
                   let url: URL | null = null;
                   try {
                     url = new URL(href, window.location.href);
@@ -124,10 +129,14 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
                     url = null;
                   }
                   if (url) {
-                    if (url.origin !== window.location.origin) return;
+                    if (url.origin !== window.location.origin) return; // external
+                    // Only intercept internal ukpack1 routes to keep mockup
                     if (!url.pathname.startsWith("/ukpack1")) return;
                     e.preventDefault();
+                    // Use react-router navigation to change route without full reload
                     navigate(url.pathname + url.search + url.hash);
+                  } else {
+                    // relative href without URL parseable? ignore
                   }
                 } catch (err) {
                   // swallow
