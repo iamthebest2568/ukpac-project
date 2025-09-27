@@ -221,6 +221,8 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   }
   const isFullBleed = location.pathname.startsWith("/ukpack2");
   const isUkpack1 = location.pathname.startsWith("/ukpack1");
+  // Do not wrap uk-stornaway in the DesktopMockup — render it full-bleed instead
+  const isUkpack1Wrapped = isUkpack1 && !location.pathname.startsWith("/ukpack1/uk-stornaway");
   // initialize ukpack2 analytics only on ukpack2 routes
   if (isFullBleed) {
     try {
