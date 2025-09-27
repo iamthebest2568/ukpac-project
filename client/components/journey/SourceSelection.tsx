@@ -122,7 +122,10 @@ const SourceSelection = ({
                 ) : (
                   <button
                     key={opt.id}
-                    onClick={() => toggle(opt.id, opt.label)}
+                    onClick={() => {
+                      if (!isSelected && maxReached) return;
+                      toggle(opt.id, opt.label);
+                    }}
                     className={`figma-style1-button ${isSelected ? "figma-style1-button--selected" : ""}`}
                     aria-pressed={isSelected}
                     aria-disabled={!isSelected && maxReached}
