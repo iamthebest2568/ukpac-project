@@ -33,10 +33,10 @@ const DesktopMockup: React.FC<TabletMockupProps> = ({ children }) => {
   const frameRef = React.useRef<HTMLDivElement | null>(null);
   const navigate = useNavigate();
   const location = useLocation();
-  const isUk1MiniGameNoWhite =
-    typeof location?.pathname === "string" &&
-    (location.pathname.startsWith("/ukpack1/minigame-mn1") ||
-      location.pathname.startsWith("/ukpack1/minigame-mn2"));
+  // Keep mockup display neutral: always use white viewport background to
+  // avoid visual inconsistencies. For any page that requires transparent
+  // background, that should be handled by the page's layout instead.
+  const viewportBackground = "#ffffff";
 
   const recomputeScale = React.useCallback(() => {
     const margin = 32; // include soft shadow space
