@@ -92,7 +92,6 @@ const FormScreen: React.FC = () => {
             className="w-full h-12"
             text="ไม่รับรางวัล"
             onClick={skip}
-            style={{ backgroundColor: 'transparent', boxShadow: 'none', color: '#ffffff' }}
           />
         </div>
       </div>
