@@ -43,8 +43,10 @@ const SourceSelection = ({
   const toggle = (id: string, label: string) => {
     setSelected((s) => {
       const exists = s.includes(id);
+      // If already selected -> remove
       if (exists) return s.filter((x) => x !== id);
-      if (s.length >= 3) return s; // max 3
+      // Prevent adding more than 3
+      if (!exists && s.length >= 3) return s; // max 3
       return [...s, id];
     });
   };
