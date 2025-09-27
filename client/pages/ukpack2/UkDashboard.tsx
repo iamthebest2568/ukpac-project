@@ -54,40 +54,35 @@ const UkDashboard: React.FC = () => {
           }
         };
         const paths = rawPaths.map(normalize);
-        for (const p of paths) {
+
+        const fetchWithTimeout = async (url: string, ms: number) => {
           const controller = new AbortController();
           const signal = controller.signal;
-          const id = setTimeout(() => controller.abort(), timeout);
+          const timer = setTimeout(() => controller.abort(), ms);
           try {
-            const resp = await fetch(p, {
-              credentials: "same-origin",
-              signal,
-            });
-            clearTimeout(id);
-            if (!resp.ok) {
-              let body = null;
-              try {
-                body = await resp.text();
-              } catch (e) {
-                body = null;
-              }
-              console.warn("fetch non-ok", p, resp.status, body);
-              continue;
-            }
+            const resp = await fetch(url, { credentials: "same-origin", signal });
+            if (!resp || !resp.ok) return null;
             try {
               return await resp.json();
             } catch (e) {
-              console.warn("failed to parse json", p, e);
-              continue;
+              // invalid json
+              return null;
             }
-          } catch (err: any) {
-            if (err && err.name === "AbortError") {
-              console.warn("fetch timeout or aborted", p);
-            } else {
-              console.warn("fetch error", p, err);
-            }
+          } catch (err) {
+            // network error, CORS, aborted, etc. Return null to try next candidate
+            return null;
           } finally {
-            clearTimeout(id);
+            clearTimeout(timer);
+          }
+        };
+
+        for (const p of paths) {
+          try {
+            const result = await fetchWithTimeout(p, timeout);
+            if (result) return result;
+          } catch (e) {
+            // defensive: fetchWithTimeout should never throw, but guard anyway
+            console.warn("candidate fetch threw", p, e);
           }
         }
         return null;
