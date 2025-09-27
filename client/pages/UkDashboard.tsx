@@ -48,7 +48,7 @@ type SessionSummary = {
   opinionLevel?: string; // ระดับความคิดเห็น
   ask02Choice?: string; // เหตุผลหลัก
   ask02CustomReason?: string; // เหตุผลพิมพ์เอง
-  reasonOther01?: string; // คำอธิบายเพิ่มเติม
+  reasonOther01?: string; // คำอธิบายเ���ิ่มเติม
   keyMessage1?: string; // Key message 1
   mn1Selected: string[]; // ลำดับความสำคัญของประเด็น
   mn2Selections?: Record<string, string[]>; // กลุ่มเป้าหมายที่ควรได้รับสิทธิ์
@@ -116,6 +116,14 @@ export default function UkDashboard() {
   const [pw, setPw] = useState("");
   const [pwErr, setPwErr] = useState<string | null>(null);
 
+  // Helper: escape CSV cell
+  const escapeCell = (val: any) => {
+    if (val === undefined || val === null) return "";
+    const s = typeof val === "string" ? val : JSON.stringify(val);
+    // remove control chars and normalize
+    return String(s).replace(/\p{C}/gu, "").replace(/"/g, '""');
+  };
+
   async function load() {
     if (firstLoad) setLoading(true);
     // Always set default stats so UI renders even if APIs fail
@@ -131,14 +139,6 @@ export default function UkDashboard() {
       choices: [],
     });
     setError(null);
-
-    // Helper: escape CSV cell
-    const escapeCell = (val: any) => {
-      if (val === undefined || val === null) return "";
-      const s = typeof val === "string" ? val : JSON.stringify(val);
-      // remove control chars and normalize
-      return String(s).replace(/\u0000-\u001F/g, "").replace(/"/g, '""');
-    };
 
     try {
       const [jRes, ssRes, stRes, vsRes] = await Promise.allSettled([
@@ -950,7 +950,7 @@ export default function UkDashboard() {
                       "คุณคิดว่ารัฐควรทำอะไรที่จะทำให้นโยบายนี้เกิดขึ้นได้จริง และเป็นประโยชน์ต่อประชาชนอย่างแท้จริง",
                       "ตอนนี้มีข้อมูลที่ผิดพลาด เช่น ข่าวปลอมเกี่ยวกับนโยบาย คุณคิดว่าอย่างไร",
                       "คุณจะติดตามข่าว หรือเชื่อจากแหล่งไหนมาก���ี่สุด",
-                      "ขอบคุณที่ร่วมเป็นส่วนหนึ่ง → ต้องการลุ้นรับรางวัลหรือไม่",
+                      "ขอบคุณที่ร่วมเป็นส่วนหนึ่ง → ต้อง���ารลุ้นรับรางวัลหรือไม่",
                       "กรอกข้อมูลเพื่อลุ้นรางวัล (ชื่อ)",
                       "กรอกข้อมูลเพื่อลุ้นรางวัล (เบอร์โทร)",
                       "Time Stamp (First)",
