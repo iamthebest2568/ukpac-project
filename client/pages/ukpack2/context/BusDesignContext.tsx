@@ -207,7 +207,18 @@ export const BusDesignProvider = ({ children }: { children: ReactNode }) => {
           while (pending.length >= MAX_PENDING) pending.shift();
 
           const id = `local_${Date.now()}_${Math.random().toString(36).slice(2, 9)}`;
-          pending.push({ id, payload });
+          // Prefer storing a minimized payload if the full one is large
+          let itemToStore: any = { id, payload };
+          try {
+            const serializedFull = JSON.stringify({ id, payload });
+            if (serializedFull.length > 120 * 1024) {
+              itemToStore = { id, payload: minimizeSubmission(payload) };
+            }
+          } catch (_) {
+            itemToStore = { id, payload: minimizeSubmission(payload) };
+          }
+
+          pending.push(itemToStore);
 
           // Attempt to persist, and on quota errors try trimming oldest entries and retrying
           try {
