@@ -8,7 +8,9 @@ const Wrapped = (props: any) => {
   // iframe inside the DesktopMockup so the app runs inside an iframe.
   let embedded = false;
   try {
-    const sp = new URLSearchParams(typeof window !== "undefined" ? window.location.search : "");
+    const sp = new URLSearchParams(
+      typeof window !== "undefined" ? window.location.search : "",
+    );
     embedded = sp.get("embedded") === "1" || sp.get("embedded") === "true";
   } catch (e) {
     embedded = false;
@@ -29,14 +31,22 @@ const Wrapped = (props: any) => {
     );
   }
 
-  const src = typeof window !== "undefined" ? window.location.pathname + "?embedded=1" : "/ukpack1/minigame-mn1?embedded=1";
+  const src =
+    typeof window !== "undefined"
+      ? window.location.pathname + "?embedded=1"
+      : "/ukpack1/minigame-mn1?embedded=1";
 
   return (
     <DesktopMockup>
       <iframe
         title="minigame-mn1-embed"
         src={src}
-        style={{ width: "100%", height: "100%", border: "0", background: "transparent" }}
+        style={{
+          width: "100%",
+          height: "100%",
+          border: "0",
+          background: "transparent",
+        }}
         sandbox="allow-scripts allow-forms allow-same-origin allow-popups"
       />
     </DesktopMockup>

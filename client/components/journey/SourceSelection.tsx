@@ -129,10 +129,14 @@ const SourceSelection = ({
                     aria-pressed={isSelected}
                     aria-disabled={!isSelected && maxReached}
                     disabled={!isSelected && maxReached}
-                    className={isSelected ? "figma-style1-button--selected" : ""}
+                    className={
+                      isSelected ? "figma-style1-button--selected" : ""
+                    }
                     style={{ width: "100%" }}
                   >
-                    <span className="figma-style1-button-text">{opt.label}</span>
+                    <span className="figma-style1-button-text">
+                      {opt.label}
+                    </span>
                   </Uk1Button>
                 )}
               </Fragment>
