@@ -90,6 +90,8 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
           transformOrigin: "center",
           maxWidth: "100vw",
           maxHeight: "100vh",
+          transition: "none",
+          visibility: "visible",
         }}
         aria-label="desktop-mockup"
       >
