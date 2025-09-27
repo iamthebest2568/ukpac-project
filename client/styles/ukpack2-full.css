@@ -372,14 +372,27 @@ body.page-ukpack2 .uk2-footer-wrapper {
 }
 
 /* PDPA page footer adjustment: reduce inner footer padding by 20px only on /ukpack2/pdpa */
-body.page-ukpack2 .pdpa-footer-adjust .flex.flex-col.items-center {
-  padding-bottom: 28px !important; /* was 48px (pb-12), reduced by 20px */
+body.page-ukpack2 .uk2-footer-wrapper.pdpa-footer-adjust {
+  /* slightly smaller background band and centered content */
+  background-size: 100% 56px !important;
+  background-position: center bottom !important;
+  padding-top: 8px !important;
+  padding-bottom: calc(8px + env(safe-area-inset-bottom, 0px)) !important;
 }
 
-body.page-ukpack2 .uk2-footer-wrapper .uk2-footer-actions {
+/* keep inner actions constrained and centered to visually balance with the CTA button */
+body.page-ukpack2 .uk2-footer-wrapper.pdpa-footer-adjust .uk2-footer-actions {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
   align-items: center;
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* fallback: reduce bottom padding for the inner column for older markup */
+body.page-ukpack2 .pdpa-footer-adjust .flex.flex-col.items-center {
+  padding-bottom: 28px !important; /* was 48px (pb-12), reduced by 20px */
 }
