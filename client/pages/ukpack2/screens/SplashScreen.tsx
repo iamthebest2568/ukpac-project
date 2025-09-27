@@ -34,9 +34,10 @@ const SplashScreen: React.FC = () => {
           style={{
             display: "block",
             margin: "0 auto",
-            width: "auto",
-            maxWidth: "min(92vw, 504px)",
-            height: 375,
+            width: "100%",
+            maxWidth: "min(92vw, 520px)",
+            height: "auto",
+            maxHeight: "60vh",
             objectFit: "contain",
             boxSizing: "border-box",
             paddingLeft: 16,
