@@ -157,14 +157,15 @@ const VehiclePreview: React.FC<Props> = ({
                 const sizeClass = (() => {
                   switch (chassis) {
                     case "small":
-                      return "h-8 w-8 sm:h-10 sm:w-10";
+                      // match other overlay bubbles (h-9 w-9 md:h-10 md:w-10)
+                      return "h-9 w-9 md:h-10 md:w-10";
                     case "large":
                       return "h-12 w-12 sm:h-14 sm:w-14";
                     case "extra":
                       return "h-12 w-12 sm:h-14 sm:w-14";
                     case "medium":
                     default:
-                      return "h-10 w-10 sm:h-12 sm:w-12";
+                      return "h-9 w-9 md:h-10 md:w-10";
                   }
                 })();
 
@@ -267,7 +268,14 @@ const VehiclePreview: React.FC<Props> = ({
                                   );
                                 })()
                               ) : srcOrNode ? (
-                                <>{srcOrNode}</>
+                                // If the overlay entry is a React node, clone it to force it to fill the overlay bubble
+                                React.isValidElement(srcOrNode)
+                                  ? React.cloneElement(srcOrNode as React.ReactElement, {
+                                      ...((srcOrNode as React.ReactElement).props || {}),
+                                      className: `${((srcOrNode as React.ReactElement).props?.className) || ""} h-full w-full object-contain`.trim(),
+                                      style: { ...((srcOrNode as React.ReactElement).props?.style || {}), height: '100%', width: '100%' },
+                                    })
+                                  : <>{srcOrNode}</>
                               ) : (
                                 <div className="text-xs inline-block">
                                   {lab}
