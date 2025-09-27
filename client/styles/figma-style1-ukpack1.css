@@ -62,6 +62,21 @@
   transform: none !important;
 }
 
+/* Disabled state: grey background and muted text */
+.figma-style1-ukpack1 .figma-style1-button:disabled,
+.figma-style1-ukpack1 .figma-style1-button[disabled],
+.figma-style1-ukpack1 .figma-style1-button[aria-disabled="true"] {
+  background-color: #d1d5db !important; /* gray-300 */
+  color: #6b7280 !important; /* gray-500 */
+  cursor: not-allowed !important;
+  opacity: 1 !important;
+  box-shadow: none !important;
+}
+.figma-style1-ukpack1 .figma-style1-button:disabled .figma-style1-button-text,
+.figma-style1-ukpack1 .figma-style1-button[disabled] .figma-style1-button-text {
+  color: inherit !important;
+}
+
 /* Secondary / dark fallbacks (ukpack1 forces standard) */
 .figma-style1-ukpack1 .figma-style1-button--secondary {
   background-color: #ffe000 !important;
