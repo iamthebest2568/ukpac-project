@@ -46,7 +46,7 @@ const SplashScreen: React.FC = () => {
       <div
         style={{
           width: "100%",
-          paddingBottom: 55,
+          paddingBottom: "calc(env(safe-area-inset-bottom, 16px) + 32px)",
           paddingTop: 50,
           display: "flex",
           flexDirection: "column",
