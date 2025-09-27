@@ -43,7 +43,9 @@ const Step1_Beneficiaries = ({
       id: "everyone",
       label: "ทุกคน",
       iconSrc:
-        "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb51d5d0d87d5482cbe4ae3a2df0c65c9?format=webp&width=100",
+        "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F6510b478762447b1be81ffa3233d065c?format=webp&width=100",
+      iconSelectedSrc:
+        "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F1a6c0c50b73f4a6c8b4f30323b386a7b?format=webp&width=100",
     },
     {
       id: "locals",
