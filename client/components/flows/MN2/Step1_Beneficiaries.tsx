@@ -180,7 +180,7 @@ const Step1_Beneficiaries = ({
                 }}
               >
                 <div
-                  className={`w-[84px] h-[84px] mb-2 flex items-center justify-center ${isSelected ? "rounded-full bg-[#EFBA31]" : ""}`}
+                  className={`w-[84px] h-[84px] mb-2 flex items-center justify-center`}
                 >
                   <img
                     src={isSelected ? (group.iconSelectedSrc || group.iconSrc) : group.iconSrc}
@@ -219,7 +219,7 @@ const Step1_Beneficiaries = ({
                 }}
               >
                 <div
-                  className={`w-[84px] h-[84px] mb-2 flex items-center justify-center ${isSelected ? "rounded-full bg-[#EFBA31]" : ""}`}
+                  className={`w-[84px] h-[84px] mb-2 flex items-center justify-center`}
                 >
                   <img
                     src={isSelected ? (group.iconSelectedSrc || group.iconSrc) : group.iconSrc}
