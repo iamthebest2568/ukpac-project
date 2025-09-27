@@ -33,7 +33,7 @@ const THAI_HEADERS = [
   // Prize
   "ลุ้นรางวัล (lucky_draw)",
   "ชื่อ (name)",
-  "เบอร์ (phone)",
+  "เ��อร์ (phone)",
   "เวลาส่งฟอร์ม (time_stamp2)",
   "แชร์1 (share1)",
 
@@ -73,6 +73,9 @@ export default function BusDashboard() {
   const [exporting, setExporting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  // cache of merged payloads per session for table UI
+  const [perSessionData, setPerSessionData] = useState<Record<string, Record<string, any>>>({});
+
   useEffect(() => {
     let mounted = true;
     (async () => {
@@ -82,7 +85,6 @@ export default function BusDashboard() {
         if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
         const data = await resp.json();
         if (!mounted) return;
-        // Keep the raw summaries for listing; export will fetch details per session
         setSessions(Array.isArray(data) ? data : []);
       } catch (e: any) {
         setError(e?.message || "โหลดข้อมูลล้มเหลว");
@@ -94,6 +96,43 @@ export default function BusDashboard() {
       mounted = false;
     };
   }, []);
+
+  // Fetch per-session merged payloads in background (limited)
+  useEffect(() => {
+    let mounted = true;
+    const limit = 200; // safe cap
+    const toFetch = sessions.slice(0, limit);
+    (async () => {
+      const results: Record<string, Record<string, any>> = {};
+      for (const s of toFetch) {
+        const sid = s.sessionId || s.sessionId === 0 ? String(s.sessionId) : s.sessionId || "";
+        if (!sid) continue;
+        try {
+          const detail = await fetchSessionDetail(sid);
+          const appEvents = detail?.appEvents || [];
+          const merged: Record<string, any> = {};
+          for (const ev of appEvents) {
+            try {
+              if (ev && ev.payload && typeof ev.payload === "object") {
+                for (const k of Object.keys(ev.payload)) {
+                  if (merged[k] === undefined) merged[k] = ev.payload[k];
+                }
+              }
+              if (ev && ev.event === "PDPA_ACCEPT") {
+                merged["pdpa_accept"] = ev.payload?.accepted === true;
+              }
+            } catch (_) {}
+          }
+          results[sid] = merged;
+        } catch (_) {
+          // ignore errors per session
+        }
+        if (!mounted) break;
+      }
+      if (mounted) setPerSessionData((prev) => ({ ...prev, ...results }));
+    })();
+    return () => { mounted = false; };
+  }, [sessions]);
 
   const exportCsv = async () => {
     if (!sessions || sessions.length === 0) {
