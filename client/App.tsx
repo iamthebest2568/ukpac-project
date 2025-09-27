@@ -328,7 +328,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             <React.Suspense fallback={<div style={{ height: "100%" }} />}>
               <TabletMockupUk2>{children}</TabletMockupUk2>
             </React.Suspense>
-          ) : isUkpack1 ? (
+          ) : isUkpack1Wrapped ? (
             <React.Suspense fallback={<div style={{ height: "100%" }} />}>
               <DesktopMockupUk1>{children}</DesktopMockupUk1>
             </React.Suspense>
