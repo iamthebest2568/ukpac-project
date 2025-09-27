@@ -90,12 +90,15 @@ const UkDashboard: React.FC = () => {
       // Fetch Firestore-backed recent events for ukpack2 with resilient fallbacks
       try {
         const rawCandidates = [
-          window.location.origin + "/api/firestore-stats?project=ukpack2",
           "/api/firestore-stats?project=ukpack2",
+          "/.netlify/functions/api/firestore-stats?project=ukpack2",
           window.location.pathname.replace(/\/\$/, "") +
             "/api/firestore-stats?project=ukpack2",
-          "/.netlify/functions/api/firestore-stats?project=ukpack2",
+          window.location.origin + "/api/firestore-stats?project=ukpack2",
         ];
+
+        // helpful debug logging for network issues
+        console.debug("firestore-stats candidates:", rawCandidates);
 
         let j = null;
         try {
