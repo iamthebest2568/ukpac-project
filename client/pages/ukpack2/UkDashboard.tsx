@@ -56,23 +56,23 @@ const UkDashboard: React.FC = () => {
         const paths = rawPaths.map(normalize);
 
         const fetchWithTimeout = async (url: string, ms: number) => {
-          const controller = new AbortController();
-          const signal = controller.signal;
-          const timer = setTimeout(() => controller.abort(), ms);
           try {
-            const resp = await fetch(url, { credentials: "same-origin", signal });
-            if (!resp || !resp.ok) return null;
-            try {
-              return await resp.json();
-            } catch (e) {
-              // invalid json
-              return null;
-            }
-          } catch (err) {
-            // network error, CORS, aborted, etc. Return null to try next candidate
+            const fetchPromise = fetch(url, { credentials: "same-origin" })
+              .then(async (resp) => {
+                if (!resp || !resp.ok) return null;
+                try {
+                  return await resp.json();
+                } catch (e) {
+                  return null;
+                }
+              })
+              .catch(() => null);
+
+            const timeoutPromise = new Promise((res) => setTimeout(() => res(null), ms));
+
+            return await Promise.race([fetchPromise, timeoutPromise]);
+          } catch (e) {
             return null;
-          } finally {
-            clearTimeout(timer);
           }
         };
 
@@ -81,7 +81,6 @@ const UkDashboard: React.FC = () => {
             const result = await fetchWithTimeout(p, timeout);
             if (result) return result;
           } catch (e) {
-            // defensive: fetchWithTimeout should never throw, but guard anyway
             console.warn("candidate fetch threw", p, e);
           }
         }
