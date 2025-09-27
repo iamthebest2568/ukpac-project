@@ -1612,8 +1612,8 @@ body[data-dialog-open] {
 .figma-style1-container.source-selection-page .source-selection-root .figma-style1-button,
 .figma-style1-container.source-selection-page .source-selection-root .figma-style1-button--primary,
 .figma-style1-container.source-selection-page .source-selection-root .figma-style1-button--secondary {
-  padding: 8px 14px !important;
-  height: 55px !important; /* compact height requested */
+  padding: 6px 12px !important;
+  min-height: 55px !important; /* compact height requested */
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -1621,7 +1621,9 @@ body[data-dialog-open] {
   white-space: normal !important;
   word-break: break-word !important;
   line-height: 1.1 !important;
-  font-size: clamp(13px, 1.8vw, 15px) !important;
+  font-size: clamp(12px, 1.6vw, 14px) !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important; /* prevent text from escaping */
 }
 .figma-style1-container.source-selection-page .source-selection-root .figma-style1-button .figma-style1-button-text {
   display: -webkit-box !important;
