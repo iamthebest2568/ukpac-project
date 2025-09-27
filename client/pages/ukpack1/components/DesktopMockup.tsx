@@ -1,27 +1,25 @@
-import React, { useEffect, useState } from "react";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import RouteTransition from "../../../components/shared/RouteTransition.ukpack1";
 
-interface TabletMockupProps {
+interface DesktopMockupProps {
   children: React.ReactNode;
 }
 
 /**
- * DesktopMockup for ukpack1 (renamed from TabletMockup)
+ * DesktopMockup for ukpack1
  * - Renders children normally when viewport < 810px
  * - When viewport >= 810px, centers a phone viewport (iPhone XR base) and prevents body scroll
  * - iPhone XR base viewport: 414 x 896 (portrait)
  */
-const DesktopMockup: React.FC<TabletMockupProps> = ({ children }) => {
+const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
   const [win, setWin] = useState<{ w: number; h: number }>(() => ({
     w: typeof window === "undefined" ? 0 : window.innerWidth,
     h: typeof window === "undefined" ? 0 : window.innerHeight,
   }));
 
   useEffect(() => {
-    const onResize = () =>
-      setWin({ w: window.innerWidth, h: window.innerHeight });
+    const onResize = () => setWin({ w: window.innerWidth, h: window.innerHeight });
     onResize();
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
@@ -30,21 +28,17 @@ const DesktopMockup: React.FC<TabletMockupProps> = ({ children }) => {
   const BASE_W = 414; // iPhone XR CSS points (portrait)
   const BASE_H = 896;
   const [scale, setScale] = useState(1);
-  const frameRef = React.useRef<HTMLDivElement | null>(null);
+  const frameRef = useRef<HTMLDivElement | null>(null);
   const navigate = useNavigate();
   const location = useLocation();
-  // Keep mockup display neutral: always use white viewport background to
-  // avoid visual inconsistencies. For any page that requires transparent
-  // background, that should be handled by the page's layout instead.
   const viewportBackground = "#ffffff";
 
-  const recomputeScale = React.useCallback(() => {
+  const recomputeScale = useCallback(() => {
     const margin = 32; // include soft shadow space
     const wv = Math.max(0, win.w - margin);
     const hv = Math.max(0, win.h - margin);
     const node = frameRef.current;
     if (!node) return;
-    // Temporarily reset transform to measure natural size
     const prev = node.style.transform;
     node.style.transform = "none";
     const rect = node.getBoundingClientRect();
@@ -55,7 +49,7 @@ const DesktopMockup: React.FC<TabletMockupProps> = ({ children }) => {
     setScale(s);
   }, [win.w, win.h]);
 
-  React.useLayoutEffect(() => {
+  useEffect(() => {
     recomputeScale();
   }, [recomputeScale]);
 
@@ -77,9 +71,7 @@ const DesktopMockup: React.FC<TabletMockupProps> = ({ children }) => {
     };
   }, [active]);
 
-  if (!active) {
-    return <>{children}</>;
-  }
+  if (!active) return <>{children}</>;
 
   return (
     <div className="fixed inset-0 grid place-items-center w-screen h-screen bg-transparent overflow-hidden">
@@ -96,17 +88,14 @@ const DesktopMockup: React.FC<TabletMockupProps> = ({ children }) => {
         }}
         aria-label="desktop-mockup"
       >
-        {/* Outer phone frame - simplified visuals to avoid layout interference */}
         <div
           className="rounded-[20px] border-[1px] border-neutral-200 bg-transparent p-0"
           style={{ width: "100%", height: "100%", boxSizing: "border-box" }}
         >
-          {/* Inner bezel */}
           <div
             className="relative rounded-[16px] p-0"
             style={{ width: "100%", height: "100%", backgroundColor: viewportBackground }}
           >
-            {/* Viewport (portrait 414x896) */}
             <div
               className={`rounded-[12px] overflow-y-auto overflow-x-hidden tablet-mock-env`}
               style={{
@@ -118,7 +107,6 @@ const DesktopMockup: React.FC<TabletMockupProps> = ({ children }) => {
               }}
               onClickCapture={(e: React.MouseEvent) => {
                 try {
-                  // Only intercept left-clicks without modifier keys
                   if (e.button !== 0) return;
                   if (e.metaKey || e.ctrlKey || e.altKey || e.shiftKey) return;
                   const tgt = e.target as HTMLElement | null;
@@ -127,11 +115,8 @@ const DesktopMockup: React.FC<TabletMockupProps> = ({ children }) => {
                   if (!a) return;
                   const href = a.getAttribute("href");
                   if (!href) return;
-                  // Allow explicit targets (new tab) or download links
                   const target = a.getAttribute("target");
                   if (target && target !== "_self") return;
-
-                  // If href is absolute, ensure same origin
                   let url: URL | null = null;
                   try {
                     url = new URL(href, window.location.href);
@@ -139,14 +124,10 @@ const DesktopMockup: React.FC<TabletMockupProps> = ({ children }) => {
                     url = null;
                   }
                   if (url) {
-                    if (url.origin !== window.location.origin) return; // external
-                    // Only intercept internal ukpack1 routes to keep mockup
+                    if (url.origin !== window.location.origin) return;
                     if (!url.pathname.startsWith("/ukpack1")) return;
                     e.preventDefault();
-                    // Use react-router navigation to change route without full reload
                     navigate(url.pathname + url.search + url.hash);
-                  } else {
-                    // relative href without URL parseable? ignore
                   }
                 } catch (err) {
                   // swallow
@@ -156,7 +137,6 @@ const DesktopMockup: React.FC<TabletMockupProps> = ({ children }) => {
               <RouteTransition>{children}</RouteTransition>
             </div>
 
-            {/* Bottom home indicator (iPhone gesture bar) - kept minimal */}
             <div
               style={{ position: "absolute", bottom: 8, left: "50%", transform: "translateX(-50%)", height: 6, width: 112, borderRadius: 999, background: "#e5e7eb", opacity: 0.6 }}
               aria-hidden
