@@ -45,13 +45,21 @@ function initFirebase() {
     }
     appInstance = app;
     try {
-      db = initializeFirestore(app, {
-        experimentalForceLongPolling: true,
-        experimentalAutoDetectLongPolling: true,
-        useFetchStreams: true,
-      } as any);
-    } catch (_) {
+      // Prefer the default getFirestore() initialization which is more robust
+      // across environments (avoids experimental network transports that can
+      // trigger background fetch failures in some hosting environments).
       db = getFirestore(app);
+    } catch (err) {
+      // Fallback: attempt initializeFirestore if getFirestore fails
+      try {
+        db = initializeFirestore(app, {
+          experimentalForceLongPolling: true,
+          experimentalAutoDetectLongPolling: true,
+        } as any);
+      } catch (e) {
+        console.warn("Firestore initialization fallback failed", e);
+        db = null as any;
+      }
     }
   } catch (e) {
     console.warn("Firebase init failed", e);
