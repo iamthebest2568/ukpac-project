@@ -120,22 +120,20 @@ const SourceSelection = ({
                     </span>
                   </Uk1Button>
                 ) : (
-                  <button
+                  <Uk1Button
                     key={opt.id}
                     onClick={() => {
                       if (!isSelected && maxReached) return;
                       toggle(opt.id, opt.label);
                     }}
-                    className={`figma-style1-button ${isSelected ? "figma-style1-button--selected" : ""}`}
                     aria-pressed={isSelected}
                     aria-disabled={!isSelected && maxReached}
                     disabled={!isSelected && maxReached}
+                    className={isSelected ? "figma-style1-button--selected" : ""}
                     style={{ width: "100%" }}
                   >
-                    <span className="figma-style1-button-text">
-                      {opt.label}
-                    </span>
-                  </button>
+                    <span className="figma-style1-button-text">{opt.label}</span>
+                  </Uk1Button>
                 )}
               </Fragment>
             );
