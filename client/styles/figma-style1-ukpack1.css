@@ -236,6 +236,13 @@
   pointer-events: none !important;
 }
 
+/* Ask02 page: anchor background image to bottom so image shows full lower edge */
+.figma-style1-container.ask02-page .figma-style1-background-image {
+  object-position: center bottom !important;
+  height: 100vh !important;
+  height: 100svh !important;
+}
+
 .figma-style1-background {
   position: absolute !important;
   inset: 0 !important;
