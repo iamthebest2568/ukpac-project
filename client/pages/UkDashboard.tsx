@@ -131,6 +131,15 @@ export default function UkDashboard() {
       choices: [],
     });
     setError(null);
+
+    // Helper: escape CSV cell
+    const escapeCell = (val: any) => {
+      if (val === undefined || val === null) return "";
+      const s = typeof val === "string" ? val : JSON.stringify(val);
+      // remove control chars and normalize
+      return String(s).replace(/\u0000-\u001F/g, "").replace(/"/g, '""');
+    };
+
     try {
       const [jRes, ssRes, stRes, vsRes] = await Promise.allSettled([
         fetch(`/api/user-journey-stats`),
@@ -166,6 +175,108 @@ export default function UkDashboard() {
       setFirstLoad(false);
     }
   }
+
+  // Map sessions to CSV with Thai headers per spec
+  const exportMappedCsv = (items: any[]) => {
+    if (!items || !items.length) {
+      alert("ไม่มีข้อมูลสำหรับดาวน์โหลด");
+      return;
+    }
+
+    const headers = [
+      "Session ID",
+      "IP (ip)",
+      "เวลา (time_stamp)",
+      "บทบาท (persona)",
+      "ยานพาหนะ (vehicle)",
+      "เหตุผล_Stornaway (Stornaway)",
+      "ความยอมรับ (accept)",
+      "เหตุผล_Webapp (reason)",
+      "เหตุ��ล_อื่นๆ_Webapp (reason_other)",
+      "ประเด็นนโยบาย (policy_topic)",
+      "กลุ่มเป้าหมาย (target_group)",
+      "พัฒนา_ลำดับ (dev_priority)",
+      "งบประมาณ (budget_alloc)",
+      "ความพอใจ (satisfaction)",
+      "ข้อเสนอรัฐ (gov_suggest)",
+      "ข่าวปลอม (fake_react)",
+      "แหล่งข่าว (news_source)",
+      "ลุ้นรางวัล (lucky_draw)",
+      "ผู้ใช้_ชื่อ (user_name)",
+      "ผู้ใช้_เบอร์ (user_phone)",
+      "เวลาส่งแบบฟอร์ม (ts_form_submit)",
+      "แชร์_ครั้งแรก (share_first_ts)",
+      "แชร์_ครั้งสุดท้าย (share_last_ts)",
+      "Exit_Time",
+    ];
+
+    const rows = items.map((s: any) => {
+      // s is SessionSummary produced by computeSessionSummaries
+      const ip = s.ip || "";
+      const first = s.firstSeen || "";
+      const last = s.lastSeen || "";
+      const persona = s.introWho || "";
+      const vehicle = s.travelMethod || "";
+      const stornaway = s.keyMessage1 || "";
+      const accept = s.opinionLevel || "";
+      const reason_web = s.ask02Choice || "";
+      const reason_other = [s.ask02CustomReason, s.reasonOther01, s.ask05Comment]
+        .filter(Boolean)
+        .join(" | ");
+      const policy_topic = Array.isArray(s.mn3Selected) ? s.mn3Selected.join(" | ") : "";
+      // mn2Selections is object mapping priority->array; stringify as JSON
+      const target_group = s.mn2Selections ? JSON.stringify(s.mn2Selections) : "";
+      const dev_priority = Array.isArray(s.mn1Selected) ? s.mn1Selected.join(" | ") : "";
+      const budget_alloc = s.mn3BudgetAllocation ? JSON.stringify(s.mn3BudgetAllocation) : "";
+      const satisfaction = s.satisfactionLevel || "";
+      const gov_suggest = s.ask05Comment || "";
+      const fake_react = s.fakeNewsResponse || "";
+      const news_source = s.sourceSelected || "";
+      const lucky_draw = s.endDecision || "";
+      const user_name = s.contactName || "";
+      const user_phone = s.contactPhone || "";
+      const ts_form_submit = last || "";
+      const share_first = s.shareFirstTs || "";
+      const share_last = s.shareLastTs || "";
+      const exit_time = last || "";
+
+      return [
+        s.sessionId || "",
+        ip,
+        first,
+        persona,
+        vehicle,
+        stornaway,
+        accept,
+        reason_web,
+        reason_other,
+        policy_topic,
+        target_group,
+        dev_priority,
+        budget_alloc,
+        satisfaction,
+        gov_suggest,
+        fake_react,
+        news_source,
+        lucky_draw,
+        user_name,
+        user_phone,
+        ts_form_submit,
+        share_first,
+        share_last,
+        exit_time,
+      ].map((c) => `"${escapeCell(c)}"`).join(",");
+    });
+
+    const csv = [headers.map((h) => `"${h}"`).join(","), ...rows].join("\n");
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `ukpack1_sessions_${Date.now()}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
 
   async function clearData() {
     if (
@@ -274,7 +385,7 @@ export default function UkDashboard() {
                   {ingest.app.lastTs
                     ? new Date(ingest.app.lastTs).toLocaleString()
                     : "-"}{" "}
-                  • วิดีโอ: {ingest.video.count} เหตุการณ์, ล่าสุด{" "}
+                  • วิดีโอ: {ingest.video.count} เหตุก���รณ์, ล่าสุด{" "}
                   {ingest.video.lastTs
                     ? new Date(ingest.video.lastTs).toLocaleString()
                     : "-"}
@@ -586,7 +697,7 @@ export default function UkDashboard() {
                     {/* Stornaway choice */}
                     <AccordionItem value="stornaway">
                       <AccordionTrigger>
-                        เมื่ได้ยิ��ข่าวนี�� คุณคิดยังไง
+                        เมื่ได้ยิ��ข่าวนี้ คุณคิดยังไง
                       </AccordionTrigger>
                       <AccordionContent>
                         <ul className="space-y-1 text-sm">
@@ -737,7 +848,7 @@ export default function UkDashboard() {
                             </span>
                           </li>
                           <li className="flex justify-between">
-                            <span>กรอกข้อมูลติดต่อ</span>
+                            <span>กรอกข้อ���ูลติดต่อ</span>
                             <span className="text-white/70">
                               {journey.endseq?.contacts || 0}
                             </span>
@@ -819,11 +930,11 @@ export default function UkDashboard() {
                       "ทำไมคุณถึงต้องเข้าเมืองบ่อย ๆ ?",
                       "คุณใช้รถแบบไหนเดินทางเข้าเมือง ?",
                       "คุ��คิดเห็นอย่างไรกับนโยบายนี้ ?",
-                      "จากข้อความข้างต้น คุณมีความคิด���ห็นอย่างไร (เห็นด้วย/กลางๆ/ไม่เห็นด้วย)",
+                      "จากข้อความข้างต้น คุณมีความคิดเห็นอย่างไร (เห็นด้วย/กลางๆ/ไม่เห็นด้วย)",
                       "ทำไมคุณถึงคิดอย่างนั้น (นโยบายไม่ครอบคลุม / เก็บไปก็ไม่มีอะไรดีขึ้น / อื่นๆ)",
                       "อธิบายอื่น ๆ ที่ช่วยอธิบายความคิดเห็น",
                       "บอกเราหน่อยว่าคุณเดินทางเข้าเมืองด้วยวิธีการใดบ่อยที่สุด",
-                      "จากนโยบายที่คุณฟังเมื่อสักครู่ คุณมีความคิดเห็นอย่างไร",
+                      "จากนโยบายที่คุณฟังเมื่อสักครู่ ��ุณมีความคิดเห็นอย่างไร",
                       "คุณคิดว่านโยบายปัจจุบัน ควรปรับเปลี่ยนประเด็นอะไรบาง (ลดค่าโดยสาร, ปรับปรุงคุณภาพ, ขึ้น���าคา, เพิ่มขบวน, เพิ่มความถี่ ฯลฯ)",
                       "คุณคิดว่าใครควรได้รับการลดค่าโดยสารรถไฟฟ���าบ้าง (ทุกคน, ผู้สูงอายุ, นักเรียน, คนทำงาน ฯลฯ)",
                       "คุณคิดว่าควรใช้เงินที่ได้จากการเก็บไปพัฒนาอะไร ก่อน 3 อันดับแรก",
