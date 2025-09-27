@@ -134,7 +134,6 @@ const UkDashboard: React.FC = () => {
         const rawCandidates2 = [
           "/api/public-submissions?limit=20",
           "./.netlify/functions/api/public-submissions?limit=20",
-          window.location.origin + "/api/public-submissions?limit=20",
         ];
 
         console.debug("public-submissions candidates:", rawCandidates2);
