@@ -371,6 +371,11 @@ body.page-ukpack2 .uk2-footer-wrapper {
   box-shadow: none !important;
 }
 
+/* PDPA page footer adjustment: reduce inner footer padding by 20px only on /ukpack2/pdpa */
+body.page-ukpack2 .pdpa-footer-adjust .flex.flex-col.items-center {
+  padding-bottom: 28px !important; /* was 48px (pb-12), reduced by 20px */
+}
+
 body.page-ukpack2 .uk2-footer-wrapper .uk2-footer-actions {
   width: 100%;
   display: flex;
