@@ -64,6 +64,30 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
     return () => cancelAnimationFrame(id);
   }, [win.w, win.h, recomputeScale]);
 
+  // Initial stabilization: run a delayed recompute after a couple frames to wait for
+  // any layout/stylesheet operations to settle. This prevents transient tiny
+  // measurements that collapse the mockup scale during reloads.
+  useEffect(() => {
+    let mounted = true;
+    const stabilize = () => {
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          if (!mounted) return;
+          try {
+            recomputeScale();
+          } catch (_) {}
+          setInitialized(true);
+        });
+      });
+    };
+    // Small timeout to allow any font/layout shifts to finish
+    const tid = window.setTimeout(stabilize, 60);
+    return () => {
+      mounted = false;
+      clearTimeout(tid);
+    };
+  }, [recomputeScale]);
+
   // Show mockup on larger viewports; lower threshold slightly for preview environments
   const active = win.w >= 700;
 
