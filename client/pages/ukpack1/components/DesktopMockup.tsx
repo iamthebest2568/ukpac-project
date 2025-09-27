@@ -74,7 +74,7 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
   if (!active) return <>{children}</>;
 
   return (
-    <div className="fixed inset-0 grid place-items-center w-screen h-screen bg-neutral-100/40 overflow-hidden" style={{ zIndex: 9999 }}>
+    <div className="fixed inset-0 grid place-items-center w-screen h-screen bg-neutral-100/40 overflow-hidden" style={{ zIndex: 200000 }}>
       <div
         ref={frameRef}
         className="relative"
