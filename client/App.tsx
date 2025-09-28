@@ -728,16 +728,16 @@ const App = () => {
                 />
                 <Route
                   path="/UkStornawayPage"
-                  element={<Navigate to="/beforecitychange/uk-stornaway" replace />}
+                  element={<Navigate to="/beforecitychange" replace />}
                 />
                 {/* Root-level legacy aliases for Stornaway */}
                 <Route
                   path="/Uk-stornaway"
-                  element={<Navigate to="/beforecitychange/uk-stornaway" replace />}
+                  element={<Navigate to="/beforecitychange" replace />}
                 />
                 <Route
                   path="/uk-stornaway"
-                  element={<Navigate to="/beforecitychange/uk-stornaway" replace />}
+                  element={<Navigate to="/beforecitychange" replace />}
                 />
                 {/* Legacy aliases for ReasonOther01 */}
                 <Route
