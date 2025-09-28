@@ -17,7 +17,7 @@ interface Flow_MiniGame_MN3Props {
 }
 
 const Flow_MiniGame_MN3 = ({ sessionID, onComplete, onBack }: Flow_MiniGame_MN3Props) => {
-  const isUkpack1 = typeof window !== 'undefined' && window.location && window.location.pathname.startsWith('/ukpack1');
+  const isUkpack1 = typeof window !== 'undefined' && window.location && window.location.pathname.startsWith('/beforecitychange');
   const [currentStep, setCurrentStep] = useState<number>(1);
   const [flowData, setFlowData] = useState<any>({});
 
