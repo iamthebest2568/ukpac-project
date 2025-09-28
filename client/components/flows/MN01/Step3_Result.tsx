@@ -167,7 +167,7 @@ const Step3_Result = ({
           ariaLabel: "ตอบไม่ใช่ - ไม่พอใจกับผลลัพธ์",
         },
       ]}
-      className="mn3-result-page figma-style1-ukpack1"
+      className="mn3-result-page figma-style1-ukpack1 minigame-mn1-page"
       useBlueOverlay={false}
     >
       {/* Title (use layout's title container for consistent styling) */}
