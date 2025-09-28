@@ -310,7 +310,7 @@ export function exportSessionsAsCSV() {
     "จำนวนผู้ตั้งครรภ์ (pregnant_count)",
     "จำนวนพระ (monk_count)",
     "สิ่งอำนวยความสะดวก (features)",
-    "ประเภทการชำระเงิน (payment_types)",
+    "ประเภทการชำระเง���น (payment_types)",
     "จำนวนประตู (doors)",
     "สี (color)",
     "ความถี่ (frequency)",
@@ -568,6 +568,124 @@ export async function sendLocalEventsToFirestore(options = {}) {
     }
   });
 
+  // Detect if we should use session-level mapped storage (mydreambus)
+  let isMydreambus = false;
+  try {
+    if (typeof window !== 'undefined' && window.location && typeof window.location.pathname === 'string') {
+      if (window.location.pathname.indexOf('/mydreambus') === 0) isMydreambus = true;
+    }
+  } catch (_) {}
+
+  // If mydreambus: aggregate by session and send mapped session docs to server
+  if (isMydreambus) {
+    const sessionsMap = {};
+    toSend.forEach((ev) => {
+      const sid = ev.sessionID || ev.sessionId || 'unknown';
+      if (!sessionsMap[sid]) sessionsMap[sid] = [];
+      sessionsMap[sid].push(ev);
+    });
+
+    const items = [];
+    Object.keys(sessionsMap).forEach((sid) => {
+      const evs = sessionsMap[sid].slice().sort((a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime());
+      const first = evs[0] || {};
+      const last = evs[evs.length - 1] || {};
+
+      // Helper to find first payload field matching candidates
+      const findInEvs = function(candidates) {
+        for (let i = 0; i < evs.length; i++) {
+          const p = evs[i].payload || {};
+          for (let j = 0; j < candidates.length; j++) {
+            const k = candidates[j];
+            if (p && (p[k] !== undefined && p[k] !== null)) return p[k];
+            // nested checks
+            if (k.indexOf('.') !== -1) {
+              const parts = k.split('.');
+              let cur = p;
+              let ok = true;
+              for (let pi = 0; pi < parts.length; pi++) {
+                if (!cur) { ok = false; break; }
+                cur = cur[parts[pi]];
+              }
+              if (ok && cur !== undefined && cur !== null) return cur;
+            }
+          }
+        }
+        return undefined;
+      };
+
+      const row = {
+        sessionID: sid,
+        ip: first.ip || (first.payload && first.payload.ip) || '',
+        firstTimestamp: first.timestamp || '',
+        lastTimestamp: last.timestamp || '',
+        PDPA_acceptance: (function(){
+          for (let i=0;i<evs.length;i++){
+            const p = evs[i].payload || {};
+            const v = (p.PDPA !== undefined) ? p.PDPA : (p.pdpa !== undefined ? p.pdpa : (evs[i].PDPA !== undefined ? evs[i].PDPA : undefined));
+            if (v === true || v === 'accepted' || v === '1') return '1';
+            if (v === false || v === 'declined' || v === '0') return '0';
+          }
+          return '';
+        })(),
+        chassis_type: (findInEvs(['chassis','design.chassis','chassisType']) || ''),
+        total_seats: (function(){ const v = findInEvs(['seating.totalSeats','totalSeats']); return v === undefined? '': String(v); })(),
+        special_seats: (function(){ const v = findInEvs(['seating.specialSeats']); return v === undefined? '': String(v); })(),
+        children_elder_count: (function(){ const v = findInEvs(['seating.children']); return v === undefined? '': String(v); })(),
+        pregnant_count: (function(){ const v = findInEvs(['seating.pregnant','pregnant']); return v === undefined? '': String(v); })(),
+        monk_count: (function(){ const v = findInEvs(['seating.monk','monk']); return v === undefined? '': String(v); })(),
+        features: (function(){ const set = new Set(); for (let i=0;i<evs.length;i++){ const p = evs[i].payload||{}; if (Array.isArray(p.amenities)) p.amenities.forEach(x=>set.add(x)); if (Array.isArray(p.features)) p.features.forEach(x=>set.add(x)); } return Array.from(set); })(),
+        payment_types: (function(){ const set = new Set(); for (let i=0;i<evs.length;i++){ const p = evs[i].payload||{}; if (Array.isArray(p.payment)) p.payment.forEach(x=>set.add(x)); if (p.paymentType) set.add(p.paymentType); } return Array.from(set); })(),
+        doors: (findInEvs(['doors','doorChoice','doors.doorChoice']) || ''),
+        color: (function(){ const v = findInEvs(['color.colorHex','exterior.color.colorHex','colorHex','color']); return v === undefined? '': v; })(),
+        frequency: (findInEvs(['interval','frequency']) || ''),
+        route: (findInEvs(['route']) || ''),
+        area: (findInEvs(['area']) || ''),
+        decision_use_service: (function(){ const v = findInEvs(['decisionUseService','useService']); if (v === undefined) return ''; return v? '1':'0'; })(),
+        reason_not_use: (findInEvs(['reasonNotUse','reason','reason_not_use']) || ''),
+        decision_enter_prize: (function(){ const v = findInEvs(['enterPrize','prizeEnter','wantsPrize']); if (v === undefined) return ''; return v? '1':'0'; })(),
+        prize_name: (findInEvs(['prizeName','name']) || ''),
+        prize_phone: (findInEvs(['prizePhone','phone']) || ''),
+        prize_timestamp: (function(){ const v = findInEvs(['prizeName','prizePhone','enterPrize','wantsPrize']); return v ? (findInEvs(['timestamp']) || '') : ''; })(),
+        shared_with_friends: (function(){ const v = findInEvs(['shared','sharedTo']); return v? '1':''; })(),
+        shared_timestamp: (function(){ const v = findInEvs(['shared','sharedTo']); return v? (findInEvs(['timestamp']) || '') : ''; })(),
+      };
+
+      items.push(row);
+    });
+
+    let sentCount = 0;
+    let skippedCount = 0;
+    const errors = [];
+    const sampleSent = [];
+
+    for (let i = 0; i < items.length; i += batchSize) {
+      const batch = items.slice(i, i + batchSize);
+      try {
+        const resp = await fetch('/api/flush-pending', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(batch),
+        });
+        if (resp.ok) {
+          sentCount += batch.length;
+          for (let k=0;k<batch.length && sampleSent.length<5;k++) sampleSent.push(batch[k]);
+        } else {
+          let j = null;
+          try { j = await resp.json(); } catch(_) { j = null; }
+          const msg = (j && j.error) ? j.error : ('server returned ' + resp.status);
+          errors.push({ batch, error: msg });
+        }
+      } catch (e) {
+        errors.push({ batch, error: String(e) });
+      }
+      await new Promise((r) => setTimeout(r, 200));
+    }
+
+    return { sentCount, skippedCount, errors, sampleSent };
+  }
+
+  // Default behavior: send individual events to Firestore as before
   let sentCount = 0;
   let skippedCount = events.length - toSend.length;
   const errors = [];
