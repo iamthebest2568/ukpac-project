@@ -73,7 +73,7 @@ const FormScreen: React.FC = () => {
 
   const skip = () => {
     logEvent({ event: "FORM_SKIP", payload: { page: "/mydreambus/form" } });
-    navigate("/ukpack2/end");
+    navigate("/mydreambus/end");
   };
 
   const footer = (
