@@ -34,6 +34,7 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
 
   const isMN1 = typeof location !== "undefined" && location.pathname && location.pathname.startsWith("/beforecitychange/minigame-mn1");
   const isMN2 = typeof location !== "undefined" && location.pathname && location.pathname.startsWith("/beforecitychange/minigame-mn2");
+  const isMN3 = typeof location !== "undefined" && location.pathname && location.pathname.startsWith("/beforecitychange/minigame-mn3");
 
   useEffect(() => {
     if (!isMN2) return;
