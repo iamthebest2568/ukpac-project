@@ -203,7 +203,7 @@ const Step3_Result = ({
         // force full reload to reset state
         window.location.assign("/beforecitychange/minigame-mn3");
       } else {
-        navigate("/ukpack1/minigame-mn3");
+        navigate("/beforecitychange/minigame-mn3");
       }
     } catch (e) {
       // fallback to proceedAfterSelect as last resort
