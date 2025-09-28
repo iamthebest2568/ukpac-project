@@ -87,8 +87,8 @@ export function logEvent(eventData) {
         "";
       if (!enrichedEvent.payload) enrichedEvent.payload = {};
       if (!enrichedEvent.payload.project) {
-        if (String(path).startsWith("/ukpack2"))
-          enrichedEvent.payload.project = "ukpack2";
+        if (String(path).startsWith("/ukpack2") || String(path).startsWith("/mydreambus"))
+          enrichedEvent.payload.project = "mydreambus";
         else if (String(path).startsWith("/beforecitychange"))
           enrichedEvent.payload.project = "ukpack1";
         else enrichedEvent.payload.project = "site";
@@ -283,7 +283,7 @@ export function exportSessionsAsCSV() {
     "IP (ip)",
     "เวลาเริ่ม (firstTimestamp)",
     "เวลาสิ้นสุด (lastTimestamp)",
-    "ยอมรับ PDPA (PDPA_acceptance)",
+    "ยอม���ับ PDPA (PDPA_acceptance)",
     "ประเภทรถ (chassis_type)",
     "จำนวนที่นั่งรวม (total_seats)",
     "ที่นั่งพิเศษ (special_seats)",
