@@ -171,7 +171,7 @@ export const BusDesignProvider = ({ children }: { children: ReactNode }) => {
           };
 
           const pendingRaw =
-            localStorage.getItem("ukpack2_pending_submissions") || "[]";
+            localStorage.getItem("mydreambus_pending_submissions") || "[]";
           const pending = Array.isArray(JSON.parse(pendingRaw))
             ? (JSON.parse(pendingRaw) as any[])
             : [];
