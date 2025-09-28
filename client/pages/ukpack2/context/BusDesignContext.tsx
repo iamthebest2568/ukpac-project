@@ -126,6 +126,22 @@ export const BusDesignProvider = ({ children }: { children: ReactNode }) => {
     const payload = {
       ...(stateOverride || state),
       timestamp: Date.now(),
+      // include session id and PDPA flag & project for server-side mapping and CSV
+      sessionID: (typeof window !== 'undefined' ? (() => {
+        try { return sessionStorage.getItem('ukPackSessionID') || null; } catch { return null; }
+      })() : null),
+      PDPA: (typeof window !== 'undefined' ? (() => {
+        try { return sessionStorage.getItem('pdpa_accepted') === 'true'; } catch { return false; }
+      })() : false),
+      project: (typeof window !== 'undefined' ? (() => {
+        try {
+          const p = window.location && window.location.pathname;
+          if (!p) return null;
+          if (String(p).startsWith('/beforecitychange')) return 'beforecitychange';
+          if (String(p).startsWith('/mydreambus') || String(p).startsWith('/ukpack2')) return 'mydreambus';
+          return null;
+        } catch { return null; }
+      })() : null),
     } as any;
 
     // If an image blob is provided, upload to Firebase Storage and attach URL
