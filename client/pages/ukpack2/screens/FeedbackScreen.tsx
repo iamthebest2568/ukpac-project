@@ -12,7 +12,7 @@ const FeedbackScreen: React.FC = () => {
     try {
       sessionStorage.setItem("design.feedback", feedback);
     } catch (e) {}
-    navigate("/ukpack2/thank-you");
+    navigate("/mydreambus/thank-you");
   };
 
   const skip = () => {
