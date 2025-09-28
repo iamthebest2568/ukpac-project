@@ -32,6 +32,9 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
   const location = useLocation();
   const viewportBackground = "#ffffff";
 
+  const isMN1 = typeof location !== "undefined" && location.pathname && location.pathname.startsWith("/beforecitychange/minigame-mn1");
+  const isMN2 = typeof location !== "undefined" && location.pathname && location.pathname.startsWith("/beforecitychange/minigame-mn2");
+
   useEffect(() => {
     if (!isMN2) return;
     const iframe = iframeRef.current;
