@@ -28,6 +28,27 @@ const EVENTS_FILE = path.join(DATA_DIR, "events.jsonl");
 let firestoreDb: ReturnType<typeof getFirestore> | null = null;
 function initFirestore() {
   if (firestoreDb) return;
+
+  // Prefer the Admin SDK when a service account is provided (server environment)
+  const svc = process.env.FIREBASE_SERVICE_ACCOUNT;
+  if (svc) {
+    try {
+      const parsed = typeof svc === "string" ? JSON.parse(svc) : svc;
+      // use require to avoid static ESM import issues in server runtime
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      const admin = require("firebase-admin");
+      if (!admin.apps || admin.apps.length === 0) {
+        admin.initializeApp({ credential: admin.credential.cert(parsed as any) } as any);
+      }
+      firestoreDb = admin.firestore();
+      return;
+    } catch (e) {
+      console.warn("Init Firestore (admin) failed", e);
+      firestoreDb = null;
+      // fall through to try client SDK as a last resort
+    }
+  }
+
   try {
     const firebaseConfig = {
       apiKey:
