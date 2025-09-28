@@ -368,7 +368,7 @@ export const BusDesignProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <BusDesignContext.Provider
-      value={{ state, dispatch, submitDesignToFirebase }}
+      value={{ state, dispatch: dispatchAndLog, submitDesignToFirebase }}
     >
       {children}
     </BusDesignContext.Provider>
