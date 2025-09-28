@@ -3,7 +3,7 @@
  */
 
 import Ask04Budget from "../../components/journey/Ask04Budget";
-import { useSession } from "../hooks/useSession";
+import { useSession } from "../../hooks/useSession";
 
 const Ask04BudgetPage = () => {
   const { sessionID, navigateToPage, userJourneyData } = useSession();
