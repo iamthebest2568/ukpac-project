@@ -132,6 +132,49 @@ export async function sendEventToFirestore(
       } catch (_) {}
       return { ok: false, skipped: true } as any;
     }
+    // If the target is the minigame2_events (used by mydreambus / ukpack2), prefer routing
+    // per-event writes to the server tracking endpoint to avoid storing every event as a Firestore document.
+    // This keeps Firestore smaller and ensures aggregation happens server-side.
+    const targetIsMinigame2 = normalized.includes('minigame2_events') || normalized.includes('minigame2');
+    if (targetIsMinigame2) {
+      try {
+        const payload = {
+          sessionId: event.sessionID || event.sessionId || null,
+          event: event.event || 'UNKNOWN',
+          timestamp: event.timestamp
+            ? typeof event.timestamp === 'number'
+              ? new Date(event.timestamp).toISOString()
+              : event.timestamp
+            : new Date().toISOString(),
+          payload: event.payload || {},
+          userAgent: event.userAgent || (typeof navigator !== 'undefined' ? navigator.userAgent : undefined) || null,
+          ip: event.ip || undefined,
+          page: event.url || (typeof window !== 'undefined' ? window.location.pathname : undefined),
+        };
+        // Try sendBeacon first (fire-and-forget), fallback to fetch
+        try {
+          if (typeof navigator !== 'undefined' && navigator.sendBeacon) {
+            const blob = new Blob([JSON.stringify(payload)], { type: 'application/json' });
+            navigator.sendBeacon('/api/track', blob);
+            return { ok: true, routed: 'track' } as any;
+          }
+        } catch (_) {}
+        // fallback
+        try {
+          await fetch('/api/track', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+          });
+          return { ok: true, routed: 'track' } as any;
+        } catch (_) {
+          // fall through to attempt Firestore write if network unavailable
+        }
+      } catch (_) {
+        // ignore and fall through to direct Firestore write as last resort
+      }
+    }
+
     let colRef;
     if (parts.length === 0) {
       colRef = collection(db, "minigame1_events");
