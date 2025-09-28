@@ -1,26 +1,23 @@
-import BudgetAllocation from "../../components/games/BudgetAllocation";
-import FigmaStyle1Layout from "../../components/layouts/FigmaStyle1Layout.ukpack1";
-import DesktopMockup from "./components/DesktopMockup";
+import FigmaStyle1Layout from "../components/layouts/FigmaStyle1Layout.ukpack1";
+import BudgetAllocation from "../components/games/BudgetAllocation";
+import { useSession } from "../hooks/useSession";
 
-const Ukpack1BudgetPage = () => {
+const BudgetPage = () => {
   const { sessionID, navigateToPage } = useSession();
 
-  // Use the FigmaStyle1Layout wrapper for consistent figma styling
   return (
-    <DesktopMockup>
-      <FigmaStyle1Layout
-        backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F860ef7d79d0449bb9545aefbe3326e2e?format=webp&width=800"
-        className="budget-page"
-        imageLoading="eager"
-      >
-        <BudgetAllocation
-          sessionID={sessionID}
-          onNavigate={navigateToPage}
-          layoutMode={true}
-        />
-      </FigmaStyle1Layout>
-    </DesktopMockup>
+    <FigmaStyle1Layout
+      backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F860ef7d79d0449bb9545aefbe3326e2e?format=webp&width=800"
+      className="budget-page"
+    >
+      {/* Render BudgetAllocation in 'layout mode' so it doesn't paint its own full-screen backgrounds */}
+      <BudgetAllocation
+        sessionID={sessionID}
+        onNavigate={navigateToPage}
+        layoutMode={true}
+      />
+    </FigmaStyle1Layout>
   );
 };
 
-export default Ukpack1BudgetPage;
+export default BudgetPage;
