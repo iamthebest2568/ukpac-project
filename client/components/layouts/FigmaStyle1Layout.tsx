@@ -76,7 +76,7 @@ const FigmaStyle1Layout = ({
       if (
         typeof window !== "undefined" &&
         window.location &&
-        (window.location.pathname.startsWith("/beforecitychange") || window.location.pathname.startsWith("/ukpack1"))
+        window.location.pathname.startsWith("/beforecitychange")
       ) {
         // Skip applying global ukpack1 styling to the uk-stornaway (video) page
         if (!window.location.pathname.includes("uk-stornaway")) {
