@@ -131,3 +131,26 @@
   padding-left: 12px !important;
   padding-right: 12px !important;
 }
+
+/* Ensure in-mock MN2 footer is positioned inside the mock frame (not outside viewport)
+   Use absolute positioning within the .rounded mock container so footer sits inside device frame */
+.tablet-mock-env .figma-style1-container.mn2-summary-page {
+  position: relative !important;
+  overflow: visible !important;
+}
+
+.tablet-mock-env .figma-style1-container.mn2-summary-page .mn2-summary-footer {
+  position: absolute !important;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 12px) !important;
+  left: 0 !important;
+  right: 0 !important;
+  display: flex !important;
+  justify-content: center !important;
+  pointer-events: auto !important;
+  z-index: 10020 !important;
+}
+
+/* Ensure content area reserves space so footer doesn't overlap */
+.tablet-mock-env .figma-style1-container.mn2-summary-page .figma-style1-content-area {
+  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 120px) !important;
+}
