@@ -87,7 +87,8 @@ export function createServer() {
           undefined;
         if (p.includes("/ukpack2") || payloadProject === "ukpack2") {
           target = "minigame2_events/minigame2-di";
-        } else if (p.includes("/ukpack1") || payloadProject === "ukpack1") {
+        } else if (p.includes("/beforecitychange") || payloadProject === "beforecitychange" || p.includes("/ukpack1") || payloadProject === "ukpack1") {
+          // Accept either new project name or legacy ukpack1 for backward compatibility
           target = "minigame1_events/minigame1-di";
         }
       } catch (_) {}
