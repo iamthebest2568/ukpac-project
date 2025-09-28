@@ -453,3 +453,12 @@
 {"sessionId":"session_1759061935881_sbpep06wc","eventName":"sw.choice.selected","timestamp":"2025-09-28T12:20:40.130Z","choiceText":"ไปต่อ.","variantId":"8f1e49aa","variantName":"อื่น ๆ."}
 {"sessionId":"ses","eventName":"sw.variant.start","timestamp":"2025-09-28T13:01:44.366Z","variantId":"a59ef133","variantName":"Intro"}
 {"sessionId":"ses","eventName":"sw.story.start","timestamp":"2025-09-28T13:01:44.367Z","variantId":"a59ef133","variantName":"Intro"}
+{"sessionId":"session_1759072515097_831yjmssu","eventName":"sw.variant.start","timestamp":"2025-09-28T15:15:31.869Z","variantId":"a59ef133","variantName":"Intro"}
+{"sessionId":"session_1759072515097_831yjmssu","eventName":"sw.story.start","timestamp":"2025-09-28T15:15:31.870Z","variantId":"a59ef133","variantName":"Intro"}
+{"sessionId":"session_1759072515097_831yjmssu","eventName":"sw.story.start","timestamp":"2025-09-28T15:15:43.729Z","variantId":"e61429e0","variantName":"PDPA"}
+{"sessionId":"session_1759072515097_831yjmssu","eventName":"sw.choice.selected","timestamp":"2025-09-28T15:15:43.718Z","choiceText":"PDPA","variantId":"a59ef133","variantName":"Intro"}
+{"sessionId":"session_1759072515097_831yjmssu","eventName":"sw.variant.start","timestamp":"2025-09-28T15:15:43.728Z","variantId":"e61429e0","variantName":"PDPA"}
+{"sessionId":"session_1759072515097_831yjmssu","eventName":"sw.choice.selected","timestamp":"2025-09-28T15:15:54.754Z","choiceText":"ยอมรับและเริ่มเล่นเกม","variantId":"e61429e0","variantName":"PDPA"}
+{"sessionId":"session_1759072515097_831yjmssu","eventName":"sw.variant.start","timestamp":"2025-09-28T15:15:54.766Z","variantId":"02fe3354","variantName":"Opening Scene"}
+{"sessionId":"session_1759072515097_831yjmssu","eventName":"sw.choice.selected","timestamp":"2025-09-28T15:16:25.956Z","choiceText":"เริ่มเล่น","variantId":"02fe3354","variantName":"Opening Scene"}
+{"sessionId":"session_1759072515097_831yjmssu","eventName":"sw.variant.start","timestamp":"2025-09-28T15:16:26.843Z","variantId":"333faf2b","variantName":"เหตุผลหลักในการเดินทางเข้าเมือง"}
