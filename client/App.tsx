@@ -233,9 +233,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       </div>
     );
   }
-  const isFullBleed =
-    location.pathname.startsWith("/ukpack2") ||
-    location.pathname.startsWith("/mydreambus");
+  const isFullBleed = location.pathname.startsWith("/mydreambus");
   const isUkpack1 = location.pathname.startsWith("/beforecitychange");
   // For beforecitychange, the root path (/beforecitychange) is the video page and should be full-bleed.
   const isUkpack1Wrapped =
