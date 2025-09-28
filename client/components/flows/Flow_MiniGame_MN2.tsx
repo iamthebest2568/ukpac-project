@@ -78,7 +78,7 @@ const Flow_MiniGame_MN2 = ({
   const isUkpack1 =
     typeof window !== "undefined" &&
     window.location &&
-    window.location.pathname.startsWith("/ukpack1");
+    window.location.pathname.startsWith("/beforecitychange");
 
   const handleStepBack = () => {
     if (currentStep > 1) {
