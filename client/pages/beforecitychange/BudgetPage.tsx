@@ -1,6 +1,6 @@
 import FigmaStyle1Layout from "../../components/layouts/FigmaStyle1Layout.ukpack1";
 import BudgetAllocation from "../../components/games/BudgetAllocation";
-import { useSession } from "../hooks/useSession";
+import { useSession } from "../../hooks/useSession";
 
 const BudgetPage = () => {
   const { sessionID, navigateToPage } = useSession();
