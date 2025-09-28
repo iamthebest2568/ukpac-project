@@ -150,12 +150,13 @@ export const BusDesignProvider = ({ children }: { children: ReactNode }) => {
         try {
           // dynamic import to avoid double-initialization issues
           const mod = await import("../../../lib/firebase");
-          const path = `designs/mydreambus_${Date.now()}_${Math.random().toString(36).slice(2, 9)}.png`;
-          const url = await mod.uploadFileToStorage(imageBlob, path);
+          const projectPrefix = (payload && payload.project) || (typeof window !== 'undefined' && window.location && String(window.location.pathname).startsWith('/beforecitychange') ? 'beforecitychange' : 'mydreambus');
+          const filename = `designs/${projectPrefix}_${Date.now()}_${Math.random().toString(36).slice(2, 9)}.png`;
+          const url = await mod.uploadFileToStorage(imageBlob, filename);
           payload.imageUrl = url;
           try {
             const { addDesignImageUrlToFirestore } = await import(
-              "../../../client/lib/firebase"
+              "../../../lib/firebase"
             );
             // record the image URL in Firestore collection for public submissions; swallow errors
             await addDesignImageUrlToFirestore(url);
