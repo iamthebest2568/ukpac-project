@@ -83,7 +83,7 @@ const SummaryScreen: React.FC = () => {
             <div className="w-full">
               <SecondaryButton
                 text="ใช่, ไปต่อ"
-                onClick={() => navigate("/ukpack2/info")}
+                onClick={() => navigate("/mydreambus/info")}
                 className="w-full"
               />
             </div>
