@@ -1,10 +1,25 @@
-import DesktopMockup from "./components/DesktopMockup";
-import Page from "../MiniGameMN1Page";
+/* MiniGame MN1 Page - Policy Priorities */
 
-const Wrapped = (props: any) => (
-  <DesktopMockup>
-    <Page {...props} />
-  </DesktopMockup>
-);
+import Flow_MiniGame_MN1 from "../components/flows/Flow_MiniGame_MN1";
+import { useSession } from "../hooks/useSession";
+import { useFlowNavigation } from "../hooks/useFlowNavigation";
+import { useEffect } from "react";
 
-export default Wrapped;
+const MiniGameMN1Page = () => {
+  const { sessionID, navigateToPage } = useSession();
+  const { handleMN1Complete } = useFlowNavigation();
+
+  useEffect(() => {
+    import("./MiniGameMN2Page").catch(() => {});
+  }, []);
+
+  return (
+    <Flow_MiniGame_MN1
+      sessionID={sessionID}
+      onComplete={handleMN1Complete}
+      onBack={() => navigateToPage("/ask02")}
+    />
+  );
+};
+
+export default MiniGameMN1Page;
