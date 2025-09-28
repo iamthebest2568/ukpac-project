@@ -316,7 +316,7 @@ const SubmitScreen: React.FC = () => {
                   overflow: "visible",
                 }}
               >
-                รถจะมา���ุกกี่นาที
+                รถจะมาทุกกี่นาที
               </label>
               <input
                 type="number"
@@ -389,7 +389,7 @@ const SubmitScreen: React.FC = () => {
       <ConfirmModal
         isOpen={isExitModalOpen}
         title="ออกจากหน้าจอ"
-        message="คุณแน่ใ���หรือไม่ว่าต้องการออก? การเปี่ยนแปลงของคุณจะไม่ถูกบันทึก"
+        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปี่ยนแปลงของคุณจะไม่ถูกบันทึก"
         onConfirm={() => navigate("/")}
         onCancel={() => setExitModalOpen(false)}
       />
