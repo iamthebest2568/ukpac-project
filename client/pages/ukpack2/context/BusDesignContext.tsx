@@ -164,27 +164,42 @@ export const BusDesignProvider = ({ children }: { children: ReactNode }) => {
       })() : null),
     } as any;
 
-    // If an image blob is provided, upload to Firebase Storage and attach URL
+    // If an image blob is provided, POST it to server endpoint which will upload via Admin SDK
     try {
       if (imageBlob) {
         try {
-          // dynamic import to avoid double-initialization issues
-          const mod = await import("../../../lib/firebase");
+          // Create data URL
+          const dataUrl: string = await new Promise((resolve, reject) => {
+            try {
+              const fr = new FileReader();
+              fr.onload = () => resolve(String(fr.result || ""));
+              fr.onerror = (err) => reject(err);
+              fr.readAsDataURL(imageBlob as Blob);
+            } catch (err) {
+              reject(err);
+            }
+          });
+
           const projectPrefix = (payload && payload.project) || (typeof window !== 'undefined' && window.location && String(window.location.pathname).startsWith('/beforecitychange') ? 'beforecitychange' : 'mydreambus');
-          const filename = `designs/${projectPrefix}_${Date.now()}_${Math.random().toString(36).slice(2, 9)}.png`;
-          const url = await mod.uploadFileToStorage(imageBlob, filename);
-          payload.imageUrl = url;
-          try {
-            const { addDesignImageUrlToFirestore } = await import(
-              "../../../lib/firebase"
-            );
-            // record the image URL in Firestore collection for public submissions; swallow errors
-            await addDesignImageUrlToFirestore(url);
-          } catch (err) {
-            console.warn('addDesignImageUrlToFirestore failed', err);
+          const filename = `${projectPrefix}_design_${Date.now()}_${Math.random().toString(36).slice(2,9)}.png`;
+
+          const resp = await fetch('/api/upload-design', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ imageBase64: dataUrl, filename, project: projectPrefix }),
+          });
+          if (resp.ok) {
+            try {
+              const j = await resp.json();
+              if (j && j.ok && j.imageUrl) {
+                payload.imageUrl = j.imageUrl;
+              }
+            } catch (e) {}
+          } else {
+            console.warn('Server upload failed', await resp.text());
           }
         } catch (e) {
-          console.warn("Image upload failed", e);
+          console.warn("Image upload to server failed", e);
         }
       }
     } catch (e) {}
