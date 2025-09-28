@@ -2,7 +2,7 @@
  * User selects their reasoning for their initial stance
  */
 
-import Ask02 from "../components/journey/Ask02";
+import Ask02 from "../../components/journey/Ask02";
 import { useSession } from "../hooks/useSession";
 import { useEffect } from "react";
 
