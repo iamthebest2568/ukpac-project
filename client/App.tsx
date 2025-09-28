@@ -117,7 +117,7 @@ import EndSequenceSkeleton, {
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
   const isDashboard =
-    /^\/(?:(?:ukpack1|beforecitychange)\/(?:uk-dashboard|ukdashboard\.html|UkDashboard|ukpact1-dashboard)|ukpack2\/(?:dashboard|ukpact2-dashboard))$/.test(
+    /^\/(?:(?:ukpack1|beforecitychange)\/(?:uk-dashboard|ukdashboard\.html|UkDashboard|ukpact1-dashboard)|(?:ukpack2|mydreambus)\/(?:dashboard|ukpact2-dashboard))$/.test(
       location.pathname,
     );
 
