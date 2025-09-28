@@ -210,7 +210,6 @@ const UkDashboard: React.FC = () => {
           typeof window !== "undefined" ? window.location.origin : "";
         const rawCandidates2 = [
           `${origin}/api/public-submissions?limit=20`,
-          `${origin}/.netlify/functions/api/public-submissions?limit=20`,
         ];
 
         console.debug("public-submissions candidates:", rawCandidates2);
