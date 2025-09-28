@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import MetaUpdater from "../../components/MetaUpdater";
-import { useSession } from "../hooks/useSession";
+import { useSession } from "../../hooks/useSession";
 
 const IndexPage = () => {
   const { navigateToPage } = useSession();
@@ -12,7 +12,7 @@ const IndexPage = () => {
     <>
       <MetaUpdater
         title="UK PACT - กรุงเทพฯ ลดติด"
-        description="UK PACT — เชิญชวนคนกรุ���เทพฯ มาร่วมออกแบบเมือง ลดปัญหาจราจรและมลพิษ ด้วยนโยบายและตัวเลือกที่ใช้งานได้จริง"
+        description="UK PACT — เชิญชวนคนกรุงเทพฯ มาร่วมออกแบบเมือง ลดปัญหาจราจรและมลพิษ ด้วยนโยบายและตัวเลือกที่ใช้งานได้จริง"
         image="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fa9dea989b2c347318a49bb8e9f717a35?format=webp&width=1200"
       />
       <div className="min-h-screen bg-white flex items-center justify-center py-12">
