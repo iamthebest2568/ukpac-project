@@ -209,8 +209,8 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
                 } catch (err) {}
               }}
             >
-              {/* For MN2, render content inside an iframe and portal children into it so the mock matches mobile.
-                  Scoped to isMN2 to avoid affecting other pages. */}
+              {/* For MN2/MN3, render content inside an iframe and portal children into it so the mock matches mobile.
+                  Scoped to isMN2 or isMN3 to avoid affecting other pages. */}
               {isMN2 || isMN3 ? (
                 <>
                   <iframe
