@@ -162,7 +162,7 @@ const Ask04Budget = ({
           icon: '',
         },
         {
-          priority: 'ลดค่าโดยสารรถไฟฟ้า',
+          priority: '���ดค่าโดยสารรถไฟฟ้า',
           allocation: 0,
           percentage: 0,
           icon: '',
@@ -176,24 +176,34 @@ const Ask04Budget = ({
       // Send image URLs to server to write via Admin SDK (avoids Firestore client rules)
       (async () => {
         try {
+          try { console.debug('[Ask04Budget] displaySummary', displaySummary); } catch (_) {}
+          try { console.debug('[Ask04Budget] unique image urls to send', unique); } catch (_) {}
           for (const u of unique) {
-            if (sentUrls[u]) continue;
+            if (sentUrls[u]) {
+              try { console.debug('[Ask04Budget] already sent, skipping', u, sentUrls[u]); } catch (_) {}
+              continue;
+            }
             try {
+              try { console.debug('[Ask04Budget] sending image url', u); } catch (_) {}
               const resp = await fetch('/api/write-image-url', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ imageUrl: u, collection: 'beforecitychange-imageshow-events' }),
               });
+              try { console.debug('[Ask04Budget] response status', resp.status, u); } catch (_) {}
               if (resp.ok) {
                 const j = await resp.json();
+                try { console.debug('[Ask04Budget] response json', j); } catch (_) {}
                 sentUrls[u] = { ok: true, id: j?.id || null, ts: Date.now() };
                 try { sessionStorage.setItem(key, JSON.stringify(sentUrls)); } catch (_) {}
               } else {
                 const txt = await resp.text().catch(() => null);
+                try { console.warn('[Ask04Budget] write failed', resp.status, txt); } catch (_) {}
                 sentUrls[u] = { ok: false, error: `HTTP ${resp.status} ${txt || ''}` };
                 try { sessionStorage.setItem(key, JSON.stringify(sentUrls)); } catch (_) {}
               }
             } catch (e) {
+              try { console.error('[Ask04Budget] exception while sending', e); } catch (_) {}
               sentUrls[u] = { ok: false, error: String(e) };
               try { sessionStorage.setItem(key, JSON.stringify(sentUrls)); } catch (_) {}
             }
