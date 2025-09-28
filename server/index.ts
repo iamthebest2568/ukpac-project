@@ -123,7 +123,7 @@ export function createServer() {
       const project = String(req.query.project || "");
       let col = "minigame1_events";
       let docId = "minigame1-di";
-      if (project === "ukpack2") {
+      if (project === "ukpack2" || project === "mydreambus") {
         col = "minigame2_events";
         docId = "minigame2-di";
       } else if (project === "ukpack1" || project === "beforecitychange") {
@@ -211,7 +211,7 @@ export function createServer() {
       const project = String(req.query.project || "");
       let col = "minigame1_events";
       let docId = "minigame1-di";
-      if (project === "ukpack2") {
+      if (project === "ukpack2" || project === "mydreambus") {
         col = "minigame2_events";
         docId = "minigame2-di";
       } else if (project === "ukpack1" || project === "beforecitychange") {
