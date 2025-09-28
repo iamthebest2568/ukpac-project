@@ -92,7 +92,7 @@ const SplashScreen: React.FC = () => {
             <CtaButton
               text="เริ่มออกแบบ"
               onClick={() => {
-                navigate("/ukpack2/pdpa");
+                navigate("/mydreambus/pdpa");
               }}
               style={{ width: "min(360px, 80%)", marginTop: 0 }}
             />
