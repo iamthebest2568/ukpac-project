@@ -128,7 +128,7 @@ const Step1_Choice = ({
   );
 
   return (
-    <div className="w-full min-h-screen mn3-page-bg flex flex-col items-center justify-start relative">
+    <div className="minigame-mn1-page w-full min-h-screen mn3-page-bg flex flex-col items-center justify-start relative">
       {/* Main Content Container */}
       <div className="mn3-content">
         {/* Title Section - Optimized for mobile readability */}
@@ -189,7 +189,7 @@ const Step1_Choice = ({
             <button
               onClick={handleNext}
               className="mn3-continue-button"
-              aria-label="ดำเนินการต่อไปยังขั้นตอนถัดไป"
+              aria-label="ดำเนินการต่อไปยังขั้นตอนถัด��ป"
             >
               ไปต่อ
             </button>
