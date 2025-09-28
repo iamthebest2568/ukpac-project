@@ -431,7 +431,6 @@ const App = () => {
                   path="/mydreambus/dashboard"
                   element={<UkPack2Dashboard />}
                 />
-                <Route path="/mydreambus/ukpact2-dashboard" element={<Navigate to="/mydreambus/dashboard" replace />} />
                 <Route path="/mydreambus/chassis" element={<ChassisScreen />} />
                 <Route path="/mydreambus/seating" element={<SeatingScreen />} />
                 <Route
