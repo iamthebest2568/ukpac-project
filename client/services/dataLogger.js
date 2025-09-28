@@ -282,7 +282,7 @@ export function exportEventsAsCSV() {
   events.forEach((event) => {
     const row = [
       event.sessionID,
-      event.timestamp,
+      formatToBangkok(event.timestamp),
       event.event || "UNKNOWN",
       event.url || "",
       JSON.stringify(event.payload || {}).replace(/"/g, '""'),
