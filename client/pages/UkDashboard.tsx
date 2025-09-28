@@ -28,14 +28,14 @@ type SessionSummary = {
   sessionId: string;
   firstSeen: string;
   lastSeen: string;
-  introWho?: string; // บทบาทในการเดินทางเข้าเมือง
+  introWho?: string; // บ���บาทในการเดินทางเข้าเมือง
   travelMethod?: string; // ยาน��าห��ะที่ใช้
   opinionLevel?: string; // ระดับความคิดเห็น
   ask02Choice?: string; // เหตุผลหลัก
   ask02CustomReason?: string; // เหตุผลพิมพ์เอง
   reasonOther01?: string; // คำอธิบายเพิ่มเติม
   keyMessage1?: string; // Key message 1
-  mn1Selected: string[]; // ลำดับความสำคัญของประเด็���
+  mn1Selected: string[]; // ลำดับความสำคัญของประเด็น
   mn2Selections?: Record<string, string[]>; // กลุ่มเป้าหมายที่ควรได้รับสิทธิ์
   mn3Selected?: string[]; // ประเด็นนโยบา��ที่ผู้ใช้เลือก
   mn3BudgetAllocation?: Record<string, number>; // การจัดสรรงบประมาณ
@@ -189,7 +189,11 @@ export default function UkDashboard() {
               try { controller.abort(); } catch (_) {}
             }
           }, ms);
-          const resp = await fetch(url, {
+          // Use relative URLs when possible to avoid origin mismatches in previews/deploys
+          const fetchUrl = typeof url === 'string' && (url.startsWith('http://') || url.startsWith('https://'))
+            ? url
+            : (typeof url === 'string' ? url : String(url));
+          const resp = await fetch(fetchUrl, {
             ...(opts || {}),
             signal: controller.signal,
           });
@@ -290,7 +294,7 @@ export default function UkDashboard() {
       "ความยอมรับ (accept)",
       "เหตุผล_Webapp (reason)",
       "เหตุผล_อื่นๆ_Webapp (reason_other)",
-      "ประเด���นนโยบาย (policy_topic)",
+      "ประ��ด���นนโยบาย (policy_topic)",
       "กลุ่มเป้าหมาย (target_group)",
       "พัฒนา_ลำดับ (dev_priority)",
       "งบประมาณ (budget_alloc)",
@@ -575,7 +579,7 @@ export default function UkDashboard() {
                 className="rounded-md bg-red-600/80 hover:bg-red-600 border border-red-500 px-3 py-2 text-sm"
                 onClick={clearData}
                 disabled={clearing}
-                title="ลบ events.jsonl และ app-events.jsonl ในเซิ��์ฟเวอร์"
+                title="ลบ events.jsonl และ app-events.jsonl ในเซิร์ฟเวอร์"
               >
                 {clearing ? "กำลังลบ..." : "���บข้อมูลทั้งหมด"}
               </button>
@@ -620,7 +624,7 @@ export default function UkDashboard() {
 
               {/* User Journey: Topics as accordion */}
               {false && (
-                <Card title="หัวข้อข้อมูล (Topics)">
+                <Card title="หัวข้���ข้อมูล (Topics)">
                   <Accordion
                     type="single"
                     collapsible
@@ -886,15 +890,15 @@ export default function UkDashboard() {
                       "อธิบายอื่น ๆ ที่ช่วยอธิบายความคิดเห็น",
                       "บอกเร��หน่อยว่าคุณเดินทางเข้าเมือง��้วยวิธีการใดบ่อยที่ส��ด",
                       "จากนโยบายที่คุณฟังเมื่อสักครู่ คุณมีความคิดเห็นอย่าง��ร",
-                      "คุณคิดว่าน���ยบายปัจจุบัน ควรปรับเปลี่ยนประเด็นอะไรบาง (ลดค่าโดยสา��, ปรับปรุงคุณภา���, ขึ้น���าคา, เพ��่มขบวน, เพิ่มความถี่ ฯลฯ)",
+                      "คุณคิดว่าน���ยบายปัจจุบัน ควรปรับเปลี่ยนประเด็นอะไรบาง (ลดค่าโดยสา��, ปรับปรุงคุณภาพ, ขึ้น���าคา, เพ��่มขบวน, เพิ่มความถี่ ฯลฯ)",
                       "คุณคิดว่าใครควรได้รับการลดค่าโดยสารรถไฟฟ���า��้าง (ทุกคน, ผู้สูงอายุ, นักเรียน, คนทำงาน ฯลฯ)",
-                      "คุณคิดว่าควรใช้เงินที่ได้จากการเก็บไปพัฒนาอะไร ก่อน 3 อันดับแรก",
+                      "คุณคิดว่าคว��ใช้เงินที่ได้จากการเก็บไปพัฒนาอะไร ก่อน 3 อันดับแรก",
                       "คุณจะให้งบประมาณแต่ละข้อเท่าไร (งบทั้งหมด 100)",
                       "คุณพอใจ��ับผลลัพธ์ที่เกิดขึ้นหรือไ��่ (พ���ใจ / ไม่พอใจ)",
                       "คุณคิดว่ารัฐควรทำอะไรที่จะทำให้นโยบายนี้เกิดขึ้นได้จริง และเป็นประโยชน์ต่อประชาชนอย่างแท้จริง",
                       "ตอนนี้มี��้อ��ูลที่ผิดพลาด เช่น ข่าวปลอมเกี่ยวกับนโยบาย คุณคิดว่าอย่างไร",
                       "คุณ��ะติดตามข่า��� หรือเชื่อจากแหล่ง��หนมาก���ี่สุด",
-                      "ขอบคุณที่ร่วมเป็นส่วนหนึ่ง → ต้องการลุ้นรับรางวัลหรือไม่",
+                      "ขอบคุณที่ร่วมเป็นส่วนหนึ่ง → ต้องการล���้นรับรางวัลหรือไม่",
                       "กรอกข้อมูลเพื่อลุ้นรางวัล (ชื่อ)",
                       "กรอกข้อมูลเพื่อลุ้นรางวัล (เบอร์โทร)",
                       "Time Stamp (First)",
@@ -993,7 +997,7 @@ export default function UkDashboard() {
           >
             <div className="flex items-center justify-between mb-2">
               <div className="text-lg font-medium">
-                ร���ยละเอ��ยดเซสชั: {detailSession?.slice(0, 12)}…
+                ร���ยละเอียดเซสชั: {detailSession?.slice(0, 12)}…
               </div>
               <button
                 className="text-white/70 hover:text-white"
