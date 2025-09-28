@@ -41,8 +41,18 @@
 
 /* Hide decorative MN3 background overlay (::before) when inside minigame-mn1 page */
 .minigame-mn1-page .mn3-page-bg::before,
-.minigame-mn1-page.mn3-page-bg::before {
+.minigame-mn1-page.mn3-page-bg::before,
+.minigame-mn1-page .mn3-allocation-bg::before,
+.minigame-mn1-page.mn3-allocation-bg::before {
   display: none !important;
   background-image: none !important;
   content: none !important;
+}
+
+/* Hide Figma layout decorative overlays for MN1 result step */
+.minigame-mn1-page .figma-style1-background-overlay,
+.minigame-mn1-page .figma-style1-wave-overlay,
+.minigame-mn1-page .figma-style1-background-image {
+  display: none !important;
+  background-image: none !important;
 }
