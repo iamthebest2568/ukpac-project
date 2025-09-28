@@ -201,7 +201,7 @@ const Step3_Result = ({
         window.location.pathname === "/beforecitychange/minigame-mn3"
       ) {
         // force full reload to reset state
-        window.location.assign("/ukpack1/minigame-mn3");
+        window.location.assign("/beforecitychange/minigame-mn3");
       } else {
         navigate("/ukpack1/minigame-mn3");
       }
