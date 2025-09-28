@@ -40,17 +40,20 @@
   min-height: 100% !important;
 }
 
-/* Show MN3 background in mock to match mobile */
+/* Show MN3 background in mock to match mobile (positioned inside page container to avoid covering mock frame) */
 .tablet-mock-env .mn3-page-bg::before,
 .tablet-mock-env .mn3-allocation-bg::before {
   display: block !important;
   content: "" !important;
-  position: fixed !important;
-  inset: 0 !important;
+  position: absolute !important; /* absolute relative to .mn3-page-bg (which is position: relative) */
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
   background-size: cover !important;
   background-position: center top !important;
   background-repeat: no-repeat !important;
-  z-index: 0 !important;
+  z-index: 0 !important; /* ensure children with z-index > 0 sit above */
   pointer-events: none !important;
 }
 
