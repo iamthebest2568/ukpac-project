@@ -273,16 +273,19 @@ export async function addDesignImageUrlToFirestore(imageUrl: string, preferredCo
     return { id: docRef.id, collection: colName } as const;
   }
 
-  // Prefer user's requested collection name; fallback to previous one if needed
-  try {
-    return await findOrWrite("kpact-gamebus-imagedesign-events");
-  } catch (e) {
+  // Prefer user's requested collection name; fallback to previous ones if needed
+  const candidates = [] as string[];
+  if (preferredCollection && typeof preferredCollection === 'string') candidates.push(preferredCollection);
+  candidates.push("kpact-gamebus-imagedesign-events", "ukpact-gamebus-imagedesign-events");
+
+  for (const colName of candidates) {
     try {
-      return await findOrWrite("ukpact-gamebus-imagedesign-events");
-    } catch (e2) {
-      throw e2 || e;
+      return await findOrWrite(colName);
+    } catch (_) {
+      // try next
     }
   }
+  throw new Error('failed to write design image to any candidate collection');
 }
 
 // also export init for manual init from UI
