@@ -3,7 +3,7 @@
  */
 
 import Ask05 from "../../components/journey/Ask05";
-import { useSession } from "../hooks/useSession";
+import { useSession } from "../../hooks/useSession";
 
 const Ask05Page = () => {
   const { sessionID, navigateToPage } = useSession();
