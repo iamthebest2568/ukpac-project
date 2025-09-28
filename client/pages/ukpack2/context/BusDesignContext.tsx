@@ -366,10 +366,10 @@ export const BusDesignProvider = ({ children }: { children: ReactNode }) => {
     return () => window.removeEventListener('online', onOnline);
   }, []);
 
+  const contextValue = useMemo(() => ({ state, dispatch: dispatchAndLog, submitDesignToFirebase }), [state, dispatchAndLog, submitDesignToFirebase]);
+
   return (
-    <BusDesignContext.Provider
-      value={{ state, dispatch: dispatchAndLog, submitDesignToFirebase }}
-    >
+    <BusDesignContext.Provider value={contextValue}>
       {children}
     </BusDesignContext.Provider>
   );
