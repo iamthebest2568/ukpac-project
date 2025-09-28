@@ -470,3 +470,6 @@
 {"sessionId":"session_1759072515097_831yjmssu","eventName":"sw.variant.start","timestamp":"2025-09-28T15:18:04.691Z","variantId":"0cbd0522","variantName":"ไม่เชื่อว่าจะได้ผล"}
 {"sessionId":"session_1759072515097_831yjmssu","eventName":"sw.choice.selected","timestamp":"2025-09-28T15:18:10.445Z","choiceText":"อยากรู้อยู่พอดี","variantId":"0cbd0522","variantName":"ไม่เชื่อว่าจะได้ผล"}
 {"sessionId":"session_1759072515097_831yjmssu","eventName":"sw.variant.start","timestamp":"2025-09-28T15:18:11.219Z","variantId":"8aa35bfd","variantName":"ทดสอบ Key message"}
+{"sessionId":"session_1759072515097_831yjmssu","eventName":"sw.choice.selected","timestamp":"2025-09-28T15:19:20.288Z","choiceText":"เฉย ๆ","variantId":"8aa35bfd","variantName":"ทดสอบ Key message"}
+{"sessionId":"session_1759072515097_831yjmssu","eventName":"sw.variant.start","timestamp":"2025-09-28T15:19:21.047Z","variantId":"0d274bf8","variantName":"ทำไมคุณถึงคิดแบบนั้น ?"}
+{"sessionId":"session_1759072515097_831yjmssu","eventName":"sw.choice.selected","timestamp":"2025-09-28T15:19:26.462Z","choiceText":"นโยบายไม่ครอบคลุม","variantId":"0d274bf8","variantName":"ทำไมคุณถึงคิดแบบนั้น ?"}
