@@ -3,7 +3,7 @@
  */
 
 import Ask02 from "../../components/journey/Ask02";
-import { useSession } from "../hooks/useSession";
+import { useSession } from "../../hooks/useSession";
 import { useEffect } from "react";
 
 const Ask02Page = () => {
