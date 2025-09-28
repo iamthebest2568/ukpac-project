@@ -86,10 +86,11 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
   if (typeof document === "undefined") return <>{children}</>;
 
   const isMN1 = typeof location !== "undefined" && location.pathname && location.pathname.startsWith("/beforecitychange/minigame-mn1");
+  const isMN2 = typeof location !== "undefined" && location.pathname && location.pathname.startsWith("/beforecitychange/minigame-mn2");
 
   const mockup = (
     <div
-      className={`fixed inset-0 grid place-items-center w-screen h-screen ${isMN1 ? "bg-transparent" : "bg-neutral-100/40"} overflow-hidden`}
+      className={`fixed inset-0 grid place-items-center w-screen h-screen ${isMN1 || isMN2 ? "bg-transparent" : "bg-neutral-100/40"} overflow-hidden`}
       style={{ zIndex: 2147483647, pointerEvents: "none" }}
     >
       <div
