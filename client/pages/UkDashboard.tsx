@@ -178,7 +178,14 @@ export default function UkDashboard() {
             return null;
           }
           const controller = new AbortController();
-          const id = setTimeout(() => controller.abort(), ms);
+          // pass a reason where supported to avoid noisy "signal is aborted without reason" logs
+          const id = setTimeout(() => {
+            try {
+              (controller as any).abort && (controller as any).abort('timeout');
+            } catch (_) {
+              try { controller.abort(); } catch (_) {}
+            }
+          }, ms);
           const resp = await fetch(url, {
             ...(opts || {}),
             signal: controller.signal,
@@ -190,6 +197,25 @@ export default function UkDashboard() {
           return null;
         }
       };
+
+      // suppress global unhandled AbortError rejections from fetch timeouts in this component
+      try {
+        const onUnhandled = (ev: PromiseRejectionEvent) => {
+          try {
+            const reason = (ev && (ev.reason || (ev.detail && ev.detail.reason))) as any;
+            if (!reason) return;
+            const name = reason.name || (reason.constructor && reason.constructor.name) || '';
+            const msg = String(reason && (reason.message || reason));
+            if (name === 'AbortError' || /aborted|abort/i.test(msg)) {
+              ev.preventDefault();
+              console.debug('Ignored AbortError unhandled rejection in UkDashboard', reason);
+            }
+          } catch (e) {}
+        };
+        window.addEventListener('unhandledrejection', onUnhandled as any);
+        // remove listener after 30s to avoid leaking during component lifetime
+        setTimeout(() => window.removeEventListener('unhandledrejection', onUnhandled as any), 30 * 1000);
+      } catch (_) {}
 
       const endpoints = [
         "/api/user-journey-stats",
@@ -1032,9 +1058,9 @@ export default function UkDashboard() {
                       "IP",
                       "Access Time",
                       "ทำไมคุณถึงต้องเข้าเมืองบ่อย ๆ ?",
-                      "คุณใช้รถแบบไหนเดินทางเข้าเมือง ?",
+                      "คุณใช้รถแบบไหนเดินทาง���ข้าเมือง ?",
                       "คุ��คิดเห็นอย่างไรกับนโยบายนี้ ?",
-                      "จากข้อความข้างต้น คุณมีควา���คิดเห็นอย่างไร (เห็นด้วย/กลางๆ/��ม่เห็นด้วย)",
+                      "จากข้อความข้างต้น คุณมีควา���ค���ดเห็นอย่างไร (เห็นด้วย/กลางๆ/��ม่เห็นด้วย)",
                       "ทำไมคุณถึงคิดอย่างนั้น (นโยบายไม่ครอบคลุม / เก็บไปก็ไม่มีอะไรดีข���้น / อื่นๆ)",
                       "อธิบายอื่น ๆ ที่ช่วยอธิบายความคิดเห็น",
                       "บอกเร��หน่อยว่าคุณเดินทางเข้าเมืองด้วยวิธีการใดบ่อยที่ส��ด",
@@ -1046,7 +1072,7 @@ export default function UkDashboard() {
                       "คุณพอใจกับผลลัพธ์ที่เกิดขึ้นหรือไ��่ (พ���ใจ / ไม่พอใจ)",
                       "คุณคิดว่ารัฐควรทำอะไรที่จะทำให้นโยบายนี้เกิดขึ้นได้จริง และเป็นประโยชน์ต่อประชาชนอย่างแท้จริง",
                       "ตอนนี้มี��้อ��ูลที่ผิดพลาด เช่น ข่าวปลอมเกี่ยวกับนโยบาย คุณคิดว่าอย่างไร",
-                      "คุณ��ะติดตามข่า��� หรือเชื่อจากแหล่ง��หนมาก���ี่สุด",
+                      "คุณ����ะติดตามข่า��� หรือเชื่อจากแหล่ง��หนมาก���ี่สุด",
                       "ขอบคุณที่ร่วมเป็นส่วนหนึ่ง → ต้องการลุ้นรับรางวัลหรือไม่",
                       "กรอกข้อมูลเพื่อลุ้นรางวัล (ชื่อ)",
                       "กรอกข้อมูลเพื่อลุ้นรางวัล (เบอร์โทร)",
