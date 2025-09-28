@@ -483,7 +483,7 @@ export function createServer() {
             const snap = await colRef.limit(limit).get();
             if (snap && snap.size > 0) {
               const headers = [
-                "รหัสเซสชัน (sessionID)",
+                "��หัสเซสชัน (sessionID)",
                 "IP (ip)",
                 "เวลาเริ่ม (firstTimestamp)",
                 "เวลาสิ้นสุด (lastTimestamp)",
@@ -502,7 +502,7 @@ export function createServer() {
                 "เส้นทาง (route)",
                 "พื้นที่ (area)",
                 "ตัดสินใจใช้บริการ (decision_use_service)",
-                "เหตุผลไม่ใช้บริการ (reason_not_use)",
+                "เหตุผลไม่ใช้บร��การ (reason_not_use)",
                 "เข้าร่วมของรางวัล (decision_enter_prize)",
                 "ชื่อผู้รับรางวัล (prize_name)",
                 "เบอร์โทรผู้รับรางวัล (prize_phone)",
@@ -522,8 +522,8 @@ export function createServer() {
                 const vals = [
                   data.sessionID || data.sessionId || '',
                   data.ip || '',
-                  data.firstTimestamp || '',
-                  data.lastTimestamp || '',
+                  formatToBangkok(data.firstTimestamp || ''),
+                  formatToBangkok(data.lastTimestamp || ''),
                   data.PDPA_acceptance || '',
                   data.chassis_type || '',
                   data.total_seats || '',
@@ -571,7 +571,7 @@ export function createServer() {
       const summaries = await computeSessionSummaries(limit);
 
       const headers = [
-        "รหัสเซ��ชัน (sessionID)",
+        "รหัสเซสชัน (sessionID)",
         "IP (ip)",
         "เวลาเริ่ม (firstTimestamp)",
         "เวลาสิ้นสุด (lastTimestamp)",
@@ -583,7 +583,7 @@ export function createServer() {
         "จำนวนผู้ตั้งครรภ์ (pregnant_count)",
         "จำนวนพระ (monk_count)",
         "สิ่งอำนวยความสะดวก (features)",
-        "ประเภทการชำระเงิน (payment_types)",
+        "ประเภทการ��ำระเงิน (payment_types)",
         "จำนวนประตู (doors)",
         "สี (color)",
         "ความถี่ (frequency)",
