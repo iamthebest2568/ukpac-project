@@ -64,10 +64,31 @@
   box-sizing: border-box !important;
 }
 
+/* Desktop mock should preserve the intended row structure (2 / 3 / 2) */
 .tablet-mock-env .mn3-button-row {
-  flex-wrap: wrap !important; /* allow buttons to wrap to new lines */
+  flex-wrap: nowrap !important; /* preserve explicit rows from markup */
   gap: 8px !important;
   justify-content: center !important;
+}
+
+/* Row-specific sizing to ensure exact 2 / 3 / 2 layout inside mock */
+.tablet-mock-env .mn3-button-grid > .mn3-button-row:nth-child(1) .mn3-policy-button {
+  flex: 0 0 calc((100% - 8px) / 2) !important; /* 2 buttons, account for gap */
+  max-width: calc((100% - 8px) / 2) !important;
+}
+.tablet-mock-env .mn3-button-grid > .mn3-button-row:nth-child(2) .mn3-policy-button {
+  flex: 0 0 calc((100% - 16px) / 3) !important; /* 3 buttons, two gaps of 8px */
+  max-width: calc((100% - 16px) / 3) !important;
+}
+.tablet-mock-env .mn3-button-grid > .mn3-button-row:nth-child(3) .mn3-policy-button {
+  flex: 0 0 calc((100% - 8px) / 2) !important; /* 2 buttons */
+  max-width: calc((100% - 8px) / 2) !important;
+}
+
+/* Ensure buttons shrink a bit if text wraps but keep equal widths */
+.tablet-mock-env .mn3-policy-button .mn3-button-text {
+  display: block !important;
+  padding: 4px 6px !important;
 }
 
 /* Reduce button min-width inside mock mockup to prevent overflow */
