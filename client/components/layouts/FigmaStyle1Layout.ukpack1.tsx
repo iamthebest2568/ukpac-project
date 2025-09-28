@@ -82,7 +82,7 @@ const FigmaStyle1Layout = ({
         try {
           const p =
             typeof window !== "undefined" ? window.location.pathname || "" : "";
-          return pageScope && !p.startsWith("/ukpack1/minigame-mn2")
+          return pageScope && !p.startsWith("/beforecitychange/minigame-mn2")
             ? "fake-news-page"
             : "";
         } catch {
