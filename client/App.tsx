@@ -360,7 +360,6 @@ const App = () => {
         import("./pages/ukpack1/MiniGameMN01Page"),
         import("./pages/ukpack1/MiniGameMN3Page"),
         import("./pages/ukpack1/HowDoYouThinkPage"),
-        import("./pages/ukpack1/Uk-stornaway"),
       ];
       Promise.allSettled(tasks);
     };
