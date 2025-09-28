@@ -34,7 +34,7 @@ const Wrapped = (props: any) => {
   const src =
     typeof window !== "undefined"
       ? window.location.pathname + "?embedded=1"
-      : "/ukpack1/minigame-mn1?embedded=1";
+      : "/beforecitychange/minigame-mn1?embedded=1";
 
   return (
     <DesktopMockup>
