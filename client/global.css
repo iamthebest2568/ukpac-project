@@ -5,6 +5,7 @@
 @import "./styles/ukpack2-tablet.css";
 @import "./styles/ukpack2-desktop.css";
 @import "./styles/ukpack2-tablet-mock.css";
+@import "./styles/ukpack2-skipend-overrides.css";
 @import "./styles/minigame-mn1-overrides.css";
 @import "./styles/minigame-mn2-overrides.css";
 @import "./styles/minigame-mn3-overrides.css";
