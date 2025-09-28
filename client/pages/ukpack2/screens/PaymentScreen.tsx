@@ -262,7 +262,7 @@ const OPTIONS = [
   { key: "cash", label: "เงินสด", icon: <IconCash /> },
   { key: "scan", label: "สแกนจ่าย", icon: <IconScan /> },
   { key: "tap", label: "แตะบัตร", icon: <IconTap /> },
-  { key: "monthly", label: "ตั๋วรายเดือน/รอบ", icon: null },
+  { key: "monthly", label: "ต���๋วรายเดือน/รอบ", icon: null },
   { key: "scan2", label: "ตู้อัตโนมัติ", icon: null },
   { key: "qr", label: "กระเป๋ารถเมล์", icon: <IconQr /> },
 ];
@@ -302,7 +302,7 @@ const PaymentScreen: React.FC = () => {
   }, []);
 
   const ICON_SETS: Record<string, string[]> = {
-    เงินสด: [
+    เงินส���: [
       MONEY_ICON,
       MONEY_ICON_ACTIVE,
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F29e4422ee7ff4d72a3f359831ac92c32?format=webp&width=800",
@@ -452,7 +452,7 @@ const PaymentScreen: React.FC = () => {
         sessionStorage.setItem("design.overlayIconMap", JSON.stringify(map));
       } catch (e) {}
     } catch (e) {}
-    navigate("/ukpack2/doors");
+    navigate("/mydreambus/doors");
   };
 
   return (
@@ -718,7 +718,7 @@ const PaymentScreen: React.FC = () => {
                   >
                     <img
                       src={
-                        selected.includes("ตั๋วรายเดือน/รอบ")
+                        selected.includes("ตั๋วรายเดื���น/รอบ")
                           ? MONTHLY_ICON_ACTIVE
                           : MONTHLY_ICON
                       }
