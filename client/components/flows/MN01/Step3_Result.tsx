@@ -146,7 +146,7 @@ const Step3_Result = ({
 
     onNext(data);
     // Navigate to ask05 after recording result
-    navigate("/ukpack1/ask05");
+    navigate("/beforecitychange/ask05");
   };
 
   const backgroundImage =
