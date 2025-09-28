@@ -1,383 +1,424 @@
-.minigame-mn1-page .figma-style1-content {
-  overflow: visible !important;
-  height: 100% !important;
-  max-height: 100% !important;
-}
-
-/* All overrides scoped to the tablet mock environment to avoid changing mobile layout */
-.tablet-mock-env .figma-style1-main {
-  align-items: start !important;
-  overflow: visible !important;
-}
-
-.tablet-mock-env .figma-style1-content-area {
-  overflow: auto !important;
-  -webkit-overflow-scrolling: touch !important;
-  max-height: 100% !important;
-  box-sizing: border-box !important;
-  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 20px) !important;
-}
-
-/* Keep primary action accessible: pin to bottom inside mockup without affecting other pages */
-.tablet-mock-env .figma-style1-button-container {
-  position: sticky !important;
-  bottom: calc(env(safe-area-inset-bottom, 0px) + 12px) !important;
-  display: flex !important;
-  justify-content: center !important;
-  z-index: 10010 !important;
-}
-
-/* Make sure background image doesn't cover interactive content in the mockup */
-.tablet-mock-env .figma-style1-background-image {
-  object-position: center top !important;
-}
-
-/* Force safe scaling of inner viewport elements */
-.tablet-mock-env .tablet-mock-env,
-.tablet-mock-env .figma-style1-container {
-  width: 100% !important;
-  height: auto !important;
-  min-height: 100% !important;
-}
-
-/* Show MN3 background in mock to match mobile (positioned inside page container to avoid covering mock frame) */
-.tablet-mock-env .mn3-page-bg::before,
-.tablet-mock-env .mn3-allocation-bg::before {
-  display: block !important;
-  content: "" !important;
-  position: absolute !important; /* absolute relative to .mn3-page-bg (which is position: relative) */
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  bottom: 0 !important;
-  background-size: cover !important;
-  background-position: center top !important;
-  background-repeat: no-repeat !important;
-  z-index: 0 !important; /* ensure children with z-index > 0 sit above */
-  pointer-events: none !important;
-}
-
-/* Hide Figma layout decorative overlays for MN1 result step inside mock */
-.tablet-mock-env .figma-style1-background-overlay,
-.tablet-mock-env .figma-style1-wave-overlay,
-.tablet-mock-env .figma-style1-background-image {
-  display: none !important;
-  background-image: none !important;
-}
-
-/* Ensure MN1 button grid wraps inside mockup iframe and doesn't overflow */
-.tablet-mock-env .mn3-button-grid {
-  max-width: 92% !important;
-  padding-left: 10px !important;
-  padding-right: 10px !important;
-  box-sizing: border-box !important;
-}
-
-/* Desktop mock: use CSS Grid per row to create neat columns (2 / 3 / 2) */
-.tablet-mock-env .mn3-button-row {
-  display: grid !important;
-  gap: 10px !important;
-  justify-items: stretch !important;
-  align-items: stretch !important;
-  width: 100%;
-}
-
-/* First row: 2 columns */
-.tablet-mock-env .mn3-button-grid > .mn3-button-row:nth-child(1) {
-  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-}
-/* Second row: 3 columns */
-.tablet-mock-env .mn3-button-grid > .mn3-button-row:nth-child(2) {
-  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-}
-/* Third row: 2 columns */
-.tablet-mock-env .mn3-button-grid > .mn3-button-row:nth-child(3) {
-  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-}
-
-/* Ensure button content centers and scales nicely */
-.tablet-mock-env .mn3-policy-button {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  padding: 10px 12px !important;
-  height: auto !important;
-  min-height: 44px !important;
-  border-radius: 20px !important;
-  font-size: 14px !important;
-  line-height: 1.2 !important;
-  box-sizing: border-box !important;
-  white-space: normal !important;
-}
-
-/* Button text tuning */
-.tablet-mock-env .mn3-button-text {
-  font-size: 14px !important;
-  padding: 4px 6px !important;
-  text-align: center !important;
-}
-
-/* Ensure grid items don't overflow the mock frame */
-.tablet-mock-env .mn3-button-grid {
-  max-width: 86% !important;
-  margin: 0 auto !important;
-}
-
-/* Slightly reduce continue button size to fit mock */
-.tablet-mock-env .mn3-continue-button {
-  max-width: 320px !important;
-  width: 80% !important;
-  height: 56px !important;
-  font-size: 16px !important;
-}
-
-/* Limit long texts and allow wrapping for Thai */
-.tablet-mock-env .mn3-button-text {
-  white-space: normal !important;
-  overflow-wrap: anywhere !important;
-  word-break: break-word !important;
-}
-
-/* Make mn3-content behave inside the tablet mock: static positioning and scroll if needed */
-.tablet-mock-env .mn3-content,
-.tablet-mock-env .mn3-allocation-content {
-  position: static !important;
-  max-height: calc(100vh - 120px) !important; /* leave space for header and mock frame */
-  overflow-y: auto !important;
-  padding-bottom: 16px !important;
-}
-
-/* Ensure continue button stays visible and not overlapping */
-.tablet-mock-env .mn3-continue-button {
-  position: relative !important;
-  z-index: 100005 !important;
-  max-width: 90% !important;
-}
-
-/* MN1-specific adjustments inside the tablet mockup:
-   - Only affects the /beforecitychange/minigame-mn1 page (.minigame-mn1-page)
-   - Reduce button sizes, ensure adequate gaps, and horizontally center the grid
-*/
-.tablet-mock-env .minigame-mn1-page .absolute.w-full.flex.flex-col.items-center > div {
-  width: 86% !important;
-  max-width: 680px !important;
-  margin: 0 auto !important;
-  gap: 14px !important;
-  box-sizing: border-box !important;
-}
-
-.tablet-mock-env .minigame-mn1-page .flex.flex-col > div {
-  display: flex !important;
-  justify-content: center !important;
-  gap: 12px !important;
-  width: 100% !important;
-  box-sizing: border-box !important;
-}
-
-/* Row-specific button widths to recreate 2 / 3 / 2 layout but scaled for mock frame */
-.tablet-mock-env .minigame-mn1-page .flex.flex-col > div:nth-child(1) .transition-all {
-  width: 48% !important; /* two columns */
-  min-width: 120px !important;
-  height: clamp(48px, 4.2vw, 76px) !important;
-}
-
-.tablet-mock-env .minigame-mn1-page .flex.flex-col > div:nth-child(2) .transition-all {
-  width: 30% !important; /* three columns */
-  min-width: 90px !important;
-  height: clamp(44px, 4.2vw, 72px) !important;
-}
-
-.tablet-mock-env .minigame-mn1-page .flex.flex-col > div:nth-child(3) .transition-all {
-  width: 48% !important; /* two columns */
-  min-width: 120px !important;
-  height: clamp(48px, 4.2vw, 76px) !important;
-}
-
-/* Make sure button visuals (border-radius, text size) scale nicely */
-.tablet-mock-env .minigame-mn1-page button.transition-all {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  border-radius: 28px !important;
-  padding: 6px 10px !important;
-  font-size: clamp(14px, 2.8vw, 22px) !important;
-  line-height: 1.1 !important;
-  box-sizing: border-box !important;
-  white-space: normal !important;
-}
-
-/* Tweak the continue button on MN1 inside mock to be narrower and centered */
-.tablet-mock-env .minigame-mn1-page .group.flex.items-center.justify-center > button,
-.tablet-mock-env .minigame-mn1-page .relative.flex.justify-center > button {
-  width: clamp(260px, 72%, 640px) !important;
-  max-width: 640px !important;
-  height: clamp(48px, 6vw, 96px) !important;
-  border-radius: 40px !important;
-  font-size: clamp(16px, 3.6vw, 28px) !important;
-}
-
-/* Ensure title and subtitles remain centered and do not shift horizontally */
-.tablet-mock-env .minigame-mn1-page .absolute.w-full.text-center h1,
-.tablet-mock-env .minigame-mn1-page .absolute.w-full.text-center p {
-  margin-left: auto !important;
-  margin-right: auto !important;
-  text-align: center !important;
-}
-
-/* Small screens inside mock: allow vertical scroll if content overflows */
-.tablet-mock-env .minigame-mn1-page .absolute.w-full.flex.flex-col.items-center {
-  overflow: visible !important;
-}
-
-/* Prevent rows overlapping: ensure rows wrap, add vertical gaps, and limit heights so they stack nicely */
-.tablet-mock-env .minigame-mn1-page .absolute.w-full.flex.flex-col.items-center {
-  position: absolute !important;
-  top: 68% !important; /* nudge upward a bit inside mock to give room for title */
-  left: 0 !important;
-  right: 0 !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  gap: 16px !important;
-  box-sizing: border-box !important;
-  max-height: calc(100vh - 220px) !important;
-  overflow-y: auto !important;
-  padding-bottom: 20px !important;
-  z-index: 2 !important;
-}
-
-.tablet-mock-env .minigame-mn1-page .flex.flex-col {
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 14px !important;
-  width: 86% !important;
-  max-width: 680px !important;
-  box-sizing: border-box !important;
-}
-
-/* Each row: allow wrapping and add space between rows to avoid collisions */
-.tablet-mock-env .minigame-mn1-page .flex.flex-col > div.flex {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 12px !important;
-  margin-bottom: 6px !important;
-  box-sizing: border-box !important;
-}
-
-/* Buttons: remove fixed heights from inline styles, allow auto height and proper min-height */
-.tablet-mock-env .minigame-mn1-page button.transition-all {
-  height: auto !important;
-  min-height: 44px !important;
-  padding: 8px 12px !important;
-  font-size: clamp(14px, 2.8vw, 20px) !important;
-  box-sizing: border-box !important;
-}
-
-/* Ensure buttons don't exceed row width and can shrink when necessary */
-.tablet-mock-env .minigame-mn1-page .flex.flex-col > div:nth-child(1) button.transition-all {
-  flex: 1 1 48% !important;
-  max-width: 48% !important;
-}
-.tablet-mock-env .minigame-mn1-page .flex.flex-col > div:nth-child(2) button.transition-all {
-  flex: 1 1 30% !important;
-  max-width: 30% !important;
-}
-.tablet-mock-env .minigame-mn1-page .flex.flex-col > div:nth-child(3) button.transition-all {
-  flex: 1 1 48% !important;
-  max-width: 48% !important;
-}
-
-/* Continue button ensure it's above content and doesn't overlap */
-.tablet-mock-env .minigame-mn1-page .relative.flex.justify-center {
-  z-index: 5 !important;
-}
-
-/* Additional safe-guards to prevent right-edge overflow and ensure buttons stay centered
-   - Apply horizontal padding and box-sizing to button grid
-   - Override inline widths on buttons inside the mock using !important
-   - Ensure rows center their items and do not allow items to stick to the right
-*/
-.tablet-mock-env .minigame-mn1-page .mn3-button-grid,
-.tablet-mock-env .mn3-page-bg .mn3-button-grid {
-  padding-left: 20px !important;
-  padding-right: 20px !important;
-  box-sizing: border-box !important;
-  width: 100% !important;
-  max-width: 720px !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-}
-
-/* Force rows to distribute space and center items */
-.tablet-mock-env .minigame-mn1-page .mn3-button-row,
-.tablet-mock-env .mn3-page-bg .mn3-button-row {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  justify-content: center !important; /* center children horizontally */
-  gap: 12px !important;
-  width: 100% !important;
-  box-sizing: border-box !important;
-}
-
-/* Neutralize inline width percentages by making buttons flexible and allowing shrink
-   Use flex-basis for the intended columns but allow them to shrink if there's not enough space */
-.tablet-mock-env .minigame-mn1-page .mn3-button-row > .mn3-policy-button,
-.tablet-mock-env .mn3-page-bg .mn3-button-row > .mn3-policy-button {
-  width: auto !important;
-  max-width: 100% !important;
-  flex: 1 1 auto !important;
-  min-width: 90px !important; /* avoid too small */
-  box-sizing: border-box !important;
-}
-
-/* Row specific suggested flex-basis to approximate 2/3/2 layout but still responsive */
-.tablet-mock-env .minigame-mn1-page .mn3-button-row:nth-child(1) > .mn3-policy-button {
-  flex-basis: calc((100% - 12px) / 2) !important;
-}
-.tablet-mock-env .minigame-mn1-page .mn3-button-row:nth-child(2) > .mn3-policy-button {
-  flex-basis: calc((100% - 24px) / 3) !important;
-}
-.tablet-mock-env .minigame-mn1-page .mn3-button-row:nth-child(3) > .mn3-policy-button {
-  flex-basis: calc((100% - 12px) / 2) !important;
-}
-
-/* MN1: Force consistent vertical spacing between rows by turning the grid container into a column flexbox
-   and applying a uniform gap. This overrides earlier grid display rules for mn3-button-row in the mock. */
-.tablet-mock-env .minigame-mn1-page .mn3-button-grid {
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 14px !important; /* uniform vertical spacing between rows */
-  align-items: center !important;
-  width: 100% !important;
-  box-sizing: border-box !important;
-}
-
-.tablet-mock-env .minigame-mn1-page .mn3-button-row {
-  display: flex !important; /* ensure each row is a horizontal flex container */
-  gap: 12px !important; /* horizontal gap between buttons */
-  justify-content: center !important;
-  align-items: center !important;
-  width: 100% !important;
-  box-sizing: border-box !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-/* Ensure button text wraps and buttons maintain internal padding so they don't push width */
-.tablet-mock-env .minigame-mn1-page .mn3-policy-button .mn3-button-text,
-.tablet-mock-env .mn3-page-bg .mn3-policy-button .mn3-button-text {
-  padding-left: 8px !important;
-  padding-right: 8px !important;
-  white-space: normal !important;
-  word-break: break-word !important;
-}
-
-/* Defensive: cap the background image and other large elements so they don't push content width */
-.tablet-mock-env .minigame-mn1-page img,
-.tablet-mock-env .minigame-mn1-page .figma-style1-background-image {
-  max-width: 100% !important;
-  height: auto !important;
-  display: block !important;
-}
+1:.minigame-mn1-page .figma-style1-content {
+    2:  overflow: visible !important;
+    3:  height: 100% !important;
+    4:  max-height: 100% !important;
+    5:}
+    6:
+    7:/* All overrides scoped to the tablet mock environment to avoid changing mobile layout */
+    8:.tablet-mock-env .figma-style1-main {
+    9:  align-items: start !important;
+   10:  overflow: visible !important;
+   11:}
+   12:
+   13:.tablet-mock-env .figma-style1-content-area {
+   14:  overflow: auto !important;
+   15:  -webkit-overflow-scrolling: touch !important;
+   16:  max-height: 100% !important;
+   17:  box-sizing: border-box !important;
+   18:  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 20px) !important;
+   19:}
+   20:
+   21:/* Keep primary action accessible: pin to bottom inside mockup without affecting other pages */
+   22:.tablet-mock-env .figma-style1-button-container {
+   23:  position: sticky !important;
+   24:  bottom: calc(env(safe-area-inset-bottom, 0px) + 12px) !important;
+   25:  display: flex !important;
+   26:  justify-content: center !important;
+   27:  z-index: 10010 !important;
+   28:}
+   29:
+   30:/* Make sure background image doesn't cover interactive content in the mockup */
+   31:.tablet-mock-env .figma-style1-background-image {
+   32:  object-position: center top !important;
+   33:}
+   34:
+   35:/* Force safe scaling of inner viewport elements */
+   36:.tablet-mock-env .tablet-mock-env,
+   37:.tablet-mock-env .figma-style1-container {
+   38:  width: 100% !important;
+   39:  height: auto !important;
+   40:  min-height: 100% !important;
+   41:}
+   42:
+   43:/* Show MN3 background in mock to match mobile (positioned inside page container to avoid covering mock frame) */
+   44:.tablet-mock-env .mn3-page-bg::before,
+   45:.tablet-mock-env .mn3-allocation-bg::before {
+   46:  display: block !important;
+   47:  content: "" !important;
+   48:  position: absolute !important; /* absolute relative to .mn3-page-bg (which is position: relative) */
+   49:  top: 0 !important;
+   50:  left: 0 !important;
+   51:  right: 0 !important;
+   52:  bottom: 0 !important;
+   53:  background-size: cover !important;
+   54:  background-position: center top !important;
+   55:  background-repeat: no-repeat !important;
+   56:  z-index: 0 !important; /* ensure children with z-index > 0 sit above */
+   57:  pointer-events: none !important;
+   58:}
+   59:
+   60:/* Hide Figma layout decorative overlays for MN1 result step inside mock */
+   61:.tablet-mock-env .figma-style1-background-overlay,
+   62:.tablet-mock-env .figma-style1-wave-overlay,
+   63:.tablet-mock-env .figma-style1-background-image {
+   64:  display: none !important;
+   65:  background-image: none !important;
+   66:}
+   67:
+   68:/* Ensure MN1 button grid wraps inside mockup iframe and doesn't overflow */
+   69:.tablet-mock-env .mn3-button-grid {
+   70:  max-width: 92% !important;
+   71:  padding-left: 10px !important;
+   72:  padding-right: 10px !important;
+   73:  box-sizing: border-box !important;
+   74:}
+   75:
+   76:/* Desktop mock: use CSS Grid per row to create neat columns (2 / 3 / 2) */
+   77:.tablet-mock-env .mn3-button-row {
+   78:  display: grid !important;
+   79:  gap: 10px !important;
+   80:  justify-items: stretch !important;
+   81:  align-items: stretch !important;
+   82:  width: 100%;
+   83:}
+   84:
+   85:/* First row: 2 columns */
+   86:.tablet-mock-env .mn3-button-grid > .mn3-button-row:nth-child(1) {
+   87:  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+   88:}
+   89:/* Second row: 3 columns */
+   90:.tablet-mock-env .mn3-button-grid > .mn3-button-row:nth-child(2) {
+   91:  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+   92:}
+   93:/* Third row: 2 columns */
+   94:.tablet-mock-env .mn3-button-grid > .mn3-button-row:nth-child(3) {
+   95:  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+   96:}
+   97:
+   98:/* Ensure button content centers and scales nicely */
+   99:.tablet-mock-env .mn3-policy-button {
+  100:  display: inline-flex !important;
+  101:  align-items: center !important;
+  102:  justify-content: center !important;
+  103:  padding: 10px 12px !important;
+  104:  height: auto !important;
+  105:  min-height: 44px !important;
+  106:  border-radius: 20px !important;
+  107:  font-size: 14px !important;
+  108:  line-height: 1.2 !important;
+  109:  box-sizing: border-box !important;
+  110:  white-space: normal !important;
+  111:}
+  112:
+  113:/* Button text tuning */
+  114:.tablet-mock-env .mn3-button-text {
+  115:  font-size: 14px !important;
+  116:  padding: 4px 6px !important;
+  117:  text-align: center !important;
+  118:}
+  119:
+  120:/* Ensure grid items don't overflow the mock frame */
+  121:.tablet-mock-env .mn3-button-grid {
+  122:  max-width: 86% !important;
+  123:  margin: 0 auto !important;
+  124:}
+  125:
+  126:/* Slightly reduce continue button size to fit mock */
+  127:.tablet-mock-env .mn3-continue-button {
+  128:  max-width: 320px !important;
+  129:  width: 80% !important;
+  130:  height: 56px !important;
+  131:  font-size: 16px !important;
+  132:}
+  133:
+  134:/* Limit long texts and allow wrapping for Thai */
+  135:.tablet-mock-env .mn3-button-text {
+  136:  white-space: normal !important;
+  137:  overflow-wrap: anywhere !important;
+  138:  word-break: break-word !important;
+  139:}
+  140:
+  141:/* Make mn3-content behave inside the tablet mock: static positioning and scroll if needed */
+  142:.tablet-mock-env .mn3-content,
+  143:.tablet-mock-env .mn3-allocation-content {
+  144:  position: static !important;
+  145:  max-height: calc(100vh - 120px) !important; /* leave space for header and mock frame */
+  146:  overflow-y: auto !important;
+  147:  padding-bottom: 16px !important;
+  148:}
+  149:
+  150:/* Ensure continue button stays visible and not overlapping */
+  151:.tablet-mock-env .mn3-continue-button {
+  152:  position: relative !important;
+  153:  z-index: 100005 !important;
+  154:  max-width: 90% !important;
+  155:}
+  156:
+  157:/* MN1-specific adjustments inside the tablet mockup:
+  158:   - Only affects the /beforecitychange/minigame-mn1 page (.minigame-mn1-page)
+  159:   - Reduce button sizes, ensure adequate gaps, and horizontally center the grid
+  160:*/
+  161:.tablet-mock-env .minigame-mn1-page .absolute.w-full.flex.flex-col.items-center > div {
+  162:  width: 86% !important;
+  163:  max-width: 680px !important;
+  164:  margin: 0 auto !important;
+  165:  gap: 14px !important;
+  166:  box-sizing: border-box !important;
+  167:}
+  168:
+  169:.tablet-mock-env .minigame-mn1-page .flex.flex-col > div {
+  170:  display: flex !important;
+  171:  justify-content: center !important;
+  172:  gap: 12px !important;
+  173:  width: 100% !important;
+  174:  box-sizing: border-box !important;
+  175:}
+  176:
+  177:/* Row-specific button widths to recreate 2 / 3 / 2 layout but scaled for mock frame */
+  178:.tablet-mock-env .minigame-mn1-page .flex.flex-col > div:nth-child(1) .transition-all {
+  179:  width: 48% !important; /* two columns */
+  180:  min-width: 120px !important;
+  181:  height: clamp(48px, 4.2vw, 76px) !important;
+  182:}
+  183:
+  184:.tablet-mock-env .minigame-mn1-page .flex.flex-col > div:nth-child(2) .transition-all {
+  185:  width: 30% !important; /* three columns */
+  186:  min-width: 90px !important;
+  187:  height: clamp(44px, 4.2vw, 72px) !important;
+  188:}
+  189:
+  190:.tablet-mock-env .minigame-mn1-page .flex.flex-col > div:nth-child(3) .transition-all {
+  191:  width: 48% !important; /* two columns */
+  192:  min-width: 120px !important;
+  193:  height: clamp(48px, 4.2vw, 76px) !important;
+  194:}
+  195:
+  196:/* Make sure button visuals (border-radius, text size) scale nicely */
+  197:.tablet-mock-env .minigame-mn1-page button.transition-all {
+  198:  display: inline-flex !important;
+  199:  align-items: center !important;
+  200:  justify-content: center !important;
+  201:  border-radius: 28px !important;
+  202:  padding: 6px 10px !important;
+  203:  font-size: clamp(14px, 2.8vw, 22px) !important;
+  204:  line-height: 1.1 !important;
+  205:  box-sizing: border-box !important;
+  206:  white-space: normal !important;
+  207:}
+  208:
+  209:/* Tweak the continue button on MN1 inside mock to be narrower and centered */
+  210:.tablet-mock-env .minigame-mn1-page .group.flex.items-center.justify-center > button,
+  211:.tablet-mock-env .minigame-mn1-page .relative.flex.justify-center > button {
+  212:  width: clamp(260px, 72%, 640px) !important;
+  213:  max-width: 640px !important;
+  214:  height: clamp(48px, 6vw, 96px) !important;
+  215:  border-radius: 40px !important;
+  216:  font-size: clamp(16px, 3.6vw, 28px) !important;
+  217:}
+  218:
+  219:/* Ensure title and subtitles remain centered and do not shift horizontally */
+  220:.tablet-mock-env .minigame-mn1-page .absolute.w-full.text-center h1,
+  221:.tablet-mock-env .minigame-mn1-page .absolute.w-full.text-center p {
+  222:  margin-left: auto !important;
+  223:  margin-right: auto !important;
+  224:  text-align: center !important;
+  225:}
+  226:
+  227:/* Small screens inside mock: allow vertical scroll if content overflows */
+  228:.tablet-mock-env .minigame-mn1-page .absolute.w-full.flex.flex-col.items-center {
+  229:  overflow: visible !important;
+  230:}
+  231:
+  232:/* Prevent rows overlapping: ensure rows wrap, add vertical gaps, and limit heights so they stack nicely */
+  233:.tablet-mock-env .minigame-mn1-page .absolute.w-full.flex.flex-col.items-center {
+  234:  position: absolute !important;
+  235:  top: 68% !important; /* nudge upward a bit inside mock to give room for title */
+  236:  left: 0 !important;
+  237:  right: 0 !important;
+  238:  display: flex !important;
+  239:  flex-direction: column !important;
+  240:  align-items: center !important;
+  241:  gap: 16px !important;
+  242:  box-sizing: border-box !important;
+  243:  max-height: calc(100vh - 220px) !important;
+  244:  overflow-y: auto !important;
+  245:  padding-bottom: 20px !important;
+  246:  z-index: 2 !important;
+  247:}
+  248:
+  249:.tablet-mock-env .minigame-mn1-page .flex.flex-col {
+  250:  display: flex !important;
+  251:  flex-direction: column !important;
+  252:  gap: 14px !important;
+  253:  width: 86% !important;
+  254:  max-width: 680px !important;
+  255:  box-sizing: border-box !important;
+  256:}
+  257:
+  258:/* Each row: allow wrapping and add space between rows to avoid collisions */
+  259:.tablet-mock-env .minigame-mn1-page .flex.flex-col > div.flex {
+  260:  display: flex !important;
+  261:  flex-wrap: wrap !important;
+  262:  align-items: center !important;
+  263:  justify-content: center !important;
+  264:  gap: 12px !important;
+  265:  margin-bottom: 6px !important;
+  266:  box-sizing: border-box !important;
+  267:}
+  268:
+  269:/* Buttons: remove fixed heights from inline styles, allow auto height and proper min-height */
+  270:.tablet-mock-env .minigame-mn1-page button.transition-all {
+  271:  height: auto !important;
+  272:  min-height: 44px !important;
+  273:  padding: 8px 12px !important;
+  274:  font-size: clamp(14px, 2.8vw, 20px) !important;
+  275:  box-sizing: border-box !important;
+  276:}
+  277:
+  278:/* Ensure buttons don't exceed row width and can shrink when necessary */
+  279:.tablet-mock-env .minigame-mn1-page .flex.flex-col > div:nth-child(1) button.transition-all {
+  280:  flex: 1 1 48% !important;
+  281:  max-width: 48% !important;
+  282:}
+  283:.tablet-mock-env .minigame-mn1-page .flex.flex-col > div:nth-child(2) button.transition-all {
+  284:  flex: 1 1 30% !important;
+  285:  max-width: 30% !important;
+  286:}
+  287:.tablet-mock-env .minigame-mn1-page .flex.flex-col > div:nth-child(3) button.transition-all {
+  288:  flex: 1 1 48% !important;
+  289:  max-width: 48% !important;
+  290:}
+  291:
+  292:/* Continue button ensure it's above content and doesn't overlap */
+  293:.tablet-mock-env .minigame-mn1-page .relative.flex.justify-center {
+  294:  z-index: 5 !important;
+  295:}
+  296:
+  297:/* Additional safe-guards to prevent right-edge overflow and ensure buttons stay centered
+  298:   - Apply horizontal padding and box-sizing to button grid
+  299:   - Override inline widths on buttons inside the mock using !important
+  300:   - Ensure rows center their items and do not allow items to stick to the right
+  301:*/
+  302:.tablet-mock-env .minigame-mn1-page .mn3-button-grid,
+  303:.tablet-mock-env .mn3-page-bg .mn3-button-grid {
+  304:  padding-left: 20px !important;
+  305:  padding-right: 20px !important;
+  306:  box-sizing: border-box !important;
+  307:  width: 100% !important;
+  308:  max-width: 720px !important;
+  309:  margin-left: auto !important;
+  310:  margin-right: auto !important;
+  311:}
+  312:
+  313:/* Force rows to distribute space and center items */
+  314:.tablet-mock-env .minigame-mn1-page .mn3-button-row,
+  315:.tablet-mock-env .mn3-page-bg .mn3-button-row {
+  316:  display: flex !important;
+  317:  flex-wrap: wrap !important;
+  318:  justify-content: center !important; /* center children horizontally */
+  319:  gap: 12px !important;
+  320:  width: 100% !important;
+  321:  box-sizing: border-box !important;
+  322:}
+  323:
+  324:/* Neutralize inline width percentages by making buttons flexible and allowing shrink
+  325:   Use flex-basis for the intended columns but allow them to shrink if there's not enough space */
+  326:.tablet-mock-env .minigame-mn1-page .mn3-button-row > .mn3-policy-button,
+  327:.tablet-mock-env .mn3-page-bg .mn3-button-row > .mn3-policy-button {
+  328:  width: auto !important;
+  329:  max-width: 100% !important;
+  330:  flex: 1 1 auto !important;
+  331:  min-width: 90px !important; /* avoid too small */
+  332:  box-sizing: border-box !important;
+  333:}
+  334:
+  335:/* Row specific suggested flex-basis to approximate 2/3/2 layout but still responsive */
+  336:.tablet-mock-env .minigame-mn1-page .mn3-button-row:nth-child(1) > .mn3-policy-button {
+  337:  flex-basis: calc((100% - 12px) / 2) !important;
+  338:}
+  339:.tablet-mock-env .minigame-mn1-page .mn3-button-row:nth-child(2) > .mn3-policy-button {
+  340:  flex-basis: calc((100% - 24px) / 3) !important;
+  341:}
+  342:.tablet-mock-env .minigame-mn1-page .mn3-button-row:nth-child(3) > .mn3-policy-button {
+  343:  flex-basis: calc((100% - 12px) / 2) !important;
+  344:}
+  345:
+  346:/* Ensure button text wraps and buttons maintain internal padding so they don't push width */
+  347:.tablet-mock-env .minigame-mn1-page .mn3-policy-button .mn3-button-text,
+  348:.tablet-mock-env .mn3-page-bg .mn3-policy-button .mn3-button-text {
+  349:  padding-left: 8px !important;
+  350:  padding-right: 8px !important;
+  351:  white-space: normal !important;
+  352:  word-break: break-word !important;
+  353:}
+  354:
+  355:/* Defensive: cap the background image and other large elements so they don't push content width */
+  356:.tablet-mock-env .minigame-mn1-page img,
+  357:.tablet-mock-env .minigame-mn1-page .figma-style1-background-image {
+  358:  max-width: 100% !important;
+  359:  height: auto !important;
+  360:  display: block !important;
+  361:}
+  362:
+  363:/* Final authoritative MN1 grid rules to ensure exact 2 / 3 / 2 layout, equal vertical spacing,
+  364:   and no conflicts with earlier flex overrides. These rules have highest precedence inside the mock. */
+  365:.tablet-mock-env .minigame-mn1-page .mn3-button-grid {
+  366:  display: block !important;
+  367:  row-gap: 14px !important; /* uniform vertical gap between rows */
+  368:  padding-left: 20px !important;
+  369:  padding-right: 20px !important;
+  370:  box-sizing: border-box !important;
+  371:  width: 100% !important;
+  372:  max-width: 720px !important;
+  373:  margin-left: auto !important;
+  374:  margin-right: auto !important;
+  375:}
+  376:
+  377:.tablet-mock-env .minigame-mn1-page .mn3-button-row {
+  378:  display: grid !important; /* grid per row for precise columns */
+  379:  gap: 12px !important; /* consistent horizontal gap */
+  380:  width: 100% !important;
+  381:  box-sizing: border-box !important;
+  382:  justify-items: stretch !important;
+  383:  align-items: center !important;
+  384:}
+  385:
+  386:.tablet-mock-env .minigame-mn1-page .mn3-button-row:nth-child(1) {
+  387:  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  388:}
+  389:.tablet-mock-env .minigame-mn1-page .mn3-button-row:nth-child(2) {
+  390:  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  391:}
+  392:.tablet-mock-env .minigame-mn1-page .mn3-button-row:nth-child(3) {
+  393:  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  394:}
+  395:
+  396:.tablet-mock-env .minigame-mn1-page .mn3-policy-button {
+  397:  width: 100% !important; /* fill grid cell */
+  398:  max-width: none !important;
+  399:  min-width: 0 !important;
+  400:  padding: 8px 12px !important;
+  401:  min-height: 44px !important;
+  402:  box-sizing: border-box !important;
+  403:  white-space: normal !important;
+  404:}
+  405:
+  406:.tablet-mock-env .minigame-mn1-page .mn3-policy-button .mn3-button-text {
+  407:  padding-left: 8px !important;
+  408:  padding-right: 8px !important;
+  409:  font-size: 14px !important;
+  410:  text-align: center !important;
+  411:}
+  412:
+  413:/* Keep the continue button centered and above the grid */
+  414:.tablet-mock-env .minigame-mn1-page .w-full.px-4.mt-4.flex.justify-center {
+  415:  display: flex !important;
+  416:  justify-content: center !important;
+  417:  width: 100% !important;
+  418:}
+  419:
+  420:/* final safety: ensure no earlier rules force rows into flex causing uneven gaps */
+  421:.tablet-mock-env .minigame-mn1-page .mn3-button-row[style] {
+  422:  /* remove inline style influence by forcing grid-based layout */
+  423:  display: grid !important;
+  424:}
