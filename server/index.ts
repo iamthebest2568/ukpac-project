@@ -99,8 +99,8 @@ export function createServer() {
           p.includes("/ukpack1") ||
           payloadProject === "ukpack1"
         ) {
-          // Accept either new project name or legacy ukpack1 for backward compatibility
-          target = "minigame1_events/minigame1-di";
+          // Map beforecitychange/ukpack1 to dedicated collection for clarity
+          target = "beforecitychange_events/beforecitychange-di";
         }
       } catch (_) {}
 
@@ -470,7 +470,7 @@ export function createServer() {
         "ประเภทรถ (chassis_type)",
         "จำนวนที่นั่งรวม (total_seats)",
         "ที่นั่งพิเศษ (special_seats)",
-        "จำนวนเด็ก/ผู้สูงอ��ยุ (children_elder_count)",
+        "จำนวนเด็ก/ผู้สูงอายุ (children_elder_count)",
         "จำนวนผู้ตั้งครรภ์ (pregnant_count)",
         "จำนวนพระ (monk_count)",
         "สิ่งอำนวยความสะดวก (features)",
