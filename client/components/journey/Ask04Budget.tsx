@@ -67,7 +67,7 @@ const Ask04Budget = ({
   // Reuse the same mappings from Step3_Result to render the collage here
   const priorityIcons: { [key: string]: string } = {
     ลดค่าโดยสารรถไฟฟ้า: "🚇",
-    ปรับปรุงคุณภาพรถเมล์: "🚌",
+    ปรั��ปรุงคุณภาพรถเมล์: "🚌",
     ตั๋วร่วม: "🎫",
     เพิ่มความถี่รถเมล์: "🚍",
     เพิ่มความถี่รถไฟฟ้า: "🚊",
@@ -136,6 +136,62 @@ const Ask04Budget = ({
     summary.sort((a, b) => b.allocation - a.allocation);
     setResultSummary(summary);
   }, [journeyData]);
+
+  // Persist displayed collage images to Firestore (once per session) under collection 'beforecitychange-imageshow-events'
+  useEffect(() => {
+    try {
+      if (typeof window === 'undefined') return;
+      const key = 'beforecitychange_images_sent';
+      const existingRaw = sessionStorage.getItem(key);
+      let sentUrls: Record<string, any> = existingRaw ? JSON.parse(existingRaw) : {};
+
+      const displaySummary = resultSummary && resultSummary.length > 0 ? resultSummary : [
+        {
+          priority: 'เพิ่มความถี่รถเมล์',
+          allocation: 0,
+          percentage: 0,
+          icon: '',
+        },
+        {
+          priority: 'เพิ่มที่จอดรถ',
+          allocation: 0,
+          percentage: 0,
+          icon: '',
+        },
+        {
+          priority: 'ลดค่าโดยสารรถไฟฟ้า',
+          allocation: 0,
+          percentage: 0,
+          icon: '',
+        },
+      ];
+
+      const urls: string[] = displaySummary.map((s) => priorityImageMap[s.priority] || '').filter(Boolean);
+      // dedupe
+      const unique = Array.from(new Set(urls));
+
+      // lazy import to avoid adding firebase to initial bundle
+      (async () => {
+        try {
+          const { addDesignImageUrlToFirestore } = await import('../../../lib/firebase');
+          for (const u of unique) {
+            if (sentUrls[u]) continue;
+            try {
+              const res = await addDesignImageUrlToFirestore(u, 'beforecitychange-imageshow-events');
+              sentUrls[u] = { ok: true, id: (res as any)?.id || null, ts: Date.now() };
+              try { sessionStorage.setItem(key, JSON.stringify(sentUrls)); } catch (_) {}
+            } catch (e) {
+              // record failure but don't retry aggressively
+              sentUrls[u] = { ok: false, error: String(e) };
+              try { sessionStorage.setItem(key, JSON.stringify(sentUrls)); } catch (_) {}
+            }
+          }
+        } catch (e) {
+          // ignore import errors
+        }
+      })();
+    } catch (e) {}
+  }, [resultSummary]);
 
   return (
     <FigmaStyle1Layout
