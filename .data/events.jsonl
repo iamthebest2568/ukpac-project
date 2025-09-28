@@ -395,3 +395,5 @@
 {"sessionId":"session_1759042819983_6eqj9bj47","eventName":"sw.variant.start","timestamp":"2025-09-28T07:01:42.506Z","variantId":"4bec38a0","variantName":"คุณใช้รถแบบไหนเดินทางเข้าเมือง?"}
 {"sessionId":"session_1759042819983_6eqj9bj47","eventName":"sw.choice.selected","timestamp":"2025-09-28T07:01:52.677Z","choiceText":"รถไฟฟ้า BTS / MRT","variantId":"4bec38a0","variantName":"คุณใช้รถแบบไหนเดินทางเข้าเมือง?"}
 {"sessionId":"session_1759042819983_6eqj9bj47","eventName":"sw.variant.start","timestamp":"2025-09-28T07:01:53.443Z","variantId":"0c1a4486","variantName":"รถไฟฟ้า BTS / MRT"}
+{"sessionId":"session_1759042819983_6eqj9bj47","eventName":"sw.variant.start","timestamp":"2025-09-28T07:03:18.043Z","variantId":"0cbd0522","variantName":"ไม่เชื่อว่าจะได้ผล"}
+{"sessionId":"session_1759042819983_6eqj9bj47","eventName":"sw.choice.selected","timestamp":"2025-09-28T07:03:18.032Z","choiceText":"ไม่เชื่อว่าจะได้ผล","variantId":"0c1a4486","variantName":"รถไฟฟ้า BTS / MRT"}
