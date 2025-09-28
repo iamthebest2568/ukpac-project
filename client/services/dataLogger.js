@@ -42,6 +42,19 @@ function getSessionID() {
  */
 import { sendEventToFirestore } from "../lib/firebase";
 
+// Helper: format timestamp to Thailand time (Asia/Bangkok) in ISO-like YYYY-MM-DD HH:mm:ss
+function formatToBangkok(ts) {
+  try {
+    if (!ts) return "";
+    const d = new Date(ts);
+    if (isNaN(d.getTime())) return String(ts);
+    // Use sv-SE locale to get YYYY-MM-DD HH:mm:ss format and apply Bangkok TZ
+    return d.toLocaleString('sv-SE', { timeZone: 'Asia/Bangkok' });
+  } catch (e) {
+    return String(ts || "");
+  }
+}
+
 export function logEvent(eventData) {
   try {
     // 1. Retrieve existing events from localStorage, or start a new array (safe parse)
