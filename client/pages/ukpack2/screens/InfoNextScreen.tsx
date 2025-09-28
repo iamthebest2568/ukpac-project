@@ -59,7 +59,7 @@ const InfoNextScreen: React.FC = () => {
             <div className="w-full">
               <SecondaryButton
                 text="ใช้บริการแน่นอน"
-                onClick={() => navigate("/ukpack2/thank-you")}
+                onClick={() => navigate("/mydreambus/thank-you")}
                 className="w-full"
               />
             </div>
