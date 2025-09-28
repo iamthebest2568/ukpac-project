@@ -5,6 +5,7 @@ import fs from "node:fs";
 import path from "node:path";
 import fetch from "node-fetch";
 import { handleDemo } from "./routes/demo";
+import admin from 'firebase-admin';
 import {
   EventSchema,
   appendEvent,
@@ -469,7 +470,7 @@ export function createServer() {
         "ประเภทรถ (chassis_type)",
         "จำนวนที่นั่งรวม (total_seats)",
         "ที่นั่งพิเศษ (special_seats)",
-        "จำนวนเด็ก/ผู้สูงอายุ (children_elder_count)",
+        "จำนวนเด็ก/ผู้สูงอ��ยุ (children_elder_count)",
         "จำนวนผู้ตั้งครรภ์ (pregnant_count)",
         "จำนวนพระ (monk_count)",
         "สิ่งอำนวยความสะดวก (features)",
