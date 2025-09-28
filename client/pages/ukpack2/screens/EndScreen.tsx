@@ -46,7 +46,7 @@ const EndScreen: React.FC = () => {
                 try {
                   clearDesignStorage();
                 } catch (e) {}
-                navigate("/ukpack2");
+                navigate("/mydreambus");
               }}
             />
             <SecondaryButton
