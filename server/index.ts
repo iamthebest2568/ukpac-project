@@ -126,7 +126,7 @@ export function createServer() {
       if (project === "ukpack2") {
         col = "minigame2_events";
         docId = "minigame2-di";
-      } else if (project === "ukpack1") {
+      } else if (project === "ukpack1" || project === "beforecitychange") {
         col = "minigame1_events";
         docId = "minigame1-di";
       }
@@ -214,7 +214,7 @@ export function createServer() {
       if (project === "ukpack2") {
         col = "minigame2_events";
         docId = "minigame2-di";
-      } else if (project === "ukpack1") {
+      } else if (project === "ukpack1" || project === "beforecitychange") {
         col = "minigame1_events";
         docId = "minigame1-di";
       }
