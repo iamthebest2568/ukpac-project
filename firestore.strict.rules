@@ -1,37 +1,59 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Prevent client writes to events collections; server (Admin SDK) bypasses rules
+
+    // Prevent client reads/writes to any analytics "events" subcollections
+    // These collections are intended to be written only by the Server (Admin SDK)
     match /{col}/{doc}/events/{eventId} {
-      allow read: if request.auth != null && request.auth.token.email_verified == true;
+      allow read: if false;
       allow write: if false;
     }
 
-    // submissions collection: allow server writes only (clients cannot write)
+    // Prevent client writes to project event collections explicitly
+    match /minigame1_events/{doc}/events/{eventId} {
+      allow read: if false;
+      allow write: if false;
+    }
+
+    match /minigame2_events/{doc}/events/{eventId} {
+      allow read: if false;
+      allow write: if false;
+    }
+
+    match /beforecitychange_events/{doc}/events/{eventId} {
+      allow read: if false;
+      allow write: if false;
+    }
+
+    // submissions: server writes only. Make reads available only to authenticated users.
+    // These documents contain the mapped session-level data for mydreambus / landing submissions.
     match /submissions/{docId} {
+      // If you want public read access for landing pages set the read rule to 'if true'
       allow read: if request.auth != null && request.auth.token.email_verified == true;
-      allow write: if false;
+      allow create, update, delete: if false;
     }
 
-    // imagedesign-events: allow authenticated clients to create minimal docs with imageUrl only
+    // imagedesign events collection: allow authenticated clients to create minimal docs with imageUrl only
+    // (Used for design uploads when you permit client uploads under strict validation.)
     match /kpact-gamebus-imagedesign-events/{docId} {
       allow create: if request.auth != null
         && request.resource.data.keys().hasOnly(['imageUrl','createdAt','chassis'])
         && request.resource.data.imageUrl is string;
       allow update, delete: if false;
-      allow read: if request.auth != null;
-    }
-
-    // beforecitychange specific safety: deny client writes to beforecitychange_events
-    match /beforecitychange_events/{doc}/events/{eid} {
-      allow write: if false;
       allow read: if request.auth != null && request.auth.token.email_verified == true;
     }
 
-    // Default: deny writes from clients
+    // Allow read of admin/aggregate documents (e.g. <collection>/<docId> such as minigame2-di)
+    // only for authenticated users. Disallow client writes to these diag/aggregate docs.
+    match /{col}/{docId} {
+      allow read: if request.auth != null && request.auth.token.email_verified == true;
+      allow write: if false;
+    }
+
+    // Default: deny all other client access to be safe
     match /{document=**} {
+      allow read: if false;
       allow write: if false;
-      allow read: if request.auth != null && request.auth.token.email_verified == true;
     }
   }
 }
