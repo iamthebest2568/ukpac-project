@@ -37,12 +37,10 @@ function initFirestore() {
   if (svc) {
     try {
       const parsed = typeof svc === "string" ? JSON.parse(svc) : svc;
-      // use require to avoid static ESM import issues in server runtime
-      // eslint-disable-next-line @typescript-eslint/no-var-requires
-      const admin = require("firebase-admin");
       if (!admin.apps || admin.apps.length === 0) {
         admin.initializeApp({ credential: admin.credential.cert(parsed as any) } as any);
       }
+      // Use admin firestore for server operations
       firestoreDb = admin.firestore();
       return;
     } catch (e) {
