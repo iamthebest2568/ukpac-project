@@ -88,7 +88,10 @@ const Ask04Budget = ({
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F4e921e92e2c44db7a2ad24ee299e9a6d?format=webp&width=720",
     "เพิ่ม Feeder ในซอย":
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fbb907b894b5a44b3bde47b685f00caca?format=webp&width=720",
+    // accept both variants for reduced fare
     ลดค่าโดยสารรถไฟฟ้า:
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F902c640032bd41f3b30e4ce96330d938?format=webp&width=720",
+    "ลดค่าโดยสารไฟฟ้า":
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F902c640032bd41f3b30e4ce96330d938?format=webp&width=720",
   };
 
@@ -206,7 +209,7 @@ const Ask04Budget = ({
     <FigmaStyle1Layout
       backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F4eb00ae35ec74ef5928b78875a49f859?format=webp&width=800"
       backgroundAlt="พื้นหลังรูปนโยบาย"
-      title={`คุณพอใจภาพเมืองในอนาคตที��อาจจะเกิดขึ้นหรือไม่`}
+      title={`คุณพอใจภาพเมืองในอนาคตที่อาจจะเกิดขึ้นหรือไม่`}
       className="ask04-page ask04-budget-page mn3-step2-minimal"
     >
       {/* Children: use MN3 Step3_Result style collage + stacked buttons (scoped copy) */}
