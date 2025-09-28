@@ -4,7 +4,7 @@
 
 import Flow_EndSequence from "../../components/flows/Flow_EndSequence";
 import { useSession } from "../../hooks/useSession";
-import { useFlowNavigation } from "../hooks/useFlowNavigation";
+import { useFlowNavigation } from "../../hooks/useFlowNavigation";
 import { useEffect } from "react";
 
 const EndSequencePage = () => {
