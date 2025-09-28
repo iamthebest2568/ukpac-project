@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Flow_MiniGame_MN3 from "../../components/flows/Flow_MiniGame_MN3";
-import { useSession } from "../hooks/useSession";
+import { useSession } from "../../hooks/useSession";
 
 const MiniGameMN3Page = () => {
   const { sessionID } = useSession();
