@@ -48,9 +48,8 @@ function initFirebase() {
       // Initialize Firestore using long-polling transport to avoid gRPC 'idle stream' disconnects
       // which frequently occur behind proxies/load balancers in serverless hosts.
       db = initializeFirestore(app, {
-        experimentalForceLongPolling: true,
-        experimentalAutoDetectLongPolling: true,
-      } as any);
+      experimentalForceLongPolling: true,
+    } as any);
     } catch (err) {
       console.warn("Firestore initialization failed", err);
       db = null as any;
