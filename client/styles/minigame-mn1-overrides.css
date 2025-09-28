@@ -4,12 +4,13 @@
   max-height: 100% !important;
 }
 
-.minigame-mn1-page .figma-style1-main {
+/* All overrides scoped to the tablet mock environment to avoid changing mobile layout */
+.tablet-mock-env .figma-style1-main {
   align-items: start !important;
   overflow: visible !important;
 }
 
-.minigame-mn1-page .figma-style1-content-area {
+.tablet-mock-env .figma-style1-content-area {
   overflow: auto !important;
   -webkit-overflow-scrolling: touch !important;
   max-height: 100% !important;
@@ -18,7 +19,7 @@
 }
 
 /* Keep primary action accessible: pin to bottom inside mockup without affecting other pages */
-.minigame-mn1-page .figma-style1-button-container {
+.tablet-mock-env .figma-style1-button-container {
   position: sticky !important;
   bottom: calc(env(safe-area-inset-bottom, 0px) + 12px) !important;
   display: flex !important;
@@ -27,67 +28,65 @@
 }
 
 /* Make sure background image doesn't cover interactive content in the mockup */
-.minigame-mn1-page .figma-style1-background-image {
+.tablet-mock-env .figma-style1-background-image {
   object-position: center top !important;
 }
 
 /* Force safe scaling of inner viewport elements */
-.minigame-mn1-page .tablet-mock-env,
-.minigame-mn1-page .figma-style1-container {
+.tablet-mock-env .tablet-mock-env,
+.tablet-mock-env .figma-style1-container {
   width: 100% !important;
   height: auto !important;
   min-height: 100% !important;
 }
 
-/* Hide decorative MN3 background overlay (::before) when inside minigame-mn1 page */
-.minigame-mn1-page .mn3-page-bg::before,
-.minigame-mn1-page.mn3-page-bg::before,
-.minigame-mn1-page .mn3-allocation-bg::before,
-.minigame-mn1-page.mn3-allocation-bg::before {
+/* Hide decorative MN3 background overlay (::before) when inside tablet mock */
+.tablet-mock-env .mn3-page-bg::before,
+.tablet-mock-env .mn3-allocation-bg::before {
   display: none !important;
   background-image: none !important;
   content: none !important;
 }
 
-/* Hide Figma layout decorative overlays for MN1 result step */
-.minigame-mn1-page .figma-style1-background-overlay,
-.minigame-mn1-page .figma-style1-wave-overlay,
-.minigame-mn1-page .figma-style1-background-image {
+/* Hide Figma layout decorative overlays for MN1 result step inside mock */
+.tablet-mock-env .figma-style1-background-overlay,
+.tablet-mock-env .figma-style1-wave-overlay,
+.tablet-mock-env .figma-style1-background-image {
   display: none !important;
   background-image: none !important;
 }
 
 /* Ensure MN1 button grid wraps inside mockup iframe and doesn't overflow */
-.minigame-mn1-page .mn3-button-grid {
+.tablet-mock-env .mn3-button-grid {
   max-width: 92% !important;
   padding-left: 10px !important;
   padding-right: 10px !important;
   box-sizing: border-box !important;
 }
 
-.minigame-mn1-page .mn3-button-row {
+.tablet-mock-env .mn3-button-row {
   flex-wrap: wrap !important; /* allow buttons to wrap to new lines */
   gap: 8px !important;
   justify-content: center !important;
 }
 
 /* Reduce button min-width inside mock mockup to prevent overflow */
-.minigame-mn1-page .mn3-policy-button {
+.tablet-mock-env .mn3-policy-button {
   min-width: 0 !important;
   flex: 1 1 auto !important; /* allow flexible shrinking and growing */
   padding: 6px 10px !important;
 }
 
 /* Limit long texts and allow wrapping for Thai */
-.minigame-mn1-page .mn3-button-text {
+.tablet-mock-env .mn3-button-text {
   white-space: normal !important;
   overflow-wrap: anywhere !important;
   word-break: break-word !important;
 }
 
 /* Make mn3-content behave inside the tablet mock: static positioning and scroll if needed */
-.minigame-mn1-page .mn3-content,
-.minigame-mn1-page .mn3-allocation-content {
+.tablet-mock-env .mn3-content,
+.tablet-mock-env .mn3-allocation-content {
   position: static !important;
   max-height: calc(100vh - 120px) !important; /* leave space for header and mock frame */
   overflow-y: auto !important;
@@ -95,7 +94,7 @@
 }
 
 /* Ensure continue button stays visible and not overlapping */
-.minigame-mn1-page .mn3-continue-button {
+.tablet-mock-env .mn3-continue-button {
   position: relative !important;
   z-index: 100005 !important;
   max-width: 90% !important;
