@@ -221,14 +221,14 @@ const IconCam = () => (
 );
 
 const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
-  แอร์: <IconAir />,
-  พัดลม: <IconFan />,
-  ที่นั่งพิเศษ: <IconSeat />,
+  "แอร์": <IconAir />,
+  "พัดลม": <IconFan />,
+  "ที่นั่งพิเศษ": <IconSeat />,
   "ที่จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
   "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
   "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
-  กล้องวงจรปิด: <IconCam />,
+  "กล้องวงจรปิด": <IconCam />,
 };
 
 const MONEY_ICON =
@@ -262,7 +262,7 @@ const OPTIONS = [
   { key: "cash", label: "เงินสด", icon: <IconCash /> },
   { key: "scan", label: "สแกนจ่าย", icon: <IconScan /> },
   { key: "tap", label: "แตะบัตร", icon: <IconTap /> },
-  { key: "monthly", label: "ต���๋วรายเดือน/รอบ", icon: null },
+  { key: "monthly", label: "ตั๋วรายเดือน/รอบ", icon: null },
   { key: "scan2", label: "ตู้อัตโนมัติ", icon: null },
   { key: "qr", label: "กระเป๋ารถเมล์", icon: <IconQr /> },
 ];
@@ -302,27 +302,27 @@ const PaymentScreen: React.FC = () => {
   }, []);
 
   const ICON_SETS: Record<string, string[]> = {
-    เงินส���: [
+    "เงินสด": [
       MONEY_ICON,
       MONEY_ICON_ACTIVE,
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F29e4422ee7ff4d72a3f359831ac92c32?format=webp&width=800",
     ],
-    สแกนจ่าย: [
+    "สแกนจ่าย": [
       SCAN_ICON,
       SCAN_ICON_ACTIVE,
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fe9e95c0ee1cf44c782478f7ca3e7cac9?format=webp&width=800",
     ],
-    ตู้อัตโนมัติ: [
+    "ตู้อัตโนมัติ": [
       SCAN2_ICON,
       SCAN2_ICON_ACTIVE,
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F450e64db5b824f5c92cb33d5993705f6?format=webp&width=800",
     ],
-    แตะบัตร: [
+    "แตะบัตร": [
       TOUCH_ICON,
       TOUCH_ICON_ACTIVE,
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc25d540d10cc44e6922d714177b11d94?format=webp&width=800",
     ],
-    กระเป๋ารถเมล์: [
+    "กระเป๋ารถเมล์": [
       BUS_EMPLOY_ICON,
       BUS_EMPLOY_ICON_ACTIVE,
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc672415acf294449bc41d44cd9434120?format=webp&width=800",
@@ -402,12 +402,12 @@ const PaymentScreen: React.FC = () => {
   };
 
   const PAYMENT_BUTTON_SRC: Record<string, string> = {
-    เงินสด: MONEY_ICON,
-    สแกนจ่าย: SCAN_ICON,
-    ตู้อัตโนมัติ: SCAN2_ICON,
-    แตะบัตร: TOUCH_ICON,
+    "เงินสด": MONEY_ICON,
+    "สแกนจ่าย": SCAN_ICON,
+    "ตู้อัตโนมัติ": SCAN2_ICON,
+    "แตะบัตร": TOUCH_ICON,
     "ตั๋วรายเดือน/รอบ": MONTHLY_ICON,
-    กระเป๋ารถเมล์: BUS_EMPLOY_ICON,
+    "กระเป๋ารถเมล์": BUS_EMPLOY_ICON,
   };
 
   const handleNext = () => {
@@ -718,7 +718,7 @@ const PaymentScreen: React.FC = () => {
                   >
                     <img
                       src={
-                        selected.includes("ตั๋วรายเดื���น/รอบ")
+                        selected.includes("ตั๋วรายเดือน/รอบ")
                           ? MONTHLY_ICON_ACTIVE
                           : MONTHLY_ICON
                       }
