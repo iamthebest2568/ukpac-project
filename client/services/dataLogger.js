@@ -89,7 +89,7 @@ export function logEvent(eventData) {
       if (!enrichedEvent.payload.project) {
         if (String(path).startsWith("/ukpack2"))
           enrichedEvent.payload.project = "ukpack2";
-        else if (String(path).startsWith("/ukpack1"))
+        else if (String(path).startsWith("/beforecitychange"))
           enrichedEvent.payload.project = "ukpack1";
         else enrichedEvent.payload.project = "site";
       }
@@ -297,7 +297,7 @@ export function exportSessionsAsCSV() {
     "ความถี่ (frequency)",
     "เส้นทาง (route)",
     "พื้นที่ (area)",
-    "ตัดสินใจใ��้บริการ (decision_use_service)",
+    "ตัดสินใจใช้บริการ (decision_use_service)",
     "เหตุผลไม่ใช้บริการ (reason_not_use)",
     "เข้าร่วมของรางวัล (decision_enter_prize)",
     "ชื่อผู้รับรางวัล (prize_name)",
