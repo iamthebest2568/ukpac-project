@@ -16,7 +16,7 @@ const FeedbackScreen: React.FC = () => {
   };
 
   const skip = () => {
-    navigate("/ukpack2/skip-end");
+    navigate("/mydreambus/skip-end");
   };
 
   const footer = (
