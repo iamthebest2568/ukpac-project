@@ -92,11 +92,18 @@ const Step1_Choice = ({
                   } catch (_) {}
                 };
 
+                // Debug log: image being sent
+                try {
+                  // eslint-disable-next-line no-console
+                  console.debug('[MN3][Step1] preparing to send imageUrl', img);
+                } catch (_) {}
+
                 // Try sendBeacon first (fire-and-forget), fallback to fetch
                 try {
                   const blob = new Blob([JSON.stringify({ imageUrl: img, collection: 'beforecitychange-imageshow-events' })], { type: 'application/json' });
                   const ok = typeof navigator !== 'undefined' && navigator.sendBeacon && navigator.sendBeacon('/api/write-image-url', blob);
                   if (ok) {
+                    try { console.debug('[MN3][Step1] sendBeacon succeeded', img); } catch (_) {}
                     mark({ ok: true, beacon: true, ts: Date.now() });
                   } else {
                     // fallback to fetch
@@ -106,19 +113,24 @@ const Step1_Choice = ({
                       body: JSON.stringify({ imageUrl: img, collection: 'beforecitychange-imageshow-events' }),
                     })
                       .then(async (r) => {
+                        try { console.debug('[MN3][Step1] fetch response', r.status, img); } catch (_) {}
                         if (r.ok) {
                           const j = await r.json().catch(() => null);
+                          try { console.debug('[MN3][Step1] fetch json', j); } catch (_) {}
                           mark({ ok: true, id: j?.id || null, ts: Date.now() });
                         } else {
                           const txt = await r.text().catch(() => null);
+                          try { console.warn('[MN3][Step1] fetch failed', r.status, txt); } catch (_) {}
                           mark({ ok: false, error: `HTTP ${r.status} ${txt || ''}` });
                         }
                       })
                       .catch((e) => {
+                        try { console.error('[MN3][Step1] fetch error', e); } catch (_) {}
                         mark({ ok: false, error: String(e) });
                       });
                   }
                 } catch (e) {
+                  try { console.error('[MN3][Step1] send error', e); } catch (_) {}
                   mark({ ok: false, error: String(e) });
                 }
               }
