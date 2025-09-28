@@ -72,19 +72,33 @@ const UkDashboard: React.FC = () => {
           try {
             console.debug("Attempting fetch", url);
             try {
-              const fetchPromise = fetch(url, { credentials: "same-origin" })
-                .then(async (resp) => {
+              // Try primary fetch with same-origin credentials
+              const attempt = async (opts: RequestInit) => {
+                try {
+                  const resp = await fetch(url, opts);
                   if (!resp || !resp.ok) return null;
                   try {
                     return await resp.json();
                   } catch (e) {
                     return null;
                   }
-                })
-                .catch((err) => {
-                  console.debug("fetch error for", url, err);
+                } catch (err) {
+                  console.debug("fetch attempt failed for", url, opts, err);
                   return null;
-                });
+                }
+              };
+
+              const fetchPromise = (async () => {
+                // First try with credentials
+                let r = await attempt({ credentials: "same-origin" });
+                if (r) return r;
+                // Next try without credentials
+                r = await attempt({});
+                if (r) return r;
+                // Next try CORS mode as last resort
+                r = await attempt({ mode: "cors" });
+                return r;
+              })();
 
               const timeoutPromise = new Promise((res) =>
                 setTimeout(() => res(null), ms),
