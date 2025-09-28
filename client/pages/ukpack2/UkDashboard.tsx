@@ -150,9 +150,10 @@ const UkDashboard: React.FC = () => {
 
       // fetch public submissions (landing assets) with fallbacks
       try {
+        const origin = typeof window !== 'undefined' ? window.location.origin : '';
         const rawCandidates2 = [
-          "/api/public-submissions?limit=20",
-          "./.netlify/functions/api/public-submissions?limit=20",
+          `${origin}/api/public-submissions?limit=20`,
+          `${origin}/.netlify/functions/api/public-submissions?limit=20`,
         ];
 
         console.debug("public-submissions candidates:", rawCandidates2);
@@ -488,7 +489,7 @@ const UkDashboard: React.FC = () => {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               className="w-full border px-3 py-2 rounded mb-3"
-              placeholder="รหัสผ��าน"
+              placeholder="รหัสผ่าน"
               autoFocus
             />
             <div className="flex gap-2">
