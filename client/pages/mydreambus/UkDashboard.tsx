@@ -243,7 +243,7 @@ const UkDashboard: React.FC = () => {
   const handleExport = () => {
     const csv = exportEventsAsCSV();
     if (!csv) {
-      alert("ไม่มีข้อมูลให้ส่งออก");
+      alert("ไม่มีข้อมูลให��ส่งออก");
       return;
     }
     const blob = new Blob(["\uFEFF" + csv], {
@@ -336,7 +336,7 @@ const UkDashboard: React.FC = () => {
     if (!confirm("แน่ใจหรือไม่ว่าต้องการลบข้อมูลทั้งหมด?")) return;
     clearEventLogs();
     refreshSummary();
-    alert("ลบข้อมูลเรียบร้อย");
+    alert("ลบข้อ��ูลเรียบร้อย");
   };
 
   // ===== Readability helpers: extract big inline handlers into named functions =====
@@ -483,6 +483,18 @@ const UkDashboard: React.FC = () => {
         },
       };
       try {
+        // Persist the test event locally so CSV exports include it
+        try {
+          logEvent({
+            sessionID: sample.sessionID,
+            timestamp: sample.timestamp,
+            event: sample.event,
+            payload: sample.payload,
+          });
+        } catch (e) {
+          console.warn("Failed to write test event to local storage", e);
+        }
+
         const accepted = sessionStorage.getItem("pdpa_accepted") === "true";
         if (accepted) {
           await sendEventToFirestore(sample, "minigame2_events/minigame2-di");
@@ -512,7 +524,7 @@ const UkDashboard: React.FC = () => {
         <form onSubmit={handleAuth} className="w-full max-w-md">
           <div className="bg-white text-black rounded-xl p-6">
             <h2 className="text-lg font-semibold mb-2">
-              เข้าสู่แดชบ���ร์ด mydreambus
+              เข้าสู่แดชบอร์ด mydreambus
             </h2>
             <p className="text-sm mb-4">ป้อนรหัสเพื่อเข้าถึงแดชบอร์ด</p>
             <input
@@ -651,7 +663,7 @@ const UkDashboard: React.FC = () => {
                 {eventsSample.map((ev, idx) => (
                   <li key={idx} className="border-b border-white/5 pb-2">
                     <div className="text-xs text-gray-400">
-                      {ev.timestamp} ��� {ev.sessionID}
+                      {ev.timestamp} • {ev.sessionID}
                     </div>
                     <div className="font-medium">{ev.event || "EVENT"}</div>
                     <div className="text-xs text-gray-300">
