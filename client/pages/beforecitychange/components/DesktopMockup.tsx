@@ -156,7 +156,35 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
                 } catch (err) {}
               }}
             >
-              <RouteTransition>{children}</RouteTransition>
+              {/* For MN2, render content inside an iframe and portal children into it so the mock matches mobile.
+                  Scoped to isMN2 to avoid affecting other pages. */}
+              {isMN2 ? (
+                <>
+                  <iframe
+                    ref={iframeRef}
+                    title="mn2-desktop-mock-iframe"
+                    sandbox="allow-same-origin allow-scripts allow-forms"
+                    style={{
+                      width: `${BASE_W}px`,
+                      height: `${BASE_H}px`,
+                      border: "0",
+                      borderRadius: 30,
+                      display: "block",
+                    }}
+                  />
+
+                  {iframeMount
+                    ? createPortal(<RouteTransition>{children}</RouteTransition>, iframeMount)
+                    : (
+                      // While iframe initializes, keep hidden RouteTransition to avoid layout shift
+                      <div style={{ visibility: "hidden" }}>
+                        <RouteTransition>{children}</RouteTransition>
+                      </div>
+                    )}
+                </>
+              ) : (
+                <RouteTransition>{children}</RouteTransition>
+              )}
             </div>
 
             <div
