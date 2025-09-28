@@ -60,75 +60,71 @@ const UkDashboard: React.FC = () => {
           try {
             return new URL(p, window.location.origin).toString();
           } catch (_) {
-            return p;
+            try {
+              return String(p);
+            } catch (__) {
+              return "";
+            }
           }
         };
         // Use only normalized absolute URLs (avoid relative paths which can resolve under legacy routes)
-        const paths = rawPaths.map(normalize);
+        const paths = rawPaths
+          .map(normalize)
+          .filter((x) => typeof x === "string" && x.length > 0);
 
         const fetchWithTimeout = async (url: string, ms: number) => {
-          // if url is relative (starts with '/') use as-is; otherwise use the full url
-          const targetUrl = url && String(url).startsWith("/") ? url : url;
+          const targetUrl = typeof url === "string" ? url : String(url || "");
+          if (!targetUrl) return null;
           if (typeof navigator !== "undefined" && navigator.onLine === false) {
             console.debug("Offline: skipping fetch for", targetUrl);
             return null;
           }
-          try {
-            console.debug("Attempting fetch", targetUrl);
+
+          // Helper to attempt safe fetch with options and always return null on any error
+          const safeAttempt = async (opts: RequestInit) => {
             try {
-              // Try primary fetch with same-origin credentials
-              const attempt = async (opts: RequestInit) => {
-                try {
-                  const resp = await fetch(targetUrl, opts);
-                  if (!resp || !resp.ok) return null;
-                  try {
-                    return await resp.json();
-                  } catch (e) {
-                    return null;
-                  }
-                } catch (err) {
-                  console.debug(
-                    "fetch attempt failed for",
-                    targetUrl,
-                    opts,
-                    err,
-                  );
-                  return null;
-                }
-              };
-
-              // Wrap the async attempts and absorb any rejection so Promise.race cannot reject
-              const fetchPromise = (async () => {
-                try {
-                  // First try with credentials
-                  let r = await attempt({ credentials: "same-origin" });
-                  if (r) return r;
-                  // Next try without credentials
-                  r = await attempt({});
-                  if (r) return r;
-                  // Next try CORS mode as last resort
-                  r = await attempt({ mode: "cors" });
-                  return r;
-                } catch (e) {
-                  console.debug("fetchPromise attempts all failed with error", e);
-                  return null;
-                }
-              })().catch((e) => {
-                console.debug("fetchPromise rejected", e);
+              const f = (globalThis as any).fetch || fetch;
+              const resp = await f(targetUrl, opts);
+              if (!resp || !resp.ok) return null;
+              try {
+                return await resp.json();
+              } catch (e) {
+                console.debug("JSON parse failed for", targetUrl, e);
                 return null;
-              });
+              }
+            } catch (err) {
+              console.debug("fetch failed for", targetUrl, opts, err);
+              return null;
+            }
+          };
 
-              const timeoutPromise = new Promise((res) =>
-                setTimeout(() => res(null), ms),
-              );
+          try {
+            // Sequential attempts, each guarded
+            let r = await safeAttempt({ credentials: "same-origin" });
+            if (r) return r;
+            r = await safeAttempt({});
+            if (r) return r;
+            r = await safeAttempt({ mode: "cors" });
+            if (r) return r;
 
-              return await Promise.race([fetchPromise, timeoutPromise]);
+            // If none succeeded within attempts, also attempt a timed race to abort hung requests
+            const timedFetch = new Promise(async (resolve) => {
+              try {
+                const res = await safeAttempt({});
+                resolve(res);
+              } catch (e) {
+                resolve(null);
+              }
+            });
+            const timeoutPromise = new Promise((res) => setTimeout(() => res(null), ms));
+            try {
+              const val = await Promise.race([timedFetch, timeoutPromise]);
+              return val as any;
             } catch (e) {
-              console.debug("fetchWithTimeout outer catch", e);
               return null;
             }
           } catch (e) {
-            console.debug("fetchWithTimeout caught", e);
+            console.debug("fetchWithTimeout caught unexpected error", e);
             return null;
           }
         };
@@ -254,7 +250,7 @@ const UkDashboard: React.FC = () => {
       setAuthorized(true);
       refreshSummary();
     } else {
-      alert("ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง");
+      alert("ช���่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง");
     }
   };
 
