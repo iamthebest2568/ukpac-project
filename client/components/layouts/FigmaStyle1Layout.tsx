@@ -76,12 +76,12 @@ const FigmaStyle1Layout = ({
       if (
         typeof window !== "undefined" &&
         window.location &&
-        window.location.pathname.startsWith("/ukpack1")
+        (window.location.pathname.startsWith("/beforecitychange") || window.location.pathname.startsWith("/ukpack1"))
       ) {
         // Skip applying global ukpack1 styling to the uk-stornaway (video) page
         if (!window.location.pathname.includes("uk-stornaway")) {
           setPageScope("figma-style1-ukpack1");
-          // ensure body class for ukpack1 is present
+          // ensure body class for ukpack1 is present (keep legacy class for CSS)
           document.body.classList.add("page-ukpack1");
           document.body.classList.remove("page-ukpack2");
         }
