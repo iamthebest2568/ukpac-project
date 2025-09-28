@@ -2,7 +2,7 @@
  * Final thank you screen for completing the journey
  */
 
-import EndScreen from "../components/games/ThankYouScreen";
+import EndScreen from "../../components/games/ThankYouScreen";
 import { useSession } from "../hooks/useSession";
 
 const EndScreenPage = () => {
