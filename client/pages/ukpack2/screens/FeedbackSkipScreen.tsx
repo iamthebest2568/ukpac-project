@@ -11,7 +11,7 @@ const FeedbackSkipScreen: React.FC = () => {
   const [isShareOpen, setShareOpen] = React.useState(false);
 
   const handleEnd = () => {
-    navigate("/ukpack2/end");
+    navigate("/mydreambus/end");
   };
 
   return (
