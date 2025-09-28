@@ -41,6 +41,7 @@ function initFirestore() {
       if (!admin.apps || admin.apps.length === 0) {
         admin.initializeApp({
           credential: admin.credential.cert(parsed as any),
+          storageBucket: process.env.FIREBASE_STORAGE_BUCKET || undefined,
         } as any);
       }
       // Use admin firestore for server operations
