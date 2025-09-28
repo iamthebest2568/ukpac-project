@@ -65,6 +65,7 @@ async function listPublicSubmissionsFromFirestore(limit = 20) {
           const parsed = typeof svc === "string" ? JSON.parse(svc) : svc;
           admin.initializeApp({
             credential: admin.credential.cert(parsed as any),
+            storageBucket: process.env.FIREBASE_STORAGE_BUCKET || undefined,
           } as any);
         } catch (e) {
           // ignore and fallback to client SDK below
