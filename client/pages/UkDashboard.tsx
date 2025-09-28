@@ -1,19 +1,4 @@
 import { useEffect, useMemo, useState } from "react";
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  Tooltip,
-  CartesianGrid,
-  ResponsiveContainer,
-  BarChart,
-  Bar,
-  PieChart,
-  Pie,
-  Cell,
-  Legend,
-} from "recharts";
 import { clearEventLogs } from "../services/dataLogger.js";
 import {
   Accordion,
@@ -50,7 +35,7 @@ type SessionSummary = {
   ask02CustomReason?: string; // เหตุผลพิมพ์เอง
   reasonOther01?: string; // คำอธิบายเพิ่มเติม
   keyMessage1?: string; // Key message 1
-  mn1Selected: string[]; // ลำดับความสำคัญของประเด็น
+  mn1Selected: string[]; // ลำดับความสำคัญของประเด็���
   mn2Selections?: Record<string, string[]>; // กลุ่มเป้าหมายที่ควรได้รับสิทธิ์
   mn3Selected?: string[]; // ประเด็นนโยบา��ที่ผู้ใช้เลือก
   mn3BudgetAllocation?: Record<string, number>; // การจัดสรรงบประมาณ
@@ -590,7 +575,7 @@ export default function UkDashboard() {
                 className="rounded-md bg-red-600/80 hover:bg-red-600 border border-red-500 px-3 py-2 text-sm"
                 onClick={clearData}
                 disabled={clearing}
-                title="ลบ events.jsonl และ app-events.jsonl ในเซิร์ฟเวอร์"
+                title="ลบ events.jsonl และ app-events.jsonl ในเซิ��์ฟเวอร์"
               >
                 {clearing ? "กำลังลบ..." : "���บข้อมูลทั้งหมด"}
               </button>
@@ -901,7 +886,7 @@ export default function UkDashboard() {
                       "อธิบายอื่น ๆ ที่ช่วยอธิบายความคิดเห็น",
                       "บอกเร��หน่อยว่าคุณเดินทางเข้าเมือง��้วยวิธีการใดบ่อยที่ส��ด",
                       "จากนโยบายที่คุณฟังเมื่อสักครู่ คุณมีความคิดเห็นอย่าง��ร",
-                      "คุณคิดว่าน���ยบายปัจจุบัน ควรปรับเปลี่ยนประเด็นอะไรบาง (ลดค่าโดยสา��, ปรับปรุงคุณภาพ, ขึ้น���าคา, เพ��่มขบวน, เพิ่มความถี่ ฯลฯ)",
+                      "คุณคิดว่าน���ยบายปัจจุบัน ควรปรับเปลี่ยนประเด็นอะไรบาง (ลดค่าโดยสา��, ปรับปรุงคุณภา���, ขึ้น���าคา, เพ��่มขบวน, เพิ่มความถี่ ฯลฯ)",
                       "คุณคิดว่าใครควรได้รับการลดค่าโดยสารรถไฟฟ���า��้าง (ทุกคน, ผู้สูงอายุ, นักเรียน, คนทำงาน ฯลฯ)",
                       "คุณคิดว่าควรใช้เงินที่ได้จากการเก็บไปพัฒนาอะไร ก่อน 3 อันดับแรก",
                       "คุณจะให้งบประมาณแต่ละข้อเท่าไร (งบทั้งหมด 100)",
@@ -1008,7 +993,7 @@ export default function UkDashboard() {
           >
             <div className="flex items-center justify-between mb-2">
               <div className="text-lg font-medium">
-                ร���ยละเอียดเซสชั: {detailSession?.slice(0, 12)}…
+                ร���ยละเอ��ยดเซสชั: {detailSession?.slice(0, 12)}…
               </div>
               <button
                 className="text-white/70 hover:text-white"
