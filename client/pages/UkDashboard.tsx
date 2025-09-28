@@ -30,7 +30,7 @@ type SessionSummary = {
   lastSeen: string;
   introWho?: string; // บ���บาทในการเดินทางเข้าเมือง
   travelMethod?: string; // ยาน��าห��ะที่ใช้
-  opinionLevel?: string; // ระดับความคิดเห็น
+  opinionLevel?: string; // ระ���ับความคิดเห็น
   ask02Choice?: string; // เหตุผลหลัก
   ask02CustomReason?: string; // เหตุผลพิมพ์เอง
   reasonOther01?: string; // คำอธิบายเพิ่มเติม
@@ -147,6 +147,40 @@ export default function UkDashboard() {
     return String(s)
       .replace(/[\u0000-\u001F\u007F]/g, "")
       .replace(/"/g, '""');
+  };
+
+  // Format a timestamp string to Thailand local time (Bangkok)
+  const formatToBangkok = (ts?: string | number | Date) => {
+    try {
+      if (!ts) return "";
+      const d = typeof ts === "string" || typeof ts === "number" ? new Date(ts) : (ts as Date);
+      if (isNaN(d.getTime())) return String(ts || "");
+      return d.toLocaleString("th-TH", { timeZone: "Asia/Bangkok" });
+    } catch (e) {
+      return String(ts || "");
+    }
+  };
+
+  // Generate a compact filename timestamp in Bangkok timezone: YYYYMMDD_HHMMSS
+  const filenameTimestampBangkok = (date = new Date()) => {
+    try {
+      const parts = new Intl.DateTimeFormat("en-GB", {
+        timeZone: "Asia/Bangkok",
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false,
+      }).formatToParts(date as any);
+      const map: any = {};
+      for (const p of parts) map[p.type] = p.value;
+      return `${map.year}${map.month}${map.day}_${map.hour}${map.minute}${map.second}`;
+    } catch (e) {
+      const d = new Date(date);
+      return `${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, "0")}${String(d.getDate()).padStart(2, "0")}_${String(d.getHours()).padStart(2, "0")}${String(d.getMinutes()).padStart(2, "0")}${String(d.getSeconds()).padStart(2, "0")}`;
+    }
   };
 
   const apiUrl = (p: string) =>
@@ -295,11 +329,11 @@ export default function UkDashboard() {
       "เหตุผล_Webapp (reason)",
       "เหตุผล_อื่นๆ_Webapp (reason_other)",
       "ประ��ด���นนโยบาย (policy_topic)",
-      "กลุ่มเป้าหมาย (target_group)",
+      "กลุ่มเป้า���มาย (target_group)",
       "พัฒนา_ลำดับ (dev_priority)",
       "งบประมาณ (budget_alloc)",
       "ความพอใจ (satisfaction)",
-      "ข้อเสนอรัฐ (gov_suggest)",
+      "ข้���เสนอรัฐ (gov_suggest)",
       "ข่าวปล���ม (fake_react)",
       "แหล่งข่าว (news_source)",
       "ลุ้นรางวัล (lucky_draw)",
@@ -452,7 +486,7 @@ export default function UkDashboard() {
       {!authed && (
         <div className="min-h-screen flex items-center justify-center p-4">
           <div className="w-full max-w-sm bg-white/5 border border-white/10 rounded-xl p-5">
-            <div className="text-xl font-semibold mb-3">ป้อนรหัสผ่าน</div>
+            <div className="text-xl font-semibold mb-3">ป้อนรหัสผ���าน</div>
             <div className="text-sm text-white/70 mb-4">
               หน้าน��้ป้องกันด้วยรหัสผ่าน
             </div>
@@ -478,7 +512,7 @@ export default function UkDashboard() {
                 const expectedPassword =
                   expected && expected.length > 0 ? expected : "Ukdash-Xrz14!";
                 if (!expectedPassword) {
-                  setPwErr("ยังไม่ได้ตั้งรหัสผ่าน (VITE_DASHBOARD_PASSWORD)");
+                  setPwErr("ยังไม่ได้ตั้ง��หัสผ่าน (VITE_DASHBOARD_PASSWORD)");
                   return;
                 }
                 if (user.trim() === expectedUser && pw === expectedPassword) {
@@ -892,7 +926,7 @@ export default function UkDashboard() {
                       "จากนโยบายที่คุณฟังเมื่อสักครู่ คุณมีความคิดเห็นอย่าง��ร",
                       "คุณคิดว่าน���ยบายปัจจุบัน ควรปรับเปลี่ยนประเด็นอะไรบาง (ลดค่าโดยสา��, ปรับปรุงคุณภาพ, ขึ้น���าคา, เพ��่มขบวน, เพิ่มความถี่ ฯลฯ)",
                       "คุณคิดว่าใครควรได้รับการลดค่าโดยสารรถไฟฟ���า��้าง (ทุกคน, ผู้สูงอายุ, นักเรียน, คนทำงาน ฯลฯ)",
-                      "คุณคิดว่าคว��ใช้เงินที่ได้จากการเก็บไปพัฒนาอะไร ก่อน 3 อันดับแรก",
+                      "คุณคิดว่าคว��ใช้เงินที่ได้จากการเก็บไปพ��ฒนาอะไร ก่อน 3 อันดับแรก",
                       "คุณจะให้งบประมาณแต่ละข้อเท่าไร (งบทั้งหมด 100)",
                       "คุณพอใจ��ับผลลัพธ์ที่เกิดขึ้นหรือไ��่ (พ���ใจ / ไม่พอใจ)",
                       "คุณคิดว่ารัฐควรทำอะไรที่จะทำให้นโยบายนี้เกิดขึ้นได้จริง และเป็นประโยชน์ต่อประชาชนอย่างแท้จริง",
