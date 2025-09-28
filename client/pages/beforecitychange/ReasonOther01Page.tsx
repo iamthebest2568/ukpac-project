@@ -1,6 +1,6 @@
 import FigmaStyle1Layout from "../components/layouts/FigmaStyle1Layout.ukpack1";
 import { useSession } from "../../hooks/useSession";
-import { logEvent } from "../services/dataLogger.js";
+import { logEvent } from "../../services/dataLogger.js";
 import React, { useState } from "react";
 
 export default function ReasonOther01Page() {
