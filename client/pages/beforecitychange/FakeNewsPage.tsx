@@ -2,7 +2,7 @@
  * Tests user's ability to identify fake news
  */
 
-import FakeNewsTest from "../components/games/FakeNewsTest";
+import FakeNewsTest from "../../components/games/FakeNewsTest";
 import { useSession } from "../hooks/useSession";
 import { useEffect } from "react";
 
