@@ -7,6 +7,9 @@ import fetch from "node-fetch";
 import { handleDemo } from "./routes/demo";
 import admin from 'firebase-admin';
 
+// In-memory debug storage for last incoming write-image-url payload
+let lastWriteImageRequest: any = null;
+
 // Helper: format timestamp to Thailand time (Asia/Bangkok) using sv-SE for ISO-like string
 function formatToBangkok(ts: any) {
   try {
@@ -98,6 +101,7 @@ export function createServer() {
       if (!admin.apps || admin.apps.length === 0) {
         admin.initializeApp({ credential: admin.credential.cert(parsed as any), storageBucket: process.env.FIREBASE_STORAGE_BUCKET || undefined } as any);
       }
+      lastWriteImageRequest = { imageUrl: imageUrl?.slice(0, 1000), collection: col, ts: new Date().toISOString(), remoteIp: (req.headers['x-forwarded-for'] as string) || req.ip || null };
       console.log('/api/write-image-url received', { imageUrl: imageUrl?.slice(0, 200), collection: col });
       const fsAdmin = admin.firestore();
       const docRef = await fsAdmin.collection(col).add({ imageUrl, createdAt: admin.firestore.FieldValue.serverTimestamp() });
@@ -105,6 +109,16 @@ export function createServer() {
       res.json({ ok: true, id: docRef.id });
     } catch (e: any) {
       console.error('/api/write-image-url error', e);
+      res.status(500).json({ ok: false, error: e?.message || String(e) });
+    }
+  });
+
+  // Debug endpoint: return last received write-image-url payload (in-memory)
+  app.get('/api/last-write-image-request', (_req, res) => {
+    try {
+      res.json({ ok: true, last: lastWriteImageRequest });
+    } catch (e: any) {
+      console.error('/api/last-write-image-request error', e);
       res.status(500).json({ ok: false, error: e?.message || String(e) });
     }
   });
