@@ -22,7 +22,7 @@ const ConfirmationScreen: React.FC = () => {
               <CtaButton
                 className="w-full"
                 text="จบเกม"
-                onClick={() => navigate("/ukpack2")}
+                onClick={() => navigate("/mydreambus")}
               />
             </div>
             <div style={{ width: "220px" }}>
