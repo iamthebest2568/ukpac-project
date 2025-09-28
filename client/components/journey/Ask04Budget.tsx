@@ -206,7 +206,7 @@ const Ask04Budget = ({
     <FigmaStyle1Layout
       backgroundImage="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F4eb00ae35ec74ef5928b78875a49f859?format=webp&width=800"
       backgroundAlt="พื้นหลังรูปนโยบาย"
-      title={`คุณพอใจภาพเมืองในอนาคตที่อาจจะเกิดขึ้นหรือไม่`}
+      title={`คุณพอใจภาพเมืองในอนาคตที��อาจจะเกิดขึ้นหรือไม่`}
       className="ask04-page ask04-budget-page mn3-step2-minimal"
     >
       {/* Children: use MN3 Step3_Result style collage + stacked buttons (scoped copy) */}
@@ -234,7 +234,7 @@ const Ask04Budget = ({
                 ? resultSummary
                 : [
                     {
-                      priority: "เพิ่มความถี่รถเมล���",
+                      priority: "เพิ่มความถี่รถเมล์",
                       allocation: 0,
                       percentage: 0,
                       icon: "",
