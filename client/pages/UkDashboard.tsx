@@ -408,7 +408,7 @@ export default function UkDashboard() {
 
   async function clearData() {
     if (
-      !window.confirm("ลบข้อมูลทั้งหมดในเซิร์ฟเวอร์? การกระทำนี้ย้อนกลับไม่ได้")
+      !window.confirm("ลบข้อมูลทั้งหมดในเซ��ร์ฟเวอร์? การกระทำนี้ย้อนกลับไม่ได้")
     ) {
       return;
     }
@@ -511,7 +511,7 @@ export default function UkDashboard() {
           <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
               <h1 className="text-3xl md:text-4xl font-semibold tracking-tight">
-                แ���ชบอร์ดวิเคราะห์วิดีโอ
+                แ���ชบอร์ดวิเคร��ะห์วิดีโอ
               </h1>
               <div className="text-white/70 text-sm mt-2">
                 อัปเดตล่าสุด: {lastUpdated || "-"}
@@ -634,7 +634,7 @@ export default function UkDashboard() {
 
 
               {/* User Journey: Topics as accordion */}
-              {journey && (
+              {false && (
                 <Card title="หัวข้อข้อมูล (Topics)">
                   <Accordion
                     type="single"
@@ -764,7 +764,7 @@ export default function UkDashboard() {
                     </AccordionItem>
                     {/* MN2 */}
                     <AccordionItem value="mn2">
-                      <AccordionTrigger>Minigame 2 : ับคู่</AccordionTrigger>
+                      <AccordionTrigger>Minigame 2 : ั��คู่</AccordionTrigger>
                       <AccordionContent>
                         <ul className="space-y-1 text-sm">
                           {Object.entries(journey.mn2ByMn1 || {}).map(
@@ -949,7 +949,7 @@ export default function UkDashboard() {
                     rows.push([
                       "IP",
                       "Access Time",
-                      "ทำไมคุณถึงต้องเข้าเมืองบ่อย ๆ ?",
+                      "ทำไมคุณถึงต้องเข้า���มืองบ่อย ๆ ?",
                       "คุณใช้รถแบบไหนเดินทางเข้าเมือง ?",
                       "คุ��คิดเห็นอย่างไรกับนโยบายนี้ ?",
                       "จากข้อความข้างต้น คุณมีควา���คิดเห็นอย่างไร (เห็นด้วย/กลางๆ/��ม่เห็นด้วย)",
@@ -957,7 +957,7 @@ export default function UkDashboard() {
                       "อธิบายอื่น ๆ ที่ช่วยอธิบายความคิดเห็น",
                       "บอกเร��หน่อยว่าคุณเดินทางเข้าเมืองด้วยวิธีการใดบ่อยที่ส��ด",
                       "จากนโยบายที่คุณฟังเมื่อสักครู่ คุณมีความคิดเห็นอย่าง��ร",
-                      "คุณคิดว่านโยบายปัจจุบัน ควรปรับเปลี่ยนประเด็นอะไรบาง (ลดค่าโดยสา��, ปรับปรุงคุณภาพ, ขึ้น���าคา, เพ��่มขบวน, เพิ่มความถี่ ฯลฯ)",
+                      "คุณคิดว่าน���ยบายปัจจุบัน ควรปรับเปลี่ยนประเด็นอะไรบาง (ลดค่าโดยสา��, ปรับปรุงคุณภาพ, ขึ้น���าคา, เพ��่มขบวน, เพิ่มความถี่ ฯลฯ)",
                       "คุณคิดว่าใครควรได้รับการลดค่าโดยสารรถไฟฟ���า��้าง (ทุกคน, ผู้สูงอายุ, นักเรียน, คนทำงาน ฯลฯ)",
                       "คุณคิดว่าควรใช้เงินที่ได้จากการเก็บไปพัฒนาอะไร ก่อน 3 อันดับแรก",
                       "คุณจะให้งบประมาณแต่ละข้อเท่าไร (งบทั้งหมด 100)",
