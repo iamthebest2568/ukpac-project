@@ -1,6 +1,6 @@
 /* MiniGame MN2 Page - Beneficiary Groups */
 
-import Flow_MiniGame_MN2 from "../components/flows/Flow_MiniGame_MN2";
+import Flow_MiniGame_MN2 from "../../components/flows/Flow_MiniGame_MN2";
 import { useSession } from "../hooks/useSession";
 import { useFlowNavigation } from "../hooks/useFlowNavigation";
 import { useEffect } from "react";
