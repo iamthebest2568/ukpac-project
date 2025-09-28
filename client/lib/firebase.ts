@@ -67,8 +67,22 @@ export async function uploadFileToStorage(
   try {
     if (!appInstance) initFirebase();
     if (!appInstance) throw new Error("Firebase app not initialized");
+    // Normalize path and ensure project-aware prefix when running in browser
+    let finalPath = String(path || "");
+    try {
+      if (typeof window !== "undefined") {
+        const p = window.location && window.location.pathname;
+        if (p && String(p).startsWith("/beforecitychange")) {
+          if (!finalPath.startsWith("beforecitychange/"))
+            finalPath = `beforecitychange/${finalPath}`;
+        } else if (p && (String(p).startsWith("/mydreambus") || String(p).startsWith("/ukpack2"))) {
+          if (!finalPath.startsWith("mydreambus/")) finalPath = `mydreambus/${finalPath}`;
+        }
+      }
+    } catch (_) {}
+
     const storage = getStorage(appInstance);
-    const ref = storageRef(storage, path);
+    const ref = storageRef(storage, finalPath);
     await uploadBytes(ref, file as any);
     const url = await getDownloadURL(ref);
     return url;
