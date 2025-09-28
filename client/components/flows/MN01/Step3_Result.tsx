@@ -103,7 +103,7 @@ const Step3_Result = ({
 
     onNext(data);
     // Navigate to fake-news after recording result
-    navigate("/ukpack1/fake-news");
+    navigate("/beforecitychange/fake-news");
   };
 
   const handleNo = () => {
