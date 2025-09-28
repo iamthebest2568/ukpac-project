@@ -534,9 +534,24 @@ const UkDashboard: React.FC = () => {
           console.warn("Failed to write test event to local storage", e);
         }
 
-        const accepted = sessionStorage.getItem("pdpa_accepted") === "true";
-        if (accepted) {
-          await sendEventToFirestore(sample, "minigame2_events/minigame2-di");
+        // Attempt to flush local events for mydreambus to server (server will persist to 'submissions')
+        try {
+          // sendLocalEventsToFirestore aggregates sessions and posts to /api/flush-pending for mydreambus
+          // call unconditionally so test events are persisted even if session pdpa flag not set
+          const flushResult = await sendLocalEventsToFirestore({ batchSize: 50, onlyPDPA: false });
+          console.info('flush-pending result', flushResult);
+        } catch (e) {
+          console.warn('Failed to flush pending events to server', e);
+        }
+
+        // Additionally, if PDPA accepted, also attempt a realtime Firestore write for immediate visibility
+        try {
+          const accepted = sessionStorage.getItem("pdpa_accepted") === "true";
+          if (accepted) {
+            await sendEventToFirestore(sample, "minigame2_events/minigame2-di");
+          }
+        } catch (e) {
+          console.warn('sendEventToFirestore failed for test event', e);
         }
       } catch (_) {
         /* ignore */
@@ -578,7 +593,7 @@ const UkDashboard: React.FC = () => {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               className="w-full border px-3 py-2 rounded mb-3"
-              placeholder="รหัสผ่าน"
+              placeholder="รหัสผ่า���"
               autoFocus
             />
             <div className="flex gap-2">
