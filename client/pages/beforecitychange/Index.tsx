@@ -86,7 +86,7 @@ const IndexPage = () => {
 
                 if (i === 2) {
                   return (
-                    <Link key={i} to="/ukpack2" aria-label="Open Game Bus">
+                    <Link key={i} to="/mydreambus" aria-label="Open Game Bus">
                       {card}
                     </Link>
                   );
