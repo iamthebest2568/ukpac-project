@@ -80,7 +80,28 @@ export async function listRecentEvents(limit = 50): Promise<VideoEvent[]> {
   // Try Firestore first
   try {
     initFirestore();
-    if (firestoreDb) {
+    if (adminDb) {
+      // use admin SDK queries
+      const colDoc = adminDb.collection("minigame1_events").doc("minigame1-di");
+      const snap = await colDoc.collection("events").orderBy("createdAt", "desc").limit(limit).get();
+      const out: VideoEvent[] = [];
+      snap.forEach((d: any) => {
+        const data = d.data() as any;
+        const ts = data.timestamp || data.createdAt || new Date().toISOString();
+        let timestamp = ts;
+        if (timestamp && typeof timestamp.toDate === "function")
+          timestamp = timestamp.toDate().toISOString();
+        out.push({
+          sessionId: sanitizeThai(String(data.sessionID || data.sessionId || "")),
+          eventName: sanitizeThai(String(data.eventName || data.event || "")),
+          timestamp: String(timestamp),
+          choiceText: sanitizeThai(data.choiceText ?? undefined),
+          variantId: data.variantId ?? undefined,
+          variantName: sanitizeThai(data.variantName ?? undefined),
+        });
+      });
+      return out;
+    } else if (firestoreDb) {
       const colDoc = doc(firestoreDb, "minigame1_events", "minigame1-di");
       const eventsCol = collection(colDoc, "events");
       const q = query(eventsCol, orderBy("createdAt", "desc"), limitFn(limit));
