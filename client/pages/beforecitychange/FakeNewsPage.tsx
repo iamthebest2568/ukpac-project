@@ -3,7 +3,7 @@
  */
 
 import FakeNewsTest from "../../components/games/FakeNewsTest";
-import { useSession } from "../hooks/useSession";
+import { useSession } from "../../hooks/useSession";
 import { useEffect } from "react";
 
 const FakeNewsPage = () => {
