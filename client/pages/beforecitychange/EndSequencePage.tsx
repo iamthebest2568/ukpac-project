@@ -2,7 +2,7 @@
  * Handles reward decision and final thank you
  */
 
-import Flow_EndSequence from "../components/flows/Flow_EndSequence";
+import Flow_EndSequence from "../../components/flows/Flow_EndSequence";
 import { useSession } from "../hooks/useSession";
 import { useFlowNavigation } from "../hooks/useFlowNavigation";
 import { useEffect } from "react";
