@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import {
   exportEventsAsCSV,
   exportSessionsAsCSV,
@@ -506,7 +507,7 @@ const UkDashboard: React.FC = () => {
           PDPA: true,
           chassis: "extra",
           seating: { totalSeats: 12, specialSeats: 2 },
-          amenities: ["แอร์", "Wi‑Fi ฟรี"],
+          amenities: ["แอร์", "Wi‑Fi ฟ���ี"],
           payment: ["เงินสด"],
           doors: "1",
           color: "#ff0000",
@@ -564,7 +565,7 @@ const UkDashboard: React.FC = () => {
             <h2 className="text-lg font-semibold mb-2">
               เข้าสู่แดชบอร์ด mydreambus
             </h2>
-            <p className="text-sm mb-4">ป้อนรหัสเพ��่อเข้าถึงแดชบอร์ด</p>
+            <p className="text-sm mb-4">ป้อนรหัสเพื่อเข้าถึงแดชบอร์ด</p>
             <input
               type="text"
               value={user}
