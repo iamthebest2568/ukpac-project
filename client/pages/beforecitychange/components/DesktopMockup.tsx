@@ -136,8 +136,6 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
 
   if (typeof document === "undefined") return <>{children}</>;
 
-  const isMN1 = typeof location !== "undefined" && location.pathname && location.pathname.startsWith("/beforecitychange/minigame-mn1");
-  const isMN2 = typeof location !== "undefined" && location.pathname && location.pathname.startsWith("/beforecitychange/minigame-mn2");
 
   const mockup = (
     <div
