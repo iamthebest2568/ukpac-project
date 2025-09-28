@@ -41,9 +41,9 @@ type SessionSummary = {
   mn3BudgetAllocation?: Record<string, number>; // การจัดสรรงบประมาณ
   mn3BudgetTotal?: number;
   satisfactionLevel?: string; // ระดับความพึงพอใจ
-  ask05Comment?: string; // ข้อเสนอเพิ่มเติมต่อรั��
+  ask05Comment?: string; // ข้อเสนอเพิ่มเติมต่อรัฐ
   fakeNewsResponse?: string; // การตอบสนองต่อข่าวปลอม
-  sourceSelected?: string; // แหล่งข่าวที่ผู้ใช้เลือก
+  sourceSelected?: string; // แหล่งข่าวที่ผู้��ช้เลือก
   endDecision?: string; // การเข้าร่วมลุ้นรางวัล
   endDecisionText?: string;
   contactName?: string;
@@ -348,8 +348,8 @@ export default function UkDashboard() {
     const rows = items.map((s: any) => {
       // s is SessionSummary produced by computeSessionSummaries
       const ip = s.ip || "";
-      const first = s.firstSeen || "";
-      const last = s.lastSeen || "";
+      const first = formatToBangkok(s.firstSeen) || "";
+      const last = formatToBangkok(s.lastSeen) || "";
       const persona = s.introWho || "";
       const vehicle = s.travelMethod || "";
       const stornaway = s.keyMessage1 || "";
@@ -382,10 +382,10 @@ export default function UkDashboard() {
       const lucky_draw = s.endDecision || "";
       const user_name = s.contactName || "";
       const user_phone = s.contactPhone || "";
-      const ts_form_submit = last || "";
-      const share_first = s.shareFirstTs || "";
-      const share_last = s.shareLastTs || "";
-      const exit_time = last || "";
+      const ts_form_submit = formatToBangkok(s.lastSeen) || "";
+      const share_first = formatToBangkok(s.shareFirstTs) || "";
+      const share_last = formatToBangkok(s.shareLastTs) || "";
+      const exit_time = formatToBangkok(s.lastSeen) || "";
 
       return [
         s.sessionId || "",
@@ -534,7 +534,7 @@ export default function UkDashboard() {
           <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
               <h1 className="text-3xl md:text-4xl font-semibold tracking-tight">
-                แ���ชบ���ร์ดวิเคร��ะห์วิดีโอ
+                แ���ชบอร์ดวิเคร��ะห์วิดีโอ
               </h1>
               <div className="text-white/70 text-sm mt-2">
                 อัปเดตล่าสุด: {lastUpdated || "-"}
@@ -765,7 +765,7 @@ export default function UkDashboard() {
                     {/* MN1 */}
                     <AccordionItem value="mn1">
                       <AccordionTrigger>
-                        Minigame 1: ตัวเลือกนโยบาย
+                        Minigame 1: ตัวเลือก���โยบาย
                       </AccordionTrigger>
                       <AccordionContent>
                         <ul className="space-y-1 text-sm">
@@ -919,20 +919,20 @@ export default function UkDashboard() {
                       "ทำไมคุณถึงต้องเข้า���มืองบ่อย ๆ ?",
                       "คุณใช้รถแบบไหนเดินทางเข้าเมือง ?",
                       "คุ��คิดเห็นอย่างไรกับนโยบายนี้ ?",
-                      "จากข้อความข้างต้น คุณมีควา����คิดเห็นอย่างไร (เห็นด้วย/กลางๆ/��ม่เห็นด้วย)",
+                      "จากข้อความข้างต้น คุณมีควา���คิดเห็นอย่างไร (เห็นด้วย/กลางๆ/��ม่เห็นด้วย)",
                       "ทำไมคุณถึงคิดอย่างนั้น (นโยบายไม่ครอบคลุม / เก็บไปก็ไม่มีอะไรดีข���้น / อื่นๆ)",
                       "อธิบายอื่น ๆ ที่ช่วยอธิบายความคิดเห็น",
                       "บอกเร��หน่อยว่าคุณเดินทางเข้าเมือง��้วยวิธีการใดบ่อยที่ส��ด",
                       "จากนโยบายที่คุณฟังเมื่อสักครู่ คุณมีความคิดเห็นอย่าง��ร",
                       "คุณคิดว่าน���ยบายปัจจุบัน ควรปรับเปลี่ยนประเด็นอะไรบาง (ลดค่าโดยสา��, ปรับปรุงคุณภาพ, ขึ้น���าคา, เพ��่มขบวน, เพิ่มความถี่ ฯลฯ)",
-                      "คุณคิดว่า���ครควรได้รับการลดค่าโดยสารรถไฟฟ���า��้าง (ทุกคน, ผู้สูงอายุ, นักเรียน, คนทำงาน ฯลฯ)",
+                      "คุณคิดว่าใครควรได้รับการลดค่าโ���ยสารรถไฟฟ���า��้าง (ทุกคน, ผู้สูงอายุ, นักเรียน, คนทำงาน ฯลฯ)",
                       "คุณคิดว่าคว��ใช้เงินที่ได้จากการเก็บไปพัฒนาอะไร ก่อน 3 อันดับแรก",
                       "คุณจะให้งบประมาณแต่ละข้อเท่าไร (งบทั้งหมด 100)",
                       "คุณพอใจ��ับผลลัพธ์ที่เกิดขึ้นหรือไ��่ (พ���ใจ / ไม่พอใจ)",
                       "คุณคิดว่ารัฐควรทำอะไรที่จะทำให้นโยบายนี้เกิดขึ้นได้จริง และเป็นประโยชน์ต่อประชาชนอย่างแท้จริง",
                       "ตอนนี้มี��้อ��ูลที่ผิดพลาด เช่น ข่าวปลอมเกี่ยวกับนโยบาย คุณคิดว่าอย่างไร",
-                      "คุณ��ะติดตามข่า��� หรือเชื่อจากแหล่ง��หนมาก���ี่สุด",
-                      "ขอบคุณที่ร่วมเป็นส่วนหนึ่ง → ต้องการล���้นรับรางวัลหรือไม่",
+                      "คุณ��ะติดตามข่า��� ���รือเชื่อจากแหล่ง��หนมาก���ี่สุด",
+                      "ขอบคุณที่ร่วมเป็นส่วนหนึ่ง → ��้องการล���้นรับรางวัลหรือไม่",
                       "กรอกข้อมูลเพื่อลุ้นรางวัล (ชื่อ)",
                       "กรอกข้อมูลเพื่อลุ้นรางวัล (เบอร์โทร)",
                       "Time Stamp (First)",
