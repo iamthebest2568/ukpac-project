@@ -313,7 +313,7 @@ export function exportSessionsAsCSV() {
   const headers = [
     "รหัสเซสชัน (sessionID)",
     "IP (ip)",
-    "เวลาเริ่ม (firstTimestamp)",
+    "เ��ลาเริ่ม (firstTimestamp)",
     "เวลาสิ้นสุด (lastTimestamp)",
     "ยอมรับ PDPA (PDPA_acceptance)",
     "ประเภทรถ (chassis_type)",
@@ -334,7 +334,7 @@ export function exportSessionsAsCSV() {
     "เข้าร่วมของรางวัล (decision_enter_prize)",
     "ชื่อผู้รับรางวัล (prize_name)",
     "เบอร์โทรผู้รับรางวัล (prize_phone)",
-    "เวลาการรับรางวัล (prize_timestamp)",
+    "เว���าการรับรางวัล (prize_timestamp)",
     "แชร์กับเพื่อน (shared_with_friends)",
     "เวลาแชร์ (shared_timestamp)",
   ];
@@ -526,8 +526,8 @@ export function exportSessionsAsCSV() {
     const vals = [
       row.sessionID,
       row.ip || "",
-      row.firstTimestamp,
-      row.lastTimestamp,
+      formatToBangkok(row.firstTimestamp),
+      formatToBangkok(row.lastTimestamp),
       row.PDPA_acceptance,
       row.chassis_type,
       row.total_seats,
