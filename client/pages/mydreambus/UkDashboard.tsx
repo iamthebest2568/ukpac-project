@@ -6,6 +6,7 @@ import {
   getLoggedEvents,
   clearEventLogs,
   sendLocalEventsToFirestore,
+  logEvent,
 } from "../../services/dataLogger.js";
 import { sendEventToFirestore } from "../../lib/firebase";
 
@@ -511,7 +512,7 @@ const UkDashboard: React.FC = () => {
         <form onSubmit={handleAuth} className="w-full max-w-md">
           <div className="bg-white text-black rounded-xl p-6">
             <h2 className="text-lg font-semibold mb-2">
-              เข้าสู่แดชบอร์ด mydreambus
+              เข้าสู่แดชบ���ร์ด mydreambus
             </h2>
             <p className="text-sm mb-4">ป้อนรหัสเพื่อเข้าถึงแดชบอร์ด</p>
             <input
@@ -650,7 +651,7 @@ const UkDashboard: React.FC = () => {
                 {eventsSample.map((ev, idx) => (
                   <li key={idx} className="border-b border-white/5 pb-2">
                     <div className="text-xs text-gray-400">
-                      {ev.timestamp} • {ev.sessionID}
+                      {ev.timestamp} ��� {ev.sessionID}
                     </div>
                     <div className="font-medium">{ev.event || "EVENT"}</div>
                     <div className="text-xs text-gray-300">
