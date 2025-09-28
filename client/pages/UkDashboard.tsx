@@ -167,7 +167,11 @@ export default function UkDashboard() {
 
     try {
       // Helper to perform safe fetch with timeout and avoid uncaught network errors
-      const safeFetch = async (url: string, opts: RequestInit | undefined, ms = 8000) => {
+      const safeFetch = async (
+        url: string,
+        opts: RequestInit | undefined,
+        ms = 8000,
+      ) => {
         try {
           if (typeof navigator !== "undefined" && navigator.onLine === false) {
             console.debug("Offline: skipping fetch", url);
@@ -175,7 +179,10 @@ export default function UkDashboard() {
           }
           const controller = new AbortController();
           const id = setTimeout(() => controller.abort(), ms);
-          const resp = await fetch(url, { ...(opts || {}), signal: controller.signal });
+          const resp = await fetch(url, {
+            ...(opts || {}),
+            signal: controller.signal,
+          });
           clearTimeout(id);
           return resp;
         } catch (err) {
@@ -191,8 +198,11 @@ export default function UkDashboard() {
         "/api/video-stats",
       ];
 
-      const origin = typeof window !== "undefined" ? window.location.origin : "";
-      const promises = endpoints.map((p) => safeFetch(origin + p, undefined, 8000));
+      const origin =
+        typeof window !== "undefined" ? window.location.origin : "";
+      const promises = endpoints.map((p) =>
+        safeFetch(origin + p, undefined, 8000),
+      );
       const [jRes, ssRes, stRes, vsRes] = await Promise.all(promises);
 
       if (jRes && jRes.ok) {
@@ -393,13 +403,14 @@ export default function UkDashboard() {
     // call load and explicitly catch rejections to avoid unhandled promise rejections
     void load().catch((e) => console.debug("load initial call failed", e));
     let id: any;
-    if (autoRefresh) id = setInterval(() => {
-      load().catch((e) => {
-        // don't spam console for AbortError caused by timeout; log others
-        if (e && e.name === 'AbortError') return;
-        console.debug('periodic load failed', e);
-      });
-    }, 5000);
+    if (autoRefresh)
+      id = setInterval(() => {
+        load().catch((e) => {
+          // don't spam console for AbortError caused by timeout; log others
+          if (e && e.name === "AbortError") return;
+          console.debug("periodic load failed", e);
+        });
+      }, 5000);
     return () => id && clearInterval(id);
   }, [authed, autoRefresh]);
 
@@ -477,7 +488,9 @@ export default function UkDashboard() {
             <div className="flex flex-wrap items-end gap-3">
               <button
                 className="rounded-md bg.white/10 hover:bg-white/15 border border-white/15 px-3 py-2 text-sm"
-                onClick={() => load().catch((e) => console.debug('manual load failed', e))}
+                onClick={() =>
+                  load().catch((e) => console.debug("manual load failed", e))
+                }
               >
                 รีเฟร
               </button>
