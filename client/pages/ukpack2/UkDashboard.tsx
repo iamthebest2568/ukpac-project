@@ -131,40 +131,47 @@ const UkDashboard: React.FC = () => {
 
       // Fetch Firestore-backed recent events for ukpack2 with resilient fallbacks
       try {
-        const origin = typeof window !== 'undefined' ? window.location.origin : '';
-        const rawCandidates = [
-          `${origin}/api/firestore-stats?project=mydreambus`,
-          `${origin}/.netlify/functions/api/firestore-stats?project=mydreambus`,
-        ];
-
-        // helpful debug logging for network issues
-        console.debug("firestore-stats candidates:", rawCandidates);
-
-        let j = null;
-        try {
-          j = await tryFetchJsonWithFallback(rawCandidates, 8000);
-        } catch (e) {
-          console.warn("tryFetchJsonWithFallback threw", e);
-          j = null;
-        }
-        if (j && j.ok && j.stats && Array.isArray(j.stats.sample)) {
-          try {
-            setCollectionInfo({
-              col: j.col || "minigame2_events",
-              docId: j.docId || "minigame2-di",
-            });
-          } catch (_) {}
-          const sample = j.stats.sample.map((s: any) => ({
-            sessionId: s.data.sessionID || s.data.sessionId || "",
-            eventName: s.data.event || s.data.eventName || "",
-            timestamp: s.data.timestamp || s.data.createdAt || "",
-            payload: s.data.payload || {},
-          }));
-          setEventsSample(sample.slice(0, 10));
-        } else if (j === null) {
-          console.warn("All firestore-stats fetch attempts failed");
+        // Only attempt Firestore/http fetch when running under the mydreambus canonical path.
+        // This prevents relative fetches and probes from running when the app is loaded under
+        // other routes (like /beforecitychange) which can cause Failed to fetch errors in preview.
+        if (typeof window !== 'undefined' && !window.location.pathname.startsWith('/mydreambus')) {
+          console.debug('Skipping firestore-stats fetch because not on /mydreambus path');
         } else {
-          console.warn("firestore-stats returned unexpected payload", j);
+          const origin = typeof window !== 'undefined' ? window.location.origin : '';
+          const rawCandidates = [
+            `${origin}/api/firestore-stats?project=mydreambus`,
+            `${origin}/.netlify/functions/api/firestore-stats?project=mydreambus`,
+          ];
+
+          // helpful debug logging for network issues
+          console.debug("firestore-stats candidates:", rawCandidates);
+
+          let j = null;
+          try {
+            j = await tryFetchJsonWithFallback(rawCandidates, 8000);
+          } catch (e) {
+            console.warn("tryFetchJsonWithFallback threw", e);
+            j = null;
+          }
+          if (j && j.ok && j.stats && Array.isArray(j.stats.sample)) {
+            try {
+              setCollectionInfo({
+                col: j.col || "minigame2_events",
+                docId: j.docId || "minigame2-di",
+              });
+            } catch (_) {}
+            const sample = j.stats.sample.map((s: any) => ({
+              sessionId: s.data.sessionID || s.data.sessionId || "",
+              eventName: s.data.event || s.data.eventName || "",
+              timestamp: s.data.timestamp || s.data.createdAt || "",
+              payload: s.data.payload || {},
+            }));
+            setEventsSample(sample.slice(0, 10));
+          } else if (j === null) {
+            console.warn("All firestore-stats fetch attempts failed");
+          } else {
+            console.warn("firestore-stats returned unexpected payload", j);
+          }
         }
       } catch (err) {
         console.error("fetch firestore-stats error", err);
@@ -519,7 +526,7 @@ const UkDashboard: React.FC = () => {
                 type="submit"
                 className="flex-1 bg-[#ffe000] text-black py-2 rounded font-semibold"
               >
-                เข้าสู่ระบบ
+                เข้าสู่ระ���บ
               </button>
               <button
                 type="button"
