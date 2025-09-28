@@ -564,7 +564,7 @@ const UkDashboard: React.FC = () => {
             <h2 className="text-lg font-semibold mb-2">
               เข้าสู่แดชบอร์ด mydreambus
             </h2>
-            <p className="text-sm mb-4">ป้อนรหัสเพื่อเข้าถึงแดชบอร์ด</p>
+            <p className="text-sm mb-4">ป้อนรหัสเพ��่อเข้าถึงแดชบอร์ด</p>
             <input
               type="text"
               value={user}
@@ -720,4 +720,157 @@ const UkDashboard: React.FC = () => {
                 <div>Sent: {lastSentResult.sentCount}</div>
                 <div>Skipped: {lastSentResult.skippedCount}</div>
                 <div>
-                  Errors:{
+                  Errors: {lastSentResult.errors && lastSentResult.errors.length}
+                </div>
+                <div className="mt-2">Sample sent items:</div>
+                <pre className="text-xs mt-2 whitespace-pre-wrap max-h-64 overflow-auto break-words">
+                  {JSON.stringify(lastSentResult.sampleSent || [], null, 2)}
+                </pre>
+              </div>
+            </div>
+          )}
+        </div>
+
+        <div className="mb-6">
+          <h3 className="text-lg font-semibold mb-2">
+            Public submissions (landing)
+          </h3>
+          <div className="bg-[#021827] rounded p-3 text-sm text-gray-200 mb-4">
+            {publicSubmissions.length === 0 ? (
+              <div className="text-gray-400">No public submissions yet</div>
+            ) : (
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                {publicSubmissions.map((s, i) => (
+                  <div
+                    key={s.id || i}
+                    className="bg-[#001a22] rounded p-2 text-xs"
+                  >
+                    {s.imageUrl ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={s.imageUrl}
+                        alt={s.exterior?.customText || "design"}
+                        className="w-full h-28 object-cover rounded"
+                      />
+                    ) : (
+                      <div className="w-full h-28 bg-[#001f2a] rounded flex items-center justify-center text-gray-500">
+                        No image
+                      </div>
+                    )}
+                    <div className="mt-2">
+                      <div className="font-medium">
+                        {s.exterior?.customText ||
+                          s.serviceInfo?.routeName ||
+                          "Design"}
+                      </div>
+                      <div className="text-xs text-gray-400">
+                        {s.exterior?.color || ""} • {s.serviceInfo?.area || ""}
+                      </div>
+                      <div className="text-xs text-gray-400">
+                        {s.timestamp
+                          ? new Date(s.timestamp).toLocaleString()
+                          : ""}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
+          <h3 className="text-lg font-semibold mb-2">
+            Data schema & usage (สรุปสคีมา)
+          </h3>
+          <div className="bg-[#021827] rounded p-4 text-sm text-gray-200">
+            <div className="mb-3">
+              <strong>
+                Document fields ({collectionInfo.col}/{collectionInfo.docId})
+              </strong>
+              <ul className="list-disc pl-5 mt-1 text-xs text-gray-300">
+                <li>createdAt (Firestore Timestamp)</li>
+                <li>sessionID (string)</li>
+                <li>timestamp (string ISO)</li>
+                <li>event (string)</li>
+                <li>url, userAgent, viewport (meta)</li>
+                <li>payload (map) — fields listed below</li>
+              </ul>
+            </div>
+
+            <div className="mb-3">
+              <strong>Payload suggested fields</strong>
+              <ul className="list-disc pl-5 mt-1 text-xs text-gray-300">
+                <li>PDPA (boolean)</li>
+                <li>chassis (string)</li>
+                <li>
+                  seating (map: totalSeats, specialSeats, children?, pregnant?,
+                  monk?)
+                </li>
+                <li>amenities (array[string])</li>
+                <li>payment (array[string])</li>
+                <li>doors (string or map)</li>
+                <li>color (string, hex)</li>
+                <li>frequency / interval, route, area (strings)</li>
+                <li>decisionUseService (boolean), reasonNotUse (string)</li>
+                <li>enterPrize (boolean), prizeName, prizePhone</li>
+                <li>shared (boolean)</li>
+              </ul>
+            </div>
+
+            <div className="mb-3">
+              <strong>How we send</strong>
+              <div className="text-xs text-gray-300 mt-1">
+                Client constructs a plain JS object (map/array/primitives) and
+                we call addDoc(collection, obj). Images must be stored in
+                Storage and referenced by URL in payload.imageUrl.
+              </div>
+            </div>
+
+            <div className="mb-3">
+              <strong>CSV export columns (mapped)</strong>
+              <pre className="text-xs mt-1 whitespace-pre-wrap bg-[#001927] p-2 rounded">
+                sessionID, ip, firstTimestamp, lastTimestamp, PDPA_acceptance,
+                chassis_type, total_seats, special_seats, children_count,
+                pregnant_count, monk_count, features, payment_types, doors,
+                color, frequency, route, area, decision_use_service,
+                reason_not_use, decision_enter_prize, prize_name, prize_phone,
+                prize_timestamp, shared_with_friends, shared_timestamp
+              </pre>
+            </div>
+
+            <div>
+              <strong>Landing page usage</strong>
+              <ul className="list-disc pl-5 mt-1 text-xs text-gray-300">
+                <li>
+                  For images: store in Firebase Storage → save public URL in
+                  payload.imageUrl → render &lt;img src="..." /&gt;
+                </li>
+                <li>
+                  For user text (slogans, comments): fetch doc.payload.field and
+                  sanitize before rendering
+                </li>
+                <li>
+                  Prefer server-side endpoint to aggregate & sanitize public
+                  data for landing page (recommended)
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div className="text-right mt-4">
+          <button
+            onClick={() => {
+              sessionStorage.removeItem("mydreambus_dash_auth");
+              setAuthorized(false);
+            }}
+            className="text-sm underline text-gray-300"
+          >
+            Logout
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default UkDashboard;
