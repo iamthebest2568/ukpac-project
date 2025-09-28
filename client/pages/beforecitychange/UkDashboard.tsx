@@ -13,7 +13,7 @@ import {
   Cell,
   Legend,
 } from "recharts";
-import { clearEventLogs } from "../services/dataLogger.js";
+import { clearEventLogs } from "../../services/dataLogger.js";
 import {
   Accordion,
   AccordionContent,
