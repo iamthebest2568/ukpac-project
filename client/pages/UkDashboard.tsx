@@ -157,11 +157,12 @@ export default function UkDashboard() {
     setError(null);
 
     try {
+      const origin = typeof window !== "undefined" ? window.location.origin : "";
       const [jRes, ssRes, stRes, vsRes] = await Promise.allSettled([
-        fetch(`/api/user-journey-stats`),
-        fetch(`/api/session-summaries?limit=100`),
-        fetch(`/api/ingest-status`),
-        fetch(`/api/video-stats`),
+        fetch(`${origin}/api/user-journey-stats`),
+        fetch(`${origin}/api/session-summaries?limit=100`),
+        fetch(`${origin}/api/ingest-status`),
+        fetch(`${origin}/api/video-stats`),
       ]);
       if (jRes.status === "fulfilled" && jRes.value.ok) {
         try {
