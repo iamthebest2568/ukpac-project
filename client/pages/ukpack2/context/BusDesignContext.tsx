@@ -155,10 +155,13 @@ export const BusDesignProvider = ({ children }: { children: ReactNode }) => {
           payload.imageUrl = url;
           try {
             const { addDesignImageUrlToFirestore } = await import(
-              "../../../lib/firebase"
+              "../../../client/lib/firebase"
             );
+            // record the image URL in Firestore collection for public submissions; swallow errors
             await addDesignImageUrlToFirestore(url);
-          } catch (_) {}
+          } catch (err) {
+            console.warn('addDesignImageUrlToFirestore failed', err);
+          }
         } catch (e) {
           console.warn("Image upload failed", e);
         }
