@@ -69,16 +69,16 @@ const UkDashboard: React.FC = () => {
           // if url is relative (starts with '/') use as-is; otherwise use the full url
           const targetUrl = url && String(url).startsWith("/") ? url : url;
           if (typeof navigator !== "undefined" && navigator.onLine === false) {
-            console.debug("Offline: skipping fetch for", url);
+            console.debug("Offline: skipping fetch for", targetUrl);
             return null;
           }
           try {
-            console.debug("Attempting fetch", url);
+            console.debug("Attempting fetch", targetUrl);
             try {
               // Try primary fetch with same-origin credentials
               const attempt = async (opts: RequestInit) => {
                 try {
-                  const resp = await fetch(url, opts);
+                  const resp = await fetch(targetUrl, opts);
                   if (!resp || !resp.ok) return null;
                   try {
                     return await resp.json();
@@ -86,7 +86,7 @@ const UkDashboard: React.FC = () => {
                     return null;
                   }
                 } catch (err) {
-                  console.debug("fetch attempt failed for", url, opts, err);
+                  console.debug("fetch attempt failed for", targetUrl, opts, err);
                   return null;
                 }
               };
@@ -232,7 +232,7 @@ const UkDashboard: React.FC = () => {
   const handleExport = () => {
     const csv = exportEventsAsCSV();
     if (!csv) {
-      alert("ไม่มีข้อมูลให้ส่งออก");
+      alert("ไม่��ีข้อมูลให้ส่งออก");
       return;
     }
     const blob = new Blob(["\uFEFF" + csv], {
