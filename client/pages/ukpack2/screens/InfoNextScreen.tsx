@@ -66,7 +66,7 @@ const InfoNextScreen: React.FC = () => {
             <div className="w-full">
               <CtaButton
                 text="ไม่แน่ใจ"
-                onClick={() => navigate("/ukpack2/feedback")}
+                onClick={() => navigate("/mydreambus/feedback")}
                 className="w-full"
               />
             </div>
