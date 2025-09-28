@@ -111,7 +111,7 @@ const SubmitScreen: React.FC = () => {
 
           async function composeImage(): Promise<Blob | null> {
             try {
-              const baseSrc = persistedFinal?.imageSrc || heroImg;
+              const baseSrc = persistedFinal?.color?.preview || persistedFinal?.imageSrc || heroImg;
               if (!baseSrc) return null;
               const baseImg = await loadImage(baseSrc);
               const w = baseImg.naturalWidth || baseImg.width || 800;
@@ -282,7 +282,7 @@ const SubmitScreen: React.FC = () => {
                 overlayIconMap={{
                   เงินสด: MONEY_ICON,
                   สแกนจ่าย: SCAN_ICON,
-                  ตู้อัตโนมัติ: SCAN2_ICON,
+                  ตู้อั���โนมัติ: SCAN2_ICON,
                   แตะบัตร: TOUCH_ICON,
                   "ตั๋วรายเดือน/รอบ": MONTHLY_ICON,
                   กระเป๋ารถเมล์: BUS_EMPLOY_ICON,
@@ -316,7 +316,7 @@ const SubmitScreen: React.FC = () => {
                   overflow: "visible",
                 }}
               >
-                รถจะมาทุกกี่นาที
+                รถจะมา���ุกกี่นาที
               </label>
               <input
                 type="number"
