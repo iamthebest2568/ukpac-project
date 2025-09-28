@@ -44,7 +44,7 @@ type SessionSummary = {
   firstSeen: string;
   lastSeen: string;
   introWho?: string; // บทบาทในการเดินทางเข้าเมือง
-  travelMethod?: string; // ยาน��าหนะที่ใช้
+  travelMethod?: string; // ยาน��าห��ะที่ใช้
   opinionLevel?: string; // ระดับความคิดเห็น
   ask02Choice?: string; // เหตุผลหลัก
   ask02CustomReason?: string; // เหตุผลพิมพ์เอง
@@ -393,7 +393,7 @@ export default function UkDashboard() {
           <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
               <h1 className="text-3xl md:text-4xl font-semibold tracking-tight">
-                แดชบอร์ดวิเคราะห์วิดีโอ
+                แ���ชบอร์ดวิเคราะห์วิดีโอ
               </h1>
               <div className="text-white/70 text-sm mt-2">
                 อัปเดตล่าสุด: {lastUpdated || "-"}
@@ -431,7 +431,7 @@ export default function UkDashboard() {
                       page: "/beforecitychange/dashboard",
                       payload: {
                         PDPA: true,
-                        note: "Test event from ukpack1 dashboard",
+                        note: "Test event from beforecitychange dashboard",
                       },
                     };
                     const resp = await fetch("/api/track", {
@@ -440,7 +440,7 @@ export default function UkDashboard() {
                       body: JSON.stringify(sample),
                     });
                     if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
-                    alert("Test event sent to server (ukpack1)");
+                    alert("Test event sent to server (beforecitychange)");
                     await load();
                   } catch (e: any) {
                     alert(
@@ -452,9 +452,9 @@ export default function UkDashboard() {
                 }}
                 className={`rounded-md bg-blue-600/80 hover:bg-blue-600 border border-blue-500 px-3 py-2 text-sm ${isSending ? "opacity-60" : ""}`}
                 disabled={isSending}
-                title="ส่งเหตุการณ์ทดสอบไปยัง ukpack1"
+                title="ส่งเหตุการณ์ทดสอบไปยัง beforecitychange"
               >
-                {isSending ? "กำลังส่..." : "Send Test Event (ukpack1)"}
+                {isSending ? "กำลังส่..." : "Send Test Event (beforecitychange)"}
               </button>
 
               <button
@@ -960,14 +960,14 @@ export default function UkDashboard() {
                       "ทำไมคุณถึงคิดอย่างนั้น (นโยบายไม่ครอบคลุม / เก็บไปก็ไม่มีอะไรดีข���้น / อื่นๆ)",
                       "อธิบายอื่น ๆ ที่ช่วยอธิบายความคิดเห็น",
                       "บอกเร��หน่อยว่าคุณเดินทางเข้าเมืองด้วยวิธีการใดบ่อยที่สุด",
-                      "จากนโยบายที่คุณฟังเมื่อสักครู่ คุณมีความคิดเห็นอย่างไร",
+                      "จากนโยบายที่คุณฟังเมื่อสักครู่ คุณมีความคิดเห็นอย่าง��ร",
                       "คุณคิดว่านโยบายปัจจุบัน ควรปรับเปลี่ยนประเด็นอะไรบาง (ลดค่าโดยสาร, ปรับปรุงคุณภาพ, ขึ้น���าคา, เพิ่มขบวน, เพิ่มความถี่ ฯลฯ)",
                       "คุณคิดว่าใครควรได้รับการลดค่าโดยสารรถไฟฟ���าบ้าง (ทุกคน, ผู้สูงอายุ, นักเรียน, คนทำงาน ฯลฯ)",
                       "คุณคิดว่าควรใช้เงินที่ได้จากการเก็บไปพัฒนาอะไร ก่อน 3 อันดับแรก",
                       "คุณจะให้งบประมาณแต่ละข้อเท่าไร (งบทั้งหมด 100)",
                       "คุณพอใจกับผลลัพธ์ที่เกิดขึ้นหรือไม่ (พอใจ / ไม่พอใจ)",
                       "คุณคิดว่ารัฐควรทำอะไรที่จะทำให้นโยบายนี้เกิดขึ้นได้จริง และเป็นประโยชน์ต่อประชาชนอย่างแท้จริง",
-                      "ตอนนี้มีข้อมูลที่ผิดพลาด เช่น ข่าวปลอมเกี่ยวกับนโยบาย คุณคิดว่าอย่างไร",
+                      "ตอนนี้มี��้อมูลที่ผิดพลาด เช่น ข่าวปลอมเกี่ยวกับนโยบาย คุณคิดว่าอย่างไร",
                       "คุณจะติดตามข่า��� หรือเชื่อจากแหล่งไหนมาก���ี่สุด",
                       "ขอบคุณที่ร่วมเป็นส่วนหนึ่ง → ต้องการลุ้นรับรางวัลหรือไม่",
                       "กรอกข้อมูลเพื่อลุ้นรางวัล (ชื่อ)",
@@ -1068,7 +1068,7 @@ export default function UkDashboard() {
           >
             <div className="flex items-center justify-between mb-2">
               <div className="text-lg font-medium">
-                รายละเอียดเซสชั: {detailSession?.slice(0, 12)}…
+                ร���ยละเอียดเซสชั: {detailSession?.slice(0, 12)}…
               </div>
               <button
                 className="text-white/70 hover:text-white"

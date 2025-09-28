@@ -298,7 +298,7 @@ export function exportSessionsAsCSV() {
     "เส้นทาง (route)",
     "พื้นที่ (area)",
     "ตัดสินใจใช้บริการ (decision_use_service)",
-    "เหตุผลไม่ใช้บริการ (reason_not_use)",
+    "เหตุผลไม่ใช���บริการ (reason_not_use)",
     "เข้าร่วมของรางวัล (decision_enter_prize)",
     "ชื่อผู้รับรางวัล (prize_name)",
     "เบอร์โทรผู้รับรางวัล (prize_phone)",
@@ -597,7 +597,7 @@ export async function sendLocalEventsToFirestore(options = {}) {
 }
 
 // Initialize logging service
-console.log("📊 UK PACK Data Logger initialized");
+console.log("📊 Before City Change Data Logger initialized");
 
 // Only run browser-specific code if we're in a browser environment
 if (typeof window !== "undefined" && typeof document !== "undefined") {
