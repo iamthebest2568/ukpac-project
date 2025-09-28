@@ -1,6 +1,6 @@
 /* MiniGame MN1 Page - Policy Priorities */
 
-import Flow_MiniGame_MN1 from "../components/flows/Flow_MiniGame_MN1";
+import Flow_MiniGame_MN1 from "../../components/flows/Flow_MiniGame_MN1";
 import { useSession } from "../hooks/useSession";
 import { useFlowNavigation } from "../hooks/useFlowNavigation";
 import { useEffect } from "react";
