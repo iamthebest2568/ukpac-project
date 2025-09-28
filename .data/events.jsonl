@@ -379,3 +379,6 @@
 {"sessionId":"session_1758873206122_nq975efy1","eventName":"sw.choice.selected","timestamp":"2025-09-26T07:54:23.829Z","choiceText":"ไปต่อ.","variantId":"8f1e49aa","variantName":"อื่น ๆ."}
 {"sessionId":"session_1759042777901_91wlidhvg","eventName":"sw.variant.start","timestamp":"2025-09-28T06:59:49.473Z","variantId":"a59ef133","variantName":"Intro"}
 {"sessionId":"session_1759042777901_91wlidhvg","eventName":"sw.story.start","timestamp":"2025-09-28T06:59:49.476Z","variantId":"a59ef133","variantName":"Intro"}
+{"sessionId":"session_1759042777901_91wlidhvg","eventName":"sw.choice.selected","timestamp":"2025-09-28T06:59:59.279Z","choiceText":"PDPA","variantId":"a59ef133","variantName":"Intro"}
+{"sessionId":"session_1759042777901_91wlidhvg","eventName":"sw.story.start","timestamp":"2025-09-28T07:00:00.054Z","variantId":"e61429e0","variantName":"PDPA"}
+{"sessionId":"session_1759042777901_91wlidhvg","eventName":"sw.variant.start","timestamp":"2025-09-28T07:00:00.053Z","variantId":"e61429e0","variantName":"PDPA"}
