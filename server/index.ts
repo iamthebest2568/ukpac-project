@@ -330,6 +330,141 @@ export function createServer() {
     }
   });
 
+  // Import any server-pending submissions (.data/pending-submissions.jsonl) into Firestore 'submissions' collection
+  app.post('/api/import-pending-to-submissions', async (req, res) => {
+    try {
+      const svc = process.env.FIREBASE_SERVICE_ACCOUNT;
+      if (!svc) return res.status(400).json({ ok: false, error: 'FIREBASE_SERVICE_ACCOUNT not configured' });
+      const parsed = typeof svc === 'string' ? JSON.parse(svc) : svc;
+      if (!admin.apps || admin.apps.length === 0) {
+        admin.initializeApp({ credential: admin.credential.cert(parsed as any) } as any);
+      }
+      const fsAdmin = admin.firestore ? admin.firestore() : null;
+      if (!fsAdmin) return res.status(500).json({ ok: false, error: 'admin.firestore unavailable' });
+
+      const DATA_DIR = process.env.DATA_DIR || path.join(process.cwd(), '.data');
+      const pendingFile = path.join(DATA_DIR, 'pending-submissions.jsonl');
+      if (!fs.existsSync(pendingFile)) return res.json({ ok: true, processed: 0, written: 0 });
+
+      const raw = await fs.promises.readFile(pendingFile, 'utf8');
+      const lines = raw.split(/\n+/).filter(Boolean);
+      if (lines.length === 0) return res.json({ ok: true, processed: 0, written: 0 });
+
+      const col = fsAdmin.collection('submissions');
+      let processed = 0;
+      let written = 0;
+      const errors: any[] = [];
+
+      for (const ln of lines) {
+        try {
+          const obj = JSON.parse(ln);
+          // Map raw submission to session-mapped row if needed
+          let row: any = null;
+          if (!obj) continue;
+          if (obj.firstTimestamp || obj.lastTimestamp || obj.PDPA_acceptance || obj.sessionID) {
+            row = obj;
+          } else if (obj.chassis || obj.seating || obj.serviceInfo || obj.exterior) {
+            const sessionID = obj.sessionID || obj.sessionId || obj.session || '';
+            const firstTS = obj.firstTimestamp || obj.first_time || obj.timestamp || obj.createdAt || '';
+            const lastTS = obj.lastTimestamp || obj.last_time || obj.timestamp || obj.createdAt || '';
+            const pdpa = (obj.PDPA === true || obj.PDPA === 'accepted' || obj.PDPA === '1') ? '1' : '';
+            const seating = obj.seating || obj.seatingInfo || obj.seat || {};
+            const totalSeats = seating && (seating.totalSeats || seating.total_seats || seating.total || seating.totalSeat) ? (seating.totalSeats || seating.total_seats || seating.total || seating.totalSeat) : '';
+            const specialSeats = seating && (seating.specialSeats || seating.special_seats || seating.special || seating.specialSeat) ? (seating.specialSeats || seating.special_seats || seating.special || seating.specialSeat) : '';
+            const childElder = seating && (seating.childElderSeats || seating.child_elder_seats || seating.childElder || seating.childElderSeats) ? (seating.childElderSeats || seating.child_elder_seats || seating.childElder || seating.childElderSeats) : '';
+            const pregnant = seating && (seating.pregnantSeats || seating.pregnant || seating.pregnant_seats) ? (seating.pregnantSeats || seating.pregnant || seating.pregnant_seats) : '';
+            const monk = seating && (seating.monkSeats || seating.monk || seating.monk_seats) ? (seating.monkSeats || seating.monk || seating.monk_seats) : '';
+            const featuresArr = Array.isArray(obj.amenities) ? obj.amenities : (Array.isArray(obj.features) ? obj.features : []);
+            const paymentArr = Array.isArray(obj.paymentMethods) ? obj.paymentMethods : (Array.isArray(obj.payment) ? obj.payment : (Array.isArray(obj.payment_methods) ? obj.payment_methods : []));
+            const doors = obj.doors || (obj.doorConfig && (obj.doorConfig.doorChoice || obj.doorConfig.doors)) || '';
+            let colorVal = '';
+            try {
+              if (obj.color) colorVal = String(obj.color);
+              else if (obj.exterior && obj.exterior.color) {
+                if (typeof obj.exterior.color === 'string') {
+                  try {
+                    const parsedEx = JSON.parse(obj.exterior.color);
+                    colorVal = parsedEx.colorHex || parsedEx.color || '';
+                  } catch (e) {
+                    colorVal = obj.exterior.color || '';
+                  }
+                } else if (typeof obj.exterior.color === 'object') {
+                  colorVal = obj.exterior.color.colorHex || obj.exterior.color.color || '';
+                }
+              } else if (obj.exterior && obj.exterior.colorHex) {
+                colorVal = obj.exterior.colorHex;
+              }
+            } catch (e) { colorVal = '' }
+            const frequency = obj.frequency || (obj.serviceInfo && (obj.serviceInfo.frequency || obj.serviceInfo.freq)) || obj.interval || '';
+            const route = obj.route || (obj.serviceInfo && (obj.serviceInfo.routeName || obj.serviceInfo.route)) || '';
+            const area = obj.area || (obj.serviceInfo && obj.serviceInfo.area) || '';
+            const decisionUseService = obj.decisionUseService || obj.decision_use_service || '';
+            const reasonNotUse = obj.reasonNotUse || obj.reason_not_use || obj.reason || '';
+            const enterPrize = (obj.enterPrize || obj.prizeName || obj.prizePhone || obj.prize_name || obj.prize_phone) ? '1' : '';
+            const prizeName = obj.prizeName || obj.prize_name || '';
+            const prizePhone = obj.prizePhone || obj.prize_phone || '';
+            const shared = (obj.userEngagement && (obj.userEngagement.shared || obj.userEngagement.sharedTo)) || obj.shared || false;
+
+            row = {
+              sessionID: sessionID,
+              ip: obj.ip || '',
+              firstTimestamp: firstTS,
+              lastTimestamp: lastTS,
+              PDPA_acceptance: pdpa,
+              chassis_type: obj.chassis || (obj.design && obj.design.chassis) || '',
+              total_seats: totalSeats || '',
+              special_seats: specialSeats || '',
+              children_elder_count: childElder || '',
+              pregnant_count: pregnant || '',
+              monk_count: monk || '',
+              features: Array.isArray(featuresArr) ? featuresArr : [],
+              payment_types: Array.isArray(paymentArr) ? paymentArr : [],
+              doors: doors || '',
+              color: colorVal || '',
+              frequency: frequency || '',
+              route: route || '',
+              area: area || '',
+              decision_use_service: decisionUseService || '',
+              reason_not_use: reasonNotUse || '',
+              decision_enter_prize: enterPrize || '',
+              prize_name: prizeName || '',
+              prize_phone: prizePhone || '',
+              prize_timestamp: '',
+              shared_with_friends: shared ? '1' : '',
+              shared_timestamp: '',
+            };
+          } else {
+            // Unknown shape — skip
+            continue;
+          }
+
+          processed++;
+          try {
+            await col.add(row);
+            written++;
+          } catch (e) {
+            errors.push({ line: ln, error: String(e) });
+          }
+        } catch (e) {
+          errors.push({ line: ln, error: String(e) });
+        }
+      }
+
+      // Move existing pending file to processed archive
+      try {
+        const archive = path.join(DATA_DIR, 'pending-submissions.processed.' + Date.now() + '.jsonl');
+        await fs.promises.rename(pendingFile, archive);
+      } catch (e) {
+        // ignore
+      }
+
+      res.json({ ok: true, processed, written, errors });
+    } catch (e: any) {
+      console.error('import-pending failed', e);
+      res.status(500).json({ ok: false, error: e?.message || String(e) });
+    }
+  });
+
   // Recent events for dashboard
   app.get("/api/video-events", async (req, res) => {
     try {
@@ -592,7 +727,7 @@ export function createServer() {
                 "ความถี่ (frequency)",
                 "เส้นทาง (route)",
                 "พื้นที่ (area)",
-                "ตัดสินใจใช้บริการ (decision_use_service)",
+                "ตัดส���นใจใช้บริการ (decision_use_service)",
                 "เหตุ��ลไม่ใช้บริการ (reason_not_use)",
                 "เข้าร่วมของรางวัล (decision_enter_prize)",
                 "ชื่อผู้รับรางวัล (prize_name)",
@@ -785,7 +920,7 @@ export function createServer() {
         "ชื่อผู้รับรางวัล (prize_name)",
         "เบอร์โทรผู้รับรางวัล (prize_phone)",
         "��วลาการรับรางวัล (prize_timestamp)",
-        "แชร์กับเพื่อน (shared_with_friends)",
+        "แชร์กั��เพื่อน (shared_with_friends)",
         "เวลาแชร์ (shared_timestamp)",
       ];
 
