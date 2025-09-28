@@ -25,7 +25,7 @@ const Step1_Choice = ({
 
   // Define priorities exactly as in Figma design
   const priorityList = [
-    "ลดค่า��ดยสารรถไฟฟ้า",
+    "ลดค่าโดยสารรถไฟฟ้า",
     "เพิ่มความถี่รถไฟฟ้า",
     "ตั๋วร่วม",
     "เพิ่มความถี่รถเมล์",
