@@ -134,7 +134,7 @@ const TabletMockup: React.FC<TabletMockupProps> = ({ children }) => {
                   if (url) {
                     if (url.origin !== window.location.origin) return; // external
                     // Only intercept internal ukpack1 routes to keep mockup
-                    if (!url.pathname.startsWith("/ukpack1")) return;
+                    if (!url.pathname.startsWith("/beforecitychange")) return;
                     e.preventDefault();
                     // Use react-router navigation to change route without full reload
                     navigate(url.pathname + url.search + url.hash);
