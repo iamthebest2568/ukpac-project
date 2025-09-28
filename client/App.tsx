@@ -419,42 +419,42 @@ const App = () => {
                     </Suspense>
                   }
                 />
-                <Route path="/ukpack2" element={<SplashScreen />} />
-                <Route path="/ukpack2/pdpa" element={<PdpaScreen />} />
+                <Route path="/mydreambus" element={<SplashScreen />} />
+                <Route path="/mydreambus/pdpa" element={<PdpaScreen />} />
                 <Route
-                  path="/ukpack2/dashboard"
+                  path="/mydreambus/dashboard"
                   element={<UkPack2Dashboard />}
                 />
                 <Route
-                  path="/ukpack2/ukpact2-dashboard"
+                  path="/mydreambus/ukpact2-dashboard"
                   element={<UkPact2Dashboard />}
                 />
-                <Route path="/ukpack2/chassis" element={<ChassisScreen />} />
-                <Route path="/ukpack2/seating" element={<SeatingScreen />} />
+                <Route path="/mydreambus/chassis" element={<ChassisScreen />} />
+                <Route path="/mydreambus/seating" element={<SeatingScreen />} />
                 <Route
-                  path="/ukpack2/amenities"
+                  path="/mydreambus/amenities"
                   element={<AmenitiesScreen />}
                 />
-                <Route path="/ukpack2/payment" element={<PaymentScreen />} />
-                <Route path="/ukpack2/doors" element={<DoorScreen />} />
-                <Route path="/ukpack2/design" element={<DesignScreen />} />
-                <Route path="/ukpack2/summary" element={<SummaryScreen />} />
-                <Route path="/ukpack2/info" element={<InfoScreen />} />
-                <Route path="/ukpack2/info-next" element={<InfoNextScreen />} />
-                <Route path="/ukpack2/feedback" element={<FeedbackScreen />} />
+                <Route path="/mydreambus/payment" element={<PaymentScreen />} />
+                <Route path="/mydreambus/doors" element={<DoorScreen />} />
+                <Route path="/mydreambus/design" element={<DesignScreen />} />
+                <Route path="/mydreambus/summary" element={<SummaryScreen />} />
+                <Route path="/mydreambus/info" element={<InfoScreen />} />
+                <Route path="/mydreambus/info-next" element={<InfoNextScreen />} />
+                <Route path="/mydreambus/feedback" element={<FeedbackScreen />} />
                 <Route
-                  path="/ukpack2/feedback-skip"
+                  path="/mydreambus/feedback-skip"
                   element={<FeedbackSkipScreen />}
                 />
-                <Route path="/ukpack2/submit" element={<SubmitScreen />} />
-                <Route path="/ukpack2/thank-you" element={<ThankYouScreen />} />
-                <Route path="/ukpack2/form" element={<FormScreen />} />
+                <Route path="/mydreambus/submit" element={<SubmitScreen />} />
+                <Route path="/mydreambus/thank-you" element={<ThankYouScreen />} />
+                <Route path="/mydreambus/form" element={<FormScreen />} />
                 <Route
-                  path="/ukpack2/confirmation"
+                  path="/mydreambus/confirmation"
                   element={<ConfirmationScreen />}
                 />
-                <Route path="/ukpack2/end" element={<EndScreen />} />
-                <Route path="/ukpack2/skip-end" element={<SkipEndPage />} />
+                <Route path="/mydreambus/end" element={<EndScreen />} />
+                <Route path="/mydreambus/skip-end" element={<SkipEndPage />} />
 
                 {/* Survey (Ask01 removed) */}
                 <Route
