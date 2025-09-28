@@ -483,7 +483,7 @@ export function createServer() {
             const snap = await colRef.limit(limit).get();
             if (snap && snap.size > 0) {
               const headers = [
-                "��หัสเซสชัน (sessionID)",
+                "ร���ัสเซสชัน (sessionID)",
                 "IP (ip)",
                 "เวลาเริ่ม (firstTimestamp)",
                 "เวลาสิ้นสุด (lastTimestamp)",
@@ -502,7 +502,7 @@ export function createServer() {
                 "เส้นทาง (route)",
                 "พื้นที่ (area)",
                 "ตัดสินใจใช้บริการ (decision_use_service)",
-                "เหตุผลไม่ใช้บร��การ (reason_not_use)",
+                "เหตุผลไม่ใช้บริ���าร (reason_not_use)",
                 "เข้าร่วมของรางวัล (decision_enter_prize)",
                 "ชื่อผู้รับรางวัล (prize_name)",
                 "เบอร์โทรผู้รับรางวัล (prize_phone)",
@@ -583,7 +583,7 @@ export function createServer() {
         "จำนวนผู้ตั้งครรภ์ (pregnant_count)",
         "จำนวนพระ (monk_count)",
         "สิ่งอำนวยความสะดวก (features)",
-        "ประเภทการ��ำระเงิน (payment_types)",
+        "ประเภทการช���ระเงิน (payment_types)",
         "จำนวนประตู (doors)",
         "สี (color)",
         "ความถี่ (frequency)",
@@ -778,8 +778,8 @@ export function createServer() {
         const vals = [
           rowObj.sessionID,
           rowObj.ip || "",
-          rowObj.firstTimestamp,
-          rowObj.lastTimestamp,
+          formatToBangkok(rowObj.firstTimestamp),
+          formatToBangkok(rowObj.lastTimestamp),
           rowObj.PDPA_acceptance,
           rowObj.chassis_type,
           rowObj.total_seats,
