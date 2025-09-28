@@ -90,7 +90,7 @@ const SummaryScreen: React.FC = () => {
             <div className="w-full">
               <CtaButton
                 text="ไม่ใช่, ลองอีกครั้ง"
-                onClick={() => navigate("/ukpack2/chassis")}
+                onClick={() => navigate("/mydreambus/chassis")}
                 className="w-full"
               />
             </div>
