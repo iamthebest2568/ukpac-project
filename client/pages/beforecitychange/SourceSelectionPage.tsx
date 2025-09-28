@@ -3,7 +3,7 @@
  */
 
 import SourceSelection from "../../components/journey/SourceSelection";
-import { useSession } from "../hooks/useSession";
+import { useSession } from "../../hooks/useSession";
 import { useEffect } from "react";
 
 const SourceSelectionPage = () => {
