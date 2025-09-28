@@ -2,7 +2,7 @@
  * User selects their preferred information source
  */
 
-import SourceSelection from "../components/journey/SourceSelection";
+import SourceSelection from "../../components/journey/SourceSelection";
 import { useSession } from "../hooks/useSession";
 import { useEffect } from "react";
 
