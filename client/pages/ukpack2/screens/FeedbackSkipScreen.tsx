@@ -58,7 +58,7 @@ const FeedbackSkipScreen: React.FC = () => {
       <ShareModal
         isOpen={isShareOpen}
         onClose={() => setShareOpen(false)}
-        shareUrl={window.location.origin + "/ukpack2"}
+        shareUrl={window.location.origin + "/mydreambus"}
         shareText={"ผม/ฉันได้ออกแบบรถเมล์ในฝัน ลองดูสิ"}
       />
     </>
