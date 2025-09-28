@@ -263,6 +263,8 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   }, [location.search]);
 
   // When running inside the embedded iframe for ukpack2, add a body class to apply special responsive CSS
+  // Also perform an immediate client-side canonical redirect from /ukpack2/* → /mydreambus/* to avoid
+  // relative fetch paths resolving under /ukpack2 which can cause network failures in preview.
   React.useEffect(() => {
     try {
       const isUkpack2 =
@@ -279,6 +281,21 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         document.body.classList.remove("embedded-ukpack2");
       }
     } catch (e) {}
+
+    // Canonicalize /ukpack2 URL to /mydreambus to avoid any relative resource resolution issues
+    try {
+      if (typeof window !== "undefined") {
+        const p = window.location && window.location.pathname ? window.location.pathname : "";
+        if (p.startsWith("/ukpack2")) {
+          const dest = p.replace(/^\/ukpack2/, "/mydreambus") + (window.location.search || "");
+          if (dest !== window.location.pathname + (window.location.search || "")) {
+            // Use replace to avoid polluting history
+            window.location.replace(dest);
+          }
+        }
+      }
+    } catch (e) {}
+
     return () => {
       try {
         document.body.classList.remove("page-ukpack2");
@@ -340,7 +357,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           className="skip-link sr-only focus:not-sr-only absolute top-2 left-2 z-50 bg-yellow-400 text-black px-2 py-1 rounded touch-target"
           aria-label="ข้ามไปยังเนื้อหาหลัก"
         >
-          ���้ามไปยังเนื้อหาหลัก
+          ���้ามไปย���งเนื้อหาหลัก
         </a>
         <main
           id="main-content"
