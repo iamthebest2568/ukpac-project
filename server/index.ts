@@ -564,6 +564,107 @@ export function createServer() {
         console.warn('export-csv: admin init failed', e);
       }
 
+      // If admin collection was empty or unavailable, also try reading server fallback pending file
+      try {
+        const DATA_DIR = process.env.DATA_DIR || path.join(process.cwd(), '.data');
+        const pendingFile = path.join(DATA_DIR, 'pending-submissions.jsonl');
+        if (fs.existsSync(pendingFile)) {
+          try {
+            const raw = await fs.promises.readFile(pendingFile, 'utf8');
+            const lines = raw.split(/\n+/).filter(Boolean);
+            if (lines.length > 0) {
+              const headers = [
+                "รหัสเซสชัน (sessionID)",
+                "IP (ip)",
+                "เวลาเริ่ม (firstTimestamp)",
+                "เวลาสิ้นสุ�� (lastTimestamp)",
+                "ยอมรับ PDPA (PDPA_acceptance)",
+                "ประเภทรถ (chassis_type)",
+                "จำนวนที่นั่งรวม (total_seats)",
+                "ที่นั่งพิเศษ (special_seats)",
+                "จำนวนเด็ก/ผู้สูงอายุ (children_elder_count)",
+                "จำนวนผู้ตั้งครรภ์ (pregnant_count)",
+                "จำนวนพระ (monk_count)",
+                "สิ่งอำนวยความสะดวก (features)",
+                "ประเภทการชำระเงิน (payment_types)",
+                "จำนวนประตู (doors)",
+                "สี (color)",
+                "ความถี่ (frequency)",
+                "เส้นทาง (route)",
+                "พื้นที่ (area)",
+                "ตัดสินใจใช้บริการ (decision_use_service)",
+                "เหตุผลไม่ใช้บริการ (reason_not_use)",
+                "เข้าร่วมของรางวัล (decision_enter_prize)",
+                "ชื่อผู้รับรางวัล (prize_name)",
+                "เบอร์โทรผู้รับรางวัล (prize_phone)",
+                "เวลาการรับรางวัล (prize_timestamp)",
+                "แชร์กับเพื่อน (shared_with_friends)",
+                "เวลาแชร์ (shared_timestamp)",
+              ];
+
+              const csvRows: string[] = [
+                headers.map((h) => '"' + String(h || "").replace(/"/g, '""') + '"').join(','),
+              ];
+
+              let count = 0;
+              for (const ln of lines) {
+                if (count >= limit) break;
+                try {
+                  const obj = JSON.parse(ln);
+                  // Only include already-mapped session rows (presence of firstTimestamp or PDPA_acceptance)
+                  if (obj && (obj.firstTimestamp || obj.PDPA_acceptance || obj.sessionID) && (obj.firstTimestamp || obj.lastTimestamp)) {
+                    const vals = [
+                      obj.sessionID || obj.sessionId || '',
+                      obj.ip || '',
+                      formatToBangkok(obj.firstTimestamp || obj.firstTimestamp || ''),
+                      formatToBangkok(obj.lastTimestamp || obj.lastTimestamp || ''),
+                      obj.PDPA_acceptance || obj.PDPA || (obj.PDPA === true ? '1' : '') || '',
+                      obj.chassis_type || obj.chassis || '',
+                      obj.total_seats || obj.totalSeats || '',
+                      obj.special_seats || '',
+                      obj.children_elder_count || '',
+                      obj.pregnant_count || '',
+                      obj.monk_count || '',
+                      Array.isArray(obj.features) ? obj.features.join(' | ') : (obj.features || ''),
+                      Array.isArray(obj.payment_types) ? obj.payment_types.join(' | ') : (obj.paymentTypes || obj.payment_methods || ''),
+                      obj.doors || (obj.doorConfig && obj.doorConfig.doorChoice) || '',
+                      obj.color || (obj.exterior && (obj.exterior.color || obj.exterior.colorHex)) || '',
+                      obj.frequency || obj.serviceInfo?.frequency || obj.interval || '',
+                      obj.route || obj.serviceInfo?.routeName || '',
+                      obj.area || obj.serviceInfo?.area || '',
+                      obj.decision_use_service || obj.decisionUseService || '',
+                      obj.reason_not_use || obj.reasonNotUse || obj.reason || '',
+                      obj.decision_enter_prize || obj.enterPrize || (obj.prizeName ? '1' : '' ) || '',
+                      obj.prize_name || obj.prizeName || '',
+                      obj.prize_phone || obj.prizePhone || '',
+                      obj.prize_timestamp || '',
+                      obj.shared_with_friends || (obj.userEngagement && obj.userEngagement.shared ? '1' : '') || '',
+                      obj.shared_timestamp || '',
+                    ];
+                    const safe = vals.map((f) => '"' + String(f || "").replace(/"/g, '""') + '"');
+                    csvRows.push(safe.join(','));
+                    count++;
+                  }
+                } catch (e) {
+                  // ignore parse errors
+                }
+              }
+
+              if (csvRows.length > 1) {
+                const csvOut = csvRows.join('\n');
+                res.setHeader('Content-Type', 'text/csv; charset=utf-8');
+                res.setHeader('Content-Disposition', 'attachment; filename="mydreambus-sessions-' + Date.now() + '.csv"');
+                return res.status(200).send('\uFEFF' + csvOut);
+              }
+            }
+          } catch (e) {
+            console.warn('export-csv: failed to read pending submissions file', e);
+          }
+        }
+      } catch (e) {
+        console.warn('export-csv: pending-file check failed', e);
+      }
+
       // Fallback to existing behavior which computes from events
       const { computeSessionSummaries, getAppEventsBySession } = await import(
         './services/appEvents'
@@ -592,7 +693,7 @@ export function createServer() {
         "ตัดสินใจใช้บริการ (decision_use_service)",
         "เหตุผลไม่ใช้บริการ (reason_not_use)",
         "เข้าร่วมของรางวัล (decision_enter_prize)",
-        "ชื่อผู้รับรางวัล (prize_name)",
+        "ชื่อผ���้รับรางวัล (prize_name)",
         "เบอร์โทรผู้รับรางวัล (prize_phone)",
         "เวลาการรับรางวัล (prize_timestamp)",
         "แชร์กับเพื่อน (shared_with_friends)",
