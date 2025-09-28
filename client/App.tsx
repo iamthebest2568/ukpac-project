@@ -262,44 +262,26 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     }
   }, [location.search]);
 
-  // When running inside the embedded iframe for ukpack2, add a body class to apply special responsive CSS
-  // Also perform an immediate client-side canonical redirect from /ukpack2/* → /mydreambus/* to avoid
-  // relative fetch paths resolving under /ukpack2 which can cause network failures in preview.
+  // When running inside the embedded iframe for mydreambus, add a body class to apply special responsive CSS
   React.useEffect(() => {
     try {
-      const isUkpack2 =
-        location.pathname.startsWith("/ukpack2") ||
-        location.pathname.startsWith("/mydreambus");
-      if (isUkpack2) {
-        document.body.classList.add("page-ukpack2");
+      const isMydreambus = location.pathname.startsWith("/mydreambus");
+      if (isMydreambus) {
+        document.body.classList.add("page-mydreambus");
       } else {
-        document.body.classList.remove("page-ukpack2");
+        document.body.classList.remove("page-mydreambus");
       }
-      if (isEmbedded && isUkpack2) {
-        document.body.classList.add("embedded-ukpack2");
+      if (isEmbedded && isMydreambus) {
+        document.body.classList.add("embedded-mydreambus");
       } else {
-        document.body.classList.remove("embedded-ukpack2");
-      }
-    } catch (e) {}
-
-    // Canonicalize /ukpack2 URL to /mydreambus to avoid any relative resource resolution issues
-    try {
-      if (typeof window !== "undefined") {
-        const p = window.location && window.location.pathname ? window.location.pathname : "";
-        if (p.startsWith("/ukpack2")) {
-          const dest = p.replace(/^\/ukpack2/, "/mydreambus") + (window.location.search || "");
-          if (dest !== window.location.pathname + (window.location.search || "")) {
-            // Use replace to avoid polluting history
-            window.location.replace(dest);
-          }
-        }
+        document.body.classList.remove("embedded-mydreambus");
       }
     } catch (e) {}
 
     return () => {
       try {
-        document.body.classList.remove("page-ukpack2");
-        document.body.classList.remove("embedded-ukpack2");
+        document.body.classList.remove("page-mydreambus");
+        document.body.classList.remove("embedded-mydreambus");
       } catch (e) {}
     };
   }, [isEmbedded, location.pathname]);
