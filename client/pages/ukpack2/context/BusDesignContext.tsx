@@ -308,6 +308,44 @@ export const BusDesignProvider = ({ children }: { children: ReactNode }) => {
     }
   }
 
+  // Attempt to flush any pending local submissions to server when online
+  useEffect(() => {
+    const tryFlush = async () => {
+      try {
+        if (typeof window === 'undefined') return;
+        const raw = localStorage.getItem('mydreambus_pending_submissions');
+        if (!raw) return;
+        let pending = [] as any[];
+        try { pending = JSON.parse(raw); } catch (_) { return; }
+        if (!Array.isArray(pending) || pending.length === 0) return;
+        if (navigator.onLine === false) return;
+        // Post batch to server
+        try {
+          const resp = await fetch('/api/flush-pending', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(pending.map((p) => p.payload || p)),
+          });
+          if (resp.ok) {
+            // clear pending
+            localStorage.removeItem('mydreambus_pending_submissions');
+            console.info('Flushed pending submissions to server');
+          } else {
+            console.warn('Flush pending failed', await resp.text());
+          }
+        } catch (e) {
+          console.warn('Flush pending network error', e);
+        }
+      } catch (e) {}
+    };
+
+    tryFlush();
+
+    const onOnline = () => tryFlush();
+    window.addEventListener('online', onOnline);
+    return () => window.removeEventListener('online', onOnline);
+  }, []);
+
   return (
     <BusDesignContext.Provider
       value={{ state, dispatch, submitDesignToFirebase }}
