@@ -62,9 +62,13 @@ const UkDashboard: React.FC = () => {
             return p;
           }
         };
-        const paths = rawPaths.map(normalize);
+        // Try the raw paths first (preserve relative URLs), then normalized absolute URLs
+        const normalized = rawPaths.map(normalize);
+        const paths = Array.from(new Set([...(rawPaths || []), ...normalized]));
 
         const fetchWithTimeout = async (url: string, ms: number) => {
+          // if url is relative (starts with '/') use as-is; otherwise use the full url
+          const targetUrl = url && String(url).startsWith("/") ? url : url;
           if (typeof navigator !== "undefined" && navigator.onLine === false) {
             console.debug("Offline: skipping fetch for", url);
             return null;
@@ -508,7 +512,7 @@ const UkDashboard: React.FC = () => {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               className="w-full border px-3 py-2 rounded mb-3"
-              placeholder="รหัสผ่าน"
+              placeholder="รหัสผ่า���"
               autoFocus
             />
             <div className="flex gap-2">
