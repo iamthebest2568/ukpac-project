@@ -29,8 +29,9 @@ const sanitizeThai = (text: any): any => {
 const EVENTS_FILE = path.join(DATA_DIR, "events.jsonl");
 
 let firestoreDb: ReturnType<typeof getFirestore> | null = null;
+let adminDb: admin.firestore.Firestore | null = null;
 function initFirestore() {
-  if (firestoreDb) return;
+  if (firestoreDb || adminDb) return;
 
   // Prefer the Admin SDK when a service account is provided (server environment)
   const svc = process.env.FIREBASE_SERVICE_ACCOUNT;
@@ -41,11 +42,11 @@ function initFirestore() {
         admin.initializeApp({ credential: admin.credential.cert(parsed as any) } as any);
       }
       // Use admin firestore for server operations
-      firestoreDb = admin.firestore();
+      adminDb = admin.firestore();
       return;
     } catch (e) {
       console.warn("Init Firestore (admin) failed", e);
-      firestoreDb = null;
+      adminDb = null;
       // fall through to try client SDK as a last resort
     }
   }
