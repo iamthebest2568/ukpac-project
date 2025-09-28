@@ -2,7 +2,7 @@
  * User provides suggestions for improvement
  */
 
-import Ask05 from "../components/journey/Ask05";
+import Ask05 from "../../components/journey/Ask05";
 import { useSession } from "../hooks/useSession";
 
 const Ask05Page = () => {
