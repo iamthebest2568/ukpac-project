@@ -159,9 +159,7 @@ const UkDashboard: React.FC = () => {
             typeof window !== "undefined" ? window.location.origin : "";
           const rawCandidates = [
             `/api/firestore-stats?project=mydreambus`,
-            `/.netlify/functions/api/firestore-stats?project=mydreambus`,
             `${origin}/api/firestore-stats?project=mydreambus`,
-            `${origin}/.netlify/functions/api/firestore-stats?project=mydreambus`,
           ];
 
           // helpful debug logging for network issues
