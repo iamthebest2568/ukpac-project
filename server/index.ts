@@ -289,6 +289,53 @@ export function createServer() {
     }
   });
 
+  // Upload design image via server (client posts base64 image). Server uses Admin SDK to
+  // upload to Firebase Storage and write a Firestore document with the image URL.
+  app.post('/api/upload-design', async (req, res) => {
+    try {
+      const { imageBase64, filename, project } = req.body || {};
+      if (!imageBase64 || typeof imageBase64 !== 'string') {
+        return res.status(400).json({ ok: false, error: 'missing imageBase64' });
+      }
+
+      // Normalize and strip data URI prefix if present
+      let base64 = imageBase64;
+      const m = String(imageBase64).match(/^data:(.+);base64,(.*)$/);
+      if (m) base64 = m[2];
+
+      const buffer = Buffer.from(base64, 'base64');
+
+      const svc = process.env.FIREBASE_SERVICE_ACCOUNT;
+      if (!svc) return res.status(500).json({ ok: false, error: 'FIREBASE_SERVICE_ACCOUNT not configured' });
+      const parsed = typeof svc === 'string' ? JSON.parse(svc) : svc;
+      if (!admin.apps || admin.apps.length === 0) {
+        admin.initializeApp({ credential: admin.credential.cert(parsed as any) } as any);
+      }
+
+      const bucket = admin.storage().bucket();
+      const projectPrefix = project === 'beforecitychange' ? 'beforecitychange' : 'mydreambus';
+      const safeFilename = filename && typeof filename === 'string' ? filename.replace(/[^a-zA-Z0-9._-]/g, '_') : `design_${Date.now()}.png`;
+      const finalPath = `${projectPrefix}/designs/${safeFilename}`;
+      const file = bucket.file(finalPath);
+
+      // upload buffer
+      await file.save(buffer, { resumable: false, contentType: 'image/png', public: false });
+
+      // generate signed URL (long expiry)
+      const [signedUrl] = await file.getSignedUrl({ action: 'read', expires: '03-01-2500' });
+
+      // Write Firestore doc referencing the URL
+      const fsAdmin = admin.firestore();
+      const col = fsAdmin.collection('kpact-gamebus-imagedesign-events');
+      const docRef = await col.add({ imageUrl: signedUrl, createdAt: admin.firestore.FieldValue.serverTimestamp() });
+
+      res.json({ ok: true, imageUrl: signedUrl, id: docRef.id, path: finalPath });
+    } catch (e: any) {
+      console.error('upload-design error', e);
+      res.status(500).json({ ok: false, error: e?.message || String(e) });
+    }
+  });
+
   // Firestore stats for project collections
   app.get("/api/firestore-stats", async (req, res) => {
     try {
