@@ -173,7 +173,7 @@ const Ask04Budget = ({
       // lazy import to avoid adding firebase to initial bundle
       (async () => {
         try {
-          const { addDesignImageUrlToFirestore } = await import('../../../lib/firebase');
+          const { addDesignImageUrlToFirestore } = await import('../../lib/firebase');
           for (const u of unique) {
             if (sentUrls[u]) continue;
             try {
