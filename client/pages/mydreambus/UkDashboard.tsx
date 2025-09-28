@@ -260,21 +260,69 @@ const UkDashboard: React.FC = () => {
   const [lastSentResult, setLastSentResult] = useState<any | null>(null);
   const [isSending, setIsSending] = useState(false);
 
-  const handleExportMapped = () => {
-    const csv = exportSessionsAsCSV();
-    if (!csv) {
-      alert("ไม่มีข้อมูลให้ส่งออก");
-      return;
+  const handleExportMapped = async () => {
+    try {
+      // Try server-side session summaries for a central export
+      const origin = typeof window !== 'undefined' ? window.location.origin : '';
+      const resp = await fetch(`${origin}/api/session-summaries?limit=1000`);
+      if (!resp.ok) {
+        // Fallback to client-side export
+        const csv = exportSessionsAsCSV();
+        if (!csv) {
+          alert("ไม่มีข้อมูลให้ส่งออก");
+          return;
+        }
+        const blob = new Blob(["\uFEFF" + csv], {
+          type: "text/csv;charset=utf-8;",
+        });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `mydreambus-sessions-${Date.now()}.csv`;
+        a.click();
+        URL.revokeObjectURL(url);
+        return;
+      }
+      const items = await resp.json();
+      if (!Array.isArray(items) || items.length === 0) {
+        alert("ไม่มีข้อมูลบนเซิร์ฟเวอร์สำหรับดาวน์โหลด");
+        return;
+      }
+
+      // Build CSV with headers matching mapped export
+      const headers = [
+        "รหัสเซสชัน (sessionID)",
+        "เวลาเริ่ม (firstTimestamp)",
+        "เวลาสิ้นสุด (lastTimestamp)",
+        "ข้อสรุป (summary)",
+        "IP (ip)",
+        "userAgent",
+      ];
+      const rows = [headers.map((h) => `"${String(h).replace(/"/g, '""')}"`).join(",")];
+      for (const s of items) {
+        const row = [
+          s.sessionId || s.sessionID || "",
+          s.firstSeen || "",
+          s.lastSeen || "",
+          // lightweight summary: join mn1Selected if present
+          Array.isArray(s.mn1Selected) ? s.mn1Selected.join(" | ") : "",
+          s.ip || "",
+          s.userAgent || "",
+        ];
+        rows.push(row.map((c) => `"${String(c || "").replace(/"/g, '""')}"`).join(","));
+      }
+      const csv = rows.join("\n");
+      const blob = new Blob(["\uFEFF" + csv], { type: "text/csv;charset=utf-8;" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `mydreambus-sessions-server-${Date.now()}.csv`;
+      a.click();
+      URL.revokeObjectURL(url);
+    } catch (e) {
+      console.error(e);
+      alert("การดาวน์โหลดล้มเหลว: " + String(e));
     }
-    const blob = new Blob(["\uFEFF" + csv], {
-      type: "text/csv;charset=utf-8;",
-    });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `mydreambus-sessions-${Date.now()}.csv`;
-    a.click();
-    URL.revokeObjectURL(url);
   };
 
   const handleSendAll = async () => {
