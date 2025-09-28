@@ -2,7 +2,7 @@
  * User provides custom reasoning if they selected "Other"
  */
 
-import Ask02_2 from "../components/journey/Ask02_2";
+import Ask02_2 from "../../components/journey/Ask02_2";
 import { useSession } from "../hooks/useSession";
 import { useEffect } from "react";
 
