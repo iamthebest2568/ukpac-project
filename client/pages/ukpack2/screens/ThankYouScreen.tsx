@@ -26,7 +26,7 @@ const ThankYouScreen: React.FC = () => {
             <CtaButton
               className="w-full"
               text="ไม่ลุ้นรับรางวัล"
-              onClick={() => navigate("/ukpack2/feedback-skip")}
+              onClick={() => navigate("/mydreambus/feedback-skip")}
             />
           </div>
         </Uk2Footer>
@@ -45,7 +45,7 @@ const ThankYouScreen: React.FC = () => {
         </div>
         <div className="inline-block bg-white rounded-xl p-6 text-[#001a73]">
           <p className="mt-3 font-prompt font-semibold text-[18px]">
-            เราจะนำข้อมูลเหล่านี้รวบรวม เป็นข้อเสนอส่งต่อเพื่อการพัฒนา
+            เราจะนำข้���มูลเหล่านี้รวบรวม เป็นข้อเสนอส่งต่อเพื่อการพัฒนา
             รถประจำทางให้ดียิ่งขึ้น
           </p>
           <hr className="my-6 border-t-4 border-[#000D59] w-full" />
