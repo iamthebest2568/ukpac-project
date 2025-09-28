@@ -73,38 +73,62 @@
   box-sizing: border-box !important;
 }
 
-/* Desktop mock should preserve the intended row structure (2 / 3 / 2) */
+/* Desktop mock: use CSS Grid per row to create neat columns (2 / 3 / 2) */
 .tablet-mock-env .mn3-button-row {
-  flex-wrap: nowrap !important; /* preserve explicit rows from markup */
-  gap: 8px !important;
-  justify-content: center !important;
+  display: grid !important;
+  gap: 10px !important;
+  justify-items: stretch !important;
+  align-items: stretch !important;
+  width: 100%;
 }
 
-/* Row-specific sizing to ensure exact 2 / 3 / 2 layout inside mock */
-.tablet-mock-env .mn3-button-grid > .mn3-button-row:nth-child(1) .mn3-policy-button {
-  flex: 0 0 calc((100% - 8px) / 2) !important; /* 2 buttons, account for gap */
-  max-width: calc((100% - 8px) / 2) !important;
+/* First row: 2 columns */
+.tablet-mock-env .mn3-button-grid > .mn3-button-row:nth-child(1) {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
 }
-.tablet-mock-env .mn3-button-grid > .mn3-button-row:nth-child(2) .mn3-policy-button {
-  flex: 0 0 calc((100% - 16px) / 3) !important; /* 3 buttons, two gaps of 8px */
-  max-width: calc((100% - 16px) / 3) !important;
+/* Second row: 3 columns */
+.tablet-mock-env .mn3-button-grid > .mn3-button-row:nth-child(2) {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
 }
-.tablet-mock-env .mn3-button-grid > .mn3-button-row:nth-child(3) .mn3-policy-button {
-  flex: 0 0 calc((100% - 8px) / 2) !important; /* 2 buttons */
-  max-width: calc((100% - 8px) / 2) !important;
-}
-
-/* Ensure buttons shrink a bit if text wraps but keep equal widths */
-.tablet-mock-env .mn3-policy-button .mn3-button-text {
-  display: block !important;
-  padding: 4px 6px !important;
+/* Third row: 2 columns */
+.tablet-mock-env .mn3-button-grid > .mn3-button-row:nth-child(3) {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
 }
 
-/* Reduce button min-width inside mock mockup to prevent overflow */
+/* Ensure button content centers and scales nicely */
 .tablet-mock-env .mn3-policy-button {
-  min-width: 0 !important;
-  flex: 1 1 auto !important; /* allow flexible shrinking and growing */
-  padding: 6px 10px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 10px 12px !important;
+  height: auto !important;
+  min-height: 44px !important;
+  border-radius: 20px !important;
+  font-size: 14px !important;
+  line-height: 1.2 !important;
+  box-sizing: border-box !important;
+  white-space: normal !important;
+}
+
+/* Button text tuning */
+.tablet-mock-env .mn3-button-text {
+  font-size: 14px !important;
+  padding: 4px 6px !important;
+  text-align: center !important;
+}
+
+/* Ensure grid items don't overflow the mock frame */
+.tablet-mock-env .mn3-button-grid {
+  max-width: 86% !important;
+  margin: 0 auto !important;
+}
+
+/* Slightly reduce continue button size to fit mock */
+.tablet-mock-env .mn3-continue-button {
+  max-width: 320px !important;
+  width: 80% !important;
+  height: 56px !important;
+  font-size: 16px !important;
 }
 
 /* Limit long texts and allow wrapping for Thai */
