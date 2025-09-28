@@ -41,7 +41,7 @@ const ConfirmationScreen: React.FC = () => {
               src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F6b62374327d643178ab7f4a913ddc1b1?format=webp&width=800"
               alt="image"
               className="w-full h-auto object-contain mx-auto"
-              style={{ maxWidth: "765px" }}
+              style={{ maxWidth: "650px" }}
             />
           </div>
           <div className="flex flex-col items-center text-center text-[#001a73]">
@@ -53,14 +53,14 @@ const ConfirmationScreen: React.FC = () => {
               src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9989e3bd2f31458aa7691b01a3a08b12?format=webp&width=800"
               alt="image"
               className="w-full h-auto object-contain"
-              style={{ marginTop: "calc(2rem - 5px)", maxWidth: "544px" }}
+              style={{ marginTop: "calc(2rem - 5px)", maxWidth: "462px" }}
             />
 
             <img
               src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F7b077743c9a04c5596ea859a742b1e96?format=webp&width=800"
               alt="additional image"
               className="w-full h-auto object-contain"
-              style={{ marginTop: "12px", maxWidth: "544px" }}
+              style={{ marginTop: "12px", maxWidth: "462px" }}
             />
           </div>
         </div>
