@@ -293,3 +293,69 @@
 .tablet-mock-env .minigame-mn1-page .relative.flex.justify-center {
   z-index: 5 !important;
 }
+
+/* Additional safe-guards to prevent right-edge overflow and ensure buttons stay centered
+   - Apply horizontal padding and box-sizing to button grid
+   - Override inline widths on buttons inside the mock using !important
+   - Ensure rows center their items and do not allow items to stick to the right
+*/
+.tablet-mock-env .minigame-mn1-page .mn3-button-grid,
+.tablet-mock-env .mn3-page-bg .mn3-button-grid {
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  max-width: 720px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* Force rows to distribute space and center items */
+.tablet-mock-env .minigame-mn1-page .mn3-button-row,
+.tablet-mock-env .mn3-page-bg .mn3-button-row {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important; /* center children horizontally */
+  gap: 12px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Neutralize inline width percentages by making buttons flexible and allowing shrink
+   Use flex-basis for the intended columns but allow them to shrink if there's not enough space */
+.tablet-mock-env .minigame-mn1-page .mn3-button-row > .mn3-policy-button,
+.tablet-mock-env .mn3-page-bg .mn3-button-row > .mn3-policy-button {
+  width: auto !important;
+  max-width: 100% !important;
+  flex: 1 1 auto !important;
+  min-width: 90px !important; /* avoid too small */
+  box-sizing: border-box !important;
+}
+
+/* Row specific suggested flex-basis to approximate 2/3/2 layout but still responsive */
+.tablet-mock-env .minigame-mn1-page .mn3-button-row:nth-child(1) > .mn3-policy-button {
+  flex-basis: calc((100% - 12px) / 2) !important;
+}
+.tablet-mock-env .minigame-mn1-page .mn3-button-row:nth-child(2) > .mn3-policy-button {
+  flex-basis: calc((100% - 24px) / 3) !important;
+}
+.tablet-mock-env .minigame-mn1-page .mn3-button-row:nth-child(3) > .mn3-policy-button {
+  flex-basis: calc((100% - 12px) / 2) !important;
+}
+
+/* Ensure button text wraps and buttons maintain internal padding so they don't push width */
+.tablet-mock-env .minigame-mn1-page .mn3-policy-button .mn3-button-text,
+.tablet-mock-env .mn3-page-bg .mn3-policy-button .mn3-button-text {
+  padding-left: 8px !important;
+  padding-right: 8px !important;
+  white-space: normal !important;
+  word-break: break-word !important;
+}
+
+/* Defensive: cap the background image and other large elements so they don't push content width */
+.tablet-mock-env .minigame-mn1-page img,
+.tablet-mock-env .minigame-mn1-page .figma-style1-background-image {
+  max-width: 100% !important;
+  height: auto !important;
+  display: block !important;
+}
