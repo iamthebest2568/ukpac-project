@@ -21,7 +21,7 @@ const ConfirmationScreen: React.FC = () => {
             <div style={{ width: "220px" }}>
               <CtaButton
                 className="w-full"
-                text="จบเกม"
+                text="จบเก��"
                 onClick={() => navigate("/mydreambus")}
               />
             </div>
@@ -53,6 +53,13 @@ const ConfirmationScreen: React.FC = () => {
               alt="image"
               className="w-full max-w-[640px] h-auto object-contain"
               style={{ marginTop: "calc(2rem - 5px)" }}
+            />
+
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F7b077743c9a04c5596ea859a742b1e96?format=webp&width=800"
+              alt="additional image"
+              className="w-full max-w-[640px] h-auto object-contain"
+              style={{ marginTop: "12px" }}
             />
           </div>
         </div>

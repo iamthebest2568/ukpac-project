@@ -437,3 +437,14 @@
 {"sessionId":"session_1759061935881_sbpep06wc","eventName":"sw.choice.selected","timestamp":"2025-09-28T12:19:07.774Z","choiceText":"PDPA","variantId":"a59ef133","variantName":"Intro"}
 {"sessionId":"session_1759061935881_sbpep06wc","eventName":"sw.variant.start","timestamp":"2025-09-28T12:19:08.536Z","variantId":"e61429e0","variantName":"PDPA"}
 {"sessionId":"session_1759061935881_sbpep06wc","eventName":"sw.story.start","timestamp":"2025-09-28T12:19:08.538Z","variantId":"e61429e0","variantName":"PDPA"}
+{"sessionId":"session_1759061935881_sbpep06wc","eventName":"sw.variant.start","timestamp":"2025-09-28T12:19:42.262Z","variantId":"a59ef133","variantName":"Intro"}
+{"sessionId":"session_1759061935881_sbpep06wc","eventName":"sw.choice.selected","timestamp":"2025-09-28T12:19:42.261Z","choiceText":"PDPA","variantId":"a59ef133","variantName":"Intro"}
+{"sessionId":"session_1759061935881_sbpep06wc","eventName":"sw.story.start","timestamp":"2025-09-28T12:19:42.263Z","variantId":"a59ef133","variantName":"Intro"}
+{"sessionId":"session_1759061935881_sbpep06wc","eventName":"sw.variant.start","timestamp":"2025-09-28T12:19:43.019Z","variantId":"e61429e0","variantName":"PDPA"}
+{"sessionId":"session_1759061935881_sbpep06wc","eventName":"sw.story.start","timestamp":"2025-09-28T12:19:43.021Z","variantId":"e61429e0","variantName":"PDPA"}
+{"sessionId":"session_1759061935881_sbpep06wc","eventName":"sw.choice.selected","timestamp":"2025-09-28T12:19:49.602Z","choiceText":"ยอมรับและเริ่มเล่นเกม","variantId":"e61429e0","variantName":"PDPA"}
+{"sessionId":"session_1759061935881_sbpep06wc","eventName":"sw.variant.start","timestamp":"2025-09-28T12:19:49.618Z","variantId":"02fe3354","variantName":"Opening Scene"}
+{"sessionId":"session_1759061935881_sbpep06wc","eventName":"sw.choice.selected","timestamp":"2025-09-28T12:19:55.545Z","choiceText":"เริ่มเล่น","variantId":"02fe3354","variantName":"Opening Scene"}
+{"sessionId":"session_1759061935881_sbpep06wc","eventName":"sw.variant.start","timestamp":"2025-09-28T12:19:55.562Z","variantId":"333faf2b","variantName":"เหตุผลหลักในการเดินทางเข้าเมือง"}
+{"sessionId":"session_1759061935881_sbpep06wc","eventName":"sw.choice.selected","timestamp":"2025-09-28T12:20:05.652Z","choiceText":"อื่น ๆ.","variantId":"333faf2b","variantName":"เหตุผลหลักในการเดินทางเข้าเมือง"}
+{"sessionId":"session_1759061935881_sbpep06wc","eventName":"sw.variant.start","timestamp":"2025-09-28T12:20:05.662Z","variantId":"4bec38a0","variantName":"คุณใช้รถแบบไหนเดินทางเข้าเมือง?"}
