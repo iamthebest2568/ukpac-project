@@ -627,38 +627,20 @@ const App = () => {
                     </Suspense>
                   }
                 />
+                {/* Canonical beforecitychange dashboard route */}
                 <Route
-                  path="/beforecitychange/ukdashboard.html"
+                  path="/beforecitychange/ukdashboard"
                   element={
                     <Suspense fallback={<SuspenseFallback />}>
                       <UkDashboard />
                     </Suspense>
                   }
                 />
-                <Route
-                  path="/beforecitychange/uk-dashboard"
-                  element={
-                    <Suspense fallback={<SuspenseFallback />}>
-                      <UkDashboard />
-                    </Suspense>
-                  }
-                />
-                <Route
-                  path="/beforecitychange/UkDashboard"
-                  element={
-                    <Suspense fallback={<SuspenseFallback />}>
-                      <UkDashboard />
-                    </Suspense>
-                  }
-                />
-                <Route
-                  path="/beforecitychange/ukpact1-dashboard"
-                  element={
-                    <Suspense fallback={<SuspenseFallback />}>
-                      <UkPact1Dashboard />
-                    </Suspense>
-                  }
-                />
+                {/* Redirect legacy/variant dashboard URLs to canonical */}
+                <Route path="/beforecitychange/ukdashboard.html" element={<Navigate to="/beforecitychange/ukdashboard" replace />} />
+                <Route path="/beforecitychange/uk-dashboard" element={<Navigate to="/beforecitychange/ukdashboard" replace />} />
+                <Route path="/beforecitychange/UkDashboard" element={<Navigate to="/beforecitychange/ukdashboard" replace />} />
+                <Route path="/beforecitychange/ukpact1-dashboard" element={<Navigate to="/beforecitychange/ukdashboard" replace />} />
                 <Route
                   path="/beforecitychange/how-do-you-think"
                   element={
