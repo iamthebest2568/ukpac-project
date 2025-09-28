@@ -25,7 +25,7 @@ function initRealtime() {
       appId:
         process.env.FIREBASE_APP_ID ||
         "1:534142958499:web:3cf0b2380c055f7a747816",
-      databaseURL: process.env.FIREBASE_DATABASE_URL || undefined,
+      databaseURL: process.env.FIREBASE_DATABASE_URL || "https://uk-pact-default-rtdb.asia-southeast1.firebasedatabase.app",
     } as any;
     let app;
     if (getApps && getApps().length > 0) app = getApp();
