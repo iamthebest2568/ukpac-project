@@ -1,0 +1,77 @@
+/* MN2 mock overrides (scoped to tablet-mock-env)
+   These rules make MN2 pages render inside the DesktopMockup the same way as on mobile,
+   without affecting other pages. Scoped to .tablet-mock-env to avoid global changes. */
+
+.tablet-mock-env .figma-style1-content {
+  overflow: visible !important;
+  height: 100% !important;
+  max-height: 100% !important;
+}
+
+/* Ensure MN2 main aligns content to bottom inside mock (matches mobile layout) */
+.tablet-mock-env .mn2-step1-page .figma-style1-main,
+.tablet-mock-env .mn2-summary-page .figma-style1-main {
+  align-items: end !important;
+}
+
+.tablet-mock-env .mn2-step1-page .figma-style1-content-area,
+.tablet-mock-env .mn2-summary-page .figma-style1-content-area {
+  overflow: auto !important;
+  justify-content: flex-end !important;
+  box-sizing: border-box !important;
+  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 20px) !important;
+}
+
+/* Keep primary action accessible: pin to bottom inside mockup without affecting other pages */
+.tablet-mock-env .mn2-step1-page .figma-style1-button-container,
+.tablet-mock-env .mn2-summary-page .figma-style1-button-container {
+  position: sticky !important;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 12px) !important;
+  display: flex !important;
+  justify-content: center !important;
+  z-index: 10010 !important;
+  width: 100% !important;
+  max-width: 420px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* Ensure background behaves similarly to mobile within mockup */
+.tablet-mock-env .mn2-step1-page .figma-style1-background-image,
+.tablet-mock-env .mn2-summary-page .figma-style1-background-image {
+  object-position: center 8% !important;
+  object-fit: cover !important;
+}
+
+/* Protect against fixed positioning pushing content out of mock frame */
+.tablet-mock-env .mn2-step1-page .figma-style1-button-container {
+  position: relative !important;
+}
+
+/* Ensure CTA (ไปต่อ) doesn't overflow and stays a reasonable size */
+.tablet-mock-env .mn2-step1-page .figma-style1-button,
+.tablet-mock-env .mn2-step1-page .figma-style1-button-container button,
+.tablet-mock-env .mn2-step1-page .figma-style1-button-container .Uk1Button {
+  width: clamp(220px, 58%, 420px) !important;
+  max-width: 420px !important;
+  min-width: 180px !important;
+  height: clamp(44px, 6.5vw, 72px) !important;
+  border-radius: 36px !important;
+  padding-left: 12px !important;
+  padding-right: 12px !important;
+  margin: 8px auto !important;
+}
+
+/* Ensure selection grid stays centered and doesn't cause horizontal scroll */
+.tablet-mock-env .mn2-step1-page .w-full.max-w-\[334px\] {
+  max-width: 92% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* Final safety: neutralize transforms/absolute that may push content outside mock */
+.tablet-mock-env .mn2-step1-page .figma-style1-content-area,
+.tablet-mock-env .mn2-step1-page .figma-style1-main {
+  position: relative !important;
+  transform: none !important;
+}
