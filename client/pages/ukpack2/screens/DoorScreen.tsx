@@ -268,7 +268,7 @@ const DoorScreen: React.FC = () => {
       // NOTE: Do NOT persist overlay icon for door selection here — door clicks must not write overlay mappings
       // (overlayIconMap is left unchanged by this screen)
     } catch (e) {}
-    navigate("/ukpack2/design");
+    navigate("/mydreambus/design");
   };
 
   return (
