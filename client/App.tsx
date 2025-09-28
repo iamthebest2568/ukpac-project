@@ -29,20 +29,34 @@ const IndexPage = lazy(() => import("./pages/Index"));
 const Ask02Page = lazy(() => import("./pages/beforecitychange/Ask02Page"));
 const Ask02_2Page = lazy(() => import("./pages/beforecitychange/Ask02_2Page"));
 const Ask04Page = lazy(() => import("./pages/beforecitychange/Ask04Page"));
-const Ask04BudgetPage = lazy(() => import("./pages/beforecitychange/Ask04BudgetPage"));
+const Ask04BudgetPage = lazy(
+  () => import("./pages/beforecitychange/Ask04BudgetPage"),
+);
 const Ask05Page = lazy(() => import("./pages/beforecitychange/Ask05Page"));
 
 // Other needed pages
-const FakeNewsPage = lazy(() => import("./pages/beforecitychange/FakeNewsPage"));
+const FakeNewsPage = lazy(
+  () => import("./pages/beforecitychange/FakeNewsPage"),
+);
 const SourceSelectionPage = lazy(
   () => import("./pages/beforecitychange/SourceSelectionPage"),
 );
 const BudgetPage = lazy(() => import("./pages/beforecitychange/BudgetPage"));
-const EndSequencePage = lazy(() => import("./pages/beforecitychange/EndSequencePage"));
-const EndScreenPage = lazy(() => import("./pages/beforecitychange/EndScreenPage"));
-const MiniGameMN1Page = lazy(() => import("./pages/beforecitychange/MiniGameMN1Page"));
-const MiniGameMN2Page = lazy(() => import("./pages/beforecitychange/MiniGameMN2Page"));
-const MiniGameMN01Page = lazy(() => import("./pages/beforecitychange/MiniGameMN01Page"));
+const EndSequencePage = lazy(
+  () => import("./pages/beforecitychange/EndSequencePage"),
+);
+const EndScreenPage = lazy(
+  () => import("./pages/beforecitychange/EndScreenPage"),
+);
+const MiniGameMN1Page = lazy(
+  () => import("./pages/beforecitychange/MiniGameMN1Page"),
+);
+const MiniGameMN2Page = lazy(
+  () => import("./pages/beforecitychange/MiniGameMN2Page"),
+);
+const MiniGameMN01Page = lazy(
+  () => import("./pages/beforecitychange/MiniGameMN01Page"),
+);
 import MiniGameMN3Page from "./pages/MiniGameMN3Page";
 const UkStornaway = lazy(() => import("./pages/Uk-stornaway"));
 const UkDashboard = lazy(() => import("./pages/beforecitychange/UkDashboard"));
@@ -219,10 +233,17 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       </div>
     );
   }
-  const isFullBleed = (location.pathname.startsWith("/ukpack2") || location.pathname.startsWith("/mydreambus"));
+  const isFullBleed =
+    location.pathname.startsWith("/ukpack2") ||
+    location.pathname.startsWith("/mydreambus");
   const isUkpack1 = location.pathname.startsWith("/beforecitychange");
   // For beforecitychange, the root path (/beforecitychange) is the video page and should be full-bleed.
-  const isUkpack1Wrapped = isUkpack1 && !(location.pathname === "/beforecitychange" || location.pathname === "/beforecitychange/");
+  const isUkpack1Wrapped =
+    isUkpack1 &&
+    !(
+      location.pathname === "/beforecitychange" ||
+      location.pathname === "/beforecitychange/"
+    );
   // initialize ukpack2 analytics only on ukpack2 routes
   if (isFullBleed) {
     try {
@@ -244,7 +265,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   // When running inside the embedded iframe for ukpack2, add a body class to apply special responsive CSS
   React.useEffect(() => {
     try {
-      const isUkpack2 = (location.pathname.startsWith("/ukpack2") || location.pathname.startsWith("/mydreambus"));
+      const isUkpack2 =
+        location.pathname.startsWith("/ukpack2") ||
+        location.pathname.startsWith("/mydreambus");
       if (isUkpack2) {
         document.body.classList.add("page-ukpack2");
       } else {
@@ -440,14 +463,23 @@ const App = () => {
                 <Route path="/mydreambus/design" element={<DesignScreen />} />
                 <Route path="/mydreambus/summary" element={<SummaryScreen />} />
                 <Route path="/mydreambus/info" element={<InfoScreen />} />
-                <Route path="/mydreambus/info-next" element={<InfoNextScreen />} />
-                <Route path="/mydreambus/feedback" element={<FeedbackScreen />} />
+                <Route
+                  path="/mydreambus/info-next"
+                  element={<InfoNextScreen />}
+                />
+                <Route
+                  path="/mydreambus/feedback"
+                  element={<FeedbackScreen />}
+                />
                 <Route
                   path="/mydreambus/feedback-skip"
                   element={<FeedbackSkipScreen />}
                 />
                 <Route path="/mydreambus/submit" element={<SubmitScreen />} />
-                <Route path="/mydreambus/thank-you" element={<ThankYouScreen />} />
+                <Route
+                  path="/mydreambus/thank-you"
+                  element={<ThankYouScreen />}
+                />
                 <Route path="/mydreambus/form" element={<FormScreen />} />
                 <Route
                   path="/mydreambus/confirmation"
@@ -571,8 +603,14 @@ const App = () => {
                     </Suspense>
                   }
                 />
-                <Route path="/beforecitychange/uk-stornaway" element={<Navigate to="/beforecitychange" replace />} />
-                <Route path="/beforecitychange/Uk-stornaway" element={<Navigate to="/beforecitychange" replace />} />
+                <Route
+                  path="/beforecitychange/uk-stornaway"
+                  element={<Navigate to="/beforecitychange" replace />}
+                />
+                <Route
+                  path="/beforecitychange/Uk-stornaway"
+                  element={<Navigate to="/beforecitychange" replace />}
+                />
                 <Route
                   path="/beforecitychange/reason-other-01"
                   element={
@@ -657,7 +695,9 @@ const App = () => {
                 />
                 <Route
                   path="/Ask04BudgetPage"
-                  element={<Navigate to="/beforecitychange/ask04-budget" replace />}
+                  element={
+                    <Navigate to="/beforecitychange/ask04-budget" replace />
+                  }
                 />
                 <Route
                   path="/Ask05Page"
@@ -677,59 +717,87 @@ const App = () => {
                 />
                 <Route
                   path="/FakeNewsPage"
-                  element={<Navigate to="/beforecitychange/fake-news" replace />}
+                  element={
+                    <Navigate to="/beforecitychange/fake-news" replace />
+                  }
                 />
                 <Route
                   path="/SourceSelectionPage"
-                  element={<Navigate to="/beforecitychange/source-selection" replace />}
+                  element={
+                    <Navigate to="/beforecitychange/source-selection" replace />
+                  }
                 />
                 <Route
                   path="/beforecitychange/SourceSelection"
-                  element={<Navigate to="/beforecitychange/source-selection" replace />}
+                  element={
+                    <Navigate to="/beforecitychange/source-selection" replace />
+                  }
                 />
                 <Route
                   path="/SourceSelection"
-                  element={<Navigate to="/beforecitychange/source-selection" replace />}
+                  element={
+                    <Navigate to="/beforecitychange/source-selection" replace />
+                  }
                 />
                 <Route
                   path="/EndSequencePage"
-                  element={<Navigate to="/beforecitychange/end-sequence" replace />}
+                  element={
+                    <Navigate to="/beforecitychange/end-sequence" replace />
+                  }
                 />
                 <Route
                   path="/beforecitychange/EndSequencePage"
-                  element={<Navigate to="/beforecitychange/end-sequence" replace />}
+                  element={
+                    <Navigate to="/beforecitychange/end-sequence" replace />
+                  }
                 />
                 <Route
                   path="/beforecitychange/Step1_Decision"
-                  element={<Navigate to="/beforecitychange/end-sequence" replace />}
+                  element={
+                    <Navigate to="/beforecitychange/end-sequence" replace />
+                  }
                 />
                 <Route
                   path="/Step1_Decision"
-                  element={<Navigate to="/beforecitychange/end-sequence" replace />}
+                  element={
+                    <Navigate to="/beforecitychange/end-sequence" replace />
+                  }
                 />
                 <Route
                   path="/EndScreenPage"
-                  element={<Navigate to="/beforecitychange/end-screen" replace />}
+                  element={
+                    <Navigate to="/beforecitychange/end-screen" replace />
+                  }
                 />
                 <Route
                   path="/MiniGameMN01Page"
-                  element={<Navigate to="/beforecitychange/minigame-mn1" replace />}
+                  element={
+                    <Navigate to="/beforecitychange/minigame-mn1" replace />
+                  }
                 />
                 <Route
                   path="/MiniGameMN1Page"
-                  element={<Navigate to="/beforecitychange/minigame-mn1" replace />}
+                  element={
+                    <Navigate to="/beforecitychange/minigame-mn1" replace />
+                  }
                 />
                 <Route
                   path="/MiniGameMN2Page"
-                  element={<Navigate to="/beforecitychange/minigame-mn2" replace />}
+                  element={
+                    <Navigate to="/beforecitychange/minigame-mn2" replace />
+                  }
                 />
                 <Route
                   path="/MiniGameMN3Page"
-                  element={<Navigate to="/beforecitychange/minigame-mn3" replace />}
+                  element={
+                    <Navigate to="/beforecitychange/minigame-mn3" replace />
+                  }
                 />
                 <Route
                   path="/beforecitychange/MiniGameMN3Page"
-                  element={<Navigate to="/beforecitychange/minigame-mn3" replace />}
+                  element={
+                    <Navigate to="/beforecitychange/minigame-mn3" replace />
+                  }
                 />
                 <Route
                   path="/UkStornawayPage"
@@ -747,34 +815,48 @@ const App = () => {
                 {/* Legacy aliases for ReasonOther01 */}
                 <Route
                   path="/beforecitychange/ReasonOther01Page"
-                  element={<Navigate to="/beforecitychange/reason-other-01" replace />}
+                  element={
+                    <Navigate to="/beforecitychange/reason-other-01" replace />
+                  }
                 />
                 <Route
                   path="/ReasonOther01Page"
-                  element={<Navigate to="/beforecitychange/reason-other-01" replace />}
+                  element={
+                    <Navigate to="/beforecitychange/reason-other-01" replace />
+                  }
                 />
                 {/* Legacy aliases for WhatDoYouTravelBy */}
                 <Route
                   path="/beforecitychange/WhatDoYouTravelByPage"
                   element={
-                    <Navigate to="/beforecitychange/what-do-you-travel-by" replace />
+                    <Navigate
+                      to="/beforecitychange/what-do-you-travel-by"
+                      replace
+                    />
                   }
                 />
                 <Route
                   path="/WhatDoYouTravelByPage"
                   element={
-                    <Navigate to="/beforecitychange/what-do-you-travel-by" replace />
+                    <Navigate
+                      to="/beforecitychange/what-do-you-travel-by"
+                      replace
+                    />
                   }
                 />
 
                 {/* Legacy dashboard aliases */}
                 <Route
                   path="/ukdashboard"
-                  element={<Navigate to="/beforecitychange/uk-dashboard" replace />}
+                  element={
+                    <Navigate to="/beforecitychange/uk-dashboard" replace />
+                  }
                 />
                 <Route
                   path="/UkDashboard"
-                  element={<Navigate to="/beforecitychange/uk-dashboard" replace />}
+                  element={
+                    <Navigate to="/beforecitychange/uk-dashboard" replace />
+                  }
                 />
 
                 {/* 404 page */}

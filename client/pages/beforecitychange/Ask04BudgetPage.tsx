@@ -8,7 +8,10 @@ import { useSession } from "../../hooks/useSession";
 const Ask04BudgetPage = () => {
   const { sessionID, navigateToPage, userJourneyData } = useSession();
 
-  const isUkpack1 = typeof window !== 'undefined' && window.location && window.location.pathname.startsWith('/beforecitychange');
+  const isUkpack1 =
+    typeof window !== "undefined" &&
+    window.location &&
+    window.location.pathname.startsWith("/beforecitychange");
 
   return (
     <Ask04Budget

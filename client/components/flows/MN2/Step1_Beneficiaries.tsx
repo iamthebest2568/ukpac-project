@@ -183,7 +183,11 @@ const Step1_Beneficiaries = ({
                   className={`w-[84px] h-[84px] mb-2 flex items-center justify-center`}
                 >
                   <img
-                    src={isSelected ? (group.iconSelectedSrc || group.iconSrc) : group.iconSrc}
+                    src={
+                      isSelected
+                        ? group.iconSelectedSrc || group.iconSrc
+                        : group.iconSrc
+                    }
                     alt={group.label}
                     className="w-[84px] h-[84px] object-contain"
                   />
@@ -222,7 +226,11 @@ const Step1_Beneficiaries = ({
                   className={`w-[84px] h-[84px] mb-2 flex items-center justify-center`}
                 >
                   <img
-                    src={isSelected ? (group.iconSelectedSrc || group.iconSrc) : group.iconSrc}
+                    src={
+                      isSelected
+                        ? group.iconSelectedSrc || group.iconSrc
+                        : group.iconSrc
+                    }
                     alt={group.label}
                     className="w-[84px] h-[84px] object-contain"
                   />

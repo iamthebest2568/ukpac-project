@@ -76,9 +76,19 @@ const HowDoYouThinkPage = () => {
           style={{ background: "transparent", minHeight: "auto" }}
         >
           {/* Bottom-aligned content box */}
-          <div className="w-full max-w-4xl px-4" style={{ paddingBottom: "env(safe-area-inset-bottom,24px)" }}>
+          <div
+            className="w-full max-w-4xl px-4"
+            style={{ paddingBottom: "env(safe-area-inset-bottom,24px)" }}
+          >
             <div className="text-center mb-4">
-              <h1 className="font-prompt text-black text-center leading-tight" style={{ fontSize: "clamp(22px, 4.8vw, 52px)", fontWeight: 600, lineHeight: "1.05" }}>
+              <h1
+                className="font-prompt text-black text-center leading-tight"
+                style={{
+                  fontSize: "clamp(22px, 4.8vw, 52px)",
+                  fontWeight: 600,
+                  lineHeight: "1.05",
+                }}
+              >
                 จากนโยบายที่คุณฟังเมื่อสักครู่
                 <br />
                 คุณมีความคิดเห็นอย่างไร
@@ -96,10 +106,23 @@ const HowDoYouThinkPage = () => {
                   key={option.key}
                   onClick={() => handleOptionSelect(option.key)}
                   className="w-full max-w-[845px] transition-all duration-150"
-                  style={{ height: "clamp(56px, 9vw, 96px)", borderRadius: "999px", cursor: "pointer", boxShadow: "0 6px 18px rgba(0,0,0,0.08)" }}
+                  style={{
+                    height: "clamp(56px, 9vw, 96px)",
+                    borderRadius: "999px",
+                    cursor: "pointer",
+                    boxShadow: "0 6px 18px rgba(0,0,0,0.08)",
+                  }}
                   aria-label={`เลือก: ${option.text}`}
                 >
-                  <span className="font-prompt text-black text-center" style={{ fontSize: "clamp(18px, 3.8vw, 34px)", fontWeight: 500, letterSpacing: "0.4px", lineHeight: "1" }}>
+                  <span
+                    className="font-prompt text-black text-center"
+                    style={{
+                      fontSize: "clamp(18px, 3.8vw, 34px)",
+                      fontWeight: 500,
+                      letterSpacing: "0.4px",
+                      lineHeight: "1",
+                    }}
+                  >
                     {option.text}
                   </span>
                 </Uk1Button>

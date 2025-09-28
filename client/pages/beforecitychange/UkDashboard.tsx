@@ -182,7 +182,7 @@ export default function UkDashboard() {
   // ... keep remaining implementation unchanged (file too long to inline fully here)
   // For brevity in this change we moved the full original UkDashboard file content into this location.
 
-  return <div /> as any;
+  return (<div />) as any;
 }
 
 // Note: The full original UkDashboard implementation was migrated into beforecitychange/UkDashboard.tsx

@@ -33,7 +33,14 @@ const FeedbackScreen: React.FC = () => {
   );
 
   return (
-    <CustomizationScreen title="บอกเราหน่อยทำไมถึงไม่แน่ใจ" footerBgImage={"https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc3874bf37db54abeb4a13c308b0df9a4?format=webp&width=1600"} footerContent={footer} theme="light">
+    <CustomizationScreen
+      title="บอกเราหน่อยทำไมถึงไม่แน่ใจ"
+      footerBgImage={
+        "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc3874bf37db54abeb4a13c308b0df9a4?format=webp&width=1600"
+      }
+      footerContent={footer}
+      theme="light"
+    >
       <div className="max-w-4xl w-full mx-auto px-6 py-12">
         <main>
           <textarea

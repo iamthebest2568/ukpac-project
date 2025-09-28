@@ -16,8 +16,15 @@ interface Flow_MiniGame_MN3Props {
   onBack?: () => void;
 }
 
-const Flow_MiniGame_MN3 = ({ sessionID, onComplete, onBack }: Flow_MiniGame_MN3Props) => {
-  const isUkpack1 = typeof window !== 'undefined' && window.location && window.location.pathname.startsWith('/beforecitychange');
+const Flow_MiniGame_MN3 = ({
+  sessionID,
+  onComplete,
+  onBack,
+}: Flow_MiniGame_MN3Props) => {
+  const isUkpack1 =
+    typeof window !== "undefined" &&
+    window.location &&
+    window.location.pathname.startsWith("/beforecitychange");
   const [currentStep, setCurrentStep] = useState<number>(1);
   const [flowData, setFlowData] = useState<any>({});
 
@@ -83,11 +90,7 @@ const Flow_MiniGame_MN3 = ({ sessionID, onComplete, onBack }: Flow_MiniGame_MN3P
     }
   };
 
-  return (
-    <div className="flow-container">
-      {renderCurrentStep()}
-    </div>
-  );
+  return <div className="flow-container">{renderCurrentStep()}</div>;
 };
 
 export default Flow_MiniGame_MN3;

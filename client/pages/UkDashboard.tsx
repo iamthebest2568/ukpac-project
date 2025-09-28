@@ -454,7 +454,9 @@ export default function UkDashboard() {
                 disabled={isSending}
                 title="ส่งเหตุการณ์ทดสอบไปยัง beforecitychange"
               >
-                {isSending ? "กำลังส่..." : "Send Test Event (beforecitychange)"}
+                {isSending
+                  ? "กำลังส่..."
+                  : "Send Test Event (beforecitychange)"}
               </button>
 
               <button

@@ -64,13 +64,15 @@ const IndexPage = () => {
                         {i === 1
                           ? "Link to beforecitychange"
                           : i === 2
-                          ? "Link to Game Bus"
-                          : "คำอธิบายสั้น ๆ ของการ์ดนี้ — แก้ไขเนื้อหาและลิงก์ภายหลัง"}
+                            ? "Link to Game Bus"
+                            : "คำอธิบายสั้น ๆ ของการ์ดนี้ — แก้ไขเนื้อหาและลิงก์ภายหลัง"}
                       </p>
                     </div>
 
                     <div className="mt-auto w-full flex justify-end">
-                      <span className="text-xs text-gray-400">data-card-id: card-{i}</span>
+                      <span className="text-xs text-gray-400">
+                        data-card-id: card-{i}
+                      </span>
                     </div>
                   </div>
                 );
@@ -78,7 +80,11 @@ const IndexPage = () => {
                 // Wrap the first and second card in a router Link so they navigate client-side
                 if (i === 1) {
                   return (
-                    <Link key={i} to="/beforecitychange" aria-label="Open beforecitychange">
+                    <Link
+                      key={i}
+                      to="/beforecitychange"
+                      aria-label="Open beforecitychange"
+                    >
                       {card}
                     </Link>
                   );

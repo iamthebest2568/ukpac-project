@@ -85,9 +85,19 @@ export function createServer() {
           (withMeta.payload &&
             (withMeta.payload.project || withMeta.payload.projectName)) ||
           undefined;
-        if (p.includes("/ukpack2") || p.includes("/mydreambus") || payloadProject === "ukpack2" || payloadProject === "mydreambus") {
+        if (
+          p.includes("/ukpack2") ||
+          p.includes("/mydreambus") ||
+          payloadProject === "ukpack2" ||
+          payloadProject === "mydreambus"
+        ) {
           target = "minigame2_events/minigame2-di";
-        } else if (p.includes("/beforecitychange") || payloadProject === "beforecitychange" || p.includes("/ukpack1") || payloadProject === "ukpack1") {
+        } else if (
+          p.includes("/beforecitychange") ||
+          payloadProject === "beforecitychange" ||
+          p.includes("/ukpack1") ||
+          payloadProject === "ukpack1"
+        ) {
           // Accept either new project name or legacy ukpack1 for backward compatibility
           target = "minigame1_events/minigame1-di";
         }
@@ -303,34 +313,52 @@ export function createServer() {
   // Alias endpoints for mydreambus - keep parity with ukpack2
   app.post("/api/mydreambus/publish", async (req, res) => {
     try {
-      const DATA_DIR = process.env.DATA_DIR || path.join(process.cwd(), ".data");
+      const DATA_DIR =
+        process.env.DATA_DIR || path.join(process.cwd(), ".data");
       await fs.promises.mkdir(DATA_DIR, { recursive: true });
       const fileUk = path.join(DATA_DIR, "public_ukpack2.json");
       const fileMy = path.join(DATA_DIR, "public_mydreambus.json");
       const payload = req.body;
       await Promise.all([
-        fs.promises.writeFile(fileUk, JSON.stringify(payload, null, 2), "utf-8"),
-        fs.promises.writeFile(fileMy, JSON.stringify(payload, null, 2), "utf-8"),
+        fs.promises.writeFile(
+          fileUk,
+          JSON.stringify(payload, null, 2),
+          "utf-8",
+        ),
+        fs.promises.writeFile(
+          fileMy,
+          JSON.stringify(payload, null, 2),
+          "utf-8",
+        ),
       ]);
       res.status(200).json({ ok: true, files: [fileUk, fileMy] });
     } catch (e: any) {
-      res.status(500).json({ ok: false, error: e?.message || "failed to publish" });
+      res
+        .status(500)
+        .json({ ok: false, error: e?.message || "failed to publish" });
     }
   });
 
   app.get("/api/mydreambus/public", async (_req, res) => {
     try {
-      const DATA_DIR = process.env.DATA_DIR || path.join(process.cwd(), ".data");
+      const DATA_DIR =
+        process.env.DATA_DIR || path.join(process.cwd(), ".data");
       const fileMy = path.join(DATA_DIR, "public_mydreambus.json");
       const fileUk = path.join(DATA_DIR, "public_ukpack2.json");
       let file = fileMy;
       if (!fs.existsSync(fileMy) && fs.existsSync(fileUk)) file = fileUk;
-      if (!fs.existsSync(file)) return res.status(404).json({ ok: false, error: "not found" });
+      if (!fs.existsSync(file))
+        return res.status(404).json({ ok: false, error: "not found" });
       const buf = await fs.promises.readFile(file, "utf-8");
       const json = JSON.parse(buf);
       res.status(200).json({ ok: true, data: json });
     } catch (e: any) {
-      res.status(500).json({ ok: false, error: e?.message || "failed to read public aggregation" });
+      res
+        .status(500)
+        .json({
+          ok: false,
+          error: e?.message || "failed to read public aggregation",
+        });
     }
   });
 

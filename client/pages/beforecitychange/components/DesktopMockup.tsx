@@ -150,8 +150,7 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
                     navigate(url.pathname + url.search + url.hash);
                   } else {
                   }
-                } catch (err) {
-                }
+                } catch (err) {}
               }}
             >
               <RouteTransition>{children}</RouteTransition>

@@ -85,7 +85,9 @@ const UkDashboard: React.FC = () => {
                 return null;
               });
 
-            const timeoutPromise = new Promise((res) => setTimeout(() => res(null), ms));
+            const timeoutPromise = new Promise((res) =>
+              setTimeout(() => res(null), ms),
+            );
 
             return await Promise.race([fetchPromise, timeoutPromise]);
           } catch (e) {
@@ -160,7 +162,10 @@ const UkDashboard: React.FC = () => {
         try {
           j2 = await tryFetchJsonWithFallback(rawCandidates2, 8000);
         } catch (e) {
-          console.warn("tryFetchJsonWithFallback (public-submissions) threw", e);
+          console.warn(
+            "tryFetchJsonWithFallback (public-submissions) threw",
+            e,
+          );
           j2 = null;
         }
 
@@ -203,7 +208,9 @@ const UkDashboard: React.FC = () => {
       alert("ไม่มีข้อมูลให้ส่งออก");
       return;
     }
-    const blob = new Blob(["\uFEFF" + csv], { type: "text/csv;charset=utf-8;" });
+    const blob = new Blob(["\uFEFF" + csv], {
+      type: "text/csv;charset=utf-8;",
+    });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
@@ -221,7 +228,9 @@ const UkDashboard: React.FC = () => {
       alert("ไม่มีข้อมูลให้ส่งออก");
       return;
     }
-    const blob = new Blob(["\uFEFF" + csv], { type: "text/csv;charset=utf-8;" });
+    const blob = new Blob(["\uFEFF" + csv], {
+      type: "text/csv;charset=utf-8;",
+    });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;

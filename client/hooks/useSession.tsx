@@ -108,7 +108,11 @@ export const useSession = (): UseSessionReturn => {
 
     // If the path is absolute and not already under /beforecitychange, prefix it so all internal navigation
     // points to the beforecitychange project paths.
-    if (typeof newPath === 'string' && newPath.startsWith('/') && !newPath.startsWith('/beforecitychange')) {
+    if (
+      typeof newPath === "string" &&
+      newPath.startsWith("/") &&
+      !newPath.startsWith("/beforecitychange")
+    ) {
       newPath = `/beforecitychange${newPath}`;
     }
 

@@ -87,7 +87,10 @@ export function logEvent(eventData) {
         "";
       if (!enrichedEvent.payload) enrichedEvent.payload = {};
       if (!enrichedEvent.payload.project) {
-        if (String(path).startsWith("/ukpack2") || String(path).startsWith("/mydreambus"))
+        if (
+          String(path).startsWith("/ukpack2") ||
+          String(path).startsWith("/mydreambus")
+        )
           enrichedEvent.payload.project = "mydreambus";
         else if (String(path).startsWith("/beforecitychange"))
           enrichedEvent.payload.project = "ukpack1";
@@ -134,7 +137,8 @@ export function logEvent(eventData) {
         // choose collection based on project tag
         const project = p.project || "site";
         let target = "minigame1_events/minigame1-di";
-        if (project === "ukpack2" || project === "mydreambus") target = "minigame2_events/minigame2-di";
+        if (project === "ukpack2" || project === "mydreambus")
+          target = "minigame2_events/minigame2-di";
         // fire-and-forget
         try {
           // call and swallow any promise rejection to prevent uncaught errors
@@ -248,8 +252,16 @@ export function exportEventsAsCSV() {
   const events = getLoggedEvents();
   if (events.length === 0) return "";
 
-  const headers = ["รหัสเซสชัน (sessionID)", "เวลา (timestamp)", "เหตุการณ์ (event)", "URL (url)", "ข้อมูล (data)"];
-  const csvRows = [headers.map((h) => `"${String(h || "").replace(/"/g, '""')}"`).join(",")];
+  const headers = [
+    "รหัสเซสชัน (sessionID)",
+    "เวลา (timestamp)",
+    "เหตุการณ์ (event)",
+    "URL (url)",
+    "ข้อมูล (data)",
+  ];
+  const csvRows = [
+    headers.map((h) => `"${String(h || "").replace(/"/g, '""')}"`).join(","),
+  ];
 
   events.forEach((event) => {
     const row = [
@@ -259,7 +271,11 @@ export function exportEventsAsCSV() {
       event.url || "",
       JSON.stringify(event.payload || {}).replace(/"/g, '""'),
     ];
-    csvRows.push(row.map((field) => `"${String(field || "").replace(/\"/g, '""')}"`).join(","));
+    csvRows.push(
+      row
+        .map((field) => `"${String(field || "").replace(/\"/g, '""')}"`)
+        .join(","),
+    );
   });
 
   return csvRows.join("\n");
@@ -307,7 +323,9 @@ export function exportSessionsAsCSV() {
     "เวลาแชร์ (shared_timestamp)",
   ];
 
-  const csvRows = [headers.map((h) => `"${String(h || "").replace(/"/g, '""')}"`).join(",")];
+  const csvRows = [
+    headers.map((h) => `"${String(h || "").replace(/"/g, '""')}"`).join(","),
+  ];
 
   Object.keys(sessions).forEach((sid) => {
     const evs = sessions[sid].sort(

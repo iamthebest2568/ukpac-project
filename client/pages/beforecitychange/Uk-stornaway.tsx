@@ -24,7 +24,8 @@ function readSessions(): SessionData[] {
     if (!raw) return [];
     const parsed = JSON.parse(raw);
     if (Array.isArray(parsed)) return parsed as SessionData[];
-    if (parsed && Array.isArray(parsed.sessions)) return parsed.sessions as SessionData[];
+    if (parsed && Array.isArray(parsed.sessions))
+      return parsed.sessions as SessionData[];
     return [];
   } catch {
     return [];
@@ -58,7 +59,10 @@ export default function UkStornaway() {
     return `session_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
   }, [sessionID]);
   const [status, setStatus] = useState("รอการโต้ตอบจากผู้ใช้…");
-  const [sessionData, setSessionData] = useState<SessionData>({ sessionId, events: [] });
+  const [sessionData, setSessionData] = useState<SessionData>({
+    sessionId,
+    events: [],
+  });
   const eventsRef = useRef<CapturedEvent[]>([]);
   const updateTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -112,9 +116,15 @@ export default function UkStornaway() {
         const captured: CapturedEvent = {
           order: ++orderRef.current,
           eventName,
-          choiceText: detail.choiceText ?? detail.text ?? detail.choice?.text ?? detail.choice?.label ?? detail.label,
+          choiceText:
+            detail.choiceText ??
+            detail.text ??
+            detail.choice?.text ??
+            detail.choice?.label ??
+            detail.label,
           variantId: detail.variantId ?? detail.id ?? detail.variant?.id,
-          variantName: detail.variantName ?? detail.name ?? detail.variant?.name,
+          variantName:
+            detail.variantName ?? detail.name ?? detail.variant?.name,
           timestamp: new Date().toISOString(),
         };
         // throttle UI updates
@@ -126,14 +136,19 @@ export default function UkStornaway() {
         if (!updateTimer.current) {
           updateTimer.current = setTimeout(() => {
             updateTimer.current = null;
-            setSessionData((prev) => ({ ...prev, events: [...eventsRef.current] }));
+            setSessionData((prev) => ({
+              ...prev,
+              events: [...eventsRef.current],
+            }));
           }, 250);
         }
         // send in background (beacon if available)
         try {
           const payload = { ...captured, sessionId } as any;
           if (navigator.sendBeacon) {
-            const blob = new Blob([JSON.stringify(payload)], { type: "application/json" });
+            const blob = new Blob([JSON.stringify(payload)], {
+              type: "application/json",
+            });
             navigator.sendBeacon("/api/video-events", blob);
           } else {
             setTimeout(() => {
@@ -148,7 +163,11 @@ export default function UkStornaway() {
 
         if (eventName === "sw.choice.selected") {
           // Allow in-app navigation for special choices/tokens
-          const token = (captured.choiceText || captured.variantName || "").trim();
+          const token = (
+            captured.choiceText ||
+            captured.variantName ||
+            ""
+          ).trim();
           // 1) Explicit mappings for Thai labels
           if (token === "อื่น ๆ") {
             if (!navigatedRef.current) {
@@ -164,7 +183,10 @@ export default function UkStornaway() {
             if (!navigatedRef.current) {
               navigatedRef.current = true;
               setTimeout(() => {
-                navigateToPage("Flow_MiniGame_MN1", { from: "stornaway", choice: token });
+                navigateToPage("Flow_MiniGame_MN1", {
+                  from: "stornaway",
+                  choice: token,
+                });
               }, 50);
             }
             return;
@@ -173,7 +195,10 @@ export default function UkStornaway() {
             if (!navigatedRef.current) {
               navigatedRef.current = true;
               setTimeout(() => {
-                navigateToPage("Flow_MiniGame_MN3", { from: "stornaway", choice: token });
+                navigateToPage("Flow_MiniGame_MN3", {
+                  from: "stornaway",
+                  choice: token,
+                });
               }, 50);
             }
             return;
@@ -182,7 +207,10 @@ export default function UkStornaway() {
             if (!navigatedRef.current) {
               navigatedRef.current = true;
               setTimeout(() => {
-                navigateToPage("fakeNews", { from: "stornaway", choice: token });
+                navigateToPage("fakeNews", {
+                  from: "stornaway",
+                  choice: token,
+                });
               }, 50);
             }
             return;
@@ -192,7 +220,10 @@ export default function UkStornaway() {
               navigatedRef.current = true;
               setTimeout(() => {
                 // Navigate first to travel method page, then continue to opinion page from there
-                navigateToPage("/what-do-you-travel-by", { from: "stornaway", choice: token });
+                navigateToPage("/what-do-you-travel-by", {
+                  from: "stornaway",
+                  choice: token,
+                });
               }, 50);
             }
             return;
@@ -203,7 +234,11 @@ export default function UkStornaway() {
             if (!navigatedRef.current) {
               navigatedRef.current = true;
               setTimeout(() => {
-                navigateToPage("ask01", { from: "stornaway", choice: captured.choiceText, variant: captured.variantName });
+                navigateToPage("ask01", {
+                  from: "stornaway",
+                  choice: captured.choiceText,
+                  variant: captured.variantName,
+                });
               }, 150);
             }
           }
@@ -219,21 +254,48 @@ export default function UkStornaway() {
       const mediaPause = makeHandler("sw.media.pause");
 
       document.addEventListener("sw.story.start", storyStart as EventListener);
-      document.addEventListener("sw.variant.start", variantStart as EventListener);
-      document.addEventListener("sw.choice.selected", choiceSelected as EventListener);
+      document.addEventListener(
+        "sw.variant.start",
+        variantStart as EventListener,
+      );
+      document.addEventListener(
+        "sw.choice.selected",
+        choiceSelected as EventListener,
+      );
       document.addEventListener("sw.story.end", storyEnd as EventListener);
-      document.addEventListener("sw.story.complete", storyComplete as EventListener);
+      document.addEventListener(
+        "sw.story.complete",
+        storyComplete as EventListener,
+      );
       document.addEventListener("sw.media.play", mediaPlay as EventListener);
       document.addEventListener("sw.media.pause", mediaPause as EventListener);
 
       return () => {
-        document.removeEventListener("sw.story.start", storyStart as EventListener);
-        document.removeEventListener("sw.variant.start", variantStart as EventListener);
-        document.removeEventListener("sw.choice.selected", choiceSelected as EventListener);
+        document.removeEventListener(
+          "sw.story.start",
+          storyStart as EventListener,
+        );
+        document.removeEventListener(
+          "sw.variant.start",
+          variantStart as EventListener,
+        );
+        document.removeEventListener(
+          "sw.choice.selected",
+          choiceSelected as EventListener,
+        );
         document.removeEventListener("sw.story.end", storyEnd as EventListener);
-        document.removeEventListener("sw.story.complete", storyComplete as EventListener);
-        document.removeEventListener("sw.media.play", mediaPlay as EventListener);
-        document.removeEventListener("sw.media.pause", mediaPause as EventListener);
+        document.removeEventListener(
+          "sw.story.complete",
+          storyComplete as EventListener,
+        );
+        document.removeEventListener(
+          "sw.media.play",
+          mediaPlay as EventListener,
+        );
+        document.removeEventListener(
+          "sw.media.pause",
+          mediaPause as EventListener,
+        );
       };
     }
 
@@ -254,14 +316,21 @@ export default function UkStornaway() {
     }
 
     function ensureScriptAndInit() {
-      const existing = document.getElementById("stornaway-api-v1") as HTMLScriptElement | null;
+      const existing = document.getElementById(
+        "stornaway-api-v1",
+      ) as HTMLScriptElement | null;
       if (existing) {
         // If script already present and possibly loaded
         if ((window as any).STORNAWAY) {
           return initWithPlayer();
         }
-        existing.addEventListener("load", initWithPlayer as any, { once: true } as any);
-        return () => existing.removeEventListener("load", initWithPlayer as any);
+        existing.addEventListener(
+          "load",
+          initWithPlayer as any,
+          { once: true } as any,
+        );
+        return () =>
+          existing.removeEventListener("load", initWithPlayer as any);
       }
       const s = document.createElement("script");
       s.id = "stornaway-api-v1";

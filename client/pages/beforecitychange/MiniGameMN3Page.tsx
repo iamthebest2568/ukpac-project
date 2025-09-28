@@ -34,7 +34,10 @@ const MiniGameMN3Page = () => {
             <div className="max-w-[800px] mx-auto mb-8">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {summary.map((item: any) => (
-                  <div key={item.priority} className="p-4 border rounded-lg text-left">
+                  <div
+                    key={item.priority}
+                    className="p-4 border rounded-lg text-left"
+                  >
                     <div className="font-prompt text-[16px] md:text-[18px] font-semibold mb-1">
                       {item.icon ? `${item.icon} ` : ""}
                       {item.priority}
