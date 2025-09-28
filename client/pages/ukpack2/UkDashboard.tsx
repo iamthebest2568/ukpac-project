@@ -109,11 +109,10 @@ const UkDashboard: React.FC = () => {
 
       // Fetch Firestore-backed recent events for ukpack2 with resilient fallbacks
       try {
+        const origin = typeof window !== 'undefined' ? window.location.origin : '';
         const rawCandidates = [
-          "/api/firestore-stats?project=mydreambus",
-          "/.netlify/functions/api/firestore-stats?project=mydreambus",
-          window.location.pathname.replace(/\/\$/, "") +
-            "/api/firestore-stats?project=mydreambus",
+          `${origin}/api/firestore-stats?project=mydreambus`,
+          `${origin}/.netlify/functions/api/firestore-stats?project=mydreambus`,
         ];
 
         // helpful debug logging for network issues
@@ -489,7 +488,7 @@ const UkDashboard: React.FC = () => {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               className="w-full border px-3 py-2 rounded mb-3"
-              placeholder="รหัสผ่าน"
+              placeholder="รหัสผ��าน"
               autoFocus
             />
             <div className="flex gap-2">
