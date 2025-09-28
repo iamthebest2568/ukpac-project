@@ -435,3 +435,5 @@
 {"sessionId":"session_1759061935881_sbpep06wc","eventName":"sw.variant.start","timestamp":"2025-09-28T12:19:03.486Z","variantId":"a59ef133","variantName":"Intro"}
 {"sessionId":"session_1759061935881_sbpep06wc","eventName":"sw.story.start","timestamp":"2025-09-28T12:19:03.488Z","variantId":"a59ef133","variantName":"Intro"}
 {"sessionId":"session_1759061935881_sbpep06wc","eventName":"sw.choice.selected","timestamp":"2025-09-28T12:19:07.774Z","choiceText":"PDPA","variantId":"a59ef133","variantName":"Intro"}
+{"sessionId":"session_1759061935881_sbpep06wc","eventName":"sw.variant.start","timestamp":"2025-09-28T12:19:08.536Z","variantId":"e61429e0","variantName":"PDPA"}
+{"sessionId":"session_1759061935881_sbpep06wc","eventName":"sw.story.start","timestamp":"2025-09-28T12:19:08.538Z","variantId":"e61429e0","variantName":"PDPA"}
