@@ -390,9 +390,16 @@ export default function UkDashboard() {
 
   useEffect(() => {
     if (!authed) return;
-    load();
+    // call load and explicitly catch rejections to avoid unhandled promise rejections
+    void load().catch((e) => console.debug("load initial call failed", e));
     let id: any;
-    if (autoRefresh) id = setInterval(load, 5000);
+    if (autoRefresh) id = setInterval(() => {
+      load().catch((e) => {
+        // don't spam console for AbortError caused by timeout; log others
+        if (e && e.name === 'AbortError') return;
+        console.debug('periodic load failed', e);
+      });
+    }, 5000);
     return () => id && clearInterval(id);
   }, [authed, autoRefresh]);
 
@@ -526,7 +533,7 @@ export default function UkDashboard() {
                 className="rounded-md bg-red-600/80 hover:bg-red-600 border border-red-500 px-3 py-2 text-sm"
                 onClick={clearData}
                 disabled={clearing}
-                title="ลบ events.jsonl และ app-events.jsonl ในเซิร์ฟเวอร์"
+                title="ลบ events.jsonl และ app-events.jsonl ในเซิร์ฟ��วอร์"
               >
                 {clearing ? "กำลังลบ..." : "���บข้อมูลทั้งหมด"}
               </button>
@@ -1018,12 +1025,12 @@ export default function UkDashboard() {
                       "ทำไมคุณถึงคิดอย่างนั้น (นโยบายไม่ครอบคลุม / เก็บไปก็ไม่มีอะไรดีข���้น / อื่นๆ)",
                       "อธิบายอื่น ๆ ที่ช่วยอธิบายความคิดเห็น",
                       "บอกเร��หน่อยว่าคุณเดินทางเข้าเมืองด้วยวิธีการใดบ่อยที่ส��ด",
-                      "จากนโยบายที่คุณฟังเมื่อสักครู่ คุณมีความคิดเห็นอย่าง��ร",
+                      "จ���กนโยบายที่คุณฟังเมื่อสักครู่ คุณมีความคิดเห็นอย่าง��ร",
                       "คุณคิดว่านโยบายปัจจุบัน ควรปรับเปลี่ยนประเด็นอะไรบาง (ลดค่าโดยสา��, ปรับปรุงคุณภาพ, ขึ้น���าคา, เพิ่มขบวน, เพิ่มความถี่ ฯลฯ)",
                       "คุณคิดว่าใครควรได้รับการลดค่าโดยสารรถไฟฟ���าบ้าง (ทุกคน, ผู้สูงอายุ, นักเรียน, คนทำงาน ฯลฯ)",
                       "คุณคิดว่าควรใช้เงินที่ได้จากการเก็บไปพัฒนาอะไร ก่อน 3 อันดับแรก",
                       "คุณจะให้งบประมาณแต่ละข้อเท่าไร (งบทั้งหมด 100)",
-                      "คุณพอใจกับผลลัพธ์ที่เกิดขึ้นหรือไ��่ (พ���ใจ / ไม่พอใจ)",
+                      "คุณพอใจกับผลลัพธ์ที่เกิดขึ้นหรือไ��่ (พ���ใจ / ไม���พอใจ)",
                       "คุณคิดว่ารัฐควรทำอะไรที่จะทำให้นโยบายนี้เกิดขึ้นได้จริง และเป็นประโยชน์ต่อประชาชนอย่างแท้จริง",
                       "ตอนนี้มี��้อ��ูลที่ผิดพลาด เช่น ข่าวปลอมเกี่ยวกับนโยบาย คุณคิดว่าอย่างไร",
                       "คุณ��ะติดตามข่า��� หรือเชื่อจากแหล่งไหนมาก���ี่สุด",
