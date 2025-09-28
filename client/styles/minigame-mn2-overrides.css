@@ -75,6 +75,15 @@
   margin-right: auto !important;
 }
 
+/* Force MN2 footer buttons to be full-width and stacked in the mock */
+.tablet-mock-env .mn2-summary-page .figma-style1-button,
+.tablet-mock-env .mn2-step1-page .figma-style1-button,
+.tablet-mock-env .mn2-summary-page .figma-style1-button-container .Uk1Button,
+.tablet-mock-env .mn2-step1-page .figma-style1-button-container .Uk1Button {
+  width: 100% !important;
+  display: block !important;
+}
+
 /* Final safety: neutralize transforms/absolute that may push content outside mock */
 .tablet-mock-env .mn2-step1-page .figma-style1-content-area,
 .tablet-mock-env .mn2-step1-page .figma-style1-main {
