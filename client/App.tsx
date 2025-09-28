@@ -16,7 +16,7 @@ const TabletMockupUk2 = React.lazy(
   () => import("./pages/ukpack2/components/TabletMockup"),
 );
 const DesktopMockupUk1 = React.lazy(
-  () => import("./pages/beforecitychange/components/DesktopMockup"),
+  () => import("./pages/ukpack1/components/DesktopMockup"),
 );
 
 // Minimal set of pages (dashboard/backend removed)
@@ -26,40 +26,40 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 const IndexPage = lazy(() => import("./pages/Index"));
 
 // Survey pages (Ask01 removed)
-const Ask02Page = lazy(() => import("./pages/beforecitychange/Ask02Page"));
-const Ask02_2Page = lazy(() => import("./pages/beforecitychange/Ask02_2Page"));
-const Ask04Page = lazy(() => import("./pages/beforecitychange/Ask04Page"));
-const Ask04BudgetPage = lazy(() => import("./pages/beforecitychange/Ask04BudgetPage"));
-const Ask05Page = lazy(() => import("./pages/beforecitychange/Ask05Page"));
+const Ask02Page = lazy(() => import("./pages/ukpack1/Ask02Page"));
+const Ask02_2Page = lazy(() => import("./pages/ukpack1/Ask02_2Page"));
+const Ask04Page = lazy(() => import("./pages/ukpack1/Ask04Page"));
+const Ask04BudgetPage = lazy(() => import("./pages/ukpack1/Ask04BudgetPage"));
+const Ask05Page = lazy(() => import("./pages/ukpack1/Ask05Page"));
 
 // Other needed pages
-const FakeNewsPage = lazy(() => import("./pages/beforecitychange/FakeNewsPage"));
+const FakeNewsPage = lazy(() => import("./pages/ukpack1/FakeNewsPage"));
 const SourceSelectionPage = lazy(
-  () => import("./pages/beforecitychange/SourceSelectionPage"),
+  () => import("./pages/ukpack1/SourceSelectionPage"),
 );
-const BudgetPage = lazy(() => import("./pages/beforecitychange/BudgetPage"));
-const EndSequencePage = lazy(() => import("./pages/beforecitychange/EndSequencePage"));
-const EndScreenPage = lazy(() => import("./pages/beforecitychange/EndScreenPage"));
-const MiniGameMN1Page = lazy(() => import("./pages/beforecitychange/MiniGameMN1Page"));
-const MiniGameMN2Page = lazy(() => import("./pages/beforecitychange/MiniGameMN2Page"));
-const MiniGameMN01Page = lazy(() => import("./pages/beforecitychange/MiniGameMN01Page"));
+const BudgetPage = lazy(() => import("./pages/ukpack1/BudgetPage"));
+const EndSequencePage = lazy(() => import("./pages/ukpack1/EndSequencePage"));
+const EndScreenPage = lazy(() => import("./pages/ukpack1/EndScreenPage"));
+const MiniGameMN1Page = lazy(() => import("./pages/ukpack1/MiniGameMN1Page"));
+const MiniGameMN2Page = lazy(() => import("./pages/ukpack1/MiniGameMN2Page"));
+const MiniGameMN01Page = lazy(() => import("./pages/ukpack1/MiniGameMN01Page"));
 import MiniGameMN3Page from "./pages/MiniGameMN3Page";
-const UkStornaway = lazy(() => import("./pages/beforecitychange/Uk-stornaway"));
-const UkDashboard = lazy(() => import("./pages/beforecitychange/UkDashboard"));
+const UkStornaway = lazy(() => import("./pages/ukpack1/Uk-stornaway"));
+const UkDashboard = lazy(() => import("./pages/ukpack1/UkDashboard"));
 const UkPact1Dashboard = lazy(
-  () => import("./pages/beforecitychange/ukpact1-dashboard"),
+  () => import("./pages/ukpack1/ukpact1-dashboard"),
 );
 const UkPact2Dashboard = lazy(
   () => import("./pages/ukpack2/ukpact2-dashboard"),
 );
 const ReasonOther01Page = lazy(
-  () => import("./pages/beforecitychange/ReasonOther01Page"),
+  () => import("./pages/ukpack1/ReasonOther01Page"),
 );
 const WhatDoYouTravelByPage = lazy(
-  () => import("./pages/beforecitychange/WhatDoYouTravelByPage"),
+  () => import("./pages/ukpack1/WhatDoYouTravelByPage"),
 );
 const HowDoYouThinkPage = lazy(
-  () => import("./pages/beforecitychange/HowDoYouThinkPage"),
+  () => import("./pages/ukpack1/HowDoYouThinkPage"),
 );
 const SplashScreen = lazy(() => import("./pages/ukpack2/screens/SplashScreen"));
 const PdpaScreen = lazy(() => import("./pages/ukpack2/screens/PdpaScreen"));
@@ -345,22 +345,22 @@ const App = () => {
   useEffect(() => {
     const preload = () => {
       const tasks = [
-        import("./pages/beforecitychange/Ask02Page"),
-        import("./pages/beforecitychange/Ask02_2Page"),
-        import("./pages/beforecitychange/Ask04Page"),
-        import("./pages/beforecitychange/Ask04BudgetPage"),
-        import("./pages/beforecitychange/Ask05Page"),
-        import("./pages/beforecitychange/FakeNewsPage"),
-        import("./pages/beforecitychange/SourceSelectionPage"),
-        import("./pages/beforecitychange/BudgetPage"),
-        import("./pages/beforecitychange/EndSequencePage"),
-        import("./pages/beforecitychange/EndScreenPage"),
-        import("./pages/beforecitychange/MiniGameMN1Page"),
-        import("./pages/beforecitychange/MiniGameMN2Page"),
-        import("./pages/beforecitychange/MiniGameMN01Page"),
-        import("./pages/beforecitychange/MiniGameMN3Page"),
-        import("./pages/beforecitychange/HowDoYouThinkPage"),
-        import("./pages/beforecitychange/Uk-stornaway"),
+        import("./pages/ukpack1/Ask02Page"),
+        import("./pages/ukpack1/Ask02_2Page"),
+        import("./pages/ukpack1/Ask04Page"),
+        import("./pages/ukpack1/Ask04BudgetPage"),
+        import("./pages/ukpack1/Ask05Page"),
+        import("./pages/ukpack1/FakeNewsPage"),
+        import("./pages/ukpack1/SourceSelectionPage"),
+        import("./pages/ukpack1/BudgetPage"),
+        import("./pages/ukpack1/EndSequencePage"),
+        import("./pages/ukpack1/EndScreenPage"),
+        import("./pages/ukpack1/MiniGameMN1Page"),
+        import("./pages/ukpack1/MiniGameMN2Page"),
+        import("./pages/ukpack1/MiniGameMN01Page"),
+        import("./pages/ukpack1/MiniGameMN3Page"),
+        import("./pages/ukpack1/HowDoYouThinkPage"),
+        import("./pages/ukpack1/Uk-stornaway"),
       ];
       Promise.allSettled(tasks);
     };
