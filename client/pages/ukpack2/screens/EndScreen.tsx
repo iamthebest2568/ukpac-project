@@ -1,3 +1,4 @@
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import CustomizationScreen from "../components/CustomizationScreen";
 import SecondaryButton from "../components/SecondaryButton";
@@ -27,7 +28,7 @@ const EndScreen: React.FC = () => {
             />
           </div>
           <p className="text-[#001a73] font-prompt font-semibold text-center">
-            ขอบคุณ ที่ร่วมเป็นส่วนหนึ่งในการพัฒนาเมือง
+            ขอบคุณ ที่ร่วมเป็นส่วนหนึ่งในการพั��นาเมือง
           </p>
           <div className="w-full flex justify-center">
             <img
