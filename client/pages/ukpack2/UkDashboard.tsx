@@ -394,7 +394,7 @@ const UkDashboard: React.FC = () => {
         publicItems,
         publishedAt: new Date().toISOString(),
       };
-      const resp = await fetch("/api/ukpack2/publish", {
+      const resp = await fetch("/api/mydreambus/publish", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
