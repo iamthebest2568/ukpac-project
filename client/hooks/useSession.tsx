@@ -106,8 +106,8 @@ export const useSession = (): UseSessionReturn => {
     // Translate legacy routes to new paths
     let newPath = routeMap[path] || path;
 
-    // If the path is absolute and not already under /ukpack1, prefix it so all internal navigation
-    // points to the ukpack1 project paths.
+    // If the path is absolute and not already under /beforecitychange, prefix it so all internal navigation
+    // points to the beforecitychange project paths.
     if (typeof newPath === 'string' && newPath.startsWith('/') && !newPath.startsWith('/beforecitychange')) {
       newPath = `/beforecitychange${newPath}`;
     }
