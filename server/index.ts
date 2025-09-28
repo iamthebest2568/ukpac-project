@@ -138,8 +138,8 @@ export function createServer() {
         col = "minigame2_events";
         docId = "minigame2-di";
       } else if (project === "ukpack1" || project === "beforecitychange") {
-        col = "minigame1_events";
-        docId = "minigame1-di";
+        col = "beforecitychange_events";
+        docId = "beforecitychange-di";
       }
       const stats = await getFirestoreStatsFor(col, docId, 100);
       const agg = await computeStatsForProject(col, docId);
@@ -287,8 +287,8 @@ export function createServer() {
         col = "minigame2_events";
         docId = "minigame2-di";
       } else if (project === "ukpack1" || project === "beforecitychange") {
-        col = "minigame1_events";
-        docId = "minigame1-di";
+        col = "beforecitychange_events";
+        docId = "beforecitychange-di";
       }
       const stats = await getFirestoreStatsFor(col, docId, 20);
       res.status(200).json({ ok: true, project, col, docId, stats });
