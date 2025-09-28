@@ -617,10 +617,6 @@ const App = () => {
                   }
                 />
                 {/* Redirect legacy/variant dashboard URLs to canonical */}
-                <Route path="/beforecitychange/ukdashboard.html" element={<Navigate to="/beforecitychange/ukdashboard" replace />} />
-                <Route path="/beforecitychange/uk-dashboard" element={<Navigate to="/beforecitychange/ukdashboard" replace />} />
-                <Route path="/beforecitychange/UkDashboard" element={<Navigate to="/beforecitychange/ukdashboard" replace />} />
-                <Route path="/beforecitychange/ukpact1-dashboard" element={<Navigate to="/beforecitychange/ukdashboard" replace />} />
                 <Route
                   path="/beforecitychange/how-do-you-think"
                   element={
