@@ -239,13 +239,23 @@ export async function getVideoIngestStatus(): Promise<{
   // Try Firestore first
   try {
     initFirestore();
-    if (firestoreDb) {
+    if (adminDb) {
+      const colDoc = adminDb.collection("minigame1_events").doc("minigame1-di");
+      const snap = await colDoc.collection("events").orderBy("createdAt", "desc").limit(1).get();
+      let lastTs: string | null = null;
+      if (snap.docs && snap.docs.length > 0) {
+        const d = snap.docs[0].data() as any;
+        const ts = d.timestamp || d.createdAt || null;
+        if (ts && typeof ts.toDate === "function") lastTs = ts.toDate().toISOString();
+        else if (ts) lastTs = String(ts);
+      }
+      return { count: -1, lastTs };
+    } else if (firestoreDb) {
       const colDoc = doc(firestoreDb, "minigame1_events", "minigame1-di");
       const eventsCol = collection(colDoc, "events");
       const q = query(eventsCol, orderBy("createdAt", "desc"), limitFn(1));
       const snap = await getDocs(q as any);
       let lastTs: string | null = null;
-      let count = 0;
       const docs = snap.docs || [];
       if (docs.length > 0) {
         const d = docs[0].data() as any;
@@ -254,8 +264,6 @@ export async function getVideoIngestStatus(): Promise<{
           lastTs = ts.toDate().toISOString();
         else if (ts) lastTs = String(ts);
       }
-      // Count: Firestore does not support count easily without aggregation; approximate via docs length with a warning
-      // We'll return -1 for unknown count
       return { count: -1, lastTs };
     }
   } catch (e) {
