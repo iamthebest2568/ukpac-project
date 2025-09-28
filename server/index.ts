@@ -242,7 +242,7 @@ export function createServer() {
         try {
           const parsed = typeof svc === 'string' ? JSON.parse(svc) : svc;
           if (!admin.apps || admin.apps.length === 0) {
-            admin.initializeApp({ credential: admin.credential.cert(parsed as any) } as any);
+            admin.initializeApp({ credential: admin.credential.cert(parsed as any), storageBucket: process.env.FIREBASE_STORAGE_BUCKET || undefined } as any);
           }
           const dbAdmin = admin.database ? admin.database() : null;
           const fsAdmin = admin.firestore ? admin.firestore() : null;
@@ -309,7 +309,7 @@ export function createServer() {
       if (!svc) return res.status(500).json({ ok: false, error: 'FIREBASE_SERVICE_ACCOUNT not configured' });
       const parsed = typeof svc === 'string' ? JSON.parse(svc) : svc;
       if (!admin.apps || admin.apps.length === 0) {
-        admin.initializeApp({ credential: admin.credential.cert(parsed as any) } as any);
+        admin.initializeApp({ credential: admin.credential.cert(parsed as any), storageBucket: process.env.FIREBASE_STORAGE_BUCKET || undefined } as any);
       }
 
       const bucket = admin.storage().bucket();
@@ -384,7 +384,7 @@ export function createServer() {
       if (!svc) return res.status(400).json({ ok: false, error: 'FIREBASE_SERVICE_ACCOUNT not configured' });
       const parsed = typeof svc === 'string' ? JSON.parse(svc) : svc;
       if (!admin.apps || admin.apps.length === 0) {
-        admin.initializeApp({ credential: admin.credential.cert(parsed as any) } as any);
+        admin.initializeApp({ credential: admin.credential.cert(parsed as any), storageBucket: process.env.FIREBASE_STORAGE_BUCKET || undefined } as any);
       }
       const fsAdmin = admin.firestore ? admin.firestore() : null;
       if (!fsAdmin) return res.status(500).json({ ok: false, error: 'admin.firestore unavailable' });
@@ -658,7 +658,7 @@ export function createServer() {
           try {
             const parsed = typeof svc === 'string' ? JSON.parse(svc) : svc;
             if (!admin.apps || admin.apps.length === 0) {
-              admin.initializeApp({ credential: admin.credential.cert(parsed as any) } as any);
+              admin.initializeApp({ credential: admin.credential.cert(parsed as any), storageBucket: process.env.FIREBASE_STORAGE_BUCKET || undefined } as any);
             }
             const fsAdmin = admin.firestore();
             const colRef = fsAdmin.collection('submissions');
@@ -671,7 +671,7 @@ export function createServer() {
                 "เวลาสิ้นสุด (lastTimestamp)",
                 "ยอมรับ PDPA (PDPA_acceptance)",
                 "ประเภทรถ (chassis_type)",
-                "จำนวนที่นั่งรวม (total_seats)",
+                "จำนวนที่นั่งร��ม (total_seats)",
                 "ที่นั่งพิเศษ (special_seats)",
                 "จำนวนเด��ก/ผู้สูงอายุ (children_elder_count)",
                 "จำนวนผู้ตั้งครรภ์ (pregnant_count)",
@@ -772,7 +772,7 @@ export function createServer() {
                 "จำนวนประตู (doors)",
                 "สี (color)",
                 "ความถี่ (frequency)",
-                "เส้นทาง (route)",
+                "เ��้นทาง (route)",
                 "พื้นที่ (area)",
                 "ตัดส���นใจใช้บริการ (decision_use_service)",
                 "เหตุ��ลไม่ใช้บริการ (reason_not_use)",
@@ -963,7 +963,7 @@ export function createServer() {
         "พื้นที่ (area)",
         "ตัดสินใจใช้บริการ (decision_use_service)",
         "เหตุผลไม่ใช้บริกา�� (reason_not_use)",
-        "เข้าร่วมของรางวัล (decision_enter_prize)",
+        "เข้าร่วมของ��างวัล (decision_enter_prize)",
         "ชื่อผู้รับรางวัล (prize_name)",
         "เบอร์โทรผู้รับรางวัล (prize_phone)",
         "��วลาการรับรางวัล (prize_timestamp)",
