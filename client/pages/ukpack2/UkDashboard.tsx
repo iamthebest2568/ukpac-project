@@ -71,25 +71,30 @@ const UkDashboard: React.FC = () => {
           }
           try {
             console.debug("Attempting fetch", url);
-            const fetchPromise = fetch(url, { credentials: "same-origin" })
-              .then(async (resp) => {
-                if (!resp || !resp.ok) return null;
-                try {
-                  return await resp.json();
-                } catch (e) {
+            try {
+              const fetchPromise = fetch(url, { credentials: "same-origin" })
+                .then(async (resp) => {
+                  if (!resp || !resp.ok) return null;
+                  try {
+                    return await resp.json();
+                  } catch (e) {
+                    return null;
+                  }
+                })
+                .catch((err) => {
+                  console.debug("fetch error for", url, err);
                   return null;
-                }
-              })
-              .catch((err) => {
-                console.debug("fetch error for", url, err);
-                return null;
-              });
+                });
 
-            const timeoutPromise = new Promise((res) =>
-              setTimeout(() => res(null), ms),
-            );
+              const timeoutPromise = new Promise((res) =>
+                setTimeout(() => res(null), ms),
+              );
 
-            return await Promise.race([fetchPromise, timeoutPromise]);
+              return await Promise.race([fetchPromise, timeoutPromise]);
+            } catch (e) {
+              console.debug('fetchWithTimeout outer catch', e);
+              return null;
+            }
           } catch (e) {
             console.debug("fetchWithTimeout caught", e);
             return null;
@@ -430,7 +435,7 @@ const UkDashboard: React.FC = () => {
           PDPA: true,
           chassis: "extra",
           seating: { totalSeats: 12, specialSeats: 2 },
-          amenities: ["แอร์", "Wi‑Fi ฟรี"],
+          amenities: ["แอร��", "Wi‑Fi ฟรี"],
           payment: ["เงินสด"],
           doors: "1",
           color: "#ff0000",
@@ -476,7 +481,7 @@ const UkDashboard: React.FC = () => {
             <h2 className="text-lg font-semibold mb-2">
               เข้าสู่แดชบอร์ด mydreambus
             </h2>
-            <p className="text-sm mb-4">ป้อนรหัสเพื่อเข้าถึงแ��ชบอร์ด</p>
+            <p className="text-sm mb-4">ป้��นรหัสเพื่อเข้าถึงแ��ชบอร์ด</p>
             <input
               type="text"
               value={user}
