@@ -204,7 +204,7 @@ const SubmitScreen: React.FC = () => {
       })();
     } catch (e) {}
 
-    navigate("/ukpack2/summary");
+    navigate("/mydreambus/summary");
   };
 
   const storedColor =
