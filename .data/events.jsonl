@@ -401,3 +401,6 @@
 {"sessionId":"session_1759042819983_6eqj9bj47","eventName":"sw.variant.start","timestamp":"2025-09-28T07:03:27.354Z","variantId":"8aa35bfd","variantName":"ทดสอบ Key message"}
 {"sessionId":"session_1759043357629_2ny91ihb7","eventName":"sw.story.start","timestamp":"2025-09-28T07:09:41.931Z","variantId":"a59ef133","variantName":"Intro"}
 {"sessionId":"session_1759043357629_2ny91ihb7","eventName":"sw.variant.start","timestamp":"2025-09-28T07:09:41.929Z","variantId":"a59ef133","variantName":"Intro"}
+{"sessionId":"session_1759043357629_2ny91ihb7","eventName":"sw.variant.start","timestamp":"2025-09-28T07:09:55.272Z","variantId":"e61429e0","variantName":"PDPA"}
+{"sessionId":"session_1759043357629_2ny91ihb7","eventName":"sw.choice.selected","timestamp":"2025-09-28T07:09:55.260Z","choiceText":"PDPA","variantId":"a59ef133","variantName":"Intro"}
+{"sessionId":"session_1759043357629_2ny91ihb7","eventName":"sw.story.start","timestamp":"2025-09-28T07:09:55.273Z","variantId":"e61429e0","variantName":"PDPA"}
