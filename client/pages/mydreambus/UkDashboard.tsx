@@ -137,6 +137,8 @@ const UkDashboard: React.FC = () => {
         } else {
           const origin = typeof window !== 'undefined' ? window.location.origin : '';
           const rawCandidates = [
+            `/api/firestore-stats?project=mydreambus`,
+            `/.netlify/functions/api/firestore-stats?project=mydreambus`,
             `${origin}/api/firestore-stats?project=mydreambus`,
             `${origin}/.netlify/functions/api/firestore-stats?project=mydreambus`,
           ];
@@ -146,7 +148,15 @@ const UkDashboard: React.FC = () => {
 
           let j = null;
           try {
-            j = await tryFetchJsonWithFallback(rawCandidates, 8000);
+            // guard against any unexpected exception inside the helper
+            j = await (async () => {
+              try {
+                return await tryFetchJsonWithFallback(rawCandidates, 8000);
+              } catch (innerErr) {
+                console.warn("tryFetchJsonWithFallback inner error", innerErr);
+                return null;
+              }
+            })();
           } catch (e) {
             console.warn("tryFetchJsonWithFallback threw", e);
             j = null;
@@ -232,7 +242,7 @@ const UkDashboard: React.FC = () => {
   const handleExport = () => {
     const csv = exportEventsAsCSV();
     if (!csv) {
-      alert("ไม่��ีข้อมูลให้ส่งออก");
+      alert("ไม่มีข้อมูลให้ส่งออก");
       return;
     }
     const blob = new Blob(["\uFEFF" + csv], {
