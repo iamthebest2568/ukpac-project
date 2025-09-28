@@ -38,3 +38,11 @@
   height: auto !important;
   min-height: 100% !important;
 }
+
+/* Hide decorative MN3 background overlay (::before) when inside minigame-mn1 page */
+.minigame-mn1-page .mn3-page-bg::before,
+.minigame-mn1-page.mn3-page-bg::before {
+  display: none !important;
+  background-image: none !important;
+  content: none !important;
+}
