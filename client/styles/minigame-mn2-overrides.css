@@ -28,12 +28,18 @@
   position: sticky !important;
   bottom: calc(env(safe-area-inset-bottom, 0px) + 12px) !important;
   display: flex !important;
+  flex-direction: column !important; /* ensure stacked buttons */
+  gap: 12px !important;
   justify-content: center !important;
   z-index: 10010 !important;
   width: 100% !important;
   max-width: 420px !important;
   margin-left: auto !important;
   margin-right: auto !important;
+}
+.tablet-mock-env .mn2-step1-page .figma-style1-button-container > *,
+.tablet-mock-env .mn2-summary-page .figma-style1-button-container > * {
+  width: 100% !important;
 }
 
 /* Ensure background behaves similarly to mobile within mockup */
