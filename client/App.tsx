@@ -124,10 +124,7 @@ import EndSequenceSkeleton, {
 } from "./components/shared/skeletons/EndSkeletons";
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
-  const isDashboard =
-    /^\/(?:(?:ukpack1|beforecitychange)\/(?:uk-dashboard|ukdashboard\.html|UkDashboard|ukpact1-dashboard)|(?:ukpack2|mydreambus)\/(?:dashboard|ukpact2-dashboard))$/.test(
-      location.pathname,
-    );
+  const isDashboard = /^\/(?:beforecitychange\/ukdashboard|mydreambus\/dashboard)$/.test(location.pathname);
 
   // Page view / navigation logging for ukpack2
   const prevPathRef = React.useRef<string | null>(null);
