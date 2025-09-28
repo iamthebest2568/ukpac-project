@@ -408,7 +408,11 @@ const App = () => {
                 <Route path="/" element={<IndexPage />} />
                 <Route
                   path="/beforecitychange"
-                  element={<Navigate to="/beforecitychange/uk-stornaway" replace />}
+                  element={
+                    <Suspense fallback={<SuspenseFallback />}>
+                      <UkStornaway />
+                    </Suspense>
+                  }
                 />
                 <Route path="/ukpack2" element={<SplashScreen />} />
                 <Route path="/ukpack2/pdpa" element={<PdpaScreen />} />
