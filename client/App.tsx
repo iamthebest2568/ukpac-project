@@ -117,7 +117,7 @@ const ConfirmationScreen = lazy(
 );
 const EndScreen = lazy(() => import("./pages/ukpack2/screens/EndScreen"));
 const SkipEndPage = lazy(() => import("./pages/ukpack2/screens/SkipEnd"));
-const UkPack2Dashboard = lazy(() => import("./pages/ukpack2/UkDashboard"));
+const UkPack2Dashboard = lazy(() => import("./pages/mydreambus/UkDashboard"));
 
 // Layout component with accessibility features
 import FakeNewsSkeleton from "./components/shared/skeletons/FakeNewsSkeleton";
