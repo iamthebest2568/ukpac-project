@@ -153,3 +153,78 @@
   z-index: 100005 !important;
   max-width: 90% !important;
 }
+
+/* MN1-specific adjustments inside the tablet mockup:
+   - Only affects the /beforecitychange/minigame-mn1 page (.minigame-mn1-page)
+   - Reduce button sizes, ensure adequate gaps, and horizontally center the grid
+*/
+.tablet-mock-env .minigame-mn1-page .absolute.w-full.flex.flex-col.items-center > div {
+  width: 86% !important;
+  max-width: 680px !important;
+  margin: 0 auto !important;
+  gap: 14px !important;
+  box-sizing: border-box !important;
+}
+
+.tablet-mock-env .minigame-mn1-page .flex.flex-col > div {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 12px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Row-specific button widths to recreate 2 / 3 / 2 layout but scaled for mock frame */
+.tablet-mock-env .minigame-mn1-page .flex.flex-col > div:nth-child(1) .transition-all {
+  width: 48% !important; /* two columns */
+  min-width: 120px !important;
+  height: clamp(48px, 4.2vw, 76px) !important;
+}
+
+.tablet-mock-env .minigame-mn1-page .flex.flex-col > div:nth-child(2) .transition-all {
+  width: 30% !important; /* three columns */
+  min-width: 90px !important;
+  height: clamp(44px, 4.2vw, 72px) !important;
+}
+
+.tablet-mock-env .minigame-mn1-page .flex.flex-col > div:nth-child(3) .transition-all {
+  width: 48% !important; /* two columns */
+  min-width: 120px !important;
+  height: clamp(48px, 4.2vw, 76px) !important;
+}
+
+/* Make sure button visuals (border-radius, text size) scale nicely */
+.tablet-mock-env .minigame-mn1-page button.transition-all {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 28px !important;
+  padding: 6px 10px !important;
+  font-size: clamp(14px, 2.8vw, 22px) !important;
+  line-height: 1.1 !important;
+  box-sizing: border-box !important;
+  white-space: normal !important;
+}
+
+/* Tweak the continue button on MN1 inside mock to be narrower and centered */
+.tablet-mock-env .minigame-mn1-page .group.flex.items-center.justify-center > button,
+.tablet-mock-env .minigame-mn1-page .relative.flex.justify-center > button {
+  width: clamp(260px, 72%, 640px) !important;
+  max-width: 640px !important;
+  height: clamp(48px, 6vw, 96px) !important;
+  border-radius: 40px !important;
+  font-size: clamp(16px, 3.6vw, 28px) !important;
+}
+
+/* Ensure title and subtitles remain centered and do not shift horizontally */
+.tablet-mock-env .minigame-mn1-page .absolute.w-full.text-center h1,
+.tablet-mock-env .minigame-mn1-page .absolute.w-full.text-center p {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center !important;
+}
+
+/* Small screens inside mock: allow vertical scroll if content overflows */
+.tablet-mock-env .minigame-mn1-page .absolute.w-full.flex.flex-col.items-center {
+  overflow: visible !important;
+}
