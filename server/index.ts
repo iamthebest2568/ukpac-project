@@ -6,6 +6,18 @@ import path from "node:path";
 import fetch from "node-fetch";
 import { handleDemo } from "./routes/demo";
 import admin from 'firebase-admin';
+
+// Helper: format timestamp to Thailand time (Asia/Bangkok) using sv-SE for ISO-like string
+function formatToBangkok(ts: any) {
+  try {
+    if (!ts) return '';
+    const d = new Date(String(ts));
+    if (isNaN(d.getTime())) return String(ts || '');
+    return d.toLocaleString('sv-SE', { timeZone: 'Asia/Bangkok' });
+  } catch (e) {
+    return String(ts || '');
+  }
+}
 import {
   EventSchema,
   appendEvent,
@@ -559,7 +571,7 @@ export function createServer() {
       const summaries = await computeSessionSummaries(limit);
 
       const headers = [
-        "รหัสเซสชัน (sessionID)",
+        "รหัสเซ��ชัน (sessionID)",
         "IP (ip)",
         "เวลาเริ่ม (firstTimestamp)",
         "เวลาสิ้นสุด (lastTimestamp)",
