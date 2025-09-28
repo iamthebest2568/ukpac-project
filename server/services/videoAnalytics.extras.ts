@@ -298,6 +298,23 @@ export async function getFirestoreStatsFor(
 ): Promise<{ count: number | null; lastTs: string | null; sample: any[] }> {
   try {
     initFirestore();
+    if (adminDb) {
+      const colDoc = adminDb.collection(String(colName)).doc(String(docId));
+      const snap = await colDoc.collection("events").orderBy("createdAt", "desc").limit(limit).get();
+      const sample: any[] = [];
+      let lastTs: string | null = null;
+      snap.forEach((d: any) => {
+        const data = d.data();
+        if (!lastTs) {
+          const ts = data.timestamp || data.createdAt || null;
+          if (ts && typeof ts.toDate === "function") lastTs = ts.toDate().toISOString();
+          else if (ts) lastTs = String(ts);
+        }
+        sample.push({ id: d.id, data });
+      });
+      return { count: null, lastTs, sample };
+    }
+
     if (!firestoreDb) return { count: null, lastTs: null, sample: [] };
     const colDoc = doc(firestoreDb, String(colName), String(docId));
     const eventsCol = collection(colDoc, "events");
