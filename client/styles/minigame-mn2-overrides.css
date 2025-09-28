@@ -153,7 +153,10 @@
 }
 
 /* Constrain button container width to match other steps */
-.tablet-mock-env .figma-style1-container.mn2-summary-page .mn2-summary-footer .figma-style1-button-container {
+.tablet-mock-env
+  .figma-style1-container.mn2-summary-page
+  .mn2-summary-footer
+  .figma-style1-button-container {
   max-width: 325px !important;
   width: 100% !important;
   margin-left: auto !important;
@@ -161,6 +164,8 @@
 }
 
 /* Ensure content area has appropriate spacing */
-.tablet-mock-env .figma-style1-container.mn2-summary-page .figma-style1-content-area {
+.tablet-mock-env
+  .figma-style1-container.mn2-summary-page
+  .figma-style1-content-area {
   padding-bottom: 32px !important; /* Reduced padding, footer now in flow */
 }

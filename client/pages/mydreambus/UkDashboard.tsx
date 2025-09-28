@@ -87,7 +87,12 @@ const UkDashboard: React.FC = () => {
                     return null;
                   }
                 } catch (err) {
-                  console.debug("fetch attempt failed for", targetUrl, opts, err);
+                  console.debug(
+                    "fetch attempt failed for",
+                    targetUrl,
+                    opts,
+                    err,
+                  );
                   return null;
                 }
               };
@@ -110,7 +115,7 @@ const UkDashboard: React.FC = () => {
 
               return await Promise.race([fetchPromise, timeoutPromise]);
             } catch (e) {
-              console.debug('fetchWithTimeout outer catch', e);
+              console.debug("fetchWithTimeout outer catch", e);
               return null;
             }
           } catch (e) {
@@ -133,10 +138,16 @@ const UkDashboard: React.FC = () => {
       // Fetch Firestore-backed recent events with resilient fallbacks
       try {
         // Only attempt Firestore/http fetch when running under the mydreambus canonical path.
-        if (typeof window !== 'undefined' && !window.location.pathname.startsWith('/mydreambus')) {
-          console.debug('Skipping firestore-stats fetch because not on /mydreambus path');
+        if (
+          typeof window !== "undefined" &&
+          !window.location.pathname.startsWith("/mydreambus")
+        ) {
+          console.debug(
+            "Skipping firestore-stats fetch because not on /mydreambus path",
+          );
         } else {
-          const origin = typeof window !== 'undefined' ? window.location.origin : '';
+          const origin =
+            typeof window !== "undefined" ? window.location.origin : "";
           const rawCandidates = [
             `/api/firestore-stats?project=mydreambus`,
             `/.netlify/functions/api/firestore-stats?project=mydreambus`,
@@ -188,7 +199,8 @@ const UkDashboard: React.FC = () => {
 
       // fetch public submissions (landing assets) with fallbacks
       try {
-        const origin = typeof window !== 'undefined' ? window.location.origin : '';
+        const origin =
+          typeof window !== "undefined" ? window.location.origin : "";
         const rawCandidates2 = [
           `${origin}/api/public-submissions?limit=20`,
           `${origin}/.netlify/functions/api/public-submissions?limit=20`,
@@ -682,7 +694,8 @@ const UkDashboard: React.FC = () => {
                 <div>Sent: {lastSentResult.sentCount}</div>
                 <div>Skipped: {lastSentResult.skippedCount}</div>
                 <div>
-                  Errors: {lastSentResult.errors && lastSentResult.errors.length}
+                  Errors:{" "}
+                  {lastSentResult.errors && lastSentResult.errors.length}
                 </div>
                 <div className="mt-2">Sample sent items:</div>
                 <pre className="text-xs mt-2 whitespace-pre-wrap max-h-64 overflow-auto break-words">

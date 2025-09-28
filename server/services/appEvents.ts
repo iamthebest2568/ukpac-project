@@ -54,7 +54,9 @@ function initServerFirestore() {
     try {
       const parsed = typeof svc === "string" ? JSON.parse(svc) : svc;
       if (!admin.apps || admin.apps.length === 0) {
-        admin.initializeApp({ credential: admin.credential.cert(parsed as any) } as any);
+        admin.initializeApp({
+          credential: admin.credential.cert(parsed as any),
+        } as any);
       }
       adminDb = admin.firestore();
       return;
@@ -90,7 +92,10 @@ function ensureDir() {
   } catch {}
 }
 
-export async function appendAppEvent(ev: AppEvent, targetCollectionPath?: string) {
+export async function appendAppEvent(
+  ev: AppEvent,
+  targetCollectionPath?: string,
+) {
   // Try admin path first
   try {
     initServerFirestore();
@@ -99,7 +104,10 @@ export async function appendAppEvent(ev: AppEvent, targetCollectionPath?: string
         let col = "minigame1_events";
         let docId = "minigame1-di";
         if (targetCollectionPath && typeof targetCollectionPath === "string") {
-          const parts = targetCollectionPath.replace(/^\/+/, "").split("/").filter(Boolean);
+          const parts = targetCollectionPath
+            .replace(/^\/+/, "")
+            .split("/")
+            .filter(Boolean);
           if (parts.length >= 2) {
             col = parts[0];
             docId = parts[1];
@@ -135,7 +143,10 @@ export async function appendAppEvent(ev: AppEvent, targetCollectionPath?: string
       let colDocPath = ["minigame1_events", "minigame1-di"]; // default
       try {
         if (targetCollectionPath && typeof targetCollectionPath === "string") {
-          const parts = targetCollectionPath.replace(/^\/+/, "").split("/").filter(Boolean);
+          const parts = targetCollectionPath
+            .replace(/^\/+/, "")
+            .split("/")
+            .filter(Boolean);
           if (parts.length >= 2) colDocPath = [parts[0], parts[1]];
         }
       } catch (_) {}
@@ -176,22 +187,34 @@ export async function readAllAppEvents(): Promise<AppEvent[]> {
     initServerFirestore();
     if (adminDb) {
       const colDoc = adminDb.collection("minigame1_events").doc("minigame1-di");
-      const eventsCol = await colDoc.collection("events").orderBy("createdAt", "asc").limit(5000).get();
+      const eventsCol = await colDoc
+        .collection("events")
+        .orderBy("createdAt", "asc")
+        .limit(5000)
+        .get();
       const events: AppEvent[] = [];
       eventsCol.forEach((d) => {
         const data = d.data() as any;
         const ts = data.timestamp || data.createdAt || new Date().toISOString();
         let timestamp = ts;
-        if (timestamp && timestamp.toDate && typeof timestamp.toDate === "function") {
+        if (
+          timestamp &&
+          timestamp.toDate &&
+          typeof timestamp.toDate === "function"
+        ) {
           timestamp = timestamp.toDate().toISOString();
         }
         events.push({
-          sessionId: sanitizeThai(String(data.sessionID || data.sessionId || "")),
+          sessionId: sanitizeThai(
+            String(data.sessionID || data.sessionId || ""),
+          ),
           event: sanitizeThai(String(data.event || "")),
           timestamp: String(timestamp || new Date().toISOString()),
           page: sanitizeThai(data.page ?? undefined),
           payload: data.payload ?? undefined,
-          userAgent: sanitizeThai(data.userAgent ?? data.user_agent ?? undefined),
+          userAgent: sanitizeThai(
+            data.userAgent ?? data.user_agent ?? undefined,
+          ),
           ip: sanitizeThai(data.ip ?? undefined),
         });
       });
@@ -218,12 +241,16 @@ export async function readAllAppEvents(): Promise<AppEvent[]> {
           timestamp = timestamp.toDate().toISOString();
         }
         events.push({
-          sessionId: sanitizeThai(String(data.sessionID || data.sessionId || "")),
+          sessionId: sanitizeThai(
+            String(data.sessionID || data.sessionId || ""),
+          ),
           event: sanitizeThai(String(data.event || "")),
           timestamp: String(timestamp || new Date().toISOString()),
           page: sanitizeThai(data.page ?? undefined),
           payload: data.payload ?? undefined,
-          userAgent: sanitizeThai(data.userAgent ?? data.user_agent ?? undefined),
+          userAgent: sanitizeThai(
+            data.userAgent ?? data.user_agent ?? undefined,
+          ),
           ip: sanitizeThai(data.ip ?? undefined),
         });
       });
@@ -258,18 +285,31 @@ export async function readAllAppEvents(): Promise<AppEvent[]> {
   }
 }
 
-export async function getAppEventsBySession(sessionId: string): Promise<AppEvent[]> {
+export async function getAppEventsBySession(
+  sessionId: string,
+): Promise<AppEvent[]> {
   const all = await readAllAppEvents();
   return all
     .filter((e) => e.sessionId === sessionId)
-    .sort((a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime());
+    .sort(
+      (a, b) =>
+        new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime(),
+    );
 }
 
 // Compute simple user journey stats suitable for dashboard fallback
 export async function computeUserJourneyStats(recentLimit = 1000) {
   const events = await readAllAppEvents();
   const totalSessions = new Set(events.map((e) => e.sessionId)).size;
-  const totalPlays = events.filter((e) => String(e.event || "").toLowerCase().includes("play") || String(e.event || "").toLowerCase().includes("start")).length;
+  const totalPlays = events.filter(
+    (e) =>
+      String(e.event || "")
+        .toLowerCase()
+        .includes("play") ||
+      String(e.event || "")
+        .toLowerCase()
+        .includes("start"),
+  ).length;
   const completionRate = 0; // placeholder
   const avgSessionLengthSeconds = 0;
 
@@ -285,12 +325,21 @@ export async function computeUserJourneyStats(recentLimit = 1000) {
     .map((k) => ({ date: k, plays: timeseriesMap[k] }));
 
   // variants and choices are approximated
-  const variantsMap: Record<string, { name: string; count: number; avgTimeSeconds: number; dropoutRate: number }> = {};
+  const variantsMap: Record<
+    string,
+    { name: string; count: number; avgTimeSeconds: number; dropoutRate: number }
+  > = {};
   const choicesMap: Record<string, number> = {};
   for (const e of events) {
     if (e.payload && typeof e.payload === "object") {
       const v = e.payload.variantName || e.payload.variant || null;
-      if (v) variantsMap[v] = variantsMap[v] || { name: v, count: 0, avgTimeSeconds: 0, dropoutRate: 0 };
+      if (v)
+        variantsMap[v] = variantsMap[v] || {
+          name: v,
+          count: 0,
+          avgTimeSeconds: 0,
+          dropoutRate: 0,
+        };
       if (v) variantsMap[v].count++;
     }
     if (e.event && String(e.event).toLowerCase().includes("choice")) {
@@ -300,10 +349,18 @@ export async function computeUserJourneyStats(recentLimit = 1000) {
   }
 
   const variants = Object.values(variantsMap);
-  const choices = Object.keys(choicesMap).map((k) => ({ name: k, count: choicesMap[k] }));
+  const choices = Object.keys(choicesMap).map((k) => ({
+    name: k,
+    count: choicesMap[k],
+  }));
 
   return {
-    totals: { totalSessions, totalPlays, completionRate, avgSessionLengthSeconds },
+    totals: {
+      totalSessions,
+      totalPlays,
+      completionRate,
+      avgSessionLengthSeconds,
+    },
     timeseries,
     variants,
     choices,
@@ -352,22 +409,33 @@ export async function computeSessionSummaries(limit = 100) {
 
   const summaries = [];
   for (const [sid, arr] of bySession) {
-    arr.sort((a: any, b: any) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime());
+    arr.sort(
+      (a: any, b: any) =>
+        new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime(),
+    );
     const firstSeen = arr[0]?.timestamp || new Date().toISOString();
     const lastSeen = arr[arr.length - 1]?.timestamp || firstSeen;
 
     // Basic fields extracted when available
-    const introWho = arr.find((e: any) => e.event && e.event.includes("INTRO_WHO"))?.payload?.choice || undefined;
-    const travelMethod = arr.find((e: any) => e.event && e.event.includes("TRAVEL_METHOD"))?.payload?.choice || undefined;
+    const introWho =
+      arr.find((e: any) => e.event && e.event.includes("INTRO_WHO"))?.payload
+        ?.choice || undefined;
+    const travelMethod =
+      arr.find((e: any) => e.event && e.event.includes("TRAVEL_METHOD"))
+        ?.payload?.choice || undefined;
     const mn1Selected = [];
     for (const e of arr) {
-      if (e.event && (e.event === "MN1_SELECT" || e.event === "BUDGET_STEP1_COMPLETE")) {
+      if (
+        e.event &&
+        (e.event === "MN1_SELECT" || e.event === "BUDGET_STEP1_COMPLETE")
+      ) {
         if (e.payload && e.payload.selectedPolicies) {
           mn1Selected.push(...(e.payload.selectedPolicies || []));
         }
       }
       if (e.event && e.event === "MN01_SELECT") {
-        if (e.payload && e.payload.selectedPolicies) mn1Selected.push(...e.payload.selectedPolicies);
+        if (e.payload && e.payload.selectedPolicies)
+          mn1Selected.push(...e.payload.selectedPolicies);
       }
     }
 
@@ -377,12 +445,17 @@ export async function computeSessionSummaries(limit = 100) {
       lastSeen,
       introWho: introWho || undefined,
       travelMethod: travelMethod || undefined,
-      mn1Selected: Array.isArray(mn1Selected) ? Array.from(new Set(mn1Selected)) : [],
+      mn1Selected: Array.isArray(mn1Selected)
+        ? Array.from(new Set(mn1Selected))
+        : [],
       contacts: 0,
     });
   }
 
   // sort by firstSeen desc
-  summaries.sort((a: any, b: any) => new Date(b.firstSeen).getTime() - new Date(a.firstSeen).getTime());
+  summaries.sort(
+    (a: any, b: any) =>
+      new Date(b.firstSeen).getTime() - new Date(a.firstSeen).getTime(),
+  );
   return summaries.slice(0, Math.max(0, Math.min(limit, summaries.length)));
 }

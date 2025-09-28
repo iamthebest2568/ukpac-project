@@ -32,9 +32,18 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
   const location = useLocation();
   const viewportBackground = "#ffffff";
 
-  const isMN1 = typeof location !== "undefined" && location.pathname && location.pathname.startsWith("/beforecitychange/minigame-mn1");
-  const isMN2 = typeof location !== "undefined" && location.pathname && location.pathname.startsWith("/beforecitychange/minigame-mn2");
-  const isMN3 = typeof location !== "undefined" && location.pathname && location.pathname.startsWith("/beforecitychange/minigame-mn3");
+  const isMN1 =
+    typeof location !== "undefined" &&
+    location.pathname &&
+    location.pathname.startsWith("/beforecitychange/minigame-mn1");
+  const isMN2 =
+    typeof location !== "undefined" &&
+    location.pathname &&
+    location.pathname.startsWith("/beforecitychange/minigame-mn2");
+  const isMN3 =
+    typeof location !== "undefined" &&
+    location.pathname &&
+    location.pathname.startsWith("/beforecitychange/minigame-mn3");
 
   useEffect(() => {
     if (!(isMN1 || isMN2 || isMN3)) return;
@@ -48,7 +57,9 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
 
         // Copy stylesheets and style tags from parent into iframe head
         const head = doc.head;
-        Array.from(document.querySelectorAll('link[rel="stylesheet"], style')).forEach((node) => {
+        Array.from(
+          document.querySelectorAll('link[rel="stylesheet"], style'),
+        ).forEach((node) => {
           try {
             head.appendChild(node.cloneNode(true));
           } catch (e) {}
@@ -56,31 +67,34 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
 
         // Ensure base href so relative urls resolve correctly
         try {
-          const base = doc.createElement('base');
-          base.setAttribute('href', window.location.origin + '/');
+          const base = doc.createElement("base");
+          base.setAttribute("href", window.location.origin + "/");
           head.appendChild(base);
         } catch (e) {}
 
         // Create mount node for portal
-        const mount = doc.createElement('div');
-        mount.className = 'iframe-mount';
-        doc.body.style.margin = '0';
+        const mount = doc.createElement("div");
+        mount.className = "iframe-mount";
+        doc.body.style.margin = "0";
         doc.body.appendChild(mount);
         setIframeMount(mount);
       } catch (e) {}
     };
 
-    iframe.addEventListener('load', handleLoad);
+    iframe.addEventListener("load", handleLoad);
     // If iframe already loaded
     try {
-      if (iframe.contentDocument && iframe.contentDocument.readyState === 'complete') {
+      if (
+        iframe.contentDocument &&
+        iframe.contentDocument.readyState === "complete"
+      ) {
         handleLoad();
       }
     } catch (e) {}
 
     return () => {
       try {
-        iframe.removeEventListener('load', handleLoad);
+        iframe.removeEventListener("load", handleLoad);
       } catch (e) {}
     };
   }, [isMN2, isMN3]);
@@ -139,7 +153,6 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
   if (!active) return <>{children}</>;
 
   if (typeof document === "undefined") return <>{children}</>;
-
 
   const mockup = (
     <div
@@ -226,14 +239,17 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
                     }}
                   />
 
-                  {iframeMount
-                    ? createPortal(<RouteTransition>{children}</RouteTransition>, iframeMount)
-                    : (
-                      // While iframe initializes, keep hidden RouteTransition to avoid layout shift
-                      <div style={{ visibility: "hidden" }}>
-                        <RouteTransition>{children}</RouteTransition>
-                      </div>
-                    )}
+                  {iframeMount ? (
+                    createPortal(
+                      <RouteTransition>{children}</RouteTransition>,
+                      iframeMount,
+                    )
+                  ) : (
+                    // While iframe initializes, keep hidden RouteTransition to avoid layout shift
+                    <div style={{ visibility: "hidden" }}>
+                      <RouteTransition>{children}</RouteTransition>
+                    </div>
+                  )}
                 </>
               ) : (
                 <RouteTransition>{children}</RouteTransition>

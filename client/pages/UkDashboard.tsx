@@ -118,8 +118,14 @@ export default function UkDashboard() {
   useEffect(() => {
     try {
       if (typeof window !== "undefined") {
-        const p = window.location && window.location.pathname ? window.location.pathname : "";
-        if (p.startsWith("/beforecitychange/uk-dashboard") || p.startsWith("/beforecitychange/ukdashboard.html")) {
+        const p =
+          window.location && window.location.pathname
+            ? window.location.pathname
+            : "";
+        if (
+          p.startsWith("/beforecitychange/uk-dashboard") ||
+          p.startsWith("/beforecitychange/ukdashboard.html")
+        ) {
           sessionStorage.setItem("ukdash_authed", "true");
           setAuthed(true);
         }
@@ -140,7 +146,8 @@ export default function UkDashboard() {
       .replace(/"/g, '""');
   };
 
-  const apiUrl = (p: string) => (typeof window !== 'undefined' ? window.location.origin : '') + p;
+  const apiUrl = (p: string) =>
+    (typeof window !== "undefined" ? window.location.origin : "") + p;
 
   async function load() {
     if (firstLoad) setLoading(true);
@@ -159,7 +166,8 @@ export default function UkDashboard() {
     setError(null);
 
     try {
-      const origin = typeof window !== "undefined" ? window.location.origin : "";
+      const origin =
+        typeof window !== "undefined" ? window.location.origin : "";
       const [jRes, ssRes, stRes, vsRes] = await Promise.allSettled([
         fetch(`${origin}/api/user-journey-stats`),
         fetch(`${origin}/api/session-summaries?limit=100`),
@@ -321,7 +329,7 @@ export default function UkDashboard() {
     }
     try {
       setClearing(true);
-      const res = await fetch(apiUrl('/api/clear-data'), { method: 'DELETE' });
+      const res = await fetch(apiUrl("/api/clear-data"), { method: "DELETE" });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       // Clear client-side stored logs/session id
       try {
@@ -451,9 +459,9 @@ export default function UkDashboard() {
                         note: "Test event from beforecitychange dashboard",
                       },
                     };
-                    const resp = await fetch(apiUrl('/api/track'), {
-                      method: 'POST',
-                      headers: { 'Content-Type': 'application/json' },
+                    const resp = await fetch(apiUrl("/api/track"), {
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
                       body: JSON.stringify(sample),
                     });
                     if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
@@ -946,7 +954,9 @@ export default function UkDashboard() {
                                 setDetailSession(s.sessionId);
                                 setDetailOpen(true);
                                 setDetailData(null);
-                                const resp = await fetch(apiUrl(`/api/session/${s.sessionId}`));
+                                const resp = await fetch(
+                                  apiUrl(`/api/session/${s.sessionId}`),
+                                );
                                 if (resp.ok) setDetailData(await resp.json());
                               }}
                             >

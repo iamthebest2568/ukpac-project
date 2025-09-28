@@ -39,7 +39,9 @@ function initFirestore() {
     try {
       const parsed = typeof svc === "string" ? JSON.parse(svc) : svc;
       if (!admin.apps || admin.apps.length === 0) {
-        admin.initializeApp({ credential: admin.credential.cert(parsed as any) } as any);
+        admin.initializeApp({
+          credential: admin.credential.cert(parsed as any),
+        } as any);
       }
       // Use admin firestore for server operations
       adminDb = admin.firestore();
@@ -83,7 +85,11 @@ export async function listRecentEvents(limit = 50): Promise<VideoEvent[]> {
     if (adminDb) {
       // use admin SDK queries
       const colDoc = adminDb.collection("minigame1_events").doc("minigame1-di");
-      const snap = await colDoc.collection("events").orderBy("createdAt", "desc").limit(limit).get();
+      const snap = await colDoc
+        .collection("events")
+        .orderBy("createdAt", "desc")
+        .limit(limit)
+        .get();
       const out: VideoEvent[] = [];
       snap.forEach((d: any) => {
         const data = d.data() as any;
@@ -92,7 +98,9 @@ export async function listRecentEvents(limit = 50): Promise<VideoEvent[]> {
         if (timestamp && typeof timestamp.toDate === "function")
           timestamp = timestamp.toDate().toISOString();
         out.push({
-          sessionId: sanitizeThai(String(data.sessionID || data.sessionId || "")),
+          sessionId: sanitizeThai(
+            String(data.sessionID || data.sessionId || ""),
+          ),
           eventName: sanitizeThai(String(data.eventName || data.event || "")),
           timestamp: String(timestamp),
           choiceText: sanitizeThai(data.choiceText ?? undefined),
@@ -159,7 +167,10 @@ export async function listVideoEventsBySession(
     initFirestore();
     if (adminDb) {
       const colDoc = adminDb.collection("minigame1_events").doc("minigame1-di");
-      const snap = await colDoc.collection("events").orderBy("createdAt", "asc").get();
+      const snap = await colDoc
+        .collection("events")
+        .orderBy("createdAt", "asc")
+        .get();
       const out: VideoEvent[] = [];
       snap.forEach((d: any) => {
         const data = d.data() as any;
@@ -241,12 +252,17 @@ export async function getVideoIngestStatus(): Promise<{
     initFirestore();
     if (adminDb) {
       const colDoc = adminDb.collection("minigame1_events").doc("minigame1-di");
-      const snap = await colDoc.collection("events").orderBy("createdAt", "desc").limit(1).get();
+      const snap = await colDoc
+        .collection("events")
+        .orderBy("createdAt", "desc")
+        .limit(1)
+        .get();
       let lastTs: string | null = null;
       if (snap.docs && snap.docs.length > 0) {
         const d = snap.docs[0].data() as any;
         const ts = d.timestamp || d.createdAt || null;
-        if (ts && typeof ts.toDate === "function") lastTs = ts.toDate().toISOString();
+        if (ts && typeof ts.toDate === "function")
+          lastTs = ts.toDate().toISOString();
         else if (ts) lastTs = String(ts);
       }
       return { count: -1, lastTs };
@@ -300,14 +316,19 @@ export async function getFirestoreStatsFor(
     initFirestore();
     if (adminDb) {
       const colDoc = adminDb.collection(String(colName)).doc(String(docId));
-      const snap = await colDoc.collection("events").orderBy("createdAt", "desc").limit(limit).get();
+      const snap = await colDoc
+        .collection("events")
+        .orderBy("createdAt", "desc")
+        .limit(limit)
+        .get();
       const sample: any[] = [];
       let lastTs: string | null = null;
       snap.forEach((d: any) => {
         const data = d.data();
         if (!lastTs) {
           const ts = data.timestamp || data.createdAt || null;
-          if (ts && typeof ts.toDate === "function") lastTs = ts.toDate().toISOString();
+          if (ts && typeof ts.toDate === "function")
+            lastTs = ts.toDate().toISOString();
           else if (ts) lastTs = String(ts);
         }
         sample.push({ id: d.id, data });
@@ -353,7 +374,10 @@ export async function computeStatsForProject(
     let events: any[] = [];
     if (adminDb) {
       const colDoc = adminDb.collection(String(colName)).doc(String(docId));
-      const snap = await colDoc.collection("events").orderBy("createdAt", "asc").get();
+      const snap = await colDoc
+        .collection("events")
+        .orderBy("createdAt", "asc")
+        .get();
       snap.forEach((d: any) => events.push(d.data()));
     } else {
       if (!firestoreDb)
@@ -379,7 +403,8 @@ export async function computeStatsForProject(
       const ts = e.timestamp || e.createdAt || new Date().toISOString();
       let iso = ts;
       try {
-        if (ts && typeof ts.toDate === "function") iso = ts.toDate().toISOString();
+        if (ts && typeof ts.toDate === "function")
+          iso = ts.toDate().toISOString();
       } catch (_) {}
       const date = String(iso).slice(0, 10);
       perDay.set(date, (perDay.get(date) || 0) + 1);

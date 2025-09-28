@@ -102,7 +102,9 @@
 .tablet-mock-env .mn3-content,
 .tablet-mock-env .mn3-allocation-content {
   position: static !important;
-  max-height: calc(100vh - 120px) !important; /* leave space for header and mock frame */
+  max-height: calc(
+    100vh - 120px
+  ) !important; /* leave space for header and mock frame */
   overflow-y: auto !important;
   padding-bottom: 16px !important;
 }
@@ -117,7 +119,11 @@
 /* MN1: constrain the continue button size inside the tablet mock so it doesn't dominate the viewport
    Scoped to .minigame-mn1-page to avoid affecting other pages */
 .tablet-mock-env .minigame-mn1-page .mn3-continue-button {
-  width: clamp(240px, 58%, 420px) !important; /* prefer a centered medium width */
+  width: clamp(
+    240px,
+    58%,
+    420px
+  ) !important; /* prefer a centered medium width */
   max-width: 420px !important;
   min-width: 220px !important;
   height: clamp(44px, 6.5vw, 72px) !important;
@@ -176,15 +182,24 @@
 
 /* Adjustments per row to keep visual balance without forcing equal widths */
 /* Row 1 (2 items) - allow each to take up to 52% if content is long, but prefer content width */
-.tablet-mock-env .minigame-mn1-page .mn3-button-row:nth-child(1) > .mn3-policy-button {
+.tablet-mock-env
+  .minigame-mn1-page
+  .mn3-button-row:nth-child(1)
+  > .mn3-policy-button {
   max-width: 52% !important;
 }
 /* Row 2 (3 items) - allow up to ~33% each */
-.tablet-mock-env .minigame-mn1-page .mn3-button-row:nth-child(2) > .mn3-policy-button {
+.tablet-mock-env
+  .minigame-mn1-page
+  .mn3-button-row:nth-child(2)
+  > .mn3-policy-button {
   max-width: 33% !important;
 }
 /* Row 3 (2 items) - same as row 1 */
-.tablet-mock-env .minigame-mn1-page .mn3-button-row:nth-child(3) > .mn3-policy-button {
+.tablet-mock-env
+  .minigame-mn1-page
+  .mn3-button-row:nth-child(3)
+  > .mn3-policy-button {
   max-width: 52% !important;
 }
 
@@ -218,7 +233,7 @@
    Ensure buttons size to content, do not overflow mock frame, and allow text-wrapping. */
 .tablet-mock-env .minigame-mn1-page button.transition-all,
 .tablet-mock-env .minigame-mn1-page .mn3-policy-button {
-  width: auto !important;       /* ignore inline percentage widths */
+  width: auto !important; /* ignore inline percentage widths */
   box-sizing: border-box !important;
   display: inline-block !important;
   white-space: normal !important;
@@ -245,13 +260,22 @@
   gap: 12px !important;
 }
 
-.tablet-mock-env .minigame-mn1-page .mn3-button-row:nth-child(1) > .mn3-policy-button {
+.tablet-mock-env
+  .minigame-mn1-page
+  .mn3-button-row:nth-child(1)
+  > .mn3-policy-button {
   max-width: calc((100% - 12px) / 2) !important; /* two columns cap */
 }
-.tablet-mock-env .minigame-mn1-page .mn3-button-row:nth-child(2) > .mn3-policy-button {
+.tablet-mock-env
+  .minigame-mn1-page
+  .mn3-button-row:nth-child(2)
+  > .mn3-policy-button {
   max-width: calc((100% - 24px) / 3) !important; /* three columns cap */
 }
-.tablet-mock-env .minigame-mn1-page .mn3-button-row:nth-child(3) > .mn3-policy-button {
+.tablet-mock-env
+  .minigame-mn1-page
+  .mn3-button-row:nth-child(3)
+  > .mn3-policy-button {
   max-width: calc((100% - 12px) / 2) !important;
 }
 
