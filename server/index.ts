@@ -491,7 +491,7 @@ export function createServer() {
                 "ประเภทรถ (chassis_type)",
                 "จำนวนที่นั่งรวม (total_seats)",
                 "ที่นั่งพิเศษ (special_seats)",
-                "จำนวนเด็ก/ผู้สูงอายุ (children_elder_count)",
+                "จำนวนเด��ก/ผู้สูงอายุ (children_elder_count)",
                 "จำนวนผู้ตั้งครรภ์ (pregnant_count)",
                 "จำนวนพระ (monk_count)",
                 "สิ่งอำนวยความสะดวก (features)",
@@ -593,7 +593,7 @@ export function createServer() {
                 "เส้นทาง (route)",
                 "พื้นที่ (area)",
                 "ตัดสินใจใช้บริการ (decision_use_service)",
-                "เหตุผลไม่ใช้บริการ (reason_not_use)",
+                "เหตุ��ลไม่ใช้บริการ (reason_not_use)",
                 "เข้าร่วมของรางวัล (decision_enter_prize)",
                 "ชื่อผู้รับรางวัล (prize_name)",
                 "เบอร์โทรผู้รับรางวัล (prize_phone)",
@@ -647,13 +647,60 @@ export function createServer() {
                       csvRows.push(safe.join(','));
                       count++;
                     } else if (obj.chassis || obj.seating || obj.serviceInfo || obj.exterior) {
-                      // Looks like a raw design submission — map to session row
+                      // Looks like a raw design submission — map to session row (handle multiple naming variants)
                       const sessionID = obj.sessionID || obj.sessionId || obj.session || '';
-                      const firstTS = obj.firstTimestamp || obj.timestamp || obj.createdAt || '';
-                      const lastTS = obj.lastTimestamp || obj.timestamp || obj.createdAt || '';
-                      const pdpa = (obj.PDPA === true || obj.PDPA === 'accepted') ? '1' : '';
+
+                      const firstTS = obj.firstTimestamp || obj.first_time || obj.timestamp || obj.createdAt || '';
+                      const lastTS = obj.lastTimestamp || obj.last_time || obj.timestamp || obj.createdAt || '';
+
+                      const pdpa = (obj.PDPA === true || obj.PDPA === 'accepted' || obj.PDPA === '1') ? '1' : '';
+
+                      const seating = obj.seating || obj.seatingInfo || obj.seat || {};
+                      const totalSeats = seating && (seating.totalSeats || seating.total_seats || seating.total || seating.totalSeat) ? (seating.totalSeats || seating.total_seats || seating.total || seating.totalSeat) : '';
+                      const specialSeats = seating && (seating.specialSeats || seating.special_seats || seating.special || seating.specialSeat) ? (seating.specialSeats || seating.special_seats || seating.special || seating.specialSeat) : '';
+                      const childElder = seating && (seating.childElderSeats || seating.child_elder_seats || seating.childElder || seating.childElderSeats) ? (seating.childElderSeats || seating.child_elder_seats || seating.childElder || seating.childElderSeats) : '';
+                      const pregnant = seating && (seating.pregnantSeats || seating.pregnant || seating.pregnant_seats) ? (seating.pregnantSeats || seating.pregnant || seating.pregnant_seats) : '';
+                      const monk = seating && (seating.monkSeats || seating.monk || seating.monk_seats) ? (seating.monkSeats || seating.monk || seating.monk_seats) : '';
+
                       const featuresArr = Array.isArray(obj.amenities) ? obj.amenities : (Array.isArray(obj.features) ? obj.features : []);
-                      const paymentArr = Array.isArray(obj.paymentMethods) ? obj.paymentMethods : (Array.isArray(obj.payment) ? obj.payment : []);
+                      const paymentArr = Array.isArray(obj.paymentMethods) ? obj.paymentMethods : (Array.isArray(obj.payment) ? obj.payment : (Array.isArray(obj.payment_methods) ? obj.payment_methods : []));
+
+                      // doors
+                      const doors = obj.doors || (obj.doorConfig && (obj.doorConfig.doorChoice || obj.doorConfig.doors)) || '';
+
+                      // color may be a JSON string or nested object
+                      let colorVal = '';
+                      try {
+                        if (obj.color) colorVal = String(obj.color);
+                        else if (obj.exterior && obj.exterior.color) {
+                          if (typeof obj.exterior.color === 'string') {
+                            try {
+                              const parsed = JSON.parse(obj.exterior.color);
+                              colorVal = parsed.colorHex || parsed.color || '';
+                            } catch (e) {
+                              colorVal = obj.exterior.color || '';
+                            }
+                          } else if (typeof obj.exterior.color === 'object') {
+                            colorVal = obj.exterior.color.colorHex || obj.exterior.color.color || '';
+                          }
+                        } else if (obj.exterior && obj.exterior.colorHex) {
+                          colorVal = obj.exterior.colorHex;
+                        }
+                      } catch (e) { colorVal = '' }
+
+                      const frequency = obj.frequency || (obj.serviceInfo && (obj.serviceInfo.frequency || obj.serviceInfo.freq)) || obj.interval || '';
+                      const route = obj.route || (obj.serviceInfo && (obj.serviceInfo.routeName || obj.serviceInfo.route)) || '';
+                      const area = obj.area || (obj.serviceInfo && obj.serviceInfo.area) || '';
+
+                      const decisionUseService = obj.decisionUseService || obj.decision_use_service || '';
+                      const reasonNotUse = obj.reasonNotUse || obj.reason_not_use || obj.reason || '';
+
+                      const enterPrize = (obj.enterPrize || obj.prizeName || obj.prizePhone || obj.prize_name || obj.prize_phone) ? '1' : '';
+                      const prizeName = obj.prizeName || obj.prize_name || '';
+                      const prizePhone = obj.prizePhone || obj.prize_phone || '';
+
+                      const shared = (obj.userEngagement && (obj.userEngagement.shared || obj.userEngagement.sharedTo)) || obj.shared || false;
+
                       const vals = [
                         sessionID,
                         obj.ip || '',
@@ -661,25 +708,25 @@ export function createServer() {
                         formatToBangkok(lastTS),
                         pdpa,
                         obj.chassis || (obj.design && obj.design.chassis) || '',
-                        (obj.seating && (obj.seating.totalSeats || obj.seating.total_seats)) || '',
-                        '',
-                        (obj.seating && (obj.seating.childElderSeats || obj.seating.childElderSeats || obj.seating.childElderSeats)) || '',
-                        (obj.seating && (obj.seating.pregnantSeats || obj.seating.pregnant)) || '',
-                        (obj.seating && (obj.seating.monkSeats || obj.seating.monk)) || '',
+                        totalSeats || '',
+                        specialSeats || '',
+                        childElder || '',
+                        pregnant || '',
+                        monk || '',
                         Array.isArray(featuresArr) ? featuresArr.join(' | ') : '',
                         Array.isArray(paymentArr) ? paymentArr.join(' | ') : '',
-                        obj.doors || (obj.doorConfig && obj.doorConfig.doorChoice) || '',
-                        obj.color || (obj.exterior && (obj.exterior.color || obj.exterior.colorHex)) || '',
-                        obj.frequency || (obj.serviceInfo && obj.serviceInfo.frequency) || obj.interval || '',
-                        obj.route || (obj.serviceInfo && obj.serviceInfo.routeName) || '',
-                        obj.area || (obj.serviceInfo && obj.serviceInfo.area) || '',
-                        obj.decisionUseService || obj.decision_use_service || '',
-                        obj.reasonNotUse || obj.reason_not_use || obj.reason || '',
-                        (obj.enterPrize || obj.prizeName) ? '1' : '',
-                        obj.prizeName || obj.prize_name || '',
-                        obj.prizePhone || obj.prize_phone || '',
+                        doors || '',
+                        colorVal || '',
+                        frequency || '',
+                        route || '',
+                        area || '',
+                        decisionUseService || '',
+                        reasonNotUse || '',
+                        enterPrize || '',
+                        prizeName || '',
+                        prizePhone || '',
                         '',
-                        (obj.userEngagement && obj.userEngagement.shared) ? '1' : '',
+                        shared ? '1' : '',
                         '',
                       ];
                       const safe = vals.map((f) => '"' + String(f || "").replace(/"/g, '""') + '"');
@@ -717,7 +764,7 @@ export function createServer() {
         "รหัสเซสชัน (sessionID)",
         "IP (ip)",
         "เวลาเริ่ม (firstTimestamp)",
-        "เวลาสิ้นสุด (lastTimestamp)",
+        "เวลาส���้นสุด (lastTimestamp)",
         "ยอมรับ PDPA (PDPA_acceptance)",
         "ประเภทรถ (chassis_type)",
         "จำนวนที่นั่งรวม (total_seats)",
@@ -737,7 +784,7 @@ export function createServer() {
         "เข้าร่วมของรางวัล (decision_enter_prize)",
         "ชื่อผู้รับรางวัล (prize_name)",
         "เบอร์โทรผู้รับรางวัล (prize_phone)",
-        "เวลาการรับรางวัล (prize_timestamp)",
+        "��วลาการรับรางวัล (prize_timestamp)",
         "แชร์กับเพื่อน (shared_with_friends)",
         "เวลาแชร์ (shared_timestamp)",
       ];
