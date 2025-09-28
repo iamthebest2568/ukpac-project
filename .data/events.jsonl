@@ -451,3 +451,5 @@
 {"sessionId":"session_1759061935881_sbpep06wc","eventName":"sw.choice.selected","timestamp":"2025-09-28T12:20:31.063Z","choiceText":"อื่น ๆ.","variantId":"4bec38a0","variantName":"คุณใช้รถแบบไหนเดินทางเข้าเมือง?"}
 {"sessionId":"session_1759061935881_sbpep06wc","eventName":"sw.variant.start","timestamp":"2025-09-28T12:20:31.077Z","variantId":"8f1e49aa","variantName":"อื่น ๆ."}
 {"sessionId":"session_1759061935881_sbpep06wc","eventName":"sw.choice.selected","timestamp":"2025-09-28T12:20:40.130Z","choiceText":"ไปต่อ.","variantId":"8f1e49aa","variantName":"อื่น ๆ."}
+{"sessionId":"ses","eventName":"sw.variant.start","timestamp":"2025-09-28T13:01:44.366Z","variantId":"a59ef133","variantName":"Intro"}
+{"sessionId":"ses","eventName":"sw.story.start","timestamp":"2025-09-28T13:01:44.367Z","variantId":"a59ef133","variantName":"Intro"}
