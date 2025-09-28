@@ -114,6 +114,20 @@
   max-width: 90% !important;
 }
 
+/* MN1: constrain the continue button size inside the tablet mock so it doesn't dominate the viewport
+   Scoped to .minigame-mn1-page to avoid affecting other pages */
+.tablet-mock-env .minigame-mn1-page .mn3-continue-button {
+  width: clamp(240px, 58%, 420px) !important; /* prefer a centered medium width */
+  max-width: 420px !important;
+  min-width: 220px !important;
+  height: clamp(44px, 6.5vw, 72px) !important;
+  font-size: clamp(14px, 3.4vw, 20px) !important;
+  border-radius: 36px !important;
+  padding-left: 12px !important;
+  padding-right: 12px !important;
+  margin: 8px auto !important;
+}
+
 /* ---------------- MN1 SPECIFIC (authoritative rules) ---------------- */
 /* Scope: only affects pages with class .minigame-mn1-page inside tablet mock */
 
