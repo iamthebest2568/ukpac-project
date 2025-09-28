@@ -85,7 +85,7 @@ export function createServer() {
           (withMeta.payload &&
             (withMeta.payload.project || withMeta.payload.projectName)) ||
           undefined;
-        if (p.includes("/ukpack2") || payloadProject === "ukpack2") {
+        if (p.includes("/ukpack2") || p.includes("/mydreambus") || payloadProject === "ukpack2" || payloadProject === "mydreambus") {
           target = "minigame2_events/minigame2-di";
         } else if (p.includes("/beforecitychange") || payloadProject === "beforecitychange" || p.includes("/ukpack1") || payloadProject === "ukpack1") {
           // Accept either new project name or legacy ukpack1 for backward compatibility
