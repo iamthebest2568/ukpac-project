@@ -103,8 +103,8 @@ export default function UkStornaway() {
   useEffect(() => {
     let mounted = true;
     // Prefetch next pages for instant navigation
-    import("../pages/ukpack1/ReasonOther01Page").catch(() => {});
-    import("../pages/ukpack1/WhatDoYouTravelByPage").catch(() => {});
+    import("../pages/beforecitychange/ReasonOther01Page").catch(() => {});
+    import("../pages/beforecitychange/WhatDoYouTravelByPage").catch(() => {});
 
     function attachListeners() {
       if (!mounted || !iframeRef.current || readyRef.current) return;
