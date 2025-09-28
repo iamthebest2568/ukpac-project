@@ -803,9 +803,7 @@ const App = () => {
                   }
                 />
 
-                {/* Legacy dashboard aliases */}
-                <Route path="/ukdashboard" element={<Navigate to="/beforecitychange/ukdashboard" replace />} />
-                <Route path="/UkDashboard" element={<Navigate to="/beforecitychange/ukdashboard" replace />} />
+                {/* Legacy dashboard aliases removed */}
 
                 {/* 404 page */}
                 <Route path="*" element={<NotFound />} />
