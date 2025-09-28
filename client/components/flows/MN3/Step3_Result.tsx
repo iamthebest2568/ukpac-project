@@ -207,7 +207,7 @@ const Step3_Result = ({
       }
     } catch (e) {
       // fallback to proceedAfterSelect as last resort
-      proceedAfterSelect("/ukpack1/minigame-mn3", data);
+      proceedAfterSelect("/beforecitychange/minigame-mn3", data);
     }
   };
 
