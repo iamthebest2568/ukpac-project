@@ -778,7 +778,7 @@ const App = () => {
                 />
 
                 {/* 404 page */}
-                <Route path="/mydreambus/*" element={<RedirectMyDream />} />
+                <Route path="/ukpack2/*" element={<RedirectUkpack2 />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </BusDesignProvider>
