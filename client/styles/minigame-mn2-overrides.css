@@ -75,3 +75,13 @@
   position: relative !important;
   transform: none !important;
 }
+
+/* Hide decorative overlays for MN2 inside mock only */
+.tablet-mock-env .mn2-step1-page .figma-style1-background-overlay,
+.tablet-mock-env .mn2-summary-page .figma-style1-background-overlay,
+.tablet-mock-env .mn2-step1-page .figma-style1-wave-overlay,
+.tablet-mock-env .mn2-summary-page .figma-style1-wave-overlay {
+  display: none !important;
+  background-image: none !important;
+  pointer-events: none !important;
+}
