@@ -60,12 +60,6 @@ const MiniGameMN01Page = lazy(
 import MiniGameMN3Page from "./pages/MiniGameMN3Page";
 const UkStornaway = lazy(() => import("./pages/Uk-stornaway"));
 const UkDashboard = lazy(() => import("./pages/beforecitychange/UkDashboard"));
-const UkPact1Dashboard = lazy(
-  () => import("./pages/beforecitychange/ukpact1-dashboard"),
-);
-const UkPact2Dashboard = lazy(
-  () => import("./pages/ukpack2/ukpact2-dashboard"),
-);
 const ReasonOther01Page = lazy(
   () => import("./pages/beforecitychange/ReasonOther01Page"),
 );
