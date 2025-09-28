@@ -432,3 +432,6 @@
 {"sessionId":"session_1759060009572_wrv7l3zvt","eventName":"sw.variant.start","timestamp":"2025-09-28T11:49:13.265Z","variantId":"4bec38a0","variantName":"คุณใช้รถแบบไหนเดินทางเข้าเมือง?"}
 {"sessionId":"session_1759060009572_wrv7l3zvt","eventName":"sw.choice.selected","timestamp":"2025-09-28T11:49:18.709Z","choiceText":"รถไฟฟ้า BTS / MRT","variantId":"4bec38a0","variantName":"คุณใช้รถแบบไหนเดินทางเข้าเมือง?"}
 {"sessionId":"session_1759060009572_wrv7l3zvt","eventName":"sw.variant.start","timestamp":"2025-09-28T11:49:18.751Z","variantId":"0c1a4486","variantName":"รถไฟฟ้า BTS / MRT"}
+{"sessionId":"session_1759061935881_sbpep06wc","eventName":"sw.variant.start","timestamp":"2025-09-28T12:19:03.486Z","variantId":"a59ef133","variantName":"Intro"}
+{"sessionId":"session_1759061935881_sbpep06wc","eventName":"sw.story.start","timestamp":"2025-09-28T12:19:03.488Z","variantId":"a59ef133","variantName":"Intro"}
+{"sessionId":"session_1759061935881_sbpep06wc","eventName":"sw.choice.selected","timestamp":"2025-09-28T12:19:07.774Z","choiceText":"PDPA","variantId":"a59ef133","variantName":"Intro"}
