@@ -21,7 +21,7 @@ const SkipEnd: React.FC = () => {
               try {
                 clearDesignStorage();
               } catch (e) {}
-              navigate("/ukpack2");
+              navigate("/mydreambus");
             }}
           />
         </div>
