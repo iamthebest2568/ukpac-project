@@ -1,0 +1,8 @@
+.tablet-mock-env .skipend-image {
+  /* Make skip-end image smaller inside the tablet mock to match mobile proportions */
+  max-width: 180px !important;
+  width: auto !important;
+  display: block !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
