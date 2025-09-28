@@ -205,7 +205,6 @@
 .tablet-mock-env .minigame-mn1-page button.transition-all,
 .tablet-mock-env .minigame-mn1-page .mn3-policy-button {
   width: auto !important;       /* ignore inline percentage widths */
-  max-width: calc(100% - 40px) !important; /* ensure room for padding/gaps */
   box-sizing: border-box !important;
   display: inline-block !important;
   white-space: normal !important;
@@ -213,6 +212,7 @@
   padding-right: 10px !important;
   overflow-wrap: anywhere !important;
   word-break: break-word !important;
+  min-width: 0 !important; /* allow shrink */
 }
 
 /* Ensure the grid container keeps horizontal padding and prevents the mock frame from being pushed */
@@ -223,10 +223,33 @@
   overflow-x: hidden !important;
 }
 
+/* Per-row caps: allow variable widths but cap so total row width cannot exceed container */
+.tablet-mock-env .minigame-mn1-page .mn3-button-row {
+  display: flex !important;
+  flex-wrap: wrap !important; /* allow wrapping if absolutely necessary */
+  justify-content: center !important;
+  gap: 12px !important;
+}
+
+.tablet-mock-env .minigame-mn1-page .mn3-button-row:nth-child(1) > .mn3-policy-button {
+  max-width: calc((100% - 12px) / 2) !important; /* two columns cap */
+}
+.tablet-mock-env .minigame-mn1-page .mn3-button-row:nth-child(2) > .mn3-policy-button {
+  max-width: calc((100% - 24px) / 3) !important; /* three columns cap */
+}
+.tablet-mock-env .minigame-mn1-page .mn3-button-row:nth-child(3) > .mn3-policy-button {
+  max-width: calc((100% - 12px) / 2) !important;
+}
+
+/* Also enforce a global protective cap so very long labels cannot force overflow */
+.tablet-mock-env .minigame-mn1-page .mn3-policy-button {
+  max-width: 100% !important;
+}
+
 /* If any inline style sets width on the button element via style attribute, ensure CSS still wins */
 .tablet-mock-env .minigame-mn1-page button[style] {
   width: auto !important;
-  max-width: calc(100% - 40px) !important;
+  max-width: 100% !important;
 }
 
 /* Final fallback: if something still forces absolute positioning or transforms that push
