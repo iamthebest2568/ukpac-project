@@ -3,7 +3,7 @@
  */
 
 import EndScreen from "../../components/games/ThankYouScreen";
-import { useSession } from "../hooks/useSession";
+import { useSession } from "../../hooks/useSession";
 
 const EndScreenPage = () => {
   const { sessionID, navigateToPage, userJourneyData } = useSession();
