@@ -456,8 +456,105 @@ export function createServer() {
       const limit = req.query.limit
         ? Math.max(1, Math.min(500, Number(req.query.limit)))
         : 200;
+
+      // Preferred source: server-side 'submissions' collection written by flush-pending
+      try {
+        const svc = process.env.FIREBASE_SERVICE_ACCOUNT;
+        if (svc) {
+          try {
+            const parsed = typeof svc === 'string' ? JSON.parse(svc) : svc;
+            if (!admin.apps || admin.apps.length === 0) {
+              admin.initializeApp({ credential: admin.credential.cert(parsed as any) } as any);
+            }
+            const fsAdmin = admin.firestore();
+            const colRef = fsAdmin.collection('submissions');
+            const snap = await colRef.limit(limit).get();
+            if (snap && snap.size > 0) {
+              const headers = [
+                "รหัสเซสชัน (sessionID)",
+                "IP (ip)",
+                "เวลาเริ่ม (firstTimestamp)",
+                "เวลาสิ้นสุด (lastTimestamp)",
+                "ยอมรับ PDPA (PDPA_acceptance)",
+                "ประเภทรถ (chassis_type)",
+                "จำนวนที่นั่งรวม (total_seats)",
+                "ที่นั่งพิเศษ (special_seats)",
+                "จำนวนเด็ก/ผู้สูงอายุ (children_elder_count)",
+                "จำนวนผู้ตั้งครรภ์ (pregnant_count)",
+                "จำนวนพระ (monk_count)",
+                "สิ่งอำนวยความสะดวก (features)",
+                "ประเภทการชำระเงิน (payment_types)",
+                "จำนวนประตู (doors)",
+                "สี (color)",
+                "ความถี่ (frequency)",
+                "เส้นทาง (route)",
+                "พื้นที่ (area)",
+                "ตัดสินใจใช้บริการ (decision_use_service)",
+                "เหตุผลไม่ใช้บริการ (reason_not_use)",
+                "เข้าร่วมของรางวัล (decision_enter_prize)",
+                "ชื่อผู้รับรางวัล (prize_name)",
+                "เบอร์โทรผู้รับรางวัล (prize_phone)",
+                "เวลาการรับรางวัล (prize_timestamp)",
+                "แชร์กับเพื่อน (shared_with_friends)",
+                "เวลาแชร์ (shared_timestamp)",
+              ];
+
+              const csvRows: string[] = [
+                headers
+                  .map((h) => '"' + String(h || "").replace(/"/g, '""') + '"')
+                  .join(","),
+              ];
+
+              snap.forEach((d) => {
+                const data = d.data() || {};
+                const vals = [
+                  data.sessionID || data.sessionId || '',
+                  data.ip || '',
+                  data.firstTimestamp || '',
+                  data.lastTimestamp || '',
+                  data.PDPA_acceptance || '',
+                  data.chassis_type || '',
+                  data.total_seats || '',
+                  data.special_seats || '',
+                  data.children_elder_count || '',
+                  data.pregnant_count || '',
+                  data.monk_count || '',
+                  Array.isArray(data.features) ? data.features.join(' | ') : (data.features || ''),
+                  Array.isArray(data.payment_types) ? data.payment_types.join(' | ') : (data.payment_types || ''),
+                  data.doors || '',
+                  data.color || '',
+                  data.frequency || '',
+                  data.route || '',
+                  data.area || '',
+                  data.decision_use_service || '',
+                  data.reason_not_use || '',
+                  data.decision_enter_prize || '',
+                  data.prize_name || '',
+                  data.prize_phone || '',
+                  data.prize_timestamp || '',
+                  data.shared_with_friends || '',
+                  data.shared_timestamp || '',
+                ];
+                const safe = vals.map((f) => '"' + String(f || "").replace(/"/g, '""') + '"');
+                csvRows.push(safe.join(','));
+              });
+
+              const csvOut = csvRows.join('\n');
+              res.setHeader('Content-Type', 'text/csv; charset=utf-8');
+              res.setHeader('Content-Disposition', 'attachment; filename="mydreambus-sessions-' + Date.now() + '.csv"');
+              return res.status(200).send('\uFEFF' + csvOut);
+            }
+          } catch (e) {
+            console.warn('export-csv: failed to read submissions collection', e);
+          }
+        }
+      } catch (e) {
+        console.warn('export-csv: admin init failed', e);
+      }
+
+      // Fallback to existing behavior which computes from events
       const { computeSessionSummaries, getAppEventsBySession } = await import(
-        "./services/appEvents"
+        './services/appEvents'
       );
       const summaries = await computeSessionSummaries(limit);
 
