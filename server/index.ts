@@ -46,8 +46,8 @@ export function createServer() {
 
   // Middleware
   app.use(cors());
-  app.use(express.json());
-  app.use(express.urlencoded({ extended: true }));
+  app.use(express.json({ limit: '10mb' }));
+  app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
   // Example API routes
   app.get("/api/ping", (_req, res) => {
@@ -720,7 +720,7 @@ export function createServer() {
                 "จำนวนเด็ก/ผู้สูงอายุ (children_elder_count)",
                 "จำนวนผู้ตั้งครรภ์ (pregnant_count)",
                 "จำนวนพระ (monk_count)",
-                "สิ่งอำนวยความสะดวก (features)",
+                "ส��่งอำนวยความสะดวก (features)",
                 "ประเภทการชำระเงิน (payment_types)",
                 "จำนวนประตู (doors)",
                 "สี (color)",
@@ -915,7 +915,7 @@ export function createServer() {
         "เส้นทาง (route)",
         "พื้นที่ (area)",
         "ตัดสินใจใช้บริการ (decision_use_service)",
-        "เหตุผลไม่ใช้บริการ (reason_not_use)",
+        "เหตุผลไม่ใช้บริกา�� (reason_not_use)",
         "เข้าร่วมของรางวัล (decision_enter_prize)",
         "ชื่อผู้รับรางวัล (prize_name)",
         "เบอร์โทรผู้รับรางวัล (prize_phone)",
