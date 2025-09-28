@@ -198,7 +198,7 @@ const Step3_Result = ({
     try {
       if (
         typeof window !== "undefined" &&
-        window.location.pathname === "/ukpack1/minigame-mn3"
+        window.location.pathname === "/beforecitychange/minigame-mn3"
       ) {
         // force full reload to reset state
         window.location.assign("/ukpack1/minigame-mn3");
