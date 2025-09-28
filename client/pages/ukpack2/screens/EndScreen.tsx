@@ -1,4 +1,3 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import CustomizationScreen from "../components/CustomizationScreen";
 import SecondaryButton from "../components/SecondaryButton";
@@ -21,7 +20,7 @@ const EndScreen: React.FC = () => {
         >
           <div className="w-full flex justify-center">
             <img
-              src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc36f7d2aca87432f90a5a36fb28b97ed?format=webp&width=1600"
+              src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F02ba14ac31e7499d8feb398adebc6580?format=webp&width=1600"
               alt="image"
               className="w-full h-auto max-w-[720px]"
               style={{ marginBottom: 4 }}
@@ -32,7 +31,7 @@ const EndScreen: React.FC = () => {
           </p>
           <div className="w-full flex justify-center">
             <img
-              src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F3d54db27cd9f49bf946e4a1ed5688fb3?format=webp&width=800"
+              src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F02ba14ac31e7499d8feb398adebc6580?format=webp&width=800"
               alt="image"
               className="w-full h-auto max-w-[420px] mt-2"
               style={{ marginBottom: 8 }}
