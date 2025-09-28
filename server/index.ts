@@ -88,6 +88,7 @@ export function createServer() {
 
   // Server endpoint to write imageUrl documents using Admin SDK (authorized server write)
   app.post('/api/write-image-url', async (req, res) => {
+    const start = Date.now();
     try {
       const { imageUrl, collection } = req.body || {};
       if (!imageUrl || typeof imageUrl !== 'string') return res.status(400).json({ ok: false, error: 'missing imageUrl' });
@@ -98,14 +99,39 @@ export function createServer() {
       const svc = process.env.FIREBASE_SERVICE_ACCOUNT;
       if (!svc) return res.status(500).json({ ok: false, error: 'FIREBASE_SERVICE_ACCOUNT not configured' });
       const parsed = typeof svc === 'string' ? JSON.parse(svc) : svc;
+
+      // Initialize admin once
       if (!admin.apps || admin.apps.length === 0) {
-        admin.initializeApp({ credential: admin.credential.cert(parsed as any), storageBucket: process.env.FIREBASE_STORAGE_BUCKET || undefined } as any);
+        try {
+          admin.initializeApp({ credential: admin.credential.cert(parsed as any), storageBucket: process.env.FIREBASE_STORAGE_BUCKET || undefined } as any);
+        } catch (e) {
+          console.error('/api/write-image-url admin.init error', e);
+        }
       }
+
       lastWriteImageRequest = { imageUrl: imageUrl?.slice(0, 1000), collection: col, ts: new Date().toISOString(), remoteIp: (req.headers['x-forwarded-for'] as string) || req.ip || null };
       console.log('/api/write-image-url received', { imageUrl: imageUrl?.slice(0, 200), collection: col });
+
       const fsAdmin = admin.firestore();
-      const docRef = await fsAdmin.collection(col).add({ imageUrl, createdAt: admin.firestore.FieldValue.serverTimestamp() });
-      console.log('/api/write-image-url wrote doc', { id: docRef.id, collection: col });
+
+      // Guard Firestore write with timeout to avoid hanging requests
+      const writePromise = (async () => {
+        const docRef = await fsAdmin.collection(col).add({ imageUrl, createdAt: admin.firestore.FieldValue.serverTimestamp() });
+        return docRef;
+      })();
+
+      const timeoutMs = 8000; // 8s
+      const timeoutPromise = new Promise((_, rej) => setTimeout(() => rej(new Error('firestore-write-timeout')), timeoutMs));
+
+      let docRef: any = null;
+      try {
+        docRef = await Promise.race([writePromise, timeoutPromise]);
+      } catch (e: any) {
+        console.error('/api/write-image-url firestore write failed or timed out', e);
+        return res.status(504).json({ ok: false, error: 'firestore write timeout or error', detail: String(e?.message || e) });
+      }
+
+      console.log('/api/write-image-url wrote doc', { id: docRef.id, collection: col, tookMs: Date.now() - start });
       res.json({ ok: true, id: docRef.id });
     } catch (e: any) {
       console.error('/api/write-image-url error', e);
@@ -829,7 +855,7 @@ export function createServer() {
                 "ยอมรับ PDPA (PDPA_acceptance)",
                 "ประเภทรถ (chassis_type)",
                 "จำนวนที่นั่งรวม (total_seats)",
-                "ที่นั่งพิเศษ (special_seats)",
+                "ที่นั่ง���ิเศษ (special_seats)",
                 "จำนวนเด็ก/ผู้สูงอายุ (children_elder_count)",
                 "จำนวนผู้ตั้งครรภ์ (pregnant_count)",
                 "จำนวนพระ (monk_count)",
