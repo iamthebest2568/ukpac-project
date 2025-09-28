@@ -404,3 +404,5 @@
 {"sessionId":"session_1759043357629_2ny91ihb7","eventName":"sw.variant.start","timestamp":"2025-09-28T07:09:55.272Z","variantId":"e61429e0","variantName":"PDPA"}
 {"sessionId":"session_1759043357629_2ny91ihb7","eventName":"sw.choice.selected","timestamp":"2025-09-28T07:09:55.260Z","choiceText":"PDPA","variantId":"a59ef133","variantName":"Intro"}
 {"sessionId":"session_1759043357629_2ny91ihb7","eventName":"sw.story.start","timestamp":"2025-09-28T07:09:55.273Z","variantId":"e61429e0","variantName":"PDPA"}
+{"sessionId":"session_1759043357629_2ny91ihb7","eventName":"sw.choice.selected","timestamp":"2025-09-28T07:10:10.854Z","choiceText":"ยอมรับและเริ่มเล่นเกม","variantId":"e61429e0","variantName":"PDPA"}
+{"sessionId":"session_1759043357629_2ny91ihb7","eventName":"sw.variant.start","timestamp":"2025-09-28T07:10:10.862Z","variantId":"02fe3354","variantName":"Opening Scene"}
