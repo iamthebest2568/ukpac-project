@@ -389,3 +389,7 @@
 {"sessionId":"session_1759042819983_6eqj9bj47","eventName":"sw.story.start","timestamp":"2025-09-28T07:00:45.835Z","variantId":"e61429e0","variantName":"PDPA"}
 {"sessionId":"session_1759042819983_6eqj9bj47","eventName":"sw.variant.start","timestamp":"2025-09-28T07:00:56.009Z","variantId":"02fe3354","variantName":"Opening Scene"}
 {"sessionId":"session_1759042819983_6eqj9bj47","eventName":"sw.choice.selected","timestamp":"2025-09-28T07:00:56.000Z","choiceText":"ยอมรับและเริ่มเล่นเกม","variantId":"e61429e0","variantName":"PDPA"}
+{"sessionId":"session_1759042819983_6eqj9bj47","eventName":"sw.choice.selected","timestamp":"2025-09-28T07:01:30.192Z","choiceText":"เริ่มเล่น","variantId":"02fe3354","variantName":"Opening Scene"}
+{"sessionId":"session_1759042819983_6eqj9bj47","eventName":"sw.variant.start","timestamp":"2025-09-28T07:01:30.956Z","variantId":"333faf2b","variantName":"เหตุผลหลักในการเดินทางเข้าเมือง"}
+{"sessionId":"session_1759042819983_6eqj9bj47","eventName":"sw.choice.selected","timestamp":"2025-09-28T07:01:41.732Z","choiceText":"ทำงาน","variantId":"333faf2b","variantName":"เหตุผลหลักในการเดินทางเข้าเมือง"}
+{"sessionId":"session_1759042819983_6eqj9bj47","eventName":"sw.variant.start","timestamp":"2025-09-28T07:01:42.506Z","variantId":"4bec38a0","variantName":"คุณใช้รถแบบไหนเดินทางเข้าเมือง?"}

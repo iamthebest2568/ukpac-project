@@ -5,6 +5,7 @@
 import { useState } from "react";
 import { logEvent } from "../../../services/dataLogger.js";
 import "../../../styles/mn3-buttons.css";
+import "../../../styles/minigame-mn1-overrides.css";
 
 interface Step1_ChoiceProps {
   sessionID: string | null;
@@ -88,7 +89,7 @@ const Step1_Choice = ({
   // Define which buttons should be yellow by default (from Figma design)
   const defaultYellowButtons = new Set([
     "ปรับปรุงคุณภาพรถเมล์",
-    "เพิ่มความถี่รถเมล์",
+    "เพิ่มความถ���่รถเมล์",
   ]);
 
   const getButtonClasses = (priority: string, index: number) => {
@@ -127,7 +128,7 @@ const Step1_Choice = ({
   );
 
   return (
-    <div className="w-full min-h-screen mn3-page-bg flex flex-col items-center justify-start relative">
+    <div className="w-full min-h-screen mn3-page-bg minigame-mn1-page flex flex-col items-center justify-start relative">
       {/* Main Content Container */}
       <div className="mn3-content">
         {/* Title Section - Optimized for mobile readability */}
