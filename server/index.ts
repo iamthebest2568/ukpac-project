@@ -98,8 +98,10 @@ export function createServer() {
       if (!admin.apps || admin.apps.length === 0) {
         admin.initializeApp({ credential: admin.credential.cert(parsed as any), storageBucket: process.env.FIREBASE_STORAGE_BUCKET || undefined } as any);
       }
+      console.log('/api/write-image-url received', { imageUrl: imageUrl?.slice(0, 200), collection: col });
       const fsAdmin = admin.firestore();
       const docRef = await fsAdmin.collection(col).add({ imageUrl, createdAt: admin.firestore.FieldValue.serverTimestamp() });
+      console.log('/api/write-image-url wrote doc', { id: docRef.id, collection: col });
       res.json({ ok: true, id: docRef.id });
     } catch (e: any) {
       console.error('/api/write-image-url error', e);
@@ -1003,7 +1005,7 @@ export function createServer() {
         "ที่นั่งพิเศษ (special_seats)",
         "จำนวนเด็ก/ผู้สูงอายุ (children_elder_count)",
         "จำนวนผู้ตั้งครรภ์ (pregnant_count)",
-        "จำนวนพระ (monk_count)",
+        "จำนวน���ระ (monk_count)",
         "สิ่งอำนวยความสะดวก (features)",
         "ประเภทการช���ระเงิน (payment_types)",
         "จำนวนประตู (doors)",
