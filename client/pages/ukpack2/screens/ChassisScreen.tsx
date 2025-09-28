@@ -220,7 +220,7 @@ const ChassisScreen: React.FC = () => {
 
   const handleNext = () => {
     // navigation will use the already persisted "design.chassis"
-    navigate("/ukpack2/seating");
+    navigate("/mydreambus/seating");
   };
 
   const confirmExit = () => {
