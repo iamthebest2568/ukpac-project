@@ -373,7 +373,7 @@ const DesignScreen: React.FC = () => {
               ? MINIBUS_TEMPLATE_NEW
               : HERO_IMAGE[selected];
       if (!url) return;
-      const key = `ukpack2_design_image_sent_${selected}`;
+      const key = `mydreambus_design_image_sent_${selected}`;
       const existing = sessionStorage.getItem(key);
       if (existing) {
         try {
@@ -654,7 +654,7 @@ const DesignScreen: React.FC = () => {
               />
 
               <h2 className="text-xl font-prompt font-semibold text-[#003366] mt-4">
-                ลักษณะพิเศษอื่น ๆ ของรถคุณ
+                ลักษณะพิเศษอื่น �� ของรถคุณ
               </h2>
               <div>
                 <input
