@@ -68,7 +68,7 @@ const FormScreen: React.FC = () => {
     try {
       sessionStorage.setItem("design.entry", JSON.stringify({ name, phone }));
     } catch (e) {}
-    navigate("/ukpack2/confirmation");
+    navigate("/mydreambus/confirmation");
   };
 
   const skip = () => {
