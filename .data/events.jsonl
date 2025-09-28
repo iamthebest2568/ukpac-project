@@ -406,3 +406,9 @@
 {"sessionId":"session_1759043357629_2ny91ihb7","eventName":"sw.story.start","timestamp":"2025-09-28T07:09:55.273Z","variantId":"e61429e0","variantName":"PDPA"}
 {"sessionId":"session_1759043357629_2ny91ihb7","eventName":"sw.choice.selected","timestamp":"2025-09-28T07:10:10.854Z","choiceText":"ยอมรับและเริ่มเล่นเกม","variantId":"e61429e0","variantName":"PDPA"}
 {"sessionId":"session_1759043357629_2ny91ihb7","eventName":"sw.variant.start","timestamp":"2025-09-28T07:10:10.862Z","variantId":"02fe3354","variantName":"Opening Scene"}
+{"sessionId":"session_1759043357629_2ny91ihb7","eventName":"sw.choice.selected","timestamp":"2025-09-28T07:10:48.531Z","choiceText":"เริ่มเล่น","variantId":"02fe3354","variantName":"Opening Scene"}
+{"sessionId":"session_1759043357629_2ny91ihb7","eventName":"sw.variant.start","timestamp":"2025-09-28T07:10:49.297Z","variantId":"333faf2b","variantName":"เหตุผลหลักในการเดินทางเข้าเมือง"}
+{"sessionId":"session_1759043357629_2ny91ihb7","eventName":"sw.choice.selected","timestamp":"2025-09-28T07:11:00.133Z","choiceText":"ทำงาน","variantId":"333faf2b","variantName":"เหตุผลหลักในการเดินทางเข้าเมือง"}
+{"sessionId":"session_1759043357629_2ny91ihb7","eventName":"sw.variant.start","timestamp":"2025-09-28T07:11:00.905Z","variantId":"4bec38a0","variantName":"คุณใช้รถแบบไหนเดินทางเข้าเมือง?"}
+{"sessionId":"session_1759043357629_2ny91ihb7","eventName":"sw.choice.selected","timestamp":"2025-09-28T07:11:14.252Z","choiceText":"รถไฟฟ้า BTS / MRT","variantId":"4bec38a0","variantName":"คุณใช้รถแบบไหนเดินทางเข้าเมือง?"}
+{"sessionId":"session_1759043357629_2ny91ihb7","eventName":"sw.variant.start","timestamp":"2025-09-28T07:11:14.265Z","variantId":"0c1a4486","variantName":"รถไฟฟ้า BTS / MRT"}
