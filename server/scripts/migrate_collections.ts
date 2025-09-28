@@ -10,7 +10,7 @@ async function main() {
     process.exit(1);
   }
   const parsed = typeof svc === 'string' ? JSON.parse(svc) : svc;
-  if (!admin.apps || admin.apps.length === 0) admin.initializeApp({ credential: admin.credential.cert(parsed as any) } as any);
+  if (!admin.apps || admin.apps.length === 0) admin.initializeApp({ credential: admin.credential.cert(parsed as any), storageBucket: process.env.FIREBASE_STORAGE_BUCKET || undefined } as any);
   const db = admin.firestore();
 
   const args = process.argv.slice(2);
