@@ -882,62 +882,6 @@ export default function UkDashboard() {
                 </Card>
               )}
 
-              {/* Per-user (individual) results */}
-              <Card title="ผลรายบุ��คล (ล่าสุด)">
-                <div className="overflow-x-auto">
-                  <table className="min-w-full text-sm rounded-md overflow-hidden">
-                    <thead className="bg-white/5 backdrop-blur">
-                      <tr className="text-left text-white/80">
-                        <th className="py-2 pr-4">ลา</th>
-                        <th className="py-2 pr-4">Session</th>
-                        <th className="py-2 pr-4">Intro</th>
-                        <th className="py-2 pr-4">MN1</th>
-                        <th className="py-2 pr-4">ตัดสินใจ</th>
-                        <th className="py-2 pr-4">ติดต่อ</th>
-                        <th className="py-2 pr-4">ควมคิดเห็น</th>
-                        <th className="py-2 pr-4">ดู</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-white/10">
-                      {sessions.slice(0, 50).map((s) => (
-                        <tr key={s.sessionId}>
-                          <td className="py-2 pr-4 whitespace-nowrap">
-                            {new Date(s.lastSeen).toLocaleString()}
-                          </td>
-                          <td className="py-2 pr-4">
-                            {s.sessionId.slice(0, 10)}…
-                          </td>
-                          <td className="py-2 pr-4">{s.introWho ?? ""}</td>
-                          <td className="py-2 pr-4">
-                            {s.mn1Selected?.join(", ") || "-"}
-                          </td>
-                          <td className="py-2 pr-4">{s.endDecision || "-"}</td>
-                          <td className="py-2 pr-4">{s.contacts || 0}</td>
-                          <td className="py-2 pr-4 truncate max-w-[240px]">
-                            {s.ask05Comment ?? ""}
-                          </td>
-                          <td className="py-2 pr-4">
-                            <button
-                              className="text-xs rounded bg-white/10 hover:bg-white/20 px-2 py-1 shadow-sm"
-                              onClick={async () => {
-                                setDetailSession(s.sessionId);
-                                setDetailOpen(true);
-                                setDetailData(null);
-                                const resp = await fetch(
-                                  apiUrl(`/api/session/${s.sessionId}`),
-                                );
-                                if (resp.ok) setDetailData(await resp.json());
-                              }}
-                            >
-                              รายละเอียด
-                            </button>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </Card>
 
               {/* Export */}
               <div className="flex flex-wrap gap-3 justify-end">
@@ -955,13 +899,13 @@ export default function UkDashboard() {
                       "จากข้อความข้างต้น คุณมีควา���คิดเห็นอย่างไร (เห็นด้วย/กลางๆ/��ม่เห็นด้วย)",
                       "ทำไมคุณถึงคิดอย่างนั้น (นโยบายไม่ครอบคลุม / เก็บไปก็ไม่มีอะไรดีข���้น / อื่นๆ)",
                       "อธิบายอื่น ๆ ที่ช่วยอธิบายความคิดเห็น",
-                      "บอกเร��หน่อยว่าคุณเดินทางเข้าเมืองด้วยวิธีการใดบ่อยที่ส��ด",
+                      "บอกเร��หน่อยว่าคุณเดินทางเข้าเมือง��้วยวิธีการใดบ่อยที่ส��ด",
                       "จากนโยบายที่คุณฟังเมื่อสักครู่ คุณมีความคิดเห็นอย่าง��ร",
                       "คุณคิดว่าน���ยบายปัจจุบัน ควรปรับเปลี่ยนประเด็นอะไรบาง (ลดค่าโดยสา��, ปรับปรุงคุณภาพ, ขึ้น���าคา, เพ��่มขบวน, เพิ่มความถี่ ฯลฯ)",
                       "คุณคิดว่าใครควรได้รับการลดค่าโดยสารรถไฟฟ���า��้าง (ทุกคน, ผู้สูงอายุ, นักเรียน, คนทำงาน ฯลฯ)",
                       "คุณคิดว่าควรใช้เงินที่ได้จากการเก็บไปพัฒนาอะไร ก่อน 3 อันดับแรก",
                       "คุณจะให้งบประมาณแต่ละข้อเท่าไร (งบทั้งหมด 100)",
-                      "คุณพอใจกับผลลัพธ์ที่เกิดขึ้นหรือไ��่ (พ���ใจ / ไม่พอใจ)",
+                      "คุณพอใจ��ับผลลัพธ์ที่เกิดขึ้นหรือไ��่ (พ���ใจ / ไม่พอใจ)",
                       "คุณคิดว่ารัฐควรทำอะไรที่จะทำให้นโยบายนี้เกิดขึ้นได้จริง และเป็นประโยชน์ต่อประชาชนอย่างแท้จริง",
                       "ตอนนี้มี��้อ��ูลที่ผิดพลาด เช่น ข่าวปลอมเกี่ยวกับนโยบาย คุณคิดว่าอย่างไร",
                       "คุณ��ะติดตามข่า��� หรือเชื่อจากแหล่ง��หนมาก���ี่สุด",
