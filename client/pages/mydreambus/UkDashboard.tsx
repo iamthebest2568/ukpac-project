@@ -278,21 +278,241 @@ const UkDashboard: React.FC = () => {
   const [lastSentResult, setLastSentResult] = useState<any | null>(null);
   const [isSending, setIsSending] = useState(false);
 
-  const handleExportMapped = () => {
-    const csv = exportSessionsAsCSV();
-    if (!csv) {
-      alert("ไม่มีข้อมูลให้ส่งออก");
+  const handleExportMapped = async () => {
+    // Try client-side local export first
+    const localCsv = exportSessionsAsCSV();
+    if (localCsv) {
+      const blob = new Blob(["\uFEFF" + localCsv], {
+        type: "text/csv;charset=utf-8;",
+      });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `mydreambus-sessions-${Date.now()}.csv`;
+      a.click();
+      URL.revokeObjectURL(url);
       return;
     }
-    const blob = new Blob(["\uFEFF" + csv], {
-      type: "text/csv;charset=utf-8;",
-    });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `mydreambus-sessions-${Date.now()}.csv`;
-    a.click();
-    URL.revokeObjectURL(url);
+
+    // Fallback: request session summaries from server and build mapped CSV
+    try {
+      const limit = 200;
+      const resp = await fetch(`/api/session-summaries?limit=${limit}`);
+      if (!resp.ok) throw new Error(`Server returned ${resp.status}`);
+      const summaries = await resp.json();
+      if (!Array.isArray(summaries) || summaries.length === 0) {
+        alert("ไม่มีข้อมูลให��ส่งออก (ทั้ง local และ server)");
+        return;
+      }
+
+      // Helper: fetch per-session events and return combined events array
+      async function fetchSessionEvents(sessionId: string) {
+        try {
+          const r = await fetch(`/api/session/${encodeURIComponent(sessionId)}`);
+          if (!r.ok) return [];
+          const j = await r.json();
+          const appEvents = Array.isArray(j.appEvents) ? j.appEvents : [];
+          const videoEvents = Array.isArray(j.videoEvents) ? j.videoEvents : [];
+          // Normalize shape to match client getLoggedEvents entries
+          const combined = [];
+          for (const e of [...appEvents, ...videoEvents]) {
+            combined.push({
+              sessionID: e.sessionId || e.sessionID || sessionId,
+              timestamp: e.timestamp || new Date().toISOString(),
+              event: e.event || e.eventName || "EVENT",
+              payload: e.payload || e || {},
+              userAgent: e.userAgent || e.user_agent || undefined,
+              url: e.page || undefined,
+            });
+          }
+          return combined.sort((a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime());
+        } catch (e) {
+          return [];
+        }
+      }
+
+      // Reuse mapping logic from client/services/dataLogger to build rows
+      const headers = [
+        "รหัสเซสชัน (sessionID)",
+        "IP (ip)",
+        "เวลาเริ่ม (firstTimestamp)",
+        "เวลาสิ้นสุด (lastTimestamp)",
+        "ยอมรับ PDPA (PDPA_acceptance)",
+        "ประเภทรถ (chassis_type)",
+        "จำ��วนที่นั่งรวม (total_seats)",
+        "ที่นั่งพิเศษ (special_seats)",
+        "จำนวนเด็ก/ผู้สูงอายุ (children_elder_count)",
+        "จำนวนผู้ตั้งครรภ์ (pregnant_count)",
+        "จำนวนพระ (monk_count)",
+        "สิ่งอำนวยความสะดวก (features)",
+        "ประเภทการชำระเงิน (payment_types)",
+        "จำนวนประตู (doors)",
+        "สี (color)",
+        "ความถี่ (frequency)",
+        "เส้นทาง (route)",
+        "พื้นที่ (area)",
+        "ตัดสินใจใช้บริการ (decision_use_service)",
+        "เหตุผลไม่ใช้บริการ (reason_not_use)",
+        "เข้าร่วมของรางวัล (decision_enter_prize)",
+        "ชื่อผู้รับรางวัล (prize_name)",
+        "เบอร์โทรผู้รับรางวัล (prize_phone)",
+        "เวลาการรับรางวัล (prize_timestamp)",
+        "แชร์กับเพื่อน (shared_with_friends)",
+        "เวลาแ��ร์ (shared_timestamp)",
+      ];
+
+      const csvRows = [headers.map((h) => `"${String(h || "").replace(/"/g, '""')}"`).join(",")];
+
+      // Limit number of sessions fetched to avoid many requests
+      const toProcess = summaries.slice(0, Math.max(0, Math.min(limit, summaries.length)));
+
+      for (const s of toProcess) {
+        const sid = s.sessionId || s.sessionID || s.sessionId || String(s);
+        const evs = await fetchSessionEvents(sid);
+        if (!evs || evs.length === 0) continue;
+
+        const rowObj: any = {
+          sessionID: sid,
+          ip: "",
+          firstTimestamp: evs[0]?.timestamp || "",
+          lastTimestamp: evs[evs.length - 1]?.timestamp || "",
+          PDPA_acceptance: "",
+          chassis_type: "",
+          total_seats: "",
+          special_seats: "",
+          children_elder_count: "",
+          pregnant_count: "",
+          monk_count: "",
+          features: [],
+          payment_types: [],
+          doors: "",
+          color: "",
+          frequency: "",
+          route: "",
+          area: "",
+          decision_use_service: "",
+          reason_not_use: "",
+          decision_enter_prize: "",
+          prize_name: "",
+          prize_phone: "",
+          prize_timestamp: "",
+          shared_with_friends: "",
+          shared_timestamp: "",
+        };
+
+        evs.forEach((e) => {
+          const p = e.payload || {};
+          // PDPA
+          if (
+            rowObj.PDPA_acceptance === "" &&
+            (p.PDPA === true || p.pdpa === true || p.PDPA === "accepted" || p.pdpa === "accepted")
+          )
+            rowObj.PDPA_acceptance = "1";
+          if (
+            rowObj.PDPA_acceptance === "" &&
+            (p.PDPA === false || p.pdpa === false || p.PDPA === "declined")
+          )
+            rowObj.PDPA_acceptance = "0";
+
+          if (!rowObj.chassis_type && (p.chassis || (p.design && p.design.chassis) || p.chassisType))
+            rowObj.chassis_type = p.chassis || (p.design && p.design.chassis) || p.chassisType;
+
+          if (!rowObj.total_seats) {
+            if (p.seating && p.seating.totalSeats) rowObj.total_seats = String(p.seating.totalSeats);
+            else if (p.totalSeats) rowObj.total_seats = String(p.totalSeats);
+          }
+          if (!rowObj.special_seats && p.seating && p.seating.specialSeats)
+            rowObj.special_seats = String(p.seating.specialSeats);
+
+          if (!rowObj.children_elder_count && p.seating && p.seating.children)
+            rowObj.children_elder_count = String(p.seating.children);
+          if (!rowObj.pregnant_count && ((p.seating && p.seating.pregnant) || p.pregnant))
+            rowObj.pregnant_count = String((p.seating && p.seating.pregnant) || p.pregnant || "");
+          if (!rowObj.monk_count && ((p.seating && p.seating.monk) || p.monk))
+            rowObj.monk_count = String((p.seating && p.seating.monk) || p.monk || "");
+
+          if (Array.isArray(p.amenities)) rowObj.features = Array.from(new Set((rowObj.features || []).concat(p.amenities)));
+          if (Array.isArray(p.features)) rowObj.features = Array.from(new Set((rowObj.features || []).concat(p.features)));
+
+          if (Array.isArray(p.payment)) rowObj.payment_types = Array.from(new Set((rowObj.payment_types || []).concat(p.payment)));
+          if (p.paymentType) rowObj.payment_types = Array.from(new Set((rowObj.payment_types || []).concat([p.paymentType])));
+
+          if (!rowObj.doors && (p.doors || p.doorChoice || (p.doors && p.doors.doorChoice))) {
+            if (typeof p.doors === "string") rowObj.doors = p.doors;
+            else if (p.doorChoice) rowObj.doors = p.doorChoice;
+            else if (p.doors && p.doors.doorChoice) rowObj.doors = p.doors.doorChoice;
+          }
+
+          if (!rowObj.color && ((p.color && p.color.colorHex) || (p.exterior && p.exterior.color && p.exterior.color.colorHex) || p.colorHex))
+            rowObj.color = (p.color && p.color.colorHex) || (p.exterior && p.exterior.color && p.exterior.color.colorHex) || p.colorHex || "";
+
+          if (!rowObj.frequency && (p.interval || p.frequency)) rowObj.frequency = p.interval || p.frequency;
+          if (!rowObj.route && p.route) rowObj.route = p.route;
+          if (!rowObj.area && p.area) rowObj.area = p.area;
+
+          if (!rowObj.decision_use_service && (p.decisionUseService !== undefined || p.useService !== undefined))
+            rowObj.decision_use_service = (p.decisionUseService ?? p.useService) ? "1" : "0";
+
+          if (!rowObj.reason_not_use && (p.reasonNotUse || p.reason || p.reason_not_use)) rowObj.reason_not_use = p.reasonNotUse || p.reason || p.reason_not_use;
+
+          if (!rowObj.decision_enter_prize && (p.enterPrize !== undefined || p.prizeEnter !== undefined || p.wantsPrize !== undefined))
+            rowObj.decision_enter_prize = (p.enterPrize ?? p.prizeEnter ?? p.wantsPrize) ? "1" : "0";
+          if (!rowObj.prize_name && (p.prizeName || p.name)) rowObj.prize_name = p.prizeName || p.name;
+          if (!rowObj.prize_phone && (p.prizePhone || p.phone)) rowObj.prize_phone = p.prizePhone || p.phone;
+          if (!rowObj.prize_timestamp && e.timestamp && (p.prizeName || p.prizePhone || p.enterPrize || p.wantsPrize)) rowObj.prize_timestamp = e.timestamp;
+
+          if (!rowObj.shared_with_friends && (p.shared === true || p.sharedTo)) rowObj.shared_with_friends = "1";
+          if (!rowObj.shared_timestamp && (p.shared === true || p.sharedTo)) rowObj.shared_timestamp = e.timestamp;
+        });
+
+        const featuresStr = Array.isArray(rowObj.features) ? rowObj.features.join(" | ") : rowObj.features || "";
+        const paymentStr = Array.isArray(rowObj.payment_types) ? rowObj.payment_types.join(" | ") : rowObj.payment_types || "";
+
+        const vals = [
+          rowObj.sessionID,
+          rowObj.ip || "",
+          rowObj.firstTimestamp,
+          rowObj.lastTimestamp,
+          rowObj.PDPA_acceptance,
+          rowObj.chassis_type,
+          rowObj.total_seats,
+          rowObj.special_seats,
+          rowObj.children_elder_count,
+          rowObj.pregnant_count,
+          rowObj.monk_count,
+          featuresStr,
+          paymentStr,
+          rowObj.doors,
+          rowObj.color,
+          rowObj.frequency,
+          rowObj.route,
+          rowObj.area,
+          rowObj.decision_use_service,
+          rowObj.reason_not_use,
+          rowObj.decision_enter_prize,
+          rowObj.prize_name,
+          rowObj.prize_phone,
+          rowObj.prize_timestamp,
+          rowObj.shared_with_friends,
+          rowObj.shared_timestamp,
+        ];
+
+        const safe = vals.map((f) => `"${String(f || "").replace(/"/g, '""')}"`);
+        csvRows.push(safe.join(","));
+      }
+
+      const outCsv = csvRows.join("\n");
+      const blob = new Blob(["\uFEFF" + outCsv], { type: "text/csv;charset=utf-8;" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `mydreambus-sessions-server-${Date.now()}.csv`;
+      a.click();
+      URL.revokeObjectURL(url);
+    } catch (err) {
+      console.error(err);
+      alert("Export failed: " + String(err));
+    }
   };
 
   const handleSendAll = async () => {
