@@ -1,10 +1,19 @@
-import DesktopMockup from "./components/DesktopMockup";
-import SourceSelection from "../../components/journey/SourceSelection";
+/* Source Selection Page - Information Source
+ * User selects their preferred information source
+ */
 
-const Wrapped = (props: any) => (
-  <DesktopMockup>
-    <SourceSelection {...props} useUk1Button={true} />
-  </DesktopMockup>
-);
+import SourceSelection from "../components/journey/SourceSelection";
+import { useSession } from "../hooks/useSession";
+import { useEffect } from "react";
 
-export default Wrapped;
+const SourceSelectionPage = () => {
+  const { sessionID, navigateToPage } = useSession();
+
+  useEffect(() => {
+    import("./EndSequencePage").catch(() => {});
+  }, []);
+
+  return <SourceSelection sessionID={sessionID} onNavigate={navigateToPage} />;
+};
+
+export default SourceSelectionPage;
