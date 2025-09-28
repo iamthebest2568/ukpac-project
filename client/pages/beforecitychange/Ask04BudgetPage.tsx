@@ -2,7 +2,7 @@
  * User rates their satisfaction after budget mini-game (MN3 path)
  */
 
-import Ask04Budget from "../components/journey/Ask04Budget";
+import Ask04Budget from "../../components/journey/Ask04Budget";
 import { useSession } from "../hooks/useSession";
 
 const Ask04BudgetPage = () => {
