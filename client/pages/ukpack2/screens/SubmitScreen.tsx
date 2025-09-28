@@ -90,7 +90,22 @@ const SubmitScreen: React.FC = () => {
               img.crossOrigin = "anonymous";
               img.onload = () => resolve(img);
               img.onerror = (e) => reject(e);
-              img.src = url;
+              try {
+                let finalUrl = String(url || "");
+                // If absolute remote URL, route through server proxy to avoid CORS issues
+                if (/^https?:\/\//i.test(finalUrl)) {
+                  try {
+                    const u = new URL(finalUrl);
+                    const sameOrigin = window.location.hostname === u.hostname;
+                    if (!sameOrigin) {
+                      finalUrl = `/api/proxy-image?url=${encodeURIComponent(finalUrl)}`;
+                    }
+                  } catch (e) {}
+                }
+                img.src = finalUrl;
+              } catch (e) {
+                reject(e);
+              }
             });
           }
 
