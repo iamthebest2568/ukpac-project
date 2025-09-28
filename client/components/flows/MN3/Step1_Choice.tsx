@@ -28,7 +28,7 @@ const Step1_Choice = ({
     "ลดค่าโดยสารรถไฟฟ้า",
     "เพิ่มความถี่รถไฟฟ้า",
     "ตั๋วร่วม",
-    "เพิ่มความถี่รถเมล์",
+    "เพิ่มความถี่รถ��มล์",
     "ปรับปรุงคุณภาพรถเมล์",
     "เพิ่มที่จอดรถ",
     "เพิ่มรถเล็กเชื่อมต่อรถไฟฟ้าในซอย",
@@ -82,28 +82,43 @@ const Step1_Choice = ({
               const raw = sessionStorage.getItem(key);
               const sent = raw ? JSON.parse(raw) : {};
               if (!sent[img]) {
-                fetch('/api/write-image-url', {
-                  method: 'POST',
-                  headers: { 'Content-Type': 'application/json' },
-                  body: JSON.stringify({ imageUrl: img, collection: 'beforecitychange-imageshow-events' }),
-                })
-                  .then(async (r) => {
-                    try {
-                      if (r.ok) {
-                        const j = await r.json();
-                        sent[img] = { ok: true, id: j?.id || null, ts: Date.now() };
-                      } else {
-                        const txt = await r.text().catch(() => null);
-                        sent[img] = { ok: false, error: `HTTP ${r.status} ${txt || ''}` };
-                      }
-                    } catch (e) {
-                      sent[img] = { ok: false, error: String(e) };
-                    }
-                    try { sessionStorage.setItem(key, JSON.stringify(sent)); } catch (_) {}
-                  })
-                  .catch((e) => {
-                    try { sent[img] = { ok: false, error: String(e) }; sessionStorage.setItem(key, JSON.stringify(sent)); } catch (_) {}
-                  });
+                // helper to mark sent
+                const mark = (payload: any) => {
+                  try {
+                    sent[img] = payload;
+                    sessionStorage.setItem(key, JSON.stringify(sent));
+                  } catch (_) {}
+                };
+
+                // Try sendBeacon first (fire-and-forget), fallback to fetch
+                try {
+                  const blob = new Blob([JSON.stringify({ imageUrl: img, collection: 'beforecitychange-imageshow-events' })], { type: 'application/json' });
+                  const ok = typeof navigator !== 'undefined' && navigator.sendBeacon && navigator.sendBeacon('/api/write-image-url', blob);
+                  if (ok) {
+                    mark({ ok: true, beacon: true, ts: Date.now() });
+                  } else {
+                    // fallback to fetch
+                    fetch('/api/write-image-url', {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify({ imageUrl: img, collection: 'beforecitychange-imageshow-events' }),
+                    })
+                      .then(async (r) => {
+                        if (r.ok) {
+                          const j = await r.json().catch(() => null);
+                          mark({ ok: true, id: j?.id || null, ts: Date.now() });
+                        } else {
+                          const txt = await r.text().catch(() => null);
+                          mark({ ok: false, error: `HTTP ${r.status} ${txt || ''}` });
+                        }
+                      })
+                      .catch((e) => {
+                        mark({ ok: false, error: String(e) });
+                      });
+                  }
+                } catch (e) {
+                  mark({ ok: false, error: String(e) });
+                }
               }
             } catch (e) {}
           }
