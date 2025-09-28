@@ -26,9 +26,60 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
   const [scale, setScale] = useState(1);
   const [initialized, setInitialized] = useState(false);
   const frameRef = useRef<HTMLDivElement | null>(null);
+  const iframeRef = useRef<HTMLIFrameElement | null>(null);
+  const [iframeMount, setIframeMount] = useState<HTMLElement | null>(null);
   const navigate = useNavigate();
   const location = useLocation();
   const viewportBackground = "#ffffff";
+
+  useEffect(() => {
+    if (!isMN2) return;
+    const iframe = iframeRef.current;
+    if (!iframe) return;
+
+    const handleLoad = () => {
+      try {
+        const doc = iframe.contentDocument;
+        if (!doc) return;
+
+        // Copy stylesheets and style tags from parent into iframe head
+        const head = doc.head;
+        Array.from(document.querySelectorAll('link[rel="stylesheet"], style')).forEach((node) => {
+          try {
+            head.appendChild(node.cloneNode(true));
+          } catch (e) {}
+        });
+
+        // Ensure base href so relative urls resolve correctly
+        try {
+          const base = doc.createElement('base');
+          base.setAttribute('href', window.location.origin + '/');
+          head.appendChild(base);
+        } catch (e) {}
+
+        // Create mount node for portal
+        const mount = doc.createElement('div');
+        mount.className = 'iframe-mount';
+        doc.body.style.margin = '0';
+        doc.body.appendChild(mount);
+        setIframeMount(mount);
+      } catch (e) {}
+    };
+
+    iframe.addEventListener('load', handleLoad);
+    // If iframe already loaded
+    try {
+      if (iframe.contentDocument && iframe.contentDocument.readyState === 'complete') {
+        handleLoad();
+      }
+    } catch (e) {}
+
+    return () => {
+      try {
+        iframe.removeEventListener('load', handleLoad);
+      } catch (e) {}
+    };
+  }, [isMN2]);
 
   const recomputeScale = useCallback(() => {
     const margin = 32; // include soft shadow space
