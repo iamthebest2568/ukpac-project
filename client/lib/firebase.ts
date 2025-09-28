@@ -247,7 +247,7 @@ export async function sendEventToFirestore(
 }
 
 // Write-only helper for saving design image URL (no PDPA gating)
-export async function addDesignImageUrlToFirestore(imageUrl: string) {
+export async function addDesignImageUrlToFirestore(imageUrl: string, preferredCollection?: string) {
   if (!db) initFirebase();
   if (!db) throw new Error("Firestore not initialized");
 
