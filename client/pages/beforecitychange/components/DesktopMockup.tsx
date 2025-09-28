@@ -83,7 +83,7 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
         iframe.removeEventListener('load', handleLoad);
       } catch (e) {}
     };
-  }, [isMN2]);
+  }, [isMN2, isMN3]);
 
   const recomputeScale = useCallback(() => {
     const margin = 32; // include soft shadow space
