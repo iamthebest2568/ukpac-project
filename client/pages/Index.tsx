@@ -12,7 +12,7 @@ const IndexPage = () => {
     <>
       <MetaUpdater
         title="UK PACT - กรุงเทพฯ ลดติด"
-        description="UK PACT — เชิญชวนคนกรุงเทพฯ มาร่วมออกแบบเมือง ลดปัญหาจราจรและมลพิษ ด้วยนโยบายและตัวเลือกที่ใช้งานได้จริง"
+        description="UK PACT — เชิญชวนคนกรุงเทพฯ มาร่วมออกแบบเมือง ลดปัญหาจราจ���และมลพิษ ด้วยนโยบายและตัวเลือกที่ใช้งานได้จริง"
         image="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fa9dea989b2c347318a49bb8e9f717a35?format=webp&width=1200"
       />
       <div className="min-h-screen bg-white flex items-center justify-center py-12">
@@ -80,7 +80,7 @@ const IndexPage = () => {
                 // Wrap the first and second card in a router Link so they navigate client-side
                 if (i === 1) {
                   return (
-                    <Link key={i} to="/ukpack1" aria-label="Open ukpack1">
+                    <Link key={i} to="/beforecitychange" aria-label="Open ukpack1">
                       {card}
                     </Link>
                   );
