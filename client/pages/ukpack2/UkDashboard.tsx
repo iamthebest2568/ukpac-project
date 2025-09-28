@@ -362,7 +362,7 @@ const UkDashboard: React.FC = () => {
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = "ukpack2-schema.json";
+      a.download = "mydreambus-schema.json";
       a.click();
       URL.revokeObjectURL(url);
     }
