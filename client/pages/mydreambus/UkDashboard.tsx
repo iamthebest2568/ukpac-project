@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import {
   exportEventsAsCSV,
   exportSessionsAsCSV,
@@ -257,7 +256,7 @@ const UkDashboard: React.FC = () => {
   const handleExport = () => {
     const csv = exportEventsAsCSV();
     if (!csv) {
-      alert("ไม่มีข้อมูลให��ส่งออก");
+      alert("ไม่มีข้อมูลให���ส่งออก");
       return;
     }
     const blob = new Blob(["\uFEFF" + csv], {
@@ -290,221 +289,26 @@ const UkDashboard: React.FC = () => {
       return;
     }
 
-    // Fallback: request session summaries from server and build mapped CSV
+    // Fallback: request server-side CSV (single request)
     try {
       const limit = 200;
-      const resp = await fetch(`/api/session-summaries?limit=${limit}`);
-      if (!resp.ok) throw new Error(`Server returned ${resp.status}`);
-      const summaries = await resp.json();
-      if (!Array.isArray(summaries) || summaries.length === 0) {
-        alert("ไม่มีข้อมูลให��ส่งออก (ทั้ง local และ server)");
-        return;
-      }
-
-      // Helper: fetch per-session events and return combined events array
-      async function fetchSessionEvents(sessionId: string) {
+      const resp = await fetch(`/api/mydreambus/export-csv?limit=${limit}`);
+      if (!resp.ok) {
         try {
-          const r = await fetch(`/api/session/${encodeURIComponent(sessionId)}`);
-          if (!r.ok) return [];
-          const j = await r.json();
-          const appEvents = Array.isArray(j.appEvents) ? j.appEvents : [];
-          const videoEvents = Array.isArray(j.videoEvents) ? j.videoEvents : [];
-          // Normalize shape to match client getLoggedEvents entries
-          const combined = [];
-          for (const e of [...appEvents, ...videoEvents]) {
-            combined.push({
-              sessionID: e.sessionId || e.sessionID || sessionId,
-              timestamp: e.timestamp || new Date().toISOString(),
-              event: e.event || e.eventName || "EVENT",
-              payload: e.payload || e || {},
-              userAgent: e.userAgent || e.user_agent || undefined,
-              url: e.page || undefined,
-            });
-          }
-          return combined.sort((a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime());
-        } catch (e) {
-          return [];
+          const j = await resp.json();
+          throw new Error(j?.error || `Server returned ${resp.status}`);
+        } catch (_) {
+          throw new Error(`Server returned ${resp.status}`);
         }
       }
-
-      // Reuse mapping logic from client/services/dataLogger to build rows
-      const headers = [
-        "รหัสเซสชัน (sessionID)",
-        "IP (ip)",
-        "เวลาเริ่ม (firstTimestamp)",
-        "เวลาสิ้นสุด (lastTimestamp)",
-        "ยอมรับ PDPA (PDPA_acceptance)",
-        "ประเภทรถ (chassis_type)",
-        "จำ��วนที่นั่งรวม (total_seats)",
-        "ที่นั่งพิเศษ (special_seats)",
-        "จำนวนเด็ก/ผู้สูงอายุ (children_elder_count)",
-        "จำนวนผู้ตั้งครรภ์ (pregnant_count)",
-        "จำนวนพระ (monk_count)",
-        "สิ่งอำนวยความสะดวก (features)",
-        "ประเภทการชำระเงิน (payment_types)",
-        "จำนวนประตู (doors)",
-        "สี (color)",
-        "ความถี่ (frequency)",
-        "เส้นทาง (route)",
-        "พื้นที่ (area)",
-        "ตัดสินใจใช้บริการ (decision_use_service)",
-        "เหตุผลไม่ใช้บริการ (reason_not_use)",
-        "เข้าร่วมของรางวัล (decision_enter_prize)",
-        "ชื่อผู้รับรางวัล (prize_name)",
-        "เบอร์โทรผู้รับรางวัล (prize_phone)",
-        "เวลาการรับรางวัล (prize_timestamp)",
-        "แชร์กับเพื่อน (shared_with_friends)",
-        "เวลาแ��ร์ (shared_timestamp)",
-      ];
-
-      const csvRows = [headers.map((h) => `"${String(h || "").replace(/"/g, '""')}"`).join(",")];
-
-      // Limit number of sessions fetched to avoid many requests
-      const toProcess = summaries.slice(0, Math.max(0, Math.min(limit, summaries.length)));
-
-      for (const s of toProcess) {
-        const sid = s.sessionId || s.sessionID || s.sessionId || String(s);
-        const evs = await fetchSessionEvents(sid);
-        if (!evs || evs.length === 0) continue;
-
-        const rowObj: any = {
-          sessionID: sid,
-          ip: "",
-          firstTimestamp: evs[0]?.timestamp || "",
-          lastTimestamp: evs[evs.length - 1]?.timestamp || "",
-          PDPA_acceptance: "",
-          chassis_type: "",
-          total_seats: "",
-          special_seats: "",
-          children_elder_count: "",
-          pregnant_count: "",
-          monk_count: "",
-          features: [],
-          payment_types: [],
-          doors: "",
-          color: "",
-          frequency: "",
-          route: "",
-          area: "",
-          decision_use_service: "",
-          reason_not_use: "",
-          decision_enter_prize: "",
-          prize_name: "",
-          prize_phone: "",
-          prize_timestamp: "",
-          shared_with_friends: "",
-          shared_timestamp: "",
-        };
-
-        evs.forEach((e) => {
-          const p = e.payload || {};
-          // PDPA
-          if (
-            rowObj.PDPA_acceptance === "" &&
-            (p.PDPA === true || p.pdpa === true || p.PDPA === "accepted" || p.pdpa === "accepted")
-          )
-            rowObj.PDPA_acceptance = "1";
-          if (
-            rowObj.PDPA_acceptance === "" &&
-            (p.PDPA === false || p.pdpa === false || p.PDPA === "declined")
-          )
-            rowObj.PDPA_acceptance = "0";
-
-          if (!rowObj.chassis_type && (p.chassis || (p.design && p.design.chassis) || p.chassisType))
-            rowObj.chassis_type = p.chassis || (p.design && p.design.chassis) || p.chassisType;
-
-          if (!rowObj.total_seats) {
-            if (p.seating && p.seating.totalSeats) rowObj.total_seats = String(p.seating.totalSeats);
-            else if (p.totalSeats) rowObj.total_seats = String(p.totalSeats);
-          }
-          if (!rowObj.special_seats && p.seating && p.seating.specialSeats)
-            rowObj.special_seats = String(p.seating.specialSeats);
-
-          if (!rowObj.children_elder_count && p.seating && p.seating.children)
-            rowObj.children_elder_count = String(p.seating.children);
-          if (!rowObj.pregnant_count && ((p.seating && p.seating.pregnant) || p.pregnant))
-            rowObj.pregnant_count = String((p.seating && p.seating.pregnant) || p.pregnant || "");
-          if (!rowObj.monk_count && ((p.seating && p.seating.monk) || p.monk))
-            rowObj.monk_count = String((p.seating && p.seating.monk) || p.monk || "");
-
-          if (Array.isArray(p.amenities)) rowObj.features = Array.from(new Set((rowObj.features || []).concat(p.amenities)));
-          if (Array.isArray(p.features)) rowObj.features = Array.from(new Set((rowObj.features || []).concat(p.features)));
-
-          if (Array.isArray(p.payment)) rowObj.payment_types = Array.from(new Set((rowObj.payment_types || []).concat(p.payment)));
-          if (p.paymentType) rowObj.payment_types = Array.from(new Set((rowObj.payment_types || []).concat([p.paymentType])));
-
-          if (!rowObj.doors && (p.doors || p.doorChoice || (p.doors && p.doors.doorChoice))) {
-            if (typeof p.doors === "string") rowObj.doors = p.doors;
-            else if (p.doorChoice) rowObj.doors = p.doorChoice;
-            else if (p.doors && p.doors.doorChoice) rowObj.doors = p.doors.doorChoice;
-          }
-
-          if (!rowObj.color && ((p.color && p.color.colorHex) || (p.exterior && p.exterior.color && p.exterior.color.colorHex) || p.colorHex))
-            rowObj.color = (p.color && p.color.colorHex) || (p.exterior && p.exterior.color && p.exterior.color.colorHex) || p.colorHex || "";
-
-          if (!rowObj.frequency && (p.interval || p.frequency)) rowObj.frequency = p.interval || p.frequency;
-          if (!rowObj.route && p.route) rowObj.route = p.route;
-          if (!rowObj.area && p.area) rowObj.area = p.area;
-
-          if (!rowObj.decision_use_service && (p.decisionUseService !== undefined || p.useService !== undefined))
-            rowObj.decision_use_service = (p.decisionUseService ?? p.useService) ? "1" : "0";
-
-          if (!rowObj.reason_not_use && (p.reasonNotUse || p.reason || p.reason_not_use)) rowObj.reason_not_use = p.reasonNotUse || p.reason || p.reason_not_use;
-
-          if (!rowObj.decision_enter_prize && (p.enterPrize !== undefined || p.prizeEnter !== undefined || p.wantsPrize !== undefined))
-            rowObj.decision_enter_prize = (p.enterPrize ?? p.prizeEnter ?? p.wantsPrize) ? "1" : "0";
-          if (!rowObj.prize_name && (p.prizeName || p.name)) rowObj.prize_name = p.prizeName || p.name;
-          if (!rowObj.prize_phone && (p.prizePhone || p.phone)) rowObj.prize_phone = p.prizePhone || p.phone;
-          if (!rowObj.prize_timestamp && e.timestamp && (p.prizeName || p.prizePhone || p.enterPrize || p.wantsPrize)) rowObj.prize_timestamp = e.timestamp;
-
-          if (!rowObj.shared_with_friends && (p.shared === true || p.sharedTo)) rowObj.shared_with_friends = "1";
-          if (!rowObj.shared_timestamp && (p.shared === true || p.sharedTo)) rowObj.shared_timestamp = e.timestamp;
-        });
-
-        const featuresStr = Array.isArray(rowObj.features) ? rowObj.features.join(" | ") : rowObj.features || "";
-        const paymentStr = Array.isArray(rowObj.payment_types) ? rowObj.payment_types.join(" | ") : rowObj.payment_types || "";
-
-        const vals = [
-          rowObj.sessionID,
-          rowObj.ip || "",
-          rowObj.firstTimestamp,
-          rowObj.lastTimestamp,
-          rowObj.PDPA_acceptance,
-          rowObj.chassis_type,
-          rowObj.total_seats,
-          rowObj.special_seats,
-          rowObj.children_elder_count,
-          rowObj.pregnant_count,
-          rowObj.monk_count,
-          featuresStr,
-          paymentStr,
-          rowObj.doors,
-          rowObj.color,
-          rowObj.frequency,
-          rowObj.route,
-          rowObj.area,
-          rowObj.decision_use_service,
-          rowObj.reason_not_use,
-          rowObj.decision_enter_prize,
-          rowObj.prize_name,
-          rowObj.prize_phone,
-          rowObj.prize_timestamp,
-          rowObj.shared_with_friends,
-          rowObj.shared_timestamp,
-        ];
-
-        const safe = vals.map((f) => `"${String(f || "").replace(/"/g, '""')}"`);
-        csvRows.push(safe.join(","));
-      }
-
-      const outCsv = csvRows.join("\n");
-      const blob = new Blob(["\uFEFF" + outCsv], { type: "text/csv;charset=utf-8;" });
+      const blob = await resp.blob();
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
       a.download = `mydreambus-sessions-server-${Date.now()}.csv`;
       a.click();
       URL.revokeObjectURL(url);
+      return;
     } catch (err) {
       console.error(err);
       alert("Export failed: " + String(err));
@@ -835,7 +639,7 @@ const UkDashboard: React.FC = () => {
             <button
               onClick={handleSendTestEvent}
               disabled={isSending}
-              className={`bg-[#60a5fa] text-white px-4 py-2 rounded font-semibold ${isSending ? "opacity-60" : ""}`}
+              className={`bg-[#60a5fa] text-white px-4 py-2 rounded font-semibold ${isSending ? "opacity-60" : ""}`} 
             >
               Send Test Event
             </button>
@@ -843,7 +647,7 @@ const UkDashboard: React.FC = () => {
             <button
               onClick={handleSendAll}
               disabled={isSending}
-              className={`bg-[#34d399] text-[#064e3b] px-4 py-2 rounded font-semibold ${isSending ? "opacity-60" : ""}`}
+              className={`bg-[#34d399] text-[#064e3b] px-4 py-2 rounded font-semibold ${isSending ? "opacity-60" : ""}`} 
             >
               Send All Events (no PDPA filter)
             </button>
@@ -916,158 +720,4 @@ const UkDashboard: React.FC = () => {
                 <div>Sent: {lastSentResult.sentCount}</div>
                 <div>Skipped: {lastSentResult.skippedCount}</div>
                 <div>
-                  Errors:{" "}
-                  {lastSentResult.errors && lastSentResult.errors.length}
-                </div>
-                <div className="mt-2">Sample sent items:</div>
-                <pre className="text-xs mt-2 whitespace-pre-wrap max-h-64 overflow-auto break-words">
-                  {JSON.stringify(lastSentResult.sampleSent || [], null, 2)}
-                </pre>
-              </div>
-            </div>
-          )}
-        </div>
-
-        <div className="mb-6">
-          <h3 className="text-lg font-semibold mb-2">
-            Public submissions (landing)
-          </h3>
-          <div className="bg-[#021827] rounded p-3 text-sm text-gray-200 mb-4">
-            {publicSubmissions.length === 0 ? (
-              <div className="text-gray-400">No public submissions yet</div>
-            ) : (
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                {publicSubmissions.map((s, i) => (
-                  <div
-                    key={s.id || i}
-                    className="bg-[#001a22] rounded p-2 text-xs"
-                  >
-                    {s.imageUrl ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img
-                        src={s.imageUrl}
-                        alt={s.exterior?.customText || "design"}
-                        className="w-full h-28 object-cover rounded"
-                      />
-                    ) : (
-                      <div className="w-full h-28 bg-[#001f2a] rounded flex items-center justify-center text-gray-500">
-                        No image
-                      </div>
-                    )}
-                    <div className="mt-2">
-                      <div className="font-medium">
-                        {s.exterior?.customText ||
-                          s.serviceInfo?.routeName ||
-                          "Design"}
-                      </div>
-                      <div className="text-xs text-gray-400">
-                        {s.exterior?.color || ""} • {s.serviceInfo?.area || ""}
-                      </div>
-                      <div className="text-xs text-gray-400">
-                        {s.timestamp
-                          ? new Date(s.timestamp).toLocaleString()
-                          : ""}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-
-          <h3 className="text-lg font-semibold mb-2">
-            Data schema & usage (สรุปสคีมา)
-          </h3>
-          <div className="bg-[#021827] rounded p-4 text-sm text-gray-200">
-            <div className="mb-3">
-              <strong>
-                Document fields ({collectionInfo.col}/{collectionInfo.docId})
-              </strong>
-              <ul className="list-disc pl-5 mt-1 text-xs text-gray-300">
-                <li>createdAt (Firestore Timestamp)</li>
-                <li>sessionID (string)</li>
-                <li>timestamp (string ISO)</li>
-                <li>event (string)</li>
-                <li>url, userAgent, viewport (meta)</li>
-                <li>payload (map) — fields listed below</li>
-              </ul>
-            </div>
-
-            <div className="mb-3">
-              <strong>Payload suggested fields</strong>
-              <ul className="list-disc pl-5 mt-1 text-xs text-gray-300">
-                <li>PDPA (boolean)</li>
-                <li>chassis (string)</li>
-                <li>
-                  seating (map: totalSeats, specialSeats, children?, pregnant?,
-                  monk?)
-                </li>
-                <li>amenities (array[string])</li>
-                <li>payment (array[string])</li>
-                <li>doors (string or map)</li>
-                <li>color (string, hex)</li>
-                <li>frequency / interval, route, area (strings)</li>
-                <li>decisionUseService (boolean), reasonNotUse (string)</li>
-                <li>enterPrize (boolean), prizeName, prizePhone</li>
-                <li>shared (boolean)</li>
-              </ul>
-            </div>
-
-            <div className="mb-3">
-              <strong>How we send</strong>
-              <div className="text-xs text-gray-300 mt-1">
-                Client constructs a plain JS object (map/array/primitives) and
-                we call addDoc(collection, obj). Images must be stored in
-                Storage and referenced by URL in payload.imageUrl.
-              </div>
-            </div>
-
-            <div className="mb-3">
-              <strong>CSV export columns (mapped)</strong>
-              <pre className="text-xs mt-1 whitespace-pre-wrap bg-[#001927] p-2 rounded">
-                sessionID, ip, firstTimestamp, lastTimestamp, PDPA_acceptance,
-                chassis_type, total_seats, special_seats, children_count,
-                pregnant_count, monk_count, features, payment_types, doors,
-                color, frequency, route, area, decision_use_service,
-                reason_not_use, decision_enter_prize, prize_name, prize_phone,
-                prize_timestamp, shared_with_friends, shared_timestamp
-              </pre>
-            </div>
-
-            <div>
-              <strong>Landing page usage</strong>
-              <ul className="list-disc pl-5 mt-1 text-xs text-gray-300">
-                <li>
-                  For images: store in Firebase Storage → save public URL in
-                  payload.imageUrl → render &lt;img src="..." /&gt;
-                </li>
-                <li>
-                  For user text (slogans, comments): fetch doc.payload.field and
-                  sanitize before rendering
-                </li>
-                <li>
-                  Prefer server-side endpoint to aggregate & sanitize public
-                  data for landing page (recommended)
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div className="text-right mt-4">
-          <button
-            onClick={() => {
-              sessionStorage.removeItem("mydreambus_dash_auth");
-              setAuthorized(false);
-            }}
-            className="text-sm underline text-gray-300"
-          >
-            Logout
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-export default UkDashboard;
+                  Errors:{
