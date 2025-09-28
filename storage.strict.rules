@@ -1,18 +1,22 @@
 rules_version = '2';
 service firebase.storage {
   match /b/{bucket}/o {
-    // Allow read for public assets
+    // Public read is allowed for static assets by default. Adjust as needed.
     match /{allPaths=**} {
       allow read: if true;
     }
 
-    // Allow client writes only to designs/{project}_... under authenticated users
+    // Allow client writes only to designs/ files that follow the project prefix
+    // and only for authenticated, email-verified users. Filenames must start with
+    // beforecitychange_ or mydreambus_ to separate project assets.
     match /designs/{fileName} {
-      allow write: if request.auth != null && request.auth.token.email_verified == true && fileName.matches('^(beforecitychange|mydreambus)_[0-9]+_.*\\.png$');
+      allow write: if request.auth != null
+        && request.auth.token.email_verified == true
+        && fileName.matches('^(beforecitychange|mydreambus)_[0-9]+_.*\\.(png|jpg|jpeg)$');
       allow read: if true;
     }
 
-    // Deny writes elsewhere
+    // Deny client writes elsewhere; server/Admin SDK can still write via its credentials
     match /{rest=**} {
       allow write: if false;
     }
