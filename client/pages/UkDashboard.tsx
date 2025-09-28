@@ -112,6 +112,20 @@ export default function UkDashboard() {
   const [authed, setAuthed] = useState<boolean>(
     () => sessionStorage.getItem("ukdash_authed") === "true",
   );
+
+  // During development / preview in the beforecitychange mock, auto-enable the dashboard
+  // if the path points to /beforecitychange/uk-dashboard so the admin can view it without manual password.
+  useEffect(() => {
+    try {
+      if (typeof window !== "undefined") {
+        const p = window.location && window.location.pathname ? window.location.pathname : "";
+        if (p.startsWith("/beforecitychange/uk-dashboard") || p.startsWith("/beforecitychange/ukdashboard.html")) {
+          sessionStorage.setItem("ukdash_authed", "true");
+          setAuthed(true);
+        }
+      }
+    } catch (e) {}
+  }, []);
   const [user, setUser] = useState("");
   const [pw, setPw] = useState("");
   const [pwErr, setPwErr] = useState<string | null>(null);
@@ -963,14 +977,14 @@ export default function UkDashboard() {
                       "อธิบายอื่น ๆ ที่ช่วยอธิบายความคิดเห็น",
                       "บอกเร��หน่อยว่าคุณเดินทางเข้าเมืองด้วยวิธีการใดบ่อยที่สุด",
                       "จากนโยบายที่คุณฟังเมื่อสักครู่ คุณมีความคิดเห็นอย่าง��ร",
-                      "คุณคิดว่านโยบายปัจจุบัน ควรปรับเปลี่ยนประเด็นอะไรบาง (ลดค่าโดยสาร, ปรับปรุงคุณภาพ, ขึ้น���าคา, เพิ่มขบวน, เพิ่มความถี่ ฯลฯ)",
+                      "คุณคิดว่านโยบายปัจจุบัน ควรปรับเปลี่ยนประเด็นอะไรบาง (ลดค่าโดยสา��, ปรับปรุงคุณภาพ, ขึ้น���าคา, เพิ่มขบวน, เพิ่มความถี่ ฯลฯ)",
                       "คุณคิดว่าใครควรได้รับการลดค่าโดยสารรถไฟฟ���าบ้าง (ทุกคน, ผู้สูงอายุ, นักเรียน, คนทำงาน ฯลฯ)",
                       "คุณคิดว่าควรใช้เงินที่ได้จากการเก็บไปพัฒนาอะไร ก่อน 3 อันดับแรก",
                       "คุณจะให้งบประมาณแต่ละข้อเท่าไร (งบทั้งหมด 100)",
                       "คุณพอใจกับผลลัพธ์ที่เกิดขึ้นหรือไม่ (พอใจ / ไม่พอใจ)",
                       "คุณคิดว่ารัฐควรทำอะไรที่จะทำให้นโยบายนี้เกิดขึ้นได้จริง และเป็นประโยชน์ต่อประชาชนอย่างแท้จริง",
-                      "ตอนนี้มี��้อมูลที่ผิดพลาด เช่น ข่าวปลอมเกี่ยวกับนโยบาย คุณคิดว่าอย่างไร",
-                      "คุณจะติดตามข่า��� หรือเชื่อจากแหล่งไหนมาก���ี่สุด",
+                      "ตอนนี้มี��้อ��ูลที่ผิดพลาด เช่น ข่าวปลอมเกี่ยวกับนโยบาย คุณคิดว่าอย่างไร",
+                      "คุณ��ะติดตามข่า��� หรือเชื่อจากแหล่งไหนมาก���ี่สุด",
                       "ขอบคุณที่ร่วมเป็นส่วนหนึ่ง → ต้องการลุ้นรับรางวัลหรือไม่",
                       "กรอกข้อมูลเพื่อลุ้นรางวัล (ชื่อ)",
                       "กรอกข้อมูลเพื่อลุ้นรางวัล (เบอร์โทร)",
