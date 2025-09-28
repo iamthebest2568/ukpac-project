@@ -577,7 +577,7 @@ export function createServer() {
                 "รหัสเซสชัน (sessionID)",
                 "IP (ip)",
                 "เวลาเริ่ม (firstTimestamp)",
-                "เวลาสิ้นสุ�� (lastTimestamp)",
+                "เวลาสิ้นสุด (lastTimestamp)",
                 "ยอมรับ PDPA (PDPA_acceptance)",
                 "ประเภทรถ (chassis_type)",
                 "จำนวนที่นั่งรวม (total_seats)",
@@ -612,38 +612,80 @@ export function createServer() {
                 try {
                   const obj = JSON.parse(ln);
                   // Only include already-mapped session rows (presence of firstTimestamp or PDPA_acceptance)
-                  if (obj && (obj.firstTimestamp || obj.PDPA_acceptance || obj.sessionID) && (obj.firstTimestamp || obj.lastTimestamp)) {
-                    const vals = [
-                      obj.sessionID || obj.sessionId || '',
-                      obj.ip || '',
-                      formatToBangkok(obj.firstTimestamp || obj.firstTimestamp || ''),
-                      formatToBangkok(obj.lastTimestamp || obj.lastTimestamp || ''),
-                      obj.PDPA_acceptance || obj.PDPA || (obj.PDPA === true ? '1' : '') || '',
-                      obj.chassis_type || obj.chassis || '',
-                      obj.total_seats || obj.totalSeats || '',
-                      obj.special_seats || '',
-                      obj.children_elder_count || '',
-                      obj.pregnant_count || '',
-                      obj.monk_count || '',
-                      Array.isArray(obj.features) ? obj.features.join(' | ') : (obj.features || ''),
-                      Array.isArray(obj.payment_types) ? obj.payment_types.join(' | ') : (obj.paymentTypes || obj.payment_methods || ''),
-                      obj.doors || (obj.doorConfig && obj.doorConfig.doorChoice) || '',
-                      obj.color || (obj.exterior && (obj.exterior.color || obj.exterior.colorHex)) || '',
-                      obj.frequency || obj.serviceInfo?.frequency || obj.interval || '',
-                      obj.route || obj.serviceInfo?.routeName || '',
-                      obj.area || obj.serviceInfo?.area || '',
-                      obj.decision_use_service || obj.decisionUseService || '',
-                      obj.reason_not_use || obj.reasonNotUse || obj.reason || '',
-                      obj.decision_enter_prize || obj.enterPrize || (obj.prizeName ? '1' : '' ) || '',
-                      obj.prize_name || obj.prizeName || '',
-                      obj.prize_phone || obj.prizePhone || '',
-                      obj.prize_timestamp || '',
-                      obj.shared_with_friends || (obj.userEngagement && obj.userEngagement.shared ? '1' : '') || '',
-                      obj.shared_timestamp || '',
-                    ];
-                    const safe = vals.map((f) => '"' + String(f || "").replace(/"/g, '""') + '"');
-                    csvRows.push(safe.join(','));
-                    count++;
+                  if (obj) {
+                    // If already a mapped session row, accept it
+                    if ((obj.firstTimestamp || obj.lastTimestamp || obj.PDPA_acceptance || obj.sessionID)) {
+                      const vals = [
+                        obj.sessionID || obj.sessionId || '',
+                        obj.ip || '',
+                        formatToBangkok(obj.firstTimestamp || obj.firstTimestamp || ''),
+                        formatToBangkok(obj.lastTimestamp || obj.lastTimestamp || ''),
+                        obj.PDPA_acceptance || obj.PDPA || (obj.PDPA === true ? '1' : '') || '',
+                        obj.chassis_type || obj.chassis || '',
+                        obj.total_seats || obj.totalSeats || '',
+                        obj.special_seats || '',
+                        obj.children_elder_count || '',
+                        obj.pregnant_count || '',
+                        obj.monk_count || '',
+                        Array.isArray(obj.features) ? obj.features.join(' | ') : (obj.features || ''),
+                        Array.isArray(obj.payment_types) ? obj.payment_types.join(' | ') : (obj.paymentTypes || obj.payment_methods || ''),
+                        obj.doors || (obj.doorConfig && obj.doorConfig.doorChoice) || '',
+                        obj.color || (obj.exterior && (obj.exterior.color || obj.exterior.colorHex)) || '',
+                        obj.frequency || obj.serviceInfo?.frequency || obj.interval || '',
+                        obj.route || obj.serviceInfo?.routeName || '',
+                        obj.area || obj.serviceInfo?.area || '',
+                        obj.decision_use_service || obj.decisionUseService || '',
+                        obj.reason_not_use || obj.reasonNotUse || obj.reason || '',
+                        obj.decision_enter_prize || obj.enterPrize || (obj.prizeName ? '1' : '' ) || '',
+                        obj.prize_name || obj.prizeName || '',
+                        obj.prize_phone || obj.prizePhone || '',
+                        obj.prize_timestamp || '',
+                        obj.shared_with_friends || (obj.userEngagement && obj.userEngagement.shared ? '1' : '') || '',
+                        obj.shared_timestamp || '',
+                      ];
+                      const safe = vals.map((f) => '"' + String(f || "").replace(/"/g, '""') + '"');
+                      csvRows.push(safe.join(','));
+                      count++;
+                    } else if (obj.chassis || obj.seating || obj.serviceInfo || obj.exterior) {
+                      // Looks like a raw design submission — map to session row
+                      const sessionID = obj.sessionID || obj.sessionId || obj.session || '';
+                      const firstTS = obj.firstTimestamp || obj.timestamp || obj.createdAt || '';
+                      const lastTS = obj.lastTimestamp || obj.timestamp || obj.createdAt || '';
+                      const pdpa = (obj.PDPA === true || obj.PDPA === 'accepted') ? '1' : '';
+                      const featuresArr = Array.isArray(obj.amenities) ? obj.amenities : (Array.isArray(obj.features) ? obj.features : []);
+                      const paymentArr = Array.isArray(obj.paymentMethods) ? obj.paymentMethods : (Array.isArray(obj.payment) ? obj.payment : []);
+                      const vals = [
+                        sessionID,
+                        obj.ip || '',
+                        formatToBangkok(firstTS),
+                        formatToBangkok(lastTS),
+                        pdpa,
+                        obj.chassis || (obj.design && obj.design.chassis) || '',
+                        (obj.seating && (obj.seating.totalSeats || obj.seating.total_seats)) || '',
+                        '',
+                        (obj.seating && (obj.seating.childElderSeats || obj.seating.childElderSeats || obj.seating.childElderSeats)) || '',
+                        (obj.seating && (obj.seating.pregnantSeats || obj.seating.pregnant)) || '',
+                        (obj.seating && (obj.seating.monkSeats || obj.seating.monk)) || '',
+                        Array.isArray(featuresArr) ? featuresArr.join(' | ') : '',
+                        Array.isArray(paymentArr) ? paymentArr.join(' | ') : '',
+                        obj.doors || (obj.doorConfig && obj.doorConfig.doorChoice) || '',
+                        obj.color || (obj.exterior && (obj.exterior.color || obj.exterior.colorHex)) || '',
+                        obj.frequency || (obj.serviceInfo && obj.serviceInfo.frequency) || obj.interval || '',
+                        obj.route || (obj.serviceInfo && obj.serviceInfo.routeName) || '',
+                        obj.area || (obj.serviceInfo && obj.serviceInfo.area) || '',
+                        obj.decisionUseService || obj.decision_use_service || '',
+                        obj.reasonNotUse || obj.reason_not_use || obj.reason || '',
+                        (obj.enterPrize || obj.prizeName) ? '1' : '',
+                        obj.prizeName || obj.prize_name || '',
+                        obj.prizePhone || obj.prize_phone || '',
+                        '',
+                        (obj.userEngagement && obj.userEngagement.shared) ? '1' : '',
+                        '',
+                      ];
+                      const safe = vals.map((f) => '"' + String(f || "").replace(/"/g, '""') + '"');
+                      csvRows.push(safe.join(','));
+                      count++;
+                    }
                   }
                 } catch (e) {
                   // ignore parse errors
@@ -693,7 +735,7 @@ export function createServer() {
         "ตัดสินใจใช้บริการ (decision_use_service)",
         "เหตุผลไม่ใช้บริการ (reason_not_use)",
         "เข้าร่วมของรางวัล (decision_enter_prize)",
-        "ชื่อผ���้รับรางวัล (prize_name)",
+        "ชื่อผู้รับรางวัล (prize_name)",
         "เบอร์โทรผู้รับรางวัล (prize_phone)",
         "เวลาการรับรางวัล (prize_timestamp)",
         "แชร์กับเพื่อน (shared_with_friends)",
