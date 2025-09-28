@@ -19,7 +19,7 @@ const ThankYouScreen: React.FC = () => {
             <SecondaryButton
               className="w-full"
               text="ลุ้นรับรางวัล"
-              onClick={() => navigate("/ukpack2/form")}
+              onClick={() => navigate("/mydreambus/form")}
             />
           </div>
           <div style={{ width: "220px" }}>
