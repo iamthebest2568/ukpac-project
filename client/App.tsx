@@ -221,8 +221,8 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   }
   const isFullBleed = location.pathname.startsWith("/ukpack2");
   const isUkpack1 = location.pathname.startsWith("/beforecitychange");
-  // Do not wrap uk-stornaway in the DesktopMockup — render it full-bleed instead
-  const isUkpack1Wrapped = isUkpack1 && !location.pathname.startsWith("/beforecitychange/uk-stornaway");
+  // For beforecitychange, the root path (/beforecitychange) is the video page and should be full-bleed.
+  const isUkpack1Wrapped = isUkpack1 && !(location.pathname === "/beforecitychange" || location.pathname === "/beforecitychange/");
   // initialize ukpack2 analytics only on ukpack2 routes
   if (isFullBleed) {
     try {
