@@ -1,7 +1,7 @@
 /* MiniGame MN3 Page - Budget Allocation */
 
 import { useEffect, useState } from "react";
-import Flow_MiniGame_MN3 from "../components/flows/Flow_MiniGame_MN3";
+import Flow_MiniGame_MN3 from "../../components/flows/Flow_MiniGame_MN3";
 import { useSession } from "../hooks/useSession";
 
 const MiniGameMN3Page = () => {
