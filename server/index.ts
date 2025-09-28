@@ -128,7 +128,20 @@ export function createServer() {
         docRef = await Promise.race([writePromise, timeoutPromise]);
       } catch (e: any) {
         console.error('/api/write-image-url firestore write failed or timed out', e);
-        return res.status(504).json({ ok: false, error: 'firestore write timeout or error', detail: String(e?.message || e) });
+        // Fallback: persist to local file for later ingestion
+        try {
+          const DATA_DIR = process.env.DATA_DIR || path.join(process.cwd(), '.data');
+          await fs.promises.mkdir(DATA_DIR, { recursive: true });
+          const outFile = path.join(DATA_DIR, 'beforecitychange-images.jsonl');
+          const row = { imageUrl, collection: col, createdAt: new Date().toISOString(), remoteIp: (req.headers['x-forwarded-for'] as string) || req.ip || null };
+          await fs.promises.appendFile(outFile, JSON.stringify(row) + '\n', 'utf8');
+          lastWriteImageRequest && (lastWriteImageRequest.fallback = { file: outFile, row });
+          console.log('/api/write-image-url fallback wrote to file', { file: outFile });
+          return res.json({ ok: true, fallback: true, path: outFile });
+        } catch (ef) {
+          console.error('/api/write-image-url fallback failed', ef);
+          return res.status(504).json({ ok: false, error: 'firestore write timeout and fallback failed', detail: String(e?.message || e) });
+        }
       }
 
       console.log('/api/write-image-url wrote doc', { id: docRef.id, collection: col, tookMs: Date.now() - start });
@@ -855,10 +868,10 @@ export function createServer() {
                 "ยอมรับ PDPA (PDPA_acceptance)",
                 "ประเภทรถ (chassis_type)",
                 "จำนวนที่นั่งรวม (total_seats)",
-                "ที่นั่ง���ิเศษ (special_seats)",
+                "ที่นั่งพิเศษ (special_seats)",
                 "จำนวนเด็ก/ผู้สูงอายุ (children_elder_count)",
                 "จำนวนผู้ตั้งครรภ์ (pregnant_count)",
-                "จำนวนพระ (monk_count)",
+                "จำ���วนพระ (monk_count)",
                 "ส��่งอำนวยความสะดวก (features)",
                 "ประเภทการชำระเงิน (payment_types)",
                 "จำนวนประตู (doors)",
@@ -1053,7 +1066,7 @@ export function createServer() {
         "ความถี่ (frequency)",
         "เส้นทาง (route)",
         "พื้นที่ (area)",
-        "ตัดสินใจใช้บริการ (decision_use_service)",
+        "ตัดสินใจใช้บริ���าร (decision_use_service)",
         "เหตุผลไม่ใช้บริกา�� (reason_not_use)",
         "เข้าร่วมของ��างวัล (decision_enter_prize)",
         "ชื่อผู้รับรางวัล (prize_name)",
