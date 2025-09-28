@@ -343,6 +343,28 @@
   flex-basis: calc((100% - 12px) / 2) !important;
 }
 
+/* MN1: Force consistent vertical spacing between rows by turning the grid container into a column flexbox
+   and applying a uniform gap. This overrides earlier grid display rules for mn3-button-row in the mock. */
+.tablet-mock-env .minigame-mn1-page .mn3-button-grid {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 14px !important; /* uniform vertical spacing between rows */
+  align-items: center !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.tablet-mock-env .minigame-mn1-page .mn3-button-row {
+  display: flex !important; /* ensure each row is a horizontal flex container */
+  gap: 12px !important; /* horizontal gap between buttons */
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
 /* Ensure button text wraps and buttons maintain internal padding so they don't push width */
 .tablet-mock-env .minigame-mn1-page .mn3-policy-button .mn3-button-text,
 .tablet-mock-env .mn3-page-bg .mn3-policy-button .mn3-button-text {
