@@ -63,7 +63,7 @@ const FormScreen: React.FC = () => {
   const submit = () => {
     logEvent({
       event: "FORM_SUBMIT",
-      payload: { name, phone, page: "/ukpack2/form" },
+      payload: { name, phone, page: "/mydreambus/form" },
     });
     try {
       sessionStorage.setItem("design.entry", JSON.stringify({ name, phone }));
