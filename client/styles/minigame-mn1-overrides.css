@@ -40,12 +40,18 @@
   min-height: 100% !important;
 }
 
-/* Hide decorative MN3 background overlay (::before) when inside tablet mock */
+/* Show MN3 background in mock to match mobile */
 .tablet-mock-env .mn3-page-bg::before,
 .tablet-mock-env .mn3-allocation-bg::before {
-  display: none !important;
-  background-image: none !important;
-  content: none !important;
+  display: block !important;
+  content: "" !important;
+  position: fixed !important;
+  inset: 0 !important;
+  background-size: cover !important;
+  background-position: center top !important;
+  background-repeat: no-repeat !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
 }
 
 /* Hide Figma layout decorative overlays for MN1 result step inside mock */
