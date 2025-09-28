@@ -265,6 +265,79 @@ export async function getAppEventsBySession(sessionId: string): Promise<AppEvent
     .sort((a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime());
 }
 
+// Compute simple user journey stats suitable for dashboard fallback
+export async function computeUserJourneyStats(recentLimit = 1000) {
+  const events = await readAllAppEvents();
+  const totalSessions = new Set(events.map((e) => e.sessionId)).size;
+  const totalPlays = events.filter((e) => String(e.event || "").toLowerCase().includes("play") || String(e.event || "").toLowerCase().includes("start")).length;
+  const completionRate = 0; // placeholder
+  const avgSessionLengthSeconds = 0;
+
+  // timeseries: group by date and count plays
+  const timeseriesMap: Record<string, number> = {};
+  for (const e of events) {
+    const d = new Date(e.timestamp || new Date().toISOString());
+    const key = d.toISOString().slice(0, 10);
+    timeseriesMap[key] = (timeseriesMap[key] || 0) + 1;
+  }
+  const timeseries = Object.keys(timeseriesMap)
+    .sort()
+    .map((k) => ({ date: k, plays: timeseriesMap[k] }));
+
+  // variants and choices are approximated
+  const variantsMap: Record<string, { name: string; count: number; avgTimeSeconds: number; dropoutRate: number }> = {};
+  const choicesMap: Record<string, number> = {};
+  for (const e of events) {
+    if (e.payload && typeof e.payload === "object") {
+      const v = e.payload.variantName || e.payload.variant || null;
+      if (v) variantsMap[v] = variantsMap[v] || { name: v, count: 0, avgTimeSeconds: 0, dropoutRate: 0 };
+      if (v) variantsMap[v].count++;
+    }
+    if (e.event && String(e.event).toLowerCase().includes("choice")) {
+      const name = e.payload?.choiceText || e.payload?.choice || e.event;
+      if (name) choicesMap[String(name)] = (choicesMap[String(name)] || 0) + 1;
+    }
+  }
+
+  const variants = Object.values(variantsMap);
+  const choices = Object.keys(choicesMap).map((k) => ({ name: k, count: choicesMap[k] }));
+
+  return {
+    totals: { totalSessions, totalPlays, completionRate, avgSessionLengthSeconds },
+    timeseries,
+    variants,
+    choices,
+  };
+}
+
+// Return ingest status (counts) for app and video by reading local files if Firestore unavailable
+export async function getAppIngestStatus() {
+  // Count app events in app-events.jsonl
+  ensureDir();
+  let appCount = 0;
+  try {
+    const raw = await fs.promises.readFile(APP_EVENTS_FILE, "utf8");
+    appCount = raw.split(/\n+/).filter(Boolean).length;
+  } catch {
+    appCount = 0;
+  }
+
+  // Video events file
+  let videoCount = 0;
+  try {
+    const vfile = path.join(DATA_DIR, "events.jsonl");
+    const raw = await fs.promises.readFile(vfile, "utf8");
+    videoCount = raw.split(/\n+/).filter(Boolean).length;
+  } catch {
+    videoCount = 0;
+  }
+
+  return {
+    app: { count: appCount, lastTs: null },
+    video: { count: videoCount, lastTs: null },
+  };
+}
+
 // Lightweight computeSessionSummaries implementation (fallback)
 export async function computeSessionSummaries(limit = 100) {
   const events = await readAllAppEvents();
