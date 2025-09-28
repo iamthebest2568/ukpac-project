@@ -353,12 +353,10 @@ export function createServer() {
       const json = JSON.parse(buf);
       res.status(200).json({ ok: true, data: json });
     } catch (e: any) {
-      res
-        .status(500)
-        .json({
-          ok: false,
-          error: e?.message || "failed to read public aggregation",
-        });
+      res.status(500).json({
+        ok: false,
+        error: e?.message || "failed to read public aggregation",
+      });
     }
   });
 
@@ -431,7 +429,9 @@ export function createServer() {
       ];
 
       const csvRows: string[] = [
-        headers.map((h) => '"' + String(h || "").replace(/"/g, '""') + '"').join(","),
+        headers
+          .map((h) => '"' + String(h || "").replace(/"/g, '""') + '"')
+          .join(","),
       ];
 
       for (const s of summaries.slice(0, limit)) {
@@ -472,7 +472,10 @@ export function createServer() {
           const p = e.payload || {};
           if (
             rowObj.PDPA_acceptance === "" &&
-            (p.PDPA === true || p.pdpa === true || p.PDPA === "accepted" || p.pdpa === "accepted")
+            (p.PDPA === true ||
+              p.pdpa === true ||
+              p.PDPA === "accepted" ||
+              p.pdpa === "accepted")
           )
             rowObj.PDPA_acceptance = "1";
           if (
@@ -481,11 +484,16 @@ export function createServer() {
           )
             rowObj.PDPA_acceptance = "0";
 
-          if (!rowObj.chassis_type && (p.chassis || (p.design && p.design.chassis) || p.chassisType))
-            rowObj.chassis_type = p.chassis || (p.design && p.design.chassis) || p.chassisType;
+          if (
+            !rowObj.chassis_type &&
+            (p.chassis || (p.design && p.design.chassis) || p.chassisType)
+          )
+            rowObj.chassis_type =
+              p.chassis || (p.design && p.design.chassis) || p.chassisType;
 
           if (!rowObj.total_seats) {
-            if (p.seating && p.seating.totalSeats) rowObj.total_seats = String(p.seating.totalSeats);
+            if (p.seating && p.seating.totalSeats)
+              rowObj.total_seats = String(p.seating.totalSeats);
             else if (p.totalSeats) rowObj.total_seats = String(p.totalSeats);
           }
           if (!rowObj.special_seats && p.seating && p.seating.specialSeats)
@@ -493,47 +501,108 @@ export function createServer() {
 
           if (!rowObj.children_elder_count && p.seating && p.seating.children)
             rowObj.children_elder_count = String(p.seating.children);
-          if (!rowObj.pregnant_count && ((p.seating && p.seating.pregnant) || p.pregnant))
-            rowObj.pregnant_count = String((p.seating && p.seating.pregnant) || p.pregnant || "");
+          if (
+            !rowObj.pregnant_count &&
+            ((p.seating && p.seating.pregnant) || p.pregnant)
+          )
+            rowObj.pregnant_count = String(
+              (p.seating && p.seating.pregnant) || p.pregnant || "",
+            );
           if (!rowObj.monk_count && ((p.seating && p.seating.monk) || p.monk))
-            rowObj.monk_count = String((p.seating && p.seating.monk) || p.monk || "");
+            rowObj.monk_count = String(
+              (p.seating && p.seating.monk) || p.monk || "",
+            );
 
-          if (Array.isArray(p.amenities)) rowObj.features = Array.from(new Set((rowObj.features || []).concat(p.amenities)));
-          if (Array.isArray(p.features)) rowObj.features = Array.from(new Set((rowObj.features || []).concat(p.features)));
+          if (Array.isArray(p.amenities))
+            rowObj.features = Array.from(
+              new Set((rowObj.features || []).concat(p.amenities)),
+            );
+          if (Array.isArray(p.features))
+            rowObj.features = Array.from(
+              new Set((rowObj.features || []).concat(p.features)),
+            );
 
-          if (Array.isArray(p.payment)) rowObj.payment_types = Array.from(new Set((rowObj.payment_types || []).concat(p.payment)));
-          if (p.paymentType) rowObj.payment_types = Array.from(new Set((rowObj.payment_types || []).concat([p.paymentType])));
+          if (Array.isArray(p.payment))
+            rowObj.payment_types = Array.from(
+              new Set((rowObj.payment_types || []).concat(p.payment)),
+            );
+          if (p.paymentType)
+            rowObj.payment_types = Array.from(
+              new Set((rowObj.payment_types || []).concat([p.paymentType])),
+            );
 
-          if (!rowObj.doors && (p.doors || p.doorChoice || (p.doors && p.doors.doorChoice))) {
+          if (
+            !rowObj.doors &&
+            (p.doors || p.doorChoice || (p.doors && p.doors.doorChoice))
+          ) {
             if (typeof p.doors === "string") rowObj.doors = p.doors;
             else if (p.doorChoice) rowObj.doors = p.doorChoice;
-            else if (p.doors && p.doors.doorChoice) rowObj.doors = p.doors.doorChoice;
+            else if (p.doors && p.doors.doorChoice)
+              rowObj.doors = p.doors.doorChoice;
           }
 
-          if (!rowObj.color && ((p.color && p.color.colorHex) || (p.exterior && p.exterior.color && p.exterior.color.colorHex) || p.colorHex))
-            rowObj.color = (p.color && p.color.colorHex) || (p.exterior && p.exterior.color && p.exterior.color.colorHex) || p.colorHex || "";
+          if (
+            !rowObj.color &&
+            ((p.color && p.color.colorHex) ||
+              (p.exterior && p.exterior.color && p.exterior.color.colorHex) ||
+              p.colorHex)
+          )
+            rowObj.color =
+              (p.color && p.color.colorHex) ||
+              (p.exterior && p.exterior.color && p.exterior.color.colorHex) ||
+              p.colorHex ||
+              "";
 
-          if (!rowObj.frequency && (p.interval || p.frequency)) rowObj.frequency = p.interval || p.frequency;
+          if (!rowObj.frequency && (p.interval || p.frequency))
+            rowObj.frequency = p.interval || p.frequency;
           if (!rowObj.route && p.route) rowObj.route = p.route;
           if (!rowObj.area && p.area) rowObj.area = p.area;
 
-          if (!rowObj.decision_use_service && (p.decisionUseService !== undefined || p.useService !== undefined))
-            rowObj.decision_use_service = (p.decisionUseService ?? p.useService) ? "1" : "0";
+          if (
+            !rowObj.decision_use_service &&
+            (p.decisionUseService !== undefined || p.useService !== undefined)
+          )
+            rowObj.decision_use_service =
+              (p.decisionUseService ?? p.useService) ? "1" : "0";
 
-          if (!rowObj.reason_not_use && (p.reasonNotUse || p.reason || p.reason_not_use)) rowObj.reason_not_use = p.reasonNotUse || p.reason || p.reason_not_use;
+          if (
+            !rowObj.reason_not_use &&
+            (p.reasonNotUse || p.reason || p.reason_not_use)
+          )
+            rowObj.reason_not_use =
+              p.reasonNotUse || p.reason || p.reason_not_use;
 
-          if (!rowObj.decision_enter_prize && (p.enterPrize !== undefined || p.prizeEnter !== undefined || p.wantsPrize !== undefined))
-            rowObj.decision_enter_prize = (p.enterPrize ?? p.prizeEnter ?? p.wantsPrize) ? "1" : "0";
-          if (!rowObj.prize_name && (p.prizeName || p.name)) rowObj.prize_name = p.prizeName || p.name;
-          if (!rowObj.prize_phone && (p.prizePhone || p.phone)) rowObj.prize_phone = p.prizePhone || p.phone;
-          if (!rowObj.prize_timestamp && e.timestamp && (p.prizeName || p.prizePhone || p.enterPrize || p.wantsPrize)) rowObj.prize_timestamp = e.timestamp;
+          if (
+            !rowObj.decision_enter_prize &&
+            (p.enterPrize !== undefined ||
+              p.prizeEnter !== undefined ||
+              p.wantsPrize !== undefined)
+          )
+            rowObj.decision_enter_prize =
+              (p.enterPrize ?? p.prizeEnter ?? p.wantsPrize) ? "1" : "0";
+          if (!rowObj.prize_name && (p.prizeName || p.name))
+            rowObj.prize_name = p.prizeName || p.name;
+          if (!rowObj.prize_phone && (p.prizePhone || p.phone))
+            rowObj.prize_phone = p.prizePhone || p.phone;
+          if (
+            !rowObj.prize_timestamp &&
+            e.timestamp &&
+            (p.prizeName || p.prizePhone || p.enterPrize || p.wantsPrize)
+          )
+            rowObj.prize_timestamp = e.timestamp;
 
-          if (!rowObj.shared_with_friends && (p.shared === true || p.sharedTo)) rowObj.shared_with_friends = "1";
-          if (!rowObj.shared_timestamp && (p.shared === true || p.sharedTo)) rowObj.shared_timestamp = e.timestamp;
+          if (!rowObj.shared_with_friends && (p.shared === true || p.sharedTo))
+            rowObj.shared_with_friends = "1";
+          if (!rowObj.shared_timestamp && (p.shared === true || p.sharedTo))
+            rowObj.shared_timestamp = e.timestamp;
         });
 
-        const featuresStr = Array.isArray(rowObj.features) ? rowObj.features.join(" | ") : rowObj.features || "";
-        const paymentStr = Array.isArray(rowObj.payment_types) ? rowObj.payment_types.join(" | ") : rowObj.payment_types || "";
+        const featuresStr = Array.isArray(rowObj.features)
+          ? rowObj.features.join(" | ")
+          : rowObj.features || "";
+        const paymentStr = Array.isArray(rowObj.payment_types)
+          ? rowObj.payment_types.join(" | ")
+          : rowObj.payment_types || "";
 
         const vals = [
           rowObj.sessionID,
@@ -564,16 +633,23 @@ export function createServer() {
           rowObj.shared_timestamp,
         ];
 
-        const safe = vals.map((f) => '"' + String(f || "").replace(/"/g, '""') + '"');
+        const safe = vals.map(
+          (f) => '"' + String(f || "").replace(/"/g, '""') + '"',
+        );
         csvRows.push(safe.join(","));
       }
 
       const csvOut = csvRows.join("\n");
       res.setHeader("Content-Type", "text/csv; charset=utf-8");
-      res.setHeader("Content-Disposition", "attachment; filename=\"mydreambus-sessions-" + Date.now() + ".csv\"");
+      res.setHeader(
+        "Content-Disposition",
+        'attachment; filename="mydreambus-sessions-' + Date.now() + '.csv"',
+      );
       res.status(200).send("\uFEFF" + csvOut);
     } catch (e: any) {
-      res.status(500).json({ ok: false, error: e?.message || "failed to export csv" });
+      res
+        .status(500)
+        .json({ ok: false, error: e?.message || "failed to export csv" });
     }
   });
 

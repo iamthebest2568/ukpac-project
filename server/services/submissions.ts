@@ -8,8 +8,19 @@ import {
   limitToLast,
 } from "firebase/database";
 import admin from "firebase-admin";
-import { getApps as getFirebaseApps, getApp as getFirebaseApp, initializeApp } from "firebase/app";
-import { getFirestore, collection, query, orderBy, limit as limitFn, getDocs } from "firebase/firestore";
+import {
+  getApps as getFirebaseApps,
+  getApp as getFirebaseApp,
+  initializeApp,
+} from "firebase/app";
+import {
+  getFirestore,
+  collection,
+  query,
+  orderBy,
+  limit as limitFn,
+  getDocs,
+} from "firebase/firestore";
 
 let db: ReturnType<typeof getDatabase> | null = null;
 
@@ -29,7 +40,9 @@ function initRealtime() {
       appId:
         process.env.FIREBASE_APP_ID ||
         "1:534142958499:web:3cf0b2380c055f7a747816",
-      databaseURL: process.env.FIREBASE_DATABASE_URL || "https://uk-pact-default-rtdb.asia-southeast1.firebasedatabase.app",
+      databaseURL:
+        process.env.FIREBASE_DATABASE_URL ||
+        "https://uk-pact-default-rtdb.asia-southeast1.firebasedatabase.app",
     } as any;
     let app;
     if (getFirebaseApps && getFirebaseApps().length > 0) app = getFirebaseApp();
@@ -50,7 +63,9 @@ async function listPublicSubmissionsFromFirestore(limit = 20) {
       if (svc) {
         try {
           const parsed = typeof svc === "string" ? JSON.parse(svc) : svc;
-          admin.initializeApp({ credential: admin.credential.cert(parsed as any) } as any);
+          admin.initializeApp({
+            credential: admin.credential.cert(parsed as any),
+          } as any);
         } catch (e) {
           // ignore and fallback to client SDK below
         }
@@ -71,7 +86,8 @@ async function listPublicSubmissionsFromFirestore(limit = 20) {
           appId: process.env.FIREBASE_APP_ID || "",
         } as any;
         let app;
-        if (getFirebaseApps && getFirebaseApps().length > 0) app = getFirebaseApp();
+        if (getFirebaseApps && getFirebaseApps().length > 0)
+          app = getFirebaseApp();
         else app = initializeApp(firebaseConfig as any);
         firestore = getFirestore(app as any);
       } catch (e) {
@@ -83,11 +99,18 @@ async function listPublicSubmissionsFromFirestore(limit = 20) {
     if (!firestore) return [];
 
     // Try known collections written by client: prefer kpact-gamebus-imagedesign-events
-    const candidates = ["kpact-gamebus-imagedesign-events", "ukpact-gamebus-imagedesign-events"];
+    const candidates = [
+      "kpact-gamebus-imagedesign-events",
+      "ukpact-gamebus-imagedesign-events",
+    ];
     for (const colName of candidates) {
       try {
         const colRef = collection(firestore as any, colName);
-        const q = query(colRef as any, orderBy("createdAt", "desc"), limitFn(limit));
+        const q = query(
+          colRef as any,
+          orderBy("createdAt", "desc"),
+          limitFn(limit),
+        );
         const snap = await getDocs(q as any);
         if (!snap || snap.empty) continue;
         const items: any[] = [];

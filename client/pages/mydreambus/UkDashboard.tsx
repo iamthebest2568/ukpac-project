@@ -116,7 +116,9 @@ const UkDashboard: React.FC = () => {
                 resolve(null);
               }
             });
-            const timeoutPromise = new Promise((res) => setTimeout(() => res(null), ms));
+            const timeoutPromise = new Promise((res) =>
+              setTimeout(() => res(null), ms),
+            );
             try {
               const val = await Promise.race([timedFetch, timeoutPromise]);
               return val as any;
@@ -204,9 +206,7 @@ const UkDashboard: React.FC = () => {
       try {
         const origin =
           typeof window !== "undefined" ? window.location.origin : "";
-        const rawCandidates2 = [
-          `${origin}/api/public-submissions?limit=20`,
-        ];
+        const rawCandidates2 = [`${origin}/api/public-submissions?limit=20`];
 
         console.debug("public-submissions candidates:", rawCandidates2);
 
@@ -640,7 +640,7 @@ const UkDashboard: React.FC = () => {
             <button
               onClick={handleSendTestEvent}
               disabled={isSending}
-              className={`bg-[#60a5fa] text-white px-4 py-2 rounded font-semibold ${isSending ? "opacity-60" : ""}`} 
+              className={`bg-[#60a5fa] text-white px-4 py-2 rounded font-semibold ${isSending ? "opacity-60" : ""}`}
             >
               Send Test Event
             </button>
@@ -648,7 +648,7 @@ const UkDashboard: React.FC = () => {
             <button
               onClick={handleSendAll}
               disabled={isSending}
-              className={`bg-[#34d399] text-[#064e3b] px-4 py-2 rounded font-semibold ${isSending ? "opacity-60" : ""}`} 
+              className={`bg-[#34d399] text-[#064e3b] px-4 py-2 rounded font-semibold ${isSending ? "opacity-60" : ""}`}
             >
               Send All Events (no PDPA filter)
             </button>
@@ -721,7 +721,8 @@ const UkDashboard: React.FC = () => {
                 <div>Sent: {lastSentResult.sentCount}</div>
                 <div>Skipped: {lastSentResult.skippedCount}</div>
                 <div>
-                  Errors: {lastSentResult.errors && lastSentResult.errors.length}
+                  Errors:{" "}
+                  {lastSentResult.errors && lastSentResult.errors.length}
                 </div>
                 <div className="mt-2">Sample sent items:</div>
                 <pre className="text-xs mt-2 whitespace-pre-wrap max-h-64 overflow-auto break-words">
