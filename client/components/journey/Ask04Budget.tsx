@@ -170,24 +170,33 @@ const Ask04Budget = ({
       // dedupe
       const unique = Array.from(new Set(urls));
 
-      // lazy import to avoid adding firebase to initial bundle
+      // Send image URLs to server to write via Admin SDK (avoids Firestore client rules)
       (async () => {
         try {
-          const { addDesignImageUrlToFirestore } = await import('../../lib/firebase');
           for (const u of unique) {
             if (sentUrls[u]) continue;
             try {
-              const res = await addDesignImageUrlToFirestore(u, 'beforecitychange-imageshow-events');
-              sentUrls[u] = { ok: true, id: (res as any)?.id || null, ts: Date.now() };
-              try { sessionStorage.setItem(key, JSON.stringify(sentUrls)); } catch (_) {}
+              const resp = await fetch('/api/write-image-url', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ imageUrl: u, collection: 'beforecitychange-imageshow-events' }),
+              });
+              if (resp.ok) {
+                const j = await resp.json();
+                sentUrls[u] = { ok: true, id: j?.id || null, ts: Date.now() };
+                try { sessionStorage.setItem(key, JSON.stringify(sentUrls)); } catch (_) {}
+              } else {
+                const txt = await resp.text().catch(() => null);
+                sentUrls[u] = { ok: false, error: `HTTP ${resp.status} ${txt || ''}` };
+                try { sessionStorage.setItem(key, JSON.stringify(sentUrls)); } catch (_) {}
+              }
             } catch (e) {
-              // record failure but don't retry aggressively
               sentUrls[u] = { ok: false, error: String(e) };
               try { sessionStorage.setItem(key, JSON.stringify(sentUrls)); } catch (_) {}
             }
           }
         } catch (e) {
-          // ignore import errors
+          // ignore
         }
       })();
     } catch (e) {}
