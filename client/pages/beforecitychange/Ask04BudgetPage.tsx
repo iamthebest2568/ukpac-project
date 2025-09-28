@@ -1,10 +1,23 @@
-import DesktopMockup from "./components/DesktopMockup";
-import Page from "../Ask04BudgetPage";
+/* Ask04Budget Page - Budget Satisfaction Rating
+ * User rates their satisfaction after budget mini-game (MN3 path)
+ */
 
-const Wrapped = (props: any) => (
-  <DesktopMockup>
-    <Page {...props} />
-  </DesktopMockup>
-);
+import Ask04Budget from "../components/journey/Ask04Budget";
+import { useSession } from "../hooks/useSession";
 
-export default Wrapped;
+const Ask04BudgetPage = () => {
+  const { sessionID, navigateToPage, userJourneyData } = useSession();
+
+  const isUkpack1 = typeof window !== 'undefined' && window.location && window.location.pathname.startsWith('/beforecitychange');
+
+  return (
+    <Ask04Budget
+      sessionID={sessionID}
+      onNavigate={navigateToPage}
+      journeyData={userJourneyData}
+      useUk1Button={isUkpack1}
+    />
+  );
+};
+
+export default Ask04BudgetPage;
