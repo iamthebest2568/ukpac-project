@@ -97,17 +97,26 @@ const UkDashboard: React.FC = () => {
                 }
               };
 
+              // Wrap the async attempts and absorb any rejection so Promise.race cannot reject
               const fetchPromise = (async () => {
-                // First try with credentials
-                let r = await attempt({ credentials: "same-origin" });
-                if (r) return r;
-                // Next try without credentials
-                r = await attempt({});
-                if (r) return r;
-                // Next try CORS mode as last resort
-                r = await attempt({ mode: "cors" });
-                return r;
-              })();
+                try {
+                  // First try with credentials
+                  let r = await attempt({ credentials: "same-origin" });
+                  if (r) return r;
+                  // Next try without credentials
+                  r = await attempt({});
+                  if (r) return r;
+                  // Next try CORS mode as last resort
+                  r = await attempt({ mode: "cors" });
+                  return r;
+                } catch (e) {
+                  console.debug("fetchPromise attempts all failed with error", e);
+                  return null;
+                }
+              })().catch((e) => {
+                console.debug("fetchPromise rejected", e);
+                return null;
+              });
 
               const timeoutPromise = new Promise((res) =>
                 setTimeout(() => res(null), ms),
