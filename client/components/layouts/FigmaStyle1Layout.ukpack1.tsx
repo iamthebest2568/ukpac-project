@@ -52,7 +52,7 @@ const FigmaStyle1Layout = ({
       if (
         typeof window !== "undefined" &&
         window.location &&
-        window.location.pathname.startsWith("/ukpack1")
+        window.location.pathname.startsWith("/beforecitychange")
       ) {
         if (!window.location.pathname.includes("uk-stornaway")) {
           setPageScope("figma-style1-ukpack1");
