@@ -130,42 +130,57 @@
   margin-right: auto !important;
 }
 
-/* Each row is a grid with precise columns: 2 / 3 / 2 */
+/* Each row: use flex so buttons size to their content (variable widths), keep rows centered */
 .tablet-mock-env .minigame-mn1-page .mn3-button-row {
-  display: grid !important;
+  display: flex !important;
   gap: 12px !important; /* horizontal gap */
   width: 100% !important;
   box-sizing: border-box !important;
-  justify-items: stretch !important;
+  justify-content: center !important;
   align-items: center !important;
+  flex-wrap: nowrap !important; /* prevent accidental wrapping; markup controls count */
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
-.tablet-mock-env .minigame-mn1-page .mn3-button-row:nth-child(1) {
-  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-}
-.tablet-mock-env .minigame-mn1-page .mn3-button-row:nth-child(2) {
-  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-}
-.tablet-mock-env .minigame-mn1-page .mn3-button-row:nth-child(3) {
-  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+/* For safety, allow wrapping only when absolutely needed (very narrow mock) */
+@media (max-width: 420px) {
+  .tablet-mock-env .minigame-mn1-page .mn3-button-row {
+    flex-wrap: wrap !important;
+  }
 }
 
-/* Buttons: fill grid cells and wrap text */
-.tablet-mock-env .minigame-mn1-page .mn3-policy-button {
-  width: 100% !important; /* fill grid cell */
-  max-width: none !important;
-  min-width: 0 !important;
+/* Buttons should size to content but be constrained so they don't overflow the container */
+.tablet-mock-env .minigame-mn1-page .mn3-button-row > .mn3-policy-button {
+  flex: 0 1 auto !important; /* size to content, but can shrink */
+  width: auto !important;
+  max-width: calc(100% - 40px) !important; /* defensive cap */
+  min-width: 90px !important; /* maintain tappable size */
   padding: 8px 12px !important;
-  min-height: 44px !important;
   box-sizing: border-box !important;
-  white-space: normal !important;
 }
 
+/* Adjustments per row to keep visual balance without forcing equal widths */
+/* Row 1 (2 items) - allow each to take up to 52% if content is long, but prefer content width */
+.tablet-mock-env .minigame-mn1-page .mn3-button-row:nth-child(1) > .mn3-policy-button {
+  max-width: 52% !important;
+}
+/* Row 2 (3 items) - allow up to ~33% each */
+.tablet-mock-env .minigame-mn1-page .mn3-button-row:nth-child(2) > .mn3-policy-button {
+  max-width: 33% !important;
+}
+/* Row 3 (2 items) - same as row 1 */
+.tablet-mock-env .minigame-mn1-page .mn3-button-row:nth-child(3) > .mn3-policy-button {
+  max-width: 52% !important;
+}
+
+/* Button text wrapping and padding */
 .tablet-mock-env .minigame-mn1-page .mn3-policy-button .mn3-button-text {
   padding-left: 8px !important;
   padding-right: 8px !important;
   font-size: 14px !important;
   text-align: center !important;
+  white-space: normal !important;
 }
 
 /* Keep the continue button centered and above the grid */
@@ -175,8 +190,12 @@
   width: 100% !important;
 }
 
-/* Defensive rule: if any inline styles or other rules attempt to turn rows into flex,
-   force grid layout to preserve equal vertical gaps */
+/* Ensure the button grid never causes horizontal scroll on the mock frame */
+.tablet-mock-env .minigame-mn1-page .mn3-button-grid {
+  overflow-x: hidden !important;
+}
+
+/* If some inline style forces grid, override to flex */
 .tablet-mock-env .minigame-mn1-page .mn3-button-row[style] {
-  display: grid !important;
+  display: flex !important;
 }
