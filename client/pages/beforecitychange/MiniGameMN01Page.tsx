@@ -2,7 +2,7 @@
 
 import Flow_MiniGame_MN01 from "../../components/flows/Flow_MiniGame_MN01";
 import { useSession } from "../../hooks/useSession";
-import { useFlowNavigation } from "../hooks/useFlowNavigation";
+import { useFlowNavigation } from "../../hooks/useFlowNavigation";
 import { useEffect } from "react";
 
 const MiniGameMN01Page = () => {
