@@ -397,3 +397,5 @@
 {"sessionId":"session_1759042819983_6eqj9bj47","eventName":"sw.variant.start","timestamp":"2025-09-28T07:01:53.443Z","variantId":"0c1a4486","variantName":"รถไฟฟ้า BTS / MRT"}
 {"sessionId":"session_1759042819983_6eqj9bj47","eventName":"sw.variant.start","timestamp":"2025-09-28T07:03:18.043Z","variantId":"0cbd0522","variantName":"ไม่เชื่อว่าจะได้ผล"}
 {"sessionId":"session_1759042819983_6eqj9bj47","eventName":"sw.choice.selected","timestamp":"2025-09-28T07:03:18.032Z","choiceText":"ไม่เชื่อว่าจะได้ผล","variantId":"0c1a4486","variantName":"รถไฟฟ้า BTS / MRT"}
+{"sessionId":"session_1759042819983_6eqj9bj47","eventName":"sw.choice.selected","timestamp":"2025-09-28T07:03:26.592Z","choiceText":"อยากรู้อยู่พอดี","variantId":"0cbd0522","variantName":"ไม่เชื่อว่าจะได้ผล"}
+{"sessionId":"session_1759042819983_6eqj9bj47","eventName":"sw.variant.start","timestamp":"2025-09-28T07:03:27.354Z","variantId":"8aa35bfd","variantName":"ทดสอบ Key message"}
