@@ -1,10 +1,15 @@
-import DesktopMockup from "./components/DesktopMockup";
-import Page from "../Ask05Page";
+/* Ask05 Page - User Suggestions
+ * User provides suggestions for improvement
+ */
 
-const Wrapped = (props: any) => (
-  <DesktopMockup>
-    <Page {...props} />
-  </DesktopMockup>
-);
+import Ask05 from "../components/journey/Ask05";
+import { useSession } from "../hooks/useSession";
 
-export default Wrapped;
+const Ask05Page = () => {
+  const { sessionID, navigateToPage } = useSession();
+  const isUkpack1 = typeof window !== 'undefined' && window.location && window.location.pathname.startsWith('/beforecitychange');
+
+  return <Ask05 sessionID={sessionID} onNavigate={navigateToPage} useUk1Button={isUkpack1} />;
+};
+
+export default Ask05Page;
