@@ -341,9 +341,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-const RedirectMyDream = () => {
+const RedirectUkpack2 = () => {
   const loc = useLocation();
-  const rest = loc.pathname.replace(/^\/mydreambus/, "/ukpack2");
+  const rest = loc.pathname.replace(/^\/ukpack2/, "/mydreambus");
   return <Navigate to={rest + loc.search} replace />;
 };
 
