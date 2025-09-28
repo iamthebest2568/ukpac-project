@@ -282,7 +282,7 @@ const SubmitScreen: React.FC = () => {
                 overlayIconMap={{
                   เงินสด: MONEY_ICON,
                   สแกนจ่าย: SCAN_ICON,
-                  ตู้อั���โนมัติ: SCAN2_ICON,
+                  ตู้อัตโนมัติ: SCAN2_ICON,
                   แตะบัตร: TOUCH_ICON,
                   "ตั๋วรายเดือน/รอบ": MONTHLY_ICON,
                   กระเป๋ารถเมล์: BUS_EMPLOY_ICON,
@@ -389,7 +389,7 @@ const SubmitScreen: React.FC = () => {
       <ConfirmModal
         isOpen={isExitModalOpen}
         title="ออกจากหน้าจอ"
-        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปี่ยนแปลงของคุณจะไม่ถูกบันทึก"
+        message="คุณแน่ใ���หรือไม่ว่าต้องการออก? การเปี่ยนแปลงของคุณจะไม่ถูกบันทึก"
         onConfirm={() => navigate("/")}
         onCancel={() => setExitModalOpen(false)}
       />
