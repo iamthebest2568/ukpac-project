@@ -428,7 +428,7 @@ export default function UkDashboard() {
                       sessionId: `session_test_${Date.now()}`,
                       timestamp: new Date().toISOString(),
                       event: "TEST_EVENT",
-                      page: "/ukpack1/dashboard",
+                      page: "/beforecitychange/dashboard",
                       payload: {
                         PDPA: true,
                         note: "Test event from ukpack1 dashboard",
