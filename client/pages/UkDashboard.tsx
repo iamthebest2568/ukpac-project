@@ -166,36 +166,67 @@ export default function UkDashboard() {
     setError(null);
 
     try {
-      const origin =
-        typeof window !== "undefined" ? window.location.origin : "";
-      const [jRes, ssRes, stRes, vsRes] = await Promise.allSettled([
-        fetch(`${origin}/api/user-journey-stats`),
-        fetch(`${origin}/api/session-summaries?limit=100`),
-        fetch(`${origin}/api/ingest-status`),
-        fetch(`${origin}/api/video-stats`),
-      ]);
-      if (jRes.status === "fulfilled" && jRes.value.ok) {
+      // Helper to perform safe fetch with timeout and avoid uncaught network errors
+      const safeFetch = async (url: string, opts: RequestInit | undefined, ms = 8000) => {
         try {
-          setJourney(await jRes.value.json());
-        } catch {}
-      }
-      if (ssRes.status === "fulfilled" && ssRes.value.ok) {
+          if (typeof navigator !== "undefined" && navigator.onLine === false) {
+            console.debug("Offline: skipping fetch", url);
+            return null;
+          }
+          const controller = new AbortController();
+          const id = setTimeout(() => controller.abort(), ms);
+          const resp = await fetch(url, { ...(opts || {}), signal: controller.signal });
+          clearTimeout(id);
+          return resp;
+        } catch (err) {
+          console.debug("safeFetch failed", url, err);
+          return null;
+        }
+      };
+
+      const endpoints = [
+        "/api/user-journey-stats",
+        "/api/session-summaries?limit=100",
+        "/api/ingest-status",
+        "/api/video-stats",
+      ];
+
+      const origin = typeof window !== "undefined" ? window.location.origin : "";
+      const promises = endpoints.map((p) => safeFetch(origin + p, undefined, 8000));
+      const [jRes, ssRes, stRes, vsRes] = await Promise.all(promises);
+
+      if (jRes && jRes.ok) {
         try {
-          setSessions(await ssRes.value.json());
-        } catch {}
+          setJourney(await jRes.json());
+        } catch (e) {
+          console.debug("parse journey failed", e);
+        }
       }
-      if (stRes.status === "fulfilled" && stRes.value.ok) {
+      if (ssRes && ssRes.ok) {
         try {
-          setIngest(await stRes.value.json());
-        } catch {}
+          setSessions(await ssRes.json());
+        } catch (e) {
+          console.debug("parse sessions failed", e);
+        }
       }
-      if (vsRes.status === "fulfilled" && vsRes.value.ok) {
+      if (stRes && stRes.ok) {
         try {
-          setStats(await vsRes.value.json());
-        } catch {}
+          setIngest(await stRes.json());
+        } catch (e) {
+          console.debug("parse ingest failed", e);
+        }
       }
+      if (vsRes && vsRes.ok) {
+        try {
+          setStats(await vsRes.json());
+        } catch (e) {
+          console.debug("parse stats failed", e);
+        }
+      }
+
       setLastUpdated(new Date().toLocaleString());
     } catch (e: any) {
+      console.warn("load encountered error", e);
       setError(e?.message || "โหลดข้อมูลล้มเหลว");
     } finally {
       if (firstLoad) setLoading(false);
@@ -986,13 +1017,13 @@ export default function UkDashboard() {
                       "จากข้อความข้างต้น คุณมีควา���คิดเห็นอย่างไร (เห็นด้วย/กลางๆ/ไม่เห็นด้วย)",
                       "ทำไมคุณถึงคิดอย่างนั้น (นโยบายไม่ครอบคลุม / เก็บไปก็ไม่มีอะไรดีข���้น / อื่นๆ)",
                       "อธิบายอื่น ๆ ที่ช่วยอธิบายความคิดเห็น",
-                      "บอกเร��หน่อยว่าคุณเดินทางเข้าเมืองด้วยวิธีการใดบ่อยที่สุด",
+                      "บอกเร��หน่อยว่าคุณเดินทางเข้าเมืองด้วยวิธีการใดบ่อยที่ส��ด",
                       "จากนโยบายที่คุณฟังเมื่อสักครู่ คุณมีความคิดเห็นอย่าง��ร",
                       "คุณคิดว่านโยบายปัจจุบัน ควรปรับเปลี่ยนประเด็นอะไรบาง (ลดค่าโดยสา��, ปรับปรุงคุณภาพ, ขึ้น���าคา, เพิ่มขบวน, เพิ่มความถี่ ฯลฯ)",
                       "คุณคิดว่าใครควรได้รับการลดค่าโดยสารรถไฟฟ���าบ้าง (ทุกคน, ผู้สูงอายุ, นักเรียน, คนทำงาน ฯลฯ)",
                       "คุณคิดว่าควรใช้เงินที่ได้จากการเก็บไปพัฒนาอะไร ก่อน 3 อันดับแรก",
                       "คุณจะให้งบประมาณแต่ละข้อเท่าไร (งบทั้งหมด 100)",
-                      "คุณพอใจกับผลลัพธ์ที่เกิดขึ้นหรือไม่ (พ���ใจ / ไม่พอใจ)",
+                      "คุณพอใจกับผลลัพธ์ที่เกิดขึ้นหรือไ��่ (พ���ใจ / ไม่พอใจ)",
                       "คุณคิดว่ารัฐควรทำอะไรที่จะทำให้นโยบายนี้เกิดขึ้นได้จริง และเป็นประโยชน์ต่อประชาชนอย่างแท้จริง",
                       "ตอนนี้มี��้อ��ูลที่ผิดพลาด เช่น ข่าวปลอมเกี่ยวกับนโยบาย คุณคิดว่าอย่างไร",
                       "คุณ��ะติดตามข่า��� หรือเชื่อจากแหล่งไหนมาก���ี่สุด",
