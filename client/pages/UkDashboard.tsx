@@ -41,7 +41,7 @@ type SessionSummary = {
   mn3BudgetAllocation?: Record<string, number>; // การจัดสรรงบประมาณ
   mn3BudgetTotal?: number;
   satisfactionLevel?: string; // ระดับความพึงพอใจ
-  ask05Comment?: string; // ข้อเสนอเพิ่มเติมต่อรัฐ
+  ask05Comment?: string; // ข���อเสนอเพิ่มเติมต่อรัฐ
   fakeNewsResponse?: string; // การตอบสนองต่อข่าวปลอม
   sourceSelected?: string; // แหล่งข่าวที่ผู้��ช้เลือก
   endDecision?: string; // การเข้าร่วมลุ้นรางวัล
@@ -321,7 +321,7 @@ export default function UkDashboard() {
     const headers = [
       "รหัสเซสชัน (sessionID)",
       "IP (ip)",
-      "เวลา (time_stamp)",
+      "เว��า (time_stamp)",
       "บทบาท (persona)",
       "ยานพาหนะ (vehicle)",
       "เหตุผล_Stornaway (Stornaway)",
@@ -342,7 +342,7 @@ export default function UkDashboard() {
       "เวลาส่งแบบฟอร์ม (ts_form_submit)",
       "แชร์_ครั้งแรก (share_first_ts)",
       "แชร์_ครั้งสุดท้าย (share_last_ts)",
-      "เวลาจบเ���ม (Exit_Time)",
+      "เวลาจบเกม (Exit_Time)",
     ];
 
     const rows = items.map((s: any) => {
@@ -431,7 +431,7 @@ export default function UkDashboard() {
 
   async function clearData() {
     if (
-      !window.confirm("ลบข้อมูลทั้งหมดในเซ��ร์ฟเวอร์? การกระทำนี้ย้อนกลับไม่ได้")
+      !window.confirm("ลบข้��มูลทั้งหมดในเซ��ร์ฟเวอร์? การกระทำนี้ย้อนกลับไม่ได้")
     ) {
       return;
     }
@@ -502,7 +502,7 @@ export default function UkDashboard() {
               className="w-full rounded-md bg-black/40 border border-white/15 px-3 py-2 outline-none"
               value={pw}
               onChange={(e) => setPw(e.target.value)}
-              placeholder="รหัสผ่าน"
+              placeholder="รหัสผ��าน"
             />
             {pwErr && <div className="text-red-400 text-sm mt-2">{pwErr}</div>}
             <button
@@ -613,7 +613,7 @@ export default function UkDashboard() {
                 className="rounded-md bg-red-600/80 hover:bg-red-600 border border-red-500 px-3 py-2 text-sm"
                 onClick={clearData}
                 disabled={clearing}
-                title="ลบ events.jsonl และ app-events.jsonl ในเซิร์ฟเวอร์"
+                title="ลบ events.jsonl และ app-events.jsonl ���นเซิร์ฟเวอร์"
               >
                 {clearing ? "กำลังลบ..." : "���บข้อมูลทั้งหมด"}
               </button>
@@ -918,19 +918,19 @@ export default function UkDashboard() {
                       "Access Time",
                       "ทำไมคุณถึงต้องเข้า���มืองบ่อย ๆ ?",
                       "คุณใช้รถแบบไหนเดินทางเข้าเมือง ?",
-                      "คุ��คิดเห็นอย่างไรกับนโยบายนี้ ?",
+                      "��ุ��คิดเห็นอย่างไรกับนโยบายนี้ ?",
                       "จากข้อความข้างต้น คุณมีควา���คิดเห็นอย่างไร (เห็นด้วย/กลางๆ/��ม่เห็นด้วย)",
                       "ทำไมคุณถึงคิดอย่างนั้น (นโยบายไม่ครอบคลุม / เก็บไปก็ไม่มีอะไรดีข���้น / อื่นๆ)",
                       "อธิบายอื่น ๆ ที่ช่วยอธิบายความคิดเห็น",
                       "บอกเร��หน่อยว่าคุณเดินทางเข้าเมือง��้วยวิธีการใดบ่อยที่ส��ด",
                       "จากนโยบายที่คุณฟังเมื่อสักครู่ คุณมีความคิดเห็นอย่าง��ร",
-                      "คุณคิดว่าน���ยบายปัจจุบัน ควรป���ับเปลี่ยนประเด็นอะไรบาง (ลดค่าโดยสา��, ปรับปรุงคุณภาพ, ขึ้น���าคา, เพ��่มขบวน, เพิ่มความถี่ ฯลฯ)",
+                      "คุณคิดว่าน���ยบายปัจจุบัน ควรปรับเปลี่ยนประเด็นอะไรบาง (ลดค่าโดยสา��, ปรับปรุงคุณภาพ, ขึ้น���าคา, เพ��่มขบวน, เพิ่มความถี่ ฯลฯ)",
                       "คุณคิดว่าใครควรได้รับการลดค่าโ���ยสารรถไฟฟ���า��้าง (ทุกคน, ผู้สูงอายุ, นักเรียน, คนทำงาน ฯลฯ)",
                       "คุณคิดว่าคว��ใช้เงินที่ได้จากการเก็บไปพัฒนาอะไร ก่อน 3 อันดับแรก",
                       "คุณจะให้งบประมาณแต่ละข้อเท่าไร (งบทั้งหมด 100)",
                       "คุณพอใจ��ับผลลัพธ์ที่เกิดขึ้นหรือไ��่ (พ���ใจ / ไม่พอใจ)",
-                      "คุณคิดว่ารัฐควรทำอะไรที่จะทำให้นโยบายนี้เกิดขึ้นได้จริง และเป็นประโยชน���ต่อประชาชนอย่างแท้จริง",
-                      "ตอนนี้มี��้อ��ูลที่ผิดพลาด เช่น ข่าวปลอมเกี่ยวกับนโยบาย คุณคิดว่าอย่างไร",
+                      "คุณคิดว่ารัฐควรทำอะไรที่จะทำให้นโยบายนี้เกิดขึ้นได้จริง และเป็นประโยชน์ต่อประชาชนอย่างแท้จริง",
+                      "ตอนนี้มี���้อ��ูลที่ผิดพลาด เช่น ข่าวปลอมเกี่ยวกับนโยบาย คุณคิดว่าอย่างไร",
                       "คุณ��ะติดตามข่า��� ���รือเชื่อจากแหล่ง��หนมาก���ี่สุด",
                       "ขอบคุณที่ร่วมเป็นส่วนหนึ่ง → ��้องการล���้นรับรางวัลหรือไม่",
                       "กรอกข้อมูลเพื่อลุ้นรางวัล (ชื่อ)",
@@ -1009,7 +1009,7 @@ export default function UkDashboard() {
                     });
                     rows.push(...perRows);
 
-                    exportCsv("uk_export_all.csv", rows);
+                    exportCsv(`uk_export_all_${filenameTimestampBangkok()}.csv`, rows);
                   }}
                 >
                   ดาวน์โหด CSV (สรุปรวม)
