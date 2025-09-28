@@ -821,7 +821,6 @@ const App = () => {
                 <Route path="/UkDashboard" element={<Navigate to="/beforecitychange/ukdashboard" replace />} />
 
                 {/* 404 page */}
-                <Route path="/ukpack2/*" element={<RedirectUkpack2 />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </BusDesignProvider>
