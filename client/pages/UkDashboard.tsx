@@ -30,7 +30,7 @@ type SessionSummary = {
   lastSeen: string;
   introWho?: string; // บ���บาทในการเดินทางเข้าเมือง
   travelMethod?: string; // ยาน��าห��ะที่ใช้
-  opinionLevel?: string; // ระ���ับความคิดเห็น
+  opinionLevel?: string; // ระดับความคิดเห็น
   ask02Choice?: string; // เหตุผลหลัก
   ask02CustomReason?: string; // เหตุผลพิมพ์เอง
   reasonOther01?: string; // คำอธิบายเพิ่มเติม
@@ -41,7 +41,7 @@ type SessionSummary = {
   mn3BudgetAllocation?: Record<string, number>; // การจัดสรรงบประมาณ
   mn3BudgetTotal?: number;
   satisfactionLevel?: string; // ระดับความพึงพอใจ
-  ask05Comment?: string; // ข้อเสนอเพิ่มเติมต่อรัฐ
+  ask05Comment?: string; // ข้อเสนอเพิ่มเติมต่อรั��
   fakeNewsResponse?: string; // การตอบสนองต่อข่าวปลอม
   sourceSelected?: string; // แหล่งข่าวที่ผู้ใช้เลือก
   endDecision?: string; // การเข้าร่วมลุ้นรางวัล
@@ -301,7 +301,7 @@ export default function UkDashboard() {
         }
       }
 
-      setLastUpdated(new Date().toLocaleString());
+      setLastUpdated(formatToBangkok(new Date()));
     } catch (e: any) {
       console.warn("load encountered error", e);
       setError(e?.message || "โหลดข้อมูลล้มเหลว");
@@ -329,11 +329,11 @@ export default function UkDashboard() {
       "เหตุผล_Webapp (reason)",
       "เหตุผล_อื่นๆ_Webapp (reason_other)",
       "ประ��ด���นนโยบาย (policy_topic)",
-      "กลุ่มเป้า���มาย (target_group)",
+      "กลุ่มเป้าหมาย (target_group)",
       "พัฒนา_ลำดับ (dev_priority)",
       "งบประมาณ (budget_alloc)",
       "ความพอใจ (satisfaction)",
-      "ข้���เสนอรัฐ (gov_suggest)",
+      "ข้อเสนอรัฐ (gov_suggest)",
       "ข่าวปล���ม (fake_react)",
       "แหล่งข่าว (news_source)",
       "ลุ้นรางวัล (lucky_draw)",
@@ -486,7 +486,7 @@ export default function UkDashboard() {
       {!authed && (
         <div className="min-h-screen flex items-center justify-center p-4">
           <div className="w-full max-w-sm bg-white/5 border border-white/10 rounded-xl p-5">
-            <div className="text-xl font-semibold mb-3">ป้อนรหัสผ���าน</div>
+            <div className="text-xl font-semibold mb-3">ป้อนรหัสผ่าน</div>
             <div className="text-sm text-white/70 mb-4">
               หน้าน��้ป้องกันด้วยรหัสผ่าน
             </div>
@@ -512,7 +512,7 @@ export default function UkDashboard() {
                 const expectedPassword =
                   expected && expected.length > 0 ? expected : "Ukdash-Xrz14!";
                 if (!expectedPassword) {
-                  setPwErr("ยังไม่ได้ตั้ง��หัสผ่าน (VITE_DASHBOARD_PASSWORD)");
+                  setPwErr("ยังไม่ได้ตั้งรหัสผ่าน (VITE_DASHBOARD_PASSWORD)");
                   return;
                 }
                 if (user.trim() === expectedUser && pw === expectedPassword) {
@@ -534,7 +534,7 @@ export default function UkDashboard() {
           <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
               <h1 className="text-3xl md:text-4xl font-semibold tracking-tight">
-                แ���ชบอร์ดวิเคร��ะห์วิดีโอ
+                แ���ชบ���ร์ดวิเคร��ะห์วิดีโอ
               </h1>
               <div className="text-white/70 text-sm mt-2">
                 อัปเดตล่าสุด: {lastUpdated || "-"}
@@ -919,14 +919,14 @@ export default function UkDashboard() {
                       "ทำไมคุณถึงต้องเข้า���มืองบ่อย ๆ ?",
                       "คุณใช้รถแบบไหนเดินทางเข้าเมือง ?",
                       "คุ��คิดเห็นอย่างไรกับนโยบายนี้ ?",
-                      "จากข้อความข้างต้น คุณมีควา���คิดเห็นอย่างไร (เห็นด้วย/กลางๆ/��ม่เห็นด้วย)",
+                      "จากข้อความข้างต้น คุณมีควา����คิดเห็นอย่างไร (เห็นด้วย/กลางๆ/��ม่เห็นด้วย)",
                       "ทำไมคุณถึงคิดอย่างนั้น (นโยบายไม่ครอบคลุม / เก็บไปก็ไม่มีอะไรดีข���้น / อื่นๆ)",
                       "อธิบายอื่น ๆ ที่ช่วยอธิบายความคิดเห็น",
                       "บอกเร��หน่อยว่าคุณเดินทางเข้าเมือง��้วยวิธีการใดบ่อยที่ส��ด",
                       "จากนโยบายที่คุณฟังเมื่อสักครู่ คุณมีความคิดเห็นอย่าง��ร",
                       "คุณคิดว่าน���ยบายปัจจุบัน ควรปรับเปลี่ยนประเด็นอะไรบาง (ลดค่าโดยสา��, ปรับปรุงคุณภาพ, ขึ้น���าคา, เพ��่มขบวน, เพิ่มความถี่ ฯลฯ)",
-                      "คุณคิดว่าใครควรได้รับการลดค่าโดยสารรถไฟฟ���า��้าง (ทุกคน, ผู้สูงอายุ, นักเรียน, คนทำงาน ฯลฯ)",
-                      "คุณคิดว่าคว��ใช้เงินที่ได้จากการเก็บไปพ��ฒนาอะไร ก่อน 3 อันดับแรก",
+                      "คุณคิดว่า���ครควรได้รับการลดค่าโดยสารรถไฟฟ���า��้าง (ทุกคน, ผู้สูงอายุ, นักเรียน, คนทำงาน ฯลฯ)",
+                      "คุณคิดว่าคว��ใช้เงินที่ได้จากการเก็บไปพัฒนาอะไร ก่อน 3 อันดับแรก",
                       "คุณจะให้งบประมาณแต่ละข้อเท่าไร (งบทั้งหมด 100)",
                       "คุณพอใจ��ับผลลัพธ์ที่เกิดขึ้นหรือไ��่ (พ���ใจ / ไม่พอใจ)",
                       "คุณคิดว่ารัฐควรทำอะไรที่จะทำให้นโยบายนี้เกิดขึ้นได้จริง และเป็นประโยชน์ต่อประชาชนอย่างแท้จริง",
