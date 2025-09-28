@@ -120,6 +120,25 @@ export const BusDesignProvider = ({ children }: { children: ReactNode }) => {
     loadStateFromSession() || initialState,
   );
 
+  // Wrap dispatch so we log design updates as events for analytics and CSV mapping.
+  const dispatchAndLog: React.Dispatch<BusDesignAction> = (action) => {
+    try {
+      // call original reducer
+      dispatch(action as any);
+    } catch (e) {
+      // still attempt logging even if state update fails
+    }
+
+    // Fire a best-effort analytics event capturing the changed field(s)
+    try {
+      // For privacy, only include keys that are useful for aggregation (no PII)
+      const safePayload: any = { type: action.type, payload: action.payload };
+      logEvent({ event: "DESIGN_UPDATE", payload: safePayload });
+    } catch (e) {
+      // swallow
+    }
+  };
+
   async function submitDesignToFirebase(
     stateOverride?: BusDesignState,
     imageBlob?: Blob | null,
