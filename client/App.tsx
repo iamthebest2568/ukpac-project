@@ -219,7 +219,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       </div>
     );
   }
-  const isFullBleed = location.pathname.startsWith("/ukpack2");
+  const isFullBleed = (location.pathname.startsWith("/ukpack2") || location.pathname.startsWith("/mydreambus"));
   const isUkpack1 = location.pathname.startsWith("/beforecitychange");
   // For beforecitychange, the root path (/beforecitychange) is the video page and should be full-bleed.
   const isUkpack1Wrapped = isUkpack1 && !(location.pathname === "/beforecitychange" || location.pathname === "/beforecitychange/");
@@ -244,7 +244,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   // When running inside the embedded iframe for ukpack2, add a body class to apply special responsive CSS
   React.useEffect(() => {
     try {
-      const isUkpack2 = location.pathname.startsWith("/ukpack2");
+      const isUkpack2 = (location.pathname.startsWith("/ukpack2") || location.pathname.startsWith("/mydreambus"));
       if (isUkpack2) {
         document.body.classList.add("page-ukpack2");
       } else {
@@ -339,6 +339,12 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       </div>
     </div>
   );
+};
+
+const RedirectMyDream = () => {
+  const loc = useLocation();
+  const rest = loc.pathname.replace(/^\/mydreambus/, "/ukpack2");
+  return <Navigate to={rest + loc.search} replace />;
 };
 
 const App = () => {
@@ -772,6 +778,7 @@ const App = () => {
                 />
 
                 {/* 404 page */}
+                <Route path="/mydreambus/*" element={<RedirectMyDream />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </BusDesignProvider>
