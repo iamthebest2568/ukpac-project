@@ -83,6 +83,30 @@ export function createServer() {
     }
   });
 
+  // Server endpoint to write imageUrl documents using Admin SDK (authorized server write)
+  app.post('/api/write-image-url', async (req, res) => {
+    try {
+      const { imageUrl, collection } = req.body || {};
+      if (!imageUrl || typeof imageUrl !== 'string') return res.status(400).json({ ok: false, error: 'missing imageUrl' });
+      const allowed = ['beforecitychange-imageshow-events', 'kpact-gamebus-imagedesign-events', 'ukpact-gamebus-imagedesign-events'];
+      const col = String(collection || 'beforecitychange-imageshow-events');
+      if (!allowed.includes(col)) return res.status(400).json({ ok: false, error: 'collection not allowed' });
+
+      const svc = process.env.FIREBASE_SERVICE_ACCOUNT;
+      if (!svc) return res.status(500).json({ ok: false, error: 'FIREBASE_SERVICE_ACCOUNT not configured' });
+      const parsed = typeof svc === 'string' ? JSON.parse(svc) : svc;
+      if (!admin.apps || admin.apps.length === 0) {
+        admin.initializeApp({ credential: admin.credential.cert(parsed as any), storageBucket: process.env.FIREBASE_STORAGE_BUCKET || undefined } as any);
+      }
+      const fsAdmin = admin.firestore();
+      const docRef = await fsAdmin.collection(col).add({ imageUrl, createdAt: admin.firestore.FieldValue.serverTimestamp() });
+      res.json({ ok: true, id: docRef.id });
+    } catch (e: any) {
+      console.error('/api/write-image-url error', e);
+      res.status(500).json({ ok: false, error: e?.message || String(e) });
+    }
+  });
+
   // Video analytics ingestion
   app.post("/api/video-events", async (req, res) => {
     try {
@@ -804,7 +828,7 @@ export function createServer() {
                 "เหตุ��ลไม่ใช้บริการ (reason_not_use)",
                 "เข้าร่วมของรางวัล (decision_enter_prize)",
                 "ชื่อผู้รับรางวัล (prize_name)",
-                "���บอร์โทรผู้รับรางวัล (prize_phone)",
+                "เบอร์โทรผู้รับรางวัล (prize_phone)",
                 "เวลาการรับรางวัล (prize_timestamp)",
                 "แชร์กับเพื่อน (shared_with_friends)",
                 "เวลาแชร์ (shared_timestamp)",
