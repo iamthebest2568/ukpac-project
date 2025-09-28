@@ -14,7 +14,7 @@ const Ask02_2Page = () => {
     import("./Ask05Page").catch(() => {});
   }, []);
 
-  const isUkpack1 = typeof window !== 'undefined' && window.location && window.location.pathname.startsWith('/ukpack1');
+  const isUkpack1 = typeof window !== 'undefined' && window.location && window.location.pathname.startsWith('/beforecitychange');
 
   return <Ask02_2 sessionID={sessionID} onNavigate={navigateToPage} useUk1Button={isUkpack1} />;
 };
