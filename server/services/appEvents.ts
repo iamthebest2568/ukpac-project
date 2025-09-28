@@ -265,8 +265,51 @@ export async function getAppEventsBySession(sessionId: string): Promise<AppEvent
     .sort((a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime());
 }
 
-// ... rest of file unchanged (computeSessionSummaries etc). 
-// For brevity we will import remaining logic from existing file to avoid duplication.
+// Lightweight computeSessionSummaries implementation (fallback)
+export async function computeSessionSummaries(limit = 100) {
+  const events = await readAllAppEvents();
+  const bySession = new Map();
+  for (const ev of events) {
+    const sid = ev.sessionId || ev.sessionID || ev.sessionId || "";
+    if (!sid) continue;
+    const arr = bySession.get(sid) || [];
+    arr.push(ev);
+    bySession.set(sid, arr);
+  }
 
-import { computeSessionSummaries as _computeSessionSummaries } from "./appEvents.original_impl";
-export const computeSessionSummaries = _computeSessionSummaries;
+  const summaries = [];
+  for (const [sid, arr] of bySession) {
+    arr.sort((a: any, b: any) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime());
+    const firstSeen = arr[0]?.timestamp || new Date().toISOString();
+    const lastSeen = arr[arr.length - 1]?.timestamp || firstSeen;
+
+    // Basic fields extracted when available
+    const introWho = arr.find((e: any) => e.event && e.event.includes("INTRO_WHO"))?.payload?.choice || undefined;
+    const travelMethod = arr.find((e: any) => e.event && e.event.includes("TRAVEL_METHOD"))?.payload?.choice || undefined;
+    const mn1Selected = [];
+    for (const e of arr) {
+      if (e.event && (e.event === "MN1_SELECT" || e.event === "BUDGET_STEP1_COMPLETE")) {
+        if (e.payload && e.payload.selectedPolicies) {
+          mn1Selected.push(...(e.payload.selectedPolicies || []));
+        }
+      }
+      if (e.event && e.event === "MN01_SELECT") {
+        if (e.payload && e.payload.selectedPolicies) mn1Selected.push(...e.payload.selectedPolicies);
+      }
+    }
+
+    summaries.push({
+      sessionId: sid,
+      firstSeen,
+      lastSeen,
+      introWho: introWho || undefined,
+      travelMethod: travelMethod || undefined,
+      mn1Selected: Array.isArray(mn1Selected) ? Array.from(new Set(mn1Selected)) : [],
+      contacts: 0,
+    });
+  }
+
+  // sort by firstSeen desc
+  summaries.sort((a: any, b: any) => new Date(b.firstSeen).getTime() - new Date(a.firstSeen).getTime());
+  return summaries.slice(0, Math.max(0, Math.min(limit, summaries.length)));
+}
