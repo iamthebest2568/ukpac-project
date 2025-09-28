@@ -37,7 +37,7 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
   const isMN3 = typeof location !== "undefined" && location.pathname && location.pathname.startsWith("/beforecitychange/minigame-mn3");
 
   useEffect(() => {
-    if (!(isMN2 || isMN3)) return;
+    if (!(isMN1 || isMN2 || isMN3)) return;
     const iframe = iframeRef.current;
     if (!iframe) return;
 
