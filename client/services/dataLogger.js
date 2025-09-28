@@ -134,7 +134,7 @@ export function logEvent(eventData) {
         // choose collection based on project tag
         const project = p.project || "site";
         let target = "minigame1_events/minigame1-di";
-        if (project === "ukpack2") target = "minigame2_events/minigame2-di";
+        if (project === "ukpack2" || project === "mydreambus") target = "minigame2_events/minigame2-di";
         // fire-and-forget
         try {
           // call and swallow any promise rejection to prevent uncaught errors
@@ -283,7 +283,7 @@ export function exportSessionsAsCSV() {
     "IP (ip)",
     "เวลาเริ่ม (firstTimestamp)",
     "เวลาสิ้นสุด (lastTimestamp)",
-    "ยอม���ับ PDPA (PDPA_acceptance)",
+    "ยอมรับ PDPA (PDPA_acceptance)",
     "ประเภทรถ (chassis_type)",
     "จำนวนที่นั่งรวม (total_seats)",
     "ที่นั่งพิเศษ (special_seats)",
