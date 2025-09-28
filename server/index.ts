@@ -57,6 +57,32 @@ export function createServer() {
 
   app.get("/api/demo", handleDemo);
 
+  // Proxy external images through server to avoid CORS issues when composing canvases
+  app.get('/api/proxy-image', async (req, res) => {
+    try {
+      const url = String(req.query.url || '').trim();
+      if (!url) return res.status(400).send('missing url');
+      let parsed;
+      try { parsed = new URL(url); } catch (e) { return res.status(400).send('invalid url'); }
+
+      const allowedHosts = ['cdn.builder.io', 'builder.io', 'firebasestorage.googleapis.com', 'storage.googleapis.com', 'images.unsplash.com'];
+      const hostname = parsed.hostname || '';
+      const ok = allowedHosts.some(h => hostname.includes(h));
+      if (!ok) return res.status(403).send('host not allowed');
+
+      const upstream = await fetch(url);
+      if (!upstream.ok) return res.status(502).send('failed to fetch upstream');
+      const contentType = upstream.headers.get('content-type') || 'application/octet-stream';
+      res.setHeader('Content-Type', contentType);
+      // stream body
+      const buffer = await upstream.arrayBuffer();
+      res.send(Buffer.from(buffer));
+    } catch (e) {
+      console.error('/api/proxy-image error', e);
+      res.status(500).send('proxy error');
+    }
+  });
+
   // Video analytics ingestion
   app.post("/api/video-events", async (req, res) => {
     try {
@@ -778,7 +804,7 @@ export function createServer() {
                 "เหตุ��ลไม่ใช้บริการ (reason_not_use)",
                 "เข้าร่วมของรางวัล (decision_enter_prize)",
                 "ชื่อผู้รับรางวัล (prize_name)",
-                "เบอร์โทรผู้รับรางวัล (prize_phone)",
+                "���บอร์โทรผู้รับรางวัล (prize_phone)",
                 "เวลาการรับรางวัล (prize_timestamp)",
                 "แชร์กับเพื่อน (shared_with_friends)",
                 "เวลาแชร์ (shared_timestamp)",
