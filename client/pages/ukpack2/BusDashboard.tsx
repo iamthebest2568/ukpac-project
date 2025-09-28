@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-// Simple, focused dashboard for ukpack2 bus design project
+// Simple, focused dashboard for mydreambus bus design project
 // - fetches session summaries
 // - allows export CSV with Thai headers mapped exactly to spec
 
@@ -16,7 +16,7 @@ const THAI_HEADERS = [
   "ที่นั่งทั้งหมด (seat_total)",
   "ที่นั่งพิเศษ (seat_special)",
   "ที่นั่งเด็กหรือผู้สูงอายุ (seat_child_elder)",
-  "ที่นั่งสตรีมีครรภ์ (seat_pregnant)",
+  "ที���นั่งสตรีมีครรภ์ (seat_pregnant)",
   "ที่นั่งพระ (seat_monk)",
   "ฟีเจอร์ (features)",
   "การจ่าย (payment_type)",
@@ -35,7 +35,7 @@ const THAI_HEADERS = [
   "ชื่อ (name)",
   "เบอร์ (phone)",
   "เวลาส่งฟอร์ม (time_stamp2)",
-  "แ��ร์1 (share1)",
+  "แชร์1 (share1)",
 
   // End
   "เวลาสิ้นสุดเกม (time_stamp3)",
@@ -288,7 +288,7 @@ export default function BusDashboard() {
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = `ukpack2_bus_export_${Date.now()}.csv`;
+      a.download = `mydreambus_bus_export_${Date.now()}.csv`;
       document.body.appendChild(a);
       a.click();
       a.remove();
@@ -306,7 +306,7 @@ export default function BusDashboard() {
   return (
     <div className="p-4">
       <h1 className="text-2xl font-semibold mb-4">
-        Ukpack2 — Bus Dashboard (เรียบง่าย)
+        mydreambus — Bus Dashboard (เรียบง่าย)
       </h1>
       <div className="mb-4">
         <button
