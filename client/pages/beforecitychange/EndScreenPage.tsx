@@ -1,10 +1,20 @@
-import DesktopMockup from "./components/DesktopMockup";
-import Page from "../EndScreenPage";
+/* End Screen Page - Thank You Screen
+ * Final thank you screen for completing the journey
+ */
 
-const Wrapped = (props: any) => (
-  <DesktopMockup>
-    <Page {...props} />
-  </DesktopMockup>
-);
+import EndScreen from "../components/games/ThankYouScreen";
+import { useSession } from "../hooks/useSession";
 
-export default Wrapped;
+const EndScreenPage = () => {
+  const { sessionID, navigateToPage, userJourneyData } = useSession();
+
+  return (
+    <EndScreen
+      sessionID={sessionID}
+      onNavigate={navigateToPage}
+      journeyData={userJourneyData}
+    />
+  );
+};
+
+export default EndScreenPage;
