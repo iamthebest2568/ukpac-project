@@ -44,7 +44,7 @@ const MiniGameMN1Page = lazy(() => import("./pages/ukpack1/MiniGameMN1Page"));
 const MiniGameMN2Page = lazy(() => import("./pages/ukpack1/MiniGameMN2Page"));
 const MiniGameMN01Page = lazy(() => import("./pages/ukpack1/MiniGameMN01Page"));
 import MiniGameMN3Page from "./pages/MiniGameMN3Page";
-const UkStornaway = lazy(() => import("./pages/ukpack1/Uk-stornaway"));
+const UkStornaway = lazy(() => import("./pages/Uk-stornaway"));
 const UkDashboard = lazy(() => import("./pages/ukpack1/UkDashboard"));
 const UkPact1Dashboard = lazy(
   () => import("./pages/ukpack1/ukpact1-dashboard"),
