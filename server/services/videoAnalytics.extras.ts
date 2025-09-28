@@ -350,20 +350,25 @@ export async function computeStatsForProject(
 }> {
   try {
     initFirestore();
-    if (!firestoreDb)
-      return {
-        totals: { totalEvents: 0, totalSessions: 0 },
-        timeseries: [],
-        sample: [],
-      };
-    const colDoc = doc(firestoreDb, String(colName), String(docId));
-    const eventsCol = collection(colDoc, "events");
-    const q = query(eventsCol, orderBy("createdAt", "asc"));
-    const snap = await getDocs(q as any);
-    const events: any[] = [];
-    snap.forEach((d) => {
-      events.push(d.data());
-    });
+    let events: any[] = [];
+    if (adminDb) {
+      const colDoc = adminDb.collection(String(colName)).doc(String(docId));
+      const snap = await colDoc.collection("events").orderBy("createdAt", "asc").get();
+      snap.forEach((d: any) => events.push(d.data()));
+    } else {
+      if (!firestoreDb)
+        return {
+          totals: { totalEvents: 0, totalSessions: 0 },
+          timeseries: [],
+          sample: [],
+        };
+      const colDoc = doc(firestoreDb, String(colName), String(docId));
+      const eventsCol = collection(colDoc, "events");
+      const q = query(eventsCol, orderBy("createdAt", "asc"));
+      const snap = await getDocs(q as any);
+      snap.forEach((d) => events.push(d.data()));
+    }
+
     // simple aggregates
     const totalEvents = events.length;
     const sessions = new Set<string>();
@@ -374,8 +379,7 @@ export async function computeStatsForProject(
       const ts = e.timestamp || e.createdAt || new Date().toISOString();
       let iso = ts;
       try {
-        if (ts && typeof ts.toDate === "function")
-          iso = ts.toDate().toISOString();
+        if (ts && typeof ts.toDate === "function") iso = ts.toDate().toISOString();
       } catch (_) {}
       const date = String(iso).slice(0, 10);
       perDay.set(date, (perDay.get(date) || 0) + 1);
