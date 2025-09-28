@@ -188,7 +188,7 @@ const SeatingScreen: React.FC = () => {
     } catch (e) {
       // ignore
     }
-    navigate("/ukpack2/amenities");
+    navigate("/mydreambus/amenities");
   };
 
   const handleTotalSeatsChange = (v: number | "") => {
