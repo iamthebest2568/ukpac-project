@@ -1,6 +1,6 @@
 /* MiniGame MN01 Page - Budget Allocation (cloned from MN3 page) */
 
-import Flow_MiniGame_MN01 from "../components/flows/Flow_MiniGame_MN01";
+import Flow_MiniGame_MN01 from "../../components/flows/Flow_MiniGame_MN01";
 import { useSession } from "../hooks/useSession";
 import { useFlowNavigation } from "../hooks/useFlowNavigation";
 import { useEffect } from "react";
