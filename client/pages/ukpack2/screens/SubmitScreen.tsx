@@ -197,7 +197,14 @@ const SubmitScreen: React.FC = () => {
           // fallback: if composing failed, fetch base hero image as blob
           if (!blob && heroImg) {
             try {
-              const r = await fetch(heroImg);
+              let fetchUrl = heroImg;
+              try {
+                const u = new URL(String(heroImg));
+                if (u.hostname !== window.location.hostname) {
+                  fetchUrl = `/api/proxy-image?url=${encodeURIComponent(String(heroImg))}`;
+                }
+              } catch (e) {}
+              const r = await fetch(fetchUrl);
               if (r.ok) blob = await r.blob();
             } catch (_) {
               blob = null;
