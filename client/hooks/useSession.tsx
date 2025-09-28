@@ -108,8 +108,8 @@ export const useSession = (): UseSessionReturn => {
 
     // If the path is absolute and not already under /ukpack1, prefix it so all internal navigation
     // points to the ukpack1 project paths.
-    if (typeof newPath === 'string' && newPath.startsWith('/') && !newPath.startsWith('/ukpack1')) {
-      newPath = `/ukpack1${newPath}`;
+    if (typeof newPath === 'string' && newPath.startsWith('/') && !newPath.startsWith('/beforecitychange')) {
+      newPath = `/beforecitychange${newPath}`;
     }
 
     // Navigate with session ID
