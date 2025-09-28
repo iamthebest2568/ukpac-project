@@ -62,9 +62,8 @@ const UkDashboard: React.FC = () => {
             return p;
           }
         };
-        // Try the raw paths first (preserve relative URLs), then normalized absolute URLs
-        const normalized = rawPaths.map(normalize);
-        const paths = Array.from(new Set([...(rawPaths || []), ...normalized]));
+        // Use only normalized absolute URLs (avoid relative paths which can resolve under /ukpack2)
+        const paths = rawPaths.map(normalize);
 
         const fetchWithTimeout = async (url: string, ms: number) => {
           // if url is relative (starts with '/') use as-is; otherwise use the full url
@@ -512,7 +511,7 @@ const UkDashboard: React.FC = () => {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               className="w-full border px-3 py-2 rounded mb-3"
-              placeholder="รหัสผ่า���"
+              placeholder="รหัสผ่าน"
               autoFocus
             />
             <div className="flex gap-2">
