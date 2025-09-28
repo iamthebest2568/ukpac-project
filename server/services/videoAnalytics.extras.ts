@@ -15,6 +15,9 @@ import {
   getDocs,
 } from "firebase/firestore";
 
+// Admin SDK (preferred on server when service account available)
+import admin from "firebase-admin";
+
 const DATA_DIR = process.env.DATA_DIR || path.join(process.cwd(), ".data");
 const sanitizeThai = (text: any): any => {
   if (typeof text !== "string") return text;
