@@ -227,7 +227,7 @@ export const BusDesignProvider = ({ children }: { children: ReactNode }) => {
           // Attempt to persist, and on quota errors try trimming oldest entries and retrying
           try {
             localStorage.setItem(
-              "ukpack2_pending_submissions",
+              "mydreambus_pending_submissions",
               trySerialize(pending),
             );
           } catch (e) {
@@ -238,7 +238,7 @@ export const BusDesignProvider = ({ children }: { children: ReactNode }) => {
                 try {
                   pending.shift();
                   localStorage.setItem(
-                    "ukpack2_pending_submissions",
+                    "mydreambus_pending_submissions",
                     trySerialize(pending),
                   );
                   // success
