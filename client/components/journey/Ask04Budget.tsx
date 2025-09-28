@@ -234,7 +234,7 @@ const Ask04Budget = ({
                 ? resultSummary
                 : [
                     {
-                      priority: "เพิ่มความถี่รถเมล์",
+                      priority: "เพิ่มความถี่รถเมล���",
                       allocation: 0,
                       percentage: 0,
                       icon: "",
@@ -254,9 +254,26 @@ const Ask04Budget = ({
                   ];
 
             return displaySummary.map((s, i) => {
-              const imgSrc =
-                priorityImageMap[s.priority] ||
-                "https://cdn.builder.io/api/v1/image/assets/TEMP/placeholder.png?width=720";
+              // Try direct map, otherwise attempt a fuzzy/normalized match to handle stored keys with minor corruption
+              const rawKey = s.priority || '';
+              let imgSrc = priorityImageMap[rawKey];
+              if (!imgSrc) {
+                const normalize = (str: string) =>
+                  String(str || '')
+                    .replace(/[\s\u00A0\uFEFF]+/g, '')
+                    .replace(/[^\p{L}\p{N}]/gu, '')
+                    .toLowerCase();
+                const nk = normalize(rawKey);
+                for (const k of Object.keys(priorityImageMap)) {
+                  const kk = normalize(k);
+                  if (!kk || !nk) continue;
+                  if (kk.includes(nk) || nk.includes(kk)) {
+                    imgSrc = priorityImageMap[k];
+                    break;
+                  }
+                }
+              }
+              if (!imgSrc) imgSrc = "https://cdn.builder.io/api/v1/image/assets/TEMP/placeholder.png?width=720";
               const offset = collageOffsets[i] || {
                 left: `50%`,
                 top: `50%`,
