@@ -418,3 +418,4 @@
 {"sessionId":"session_1759043357629_2ny91ihb7","eventName":"sw.choice.selected","timestamp":"2025-09-28T07:12:54.166Z","choiceText":"ดูแล้ว","variantId":"9659c6d4","variantName":"ไม่ต้องทำอะไร เพราะใช้ขนส่งสาธารณะอยู่แล้ว"}
 {"sessionId":"session_1759043357629_2ny91ihb7","eventName":"sw.choice.selected","timestamp":"2025-09-28T07:13:39.695Z","choiceText":"เฉย ๆ","variantId":"d98ae0de","variantName":"ทดสอบ Key message"}
 {"sessionId":"session_1759043357629_2ny91ihb7","eventName":"sw.variant.start","timestamp":"2025-09-28T07:13:39.710Z","variantId":"0d274bf8","variantName":"ทำไมคุณถึงคิดแบบนั้น ?"}
+{"sessionId":"session_1759043357629_2ny91ihb7","eventName":"sw.choice.selected","timestamp":"2025-09-28T07:13:51.191Z","choiceText":"นโยบายไม่ครอบคลุม","variantId":"0d274bf8","variantName":"ทำไมคุณถึงคิดแบบนั้น ?"}
