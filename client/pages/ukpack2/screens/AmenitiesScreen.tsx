@@ -227,7 +227,7 @@ const AmenitiesScreen: React.FC = () => {
         // ignore
       }
     } catch (e) {}
-    navigate("/ukpack2/payment");
+    navigate("/mydreambus/payment");
   };
 
   // Selected chassis preview (reusing mapping from SeatingScreen)
@@ -283,7 +283,7 @@ const AmenitiesScreen: React.FC = () => {
 
   return (
     <CustomizationScreen
-      title="ออกแบบรถเมล์ของคุณ"
+      title="ออกแบบรถเมล์ของ��ุณ"
       theme="light"
       fullWidth
       footerContent={
