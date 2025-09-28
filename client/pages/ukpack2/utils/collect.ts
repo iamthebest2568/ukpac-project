@@ -7,7 +7,7 @@ export async function sendDesignImageUrl(imageUrl: string) {
 
     const payload = {
       imageUrl,
-      project: "ukpack2",
+      project: "mydreambus",
       pagePath: "/design",
       timestamp: new Date().toISOString(),
     };
