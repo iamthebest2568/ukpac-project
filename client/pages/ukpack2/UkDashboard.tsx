@@ -26,7 +26,7 @@ const UkDashboard: React.FC = () => {
 
   useEffect(() => {
     try {
-      const saved = sessionStorage.getItem("ukpack2_dash_auth");
+      const saved = sessionStorage.getItem("mydreambus_dash_auth");
       if (saved === "1") setAuthorized(true);
     } catch (e) {}
   }, []);
@@ -110,10 +110,10 @@ const UkDashboard: React.FC = () => {
       // Fetch Firestore-backed recent events for ukpack2 with resilient fallbacks
       try {
         const rawCandidates = [
-          "/api/firestore-stats?project=ukpack2",
-          "/.netlify/functions/api/firestore-stats?project=ukpack2",
+          "/api/firestore-stats?project=mydreambus",
+          "/.netlify/functions/api/firestore-stats?project=mydreambus",
           window.location.pathname.replace(/\/\$/, "") +
-            "/api/firestore-stats?project=ukpack2",
+            "/api/firestore-stats?project=mydreambus",
         ];
 
         // helpful debug logging for network issues
@@ -193,7 +193,7 @@ const UkDashboard: React.FC = () => {
     if (e) e.preventDefault();
     if (user.trim() === DASH_USER && input.trim() === DASH_PASSWORD) {
       try {
-        sessionStorage.setItem("ukpack2_dash_auth", "1");
+        sessionStorage.setItem("mydreambus_dash_auth", "1");
       } catch (e) {}
       setAuthorized(true);
       refreshSummary();
@@ -205,7 +205,7 @@ const UkDashboard: React.FC = () => {
   const handleExport = () => {
     const csv = exportEventsAsCSV();
     if (!csv) {
-      alert("ไม่มีข้อมูลให้ส่งออก");
+      alert("ไม่มีข้��มูลให้ส่งออก");
       return;
     }
     const blob = new Blob(["\uFEFF" + csv], {
@@ -214,7 +214,7 @@ const UkDashboard: React.FC = () => {
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `ukpack2-events-${Date.now()}.csv`;
+    a.download = `mydreambus-events-${Date.now()}.csv`;
     a.click();
     URL.revokeObjectURL(url);
   };
@@ -234,7 +234,7 @@ const UkDashboard: React.FC = () => {
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `ukpack2-sessions-${Date.now()}.csv`;
+    a.download = `mydreambus-sessions-${Date.now()}.csv`;
     a.click();
     URL.revokeObjectURL(url);
   };
@@ -474,7 +474,7 @@ const UkDashboard: React.FC = () => {
         <form onSubmit={handleAuth} className="w-full max-w-md">
           <div className="bg-white text-black rounded-xl p-6">
             <h2 className="text-lg font-semibold mb-2">
-              เข้าสู่แดชบอร์ด ukpack2
+              เข้าสู่แดชบอร์ด mydreambus
             </h2>
             <p className="text-sm mb-4">ป้อนรหัสเพื่อเข้าถึงแ��ชบอร์ด</p>
             <input
@@ -520,7 +520,7 @@ const UkDashboard: React.FC = () => {
     <div className="uk2-scroll overflow-auto min-h-0 bg-[#0b0b0b] text-white p-6">
       <div className="max-w-4xl mx-auto bg-[#071227] rounded-xl p-6">
         <div className="flex items-center justify-between mb-6">
-          <h1 className="text-xl font-semibold">UKPACK2 Dashboard</h1>
+          <h1 className="text-xl font-semibold">MYDREAMBUS Dashboard</h1>
           <div className="flex gap-2">
             <button
               onClick={handleExport}
@@ -773,7 +773,7 @@ const UkDashboard: React.FC = () => {
         <div className="text-right mt-4">
           <button
             onClick={() => {
-              sessionStorage.removeItem("ukpack2_dash_auth");
+              sessionStorage.removeItem("mydreambus_dash_auth");
               setAuthorized(false);
             }}
             className="text-sm underline text-gray-300"
