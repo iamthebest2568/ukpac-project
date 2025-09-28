@@ -143,7 +143,7 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
 
   const mockup = (
     <div
-      className={`fixed inset-0 grid place-items-center w-screen h-screen ${isMN1 || isMN2 ? "bg-transparent" : "bg-neutral-100/40"} overflow-hidden`}
+      className={`fixed inset-0 grid place-items-center w-screen h-screen ${isMN1 || isMN2 || isMN3 ? "bg-transparent" : "bg-neutral-100/40"} overflow-hidden`}
       style={{ zIndex: 2147483647, pointerEvents: "none" }}
     >
       <div
