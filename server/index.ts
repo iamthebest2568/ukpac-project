@@ -215,6 +215,67 @@ export function createServer() {
     }
   });
 
+  // Flush pending submissions posted by clients (batch)
+  app.post('/api/flush-pending', async (req, res) => {
+    try {
+      const items = Array.isArray(req.body) ? req.body : req.body?.items || [];
+      if (!Array.isArray(items) || items.length === 0) {
+        return res.status(400).json({ ok: false, error: 'no items' });
+      }
+
+      // Try admin SDK if service account is available
+      const svc = process.env.FIREBASE_SERVICE_ACCOUNT;
+      if (svc) {
+        try {
+          const parsed = typeof svc === 'string' ? JSON.parse(svc) : svc;
+          if (!admin.apps || admin.apps.length === 0) {
+            admin.initializeApp({ credential: admin.credential.cert(parsed as any) } as any);
+          }
+          const dbAdmin = admin.database ? admin.database() : null;
+          const fsAdmin = admin.firestore ? admin.firestore() : null;
+
+          // If RTDB URL present, use Realtime DB 'submissions' path
+          if (process.env.FIREBASE_DATABASE_URL && dbAdmin) {
+            const refSub = dbAdmin.ref('submissions');
+            for (const it of items) {
+              await refSub.push(it);
+            }
+            return res.json({ ok: true, written: items.length });
+          }
+
+          // Otherwise write to Firestore collection 'submissions' as fallback
+          if (fsAdmin) {
+            const col = fsAdmin.collection('submissions');
+            for (const it of items) {
+              await col.add(it);
+            }
+            return res.json({ ok: true, written: items.length });
+          }
+        } catch (e) {
+          console.warn('flush-pending admin write failed', e);
+          // fallthrough to attempt client SDK path
+        }
+      }
+
+      // Fallback: write to local file for later manual processing
+      try {
+        const DATA_DIR = process.env.DATA_DIR || path.join(process.cwd(), '.data');
+        fs.mkdirSync(DATA_DIR, { recursive: true });
+        const outFile = path.join(DATA_DIR, 'pending-submissions.jsonl');
+        for (const it of items) {
+          await fs.promises.appendFile(outFile, JSON.stringify(it) + '\n', 'utf8');
+        }
+        return res.json({ ok: true, written: items.length, fallback: true });
+      } catch (e) {
+        console.error('flush-pending file write failed', e);
+        return res.status(500).json({ ok: false, error: 'failed to persist items' });
+      }
+    } catch (e: any) {
+      console.error('flush-pending error', e);
+      res.status(500).json({ ok: false, error: e?.message || 'failed' });
+    }
+  });
+
   // Firestore stats for project collections
   app.get("/api/firestore-stats", async (req, res) => {
     try {
