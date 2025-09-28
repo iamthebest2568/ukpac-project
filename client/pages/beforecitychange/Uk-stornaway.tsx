@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState, useMemo } from "react";
-import { useSession } from "../hooks/useSession";
+import { useSession } from "../../hooks/useSession";
 
 // Data models
 interface CapturedEvent {
