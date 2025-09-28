@@ -566,22 +566,8 @@ const App = () => {
                     </Suspense>
                   }
                 />
-                <Route
-                  path="/beforecitychange/uk-stornaway"
-                  element={
-                    <Suspense fallback={<SuspenseFallback />}>
-                      <UkStornaway />
-                    </Suspense>
-                  }
-                />
-                <Route
-                  path="/beforecitychange/Uk-stornaway"
-                  element={
-                    <Suspense fallback={<SuspenseFallback />}>
-                      <UkStornaway />
-                    </Suspense>
-                  }
-                />
+                <Route path="/beforecitychange/uk-stornaway" element={<Navigate to="/beforecitychange" replace />} />
+                <Route path="/beforecitychange/Uk-stornaway" element={<Navigate to="/beforecitychange" replace />} />
                 <Route
                   path="/beforecitychange/reason-other-01"
                   element={
