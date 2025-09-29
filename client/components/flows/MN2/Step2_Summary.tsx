@@ -111,7 +111,7 @@ const Step2_Summary = ({
             const id = String(entry || "");
             return {
               id,
-              label: id || "(ไม่ได้ระบุ)",
+              label: id || "(ไม่ได้ร��บุ)",
               iconSrc: null,
             };
           });
@@ -236,13 +236,18 @@ const Step2_Summary = ({
 
       // Ensure the clone has explicit width/height styles matching layout
       const rect = el.getBoundingClientRect();
-      const elemW = Math.ceil(rect.width) || 800;
-      const elemH = Math.ceil(rect.height) || Math.ceil((elemW * 4) / 3);
+      // Use scrollHeight/scrollWidth to capture full scrollable content (not only visible viewport)
+      const scrollW = (el as any).scrollWidth || 0;
+      const scrollH = (el as any).scrollHeight || 0;
+      const elemW = Math.max(Math.ceil(rect.width), Math.ceil(scrollW), 800);
+      const elemH = Math.max(Math.ceil(rect.height), Math.ceil(scrollH), Math.ceil((elemW * 4) / 3));
 
       clone.style.boxSizing = "border-box";
       clone.style.width = `${elemW}px`;
+      // ensure clone height covers full content and allows overflow to be visible
       clone.style.height = `${elemH}px`;
       clone.style.margin = "0";
+      clone.style.overflow = "visible";
 
       // Inline background to ensure white backdrop
       const ownerDoc = (el as any).ownerDocument || document;
@@ -251,6 +256,7 @@ const Step2_Summary = ({
       wrapper.style.width = `${elemW}px`;
       wrapper.style.height = `${elemH}px`;
       wrapper.style.background = "#ffffff";
+      wrapper.style.overflow = "visible";
       // If clone is from a different document, import it into ownerDoc to avoid problems
       let importedClone: Node;
       try {
@@ -258,6 +264,16 @@ const Step2_Summary = ({
       } catch (_) {
         importedClone = clone;
       }
+
+      // Remove any inline max-height/overflow constraints on descendants to ensure full rendering
+      try {
+        const descendants = Array.from((importedClone as HTMLElement).querySelectorAll("*") as any) as HTMLElement[];
+        for (const d of descendants) {
+          d.style.maxHeight = "none";
+          d.style.overflow = "visible";
+        }
+      } catch (_) {}
+
       wrapper.appendChild(importedClone as Node);
 
       const serialized = new XMLSerializer().serializeToString(wrapper);
