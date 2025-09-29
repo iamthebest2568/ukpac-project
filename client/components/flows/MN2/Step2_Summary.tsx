@@ -369,6 +369,17 @@ const Step2_Summary = ({
       wrapper.style.background = "#ffffff";
       wrapper.style.overflow = "visible";
       wrapper.style.fontFamily = "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif";
+      // Inject style to hide scrollbars and normalize overflow/position so clone renders without scrollbars
+      try {
+        const styleEl = ownerDoc.createElement('style');
+        styleEl.innerHTML = `
+          * { scrollbar-width: none !important; -ms-overflow-style: none !important; }
+          *::-webkit-scrollbar { display: none !important; width: 0 !important; height: 0 !important; }
+          html, body { overflow: visible !important; }
+          .no-scrollbar { overflow: visible !important; }
+        `;
+        wrapper.appendChild(styleEl);
+      } catch (_) {}
 
       // Remove any inline max-height/overflow constraints on descendants to ensure full rendering
       try {
