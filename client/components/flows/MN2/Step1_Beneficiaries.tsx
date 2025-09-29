@@ -76,6 +76,8 @@ const Step1_Beneficiaries = ({
       label: "คนพิการ",
       iconSrc:
         "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F39f620cc58934029a1b2aa4389ad6db4?format=webp&width=800",
+      iconSelectedSrc:
+        "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fd832a120f8c647c4b252b1cd19b13577?format=webp&width=800",
     },
   ];
 
