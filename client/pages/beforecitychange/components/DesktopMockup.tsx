@@ -198,9 +198,24 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
             const imgRect = img.getBoundingClientRect();
             const vcRect = vc.getBoundingClientRect();
             const leftPct = ((imgRect.left - vcRect.left) / vcRect.width) * 100;
-            const topPct = ((imgRect.top - vcRect.top) / vcRect.height) * 100;
+            let topPct = ((imgRect.top - vcRect.top) / vcRect.height) * 100;
             const wPct = (imgRect.width / vcRect.width) * 100;
             const hPct = (imgRect.height / vcRect.height) * 100;
+
+            // Read selected chassis from session storage (fall back safe)
+            let selectedChassis: string | null = null;
+            try {
+              selectedChassis = sessionStorage.getItem('design.chassis');
+            } catch (e) {
+              selectedChassis = null;
+            }
+
+            // If medium (standard) chassis, nudge the overlay slightly upward to match visual
+            // This corrects the observed vertical drift for the 'รถเมล์มาตรฐาน 30–50 ที่นั่ง'
+            if (selectedChassis === 'medium') {
+              // negative percentage to move overlay up relative to vc height
+              topPct = topPct - 6; // tuned value; adjust if necessary
+            }
 
             overlay.style.position = 'absolute';
             overlay.style.left = leftPct + '%';
