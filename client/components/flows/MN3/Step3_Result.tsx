@@ -32,7 +32,7 @@ const Step3_Result = ({
   const [selected, setSelected] = useState<"yes" | "no" | null>(null);
 
   const priorityIcons: { [key: string]: string } = {
-    ลดค่าโดยสารรถไฟฟ้า: "🚇",
+    ลดค่าโดยสารร��ไฟฟ้า: "🚇",
     ปรับปรุงคุณภาพรถเมล์: "🚌",
     ตั๋วร่วม: "🎫",
     เพิ่มความถี่รถเมล์: "🚍",
@@ -232,18 +232,17 @@ const Step3_Result = ({
               "translateY(75px)" /* move collage down by 75px for this page only */,
           }}
         >
-          {resultSummary.map((s, i) => {
-            // Determine image source using manifest: robust lookup (exact, normalized, contains)
+          {
+          // Prepare used images list to make debugging easier and ensure consistent selection
+          (() => {
             const normalize = (str: string) => (str || "").toString().normalize('NFKC').replace(/\s+/g, '').toLowerCase();
             const findManifestFor = (priority: string) => {
               if (!MN3_MANIFEST) return undefined;
               if (MN3_MANIFEST[priority]) return MN3_MANIFEST[priority];
               const norm = normalize(priority);
-              // exact normalized key
               for (const k of Object.keys(MN3_MANIFEST)) {
                 if (normalize(k) === norm) return MN3_MANIFEST[k];
               }
-              // contains or contained
               for (const k of Object.keys(MN3_MANIFEST)) {
                 const nk = normalize(k);
                 if (nk.includes(norm) || norm.includes(nk)) return MN3_MANIFEST[k];
@@ -251,64 +250,68 @@ const Step3_Result = ({
               return undefined;
             };
 
-            const manifestImgs = findManifestFor(s.priority) || [];
-            const rankIndex = i < 3 ? i : 2; // if more than 3, fallback to the smallest
-            const imgSrc = manifestImgs[rankIndex] ||
-              priorityImageMap[s.priority] ||
-              "https://cdn.builder.io/api/v1/image/assets/TEMP/placeholder.png?width=720";
+            const used = resultSummary.map((s, i) => {
+              const manifestImgs = findManifestFor(s.priority) || [];
+              const rankIndex = i < 3 ? i : 2;
+              const imgSrc = manifestImgs[rankIndex] || priorityImageMap[s.priority] || null;
+              return { priority: s.priority, allocation: s.allocation, imgSrc };
+            });
 
-            const offset = collageOffsets[i] || {
-              left: `50%`,
-              top: `50%`,
-              rotate: `0deg`,
-              z: i + 1,
-              scale: 1,
-            };
+            // Render collage items
+            const items = used.map((u, i) => {
+              const s = resultSummary[i];
+              const offset = collageOffsets[i] || { left: '50%', top: '50%', rotate: '0deg', z: i + 1, scale: 1 };
+              const count = resultSummary.length;
+              const spacing = count === 1 ? 0 : count === 2 ? 40 : -60;
+              const offsetX = Math.round((i - (count - 1) / 2) * spacing);
+              const allocation = typeof u.allocation === 'number' ? u.allocation : 0;
+              const widthPercent = Math.max(30, Math.min(80, Math.round(30 + allocation * 0.4)));
+              const finalScale = (offset.scale || 1) * (0.8 + Math.max(0, Math.min(1, allocation / 100)) * 0.8);
 
-            const count = resultSummary.length;
-            const spacing = count === 1 ? 0 : count === 2 ? 40 : -60; // smaller/negative spacing to create overlay
-            const offsetX = Math.round((i - (count - 1) / 2) * spacing);
-
-            // Compute width and scale from actual allocation percentage so budget affects prominence
-            const allocation = typeof s.allocation === 'number' ? s.allocation : 0;
-            const widthPercent = Math.max(30, Math.min(80, Math.round(30 + allocation * 0.4)));
-            const scaleFromAllocation = 0.8 + Math.max(0, Math.min(1, allocation / 100)) * 0.8; // 0.8..1.6
-            const finalScale = (offset.scale || 1) * scaleFromAllocation;
-            return (
-              <div
-                key={s.priority}
-                style={{
-                  position: "absolute",
-                  left: "50%",
-                  top: `calc(50% + ${offset.top})`,
-                  transform: `translate(calc(-50% + ${offsetX}px), -50%) rotate(${offset.rotate}) scale(${finalScale})`,
-                  width: `${widthPercent}%`,
-                  zIndex: offset.z,
-                }}
-              >
+              return (
                 <div
+                  key={u.priority}
                   style={{
-                    width: "100%",
-                    paddingBottom: "80%",
-                    position: "relative",
+                    position: 'absolute',
+                    left: '50%',
+                    top: `calc(50% + ${offset.top})`,
+                    transform: `translate(calc(-50% + ${offsetX}px), -50%) rotate(${offset.rotate}) scale(${finalScale})`,
+                    width: `${widthPercent}%`,
+                    zIndex: offset.z,
                   }}
                 >
-                  <img
-                    src={imgSrc}
-                    alt={s.priority}
-                    style={{
-                      position: "absolute",
-                      inset: 0,
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "contain",
-                      objectPosition: "center center",
-                    }}
-                  />
+                  <div style={{ width: '100%', paddingBottom: '80%', position: 'relative' }}>
+                    {u.imgSrc ? (
+                      <img src={u.imgSrc} alt={u.priority} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center center' }} />
+                    ) : (
+                      <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#eee' }}>{u.priority}</div>
+                    )}
+                  </div>
                 </div>
+              );
+            });
+
+            // Also render a small debug list of chosen URLs so we can confirm mapping
+            const debugList = (
+              <div style={{ position: 'absolute', left: 8, bottom: 8, background: 'rgba(255,255,255,0.9)', padding: 8, borderRadius: 6, fontSize: 12, maxWidth: 300 }}>
+                <div style={{ fontWeight: 700, marginBottom: 6 }}>MN3 used images</div>
+                {used.map((u) => (
+                  <div key={u.priority} style={{ marginBottom: 4 }}>
+                    <div style={{ fontWeight: 600 }}>{u.priority} ({u.allocation}%)</div>
+                    <div style={{ wordBreak: 'break-all', fontSize: 11 }}>{u.imgSrc || 'no image'}</div>
+                  </div>
+                ))}
               </div>
             );
-          })}
+
+            return (
+              <>
+                {items}
+                {debugList}
+              </>
+            );
+          })()
+        }
         </div>
       </div>
 
