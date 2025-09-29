@@ -108,7 +108,7 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   พัดลม: <IconFan />,
   ที่นั่งพิเศษ: <IconSeat />,
   "ที่จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
-  "ช่องชาร์จมือถือ/USB": <IconPlug />,
+  "ช่องชาร์จ���ือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
   "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
   กล้องวงจรปิด: <IconCamSmall />,
@@ -339,7 +339,7 @@ const DoorScreen: React.FC = () => {
                 }
 
                 // payment labels
-                if (label === "เงินสด")
+                if (label === "เงิน���ด")
                   return (
                     <div
                       key={`${label}-${idx}`}
@@ -546,7 +546,7 @@ const DoorScreen: React.FC = () => {
                       "ตู้อัตโนมัติ",
                       "แตะบัตร",
                       "กระเป๋ารถเมล์",
-                      "ตั๋วรายเดือน/รอบ",
+                      "ต��๋วรายเดือน/รอบ",
                       "1",
                       "2",
                       "ramp",
@@ -841,6 +841,7 @@ const DoorScreen: React.FC = () => {
                             appearance="group"
                             groupSize="lg"
                             fill
+                            disabled={disabled}
                           />,
                         );
 
