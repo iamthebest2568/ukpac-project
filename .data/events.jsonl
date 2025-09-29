@@ -557,3 +557,5 @@
 {"sessionId":"session_1759129503241_iimafzkit","eventName":"sw.variant.start","timestamp":"2025-09-29T07:07:55.101Z","variantId":"e61429e0","variantName":"PDPA"}
 {"sessionId":"session_1759129503241_iimafzkit","eventName":"sw.choice.selected","timestamp":"2025-09-29T07:08:05.198Z","choiceText":"ยอมรับและเริ่มเล่นเกม","variantId":"e61429e0","variantName":"PDPA"}
 {"sessionId":"session_1759129503241_iimafzkit","eventName":"sw.variant.start","timestamp":"2025-09-29T07:08:05.209Z","variantId":"02fe3354","variantName":"Opening Scene"}
+{"sessionId":"session_1759129503241_iimafzkit","eventName":"sw.choice.selected","timestamp":"2025-09-29T07:08:36.087Z","choiceText":"เริ่มเล่น","variantId":"02fe3354","variantName":"Opening Scene"}
+{"sessionId":"session_1759129503241_iimafzkit","eventName":"sw.variant.start","timestamp":"2025-09-29T07:08:36.857Z","variantId":"333faf2b","variantName":"เหตุผลหลักในการเดินทางเข้าเมือง"}

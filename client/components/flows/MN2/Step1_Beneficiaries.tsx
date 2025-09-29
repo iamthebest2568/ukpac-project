@@ -67,7 +67,7 @@ const Step1_Beneficiaries = ({
       id: "students",
       label: "นักเรียนนักศึกษา",
       iconSrc:
-        "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F0cd82b7996e641ee9cf3aaa0ab1cb9f8?format=webp&width=100",
+        "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fcef48bc6c6e5483bae9209eef3c44cb3?format=webp&width=800",
     },
     {
       id: "disabled",
