@@ -632,21 +632,21 @@ const Step2_Summary = ({
       }
 
       // Determine final output dimensions (CSS pixels) and center the content inside
-      const outputW = Math.max(1, canvasW);
-      const outputH = Math.max(1, canvasH);
+      const finalOutputW = Math.max(1, canvasW);
+      const finalOutputH = Math.max(1, canvasH);
 
       // Fit scale: by default do not upscale (avoid blur). If options.upscale is true, allow scale>1 to enlarge content
-      const rawScale = Math.min(outputW / elemW, outputH / elemH);
+      const rawScale = Math.min(finalOutputW / elemW, finalOutputH / elemH);
       const fitScale = options && options.upscale ? rawScale : Math.min(1, rawScale);
       const scaledW = Math.max(1, Math.round(elemW * fitScale));
       const scaledH = Math.max(1, Math.round(elemH * fitScale));
-      const offsetLeft = Math.round((outputW - scaledW) / 2);
-      const offsetTop = Math.round((outputH - scaledH) / 2);
+      const offsetLeft = Math.round((finalOutputW - scaledW) / 2);
+      const offsetTop = Math.round((finalOutputH - scaledH) / 2);
 
       // Build a holder to center and (optionally) scale the imported clone
       try {
-        wrapper.style.width = `${outputW}px`;
-        wrapper.style.height = `${outputH}px`;
+        wrapper.style.width = `${finalOutputW}px`;
+        wrapper.style.height = `${finalOutputH}px`;
         wrapper.style.position = 'relative';
         wrapper.style.display = 'block';
         wrapper.style.overflow = 'hidden';
@@ -671,7 +671,7 @@ const Step2_Summary = ({
 
       const serialized = new XMLSerializer().serializeToString(wrapper);
 
-      const svg = `<?xml version="1.0" encoding="UTF-8"?>\n<svg xmlns='http://www.w3.org/2000/svg' width='${outputW}' height='${outputH}'>\n  <foreignObject width='100%' height='100%'>\n    ${serialized}\n  </foreignObject>\n</svg>`;
+      const svg = `<?xml version="1.0" encoding="UTF-8"?>\n<svg xmlns='http://www.w3.org/2000/svg' width='${finalOutputW}' height='${finalOutputH}'>\n  <foreignObject width='100%' height='100%'>\n    ${serialized}\n  </foreignObject>\n</svg>`;
 
       const url = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
 
@@ -708,7 +708,7 @@ const Step2_Summary = ({
       ctx.fillRect(0, 0, canvasW, canvasH);
 
       // Draw the source SVG image (already centered inside the svg) into the canvas
-      ctx.drawImage(img as any, 0, 0, outputW, outputH, 0, 0, canvasW, canvasH);
+      ctx.drawImage(img as any, 0, 0, finalOutputW, finalOutputH, 0, 0, canvasW, canvasH);
 
       // Convert to blob via data URL (JPEG with configurable quality)
       const dataUrl = canvas.toDataURL("image/jpeg", quality);
