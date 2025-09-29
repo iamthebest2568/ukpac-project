@@ -228,10 +228,7 @@ const Ask04Budget = ({
               try {
                 const { addDesignImageUrlToFirestore } = await import("../../lib/firebase");
                 const writeRes = await addDesignImageUrlToFirestore(u, "beforecitychange-imageshow-events");
-                sentUrls[u] = { ok: true, uploadedTo: u, id: writeRes.id, collection: writeRes.collection, ts: Date.now(), fallback: true };
-                try {
-                  sessionStorage.setItem(key, JSON.stringify(sentUrls));
-                } catch (_) {}
+                // no sessionStorage tracking — allow repeated uploads
               } catch (ee) {
                 sentUrls[u] = { ok: false, error: String(ee) };
                 try {
