@@ -80,7 +80,10 @@ const TabletMockup: React.FC<TabletMockupProps> = ({ children }) => {
   }
 
   return (
-    <div className="fixed inset-0 grid place-items-center w-screen h-screen bg-neutral-100/60 overflow-hidden">
+    <div
+      className="fixed inset-0 grid place-items-center w-screen h-screen overflow-hidden"
+      style={isMydreambus ? { backgroundImage: `url(${mydreambusBackgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' } : { background: 'rgba(243,244,246,0.6)' }}
+    >
       <div
         ref={frameRef}
         className="relative"
