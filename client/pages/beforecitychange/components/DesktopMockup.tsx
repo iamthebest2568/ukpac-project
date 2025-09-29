@@ -63,9 +63,13 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
     typeof location !== "undefined" &&
     location.pathname &&
     location.pathname.startsWith("/beforecitychange/minigame-mn3");
+  const isAsk04Budget =
+    typeof location !== "undefined" &&
+    location.pathname &&
+    location.pathname.startsWith("/beforecitychange/ask04-budget");
 
   useEffect(() => {
-    if (!(isMN1 || isMN2 || isMN3)) return;
+    if (!(isMN1 || isMN2 || isMN3 || isAsk04Budget)) return;
     const iframe = iframeRef.current;
     if (!iframe) return;
 
@@ -253,7 +257,7 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
             >
               {/* For MN2/MN3, render content inside an iframe and portal children into it so the mock matches mobile.
                   Scoped to isMN2 or isMN3 to avoid affecting other pages. */}
-              {isMN1 || isMN2 || isMN3 ? (
+              {isMN1 || isMN2 || isMN3 || isAsk04Budget ? (
                 <>
                   <iframe
                     ref={iframeRef}
@@ -270,7 +274,7 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
 
                   {iframeMount ? (
                     createPortal(
-                      (isMN1 || isMN3) ? (
+                      (isMN1 || isMN3 || isAsk04Budget) ? (
                         <div className="desktop-mock-embed">
                           <RouteTransition>{children}</RouteTransition>
                         </div>
