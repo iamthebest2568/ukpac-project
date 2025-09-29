@@ -338,63 +338,70 @@
   color: #ffffff !important;
 }
 
-/* DesktopMockup-specific layout fixes for Ask04Budget page only */
+/* DesktopMockup-specific layout fixes for Ask04Budget page only: preserve original overlapping collage and stacked buttons */
 .desktop-mock-embed .ask04-budget-page .mn3-result-collage {
-  /* make collage flow horizontally and center images */
-  min-height: 40vh !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 18px !important;
-  transform: none !important;
+  /* keep the original absolute-overlay collage behavior from MN3 Step3_Result */
+  min-height: 65vh !important;
+  display: block !important;
+  position: relative !important;
+  transform: translateY(45px) !important; /* match inline transform in component */
 }
 
-/* Convert absolutely positioned image blocks into responsive flex items inside desktop mock */
+/* Keep absolutely positioned image blocks so they overlap as intended */
 .desktop-mock-embed .ask04-budget-page .mn3-result-collage > div {
-  position: static !important;
-  left: auto !important;
-  top: auto !important;
+  position: absolute !important;
+  left: 50% !important;
+  top: 50% !important;
+  /* allow component inline transform to control placement/rotation/scale */
   transform: none !important;
-  width: calc(33% - 12px) !important;
+  width: auto !important;
   z-index: auto !important;
 }
 
-/* Ensure inner image container maintains aspect ratio and centers image */
+/* Ensure inner image container maintains aspect ratio and centers image (match component styles) */
 .desktop-mock-embed .ask04-budget-page .mn3-result-collage > div > div {
   width: 100% !important;
-  padding-bottom: 66% !important; /* 3:2 aspect */
+  padding-bottom: 80% !important; /* match component's paddingBottom */
   position: relative !important;
 }
+
 .desktop-mock-embed .ask04-budget-page .mn3-result-collage img {
   position: absolute !important;
   inset: 0 !important;
   width: 100% !important;
   height: 100% !important;
-  object-fit: cover !important;
+  object-fit: contain !important; /* preserve full image inside frame */
   object-position: center center !important;
 }
 
-/* Buttons: keep centered and stacked with reasonable max-width on desktop mock */
+/* Buttons: keep centered and stacked with reasonable max-width on desktop mock (restore original layout) */
 .desktop-mock-embed .ask04-budget-page .figma-style1-button-container {
   width: 100% !important;
-  max-width: 520px !important;
+  max-width: 360px !important;
   margin: 0 auto !important;
   display: flex !important;
-  flex-direction: row !important;
+  flex-direction: column !important; /* stacked buttons (original) */
   gap: 12px !important;
-  transform: none !important;
+  transform: translateY(30px) !important; /* keep the downward offset as in component */
 }
 
-/* Make each button fill half of the container when using two buttons */
+/* Make each button full width when stacked */
 .desktop-mock-embed .ask04-budget-page .figma-style1-button-container > * {
-  flex: 1 1 0% !important;
-  width: auto !important;
+  width: 100% !important;
+  flex: none !important;
 }
 
-/* For narrow desktop widths, fall back to column stacking */
+/* For very wide desktops, allow slightly larger buttons but keep them centered */
+@media (min-width: 1200px) {
+  .desktop-mock-embed .ask04-budget-page .figma-style1-button-container {
+    max-width: 420px !important;
+  }
+}
+
+/* Preserve responsive stacking on narrow viewports as well */
 @media (max-width: 900px) {
   .desktop-mock-embed .ask04-budget-page .figma-style1-button-container {
     flex-direction: column !important;
-    max-width: 420px !important;
+    max-width: 360px !important;
   }
 }
