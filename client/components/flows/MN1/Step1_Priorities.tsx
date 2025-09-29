@@ -178,7 +178,7 @@ const Step1_Priorities = ({
                   letterSpacing: "0.4px",
                 }}
               >
-                ลดค่าโด��สารรถไฟฟ้า
+                ลดค่าโดยสารรถไฟฟ้า
               </span>
             </button>
 
@@ -242,7 +242,7 @@ const Step1_Priorities = ({
               style={{
                 width: "35.6%", // 385/1080
                 height: "clamp(60px, 4.7vw, 90px)",
-                backgroundColor: getButtonColor("เพิ่มความถี่รถเมล์"),
+                backgroundColor: getButtonColor("เพิ่มความ���ี่รถเมล์"),
                 opacity: isSelectionDisabled("เ��ิ่มความถี่รถเมล์") ? 0.5 : 1,
               }}
               onClick={() =>
