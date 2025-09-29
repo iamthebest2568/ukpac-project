@@ -176,8 +176,57 @@ const Step2_Summary = ({
   // Capture helper: serialize DOM to SVG -> rasterize to canvas -> resize to 3:4 (portrait) -> upload
   async function captureAndUpload() {
     try {
-      const el = document.getElementById("mn2-step2-content");
+      // Find target element robustly: prefer explicit id, then main within this document, then container by class.
+      function findContentElement(): HTMLElement | null {
+        // 1. exact id
+        const byId = document.getElementById("mn2-step2-content");
+        if (byId) return byId as HTMLElement;
+
+        // 2. main#main-content or first main
+        const mainById = document.getElementById("main-content") as HTMLElement | null;
+        if (mainById) {
+          // look for our container inside main
+          const inside = mainById.querySelector(".figma-style1-container") as HTMLElement | null;
+          if (inside) return inside;
+          return mainById;
+        }
+
+        const main = document.querySelector("main") as HTMLElement | null;
+        if (main) {
+          const inside = main.querySelector(".figma-style1-container") as HTMLElement | null;
+          if (inside) return inside;
+          return main;
+        }
+
+        // 3. any element with the container class
+        const container = document.querySelector(".figma-style1-container") as HTMLElement | null;
+        if (container) return container;
+
+        return null;
+      }
+
+      const el = findContentElement();
       if (!el) {
+        // If running in a parent document where the real app is inside an iframe, try to locate the iframe and inspect its document
+        try {
+          const iframes = Array.from(document.getElementsByTagName("iframe")) as HTMLIFrameElement[];
+          for (const f of iframes) {
+            try {
+              const doc = f.contentDocument || (f.contentWindow && f.contentWindow.document);
+              if (!doc) continue;
+              const candidate = doc.getElementById("mn2-step2-content") || doc.querySelector(".figma-style1-container") || doc.querySelector("main");
+              if (candidate) {
+                return candidate as HTMLElement;
+              }
+            } catch (e) {
+              // cross-origin or inaccessible iframe - skip
+              continue;
+            }
+          }
+        } catch (e) {
+          // ignore
+        }
+
         console.warn("mn2-step2-content element not found");
         return;
       }
