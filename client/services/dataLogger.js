@@ -316,7 +316,7 @@ export function exportSessionsAsCSV() {
     "เวลาสิ้นสุด (lastTimestamp)",
     "ยอมรับ PDPA (PDPA_acceptance)",
     "ประเภทรถ (chassis_type)",
-    "จำนวนที่นั่ง��วม (total_seats)",
+    "จำนวนที่นั่งรวม (total_seats)",
     "ที่นั่งพิเศษ (special_seats)",
     "จำนวนเด็ก/ผู้สูงอายุ (children_elder_count)",
     "จำนวนผู้ตั้งครรภ์ (pregnant_count)",
@@ -334,7 +334,7 @@ export function exportSessionsAsCSV() {
     "ชื่อผู้รับรางวัล (prize_name)",
     "เบอร์โทรผู้รับรางวัล (prize_phone)",
     "เว���าการรับรางวัล (prize_timestamp)",
-    "แชร์กับเพื่อน (shared_with_friends)",
+    "แชร์กับเพื���อน (shared_with_friends)",
     "เวลาแชร์ (shared_timestamp)",
   ];
 
