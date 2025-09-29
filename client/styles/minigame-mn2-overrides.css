@@ -153,6 +153,21 @@
   }
 }
 
+/* Policy-card full-bleed on small screens, centered with max-width on larger */
+.figma-style1-container.mn2-summary-page .policy-card {
+  box-sizing: border-box !important;
+  width: calc(100% - 32px) !important; /* give some side inset */
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+@media (min-width: 900px) {
+  .figma-style1-container.mn2-summary-page .policy-card {
+    width: 100% !important;
+    max-width: 903px !important;
+  }
+}
+
 
 /* Stack vertically on small viewports */
 @media (max-width: 540px) {
