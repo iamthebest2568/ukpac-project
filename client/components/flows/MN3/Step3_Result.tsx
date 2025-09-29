@@ -38,7 +38,7 @@ const Step3_Result = ({
     "เพิ่มความถี่รถเมล์": "🚍",
     "เพิ่มความถี่รถไฟฟ้า": "🚊",
     "เพิ่มที่จอดรถ": "🅿️",
-    "เพิ่ม Feeder ในซอย": "🚐",
+    "เพิ่ม Feeder ในซอย": "���",
   };
 
   // Map priorities to illustrative images (attachments provided)
@@ -236,106 +236,47 @@ const Step3_Result = ({
 
       {/* Selected priorities visual summary - overlapping collage */}
       <div className="w-full px-4 mb-6">
-        {/* Debug panel: shows computed resultSummary and chosen images (visible for testing) */}
-        <div style={{ maxWidth: 980, margin: '0 auto 12px', padding: 8, background: '#fff7', borderRadius: 8, fontSize: 13 }}>
-          <div style={{ fontWeight: 700, marginBottom: 6 }}>Debug — MN3 result mapping</div>
-          <div style={{ whiteSpace: 'pre-wrap', fontFamily: 'monospace', fontSize: 12 }}>
-            {JSON.stringify(resultSummary || [], null, 2)}
-          </div>
-        </div>
-
         <div
           className="max-w-[980px] mx-auto relative mn3-result-collage"
           style={{
-            minHeight: "65vh" /* center vertically in viewport */,
+            minHeight: "65vh",
             height: "auto",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            transform:
-              "translateY(75px)" /* move collage down by 75px for this page only */,
+            transform: "translateY(75px)",
           }}
         >
-          {
-          // Prepare used images list to make debugging easier and ensure consistent selection
-          (() => {
-            const normalize = (str: string) => (str || "").toString().normalize('NFKC').replace(/\s+/g, '').toLowerCase();
-            const findManifestFor = (priority: string) => {
-              if (!MN3_MANIFEST) return undefined;
-              if (MN3_MANIFEST[priority]) return MN3_MANIFEST[priority];
-              const norm = normalize(priority);
-              for (const k of Object.keys(MN3_MANIFEST)) {
-                if (normalize(k) === norm) return MN3_MANIFEST[k];
-              }
-              for (const k of Object.keys(MN3_MANIFEST)) {
-                const nk = normalize(k);
-                if (nk.includes(norm) || norm.includes(nk)) return MN3_MANIFEST[k];
-              }
-              return undefined;
-            };
+          {resultSummary.map((s, i) => {
+            const manifestImgs = findManifestFor(s.priority) || [];
+            // rank mapping: top choice -> 0 (100%), second -> 1 (75%), third -> 2 (30%)
+            const rankIndex = i < 3 ? i : Math.min(2, manifestImgs.length - 1);
+            const imgSrc = manifestImgs[rankIndex] || priorityImageMap[s.priority] || "https://cdn.builder.io/api/v1/image/assets/TEMP/placeholder.png?width=720";
 
-            const used = resultSummary.map((s, i) => {
-              const manifestImgs = findManifestFor(s.priority) || [];
-              const rankIndex = i < 3 ? i : 2;
-              const imgSrc = manifestImgs[rankIndex] || priorityImageMap[s.priority] || null;
-              return { priority: s.priority, allocation: s.allocation, imgSrc };
-            });
-
-            // Render collage items
-            const items = used.map((u, i) => {
-              const s = resultSummary[i];
-              const offset = collageOffsets[i] || { left: '50%', top: '50%', rotate: '0deg', z: i + 1, scale: 1 };
-              const count = resultSummary.length;
-              const spacing = count === 1 ? 0 : count === 2 ? 40 : -60;
-              const offsetX = Math.round((i - (count - 1) / 2) * spacing);
-              const allocation = typeof u.allocation === 'number' ? u.allocation : 0;
-              const widthPercent = Math.max(30, Math.min(80, Math.round(30 + allocation * 0.4)));
-              const finalScale = (offset.scale || 1) * (0.8 + Math.max(0, Math.min(1, allocation / 100)) * 0.8);
-
-              return (
-                <div
-                  key={u.priority}
-                  style={{
-                    position: 'absolute',
-                    left: '50%',
-                    top: `calc(50% + ${offset.top})`,
-                    transform: `translate(calc(-50% + ${offsetX}px), -50%) rotate(${offset.rotate}) scale(${finalScale})`,
-                    width: `${widthPercent}%`,
-                    zIndex: offset.z,
-                  }}
-                >
-                  <div style={{ width: '100%', paddingBottom: '80%', position: 'relative' }}>
-                    {u.imgSrc ? (
-                      <img src={u.imgSrc} alt={u.priority} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center center' }} />
-                    ) : (
-                      <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#eee' }}>{u.priority}</div>
-                    )}
-                  </div>
-                </div>
-              );
-            });
-
-            // Also render a small debug list of chosen URLs so we can confirm mapping
-            const debugList = (
-              <div style={{ position: 'absolute', left: 8, bottom: 8, background: 'rgba(255,255,255,0.9)', padding: 8, borderRadius: 6, fontSize: 12, maxWidth: 300 }}>
-                <div style={{ fontWeight: 700, marginBottom: 6 }}>MN3 used images</div>
-                {used.map((u) => (
-                  <div key={u.priority} style={{ marginBottom: 4 }}>
-                    <div style={{ fontWeight: 600 }}>{u.priority} ({u.allocation}%)</div>
-                    <div style={{ wordBreak: 'break-all', fontSize: 11 }}>{u.imgSrc || 'no image'}</div>
-                  </div>
-                ))}
-              </div>
-            );
+            const offset = collageOffsets[i] || { left: '50%', top: '50%', rotate: '0deg', z: i + 1, scale: 1 };
+            const count = resultSummary.length;
+            const spacing = count === 1 ? 0 : count === 2 ? 40 : -60;
+            const offsetX = Math.round((i - (count - 1) / 2) * spacing);
+            const width = count === 1 ? '68%' : count === 2 ? '55%' : '46%';
 
             return (
-              <>
-                {items}
-                {debugList}
-              </>
+              <div
+                key={s.priority}
+                style={{
+                  position: 'absolute',
+                  left: '50%',
+                  top: `calc(50% + ${offset.top})`,
+                  transform: `translate(calc(-50% + ${offsetX}px), -50%) rotate(${offset.rotate}) scale(${offset.scale})`,
+                  width,
+                  zIndex: offset.z,
+                }}
+              >
+                <div style={{ width: '100%', paddingBottom: '80%', position: 'relative' }}>
+                  <img src={imgSrc} alt={s.priority} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center center' }} />
+                </div>
+              </div>
             );
-          })()
-        }
+          })}
         </div>
       </div>
 
@@ -368,7 +309,7 @@ const Step3_Result = ({
                 style={{ width: "100%" }}
               >
                 <span className="figma-style1-button-text">
-                  ไม่ใช่, ลอ��อีกครั้ง
+                  ไม่ใช่, ลองอีกครั้ง
                 </span>
               </Uk1Button>
             </>
