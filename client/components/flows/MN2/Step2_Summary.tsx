@@ -129,14 +129,24 @@ const Step2_Summary = ({
     ) {
       cards = beneficiariesSelections.map((s: any) => {
         const beneficiaryObjects = (s.beneficiaries || [])
-          .filter((id: string) => id !== "other")
-          .map((id: string) => ({
-            id,
-            label: (beneficiaryMapping as any)[id]?.label || "ทุกคน",
-            iconSrc:
-              (beneficiaryMapping as any)[id]?.iconSrc ||
-              beneficiaryMapping.everyone.iconSrc,
-          }));
+          .filter((entry: any) => entry !== "other")
+          .map((entry: any) => {
+            if (entry && typeof entry === "object" && entry.id) {
+              return {
+                id: entry.id,
+                label: entry.label || (beneficiaryMapping as any)[entry.id]?.label || "ทุกคน",
+                iconSrc: entry.iconSrc || (beneficiaryMapping as any)[entry.id]?.iconSrc || beneficiaryMapping.everyone.iconSrc,
+              };
+            }
+            const id = String(entry);
+            return {
+              id,
+              label: (beneficiaryMapping as any)[id]?.label || "ทุกคน",
+              iconSrc:
+                (beneficiaryMapping as any)[id]?.iconSrc ||
+                beneficiaryMapping.everyone.iconSrc,
+            };
+          });
         return {
           priority: s.priority || "(ไม่ได้ระบุ)",
           beneficiaries: beneficiaryObjects,
@@ -179,7 +189,7 @@ const Step2_Summary = ({
 
   return (
     <FigmaStyle1Layout
-      title={<span style={{ color: "#000D59" }}>นโยบ��ยที่คุณเสนอ</span>}
+      title={<span style={{ color: "#000D59" }}>นโยบายที่คุณเสนอ</span>}
       backgroundImage={""}
       backgroundAlt=""
       useBlueOverlay={false}
@@ -338,7 +348,7 @@ const Step2_Summary = ({
                     console.warn("navigate to mn1 failed", e);
                   }
                 }}
-                aria-label="ไม่ใช่, ลองอีกครั้ง"
+                aria-label="ไม่ใช่, ลอง��ีกครั้ง"
               >
                 <span className="figma-style1-button-text">
                   ไม่ใช่, ลองอีกครั้ง
