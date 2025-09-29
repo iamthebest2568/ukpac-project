@@ -189,7 +189,7 @@ const Step1_Choice = ({
             <button
               onClick={handleNext}
               className="mn3-continue-button"
-              aria-label="ดำเนินการต่อไปยังขั้นตอนถัด��ป"
+              aria-label="ดำเนินการต่อไปยังขั้นตอนถัดไป"
             >
               ไปต่อ
             </button>
