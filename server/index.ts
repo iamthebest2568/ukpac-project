@@ -108,6 +108,7 @@ export function createServer() {
         "beforecitychange-imageshow-events",
         "kpact-gamebus-imagedesign-events",
         "ukpact-gamebus-imagedesign-events",
+        "minigameSummaries",
       ];
       const col = String(collection || "beforecitychange-imageshow-events");
       if (!allowed.includes(col))
