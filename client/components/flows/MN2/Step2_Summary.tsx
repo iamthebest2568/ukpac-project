@@ -108,7 +108,7 @@ const Step2_Summary = ({
           const id = String(entry);
           return {
             id,
-            label: (beneficiaryMapping as any)[id]?.label || "ทุกค��",
+            label: (beneficiaryMapping as any)[id]?.label || "ทุกคน",
             iconSrc:
               (beneficiaryMapping as any)[id]?.iconSrc ||
               beneficiaryMapping.everyone.iconSrc,
@@ -212,9 +212,9 @@ const Step2_Summary = ({
             {summaryCards.map((card, index) => (
               <div
                 key={index}
-                className="w-full max-w-[903px] mx-auto bg-transparent"
+                className="policy-card w-full max-w-[903px] mx-auto rounded-[20px] border-2 border-[#000D59] bg-white"
                 style={{
-                  padding: "12px 8px",
+                  padding: "12px 16px",
                 }}
               >
                 {/* Policy Title */}
