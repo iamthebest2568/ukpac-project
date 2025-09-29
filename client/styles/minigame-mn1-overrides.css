@@ -337,3 +337,64 @@
 .desktop-mock-embed .mn3-page-bg .mn3-policy-button--selected .mn3-button-text {
   color: #ffffff !important;
 }
+
+/* DesktopMockup-specific layout fixes for Ask04Budget page only */
+.desktop-mock-embed .ask04-budget-page .mn3-result-collage {
+  /* make collage flow horizontally and center images */
+  min-height: 40vh !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 18px !important;
+  transform: none !important;
+}
+
+/* Convert absolutely positioned image blocks into responsive flex items inside desktop mock */
+.desktop-mock-embed .ask04-budget-page .mn3-result-collage > div {
+  position: static !important;
+  left: auto !important;
+  top: auto !important;
+  transform: none !important;
+  width: calc(33% - 12px) !important;
+  z-index: auto !important;
+}
+
+/* Ensure inner image container maintains aspect ratio and centers image */
+.desktop-mock-embed .ask04-budget-page .mn3-result-collage > div > div {
+  width: 100% !important;
+  padding-bottom: 66% !important; /* 3:2 aspect */
+  position: relative !important;
+}
+.desktop-mock-embed .ask04-budget-page .mn3-result-collage img {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+}
+
+/* Buttons: keep centered and stacked with reasonable max-width on desktop mock */
+.desktop-mock-embed .ask04-budget-page .figma-style1-button-container {
+  width: 100% !important;
+  max-width: 520px !important;
+  margin: 0 auto !important;
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 12px !important;
+  transform: none !important;
+}
+
+/* Make each button fill half of the container when using two buttons */
+.desktop-mock-embed .ask04-budget-page .figma-style1-button-container > * {
+  flex: 1 1 0% !important;
+  width: auto !important;
+}
+
+/* For narrow desktop widths, fall back to column stacking */
+@media (max-width: 900px) {
+  .desktop-mock-embed .ask04-budget-page .figma-style1-button-container {
+    flex-direction: column !important;
+    max-width: 420px !important;
+  }
+}
