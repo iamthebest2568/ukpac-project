@@ -367,8 +367,48 @@ const Step2_Summary = ({
       } catch (_) {}
 
       // Measure natural size
-      const measuredW = Math.ceil(importedForMeasure.scrollWidth || importedForMeasure.offsetWidth || importedForMeasure.getBoundingClientRect().width || 800);
-      const measuredH = Math.ceil(importedForMeasure.scrollHeight || importedForMeasure.offsetHeight || importedForMeasure.getBoundingClientRect().height || Math.ceil((measuredW * 4) / 3));
+      let measuredW = Math.ceil(importedForMeasure.scrollWidth || importedForMeasure.offsetWidth || importedForMeasure.getBoundingClientRect().width || 800);
+      let measuredH = Math.ceil(importedForMeasure.scrollHeight || importedForMeasure.offsetHeight || importedForMeasure.getBoundingClientRect().height || Math.ceil((measuredW * 4) / 3));
+
+      // If cropping to content, compute tight bounds of non-empty descendants to remove trailing whitespace/padding
+      try {
+        const cropToContentOpt = options && typeof options.cropToContent === 'boolean' ? options.cropToContent : true;
+        if (cropToContentOpt) {
+          const rootRect = importedForMeasure.getBoundingClientRect();
+          let minTop = Infinity;
+          let minLeft = Infinity;
+          let maxBottom = -Infinity;
+          let maxRight = -Infinity;
+          const nodes = [importedForMeasure as HTMLElement, ...Array.from(importedForMeasure.querySelectorAll('*')) as HTMLElement[]];
+          for (const n of nodes) {
+            try {
+              const r = n.getBoundingClientRect();
+              const w = r.width || (n as any).offsetWidth || 0;
+              const h = r.height || (n as any).offsetHeight || 0;
+              const hasVisible = w > 0 && h > 0 && (n.textContent || '').trim().length > 0 || n.querySelector('img') || n.tagName === 'IMG' || (n.childElementCount > 0 && (n.innerText || '').trim().length > 0);
+              if (!hasVisible) continue;
+              const top = r.top - rootRect.top;
+              const left = r.left - rootRect.left;
+              const bottom = r.bottom - rootRect.top;
+              const right = r.right - rootRect.left;
+              if (top < minTop) minTop = top;
+              if (left < minLeft) minLeft = left;
+              if (bottom > maxBottom) maxBottom = bottom;
+              if (right > maxRight) maxRight = right;
+            } catch (_) {}
+          }
+          if (maxBottom > -Infinity && maxRight > -Infinity) {
+            // tighten measured sizes
+            const tightW = Math.ceil(Math.max(1, maxRight - Math.min(0, minLeft)));
+            const tightH = Math.ceil(Math.max(1, maxBottom - Math.min(0, minTop)));
+            // only override if significantly smaller to avoid breaking layout
+            if (tightW > 0 && tightH > 0) {
+              measuredW = tightW;
+              measuredH = tightH;
+            }
+          }
+        }
+      } catch (_) {}
 
       // Remove measure container
       try {
