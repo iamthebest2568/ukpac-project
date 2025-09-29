@@ -245,12 +245,20 @@ const Step2_Summary = ({
       clone.style.margin = "0";
 
       // Inline background to ensure white backdrop
-      const wrapper = document.createElement("div");
+      const ownerDoc = (el as any).ownerDocument || document;
+      const wrapper = ownerDoc.createElement("div");
       wrapper.setAttribute("xmlns", "http://www.w3.org/1999/xhtml");
       wrapper.style.width = `${elemW}px`;
       wrapper.style.height = `${elemH}px`;
       wrapper.style.background = "#ffffff";
-      wrapper.appendChild(clone);
+      // If clone is from a different document, import it into ownerDoc to avoid problems
+      let importedClone: Node;
+      try {
+        importedClone = ownerDoc.importNode(clone, true);
+      } catch (_) {
+        importedClone = clone;
+      }
+      wrapper.appendChild(importedClone as Node);
 
       const serialized = new XMLSerializer().serializeToString(wrapper);
 
