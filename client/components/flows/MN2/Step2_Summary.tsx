@@ -104,12 +104,14 @@ const Step2_Summary = ({
               return {
                 id: entry.id,
                 label: entry.label || String(entry.id),
+                iconSrc: (entry as any).iconSrc || null,
               };
             }
             const id = String(entry || "");
             return {
               id,
               label: id || "(ไม่ได้ระบุ)",
+              iconSrc: null,
             };
           });
         return {
