@@ -106,9 +106,23 @@ const Step1_Beneficiaries = ({
   };
 
   const handleNext = () => {
-    // Create selections array with this priority's beneficiaries
+    // Build beneficiary objects for the selections so summary can render the exact icons
+    const beneficiariesForCard = selectedGroups.map((id) => {
+      const found = beneficiaryGroups.find((g) => g.id === id);
+      if (found) {
+        return {
+          id: found.id,
+          label: found.label,
+          iconSrc: found.iconSrc,
+          iconSelectedSrc: found.iconSelectedSrc || null,
+        };
+      }
+      return { id, label: id, iconSrc: null };
+    });
+
+    // Create selections array with this priority's beneficiaries (objects)
     const selectionsArray = [
-      { priority: currentPriority, beneficiaries: selectedGroups },
+      { priority: currentPriority, beneficiaries: beneficiariesForCard },
     ];
     const data = { beneficiaries: { selections: selectionsArray } };
 
