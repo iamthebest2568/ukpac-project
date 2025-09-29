@@ -167,7 +167,7 @@ const Step2_Summary = ({
         <h1 style={{ margin: "0 auto", fontSize: 22, fontWeight: 700 }}>นโยบายที่คุณเสนอ</h1>
       </header>
 
-      <main style={{ flex: 1, overflow: "auto" }}>
+      <main style={{ flex: 1, overflow: "auto", paddingBottom: "calc(env(safe-area-inset-bottom, 12px) + 120px)" }}>
         {summaryCards && summaryCards.length > 0 ? (
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 12 }}>
             {summaryCards.map((card, i) => (
