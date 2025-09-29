@@ -322,13 +322,39 @@ export async function addDesignImageUrlToFirestore(
   async function findOrWrite(colName: string) {
     const colRef = collection(db as any, colName);
 
+    // derive a sensible filename from the imageUrl
+    let derivedName: string | null = null;
+    try {
+      const parsed = new URL(imageUrl);
+      const last = (parsed.pathname || "").split("/").pop() || "";
+      const decoded = decodeURIComponent(last || "");
+      derivedName = (decoded || last) ? String((decoded || last).split("/").pop()) : null;
+    } catch (_) {
+      // ignore
+    }
+
     // Check for existing document with same imageUrl to avoid duplicates
     try {
       const q = query(colRef as any, where("imageUrl", "==", imageUrl));
       const snap = await getDocs(q as any);
       if (snap && snap.size > 0) {
-        const docRef = snap.docs[0];
-        return { id: docRef.id, collection: colName } as const;
+        const existingDoc = snap.docs[0];
+        // ensure metadata fields exist; attempt to patch if missing
+        try {
+          const data = existingDoc.data && existingDoc.data();
+          const needUpdate =
+            !data || data.width == null || data.height == null || !data.name;
+          if (needUpdate) {
+            try {
+              await updateDoc(existingDoc.ref, {
+                name: data?.name || derivedName || null,
+                width: typeof dims?.width === "number" ? dims?.width : 1132,
+                height: typeof dims?.height === "number" ? dims?.height : 1417,
+              } as any);
+            } catch (_) {}
+          }
+        } catch (_) {}
+        return { id: existingDoc.id, collection: colName } as const;
       }
     } catch (err) {
       // ignore query errors and fall back to write
@@ -336,9 +362,10 @@ export async function addDesignImageUrlToFirestore(
 
     const docRef = await addDoc(colRef as any, {
       imageUrl,
-      // persist provided dimensions (nullable)
-      width: typeof dims?.width === "number" ? dims?.width : null,
-      height: typeof dims?.height === "number" ? dims?.height : null,
+      // persisted name and dimensions (default to forced values when not provided)
+      name: derivedName || null,
+      width: typeof dims?.width === "number" ? dims?.width : 1132,
+      height: typeof dims?.height === "number" ? dims?.height : 1417,
       createdAt: serverTimestamp(),
     });
     return { id: docRef.id, collection: colName } as const;
