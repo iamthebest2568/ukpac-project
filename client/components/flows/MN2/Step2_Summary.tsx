@@ -79,7 +79,7 @@ const Step2_Summary = ({
           const id = String(entry || "");
           return {
             id,
-            label: id || "(��ม่ได้ระบุ)",
+            label: id || "(ไม่ได้ระบุ)",
             iconSrc: null,
           };
         });
@@ -163,8 +163,8 @@ const Step2_Summary = ({
         background: "#fff",
       }}
     >
-      <header style={{ marginBottom: 12 }}>
-        <h1 style={{ margin: 0, fontSize: 22, fontWeight: 700 }}>นโยบายที่คุณเสนอ</h1>
+      <header style={{ marginBottom: 12, textAlign: "center" }}>
+        <h1 style={{ margin: "0 auto", fontSize: 22, fontWeight: 700 }}>นโยบายที่คุณเสนอ</h1>
       </header>
 
       <main style={{ flex: 1, overflow: "auto" }}>
