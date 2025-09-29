@@ -60,7 +60,7 @@ const Ask04Budget = ({
     {
       text: "ไม่พอใจ",
       onClick: () => handleChoice("unsatisfied"),
-      ariaLabel: "ไม่พอใจกับผลลัพธ์และต้องการให้ข้อเสนอแนะ",
+      ariaLabel: "ไม่พอใจกับผลลัพ���์และต้องการให้ข้อเสนอแนะ",
     },
   ];
 
@@ -82,7 +82,7 @@ const Ask04Budget = ({
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F79ac3a2ac5e84e88b4015fd66aaebe04?format=webp&width=720",
     เพิ่มความถี่รถไฟฟ้า:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fd90beaca642d4cceba685d933aeb644f?format=webp&width=720",
-    ปรับปรุงคุณภาพรถเมล์:
+    ปรับปร���งคุณภาพรถเมล์:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F602cfdd852a147ed852d50b2ed05772d?format=webp&width=720",
     เพิ่มความถี่รถเมล์:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F4e921e92e2c44db7a2ad24ee299e9a6d?format=webp&width=720",
@@ -260,7 +260,7 @@ const Ask04Budget = ({
               // final fallback: attempt to write original URL to Firestore
               try {
                 const { addDesignImageUrlToFirestore } = await import("../../lib/firebase");
-                const writeRes = await addDesignImageUrlToFirestore(u, "beforecitychange-imageshow-events", { width: null, height: null });
+                const writeRes = await addDesignImageUrlToFirestore(u, "beforecitychange-imageshow-events", { width: 1132, height: 1417 });
                 // no sessionStorage tracking — allow repeated uploads
               } catch (ee) {
                 // failed fallback write
