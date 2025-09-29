@@ -36,6 +36,8 @@ export async function generateMaskFromColor(src: string, targetHex: string, tole
     const srcArr = data.data;
     const dstArr = out.data;
 
+    let opaqueCount = 0;
+    const totalPixels = w * h;
     for (let i = 0; i < srcArr.length; i += 4) {
       const r = srcArr[i];
       const g = srcArr[i + 1];
@@ -43,25 +45,42 @@ export async function generateMaskFromColor(src: string, targetHex: string, tole
       const a = srcArr[i + 3];
       if (a === 0) {
         // fully transparent -> keep transparent
-        dstArr[i] = 0; dstArr[i+1] = 0; dstArr[i+2] = 0; dstArr[i+3] = 0;
+        dstArr[i] = 0;
+        dstArr[i + 1] = 0;
+        dstArr[i + 2] = 0;
+        dstArr[i + 3] = 0;
         continue;
       }
       const dr = r - tr;
       const dg = g - tg;
       const db = b - tb;
-      const dist = Math.sqrt(dr*dr + dg*dg + db*db);
-      if (dist <= tolerance) {
+      const dist = Math.sqrt(dr * dr + dg * dg + db * db);
+      if (dist <= Math.max(0, Math.min(255, tolerance))) {
         // keep area (white, opaque)
-        dstArr[i] = 255; dstArr[i+1] = 255; dstArr[i+2] = 255; dstArr[i+3] = 255;
+        dstArr[i] = 255;
+        dstArr[i + 1] = 255;
+        dstArr[i + 2] = 255;
+        dstArr[i + 3] = 255;
+        opaqueCount++;
       } else {
         // transparent elsewhere
-        dstArr[i] = 0; dstArr[i+1] = 0; dstArr[i+2] = 0; dstArr[i+3] = 0;
+        dstArr[i] = 0;
+        dstArr[i + 1] = 0;
+        dstArr[i + 2] = 0;
+        dstArr[i + 3] = 0;
       }
+    }
+
+    // If mask is almost fully transparent or almost fully opaque, treat as invalid to avoid applying a full-rect color overlay
+    const opaqueRatio = opaqueCount / Math.max(1, totalPixels);
+    if (opaqueRatio < 0.001 || opaqueRatio > 0.95) {
+      console.warn(`generateMaskFromColor: mask rejected due to opaqueRatio=${opaqueRatio.toFixed(4)}`);
+      return null;
     }
 
     ctx.clearRect(0, 0, w, h);
     ctx.putImageData(out, 0, 0);
-    const url = canvas.toDataURL('image/png');
+    const url = canvas.toDataURL("image/png");
     return url;
   } catch (e) {
     console.warn('generateMaskFromColor failed', e);
