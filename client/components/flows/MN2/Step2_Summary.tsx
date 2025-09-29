@@ -277,6 +277,7 @@ const Step2_Summary = ({
       // Inline computed styles from the live document into the cloned subtree to preserve appearance
       try {
         function inlineComputedStyles(sourceRoot: HTMLElement, targetRoot: HTMLElement) {
+          // Copy computed styles in document order (best-effort)
           const srcNodes = [sourceRoot, ...Array.from(sourceRoot.querySelectorAll("*"))];
           const dstNodes = [targetRoot, ...Array.from(targetRoot.querySelectorAll("*"))];
           const len = Math.min(srcNodes.length, dstNodes.length);
@@ -285,7 +286,6 @@ const Step2_Summary = ({
               const src = srcNodes[i] as HTMLElement;
               const dst = dstNodes[i] as HTMLElement;
               const cs = (ownerDoc.defaultView || window).getComputedStyle(src as any);
-              // Copy each computed property
               for (let k = 0; k < cs.length; k++) {
                 const prop = cs[k];
                 let val = cs.getPropertyValue(prop);
@@ -296,7 +296,6 @@ const Step2_Summary = ({
                     const m = /url\([\"']?([^\)\"']+)[\"']?\)/.exec(val);
                     if (m && m[1]) {
                       const originalUrl = m[1];
-                      // Only proxy absolute URLs
                       if (/^https?:\/\//i.test(originalUrl)) {
                         val = `url('/api/proxy-image?url=${encodeURIComponent(originalUrl)}')`;
                       }
@@ -306,16 +305,6 @@ const Step2_Summary = ({
                 try {
                   dst.style.setProperty(prop, val, priority);
                 } catch (_) {}
-              }
-
-              // Special handling for <img> to avoid CORS: point to proxy when needed
-              if (src.tagName === "IMG") {
-                const s = (src as HTMLImageElement).src || src.getAttribute("src") || "";
-                if (s && /^https?:\/\//i.test(s)) {
-                  try {
-                    (dst as HTMLImageElement).setAttribute("src", `/api/proxy-image?url=${encodeURIComponent(s)}`);
-                  } catch (_) {}
-                }
               }
 
               // Preserve value/checked for inputs
@@ -329,18 +318,42 @@ const Step2_Summary = ({
               continue;
             }
           }
+
+          // Handle images separately to avoid mapping mismatch: map imgs by index within their own lists
+          try {
+            const srcImgs = Array.from(sourceRoot.querySelectorAll("img")) as HTMLImageElement[];
+            const dstImgs = Array.from(targetRoot.querySelectorAll("img")) as HTMLImageElement[];
+            for (let i = 0; i < dstImgs.length; i++) {
+              try {
+                const dstImg = dstImgs[i];
+                const srcImg = srcImgs[i];
+                if (!srcImg) continue;
+                const s = srcImg.getAttribute("src") || srcImg.src || "";
+                if (s && /^https?:\/\//i.test(s)) {
+                  dstImg.setAttribute("src", `/api/proxy-image?url=${encodeURIComponent(s)}`);
+                } else if (s) {
+                  dstImg.setAttribute("src", s);
+                }
+                // copy alt
+                const alt = srcImg.getAttribute("alt");
+                if (alt) dstImg.setAttribute("alt", alt);
+                // copy inline width/height if present
+                if (srcImg.width) dstImg.width = srcImg.width;
+                if (srcImg.height) dstImg.height = srcImg.height;
+              } catch (_) {
+                continue;
+              }
+            }
+          } catch (_) {}
         }
 
-        // Determine original element mapping: if el and importedClone are from different documents, find corresponding source root
         let sourceRootForInline = el as HTMLElement;
-        // If original el is inside an iframe, use its ownerDocument's root
         try {
           if ((el as any).ownerDocument) {
             sourceRootForInline = el as HTMLElement;
           }
         } catch (_) {}
 
-        // Run inline
         inlineComputedStyles(sourceRootForInline, importedClone as HTMLElement);
       } catch (e) {
         console.warn("inlineComputedStyles failed", e);
@@ -530,7 +543,7 @@ const Step2_Summary = ({
             ใช่, ไปต่อ
           </Uk1Button>
           <Uk1Button variant="secondary" onClick={() => { try { navigateToPage && (navigateToPage("/minigame-mn1") as any); } catch (_) {} }} style={{ height: 53, borderRadius: 40 }}>
-            ไม่ใช่, ลองอีกครั้ง
+            ไม่ใช่, ลอง��ีกครั้ง
           </Uk1Button>
         </div>
       </footer>
