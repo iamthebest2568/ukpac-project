@@ -44,27 +44,40 @@
   border-radius: 0 !important;
 }
 
-/* Ensure the title/header is visible on MN2 step1 page */
+/* If header is empty, hide it to avoid reserved blank space */
+.figma-style1-container.mn2-step1-page .figma-style1-header:empty,
+.figma-style1-container.mn2-summary-page .figma-style1-header:empty {
+  display: none !important;
+}
+
+/* Ensure the title/header is visible only if present; minimize its footprint */
 .figma-style1-container.mn2-step1-page .figma-style1-header,
 .figma-style1-container.mn2-summary-page .figma-style1-header {
   display: flex !important;
   height: auto !important;
   margin: 0 !important;
-  padding: 12px 16px !important;
+  padding: 6px 12px !important;
   align-items: center !important;
   background: transparent !important;
   color: inherit !important;
   z-index: 1002 !important;
 }
 
-/* Ensure title container shows the page title correctly */
+/* Reduce top padding so title sits closer to top */
+.figma-style1-container.mn2-step1-page .figma-style1-content-area,
+.figma-style1-container.mn2-summary-page .figma-style1-content-area {
+  padding-top: 8px !important;
+}
+
+/* Ensure title container shows the page title correctly without extra margin */
 .figma-style1-container.mn2-step1-page .figma-style1-title-container,
 .figma-style1-container.mn2-summary-page .figma-style1-title-container {
   position: relative !important;
   top: auto !important;
   left: auto !important;
   transform: none !important;
-  padding-top: 12px !important;
+  padding-top: 6px !important;
+  margin: 0 !important;
 }
 
 /* Button sizing and layout for MN2 pages - standard, responsive (narrower max widths) */
