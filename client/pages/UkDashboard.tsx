@@ -40,8 +40,8 @@ type SessionSummary = {
   mn3Selected?: string[]; // ประเด็นนโยบายที่ผู้ใช้เลือก
   mn3BudgetAllocation?: Record<string, number>; // การจัดสรรงบประมาณ
   mn3BudgetTotal?: number;
-  satisfactionLevel?: string; // ระดับความพึงพอ��จ
-  ask05Comment?: string; // ข้อเสนอเพิ่มเติมต่อรัฐ
+  satisfactionLevel?: string; // ระดับความพึงพอใจ
+  ask05Comment?: string; // ข้อเสนอเพ���่มเติมต่อรัฐ
   fakeNewsResponse?: string; // การตอบสนองต่อข่าวปลอม
   sourceSelected?: string; // แหล่งข่าวที่ผู้ใช้เลือก
   endDecision?: string; // การเข้าร่วมลุ้นรางวัล
@@ -431,7 +431,7 @@ export default function UkDashboard() {
 
   async function clearData() {
     if (
-      !window.confirm("��บข้อมูลทั้งหมดในเซิร์ฟเวอร์? การกระ���ำนี้ย้อนกลับไม่ได้")
+      !window.confirm("��บข้อมูลทั้งหมดใ��เซิร์ฟเวอร์? การกระทำนี้ย้อนกลับไม่ได้")
     ) {
       return;
     }
@@ -615,7 +615,7 @@ export default function UkDashboard() {
                 disabled={clearing}
                 title="ลบ events.jsonl และ app-events.jsonl บ���เซิร์ฟเวอร์"
               >
-                {clearing ? "กำ��ังลบ..." : "ลบข้อมูลทั้งหมด"}
+                {clearing ? "กำลังลบ..." : "ลบข้อมูลทั้งหมด"}
               </button>
               <label className="flex items-center gap-2 text-sm text-white/80">
                 <input
@@ -677,7 +677,7 @@ export default function UkDashboard() {
                             </span>
                           </li>
                           <li className="flex justify-between">
-                            <span>จำนวนเซส���ัน</span>
+                            <span>จำนวนเซสชัน</span>
                             <span className="text-white/70">
                               {sessions.length}
                             </span>
@@ -918,7 +918,7 @@ export default function UkDashboard() {
                       "Access Time",
                       "ทำไมคุณถึงต้องเข้าเมืองบ่อย ๆ ?",
                       "คุณใช้รถแบบไหนเดินทางเข้าเมือง ?",
-                      "คุณคิดเห็นอย่างไรกับ��โยบายนี้ ?",
+                      "คุณคิดเห็นอย่างไรกับน��ยบายนี้ ?",
                       "จากข้อความข้างต้น คุณมีความคิดเห็นอย่างไร (เห็นด้วย/กลางๆ/ไม่เห็นด้วย)",
                       "ทำไมคุณถึงคิดอย่างนั้น (นโยบายไม่คร��บคลุม / เก็บไปก็ไม่มีอะไรดีขึ้น / อื่นๆ)",
                       "อธิบายอื่น ๆ ที่ช่วยอธิบายความคิดเห็น",
@@ -930,7 +930,7 @@ export default function UkDashboard() {
                       "คุณจะให้งบประมาณแต่ละข้อเท่าไร (งบทั้งหมด 100)",
                       "คุณพอใจกับผลลัพธ์ที่เกิดขึ้นหรือไม่ (พอใจ / ไม่พอใจ)",
                       "คุณคิดว่ารัฐควรทำอะไรที่จะทำให้นโยบายนี้เกิดขึ้นได้จริง และเป็นประโยชน์ต่อประชาชนอย่างแท้จริง",
-                      "ตอนนี้มีข้อมูลที่ผิดพลาด เช่น ข่าวปลอมเก���่ยวกับนโยบาย คุณคิดว่าอย่างไร",
+                      "ตอนนี้มีข้อมูลที่ผิดพลาด เช่น ข่าวปลอมเก���่ยวกับนโยบาย ��ุณคิดว่าอย่างไร",
                       "คุณจะติดตามข่าวหรือเชื่อจากแหล่งไหนมากที่สุด",
                       "ขอบคุณที่ร่วมเป็นส่วนหนึ่ง → ต้องการลุ้นรับรางวัลหรือ���ม่",
                       "กรอกข้อมูลเพื่อลุ้นรางวัล (ชื่อ)",
