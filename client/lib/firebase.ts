@@ -17,6 +17,7 @@ import {
   uploadBytes,
   getDownloadURL,
 } from "firebase/storage";
+import { getAuth } from "firebase/auth";
 
 // Firebase config provided by user
 const firebaseConfig = {
