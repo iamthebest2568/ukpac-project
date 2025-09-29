@@ -1,4 +1,3 @@
-import React, { useState, useEffect, useRef } from "react";
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CustomizationScreen from "../components/CustomizationScreen";
@@ -811,7 +810,7 @@ const DesignScreen: React.FC = () => {
                     <div className="bg-white rounded-xl p-4 max-w-lg w-full mx-4">
                       <style>{`.save-btn-modal:hover { color: #000D59 !important; }`}</style>
                       <h3 className="text-lg font-prompt font-semibold text-[#000d59]">
-                        ลักษณะพิเศษอื่นๆของรถคุณ
+                        ลักษณะพิเศษอื่นๆของรถ���ุณ
                       </h3>
                       <textarea
                         ref={textareaRef}
