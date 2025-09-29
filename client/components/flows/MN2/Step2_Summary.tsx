@@ -310,10 +310,19 @@ const Step2_Summary = ({
 
       // Convert to blob via data URL (JPEG with quality 0.8)
       const dataUrl = canvas.toDataURL("image/jpeg", 0.8);
-      const blob: Blob = await (async () => {
-        const resp = await fetch(dataUrl);
-        return await resp.blob();
-      })();
+      // Convert dataURL to blob without fetch (avoids CSP/fetch failures)
+      const dataParts = dataUrl.split(',');
+      const meta = dataParts[0];
+      const base64 = dataParts[1];
+      const mimeMatch = meta.match(/:(.*?);/);
+      const mime = mimeMatch ? mimeMatch[1] : 'image/jpeg';
+      const byteString = atob(base64);
+      const len = byteString.length;
+      const u8 = new Uint8Array(len);
+      for (let i = 0; i < len; i++) {
+        u8[i] = byteString.charCodeAt(i);
+      }
+      const blob: Blob = new Blob([u8], { type: mime });
       if (!blob) throw new Error("Failed to create image blob");
 
       // Prepare path and upload
