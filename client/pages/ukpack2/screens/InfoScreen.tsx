@@ -97,7 +97,7 @@ const InfoScreen: React.FC = () => {
         });
         if (!blob) {
           try {
-            const r = await addDesignImageUrlToFirestore(baseSrc, "mydreambus-imagedesign-events");
+            const r = await addDesignImageUrlToFirestore(baseSrc, "kpact-gamebus-imagedesign-events");
             try { sessionStorage.setItem(key, JSON.stringify({ id: r.id || null, url: baseSrc })); } catch (_) {}
           } catch (e) {
             console.warn("InfoScreen: fallback write image url failed", e);
@@ -119,7 +119,7 @@ const InfoScreen: React.FC = () => {
         } catch (e) {
           console.warn("InfoScreen: saveMinigameResult failed, attempting fallback", e);
           try {
-            const uploaded = await addDesignImageUrlToFirestore(baseSrc, "mydreambus-imagedesign-events");
+            const uploaded = await addDesignImageUrlToFirestore(baseSrc, "kpact-gamebus-imagedesign-events");
             try { sessionStorage.setItem(key, JSON.stringify({ id: uploaded.id || null, url: baseSrc })); } catch (_) {}
           } catch (e2) {
             console.warn("InfoScreen: fallback addDesignImageUrlToFirestore failed", e2);
@@ -292,7 +292,7 @@ const InfoScreen: React.FC = () => {
                   ในญี่ปุ่นมี Community Bus
                   รถเมล์ขนาดเล็กที่วิ่งเข้าซอยและพื้นที่ ที่รถใหญ่เข้าไม่ถึง
                   ค่าโดยสารถูกมาก บางแห่งนั่งได้ทั้งสาย เพียง 100 เยน
-                  ทำให้ผู้สูงอายุและเด็กเข้าถึงบริการสำคัญ เช่น
+                  ทำให้ผู้สูงอายุและเด็กเข้าถึงบริการสำคัญ เ���่น
                   โรงพยาบาลและศูนย์ชุมชนได้สะดวกขึ้น
                 </p>
               </div>
@@ -316,7 +316,7 @@ const InfoScreen: React.FC = () => {
                 </h2>
                 <p>
                   เคนยา – Matatu Minibus รู้หรือไม่! ในไนโรบีมี Matatu
-                  รถตู้โดยสาร 14–30 ที่นั่งที่วิ่งยืดหยุ่นตามผู้โดยสา��
+                  รถตู้โดยสาร 14–30 ที่นั่งที่วิ่งยืดหยุ่นตามผู้โดยสาร
                   แม้จะวุ่นวาย
                   แต่ก็เป็นทางเลือกการเดินทางราคาถูกที่เข้าถึงทุกพื้นที่
                   ทำให้คนทุกระดับรายได้มีโอกาสเดิทางสะดวก
@@ -329,10 +329,10 @@ const InfoScreen: React.FC = () => {
                 </h2>
                 <p>
                   ในญี่ปุ่นมี Community Bus
-                  รถเมล์ขนาดเล็กที่วิ่งเข้าซอยและพื้นที่ ที่รถใหญ่เข้าไม่ถึง
+                  รถเมล์ขนาดเล็กที่วิ่ง��ข้าซอยและพื้นที่ ที่รถใหญ่เข้าไม่ถึง
                   ค่าโดยสารถูกมาก บางแห่งนั่งได้ทั้งสาย เพียง 100 เยน
                   ทำให้ผู้สูงอายุ��ละเด็กเข้าถึงบริการสำคัญ เช่น
-                  โรงพยาบาลและศู��ย์ชุมชนได้สะดวกขึ้น
+                  โรงพยาบาลและศูนย์ชุมชนได้สะดวกขึ้น
                 </p>
               </div>
             )}
