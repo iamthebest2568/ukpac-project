@@ -41,7 +41,7 @@ type SessionSummary = {
   mn3BudgetAllocation?: Record<string, number>; // การจัดสรรงบประมาณ
   mn3BudgetTotal?: number;
   satisfactionLevel?: string; // ระดับความพึงพอใจ
-  ask05Comment?: string; // ข��อเสนอเพิ่มเติมต่อรัฐ
+  ask05Comment?: string; // ข้อเสนอเพิ��มเติมต่อรัฐ
   fakeNewsResponse?: string; // การตอบสนองต่อข่าวปลอม
   sourceSelected?: string; // แหล่งข่าวที่ผู้ใช้เลือก
   endDecision?: string; // การเข้าร่วมลุ้นรางวัล
@@ -431,7 +431,7 @@ export default function UkDashboard() {
 
   async function clearData() {
     if (
-      !window.confirm("ลบข้อมูลทั้งหมดในเซิร์ฟเวอร์? การกระทำนี้ย้อนกลับไม่ได้")
+      !window.confirm("ลบข้อมูลทั้งหมดในเซิร์��เวอร์? การกระทำนี้ย้อนกลับไม่ได้")
     ) {
       return;
     }
@@ -613,7 +613,7 @@ export default function UkDashboard() {
                 className="rounded-md bg-red-600/80 hover:bg-red-600 border border-red-500 px-3 py-2 text-sm"
                 onClick={clearData}
                 disabled={clearing}
-                title="ลบ events.jsonl และ app-events.jsonl บนเซ��ร์ฟเวอร์"
+                title="ลบ events.jsonl และ app-events.jsonl บนเซิร์ฟเวอร์"
               >
                 {clearing ? "กำลังลบ..." : "ลบข้อมูลทั้งหมด"}
               </button>
@@ -924,7 +924,7 @@ export default function UkDashboard() {
                       "อธิบายอื่น ๆ ที่ช่วยอธิบายความคิดเห็น",
                       "บอกเราหน่อยว่าคุณเดินทางเข้าเมืองด้วยวิธีการใดบ่อยที่สุด",
                       "จากนโยบายที่คุณฟังเมื่อสักครู่ คุณมีความคิดเห็นอย่างไร",
-                      "คุณคิดว่านโยบายปัจจุบัน ควรปรับเปลี่ยนประเด็นอะไรบ้าง (ลดค่าโดยสาร, ปรับปรุงคุณภาพ, ขึ้นราคา, เพิ่มขบวน, เพิ่มความถี่ ฯลฯ)",
+                      "คุณคิดว่านโยบายปัจจุบัน ควรปรับเปลี่ยนประเด็นอะไรบ้าง (ลดค่าโดยสาร, ปรับปรุงคุณภาพ, ขึ้นราคา, เพิ่มขบวน, เพิ่มค���ามถี่ ฯลฯ)",
                       "คุณคิดว่าใครควรได้รับการลดค่าโดยสารรถไฟฟ้า (ทุกคน, ผู้สูงอายุ, นักเรียน, คนทำงาน ฯลฯ)",
                       "คุณคิดว่าควรใช้เงินที่ได้จากการเก็บไปพัฒนาอะไร ก่อน 3 อันดับแรก",
                       "คุณจะให้งบประมาณแต่ละข้อเท่าไร (งบทั้งหมด 100)",
@@ -936,7 +936,7 @@ export default function UkDashboard() {
                       "กรอกข้อมูลเพื่อลุ้นรางวัล (ชื่อ)",
                       "กรอกข้อมูลเพื่อลุ้นรางวัล (เบอร์โทร)",
                       "Time Stamp (First)",
-                      "แชร์ให้เพื่อนไหม (ครั้งแร���)",
+                      "แชร์ให้เพื่อนไหม (ครั้งแรก)",
                       "Time Stamp (Last)",
                       "แชร์ให้เพื่อนไหม (เคยแชร์ไหม)",
                       "Session ID",
