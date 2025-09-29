@@ -695,7 +695,7 @@ export default function UkDashboard() {
                       <AccordionContent>
                         <ul className="space-y-1 text-sm">
                           <li className="flex justify-between">
-                            <span>ผ���้ใช้ไม่ซ้ำ (IP)</span>
+                            <span>ผู้ใช้ไม่ซ้ำ (IP)</span>
                             <span className="text-white/70">
                               {journey.ipCount || 0}
                             </span>
@@ -886,7 +886,7 @@ export default function UkDashboard() {
                     </AccordionItem>
                     {/* Comments */}
                     <AccordionItem value="comments">
-                      <AccordionTrigger>ข��อคิดเห็นอื่นๆ</AccordionTrigger>
+                      <AccordionTrigger>�����อคิดเห็นอื่นๆ</AccordionTrigger>
                       <AccordionContent>
                         <ul className="space-y-1 text-sm">
                           {(journey.ask05Samples || []).map(
@@ -952,7 +952,7 @@ export default function UkDashboard() {
                       "คุณคิดว่าควรใช้เงินที่ได้จากการเก็บไปพัฒนาอะไร ก่อน 3 อันดับแรก",
                       "คุณจะให้งบประมาณแต่ละข้อเท่าไร (งบทั้งหมด 100)",
                       "คุณพอใจกับผลลัพธ์ที่เกิดขึ้นหรือไม่ (พอใจ / ไม่พอใจ)",
-                      "คุณคิดว่ารัฐควรทำอะไรที่จะทำให้นโยบายนี้เกิดขึ้นได้จริง แ���ะเป���นประโยชน์ต่อประชาชนอย่างแท้จริง",
+                      "คุณคิดว่ารัฐควรทำอะไรที่จะทำให้นโยบายนี้เกิดขึ้นได้จริ��� แ���ะเป���นประโยชน์ต่อประชาชนอย่างแท้จริง",
                       "ตอนนี้มีข้อมูลที่ผิดพลาด เช่น ข่าวปลอมเกี่ยวกับนโยบาย คุณคิดว่าอย่างไร",
                       "คุณจะติดตามข่าวหรือเชื่อจากแหล่งไหนมากที่สุด",
                       "ขอบคุณที่ร่วมเป็นส่วนหนึ่ง → ต้องการลุ้นรับรางวัลหรือไม่",
