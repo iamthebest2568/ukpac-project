@@ -209,9 +209,7 @@ const Ask04Budget = ({
                   sentUrls[u] = { ok: true, uploadedTo: storageUrl, id: null, collection: null, ts: Date.now(), error: String(e) };
                 }
 
-                try {
-                  sessionStorage.setItem(key, JSON.stringify(sentUrls));
-                } catch (_) {}
+                // no sessionStorage write
               } catch (e) {
                 // If storage upload fails, fallback to writing original URL to Firestore
                 try {
