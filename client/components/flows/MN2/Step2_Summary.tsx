@@ -695,18 +695,27 @@ const Step2_Summary = ({
           {/* Manual capture button for testing */}
           <ManualCaptureButton />
 
-          {/* Preview area */}
-          {previewDataUrl ? (
-            <div style={{ display: "flex", flexDirection: "column", gap: 8, alignItems: "center" }}>
-              <img src={previewDataUrl} alt="preview" style={{ width: 180, height: 240, objectFit: "cover", borderRadius: 8, border: "1px solid #ddd" }} />
-              <div style={{ display: "flex", gap: 8 }}>
-                {lastStorageUrl ? (
-                  <a href={lastStorageUrl} target="_blank" rel="noreferrer" style={{ fontSize: 13 }}>เปิดใน Storage</a>
-                ) : null}
-                <a href={previewDataUrl} download={`mn2-preview-${Date.now()}.jpg`} style={{ fontSize: 13 }}>ดาวน์โหลด</a>
-              </div>
-            </div>
-          ) : null}
+          {/* Download button (no preview image) */}
+          <div style={{ display: "flex", gap: 8, justifyContent: "center", alignItems: "center" }}>
+            <Uk1Button onClick={() => {
+              try {
+                if (!previewDataUrl) return;
+                const a = document.createElement('a');
+                a.href = previewDataUrl;
+                a.download = `mn2-preview-${Date.now()}.jpg`;
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+              } catch (e) {
+                console.warn('download failed', e);
+              }
+            }} variant="ghost" style={{ height: 44, borderRadius: 12 }}>
+              ดาวน์โหลดภาพจับหน้า
+            </Uk1Button>
+            {lastStorageUrl ? (
+              <a href={lastStorageUrl} target="_blank" rel="noreferrer" style={{ fontSize: 13, alignSelf: 'center' }}>เปิดใน Storage</a>
+            ) : null}
+          </div>
 
           <Uk1Button onClick={() => { try { handleEndGame(); } catch (_) {} }} style={{ height: 53, borderRadius: 40 }}>
             ใช่, ไปต่อ
