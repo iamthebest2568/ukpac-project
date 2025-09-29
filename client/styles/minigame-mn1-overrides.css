@@ -327,3 +327,13 @@
 .desktop-mock-embed .minigame-mn3-page .mn3-policy-button--selected .mn3-button-text {
   color: #ffffff !important;
 }
+
+/* Some MN3 pages use .mn3-page-bg as root; ensure desktop mock styles target that too */
+.desktop-mock-embed .mn3-page-bg .mn3-policy-button--selected {
+  background-color: #000d59 !important;
+  color: #ffffff !important;
+  box-shadow: none !important;
+}
+.desktop-mock-embed .mn3-page-bg .mn3-policy-button--selected .mn3-button-text {
+  color: #ffffff !important;
+}
