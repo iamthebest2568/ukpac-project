@@ -235,6 +235,13 @@ const Step2_Summary = ({
 
       // Clone the node to avoid modifying the live DOM
       const clone = el.cloneNode(true) as HTMLElement;
+      // Remove footer/sticky elements from clone to avoid overlaying captured content
+      try {
+        const foot = clone.querySelector("footer");
+        if (foot && foot.parentNode) foot.parentNode.removeChild(foot);
+        const stickyEls = clone.querySelectorAll("[style*='position: sticky'], .figma-style1-button-container, footer");
+        stickyEls.forEach((s) => { try { (s as HTMLElement).style.display = "none"; } catch(_){} });
+      } catch (_) {}
 
       // Render a clone offscreen to measure full content size (including scrolled parts)
       const ownerDoc = (el as any).ownerDocument || document;
@@ -258,7 +265,13 @@ const Step2_Summary = ({
       }
 
       importedForMeasure.style.boxSizing = "border-box";
-      importedForMeasure.style.width = "auto";
+      // keep same layout width as source to preserve wrapping
+      try {
+        const originalRect = el.getBoundingClientRect();
+        importedForMeasure.style.width = `${Math.max(1, Math.round(originalRect.width))}px`;
+      } catch (_) {
+        importedForMeasure.style.width = "auto";
+      }
       importedForMeasure.style.height = "auto";
       importedForMeasure.style.maxHeight = "none";
       importedForMeasure.style.overflow = "visible";
