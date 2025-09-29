@@ -564,3 +564,5 @@
 {"sessionId":"session_1759129503241_iimafzkit","eventName":"sw.choice.selected","timestamp":"2025-09-29T07:09:23.892Z","choiceText":"รถยนต์ส่วนตัว","variantId":"4bec38a0","variantName":"คุณใช้รถแบบไหนเดินทางเข้าเมือง?"}
 {"sessionId":"session_1759129503241_iimafzkit","eventName":"sw.choice.selected","timestamp":"2025-09-29T07:10:38.201Z","choiceText":"กลัวเป็นภาระทางการเงิน","variantId":"e5c4a76f","variantName":"รถยนต์ส่วนตัว"}
 {"sessionId":"session_1759129503241_iimafzkit","eventName":"sw.variant.start","timestamp":"2025-09-29T07:10:38.960Z","variantId":"9440fec5","variantName":"กลัวเป็นภาระทางการเงิน"}
+{"sessionId":"session_1759129503241_iimafzkit","eventName":"sw.variant.start","timestamp":"2025-09-29T07:10:48.569Z","variantId":"e03cec7b","variantName":"ทดสอบ Key message"}
+{"sessionId":"session_1759129503241_iimafzkit","eventName":"sw.choice.selected","timestamp":"2025-09-29T07:10:48.563Z","choiceText":"ดูแล้ว","variantId":"9440fec5","variantName":"กลัวเป็นภาระทางการเงิน"}
