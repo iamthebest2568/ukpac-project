@@ -164,7 +164,7 @@ const Step2_Summary = ({
       <header style={{ marginBottom: 16 }}>
         <h1 style={{ margin: 0, fontSize: 20, fontWeight: 700 }}>MN2 — สรุปนโยบาย ( cleared )</h1>
         <p style={{ margin: "6px 0 0 0", color: "#333" }}>
-          หน้านี้ถูกล้างดีไซน์เพื่อการทดสอบเฉพาะหน้านี้เท่านั้น
+          หน้านี้ถูกล้างดี���ซน์เพื่อการทดสอบเฉพาะหน้านี้เท่านั้น
         </p>
       </header>
 
@@ -204,7 +204,6 @@ const Step2_Summary = ({
         <button
           onClick={() => {
             try {
-              logEvent({ event: "MINIGAME_MN2_SUMMARY_RETRY", payload: { sessionID, summaryCards } });
               navigateToPage && (navigateToPage("/minigame-mn1") as any);
             } catch (_) {}
           }}
