@@ -3,15 +3,29 @@
   align-items: center;
   justify-content: center;
   position: relative;
+  /* match mobile percentage sizing (vehicle-canvas uses w-[60%] on mobile) */
+  width: 60% !important;
+  height: auto !important;
+  max-width: none !important;
+  min-height: 0 !important;
 }
 
 .mydreambus-desktop-mock .vehicle-canvas img {
   display: block;
   width: 100% !important;
-  height: 100% !important;
+  height: auto !important;
   object-fit: contain !important;
 }
 
+.mydreambus-desktop-mock .vehicle-preview {
+  /* constrain section width to mobile-like content width so layout matches mobile */
+  max-width: 360px !important;
+  width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* overlay mask sits absolutely over the image; ensure it matches image box */
 .mydreambus-desktop-mock .vehicle-canvas > div[aria-hidden="true"] {
   position: absolute;
   left: 50%;
@@ -29,4 +43,22 @@
   mask-repeat: no-repeat !important;
   background-position: center center !important;
   pointer-events: none;
+}
+
+/* overlay icon ribbon: force mobile-sized bubbles */
+.mydreambus-desktop-mock .overlay-ribbon {
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: 100% !important;
+}
+.mydreambus-desktop-mock .overlay-ribbon .overlay-ribbon-track > div {
+  width: 36px !important;
+  height: 36px !important;
+  min-width: 36px !important;
+  min-height: 36px !important;
+}
+.mydreambus-desktop-mock .overlay-ribbon .overlay-ribbon-track img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
 }
