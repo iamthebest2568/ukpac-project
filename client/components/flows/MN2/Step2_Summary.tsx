@@ -29,6 +29,8 @@ const Step2_Summary = ({
   useUk1Button = false,
 }: Step2_SummaryProps) => {
   const [summaryCards, setSummaryCards] = useState<SummaryCard[]>([]);
+  const [previewDataUrl, setPreviewDataUrl] = useState<string | null>(null);
+  const [lastStorageUrl, setLastStorageUrl] = useState<string | null>(null);
   const { navigateToPage } = useSession();
 
   // Cleared: do not reference external images or mappings. Keep only textual labels.
@@ -543,7 +545,7 @@ const Step2_Summary = ({
             ใช่, ไปต่อ
           </Uk1Button>
           <Uk1Button variant="secondary" onClick={() => { try { navigateToPage && (navigateToPage("/minigame-mn1") as any); } catch (_) {} }} style={{ height: 53, borderRadius: 40 }}>
-            ไม่ใช่, ลอง��ีกครั้ง
+            ไม่ใช่, ลองอีกครั้ง
           </Uk1Button>
         </div>
       </footer>
