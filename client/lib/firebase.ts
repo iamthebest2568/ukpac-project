@@ -350,8 +350,8 @@ export async function addDesignImageUrlToFirestore(
   if (preferredCollection && typeof preferredCollection === "string") {
     candidates.push(preferredCollection);
   } else {
-    // No explicit preferred collection: try known historical collections (keep minimal to avoid accidental writes)
-    candidates.push("ukpact-gamebus-imagedesign-events");
+    // No explicit preferred collection: try known historical collections (ukpact then kpact)
+    candidates.push("ukpact-gamebus-imagedesign-events", "kpact-gamebus-imagedesign-events");
   }
 
   for (const colName of candidates) {
