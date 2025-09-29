@@ -431,7 +431,7 @@ export default function UkDashboard() {
 
   async function clearData() {
     if (
-      !window.confirm("ลบข้อมูลทั้งหมดในเซิร์ฟเวอร์? การกระทำนี้ย้อนกลับไม่ได้")
+      !window.confirm("ลบข้อมูลทั้งหมดในเซิร์ฟเวอร์? การกระทำนี้ย���อนกลับไม่ได้")
     ) {
       return;
     }
@@ -502,7 +502,7 @@ export default function UkDashboard() {
               className="w-full rounded-md bg-black/40 border border-white/15 px-3 py-2 outline-none"
               value={pw}
               onChange={(e) => setPw(e.target.value)}
-              placeholder="รหั��ผ่าน"
+              placeholder="รหัสผ่าน"
             />
             {pwErr && <div className="text-red-400 text-sm mt-2">{pwErr}</div>}
             <button
@@ -615,7 +615,7 @@ export default function UkDashboard() {
                 disabled={clearing}
                 title="ลบ events.jsonl และ app-events.jsonl บ���เซิร์ฟเวอร์"
               >
-                {clearing ? "กำลังลบ..." : "ลบข้อมูล���ั้งหมด"}
+                {clearing ? "กำลังลบ..." : "ล���ข้อมูล���ั้งหมด"}
               </button>
               <label className="flex items-center gap-2 text-sm text-white/80">
                 <input
@@ -919,9 +919,9 @@ export default function UkDashboard() {
                       "ทำไมคุณถึงต้องเข้าเมืองบ่อย ๆ ?",
                       "คุณใช้รถแบบไหนเดินทางเข้าเมือง ?",
                       "คุณคิดเห็นอย่างไรกับนโยบายนี้ ?",
-                      "จากข้อความข้างต้น คุณมีความคิดเห็นอย่างไร (เห็นด้วย/กลางๆ/ไม่เห็นด้วย)",
+                      "จากข้��ความข้างต้น คุณมีความคิดเห็นอย่างไร (เห็นด้วย/กลางๆ/ไม่เห็นด้วย)",
                       "ทำไมคุณถึงคิดอย่างนั้น (นโยบายไม่คร��บคลุม / เก็บไปก็ไม่มีอะไรดีขึ้น / อื่นๆ)",
-                      "อธิบายอื่��� ๆ ที่ช่วยอธิบายความคิดเห็น",
+                      "อธิบายอื่น ๆ ที่ช่วยอธิบายความคิดเห็น",
                       "บอกเราหน่อยว่าคุณเดินทางเข้าเมืองด้วยวิธีการใดบ่อยที่สุด",
                       "จากนโยบายที่คุณฟังเมื่อสักครู่ คุณมีความคิดเห็นอย่างไร",
                       "คุณคิดว่านโยบายปัจจุบัน ควรปรับเปลี่ยนประเด็นอะไรบ้าง (ลดค่าโดยสาร, ปรับปรุงคุณภาพ, ขึ��นราคา, เพิ่มขบวน, เพิ่มความถี่ ฯลฯ)",
