@@ -814,80 +814,6 @@ const Step2_Summary = ({
   }
 
   // Manual capture button component (for testing)
-  function ServerCaptureButton() {
-    const [status, setStatus] = useState<string | null>(null);
-    const onClick = async () => {
-      try {
-        setStatus('ก���ลังถ่ายหน��าจอ (server)...');
-        const payload = { url: window.location.pathname + window.location.search, page: 'Step2_Summary' };
-        const resp = await fetch('/api/capture-fullpage', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-        });
-        if (!resp.ok) {
-          const text = await resp.text();
-          console.warn('capture-fullpage failed', resp.status, text);
-          setStatus('server capture ล้มเหลว');
-          setTimeout(() => setStatus(null), 4000);
-          return;
-        }
-        const j = await resp.json();
-        if (j && j.ok && j.imageUrl) {
-          try { setLastStorageUrl(j.imageUrl); } catch (_) {}
-          setStatus('server capture สำเร็จ');
-        } else if (j && j.ok && j.storagePath) {
-          try { setLastStorageUrl(j.imageUrl || null); } catch (_) {}
-          setStatus('server capture อัปโหลดแล้ว');
-        } else {
-          setStatus('server capture: ไม่พบผลลั���ธ์');
-        }
-      } catch (e) {
-        console.warn('server capture error', e);
-        setStatus('server capture เกิดข้อผิดพลาด');
-      } finally {
-        setTimeout(() => setStatus(null), 5000);
-      }
-    };
-
-    return (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-        <Uk1Button onClick={onClick} variant="ghost" style={{ height: 44, borderRadius: 12 }}>
-          ถ่ายหน้าจอ (Server)
-        </Uk1Button>
-        {status ? <div style={{ fontSize: 13, color: '#333', textAlign: 'center' }}>{status}</div> : null}
-      </div>
-    );
-  }
-
-  function ManualCaptureButton() {
-    const [status, setStatus] = useState<string | null>(null);
-    const onClick = async () => {
-      try {
-        setStatus("กำลังจับภาพ...");
-        const url = await captureAndUpload();
-        if (url) {
-          setStatus("อัปโห��ดสำเร็จ");
-        } else {
-          setStatus("อัปโหลดล้มเห��ว");
-        }
-        setTimeout(() => setStatus(null), 5000);
-      } catch (e) {
-        console.warn("manual capture failed", e);
-        setStatus("เกิดข้อผิดพลาด");
-        setTimeout(() => setStatus(null), 5000);
-      }
-    };
-
-    return (
-      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-        <Uk1Button onClick={onClick} variant="ghost" style={{ height: 44, borderRadius: 12 }}>
-          จับภาพตอนนี้
-        </Uk1Button>
-        {status ? <div style={{ fontSize: 13, color: "#333", textAlign: "center" }}>{status}</div> : null}
-      </div>
-    );
-  }
 
   // Minimal cleared UI: no external layout components, no external classes.
   return (
@@ -940,30 +866,6 @@ const Step2_Summary = ({
 
       <footer style={{ position: "sticky", bottom: "calc(env(safe-area-inset-bottom, 12px))", marginTop: 24, zIndex: 1000 }}>
         <div style={{ maxWidth: 325, width: "100%", margin: "0 auto", display: "flex", flexDirection: "column", gap: 12, padding: "0 var(--space-sm)", boxSizing: "border-box" }}>
-          {/* Manual capture button for testing */}
-          <ManualCaptureButton />
-
-          {/* Download button (no preview image) */}
-          <div style={{ display: "flex", gap: 8, justifyContent: "center", alignItems: "center" }}>
-            <Uk1Button onClick={() => {
-              try {
-                if (!previewDataUrl) return;
-                const a = document.createElement('a');
-                a.href = previewDataUrl;
-                a.download = `mn2-preview-${Date.now()}.jpg`;
-                document.body.appendChild(a);
-                a.click();
-                a.remove();
-              } catch (e) {
-                console.warn('download failed', e);
-              }
-            }} variant="ghost" style={{ height: 44, borderRadius: 12 }}>
-              ดาวน์โหลดภาพจ���บหน้า
-            </Uk1Button>
-            {lastStorageUrl ? (
-              <a href={lastStorageUrl} target="_blank" rel="noreferrer" style={{ fontSize: 13, alignSelf: 'center' }}>เปิดใน Storage</a>
-            ) : null}
-          </div>
 
           <Uk1Button onClick={() => { try { handleEndGame(); } catch (_) {} }} style={{ height: 53, borderRadius: 40 }}>
             ใช่, ไปต่อ
