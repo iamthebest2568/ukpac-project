@@ -421,6 +421,12 @@ const Step2_Summary = ({
 
       // Convert to blob via data URL (JPEG with quality 0.8)
       const dataUrl = canvas.toDataURL("image/jpeg", 0.8);
+
+      // set preview for UI
+      try {
+        setPreviewDataUrl(dataUrl);
+      } catch (_) {}
+
       // Convert dataURL to blob without fetch (avoids CSP/fetch failures)
       const dataParts = dataUrl.split(',');
       const meta = dataParts[0];
@@ -449,6 +455,10 @@ const Step2_Summary = ({
       } catch (e) {
         console.warn("saveMinigameSummaryImageUrl failed", e);
       }
+
+      try {
+        setLastStorageUrl(storageUrl);
+      } catch (_) {}
 
       return storageUrl;
     } catch (e) {
