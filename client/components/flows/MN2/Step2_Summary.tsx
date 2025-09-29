@@ -276,6 +276,36 @@ const Step2_Summary = ({
       importedForMeasure.style.maxHeight = "none";
       importedForMeasure.style.overflow = "visible";
 
+      // Ensure nested scrollable elements expand to show full content
+      try {
+        const descendants = Array.from(importedForMeasure.querySelectorAll("*")) as HTMLElement[];
+        for (const d of descendants) {
+          try {
+            const cs = (ownerDoc.defaultView || window).getComputedStyle(d as any);
+            const overflow = (cs && (cs.getPropertyValue("overflow") || cs.getPropertyValue("overflow-y") || cs.getPropertyValue("overflow-x"))) || "";
+            // if element is scrollable or clipped, expand it
+            if (/auto|scroll|hidden/.test(overflow)) {
+              try {
+                const sh = (d as any).scrollHeight || (d as any).offsetHeight || null;
+                if (sh && sh > 0) {
+                  d.style.maxHeight = "none";
+                  d.style.height = `${sh}px`;
+                  d.style.overflow = "visible";
+                }
+              } catch (_) {}
+            }
+            // Normalize fixed/absolute positioning so elements render in flow
+            const pos = cs && cs.getPropertyValue("position");
+            if (pos === "fixed" || pos === "absolute") {
+              d.style.position = "static";
+            }
+            // Remove transforms which may clip or offset content
+            d.style.transform = "none";
+            d.style.webkitTransform = "none";
+          } catch (_) {}
+        }
+      } catch (_) {}
+
       measureContainer.appendChild(importedForMeasure);
       try {
         (ownerDoc.body || ownerDoc.documentElement).appendChild(measureContainer);
