@@ -79,11 +79,13 @@ const SelectionCard: React.FC<SelectionCardProps> = ({
     return (
       <button
         type="button"
-        onClick={onClick}
+        onClick={disabled ? undefined : onClick}
         onFocus={(e) => e.currentTarget.blur()}
         style={{ outline: "none", boxShadow: "none" }}
-        className={`inline-flex items-center justify-center p-0 ${layout === "horizontal" ? "horizontal" : "vertical"}`}
+        className={`inline-flex items-center justify-center p-0 ${layout === "horizontal" ? "horizontal" : "vertical"} ${disabled ? "opacity-60 cursor-not-allowed" : ""}`}
         aria-pressed={isSelected}
+        aria-disabled={disabled}
+        disabled={disabled}
       >
         <div
           className={`${boxSize} flex items-center justify-center border border-transparent bg-transparent iconContainer`}
