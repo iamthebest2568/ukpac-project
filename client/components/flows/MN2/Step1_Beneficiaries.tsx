@@ -60,6 +60,8 @@ const Step1_Beneficiaries = ({
       label: "ผู้สูงอายุ",
       iconSrc:
         "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc8b4a544d5b8448abed20368aeb08f90?format=webp&width=800",
+      iconSelectedSrc:
+        "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc44980fda71d41d9bd9a26bed252f944?format=webp&width=800",
     },
     {
       id: "students",

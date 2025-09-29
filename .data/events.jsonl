@@ -550,3 +550,6 @@
 {"sessionId":"session_1759128469984_swykklfdf","eventName":"sw.choice.selected","timestamp":"2025-09-29T06:51:48.739Z","choiceText":"กลัวเป็นภาระทางการเงิน","variantId":"e5c4a76f","variantName":"รถยนต์ส่วนตัว"}
 {"sessionId":"session_1759128469984_swykklfdf","eventName":"sw.choice.selected","timestamp":"2025-09-29T06:52:08.196Z","choiceText":"ดูแล้ว","variantId":"9440fec5","variantName":"กลัวเป็นภาระทางการเงิน"}
 {"sessionId":"session_1759128469984_swykklfdf","eventName":"sw.variant.start","timestamp":"2025-09-29T06:52:08.209Z","variantId":"e03cec7b","variantName":"ทดสอบ Key message"}
+{"sessionId":"session_1759129503241_iimafzkit","eventName":"sw.story.start","timestamp":"2025-09-29T07:07:44.722Z","variantId":"a59ef133","variantName":"Intro"}
+{"sessionId":"session_1759129503241_iimafzkit","eventName":"sw.variant.start","timestamp":"2025-09-29T07:07:44.722Z","variantId":"a59ef133","variantName":"Intro"}
+{"sessionId":"session_1759129503241_iimafzkit","eventName":"sw.choice.selected","timestamp":"2025-09-29T07:07:55.093Z","choiceText":"PDPA","variantId":"a59ef133","variantName":"Intro"}
