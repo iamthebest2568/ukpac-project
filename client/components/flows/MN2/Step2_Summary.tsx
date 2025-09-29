@@ -177,6 +177,8 @@ const Step2_Summary = ({
 
   // Capture helper: serialize DOM to SVG -> rasterize to canvas -> resize to 3:4 (portrait) -> upload
   async function captureAndUpload() {
+    // backup hidden elements so we can restore them in finally
+    let _hiddenBackup: { el: HTMLElement; display: string | null; visibility: string | null }[] = [];
     try {
       // Find target element robustly: prefer explicit id, then main within this document, then container by class.
       function findContentElement(): HTMLElement | null {
