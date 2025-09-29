@@ -546,3 +546,4 @@
 {"sessionId":"session_1759128469984_swykklfdf","eventName":"sw.choice.selected","timestamp":"2025-09-29T06:50:07.913Z","choiceText":"ทำงาน","variantId":"333faf2b","variantName":"เหตุผลหลักในการเดินทางเข้าเมือง"}
 {"sessionId":"session_1759128469984_swykklfdf","eventName":"sw.choice.selected","timestamp":"2025-09-29T06:50:26.323Z","choiceText":"รถยนต์ส่วนตัว","variantId":"4bec38a0","variantName":"คุณใช้รถแบบไหนเดินทางเข้าเมือง?"}
 {"sessionId":"session_1759128469984_swykklfdf","eventName":"sw.variant.start","timestamp":"2025-09-29T06:50:26.334Z","variantId":"e5c4a76f","variantName":"รถยนต์ส่วนตัว"}
+{"sessionId":"session_1759128469984_swykklfdf","eventName":"sw.variant.start","timestamp":"2025-09-29T06:51:48.751Z","variantId":"9440fec5","variantName":"กลัวเป็นภาระทางการเงิน"}
