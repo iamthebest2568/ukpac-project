@@ -10,7 +10,6 @@ import {
   query,
   where,
   getDocs,
-  updateDoc,
 } from "firebase/firestore";
 import {
   getStorage,
