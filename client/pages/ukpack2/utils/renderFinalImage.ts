@@ -28,6 +28,49 @@ export async function renderFinalImageBlob(baseSrc: string, maskSrc: string | nu
       try {
         const maskImg = await loadImage(maskSrc);
 
+        // quick diagnostic: measure mask opaque coverage
+        try {
+          const tmp = document.createElement("canvas");
+          tmp.width = width;
+          tmp.height = height;
+          const tctx = tmp.getContext("2d");
+          if (tctx) {
+            tctx.drawImage(maskImg, 0, 0, width, height);
+            try {
+              const id = tctx.getImageData(0, 0, width, height).data;
+              let opaque = 0;
+              for (let i = 0; i < id.length; i += 4) {
+                if (id[i + 3] > 16) opaque++;
+              }
+              const total = width * height || 1;
+              const pct = opaque / total;
+              console.debug("mask coverage", { width, height, opaque, total, pct });
+              // if mask covers nearly entire image (likely invalid), fallback to multiply tint
+              if (pct > 0.98 || pct < 0.002) {
+                console.warn("mask appears invalid (too large/small). Using multiply tint fallback", pct);
+                ctx.save();
+                ctx.globalCompositeOperation = "multiply";
+                ctx.fillStyle = colorHex;
+                ctx.fillRect(0, 0, width, height);
+                ctx.restore();
+                // done
+                return await new Promise<Blob | null>((resolve) => {
+                  try {
+                    canvas.toBlob((b) => resolve(b), "image/png");
+                  } catch (err) {
+                    console.warn("canvas.toBlob failed", err);
+                    resolve(null);
+                  }
+                });
+              }
+            } catch (e) {
+              // getImageData can throw if CORS tainted; ignore diagnostics then
+            }
+          }
+        } catch (dE) {
+          // ignore diagnostics
+        }
+
         // create color canvas
         const colorCanvas = document.createElement("canvas");
         colorCanvas.width = width;
@@ -44,8 +87,16 @@ export async function renderFinalImageBlob(baseSrc: string, maskSrc: string | nu
         cctx.drawImage(maskImg, 0, 0, width, height);
         cctx.globalCompositeOperation = "source-over";
 
-        // draw color overlay onto main canvas
-        ctx.drawImage(colorCanvas, 0, 0, width, height);
+        // draw color overlay onto main canvas using multiply blend so base detail remains
+        try {
+          ctx.save();
+          ctx.globalCompositeOperation = "multiply";
+          ctx.drawImage(colorCanvas, 0, 0, width, height);
+          ctx.restore();
+        } catch (e) {
+          // fallback to direct draw
+          ctx.drawImage(colorCanvas, 0, 0, width, height);
+        }
       } catch (e) {
         console.warn("apply color mask failed", e);
       }
