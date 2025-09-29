@@ -63,10 +63,11 @@ const InfoScreen: React.FC = () => {
         });
 
         // Use shared renderer to compose the final image (same logic as DesignScreen)
+        let composedBlob: Blob | null = null;
         try {
           const { renderFinalImageBlob } = await import("../utils/renderFinalImage");
-          const blob: Blob | null = await renderFinalImageBlob(baseSrc, maskSrc, colorHex);
-          if (!blob) {
+          composedBlob = await renderFinalImageBlob(baseSrc, maskSrc, colorHex);
+          if (!composedBlob) {
             try {
               const r = await addDesignImageUrlToFirestore(baseSrc, "kpact-gamebus-imagedesign-events");
               try { sessionStorage.setItem(key, JSON.stringify({ id: r.id || null, url: baseSrc })); } catch (_) {}
@@ -75,9 +76,6 @@ const InfoScreen: React.FC = () => {
             }
             return;
           }
-
-          // attach blob handling to outer scope by assigning to a local variable name expected later
-          // (the code below expects 'blob' to be defined)
         } catch (e) {
           console.warn("InfoScreen: renderFinalImageBlob failed", e);
           try {
@@ -316,7 +314,7 @@ const InfoScreen: React.FC = () => {
                   รถเมล์ขนาดเล็กที่วิ่ง��ข้าซอยและพื้นที่ ที่รถใหญ่เข้าไม่ถึง
                   ค่าโดยสารถูกมาก บางแห่งนั่งได้ทั้งสาย เพียง 100 เยน
                   ทำให้ผู้สูงอายุ��ละเด็กเข้าถึงบริการสำคัญ เช่น
-                  โรงพยาบาลและศูนย์ชุมชนได้สะดวกขึ้น
+                  โรงพยาบาลและศูนย์��ุมชนได้สะดวกขึ้น
                 </p>
               </div>
             )}
