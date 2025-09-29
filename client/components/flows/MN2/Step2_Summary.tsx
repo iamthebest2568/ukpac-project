@@ -681,6 +681,18 @@ const Step2_Summary = ({
     } catch (e) {
       console.warn("captureAndUpload error", e);
       throw e;
+    } finally {
+      // restore any hidden elements
+      try {
+        if (_hiddenBackup && _hiddenBackup.length) {
+          for (const item of _hiddenBackup) {
+            try {
+              if (item.display === null) item.el.style.removeProperty('display'); else item.el.style.setProperty('display', item.display);
+              if (item.visibility === null) item.el.style.removeProperty('visibility'); else item.el.style.setProperty('visibility', item.visibility);
+            } catch (_) {}
+          }
+        }
+      } catch (_) {}
     }
   }
 
@@ -738,7 +750,7 @@ const Step2_Summary = ({
         setStatus("กำลังจับภาพ...");
         const url = await captureAndUpload();
         if (url) {
-          setStatus("อัปโหลดสำเร็จ");
+          setStatus("อัปโห��ดสำเร็จ");
         } else {
           setStatus("อัปโหลดล้มเหลว");
         }
