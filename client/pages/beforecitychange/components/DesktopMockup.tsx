@@ -158,8 +158,17 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
 
   const mockup = (
     <div
-      className={`fixed inset-0 grid place-items-center w-screen h-screen ${isMN1 || isMN2 || isMN3 ? "bg-transparent" : "bg-neutral-100/40"} overflow-hidden`}
-      style={{ zIndex: 2147483647, pointerEvents: "none" }}
+      className={`fixed inset-0 grid place-items-center w-screen h-screen overflow-hidden`}
+      style={{
+        zIndex: 2147483647,
+        pointerEvents: "none",
+        backgroundImage: `url(${mockupBackgroundImage})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        // keep slight overlay to ensure mockup frame is visible
+        backgroundColor: isMN1 || isMN2 || isMN3 ? "transparent" : "rgba(255,255,255,0.06)",
+      }}
     >
       <div
         ref={frameRef}
