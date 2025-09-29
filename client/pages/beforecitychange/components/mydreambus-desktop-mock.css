@@ -1,0 +1,15 @@
+.mydreambus-desktop-mock .vehicle-canvas > div[aria-hidden="true"] {
+  -webkit-mask-size: 100% 100% !important;
+  mask-size: 100% 100% !important;
+  -webkit-mask-position: center !important;
+  mask-position: center !important;
+  -webkit-mask-repeat: no-repeat !important;
+  mask-repeat: no-repeat !important;
+  background-position: center !important;
+}
+
+.mydreambus-desktop-mock .vehicle-canvas img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+}
