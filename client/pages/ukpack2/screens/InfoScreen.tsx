@@ -7,6 +7,7 @@ import { HERO_IMAGE, CHASSIS_LABELS } from "../utils/heroImages";
 import VehiclePreview from "../components/VehiclePreview";
 import Uk2Footer from "../components/Uk2Footer";
 import styles from "./chassis.module.css";
+import { saveMinigameResult, addDesignImageUrlToFirestore } from "../../../lib/firebase";
 
 const InfoScreen: React.FC = () => {
   const navigate = useNavigate();
@@ -35,6 +36,102 @@ const InfoScreen: React.FC = () => {
   })();
 
   const effectiveHero = persistedFinal?.imageSrc || HERO_IMAGE[selected];
+
+  React.useEffect(() => {
+    let cancelled = false;
+    async function composeAndUpload() {
+      try {
+        const chassis = persistedFinal?.chassis || selected || "medium";
+        const key = `mydreambus_design_image_sent_${chassis}`;
+        try {
+          const existing = sessionStorage.getItem(key);
+          if (existing) return; // already uploaded
+        } catch (_) {}
+
+        const baseSrc = persistedFinal?.imageSrc || HERO_IMAGE[chassis];
+        const maskSrc = persistedFinal?.colorMaskSrc || null;
+        const colorHex = persistedFinal?.color?.colorHex || (() => {
+          try { const raw = sessionStorage.getItem("design.color"); return raw ? (JSON.parse(raw)?.colorHex || null) : null; } catch { return null; }
+        })();
+
+        const loadImage = (src: string) => new Promise<HTMLImageElement>((resolve, reject) => {
+          const img = new Image();
+          img.crossOrigin = "anonymous";
+          img.onload = () => resolve(img);
+          img.onerror = (e) => reject(e);
+          img.src = src;
+        });
+
+        const baseImg = await loadImage(baseSrc);
+        const width = baseImg.naturalWidth || 800;
+        const height = baseImg.naturalHeight || 600;
+        const canvas = document.createElement("canvas");
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext("2d");
+        if (!ctx) throw new Error("Canvas not supported");
+        ctx.drawImage(baseImg, 0, 0, width, height);
+
+        if (maskSrc && colorHex) {
+          try {
+            const maskImg = await loadImage(maskSrc);
+            const colorCanvas = document.createElement("canvas");
+            colorCanvas.width = width;
+            colorCanvas.height = height;
+            const cctx = colorCanvas.getContext("2d");
+            if (cctx) {
+              cctx.fillStyle = colorHex;
+              cctx.fillRect(0, 0, width, height);
+              cctx.globalCompositeOperation = "destination-in";
+              cctx.drawImage(maskImg, 0, 0, width, height);
+              cctx.globalCompositeOperation = "source-over";
+              ctx.drawImage(colorCanvas, 0, 0, width, height);
+            }
+          } catch (e) {
+            console.warn("InfoScreen: apply mask failed", e);
+          }
+        }
+
+        const blob: Blob | null = await new Promise((res) => {
+          try { canvas.toBlob((b) => res(b), "image/png"); } catch (e) { res(null); }
+        });
+        if (!blob) {
+          try {
+            const r = await addDesignImageUrlToFirestore(baseSrc, "mydreambus-imagedesign-events");
+            try { sessionStorage.setItem(key, JSON.stringify({ id: r.id || null, url: baseSrc })); } catch (_) {}
+          } catch (e) {
+            console.warn("InfoScreen: fallback write image url failed", e);
+          }
+          return;
+        }
+
+        let userId: string | null = null;
+        try {
+          const { getAuth } = await import("firebase/auth");
+          const auth = getAuth();
+          if (auth && (auth as any).currentUser) userId = (auth as any).currentUser.uid;
+        } catch (_) {}
+
+        try {
+          const res = await saveMinigameResult(blob, colorHex || null, userId);
+          const url = (res as any).url || null;
+          try { sessionStorage.setItem(key, JSON.stringify({ id: (res as any).docId || null, url })); } catch (_) {}
+        } catch (e) {
+          console.warn("InfoScreen: saveMinigameResult failed, attempting fallback", e);
+          try {
+            const uploaded = await addDesignImageUrlToFirestore(baseSrc, "mydreambus-imagedesign-events");
+            try { sessionStorage.setItem(key, JSON.stringify({ id: uploaded.id || null, url: baseSrc })); } catch (_) {}
+          } catch (e2) {
+            console.warn("InfoScreen: fallback addDesignImageUrlToFirestore failed", e2);
+          }
+        }
+      } catch (e) {
+        console.warn("InfoScreen: composeAndUpload failed", e);
+      }
+    }
+    composeAndUpload();
+    return () => { cancelled = true; };
+  }, [persistedFinal, selected]);
 
   return (
     <>
@@ -219,7 +316,7 @@ const InfoScreen: React.FC = () => {
                 </h2>
                 <p>
                   เคนยา – Matatu Minibus รู้หรือไม่! ในไนโรบีมี Matatu
-                  รถตู้โดยสาร 14–30 ที่นั่งที่วิ่งยืดหยุ่นตามผู้โดยสาร
+                  รถตู้โดยสาร 14–30 ที่นั่งที่วิ่งยืดหยุ่นตามผู้โดยสา��
                   แม้จะวุ่นวาย
                   แต่ก็เป็นทางเลือกการเดินทางราคาถูกที่เข้าถึงทุกพื้นที่
                   ทำให้คนทุกระดับรายได้มีโอกาสเดิทางสะดวก
@@ -235,7 +332,7 @@ const InfoScreen: React.FC = () => {
                   รถเมล์ขนาดเล็กที่วิ่งเข้าซอยและพื้นที่ ที่รถใหญ่เข้าไม่ถึง
                   ค่าโดยสารถูกมาก บางแห่งนั่งได้ทั้งสาย เพียง 100 เยน
                   ทำให้ผู้สูงอายุ��ละเด็กเข้าถึงบริการสำคัญ เช่น
-                  โรงพยาบาลและศูนย์ชุมชนได้สะดวกขึ้น
+                  โรงพยาบาลและศู��ย์ชุมชนได้สะดวกขึ้น
                 </p>
               </div>
             )}
