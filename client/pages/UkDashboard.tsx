@@ -28,8 +28,8 @@ type SessionSummary = {
   sessionId: string;
   firstSeen: string;
   lastSeen: string;
-  introWho?: string; // บ���บาทในการเดินทางเข้าเมือง
-  travelMethod?: string; // ยาน��าห��ะที่ใช้
+  introWho?: string; // บทบาทในการเดินทางเข้าเมือง
+  travelMethod?: string; // ยานพาหนะที่ใช้
   opinionLevel?: string; // ระดับความคิดเห็น
   ask02Choice?: string; // เหตุผลหลัก
   ask02CustomReason?: string; // เหตุผลพิมพ์เอง
@@ -37,13 +37,13 @@ type SessionSummary = {
   keyMessage1?: string; // Key message 1
   mn1Selected: string[]; // ลำดับความสำคัญของประเด็น
   mn2Selections?: Record<string, string[]>; // กลุ่มเป้าหมายที่ควรได้รับสิทธิ์
-  mn3Selected?: string[]; // ประเด็นนโยบา��ที่ผู้ใช้เลือก
+  mn3Selected?: string[]; // ประเด็นนโยบายที่ผู้ใช้เลือก
   mn3BudgetAllocation?: Record<string, number>; // การจัดสรรงบประมาณ
   mn3BudgetTotal?: number;
   satisfactionLevel?: string; // ระดับความพึงพอใจ
-  ask05Comment?: string; // ข���อเสนอเพิ่มเติมต่อรัฐ
+  ask05Comment?: string; // ข้อเสนอเพิ่มเติมต่อรัฐ
   fakeNewsResponse?: string; // การตอบสนองต่อข่าวปลอม
-  sourceSelected?: string; // แหล่งข่าวที่ผู้��ช้เลือก
+  sourceSelected?: string; // แหล่งข่าวที่ผู้ใช้เลือก
   endDecision?: string; // การเข้าร่วมลุ้นรางวัล
   endDecisionText?: string;
   contactName?: string;
@@ -304,7 +304,7 @@ export default function UkDashboard() {
       setLastUpdated(formatToBangkok(new Date()));
     } catch (e: any) {
       console.warn("load encountered error", e);
-      setError(e?.message || "โหลดข้อมูลล้มเหลว");
+      setError(e?.message || "โหลดข้อมูลล��มเหลว");
     } finally {
       if (firstLoad) setLoading(false);
       setFirstLoad(false);
@@ -431,7 +431,7 @@ export default function UkDashboard() {
 
   async function clearData() {
     if (
-      !window.confirm("ลบข้��มูลทั้งหมดในเซ��ร์ฟเวอร์? การกระทำนี้ย้อนกลับไม่ได้")
+      !window.confirm("ลบข้อมูลทั้งหมดในเซิร์ฟเวอร์? การกระทำนี้ย้อนกลับไม่ได้")
     ) {
       return;
     }
@@ -488,7 +488,7 @@ export default function UkDashboard() {
           <div className="w-full max-w-sm bg-white/5 border border-white/10 rounded-xl p-5">
             <div className="text-xl font-semibold mb-3">ป้อนรหัสผ่าน</div>
             <div className="text-sm text-white/70 mb-4">
-              หน้าน��้ป้องกันด้วยรหัสผ่าน
+              หน้านี้ป้องกันด้วยรหัสผ่าน
             </div>
             <input
               type="text"
@@ -502,7 +502,7 @@ export default function UkDashboard() {
               className="w-full rounded-md bg-black/40 border border-white/15 px-3 py-2 outline-none"
               value={pw}
               onChange={(e) => setPw(e.target.value)}
-              placeholder="รหัสผ��าน"
+              placeholder="รหัสผ่าน"
             />
             {pwErr && <div className="text-red-400 text-sm mt-2">{pwErr}</div>}
             <button
@@ -524,7 +524,7 @@ export default function UkDashboard() {
                 }
               }}
             >
-              เข้าสู่แดช���อร์ด
+              เข้าสู่แดชบอร์ด
             </button>
           </div>
         </div>
@@ -534,14 +534,14 @@ export default function UkDashboard() {
           <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
               <h1 className="text-3xl md:text-4xl font-semibold tracking-tight">
-                แ���ชบอร์ดวิเคร��ะห์วิดีโอ
+                แดชบอร์ดวิเคราะห์วิดีโอ
               </h1>
               <div className="text-white/70 text-sm mt-2">
                 อัปเดตล่าสุด: {lastUpdated || "-"}
               </div>
               {ingest && (
                 <div className="text-white/60 text-xs mt-1">
-                  การเก็บข้อมูล • App: {ingest.app.count} เหตุการณ์, ล่าสุด{" "}
+                  การเก็บข้อมูล • App: {ingest.app.count} เหตุการ���์, ล่าสุด{" "}
                   {ingest.app.lastTs
                     ? new Date(ingest.app.lastTs).toLocaleString()
                     : "-"}{" "}
@@ -613,9 +613,9 @@ export default function UkDashboard() {
                 className="rounded-md bg-red-600/80 hover:bg-red-600 border border-red-500 px-3 py-2 text-sm"
                 onClick={clearData}
                 disabled={clearing}
-                title="ลบ events.jsonl และ app-events.jsonl ���นเซิร์ฟเวอร์"
+                title="ลบ events.jsonl และ app-events.jsonl บนเซิร์ฟเวอร์"
               >
-                {clearing ? "กำลังลบ..." : "���บข้อมูลทั้งหมด"}
+                {clearing ? "กำลังลบ..." : "ลบข้อมูลทั้งหมด"}
               </button>
               <label className="flex items-center gap-2 text-sm text-white/80">
                 <input
@@ -742,7 +742,7 @@ export default function UkDashboard() {
                     {/* Stornaway choice */}
                     <AccordionItem value="stornaway">
                       <AccordionTrigger>
-                        เมื่ได้ยิ��ข่าวนี้ คุณคิดยังไง
+                        เมื่ได้ยินข่าวนี้ คุณคิดยังไง
                       </AccordionTrigger>
                       <AccordionContent>
                         <ul className="space-y-1 text-sm">
@@ -765,7 +765,7 @@ export default function UkDashboard() {
                     {/* MN1 */}
                     <AccordionItem value="mn1">
                       <AccordionTrigger>
-                        Minigame 1: ตัวเลือก���โยบาย
+                        Minigame 1: ตัวเลือกนโยบาย
                       </AccordionTrigger>
                       <AccordionContent>
                         <ul className="space-y-1 text-sm">
@@ -787,7 +787,7 @@ export default function UkDashboard() {
                     </AccordionItem>
                     {/* MN2 */}
                     <AccordionItem value="mn2">
-                      <AccordionTrigger>Minigame 2 : ั��คู่</AccordionTrigger>
+                      <AccordionTrigger>Minigame 2 : คู่</AccordionTrigger>
                       <AccordionContent>
                         <ul className="space-y-1 text-sm">
                           {Object.entries(journey.mn2ByMn1 || {}).map(
@@ -926,14 +926,14 @@ export default function UkDashboard() {
                       "จากนโยบายที่คุณฟังเมื่อสักครู่ คุณมีความคิดเห็นอย่าง��ร",
                       "คุณคิดว่าน���ยบายปัจจุบัน ควรปรับเปลี่ยนประเด็นอะไรบาง (ลดค่าโดยสา��, ปรับปรุงคุณภาพ, ขึ้น���าคา, เพ��่มขบวน, เพิ่มความถี่ ฯลฯ)",
                       "คุณคิดว่าใครควรได้รับการลดค่าโ���ยสารรถไฟฟ���า��้าง (ทุกคน, ผู้สูงอายุ, นักเรียน, คนทำงาน ฯลฯ)",
-                      "คุณคิดว่าคว��ใช้เงินที่ได้จากการเก็บไปพัฒนาอะไร ก่อน 3 อันดับแรก",
+                      "คุณคิดว่าคว��ใช้เงินที่ได้จากการเก็บไปพัฒนาอะไร ก่อน 3 อัน���ับแรก",
                       "คุณจะให้งบประมาณแต่ละข้อเท่าไร (งบทั้งหมด 100)",
                       "คุณพอใจ��ับผลลัพธ์ที่เกิดขึ้นหรือไ��่ (พ���ใจ / ไม่พอใจ)",
                       "คุณคิดว่ารัฐควรทำอะไรที่จะทำให้นโยบายนี้เกิดขึ้นได้จริง และเป็นประโยชน์ต่อประชาชนอย่างแท้จริง",
                       "ตอนนี้มี���้อ��ูลที่ผิดพลาด เช่น ข่าวปลอมเกี่ยวกับนโยบาย คุณคิดว่าอย่างไร",
                       "คุณ��ะติดตามข่า��� ���รือเชื่อจากแหล่ง��หนมาก���ี่สุด",
                       "ขอบคุณที่ร่วมเป็นส่วนหนึ่ง → ��้องการล���้นรับรางวัลหรือไม่",
-                      "กรอกข้อมูลเพื่อลุ้นรางวัล (ชื่อ)",
+                      "กรอกข้อม��ลเพื่อลุ้นรางวัล (ชื่อ)",
                       "กรอกข้อมูลเพื่อลุ้นรางวัล (เบอร์โทร)",
                       "Time Stamp (First)",
                       "แชร์ให้เพื่อนไหม (ครั้งแร���)",
