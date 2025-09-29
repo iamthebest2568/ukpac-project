@@ -108,7 +108,7 @@ const Step2_Summary = ({
           const id = String(entry);
           return {
             id,
-            label: (beneficiaryMapping as any)[id]?.label || "ทุกคน",
+            label: (beneficiaryMapping as any)[id]?.label || "ทุกค��",
             iconSrc:
               (beneficiaryMapping as any)[id]?.iconSrc ||
               beneficiaryMapping.everyone.iconSrc,
@@ -267,8 +267,8 @@ const Step2_Summary = ({
                             alt={beneficiary.label}
                             className="mn2-beneficiary-img object-contain"
                             style={{
-                              width: "84px",
-                              height: "84px",
+                              width: "96px",
+                              height: "96px",
                               display: "block",
                               objectFit: "contain",
                             }}
