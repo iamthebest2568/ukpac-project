@@ -354,6 +354,36 @@ const Step2_Summary = ({
     }
   }
 
+  // Manual capture button component (for testing)
+  function ManualCaptureButton() {
+    const [status, setStatus] = useState<string | null>(null);
+    const onClick = async () => {
+      try {
+        setStatus("กำลังจับภาพ...");
+        const url = await captureAndUpload();
+        if (url) {
+          setStatus("อัปโหลดสำเร็จ");
+        } else {
+          setStatus("อัปโหลดล้มเหลว");
+        }
+        setTimeout(() => setStatus(null), 5000);
+      } catch (e) {
+        console.warn("manual capture failed", e);
+        setStatus("เกิดข้อผิดพลาด");
+        setTimeout(() => setStatus(null), 5000);
+      }
+    };
+
+    return (
+      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+        <Uk1Button onClick={onClick} variant="ghost" style={{ height: 44, borderRadius: 12 }}>
+          จับภาพตอนนี้
+        </Uk1Button>
+        {status ? <div style={{ fontSize: 13, color: "#333", textAlign: "center" }}>{status}</div> : null}
+      </div>
+    );
+  }
+
   // Minimal cleared UI: no external layout components, no external classes.
   return (
     <div className="figma-style1-container figma-style1-ukpack1"
