@@ -6,8 +6,7 @@
 import { useEffect, useState } from "react";
 import { useSession } from "../../../hooks/useSession";
 import { logEvent } from "../../../services/dataLogger.js";
-import FigmaStyle1Layout from "../../layouts/FigmaStyle1Layout.ukpack1";
-import Uk1Button from "../../shared/Uk1Button";
+// Cleared design: do not import layout or shared style components here
 
 interface Step2_SummaryProps {
   sessionID: string | null;
