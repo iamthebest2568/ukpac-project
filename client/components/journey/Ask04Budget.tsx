@@ -2,6 +2,7 @@ import { logEvent } from "../../services/dataLogger.js";
 import FigmaStyle1Layout from "../layouts/FigmaStyle1Layout.ukpack1";
 import Uk1Button from "../shared/Uk1Button";
 import React, { useEffect, useState } from "react";
+import MN3_MANIFEST from '../../data/mn3-manifest';
 
 interface Ask04BudgetProps {
   sessionID: string | null;
@@ -84,7 +85,7 @@ const Ask04Budget = ({
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fd90beaca642d4cceba685d933aeb644f?format=webp&width=720",
     ปรับปรุงคุณภาพรถเมล์:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F602cfdd852a147ed852d50b2ed05772d?format=webp&width=720",
-    เพิ่มความถี่รถเมล์:
+    เพิ่มความ���ี่รถเมล์:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F4e921e92e2c44db7a2ad24ee299e9a6d?format=webp&width=720",
     "เพิ่ม Feeder ในซอย":
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fbb907b894b5a44b3bde47b685f00caca?format=webp&width=720",
@@ -361,26 +362,27 @@ const Ask04Budget = ({
             return displaySummary.map((s, i) => {
               // Try direct map, otherwise attempt a fuzzy/normalized match to handle stored keys with minor corruption
               const rawKey = s.priority || "";
-              let imgSrc = priorityImageMap[rawKey];
-              if (!imgSrc) {
-                const normalize = (str: string) =>
-                  String(str || "")
-                    .replace(/[\s\u00A0\uFEFF]+/g, "")
-                    .replace(/[^\p{L}\p{N}]/gu, "")
-                    .toLowerCase();
-                const nk = normalize(rawKey);
-                for (const k of Object.keys(priorityImageMap)) {
-                  const kk = normalize(k);
-                  if (!kk || !nk) continue;
-                  if (kk.includes(nk) || nk.includes(kk)) {
-                    imgSrc = priorityImageMap[k];
-                    break;
-                  }
+              // robust manifest lookup
+              const normalize = (str: string) => (str || "").toString().normalize('NFKC').replace(/\s+/g, '').toLowerCase();
+              const findManifestFor = (priority: string) => {
+                if (!MN3_MANIFEST) return undefined;
+                if (MN3_MANIFEST[priority]) return MN3_MANIFEST[priority];
+                const norm = normalize(priority);
+                for (const k of Object.keys(MN3_MANIFEST)) {
+                  if (normalize(k) === norm) return MN3_MANIFEST[k];
                 }
-              }
-              if (!imgSrc)
-                imgSrc =
-                  "https://cdn.builder.io/api/v1/image/assets/TEMP/placeholder.png?width=720";
+                for (const k of Object.keys(MN3_MANIFEST)) {
+                  const nk = normalize(k);
+                  if (nk.includes(norm) || norm.includes(nk)) return MN3_MANIFEST[k];
+                }
+                return undefined;
+              };
+
+              const manifestImgs = findManifestFor(rawKey) || [];
+              const rankIndex = i < 3 ? i : Math.min(2, manifestImgs.length - 1);
+              const rawImg = manifestImgs[rankIndex] || priorityImageMap[rawKey] || "https://cdn.builder.io/api/v1/image/assets/TEMP/placeholder.png?width=720";
+              const imgSrc = `/api/proxy-image?url=${encodeURIComponent(rawImg)}`;
+
               const offset = collageOffsets[i] || {
                 left: `50%`,
                 top: `50%`,
