@@ -161,20 +161,17 @@ const Step1_Beneficiaries = ({
       title={<span style={{ color: "#000D59" }}>{titleText}</span>}
     >
       {/* Content Area (selection grid & button) */}
-      <div className="w-full max-w-[334px] mb-8">
-        {/* Top Row */}
-        <div
-          className="flex justify-center items-center mb-2"
-          style={{ gap: "8px" }}
-        >
-          {beneficiaryGroups.slice(0, 3).map((group) => {
+      <div className="w-full max-w-[420px] mb-8">
+        {/* Grid with 4 icons per row */}
+        <div className="grid grid-cols-4 gap-3 justify-items-center">
+          {beneficiaryGroups.map((group) => {
             const isSelected = selectedGroups.includes(group.id);
             const isDisabled = isSelectionDisabled(group.id);
 
             return (
               <div
                 key={group.id}
-                className="flex flex-col items-center cursor-pointer w-[110px] flex-shrink-0"
+                className="flex flex-col items-center cursor-pointer w-full max-w-[96px]"
                 onClick={() => !isDisabled && handleGroupToggle(group.id)}
                 role="checkbox"
                 aria-checked={isSelected}
@@ -187,62 +184,14 @@ const Step1_Beneficiaries = ({
                   }
                 }}
               >
-                <div
-                  className={`w-[84px] h-[84px] mb-2 flex items-center justify-center`}
-                >
+                <div className={`w-[84px] h-[84px] mb-2 flex items-center justify-center`}>
                   <img
-                    src={
-                      isSelected
-                        ? group.iconSelectedSrc || group.iconSrc
-                        : group.iconSrc
-                    }
+                    src={isSelected ? group.iconSelectedSrc || group.iconSrc : group.iconSrc}
                     alt={group.label}
                     className="w-[84px] h-[84px] object-contain"
                   />
                 </div>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Bottom Row */}
-        <div
-          className="flex justify-center items-center"
-          style={{ gap: "8px" }}
-        >
-          {beneficiaryGroups.slice(3, 6).map((group) => {
-            const isSelected = selectedGroups.includes(group.id);
-            const isDisabled = isSelectionDisabled(group.id);
-
-            return (
-              <div
-                key={group.id}
-                className="flex flex-col items-center cursor-pointer w-[110px] flex-shrink-0"
-                onClick={() => !isDisabled && handleGroupToggle(group.id)}
-                role="checkbox"
-                aria-checked={isSelected}
-                aria-disabled={isDisabled}
-                tabIndex={isDisabled ? -1 : 0}
-                onKeyDown={(e) => {
-                  if ((e.key === "Enter" || e.key === " ") && !isDisabled) {
-                    e.preventDefault();
-                    handleGroupToggle(group.id);
-                  }
-                }}
-              >
-                <div
-                  className={`w-[84px] h-[84px] mb-2 flex items-center justify-center`}
-                >
-                  <img
-                    src={
-                      isSelected
-                        ? group.iconSelectedSrc || group.iconSrc
-                        : group.iconSrc
-                    }
-                    alt={group.label}
-                    className="w-[84px] h-[84px] object-contain"
-                  />
-                </div>
+                <span className="sr-only">{group.label}</span>
               </div>
             );
           })}
