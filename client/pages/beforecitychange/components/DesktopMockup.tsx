@@ -274,7 +274,7 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
 
                   {iframeMount ? (
                     createPortal(
-                      (isMN1 || isMN3 || isAsk04Budget) ? (
+                      isMN1 || isMN3 || isAsk04Budget ? (
                         <div className="desktop-mock-embed">
                           <RouteTransition>{children}</RouteTransition>
                         </div>

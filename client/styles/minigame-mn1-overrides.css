@@ -304,7 +304,10 @@
   color: #000 !important;
   box-shadow: none !important;
 }
-.tablet-mock-env .minigame-mn1-page .mn3-policy-button--selected .mn3-button-text {
+.tablet-mock-env
+  .minigame-mn1-page
+  .mn3-policy-button--selected
+  .mn3-button-text {
   color: #000 !important;
 }
 
@@ -314,7 +317,10 @@
   color: #ffffff !important;
   box-shadow: none !important;
 }
-.desktop-mock-embed .minigame-mn1-page .mn3-policy-button--selected .mn3-button-text {
+.desktop-mock-embed
+  .minigame-mn1-page
+  .mn3-policy-button--selected
+  .mn3-button-text {
   color: #ffffff !important;
 }
 
@@ -324,7 +330,10 @@
   color: #ffffff !important;
   box-shadow: none !important;
 }
-.desktop-mock-embed .minigame-mn3-page .mn3-policy-button--selected .mn3-button-text {
+.desktop-mock-embed
+  .minigame-mn3-page
+  .mn3-policy-button--selected
+  .mn3-button-text {
   color: #ffffff !important;
 }
 

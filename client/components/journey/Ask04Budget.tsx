@@ -150,9 +150,24 @@ const Ask04Budget = ({
         resultSummary && resultSummary.length > 0
           ? resultSummary
           : [
-              { priority: "เพิ่มความถี่รถเมล์", allocation: 0, percentage: 0, icon: "" },
-              { priority: "เพิ่มที่จอดรถ", allocation: 0, percentage: 0, icon: "" },
-              { priority: "ลดค่าโดยสารรถไฟฟ้า", allocation: 0, percentage: 0, icon: "" },
+              {
+                priority: "เพิ่มความถี่รถเมล์",
+                allocation: 0,
+                percentage: 0,
+                icon: "",
+              },
+              {
+                priority: "เพิ่มที่จอดรถ",
+                allocation: 0,
+                percentage: 0,
+                icon: "",
+              },
+              {
+                priority: "ลดค่าโดยสารรถไฟฟ้า",
+                allocation: 0,
+                percentage: 0,
+                icon: "",
+              },
             ];
 
       const urls: string[] = displaySummary
@@ -163,9 +178,8 @@ const Ask04Budget = ({
       // perform uploads in async IIFE
       (async () => {
         try {
-          const { uploadFileToStorage, addDesignImageUrlToFirestore } = await import(
-            "../../lib/firebase"
-          );
+          const { uploadFileToStorage, addDesignImageUrlToFirestore } =
+            await import("../../lib/firebase");
           try {
             console.debug("[Ask04Budget] displaySummary", displaySummary);
           } catch (_) {}
@@ -182,7 +196,8 @@ const Ask04Budget = ({
               } catch (_) {}
 
               const resp = await fetch(u, { mode: "cors" });
-              if (!resp.ok) throw new Error(`failed to fetch image ${resp.status}`);
+              if (!resp.ok)
+                throw new Error(`failed to fetch image ${resp.status}`);
               const blob = await resp.blob();
 
               // attempt to derive image dimensions from the fetched blob
@@ -190,7 +205,9 @@ const Ask04Budget = ({
               let derivedHeight: number | null = null;
               try {
                 if (typeof (window as any).createImageBitmap === "function") {
-                  const imgBitmap = await (window as any).createImageBitmap(blob);
+                  const imgBitmap = await (window as any).createImageBitmap(
+                    blob,
+                  );
                   derivedWidth = imgBitmap.width || null;
                   derivedHeight = imgBitmap.height || null;
                 } else {
@@ -217,14 +234,21 @@ const Ask04Budget = ({
 
               // Build storage path: ask04-budget/<timestamp>_<index>.<ext>
               const ts = Date.now();
-              const extMatch = (u.match(/\.([a-zA-Z0-9]+)(?:\?|$)/) || [])[1] || "png";
+              const extMatch =
+                (u.match(/\.([a-zA-Z0-9]+)(?:\?|$)/) || [])[1] || "png";
               const filename = `${ts}_${i}.${extMatch}`;
               const storagePath = `ask04-budget/${filename}`;
 
               try {
-                const storageUrl = await uploadFileToStorage(blob as any, storagePath);
+                const storageUrl = await uploadFileToStorage(
+                  blob as any,
+                  storagePath,
+                );
                 try {
-                  console.debug("[Ask04Budget] uploaded to storage", storageUrl);
+                  console.debug(
+                    "[Ask04Budget] uploaded to storage",
+                    storageUrl,
+                  );
                 } catch (_) {}
 
                 // Record in Firestore (include derived dimensions when available)
@@ -255,12 +279,21 @@ const Ask04Budget = ({
               }
             } catch (e) {
               try {
-                console.error("[Ask04Budget] exception while processing image", e);
+                console.error(
+                  "[Ask04Budget] exception while processing image",
+                  e,
+                );
               } catch (_) {}
               // final fallback: attempt to write original URL to Firestore
               try {
-                const { addDesignImageUrlToFirestore } = await import("../../lib/firebase");
-                const writeRes = await addDesignImageUrlToFirestore(u, "beforecitychange-imageshow-events", { width: 1132, height: 1417 });
+                const { addDesignImageUrlToFirestore } = await import(
+                  "../../lib/firebase"
+                );
+                const writeRes = await addDesignImageUrlToFirestore(
+                  u,
+                  "beforecitychange-imageshow-events",
+                  { width: 1132, height: 1417 },
+                );
                 // no sessionStorage tracking — allow repeated uploads
               } catch (ee) {
                 // failed fallback write

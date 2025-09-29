@@ -328,7 +328,8 @@ export async function addDesignImageUrlToFirestore(
       const parsed = new URL(imageUrl);
       const last = (parsed.pathname || "").split("/").pop() || "";
       const decoded = decodeURIComponent(last || "");
-      derivedName = (decoded || last) ? String((decoded || last).split("/").pop()) : null;
+      derivedName =
+        decoded || last ? String((decoded || last).split("/").pop()) : null;
     } catch (_) {
       // ignore
     }

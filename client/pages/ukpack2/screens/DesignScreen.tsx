@@ -2,7 +2,10 @@ import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CustomizationScreen from "../components/CustomizationScreen";
 import ColorPalette from "../components/ColorPalette";
-import { addDesignImageUrlToFirestore, saveMinigameResult } from "../../../lib/firebase";
+import {
+  addDesignImageUrlToFirestore,
+  saveMinigameResult,
+} from "../../../lib/firebase";
 import MetaUpdater from "../../../components/MetaUpdater";
 import { OVERLAY_ICON_SRC } from "../utils/overlayIcons";
 import CtaButton from "../components/CtaButton";
@@ -381,7 +384,11 @@ const DesignScreen: React.FC = () => {
           try {
             const parsed = JSON.parse(existing);
             if (parsed && parsed.url) {
-              setSavedInfo({ id: parsed.id || "", url: parsed.url, col: parsed.col });
+              setSavedInfo({
+                id: parsed.id || "",
+                url: parsed.url,
+                col: parsed.col,
+              });
             }
           } catch (_) {}
         }
@@ -398,7 +405,9 @@ const DesignScreen: React.FC = () => {
             );
           } catch (_) {}
         })
-        .catch((err) => console.warn("addDesignImageUrlToFirestore error", err));
+        .catch((err) =>
+          console.warn("addDesignImageUrlToFirestore error", err),
+        );
     } catch (_) {}
     // run on mount only
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -531,7 +540,8 @@ const DesignScreen: React.FC = () => {
             // dynamic import to avoid adding firebase/auth earlier in this module
             const { getAuth } = await import("firebase/auth");
             const auth = getAuth();
-            if (auth && (auth as any).currentUser) userId = (auth as any).currentUser.uid;
+            if (auth && (auth as any).currentUser)
+              userId = (auth as any).currentUser.uid;
           } catch (_) {}
 
           // upload and persist
