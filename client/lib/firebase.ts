@@ -635,10 +635,34 @@ export async function saveMinigameSummaryImageUrl(imageUrl: string) {
   if (!db) throw new Error("Firestore not initialized");
 
   try {
+    // Attempt to capture clientHash from storage metadata when possible
+    let clientHash: string | null = null;
+    try {
+      const m = /https:\/\/firebasestorage.googleapis.com\/v0\/b\/[^/]+\/o\/([^?]+)(\?.*)?/.exec(
+        imageUrl,
+      );
+      if (m && m[1]) {
+        const encodedPath = m[1];
+        const decoded = decodeURIComponent(encodedPath);
+        try {
+          const storage = getStorage(appInstance as any);
+          const ref = storageRef(storage as any, decoded);
+          const { getMetadata } = await import("firebase/storage");
+          const meta = await getMetadata(ref as any);
+          clientHash = meta?.customMetadata?.clientHash || null;
+        } catch (_) {
+          clientHash = null;
+        }
+      }
+    } catch (_) {
+      clientHash = null;
+    }
+
     const colRef = collection(db as any, "minigameSummaries");
     const docRef = await addDoc(colRef as any, {
       imageUrl,
       page: "Step2_Summary",
+      clientHash: clientHash || null,
       createdAt: serverTimestamp(),
     });
     return { id: docRef.id, collection: "minigameSummaries" } as const;
