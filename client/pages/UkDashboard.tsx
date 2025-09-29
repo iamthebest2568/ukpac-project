@@ -29,7 +29,7 @@ type SessionSummary = {
   firstSeen: string;
   lastSeen: string;
   introWho?: string; // บทบาทในการเดินทางเข้าเมือง
-  travelMethod?: string; // ยานพาหนะที่ใช���
+  travelMethod?: string; // ยานพาหนะที่ใช้
   opinionLevel?: string; // ระดับความคิดเห็น
   ask02Choice?: string; // เหตุผลหลัก
   ask02CustomReason?: string; // เหตุผลพิมพ์เอง
@@ -431,7 +431,7 @@ export default function UkDashboard() {
 
   async function clearData() {
     if (
-      !window.confirm("��บข้อมูลทั้งหมดในเซิร์ฟเวอร์? การกระทำนี้ย้อนกลับไม่ได้")
+      !window.confirm("��บข้อมูลทั้งหมดในเซิร์ฟเวอร์? การกระ���ำนี้ย้อนกลับไม่ได้")
     ) {
       return;
     }
@@ -615,7 +615,7 @@ export default function UkDashboard() {
                 disabled={clearing}
                 title="ลบ events.jsonl และ app-events.jsonl บ���เซิร์ฟเวอร์"
               >
-                {clearing ? "กำลังลบ..." : "ลบข้อมูลทั้งหมด"}
+                {clearing ? "กำ��ังลบ..." : "ลบข้อมูลทั้งหมด"}
               </button>
               <label className="flex items-center gap-2 text-sm text-white/80">
                 <input
@@ -677,7 +677,7 @@ export default function UkDashboard() {
                             </span>
                           </li>
                           <li className="flex justify-between">
-                            <span>จำนวนเซสชัน</span>
+                            <span>จำนวนเซส���ัน</span>
                             <span className="text-white/70">
                               {sessions.length}
                             </span>
@@ -918,7 +918,7 @@ export default function UkDashboard() {
                       "Access Time",
                       "ทำไมคุณถึงต้องเข้าเมืองบ่อย ๆ ?",
                       "คุณใช้รถแบบไหนเดินทางเข้าเมือง ?",
-                      "คุณคิดเห็นอย่างไรกับนโยบายนี้ ?",
+                      "คุณคิดเห็นอย่างไรกับ��โยบายนี้ ?",
                       "จากข้อความข้างต้น คุณมีความคิดเห็นอย่างไร (เห็นด้วย/กลางๆ/ไม่เห็นด้วย)",
                       "ทำไมคุณถึงคิดอย่างนั้น (นโยบายไม่คร��บคลุม / เก็บไปก็ไม่มีอะไรดีขึ้น / อื่นๆ)",
                       "อธิบายอื่น ๆ ที่ช่วยอธิบายความคิดเห็น",
