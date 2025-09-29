@@ -335,14 +335,40 @@ export async function addDesignImageUrlToFirestore(
     }
 
     // Always create a new document (allow duplicates).
-    const docRef = await addDoc(colRef as any, {
-      imageUrl,
-      name: derivedName || null,
-      width: typeof dims?.width === "number" ? dims?.width : 1132,
-      height: typeof dims?.height === "number" ? dims?.height : 1417,
-      createdAt: serverTimestamp(),
-    });
-    return { id: docRef.id, collection: colName } as const;
+    try {
+      const docRef = await addDoc(colRef as any, {
+        imageUrl,
+        name: derivedName || null,
+        width: typeof dims?.width === "number" ? dims?.width : 1132,
+        height: typeof dims?.height === "number" ? dims?.height : 1417,
+        createdAt: serverTimestamp(),
+      });
+      return { id: docRef.id, collection: colName } as const;
+    } catch (e: any) {
+      // If client-side Firestore write fails (network/CORS/permission), try server-side ingestion endpoint
+      try {
+        const payload = { imageUrl, collection: colName };
+        const r = await fetch("/api/write-image-url", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+        if (r && r.ok) {
+          try {
+            const j = await r.json();
+            if (j && j.ok) {
+              return { id: j.id || null, collection: colName, routed: "server" } as any;
+            }
+          } catch (_) {
+            return { id: null, collection: colName, routed: "server" } as any;
+          }
+        }
+      } catch (_) {
+        // server fallback failed, fall through to throw original error
+      }
+
+      throw e;
+    }
   }
 
   // Prefer user's requested collection name; if provided use only that to avoid accidental fallbacks.
