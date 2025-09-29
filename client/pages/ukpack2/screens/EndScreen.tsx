@@ -28,7 +28,7 @@ const EndScreen: React.FC = () => {
             />
           </div>
           <p className="text-[#001a73] font-prompt font-semibold text-center">
-            ขอบคุณ ที่ร่วมเป็นส่วนหนึ่งในการพั��นาเมือง
+            ขอบคุณ ที่ร่วมเป็นส่วนหนึ่งในการพัฒนาเมือง
           </p>
           <div className="w-full flex justify-center">
             <img
