@@ -141,7 +141,7 @@ const OPTIONS = [
     key: "large",
     label: (
       <>
-        <span>รถตู���โดยสาร</span>
+        <span>รถตู้โดยสาร</span>
         <br />
         9-15 ที่นั่ง
       </>
