@@ -260,7 +260,7 @@ const Ask04Budget = ({
               // final fallback: attempt to write original URL to Firestore
               try {
                 const { addDesignImageUrlToFirestore } = await import("../../lib/firebase");
-                const writeRes = await addDesignImageUrlToFirestore(u, "beforecitychange-imageshow-events");
+                const writeRes = await addDesignImageUrlToFirestore(u, "beforecitychange-imageshow-events", { width: null, height: null });
                 // no sessionStorage tracking — allow repeated uploads
               } catch (ee) {
                 // failed fallback write
