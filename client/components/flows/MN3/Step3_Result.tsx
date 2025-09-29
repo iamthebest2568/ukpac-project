@@ -206,6 +206,22 @@ const Step3_Result = ({
   const backgroundImage =
     "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Ffad6c306ff6d4b21802e5245972126b1?format=webp&width=1500";
 
+  // Helper: normalize priority keys and find manifest entries
+  const normalize = (str: string) => (str || "").toString().normalize('NFKC').replace(/\s+/g, '').toLowerCase();
+  const findManifestFor = (priority: string) => {
+    if (!MN3_MANIFEST) return undefined;
+    if (MN3_MANIFEST[priority]) return MN3_MANIFEST[priority];
+    const norm = normalize(priority);
+    for (const k of Object.keys(MN3_MANIFEST)) {
+      if (normalize(k) === norm) return MN3_MANIFEST[k];
+    }
+    for (const k of Object.keys(MN3_MANIFEST)) {
+      const nk = normalize(k);
+      if (nk.includes(norm) || norm.includes(nk)) return MN3_MANIFEST[k];
+    }
+    return undefined;
+  };
+
   return (
     <FigmaStyle1Layout
       backgroundImage={backgroundImage}
@@ -352,7 +368,7 @@ const Step3_Result = ({
                 style={{ width: "100%" }}
               >
                 <span className="figma-style1-button-text">
-                  ไม่ใช่, ลองอีกครั้ง
+                  ไม่ใช่, ลอ��อีกครั้ง
                 </span>
               </Uk1Button>
             </>
