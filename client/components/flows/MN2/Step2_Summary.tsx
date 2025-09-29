@@ -259,6 +259,7 @@ const Step2_Summary = ({
       wrapper.style.height = `${elemH}px`;
       wrapper.style.background = "#ffffff";
       wrapper.style.overflow = "visible";
+      wrapper.style.fontFamily = "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif";
       // If clone is from a different document, import it into ownerDoc to avoid problems
       let importedClone: Node;
       try {
