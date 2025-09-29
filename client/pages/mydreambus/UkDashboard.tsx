@@ -273,7 +273,7 @@ const UkDashboard: React.FC = () => {
       setAuthorized(true);
       refreshSummary();
     } else {
-      alert("ช���่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง");
+      alert("ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง");
     }
   };
 
