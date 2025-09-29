@@ -280,7 +280,7 @@ const UkDashboard: React.FC = () => {
   const handleExport = () => {
     const csv = exportEventsAsCSV();
     if (!csv) {
-      alert("ไม่มีข้อมูลให���ส่งออก");
+      alert("ไม่มีข้อมูลให้ส่งออก");
       return;
     }
     const blob = new Blob(["\uFEFF" + csv], {
