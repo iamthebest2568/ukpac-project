@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import CustomizationScreen from "../components/CustomizationScreen";
 import SelectionCard from "../components/SelectionCard";
 import VehiclePreview from "../components/VehiclePreview";
@@ -108,7 +108,7 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   พัดลม: <IconFan />,
   ที่นั่งพิเศษ: <IconSeat />,
   "ที่จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
-  "ช่องชาร์จ���ือถือ/USB": <IconPlug />,
+  "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
   "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
   กล้องวงจรปิด: <IconCamSmall />,
@@ -339,7 +339,7 @@ const DoorScreen: React.FC = () => {
                 }
 
                 // payment labels
-                if (label === "เงิน���ด")
+                if (label === "เงินสด")
                   return (
                     <div
                       key={`${label}-${idx}`}
@@ -546,7 +546,7 @@ const DoorScreen: React.FC = () => {
                       "ตู้อัตโนมัติ",
                       "แตะบัตร",
                       "กระเป๋ารถเมล์",
-                      "ต��๋วรายเดือน/รอบ",
+                      "ตั๋วรายเดือน/รอบ",
                       "1",
                       "2",
                       "ramp",
