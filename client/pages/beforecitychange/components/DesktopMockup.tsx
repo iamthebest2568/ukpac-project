@@ -2,6 +2,7 @@ import { createPortal } from "react-dom";
 import { useNavigate, useLocation } from "react-router-dom";
 import RouteTransition from "../../../components/shared/RouteTransition.ukpack1";
 import React, { useEffect, useRef, useState, useCallback } from "react";
+import "./mydreambus-desktop-mock.css";
 
 interface DesktopMockupProps {
   children: React.ReactNode;
