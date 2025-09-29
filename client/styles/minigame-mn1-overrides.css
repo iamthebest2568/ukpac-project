@@ -344,7 +344,7 @@
   min-height: 65vh !important;
   display: block !important;
   position: relative !important;
-  transform: translateY(45px) !important; /* match inline transform in component */
+  transform: translateY(75px) !important; /* match MN3 Step3_Result */
 }
 
 /* Keep absolutely positioned image blocks so they overlap as intended */
