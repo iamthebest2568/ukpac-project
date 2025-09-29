@@ -110,7 +110,7 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
   "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
-  กล้��งวงจรปิด: <IconCamSmall />,
+  กล้องวงจรปิด: <IconCamSmall />,
 };
 
 const MONEY_ICON =
