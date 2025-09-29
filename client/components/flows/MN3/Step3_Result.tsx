@@ -220,6 +220,14 @@ const Step3_Result = ({
 
       {/* Selected priorities visual summary - overlapping collage */}
       <div className="w-full px-4 mb-6">
+        {/* Debug panel: shows computed resultSummary and chosen images (visible for testing) */}
+        <div style={{ maxWidth: 980, margin: '0 auto 12px', padding: 8, background: '#fff7', borderRadius: 8, fontSize: 13 }}>
+          <div style={{ fontWeight: 700, marginBottom: 6 }}>Debug — MN3 result mapping</div>
+          <div style={{ whiteSpace: 'pre-wrap', fontFamily: 'monospace', fontSize: 12 }}>
+            {JSON.stringify(resultSummary || [], null, 2)}
+          </div>
+        </div>
+
         <div
           className="max-w-[980px] mx-auto relative mn3-result-collage"
           style={{
