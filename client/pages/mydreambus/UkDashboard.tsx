@@ -82,9 +82,18 @@ const UkDashboard: React.FC = () => {
 
           // Helper to attempt safe fetch with options and always return null on any error
           const safeAttempt = async (opts: RequestInit) => {
+            const controller = new AbortController();
+            const signal = controller.signal;
+            const timeoutId = setTimeout(() => {
+              try {
+                controller.abort();
+              } catch (_) {}
+            }, Math.max(5000, ms));
+
             try {
               const f = (globalThis as any).fetch || fetch;
-              const resp = await f(targetUrl, opts);
+              const resp = await f(targetUrl, { ...(opts || {}), signal });
+              clearTimeout(timeoutId);
               if (!resp || !resp.ok) return null;
               try {
                 return await resp.json();
@@ -92,8 +101,14 @@ const UkDashboard: React.FC = () => {
                 console.debug("JSON parse failed for", targetUrl, e);
                 return null;
               }
-            } catch (err) {
-              console.debug("fetch failed for", targetUrl, opts, err);
+            } catch (err: any) {
+              clearTimeout(timeoutId);
+              // Normalize common network errors to null and log minimally
+              if (err && err.name === 'AbortError') {
+                console.debug('fetch aborted (timeout) for', targetUrl);
+                return null;
+              }
+              console.debug("fetch failed for", targetUrl, opts, err && err.message ? err.message : err);
               return null;
             }
           };
