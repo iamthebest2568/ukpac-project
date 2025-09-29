@@ -398,7 +398,7 @@ const UkDashboard: React.FC = () => {
     if (!confirm("แน่ใจหรือไม่ว่าต้องการลบข้อมูลทั้งหมด?")) return;
     clearEventLogs();
     refreshSummary();
-    alert("ลบข้อ��ูลเรียบร้อย");
+    alert("ลบข้อมูลเรียบร้อย");
   };
 
   // ===== Readability helpers: extract big inline handlers into named functions =====
