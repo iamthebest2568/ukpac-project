@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CustomizationScreen from "../components/CustomizationScreen";
 import ColorPalette from "../components/ColorPalette";
@@ -639,7 +640,7 @@ const DesignScreen: React.FC = () => {
             <div style={{ display: "none" }} aria-hidden="true">
               <div className="max-w-2xl w-full mx-auto bg-white border-2 border-[#000D59] rounded-xl p-3 mb-2">
                 <div className="text-sm text-[#001a73] font-medium">
-                  บันทึกภาพตัวอย่างไปยัง Firestore แล้ว
+                  บันทึกภาพตัวอย่างไปย��ง Firestore แล้ว
                 </div>
                 <div className="mt-1 text-[11px] text-[#001a73]">
                   Collection: {savedInfo.col || "(unknown)"}
