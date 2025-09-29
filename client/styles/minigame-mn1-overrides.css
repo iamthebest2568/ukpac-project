@@ -352,9 +352,6 @@
   position: absolute !important;
   left: 50% !important;
   top: 50% !important;
-  /* allow component inline transform to control placement/rotation/scale */
-  transform: none !important;
-  width: auto !important;
   z-index: auto !important;
 }
 
