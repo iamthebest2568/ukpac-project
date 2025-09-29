@@ -266,6 +266,51 @@ export async function sendEventToFirestore(
 }
 
 // Write-only helper for saving design image URL (no PDPA gating)
+export async function saveMinigameResult(
+  file: Blob | Uint8Array,
+  colorHex: string | null,
+  userId?: string | null,
+) {
+  if (!appInstance) initFirebase();
+  if (!appInstance) throw new Error("Firebase app not initialized");
+  try {
+    // try to determine user id from auth if not provided
+    let uid = userId || null;
+    try {
+      const auth = getAuth(appInstance);
+      if (auth && (auth as any).currentUser && !uid) {
+        uid = (auth as any).currentUser.uid || null;
+      }
+    } catch (_) {}
+
+    const ts = Date.now();
+    const filename = `${ts}.png`;
+    const path = `cars/${uid || "anonymous"}/${filename}`;
+
+    const storage = getStorage(appInstance);
+    const ref = storageRef(storage, path);
+
+    await uploadBytes(ref, file as any);
+    const url = await getDownloadURL(ref);
+
+    if (!db) initFirebase();
+    if (!db) throw new Error("Firestore not initialized");
+
+    const colRef = collection(db as any, "minigameResults");
+    const docRef = await addDoc(colRef as any, {
+      userId: uid || null,
+      color: colorHex || null,
+      resultUrl: url,
+      createdAt: serverTimestamp(),
+    });
+
+    return { docId: docRef.id, url } as const;
+  } catch (e) {
+    console.warn("saveMinigameResult failed", e);
+    throw e;
+  }
+}
+
 export async function addDesignImageUrlToFirestore(
   imageUrl: string,
   preferredCollection?: string,
