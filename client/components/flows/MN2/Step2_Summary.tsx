@@ -50,7 +50,7 @@ const Step2_Summary = ({
         "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fd3f59501f48a452c9298801a0aefebe1?format=webp&width=100",
     },
     students: {
-      label: "นัก���รียน/นักศึกษา",
+      label: "นักเรี��น/นักศึกษา",
       iconSrc:
         "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F0cd82b7996e641ee9cf3aaa0ab1cb9f8?format=webp&width=118",
     },
