@@ -51,7 +51,7 @@ const Step1_Beneficiaries = ({
       id: "locals",
       label: "คนในพื้นที่",
       iconSrc:
-        "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fd0e13c552a39418eb25993c7d87905c8?format=webp&width=100",
+        "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F53bcc04311264fb79244ea2198ee642b?format=webp&width=800",
     },
     {
       id: "elderly",
