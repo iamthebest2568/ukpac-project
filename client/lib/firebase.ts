@@ -32,6 +32,7 @@ const firebaseConfig = {
 
 let db: ReturnType<typeof getFirestore> | null = null;
 let appInstance: any = null;
+let clientFirestoreEnabled = true; // runtime flag: if false, do not use Firestore client in browser
 
 function initFirebase() {
   if (db && appInstance) return;
@@ -51,12 +52,36 @@ function initFirebase() {
       db = initializeFirestore(app, {
         experimentalForceLongPolling: true,
       } as any);
+
+      // Start an async probe to detect whether client Firestore network calls succeed.
+      // If the probe fails (timeout or network error), disable client SDK writes to avoid
+      // unhandled global errors like 'TypeError: Failed to fetch'.
+      (async () => {
+        try {
+          const testCol = collection(db as any, "minigame1_events");
+          const q = query(testCol as any);
+          const p = getDocs(q as any);
+          const res = await Promise.race([
+            p,
+            new Promise((_, rej) => setTimeout(() => rej(new Error("firestore-probe-timeout")), 3000)),
+          ]);
+          // If probe succeeded, keep clientFirestoreEnabled = true
+        } catch (probeErr) {
+          console.warn("Client Firestore probe failed, disabling client SDK writes", probeErr);
+          try {
+            clientFirestoreEnabled = false;
+            db = null as any;
+          } catch (_) {}
+        }
+      })();
     } catch (err) {
       console.warn("Firestore initialization failed", err);
       db = null as any;
+      clientFirestoreEnabled = false;
     }
   } catch (e) {
     console.warn("Firebase init failed", e);
+    clientFirestoreEnabled = false;
   }
 }
 
