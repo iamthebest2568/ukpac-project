@@ -198,27 +198,13 @@ const Step2_Summary = ({
         )}
       </main>
 
-      <footer style={{ marginTop: 12, display: "flex", gap: 8 }}>
-        <button
-          onClick={() => {
-            try {
-              handleEndGame();
-            } catch (_) {}
-          }}
-          style={{ flex: 1, padding: "10px 12px", background: "#0070f3", color: "#fff", border: "none", borderRadius: 6 }}
-        >
+      <footer style={{ marginTop: 16, display: "flex", gap: 8, flexDirection: "column" }}>
+        <Uk1Button onClick={() => { try { handleEndGame(); } catch (_) {} }}>
           ใช่, ไปต่อ
-        </button>
-        <button
-          onClick={() => {
-            try {
-              navigateToPage && (navigateToPage("/minigame-mn1") as any);
-            } catch (_) {}
-          }}
-          style={{ flex: 1, padding: "10px 12px", background: "#eaeaea", color: "#000", border: "none", borderRadius: 6 }}
-        >
+        </Uk1Button>
+        <Uk1Button variant="secondary" onClick={() => { try { navigateToPage && (navigateToPage("/minigame-mn1") as any); } catch (_) {} }}>
           ไม่ใช่, ลองอีกครั้ง
-        </button>
+        </Uk1Button>
       </footer>
     </div>
   );
