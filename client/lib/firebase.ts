@@ -364,6 +364,28 @@ export async function addDesignImageUrlToFirestore(
   dims?: { width?: number | null; height?: number | null },
 ) {
   if (!db) initFirebase();
+  // If client Firestore disabled, send server-side ingestion request and return
+  if (!clientFirestoreEnabled) {
+    try {
+      const col = preferredCollection || "beforecitychange-imageshow-events";
+      const resp = await fetch("/api/write-image-url", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ imageUrl, collection: col }),
+      });
+      if (resp && resp.ok) {
+        try {
+          const j = await resp.json();
+          return { id: j.id || null, collection: col, routed: "server" } as any;
+        } catch (_) {
+          return { id: null, collection: col, routed: "server" } as any;
+        }
+      }
+    } catch (e) {
+      // fallthrough to attempt client SDK write
+    }
+  }
+
   if (!db) throw new Error("Firestore not initialized");
 
   async function findOrWrite(colName: string) {
