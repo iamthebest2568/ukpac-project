@@ -151,11 +151,13 @@ const SelectionCard: React.FC<SelectionCardProps> = ({
   return (
     <button
       type="button"
-      onClick={onClick}
+      onClick={disabled ? undefined : onClick}
       onFocus={(e) => e.currentTarget.blur()}
       style={{ outline: "none", boxShadow: "none" }}
-      className={`${appearance === "bare" ? "w-auto p-0" : "w-full p-4"} ${appearance === "bare" ? "rounded-none" : "rounded-2xl"} ${base} ${focusClasses} ${layoutClass}`}
+      className={`${appearance === "bare" ? "w-auto p-0" : "w-full p-4"} ${appearance === "bare" ? "rounded-none" : "rounded-2xl"} ${base} ${focusClasses} ${layoutClass} ${disabled ? "opacity-60 cursor-not-allowed" : ""}`}
       aria-pressed={isSelected}
+      aria-disabled={disabled}
+      disabled={disabled}
     >
       <div
         className={`${iconContainerClass} ${FIXED_ICON_HEIGHT_CLASS} flex items-center justify-center ${isLight ? "text-[#003366]" : "text-white"} transition-transform iconContainer`}
