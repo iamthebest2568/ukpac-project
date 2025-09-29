@@ -388,6 +388,38 @@ const Step2_Summary = ({
       (importedClone as HTMLElement).style.margin = "0";
       (importedClone as HTMLElement).style.overflow = "visible";
 
+      // Determine output dimensions and quality options BEFORE building the wrapper so we can render the final canvas size
+      const maxDimensionOpt = typeof options?.maxDimension === 'number' ? Math.max(1, Math.floor(options!.maxDimension!)) : 2000;
+      const quality = typeof options?.quality === 'number' ? Math.max(0, Math.min(1, options!.quality!)) : 0.8;
+      const requestedDpr = typeof options?.dpr === 'number' ? Math.max(1, Math.min(3, options!.dpr!)) : Math.min(2, window.devicePixelRatio || 1);
+
+      // Start with natural element size
+      let canvasW = Math.max(1, Math.round(elemW));
+      let canvasH = Math.max(1, Math.round(elemH));
+
+      // If explicit target dimensions provided, respect them (maintain aspect if only one side provided)
+      if (typeof options?.targetWidth === 'number' || typeof options?.targetHeight === 'number') {
+        const tw = typeof options?.targetWidth === 'number' ? Math.max(1, Math.round(options!.targetWidth!)) : undefined;
+        const th = typeof options?.targetHeight === 'number' ? Math.max(1, Math.round(options!.targetHeight!)) : undefined;
+        if (tw && th) {
+          canvasW = tw;
+          canvasH = th;
+        } else if (tw) {
+          canvasW = tw;
+          canvasH = Math.max(1, Math.round((tw * elemH) / Math.max(1, elemW)));
+        } else if (th) {
+          canvasH = th;
+          canvasW = Math.max(1, Math.round((th * elemW) / Math.max(1, elemH)));
+        }
+      } else {
+        // Otherwise, scale down uniformly to fit within maxDimensionOpt if needed
+        if (Math.max(canvasW, canvasH) > maxDimensionOpt) {
+          const _scale = maxDimensionOpt / Math.max(canvasW, canvasH);
+          canvasW = Math.max(1, Math.round(canvasW * _scale));
+          canvasH = Math.max(1, Math.round(canvasH * _scale));
+        }
+      }
+
       const wrapper = ownerDoc.createElement("div");
       wrapper.setAttribute("xmlns", "http://www.w3.org/1999/xhtml");
       wrapper.style.width = `${elemW}px`;
