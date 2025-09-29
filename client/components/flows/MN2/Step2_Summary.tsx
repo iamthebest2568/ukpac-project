@@ -101,8 +101,14 @@ const Step2_Summary = ({
           if (entry && typeof entry === "object" && entry.id) {
             return {
               id: entry.id,
-              label: entry.label || (beneficiaryMapping as any)[entry.id]?.label || "ทุกคน",
-              iconSrc: entry.iconSrc || (beneficiaryMapping as any)[entry.id]?.iconSrc || beneficiaryMapping.everyone.iconSrc,
+              label:
+                entry.label ||
+                (beneficiaryMapping as any)[entry.id]?.label ||
+                "ทุกคน",
+              iconSrc:
+                entry.iconSrc ||
+                (beneficiaryMapping as any)[entry.id]?.iconSrc ||
+                beneficiaryMapping.everyone.iconSrc,
             };
           }
           const id = String(entry);
@@ -134,8 +140,14 @@ const Step2_Summary = ({
             if (entry && typeof entry === "object" && entry.id) {
               return {
                 id: entry.id,
-                label: entry.label || (beneficiaryMapping as any)[entry.id]?.label || "ทุกคน",
-                iconSrc: entry.iconSrc || (beneficiaryMapping as any)[entry.id]?.iconSrc || beneficiaryMapping.everyone.iconSrc,
+                label:
+                  entry.label ||
+                  (beneficiaryMapping as any)[entry.id]?.label ||
+                  "ทุกคน",
+                iconSrc:
+                  entry.iconSrc ||
+                  (beneficiaryMapping as any)[entry.id]?.iconSrc ||
+                  beneficiaryMapping.everyone.iconSrc,
               };
             }
             const id = String(entry);

@@ -357,7 +357,11 @@ export async function addDesignImageUrlToFirestore(
           try {
             const j = await r.json();
             if (j && j.ok) {
-              return { id: j.id || null, collection: colName, routed: "server" } as any;
+              return {
+                id: j.id || null,
+                collection: colName,
+                routed: "server",
+              } as any;
             }
           } catch (_) {
             return { id: null, collection: colName, routed: "server" } as any;
@@ -377,7 +381,10 @@ export async function addDesignImageUrlToFirestore(
     candidates.push(preferredCollection);
   } else {
     // No explicit preferred collection: try known historical collections (ukpact then kpact)
-    candidates.push("ukpact-gamebus-imagedesign-events", "kpact-gamebus-imagedesign-events");
+    candidates.push(
+      "ukpact-gamebus-imagedesign-events",
+      "kpact-gamebus-imagedesign-events",
+    );
   }
 
   for (const colName of candidates) {

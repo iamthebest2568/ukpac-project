@@ -198,9 +198,15 @@ const Step1_Beneficiaries = ({
                   }
                 }}
               >
-                <div className={`w-[96px] h-[96px] mb-2 flex items-center justify-center`}>
+                <div
+                  className={`w-[96px] h-[96px] mb-2 flex items-center justify-center`}
+                >
                   <img
-                    src={isSelected ? group.iconSelectedSrc || group.iconSrc : group.iconSrc}
+                    src={
+                      isSelected
+                        ? group.iconSelectedSrc || group.iconSrc
+                        : group.iconSrc
+                    }
                     alt={group.label}
                     className="w-[96px] h-[96px] object-contain"
                   />

@@ -117,12 +117,10 @@ export function createServer() {
 
       const svc = process.env.FIREBASE_SERVICE_ACCOUNT;
       if (!svc)
-        return res
-          .status(500)
-          .json({
-            ok: false,
-            error: "FIREBASE_SERVICE_ACCOUNT not configured",
-          });
+        return res.status(500).json({
+          ok: false,
+          error: "FIREBASE_SERVICE_ACCOUNT not configured",
+        });
       const parsed = typeof svc === "string" ? JSON.parse(svc) : svc;
 
       // Initialize admin once
@@ -152,12 +150,10 @@ export function createServer() {
 
       // Guard Firestore write with timeout to avoid hanging requests
       const writePromise = (async () => {
-        const docRef = await fsAdmin
-          .collection(col)
-          .add({
-            imageUrl,
-            createdAt: admin.firestore.FieldValue.serverTimestamp(),
-          });
+        const docRef = await fsAdmin.collection(col).add({
+          imageUrl,
+          createdAt: admin.firestore.FieldValue.serverTimestamp(),
+        });
         return docRef;
       })();
 
@@ -200,13 +196,11 @@ export function createServer() {
           return res.json({ ok: true, fallback: true, path: outFile });
         } catch (ef) {
           console.error("/api/write-image-url fallback failed", ef);
-          return res
-            .status(504)
-            .json({
-              ok: false,
-              error: "firestore write timeout and fallback failed",
-              detail: String(e?.message || e),
-            });
+          return res.status(504).json({
+            ok: false,
+            error: "firestore write timeout and fallback failed",
+            detail: String(e?.message || e),
+          });
         }
       }
 
@@ -494,12 +488,10 @@ export function createServer() {
 
       const svc = process.env.FIREBASE_SERVICE_ACCOUNT;
       if (!svc)
-        return res
-          .status(500)
-          .json({
-            ok: false,
-            error: "FIREBASE_SERVICE_ACCOUNT not configured",
-          });
+        return res.status(500).json({
+          ok: false,
+          error: "FIREBASE_SERVICE_ACCOUNT not configured",
+        });
       const parsed = typeof svc === "string" ? JSON.parse(svc) : svc;
       if (!admin.apps || admin.apps.length === 0) {
         admin.initializeApp({
@@ -534,7 +526,10 @@ export function createServer() {
       // Write Firestore doc referencing the URL
       const fsAdmin = admin.firestore();
       // Choose collection by project: beforecitychange should go to beforecitychange-imageshow-events
-      const colName = project === "beforecitychange" ? "beforecitychange-imageshow-events" : "kpact-gamebus-imagedesign-events";
+      const colName =
+        project === "beforecitychange"
+          ? "beforecitychange-imageshow-events"
+          : "kpact-gamebus-imagedesign-events";
       const col = fsAdmin.collection(colName);
       const docRef = await col.add({
         imageUrl: signedUrl,
@@ -599,12 +594,10 @@ export function createServer() {
     try {
       const svc = process.env.FIREBASE_SERVICE_ACCOUNT;
       if (!svc)
-        return res
-          .status(400)
-          .json({
-            ok: false,
-            error: "FIREBASE_SERVICE_ACCOUNT not configured",
-          });
+        return res.status(400).json({
+          ok: false,
+          error: "FIREBASE_SERVICE_ACCOUNT not configured",
+        });
       const parsed = typeof svc === "string" ? JSON.parse(svc) : svc;
       if (!admin.apps || admin.apps.length === 0) {
         admin.initializeApp({
