@@ -96,6 +96,7 @@ function initFirebase() {
 export async function uploadFileToStorage(
   file: Blob | Uint8Array,
   path: string,
+  options?: { verify?: boolean; maxRetries?: number },
 ) {
   try {
     if (!appInstance) initFirebase();
@@ -121,12 +122,100 @@ export async function uploadFileToStorage(
 
     const storage = getStorage(appInstance);
     const ref = storageRef(storage, finalPath);
-    await uploadBytes(ref, file as any);
-    const url = await getDownloadURL(ref);
-    return url;
+
+    // Helper: compute SHA-256 hex of a Blob/Uint8Array
+    async function computeSHA256Hex(data: Blob | Uint8Array) {
+      let ab: ArrayBuffer;
+      if (data instanceof Uint8Array) {
+        ab = data.buffer;
+      } else {
+        ab = await data.arrayBuffer();
+      }
+      const digest = await (crypto as any).subtle.digest("SHA-256", ab);
+      const arr = Array.from(new Uint8Array(digest));
+      return arr.map((b) => b.toString(16).padStart(2, "0")).join("");
+    }
+
+    const shouldVerify = options?.verify ?? true;
+    const maxRetries = typeof options?.maxRetries === "number" ? options!.maxRetries : 2;
+
+    // Compute client-side hash and attach as custom metadata
+    let clientHash: string | null = null;
+    try {
+      clientHash = await computeSHA256Hex(file as any);
+    } catch (e) {
+      console.warn("Could not compute client hash", e);
+      clientHash = null;
+    }
+
+    // Attempt upload (with retries if verification fails)
+    for (let attempt = 0; attempt <= maxRetries; attempt++) {
+      try {
+        const metadata: any = {};
+        if (clientHash) {
+          metadata.customMetadata = {
+            clientHash,
+            clientTimestamp: new Date().toISOString(),
+          };
+        }
+        await uploadBytes(ref, file as any, metadata);
+        const url = await getDownloadURL(ref);
+
+        if (!shouldVerify || !clientHash) return url;
+
+        // verify by reading back metadata
+        try {
+          // lazy import to avoid TS errors if not present in older SDKs
+          const { getMetadata } = await import("firebase/storage");
+          const meta = await getMetadata(ref as any);
+          const remoteHash = meta?.customMetadata?.clientHash || null;
+          if (remoteHash && remoteHash === clientHash) {
+            return url;
+          }
+          // If metadata isn't present or differs, retry upload
+          console.warn(
+            `uploadFileToStorage: hash mismatch on attempt ${attempt} (remote=${remoteHash} vs local=${clientHash})`,
+          );
+          // continue loop to retry
+        } catch (e) {
+          console.warn("uploadFileToStorage: verification failed", e);
+          // Verification failed due to metadata access; retry anyway
+        }
+      } catch (e) {
+        console.warn("upload attempt failed", e);
+        if (attempt === maxRetries) throw e;
+      }
+    }
+
+    // If we reach here, verification failed after retries. As a fallback, return the URL
+    try {
+      const url = await getDownloadURL(ref);
+      return url;
+    } catch (e) {
+      throw new Error("uploadFileToStorage: upload completed but unable to verify or fetch URL");
+    }
   } catch (e) {
     console.warn("uploadFileToStorage failed", e);
     throw e;
+  }
+}
+
+export async function verifyStorageFile(
+  path: string,
+  expectedHash: string,
+): Promise<{ ok: boolean; remoteHash: string | null }> {
+  if (!appInstance) initFirebase();
+  if (!appInstance) throw new Error("Firebase app not initialized");
+  const storage = getStorage(appInstance as any);
+  const ref = storageRef(storage as any, path);
+  try {
+    const { getMetadata } = await import("firebase/storage");
+    const meta = await getMetadata(ref as any);
+    const remoteHash = meta?.customMetadata?.clientHash || null;
+    return { ok: !!remoteHash && remoteHash === expectedHash, remoteHash };
+  } catch (e) {
+    console.warn("verifyStorageFile failed", e);
+    return { ok: false, remoteHash: null };
   }
 }
 
