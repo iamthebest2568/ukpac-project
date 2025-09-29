@@ -177,9 +177,9 @@ const Step2_Summary = ({
                   <div style={{ fontSize: 16, fontWeight: 700, color: "#0A2A66" }}>{card.priority}</div>
                 </div>
 
-                <div style={{ display: "flex", justifyContent: "center", gap: 12, flexWrap: "wrap" }}>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(4, minmax(0, 1fr))", gap: 12, justifyItems: "center" }}>
                   {card.beneficiaries.map((b) => (
-                    <div key={b.id} style={{ width: 88, display: "flex", flexDirection: "column", alignItems: "center", gap: 6, position: "relative" }}>
+                    <div key={b.id} style={{ width: "100%", maxWidth: 88, display: "flex", flexDirection: "column", alignItems: "center", gap: 6, position: "relative" }}>
                       {/* icon only - no visible label */}
                       {((b as any).iconSrc as string) ? (
                         <img src={(b as any).iconSrc} alt="" style={{ width: 64, height: 64, objectFit: "contain", borderRadius: 8 }} />
