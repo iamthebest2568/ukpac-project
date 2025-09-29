@@ -133,15 +133,10 @@ const Step2_Summary = ({
   };
 
   const handleNo = () => {
-    // User is not satisfied — record and navigate to ask05 for feedback
+    // User is not satisfied — navigate to ask05 for feedback
     const data = {
       summary: { summaryReviewed: true, summaryCards, confirmed: false },
     };
-
-    logEvent({
-      event: "MINIGAME_MN2_SUMMARY_NOT_SATISFIED",
-      payload: { summaryCards, sessionID },
-    });
 
     try {
       onNext(data);
