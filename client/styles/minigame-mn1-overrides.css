@@ -307,3 +307,13 @@
 .tablet-mock-env .minigame-mn1-page .mn3-policy-button--selected .mn3-button-text {
   color: #000 !important;
 }
+
+/* Desktop mock specific override: only apply inside the iframe portal wrapper for MN1 */
+.desktop-mock-embed .minigame-mn1-page .mn3-policy-button--selected {
+  background-color: #0070F3 !important; /* distinct desktop highlight */
+  color: #ffffff !important;
+  box-shadow: none !important;
+}
+.desktop-mock-embed .minigame-mn1-page .mn3-policy-button--selected .mn3-button-text {
+  color: #ffffff !important;
+}
