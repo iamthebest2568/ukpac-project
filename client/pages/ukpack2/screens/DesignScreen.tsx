@@ -110,7 +110,7 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
   "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
-  กล้องวงจรปิด: <IconCamSmall />,
+  กล้��งวงจรปิด: <IconCamSmall />,
 };
 
 const MONEY_ICON =
@@ -374,20 +374,20 @@ const DesignScreen: React.FC = () => {
               : HERO_IMAGE[selected];
       if (!url) return;
       const key = `mydreambus_design_image_sent_${selected}`;
-      const existing = sessionStorage.getItem(key);
-      if (existing) {
-        try {
-          const parsed = JSON.parse(existing);
-          if (parsed && parsed.url) {
-            setSavedInfo({
-              id: parsed.id || "",
-              url: parsed.url,
-              col: parsed.col,
-            });
-            return;
-          }
-        } catch (_) {}
-      }
+      // If we've previously saved info, show it immediately but still attempt to send again
+      try {
+        const existing = sessionStorage.getItem(key);
+        if (existing) {
+          try {
+            const parsed = JSON.parse(existing);
+            if (parsed && parsed.url) {
+              setSavedInfo({ id: parsed.id || "", url: parsed.url, col: parsed.col });
+            }
+          } catch (_) {}
+        }
+      } catch (_) {}
+
+      // Always attempt to write the design image URL to Firestore (allow repeated sends)
       addDesignImageUrlToFirestore(url)
         .then((res) => {
           setSavedInfo({ id: res.id, url, col: (res as any).collection });
@@ -398,9 +398,7 @@ const DesignScreen: React.FC = () => {
             );
           } catch (_) {}
         })
-        .catch((err) =>
-          console.warn("addDesignImageUrlToFirestore error", err),
-        );
+        .catch((err) => console.warn("addDesignImageUrlToFirestore error", err));
     } catch (_) {}
     // run on mount only
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -801,7 +799,7 @@ const DesignScreen: React.FC = () => {
                     setSloganDraft(slogan);
                     setShowTextarea(true);
                   }}
-                  placeholder="พิมพ์ คุณสมบัติพิเศษ"
+                  placeholder="พิมพ์ คุณส��บัติพิเศษ"
                   className="w-full rounded-xl px-4 py-2 bg-white border-2 border-[#000D59] text-[#003366] placeholder-gray-400 cursor-text text-center"
                 />
 
