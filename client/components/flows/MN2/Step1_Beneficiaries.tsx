@@ -59,7 +59,7 @@ const Step1_Beneficiaries = ({
       id: "elderly",
       label: "ผู้สูงอายุ",
       iconSrc:
-        "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fd3f59501f48a452c9298801a0aefebe1?format=webp&width=100",
+        "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc8b4a544d5b8448abed20368aeb08f90?format=webp&width=800",
     },
     {
       id: "students",
