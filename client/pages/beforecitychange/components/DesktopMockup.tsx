@@ -270,7 +270,13 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
 
                   {iframeMount ? (
                     createPortal(
-                      <RouteTransition>{children}</RouteTransition>,
+                      isMN1 ? (
+                        <div className="desktop-mock-embed">
+                          <RouteTransition>{children}</RouteTransition>
+                        </div>
+                      ) : (
+                        <RouteTransition>{children}</RouteTransition>
+                      ),
                       iframeMount,
                     )
                   ) : (
