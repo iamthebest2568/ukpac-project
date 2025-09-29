@@ -33,6 +33,8 @@ interface CaptureOptions {
   quality?: number;
   // device pixel ratio to rasterize at (1..3). If not provided, defaults to window.devicePixelRatio clamped to 2.
   dpr?: number;
+  // allow upscaling content to fill target area (default false)
+  upscale?: boolean;
 }
 
 const Step2_Summary = ({
@@ -632,8 +634,9 @@ const Step2_Summary = ({
       const outputW = Math.max(1, canvasW);
       const outputH = Math.max(1, canvasH);
 
-      // Fit scale: do not upscale to avoid blur; only scale down if content larger than output
-      const fitScale = Math.min(1, outputW / elemW, outputH / elemH);
+      // Fit scale: by default do not upscale (avoid blur). If options.upscale is true, allow scale>1 to enlarge content
+      const rawScale = Math.min(outputW / elemW, outputH / elemH);
+      const fitScale = options && options.upscale ? rawScale : Math.min(1, rawScale);
       const scaledW = Math.max(1, Math.round(elemW * fitScale));
       const scaledH = Math.max(1, Math.round(elemH * fitScale));
       const offsetLeft = Math.round((outputW - scaledW) / 2);
