@@ -40,8 +40,8 @@ type SessionSummary = {
   mn3Selected?: string[]; // ประเด็นนโยบายที่ผู้ใช้เลือก
   mn3BudgetAllocation?: Record<string, number>; // การจัดสรรงบประมาณ
   mn3BudgetTotal?: number;
-  satisfactionLevel?: string; // ระดับความพึงพอใจ
-  ask05Comment?: string; // ข้อเสนอเพิ��มเติมต่อรัฐ
+  satisfactionLevel?: string; // ระดับความพึงพอ��จ
+  ask05Comment?: string; // ข้อเสนอเพิ่มเติมต่อรัฐ
   fakeNewsResponse?: string; // การตอบสนองต่อข่าวปลอม
   sourceSelected?: string; // แหล่งข่าวที่ผู้ใช้เลือก
   endDecision?: string; // การเข้าร่วมลุ้นรางวัล
@@ -431,7 +431,7 @@ export default function UkDashboard() {
 
   async function clearData() {
     if (
-      !window.confirm("ลบข้อมูลทั้งหมดในเซิร์��เวอร์? การกระทำนี้ย้อนกลับไม่ได้")
+      !window.confirm("��บข้อมูลทั้งหมดในเซิร์ฟเวอร์? การกระทำนี้ย้อนกลับไม่ได้")
     ) {
       return;
     }
@@ -502,7 +502,7 @@ export default function UkDashboard() {
               className="w-full rounded-md bg-black/40 border border-white/15 px-3 py-2 outline-none"
               value={pw}
               onChange={(e) => setPw(e.target.value)}
-              placeholder="รหัสผ่าน"
+              placeholder="รหั��ผ่าน"
             />
             {pwErr && <div className="text-red-400 text-sm mt-2">{pwErr}</div>}
             <button
@@ -613,7 +613,7 @@ export default function UkDashboard() {
                 className="rounded-md bg-red-600/80 hover:bg-red-600 border border-red-500 px-3 py-2 text-sm"
                 onClick={clearData}
                 disabled={clearing}
-                title="ลบ events.jsonl และ app-events.jsonl บนเซิร์ฟเวอร์"
+                title="ลบ events.jsonl และ app-events.jsonl บ���เซิร์ฟเวอร์"
               >
                 {clearing ? "กำลังลบ..." : "ลบข้อมูลทั้งหมด"}
               </button>
@@ -924,13 +924,13 @@ export default function UkDashboard() {
                       "อธิบายอื่น ๆ ที่ช่วยอธิบายความคิดเห็น",
                       "บอกเราหน่อยว่าคุณเดินทางเข้าเมืองด้วยวิธีการใดบ่อยที่สุด",
                       "จากนโยบายที่คุณฟังเมื่อสักครู่ คุณมีความคิดเห็นอย่างไร",
-                      "คุณคิดว่านโยบายปัจจุบัน ควรปรับเปลี่ยนประเด็นอะไรบ้าง (ลดค่าโดยสาร, ปรับปรุงคุณภาพ, ขึ้นราคา, เพิ่มขบวน, เพิ่มค���ามถี่ ฯลฯ)",
+                      "คุณคิดว่านโยบายปัจจุบัน ควรปรับเปลี่ยนประเด็นอะไรบ้าง (ลดค่าโดยสาร, ปรับปรุงคุณภาพ, ขึ��นราคา, เพิ่มขบวน, เพิ่มความถี่ ฯลฯ)",
                       "คุณคิดว่าใครควรได้รับการลดค่าโดยสารรถไฟฟ้า (ทุกคน, ผู้สูงอายุ, นักเรียน, คนทำงาน ฯลฯ)",
                       "คุณคิดว่าควรใช้เงินที่ได้จากการเก็บไปพัฒนาอะไร ก่อน 3 อันดับแรก",
                       "คุณจะให้งบประมาณแต่ละข้อเท่าไร (งบทั้งหมด 100)",
                       "คุณพอใจกับผลลัพธ์ที่เกิดขึ้นหรือไม่ (พอใจ / ไม่พอใจ)",
                       "คุณคิดว่ารัฐควรทำอะไรที่จะทำให้นโยบายนี้เกิดขึ้นได้จริง และเป็นประโยชน์ต่อประชาชนอย่างแท้จริง",
-                      "ตอนนี้มีข้อมูลที่ผิดพลาด เช่น ข่าวปลอมเกี่ยวกับนโยบาย คุณคิดว่าอย่างไร",
+                      "ตอนนี้มีข้อมูลที่ผิดพลาด เช่น ข่าวปลอมเก���่ยวกับนโยบาย คุณคิดว่าอย่างไร",
                       "คุณจะติดตามข่าวหรือเชื่อจากแหล่งไหนมากที่สุด",
                       "ขอบคุณที่ร่วมเป็นส่วนหนึ่ง → ต้องการลุ้นรับรางวัลหรือไม่",
                       "กรอกข้อมูลเพื่อลุ้นรางวัล (ชื่อ)",
@@ -1031,7 +1031,7 @@ export default function UkDashboard() {
           >
             <div className="flex items-center justify-between mb-2">
               <div className="text-lg font-medium">
-                ร���ยละเอียดเซสชั: {detailSession?.slice(0, 12)}…
+                รายละเอียดเซสชัน: {detailSession?.slice(0, 12)}…
               </div>
               <button
                 className="text-white/70 hover:text-white"
