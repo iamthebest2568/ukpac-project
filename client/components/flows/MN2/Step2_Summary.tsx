@@ -198,210 +198,78 @@ const Step2_Summary = ({
     navigateToPage("ask05", data);
   };
 
+  // Minimal cleared UI: no external layout components, no external classes.
   return (
-    <FigmaStyle1Layout
-      title={<span style={{ color: "#000D59" }}>นโยบายที่คุณเสนอ</span>}
-      backgroundImage={""}
-      backgroundAlt=""
-      useBlueOverlay={false}
-      className="ask04-page mn2-summary-page mn2-summary-minimal figma-style1-ukpack1"
-      imageLoading="eager"
+    <div
+      style={{
+        all: "initial",
+        boxSizing: "border-box",
+        fontFamily: "system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial",
+        color: "#000",
+        padding: 16,
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        background: "#fff",
+      }}
     >
-      <div
-        className="relative w-full max-w-full mx-auto px-4 py-6"
-        style={{
-          boxSizing: "border-box",
-          display: "flex",
-          flexDirection: "column",
-          zIndex: 9999,
-          paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 160px)", // ensure content not covered by footer
-        }}
-      >
-        {/* Policy Cards */}
-        <div style={{ flex: 1, paddingRight: 8 }}>
-          <div className="space-y-6 mb-6">
-            {summaryCards.map((card, index) => (
-              <div
-                key={index}
-                className="policy-card w-full max-w-[903px] mx-auto rounded-[20px] border-2 border-[#000D59] bg-white"
-                style={{
-                  padding: "12px 16px",
-                }}
-              >
-                {/* Policy Title */}
-                <div className="text-center mb-4">
-                  <h2
-                    className="font-prompt font-bold text-center"
-                    style={{
-                      color: "#000D59",
-                      fontSize: "clamp(18px, 3.2vw, 36px)",
-                      fontWeight: 700,
-                      letterSpacing: "0.4px",
-                    }}
-                  >
-                    {card.priority}
-                  </h2>
-                </div>
+      <header style={{ marginBottom: 16 }}>
+        <h1 style={{ margin: 0, fontSize: 20, fontWeight: 700 }}>MN2 — สรุปนโยบาย ( cleared )</h1>
+        <p style={{ margin: "6px 0 0 0", color: "#333" }}>
+          หน้านี้ถูกล้างดีไซน์เพื่อการทดสอบเฉพาะหน้านี้เท่านั้น
+        </p>
+      </header>
 
-                {/* Beneficiary Icons - 3 per row, tighter spacing, slightly larger icons */}
-                <div
-                  className={`grid justify-items-center items-center grid-cols-4 gap-2 mn2-summary-icon-grid`}
-                  style={{
-                    maxWidth: "100%",
-                    margin: "0 auto",
-                    padding: "0 clamp(6px, 1.6vw, 12px)",
-                    gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
-                  }}
-                >
-                  {card.beneficiaries.map((beneficiary, beneficiaryIndex) => (
-                    <div
-                      key={beneficiaryIndex}
-                      className="mn2-beneficiary-card flex flex-col items-center justify-center"
-                      style={{
-                        width: "100%",
-                        maxWidth: "none",
-                      }}
-                    >
-                      {/* Icon area - no forced square */}
-                      <div
-                        className="mn2-beneficiary-figure relative mb-1"
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          padding: "4px 0",
-                        }}
-                      >
-                        {beneficiary.iconSrc && (
-                          <img
-                            src={beneficiary.iconSrc}
-                            alt={beneficiary.label}
-                            className="mn2-beneficiary-img object-contain"
-                            style={{
-                              width: "96px",
-                              height: "96px",
-                              display: "block",
-                              objectFit: "contain",
-                            }}
-                          />
-                        )}
-                      </div>
-                      <span className="sr-only">{beneficiary.label}</span>
+      <main style={{ flex: 1, overflow: "auto" }}>
+        {summaryCards && summaryCards.length > 0 ? (
+          <ul style={{ paddingLeft: 16 }}>
+            {summaryCards.map((card, i) => (
+              <li key={i} style={{ marginBottom: 12 }}>
+                <strong style={{ display: "block", marginBottom: 6 }}>{card.priority}</strong>
+                <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+                  {card.beneficiaries.map((b) => (
+                    <div key={b.id} style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                      {b.iconSrc ? (
+                        // lightweight inline image
+                        <img src={b.iconSrc} alt={b.label} style={{ width: 48, height: 48, objectFit: "contain" }} />
+                      ) : null}
+                      <span>{b.label}</span>
                     </div>
                   ))}
                 </div>
-              </div>
+              </li>
             ))}
-          </div>
-        </div>
+          </ul>
+        ) : (
+          <p>No summary cards available</p>
+        )}
+      </main>
 
-        {/* Bottom Question Section */}
-        <div
-          className="text-center mb-2"
-          style={{ marginTop: "auto", paddingBottom: "8px" }}
-        >
-          <h2
-            className="font-prompt font-bold text-center"
-            style={{
-              color: "#000D59",
-              fontSize: "clamp(22px, 4.6vw, 44px)",
-              fontWeight: 700,
-              lineHeight: "1.2",
-            }}
-          >
-            นโยบายเพิ่���เติมท���่คุณเ��นอตรงใจคุณแล้วหรือไ���่
-          </h2>
-        </div>
-      </div>
-
-      {/* Footer with action buttons (fixed to viewport bottom) */}
-      <div
-        className="mn2-summary-footer"
-        style={{
-          position: "sticky",
-          bottom: "calc(env(safe-area-inset-bottom, 0px) + 12px)",
-          left: 0,
-          right: 0,
-          zIndex: 10000,
-          height: "auto",
-          background: "transparent",
-          padding: "12px 16px",
-          display: "flex",
-          justifyContent: "center",
-          boxShadow: "none",
-          pointerEvents: "auto",
-        }}
-      >
-        <div
-          className="figma-style1-button-container mn2-summary-button-stack"
-          style={{
-            maxWidth: 420,
-            width: "100%",
-            padding: "0 8px",
-            boxSizing: "border-box",
+      <footer style={{ marginTop: 12, display: "flex", gap: 8 }}>
+        <button
+          onClick={() => {
+            try {
+              handleEndGame();
+            } catch (_) {}
           }}
+          style={{ flex: 1, padding: "10px 12px", background: "#0070f3", color: "#fff", border: "none", borderRadius: 6 }}
         >
-          {useUk1Button ? (
-            <>
-              <Uk1Button onClick={handleEndGame} aria-label="ใช่, ไปต่อ">
-                <span className="figma-style1-button-text">ใช่, ไปต่อ</span>
-              </Uk1Button>
-              <Uk1Button
-                onClick={() => {
-                  logEvent({
-                    event: "MINIGAME_MN2_SUMMARY_RETRY",
-                    payload: { sessionID, summaryCards },
-                  });
-                  try {
-                    navigateToPage("/minigame-mn1");
-                  } catch (e) {
-                    console.warn("navigate to mn1 failed", e);
-                  }
-                }}
-                aria-label="ไม่ใช่, ลอง��ีกครั้ง"
-              >
-                <span className="figma-style1-button-text">
-                  ไม่ใช่, ลองอีกครั้ง
-                </span>
-              </Uk1Button>
-            </>
-          ) : (
-            <>
-              <button
-                onClick={handleEndGame}
-                className="figma-style1-button w-full"
-                aria-label="ใช่, ไปต่อ"
-                style={{ minHeight: 44 }}
-              >
-                <span className="figma-style1-button-text">ใช่, ไปต่อ</span>
-              </button>
-
-              <button
-                onClick={() => {
-                  // Log and navigate back to MN1 to try again
-                  logEvent({
-                    event: "MINIGAME_MN2_SUMMARY_RETRY",
-                    payload: { sessionID, summaryCards },
-                  });
-                  try {
-                    navigateToPage("/minigame-mn1");
-                  } catch (e) {
-                    console.warn("navigate to mn1 failed", e);
-                  }
-                }}
-                className="figma-style1-button w-full"
-                aria-label="ไม่ใช่, ลองอีกครั้ง"
-                style={{ minHeight: 44 }}
-              >
-                <span className="figma-style1-button-text">
-                  ไม่ใช่, ลองอีกครั้ง
-                </span>
-              </button>
-            </>
-          )}
-        </div>
-      </div>
-    </FigmaStyle1Layout>
+          ใช่, ไปต่อ
+        </button>
+        <button
+          onClick={() => {
+            try {
+              logEvent({ event: "MINIGAME_MN2_SUMMARY_RETRY", payload: { sessionID, summaryCards } });
+              navigateToPage && (navigateToPage("/minigame-mn1") as any);
+            } catch (_) {}
+          }}
+          style={{ flex: 1, padding: "10px 12px", background: "#eaeaea", color: "#000", border: "none", borderRadius: 6 }}
+        >
+          ไม่ใช่, ลองอีกครั้ง
+        </button>
+      </footer>
+    </div>
   );
 };
 
