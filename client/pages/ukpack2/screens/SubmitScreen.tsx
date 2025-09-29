@@ -112,9 +112,9 @@ const SubmitScreen: React.FC = () => {
           async function composeImage(): Promise<Blob | null> {
             try {
               const baseSrc =
-                persistedFinal?.color?.preview ||
                 persistedFinal?.imageSrc ||
-                heroImg;
+                heroImg ||
+                persistedFinal?.color?.preview;
               if (!baseSrc) return null;
               const baseImg = await loadImage(baseSrc);
               const w = baseImg.naturalWidth || baseImg.width || 800;
@@ -246,7 +246,7 @@ const SubmitScreen: React.FC = () => {
   return (
     <>
       <CustomizationScreen
-        title="การบริการของรถเมล์"
+        title="การบริการข��งรถเมล์"
         theme="light"
         footerContent={
           <Uk2Footer>
