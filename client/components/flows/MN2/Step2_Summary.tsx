@@ -516,6 +516,56 @@ const Step2_Summary = ({
 
         // run inlineComputedStyles (note: contains awaits for image inlining)
         await inlineComputedStyles(sourceRootForInline, importedClone as HTMLElement);
+
+        // Force-load lazy images inside clone and copy src/srcset from data attributes
+        try {
+          const imgs = Array.from((importedClone as HTMLElement).querySelectorAll('img')) as HTMLImageElement[];
+          for (const img of imgs) {
+            try {
+              img.loading = 'eager';
+              const dsSrc = img.getAttribute('data-src') || img.getAttribute('data-srcset') || img.getAttribute('data-lazy-src');
+              if (dsSrc && !img.src) {
+                img.src = dsSrc;
+              }
+              const ds = img.getAttribute('data-srcset');
+              if (ds && !img.getAttribute('srcset')) img.setAttribute('srcset', ds);
+            } catch (_) {}
+          }
+        } catch (_) {}
+
+        // Copy pseudo-elements ::before and ::after into real nodes so they render in foreignObject
+        try {
+          const srcAll = Array.from((sourceRootForInline as HTMLElement).querySelectorAll('*')) as HTMLElement[];
+          const dstAll = Array.from((importedClone as HTMLElement).querySelectorAll('*')) as HTMLElement[];
+          const pairsLen = Math.min(srcAll.length, dstAll.length);
+          for (let i = 0; i < pairsLen; i++) {
+            try {
+              const s = srcAll[i];
+              const d = dstAll[i];
+              ['::before', '::after'].forEach((pseudo) => {
+                try {
+                  const cs = (ownerDoc.defaultView || window).getComputedStyle(s as any, pseudo as any);
+                  const content = cs.getPropertyValue('content');
+                  if (content && content !== 'none' && content !== '""' && content !== "''") {
+                    // strip quotes
+                    const text = content.replace(/^['"]|['"]$/g, '') || '';
+                    const span = ownerDoc.createElement('span');
+                    span.textContent = text;
+                    // copy some styles
+                    const props = ['color','font-size','font-weight','position','top','left','right','bottom','display','background-color','padding','margin','border','white-space','letter-spacing','transform','z-index'];
+                    for (const p of props) {
+                      try { const v = cs.getPropertyValue(p); if (v) (span.style as any).setProperty(p, v); } catch(_){}
+                    }
+                    // mark and insert
+                    span.setAttribute('data-pseudo', pseudo);
+                    if (pseudo === '::before') d.insertBefore(span, d.firstChild);
+                    else d.appendChild(span);
+                  }
+                } catch (_) {}
+              });
+            } catch (_) {}
+          }
+        } catch (_) {}
       } catch (e) {
         console.warn("inlineComputedStyles failed", e);
       }
