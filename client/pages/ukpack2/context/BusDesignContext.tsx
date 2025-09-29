@@ -275,9 +275,14 @@ export const BusDesignProvider = ({ children }: { children: ReactNode }) => {
 
           const pendingRaw =
             localStorage.getItem("mydreambus_pending_submissions") || "[]";
-          const pending = Array.isArray(JSON.parse(pendingRaw))
-            ? (JSON.parse(pendingRaw) as any[])
-            : [];
+          let pending = [] as any[];
+          try {
+            pending = Array.isArray(JSON.parse(pendingRaw))
+              ? (JSON.parse(pendingRaw) as any[])
+              : [];
+          } catch (_) {
+            pending = [];
+          }
 
           // Serialize helper that will try to keep payload small. If the serialized size
           // is large, return a minimized payload to avoid filling localStorage with heavy data.
@@ -333,9 +338,33 @@ export const BusDesignProvider = ({ children }: { children: ReactNode }) => {
               "mydreambus_pending_submissions",
               trySerialize(pending),
             );
+            console.warn(
+              "Firebase database not initialized — saved submission locally",
+              id,
+            );
+            return id;
           } catch (e) {
-            // If quota exceeded, iteratively remove oldest items and retry
+            // If quota exceeded, attempt remote flush fallback
             if (isQuotaExceeded(e)) {
+              try {
+                // Try to send the single payload to server for persistence
+                const resp = await fetch("/api/flush-pending", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify([payload]),
+                });
+                if (resp && resp.ok) {
+                  console.warn(
+                    "LocalStorage quota exceeded — flushed submission to server fallback",
+                    id,
+                  );
+                  return `server_pending_${Date.now()}`;
+                }
+              } catch (flushErr) {
+                console.warn("Server flush fallback failed", flushErr);
+              }
+
+              // If server fallback failed, try trimming and retrying as before
               let lastError: any = e;
               while (pending.length > 1) {
                 try {
@@ -355,25 +384,44 @@ export const BusDesignProvider = ({ children }: { children: ReactNode }) => {
                   if (!isQuotaExceeded(innerErr)) break; // some other error
                 }
               }
-              // If we get here, we couldn't persist even after trimming
               console.error(
                 "Failed to persist locally after trimming",
                 lastError,
               );
+              // as last resort, attempt to send via navigator.sendBeacon for best-effort
+              try {
+                if (typeof navigator !== "undefined" && navigator.sendBeacon) {
+                  const blobData = new Blob([JSON.stringify([payload])], {
+                    type: "application/json",
+                  });
+                  const beaconOk = navigator.sendBeacon("/api/flush-pending", blobData);
+                  if (beaconOk) {
+                    console.warn("Sent pending submission via sendBeacon fallback", id);
+                    return `beacon_pending_${Date.now()}`;
+                  }
+                }
+              } catch (_) {}
+
               throw lastError;
             }
 
             // If not a quota error, rethrow
             throw e;
           }
-
-          console.warn(
-            "Firebase database not initialized — saved submission locally",
-            id,
-          );
-          return id;
         } catch (err) {
           console.error("Failed to persist locally", err);
+          // Try server flush as fallback before giving up
+          try {
+            const resp = await fetch("/api/flush-pending", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify([payload]),
+            });
+            if (resp && resp.ok) {
+              return `server_pending_${Date.now()}`;
+            }
+          } catch (_) {}
+
           throw new Error(
             `Firebase not initialized and local persistence failed: ${(err && (err.message || err)) || err}`,
           );
