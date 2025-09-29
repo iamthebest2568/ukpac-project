@@ -44,40 +44,41 @@
   border-radius: 0 !important;
 }
 
-/* If header is empty, hide it to avoid reserved blank space */
-.figma-style1-container.mn2-step1-page .figma-style1-header:empty,
-.figma-style1-container.mn2-summary-page .figma-style1-header:empty {
+/* Remove header entirely on MN2 summary to eliminate reserved top space */
+.figma-style1-container.mn2-summary-page .figma-style1-header {
   display: none !important;
 }
 
-/* Ensure the title/header is visible only if present; minimize its footprint */
-.figma-style1-container.mn2-step1-page .figma-style1-header,
-.figma-style1-container.mn2-summary-page .figma-style1-header {
-  display: flex !important;
-  height: auto !important;
-  margin: 0 !important;
-  padding: 6px 12px !important;
-  align-items: center !important;
-  background: transparent !important;
-  color: inherit !important;
-  z-index: 1002 !important;
+/* Also remove header when empty on step1 */
+.figma-style1-container.mn2-step1-page .figma-style1-header:empty {
+  display: none !important;
 }
 
-/* Reduce top padding so title sits closer to top */
+/* Zero out top padding for MN2 content areas to remove extra spacing */
 .figma-style1-container.mn2-step1-page .figma-style1-content-area,
 .figma-style1-container.mn2-summary-page .figma-style1-content-area {
-  padding-top: 8px !important;
+  padding-top: 0 !important;
+  margin-top: 0 !important;
 }
 
-/* Ensure title container shows the page title correctly without extra margin */
+/* Ensure title container has no extra margins/padding */
 .figma-style1-container.mn2-step1-page .figma-style1-title-container,
 .figma-style1-container.mn2-summary-page .figma-style1-title-container {
   position: relative !important;
   top: auto !important;
   left: auto !important;
   transform: none !important;
-  padding-top: 6px !important;
+  padding: 0 !important;
   margin: 0 !important;
+}
+
+/* Reset heading margins inside title container */
+.figma-style1-container.mn2-step1-page .figma-style1-title-container .figma-style1-title,
+.figma-style1-container.mn2-summary-page .figma-style1-title-container .figma-style1-title,
+.figma-style1-container.mn2-step1-page .figma-style1-title-container h1,
+.figma-style1-container.mn2-summary-page .figma-style1-title-container h1 {
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 /* Button sizing and layout for MN2 pages - standard, responsive (narrower max widths) */
