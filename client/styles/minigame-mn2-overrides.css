@@ -91,6 +91,24 @@
   gap: 12px !important;
 }
 
+/* Aggressively remove any circular/frame backgrounds or shadows that may still apply */
+.figma-style1-container.mn2-summary-page .mn2-beneficiary-figure,
+.figma-style1-container.mn2-summary-page .mn2-beneficiary-card,
+.figma-style1-container.mn2-summary-page .mn2-beneficiary-img,
+.figma-style1-container.mn2-summary-page .mn2-summary-icon-grid > * {
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  border-radius: 0 !important;
+}
+
+.figma-style1-container.mn2-summary-page .mn2-beneficiary-figure::before,
+.figma-style1-container.mn2-summary-page .mn2-beneficiary-figure::after {
+  content: none !important;
+  display: none !important;
+}
+
 /* Stack vertically on small viewports */
 @media (max-width: 540px) {
   .figma-style1-container.mn2-step1-page .figma-style1-button-container,
