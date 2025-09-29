@@ -761,6 +761,20 @@ const DoorScreen: React.FC = () => {
                     {
                       const nodes: React.ReactNode[] = [];
                       DOOR_OPTIONS.forEach((opt, idx) => {
+                        // determine if two-door should be disabled when chassis is the large van
+                        let disabled = false;
+                        try {
+                          const savedChassis = (() => {
+                            try {
+                              const raw = sessionStorage.getItem("design.chassis");
+                              return raw ? raw : "";
+                            } catch {
+                              return "";
+                            }
+                          })();
+                          // 'large' maps to รถตู้โดยสาร 9-15 ที่นั่ง — disable 2-door for this chassis
+                          if (savedChassis === "large" && opt.key === "2") disabled = true;
+                        } catch (e) {}
                         // try to use stored overlay URL if available (by key or label)
                         let storedMap: Record<string, string | null> = {};
                         try {
