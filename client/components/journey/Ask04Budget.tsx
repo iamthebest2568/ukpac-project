@@ -60,7 +60,7 @@ const Ask04Budget = ({
     {
       text: "ไม่พอใจ",
       onClick: () => handleChoice("unsatisfied"),
-      ariaLabel: "ไม่พอใจกับผลลัพธ์และต้องกา���ให้ข้อเสนอแนะ",
+      ariaLabel: "ไม่พอใจกับผลลัพธ์และต้องการให้ข้อเสนอแนะ",
     },
   ];
 
@@ -82,7 +82,7 @@ const Ask04Budget = ({
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F79ac3a2ac5e84e88b4015fd66aaebe04?format=webp&width=720",
     เพิ่มความถี่รถไฟฟ้า:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fd90beaca642d4cceba685d933aeb644f?format=webp&width=720",
-    ปรับปรุงคุณภาพรถเ���ล์:
+    ปรับปรุงคุณภาพรถเมล์:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F602cfdd852a147ed852d50b2ed05772d?format=webp&width=720",
     เพิ่มความถี่รถเมล์:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F4e921e92e2c44db7a2ad24ee299e9a6d?format=webp&width=720",
@@ -281,7 +281,7 @@ const Ask04Budget = ({
                 ? resultSummary
                 : [
                     {
-                      priority: "เ���ิ่มความถี่รถเมล์",
+                      priority: "เพิ่มความถี่รถเมล์",
                       allocation: 0,
                       percentage: 0,
                       icon: "",
