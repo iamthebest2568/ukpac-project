@@ -31,6 +31,8 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const viewportBackground = "#ffffff";
+  // Mockup-only background image for beforecitychange (provided asset)
+  const mockupBackgroundImage = "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F55e4304ca8d240debf36be140561839e?format=webp&width=800";
 
   const isMN1 =
     typeof location !== "undefined" &&
