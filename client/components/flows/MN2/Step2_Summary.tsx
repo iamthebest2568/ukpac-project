@@ -235,6 +235,16 @@ const Step2_Summary = ({
         return;
       }
 
+      // Temporarily hide footers/sticky controls in the live document to avoid overlays
+      try {
+        const selector = 'footer, [style*="position: sticky"], [style*="position: fixed"], .figma-style1-button-container';
+        const list = Array.from(document.querySelectorAll(selector)) as HTMLElement[];
+        _hiddenBackup = list.map((el) => ({ el, display: el.style.display || null, visibility: el.style.visibility || null }));
+        for (const e of list) {
+          try { e.style.setProperty('display', 'none', 'important'); e.style.setProperty('visibility', 'hidden', 'important'); } catch (_) {}
+        }
+      } catch (_) {}
+
       // Clone the node to avoid modifying the live DOM
       const clone = el.cloneNode(true) as HTMLElement;
       // Remove footer/sticky elements from clone to avoid overlaying captured content
