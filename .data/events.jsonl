@@ -553,3 +553,5 @@
 {"sessionId":"session_1759129503241_iimafzkit","eventName":"sw.story.start","timestamp":"2025-09-29T07:07:44.722Z","variantId":"a59ef133","variantName":"Intro"}
 {"sessionId":"session_1759129503241_iimafzkit","eventName":"sw.variant.start","timestamp":"2025-09-29T07:07:44.722Z","variantId":"a59ef133","variantName":"Intro"}
 {"sessionId":"session_1759129503241_iimafzkit","eventName":"sw.choice.selected","timestamp":"2025-09-29T07:07:55.093Z","choiceText":"PDPA","variantId":"a59ef133","variantName":"Intro"}
+{"sessionId":"session_1759129503241_iimafzkit","eventName":"sw.story.start","timestamp":"2025-09-29T07:07:55.102Z","variantId":"e61429e0","variantName":"PDPA"}
+{"sessionId":"session_1759129503241_iimafzkit","eventName":"sw.variant.start","timestamp":"2025-09-29T07:07:55.101Z","variantId":"e61429e0","variantName":"PDPA"}
