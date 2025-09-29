@@ -467,4 +467,58 @@ export async function addDesignImageUrlToFirestore(
 }
 
 // also export init for manual init from UI
+export async function saveMinigameSummaryImageUrl(imageUrl: string) {
+  if (!db) initFirebase();
+  // If client Firestore disabled, send server-side ingestion request and return
+  if (!clientFirestoreEnabled) {
+    try {
+      const resp = await fetch("/api/write-image-url", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ imageUrl, collection: "minigameSummaries", page: "Step2_Summary" }),
+      });
+      if (resp && resp.ok) {
+        try {
+          const j = await resp.json();
+          return { id: j.id || null, collection: "minigameSummaries", routed: "server" } as any;
+        } catch (_) {
+          return { id: null, collection: "minigameSummaries", routed: "server" } as any;
+        }
+      }
+    } catch (e) {
+      // fallthrough to attempt client SDK write
+    }
+  }
+
+  if (!db) throw new Error("Firestore not initialized");
+
+  try {
+    const colRef = collection(db as any, "minigameSummaries");
+    const docRef = await addDoc(colRef as any, {
+      imageUrl,
+      page: "Step2_Summary",
+      createdAt: serverTimestamp(),
+    });
+    return { id: docRef.id, collection: "minigameSummaries" } as const;
+  } catch (e) {
+    // server fallback if write fails
+    try {
+      const r = await fetch("/api/write-image-url", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ imageUrl, collection: "minigameSummaries", page: "Step2_Summary" }),
+      });
+      if (r && r.ok) {
+        try {
+          const j = await r.json();
+          return { id: j.id || null, collection: "minigameSummaries", routed: "server" } as any;
+        } catch (_) {
+          return { id: null, collection: "minigameSummaries", routed: "server" } as any;
+        }
+      }
+    } catch (_) {}
+    throw e;
+  }
+}
+
 export { initFirebase };
