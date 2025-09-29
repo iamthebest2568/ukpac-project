@@ -698,12 +698,30 @@ export function createServer() {
       const finalPath = `${projectPrefix}/designs/${safeFilename}`;
       const file = bucket.file(finalPath);
 
-      // upload buffer
-      await file.save(buffer, {
+      // compute SHA-256 hash of buffer for verification metadata
+      let clientHash: string | null = null;
+      try {
+        const crypto = require("crypto");
+        clientHash = crypto.createHash("sha256").update(buffer).digest("hex");
+      } catch (e) {
+        clientHash = null;
+      }
+
+      // upload buffer with custom metadata (clientHash)
+      const saveOptions: any = {
         resumable: false,
         contentType: "image/png",
         public: false,
-      });
+      };
+      if (clientHash) {
+        saveOptions.metadata = {
+          metadata: {
+            clientHash,
+            clientTimestamp: new Date().toISOString(),
+          },
+        };
+      }
+      await file.save(buffer, saveOptions);
 
       // generate signed URL (long expiry)
       const [signedUrl] = await file.getSignedUrl({
@@ -721,6 +739,8 @@ export function createServer() {
       const col = fsAdmin.collection(colName);
       const docRef = await col.add({
         imageUrl: signedUrl,
+        clientHash: clientHash || null,
+        path: finalPath,
         createdAt: admin.firestore.FieldValue.serverTimestamp(),
       });
 
@@ -1205,11 +1225,11 @@ export function createServer() {
                 "จำนวนผู้ตั้งครรภ์ (pregnant_count)",
                 "จำนวนพระ (monk_count)",
                 "สิ่งอำนวยความสะดวก (features)",
-                "ประเภทการชำระเงิน (payment_types)",
+                "ประเภทก���รชำระเงิน (payment_types)",
                 "จำนวนประตู (doors)",
                 "สี (color)",
                 "ความถี่ (frequency)",
-                "เส้นทาง (route)",
+                "เส้นท���ง (route)",
                 "พื้นที่ (area)",
                 "ตัดสินใจใช้บริการ (decision_use_service)",
                 "เหตุผลไม่ใช้บริ���าร (reason_not_use)",
@@ -1676,7 +1696,7 @@ export function createServer() {
         "จำนวนประตู (doors)",
         "สี (color)",
         "ความถี่ (frequency)",
-        "เส้นทาง (route)",
+        "เ���้นทาง (route)",
         "พื้นท��่ (area)",
         "ตัดสินใจใช้บริ���าร (decision_use_service)",
         "เหตุผลไม่ใช้บริกา�� (reason_not_use)",
