@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { logEvent } from "../../../services/dataLogger.js";
 import FigmaStyle1Layout from "../../layouts/FigmaStyle1Layout.ukpack1";
 import Uk1Button from "../../shared/Uk1Button";
+import MN3_MANIFEST from '../../../data/mn3-manifest';
 
 interface Step3_ResultProps {
   sessionID: string | null;
@@ -42,7 +43,6 @@ const Step3_Result = ({
 
   // Map priorities to illustrative images (attachments provided)
   // Prefer manifest-based mapping (more images per priority)
-  import MN3_MANIFEST from '../../../data/mn3-manifest';
 
   const priorityImageMap: { [key: string]: string } = {
     // Backwards-compat fallback (kept minimal). Manifest provides better coverage.
