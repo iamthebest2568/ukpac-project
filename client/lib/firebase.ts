@@ -508,11 +508,38 @@ export async function addDesignImageUrlToFirestore(
 
     // Always create a new document (allow duplicates).
     try {
+      // Try to extract clientHash from storage metadata when possible
+      let clientHash: string | null = null;
+      try {
+        // If imageUrl looks like Firebase Storage download URL, try to derive path and read metadata
+        const m = /https:\/\/firebasestorage.googleapis.com\/v0\/b\/[^/]+\/o\/([^?]+)(\?.*)?/.exec(
+          imageUrl,
+        );
+        if (m && m[1]) {
+          const encodedPath = m[1];
+          const decoded = decodeURIComponent(encodedPath);
+          // Use storageRef and getMetadata to fetch customMetadata.clientHash
+          try {
+            const storage = getStorage(appInstance as any);
+            const ref = storageRef(storage as any, decoded);
+            const { getMetadata } = await import("firebase/storage");
+            const meta = await getMetadata(ref as any);
+            clientHash = meta?.customMetadata?.clientHash || null;
+          } catch (e) {
+            // ignore metadata read errors
+            clientHash = null;
+          }
+        }
+      } catch (_) {
+        clientHash = null;
+      }
+
       const docRef = await addDoc(colRef as any, {
         imageUrl,
         name: derivedName || null,
         width: typeof dims?.width === "number" ? dims?.width : 1132,
         height: typeof dims?.height === "number" ? dims?.height : 1417,
+        clientHash: clientHash || null,
         createdAt: serverTimestamp(),
       });
       return { id: docRef.id, collection: colName } as const;
