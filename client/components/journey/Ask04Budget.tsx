@@ -185,6 +185,36 @@ const Ask04Budget = ({
               if (!resp.ok) throw new Error(`failed to fetch image ${resp.status}`);
               const blob = await resp.blob();
 
+              // attempt to derive image dimensions from the fetched blob
+              let derivedWidth: number | null = null;
+              let derivedHeight: number | null = null;
+              try {
+                if (typeof (window as any).createImageBitmap === "function") {
+                  const imgBitmap = await (window as any).createImageBitmap(blob);
+                  derivedWidth = imgBitmap.width || null;
+                  derivedHeight = imgBitmap.height || null;
+                } else {
+                  // fallback to Image element
+                  await new Promise((resolve) => {
+                    const img = new Image();
+                    const urlObj = URL.createObjectURL(blob);
+                    img.onload = () => {
+                      derivedWidth = img.naturalWidth || null;
+                      derivedHeight = img.naturalHeight || null;
+                      URL.revokeObjectURL(urlObj);
+                      resolve(null);
+                    };
+                    img.onerror = () => {
+                      URL.revokeObjectURL(urlObj);
+                      resolve(null);
+                    };
+                    img.src = urlObj;
+                  });
+                }
+              } catch (dErr) {
+                // ignore dimension extraction errors
+              }
+
               // Build storage path: ask04-budget/<timestamp>_<index>.<ext>
               const ts = Date.now();
               const extMatch = (u.match(/\.([a-zA-Z0-9]+)(?:\?|$)/) || [])[1] || "png";
@@ -197,11 +227,12 @@ const Ask04Budget = ({
                   console.debug("[Ask04Budget] uploaded to storage", storageUrl);
                 } catch (_) {}
 
-                // Record in Firestore
+                // Record in Firestore (include derived dimensions when available)
                 try {
                   const writeRes = await addDesignImageUrlToFirestore(
                     storageUrl,
                     "beforecitychange-imageshow-events",
+                    { width: derivedWidth, height: derivedHeight },
                   );
                   // fire-and-forget: no local tracking maintained
                 } catch (e) {
@@ -212,7 +243,11 @@ const Ask04Budget = ({
               } catch (e) {
                 // If storage upload fails, fallback to writing original URL to Firestore
                 try {
-                  const writeRes = await addDesignImageUrlToFirestore(u, "beforecitychange-imageshow-events");
+                  const writeRes = await addDesignImageUrlToFirestore(
+                    u,
+                    "beforecitychange-imageshow-events",
+                    { width: derivedWidth, height: derivedHeight },
+                  );
                   // no local tracking
                 } catch (ee) {
                   // failed fallback write
