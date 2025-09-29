@@ -596,11 +596,46 @@ const Step2_Summary = ({
         console.warn("inlineComputedStyles failed", e);
       }
 
-      wrapper.appendChild(importedClone as Node);
+      // Determine final output dimensions (CSS pixels) and center the content inside
+      const outputW = Math.max(1, canvasW);
+      const outputH = Math.max(1, canvasH);
+
+      // Fit scale: do not upscale to avoid blur; only scale down if content larger than output
+      const fitScale = Math.min(1, outputW / elemW, outputH / elemH);
+      const scaledW = Math.max(1, Math.round(elemW * fitScale));
+      const scaledH = Math.max(1, Math.round(elemH * fitScale));
+      const offsetLeft = Math.round((outputW - scaledW) / 2);
+      const offsetTop = Math.round((outputH - scaledH) / 2);
+
+      // Build a holder to center and (optionally) scale the imported clone
+      try {
+        wrapper.style.width = `${outputW}px`;
+        wrapper.style.height = `${outputH}px`;
+        wrapper.style.position = 'relative';
+        wrapper.style.display = 'block';
+        wrapper.style.overflow = 'hidden';
+
+        const contentHolder = ownerDoc.createElement('div');
+        contentHolder.style.position = 'absolute';
+        contentHolder.style.left = `${offsetLeft}px`;
+        contentHolder.style.top = `${offsetTop}px`;
+        contentHolder.style.transformOrigin = 'top left';
+        contentHolder.style.transform = `scale(${fitScale})`;
+        contentHolder.style.width = `${elemW}px`;
+        contentHolder.style.height = `${elemH}px`;
+        contentHolder.style.margin = '0';
+        contentHolder.style.padding = '0';
+        try { contentHolder.appendChild(importedClone as Node); } catch (_) { wrapper.appendChild(importedClone as Node); }
+
+        wrapper.appendChild(contentHolder);
+      } catch (_) {
+        // fallback: just append the clone if centering fails
+        try { wrapper.appendChild(importedClone as Node); } catch (_) {}
+      }
 
       const serialized = new XMLSerializer().serializeToString(wrapper);
 
-      const svg = `<?xml version="1.0" encoding="UTF-8"?>\n<svg xmlns='http://www.w3.org/2000/svg' width='${elemW}' height='${elemH}'>\n  <foreignObject width='100%' height='100%'>\n    ${serialized}\n  </foreignObject>\n</svg>`;
+      const svg = `<?xml version="1.0" encoding="UTF-8"?>\n<svg xmlns='http://www.w3.org/2000/svg' width='${outputW}' height='${outputH}'>\n  <foreignObject width='100%' height='100%'>\n    ${serialized}\n  </foreignObject>\n</svg>`;
 
       const url = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
 
@@ -878,7 +913,7 @@ const Step2_Summary = ({
               ดาวน์โหลดภาพจับหน้า
             </Uk1Button>
             {lastStorageUrl ? (
-              <a href={lastStorageUrl} target="_blank" rel="noreferrer" style={{ fontSize: 13, alignSelf: 'center' }}>���ปิดใน Storage</a>
+              <a href={lastStorageUrl} target="_blank" rel="noreferrer" style={{ fontSize: 13, alignSelf: 'center' }}>เปิดใน Storage</a>
             ) : null}
           </div>
 
