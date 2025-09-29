@@ -544,10 +544,9 @@ const DesignScreen: React.FC = () => {
               userId = (auth as any).currentUser.uid;
           } catch (_) {}
 
-          // upload and persist
-          await saveMinigameResult(blob, colorHex, userId);
+          // Upload moved to InfoScreen: skip network upload here.
         } catch (e) {
-          console.warn("saveMinigameResult failed", e);
+          console.warn("skipped upload in DesignScreen (moved to InfoScreen)", e);
         }
       }
     } catch (e) {
