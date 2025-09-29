@@ -314,7 +314,7 @@ const Step1_Priorities = ({
                   letterSpacing: "0.4px",
                 }}
               >
-                เพิ่มความถี่รถไ��ฟ้า
+                เพิ่มความถี่รถไฟฟ้า
               </span>
             </button>
 
