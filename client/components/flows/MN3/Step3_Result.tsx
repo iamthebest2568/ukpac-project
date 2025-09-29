@@ -233,8 +233,25 @@ const Step3_Result = ({
           }}
         >
           {resultSummary.map((s, i) => {
-            // Determine image source using manifest: pick image based on rank (0 => 100%, 1 => 75%, 2 => 30%)
-            const manifestImgs = (MN3_MANIFEST && MN3_MANIFEST[s.priority]) || [];
+            // Determine image source using manifest: robust lookup (exact, normalized, contains)
+            const normalize = (str: string) => (str || "").toString().normalize('NFKC').replace(/\s+/g, '').toLowerCase();
+            const findManifestFor = (priority: string) => {
+              if (!MN3_MANIFEST) return undefined;
+              if (MN3_MANIFEST[priority]) return MN3_MANIFEST[priority];
+              const norm = normalize(priority);
+              // exact normalized key
+              for (const k of Object.keys(MN3_MANIFEST)) {
+                if (normalize(k) === norm) return MN3_MANIFEST[k];
+              }
+              // contains or contained
+              for (const k of Object.keys(MN3_MANIFEST)) {
+                const nk = normalize(k);
+                if (nk.includes(norm) || norm.includes(nk)) return MN3_MANIFEST[k];
+              }
+              return undefined;
+            };
+
+            const manifestImgs = findManifestFor(s.priority) || [];
             const rankIndex = i < 3 ? i : 2; // if more than 3, fallback to the smallest
             const imgSrc = manifestImgs[rankIndex] ||
               priorityImageMap[s.priority] ||
