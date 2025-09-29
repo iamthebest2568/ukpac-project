@@ -345,14 +345,14 @@ export async function addDesignImageUrlToFirestore(
     return { id: docRef.id, collection: colName } as const;
   }
 
-  // Prefer user's requested collection name; fallback to previous ones if needed
+  // Prefer user's requested collection name; if provided use only that to avoid accidental fallbacks.
   const candidates = [] as string[];
-  if (preferredCollection && typeof preferredCollection === "string")
+  if (preferredCollection && typeof preferredCollection === "string") {
     candidates.push(preferredCollection);
-  candidates.push(
-    "kpact-gamebus-imagedesign-events",
-    "ukpact-gamebus-imagedesign-events",
-  );
+  } else {
+    // No explicit preferred collection: try known historical collections (keep minimal to avoid accidental writes)
+    candidates.push("ukpact-gamebus-imagedesign-events");
+  }
 
   for (const colName of candidates) {
     try {
