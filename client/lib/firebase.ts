@@ -134,7 +134,7 @@ export async function sendEventToFirestore(
   const parts = normalized.split("/").filter(Boolean);
 
   try {
-    if (!db) {
+    if (!db || !clientFirestoreEnabled) {
       // Firestore unavailable: best-effort server fallback only
       try {
         const payload = {
@@ -145,22 +145,27 @@ export async function sendEventToFirestore(
           userAgent: navigator.userAgent || null,
           page: window.location.pathname,
         };
-        const ok = (() => {
-          try {
-            const blob = new Blob([JSON.stringify(payload)], {
-              type: "application/json",
-            });
-            // sendBeacon returns boolean, does not throw on network errors
-            return (
-              navigator.sendBeacon && navigator.sendBeacon("/api/track", blob)
-            );
-          } catch (_) {
-            return false;
+        // Try sendBeacon first, then fetch
+        try {
+          const blob = new Blob([JSON.stringify(payload)], { type: "application/json" });
+          if (typeof navigator !== "undefined" && navigator.sendBeacon) {
+            navigator.sendBeacon("/api/track", blob);
+            return { ok: true, routed: "track" } as any;
           }
-        })();
-        void ok;
-      } catch (_) {}
-      return { ok: false, skipped: true } as any;
+        } catch (_) {}
+        try {
+          await fetch("/api/track", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+          });
+          return { ok: true, routed: "track" } as any;
+        } catch (e) {
+          return { ok: false, error: String(e) } as any;
+        }
+      } catch (_) {
+        return { ok: false, skipped: true } as any;
+      }
     }
     // If the target is the minigame2_events (used by mydreambus / ukpack2), prefer routing
     // per-event writes to the server tracking endpoint to avoid storing every event as a Firestore document.
