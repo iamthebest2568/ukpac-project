@@ -324,7 +324,24 @@ export async function saveMinigameResult(
     const url = await getDownloadURL(ref);
 
     if (!db) initFirebase();
-    if (!db) throw new Error("Firestore not initialized");
+    if (!db || !clientFirestoreEnabled) {
+      // Firestore client not available; route to server tracking endpoint so result isn't lost.
+      try {
+        const payload = {
+          event: "MINIGAME_RESULT",
+          payload: { userId: uid || null, color: colorHex || null, resultUrl: url },
+        };
+        await fetch("/api/track", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+        return { docId: null, url } as const;
+      } catch (e) {
+        console.warn("saveMinigameResult server fallback failed", e);
+        throw e;
+      }
+    }
 
     const colRef = collection(db as any, "minigameResults");
     const docRef = await addDoc(colRef as any, {
