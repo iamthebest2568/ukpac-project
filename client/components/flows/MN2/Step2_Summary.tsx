@@ -236,23 +236,89 @@ const Step2_Summary = ({
       // Clone the node to avoid modifying the live DOM
       const clone = el.cloneNode(true) as HTMLElement;
 
-      // Ensure the clone has explicit width/height styles matching layout
-      const rect = el.getBoundingClientRect();
-      // Use scrollHeight/scrollWidth to capture full scrollable content (not only visible viewport)
-      const scrollW = (el as any).scrollWidth || 0;
-      const scrollH = (el as any).scrollHeight || 0;
-      const elemW = Math.max(Math.ceil(rect.width), Math.ceil(scrollW), 800);
-      const elemH = Math.max(Math.ceil(rect.height), Math.ceil(scrollH), Math.ceil((elemW * 4) / 3));
-
-      clone.style.boxSizing = "border-box";
-      clone.style.width = `${elemW}px`;
-      // ensure clone height covers full content and allows overflow to be visible
-      clone.style.height = `${elemH}px`;
-      clone.style.margin = "0";
-      clone.style.overflow = "visible";
-
-      // Inline background to ensure white backdrop
+      // Render a clone offscreen to measure full content size (including scrolled parts)
       const ownerDoc = (el as any).ownerDocument || document;
+
+      // Prepare offscreen measure container
+      const measureContainer = ownerDoc.createElement("div");
+      measureContainer.style.position = "absolute";
+      measureContainer.style.left = "-99999px";
+      measureContainer.style.top = "0px";
+      measureContainer.style.width = "auto";
+      measureContainer.style.height = "auto";
+      measureContainer.style.overflow = "visible";
+      measureContainer.style.visibility = "hidden";
+      measureContainer.style.pointerEvents = "none";
+
+      let importedForMeasure: HTMLElement;
+      try {
+        importedForMeasure = ownerDoc.importNode(clone, true) as HTMLElement;
+      } catch (_) {
+        importedForMeasure = clone as HTMLElement;
+      }
+
+      importedForMeasure.style.boxSizing = "border-box";
+      importedForMeasure.style.width = "auto";
+      importedForMeasure.style.height = "auto";
+      importedForMeasure.style.maxHeight = "none";
+      importedForMeasure.style.overflow = "visible";
+
+      measureContainer.appendChild(importedForMeasure);
+      try {
+        (ownerDoc.body || ownerDoc.documentElement).appendChild(measureContainer);
+      } catch (_) {
+        try {
+          ownerDoc.documentElement.appendChild(measureContainer);
+        } catch (_) {}
+      }
+
+      // Wait for images/font faces to load inside the clone
+      try {
+        const imgs = Array.from(importedForMeasure.querySelectorAll("img")) as HTMLImageElement[];
+        await Promise.all(
+          imgs.map(
+            (img) =>
+              new Promise((res) => {
+                if (img.complete) return res(true);
+                img.onload = () => res(true);
+                img.onerror = () => res(true);
+                try {
+                  img.crossOrigin = "anonymous";
+                } catch (_) {}
+              }),
+          ),
+        );
+      } catch (_) {}
+      try {
+        if ((ownerDoc as any).fonts && (ownerDoc as any).fonts.ready) await (ownerDoc as any).fonts.ready;
+      } catch (_) {}
+
+      // Measure natural size
+      const measuredW = Math.ceil(importedForMeasure.scrollWidth || importedForMeasure.offsetWidth || importedForMeasure.getBoundingClientRect().width || 800);
+      const measuredH = Math.ceil(importedForMeasure.scrollHeight || importedForMeasure.offsetHeight || importedForMeasure.getBoundingClientRect().height || Math.ceil((measuredW * 4) / 3));
+
+      // Remove measure container
+      try {
+        if (measureContainer.parentNode) measureContainer.parentNode.removeChild(measureContainer);
+      } catch (_) {}
+
+      // Create a fresh clone to serialize/inline from
+      let importedClone: Node;
+      try {
+        importedClone = ownerDoc.importNode(clone, true);
+      } catch (_) {
+        importedClone = clone;
+      }
+
+      const elemW = Math.max(1, measuredW);
+      const elemH = Math.max(1, measuredH);
+
+      (importedClone as HTMLElement).style.boxSizing = "border-box";
+      (importedClone as HTMLElement).style.width = `${elemW}px`;
+      (importedClone as HTMLElement).style.height = `${elemH}px`;
+      (importedClone as HTMLElement).style.margin = "0";
+      (importedClone as HTMLElement).style.overflow = "visible";
+
       const wrapper = ownerDoc.createElement("div");
       wrapper.setAttribute("xmlns", "http://www.w3.org/1999/xhtml");
       wrapper.style.width = `${elemW}px`;
@@ -260,13 +326,6 @@ const Step2_Summary = ({
       wrapper.style.background = "#ffffff";
       wrapper.style.overflow = "visible";
       wrapper.style.fontFamily = "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif";
-      // If clone is from a different document, import it into ownerDoc to avoid problems
-      let importedClone: Node;
-      try {
-        importedClone = ownerDoc.importNode(clone, true);
-      } catch (_) {
-        importedClone = clone;
-      }
 
       // Remove any inline max-height/overflow constraints on descendants to ensure full rendering
       try {
