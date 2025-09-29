@@ -65,7 +65,7 @@ const Step1_Beneficiaries = ({
     },
     {
       id: "students",
-      label: "นักเรียนนักศึกษา",
+      label: "น���กเรียนนักศึกษา",
       iconSrc:
         "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fcef48bc6c6e5483bae9209eef3c44cb3?format=webp&width=800",
       iconSelectedSrc:
@@ -198,11 +198,11 @@ const Step1_Beneficiaries = ({
                   }
                 }}
               >
-                <div className={`w-[84px] h-[84px] mb-2 flex items-center justify-center`}>
+                <div className={`w-[96px] h-[96px] mb-2 flex items-center justify-center`}>
                   <img
                     src={isSelected ? group.iconSelectedSrc || group.iconSrc : group.iconSrc}
                     alt={group.label}
-                    className="w-[84px] h-[84px] object-contain"
+                    className="w-[96px] h-[96px] object-contain"
                   />
                 </div>
                 <span className="sr-only">{group.label}</span>
