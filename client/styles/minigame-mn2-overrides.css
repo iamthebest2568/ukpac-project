@@ -11,6 +11,14 @@
   border: none !important;
 }
 
+/* Hide decorative/background overlays for MN2 pages */
+.figma-style1-container.mn2-step1-page .figma-style1-background-overlay,
+.figma-style1-container.mn2-summary-page .figma-style1-background-overlay,
+.tablet-mock-env .mn2-step1-page .figma-style1-background-overlay,
+.tablet-mock-env .mn2-summary-page .figma-style1-background-overlay {
+  display: none !important;
+}
+
 /* --- Remove circular/card frames around icons (only for MN2 step1 and summary pages) --- */
 .figma-style1-container.mn2-step1-page .mn2-beneficiary-figure,
 .figma-style1-container.mn2-summary-page .mn2-beneficiary-figure {
@@ -37,16 +45,29 @@
 }
 
 /* Ensure the title/header is visible on MN2 step1 page */
-.figma-style1-container.mn2-step1-page .figma-style1-header {
+.figma-style1-container.mn2-step1-page .figma-style1-header,
+.figma-style1-container.mn2-summary-page .figma-style1-header {
   display: flex !important;
   height: auto !important;
   margin: 0 !important;
   padding: 12px 16px !important;
   align-items: center !important;
   background: transparent !important;
+  color: inherit !important;
+  z-index: 1002 !important;
 }
 
-/* Button sizing and layout for MN2 pages - standard, responsive */
+/* Ensure title container shows the page title correctly */
+.figma-style1-container.mn2-step1-page .figma-style1-title-container,
+.figma-style1-container.mn2-summary-page .figma-style1-title-container {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  transform: none !important;
+  padding-top: 12px !important;
+}
+
+/* Button sizing and layout for MN2 pages - standard, responsive (narrower max widths) */
 .figma-style1-container.mn2-step1-page .figma-style1-button-container,
 .figma-style1-container.mn2-summary-page .figma-style1-button-container {
   position: relative !important;
@@ -60,8 +81,14 @@
 
 .figma-style1-container.mn2-step1-page .figma-style1-button-container > *,
 .figma-style1-container.mn2-summary-page .figma-style1-button-container > * {
-  width: clamp(220px, 48%, 420px) !important;
+  width: clamp(160px, 40%, 320px) !important;
   min-height: 44px !important;
+}
+
+/* Adjust summary grid to 4 columns */
+.figma-style1-container.mn2-summary-page .mn2-summary-icon-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 12px !important;
 }
 
 /* Stack vertically on small viewports */
