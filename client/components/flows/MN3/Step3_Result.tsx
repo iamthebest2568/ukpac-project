@@ -38,7 +38,7 @@ const Step3_Result = ({
     "เพิ่มความถี่รถเมล์": "🚍",
     "เพิ่มความถี่รถไฟฟ้า": "🚊",
     "เพิ่มที่จอดรถ": "🅿️",
-    "เพิ่ม Feeder ในซอย": "���",
+    "เพิ่ม Feeder ในซอย": "🚐",
   };
 
   // Map priorities to illustrative images (attachments provided)
@@ -251,7 +251,8 @@ const Step3_Result = ({
             const manifestImgs = findManifestFor(s.priority) || [];
             // rank mapping: top choice -> 0 (100%), second -> 1 (75%), third -> 2 (30%)
             const rankIndex = i < 3 ? i : Math.min(2, manifestImgs.length - 1);
-            const imgSrc = manifestImgs[rankIndex] || priorityImageMap[s.priority] || "https://cdn.builder.io/api/v1/image/assets/TEMP/placeholder.png?width=720";
+            const rawImg = manifestImgs[rankIndex] || priorityImageMap[s.priority] || "https://cdn.builder.io/api/v1/image/assets/TEMP/placeholder.png?width=720";
+            const imgSrc = `/api/proxy-image?url=${encodeURIComponent(rawImg)}`;
 
             const offset = collageOffsets[i] || { left: '50%', top: '50%', rotate: '0deg', z: i + 1, scale: 1 };
             const count = resultSummary.length;
