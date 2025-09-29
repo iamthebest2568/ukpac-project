@@ -65,7 +65,10 @@ function initFirebase() {
             p,
             new Promise((_, rej) => setTimeout(() => rej(new Error("firestore-probe-timeout")), 3000)),
           ]);
-          // If probe succeeded, keep clientFirestoreEnabled = true
+          // If probe succeeded, enable client SDK writes
+          try {
+            clientFirestoreEnabled = true;
+          } catch (_) {}
         } catch (probeErr) {
           console.warn("Client Firestore probe failed, disabling client SDK writes", probeErr);
           try {
