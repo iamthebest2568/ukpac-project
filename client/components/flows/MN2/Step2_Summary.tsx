@@ -212,10 +212,9 @@ const Step2_Summary = ({
             {summaryCards.map((card, index) => (
               <div
                 key={index}
-                className="w-full max-w-[903px] mx-auto rounded-[20px] border-2 border-[#000D59] bg-transparent"
+                className="w-full max-w-[903px] mx-auto bg-transparent"
                 style={{
-                  minHeight: "clamp(180px, 22vw, 300px)",
-                  padding: "clamp(12px, 2.6vw, 20px)",
+                  padding: "12px 8px",
                 }}
               >
                 {/* Policy Title */}
