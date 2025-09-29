@@ -141,7 +141,7 @@ const Step1_Beneficiaries = ({
   };
 
   const titleText =
-    currentPriority === "ลดค่าโดยสารร��ไฟฟ้า"
+    currentPriority === "ลดค่าโดยสารรถไฟฟ้า"
       ? "คุณคิดว่าใครควรได้รับการลดค่า���ดยสารรถไฟฟ้าบ้าง"
       : `คุณคิดว่าใครควรได้รับประโยชน์จาก ${currentPriority}`;
 
