@@ -382,7 +382,7 @@
   display: flex !important;
   flex-direction: column !important; /* stacked buttons (original) */
   gap: 12px !important;
-  transform: translateY(30px) !important; /* keep the downward offset as in component */
+  transform: none !important; /* align buttons like MN3 Step3 */
 }
 
 /* Make each button full width when stacked */
