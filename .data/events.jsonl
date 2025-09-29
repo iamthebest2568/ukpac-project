@@ -626,3 +626,6 @@
 {"sessionId":"session_1759183016757_29nx7j1u2","eventName":"sw.variant.start","timestamp":"2025-09-29T21:58:42.988Z","variantId":"02fe3354","variantName":"Opening Scene"}
 {"sessionId":"session_1759183016757_29nx7j1u2","eventName":"sw.variant.start","timestamp":"2025-09-29T21:58:42.988Z","variantId":"02fe3354","variantName":"Opening Scene"}
 {"sessionId":"session_1759183016757_29nx7j1u2","eventName":"sw.choice.selected","timestamp":"2025-09-29T21:58:47.075Z","choiceText":"เริ่มเล่น","variantId":"02fe3354","variantName":"Opening Scene"}
+{"sessionId":"session_1759182926852_tbg9cmncw","eventName":"sw.story.start","timestamp":"2025-09-29T22:02:28.142Z","variantId":"a59ef133","variantName":"Intro"}
+{"sessionId":"session_1759182926852_tbg9cmncw","eventName":"sw.variant.start","timestamp":"2025-09-29T22:02:28.141Z","variantId":"a59ef133","variantName":"Intro"}
+{"sessionId":"session_1759182926852_tbg9cmncw","eventName":"sw.choice.selected","timestamp":"2025-09-29T22:02:28.124Z","choiceText":"Intro","variantId":"a59ef133","variantName":"Intro"}
