@@ -431,38 +431,34 @@ const Step2_Summary = ({
         img.onerror = (e) => rej(e);
       });
 
-      // Target canvas size: portrait 3:4 (width:height = 3:4). Choose a sensible width for quality.
-      const targetWidth = 900; // px
-      const targetHeight = Math.round((targetWidth * 4) / 3); // 1200px
+      // Target canvas size: use content size (elemW x elemH), scaled if too large for performance
+      const maxDimension = 2000; // maximum width or height
+      const dpr = Math.min(2, window.devicePixelRatio || 1);
+      let canvasW = Math.max(1, Math.round(elemW));
+      let canvasH = Math.max(1, Math.round(elemH));
+      let scale = 1;
+      if (Math.max(canvasW, canvasH) > maxDimension) {
+        scale = maxDimension / Math.max(canvasW, canvasH);
+        canvasW = Math.round(canvasW * scale);
+        canvasH = Math.round(canvasH * scale);
+      }
 
+      // Apply devicePixelRatio for crispness
       const canvas = document.createElement("canvas");
-      canvas.width = targetWidth;
-      canvas.height = targetHeight;
+      canvas.width = Math.round(canvasW * dpr);
+      canvas.height = Math.round(canvasH * dpr);
+      canvas.style.width = `${canvasW}px`;
+      canvas.style.height = `${canvasH}px`;
       const ctx = canvas.getContext("2d");
       if (!ctx) throw new Error("Canvas not supported");
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
       // Fill background white
       ctx.fillStyle = "#ffffff";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillRect(0, 0, canvasW, canvasH);
 
-      // Compute scaling to fit the element into the target canvas while preserving aspect and centering
-      const imgAspect = elemW / elemH;
-      const canvasAspect = targetWidth / targetHeight; // 0.75
-      let drawW = 0;
-      let drawH = 0;
-      if (imgAspect > canvasAspect) {
-        // image is wider than canvas aspect -> fit by width
-        drawW = targetWidth;
-        drawH = Math.round(targetWidth / imgAspect);
-      } else {
-        // fit by height
-        drawH = targetHeight;
-        drawW = Math.round(targetHeight * imgAspect);
-      }
-      const dx = Math.round((targetWidth - drawW) / 2);
-      const dy = Math.round((targetHeight - drawH) / 2);
-
-      ctx.drawImage(img as any, 0, 0, elemW, elemH, dx, dy, drawW, drawH);
+      // Draw the image scaled to fit the canvas (we already scaled down content if needed)
+      ctx.drawImage(img as any, 0, 0, elemW, elemH, 0, 0, canvasW, canvasH);
 
       // Convert to blob via data URL (JPEG with quality 0.8)
       const dataUrl = canvas.toDataURL("image/jpeg", 0.8);
@@ -535,7 +531,7 @@ const Step2_Summary = ({
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
         <Uk1Button onClick={onClick} variant="ghost" style={{ height: 44, borderRadius: 12 }}>
-          จับภาพ���อนนี้
+          จับภาพตอนนี้
         </Uk1Button>
         {status ? <div style={{ fontSize: 13, color: "#333", textAlign: "center" }}>{status}</div> : null}
       </div>
