@@ -94,16 +94,26 @@ const Step2_Summary = ({
 
     // Create summary cards
     let cards: SummaryCard[] = prioritiesData.map((priority: string) => {
-      const beneficiaryIds = lookup[priority] || [];
-      const beneficiaryObjects = beneficiaryIds
-        .filter((id: string) => id !== "other")
-        .map((id: string) => ({
-          id,
-          label: (beneficiaryMapping as any)[id]?.label || "ทุกคน",
-          iconSrc:
-            (beneficiaryMapping as any)[id]?.iconSrc ||
-            beneficiaryMapping.everyone.iconSrc,
-        }));
+      const entries = lookup[priority] || [];
+      const beneficiaryObjects = entries
+        .filter((entry: any) => entry !== "other")
+        .map((entry: any) => {
+          if (entry && typeof entry === "object" && entry.id) {
+            return {
+              id: entry.id,
+              label: entry.label || (beneficiaryMapping as any)[entry.id]?.label || "ทุกคน",
+              iconSrc: entry.iconSrc || (beneficiaryMapping as any)[entry.id]?.iconSrc || beneficiaryMapping.everyone.iconSrc,
+            };
+          }
+          const id = String(entry);
+          return {
+            id,
+            label: (beneficiaryMapping as any)[id]?.label || "ทุกคน",
+            iconSrc:
+              (beneficiaryMapping as any)[id]?.iconSrc ||
+              beneficiaryMapping.everyone.iconSrc,
+          };
+        });
 
       return {
         priority,
@@ -169,7 +179,7 @@ const Step2_Summary = ({
 
   return (
     <FigmaStyle1Layout
-      title={<span style={{ color: "#000D59" }}>นโยบายที่คุณเสนอ</span>}
+      title={<span style={{ color: "#000D59" }}>นโยบ��ยที่คุณเสนอ</span>}
       backgroundImage={""}
       backgroundAlt=""
       useBlueOverlay={false}
