@@ -32,6 +32,10 @@ const TabletMockup: React.FC<TabletMockupProps> = ({ children }) => {
   const frameRef = React.useRef<HTMLDivElement | null>(null);
   const navigate = useNavigate();
 
+  const location = useLocation();
+  const isMydreambus = typeof location !== "undefined" && location.pathname && location.pathname.startsWith("/mydreambus");
+  const mydreambusBackgroundImage = "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Ff5a69d8442ba4f44a2bd091cbdcfad11?format=webp&width=800";
+
   const recomputeScale = React.useCallback(() => {
     const margin = 32; // include soft shadow space
     const wv = Math.max(0, win.w - margin);
