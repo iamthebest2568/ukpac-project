@@ -258,13 +258,11 @@ export function createServer() {
             "/api/capture-fullpage missing puppeteer dependency",
             err,
           );
-          return res
-            .status(501)
-            .json({
-              ok: false,
-              error:
-                "puppeteer not available on server. Install puppeteer or chrome-aws-lambda + puppeteer-core",
-            });
+          return res.status(501).json({
+            ok: false,
+            error:
+              "puppeteer not available on server. Install puppeteer or chrome-aws-lambda + puppeteer-core",
+          });
         }
       }
 
@@ -284,13 +282,11 @@ export function createServer() {
         }
       } catch (e) {
         console.error("/api/capture-fullpage browser launch failed", e);
-        return res
-          .status(500)
-          .json({
-            ok: false,
-            error: "failed to launch headless browser",
-            detail: String(e?.message || e),
-          });
+        return res.status(500).json({
+          ok: false,
+          error: "failed to launch headless browser",
+          detail: String(e?.message || e),
+        });
       }
 
       let screenshotBuf: Buffer | null = null;
@@ -375,13 +371,11 @@ export function createServer() {
         // Save into Firestore collection minigameSummaries
         try {
           const fsAdmin = admin.firestore();
-          const docRef = await fsAdmin
-            .collection("minigameSummaries")
-            .add({
-              imageUrl: signedUrl,
-              page: pageName || "Step2_Summary",
-              createdAt: admin.firestore.FieldValue.serverTimestamp(),
-            });
+          const docRef = await fsAdmin.collection("minigameSummaries").add({
+            imageUrl: signedUrl,
+            page: pageName || "Step2_Summary",
+            createdAt: admin.firestore.FieldValue.serverTimestamp(),
+          });
           // respond
           return res.json({
             ok: true,
@@ -400,13 +394,11 @@ export function createServer() {
         }
       } catch (e) {
         console.error("/api/capture-fullpage upload failed", e);
-        return res
-          .status(500)
-          .json({
-            ok: false,
-            error: "upload failed",
-            detail: String(e?.message || e),
-          });
+        return res.status(500).json({
+          ok: false,
+          error: "upload failed",
+          detail: String(e?.message || e),
+        });
       }
     } catch (e: any) {
       console.error("/api/capture-fullpage error", e);

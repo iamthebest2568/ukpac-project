@@ -137,7 +137,8 @@ export async function uploadFileToStorage(
     }
 
     const shouldVerify = options?.verify ?? true;
-    const maxRetries = typeof options?.maxRetries === "number" ? options!.maxRetries : 2;
+    const maxRetries =
+      typeof options?.maxRetries === "number" ? options!.maxRetries : 2;
 
     // Compute client-side hash and attach as custom metadata
     let clientHash: string | null = null;
@@ -192,7 +193,9 @@ export async function uploadFileToStorage(
       const url = await getDownloadURL(ref);
       return url;
     } catch (e) {
-      throw new Error("uploadFileToStorage: upload completed but unable to verify or fetch URL");
+      throw new Error(
+        "uploadFileToStorage: upload completed but unable to verify or fetch URL",
+      );
     }
   } catch (e) {
     console.warn("uploadFileToStorage failed", e);
@@ -512,9 +515,10 @@ export async function addDesignImageUrlToFirestore(
       let clientHash: string | null = null;
       try {
         // If imageUrl looks like Firebase Storage download URL, try to derive path and read metadata
-        const m = /https:\/\/firebasestorage.googleapis.com\/v0\/b\/[^/]+\/o\/([^?]+)(\?.*)?/.exec(
-          imageUrl,
-        );
+        const m =
+          /https:\/\/firebasestorage.googleapis.com\/v0\/b\/[^/]+\/o\/([^?]+)(\?.*)?/.exec(
+            imageUrl,
+          );
         if (m && m[1]) {
           const encodedPath = m[1];
           const decoded = decodeURIComponent(encodedPath);
@@ -638,9 +642,10 @@ export async function saveMinigameSummaryImageUrl(imageUrl: string) {
     // Attempt to capture clientHash from storage metadata when possible
     let clientHash: string | null = null;
     try {
-      const m = /https:\/\/firebasestorage.googleapis.com\/v0\/b\/[^/]+\/o\/([^?]+)(\?.*)?/.exec(
-        imageUrl,
-      );
+      const m =
+        /https:\/\/firebasestorage.googleapis.com\/v0\/b\/[^/]+\/o\/([^?]+)(\?.*)?/.exec(
+          imageUrl,
+        );
       if (m && m[1]) {
         const encodedPath = m[1];
         const decoded = decodeURIComponent(encodedPath);

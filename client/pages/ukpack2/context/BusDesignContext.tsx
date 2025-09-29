@@ -394,9 +394,15 @@ export const BusDesignProvider = ({ children }: { children: ReactNode }) => {
                   const blobData = new Blob([JSON.stringify([payload])], {
                     type: "application/json",
                   });
-                  const beaconOk = navigator.sendBeacon("/api/flush-pending", blobData);
+                  const beaconOk = navigator.sendBeacon(
+                    "/api/flush-pending",
+                    blobData,
+                  );
                   if (beaconOk) {
-                    console.warn("Sent pending submission via sendBeacon fallback", id);
+                    console.warn(
+                      "Sent pending submission via sendBeacon fallback",
+                      id,
+                    );
                     return `beacon_pending_${Date.now()}`;
                   }
                 }

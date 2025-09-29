@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { logEvent } from "../../../services/dataLogger.js";
 import FigmaStyle1Layout from "../../layouts/FigmaStyle1Layout.ukpack1";
 import Uk1Button from "../../shared/Uk1Button";
-import MN3_MANIFEST from '../../../data/mn3-manifest';
+import MN3_MANIFEST from "../../../data/mn3-manifest";
 
 interface Step3_ResultProps {
   sessionID: string | null;
@@ -32,12 +32,12 @@ const Step3_Result = ({
   const [selected, setSelected] = useState<"yes" | "no" | null>(null);
 
   const priorityIcons: { [key: string]: string } = {
-    "ลดค่าโดยสารรถไฟฟ้า": "🚇",
-    "ปรับปรุงคุณภาพรถเมล์": "🚌",
-    "ตั๋วร่วม": "🎫",
-    "เพิ่มความถี่รถเมล์": "🚍",
-    "เพิ่มความถี่รถไฟฟ้า": "🚊",
-    "เพิ่มที่จอดรถ": "🅿️",
+    ลดค่าโดยสารรถไฟฟ้า: "🚇",
+    ปรับปรุงคุณภาพรถเมล์: "🚌",
+    ตั๋วร่วม: "🎫",
+    เพิ่มความถี่รถเมล์: "🚍",
+    เพิ่มความถี่รถไฟฟ้า: "🚊",
+    เพิ่มที่จอดรถ: "🅿️",
     "เพิ่ม Feeder ในซอย": "🚐",
   };
 
@@ -47,7 +47,6 @@ const Step3_Result = ({
   const priorityImageMap: { [key: string]: string } = {
     // Backwards-compat fallback (kept minimal). Manifest provides better coverage.
   };
-
 
   const collageOffsets = [
     { left: "8%", top: "0%", rotate: "-6deg", z: 1, scale: 0.98 },
@@ -207,7 +206,8 @@ const Step3_Result = ({
     "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Ffad6c306ff6d4b21802e5245972126b1?format=webp&width=1500";
 
   // Helper: normalize priority keys and find manifest entries
-  const normalize = (str: string) => (str || "").toString().normalize('NFKC').replace(/\s+/g, '').toLowerCase();
+  const normalize = (str: string) =>
+    (str || "").toString().normalize("NFKC").replace(/\s+/g, "").toLowerCase();
   const findManifestFor = (priority: string) => {
     if (!MN3_MANIFEST) return undefined;
     if (MN3_MANIFEST[priority]) return MN3_MANIFEST[priority];
@@ -251,30 +251,56 @@ const Step3_Result = ({
             const manifestImgs = findManifestFor(s.priority) || [];
             // rank mapping: top choice -> 0 (100%), second -> 1 (75%), third -> 2 (30%)
             const rankIndex = i < 3 ? i : Math.min(2, manifestImgs.length - 1);
-            const rawImg = manifestImgs[rankIndex] || priorityImageMap[s.priority] || "https://cdn.builder.io/api/v1/image/assets/TEMP/placeholder.png?width=720";
+            const rawImg =
+              manifestImgs[rankIndex] ||
+              priorityImageMap[s.priority] ||
+              "https://cdn.builder.io/api/v1/image/assets/TEMP/placeholder.png?width=720";
             const imgSrc = `/api/proxy-image?url=${encodeURIComponent(rawImg)}`;
 
-            const offset = collageOffsets[i] || { left: '50%', top: '50%', rotate: '0deg', z: i + 1, scale: 1 };
+            const offset = collageOffsets[i] || {
+              left: "50%",
+              top: "50%",
+              rotate: "0deg",
+              z: i + 1,
+              scale: 1,
+            };
             const count = resultSummary.length;
             const spacing = count === 1 ? 0 : count === 2 ? 40 : -60;
             const offsetX = Math.round((i - (count - 1) / 2) * spacing);
             // Increase widths to make collage images larger while keeping their center positions
-            const width = count === 1 ? '86%' : count === 2 ? '72%' : '58%';
+            const width = count === 1 ? "86%" : count === 2 ? "72%" : "58%";
 
             return (
               <div
                 key={s.priority}
                 style={{
-                  position: 'absolute',
-                  left: '50%',
+                  position: "absolute",
+                  left: "50%",
                   top: `calc(50% + ${offset.top})`,
                   transform: `translate(calc(-50% + ${offsetX}px), -50%) rotate(${offset.rotate}) scale(${offset.scale})`,
                   width,
                   zIndex: offset.z,
                 }}
               >
-                <div style={{ width: '100%', paddingBottom: '90%', position: 'relative' }}>
-                  <img src={imgSrc} alt={s.priority} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center center' }} />
+                <div
+                  style={{
+                    width: "100%",
+                    paddingBottom: "90%",
+                    position: "relative",
+                  }}
+                >
+                  <img
+                    src={imgSrc}
+                    alt={s.priority}
+                    style={{
+                      position: "absolute",
+                      inset: 0,
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "contain",
+                      objectPosition: "center center",
+                    }}
+                  />
                 </div>
               </div>
             );
