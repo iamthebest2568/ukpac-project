@@ -198,7 +198,7 @@ const Step2_Summary = ({
         )}
       </main>
 
-      <footer style={{ marginTop: 24 }}>
+      <footer style={{ position: "sticky", bottom: "calc(env(safe-area-inset-bottom, 12px))", marginTop: 24, zIndex: 1000 }}>
         <div style={{ maxWidth: 325, width: "100%", margin: "0 auto", display: "flex", flexDirection: "column", gap: 12, padding: "0 var(--space-sm)", boxSizing: "border-box" }}>
           <Uk1Button onClick={() => { try { handleEndGame(); } catch (_) {} }} style={{ height: 53, borderRadius: 40 }}>
             ใช่, ไปต่อ
