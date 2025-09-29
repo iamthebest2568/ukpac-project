@@ -775,8 +775,8 @@ const DoorScreen: React.FC = () => {
                           // Only apply this disable rule for /mydreambus routes
                           const loc = typeof window !== 'undefined' ? window.location.pathname : '';
                           const isMydreambusPath = typeof loc === 'string' && loc.startsWith('/mydreambus');
-                          // 'extra' maps to ��ถกะบะดัดแปลง 8-12 ที่นั่ง — disable 2-door for this chassis on mydreambus
-                          if (isMydreambusPath && (savedChassis === "extra" || savedChassis === "large") && opt.key === "2") disabled = true;
+                          // 'extra' maps to รถกะบะดัดแปลง 8-12 ที่นั่ง — disable 2-door for this chassis on mydreambus
+                          if (isMydreambusPath && savedChassis === "small" && opt.key === "2") disabled = true;
                         } catch (e) {}
                         // try to use stored overlay URL if available (by key or label)
                         let storedMap: Record<string, string | null> = {};
