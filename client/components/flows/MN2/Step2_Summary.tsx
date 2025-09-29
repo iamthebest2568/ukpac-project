@@ -30,34 +30,7 @@ const Step2_Summary = ({
   const [summaryCards, setSummaryCards] = useState<SummaryCard[]>([]);
   const { navigateToPage } = useSession();
 
-  // Complete beneficiary mapping with exact Figma images
-  const beneficiaryMapping = {
-    everyone: {
-      label: "ทุกคน",
-      iconSrc:
-        "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb51d5d0d87d5482cbe4ae3a2df0c65c9?format=webp&width=188",
-    },
-    locals: {
-      label: "คนในพื้นที่",
-      iconSrc:
-        "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fd0e13c552a39418eb25993c7d87905c8?format=webp&width=140",
-    },
-    elderly: {
-      label: "ผู้สูงอายุ",
-      iconSrc:
-        "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fd3f59501f48a452c9298801a0aefebe1?format=webp&width=100",
-    },
-    students: {
-      label: "นักเรี��น/นักศึกษา",
-      iconSrc:
-        "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F0cd82b7996e641ee9cf3aaa0ab1cb9f8?format=webp&width=118",
-    },
-    disabled: {
-      label: "คนพิการ",
-      iconSrc:
-        "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F70716074f73c4374a1f9295afdf5f5b2?format=webp&width=140",
-    },
-  };
+  // Cleared: do not reference external images or mappings. Keep only textual labels.
 
   useEffect(() => {
     // Extract priorities from journey data
@@ -214,7 +187,7 @@ const Step2_Summary = ({
       }}
     >
       <header style={{ marginBottom: 16 }}>
-        <h1 style={{ margin: 0, fontSize: 20, fontWeight: 700 }}>MN2 — สรุปนโยบาย ( cleared )</h1>
+        <h1 style={{ margin: 0, fontSize: 20, fontWeight: 700 }}>MN2 — สรุปน���ยบาย ( cleared )</h1>
         <p style={{ margin: "6px 0 0 0", color: "#333" }}>
           หน้านี้ถูกล้างดีไซน์เพื่อการทดสอบเฉพาะหน้านี้เท่านั้น
         </p>
