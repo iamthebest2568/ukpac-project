@@ -5,7 +5,7 @@
 
 import { useEffect, useState } from "react";
 import { useSession } from "../../../hooks/useSession";
-// Cleared design: do not import layout or shared style components here
+import Uk1Button from "../../shared/Uk1Button";
 
 interface Step2_SummaryProps {
   sessionID: string | null;
