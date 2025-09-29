@@ -179,16 +179,15 @@ const Step2_Summary = ({
 
                 <div style={{ display: "flex", justifyContent: "center", gap: 12, flexWrap: "wrap" }}>
                   {card.beneficiaries.map((b) => (
-                    <div key={b.id} style={{ width: 88, display: "flex", flexDirection: "column", alignItems: "center", gap: 6 }}>
-                      {/* subheading above icon (label) - short */}
-                      <div style={{ fontSize: 12, color: "#111", textAlign: "center", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", maxWidth: 88 }} title={b.label}>{b.label}</div>
-
-                      {/* icon: prefer provided iconSrc, fallback to placeholder */}
+                    <div key={b.id} style={{ width: 88, display: "flex", flexDirection: "column", alignItems: "center", gap: 6, position: "relative" }}>
+                      {/* icon only - no visible label */}
                       {((b as any).iconSrc as string) ? (
                         <img src={(b as any).iconSrc} alt="" style={{ width: 64, height: 64, objectFit: "contain", borderRadius: 8 }} />
                       ) : (
                         <div style={{ width: 64, height: 64, borderRadius: 8, background: "#eee" }} aria-hidden />
                       )}
+                      {/* Hidden text for screen readers only */}
+                      <span style={{ position: "absolute", width: 1, height: 1, padding: 0, margin: -1, overflow: "hidden", clip: "rect(0, 0, 0, 0)", border: 0 }}>{b.label}</span>
                     </div>
                   ))}
                 </div>
