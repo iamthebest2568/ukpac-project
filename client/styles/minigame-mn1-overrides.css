@@ -317,3 +317,13 @@
 .desktop-mock-embed .minigame-mn1-page .mn3-policy-button--selected .mn3-button-text {
   color: #ffffff !important;
 }
+
+/* Also enable same desktop highlight for MN3 page inside desktop mock */
+.desktop-mock-embed .minigame-mn3-page .mn3-policy-button--selected {
+  background-color: #000d59 !important;
+  color: #ffffff !important;
+  box-shadow: none !important;
+}
+.desktop-mock-embed .minigame-mn3-page .mn3-policy-button--selected .mn3-button-text {
+  color: #ffffff !important;
+}
