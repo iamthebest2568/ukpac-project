@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import CustomizationScreen from "../components/CustomizationScreen";
 import ColorPalette from "../components/ColorPalette";
-import { addDesignImageUrlToFirestore } from "../../../lib/firebase";
+import { addDesignImageUrlToFirestore, saveMinigameResult } from "../../../lib/firebase";
 import MetaUpdater from "../../../components/MetaUpdater";
 import { OVERLAY_ICON_SRC } from "../utils/overlayIcons";
 import CtaButton from "../components/CtaButton";
@@ -108,7 +108,7 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   ที่นั่งพิเศษ: <IconSeat />,
   "ที่จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
   "ช่องชาร์จมือถือ/USB": <IconPlug />,
-  "Wi‑Fi ฟรี": <IconTv />,
+  "Wi‑Fi ฟร���": <IconTv />,
   "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
   กล้องวงจรปิด: <IconCamSmall />,
 };
