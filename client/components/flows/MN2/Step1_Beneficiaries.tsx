@@ -68,6 +68,8 @@ const Step1_Beneficiaries = ({
       label: "นักเรียนนักศึกษา",
       iconSrc:
         "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fcef48bc6c6e5483bae9209eef3c44cb3?format=webp&width=800",
+      iconSelectedSrc:
+        "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Ff7480943e6b7495d8307dc7e1591b5e6?format=webp&width=800",
     },
     {
       id: "disabled",
@@ -146,7 +148,7 @@ const Step1_Beneficiaries = ({
 
   const titleText =
     currentPriority === "ลดค่าโดยสารรถไฟฟ้า"
-      ? "คุณคิดว่าใครควรได้รับการลดค่า���ดยสารรถไฟฟ้าบ้าง"
+      ? "คุณคิดว่าใครควรได้รับการลดค��า���ดยสารรถไฟฟ้าบ้าง"
       : `คุณคิดว่าใครควรได้รับประโยชน์จาก ${currentPriority}`;
 
   return (

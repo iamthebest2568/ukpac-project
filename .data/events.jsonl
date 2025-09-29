@@ -559,3 +559,5 @@
 {"sessionId":"session_1759129503241_iimafzkit","eventName":"sw.variant.start","timestamp":"2025-09-29T07:08:05.209Z","variantId":"02fe3354","variantName":"Opening Scene"}
 {"sessionId":"session_1759129503241_iimafzkit","eventName":"sw.choice.selected","timestamp":"2025-09-29T07:08:36.087Z","choiceText":"เริ่มเล่น","variantId":"02fe3354","variantName":"Opening Scene"}
 {"sessionId":"session_1759129503241_iimafzkit","eventName":"sw.variant.start","timestamp":"2025-09-29T07:08:36.857Z","variantId":"333faf2b","variantName":"เหตุผลหลักในการเดินทางเข้าเมือง"}
+{"sessionId":"session_1759129503241_iimafzkit","eventName":"sw.choice.selected","timestamp":"2025-09-29T07:09:12.100Z","choiceText":"ทำงาน","variantId":"333faf2b","variantName":"เหตุผลหลักในการเดินทางเข้าเมือง"}
+{"sessionId":"session_1759129503241_iimafzkit","eventName":"sw.variant.start","timestamp":"2025-09-29T07:09:12.119Z","variantId":"4bec38a0","variantName":"คุณใช้รถแบบไหนเดินทางเข้าเมือง?"}
