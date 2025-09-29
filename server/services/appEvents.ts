@@ -424,31 +424,137 @@ export async function computeSessionSummaries(limit = 100) {
     const travelMethod =
       arr.find((e: any) => e.event && e.event.includes("TRAVEL_METHOD"))
         ?.payload?.choice || undefined;
-    const mn1Selected = [];
+
+    const mn1Selected: string[] = [];
+    let mn2Selections: Record<string, string[]> | undefined = undefined;
+    let mn3Selected: string[] | undefined = undefined;
+    let mn3BudgetAllocation: Record<string, number> | undefined = undefined;
+    let ask02Choice: string | undefined = undefined;
+    let ask02CustomReason: string | undefined = undefined;
+    let reasonOther01: string | undefined = undefined;
+    let keyMessage1: string | undefined = undefined;
+    let satisfactionLevel: string | undefined = undefined;
+    let ask05Comment: string | undefined = undefined;
+    let fakeNewsResponse: string | undefined = undefined;
+    let sourceSelected: string | undefined = undefined;
+    let endDecision: string | undefined = undefined;
+    let contactName: string | undefined = undefined;
+    let contactPhone: string | undefined = undefined;
+    let shareFirstTs: string | null = null;
+    let shareLastTs: string | null = null;
+    let shareCount = 0;
+
     for (const e of arr) {
-      if (
-        e.event &&
-        (e.event === "MN1_SELECT" || e.event === "BUDGET_STEP1_COMPLETE")
-      ) {
-        if (e.payload && e.payload.selectedPolicies) {
-          mn1Selected.push(...(e.payload.selectedPolicies || []));
+      const ev = (e.event || "").toString();
+      const p = e.payload || {};
+
+      // MN1 selections
+      if (ev === "MN1_SELECT" || ev === "BUDGET_STEP1_COMPLETE" || ev === "MN01_SELECT") {
+        if (p.selectedPolicies && Array.isArray(p.selectedPolicies)) {
+          mn1Selected.push(...p.selectedPolicies.map(String));
         }
       }
-      if (e.event && e.event === "MN01_SELECT") {
-        if (e.payload && e.payload.selectedPolicies)
-          mn1Selected.push(...e.payload.selectedPolicies);
+
+      // Ask02 choice and custom
+      if (ev === "ASK02_CHOICE" || ev === "ASK02_2_SUBMIT") {
+        if (p.choice) ask02Choice = String(p.choice);
+        if (p.customReason) ask02CustomReason = String(p.customReason);
       }
+      if (ev === "REASON_OTHER_01") {
+        if (p.text) reasonOther01 = String(p.text);
+      }
+
+      // Key messages
+      if (ev.includes("STORN") || ev.includes("STORN_AWAY") || ev.includes("STORN")) {
+        if (p.keyMessage) keyMessage1 = String(p.keyMessage || p.choice || keyMessage1 || "");
+      }
+
+      // MN2 beneficiaries/groups
+      if (ev.includes("MN2") || ev.includes("BENEFICIARIES") || ev.includes("BENEFICIARY")) {
+        if (p.groups || p.mn2Selections) {
+          mn2Selections = Object.assign(mn2Selections || {}, p.groups || p.mn2Selections || {});
+        }
+      }
+
+      // MN3 selections and budget
+      if (ev === "BUDGET_STEP2_COMPLETE" || ev === "MN3_BUDGET_DONE" || ev === "BUDGET_STEP2") {
+        if (p.budgetAllocation) mn3BudgetAllocation = p.budgetAllocation;
+        if (p.budgetAllocation && typeof p.budgetAllocation === 'object') {
+          // ensure numbers
+          mn3BudgetAllocation = Object.fromEntries(Object.entries(p.budgetAllocation).map(([k, v])=>[k, Number(v)]));
+        }
+      }
+      if (ev === "MINIGAME_MN3_COMPLETE" || ev === "MN3_RESULT" || ev === "BUDGET_STEP1_COMPLETE") {
+        if (p.top3Choices && Array.isArray(p.top3Choices)) mn3Selected = p.top3Choices.map(String);
+        if (p.selectedPriorities && Array.isArray(p.selectedPriorities)) mn3Selected = p.selectedPriorities.map(String);
+        if (p.budgetAllocation && typeof p.budgetAllocation === 'object') mn3BudgetAllocation = Object.fromEntries(Object.entries(p.budgetAllocation).map(([k, v])=>[k, Number(v)]));
+        if (p.satisfaction) satisfactionLevel = String(p.satisfaction);
+      }
+
+      // Satisfaction and comments
+      if (ev === "SATISFACTION_CHOICE" || ev === "POLICY_SUGGESTION_SUBMITTED") {
+        if (p.choice) satisfactionLevel = String(p.choice);
+        if (p.comment || p.text) ask05Comment = String(p.comment || p.text);
+      }
+
+      // Fake news
+      if (ev === "FAKENEWS_CHOICE" || ev === "FAKENEWS_CHOICE") {
+        if (p.choice) fakeNewsResponse = String(p.choice);
+      }
+
+      // Source selection
+      if (ev === "SOURCE_SELECTION_SUBMIT" || ev === "SOURCE_SELECTION") {
+        if (p.source) sourceSelected = String(p.source);
+      }
+
+      // End sequence / reward
+      if (ev === "REWARD_DECISION" || ev === "REWARD_FORM_SUBMIT") {
+        if (p.decision) endDecision = String(p.decision);
+        if (p.prizeName || p.name) contactName = String(p.prizeName || p.name || contactName || "");
+        if (p.prizePhone || p.phone) contactPhone = String(p.prizePhone || p.phone || contactPhone || "");
+      }
+
+      // Shares
+      if (ev === "SHARE" || ev === "SHARE_CLICK" || ev === "SHARE_ACTION") {
+        shareCount = (shareCount || 0) + 1;
+        const ts = e.timestamp || new Date().toISOString();
+        if (!shareFirstTs) shareFirstTs = String(ts);
+        shareLastTs = String(ts);
+      }
+
+      // Generic fields
+      if (!contactName && p.name) contactName = String(p.name);
+      if (!contactPhone && p.phone) contactPhone = String(p.phone || p.phoneNumber || contactPhone);
     }
 
     summaries.push({
       sessionId: sid,
       firstSeen,
       lastSeen,
-      introWho: introWho || undefined,
-      travelMethod: travelMethod || undefined,
+      introWho: introWho ? sanitizeThai(introWho) : undefined,
+      travelMethod: travelMethod ? sanitizeThai(travelMethod) : undefined,
       mn1Selected: Array.isArray(mn1Selected)
-        ? Array.from(new Set(mn1Selected))
+        ? Array.from(new Set(mn1Selected)).map(sanitizeThai)
         : [],
+      mn2Selections: mn2Selections ? mn2Selections : undefined,
+      mn3Selected: Array.isArray(mn3Selected) ? mn3Selected.map(sanitizeThai) : undefined,
+      mn3BudgetAllocation: mn3BudgetAllocation ? mn3BudgetAllocation : undefined,
+      ask02Choice: ask02Choice ? sanitizeThai(ask02Choice) : undefined,
+      ask02CustomReason: ask02CustomReason ? sanitizeThai(ask02CustomReason) : undefined,
+      reasonOther01: reasonOther01 ? sanitizeThai(reasonOther01) : undefined,
+      keyMessage1: keyMessage1 ? sanitizeThai(keyMessage1) : undefined,
+      satisfactionLevel: satisfactionLevel ? sanitizeThai(satisfactionLevel) : undefined,
+      ask05Comment: ask05Comment ? sanitizeThai(ask05Comment) : undefined,
+      fakeNewsResponse: fakeNewsResponse ? sanitizeThai(fakeNewsResponse) : undefined,
+      sourceSelected: sourceSelected ? sanitizeThai(sourceSelected) : undefined,
+      endDecision: endDecision ? sanitizeThai(endDecision) : undefined,
+      contactName: contactName ? sanitizeThai(contactName) : undefined,
+      contactPhone: contactPhone ? sanitizeThai(contactPhone) : undefined,
+      shareFirstTs: shareFirstTs,
+      shareLastTs: shareLastTs,
+      shareCount: shareCount,
+      ip: arr[0]?.ip || undefined,
+      userAgent: arr[0]?.userAgent || undefined,
       contacts: 0,
     });
   }
