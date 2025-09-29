@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import RouteTransition from "../../../components/shared/RouteTransition";
 
 interface TabletMockupProps {
