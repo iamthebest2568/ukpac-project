@@ -214,12 +214,12 @@ const Step2_Summary = ({
 
                 {/* Beneficiary Icons - 3 per row, tighter spacing, slightly larger icons */}
                 <div
-                  className={`grid justify-items-center items-center grid-cols-3 gap-2 mn2-summary-icon-grid`}
+                  className={`grid justify-items-center items-center grid-cols-4 gap-2 mn2-summary-icon-grid`}
                   style={{
                     maxWidth: "100%",
                     margin: "0 auto",
                     padding: "0 clamp(6px, 1.6vw, 12px)",
-                    gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
+                    gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
                   }}
                 >
                   {card.beneficiaries.map((beneficiary, beneficiaryIndex) => (
@@ -231,15 +231,14 @@ const Step2_Summary = ({
                         maxWidth: "none",
                       }}
                     >
-                      {/* Full-size square area for icon */}
+                      {/* Icon area - no forced square */}
                       <div
                         className="mn2-beneficiary-figure relative mb-1"
                         style={{
-                          width: "100%",
-                          aspectRatio: "1 / 1",
                           display: "flex",
                           alignItems: "center",
                           justifyContent: "center",
+                          padding: "4px 0",
                         }}
                       >
                         {beneficiary.iconSrc && (
@@ -248,8 +247,8 @@ const Step2_Summary = ({
                             alt={beneficiary.label}
                             className="mn2-beneficiary-img object-contain"
                             style={{
-                              width: "100%",
-                              height: "100%",
+                              width: "84px",
+                              height: "84px",
                               display: "block",
                               objectFit: "contain",
                             }}
