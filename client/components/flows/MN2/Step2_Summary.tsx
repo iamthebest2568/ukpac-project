@@ -3,9 +3,10 @@
  * Fixed responsive design for icons and text
  */
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useSession } from "../../../hooks/useSession";
 import Uk1Button from "../../shared/Uk1Button";
+import { uploadFileToStorage, saveMinigameSummaryImageUrl, initFirebase } from "../../../lib/firebase";
 
 interface Step2_SummaryProps {
   sessionID: string | null;
@@ -124,6 +125,29 @@ const Step2_Summary = ({
     setSummaryCards(cards);
   }, [journeyData]);
 
+  // Auto-capture and upload the main content as an image (runs once when summaryCards first available)
+  const hasCapturedRef = useRef(false);
+
+  useEffect(() => {
+    if (summaryCards && summaryCards.length > 0 && !hasCapturedRef.current) {
+      hasCapturedRef.current = true;
+      // small delay to ensure DOM settled and fonts/images loaded
+      const t = setTimeout(() => {
+        (async () => {
+          try {
+            await initFirebase();
+          } catch (_) {}
+          try {
+            await captureAndUpload();
+          } catch (e) {
+            console.warn("captureAndUpload failed", e);
+          }
+        })();
+      }, 300);
+      return () => clearTimeout(t);
+    }
+  }, [summaryCards]);
+
   const handleShareGame = () => {
     // Handle share game logic
     console.log("Share game");
@@ -149,6 +173,117 @@ const Step2_Summary = ({
     navigateToPage("ask05", data);
   };
 
+  // Capture helper: serialize DOM to SVG -> rasterize to canvas -> resize to 3:4 (portrait) -> upload
+  async function captureAndUpload() {
+    try {
+      const el = document.getElementById("mn2-step2-content");
+      if (!el) {
+        console.warn("mn2-step2-content element not found");
+        return;
+      }
+
+      // Clone the node to avoid modifying the live DOM
+      const clone = el.cloneNode(true) as HTMLElement;
+
+      // Ensure the clone has explicit width/height styles matching layout
+      const rect = el.getBoundingClientRect();
+      const elemW = Math.ceil(rect.width) || 800;
+      const elemH = Math.ceil(rect.height) || Math.ceil((elemW * 4) / 3);
+
+      clone.style.boxSizing = "border-box";
+      clone.style.width = `${elemW}px`;
+      clone.style.height = `${elemH}px`;
+      clone.style.margin = "0";
+
+      // Inline background to ensure white backdrop
+      const wrapper = document.createElement("div");
+      wrapper.setAttribute("xmlns", "http://www.w3.org/1999/xhtml");
+      wrapper.style.width = `${elemW}px`;
+      wrapper.style.height = `${elemH}px`;
+      wrapper.style.background = "#ffffff";
+      wrapper.appendChild(clone);
+
+      const serialized = new XMLSerializer().serializeToString(wrapper);
+
+      const svg = `<?xml version="1.0" encoding="UTF-8"?>\n<svg xmlns='http://www.w3.org/2000/svg' width='${elemW}' height='${elemH}'>\n  <foreignObject width='100%' height='100%'>\n    ${serialized}\n  </foreignObject>\n</svg>`;
+
+      const url = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
+
+      await new Promise((res, rej) => {
+        const img = new Image();
+        img.onload = () => res(true);
+        img.onerror = (e) => rej(e);
+        img.crossOrigin = "anonymous";
+        img.src = url;
+      });
+
+      const img = new Image();
+      img.crossOrigin = "anonymous";
+      img.src = url;
+
+      await new Promise((res, rej) => {
+        img.onload = () => res(true);
+        img.onerror = (e) => rej(e);
+      });
+
+      // Target canvas size: portrait 3:4 (width:height = 3:4). Choose a sensible width for quality.
+      const targetWidth = 900; // px
+      const targetHeight = Math.round((targetWidth * 4) / 3); // 1200px
+
+      const canvas = document.createElement("canvas");
+      canvas.width = targetWidth;
+      canvas.height = targetHeight;
+      const ctx = canvas.getContext("2d");
+      if (!ctx) throw new Error("Canvas not supported");
+
+      // Fill background white
+      ctx.fillStyle = "#ffffff";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Compute scaling to fit the element into the target canvas while preserving aspect and centering
+      const imgAspect = elemW / elemH;
+      const canvasAspect = targetWidth / targetHeight; // 0.75
+      let drawW = 0;
+      let drawH = 0;
+      if (imgAspect > canvasAspect) {
+        // image is wider than canvas aspect -> fit by width
+        drawW = targetWidth;
+        drawH = Math.round(targetWidth / imgAspect);
+      } else {
+        // fit by height
+        drawH = targetHeight;
+        drawW = Math.round(targetHeight * imgAspect);
+      }
+      const dx = Math.round((targetWidth - drawW) / 2);
+      const dy = Math.round((targetHeight - drawH) / 2);
+
+      ctx.drawImage(img as any, 0, 0, elemW, elemH, dx, dy, drawW, drawH);
+
+      // Convert to blob (JPEG for balanced quality & size)
+      const blob: Blob | null = await new Promise((resolve) => canvas.toBlob(resolve as any, "image/jpeg", 0.86));
+      if (!blob) throw new Error("Failed to create image blob");
+
+      // Prepare path and upload
+      const ts = Date.now();
+      const filename = `mn2-step2-summary_${ts}.jpg`;
+      const storagePath = `minigame-summary-captures/${filename}`;
+
+      const storageUrl = await uploadFileToStorage(blob, storagePath);
+
+      // Save record to Firestore with required fields
+      try {
+        await saveMinigameSummaryImageUrl(storageUrl);
+      } catch (e) {
+        console.warn("saveMinigameSummaryImageUrl failed", e);
+      }
+
+      return storageUrl;
+    } catch (e) {
+      console.warn("captureAndUpload error", e);
+      throw e;
+    }
+  }
+
   // Minimal cleared UI: no external layout components, no external classes.
   return (
     <div className="figma-style1-container figma-style1-ukpack1"
@@ -167,7 +302,7 @@ const Step2_Summary = ({
         <h1 style={{ margin: "0 auto", fontSize: 22, fontWeight: 700 }}>นโยบายที่คุณเสนอ</h1>
       </header>
 
-      <main style={{ flex: 1, overflow: "auto", paddingBottom: "calc(env(safe-area-inset-bottom, 12px) + 120px)" }}>
+      <main id="mn2-step2-content" style={{ flex: 1, overflow: "auto", paddingBottom: "calc(env(safe-area-inset-bottom, 12px) + 120px)" }}>
         {summaryCards && summaryCards.length > 0 ? (
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 12 }}>
             {summaryCards.map((card, i) => (
