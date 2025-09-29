@@ -258,7 +258,8 @@ const Step3_Result = ({
             const count = resultSummary.length;
             const spacing = count === 1 ? 0 : count === 2 ? 40 : -60;
             const offsetX = Math.round((i - (count - 1) / 2) * spacing);
-            const width = count === 1 ? '68%' : count === 2 ? '55%' : '46%';
+            // Increase widths to make collage images larger while keeping their center positions
+            const width = count === 1 ? '86%' : count === 2 ? '72%' : '58%';
 
             return (
               <div
@@ -272,7 +273,7 @@ const Step3_Result = ({
                   zIndex: offset.z,
                 }}
               >
-                <div style={{ width: '100%', paddingBottom: '80%', position: 'relative' }}>
+                <div style={{ width: '100%', paddingBottom: '90%', position: 'relative' }}>
                   <img src={imgSrc} alt={s.priority} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center center' }} />
                 </div>
               </div>
