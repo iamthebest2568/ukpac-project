@@ -689,6 +689,16 @@ const Step2_Summary = ({
       });
 
 
+      // Create canvas and apply DPR for crispness
+      const canvas = ownerDoc.createElement ? (ownerDoc.createElement('canvas') as HTMLCanvasElement) : document.createElement('canvas');
+      canvas.width = Math.round(canvasW * requestedDpr);
+      canvas.height = Math.round(canvasH * requestedDpr);
+      canvas.style.width = `${canvasW}px`;
+      canvas.style.height = `${canvasH}px`;
+      const ctx = canvas.getContext("2d");
+      if (!ctx) throw new Error("Canvas not supported");
+      ctx.setTransform(requestedDpr, 0, 0, requestedDpr, 0, 0);
+
       // Fill background white
       ctx.fillStyle = "#ffffff";
       ctx.fillRect(0, 0, canvasW, canvasH);
