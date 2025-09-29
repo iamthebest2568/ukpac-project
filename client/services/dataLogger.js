@@ -313,7 +313,7 @@ export function exportSessionsAsCSV() {
     "รหัสเซสชัน (sessionID)",
     "IP (ip)",
     "เวลาเริ่ม (firstTimestamp)",
-    "เวลาสิ้นสุด (lastTimestamp)",
+    "เวล��สิ้นสุด (lastTimestamp)",
     "ยอมรับ PDPA (PDPA_acceptance)",
     "ประเภทรถ (chassis_type)",
     "จำนวนที่นั่งรวม (total_seats)",
@@ -322,7 +322,7 @@ export function exportSessionsAsCSV() {
     "จำนวนผู้ตั้งครรภ์ (pregnant_count)",
     "จำนวนพระ (monk_count)",
     "สิ่งอำนวยความสะดวก (features)",
-    "ประเภทการชำระเง���น (payment_types)",
+    "ประเภทการชำระเงิน (payment_types)",
     "จำนวนประตู (doors)",
     "สี (color)",
     "ความถี่ (frequency)",
@@ -334,7 +334,7 @@ export function exportSessionsAsCSV() {
     "ชื่อผู้รับรางวัล (prize_name)",
     "เบอร์โทรผู้รับรางวัล (prize_phone)",
     "เว���าการรับรางวัล (prize_timestamp)",
-    "แชร์กับเพื���อน (shared_with_friends)",
+    "แชร์กับเพื่อน (shared_with_friends)",
     "เวลาแชร์ (shared_timestamp)",
   ];
 
