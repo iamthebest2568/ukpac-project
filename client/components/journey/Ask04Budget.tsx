@@ -217,9 +217,7 @@ const Ask04Budget = ({
                   sentUrls[u] = { ok: true, uploadedTo: u, id: writeRes.id, collection: writeRes.collection, ts: Date.now(), fallback: true };
                 } catch (ee) {
                   sentUrls[u] = { ok: false, error: String(ee) };
-                  try {
-                    sessionStorage.setItem(key, JSON.stringify(sentUrls));
-                  } catch (_) {}
+                  // sessionStorage write removed
                 }
               }
             } catch (e) {
