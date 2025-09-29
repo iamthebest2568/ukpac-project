@@ -66,7 +66,7 @@ const Ask04Budget = ({
 
   // Reuse the same mappings from Step3_Result to render the collage here
   const priorityIcons: { [key: string]: string } = {
-    ลดค่าโดยสารรถไฟฟ้า: "🚇",
+    ลดค่า���ดยสารรถไฟฟ้า: "🚇",
     ปรับปรุงคุณภาพรถเมล์: "🚌",
     ตั๋วร่วม: "🎫",
     เพิ่มความถี่รถเมล์: "🚍",
@@ -84,7 +84,7 @@ const Ask04Budget = ({
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fd90beaca642d4cceba685d933aeb644f?format=webp&width=720",
     ปรับปรุงคุณภาพรถเมล์:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F602cfdd852a147ed852d50b2ed05772d?format=webp&width=720",
-    เพิ่มความถี่รถเมล์:
+    เพิ่มความถี่รถเม���์:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F4e921e92e2c44db7a2ad24ee299e9a6d?format=webp&width=720",
     "เพิ่ม Feeder ในซอย":
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fbb907b894b5a44b3bde47b685f00caca?format=webp&width=720",
@@ -146,12 +146,6 @@ const Ask04Budget = ({
     // and records the storage URLs in Firestore collection 'beforecitychange-imageshow-events'.
     try {
       if (typeof window === "undefined") return;
-      const key = "beforecitychange_images_sent";
-      const existingRaw = sessionStorage.getItem(key);
-      let sentUrls: Record<string, any> = existingRaw
-        ? JSON.parse(existingRaw)
-        : {};
-
       const displaySummary =
         resultSummary && resultSummary.length > 0
           ? resultSummary
