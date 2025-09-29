@@ -231,9 +231,6 @@ const Ask04Budget = ({
                 // no sessionStorage tracking — allow repeated uploads
               } catch (ee) {
                 sentUrls[u] = { ok: false, error: String(ee) };
-                try {
-                  sessionStorage.setItem(key, JSON.stringify(sentUrls));
-                } catch (_) {}
               }
             }
           }
