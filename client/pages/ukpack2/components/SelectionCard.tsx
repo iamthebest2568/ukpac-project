@@ -14,6 +14,8 @@ interface SelectionCardProps {
   layout?: "vertical" | "horizontal";
   /** If true, the group appearance will stretch to fill its container */
   fill?: boolean;
+  /** If true, the selection card is disabled and should appear inert */
+  disabled?: boolean;
 }
 
 const SelectionCard: React.FC<SelectionCardProps> = ({
