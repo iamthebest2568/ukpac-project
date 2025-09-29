@@ -149,23 +149,19 @@ const Step2_Summary = ({
   return (
     <div
       style={{
-        all: "initial",
         boxSizing: "border-box",
         fontFamily: "system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial",
         color: "#000",
-        padding: 16,
+        padding: "clamp(8px, 3vw, 16px)",
         width: "100%",
-        height: "100%",
+        maxWidth: "100%",
         display: "flex",
         flexDirection: "column",
         background: "#fff",
       }}
     >
-      <header style={{ marginBottom: 16 }}>
-        <h1 style={{ margin: 0, fontSize: 20, fontWeight: 700 }}>MN2 — สรุปนโยบาย ( cleared )</h1>
-        <p style={{ margin: "6px 0 0 0", color: "#333" }}>
-          หน้านี้ถูกล้างดี���ซน์เพื่อการทดสอบเฉพาะหน้านี้เท่านั้น
-        </p>
+      <header style={{ marginBottom: 8 }}>
+        <h1 style={{ margin: 0, fontSize: 20, fontWeight: 700 }}>MN2 — สรุปนโยบาย</h1>
       </header>
 
       <main style={{ flex: 1, overflow: "auto" }}>
