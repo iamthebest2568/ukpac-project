@@ -174,6 +174,83 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
     };
   }, [active]);
 
+  // Desktop-only alignment adjustment for mydreambus: ensure color mask overlay exactly matches
+  // the rendered vehicle image within the vehicle-canvas. This observes image/container size and
+  // writes inline styles to the overlay element so masks don't drift inside the desktop mockup.
+  useEffect(() => {
+    if (!isMydreambus) return;
+    if (typeof document === "undefined") return;
+    if (!frameRef.current) return;
+
+    let raf = 0;
+    const observers: ((() => void) | null)[] = [];
+
+    const alignAll = () => {
+      try {
+        const root = frameRef.current as HTMLElement;
+        const canvases = Array.from(root.querySelectorAll('.vehicle-canvas')) as HTMLElement[];
+        canvases.forEach((vc) => {
+          try {
+            const img = vc.querySelector('img') as HTMLImageElement | null;
+            const overlay = vc.querySelector('div[aria-hidden="true"]') as HTMLElement | null;
+            if (!img || !overlay) return;
+
+            const imgRect = img.getBoundingClientRect();
+            const vcRect = vc.getBoundingClientRect();
+            const leftPct = ((imgRect.left - vcRect.left) / vcRect.width) * 100;
+            const topPct = ((imgRect.top - vcRect.top) / vcRect.height) * 100;
+            const wPct = (imgRect.width / vcRect.width) * 100;
+            const hPct = (imgRect.height / vcRect.height) * 100;
+
+            overlay.style.position = 'absolute';
+            overlay.style.left = leftPct + '%';
+            overlay.style.top = topPct + '%';
+            overlay.style.width = wPct + '%';
+            overlay.style.height = hPct + '%';
+            overlay.style.transform = 'none';
+
+            // also set mask-size to percentage matching image box so mask aligns
+            try {
+              overlay.style.webkitMaskSize = wPct + '% ' + hPct + '%';
+            } catch (e) {}
+            try {
+              (overlay.style as any).maskSize = wPct + '% ' + hPct + '%';
+            } catch (e) {}
+          } catch (e) {}
+        });
+      } catch (e) {}
+    };
+
+    const schedule = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        alignAll();
+      });
+    };
+
+    // align initially and on resize / image load
+    schedule();
+
+    const ro = (window as any).ResizeObserver ? new (window as any).ResizeObserver(schedule) : null;
+    if (ro) {
+      try {
+        const root = frameRef.current as HTMLElement;
+        const imgs = Array.from(root.querySelectorAll('.vehicle-canvas img')) as Element[];
+        imgs.forEach((i) => ro.observe(i));
+        ro.observe(root);
+        observers.push(() => ro.disconnect());
+      } catch (e) {}
+    }
+
+    window.addEventListener('resize', schedule);
+    observers.push(() => window.removeEventListener('resize', schedule));
+
+    return () => {
+      cancelAnimationFrame(raf);
+      observers.forEach((cb) => cb && cb());
+    };
+  }, [isMydreambus, initialized]);
+
   if (!active) return <>{children}</>;
 
   if (typeof document === "undefined") return <>{children}</>;
