@@ -350,7 +350,7 @@ const Step3_Result = ({
                 aria-label="ไม่ใช่, ลองอีกครั้ง"
               >
                 <span className="figma-style1-button-text">
-                  ไม่ใช่, ลอ��อีกครั้ง
+                  ไม่ใช่, ลองอีกครั้ง
                 </span>
               </button>
             </>
