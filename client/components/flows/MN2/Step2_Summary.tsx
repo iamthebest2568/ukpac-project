@@ -677,9 +677,10 @@ const Step2_Summary = ({
       const finalOutputW = Math.max(1, canvasW);
       const finalOutputH = Math.max(1, canvasH);
 
-      // Fit scale: by default do not upscale (avoid blur). If options.upscale is true, allow scale>1 to enlarge content
+      // Fit scale: by default do not upscale (avoid blur). If options.upscale is true and cropToContent is false, allow scale>1 to enlarge content
       const rawScale = Math.min(finalOutputW / elemW, finalOutputH / elemH);
-      const fitScale = options && options.upscale ? rawScale : Math.min(1, rawScale);
+      const cropToContentOpt = options && typeof options.cropToContent === 'boolean' ? options.cropToContent : true;
+      const fitScale = cropToContentOpt ? Math.min(1, rawScale) : options && options.upscale ? rawScale : Math.min(1, rawScale);
       const scaledW = Math.max(1, Math.round(elemW * fitScale));
       const scaledH = Math.max(1, Math.round(elemH * fitScale));
       const offsetLeft = Math.round((finalOutputW - scaledW) / 2);
@@ -839,7 +840,7 @@ const Step2_Summary = ({
           try { setLastStorageUrl(j.imageUrl || null); } catch (_) {}
           setStatus('server capture อัปโหลดแล้ว');
         } else {
-          setStatus('server capture: ไม่พบผลลัพธ์');
+          setStatus('server capture: ไม่พบผลลั���ธ์');
         }
       } catch (e) {
         console.warn('server capture error', e);
