@@ -99,29 +99,60 @@
   min-height: 44px !important;
 }
 
-/* Adjust summary grid to 4 columns */
+/* Adjust summary grid to 4 columns, ensure items center and have max width */
 .figma-style1-container.mn2-summary-page .mn2-summary-icon-grid {
   grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
   gap: 12px !important;
+  justify-items: center !important;
 }
 
-/* Aggressively remove any circular/frame backgrounds or shadows that may still apply */
-.figma-style1-container.mn2-summary-page .mn2-beneficiary-figure,
-.figma-style1-container.mn2-summary-page .mn2-beneficiary-card,
-.figma-style1-container.mn2-summary-page .mn2-beneficiary-img,
-.figma-style1-container.mn2-summary-page .mn2-summary-icon-grid > * {
+/* Ensure each card doesn't stretch to full width; center content */
+.figma-style1-container.mn2-summary-page .mn2-summary-icon-grid .mn2-beneficiary-card {
+  width: auto !important;
+  max-width: 120px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 4px !important;
   background: transparent !important;
-  background-image: none !important;
   box-shadow: none !important;
   border: none !important;
   border-radius: 0 !important;
 }
 
-.figma-style1-container.mn2-summary-page .mn2-beneficiary-figure::before,
-.figma-style1-container.mn2-summary-page .mn2-beneficiary-figure::after {
-  content: none !important;
-  display: none !important;
+/* The figure should not force a square; let image size control visual */
+.figma-style1-container.mn2-summary-page .mn2-summary-icon-grid .mn2-beneficiary-figure {
+  width: auto !important;
+  height: auto !important;
+  aspect-ratio: unset !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: transparent !important;
+  box-shadow: none !important;
 }
+
+/* Icon image size fixed and not stretched */
+.figma-style1-container.mn2-summary-page .mn2-summary-icon-grid .mn2-beneficiary-img,
+.figma-style1-container.mn2-step1-page .mn2-beneficiary-img {
+  width: 84px !important;
+  height: 84px !important;
+  object-fit: contain !important;
+  display: inline-block !important;
+  background: transparent !important;
+}
+
+/* Responsive: reduce columns on small screens */
+@media (max-width: 640px) {
+  .figma-style1-container.mn2-summary-page .mn2-summary-icon-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+  }
+}
+
 
 /* Stack vertically on small viewports */
 @media (max-width: 540px) {
