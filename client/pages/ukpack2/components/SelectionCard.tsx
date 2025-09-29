@@ -30,6 +30,7 @@ const SelectionCard: React.FC<SelectionCardProps> = ({
   groupSize = "md",
   layout = "vertical",
   fill = false,
+  disabled = false,
 }) => {
   const isLight = variant === "light";
   // Base styles for non-selected state
