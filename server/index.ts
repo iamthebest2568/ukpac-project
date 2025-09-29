@@ -533,7 +533,9 @@ export function createServer() {
 
       // Write Firestore doc referencing the URL
       const fsAdmin = admin.firestore();
-      const col = fsAdmin.collection("kpact-gamebus-imagedesign-events");
+      // Choose collection by project: beforecitychange should go to beforecitychange-imageshow-events
+      const colName = project === "beforecitychange" ? "beforecitychange-imageshow-events" : "kpact-gamebus-imagedesign-events";
+      const col = fsAdmin.collection(colName);
       const docRef = await col.add({
         imageUrl: signedUrl,
         createdAt: admin.firestore.FieldValue.serverTimestamp(),
@@ -1135,7 +1137,7 @@ export function createServer() {
                 "เ��้นทาง (route)",
                 "พื้นที่ (area)",
                 "ตัดส���นใจใช้บริการ (decision_use_service)",
-                "เหตุ��ลไม่ใช้บริการ (reason_not_use)",
+                "���หตุ��ลไม่ใช้บริการ (reason_not_use)",
                 "เข้าร่วมของรางวัล (decision_enter_prize)",
                 "ชื่อผู้รับรางวัล (prize_name)",
                 "เบอร์โทรผู้รับรางวัล (prize_phone)",
@@ -1494,7 +1496,7 @@ export function createServer() {
         "สี (color)",
         "ความถี่ (frequency)",
         "เส้นทาง (route)",
-        "พื้นที่ (area)",
+        "พื้นท��่ (area)",
         "ตัดสินใจใช้บริ���าร (decision_use_service)",
         "เหตุผลไม่ใช้บริกา�� (reason_not_use)",
         "เข้าร่วมของ��างวัล (decision_enter_prize)",
