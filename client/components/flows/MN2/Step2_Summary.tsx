@@ -101,23 +101,13 @@ const Step2_Summary = ({
             if (entry && typeof entry === "object" && entry.id) {
               return {
                 id: entry.id,
-                label:
-                  entry.label ||
-                  (beneficiaryMapping as any)[entry.id]?.label ||
-                  "ทุกคน",
-                iconSrc:
-                  entry.iconSrc ||
-                  (beneficiaryMapping as any)[entry.id]?.iconSrc ||
-                  beneficiaryMapping.everyone.iconSrc,
+                label: entry.label || String(entry.id),
               };
             }
-            const id = String(entry);
+            const id = String(entry || "");
             return {
               id,
-              label: (beneficiaryMapping as any)[id]?.label || "ทุกคน",
-              iconSrc:
-                (beneficiaryMapping as any)[id]?.iconSrc ||
-                beneficiaryMapping.everyone.iconSrc,
+              label: id || "(ไม่ได้ระบุ)",
             };
           });
         return {
@@ -179,7 +169,7 @@ const Step2_Summary = ({
       <header style={{ marginBottom: 16 }}>
         <h1 style={{ margin: 0, fontSize: 20, fontWeight: 700 }}>MN2 — สรุปนโยบาย ( cleared )</h1>
         <p style={{ margin: "6px 0 0 0", color: "#333" }}>
-          หน้านี้ถูกล้างดีไซน์เพื่อการทดสอบเฉพาะหน้านี้เท่���นั้น
+          หน้านี้ถูกล้างดีไซน์เพื่อการทดสอบเฉพาะหน้านี้เท่านั้น
         </p>
       </header>
 
