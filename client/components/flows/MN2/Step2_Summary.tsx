@@ -673,6 +673,52 @@ const Step2_Summary = ({
   }
 
   // Manual capture button component (for testing)
+  function ServerCaptureButton() {
+    const [status, setStatus] = useState<string | null>(null);
+    const onClick = async () => {
+      try {
+        setStatus('กำลังถ่ายหน��าจอ (server)...');
+        const payload = { url: window.location.pathname + window.location.search, page: 'Step2_Summary' };
+        const resp = await fetch('/api/capture-fullpage', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        if (!resp.ok) {
+          const text = await resp.text();
+          console.warn('capture-fullpage failed', resp.status, text);
+          setStatus('server capture ล้มเหลว');
+          setTimeout(() => setStatus(null), 4000);
+          return;
+        }
+        const j = await resp.json();
+        if (j && j.ok && j.imageUrl) {
+          try { setLastStorageUrl(j.imageUrl); } catch (_) {}
+          setStatus('server capture สำเร็จ');
+        } else if (j && j.ok && j.storagePath) {
+          try { setLastStorageUrl(j.imageUrl || null); } catch (_) {}
+          setStatus('server capture อัปโหลดแล้ว');
+        } else {
+          setStatus('server capture: ไม่พบผลลัพธ์');
+        }
+      } catch (e) {
+        console.warn('server capture error', e);
+        setStatus('server capture เกิดข้อผิดพลาด');
+      } finally {
+        setTimeout(() => setStatus(null), 5000);
+      }
+    };
+
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+        <Uk1Button onClick={onClick} variant="ghost" style={{ height: 44, borderRadius: 12 }}>
+          ถ่ายหน้าจอ (Server)
+        </Uk1Button>
+        {status ? <div style={{ fontSize: 13, color: '#333', textAlign: 'center' }}>{status}</div> : null}
+      </div>
+    );
+  }
+
   function ManualCaptureButton() {
     const [status, setStatus] = useState<string | null>(null);
     const onClick = async () => {
