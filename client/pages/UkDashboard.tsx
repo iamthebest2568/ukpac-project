@@ -294,11 +294,7 @@ export default function UkDashboard() {
         "/api/video-stats",
       ];
 
-      const origin =
-        typeof window !== "undefined" ? window.location.origin : "";
-      const promises = endpoints.map((p) =>
-        safeFetch(origin + p, undefined, 8000),
-      );
+      const promises = endpoints.map((p) => safeFetch(p, undefined, 8000));
       const [jRes, ssRes, stRes, vsRes] = await Promise.all(promises);
 
       if (jRes && jRes.ok) {
