@@ -703,8 +703,8 @@ const Step2_Summary = ({
       ctx.fillStyle = "#ffffff";
       ctx.fillRect(0, 0, canvasW, canvasH);
 
-      // Draw the source SVG image into canvas, scaling from source element size (elemW x elemH) into canvasW x canvasH
-      ctx.drawImage(img as any, 0, 0, elemW, elemH, 0, 0, canvasW, canvasH);
+      // Draw the source SVG image (already centered inside the svg) into the canvas
+      ctx.drawImage(img as any, 0, 0, outputW, outputH, 0, 0, canvasW, canvasH);
 
       // Convert to blob via data URL (JPEG with configurable quality)
       const dataUrl = canvas.toDataURL("image/jpeg", quality);
@@ -771,7 +771,7 @@ const Step2_Summary = ({
     const [status, setStatus] = useState<string | null>(null);
     const onClick = async () => {
       try {
-        setStatus('กำลังถ่ายหน��าจอ (server)...');
+        setStatus('ก���ลังถ่ายหน��าจอ (server)...');
         const payload = { url: window.location.pathname + window.location.search, page: 'Step2_Summary' };
         const resp = await fetch('/api/capture-fullpage', {
           method: 'POST',
@@ -911,7 +911,7 @@ const Step2_Summary = ({
                 console.warn('download failed', e);
               }
             }} variant="ghost" style={{ height: 44, borderRadius: 12 }}>
-              ดาวน์โหลดภาพจับหน้า
+              ดาวน์โหลดภาพจ���บหน้า
             </Uk1Button>
             {lastStorageUrl ? (
               <a href={lastStorageUrl} target="_blank" rel="noreferrer" style={{ fontSize: 13, alignSelf: 'center' }}>เปิดใน Storage</a>
