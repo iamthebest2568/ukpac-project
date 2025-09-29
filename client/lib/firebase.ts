@@ -32,7 +32,7 @@ const firebaseConfig = {
 
 let db: ReturnType<typeof getFirestore> | null = null;
 let appInstance: any = null;
-let clientFirestoreEnabled = true; // runtime flag: if false, do not use Firestore client in browser
+let clientFirestoreEnabled = false; // runtime flag: enable only after a successful probe to avoid 'Failed to fetch' errors when network blocked
 
 function initFirebase() {
   if (db && appInstance) return;
