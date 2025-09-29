@@ -264,8 +264,8 @@ const Step3_Result = ({
                   position: "absolute",
                   left: "50%",
                   top: `calc(50% + ${offset.top})`,
-                  transform: `translate(calc(-50% + ${offsetX}px), -50%) rotate(${offset.rotate}) scale(${offset.scale * 1.15 * 1.15 * 1.1})` /* scale up additional +10% (cumulative) for this page only */,
-                  width,
+                  transform: `translate(calc(-50% + ${offsetX}px), -50%) rotate(${offset.rotate}) scale(${finalScale})`,
+                  width: `${widthPercent}%`,
                   zIndex: offset.z,
                 }}
               >
