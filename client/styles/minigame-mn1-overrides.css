@@ -310,7 +310,7 @@
 
 /* Desktop mock specific override: only apply inside the iframe portal wrapper for MN1 */
 .desktop-mock-embed .minigame-mn1-page .mn3-policy-button--selected {
-  background-color: #0070F3 !important; /* distinct desktop highlight */
+  background-color: #000d59 !important; /* distinct desktop highlight */
   color: #ffffff !important;
   box-shadow: none !important;
 }
