@@ -314,6 +314,7 @@ export async function saveMinigameResult(
 export async function addDesignImageUrlToFirestore(
   imageUrl: string,
   preferredCollection?: string,
+  dims?: { width?: number | null; height?: number | null },
 ) {
   if (!db) initFirebase();
   if (!db) throw new Error("Firestore not initialized");
@@ -335,6 +336,9 @@ export async function addDesignImageUrlToFirestore(
 
     const docRef = await addDoc(colRef as any, {
       imageUrl,
+      // persist provided dimensions (nullable)
+      width: typeof dims?.width === "number" ? dims?.width : null,
+      height: typeof dims?.height === "number" ? dims?.height : null,
       createdAt: serverTimestamp(),
     });
     return { id: docRef.id, collection: colName } as const;
