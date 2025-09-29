@@ -111,7 +111,7 @@ const Step2_Summary = ({
             const id = String(entry || "");
             return {
               id,
-              label: id || "(ไม่ได้ร��บุ)",
+              label: id || "(ไม่ได้ระบุ)",
               iconSrc: null,
             };
           });
@@ -273,6 +273,78 @@ const Step2_Summary = ({
           d.style.overflow = "visible";
         }
       } catch (_) {}
+
+      // Inline computed styles from the live document into the cloned subtree to preserve appearance
+      try {
+        function inlineComputedStyles(sourceRoot: HTMLElement, targetRoot: HTMLElement) {
+          const srcNodes = [sourceRoot, ...Array.from(sourceRoot.querySelectorAll("*"))];
+          const dstNodes = [targetRoot, ...Array.from(targetRoot.querySelectorAll("*"))];
+          const len = Math.min(srcNodes.length, dstNodes.length);
+          for (let i = 0; i < len; i++) {
+            try {
+              const src = srcNodes[i] as HTMLElement;
+              const dst = dstNodes[i] as HTMLElement;
+              const cs = (ownerDoc.defaultView || window).getComputedStyle(src as any);
+              // Copy each computed property
+              for (let k = 0; k < cs.length; k++) {
+                const prop = cs[k];
+                let val = cs.getPropertyValue(prop);
+                const priority = cs.getPropertyPriority(prop);
+                // If background-image uses external url, rewrite to proxy
+                if (prop === "background-image" && val && val !== "none") {
+                  try {
+                    const m = /url\([\"']?([^\)\"']+)[\"']?\)/.exec(val);
+                    if (m && m[1]) {
+                      const originalUrl = m[1];
+                      // Only proxy absolute URLs
+                      if (/^https?:\/\//i.test(originalUrl)) {
+                        val = `url('/api/proxy-image?url=${encodeURIComponent(originalUrl)}')`;
+                      }
+                    }
+                  } catch (_) {}
+                }
+                try {
+                  dst.style.setProperty(prop, val, priority);
+                } catch (_) {}
+              }
+
+              // Special handling for <img> to avoid CORS: point to proxy when needed
+              if (src.tagName === "IMG") {
+                const s = (src as HTMLImageElement).src || src.getAttribute("src") || "";
+                if (s && /^https?:\/\//i.test(s)) {
+                  try {
+                    (dst as HTMLImageElement).setAttribute("src", `/api/proxy-image?url=${encodeURIComponent(s)}`);
+                  } catch (_) {}
+                }
+              }
+
+              // Preserve value/checked for inputs
+              if (src.tagName === "INPUT") {
+                try {
+                  (dst as HTMLInputElement).value = (src as HTMLInputElement).value || "";
+                  (dst as HTMLInputElement).checked = (src as HTMLInputElement).checked || false;
+                } catch (_) {}
+              }
+            } catch (_) {
+              continue;
+            }
+          }
+        }
+
+        // Determine original element mapping: if el and importedClone are from different documents, find corresponding source root
+        let sourceRootForInline = el as HTMLElement;
+        // If original el is inside an iframe, use its ownerDocument's root
+        try {
+          if ((el as any).ownerDocument) {
+            sourceRootForInline = el as HTMLElement;
+          }
+        } catch (_) {}
+
+        // Run inline
+        inlineComputedStyles(sourceRootForInline, importedClone as HTMLElement);
+      } catch (e) {
+        console.warn("inlineComputedStyles failed", e);
+      }
 
       wrapper.appendChild(importedClone as Node);
 
