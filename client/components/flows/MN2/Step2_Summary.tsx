@@ -79,7 +79,7 @@ const Step2_Summary = ({
           const id = String(entry || "");
           return {
             id,
-            label: id || "(ไม่ได้ระบุ)",
+            label: id || "(��ม่ได้ระบุ)",
             iconSrc: null,
           };
         });
@@ -154,7 +154,6 @@ const Step2_Summary = ({
     <div
       style={{
         boxSizing: "border-box",
-        fontFamily: "system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial",
         color: "#000",
         padding: "clamp(8px, 3vw, 16px)",
         width: "100%",
