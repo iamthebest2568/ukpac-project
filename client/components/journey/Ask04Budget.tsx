@@ -91,7 +91,7 @@ const Ask04Budget = ({
     // accept both variants for reduced fare
     ลดค่าโดยสารรถไฟฟ้า:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F902c640032bd41f3b30e4ce96330d938?format=webp&width=720",
-    "ลดค่าโดยสารไฟฟ้า":
+    ลดค่าโดยสารไฟฟ้า:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F902c640032bd41f3b30e4ce96330d938?format=webp&width=720",
   };
 
@@ -143,69 +143,108 @@ const Ask04Budget = ({
   // Persist displayed collage images to Firestore (once per session) under collection 'beforecitychange-imageshow-events'
   useEffect(() => {
     try {
-      if (typeof window === 'undefined') return;
-      const key = 'beforecitychange_images_sent';
+      if (typeof window === "undefined") return;
+      const key = "beforecitychange_images_sent";
       const existingRaw = sessionStorage.getItem(key);
-      let sentUrls: Record<string, any> = existingRaw ? JSON.parse(existingRaw) : {};
+      let sentUrls: Record<string, any> = existingRaw
+        ? JSON.parse(existingRaw)
+        : {};
 
-      const displaySummary = resultSummary && resultSummary.length > 0 ? resultSummary : [
-        {
-          priority: 'เพิ่มความถี่รถเมล์',
-          allocation: 0,
-          percentage: 0,
-          icon: '',
-        },
-        {
-          priority: 'เพิ่มที่จอดรถ',
-          allocation: 0,
-          percentage: 0,
-          icon: '',
-        },
-        {
-          priority: '���ดค่าโดยสารรถไฟฟ้า',
-          allocation: 0,
-          percentage: 0,
-          icon: '',
-        },
-      ];
+      const displaySummary =
+        resultSummary && resultSummary.length > 0
+          ? resultSummary
+          : [
+              {
+                priority: "เพิ่มความถี่รถเมล์",
+                allocation: 0,
+                percentage: 0,
+                icon: "",
+              },
+              {
+                priority: "เพิ่มที่จอดรถ",
+                allocation: 0,
+                percentage: 0,
+                icon: "",
+              },
+              {
+                priority: "���ดค่าโดยสารรถไฟฟ้า",
+                allocation: 0,
+                percentage: 0,
+                icon: "",
+              },
+            ];
 
-      const urls: string[] = displaySummary.map((s) => priorityImageMap[s.priority] || '').filter(Boolean);
+      const urls: string[] = displaySummary
+        .map((s) => priorityImageMap[s.priority] || "")
+        .filter(Boolean);
       // dedupe
       const unique = Array.from(new Set(urls));
 
       // Send image URLs to server to write via Admin SDK (avoids Firestore client rules)
       (async () => {
         try {
-          try { console.debug('[Ask04Budget] displaySummary', displaySummary); } catch (_) {}
-          try { console.debug('[Ask04Budget] unique image urls to send', unique); } catch (_) {}
+          try {
+            console.debug("[Ask04Budget] displaySummary", displaySummary);
+          } catch (_) {}
+          try {
+            console.debug("[Ask04Budget] unique image urls to send", unique);
+          } catch (_) {}
           for (const u of unique) {
             if (sentUrls[u]) {
-              try { console.debug('[Ask04Budget] already sent, skipping', u, sentUrls[u]); } catch (_) {}
+              try {
+                console.debug(
+                  "[Ask04Budget] already sent, skipping",
+                  u,
+                  sentUrls[u],
+                );
+              } catch (_) {}
               continue;
             }
             try {
-              try { console.debug('[Ask04Budget] sending image url', u); } catch (_) {}
-              const resp = await fetch('/api/write-image-url', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ imageUrl: u, collection: 'beforecitychange-imageshow-events' }),
+              try {
+                console.debug("[Ask04Budget] sending image url", u);
+              } catch (_) {}
+              const resp = await fetch("/api/write-image-url", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  imageUrl: u,
+                  collection: "beforecitychange-imageshow-events",
+                }),
               });
-              try { console.debug('[Ask04Budget] response status', resp.status, u); } catch (_) {}
+              try {
+                console.debug("[Ask04Budget] response status", resp.status, u);
+              } catch (_) {}
               if (resp.ok) {
                 const j = await resp.json();
-                try { console.debug('[Ask04Budget] response json', j); } catch (_) {}
+                try {
+                  console.debug("[Ask04Budget] response json", j);
+                } catch (_) {}
                 sentUrls[u] = { ok: true, id: j?.id || null, ts: Date.now() };
-                try { sessionStorage.setItem(key, JSON.stringify(sentUrls)); } catch (_) {}
+                try {
+                  sessionStorage.setItem(key, JSON.stringify(sentUrls));
+                } catch (_) {}
               } else {
                 const txt = await resp.text().catch(() => null);
-                try { console.warn('[Ask04Budget] write failed', resp.status, txt); } catch (_) {}
-                sentUrls[u] = { ok: false, error: `HTTP ${resp.status} ${txt || ''}` };
-                try { sessionStorage.setItem(key, JSON.stringify(sentUrls)); } catch (_) {}
+                try {
+                  console.warn("[Ask04Budget] write failed", resp.status, txt);
+                } catch (_) {}
+                sentUrls[u] = {
+                  ok: false,
+                  error: `HTTP ${resp.status} ${txt || ""}`,
+                };
+                try {
+                  sessionStorage.setItem(key, JSON.stringify(sentUrls));
+                } catch (_) {}
               }
             } catch (e) {
-              try { console.error('[Ask04Budget] exception while sending', e); } catch (_) {}
+              try {
+                console.error("[Ask04Budget] exception while sending", e);
+              } catch (_) {}
               sentUrls[u] = { ok: false, error: String(e) };
-              try { sessionStorage.setItem(key, JSON.stringify(sentUrls)); } catch (_) {}
+              try {
+                sessionStorage.setItem(key, JSON.stringify(sentUrls));
+              } catch (_) {}
             }
           }
         } catch (e) {
@@ -268,13 +307,13 @@ const Ask04Budget = ({
 
             return displaySummary.map((s, i) => {
               // Try direct map, otherwise attempt a fuzzy/normalized match to handle stored keys with minor corruption
-              const rawKey = s.priority || '';
+              const rawKey = s.priority || "";
               let imgSrc = priorityImageMap[rawKey];
               if (!imgSrc) {
                 const normalize = (str: string) =>
-                  String(str || '')
-                    .replace(/[\s\u00A0\uFEFF]+/g, '')
-                    .replace(/[^\p{L}\p{N}]/gu, '')
+                  String(str || "")
+                    .replace(/[\s\u00A0\uFEFF]+/g, "")
+                    .replace(/[^\p{L}\p{N}]/gu, "")
                     .toLowerCase();
                 const nk = normalize(rawKey);
                 for (const k of Object.keys(priorityImageMap)) {
@@ -286,7 +325,9 @@ const Ask04Budget = ({
                   }
                 }
               }
-              if (!imgSrc) imgSrc = "https://cdn.builder.io/api/v1/image/assets/TEMP/placeholder.png?width=720";
+              if (!imgSrc)
+                imgSrc =
+                  "https://cdn.builder.io/api/v1/image/assets/TEMP/placeholder.png?width=720";
               const offset = collageOffsets[i] || {
                 left: `50%`,
                 top: `50%`,

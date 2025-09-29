@@ -1,4 +1,12 @@
-import React, { createContext, useContext, useReducer, useEffect, useCallback, useMemo, ReactNode } from "react";
+import React, {
+  createContext,
+  useContext,
+  useReducer,
+  useEffect,
+  useCallback,
+  useMemo,
+  ReactNode,
+} from "react";
 import { database } from "../../../firebaseConfig";
 import { ref, push, set } from "firebase/database";
 import { logEvent } from "../../../services/dataLogger.js";
@@ -121,23 +129,29 @@ export const BusDesignProvider = ({ children }: { children: ReactNode }) => {
   );
 
   // Wrap dispatch so we log design updates as events for analytics and CSV mapping.
-  const dispatchAndLog = useCallback<React.Dispatch<BusDesignAction>>((action) => {
-    try {
-      // call original reducer
-      dispatch(action as any);
-    } catch (e) {
-      // still attempt logging even if state update fails
-    }
+  const dispatchAndLog = useCallback<React.Dispatch<BusDesignAction>>(
+    (action) => {
+      try {
+        // call original reducer
+        dispatch(action as any);
+      } catch (e) {
+        // still attempt logging even if state update fails
+      }
 
-    // Fire a best-effort analytics event capturing the changed field(s)
-    try {
-      // For privacy, only include keys that are useful for aggregation (no PII)
-      const safePayload: any = { type: (action as any).type, payload: (action as any).payload };
-      logEvent({ event: "DESIGN_UPDATE", payload: safePayload });
-    } catch (e) {
-      // swallow
-    }
-  }, [dispatch]);
+      // Fire a best-effort analytics event capturing the changed field(s)
+      try {
+        // For privacy, only include keys that are useful for aggregation (no PII)
+        const safePayload: any = {
+          type: (action as any).type,
+          payload: (action as any).payload,
+        };
+        logEvent({ event: "DESIGN_UPDATE", payload: safePayload });
+      } catch (e) {
+        // swallow
+      }
+    },
+    [dispatch],
+  );
 
   async function submitDesignToFirebase(
     stateOverride?: BusDesignState,
@@ -147,21 +161,45 @@ export const BusDesignProvider = ({ children }: { children: ReactNode }) => {
       ...(stateOverride || state),
       timestamp: Date.now(),
       // include session id and PDPA flag & project for server-side mapping and CSV
-      sessionID: (typeof window !== 'undefined' ? (() => {
-        try { return sessionStorage.getItem('ukPackSessionID') || null; } catch { return null; }
-      })() : null),
-      PDPA: (typeof window !== 'undefined' ? (() => {
-        try { return sessionStorage.getItem('pdpa_accepted') === 'true'; } catch { return false; }
-      })() : false),
-      project: (typeof window !== 'undefined' ? (() => {
-        try {
-          const p = window.location && window.location.pathname;
-          if (!p) return null;
-          if (String(p).startsWith('/beforecitychange')) return 'beforecitychange';
-          if (String(p).startsWith('/mydreambus') || String(p).startsWith('/ukpack2')) return 'mydreambus';
-          return null;
-        } catch { return null; }
-      })() : null),
+      sessionID:
+        typeof window !== "undefined"
+          ? (() => {
+              try {
+                return sessionStorage.getItem("ukPackSessionID") || null;
+              } catch {
+                return null;
+              }
+            })()
+          : null,
+      PDPA:
+        typeof window !== "undefined"
+          ? (() => {
+              try {
+                return sessionStorage.getItem("pdpa_accepted") === "true";
+              } catch {
+                return false;
+              }
+            })()
+          : false,
+      project:
+        typeof window !== "undefined"
+          ? (() => {
+              try {
+                const p = window.location && window.location.pathname;
+                if (!p) return null;
+                if (String(p).startsWith("/beforecitychange"))
+                  return "beforecitychange";
+                if (
+                  String(p).startsWith("/mydreambus") ||
+                  String(p).startsWith("/ukpack2")
+                )
+                  return "mydreambus";
+                return null;
+              } catch {
+                return null;
+              }
+            })()
+          : null,
     } as any;
 
     // If an image blob is provided, POST it to server endpoint which will upload via Admin SDK
@@ -180,13 +218,23 @@ export const BusDesignProvider = ({ children }: { children: ReactNode }) => {
             }
           });
 
-          const projectPrefix = (payload && payload.project) || (typeof window !== 'undefined' && window.location && String(window.location.pathname).startsWith('/beforecitychange') ? 'beforecitychange' : 'mydreambus');
-          const filename = `${projectPrefix}_design_${Date.now()}_${Math.random().toString(36).slice(2,9)}.png`;
+          const projectPrefix =
+            (payload && payload.project) ||
+            (typeof window !== "undefined" &&
+            window.location &&
+            String(window.location.pathname).startsWith("/beforecitychange")
+              ? "beforecitychange"
+              : "mydreambus");
+          const filename = `${projectPrefix}_design_${Date.now()}_${Math.random().toString(36).slice(2, 9)}.png`;
 
-          const resp = await fetch('/api/upload-design', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ imageBase64: dataUrl, filename, project: projectPrefix }),
+          const resp = await fetch("/api/upload-design", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              imageBase64: dataUrl,
+              filename,
+              project: projectPrefix,
+            }),
           });
           if (resp.ok) {
             try {
@@ -196,7 +244,7 @@ export const BusDesignProvider = ({ children }: { children: ReactNode }) => {
               }
             } catch (e) {}
           } else {
-            console.warn('Server upload failed', await resp.text());
+            console.warn("Server upload failed", await resp.text());
           }
         } catch (e) {
           console.warn("Image upload to server failed", e);
@@ -347,29 +395,33 @@ export const BusDesignProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     const tryFlush = async () => {
       try {
-        if (typeof window === 'undefined') return;
-        const raw = localStorage.getItem('mydreambus_pending_submissions');
+        if (typeof window === "undefined") return;
+        const raw = localStorage.getItem("mydreambus_pending_submissions");
         if (!raw) return;
         let pending = [] as any[];
-        try { pending = JSON.parse(raw); } catch (_) { return; }
+        try {
+          pending = JSON.parse(raw);
+        } catch (_) {
+          return;
+        }
         if (!Array.isArray(pending) || pending.length === 0) return;
         if (navigator.onLine === false) return;
         // Post batch to server
         try {
-          const resp = await fetch('/api/flush-pending', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+          const resp = await fetch("/api/flush-pending", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify(pending.map((p) => p.payload || p)),
           });
           if (resp.ok) {
             // clear pending
-            localStorage.removeItem('mydreambus_pending_submissions');
-            console.info('Flushed pending submissions to server');
+            localStorage.removeItem("mydreambus_pending_submissions");
+            console.info("Flushed pending submissions to server");
           } else {
-            console.warn('Flush pending failed', await resp.text());
+            console.warn("Flush pending failed", await resp.text());
           }
         } catch (e) {
-          console.warn('Flush pending network error', e);
+          console.warn("Flush pending network error", e);
         }
       } catch (e) {}
     };
@@ -377,11 +429,14 @@ export const BusDesignProvider = ({ children }: { children: ReactNode }) => {
     tryFlush();
 
     const onOnline = () => tryFlush();
-    window.addEventListener('online', onOnline);
-    return () => window.removeEventListener('online', onOnline);
+    window.addEventListener("online", onOnline);
+    return () => window.removeEventListener("online", onOnline);
   }, []);
 
-  const contextValue = useMemo(() => ({ state, dispatch: dispatchAndLog, submitDesignToFirebase }), [state, dispatchAndLog, submitDesignToFirebase]);
+  const contextValue = useMemo(
+    () => ({ state, dispatch: dispatchAndLog, submitDesignToFirebase }),
+    [state, dispatchAndLog, submitDesignToFirebase],
+  );
 
   return (
     <BusDesignContext.Provider value={contextValue}>

@@ -766,17 +766,30 @@ const DoorScreen: React.FC = () => {
                         try {
                           const savedChassis = (() => {
                             try {
-                              const raw = sessionStorage.getItem("design.chassis");
+                              const raw =
+                                sessionStorage.getItem("design.chassis");
                               return raw ? raw : "";
                             } catch {
                               return "";
                             }
                           })();
                           // Only apply this disable rule for /mydreambus routes
-                          const loc = typeof window !== 'undefined' ? window.location.pathname : '';
-                          const isMydreambusPath = typeof loc === 'string' && loc.startsWith('/mydreambus');
+                          const loc =
+                            typeof window !== "undefined"
+                              ? window.location.pathname
+                              : "";
+                          const isMydreambusPath =
+                            typeof loc === "string" &&
+                            loc.startsWith("/mydreambus");
                           // 'extra' maps to รถกะบะดัดแปลง 8-12 ที่นั่ง — disable 2-door for this chassis on mydreambus
-                          if (isMydreambusPath && (savedChassis === "small" || savedChassis === "large" || savedChassis === "extra") && opt.key === "2") disabled = true;
+                          if (
+                            isMydreambusPath &&
+                            (savedChassis === "small" ||
+                              savedChassis === "large" ||
+                              savedChassis === "extra") &&
+                            opt.key === "2"
+                          )
+                            disabled = true;
                         } catch (e) {}
                         // try to use stored overlay URL if available (by key or label)
                         let storedMap: Record<string, string | null> = {};

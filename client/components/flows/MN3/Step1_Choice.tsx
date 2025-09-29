@@ -36,15 +36,23 @@ const Step1_Choice = ({
 
   // Small image map so we can send image URLs immediately when user selects a priority
   const priorityImageMap: { [key: string]: string } = {
-    "ตั๋วร่วม": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F2f0106ff48a44f03b71429502944e9f2?format=webp&width=720",
-    "เพิ่มที่จอดรถ": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F79ac3a2ac5e84e88b4015fd66aaebe04?format=webp&width=720",
-    "เพิ่มความถี่รถไฟฟ้า": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fd90beaca642d4cceba685d933aeb644f?format=webp&width=720",
-    "ปรับปรุงคุณภาพรถเมล์": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F602cfdd852a147ed852d50b2ed05772d?format=webp&width=720",
-    "เพิ่มความถี่รถเมล์": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F4e921e92e2c44db7a2ad24ee299e9a6d?format=webp&width=720",
-    "เพิ่ม Feeder ในซอย": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fbb907b894b5a44b3bde47b685f00caca?format=webp&width=720",
+    ตั๋วร่วม:
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F2f0106ff48a44f03b71429502944e9f2?format=webp&width=720",
+    เพิ่มที่จอดรถ:
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F79ac3a2ac5e84e88b4015fd66aaebe04?format=webp&width=720",
+    เพิ่มความถี่รถไฟฟ้า:
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fd90beaca642d4cceba685d933aeb644f?format=webp&width=720",
+    ปรับปรุงคุณภาพรถเมล์:
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F602cfdd852a147ed852d50b2ed05772d?format=webp&width=720",
+    เพิ่มความถี่รถเมล์:
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F4e921e92e2c44db7a2ad24ee299e9a6d?format=webp&width=720",
+    "เพิ่ม Feeder ในซอย":
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fbb907b894b5a44b3bde47b685f00caca?format=webp&width=720",
     // Accept both variants (with/without 'รถ') so selection labels map correctly
-    "ลดค่าโดยสารรถไฟฟ้า": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F902c640032bd41f3b30e4ce96330d938?format=webp&width=720",
-    "ลดค่าโดยสารไฟฟ้า": "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F902c640032bd41f3b30e4ce96330d938?format=webp&width=720",
+    ลดค่าโดยสารรถไฟฟ้า:
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F902c640032bd41f3b30e4ce96330d938?format=webp&width=720",
+    ลดค่าโดยสารไฟฟ้า:
+      "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F902c640032bd41f3b30e4ce96330d938?format=webp&width=720",
   };
 
   const handlePriorityToggle = (priority: string) => {
@@ -63,9 +71,9 @@ const Step1_Choice = ({
           let img = priorityImageMap[priority];
           if (!img) {
             const normalize = (s: string) =>
-              String(s || '')
-                .replace(/[\s\u00A0\uFEFF]+/g, '')
-                .replace(/[^\p{L}\p{N}]/gu, '')
+              String(s || "")
+                .replace(/[\s\u00A0\uFEFF]+/g, "")
+                .replace(/[^\p{L}\p{N}]/gu, "")
                 .toLowerCase();
             const nk = normalize(priority);
             for (const k of Object.keys(priorityImageMap)) {
@@ -79,7 +87,7 @@ const Step1_Choice = ({
           }
 
           if (img) {
-            const key = 'beforecitychange_images_sent';
+            const key = "beforecitychange_images_sent";
             try {
               const raw = sessionStorage.getItem(key);
               const sent = raw ? JSON.parse(raw) : {};
@@ -95,42 +103,79 @@ const Step1_Choice = ({
                 // Debug log: image being sent
                 try {
                   // eslint-disable-next-line no-console
-                  console.debug('[MN3][Step1] preparing to send imageUrl', img);
+                  console.debug("[MN3][Step1] preparing to send imageUrl", img);
                 } catch (_) {}
 
                 // Try sendBeacon first (fire-and-forget), fallback to fetch
                 try {
-                  const blob = new Blob([JSON.stringify({ imageUrl: img, collection: 'beforecitychange-imageshow-events' })], { type: 'application/json' });
-                  const ok = typeof navigator !== 'undefined' && navigator.sendBeacon && navigator.sendBeacon('/api/write-image-url', blob);
+                  const blob = new Blob(
+                    [
+                      JSON.stringify({
+                        imageUrl: img,
+                        collection: "beforecitychange-imageshow-events",
+                      }),
+                    ],
+                    { type: "application/json" },
+                  );
+                  const ok =
+                    typeof navigator !== "undefined" &&
+                    navigator.sendBeacon &&
+                    navigator.sendBeacon("/api/write-image-url", blob);
                   if (ok) {
-                    try { console.debug('[MN3][Step1] sendBeacon succeeded', img); } catch (_) {}
+                    try {
+                      console.debug("[MN3][Step1] sendBeacon succeeded", img);
+                    } catch (_) {}
                     mark({ ok: true, beacon: true, ts: Date.now() });
                   } else {
                     // fallback to fetch
-                    fetch('/api/write-image-url', {
-                      method: 'POST',
-                      headers: { 'Content-Type': 'application/json' },
-                      body: JSON.stringify({ imageUrl: img, collection: 'beforecitychange-imageshow-events' }),
+                    fetch("/api/write-image-url", {
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({
+                        imageUrl: img,
+                        collection: "beforecitychange-imageshow-events",
+                      }),
                     })
                       .then(async (r) => {
-                        try { console.debug('[MN3][Step1] fetch response', r.status, img); } catch (_) {}
+                        try {
+                          console.debug(
+                            "[MN3][Step1] fetch response",
+                            r.status,
+                            img,
+                          );
+                        } catch (_) {}
                         if (r.ok) {
                           const j = await r.json().catch(() => null);
-                          try { console.debug('[MN3][Step1] fetch json', j); } catch (_) {}
+                          try {
+                            console.debug("[MN3][Step1] fetch json", j);
+                          } catch (_) {}
                           mark({ ok: true, id: j?.id || null, ts: Date.now() });
                         } else {
                           const txt = await r.text().catch(() => null);
-                          try { console.warn('[MN3][Step1] fetch failed', r.status, txt); } catch (_) {}
-                          mark({ ok: false, error: `HTTP ${r.status} ${txt || ''}` });
+                          try {
+                            console.warn(
+                              "[MN3][Step1] fetch failed",
+                              r.status,
+                              txt,
+                            );
+                          } catch (_) {}
+                          mark({
+                            ok: false,
+                            error: `HTTP ${r.status} ${txt || ""}`,
+                          });
                         }
                       })
                       .catch((e) => {
-                        try { console.error('[MN3][Step1] fetch error', e); } catch (_) {}
+                        try {
+                          console.error("[MN3][Step1] fetch error", e);
+                        } catch (_) {}
                         mark({ ok: false, error: String(e) });
                       });
                   }
                 } catch (e) {
-                  try { console.error('[MN3][Step1] send error', e); } catch (_) {}
+                  try {
+                    console.error("[MN3][Step1] send error", e);
+                  } catch (_) {}
                   mark({ ok: false, error: String(e) });
                 }
               }

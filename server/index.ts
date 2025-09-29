@@ -5,7 +5,7 @@ import fs from "node:fs";
 import path from "node:path";
 import fetch from "node-fetch";
 import { handleDemo } from "./routes/demo";
-import admin from 'firebase-admin';
+import admin from "firebase-admin";
 
 // In-memory debug storage for last incoming write-image-url payload
 let lastWriteImageRequest: any = null;
@@ -13,12 +13,12 @@ let lastWriteImageRequest: any = null;
 // Helper: format timestamp to Thailand time (Asia/Bangkok) using sv-SE for ISO-like string
 function formatToBangkok(ts: any) {
   try {
-    if (!ts) return '';
+    if (!ts) return "";
     const d = new Date(String(ts));
-    if (isNaN(d.getTime())) return String(ts || '');
-    return d.toLocaleString('sv-SE', { timeZone: 'Asia/Bangkok' });
+    if (isNaN(d.getTime())) return String(ts || "");
+    return d.toLocaleString("sv-SE", { timeZone: "Asia/Bangkok" });
   } catch (e) {
-    return String(ts || '');
+    return String(ts || "");
   }
 }
 import {
@@ -49,8 +49,8 @@ export function createServer() {
 
   // Middleware
   app.use(cors());
-  app.use(express.json({ limit: '10mb' }));
-  app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+  app.use(express.json({ limit: "10mb" }));
+  app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 
   // Example API routes
   app.get("/api/ping", (_req, res) => {
@@ -61,103 +61,173 @@ export function createServer() {
   app.get("/api/demo", handleDemo);
 
   // Proxy external images through server to avoid CORS issues when composing canvases
-  app.get('/api/proxy-image', async (req, res) => {
+  app.get("/api/proxy-image", async (req, res) => {
     try {
-      const url = String(req.query.url || '').trim();
-      if (!url) return res.status(400).send('missing url');
+      const url = String(req.query.url || "").trim();
+      if (!url) return res.status(400).send("missing url");
       let parsed;
-      try { parsed = new URL(url); } catch (e) { return res.status(400).send('invalid url'); }
+      try {
+        parsed = new URL(url);
+      } catch (e) {
+        return res.status(400).send("invalid url");
+      }
 
-      const allowedHosts = ['cdn.builder.io', 'builder.io', 'firebasestorage.googleapis.com', 'storage.googleapis.com', 'images.unsplash.com'];
-      const hostname = parsed.hostname || '';
-      const ok = allowedHosts.some(h => hostname.includes(h));
-      if (!ok) return res.status(403).send('host not allowed');
+      const allowedHosts = [
+        "cdn.builder.io",
+        "builder.io",
+        "firebasestorage.googleapis.com",
+        "storage.googleapis.com",
+        "images.unsplash.com",
+      ];
+      const hostname = parsed.hostname || "";
+      const ok = allowedHosts.some((h) => hostname.includes(h));
+      if (!ok) return res.status(403).send("host not allowed");
 
       const upstream = await fetch(url);
-      if (!upstream.ok) return res.status(502).send('failed to fetch upstream');
-      const contentType = upstream.headers.get('content-type') || 'application/octet-stream';
-      res.setHeader('Content-Type', contentType);
+      if (!upstream.ok) return res.status(502).send("failed to fetch upstream");
+      const contentType =
+        upstream.headers.get("content-type") || "application/octet-stream";
+      res.setHeader("Content-Type", contentType);
       // stream body
       const buffer = await upstream.arrayBuffer();
       res.send(Buffer.from(buffer));
     } catch (e) {
-      console.error('/api/proxy-image error', e);
-      res.status(500).send('proxy error');
+      console.error("/api/proxy-image error", e);
+      res.status(500).send("proxy error");
     }
   });
 
   // Server endpoint to write imageUrl documents using Admin SDK (authorized server write)
-  app.post('/api/write-image-url', async (req, res) => {
+  app.post("/api/write-image-url", async (req, res) => {
     const start = Date.now();
     try {
       const { imageUrl, collection } = req.body || {};
-      if (!imageUrl || typeof imageUrl !== 'string') return res.status(400).json({ ok: false, error: 'missing imageUrl' });
-      const allowed = ['beforecitychange-imageshow-events', 'kpact-gamebus-imagedesign-events', 'ukpact-gamebus-imagedesign-events'];
-      const col = String(collection || 'beforecitychange-imageshow-events');
-      if (!allowed.includes(col)) return res.status(400).json({ ok: false, error: 'collection not allowed' });
+      if (!imageUrl || typeof imageUrl !== "string")
+        return res.status(400).json({ ok: false, error: "missing imageUrl" });
+      const allowed = [
+        "beforecitychange-imageshow-events",
+        "kpact-gamebus-imagedesign-events",
+        "ukpact-gamebus-imagedesign-events",
+      ];
+      const col = String(collection || "beforecitychange-imageshow-events");
+      if (!allowed.includes(col))
+        return res
+          .status(400)
+          .json({ ok: false, error: "collection not allowed" });
 
       const svc = process.env.FIREBASE_SERVICE_ACCOUNT;
-      if (!svc) return res.status(500).json({ ok: false, error: 'FIREBASE_SERVICE_ACCOUNT not configured' });
-      const parsed = typeof svc === 'string' ? JSON.parse(svc) : svc;
+      if (!svc)
+        return res
+          .status(500)
+          .json({
+            ok: false,
+            error: "FIREBASE_SERVICE_ACCOUNT not configured",
+          });
+      const parsed = typeof svc === "string" ? JSON.parse(svc) : svc;
 
       // Initialize admin once
       if (!admin.apps || admin.apps.length === 0) {
         try {
-          admin.initializeApp({ credential: admin.credential.cert(parsed as any), storageBucket: process.env.FIREBASE_STORAGE_BUCKET || undefined } as any);
+          admin.initializeApp({
+            credential: admin.credential.cert(parsed as any),
+            storageBucket: process.env.FIREBASE_STORAGE_BUCKET || undefined,
+          } as any);
         } catch (e) {
-          console.error('/api/write-image-url admin.init error', e);
+          console.error("/api/write-image-url admin.init error", e);
         }
       }
 
-      lastWriteImageRequest = { imageUrl: imageUrl?.slice(0, 1000), collection: col, ts: new Date().toISOString(), remoteIp: (req.headers['x-forwarded-for'] as string) || req.ip || null };
-      console.log('/api/write-image-url received', { imageUrl: imageUrl?.slice(0, 200), collection: col });
+      lastWriteImageRequest = {
+        imageUrl: imageUrl?.slice(0, 1000),
+        collection: col,
+        ts: new Date().toISOString(),
+        remoteIp: (req.headers["x-forwarded-for"] as string) || req.ip || null,
+      };
+      console.log("/api/write-image-url received", {
+        imageUrl: imageUrl?.slice(0, 200),
+        collection: col,
+      });
 
       const fsAdmin = admin.firestore();
 
       // Guard Firestore write with timeout to avoid hanging requests
       const writePromise = (async () => {
-        const docRef = await fsAdmin.collection(col).add({ imageUrl, createdAt: admin.firestore.FieldValue.serverTimestamp() });
+        const docRef = await fsAdmin
+          .collection(col)
+          .add({
+            imageUrl,
+            createdAt: admin.firestore.FieldValue.serverTimestamp(),
+          });
         return docRef;
       })();
 
       const timeoutMs = 8000; // 8s
-      const timeoutPromise = new Promise((_, rej) => setTimeout(() => rej(new Error('firestore-write-timeout')), timeoutMs));
+      const timeoutPromise = new Promise((_, rej) =>
+        setTimeout(() => rej(new Error("firestore-write-timeout")), timeoutMs),
+      );
 
       let docRef: any = null;
       try {
         docRef = await Promise.race([writePromise, timeoutPromise]);
       } catch (e: any) {
-        console.error('/api/write-image-url firestore write failed or timed out', e);
+        console.error(
+          "/api/write-image-url firestore write failed or timed out",
+          e,
+        );
         // Fallback: persist to local file for later ingestion
         try {
-          const DATA_DIR = process.env.DATA_DIR || path.join(process.cwd(), '.data');
+          const DATA_DIR =
+            process.env.DATA_DIR || path.join(process.cwd(), ".data");
           await fs.promises.mkdir(DATA_DIR, { recursive: true });
-          const outFile = path.join(DATA_DIR, 'beforecitychange-images.jsonl');
-          const row = { imageUrl, collection: col, createdAt: new Date().toISOString(), remoteIp: (req.headers['x-forwarded-for'] as string) || req.ip || null };
-          await fs.promises.appendFile(outFile, JSON.stringify(row) + '\n', 'utf8');
-          lastWriteImageRequest && (lastWriteImageRequest.fallback = { file: outFile, row });
-          console.log('/api/write-image-url fallback wrote to file', { file: outFile });
+          const outFile = path.join(DATA_DIR, "beforecitychange-images.jsonl");
+          const row = {
+            imageUrl,
+            collection: col,
+            createdAt: new Date().toISOString(),
+            remoteIp:
+              (req.headers["x-forwarded-for"] as string) || req.ip || null,
+          };
+          await fs.promises.appendFile(
+            outFile,
+            JSON.stringify(row) + "\n",
+            "utf8",
+          );
+          lastWriteImageRequest &&
+            (lastWriteImageRequest.fallback = { file: outFile, row });
+          console.log("/api/write-image-url fallback wrote to file", {
+            file: outFile,
+          });
           return res.json({ ok: true, fallback: true, path: outFile });
         } catch (ef) {
-          console.error('/api/write-image-url fallback failed', ef);
-          return res.status(504).json({ ok: false, error: 'firestore write timeout and fallback failed', detail: String(e?.message || e) });
+          console.error("/api/write-image-url fallback failed", ef);
+          return res
+            .status(504)
+            .json({
+              ok: false,
+              error: "firestore write timeout and fallback failed",
+              detail: String(e?.message || e),
+            });
         }
       }
 
-      console.log('/api/write-image-url wrote doc', { id: docRef.id, collection: col, tookMs: Date.now() - start });
+      console.log("/api/write-image-url wrote doc", {
+        id: docRef.id,
+        collection: col,
+        tookMs: Date.now() - start,
+      });
       res.json({ ok: true, id: docRef.id });
     } catch (e: any) {
-      console.error('/api/write-image-url error', e);
+      console.error("/api/write-image-url error", e);
       res.status(500).json({ ok: false, error: e?.message || String(e) });
     }
   });
 
   // Debug endpoint: return last received write-image-url payload (in-memory)
-  app.get('/api/last-write-image-request', (_req, res) => {
+  app.get("/api/last-write-image-request", (_req, res) => {
     try {
       res.json({ ok: true, last: lastWriteImageRequest });
     } catch (e: any) {
-      console.error('/api/last-write-image-request error', e);
+      console.error("/api/last-write-image-request error", e);
       res.status(500).json({ ok: false, error: e?.message || String(e) });
     }
   });
@@ -334,27 +404,30 @@ export function createServer() {
   });
 
   // Flush pending submissions posted by clients (batch)
-  app.post('/api/flush-pending', async (req, res) => {
+  app.post("/api/flush-pending", async (req, res) => {
     try {
       const items = Array.isArray(req.body) ? req.body : req.body?.items || [];
       if (!Array.isArray(items) || items.length === 0) {
-        return res.status(400).json({ ok: false, error: 'no items' });
+        return res.status(400).json({ ok: false, error: "no items" });
       }
 
       // Try admin SDK if service account is available
       const svc = process.env.FIREBASE_SERVICE_ACCOUNT;
       if (svc) {
         try {
-          const parsed = typeof svc === 'string' ? JSON.parse(svc) : svc;
+          const parsed = typeof svc === "string" ? JSON.parse(svc) : svc;
           if (!admin.apps || admin.apps.length === 0) {
-            admin.initializeApp({ credential: admin.credential.cert(parsed as any), storageBucket: process.env.FIREBASE_STORAGE_BUCKET || undefined } as any);
+            admin.initializeApp({
+              credential: admin.credential.cert(parsed as any),
+              storageBucket: process.env.FIREBASE_STORAGE_BUCKET || undefined,
+            } as any);
           }
           const dbAdmin = admin.database ? admin.database() : null;
           const fsAdmin = admin.firestore ? admin.firestore() : null;
 
           // If RTDB URL present, use Realtime DB 'submissions' path
           if (process.env.FIREBASE_DATABASE_URL && dbAdmin) {
-            const refSub = dbAdmin.ref('submissions');
+            const refSub = dbAdmin.ref("submissions");
             for (const it of items) {
               await refSub.push(it);
             }
@@ -363,44 +436,53 @@ export function createServer() {
 
           // Otherwise write to Firestore collection 'submissions' as fallback
           if (fsAdmin) {
-            const col = fsAdmin.collection('submissions');
+            const col = fsAdmin.collection("submissions");
             for (const it of items) {
               await col.add(it);
             }
             return res.json({ ok: true, written: items.length });
           }
         } catch (e) {
-          console.warn('flush-pending admin write failed', e);
+          console.warn("flush-pending admin write failed", e);
           // fallthrough to attempt client SDK path
         }
       }
 
       // Fallback: write to local file for later manual processing
       try {
-        const DATA_DIR = process.env.DATA_DIR || path.join(process.cwd(), '.data');
+        const DATA_DIR =
+          process.env.DATA_DIR || path.join(process.cwd(), ".data");
         fs.mkdirSync(DATA_DIR, { recursive: true });
-        const outFile = path.join(DATA_DIR, 'pending-submissions.jsonl');
+        const outFile = path.join(DATA_DIR, "pending-submissions.jsonl");
         for (const it of items) {
-          await fs.promises.appendFile(outFile, JSON.stringify(it) + '\n', 'utf8');
+          await fs.promises.appendFile(
+            outFile,
+            JSON.stringify(it) + "\n",
+            "utf8",
+          );
         }
         return res.json({ ok: true, written: items.length, fallback: true });
       } catch (e) {
-        console.error('flush-pending file write failed', e);
-        return res.status(500).json({ ok: false, error: 'failed to persist items' });
+        console.error("flush-pending file write failed", e);
+        return res
+          .status(500)
+          .json({ ok: false, error: "failed to persist items" });
       }
     } catch (e: any) {
-      console.error('flush-pending error', e);
-      res.status(500).json({ ok: false, error: e?.message || 'failed' });
+      console.error("flush-pending error", e);
+      res.status(500).json({ ok: false, error: e?.message || "failed" });
     }
   });
 
   // Upload design image via server (client posts base64 image). Server uses Admin SDK to
   // upload to Firebase Storage and write a Firestore document with the image URL.
-  app.post('/api/upload-design', async (req, res) => {
+  app.post("/api/upload-design", async (req, res) => {
     try {
       const { imageBase64, filename, project } = req.body || {};
-      if (!imageBase64 || typeof imageBase64 !== 'string') {
-        return res.status(400).json({ ok: false, error: 'missing imageBase64' });
+      if (!imageBase64 || typeof imageBase64 !== "string") {
+        return res
+          .status(400)
+          .json({ ok: false, error: "missing imageBase64" });
       }
 
       // Normalize and strip data URI prefix if present
@@ -408,35 +490,63 @@ export function createServer() {
       const m = String(imageBase64).match(/^data:(.+);base64,(.*)$/);
       if (m) base64 = m[2];
 
-      const buffer = Buffer.from(base64, 'base64');
+      const buffer = Buffer.from(base64, "base64");
 
       const svc = process.env.FIREBASE_SERVICE_ACCOUNT;
-      if (!svc) return res.status(500).json({ ok: false, error: 'FIREBASE_SERVICE_ACCOUNT not configured' });
-      const parsed = typeof svc === 'string' ? JSON.parse(svc) : svc;
+      if (!svc)
+        return res
+          .status(500)
+          .json({
+            ok: false,
+            error: "FIREBASE_SERVICE_ACCOUNT not configured",
+          });
+      const parsed = typeof svc === "string" ? JSON.parse(svc) : svc;
       if (!admin.apps || admin.apps.length === 0) {
-        admin.initializeApp({ credential: admin.credential.cert(parsed as any), storageBucket: process.env.FIREBASE_STORAGE_BUCKET || undefined } as any);
+        admin.initializeApp({
+          credential: admin.credential.cert(parsed as any),
+          storageBucket: process.env.FIREBASE_STORAGE_BUCKET || undefined,
+        } as any);
       }
 
       const bucket = admin.storage().bucket();
-      const projectPrefix = project === 'beforecitychange' ? 'beforecitychange' : 'mydreambus';
-      const safeFilename = filename && typeof filename === 'string' ? filename.replace(/[^a-zA-Z0-9._-]/g, '_') : `design_${Date.now()}.png`;
+      const projectPrefix =
+        project === "beforecitychange" ? "beforecitychange" : "mydreambus";
+      const safeFilename =
+        filename && typeof filename === "string"
+          ? filename.replace(/[^a-zA-Z0-9._-]/g, "_")
+          : `design_${Date.now()}.png`;
       const finalPath = `${projectPrefix}/designs/${safeFilename}`;
       const file = bucket.file(finalPath);
 
       // upload buffer
-      await file.save(buffer, { resumable: false, contentType: 'image/png', public: false });
+      await file.save(buffer, {
+        resumable: false,
+        contentType: "image/png",
+        public: false,
+      });
 
       // generate signed URL (long expiry)
-      const [signedUrl] = await file.getSignedUrl({ action: 'read', expires: '03-01-2500' });
+      const [signedUrl] = await file.getSignedUrl({
+        action: "read",
+        expires: "03-01-2500",
+      });
 
       // Write Firestore doc referencing the URL
       const fsAdmin = admin.firestore();
-      const col = fsAdmin.collection('kpact-gamebus-imagedesign-events');
-      const docRef = await col.add({ imageUrl: signedUrl, createdAt: admin.firestore.FieldValue.serverTimestamp() });
+      const col = fsAdmin.collection("kpact-gamebus-imagedesign-events");
+      const docRef = await col.add({
+        imageUrl: signedUrl,
+        createdAt: admin.firestore.FieldValue.serverTimestamp(),
+      });
 
-      res.json({ ok: true, imageUrl: signedUrl, id: docRef.id, path: finalPath });
+      res.json({
+        ok: true,
+        imageUrl: signedUrl,
+        id: docRef.id,
+        path: finalPath,
+      });
     } catch (e: any) {
-      console.error('upload-design error', e);
+      console.error("upload-design error", e);
       res.status(500).json({ ok: false, error: e?.message || String(e) });
     }
   });
@@ -483,26 +593,41 @@ export function createServer() {
   });
 
   // Import any server-pending submissions (.data/pending-submissions.jsonl) into Firestore 'submissions' collection
-  app.post('/api/import-pending-to-submissions', async (req, res) => {
+  app.post("/api/import-pending-to-submissions", async (req, res) => {
     try {
       const svc = process.env.FIREBASE_SERVICE_ACCOUNT;
-      if (!svc) return res.status(400).json({ ok: false, error: 'FIREBASE_SERVICE_ACCOUNT not configured' });
-      const parsed = typeof svc === 'string' ? JSON.parse(svc) : svc;
+      if (!svc)
+        return res
+          .status(400)
+          .json({
+            ok: false,
+            error: "FIREBASE_SERVICE_ACCOUNT not configured",
+          });
+      const parsed = typeof svc === "string" ? JSON.parse(svc) : svc;
       if (!admin.apps || admin.apps.length === 0) {
-        admin.initializeApp({ credential: admin.credential.cert(parsed as any), storageBucket: process.env.FIREBASE_STORAGE_BUCKET || undefined } as any);
+        admin.initializeApp({
+          credential: admin.credential.cert(parsed as any),
+          storageBucket: process.env.FIREBASE_STORAGE_BUCKET || undefined,
+        } as any);
       }
       const fsAdmin = admin.firestore ? admin.firestore() : null;
-      if (!fsAdmin) return res.status(500).json({ ok: false, error: 'admin.firestore unavailable' });
+      if (!fsAdmin)
+        return res
+          .status(500)
+          .json({ ok: false, error: "admin.firestore unavailable" });
 
-      const DATA_DIR = process.env.DATA_DIR || path.join(process.cwd(), '.data');
-      const pendingFile = path.join(DATA_DIR, 'pending-submissions.jsonl');
-      if (!fs.existsSync(pendingFile)) return res.json({ ok: true, processed: 0, written: 0 });
+      const DATA_DIR =
+        process.env.DATA_DIR || path.join(process.cwd(), ".data");
+      const pendingFile = path.join(DATA_DIR, "pending-submissions.jsonl");
+      if (!fs.existsSync(pendingFile))
+        return res.json({ ok: true, processed: 0, written: 0 });
 
-      const raw = await fs.promises.readFile(pendingFile, 'utf8');
+      const raw = await fs.promises.readFile(pendingFile, "utf8");
       const lines = raw.split(/\n+/).filter(Boolean);
-      if (lines.length === 0) return res.json({ ok: true, processed: 0, written: 0 });
+      if (lines.length === 0)
+        return res.json({ ok: true, processed: 0, written: 0 });
 
-      const col = fsAdmin.collection('submissions');
+      const col = fsAdmin.collection("submissions");
       let processed = 0;
       let written = 0;
       const errors: any[] = [];
@@ -513,77 +638,186 @@ export function createServer() {
           // Map raw submission to session-mapped row if needed
           let row: any = null;
           if (!obj) continue;
-          if (obj.firstTimestamp || obj.lastTimestamp || obj.PDPA_acceptance || obj.sessionID) {
+          if (
+            obj.firstTimestamp ||
+            obj.lastTimestamp ||
+            obj.PDPA_acceptance ||
+            obj.sessionID
+          ) {
             row = obj;
-          } else if (obj.chassis || obj.seating || obj.serviceInfo || obj.exterior) {
-            const sessionID = obj.sessionID || obj.sessionId || obj.session || '';
-            const firstTS = obj.firstTimestamp || obj.first_time || obj.timestamp || obj.createdAt || '';
-            const lastTS = obj.lastTimestamp || obj.last_time || obj.timestamp || obj.createdAt || '';
-            const pdpa = (obj.PDPA === true || obj.PDPA === 'accepted' || obj.PDPA === '1') ? '1' : '';
+          } else if (
+            obj.chassis ||
+            obj.seating ||
+            obj.serviceInfo ||
+            obj.exterior
+          ) {
+            const sessionID =
+              obj.sessionID || obj.sessionId || obj.session || "";
+            const firstTS =
+              obj.firstTimestamp ||
+              obj.first_time ||
+              obj.timestamp ||
+              obj.createdAt ||
+              "";
+            const lastTS =
+              obj.lastTimestamp ||
+              obj.last_time ||
+              obj.timestamp ||
+              obj.createdAt ||
+              "";
+            const pdpa =
+              obj.PDPA === true || obj.PDPA === "accepted" || obj.PDPA === "1"
+                ? "1"
+                : "";
             const seating = obj.seating || obj.seatingInfo || obj.seat || {};
-            const totalSeats = seating && (seating.totalSeats || seating.total_seats || seating.total || seating.totalSeat) ? (seating.totalSeats || seating.total_seats || seating.total || seating.totalSeat) : '';
-            const specialSeats = seating && (seating.specialSeats || seating.special_seats || seating.special || seating.specialSeat) ? (seating.specialSeats || seating.special_seats || seating.special || seating.specialSeat) : '';
-            const childElder = seating && (seating.childElderSeats || seating.child_elder_seats || seating.childElder || seating.childElderSeats) ? (seating.childElderSeats || seating.child_elder_seats || seating.childElder || seating.childElderSeats) : '';
-            const pregnant = seating && (seating.pregnantSeats || seating.pregnant || seating.pregnant_seats) ? (seating.pregnantSeats || seating.pregnant || seating.pregnant_seats) : '';
-            const monk = seating && (seating.monkSeats || seating.monk || seating.monk_seats) ? (seating.monkSeats || seating.monk || seating.monk_seats) : '';
-            const featuresArr = Array.isArray(obj.amenities) ? obj.amenities : (Array.isArray(obj.features) ? obj.features : []);
-            const paymentArr = Array.isArray(obj.paymentMethods) ? obj.paymentMethods : (Array.isArray(obj.payment) ? obj.payment : (Array.isArray(obj.payment_methods) ? obj.payment_methods : []));
-            const doors = obj.doors || (obj.doorConfig && (obj.doorConfig.doorChoice || obj.doorConfig.doors)) || '';
-            let colorVal = '';
+            const totalSeats =
+              seating &&
+              (seating.totalSeats ||
+                seating.total_seats ||
+                seating.total ||
+                seating.totalSeat)
+                ? seating.totalSeats ||
+                  seating.total_seats ||
+                  seating.total ||
+                  seating.totalSeat
+                : "";
+            const specialSeats =
+              seating &&
+              (seating.specialSeats ||
+                seating.special_seats ||
+                seating.special ||
+                seating.specialSeat)
+                ? seating.specialSeats ||
+                  seating.special_seats ||
+                  seating.special ||
+                  seating.specialSeat
+                : "";
+            const childElder =
+              seating &&
+              (seating.childElderSeats ||
+                seating.child_elder_seats ||
+                seating.childElder ||
+                seating.childElderSeats)
+                ? seating.childElderSeats ||
+                  seating.child_elder_seats ||
+                  seating.childElder ||
+                  seating.childElderSeats
+                : "";
+            const pregnant =
+              seating &&
+              (seating.pregnantSeats ||
+                seating.pregnant ||
+                seating.pregnant_seats)
+                ? seating.pregnantSeats ||
+                  seating.pregnant ||
+                  seating.pregnant_seats
+                : "";
+            const monk =
+              seating &&
+              (seating.monkSeats || seating.monk || seating.monk_seats)
+                ? seating.monkSeats || seating.monk || seating.monk_seats
+                : "";
+            const featuresArr = Array.isArray(obj.amenities)
+              ? obj.amenities
+              : Array.isArray(obj.features)
+                ? obj.features
+                : [];
+            const paymentArr = Array.isArray(obj.paymentMethods)
+              ? obj.paymentMethods
+              : Array.isArray(obj.payment)
+                ? obj.payment
+                : Array.isArray(obj.payment_methods)
+                  ? obj.payment_methods
+                  : [];
+            const doors =
+              obj.doors ||
+              (obj.doorConfig &&
+                (obj.doorConfig.doorChoice || obj.doorConfig.doors)) ||
+              "";
+            let colorVal = "";
             try {
               if (obj.color) colorVal = String(obj.color);
               else if (obj.exterior && obj.exterior.color) {
-                if (typeof obj.exterior.color === 'string') {
+                if (typeof obj.exterior.color === "string") {
                   try {
                     const parsedEx = JSON.parse(obj.exterior.color);
-                    colorVal = parsedEx.colorHex || parsedEx.color || '';
+                    colorVal = parsedEx.colorHex || parsedEx.color || "";
                   } catch (e) {
-                    colorVal = obj.exterior.color || '';
+                    colorVal = obj.exterior.color || "";
                   }
-                } else if (typeof obj.exterior.color === 'object') {
-                  colorVal = obj.exterior.color.colorHex || obj.exterior.color.color || '';
+                } else if (typeof obj.exterior.color === "object") {
+                  colorVal =
+                    obj.exterior.color.colorHex ||
+                    obj.exterior.color.color ||
+                    "";
                 }
               } else if (obj.exterior && obj.exterior.colorHex) {
                 colorVal = obj.exterior.colorHex;
               }
-            } catch (e) { colorVal = '' }
-            const frequency = obj.frequency || (obj.serviceInfo && (obj.serviceInfo.frequency || obj.serviceInfo.freq)) || obj.interval || '';
-            const route = obj.route || (obj.serviceInfo && (obj.serviceInfo.routeName || obj.serviceInfo.route)) || '';
-            const area = obj.area || (obj.serviceInfo && obj.serviceInfo.area) || '';
-            const decisionUseService = obj.decisionUseService || obj.decision_use_service || '';
-            const reasonNotUse = obj.reasonNotUse || obj.reason_not_use || obj.reason || '';
-            const enterPrize = (obj.enterPrize || obj.prizeName || obj.prizePhone || obj.prize_name || obj.prize_phone) ? '1' : '';
-            const prizeName = obj.prizeName || obj.prize_name || '';
-            const prizePhone = obj.prizePhone || obj.prize_phone || '';
-            const shared = (obj.userEngagement && (obj.userEngagement.shared || obj.userEngagement.sharedTo)) || obj.shared || false;
+            } catch (e) {
+              colorVal = "";
+            }
+            const frequency =
+              obj.frequency ||
+              (obj.serviceInfo &&
+                (obj.serviceInfo.frequency || obj.serviceInfo.freq)) ||
+              obj.interval ||
+              "";
+            const route =
+              obj.route ||
+              (obj.serviceInfo &&
+                (obj.serviceInfo.routeName || obj.serviceInfo.route)) ||
+              "";
+            const area =
+              obj.area || (obj.serviceInfo && obj.serviceInfo.area) || "";
+            const decisionUseService =
+              obj.decisionUseService || obj.decision_use_service || "";
+            const reasonNotUse =
+              obj.reasonNotUse || obj.reason_not_use || obj.reason || "";
+            const enterPrize =
+              obj.enterPrize ||
+              obj.prizeName ||
+              obj.prizePhone ||
+              obj.prize_name ||
+              obj.prize_phone
+                ? "1"
+                : "";
+            const prizeName = obj.prizeName || obj.prize_name || "";
+            const prizePhone = obj.prizePhone || obj.prize_phone || "";
+            const shared =
+              (obj.userEngagement &&
+                (obj.userEngagement.shared || obj.userEngagement.sharedTo)) ||
+              obj.shared ||
+              false;
 
             row = {
               sessionID: sessionID,
-              ip: obj.ip || '',
+              ip: obj.ip || "",
               firstTimestamp: firstTS,
               lastTimestamp: lastTS,
               PDPA_acceptance: pdpa,
-              chassis_type: obj.chassis || (obj.design && obj.design.chassis) || '',
-              total_seats: totalSeats || '',
-              special_seats: specialSeats || '',
-              children_elder_count: childElder || '',
-              pregnant_count: pregnant || '',
-              monk_count: monk || '',
+              chassis_type:
+                obj.chassis || (obj.design && obj.design.chassis) || "",
+              total_seats: totalSeats || "",
+              special_seats: specialSeats || "",
+              children_elder_count: childElder || "",
+              pregnant_count: pregnant || "",
+              monk_count: monk || "",
               features: Array.isArray(featuresArr) ? featuresArr : [],
               payment_types: Array.isArray(paymentArr) ? paymentArr : [],
-              doors: doors || '',
-              color: colorVal || '',
-              frequency: frequency || '',
-              route: route || '',
-              area: area || '',
-              decision_use_service: decisionUseService || '',
-              reason_not_use: reasonNotUse || '',
-              decision_enter_prize: enterPrize || '',
-              prize_name: prizeName || '',
-              prize_phone: prizePhone || '',
-              prize_timestamp: '',
-              shared_with_friends: shared ? '1' : '',
-              shared_timestamp: '',
+              doors: doors || "",
+              color: colorVal || "",
+              frequency: frequency || "",
+              route: route || "",
+              area: area || "",
+              decision_use_service: decisionUseService || "",
+              reason_not_use: reasonNotUse || "",
+              decision_enter_prize: enterPrize || "",
+              prize_name: prizeName || "",
+              prize_phone: prizePhone || "",
+              prize_timestamp: "",
+              shared_with_friends: shared ? "1" : "",
+              shared_timestamp: "",
             };
           } else {
             // Unknown shape — skip
@@ -604,7 +838,10 @@ export function createServer() {
 
       // Move existing pending file to processed archive
       try {
-        const archive = path.join(DATA_DIR, 'pending-submissions.processed.' + Date.now() + '.jsonl');
+        const archive = path.join(
+          DATA_DIR,
+          "pending-submissions.processed." + Date.now() + ".jsonl",
+        );
         await fs.promises.rename(pendingFile, archive);
       } catch (e) {
         // ignore
@@ -612,7 +849,7 @@ export function createServer() {
 
       res.json({ ok: true, processed, written, errors });
     } catch (e: any) {
-      console.error('import-pending failed', e);
+      console.error("import-pending failed", e);
       res.status(500).json({ ok: false, error: e?.message || String(e) });
     }
   });
@@ -761,12 +998,15 @@ export function createServer() {
         const svc = process.env.FIREBASE_SERVICE_ACCOUNT;
         if (svc) {
           try {
-            const parsed = typeof svc === 'string' ? JSON.parse(svc) : svc;
+            const parsed = typeof svc === "string" ? JSON.parse(svc) : svc;
             if (!admin.apps || admin.apps.length === 0) {
-              admin.initializeApp({ credential: admin.credential.cert(parsed as any), storageBucket: process.env.FIREBASE_STORAGE_BUCKET || undefined } as any);
+              admin.initializeApp({
+                credential: admin.credential.cert(parsed as any),
+                storageBucket: process.env.FIREBASE_STORAGE_BUCKET || undefined,
+              } as any);
             }
             const fsAdmin = admin.firestore();
-            const colRef = fsAdmin.collection('submissions');
+            const colRef = fsAdmin.collection("submissions");
             const snap = await colRef.limit(limit).get();
             if (snap && snap.size > 0) {
               const headers = [
@@ -807,57 +1047,72 @@ export function createServer() {
               snap.forEach((d) => {
                 const data = d.data() || {};
                 const vals = [
-                  data.sessionID || data.sessionId || '',
-                  data.ip || '',
-                  formatToBangkok(data.firstTimestamp || ''),
-                  formatToBangkok(data.lastTimestamp || ''),
-                  data.PDPA_acceptance || '',
-                  data.chassis_type || '',
-                  data.total_seats || '',
-                  data.special_seats || '',
-                  data.children_elder_count || '',
-                  data.pregnant_count || '',
-                  data.monk_count || '',
-                  Array.isArray(data.features) ? data.features.join(' | ') : (data.features || ''),
-                  Array.isArray(data.payment_types) ? data.payment_types.join(' | ') : (data.payment_types || ''),
-                  data.doors || '',
-                  data.color || '',
-                  data.frequency || '',
-                  data.route || '',
-                  data.area || '',
-                  data.decision_use_service || '',
-                  data.reason_not_use || '',
-                  data.decision_enter_prize || '',
-                  data.prize_name || '',
-                  data.prize_phone || '',
-                  data.prize_timestamp || '',
-                  data.shared_with_friends || '',
-                  data.shared_timestamp || '',
+                  data.sessionID || data.sessionId || "",
+                  data.ip || "",
+                  formatToBangkok(data.firstTimestamp || ""),
+                  formatToBangkok(data.lastTimestamp || ""),
+                  data.PDPA_acceptance || "",
+                  data.chassis_type || "",
+                  data.total_seats || "",
+                  data.special_seats || "",
+                  data.children_elder_count || "",
+                  data.pregnant_count || "",
+                  data.monk_count || "",
+                  Array.isArray(data.features)
+                    ? data.features.join(" | ")
+                    : data.features || "",
+                  Array.isArray(data.payment_types)
+                    ? data.payment_types.join(" | ")
+                    : data.payment_types || "",
+                  data.doors || "",
+                  data.color || "",
+                  data.frequency || "",
+                  data.route || "",
+                  data.area || "",
+                  data.decision_use_service || "",
+                  data.reason_not_use || "",
+                  data.decision_enter_prize || "",
+                  data.prize_name || "",
+                  data.prize_phone || "",
+                  data.prize_timestamp || "",
+                  data.shared_with_friends || "",
+                  data.shared_timestamp || "",
                 ];
-                const safe = vals.map((f) => '"' + String(f || "").replace(/"/g, '""') + '"');
-                csvRows.push(safe.join(','));
+                const safe = vals.map(
+                  (f) => '"' + String(f || "").replace(/"/g, '""') + '"',
+                );
+                csvRows.push(safe.join(","));
               });
 
-              const csvOut = csvRows.join('\n');
-              res.setHeader('Content-Type', 'text/csv; charset=utf-8');
-              res.setHeader('Content-Disposition', 'attachment; filename="mydreambus-sessions-' + Date.now() + '.csv"');
-              return res.status(200).send('\uFEFF' + csvOut);
+              const csvOut = csvRows.join("\n");
+              res.setHeader("Content-Type", "text/csv; charset=utf-8");
+              res.setHeader(
+                "Content-Disposition",
+                'attachment; filename="mydreambus-sessions-' +
+                  Date.now() +
+                  '.csv"',
+              );
+              return res.status(200).send("\uFEFF" + csvOut);
             }
           } catch (e) {
-            console.warn('export-csv: failed to read submissions collection', e);
+            console.warn(
+              "export-csv: failed to read submissions collection",
+              e,
+            );
           }
         }
       } catch (e) {
-        console.warn('export-csv: admin init failed', e);
+        console.warn("export-csv: admin init failed", e);
       }
 
       // If admin collection was empty or unavailable, also try reading server fallback pending file
       try {
-        const DATA_DIR = process.env.DATA_DIR || path.join(process.cwd(), '.data');
-        const pendingFile = path.join(DATA_DIR, 'pending-submissions.jsonl');
+        const DATA_DIR =
+          process.env.DATA_DIR || path.join(process.cwd(), ".data");
+        const pendingFile = path.join(DATA_DIR, "pending-submissions.jsonl");
         if (fs.existsSync(pendingFile)) {
           try {
-            const raw = await fs.promises.readFile(pendingFile, 'utf8');
+            const raw = await fs.promises.readFile(pendingFile, "utf8");
             const lines = raw.split(/\n+/).filter(Boolean);
             if (lines.length > 0) {
               const headers = [
@@ -890,7 +1145,9 @@ export function createServer() {
               ];
 
               const csvRows: string[] = [
-                headers.map((h) => '"' + String(h || "").replace(/"/g, '""') + '"').join(','),
+                headers
+                  .map((h) => '"' + String(h || "").replace(/"/g, '""') + '"')
+                  .join(","),
               ];
 
               let count = 0;
@@ -901,123 +1158,287 @@ export function createServer() {
                   // Only include already-mapped session rows (presence of firstTimestamp or PDPA_acceptance)
                   if (obj) {
                     // If already a mapped session row, accept it
-                    if ((obj.firstTimestamp || obj.lastTimestamp || obj.PDPA_acceptance || obj.sessionID)) {
+                    if (
+                      obj.firstTimestamp ||
+                      obj.lastTimestamp ||
+                      obj.PDPA_acceptance ||
+                      obj.sessionID
+                    ) {
                       const vals = [
-                        obj.sessionID || obj.sessionId || '',
-                        obj.ip || '',
-                        formatToBangkok(obj.firstTimestamp || obj.firstTimestamp || ''),
-                        formatToBangkok(obj.lastTimestamp || obj.lastTimestamp || ''),
-                        obj.PDPA_acceptance || obj.PDPA || (obj.PDPA === true ? '1' : '') || '',
-                        obj.chassis_type || obj.chassis || '',
-                        obj.total_seats || obj.totalSeats || '',
-                        obj.special_seats || '',
-                        obj.children_elder_count || '',
-                        obj.pregnant_count || '',
-                        obj.monk_count || '',
-                        Array.isArray(obj.features) ? obj.features.join(' | ') : (obj.features || ''),
-                        Array.isArray(obj.payment_types) ? obj.payment_types.join(' | ') : (obj.paymentTypes || obj.payment_methods || ''),
-                        obj.doors || (obj.doorConfig && obj.doorConfig.doorChoice) || '',
-                        obj.color || (obj.exterior && (obj.exterior.color || obj.exterior.colorHex)) || '',
-                        obj.frequency || obj.serviceInfo?.frequency || obj.interval || '',
-                        obj.route || obj.serviceInfo?.routeName || '',
-                        obj.area || obj.serviceInfo?.area || '',
-                        obj.decision_use_service || obj.decisionUseService || '',
-                        obj.reason_not_use || obj.reasonNotUse || obj.reason || '',
-                        obj.decision_enter_prize || obj.enterPrize || (obj.prizeName ? '1' : '' ) || '',
-                        obj.prize_name || obj.prizeName || '',
-                        obj.prize_phone || obj.prizePhone || '',
-                        obj.prize_timestamp || '',
-                        obj.shared_with_friends || (obj.userEngagement && obj.userEngagement.shared ? '1' : '') || '',
-                        obj.shared_timestamp || '',
+                        obj.sessionID || obj.sessionId || "",
+                        obj.ip || "",
+                        formatToBangkok(
+                          obj.firstTimestamp || obj.firstTimestamp || "",
+                        ),
+                        formatToBangkok(
+                          obj.lastTimestamp || obj.lastTimestamp || "",
+                        ),
+                        obj.PDPA_acceptance ||
+                          obj.PDPA ||
+                          (obj.PDPA === true ? "1" : "") ||
+                          "",
+                        obj.chassis_type || obj.chassis || "",
+                        obj.total_seats || obj.totalSeats || "",
+                        obj.special_seats || "",
+                        obj.children_elder_count || "",
+                        obj.pregnant_count || "",
+                        obj.monk_count || "",
+                        Array.isArray(obj.features)
+                          ? obj.features.join(" | ")
+                          : obj.features || "",
+                        Array.isArray(obj.payment_types)
+                          ? obj.payment_types.join(" | ")
+                          : obj.paymentTypes || obj.payment_methods || "",
+                        obj.doors ||
+                          (obj.doorConfig && obj.doorConfig.doorChoice) ||
+                          "",
+                        obj.color ||
+                          (obj.exterior &&
+                            (obj.exterior.color || obj.exterior.colorHex)) ||
+                          "",
+                        obj.frequency ||
+                          obj.serviceInfo?.frequency ||
+                          obj.interval ||
+                          "",
+                        obj.route || obj.serviceInfo?.routeName || "",
+                        obj.area || obj.serviceInfo?.area || "",
+                        obj.decision_use_service ||
+                          obj.decisionUseService ||
+                          "",
+                        obj.reason_not_use ||
+                          obj.reasonNotUse ||
+                          obj.reason ||
+                          "",
+                        obj.decision_enter_prize ||
+                          obj.enterPrize ||
+                          (obj.prizeName ? "1" : "") ||
+                          "",
+                        obj.prize_name || obj.prizeName || "",
+                        obj.prize_phone || obj.prizePhone || "",
+                        obj.prize_timestamp || "",
+                        obj.shared_with_friends ||
+                          (obj.userEngagement && obj.userEngagement.shared
+                            ? "1"
+                            : "") ||
+                          "",
+                        obj.shared_timestamp || "",
                       ];
-                      const safe = vals.map((f) => '"' + String(f || "").replace(/"/g, '""') + '"');
-                      csvRows.push(safe.join(','));
+                      const safe = vals.map(
+                        (f) => '"' + String(f || "").replace(/"/g, '""') + '"',
+                      );
+                      csvRows.push(safe.join(","));
                       count++;
-                    } else if (obj.chassis || obj.seating || obj.serviceInfo || obj.exterior) {
+                    } else if (
+                      obj.chassis ||
+                      obj.seating ||
+                      obj.serviceInfo ||
+                      obj.exterior
+                    ) {
                       // Looks like a raw design submission — map to session row (handle multiple naming variants)
-                      const sessionID = obj.sessionID || obj.sessionId || obj.session || '';
+                      const sessionID =
+                        obj.sessionID || obj.sessionId || obj.session || "";
 
-                      const firstTS = obj.firstTimestamp || obj.first_time || obj.timestamp || obj.createdAt || '';
-                      const lastTS = obj.lastTimestamp || obj.last_time || obj.timestamp || obj.createdAt || '';
+                      const firstTS =
+                        obj.firstTimestamp ||
+                        obj.first_time ||
+                        obj.timestamp ||
+                        obj.createdAt ||
+                        "";
+                      const lastTS =
+                        obj.lastTimestamp ||
+                        obj.last_time ||
+                        obj.timestamp ||
+                        obj.createdAt ||
+                        "";
 
-                      const pdpa = (obj.PDPA === true || obj.PDPA === 'accepted' || obj.PDPA === '1') ? '1' : '';
+                      const pdpa =
+                        obj.PDPA === true ||
+                        obj.PDPA === "accepted" ||
+                        obj.PDPA === "1"
+                          ? "1"
+                          : "";
 
-                      const seating = obj.seating || obj.seatingInfo || obj.seat || {};
-                      const totalSeats = seating && (seating.totalSeats || seating.total_seats || seating.total || seating.totalSeat) ? (seating.totalSeats || seating.total_seats || seating.total || seating.totalSeat) : '';
-                      const specialSeats = seating && (seating.specialSeats || seating.special_seats || seating.special || seating.specialSeat) ? (seating.specialSeats || seating.special_seats || seating.special || seating.specialSeat) : '';
-                      const childElder = seating && (seating.childElderSeats || seating.child_elder_seats || seating.childElder || seating.childElderSeats) ? (seating.childElderSeats || seating.child_elder_seats || seating.childElder || seating.childElderSeats) : '';
-                      const pregnant = seating && (seating.pregnantSeats || seating.pregnant || seating.pregnant_seats) ? (seating.pregnantSeats || seating.pregnant || seating.pregnant_seats) : '';
-                      const monk = seating && (seating.monkSeats || seating.monk || seating.monk_seats) ? (seating.monkSeats || seating.monk || seating.monk_seats) : '';
+                      const seating =
+                        obj.seating || obj.seatingInfo || obj.seat || {};
+                      const totalSeats =
+                        seating &&
+                        (seating.totalSeats ||
+                          seating.total_seats ||
+                          seating.total ||
+                          seating.totalSeat)
+                          ? seating.totalSeats ||
+                            seating.total_seats ||
+                            seating.total ||
+                            seating.totalSeat
+                          : "";
+                      const specialSeats =
+                        seating &&
+                        (seating.specialSeats ||
+                          seating.special_seats ||
+                          seating.special ||
+                          seating.specialSeat)
+                          ? seating.specialSeats ||
+                            seating.special_seats ||
+                            seating.special ||
+                            seating.specialSeat
+                          : "";
+                      const childElder =
+                        seating &&
+                        (seating.childElderSeats ||
+                          seating.child_elder_seats ||
+                          seating.childElder ||
+                          seating.childElderSeats)
+                          ? seating.childElderSeats ||
+                            seating.child_elder_seats ||
+                            seating.childElder ||
+                            seating.childElderSeats
+                          : "";
+                      const pregnant =
+                        seating &&
+                        (seating.pregnantSeats ||
+                          seating.pregnant ||
+                          seating.pregnant_seats)
+                          ? seating.pregnantSeats ||
+                            seating.pregnant ||
+                            seating.pregnant_seats
+                          : "";
+                      const monk =
+                        seating &&
+                        (seating.monkSeats ||
+                          seating.monk ||
+                          seating.monk_seats)
+                          ? seating.monkSeats ||
+                            seating.monk ||
+                            seating.monk_seats
+                          : "";
 
-                      const featuresArr = Array.isArray(obj.amenities) ? obj.amenities : (Array.isArray(obj.features) ? obj.features : []);
-                      const paymentArr = Array.isArray(obj.paymentMethods) ? obj.paymentMethods : (Array.isArray(obj.payment) ? obj.payment : (Array.isArray(obj.payment_methods) ? obj.payment_methods : []));
+                      const featuresArr = Array.isArray(obj.amenities)
+                        ? obj.amenities
+                        : Array.isArray(obj.features)
+                          ? obj.features
+                          : [];
+                      const paymentArr = Array.isArray(obj.paymentMethods)
+                        ? obj.paymentMethods
+                        : Array.isArray(obj.payment)
+                          ? obj.payment
+                          : Array.isArray(obj.payment_methods)
+                            ? obj.payment_methods
+                            : [];
 
                       // doors
-                      const doors = obj.doors || (obj.doorConfig && (obj.doorConfig.doorChoice || obj.doorConfig.doors)) || '';
+                      const doors =
+                        obj.doors ||
+                        (obj.doorConfig &&
+                          (obj.doorConfig.doorChoice ||
+                            obj.doorConfig.doors)) ||
+                        "";
 
                       // color may be a JSON string or nested object
-                      let colorVal = '';
+                      let colorVal = "";
                       try {
                         if (obj.color) colorVal = String(obj.color);
                         else if (obj.exterior && obj.exterior.color) {
-                          if (typeof obj.exterior.color === 'string') {
+                          if (typeof obj.exterior.color === "string") {
                             try {
                               const parsed = JSON.parse(obj.exterior.color);
-                              colorVal = parsed.colorHex || parsed.color || '';
+                              colorVal = parsed.colorHex || parsed.color || "";
                             } catch (e) {
-                              colorVal = obj.exterior.color || '';
+                              colorVal = obj.exterior.color || "";
                             }
-                          } else if (typeof obj.exterior.color === 'object') {
-                            colorVal = obj.exterior.color.colorHex || obj.exterior.color.color || '';
+                          } else if (typeof obj.exterior.color === "object") {
+                            colorVal =
+                              obj.exterior.color.colorHex ||
+                              obj.exterior.color.color ||
+                              "";
                           }
                         } else if (obj.exterior && obj.exterior.colorHex) {
                           colorVal = obj.exterior.colorHex;
                         }
-                      } catch (e) { colorVal = '' }
+                      } catch (e) {
+                        colorVal = "";
+                      }
 
-                      const frequency = obj.frequency || (obj.serviceInfo && (obj.serviceInfo.frequency || obj.serviceInfo.freq)) || obj.interval || '';
-                      const route = obj.route || (obj.serviceInfo && (obj.serviceInfo.routeName || obj.serviceInfo.route)) || '';
-                      const area = obj.area || (obj.serviceInfo && obj.serviceInfo.area) || '';
+                      const frequency =
+                        obj.frequency ||
+                        (obj.serviceInfo &&
+                          (obj.serviceInfo.frequency ||
+                            obj.serviceInfo.freq)) ||
+                        obj.interval ||
+                        "";
+                      const route =
+                        obj.route ||
+                        (obj.serviceInfo &&
+                          (obj.serviceInfo.routeName ||
+                            obj.serviceInfo.route)) ||
+                        "";
+                      const area =
+                        obj.area ||
+                        (obj.serviceInfo && obj.serviceInfo.area) ||
+                        "";
 
-                      const decisionUseService = obj.decisionUseService || obj.decision_use_service || '';
-                      const reasonNotUse = obj.reasonNotUse || obj.reason_not_use || obj.reason || '';
+                      const decisionUseService =
+                        obj.decisionUseService ||
+                        obj.decision_use_service ||
+                        "";
+                      const reasonNotUse =
+                        obj.reasonNotUse ||
+                        obj.reason_not_use ||
+                        obj.reason ||
+                        "";
 
-                      const enterPrize = (obj.enterPrize || obj.prizeName || obj.prizePhone || obj.prize_name || obj.prize_phone) ? '1' : '';
-                      const prizeName = obj.prizeName || obj.prize_name || '';
-                      const prizePhone = obj.prizePhone || obj.prize_phone || '';
+                      const enterPrize =
+                        obj.enterPrize ||
+                        obj.prizeName ||
+                        obj.prizePhone ||
+                        obj.prize_name ||
+                        obj.prize_phone
+                          ? "1"
+                          : "";
+                      const prizeName = obj.prizeName || obj.prize_name || "";
+                      const prizePhone =
+                        obj.prizePhone || obj.prize_phone || "";
 
-                      const shared = (obj.userEngagement && (obj.userEngagement.shared || obj.userEngagement.sharedTo)) || obj.shared || false;
+                      const shared =
+                        (obj.userEngagement &&
+                          (obj.userEngagement.shared ||
+                            obj.userEngagement.sharedTo)) ||
+                        obj.shared ||
+                        false;
 
                       const vals = [
                         sessionID,
-                        obj.ip || '',
+                        obj.ip || "",
                         formatToBangkok(firstTS),
                         formatToBangkok(lastTS),
                         pdpa,
-                        obj.chassis || (obj.design && obj.design.chassis) || '',
-                        totalSeats || '',
-                        specialSeats || '',
-                        childElder || '',
-                        pregnant || '',
-                        monk || '',
-                        Array.isArray(featuresArr) ? featuresArr.join(' | ') : '',
-                        Array.isArray(paymentArr) ? paymentArr.join(' | ') : '',
-                        doors || '',
-                        colorVal || '',
-                        frequency || '',
-                        route || '',
-                        area || '',
-                        decisionUseService || '',
-                        reasonNotUse || '',
-                        enterPrize || '',
-                        prizeName || '',
-                        prizePhone || '',
-                        '',
-                        shared ? '1' : '',
-                        '',
+                        obj.chassis || (obj.design && obj.design.chassis) || "",
+                        totalSeats || "",
+                        specialSeats || "",
+                        childElder || "",
+                        pregnant || "",
+                        monk || "",
+                        Array.isArray(featuresArr)
+                          ? featuresArr.join(" | ")
+                          : "",
+                        Array.isArray(paymentArr) ? paymentArr.join(" | ") : "",
+                        doors || "",
+                        colorVal || "",
+                        frequency || "",
+                        route || "",
+                        area || "",
+                        decisionUseService || "",
+                        reasonNotUse || "",
+                        enterPrize || "",
+                        prizeName || "",
+                        prizePhone || "",
+                        "",
+                        shared ? "1" : "",
+                        "",
                       ];
-                      const safe = vals.map((f) => '"' + String(f || "").replace(/"/g, '""') + '"');
-                      csvRows.push(safe.join(','));
+                      const safe = vals.map(
+                        (f) => '"' + String(f || "").replace(/"/g, '""') + '"',
+                      );
+                      csvRows.push(safe.join(","));
                       count++;
                     }
                   }
@@ -1027,23 +1448,31 @@ export function createServer() {
               }
 
               if (csvRows.length > 1) {
-                const csvOut = csvRows.join('\n');
-                res.setHeader('Content-Type', 'text/csv; charset=utf-8');
-                res.setHeader('Content-Disposition', 'attachment; filename="mydreambus-sessions-' + Date.now() + '.csv"');
-                return res.status(200).send('\uFEFF' + csvOut);
+                const csvOut = csvRows.join("\n");
+                res.setHeader("Content-Type", "text/csv; charset=utf-8");
+                res.setHeader(
+                  "Content-Disposition",
+                  'attachment; filename="mydreambus-sessions-' +
+                    Date.now() +
+                    '.csv"',
+                );
+                return res.status(200).send("\uFEFF" + csvOut);
               }
             }
           } catch (e) {
-            console.warn('export-csv: failed to read pending submissions file', e);
+            console.warn(
+              "export-csv: failed to read pending submissions file",
+              e,
+            );
           }
         }
       } catch (e) {
-        console.warn('export-csv: pending-file check failed', e);
+        console.warn("export-csv: pending-file check failed", e);
       }
 
       // Fallback to existing behavior which computes from events
       const { computeSessionSummaries, getAppEventsBySession } = await import(
-        './services/appEvents'
+        "./services/appEvents"
       );
       const summaries = await computeSessionSummaries(limit);
 

@@ -48,8 +48,8 @@ function initFirebase() {
       // Initialize Firestore using long-polling transport to avoid gRPC 'idle stream' disconnects
       // which frequently occur behind proxies/load balancers in serverless hosts.
       db = initializeFirestore(app, {
-      experimentalForceLongPolling: true,
-    } as any);
+        experimentalForceLongPolling: true,
+      } as any);
     } catch (err) {
       console.warn("Firestore initialization failed", err);
       db = null as any;
@@ -74,8 +74,13 @@ export async function uploadFileToStorage(
         if (p && String(p).startsWith("/beforecitychange")) {
           if (!finalPath.startsWith("beforecitychange/"))
             finalPath = `beforecitychange/${finalPath}`;
-        } else if (p && (String(p).startsWith("/mydreambus") || String(p).startsWith("/ukpack2"))) {
-          if (!finalPath.startsWith("mydreambus/")) finalPath = `mydreambus/${finalPath}`;
+        } else if (
+          p &&
+          (String(p).startsWith("/mydreambus") ||
+            String(p).startsWith("/ukpack2"))
+        ) {
+          if (!finalPath.startsWith("mydreambus/"))
+            finalPath = `mydreambus/${finalPath}`;
         }
       }
     } catch (_) {}
@@ -134,38 +139,51 @@ export async function sendEventToFirestore(
     // If the target is the minigame2_events (used by mydreambus / ukpack2), prefer routing
     // per-event writes to the server tracking endpoint to avoid storing every event as a Firestore document.
     // This keeps Firestore smaller and ensures aggregation happens server-side.
-    const targetIsMinigame2 = normalized.includes('minigame2_events') || normalized.includes('minigame2');
+    const targetIsMinigame2 =
+      normalized.includes("minigame2_events") ||
+      normalized.includes("minigame2");
     if (targetIsMinigame2) {
       try {
         const payload = {
           sessionId: event.sessionID || event.sessionId || null,
-          event: event.event || 'UNKNOWN',
+          event: event.event || "UNKNOWN",
           timestamp: event.timestamp
-            ? typeof event.timestamp === 'number'
+            ? typeof event.timestamp === "number"
               ? new Date(event.timestamp).toISOString()
               : event.timestamp
             : new Date().toISOString(),
           payload: event.payload || {},
-          userAgent: event.userAgent || (typeof navigator !== 'undefined' ? navigator.userAgent : undefined) || null,
+          userAgent:
+            event.userAgent ||
+            (typeof navigator !== "undefined"
+              ? navigator.userAgent
+              : undefined) ||
+            null,
           ip: event.ip || undefined,
-          page: event.url || (typeof window !== 'undefined' ? window.location.pathname : undefined),
+          page:
+            event.url ||
+            (typeof window !== "undefined"
+              ? window.location.pathname
+              : undefined),
         };
         // Try sendBeacon first (fire-and-forget), fallback to fetch
         try {
-          if (typeof navigator !== 'undefined' && navigator.sendBeacon) {
-            const blob = new Blob([JSON.stringify(payload)], { type: 'application/json' });
-            navigator.sendBeacon('/api/track', blob);
-            return { ok: true, routed: 'track' } as any;
+          if (typeof navigator !== "undefined" && navigator.sendBeacon) {
+            const blob = new Blob([JSON.stringify(payload)], {
+              type: "application/json",
+            });
+            navigator.sendBeacon("/api/track", blob);
+            return { ok: true, routed: "track" } as any;
           }
         } catch (_) {}
         // fallback
         try {
-          await fetch('/api/track', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+          await fetch("/api/track", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify(payload),
           });
-          return { ok: true, routed: 'track' } as any;
+          return { ok: true, routed: "track" } as any;
         } catch (_) {
           // fall through to attempt Firestore write if network unavailable
         }
@@ -247,7 +265,10 @@ export async function sendEventToFirestore(
 }
 
 // Write-only helper for saving design image URL (no PDPA gating)
-export async function addDesignImageUrlToFirestore(imageUrl: string, preferredCollection?: string) {
+export async function addDesignImageUrlToFirestore(
+  imageUrl: string,
+  preferredCollection?: string,
+) {
   if (!db) initFirebase();
   if (!db) throw new Error("Firestore not initialized");
 
@@ -275,8 +296,12 @@ export async function addDesignImageUrlToFirestore(imageUrl: string, preferredCo
 
   // Prefer user's requested collection name; fallback to previous ones if needed
   const candidates = [] as string[];
-  if (preferredCollection && typeof preferredCollection === 'string') candidates.push(preferredCollection);
-  candidates.push("kpact-gamebus-imagedesign-events", "ukpact-gamebus-imagedesign-events");
+  if (preferredCollection && typeof preferredCollection === "string")
+    candidates.push(preferredCollection);
+  candidates.push(
+    "kpact-gamebus-imagedesign-events",
+    "ukpact-gamebus-imagedesign-events",
+  );
 
   for (const colName of candidates) {
     try {
@@ -285,7 +310,7 @@ export async function addDesignImageUrlToFirestore(imageUrl: string, preferredCo
       // try next
     }
   }
-  throw new Error('failed to write design image to any candidate collection');
+  throw new Error("failed to write design image to any candidate collection");
 }
 
 // also export init for manual init from UI

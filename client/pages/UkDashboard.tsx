@@ -122,18 +122,24 @@ export default function UkDashboard() {
   useEffect(() => {
     const onUnhandled = (ev: PromiseRejectionEvent) => {
       try {
-        const reason = (ev && (ev.reason || (ev.detail && ev.detail.reason))) as any;
+        const reason = (ev &&
+          (ev.reason || (ev.detail && ev.detail.reason))) as any;
         if (!reason) return;
-        const name = reason.name || (reason.constructor && reason.constructor.name) || '';
+        const name =
+          reason.name || (reason.constructor && reason.constructor.name) || "";
         const msg = String(reason && (reason.message || reason));
-        if (name === 'AbortError' || /aborted|abort/i.test(msg)) {
+        if (name === "AbortError" || /aborted|abort/i.test(msg)) {
           ev.preventDefault();
-          console.debug('Ignored AbortError unhandled rejection in UkDashboard (lifetime)', reason);
+          console.debug(
+            "Ignored AbortError unhandled rejection in UkDashboard (lifetime)",
+            reason,
+          );
         }
       } catch (e) {}
     };
-    window.addEventListener('unhandledrejection', onUnhandled as any);
-    return () => window.removeEventListener('unhandledrejection', onUnhandled as any);
+    window.addEventListener("unhandledrejection", onUnhandled as any);
+    return () =>
+      window.removeEventListener("unhandledrejection", onUnhandled as any);
   }, []);
   const [user, setUser] = useState("");
   const [pw, setPw] = useState("");
@@ -153,7 +159,10 @@ export default function UkDashboard() {
   const formatToBangkok = (ts?: string | number | Date) => {
     try {
       if (!ts) return "";
-      const d = typeof ts === "string" || typeof ts === "number" ? new Date(ts) : (ts as Date);
+      const d =
+        typeof ts === "string" || typeof ts === "number"
+          ? new Date(ts)
+          : (ts as Date);
       if (isNaN(d.getTime())) return String(ts || "");
       return d.toLocaleString("th-TH", { timeZone: "Asia/Bangkok" });
     } catch (e) {
@@ -218,15 +227,21 @@ export default function UkDashboard() {
           // pass a reason where supported to avoid noisy "signal is aborted without reason" logs
           const id = setTimeout(() => {
             try {
-              (controller as any).abort && (controller as any).abort('timeout');
+              (controller as any).abort && (controller as any).abort("timeout");
             } catch (_) {
-              try { controller.abort(); } catch (_) {}
+              try {
+                controller.abort();
+              } catch (_) {}
             }
           }, ms);
           // Use relative URLs when possible to avoid origin mismatches in previews/deploys
-          const fetchUrl = typeof url === 'string' && (url.startsWith('http://') || url.startsWith('https://'))
-            ? url
-            : (typeof url === 'string' ? url : String(url));
+          const fetchUrl =
+            typeof url === "string" &&
+            (url.startsWith("http://") || url.startsWith("https://"))
+              ? url
+              : typeof url === "string"
+                ? url
+                : String(url);
           const resp = await fetch(fetchUrl, {
             ...(opts || {}),
             signal: controller.signal,
@@ -243,19 +258,33 @@ export default function UkDashboard() {
       try {
         const onUnhandled = (ev: PromiseRejectionEvent) => {
           try {
-            const reason = (ev && (ev.reason || (ev.detail && ev.detail.reason))) as any;
+            const reason = (ev &&
+              (ev.reason || (ev.detail && ev.detail.reason))) as any;
             if (!reason) return;
-            const name = reason.name || (reason.constructor && reason.constructor.name) || '';
+            const name =
+              reason.name ||
+              (reason.constructor && reason.constructor.name) ||
+              "";
             const msg = String(reason && (reason.message || reason));
-            if (name === 'AbortError' || /aborted|abort/i.test(msg)) {
+            if (name === "AbortError" || /aborted|abort/i.test(msg)) {
               ev.preventDefault();
-              console.debug('Ignored AbortError unhandled rejection in UkDashboard', reason);
+              console.debug(
+                "Ignored AbortError unhandled rejection in UkDashboard",
+                reason,
+              );
             }
           } catch (e) {}
         };
-        window.addEventListener('unhandledrejection', onUnhandled as any);
+        window.addEventListener("unhandledrejection", onUnhandled as any);
         // remove listener after 30s to avoid leaking during component lifetime
-        setTimeout(() => window.removeEventListener('unhandledrejection', onUnhandled as any), 30 * 1000);
+        setTimeout(
+          () =>
+            window.removeEventListener(
+              "unhandledrejection",
+              onUnhandled as any,
+            ),
+          30 * 1000,
+        );
       } catch (_) {}
 
       const endpoints = [
@@ -655,7 +684,6 @@ export default function UkDashboard() {
                 />
               </div>
 
-
               {/* User Journey: Topics as accordion */}
               {false && (
                 <Card title="หัวข้อข้อมูล (Topics)">
@@ -905,7 +933,6 @@ export default function UkDashboard() {
                 </Card>
               )}
 
-
               {/* Export */}
               <div className="flex flex-wrap gap-3 justify-end">
                 <button
@@ -1009,7 +1036,10 @@ export default function UkDashboard() {
                     });
                     rows.push(...perRows);
 
-                    exportCsv(`uk_export_all_${filenameTimestampBangkok()}.csv`, rows);
+                    exportCsv(
+                      `uk_export_all_${filenameTimestampBangkok()}.csv`,
+                      rows,
+                    );
                   }}
                 >
                   ดาวน์โหด CSV (สรุปรวม)

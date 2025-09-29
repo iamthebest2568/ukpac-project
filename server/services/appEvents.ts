@@ -449,7 +449,11 @@ export async function computeSessionSummaries(limit = 100) {
       const p = e.payload || {};
 
       // MN1 selections
-      if (ev === "MN1_SELECT" || ev === "BUDGET_STEP1_COMPLETE" || ev === "MN01_SELECT") {
+      if (
+        ev === "MN1_SELECT" ||
+        ev === "BUDGET_STEP1_COMPLETE" ||
+        ev === "MN01_SELECT"
+      ) {
         if (p.selectedPolicies && Array.isArray(p.selectedPolicies)) {
           mn1Selected.push(...p.selectedPolicies.map(String));
         }
@@ -465,34 +469,64 @@ export async function computeSessionSummaries(limit = 100) {
       }
 
       // Key messages
-      if (ev.includes("STORN") || ev.includes("STORN_AWAY") || ev.includes("STORN")) {
-        if (p.keyMessage) keyMessage1 = String(p.keyMessage || p.choice || keyMessage1 || "");
+      if (
+        ev.includes("STORN") ||
+        ev.includes("STORN_AWAY") ||
+        ev.includes("STORN")
+      ) {
+        if (p.keyMessage)
+          keyMessage1 = String(p.keyMessage || p.choice || keyMessage1 || "");
       }
 
       // MN2 beneficiaries/groups
-      if (ev.includes("MN2") || ev.includes("BENEFICIARIES") || ev.includes("BENEFICIARY")) {
+      if (
+        ev.includes("MN2") ||
+        ev.includes("BENEFICIARIES") ||
+        ev.includes("BENEFICIARY")
+      ) {
         if (p.groups || p.mn2Selections) {
-          mn2Selections = Object.assign(mn2Selections || {}, p.groups || p.mn2Selections || {});
+          mn2Selections = Object.assign(
+            mn2Selections || {},
+            p.groups || p.mn2Selections || {},
+          );
         }
       }
 
       // MN3 selections and budget
-      if (ev === "BUDGET_STEP2_COMPLETE" || ev === "MN3_BUDGET_DONE" || ev === "BUDGET_STEP2") {
+      if (
+        ev === "BUDGET_STEP2_COMPLETE" ||
+        ev === "MN3_BUDGET_DONE" ||
+        ev === "BUDGET_STEP2"
+      ) {
         if (p.budgetAllocation) mn3BudgetAllocation = p.budgetAllocation;
-        if (p.budgetAllocation && typeof p.budgetAllocation === 'object') {
+        if (p.budgetAllocation && typeof p.budgetAllocation === "object") {
           // ensure numbers
-          mn3BudgetAllocation = Object.fromEntries(Object.entries(p.budgetAllocation).map(([k, v])=>[k, Number(v)]));
+          mn3BudgetAllocation = Object.fromEntries(
+            Object.entries(p.budgetAllocation).map(([k, v]) => [k, Number(v)]),
+          );
         }
       }
-      if (ev === "MINIGAME_MN3_COMPLETE" || ev === "MN3_RESULT" || ev === "BUDGET_STEP1_COMPLETE") {
-        if (p.top3Choices && Array.isArray(p.top3Choices)) mn3Selected = p.top3Choices.map(String);
-        if (p.selectedPriorities && Array.isArray(p.selectedPriorities)) mn3Selected = p.selectedPriorities.map(String);
-        if (p.budgetAllocation && typeof p.budgetAllocation === 'object') mn3BudgetAllocation = Object.fromEntries(Object.entries(p.budgetAllocation).map(([k, v])=>[k, Number(v)]));
+      if (
+        ev === "MINIGAME_MN3_COMPLETE" ||
+        ev === "MN3_RESULT" ||
+        ev === "BUDGET_STEP1_COMPLETE"
+      ) {
+        if (p.top3Choices && Array.isArray(p.top3Choices))
+          mn3Selected = p.top3Choices.map(String);
+        if (p.selectedPriorities && Array.isArray(p.selectedPriorities))
+          mn3Selected = p.selectedPriorities.map(String);
+        if (p.budgetAllocation && typeof p.budgetAllocation === "object")
+          mn3BudgetAllocation = Object.fromEntries(
+            Object.entries(p.budgetAllocation).map(([k, v]) => [k, Number(v)]),
+          );
         if (p.satisfaction) satisfactionLevel = String(p.satisfaction);
       }
 
       // Satisfaction and comments
-      if (ev === "SATISFACTION_CHOICE" || ev === "POLICY_SUGGESTION_SUBMITTED") {
+      if (
+        ev === "SATISFACTION_CHOICE" ||
+        ev === "POLICY_SUGGESTION_SUBMITTED"
+      ) {
         if (p.choice) satisfactionLevel = String(p.choice);
         if (p.comment || p.text) ask05Comment = String(p.comment || p.text);
       }
@@ -510,8 +544,10 @@ export async function computeSessionSummaries(limit = 100) {
       // End sequence / reward
       if (ev === "REWARD_DECISION" || ev === "REWARD_FORM_SUBMIT") {
         if (p.decision) endDecision = String(p.decision);
-        if (p.prizeName || p.name) contactName = String(p.prizeName || p.name || contactName || "");
-        if (p.prizePhone || p.phone) contactPhone = String(p.prizePhone || p.phone || contactPhone || "");
+        if (p.prizeName || p.name)
+          contactName = String(p.prizeName || p.name || contactName || "");
+        if (p.prizePhone || p.phone)
+          contactPhone = String(p.prizePhone || p.phone || contactPhone || "");
       }
 
       // Shares
@@ -524,7 +560,8 @@ export async function computeSessionSummaries(limit = 100) {
 
       // Generic fields
       if (!contactName && p.name) contactName = String(p.name);
-      if (!contactPhone && p.phone) contactPhone = String(p.phone || p.phoneNumber || contactPhone);
+      if (!contactPhone && p.phone)
+        contactPhone = String(p.phone || p.phoneNumber || contactPhone);
     }
 
     summaries.push({
@@ -537,15 +574,25 @@ export async function computeSessionSummaries(limit = 100) {
         ? Array.from(new Set(mn1Selected)).map(sanitizeThai)
         : [],
       mn2Selections: mn2Selections ? mn2Selections : undefined,
-      mn3Selected: Array.isArray(mn3Selected) ? mn3Selected.map(sanitizeThai) : undefined,
-      mn3BudgetAllocation: mn3BudgetAllocation ? mn3BudgetAllocation : undefined,
+      mn3Selected: Array.isArray(mn3Selected)
+        ? mn3Selected.map(sanitizeThai)
+        : undefined,
+      mn3BudgetAllocation: mn3BudgetAllocation
+        ? mn3BudgetAllocation
+        : undefined,
       ask02Choice: ask02Choice ? sanitizeThai(ask02Choice) : undefined,
-      ask02CustomReason: ask02CustomReason ? sanitizeThai(ask02CustomReason) : undefined,
+      ask02CustomReason: ask02CustomReason
+        ? sanitizeThai(ask02CustomReason)
+        : undefined,
       reasonOther01: reasonOther01 ? sanitizeThai(reasonOther01) : undefined,
       keyMessage1: keyMessage1 ? sanitizeThai(keyMessage1) : undefined,
-      satisfactionLevel: satisfactionLevel ? sanitizeThai(satisfactionLevel) : undefined,
+      satisfactionLevel: satisfactionLevel
+        ? sanitizeThai(satisfactionLevel)
+        : undefined,
       ask05Comment: ask05Comment ? sanitizeThai(ask05Comment) : undefined,
-      fakeNewsResponse: fakeNewsResponse ? sanitizeThai(fakeNewsResponse) : undefined,
+      fakeNewsResponse: fakeNewsResponse
+        ? sanitizeThai(fakeNewsResponse)
+        : undefined,
       sourceSelected: sourceSelected ? sanitizeThai(sourceSelected) : undefined,
       endDecision: endDecision ? sanitizeThai(endDecision) : undefined,
       contactName: contactName ? sanitizeThai(contactName) : undefined,

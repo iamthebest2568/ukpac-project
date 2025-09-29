@@ -32,16 +32,24 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
   const location = useLocation();
   const viewportBackground = "#ffffff";
   // Mockup-only background images for projects
-  const beforecityBackgroundImage = "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F55e4304ca8d240debf36be140561839e?format=webp&width=800";
-  const mydreambusBackgroundImage = "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Ff5a69d8442ba4f44a2bd091cbdcfad11?format=webp&width=800";
+  const beforecityBackgroundImage =
+    "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F55e4304ca8d240debf36be140561839e?format=webp&width=800";
+  const mydreambusBackgroundImage =
+    "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Ff5a69d8442ba4f44a2bd091cbdcfad11?format=webp&width=800";
 
-  const isBeforecity = typeof location !== "undefined" && location.pathname && location.pathname.startsWith("/beforecitychange");
-  const isMydreambus = typeof location !== "undefined" && location.pathname && location.pathname.startsWith("/mydreambus");
+  const isBeforecity =
+    typeof location !== "undefined" &&
+    location.pathname &&
+    location.pathname.startsWith("/beforecitychange");
+  const isMydreambus =
+    typeof location !== "undefined" &&
+    location.pathname &&
+    location.pathname.startsWith("/mydreambus");
   const mockupBackgroundImage = isMydreambus
     ? mydreambusBackgroundImage
     : isBeforecity
-    ? beforecityBackgroundImage
-    : null;
+      ? beforecityBackgroundImage
+      : null;
 
   const isMN1 =
     typeof location !== "undefined" &&
@@ -176,7 +184,8 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
         // keep slight overlay to ensure mockup frame is visible
-        backgroundColor: isMN1 || isMN2 || isMN3 ? "transparent" : "rgba(255,255,255,0.06)",
+        backgroundColor:
+          isMN1 || isMN2 || isMN3 ? "transparent" : "rgba(255,255,255,0.06)",
       }}
     >
       <div

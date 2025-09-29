@@ -33,8 +33,12 @@ const TabletMockup: React.FC<TabletMockupProps> = ({ children }) => {
   const navigate = useNavigate();
 
   const location = useLocation();
-  const isMydreambus = typeof location !== "undefined" && location.pathname && location.pathname.startsWith("/mydreambus");
-  const mydreambusBackgroundImage = "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Ff5a69d8442ba4f44a2bd091cbdcfad11?format=webp&width=800";
+  const isMydreambus =
+    typeof location !== "undefined" &&
+    location.pathname &&
+    location.pathname.startsWith("/mydreambus");
+  const mydreambusBackgroundImage =
+    "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Ff5a69d8442ba4f44a2bd091cbdcfad11?format=webp&width=800";
 
   const recomputeScale = React.useCallback(() => {
     const margin = 32; // include soft shadow space
@@ -82,7 +86,16 @@ const TabletMockup: React.FC<TabletMockupProps> = ({ children }) => {
   return (
     <div
       className="fixed inset-0 grid place-items-center w-screen h-screen overflow-hidden"
-      style={isMydreambus ? { backgroundImage: `url(${mydreambusBackgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' } : { background: 'rgba(243,244,246,0.6)' }}
+      style={
+        isMydreambus
+          ? {
+              backgroundImage: `url(${mydreambusBackgroundImage})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+            }
+          : { background: "rgba(243,244,246,0.6)" }
+      }
     >
       <div
         ref={frameRef}

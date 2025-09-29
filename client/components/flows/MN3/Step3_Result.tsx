@@ -57,7 +57,7 @@ const Step3_Result = ({
     // accept both variants for reduced fare
     ลดค่าโดยสารรถไฟฟ้า:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F902c640032bd41f3b30e4ce96330d938?format=webp&width=720",
-    "ลดค่าโดยสารไฟฟ้า":
+    ลดค่าโดยสารไฟฟ้า:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F902c640032bd41f3b30e4ce96330d938?format=webp&width=720",
   };
 

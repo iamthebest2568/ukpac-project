@@ -84,11 +84,14 @@ const UkDashboard: React.FC = () => {
           const safeAttempt = async (opts: RequestInit) => {
             const controller = new AbortController();
             const signal = controller.signal;
-            const timeoutId = setTimeout(() => {
-              try {
-                controller.abort();
-              } catch (_) {}
-            }, Math.max(5000, ms));
+            const timeoutId = setTimeout(
+              () => {
+                try {
+                  controller.abort();
+                } catch (_) {}
+              },
+              Math.max(5000, ms),
+            );
 
             try {
               const f = (globalThis as any).fetch || fetch;
@@ -104,11 +107,16 @@ const UkDashboard: React.FC = () => {
             } catch (err: any) {
               clearTimeout(timeoutId);
               // Normalize common network errors to null and log minimally
-              if (err && err.name === 'AbortError') {
-                console.debug('fetch aborted (timeout) for', targetUrl);
+              if (err && err.name === "AbortError") {
+                console.debug("fetch aborted (timeout) for", targetUrl);
                 return null;
               }
-              console.debug("fetch failed for", targetUrl, opts, err && err.message ? err.message : err);
+              console.debug(
+                "fetch failed for",
+                targetUrl,
+                opts,
+                err && err.message ? err.message : err,
+              );
               return null;
             }
           };
@@ -553,10 +561,13 @@ const UkDashboard: React.FC = () => {
         try {
           // sendLocalEventsToFirestore aggregates sessions and posts to /api/flush-pending for mydreambus
           // call unconditionally so test events are persisted even if session pdpa flag not set
-          const flushResult = await sendLocalEventsToFirestore({ batchSize: 50, onlyPDPA: false });
-          console.info('flush-pending result', flushResult);
+          const flushResult = await sendLocalEventsToFirestore({
+            batchSize: 50,
+            onlyPDPA: false,
+          });
+          console.info("flush-pending result", flushResult);
         } catch (e) {
-          console.warn('Failed to flush pending events to server', e);
+          console.warn("Failed to flush pending events to server", e);
         }
 
         // Additionally, if PDPA accepted, also attempt a realtime Firestore write for immediate visibility
@@ -566,7 +577,7 @@ const UkDashboard: React.FC = () => {
             await sendEventToFirestore(sample, "minigame2_events/minigame2-di");
           }
         } catch (e) {
-          console.warn('sendEventToFirestore failed for test event', e);
+          console.warn("sendEventToFirestore failed for test event", e);
         }
       } catch (_) {
         /* ignore */

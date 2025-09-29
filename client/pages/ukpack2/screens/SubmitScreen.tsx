@@ -111,7 +111,10 @@ const SubmitScreen: React.FC = () => {
 
           async function composeImage(): Promise<Blob | null> {
             try {
-              const baseSrc = persistedFinal?.color?.preview || persistedFinal?.imageSrc || heroImg;
+              const baseSrc =
+                persistedFinal?.color?.preview ||
+                persistedFinal?.imageSrc ||
+                heroImg;
               if (!baseSrc) return null;
               const baseImg = await loadImage(baseSrc);
               const w = baseImg.naturalWidth || baseImg.width || 800;
