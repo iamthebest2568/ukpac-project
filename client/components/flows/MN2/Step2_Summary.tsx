@@ -182,10 +182,7 @@ const Step2_Summary = ({
                 <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
                   {card.beneficiaries.map((b) => (
                     <div key={b.id} style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                      {b.iconSrc ? (
-                        // lightweight inline image
-                        <img src={b.iconSrc} alt={b.label} style={{ width: 48, height: 48, objectFit: "contain" }} />
-                      ) : null}
+                      <div style={{ width: 32, height: 32, borderRadius: 16, background: "#ddd", display: "inline-block" }} aria-hidden />
                       <span>{b.label}</span>
                     </div>
                   ))}
