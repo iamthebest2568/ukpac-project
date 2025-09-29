@@ -217,7 +217,7 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
             style={{ width: "100%", height: "100%" }}
           >
             <div
-              className="rounded-[30px] bg-white overflow-hidden tablet-mock-env"
+              className={`rounded-[30px] bg-white overflow-hidden tablet-mock-env ${isMydreambus ? 'mydreambus-desktop-mock' : ''}` + "" + "" + ""}
               style={{
                 position: "relative",
                 width: `${BASE_W}px`,
