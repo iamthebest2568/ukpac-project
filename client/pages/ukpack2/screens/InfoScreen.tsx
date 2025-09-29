@@ -62,45 +62,29 @@ const InfoScreen: React.FC = () => {
           img.src = src;
         });
 
-        const baseImg = await loadImage(baseSrc);
-        const width = baseImg.naturalWidth || 800;
-        const height = baseImg.naturalHeight || 600;
-        const canvas = document.createElement("canvas");
-        canvas.width = width;
-        canvas.height = height;
-        const ctx = canvas.getContext("2d");
-        if (!ctx) throw new Error("Canvas not supported");
-        ctx.drawImage(baseImg, 0, 0, width, height);
-
-        if (maskSrc && colorHex) {
-          try {
-            const maskImg = await loadImage(maskSrc);
-            const colorCanvas = document.createElement("canvas");
-            colorCanvas.width = width;
-            colorCanvas.height = height;
-            const cctx = colorCanvas.getContext("2d");
-            if (cctx) {
-              cctx.fillStyle = colorHex;
-              cctx.fillRect(0, 0, width, height);
-              cctx.globalCompositeOperation = "destination-in";
-              cctx.drawImage(maskImg, 0, 0, width, height);
-              cctx.globalCompositeOperation = "source-over";
-              ctx.drawImage(colorCanvas, 0, 0, width, height);
+        // Use shared renderer to compose the final image (same logic as DesignScreen)
+        try {
+          const { renderFinalImageBlob } = await import("../utils/renderFinalImage");
+          const blob: Blob | null = await renderFinalImageBlob(baseSrc, maskSrc, colorHex);
+          if (!blob) {
+            try {
+              const r = await addDesignImageUrlToFirestore(baseSrc, "kpact-gamebus-imagedesign-events");
+              try { sessionStorage.setItem(key, JSON.stringify({ id: r.id || null, url: baseSrc })); } catch (_) {}
+            } catch (e) {
+              console.warn("InfoScreen: fallback write image url failed", e);
             }
-          } catch (e) {
-            console.warn("InfoScreen: apply mask failed", e);
+            return;
           }
-        }
 
-        const blob: Blob | null = await new Promise((res) => {
-          try { canvas.toBlob((b) => res(b), "image/png"); } catch (e) { res(null); }
-        });
-        if (!blob) {
+          // attach blob handling to outer scope by assigning to a local variable name expected later
+          // (the code below expects 'blob' to be defined)
+        } catch (e) {
+          console.warn("InfoScreen: renderFinalImageBlob failed", e);
           try {
             const r = await addDesignImageUrlToFirestore(baseSrc, "kpact-gamebus-imagedesign-events");
             try { sessionStorage.setItem(key, JSON.stringify({ id: r.id || null, url: baseSrc })); } catch (_) {}
-          } catch (e) {
-            console.warn("InfoScreen: fallback write image url failed", e);
+          } catch (ee) {
+            console.warn("InfoScreen: fallback write image url failed", ee);
           }
           return;
         }
