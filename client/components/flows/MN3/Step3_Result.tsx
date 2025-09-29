@@ -233,9 +233,13 @@ const Step3_Result = ({
           }}
         >
           {resultSummary.map((s, i) => {
-            const imgSrc =
+            // Determine image source using manifest: pick image based on rank (0 => 100%, 1 => 75%, 2 => 30%)
+            const manifestImgs = (MN3_MANIFEST && MN3_MANIFEST[s.priority]) || [];
+            const rankIndex = i < 3 ? i : 2; // if more than 3, fallback to the smallest
+            const imgSrc = manifestImgs[rankIndex] ||
               priorityImageMap[s.priority] ||
               "https://cdn.builder.io/api/v1/image/assets/TEMP/placeholder.png?width=720";
+
             const offset = collageOffsets[i] || {
               left: `50%`,
               top: `50%`,
@@ -243,10 +247,16 @@ const Step3_Result = ({
               z: i + 1,
               scale: 1,
             };
+
             const count = resultSummary.length;
             const spacing = count === 1 ? 0 : count === 2 ? 40 : -60; // smaller/negative spacing to create overlay
             const offsetX = Math.round((i - (count - 1) / 2) * spacing);
-            const width = count === 1 ? "68%" : count === 2 ? "55%" : "46%";
+
+            // Compute width and scale from actual allocation percentage so budget affects prominence
+            const allocation = typeof s.allocation === 'number' ? s.allocation : 0;
+            const widthPercent = Math.max(30, Math.min(80, Math.round(30 + allocation * 0.4)));
+            const scaleFromAllocation = 0.8 + Math.max(0, Math.min(1, allocation / 100)) * 0.8; // 0.8..1.6
+            const finalScale = (offset.scale || 1) * scaleFromAllocation;
             return (
               <div
                 key={s.priority}
@@ -338,7 +348,7 @@ const Step3_Result = ({
                 aria-label="ไม่ใช่, ลองอีกครั้ง"
               >
                 <span className="figma-style1-button-text">
-                  ไม่ใช่, ลองอีก���รั้ง
+                  ไม่ใช่, ลองอีกครั้ง
                 </span>
               </button>
             </>
