@@ -530,7 +530,7 @@ const UkDashboard: React.FC = () => {
           PDPA: true,
           chassis: "extra",
           seating: { totalSeats: 12, specialSeats: 2 },
-          amenities: ["แอร์", "Wi‑Fi ฟ���ี"],
+          amenities: ["แอร์", "Wi‑Fi ฟรี"],
           payment: ["เงินสด"],
           doors: "1",
           color: "#ff0000",
