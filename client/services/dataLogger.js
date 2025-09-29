@@ -312,7 +312,7 @@ export function exportSessionsAsCSV() {
   const headers = [
     "รหัสเซสชัน (sessionID)",
     "IP (ip)",
-    "เ��ลาเริ่ม (firstTimestamp)",
+    "เวลาเริ่ม (firstTimestamp)",
     "เวลาสิ้นสุด (lastTimestamp)",
     "ยอมรับ PDPA (PDPA_acceptance)",
     "ประเภทรถ (chassis_type)",
