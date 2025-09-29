@@ -169,6 +169,7 @@ const Step2_Summary = ({
 
   return (
     <FigmaStyle1Layout
+      title={<span style={{ color: "#000D59" }}>นโยบายที่คุณเสนอ</span>}
       backgroundImage={""}
       backgroundAlt=""
       useBlueOverlay={false}
@@ -278,7 +279,7 @@ const Step2_Summary = ({
               lineHeight: "1.2",
             }}
           >
-            นโยบายเพิ่���เติมที่คุณเ��นอตรงใจคุณแล้วหรือไ���่
+            นโยบายเพิ่���เติมท���่คุณเ��นอตรงใจคุณแล้วหรือไ���่
           </h2>
         </div>
       </div>
