@@ -21,6 +21,20 @@ interface SummaryCard {
   beneficiaries: { label: string; iconSrc: string; id: string }[];
 }
 
+// Options for captureAndUpload: allow callers to control output dimensions, quality and DPR
+interface CaptureOptions {
+  // exact output width in pixels (CSS px) — optional
+  targetWidth?: number;
+  // exact output height in pixels (CSS px) — optional
+  targetHeight?: number;
+  // maximum dimension (width or height) used to scale down large content when targetWidth/Height not provided
+  maxDimension?: number;
+  // image quality 0..1 for JPEG
+  quality?: number;
+  // device pixel ratio to rasterize at (1..3). If not provided, defaults to window.devicePixelRatio clamped to 2.
+  dpr?: number;
+}
+
 const Step2_Summary = ({
   sessionID,
   onNext,
@@ -176,7 +190,7 @@ const Step2_Summary = ({
   };
 
   // Capture helper: serialize DOM to SVG -> rasterize to canvas -> resize to 3:4 (portrait) -> upload
-  async function captureAndUpload() {
+  async function captureAndUpload(options?: CaptureOptions) {
     // backup hidden elements so we can restore them in finally
     let _hiddenBackup: { el: HTMLElement; display: string | null; visibility: string | null }[] = [];
     try {
@@ -607,37 +621,57 @@ const Step2_Summary = ({
         img.onerror = (e) => rej(e);
       });
 
-      // Target canvas size: use content size (elemW x elemH), scaled if too large for performance
-      const maxDimension = 2000; // maximum width or height
-      const dpr = Math.min(2, window.devicePixelRatio || 1);
+      // Target canvas size: use content size (elemW x elemH), scaled according to options for performance and quality
+      const maxDimensionOpt = typeof options?.maxDimension === 'number' ? Math.max(1, Math.floor(options!.maxDimension!)) : 2000;
+      const quality = typeof options?.quality === 'number' ? Math.max(0, Math.min(1, options!.quality!)) : 0.8;
+      const requestedDpr = typeof options?.dpr === 'number' ? Math.max(1, Math.min(3, options!.dpr!)) : Math.min(2, window.devicePixelRatio || 1);
+
+      // Start with natural element size
       let canvasW = Math.max(1, Math.round(elemW));
       let canvasH = Math.max(1, Math.round(elemH));
-      let scale = 1;
-      if (Math.max(canvasW, canvasH) > maxDimension) {
-        scale = maxDimension / Math.max(canvasW, canvasH);
-        canvasW = Math.round(canvasW * scale);
-        canvasH = Math.round(canvasH * scale);
+
+      // If explicit target dimensions provided, respect them (maintain aspect if only one side provided)
+      if (typeof options?.targetWidth === 'number' || typeof options?.targetHeight === 'number') {
+        const tw = typeof options?.targetWidth === 'number' ? Math.max(1, Math.round(options!.targetWidth!)) : undefined;
+        const th = typeof options?.targetHeight === 'number' ? Math.max(1, Math.round(options!.targetHeight!)) : undefined;
+        if (tw && th) {
+          canvasW = tw;
+          canvasH = th;
+        } else if (tw) {
+          canvasW = tw;
+          canvasH = Math.max(1, Math.round((tw * elemH) / Math.max(1, elemW)));
+        } else if (th) {
+          canvasH = th;
+          canvasW = Math.max(1, Math.round((th * elemW) / Math.max(1, elemH)));
+        }
+      } else {
+        // Otherwise, scale down uniformly to fit within maxDimensionOpt if needed
+        if (Math.max(canvasW, canvasH) > maxDimensionOpt) {
+          const scale = maxDimensionOpt / Math.max(canvasW, canvasH);
+          canvasW = Math.max(1, Math.round(canvasW * scale));
+          canvasH = Math.max(1, Math.round(canvasH * scale));
+        }
       }
 
-      // Apply devicePixelRatio for crispness
+      // Create canvas and apply DPR for crispness
       const canvas = document.createElement("canvas");
-      canvas.width = Math.round(canvasW * dpr);
-      canvas.height = Math.round(canvasH * dpr);
+      canvas.width = Math.round(canvasW * requestedDpr);
+      canvas.height = Math.round(canvasH * requestedDpr);
       canvas.style.width = `${canvasW}px`;
       canvas.style.height = `${canvasH}px`;
       const ctx = canvas.getContext("2d");
       if (!ctx) throw new Error("Canvas not supported");
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.setTransform(requestedDpr, 0, 0, requestedDpr, 0, 0);
 
       // Fill background white
       ctx.fillStyle = "#ffffff";
       ctx.fillRect(0, 0, canvasW, canvasH);
 
-      // Draw the image scaled to fit the canvas (we already scaled down content if needed)
+      // Draw the source SVG image into canvas, scaling from source element size (elemW x elemH) into canvasW x canvasH
       ctx.drawImage(img as any, 0, 0, elemW, elemH, 0, 0, canvasW, canvasH);
 
-      // Convert to blob via data URL (JPEG with quality 0.8)
-      const dataUrl = canvas.toDataURL("image/jpeg", 0.8);
+      // Convert to blob via data URL (JPEG with configurable quality)
+      const dataUrl = canvas.toDataURL("image/jpeg", quality);
 
       // set preview for UI
       try {
@@ -844,7 +878,7 @@ const Step2_Summary = ({
               ดาวน์โหลดภาพจับหน้า
             </Uk1Button>
             {lastStorageUrl ? (
-              <a href={lastStorageUrl} target="_blank" rel="noreferrer" style={{ fontSize: 13, alignSelf: 'center' }}>เปิดใน Storage</a>
+              <a href={lastStorageUrl} target="_blank" rel="noreferrer" style={{ fontSize: 13, alignSelf: 'center' }}>���ปิดใน Storage</a>
             ) : null}
           </div>
 
