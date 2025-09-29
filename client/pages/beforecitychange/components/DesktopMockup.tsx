@@ -209,12 +209,12 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
             overlay.style.height = hPct + '%';
             overlay.style.transform = 'none';
 
-            // also set mask-size to percentage matching image box so mask aligns
+            // set mask-size to fully cover the overlay (overlay dimensions already match the image)
             try {
-              overlay.style.webkitMaskSize = wPct + '% ' + hPct + '%';
+              overlay.style.webkitMaskSize = '100% 100%';
             } catch (e) {}
             try {
-              (overlay.style as any).maskSize = wPct + '% ' + hPct + '%';
+              (overlay.style as any).maskSize = '100% 100%';
             } catch (e) {}
           } catch (e) {}
         });
