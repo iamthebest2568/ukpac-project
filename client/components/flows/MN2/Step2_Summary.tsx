@@ -278,7 +278,7 @@ const Step2_Summary = ({
 
       // Inline computed styles from the live document into the cloned subtree to preserve appearance
       try {
-        function inlineComputedStyles(sourceRoot: HTMLElement, targetRoot: HTMLElement) {
+        async function inlineComputedStyles(sourceRoot: HTMLElement, targetRoot: HTMLElement) {
           // Copy computed styles in document order (best-effort)
           const srcNodes = [sourceRoot, ...Array.from(sourceRoot.querySelectorAll("*"))];
           const dstNodes = [targetRoot, ...Array.from(targetRoot.querySelectorAll("*"))];
@@ -292,18 +292,6 @@ const Step2_Summary = ({
                 const prop = cs[k];
                 let val = cs.getPropertyValue(prop);
                 const priority = cs.getPropertyPriority(prop);
-                // If background-image uses external url, rewrite to proxy
-                if (prop === "background-image" && val && val !== "none") {
-                  try {
-                    const m = /url\([\"']?([^\)\"']+)[\"']?\)/.exec(val);
-                    if (m && m[1]) {
-                      const originalUrl = m[1];
-                      if (/^https?:\/\//i.test(originalUrl)) {
-                        val = `url('/api/proxy-image?url=${encodeURIComponent(originalUrl)}')`;
-                      }
-                    }
-                  } catch (_) {}
-                }
                 try {
                   dst.style.setProperty(prop, val, priority);
                 } catch (_) {}
@@ -321,7 +309,7 @@ const Step2_Summary = ({
             }
           }
 
-          // Handle images separately to avoid mapping mismatch: map imgs by index within their own lists
+          // Handle images separately to inline them as data URLs (avoid CORS)
           try {
             const srcImgs = Array.from(sourceRoot.querySelectorAll("img")) as HTMLImageElement[];
             const dstImgs = Array.from(targetRoot.querySelectorAll("img")) as HTMLImageElement[];
@@ -332,7 +320,24 @@ const Step2_Summary = ({
                 if (!srcImg) continue;
                 const s = srcImg.getAttribute("src") || srcImg.src || "";
                 if (s && /^https?:\/\//i.test(s)) {
-                  dstImg.setAttribute("src", `/api/proxy-image?url=${encodeURIComponent(s)}`);
+                  try {
+                    const prox = `/api/proxy-image?url=${encodeURIComponent(s)}`;
+                    const r = await fetch(prox);
+                    if (r.ok) {
+                      const b = await r.blob();
+                      const reader = new FileReader();
+                      const dataUrl = await new Promise<string | null>((res) => {
+                        reader.onloadend = () => res(reader.result as string);
+                        reader.readAsDataURL(b);
+                      });
+                      if (dataUrl) dstImg.setAttribute("src", dataUrl);
+                      else dstImg.setAttribute("src", prox);
+                    } else {
+                      dstImg.setAttribute("src", prox);
+                    }
+                  } catch (_) {
+                    dstImg.setAttribute("src", s);
+                  }
                 } else if (s) {
                   dstImg.setAttribute("src", s);
                 }
@@ -347,6 +352,45 @@ const Step2_Summary = ({
               }
             }
           } catch (_) {}
+
+          // Inline background-image URLs to data URLs for elements that have them
+          try {
+            const all = Array.from(targetRoot.querySelectorAll("*")) as HTMLElement[];
+            for (const node of all) {
+              try {
+                const bg = (ownerDoc.defaultView || window).getComputedStyle(node).getPropertyValue("background-image");
+                if (bg && bg !== "none") {
+                  const m = /url\([\"']?([^\)\"']+)[\"']?\)/.exec(bg);
+                  if (m && m[1]) {
+                    const originalUrl = m[1];
+                    if (/^https?:\/\//i.test(originalUrl)) {
+                      try {
+                        const prox = `/api/proxy-image?url=${encodeURIComponent(originalUrl)}`;
+                        const r = await fetch(prox);
+                        if (r.ok) {
+                          const b = await r.blob();
+                          const reader = new FileReader();
+                          const dataUrl = await new Promise<string | null>((res) => {
+                            reader.onloadend = () => res(reader.result as string);
+                            reader.readAsDataURL(b);
+                          });
+                          if (dataUrl) {
+                            node.style.backgroundImage = `url('${dataUrl}')`;
+                          } else {
+                            node.style.backgroundImage = `url('${prox}')`;
+                          }
+                        } else {
+                          node.style.backgroundImage = `url('${prox}')`;
+                        }
+                      } catch (_) {
+                        // leave as is
+                      }
+                    }
+                  }
+                }
+              } catch (_) {}
+            }
+          } catch (_) {}
         }
 
         let sourceRootForInline = el as HTMLElement;
@@ -356,7 +400,8 @@ const Step2_Summary = ({
           }
         } catch (_) {}
 
-        inlineComputedStyles(sourceRootForInline, importedClone as HTMLElement);
+        // run inlineComputedStyles (note: contains awaits for image inlining)
+        await inlineComputedStyles(sourceRootForInline, importedClone as HTMLElement);
       } catch (e) {
         console.warn("inlineComputedStyles failed", e);
       }
@@ -490,7 +535,7 @@ const Step2_Summary = ({
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
         <Uk1Button onClick={onClick} variant="ghost" style={{ height: 44, borderRadius: 12 }}>
-          จับภาพตอนนี้
+          จับภาพ���อนนี้
         </Uk1Button>
         {status ? <div style={{ fontSize: 13, color: "#333", textAlign: "center" }}>{status}</div> : null}
       </div>
