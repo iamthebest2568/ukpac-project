@@ -140,8 +140,10 @@ const Ask04Budget = ({
     setResultSummary(summary);
   }, [journeyData]);
 
-  // Persist displayed collage images to Firestore (once per session) under collection 'beforecitychange-imageshow-events'
+  // Persist displayed collage images to Firebase Storage and Firestore (once per session)
   useEffect(() => {
+    // This effect uploads the images shown in the collage to Firebase Storage
+    // and records the storage URLs in Firestore collection 'beforecitychange-imageshow-events'.
     try {
       if (typeof window === "undefined") return;
       const key = "beforecitychange_images_sent";
@@ -154,101 +156,111 @@ const Ask04Budget = ({
         resultSummary && resultSummary.length > 0
           ? resultSummary
           : [
-              {
-                priority: "เพิ่มความถี่รถเมล์",
-                allocation: 0,
-                percentage: 0,
-                icon: "",
-              },
-              {
-                priority: "เพิ่มที่จอดรถ",
-                allocation: 0,
-                percentage: 0,
-                icon: "",
-              },
-              {
-                priority: "���ดค่าโดยสารรถไฟฟ้า",
-                allocation: 0,
-                percentage: 0,
-                icon: "",
-              },
+              { priority: "เพิ่มความถี่รถเมล์", allocation: 0, percentage: 0, icon: "" },
+              { priority: "เพิ่มที่จอดรถ", allocation: 0, percentage: 0, icon: "" },
+              { priority: "ลดค่าโดยสารรถไฟฟ้า", allocation: 0, percentage: 0, icon: "" },
             ];
 
       const urls: string[] = displaySummary
         .map((s) => priorityImageMap[s.priority] || "")
         .filter(Boolean);
-      // dedupe
       const unique = Array.from(new Set(urls));
 
-      // Send image URLs to server to write via Admin SDK (avoids Firestore client rules)
+      // perform uploads in async IIFE
       (async () => {
         try {
+          const { uploadFileToStorage, addDesignImageUrlToFirestore } = await import(
+            "../../lib/firebase"
+          );
           try {
             console.debug("[Ask04Budget] displaySummary", displaySummary);
           } catch (_) {}
           try {
             console.debug("[Ask04Budget] unique image urls to send", unique);
           } catch (_) {}
-          for (const u of unique) {
+
+          for (let i = 0; i < unique.length; i++) {
+            const u = unique[i];
             if (sentUrls[u]) {
               try {
-                console.debug(
-                  "[Ask04Budget] already sent, skipping",
-                  u,
-                  sentUrls[u],
-                );
+                console.debug("[Ask04Budget] already sent, skipping", u, sentUrls[u]);
               } catch (_) {}
               continue;
             }
+
             try {
               try {
-                console.debug("[Ask04Budget] sending image url", u);
+                console.debug("[Ask04Budget] fetching image for upload", u);
               } catch (_) {}
-              const resp = await fetch("/api/write-image-url", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                  imageUrl: u,
-                  collection: "beforecitychange-imageshow-events",
-                }),
-              });
+
+              const resp = await fetch(u, { mode: "cors" });
+              if (!resp.ok) throw new Error(`failed to fetch image ${resp.status}`);
+              const blob = await resp.blob();
+
+              // Build storage path: ask04-budget/<timestamp>_<index>.<ext>
+              const ts = Date.now();
+              const extMatch = (u.match(/\.([a-zA-Z0-9]+)(?:\?|$)/) || [])[1] || "png";
+              const filename = `${ts}_${i}.${extMatch}`;
+              const storagePath = `ask04-budget/${filename}`;
+
               try {
-                console.debug("[Ask04Budget] response status", resp.status, u);
-              } catch (_) {}
-              if (resp.ok) {
-                const j = await resp.json();
+                const storageUrl = await uploadFileToStorage(blob as any, storagePath);
                 try {
-                  console.debug("[Ask04Budget] response json", j);
+                  console.debug("[Ask04Budget] uploaded to storage", storageUrl);
                 } catch (_) {}
-                sentUrls[u] = { ok: true, id: j?.id || null, ts: Date.now() };
+
+                // Record in Firestore
+                try {
+                  const writeRes = await addDesignImageUrlToFirestore(
+                    storageUrl,
+                    "beforecitychange-imageshow-events",
+                  );
+                  sentUrls[u] = { ok: true, uploadedTo: storageUrl, id: writeRes.id, collection: writeRes.collection, ts: Date.now() };
+                } catch (e) {
+                  // If Firestore write fails, still keep the storage URL in record
+                  sentUrls[u] = { ok: true, uploadedTo: storageUrl, id: null, collection: null, ts: Date.now(), error: String(e) };
+                }
+
                 try {
                   sessionStorage.setItem(key, JSON.stringify(sentUrls));
                 } catch (_) {}
-              } else {
-                const txt = await resp.text().catch(() => null);
+              } catch (e) {
+                // If storage upload fails, fallback to writing original URL to Firestore
                 try {
-                  console.warn("[Ask04Budget] write failed", resp.status, txt);
+                  const writeRes = await addDesignImageUrlToFirestore(u, "beforecitychange-imageshow-events");
+                  sentUrls[u] = { ok: true, uploadedTo: u, id: writeRes.id, collection: writeRes.collection, ts: Date.now(), fallback: true };
+                  try {
+                    sessionStorage.setItem(key, JSON.stringify(sentUrls));
+                  } catch (_) {}
+                } catch (ee) {
+                  sentUrls[u] = { ok: false, error: String(ee) };
+                  try {
+                    sessionStorage.setItem(key, JSON.stringify(sentUrls));
+                  } catch (_) {}
+                }
+              }
+            } catch (e) {
+              try {
+                console.error("[Ask04Budget] exception while processing image", e);
+              } catch (_) {}
+              // final fallback: attempt to write original URL to Firestore
+              try {
+                const { addDesignImageUrlToFirestore } = await import("../../lib/firebase");
+                const writeRes = await addDesignImageUrlToFirestore(u, "beforecitychange-imageshow-events");
+                sentUrls[u] = { ok: true, uploadedTo: u, id: writeRes.id, collection: writeRes.collection, ts: Date.now(), fallback: true };
+                try {
+                  sessionStorage.setItem(key, JSON.stringify(sentUrls));
                 } catch (_) {}
-                sentUrls[u] = {
-                  ok: false,
-                  error: `HTTP ${resp.status} ${txt || ""}`,
-                };
+              } catch (ee) {
+                sentUrls[u] = { ok: false, error: String(ee) };
                 try {
                   sessionStorage.setItem(key, JSON.stringify(sentUrls));
                 } catch (_) {}
               }
-            } catch (e) {
-              try {
-                console.error("[Ask04Budget] exception while sending", e);
-              } catch (_) {}
-              sentUrls[u] = { ok: false, error: String(e) };
-              try {
-                sessionStorage.setItem(key, JSON.stringify(sentUrls));
-              } catch (_) {}
             }
           }
         } catch (e) {
-          // ignore
+          // ignore overall errors
         }
       })();
     } catch (e) {}
