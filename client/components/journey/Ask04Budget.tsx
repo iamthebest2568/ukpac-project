@@ -232,7 +232,7 @@ const Ask04Budget = ({
                   const writeRes = await addDesignImageUrlToFirestore(
                     storageUrl,
                     "beforecitychange-imageshow-events",
-                    { width: derivedWidth, height: derivedHeight },
+                    { width: 1132, height: 1417 },
                   );
                   // fire-and-forget: no local tracking maintained
                 } catch (e) {
@@ -246,7 +246,7 @@ const Ask04Budget = ({
                   const writeRes = await addDesignImageUrlToFirestore(
                     u,
                     "beforecitychange-imageshow-events",
-                    { width: derivedWidth, height: derivedHeight },
+                    { width: 1132, height: 1417 },
                   );
                   // no local tracking
                 } catch (ee) {
