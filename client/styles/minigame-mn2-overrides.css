@@ -120,3 +120,50 @@
     width: 100% !important;
   }
 }
+
+/* Allow MN2 pages to scroll when content exceeds viewport; prevent top content from being clipped */
+.figma-style1-container.mn2-step1-page .figma-style1-main,
+.figma-style1-container.mn2-summary-page .figma-style1-main {
+  overflow: auto !important;
+  max-height: calc(100vh - 72px) !important; /* leave space for header/footer */
+}
+
+/* Additional aggressive overrides to remove any remaining frames/background around icons in summary */
+.figma-style1-container.mn2-summary-page .mn2-summary-icon-grid .mn2-beneficiary-card,
+.figma-style1-container.mn2-summary-page .mn2-summary-icon-grid .mn2-beneficiary-figure {
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+}
+
+/* Ensure the figure does not force a square filled background; let image be natural size */
+.figma-style1-container.mn2-summary-page .mn2-summary-icon-grid .mn2-beneficiary-figure {
+  width: auto !important;
+  height: auto !important;
+  aspect-ratio: unset !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Ensure the image itself displays at intended icon size */
+.figma-style1-container.mn2-summary-page .mn2-summary-icon-grid .mn2-beneficiary-img,
+.figma-style1-container.mn2-step1-page .mn2-beneficiary-img {
+  width: 84px !important;
+  height: 84px !important;
+  object-fit: contain !important;
+  display: inline-block !important;
+  background: transparent !important;
+}
+
+/* Hide any pseudo-elements that may act as decorative frames */
+.figma-style1-container.mn2-summary-page .mn2-beneficiary-figure::before,
+.figma-style1-container.mn2-summary-page .mn2-beneficiary-figure::after,
+.figma-style1-container.mn2-step1-page .mn2-beneficiary-figure::before,
+.figma-style1-container.mn2-step1-page .mn2-beneficiary-figure::after {
+  content: none !important;
+  display: none !important;
+}
