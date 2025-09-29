@@ -95,7 +95,7 @@ const InfoScreen: React.FC = () => {
         } catch (_) {}
 
         try {
-          const res = await saveMinigameResult(blob, colorHex || null, userId);
+          const res = await saveMinigameResult(composedBlob as any, colorHex || null, userId);
           const url = (res as any).url || null;
           try { sessionStorage.setItem(key, JSON.stringify({ id: (res as any).docId || null, url })); } catch (_) {}
         } catch (e) {
@@ -313,8 +313,8 @@ const InfoScreen: React.FC = () => {
                   ในญี่ปุ่นมี Community Bus
                   รถเมล์ขนาดเล็กที่วิ่ง��ข้าซอยและพื้นที่ ที่รถใหญ่เข้าไม่ถึง
                   ค่าโดยสารถูกมาก บางแห่งนั่งได้ทั้งสาย เพียง 100 เยน
-                  ทำให้ผู้สูงอายุ��ละเด็กเข้าถึงบริการสำคัญ เช่น
-                  โรงพยาบาลและศูนย์��ุมชนได้สะดวกขึ้น
+                  ทำให้ผู้สูงอายุ��ละเด็กเข้��ถึงบริการสำคัญ เช่น
+                  โรงพยาบาลและศูนย์ชุมชนได้สะดวกขึ้น
                 </p>
               </div>
             )}
