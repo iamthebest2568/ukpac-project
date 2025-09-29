@@ -203,10 +203,9 @@ const Ask04Budget = ({
                     storageUrl,
                     "beforecitychange-imageshow-events",
                   );
-                  sentUrls[u] = { ok: true, uploadedTo: storageUrl, id: writeRes.id, collection: writeRes.collection, ts: Date.now() };
+                  // fire-and-forget: no local tracking maintained
                 } catch (e) {
-                  // If Firestore write fails, still keep the storage URL in record
-                  sentUrls[u] = { ok: true, uploadedTo: storageUrl, id: null, collection: null, ts: Date.now(), error: String(e) };
+                  // If Firestore write fails, continue without tracking
                 }
 
                 // no sessionStorage write
