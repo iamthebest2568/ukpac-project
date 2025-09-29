@@ -259,8 +259,12 @@ const Step2_Summary = ({
 
       ctx.drawImage(img as any, 0, 0, elemW, elemH, dx, dy, drawW, drawH);
 
-      // Convert to blob (JPEG for balanced quality & size)
-      const blob: Blob | null = await new Promise((resolve) => canvas.toBlob(resolve as any, "image/jpeg", 0.86));
+      // Convert to blob via data URL (JPEG with quality 0.8)
+      const dataUrl = canvas.toDataURL("image/jpeg", 0.8);
+      const blob: Blob = await (async () => {
+        const resp = await fetch(dataUrl);
+        return await resp.blob();
+      })();
       if (!blob) throw new Error("Failed to create image blob");
 
       // Prepare path and upload
