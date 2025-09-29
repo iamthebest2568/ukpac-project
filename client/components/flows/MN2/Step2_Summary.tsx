@@ -5,7 +5,6 @@
 
 import { useEffect, useState } from "react";
 import { useSession } from "../../../hooks/useSession";
-import { logEvent } from "../../../services/dataLogger.js";
 // Cleared design: do not import layout or shared style components here
 
 interface Step2_SummaryProps {
