@@ -63,14 +63,19 @@ function initFirebase() {
           const p = getDocs(q as any);
           const res = await Promise.race([
             p,
-            new Promise((_, rej) => setTimeout(() => rej(new Error("firestore-probe-timeout")), 3000)),
+            new Promise((_, rej) =>
+              setTimeout(() => rej(new Error("firestore-probe-timeout")), 3000),
+            ),
           ]);
           // If probe succeeded, enable client SDK writes
           try {
             clientFirestoreEnabled = true;
           } catch (_) {}
         } catch (probeErr) {
-          console.warn("Client Firestore probe failed, disabling client SDK writes", probeErr);
+          console.warn(
+            "Client Firestore probe failed, disabling client SDK writes",
+            probeErr,
+          );
           try {
             clientFirestoreEnabled = false;
             db = null as any;
@@ -150,7 +155,9 @@ export async function sendEventToFirestore(
         };
         // Try sendBeacon first, then fetch
         try {
-          const blob = new Blob([JSON.stringify(payload)], { type: "application/json" });
+          const blob = new Blob([JSON.stringify(payload)], {
+            type: "application/json",
+          });
           if (typeof navigator !== "undefined" && navigator.sendBeacon) {
             navigator.sendBeacon("/api/track", blob);
             return { ok: true, routed: "track" } as any;
@@ -332,7 +339,11 @@ export async function saveMinigameResult(
       try {
         const payload = {
           event: "MINIGAME_RESULT",
-          payload: { userId: uid || null, color: colorHex || null, resultUrl: url },
+          payload: {
+            userId: uid || null,
+            color: colorHex || null,
+            resultUrl: url,
+          },
         };
         await fetch("/api/track", {
           method: "POST",
@@ -478,14 +489,26 @@ export async function saveMinigameSummaryImageUrl(imageUrl: string) {
       const resp = await fetch("/api/write-image-url", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ imageUrl, collection: "minigameSummaries", page: "Step2_Summary" }),
+        body: JSON.stringify({
+          imageUrl,
+          collection: "minigameSummaries",
+          page: "Step2_Summary",
+        }),
       });
       if (resp && resp.ok) {
         try {
           const j = await resp.json();
-          return { id: j.id || null, collection: "minigameSummaries", routed: "server" } as any;
+          return {
+            id: j.id || null,
+            collection: "minigameSummaries",
+            routed: "server",
+          } as any;
         } catch (_) {
-          return { id: null, collection: "minigameSummaries", routed: "server" } as any;
+          return {
+            id: null,
+            collection: "minigameSummaries",
+            routed: "server",
+          } as any;
         }
       }
     } catch (e) {
@@ -509,14 +532,26 @@ export async function saveMinigameSummaryImageUrl(imageUrl: string) {
       const r = await fetch("/api/write-image-url", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ imageUrl, collection: "minigameSummaries", page: "Step2_Summary" }),
+        body: JSON.stringify({
+          imageUrl,
+          collection: "minigameSummaries",
+          page: "Step2_Summary",
+        }),
       });
       if (r && r.ok) {
         try {
           const j = await r.json();
-          return { id: j.id || null, collection: "minigameSummaries", routed: "server" } as any;
+          return {
+            id: j.id || null,
+            collection: "minigameSummaries",
+            routed: "server",
+          } as any;
         } catch (_) {
-          return { id: null, collection: "minigameSummaries", routed: "server" } as any;
+          return {
+            id: null,
+            collection: "minigameSummaries",
+            routed: "server",
+          } as any;
         }
       }
     } catch (_) {}

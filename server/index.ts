@@ -228,16 +228,18 @@ export function createServer() {
   });
 
   // Server-side full-page capture using headless Chrome (puppeteer + chrome-aws-lambda)
-  app.post('/api/capture-fullpage', async (req, res) => {
+  app.post("/api/capture-fullpage", async (req, res) => {
     try {
       const { url: rawUrl, page: pageName } = req.body || {};
-      if (!rawUrl || typeof rawUrl !== 'string') return res.status(400).json({ ok: false, error: 'missing url' });
+      if (!rawUrl || typeof rawUrl !== "string")
+        return res.status(400).json({ ok: false, error: "missing url" });
 
       // Resolve relative URLs to absolute based on the current host if needed
       let targetUrl = rawUrl;
-      if (rawUrl.startsWith('/')) {
-        const proto = req.headers['x-forwarded-proto'] || req.protocol || 'https';
-        const host = req.headers['x-forwarded-host'] || req.headers.host;
+      if (rawUrl.startsWith("/")) {
+        const proto =
+          req.headers["x-forwarded-proto"] || req.protocol || "https";
+        const host = req.headers["x-forwarded-host"] || req.headers.host;
         targetUrl = `${proto}://${host}${rawUrl}`;
       }
 
@@ -246,14 +248,23 @@ export function createServer() {
       let chromium: any = null;
       try {
         // prefer chrome-aws-lambda environment when available
-        chromium = await import('chrome-aws-lambda');
-        puppeteer = await import('puppeteer-core');
+        chromium = await import("chrome-aws-lambda");
+        puppeteer = await import("puppeteer-core");
       } catch (e) {
         try {
-          puppeteer = await import('puppeteer');
+          puppeteer = await import("puppeteer");
         } catch (err) {
-          console.error('/api/capture-fullpage missing puppeteer dependency', err);
-          return res.status(501).json({ ok: false, error: 'puppeteer not available on server. Install puppeteer or chrome-aws-lambda + puppeteer-core' });
+          console.error(
+            "/api/capture-fullpage missing puppeteer dependency",
+            err,
+          );
+          return res
+            .status(501)
+            .json({
+              ok: false,
+              error:
+                "puppeteer not available on server. Install puppeteer or chrome-aws-lambda + puppeteer-core",
+            });
         }
       }
 
@@ -262,14 +273,24 @@ export function createServer() {
       try {
         if (chromium && puppeteer) {
           const executablePath = await chromium.executablePath;
-          browser = await puppeteer.launch({ args: chromium.args, executablePath: executablePath || undefined, headless: chromium.headless });
+          browser = await puppeteer.launch({
+            args: chromium.args,
+            executablePath: executablePath || undefined,
+            headless: chromium.headless,
+          });
         } else {
           // fallback to bundled puppeteer
           browser = await puppeteer.launch({ headless: true });
         }
       } catch (e) {
-        console.error('/api/capture-fullpage browser launch failed', e);
-        return res.status(500).json({ ok: false, error: 'failed to launch headless browser', detail: String(e?.message || e) });
+        console.error("/api/capture-fullpage browser launch failed", e);
+        return res
+          .status(500)
+          .json({
+            ok: false,
+            error: "failed to launch headless browser",
+            detail: String(e?.message || e),
+          });
       }
 
       let screenshotBuf: Buffer | null = null;
@@ -278,7 +299,10 @@ export function createServer() {
         // set a larger viewport to help rendering responsive content
         await page.setViewport({ width: 1200, height: 900 });
         // navigate
-        await page.goto(targetUrl, { waitUntil: ['networkidle2', 'domcontentloaded'], timeout: 30000 });
+        await page.goto(targetUrl, {
+          waitUntil: ["networkidle2", "domcontentloaded"],
+          timeout: 30000,
+        });
 
         // give extra time for lazy images to load
         await page.evaluate(() => {
@@ -290,33 +314,47 @@ export function createServer() {
         // Remove sticky/footer in page before capture (best-effort)
         await page.evaluate(() => {
           try {
-            const foot = document.querySelector('footer');
+            const foot = document.querySelector("footer");
             if (foot && foot.parentNode) foot.parentNode.removeChild(foot);
-            const stickies = document.querySelectorAll('[style*="position: sticky"], [style*="position: fixed"], .figma-style1-button-container');
-            stickies.forEach(s => (s as HTMLElement).style.display = 'none');
+            const stickies = document.querySelectorAll(
+              '[style*="position: sticky"], [style*="position: fixed"], .figma-style1-button-container',
+            );
+            stickies.forEach(
+              (s) => ((s as HTMLElement).style.display = "none"),
+            );
           } catch (_) {}
         });
 
         // Capture full page
-        screenshotBuf = await page.screenshot({ fullPage: true, type: 'jpeg', quality: 86 });
+        screenshotBuf = await page.screenshot({
+          fullPage: true,
+          type: "jpeg",
+          quality: 86,
+        });
         await page.close();
       } catch (e) {
-        console.error('/api/capture-fullpage screenshot failed', e);
+        console.error("/api/capture-fullpage screenshot failed", e);
       } finally {
-        try { if (browser) await browser.close(); } catch (_) {}
+        try {
+          if (browser) await browser.close();
+        } catch (_) {}
       }
 
-      if (!screenshotBuf) return res.status(500).json({ ok: false, error: 'screenshot failed' });
+      if (!screenshotBuf)
+        return res.status(500).json({ ok: false, error: "screenshot failed" });
 
       // Upload to Firebase Storage using admin SDK
       try {
         if (!admin.apps || admin.apps.length === 0) {
           const svc = process.env.FIREBASE_SERVICE_ACCOUNT;
           if (svc) {
-            const parsed = typeof svc === 'string' ? JSON.parse(svc) : svc;
-            admin.initializeApp({ credential: admin.credential.cert(parsed as any), storageBucket: process.env.FIREBASE_STORAGE_BUCKET || undefined } as any);
+            const parsed = typeof svc === "string" ? JSON.parse(svc) : svc;
+            admin.initializeApp({
+              credential: admin.credential.cert(parsed as any),
+              storageBucket: process.env.FIREBASE_STORAGE_BUCKET || undefined,
+            } as any);
           } else {
-            console.warn('/api/capture-fullpage no service account configured');
+            console.warn("/api/capture-fullpage no service account configured");
           }
         }
         const bucket = admin.storage().bucket();
@@ -324,27 +362,54 @@ export function createServer() {
         const filename = `mn2-step2-summary_${ts}.jpg`;
         const filePath = `beforecitychange/minigame-summary-captures/${filename}`;
         const file = bucket.file(filePath);
-        await file.save(screenshotBuf, { metadata: { contentType: 'image/jpeg' } });
+        await file.save(screenshotBuf, {
+          metadata: { contentType: "image/jpeg" },
+        });
 
         // generate signed URL
-        const [signedUrl] = await file.getSignedUrl({ action: 'read', expires: '03-01-2500' });
+        const [signedUrl] = await file.getSignedUrl({
+          action: "read",
+          expires: "03-01-2500",
+        });
 
         // Save into Firestore collection minigameSummaries
         try {
           const fsAdmin = admin.firestore();
-          const docRef = await fsAdmin.collection('minigameSummaries').add({ imageUrl: signedUrl, page: pageName || 'Step2_Summary', createdAt: admin.firestore.FieldValue.serverTimestamp() });
+          const docRef = await fsAdmin
+            .collection("minigameSummaries")
+            .add({
+              imageUrl: signedUrl,
+              page: pageName || "Step2_Summary",
+              createdAt: admin.firestore.FieldValue.serverTimestamp(),
+            });
           // respond
-          return res.json({ ok: true, storagePath: filePath, imageUrl: signedUrl, docId: docRef.id });
+          return res.json({
+            ok: true,
+            storagePath: filePath,
+            imageUrl: signedUrl,
+            docId: docRef.id,
+          });
         } catch (e) {
-          console.error('/api/capture-fullpage firestore write failed', e);
-          return res.json({ ok: true, storagePath: filePath, imageUrl: signedUrl, docId: null });
+          console.error("/api/capture-fullpage firestore write failed", e);
+          return res.json({
+            ok: true,
+            storagePath: filePath,
+            imageUrl: signedUrl,
+            docId: null,
+          });
         }
       } catch (e) {
-        console.error('/api/capture-fullpage upload failed', e);
-        return res.status(500).json({ ok: false, error: 'upload failed', detail: String(e?.message || e) });
+        console.error("/api/capture-fullpage upload failed", e);
+        return res
+          .status(500)
+          .json({
+            ok: false,
+            error: "upload failed",
+            detail: String(e?.message || e),
+          });
       }
     } catch (e: any) {
-      console.error('/api/capture-fullpage error', e);
+      console.error("/api/capture-fullpage error", e);
       res.status(500).json({ ok: false, error: e?.message || String(e) });
     }
   });
