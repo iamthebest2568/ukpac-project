@@ -35,6 +35,8 @@ interface CaptureOptions {
   dpr?: number;
   // allow upscaling content to fill target area (default false)
   upscale?: boolean;
+  // crop output to content size (remove extra whitespace). Default true
+  cropToContent?: boolean;
 }
 
 const Step2_Summary = ({
