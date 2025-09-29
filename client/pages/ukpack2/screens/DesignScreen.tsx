@@ -108,7 +108,7 @@ const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   ที่นั่งพิเศษ: <IconSeat />,
   "ที่จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
   "ช่องชาร์จมือถือ/USB": <IconPlug />,
-  "Wi‑Fi ฟร���": <IconTv />,
+  "Wi‑Fi ฟรี": <IconTv />,
   "ระบบประกาศบอกป้าย(เสียง/จอ)": <IconCup />,
   กล้องวงจรปิด: <IconCamSmall />,
 };
@@ -406,11 +406,147 @@ const DesignScreen: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleFinish = () => {
+  const [isUploadingResult, setIsUploadingResult] = useState(false);
+
+  // Helper: render final composed image to PNG blob
+  const renderFinalImageBlob = async (): Promise<Blob | null> => {
+    try {
+      // determine selected chassis and image/mask sources
+      const chassis = (() => {
+        try {
+          return sessionStorage.getItem("design.chassis") || "medium";
+        } catch (e) {
+          return "medium";
+        }
+      })();
+      const baseSrc =
+        chassis === "large"
+          ? VAN_TEMPLATE_NEW
+          : chassis === "medium"
+            ? STANDARD_TEMPLATE_NEW
+            : chassis === "small"
+              ? MINIBUS_TEMPLATE_NEW
+              : HERO_IMAGE[chassis];
+      const maskSrc = (() => {
+        const MASKS: Record<string, string | null> = {
+          small: smallMaskUrl,
+          medium: mediumMaskUrl,
+          large: largeMaskUrl,
+          extra: extraMaskUrl,
+        };
+        return MASKS[chassis] || null;
+      })();
+
+      if (!baseSrc) return null;
+
+      // load images
+      const loadImage = (src: string) =>
+        new Promise<HTMLImageElement>((resolve, reject) => {
+          const img = new Image();
+          img.crossOrigin = "anonymous";
+          img.onload = () => resolve(img);
+          img.onerror = (e) => reject(e);
+          img.src = src;
+        });
+
+      const baseImg = await loadImage(baseSrc);
+      const width = baseImg.naturalWidth || 800;
+      const height = baseImg.naturalHeight || 600;
+
+      // create main canvas
+      const canvas = document.createElement("canvas");
+      canvas.width = width;
+      canvas.height = height;
+      const ctx = canvas.getContext("2d");
+      if (!ctx) throw new Error("Failed to get canvas context");
+
+      // draw base
+      ctx.drawImage(baseImg, 0, 0, width, height);
+
+      // apply color mask if present and color selected
+      try {
+        const raw = sessionStorage.getItem("design.color");
+        const parsed = raw ? JSON.parse(raw) : null;
+        const colorHex = parsed?.colorHex || selectedColorHex;
+        if (maskSrc && colorHex) {
+          const maskImg = await loadImage(maskSrc);
+
+          // create color canvas
+          const colorCanvas = document.createElement("canvas");
+          colorCanvas.width = width;
+          colorCanvas.height = height;
+          const cctx = colorCanvas.getContext("2d");
+          if (!cctx) throw new Error("Failed to get color canvas context");
+
+          // fill with color
+          cctx.fillStyle = colorHex;
+          cctx.fillRect(0, 0, width, height);
+
+          // Use mask: keep color only where mask is opaque
+          cctx.globalCompositeOperation = "destination-in";
+          cctx.drawImage(maskImg, 0, 0, width, height);
+          cctx.globalCompositeOperation = "source-over";
+
+          // draw color overlay onto main canvas
+          ctx.drawImage(colorCanvas, 0, 0, width, height);
+        }
+      } catch (e) {
+        console.warn("apply color mask failed", e);
+      }
+
+      // return blob
+      return await new Promise<Blob | null>((resolve) => {
+        try {
+          canvas.toBlob((b) => {
+            resolve(b);
+          }, "image/png");
+        } catch (e) {
+          console.warn("canvas.toBlob failed", e);
+          resolve(null);
+        }
+      });
+    } catch (e) {
+      console.warn("renderFinalImageBlob failed", e);
+      return null;
+    }
+  };
+
+  const handleFinish = async () => {
     try {
       // Persist final slogan
       sessionStorage.setItem("design.slogan", slogan);
     } catch (e) {}
+
+    setIsUploadingResult(true);
+    try {
+      // render image blob
+      const blob = await renderFinalImageBlob();
+      if (blob) {
+        try {
+          const raw = sessionStorage.getItem("design.color");
+          const parsed = raw ? JSON.parse(raw) : null;
+          const colorHex = parsed?.colorHex || selectedColorHex || null;
+
+          // attempt to get userId from auth if available
+          let userId: string | null = null;
+          try {
+            // dynamic import to avoid adding firebase/auth earlier in this module
+            const { getAuth } = await import("firebase/auth");
+            const auth = getAuth();
+            if (auth && (auth as any).currentUser) userId = (auth as any).currentUser.uid;
+          } catch (_) {}
+
+          // upload and persist
+          await saveMinigameResult(blob, colorHex, userId);
+        } catch (e) {
+          console.warn("saveMinigameResult failed", e);
+        }
+      }
+    } catch (e) {
+      console.warn("handleFinish upload failed", e);
+    } finally {
+      setIsUploadingResult(false);
+    }
 
     try {
       // Persist final rendered image & state so subsequent pages use the design image
@@ -482,7 +618,7 @@ const DesignScreen: React.FC = () => {
     <>
       <MetaUpdater
         title="UK PACT - กรุงเทพฯ ลดติด"
-        description="ออกแบบรถเมล์เพื่อช่วยลดปัญหการจราจรในกรุงเทพฯ — เลือกขนาดรถ สี และสิ่งอำนวยความสะดวกที่ต้องการ"
+        description="ออกแบบรถเมล์เพื่อ��่วยลดปัญหการจราจรในกรุงเทพฯ — เลือกขนาดรถ สี และสิ่งอำนวยความสะดวกที่ต้องการ"
         image="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F44cea8aeb6d4415e899494a90c6f59b1?format=webp&width=1200"
       />
       <CustomizationScreen
