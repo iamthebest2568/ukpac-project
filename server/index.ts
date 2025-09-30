@@ -371,11 +371,11 @@ export function createServer() {
           expires: "03-01-2500",
         });
 
-        // Save into Firestore collection minigameSummaries
+        // Save into Firestore collection beforecitychange-imgsummary-events
         try {
           const fsAdmin = admin.firestore();
           const docRef = await fsAdmin
-            .collection("minigameSummaries")
+            .collection("beforecitychange-imgsummary-events")
             .add({
               imageUrl: signedUrl,
               page: pageName || "Step2_Summary",
@@ -1339,7 +1339,7 @@ export function createServer() {
                 "ตัดส���นใจใช้บริการ (decision_use_service)",
                 "���หตุ��ลไม่ใช้บริการ (reason_not_use)",
                 "เข้าร่วมของรางวัล (decision_enter_prize)",
-                "ชื่อผู้���ับรางวัล (prize_name)",
+                "ชื่อผู้�����ับรางวัล (prize_name)",
                 "เบอร์โทรผู้รับรางวัล (prize_phone)",
                 "เวลาการรับรางวัล (prize_timestamp)",
                 "แชร์กับเพื่อน (shared_with_friends)",
