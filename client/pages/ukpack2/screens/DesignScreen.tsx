@@ -646,7 +646,7 @@ const DesignScreen: React.FC = () => {
             <div style={{ display: "none" }} aria-hidden="true">
               <div className="max-w-2xl w-full mx-auto bg-white border-2 border-[#000D59] rounded-xl p-3 mb-2">
                 <div className="text-sm text-[#001a73] font-medium">
-                  บันทึกภาพตัวอย่างไปย��ง Firestore แล้ว
+                  บันทึกภาพตัวอย่างไปยัง Firestore แล้ว
                 </div>
                 <div className="mt-1 text-[11px] text-[#001a73]">
                   Collection: {savedInfo.col || "(unknown)"}
@@ -797,7 +797,7 @@ const DesignScreen: React.FC = () => {
               />
 
               <h2 className="text-xl font-prompt font-semibold text-[#003366] mt-4">
-                ลักษณะพิเศษอื่น �� ของรถคุณ
+                ลักษณะพิเศษอื่นๆ ของรถคุณ
               </h2>
               <div>
                 <input
@@ -808,7 +808,7 @@ const DesignScreen: React.FC = () => {
                     setSloganDraft(slogan);
                     setShowTextarea(true);
                   }}
-                  placeholder="พิมพ์ คุณส��บัติพิเศษ"
+                  placeholder="พิมพ์ คุณสมบัติพิเศษ"
                   className="w-full rounded-xl px-4 py-2 bg-white border-2 border-[#000D59] text-[#003366] placeholder-gray-400 cursor-text text-center"
                 />
 
@@ -817,14 +817,14 @@ const DesignScreen: React.FC = () => {
                     <div className="bg-white rounded-xl p-4 max-w-lg w-full mx-4">
                       <style>{`.save-btn-modal:hover { color: #000D59 !important; }`}</style>
                       <h3 className="text-lg font-prompt font-semibold text-[#000d59]">
-                        ลักษณะพิเศษอื่นๆของรถ���ุณ
+                        ลักษณะพิเศษอื่นๆของรถคุณ
                       </h3>
                       <textarea
                         ref={textareaRef}
                         value={sloganDraft}
                         onChange={(e) => setSloganDraft(e.target.value)}
                         placeholder={
-                          "[พิมพ์คุณสมบัติพิเศษ���ื่น��ของ\nรถเมล์ในฝันของคุณ]"
+                          "[พิมพ์คุณสมบัติพิเศษเพิ่มเติมของ\nรถเมล์ในฝันของคุณ]"
                         }
                         className="mt-3 w-full h-36 p-3 border-2 border-[#000D59] rounded-xl text-sm resize-none text-center"
                         style={{ whiteSpace: "pre-wrap" }}
@@ -834,7 +834,7 @@ const DesignScreen: React.FC = () => {
                           onClick={() => setShowTextarea(false)}
                           className="px-4 py-2 rounded-xl bg-[#ffe000] text-[#000D59] hover:bg-[#000D59] hover:text-white transition-colors"
                         >
-                          ���กเลิก
+                          ยกเลิก
                         </button>
                         <button
                           onMouseEnter={() => setIsSaveHover(true)}
