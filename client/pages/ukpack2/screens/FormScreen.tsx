@@ -4,7 +4,7 @@ import CtaButton from "../components/CtaButton";
 import SecondaryButton from "../components/SecondaryButton";
 import { logEvent } from "../../../services/dataLogger.js";
 import React, { useState } from "react";
-import MyFooter from "../mydreambus/components/MyFooter";
+import MyFooter from "../../mydreambus/components/MyFooter";
 
 const IconPerson = () => (
   <svg
