@@ -74,13 +74,26 @@ const InfoScreen: React.FC = () => {
             composedBlob = await renderFinalImageBlob(baseSrc, maskSrc, colorHex);
           }
           if (!composedBlob) {
+            // attempt to scale base image to requested export dims before falling back to URL write
             try {
-              const r = await addDesignImageUrlToFirestore(baseSrc, "kpact-gamebus-imagedesign-events");
-              try { sessionStorage.setItem(key, JSON.stringify({ id: r.id || null, url: baseSrc })); } catch (_) {}
+              const { scaleImageToBlob } = await import('../utils/renderFinalImage');
+              const fallbackBlob = await scaleImageToBlob(baseSrc, 2607, 1158);
+              if (fallbackBlob) {
+                composedBlob = fallbackBlob;
+              }
             } catch (e) {
-              console.warn("InfoScreen: fallback write image url failed", e);
+              console.warn('InfoScreen: scale fallback failed', e);
             }
-            return;
+
+            if (!composedBlob) {
+              try {
+                const r = await addDesignImageUrlToFirestore(baseSrc, "kpact-gamebus-imagedesign-events");
+                try { sessionStorage.setItem(key, JSON.stringify({ id: r.id || null, url: baseSrc })); } catch (_) {}
+              } catch (e) {
+                console.warn("InfoScreen: fallback write image url failed", e);
+              }
+              return;
+            }
           }
         } catch (e) {
           console.warn("InfoScreen: renderFinalImageBlob failed", e);
@@ -341,7 +354,7 @@ const InfoScreen: React.FC = () => {
                 <p>
                   ฟิลิปปินส์ – Jeepney Modernization รู้หรือไม่! ฟิลิปปินส์พัฒนา
                   Jeepney แบบดั้งเดิมให้กลายเป็นมินิบัสขนาด 20–25
-                  ที่นั่งที่ปลอดภยและลดมลพิษกว่��เดิม
+                  ที่นั่งที่ปลอดภยและลดมลพิษกว่าเดิม
                   การเปลี่ยนโฉมนี้ยังคงค่าโดยสารถูก เหมาะกับคนเมือง
                   และช่วยลดปัญหาสิ่งแวดล้อมไปพร้อมกัน
                 </p>
