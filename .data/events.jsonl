@@ -838,3 +838,5 @@
 {"sessionId":"session_1759209193818_gkeqzrbug","eventName":"sw.choice.selected","timestamp":"2025-09-30T06:00:23.141Z","choiceText":"เฉย ๆ","variantId":"8aa35bfd","variantName":"ทดสอบ Key message"}
 {"sessionId":"session_1759209193818_gkeqzrbug","eventName":"sw.choice.selected","timestamp":"2025-09-30T06:00:23.163Z","choiceText":"เฉย ๆ","variantId":"8aa35bfd","variantName":"ทดสอบ Key message"}
 {"sessionId":"session_1759209193818_gkeqzrbug","eventName":"sw.variant.start","timestamp":"2025-09-30T06:00:23.194Z","variantId":"0d274bf8","variantName":"ทำไมคุณถึงคิดแบบนั้น ?"}
+{"sessionId":"session_1759209193818_gkeqzrbug","eventName":"sw.choice.selected","timestamp":"2025-09-30T06:00:35.940Z","choiceText":"นโยบายไม่ครอบคลุม","variantId":"0d274bf8","variantName":"ทำไมคุณถึงคิดแบบนั้น ?"}
+{"sessionId":"session_1759209193818_gkeqzrbug","eventName":"sw.choice.selected","timestamp":"2025-09-30T06:00:35.939Z","choiceText":"นโยบายไม่ครอบคลุม","variantId":"0d274bf8","variantName":"ทำไมคุณถึงคิดแบบนั้น ?"}
