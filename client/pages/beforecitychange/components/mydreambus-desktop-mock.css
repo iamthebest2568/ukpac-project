@@ -3,10 +3,10 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  /* widen to match mobile visuals when mockup is scaled */
-  width: 65% !important;
+  /* Use fixed pixel width matching mobile max (VehiclePreview md:max-w 480px) */
+  width: 480px !important;
   height: 120px !important; /* same height used by VehiclePreview */
-  max-width: 480px !important; /* match VehiclePreview md:max-w */
+  max-width: 480px !important; /* ensure it doesn't shrink below this */
   min-height: 0 !important;
 }
 
