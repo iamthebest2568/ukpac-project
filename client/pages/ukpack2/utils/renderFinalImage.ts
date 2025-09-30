@@ -1,4 +1,4 @@
-export async function renderFinalImageBlob(baseSrc: string, maskSrc: string | null, colorHex: string | null): Promise<Blob | null> {
+export async function renderFinalImageBlob(baseSrc: string, maskSrc: string | null, colorHex: string | null, targetWidth?: number | null, targetHeight?: number | null): Promise<Blob | null> {
   try {
     const loadImage = (src: string) =>
       new Promise<HTMLImageElement>((resolve, reject) => {
@@ -10,8 +10,10 @@ export async function renderFinalImageBlob(baseSrc: string, maskSrc: string | nu
       });
 
     const baseImg = await loadImage(baseSrc);
-    const width = baseImg.naturalWidth || 800;
-    const height = baseImg.naturalHeight || 600;
+    const naturalW = baseImg.naturalWidth || 800;
+    const naturalH = baseImg.naturalHeight || 600;
+    const width = targetWidth && targetWidth > 0 ? targetWidth : naturalW;
+    const height = targetHeight && targetHeight > 0 ? targetHeight : naturalH;
 
     // create main canvas
     const canvas = document.createElement("canvas");
@@ -20,8 +22,17 @@ export async function renderFinalImageBlob(baseSrc: string, maskSrc: string | nu
     const ctx = canvas.getContext("2d");
     if (!ctx) throw new Error("Canvas not supported");
 
-    // draw base
-    ctx.drawImage(baseImg, 0, 0, width, height);
+    // draw base image scaled to target dimensions
+    try {
+      ctx.drawImage(baseImg, 0, 0, width, height);
+    } catch (e) {
+      // fallback: attempt drawing with intrinsic size
+      try {
+        ctx.drawImage(baseImg, 0, 0, naturalW, naturalH);
+      } catch (ee) {
+        console.warn("drawImage failed", ee);
+      }
+    }
 
     // apply color mask if present and color selected
     if (maskSrc && colorHex) {
