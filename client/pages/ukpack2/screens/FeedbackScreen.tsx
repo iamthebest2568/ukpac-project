@@ -20,16 +20,18 @@ const FeedbackScreen: React.FC = () => {
   };
 
   const footer = (
-    <div className="max-w-4xl mx-auto flex items-end justify-center h-full">
-      <div className="flex flex-col items-stretch gap-3 w-full max-w-sm pb-6">
-        <SecondaryButton
-          className="w-full"
-          text="ส่งความคิดเห็น"
-          onClick={submit}
-        />
-        <CtaButton className="w-full" text="ข้าม" onClick={skip} />
+    <MyFooter>
+      <div className="max-w-4xl mx-auto flex items-end justify-center h-full">
+        <div className="flex flex-col items-stretch gap-3 w-full max-w-sm pb-6">
+          <SecondaryButton
+            className="w-full"
+            text="ส่งความคิดเห็น"
+            onClick={submit}
+          />
+          <CtaButton className="w-full" text="ข้าม" onClick={skip} />
+        </div>
       </div>
-    </div>
+    </MyFooter>
   );
 
   return (
