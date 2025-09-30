@@ -31,7 +31,7 @@
       createdAt: admin.firestore.FieldValue.serverTimestamp(),
     };
 
-    const col = "beforecitychange-imageshow-events";
+    const col = "beforecitychange-imgposter-events";
     const docRef = await db.collection(col).add(payload);
     console.log("Wrote doc id:", docRef.id);
 
