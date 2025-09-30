@@ -12,29 +12,31 @@ const SkipEnd: React.FC = () => {
   const [isShareOpen, setShareOpen] = React.useState(false);
 
   const footer = (
-    <div className="max-w-4xl mx-auto flex items-end justify-center h-full">
-      <div className="flex flex-col items-center gap-3 pt-6 pb-10">
-        <div style={{ width: "220px" }}>
-          <CtaButton
-            className="w-full"
-            text="จบเกม"
-            onClick={() => {
-              try {
-                clearDesignStorage();
-              } catch (e) {}
-              navigate("/mydreambus");
-            }}
-          />
-        </div>
-        <div style={{ width: "220px" }}>
-          <SecondaryButton
-            className="w-full"
-            text="แชร์เกมนี้กับเพื่อน"
-            onClick={() => setShareOpen(true)}
-          />
+    <MyFooter>
+      <div className="max-w-4xl mx-auto flex items-end justify-center h-full">
+        <div className="flex flex-col items-center gap-3 pt-6 pb-10">
+          <div style={{ width: "220px" }}>
+            <CtaButton
+              className="w-full"
+              text="จบเกม"
+              onClick={() => {
+                try {
+                  clearDesignStorage();
+                } catch (e) {}
+                navigate("/mydreambus");
+              }}
+            />
+          </div>
+          <div style={{ width: "220px" }}>
+            <SecondaryButton
+              className="w-full"
+              text="แชร์เกมนี้กับเพื่อน"
+              onClick={() => setShareOpen(true)}
+            />
+          </div>
         </div>
       </div>
-    </div>
+    </MyFooter>
   );
 
   return (
