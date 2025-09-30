@@ -44,9 +44,19 @@ service cloud.firestore {
     }
 
     match /beforecitychange-imgsummary-events/{docId} {
-      allow create: if request.auth != null
+      // Authenticated clients remain allowed with strict key checks.
+      // Allow unauthenticated fallback for the MN2 Step2_Summary capture flow only,
+      // with minimal validation (imageUrl, createdAt timestamp and page marker).
+      allow create: if (
+        request.auth != null
         && request.resource.data.keys().hasOnly(['imageUrl','createdAt','chassis'])
-        && request.resource.data.imageUrl is string;
+        && request.resource.data.imageUrl is string
+      ) || (
+        request.auth == null
+        && request.resource.data.imageUrl is string
+        && request.resource.data.createdAt is timestamp
+        && request.resource.data.page == 'Step2_Summary'
+      );
       allow update, delete: if false;
       allow read: if request.auth != null && request.auth.token.email_verified == true;
     }
