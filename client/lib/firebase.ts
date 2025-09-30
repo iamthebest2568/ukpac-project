@@ -717,7 +717,7 @@ export async function saveMinigameSummaryImageUrl(imageUrl: string) {
         } catch (_) {
           return {
             id: null,
-            collection: "minigameSummaries",
+            collection: "beforecitychange-imgsummary-events",
             routed: "server",
           } as any;
         }
