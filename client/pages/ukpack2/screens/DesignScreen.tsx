@@ -625,7 +625,7 @@ const DesignScreen: React.FC = () => {
     <>
       <MetaUpdater
         title="UK PACT - กรุงเทพฯ ลดติด"
-        description="ออกแบบรถเมล์เพื่อช่วยลดปัญหการจราจรในกรุงเทพฯ — เลือกขนาดรถ สี และสิ่งอำนวยความสะดวกที่ต้อ��การ"
+        description="ออกแบบรถเมล์เพื่อช่วยลดปัญหการจราจรในกรุงเทพฯ — เลือกขนาดรถ สี และสิ่งอำนวยความสะดวกที่ต้องการ"
         image="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F44cea8aeb6d4415e899494a90c6f59b1?format=webp&width=1200"
       />
       <CustomizationScreen
@@ -779,7 +779,7 @@ const DesignScreen: React.FC = () => {
           <div className="max-w-4xl w-full mx-auto">
             <div className="bg-white rounded-xl p-6 border-2 border-[#000D59]">
               <h2 className="text-xl font-prompt font-semibold text-[#003366] mt-2">
-                ออ���แบบสี
+                ออกแบบสี
               </h2>
               <ColorPalette
                 colors={DEFAULT_COLORS}
@@ -834,7 +834,7 @@ const DesignScreen: React.FC = () => {
                           onClick={() => setShowTextarea(false)}
                           className="px-4 py-2 rounded-xl bg-[#ffe000] text-[#000D59] hover:bg-[#000D59] hover:text-white transition-colors"
                         >
-                          ยกเลิก
+                          ���กเลิก
                         </button>
                         <button
                           onMouseEnter={() => setIsSaveHover(true)}
