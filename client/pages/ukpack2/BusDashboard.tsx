@@ -13,10 +13,10 @@ const THAI_HEADERS = [
 
   // Bus details
   "ประเภทรถ (bus_type)",
-  "ที่นั่งทั้งหมด (seat_total)",
+  "ที่นั่งทั้งหม��� (seat_total)",
   "ที่นั่งพิเศษ (seat_special)",
   "ที่นั่งเด็กหรือผู้สูงอายุ (seat_child_elder)",
-  "ที���นั่งสตรีมีครรภ์ (seat_pregnant)",
+  "ที่นั่งสตรีมีครรภ์ (seat_pregnant)",
   "ที่นั่งพระ (seat_monk)",
   "ฟีเจอร์ (features)",
   "การจ่าย (payment_type)",
