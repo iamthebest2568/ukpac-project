@@ -5,7 +5,7 @@ import CtaButton from "../components/CtaButton";
 import ConfirmModal from "../components/ConfirmModal";
 import { HERO_IMAGE, CHASSIS_LABELS } from "../utils/heroImages";
 import VehiclePreview from "../components/VehiclePreview";
-import Uk2Footer from "../components/Uk2Footer";
+import MyFooter from "../mydreambus/components/MyFooter";
 import styles from "./chassis.module.css";
 import { saveMinigameResult, addDesignImageUrlToFirestore } from "../../../lib/firebase";
 
@@ -362,7 +362,7 @@ const InfoScreen: React.FC = () => {
                   รู้หรือไม่!
                 </h2>
                 <p>
-                  ฟิลิปปินส์ – Jeepney Modernization รู้หรือไม่! ฟิลิปปินส์พัฒนา
+                  ฟิลิปปินส��� – Jeepney Modernization รู้หรือไม่! ฟิลิปปินส์พัฒนา
                   Jeepney แบบดั้งเดิมให้กลายเป็นมินิบัสขนาด 20–25
                   ที่นั่งที่ปลอดภัยและลดมลพิษกว่าเดิม
                   การเปลี่ยนโฉมนี้ยังคงค่าโดยสารถูก เหมาะกับคนเมือง
@@ -377,7 +377,7 @@ const InfoScreen: React.FC = () => {
                 <p>
                   เคนยา – Matatu Minibus รู้หรือไม่! ในไนโรบีมี Matatu
                   รถตู้โดยสาร 14–30 ที่นั่งที่วิ่งยืดหยุ่นตามผู้โดยสาร
-                  แม้จะวุ่นวาย
+                  แม้จะวุ่���วาย
                   แต่ก็เป็นทางเลือกการเดินทางราคาถูกที่เข้าถึงทุกพื้นที่
                   ทำให้คนทุกระดับรายได้มีโอกาสเดินทางสะดวก
                 </p>
