@@ -214,37 +214,62 @@ const Step2_Summary = ({
     try {
       // Find target element robustly: prefer explicit id, then main within this document, then container by class.
       function findContentElement(): HTMLElement | null {
-        // 1. exact id
-        const byId = document.getElementById("mn2-step2-content");
-        if (byId) return byId as HTMLElement;
+        // Prefer locating content inside same-origin iframes first (portal mounts often render there)
+        try {
+          const iframes = Array.from(document.getElementsByTagName('iframe')) as HTMLIFrameElement[];
+          for (const f of iframes) {
+            try {
+              const doc = f.contentDocument || (f.contentWindow && f.contentWindow.document);
+              if (!doc) continue;
+              const byId = doc.getElementById('mn2-step2-content');
+              if (byId) return byId as HTMLElement;
+              const inside = doc.querySelector('.figma-style1-container') || doc.querySelector('main');
+              if (inside) return inside as HTMLElement;
+            } catch (e) {
+              // cross-origin or inaccessible iframe - skip
+              continue;
+            }
+          }
+        } catch (e) {}
+
+        // 1. exact id in top-level document
+        try {
+          const byId = document.getElementById("mn2-step2-content");
+          if (byId) return byId as HTMLElement;
+        } catch (_) {}
 
         // 2. main#main-content or first main
-        const mainById = document.getElementById(
-          "main-content",
-        ) as HTMLElement | null;
-        if (mainById) {
-          // look for our container inside main
-          const inside = mainById.querySelector(
-            ".figma-style1-container",
+        try {
+          const mainById = document.getElementById(
+            "main-content",
           ) as HTMLElement | null;
-          if (inside) return inside;
-          return mainById;
-        }
+          if (mainById) {
+            const inside = mainById.querySelector(
+              ".figma-style1-container",
+            ) as HTMLElement | null;
+            if (inside) return inside;
+            return mainById;
+          }
+        } catch (_) {}
 
-        const main = document.querySelector("main") as HTMLElement | null;
-        if (main) {
-          const inside = main.querySelector(
-            ".figma-style1-container",
-          ) as HTMLElement | null;
-          if (inside) return inside;
-          return main;
-        }
+        try {
+          const main = document.querySelector("main") as HTMLElement | null;
+          if (main) {
+            const inside = main.querySelector(
+              ".figma-style1-container",
+            ) as HTMLElement | null;
+            if (inside) return inside;
+            return main;
+          }
+        } catch (_) {}
 
         // 3. any element with the container class
-        const container = document.querySelector(
-          ".figma-style1-container",
-        ) as HTMLElement | null;
-        if (container) return container;
+        try {
+          const container = document.querySelector(
+            ".figma-style1-container",
+          ) as HTMLElement | null;
+          if (container) return container;
+        } catch (_) {}
 
         return null;
       }
