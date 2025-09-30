@@ -165,7 +165,7 @@ const SeatingScreen: React.FC = () => {
     if (sumSubs > total) {
       setErrorTitle("ผลรวมของที่นั่งย่อยมากกว่าจำนวนที่นั่งทั้งหมด");
       setErrorMessage(
-        `ผลรวมของที่นั่งย่อยทั้งหมด (${sumSubs}) มากกว่าจำนวนที่นั่งทั้งหมดที่ระบุ (${total}) กรุณาตรวจสอบ`,
+        `ผลรวมขอ��ที่นั่งย่อยทั้งหมด (${sumSubs}) มากกว่าจำนวนที่นั่งทั้งหมดที่ระบุ (${total}) กรุณาตรวจสอบ`,
       );
       setErrorModalOpen(true);
       return false;
@@ -241,11 +241,11 @@ const SeatingScreen: React.FC = () => {
         theme="light"
         fullWidth
         footerContent={
-          <Uk2Footer>
+          <MyFooter>
             <div className="w-full flex justify-center">
               <CtaButton text="ถัดไป" onClick={handleNext} />
             </div>
-          </Uk2Footer>
+          </MyFooter>
         }
       >
         <div className={styles.contentGrid}>
@@ -434,7 +434,7 @@ const SeatingScreen: React.FC = () => {
 
                   <div className="flex items-center justify-between">
                     <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">
-                      พื้น���ี่สำหรับรถเข็น/จักรยาน
+                      พื้นที่สำหรับรถเข็น/จักรยาน
                     </div>
                     <input
                       type="number"
