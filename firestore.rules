@@ -23,7 +23,7 @@ service cloud.firestore {
 
     // Allow clients to add lightweight design image references if they are
     // authenticated and the document contains only imageUrl and createdAt.
-    match /beforecitychange-imageshow-events/{doc} {
+    match /beforecitychange-imgposter-events/{doc} {
       allow create: if request.auth != null &&
         request.resource.data.keys().hasOnly(['imageUrl','createdAt']) &&
         request.resource.data.imageUrl is string;
@@ -32,11 +32,19 @@ service cloud.firestore {
       allow read: if request.auth != null;
     }
 
-    match /kpact-gamebus-imagedesign-events/{doc} {
+    match /beforecitychange-imgsummary-events/{doc} {
       allow create: if request.auth != null &&
         request.resource.data.keys().hasOnly(['imageUrl','createdAt']) &&
         request.resource.data.imageUrl is string;
       // deny updates/deletes from clients
+      allow update, delete: if false;
+      allow read: if request.auth != null;
+    }
+
+    match /mydreambus-imgcar-events/{doc} {
+      allow create: if request.auth != null &&
+        request.resource.data.keys().hasOnly(['imageUrl','createdAt']) &&
+        request.resource.data.imageUrl is string;
       allow update, delete: if false;
       allow read: if request.auth != null;
     }
