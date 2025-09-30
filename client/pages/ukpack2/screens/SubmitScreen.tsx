@@ -311,7 +311,7 @@ const SubmitScreen: React.FC = () => {
   return (
     <>
       <CustomizationScreen
-        title="การบริการข��งรถเมล์"
+        title="การบริการของรถเมล์"
         theme="light"
         footerContent={
           <Uk2Footer>
