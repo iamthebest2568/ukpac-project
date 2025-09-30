@@ -73,18 +73,18 @@ service cloud.firestore {
     }
 
 
-    // Image design writes (DesignScreen)
-    match /beforecitychange-imageshow-events/{docId} {
+    // Image design writes (DesignScreen) - updated collection names
+    match /beforecitychange-imgposter-events/{docId} {
       // Allow anonymous create with strict shape; no read/update/delete
       allow create: if isValidImageDesignEntry(request.resource.data);
       allow get, list, update, delete: if isAdmin();
     }
-    match /kpact-gamebus-imagedesign-events/{docId} {
-      // Allow anonymous create with strict shape; no read/update/delete
+    match /beforecitychange-imgsummary-events/{docId} {
+      // Summary screenshots collection
       allow create: if isValidImageDesignEntry(request.resource.data);
       allow get, list, update, delete: if isAdmin();
     }
-    match /ukpact-gamebus-imagedesign-events/{docId} {
+    match /mydreambus-imgcar-events/{docId} {
       allow create: if isValidImageDesignEntry(request.resource.data);
       allow get, list, update, delete: if isAdmin();
     }
