@@ -141,3 +141,45 @@ export async function renderFinalImageBlob(baseSrc: string, maskSrc: string | nu
     return null;
   }
 }
+
+// Simple scaler: load base image and scale to target dims, returns PNG blob
+export async function scaleImageToBlob(baseSrc: string, targetWidth: number, targetHeight: number): Promise<Blob | null> {
+  try {
+    const loadImage = (src: string) =>
+      new Promise<HTMLImageElement>((resolve, reject) => {
+        const img = new Image();
+        img.crossOrigin = "anonymous";
+        img.onload = () => resolve(img);
+        img.onerror = (e) => reject(e);
+        img.src = src;
+      });
+
+    const img = await loadImage(baseSrc);
+    const canvas = document.createElement('canvas');
+    canvas.width = targetWidth;
+    canvas.height = targetHeight;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) throw new Error('Canvas not supported');
+    // draw image centered with contain behavior
+    const ratio = Math.min(targetWidth / img.naturalWidth, targetHeight / img.naturalHeight);
+    const drawW = img.naturalWidth * ratio;
+    const drawH = img.naturalHeight * ratio;
+    const dx = (targetWidth - drawW) / 2;
+    const dy = (targetHeight - drawH) / 2;
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0,0,targetWidth,targetHeight);
+    ctx.drawImage(img, dx, dy, drawW, drawH);
+
+    return await new Promise<Blob | null>((resolve) => {
+      try {
+        canvas.toBlob((b) => resolve(b), 'image/png');
+      } catch (e) {
+        console.warn('scaleImageToBlob toBlob failed', e);
+        resolve(null);
+      }
+    });
+  } catch (e) {
+    console.warn('scaleImageToBlob failed', e);
+    return null;
+  }
+}
