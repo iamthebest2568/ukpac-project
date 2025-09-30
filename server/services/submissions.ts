@@ -99,11 +99,11 @@ async function listPublicSubmissionsFromFirestore(limit = 20) {
 
     if (!firestore) return [];
 
-    // Try known collections written by client: prefer beforecitychange-imageshow-events first
+    // Try known collections written by client: prefer beforecitychange-image poster collection first
     const candidates = [
-      "beforecitychange-imageshow-events",
-      "ukpact-gamebus-imagedesign-events",
-      "kpact-gamebus-imagedesign-events",
+      "beforecitychange-imgposter-events",
+      "mydreambus-imgcar-events",
+      "beforecitychange-imgsummary-events",
     ];
     for (const colName of candidates) {
       try {
