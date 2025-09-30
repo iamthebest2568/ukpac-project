@@ -109,7 +109,7 @@ const SubmitScreen: React.FC = () => {
             });
           }
 
-          // First attempt: if medium chassis for mydreambus, prefer shared renderer with export dims
+          // First attempt: prefer shared renderer with export dims when available for each chassis
           try {
             const persistedFinalRaw = sessionStorage.getItem("design.finalImage");
             const persistedFinal = persistedFinalRaw ? JSON.parse(persistedFinalRaw) : null;
@@ -124,10 +124,18 @@ const SubmitScreen: React.FC = () => {
               } catch {}
             }
 
-            if (chassis === "medium") {
+            const EXPORT_DIMS: Record<string, { w: number; h: number } | undefined> = {
+              small: { w: 1800, h: 919 },
+              medium: { w: 2607, h: 1158 },
+              large: { w: 1390, h: 707 },
+              extra: { w: 1403, h: 752 },
+            };
+
+            const target = EXPORT_DIMS[chassis];
+            if (target) {
               try {
                 const { renderFinalImageBlob } = await import("../utils/renderFinalImage");
-                const maybe = await renderFinalImageBlob(baseSrc, maskSrc, colorHex, 2607, 1158);
+                const maybe = await renderFinalImageBlob(baseSrc, maskSrc, colorHex, target.w, target.h);
                 if (maybe) blob = maybe;
               } catch (e) {
                 console.warn("SubmitScreen: renderFinalImageBlob failed", e);
