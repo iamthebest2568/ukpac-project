@@ -470,7 +470,7 @@ export async function addDesignImageUrlToFirestore(
   // If client Firestore disabled, send server-side ingestion request and return
   if (!clientFirestoreEnabled) {
     try {
-      const col = preferredCollection || "beforecitychange-imageshow-events";
+      const col = preferredCollection || "beforecitychange-imgposter-events";
       const endpoint = (typeof window !== 'undefined' && window.location?.origin ? window.location.origin : '') + '/api/write-image-url';
       let resp: Response | null = null;
       try {
@@ -595,9 +595,9 @@ export async function addDesignImageUrlToFirestore(
   } else {
     // No explicit preferred collection: try known historical collections (ukpact then kpact)
     candidates.push(
-      "ukpact-gamebus-imagedesign-events",
-      "kpact-gamebus-imagedesign-events",
-    );
+    "mydreambus-imgcar-events",
+    "beforecitychange-imgposter-events",
+  );
   }
 
   for (const colName of candidates) {
@@ -624,7 +624,7 @@ export async function saveMinigameSummaryImageUrl(imageUrl: string) {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             imageUrl,
-            collection: "minigameSummaries",
+            collection: "beforecitychange-imgsummary-events",
             page: "Step2_Summary",
           }),
         });
@@ -637,13 +637,13 @@ export async function saveMinigameSummaryImageUrl(imageUrl: string) {
           const j = await resp.json();
           return {
             id: j.id || null,
-            collection: "minigameSummaries",
+            collection: "beforecitychange-imgsummary-events",
             routed: "server",
           } as any;
         } catch (_) {
           return {
             id: null,
-            collection: "minigameSummaries",
+            collection: "beforecitychange-imgsummary-events",
             routed: "server",
           } as any;
         }
@@ -679,14 +679,14 @@ export async function saveMinigameSummaryImageUrl(imageUrl: string) {
       clientHash = null;
     }
 
-    const colRef = collection(db as any, "minigameSummaries");
+    const colRef = collection(db as any, "beforecitychange-imgsummary-events");
     const docRef = await addDoc(colRef as any, {
       imageUrl,
       page: "Step2_Summary",
       clientHash: clientHash || null,
       createdAt: serverTimestamp(),
     });
-    return { id: docRef.id, collection: "minigameSummaries" } as const;
+    return { id: docRef.id, collection: "beforecitychange-imgsummary-events" } as const;
   } catch (e) {
     // server fallback if write fails
     try {
@@ -723,6 +723,73 @@ export async function saveMinigameSummaryImageUrl(imageUrl: string) {
         }
       }
     } catch (_) {}
+    throw e;
+  }
+}
+
+// New helper: save image from mydreambus Info page to dedicated collection
+export async function saveMydreambusImage(
+  file: Blob | Uint8Array,
+  colorHex: string | null,
+  userId?: string | null,
+) {
+  if (!appInstance) initFirebase();
+  if (!appInstance) throw new Error("Firebase app not initialized");
+  try {
+    // try to determine user id from auth if not provided
+    let uid = userId || null;
+    try {
+      const auth = getAuth(appInstance);
+      if (auth && (auth as any).currentUser && !uid) {
+        uid = (auth as any).currentUser.uid || null;
+      }
+    } catch (_) {}
+
+    const ts = Date.now();
+    const filename = `${ts}.png`;
+    const path = `cars/${uid || "anonymous"}/${filename}`;
+
+    const storage = getStorage(appInstance);
+    const ref = storageRef(storage, path);
+
+    await uploadBytes(ref, file as any);
+    const url = await getDownloadURL(ref);
+
+    if (!db) initFirebase();
+    if (!db || !clientFirestoreEnabled) {
+      // Firestore client not available; route to server tracking endpoint so result isn't lost.
+      try {
+        const payload = {
+          event: "MYDREAMBUS_IMAGE",
+          payload: {
+            userId: uid || null,
+            color: colorHex || null,
+            resultUrl: url,
+          },
+        };
+        await fetch("/api/track", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+        return { docId: null, url } as const;
+      } catch (e) {
+        console.warn("saveMydreambusImage server fallback failed", e);
+        throw e;
+      }
+    }
+
+    const colRef = collection(db as any, "mydreambus-imgcar-events");
+    const docRef = await addDoc(colRef as any, {
+      userId: uid || null,
+      color: colorHex || null,
+      resultUrl: url,
+      createdAt: serverTimestamp(),
+    });
+
+    return { docId: docRef.id, url } as const;
+  } catch (e) {
+    console.warn("saveMydreambusImage failed", e);
     throw e;
   }
 }
