@@ -223,7 +223,7 @@ const IconCam = () => (
 const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   แอร์: <IconAir />,
   พัดลม: <IconFan />,
-  ที���นั่งพิเศษ: <IconSeat />,
+  ที่นั่งพิเศษ: <IconSeat />,
   "ที่จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
   "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
