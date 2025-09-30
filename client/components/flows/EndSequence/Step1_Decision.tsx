@@ -62,7 +62,7 @@ const Step1_Decision = ({
   };
 
   const onParticipate = () => {
-    trackDecision("participate", "ลุ��นรับรางวัล");
+    trackDecision("participate", "ลุ้นรับรางวัล");
     handleChoice("participate");
   };
 
@@ -140,7 +140,7 @@ const Step1_Decision = ({
           <button
             onClick={onParticipate}
             className="btn-large"
-            aria-label="เข้าร่วมโครงการและกรอกข้อมูลเพื่อรับ���างวัล"
+            aria-label="เข้าร่วมโครงการและกรอกข้อมูลเพื่อรับรางวัล"
           >
             ลุ้นรับรางวัล
           </button>
