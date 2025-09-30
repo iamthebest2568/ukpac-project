@@ -4,6 +4,7 @@ import CtaButton from "../components/CtaButton";
 import SecondaryButton from "../components/SecondaryButton";
 import { logEvent } from "../../../services/dataLogger.js";
 import React, { useState } from "react";
+import MyFooter from "../mydreambus/components/MyFooter";
 
 const IconPerson = () => (
   <svg
@@ -151,7 +152,7 @@ const FormScreen: React.FC = () => {
             <div className="w-px h-10 md:h-12 bg-[#000D59] mx-2" />
             <input
               className="flex-1 h-full bg-transparent border-none outline-none text-black placeholder-gray-500 font-sarabun text-[17.6px] font-normal px-4"
-              placeholder="เบอร์โทรศัพท์"
+              placeholder="เบอร��โทรศัพท์"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               onBlur={() =>
