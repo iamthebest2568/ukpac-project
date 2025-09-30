@@ -105,12 +105,11 @@ export function createServer() {
       if (!imageUrl || typeof imageUrl !== "string")
         return res.status(400).json({ ok: false, error: "missing imageUrl" });
       const allowed = [
-        "beforecitychange-imageshow-events",
-        "kpact-gamebus-imagedesign-events",
-        "ukpact-gamebus-imagedesign-events",
-        "minigameSummaries",
+        "beforecitychange-imgposter-events",
+        "beforecitychange-imgsummary-events",
+        "mydreambus-imgcar-events",
       ];
-      const col = String(collection || "beforecitychange-imageshow-events");
+      const col = String(collection || "beforecitychange-imgposter-events");
       if (!allowed.includes(col))
         return res
           .status(400)
@@ -1340,7 +1339,7 @@ export function createServer() {
                 "ตัดส���นใจใช้บริการ (decision_use_service)",
                 "���หตุ��ลไม่ใช้บริการ (reason_not_use)",
                 "เข้าร่วมของรางวัล (decision_enter_prize)",
-                "ชื่อผู้รับรางวัล (prize_name)",
+                "ชื่อผู้���ับรางวัล (prize_name)",
                 "เบอร์โทรผู้รับรางวัล (prize_phone)",
                 "เวลาการรับรางวัล (prize_timestamp)",
                 "แชร์กับเพื่อน (shared_with_friends)",
