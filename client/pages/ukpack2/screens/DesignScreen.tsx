@@ -632,11 +632,11 @@ const DesignScreen: React.FC = () => {
         title="ออกแบบรถเมล์ของคุณ"
         theme="light"
         footerContent={
-          <Uk2Footer>
+          <MyFooter>
             <div className="w-full flex justify-center">
               <CtaButton text="ออกแบบเสร็จแล้ว" onClick={handleFinish} />
             </div>
-          </Uk2Footer>
+          </MyFooter>
         }
       >
         <div className="space-y-6">
