@@ -17,7 +17,7 @@ const ConfirmationScreen: React.FC = () => {
         theme="light"
         footerBgClass="bg-white"
         footerContent={
-          <Uk2Footer className="bg-white">
+          <MyFooter className="bg-white">
             <div style={{ width: "220px" }}>
               <CtaButton
                 className="w-full"
@@ -32,7 +32,7 @@ const ConfirmationScreen: React.FC = () => {
                 onClick={() => setShareOpen(true)}
               />
             </div>
-          </Uk2Footer>
+          </MyFooter>
         }
       >
         <div className="max-w-4xl mx-auto pb-8 -mt-8">
