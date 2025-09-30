@@ -9,6 +9,7 @@
 @import "./styles/minigame-mn1-overrides.css";
 @import "./styles/minigame-mn2-overrides.css";
 @import "./styles/minigame-mn3-overrides.css";
+@import "./pages/mydreambus/mydreambus-layout.css";
 
 @tailwind base;
 @tailwind components;
