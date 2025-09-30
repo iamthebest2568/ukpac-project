@@ -278,11 +278,11 @@ const DoorScreen: React.FC = () => {
         theme="light"
         fullWidth
         footerContent={
-          <Uk2Footer>
+          <MyFooter>
             <div className="w-full flex justify-center">
               <CtaButton text="ถัดไป" onClick={handleNext} />
             </div>
-          </Uk2Footer>
+          </MyFooter>
         }
       >
         <div className={styles.contentGrid}>
