@@ -5,7 +5,7 @@ import CtaButton from "../components/CtaButton";
 import { useBusDesign } from "../context/BusDesignContext";
 import ConfirmModal from "../components/ConfirmModal";
 import VehiclePreview from "../components/VehiclePreview";
-import Uk2Footer from "../components/Uk2Footer";
+import MyFooter from "../mydreambus/components/MyFooter";
 import { HERO_IMAGE, CHASSIS_LABELS } from "../utils/heroImages";
 
 const MONEY_ICON =
