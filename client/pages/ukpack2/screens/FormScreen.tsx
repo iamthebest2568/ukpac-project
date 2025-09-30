@@ -78,25 +78,27 @@ const FormScreen: React.FC = () => {
   };
 
   const footer = (
-    <div className="max-w-4xl mx-auto flex items-end justify-center h-full">
-      <div className="flex flex-col items-center gap-3 pb-12">
-        <div style={{ width: "220px", marginTop: "32px" }}>
-          <CtaButton
-            className="w-full"
-            text="ลุ้นรับรางวัล"
-            onClick={submit}
-            style={{ width: "220px", height: "48px" }}
-          />
-        </div>
-        <div style={{ width: "220px" }}>
-          <SecondaryButton
-            className="w-full h-12"
-            text="ไม่รับรางวัล"
-            onClick={skip}
-          />
+    <MyFooter>
+      <div className="max-w-4xl mx-auto flex items-end justify-center h-full">
+        <div className="flex flex-col items-center gap-3 pb-12">
+          <div style={{ width: "220px", marginTop: "32px" }}>
+            <CtaButton
+              className="w-full"
+              text="ลุ้นรับรางวัล"
+              onClick={submit}
+              style={{ width: "220px", height: "48px" }}
+            />
+          </div>
+          <div style={{ width: "220px" }}>
+            <SecondaryButton
+              className="w-full h-12"
+              text="ไม่รับรางวัล"
+              onClick={skip}
+            />
+          </div>
         </div>
       </div>
-    </div>
+    </MyFooter>
   );
 
   return (
@@ -152,7 +154,7 @@ const FormScreen: React.FC = () => {
             <div className="w-px h-10 md:h-12 bg-[#000D59] mx-2" />
             <input
               className="flex-1 h-full bg-transparent border-none outline-none text-black placeholder-gray-500 font-sarabun text-[17.6px] font-normal px-4"
-              placeholder="เบอร��โทรศัพท์"
+              placeholder="เบอร์โทรศัพท์"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               onBlur={() =>
