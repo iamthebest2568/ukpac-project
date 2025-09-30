@@ -260,8 +260,8 @@ const BUS_EMPLOY_ICON_ACTIVE =
 
 const OPTIONS = [
   { key: "cash", label: "เงินสด", icon: <IconCash /> },
-  { key: "scan", label: "สแกนจ่าย", icon: <IconScan /> },
-  { key: "tap", label: "แตะบัต��", icon: <IconTap /> },
+  { key: "scan", label: "สแกนจ่��ย", icon: <IconScan /> },
+  { key: "tap", label: "แตะบัตร", icon: <IconTap /> },
   { key: "monthly", label: "ตั๋วรายเดือน/รอบ", icon: null },
   { key: "scan2", label: "ตู้อัตโนมัติ", icon: null },
   { key: "qr", label: "กระเป๋ารถเมล์", icon: <IconQr /> },
@@ -327,7 +327,7 @@ const PaymentScreen: React.FC = () => {
       BUS_EMPLOY_ICON_ACTIVE,
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc672415acf294449bc41d44cd9434120?format=webp&width=800",
     ],
-    "ตั๋วรายเดือน/รอบ": [
+    "ตั๋วรายเด��อน/รอบ": [
       MONTHLY_ICON,
       MONTHLY_ICON_ACTIVE,
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb7f2ac177a8848c18451c8d3f5109582?format=webp&width=800",
@@ -404,7 +404,7 @@ const PaymentScreen: React.FC = () => {
   const PAYMENT_BUTTON_SRC: Record<string, string> = {
     เงินสด: MONEY_ICON,
     สแกนจ่าย: SCAN_ICON,
-    ตู้อัตโนมัติ: SCAN2_ICON,
+    ตู้อัตโ���มัติ: SCAN2_ICON,
     แตะบัตร: TOUCH_ICON,
     "ตั๋วรายเดือน/รอบ": MONTHLY_ICON,
     กระเป๋ารถเมล์: BUS_EMPLOY_ICON,
@@ -461,11 +461,11 @@ const PaymentScreen: React.FC = () => {
       theme="light"
       fullWidth
       footerContent={
-        <Uk2Footer>
+        <MyFooter>
           <div className="w-full flex justify-center">
             <CtaButton text="ถัดไป" onClick={handleNext} />
           </div>
-        </Uk2Footer>
+        </MyFooter>
       }
     >
       <div className={styles.contentGrid}>
@@ -515,7 +515,7 @@ const PaymentScreen: React.FC = () => {
             ];
             // Normalize known corrupted label encodings (in case values were stored with encoding issues)
             const CORRECT_LABELS: Record<string, string> = {
-              ตู้อั��โนมัติ: "ตู้อัตโนมัติ",
+              ตู้อัตโนมัติ: "ตู้อัตโนมัติ",
               แตะบัตร: "แตะบัตร",
               กระเป๋ารถเมล์: "กระเป๋ารถเมล์",
               เงินสด: "เงินสด",
