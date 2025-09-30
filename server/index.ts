@@ -150,10 +150,12 @@ export function createServer() {
 
       // Guard Firestore write with timeout to avoid hanging requests
       const writePromise = (async () => {
-        const docRef = await fsAdmin.collection(col).add({
+        const docData: any = {
           imageUrl,
           createdAt: admin.firestore.FieldValue.serverTimestamp(),
-        });
+        };
+        if (req.body && req.body.page) docData.page = String(req.body.page);
+        const docRef = await fsAdmin.collection(col).add(docData);
         return docRef;
       })();
 
@@ -1323,7 +1325,7 @@ export function createServer() {
                 "เวลาเริ่ม (firstTimestamp)",
                 "เวลาสิ้นสุด (lastTimestamp)",
                 "ยอมรับ PDPA (PDPA_acceptance)",
-                "ประเภทรถ (chassis_type)",
+                "ประ���ภทรถ (chassis_type)",
                 "จำนวนที่นั่งรวม (total_seats)",
                 "ที่นั่งพิเศษ (special_seats)",
                 "จำนวนเด็ก/ผู้สูงอายุ (children_elder_count)",
