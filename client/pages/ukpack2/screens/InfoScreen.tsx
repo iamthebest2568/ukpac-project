@@ -66,23 +66,33 @@ const InfoScreen: React.FC = () => {
         let composedBlob: Blob | null = null;
         try {
           const { renderFinalImageBlob } = await import("../utils/renderFinalImage");
-          // For mydreambus medium chassis, request specific export dimensions for Fire storage
+
           const chassisForExport = chassis || selected || "medium";
-          if (chassisForExport === "medium") {
-            composedBlob = await renderFinalImageBlob(baseSrc, maskSrc, colorHex, 2607, 1158);
+          const EXPORT_DIMS: Record<string, { w: number; h: number } | undefined> = {
+            small: { w: 1800, h: 919 },
+            medium: { w: 2607, h: 1158 },
+            large: { w: 1390, h: 707 },
+            extra: { w: 1403, h: 752 },
+          };
+
+          const target = EXPORT_DIMS[chassisForExport] || undefined;
+
+          if (target) {
+            composedBlob = await renderFinalImageBlob(baseSrc, maskSrc, colorHex, target.w, target.h);
           } else {
             composedBlob = await renderFinalImageBlob(baseSrc, maskSrc, colorHex);
           }
+
           if (!composedBlob) {
             // attempt to scale base image to requested export dims before falling back to URL write
             try {
-              const { scaleImageToBlob } = await import('../utils/renderFinalImage');
-              const fallbackBlob = await scaleImageToBlob(baseSrc, 2607, 1158);
-              if (fallbackBlob) {
-                composedBlob = fallbackBlob;
+              const { scaleImageToBlob } = await import("../utils/renderFinalImage");
+              if (target) {
+                const fallbackBlob = await scaleImageToBlob(baseSrc, target.w, target.h);
+                if (fallbackBlob) composedBlob = fallbackBlob;
               }
             } catch (e) {
-              console.warn('InfoScreen: scale fallback failed', e);
+              console.warn("InfoScreen: scale fallback failed", e);
             }
 
             if (!composedBlob) {
@@ -339,7 +349,7 @@ const InfoScreen: React.FC = () => {
                   รู้หรือไม่!
                 </h2>
                 <p>
-                  ในญี่ปุ่นมี Community Bus
+                  ในญี่ปุ่น���ี Community Bus
                   รถเมล์ขนาดเล็กที่วิ่งเข้าซอยและพื้นที่ ที่รถใหญ่เข้าไม่ถึง
                   ค่าโดยสารถูกมาก บางแห่งนั่งได้ทั้งสาย เพียง 100 เยน
                   ทำให้ผู้สูงอายุและเด็กเข้าถึงบริการสำคัญ เ���่น
@@ -354,7 +364,7 @@ const InfoScreen: React.FC = () => {
                 <p>
                   ฟิลิปปินส์ – Jeepney Modernization รู้หรือไม่! ฟิลิปปินส์พัฒนา
                   Jeepney แบบดั้งเดิมให้กลายเป็นมินิบัสขนาด 20–25
-                  ที่นั่งที่ปลอดภยและลดมลพิษกว่าเดิม
+                  ที่นั่งที��ปลอดภยและลดมลพิษกว่าเดิม
                   การเปลี่ยนโฉมนี้ยังคงค่าโดยสารถูก เหมาะกับคนเมือง
                   และช่วยลดปัญหาสิ่งแวดล้อมไปพร้อมกัน
                 </p>
@@ -369,7 +379,7 @@ const InfoScreen: React.FC = () => {
                   รถตู้โดยสาร 14–30 ที่นั่งที่วิ่งยืดหยุ่นตามผู้โดยสาร
                   แม้จะวุ่นวาย
                   แต่ก็เป็นทางเลือกการเดินทางราคาถูกที่เข้าถึงทุกพื้นที่
-                  ทำให้คนทุกระดับรายได้มีโอกาสเดิทางสะดวก
+                  ทำให้คนทุกระดับรายได้มีโอก��สเดิทางสะดวก
                 </p>
               </div>
             ) : (
