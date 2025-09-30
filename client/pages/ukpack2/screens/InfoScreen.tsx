@@ -172,7 +172,7 @@ const InfoScreen: React.FC = () => {
             }
           }
 
-          const res = await saveMinigameResult(composedBlob as any, colorHex || null, userId);
+          const res = await saveMydreambusImage(composedBlob as any, colorHex || null, userId);
           const url = (res as any).url || null;
           try { sessionStorage.setItem(key, JSON.stringify({ id: (res as any).docId || null, url })); } catch (_) {}
         } catch (e) {
@@ -350,7 +350,7 @@ const InfoScreen: React.FC = () => {
                 </h2>
                 <p>
                   ในญีุ่่นมี Community Bus
-                  รถเมล์ขนาดเล็กที่��ิ่งเข้าซอย���ละพื้นที่ ที่รถใหญ่เข้าไ่ถึง
+                  รถเมล์ขนาดเล็กที่วิ่งเข้าซอย���ละพื้นที่ ที่รถใหญ่เข้าไ่ถึง
                   ค่าโดยสารถูกมาก บางแห่งนั่งได้ทั้งส��ย เพียง 100 เยน
                   ทำให้ผู้สูงอายุและเด็กเข้าถึงบริการสำคัญ เช่น
                   โรงพยาบาลและศูนย์ชุมชนได้สะดวกขึ้น
