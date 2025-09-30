@@ -250,36 +250,45 @@ const Step2_Summary = ({
       }
 
       setCaptureStatus('locating content element');
-      const el = findContentElement();
+      let el = findContentElement();
       if (!el) {
-        // If running in a parent document where the real app is inside an iframe, try to locate the iframe and inspect its document
+        // retry a few times to allow iframe mount and portal to initialize
+        const maxAttempts = 6;
+        for (let attempt = 1; attempt <= maxAttempts && !el; attempt++) {
+          setCaptureStatus(`waiting for content (attempt ${attempt})`);
+          await new Promise((r) => setTimeout(r, 200 * attempt));
+          try {
+            el = findContentElement() as HTMLElement | null;
+            if (el) break;
+          } catch (_) {
+            el = null;
+          }
+        }
+      }
+
+      if (!el) {
+        // fallback: try inspecting all iframes individually (best-effort)
         try {
-          const iframes = Array.from(
-            document.getElementsByTagName("iframe"),
-          ) as HTMLIFrameElement[];
+          const iframes = Array.from(document.getElementsByTagName("iframe")) as HTMLIFrameElement[];
           for (const f of iframes) {
             try {
-              const doc =
-                f.contentDocument ||
-                (f.contentWindow && f.contentWindow.document);
+              const doc = f.contentDocument || (f.contentWindow && f.contentWindow.document);
               if (!doc) continue;
-              const candidate =
-                doc.getElementById("mn2-step2-content") ||
-                doc.querySelector(".figma-style1-container") ||
-                doc.querySelector("main");
+              const candidate = doc.getElementById("mn2-step2-content") || doc.querySelector(".figma-style1-container") || doc.querySelector("main");
               if (candidate) {
-                setCaptureStatus('found content in iframe');
-                return candidate as HTMLElement;
+                el = candidate as HTMLElement;
+                setCaptureStatus('found content in iframe (fallback)');
+                break;
               }
             } catch (e) {
               // cross-origin or inaccessible iframe - skip
               continue;
             }
           }
-        } catch (e) {
-          // ignore
-        }
+        } catch (_) {}
+      }
 
+      if (!el) {
         console.warn("mn2-step2-content element not found");
         setCaptureError('content element not found');
         setCaptureStatus(null);
