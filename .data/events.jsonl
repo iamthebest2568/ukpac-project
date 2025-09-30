@@ -780,3 +780,10 @@
 {"sessionId":"session_","eventName":"sw.choice.selected","timestamp":"2025-09-30T05:48:42.674Z","choiceText":"เฉย ๆ","variantId":"0147b501","variantName":"ทดสอบ Key message"}
 {"sessionId":"session_","eventName":"sw.variant.start","timestamp":"2025-09-30T05:48:42.696Z","variantId":"0d274bf8","variantName":"ทำไมคุณถึงคิดแบบนั้น ?"}
 {"sessionId":"session_","eventName":"sw.choice.selected","timestamp":"2025-09-30T05:48:47.663Z","choiceText":"เก็บไปก็ไม่มีอะไรเกิดขึ้น","variantId":"0d274bf8","variantName":"ทำไมคุณถึงคิดแบบนั้น ?"}
+{"sessionId":"session_1759209193818_gkeqzrbug","eventName":"sw.story.start","timestamp":"2025-09-30T05:50:17.352Z","variantId":"a59ef133","variantName":"Intro"}
+{"sessionId":"session_1759209193818_gkeqzrbug","eventName":"sw.variant.start","timestamp":"2025-09-30T05:50:17.349Z","variantId":"a59ef133","variantName":"Intro"}
+{"sessionId":"session_1759209193818_gkeqzrbug","eventName":"sw.choice.selected","timestamp":"2025-09-30T05:50:20.484Z","choiceText":"PDPA","variantId":"a59ef133","variantName":"Intro"}
+{"sessionId":"session_1759209193818_gkeqzrbug","eventName":"sw.story.start","timestamp":"2025-09-30T05:50:21.278Z","variantId":"e61429e0","variantName":"PDPA"}
+{"sessionId":"session_1759209193818_gkeqzrbug","eventName":"sw.variant.start","timestamp":"2025-09-30T05:50:21.272Z","variantId":"e61429e0","variantName":"PDPA"}
+{"sessionId":"session_1759209193818_gkeqzrbug","eventName":"sw.choice.selected","timestamp":"2025-09-30T05:50:32.856Z","choiceText":"ยอมรับและเริ่มเล่นเกม","variantId":"e61429e0","variantName":"PDPA"}
+{"sessionId":"session_1759209193818_gkeqzrbug","eventName":"sw.variant.start","timestamp":"2025-09-30T05:50:33.643Z","variantId":"02fe3354","variantName":"Opening Scene"}
