@@ -223,7 +223,7 @@ const IconCam = () => (
 const AMENITIES_ICON_MAP: Record<string, JSX.Element> = {
   แอร์: <IconAir />,
   พัดลม: <IconFan />,
-  ที่นั่งพิเศษ: <IconSeat />,
+  ที���นั่งพิเศษ: <IconSeat />,
   "ที่จับ/ราวยืนที่ปลอดภัย": <IconWifi />,
   "ช่องชาร์จมือถือ/USB": <IconPlug />,
   "Wi‑Fi ฟรี": <IconTv />,
@@ -406,7 +406,7 @@ const PaymentScreen: React.FC = () => {
     สแกนจ่าย: SCAN_ICON,
     ตู้อัตโนมัติ: SCAN2_ICON,
     แตะบัตร: TOUCH_ICON,
-    "ตั๋วร��ยเดือน/รอบ": MONTHLY_ICON,
+    "ตั๋วรายเดือน/รอบ": MONTHLY_ICON,
     กระเป๋ารถเมล์: BUS_EMPLOY_ICON,
   };
 
@@ -684,7 +684,7 @@ const PaymentScreen: React.FC = () => {
                   >
                     <img
                       src={
-                        selected.includes("แตะบัตร")
+                        selected.includes("แตะ���ัตร")
                           ? TOUCH_ICON_ACTIVE
                           : TOUCH_ICON
                       }
