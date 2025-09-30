@@ -4,7 +4,7 @@ import CustomizationScreen from "../components/CustomizationScreen";
 import SummaryDetails from "../components/SummaryDetails";
 import SecondaryButton from "../components/SecondaryButton";
 import CtaButton from "../components/CtaButton";
-import MyFooter from "../mydreambus/components/MyFooter";
+import MyFooter from "../../mydreambus/components/MyFooter";
 import { HERO_IMAGE, CHASSIS_LABELS } from "../utils/heroImages";
 
 const InfoNext2Screen: React.FC = () => {
