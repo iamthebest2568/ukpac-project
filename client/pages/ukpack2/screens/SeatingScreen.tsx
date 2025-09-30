@@ -7,7 +7,7 @@ import ConfirmModal from "../components/ConfirmModal";
 import ErrorModal from "../components/ErrorModal";
 import { useBusDesign } from "../context/BusDesignContext";
 import VehiclePreview from "../components/VehiclePreview";
-import Uk2Footer from "../components/Uk2Footer";
+import MyFooter from "../mydreambus/components/MyFooter";
 import NumericPlaceholderInput from "../components/NumericPlaceholderInput";
 import styles from "./chassis.module.css";
 import { CHASSIS_LABELS } from "../utils/heroImages";
@@ -434,7 +434,7 @@ const SeatingScreen: React.FC = () => {
 
                   <div className="flex items-center justify-between">
                     <div className="text-[#003366] font-sarabun font-semibold text-[17.6px]">
-                      พื้นที่สำหรับรถเข็น/จักรยาน
+                      พื้น���ี่สำหรับรถเข็น/จักรยาน
                     </div>
                     <input
                       type="number"
