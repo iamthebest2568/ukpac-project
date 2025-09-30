@@ -106,20 +106,38 @@ const InfoScreen: React.FC = () => {
             try {
               const objUrl = URL.createObjectURL(composedBlob);
               try {
-                await new Promise<void>((resolve, reject) => {
+                await new Promise<void>(async (resolve) => {
                   const img = new Image();
-                  img.onload = () => {
+                  img.onload = async () => {
                     try {
                       console.debug('InfoScreen: composed blob image size', img.naturalWidth, img.naturalHeight);
+                      // If expected target dims provided for medium chassis, ensure blob matches; otherwise re-render
+                      const expectedW = 2607;
+                      const expectedH = 1158;
+                      if (chassisForExport === 'medium' && (img.naturalWidth !== expectedW || img.naturalHeight !== expectedH)) {
+                        try {
+                          console.debug('InfoScreen: re-rendering composed image at target dims', expectedW, expectedH);
+                          const { renderFinalImageBlob: rerenderFn } = await import('../utils/renderFinalImage');
+                          const reblob = await rerenderFn(baseSrc, maskSrc, colorHex, expectedW, expectedH);
+                          if (reblob) {
+                            try { URL.revokeObjectURL(objUrl); } catch (_) {}
+                            composedBlob = reblob;
+                            resolve();
+                            return;
+                          }
+                        } catch (e) {
+                          console.warn('InfoScreen: re-render failed', e);
+                        }
+                      }
                       resolve();
                     } catch (e) {
                       resolve();
                     } finally {
-                      URL.revokeObjectURL(objUrl);
+                      try { URL.revokeObjectURL(objUrl); } catch (_) {}
                     }
                   };
-                  img.onerror = (err) => {
-                    URL.revokeObjectURL(objUrl);
+                  img.onerror = () => {
+                    try { URL.revokeObjectURL(objUrl); } catch (_) {}
                     resolve();
                   };
                   img.src = objUrl;
@@ -311,7 +329,7 @@ const InfoScreen: React.FC = () => {
                   ในญี่ปุ่นมี Community Bus
                   รถเมล์ขนาดเล็กที่วิ่งเข้าซอยและพื้นที่ ที่รถใหญ่เข้าไม่ถึง
                   ค่าโดยสารถูกมาก บางแห่งนั่งได้ทั้งสาย เพียง 100 เยน
-                  ทำให้ผู้สูงอายุและเด็ก���ข้าถึงบริการสำคัญ เ���่น
+                  ทำให้ผู้สูงอายุและเด็กเข้าถึงบริการสำคัญ เ���่น
                   โรงพยาบาลและศูนย์ชุมชนได้สะดวกขึ้น
                 </p>
               </div>
@@ -323,7 +341,7 @@ const InfoScreen: React.FC = () => {
                 <p>
                   ฟิลิปปินส์ – Jeepney Modernization รู้หรือไม่! ฟิลิปปินส์พัฒนา
                   Jeepney แบบดั้งเดิมให้กลายเป็นมินิบัสขนาด 20–25
-                  ที่นั่งที่ปลอดภยและลดมลพิษกว่าเดิม
+                  ที่นั่งที่ปลอดภยและลดมลพิษกว่��เดิม
                   การเปลี่ยนโฉมนี้ยังคงค่าโดยสารถูก เหมาะกับคนเมือง
                   และช่วยลดปัญหาสิ่งแวดล้อมไปพร้อมกัน
                 </p>
@@ -348,7 +366,7 @@ const InfoScreen: React.FC = () => {
                 </h2>
                 <p>
                   ในญี่ปุ่นมี Community Bus
-                  ���ถเมล์ขนาดเล็กที่วิ่ง��ข้าซอยและพื้นที่ ที่รถใหญ่เข้าไม่ถึง
+                  รถเมล์ขนาดเล็กที่วิ่ง��ข้าซอยและพื้นที่ ที่รถใหญ่เข้าไม่ถึง
                   ค่าโดยสารถูกมาก บางแห่งนั่งได้ทั้งสาย เพียง 100 เยน
                   ทำให้ผู้สูงอายุ��ละเด็กเข้��ถึงบริการสำคัญ เช่น
                   โรงพยาบาลและศูนย์ชุมชนได้สะดวกขึ้น
