@@ -188,8 +188,10 @@ export default function UkStornaway() {
 
           const token = normalize(rawToken);
 
-          // Debugging to help identify mismatches in production logs
+          // Persist last captured token and payload to sessionStorage for debugging (works in prod)
           try {
+            sessionStorage.setItem("stornaway.lastChoice", token);
+            sessionStorage.setItem("stornaway.lastCaptured", JSON.stringify(captured));
             // Only log in dev to avoid noisy production logs
             if (process.env.NODE_ENV !== "production") {
               // eslint-disable-next-line no-console
@@ -222,7 +224,7 @@ export default function UkStornaway() {
             return;
           }
 
-          if (t.includes("เห็นด้วย")) {
+          if (t.includes("เ��็นด้วย")) {
             doNavigate("fakeNews", { choice: token });
             return;
           }
