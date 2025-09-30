@@ -288,11 +288,11 @@ const ChassisScreen: React.FC = () => {
         theme="light"
         fullWidth
         footerContent={
-          <Uk2Footer>
+          <MyFooter>
             <div className="w-full flex justify-center">
               <CtaButton text="ถัดไป" onClick={handleNext} />
             </div>
-          </Uk2Footer>
+          </MyFooter>
         }
       >
         <div className={styles.contentGrid}>
@@ -428,7 +428,7 @@ const ChassisScreen: React.FC = () => {
       <ConfirmModal
         isOpen={isExitModalOpen}
         title="ออกจากหน้าจอ"
-        message="คุณแน่ใจหรือไม่ว่า้องการออก? กาเปล���่ยนแปลงของคุณจะไม่ถูกบันทึก"
+        message="คุณแน่ใจหรือไม่ว่า้องการออก? กาเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
         onConfirm={confirmExit}
         onCancel={() => setExitModalOpen(false)}
         contentClassName={`${styles.containerPadding} ${styles.modalContent}`}
