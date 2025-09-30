@@ -47,58 +47,60 @@ const SplashScreen: React.FC = () => {
       </div>
 
       {/* Bottom: text + buttons (with decorative background) */}
-      <div
-        style={{
-          width: "100%",
-          paddingBottom: "calc(env(safe-area-inset-bottom, 16px) + 32px)",
-          paddingTop: 50,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: 12,
-          boxSizing: "border-box",
-        }}
-      >
+      <MyFooter>
         <div
           style={{
-            transform: "translateY(-45px)",
+            width: "100%",
+            paddingBottom: "calc(env(safe-area-inset-bottom, 16px) + 32px)",
+            paddingTop: 50,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
             gap: 12,
-            width: "100%",
+            boxSizing: "border-box",
           }}
         >
           <div
             style={{
-              textAlign: "center",
-              padding: "12px 20px",
-              fontSize: 22,
-              fontWeight: 700,
-            }}
-          >
-            <div>รถเมล์ในฝันที่คุณอยากขึ้นทุกวัน</div>
-            <div>จะมีหน้าตาอย่างไร?</div>
-          </div>
-          <div
-            style={{
-              width: "100%",
-              paddingLeft: 20,
-              paddingRight: 20,
+              transform: "translateY(-45px)",
               display: "flex",
-              justifyContent: "center",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: 12,
+              width: "100%",
             }}
           >
-            <CtaButton
-              text="เริ่มออกแบบ"
-              onClick={() => {
-                navigate("/mydreambus/pdpa");
+            <div
+              style={{
+                textAlign: "center",
+                padding: "12px 20px",
+                fontSize: 22,
+                fontWeight: 700,
               }}
-              style={{ width: "min(360px, 80%)", marginTop: 0 }}
-            />
+            >
+              <div>รถเมล์ในฝันที่คุณอยากขึ้นทุกวัน</div>
+              <div>จะมีหน้าตาอย่างไร?</div>
+            </div>
+            <div
+              style={{
+                width: "100%",
+                paddingLeft: 20,
+                paddingRight: 20,
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              <CtaButton
+                text="เริ่มออกแบบ"
+                onClick={() => {
+                  navigate("/mydreambus/pdpa");
+                }}
+                style={{ width: "min(360px, 80%)", marginTop: 0 }}
+              />
+            </div>
           </div>
         </div>
-      </div>
+      </MyFooter>
     </div>
   );
 };
