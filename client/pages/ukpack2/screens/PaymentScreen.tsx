@@ -3,7 +3,7 @@ import CustomizationScreen from "../components/CustomizationScreen";
 import SelectionCard from "../components/SelectionCard";
 import CtaButton from "../components/CtaButton";
 import VehiclePreview from "../components/VehiclePreview";
-import Uk2Footer from "../components/Uk2Footer";
+import MyFooter from "../mydreambus/components/MyFooter";
 import { useNavigate } from "react-router-dom";
 import StepTabs from "../components/StepTabs";
 import styles from "./chassis.module.css";
@@ -261,7 +261,7 @@ const BUS_EMPLOY_ICON_ACTIVE =
 const OPTIONS = [
   { key: "cash", label: "เงินสด", icon: <IconCash /> },
   { key: "scan", label: "สแกนจ่าย", icon: <IconScan /> },
-  { key: "tap", label: "แตะบัตร", icon: <IconTap /> },
+  { key: "tap", label: "แตะบัต��", icon: <IconTap /> },
   { key: "monthly", label: "ตั๋วรายเดือน/รอบ", icon: null },
   { key: "scan2", label: "ตู้อัตโนมัติ", icon: null },
   { key: "qr", label: "กระเป๋ารถเมล์", icon: <IconQr /> },
@@ -515,7 +515,7 @@ const PaymentScreen: React.FC = () => {
             ];
             // Normalize known corrupted label encodings (in case values were stored with encoding issues)
             const CORRECT_LABELS: Record<string, string> = {
-              ตู้อัตโนมัติ: "ตู้อัตโนมัติ",
+              ตู้อั��โนมัติ: "ตู้อัตโนมัติ",
               แตะบัตร: "แตะบัตร",
               กระเป๋ารถเมล์: "กระเป๋ารถเมล์",
               เงินสด: "เงินสด",
