@@ -101,13 +101,44 @@ const InfoScreen: React.FC = () => {
         } catch (_) {}
 
         try {
+          // Validate composed blob dimensions before upload. If blob exists, load into Image to confirm size.
+          if (composedBlob) {
+            try {
+              const objUrl = URL.createObjectURL(composedBlob);
+              try {
+                await new Promise<void>((resolve, reject) => {
+                  const img = new Image();
+                  img.onload = () => {
+                    try {
+                      console.debug('InfoScreen: composed blob image size', img.naturalWidth, img.naturalHeight);
+                      resolve();
+                    } catch (e) {
+                      resolve();
+                    } finally {
+                      URL.revokeObjectURL(objUrl);
+                    }
+                  };
+                  img.onerror = (err) => {
+                    URL.revokeObjectURL(objUrl);
+                    resolve();
+                  };
+                  img.src = objUrl;
+                });
+              } catch (e) {
+                try { URL.revokeObjectURL(objUrl); } catch (_) {}
+              }
+            } catch (e) {
+              console.warn('InfoScreen: failed to inspect composedBlob', e);
+            }
+          }
+
           const res = await saveMinigameResult(composedBlob as any, colorHex || null, userId);
           const url = (res as any).url || null;
           try { sessionStorage.setItem(key, JSON.stringify({ id: (res as any).docId || null, url })); } catch (_) {}
         } catch (e) {
           console.warn("InfoScreen: saveMinigameResult failed, attempting fallback", e);
           try {
-            const uploaded = await addDesignImageUrlToFirestore(baseSrc, "kpact-gamebus-imagedesign-events");
+            const uploaded = await addDesignImageUrlToFirestore(baseSrc, "kpact-gamebus-imagedesign-events", { width: 2607, height: 1158 });
             try { sessionStorage.setItem(key, JSON.stringify({ id: uploaded.id || null, url: baseSrc })); } catch (_) {}
           } catch (e2) {
             console.warn("InfoScreen: fallback addDesignImageUrlToFirestore failed", e2);
@@ -280,7 +311,7 @@ const InfoScreen: React.FC = () => {
                   ในญี่ปุ่นมี Community Bus
                   รถเมล์ขนาดเล็กที่วิ่งเข้าซอยและพื้นที่ ที่รถใหญ่เข้าไม่ถึง
                   ค่าโดยสารถูกมาก บางแห่งนั่งได้ทั้งสาย เพียง 100 เยน
-                  ทำให้ผู้สูงอายุและเด็กเข้าถึงบริการสำคัญ เ���่น
+                  ทำให้ผู้สูงอายุและเด็ก���ข้าถึงบริการสำคัญ เ���่น
                   โรงพยาบาลและศูนย์ชุมชนได้สะดวกขึ้น
                 </p>
               </div>
@@ -293,7 +324,7 @@ const InfoScreen: React.FC = () => {
                   ฟิลิปปินส์ – Jeepney Modernization รู้หรือไม่! ฟิลิปปินส์พัฒนา
                   Jeepney แบบดั้งเดิมให้กลายเป็นมินิบัสขนาด 20–25
                   ที่นั่งที่ปลอดภยและลดมลพิษกว่าเดิม
-                  การเปลี่ยนโฉมนี้ยังคงค่าโดยสารถ���ก เหมาะกับคนเมือง
+                  การเปลี่ยนโฉมนี้ยังคงค่าโดยสารถูก เหมาะกับคนเมือง
                   และช่วยลดปัญหาสิ่งแวดล้อมไปพร้อมกัน
                 </p>
               </div>
@@ -317,7 +348,7 @@ const InfoScreen: React.FC = () => {
                 </h2>
                 <p>
                   ในญี่ปุ่นมี Community Bus
-                  รถเมล์ขนาดเล็กที่วิ่ง��ข้าซอยและพื้นที่ ที่รถใหญ่เข้าไม่ถึง
+                  ���ถเมล์ขนาดเล็กที่วิ่ง��ข้าซอยและพื้นที่ ที่รถใหญ่เข้าไม่ถึง
                   ค่าโดยสารถูกมาก บางแห่งนั่งได้ทั้งสาย เพียง 100 เยน
                   ทำให้ผู้สูงอายุ��ละเด็กเข้��ถึงบริการสำคัญ เช่น
                   โรงพยาบาลและศูนย์ชุมชนได้สะดวกขึ้น
