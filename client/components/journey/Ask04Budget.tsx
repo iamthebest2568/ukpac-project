@@ -144,7 +144,7 @@ const Ask04Budget = ({
   // Persist displayed collage images to Firebase Storage and Firestore (once per session)
   useEffect(() => {
     // This effect uploads the images shown in the collage to Firebase Storage
-    // and records the storage URLs in Firestore collection 'beforecitychange-imageshow-events'.
+    // and records the storage URLs in Firestore collection 'beforecitychange-imgposter-events'.
     try {
       if (typeof window === "undefined") return;
       const displaySummary =
@@ -256,7 +256,7 @@ const Ask04Budget = ({
                 try {
                   const writeRes = await addDesignImageUrlToFirestore(
                     storageUrl,
-                    "beforecitychange-imageshow-events",
+                    "beforecitychange-imgposter-events",
                     { width: 1132, height: 1417 },
                   );
                   // fire-and-forget: no local tracking maintained
@@ -270,7 +270,7 @@ const Ask04Budget = ({
                 try {
                   const writeRes = await addDesignImageUrlToFirestore(
                     u,
-                    "beforecitychange-imageshow-events",
+                    "beforecitychange-imgposter-events",
                     { width: 1132, height: 1417 },
                   );
                   // no local tracking
@@ -292,7 +292,7 @@ const Ask04Budget = ({
                 );
                 const writeRes = await addDesignImageUrlToFirestore(
                   u,
-                  "beforecitychange-imageshow-events",
+                  "beforecitychange-imgposter-events",
                   { width: 1132, height: 1417 },
                 );
                 // no sessionStorage tracking — allow repeated uploads
