@@ -4,7 +4,7 @@ import CustomizationScreen from "../components/CustomizationScreen";
 import CtaButton from "../components/CtaButton";
 import SecondaryButton from "../components/SecondaryButton";
 import ShareModal from "../components/ShareModal";
-import MyFooter from "../mydreambus/components/MyFooter";
+import MyFooter from "../../mydreambus/components/MyFooter";
 
 const FeedbackSkipScreen: React.FC = () => {
   const navigate = useNavigate();
