@@ -53,6 +53,7 @@ const Step2_Summary = ({
   const [summaryCards, setSummaryCards] = useState<SummaryCard[]>([]);
   const [previewDataUrl, setPreviewDataUrl] = useState<string | null>(null);
   const [lastStorageUrl, setLastStorageUrl] = useState<string | null>(null);
+  const [captureError, setCaptureError] = useState<string | null>(null);
   const { navigateToPage } = useSession();
 
   // Cleared: do not reference external images or mappings. Keep only textual labels.
@@ -164,6 +165,10 @@ const Step2_Summary = ({
           try {
             await captureAndUpload();
           } catch (e) {
+            try {
+              const msg = e && (e as any).message ? (e as any).message : String(e);
+              setCaptureError(msg);
+            } catch (_) {}
             console.warn("captureAndUpload failed", e);
           }
         })();
@@ -1139,6 +1144,40 @@ const Step2_Summary = ({
           <p>No summary cards available</p>
         )}
       </main>
+
+      <div style={{ marginTop: 12, marginBottom: 12, textAlign: "center" }}>
+        {previewDataUrl ? (
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
+            <div style={{ fontSize: 14, fontWeight: 600 }}>Capture preview</div>
+            <img src={previewDataUrl} alt="summary preview" style={{ maxWidth: "320px", width: "100%", height: "auto", border: "1px solid #ddd", borderRadius: 8 }} />
+            {lastStorageUrl ? (
+              <a href={lastStorageUrl} target="_blank" rel="noreferrer" style={{ fontSize: 12, color: "#0A2A66" }}>{lastStorageUrl}</a>
+            ) : null}
+          </div>
+        ) : captureError ? (
+          <div style={{ color: "crimson", fontSize: 14 }}>{captureError}</div>
+        ) : (
+          <div style={{ fontSize: 13, color: "#666" }}>No preview available yet</div>
+        )}
+        <div style={{ marginTop: 8 }}>
+          <Uk1Button onClick={async () => {
+            try {
+              setCaptureError(null);
+              await initFirebase();
+              const url = await captureAndUpload();
+              console.log("manual capture result:", url);
+            } catch (e) {
+              try {
+                const msg = e && (e as any).message ? (e as any).message : String(e);
+                setCaptureError(msg);
+              } catch (_) {}
+              console.warn("manual capture failed", e);
+            }
+          }} style={{ height: 40, borderRadius: 28, padding: "0 16px" }}>
+            Capture again
+          </Uk1Button>
+        </div>
+      </div>
 
       <footer
         style={{
