@@ -109,60 +109,125 @@ const SubmitScreen: React.FC = () => {
             });
           }
 
-          async function composeImage(): Promise<Blob | null> {
-            try {
-              const baseSrc =
-                persistedFinal?.imageSrc ||
-                heroImg ||
-                persistedFinal?.color?.preview;
-              if (!baseSrc) return null;
-              const baseImg = await loadImage(baseSrc);
-              const w = baseImg.naturalWidth || baseImg.width || 800;
-              const h = baseImg.naturalHeight || baseImg.height || 400;
+          // First attempt: if medium chassis for mydreambus, prefer shared renderer with export dims
+          try {
+            const persistedFinalRaw = sessionStorage.getItem("design.finalImage");
+            const persistedFinal = persistedFinalRaw ? JSON.parse(persistedFinalRaw) : null;
+            const chassis = persistedFinal?.chassis || selectedChassis || "medium";
+            const baseSrc = persistedFinal?.imageSrc || heroImg || persistedFinal?.color?.preview;
+            const maskSrc = persistedFinal?.colorMaskSrc || null;
+            let colorHex = persistedFinal?.color?.colorHex || null;
+            if (!colorHex) {
+              try {
+                const raw = sessionStorage.getItem("design.color");
+                if (raw) colorHex = JSON.parse(raw)?.colorHex || null;
+              } catch {}
+            }
 
-              const canvas = document.createElement("canvas");
-              canvas.width = w;
-              canvas.height = h;
-              const ctx = canvas.getContext("2d");
-              if (!ctx) return null;
+            if (chassis === "medium") {
+              try {
+                const { renderFinalImageBlob } = await import("../utils/renderFinalImage");
+                const maybe = await renderFinalImageBlob(baseSrc, maskSrc, colorHex, 2607, 1158);
+                if (maybe) blob = maybe;
+              } catch (e) {
+                console.warn("SubmitScreen: renderFinalImageBlob failed", e);
+                blob = null;
+              }
+            }
+          } catch (e) {
+            console.warn('SubmitScreen: pre-render failed', e);
+          }
 
-              // draw base image
-              ctx.drawImage(baseImg, 0, 0, w, h);
+          // If not created above, fall back to client-side compose routine (existing behavior)
+          if (!blob) {
+            async function loadImage(url: string) {
+              return new Promise<HTMLImageElement>((resolve, reject) => {
+                const img = new Image();
+                img.crossOrigin = "anonymous";
+                img.onload = () => resolve(img);
+                img.onerror = (e) => reject(e);
+                try {
+                  let finalUrl = String(url || "");
+                  // If absolute remote URL, route through server proxy to avoid CORS issues
+                  if (/^https?:\/\//i.test(finalUrl)) {
+                    try {
+                      const u = new URL(finalUrl);
+                      const sameOrigin = window.location.hostname === u.hostname;
+                      if (!sameOrigin) {
+                        finalUrl = `/api/proxy-image?url=${encodeURIComponent(String(finalUrl))}`;
+                      }
+                    } catch (e) {}
+                  }
+                  img.src = finalUrl;
+                } catch (e) {
+                  reject(e);
+                }
+              });
+            }
 
-              const colorHex = persistedFinal?.color?.colorHex || null;
-              const maskSrc =
-                persistedFinal?.colorMaskSrc ||
-                persistedFinal?.colorMaskSrc ||
-                null;
+            async function composeImage(): Promise<Blob | null> {
+              try {
+                const baseSrc =
+                  persistedFinal?.imageSrc ||
+                  heroImg ||
+                  persistedFinal?.color?.preview;
+                if (!baseSrc) return null;
+                const baseImg = await loadImage(baseSrc);
+                const w = baseImg.naturalWidth || baseImg.width || 800;
+                const h = baseImg.naturalHeight || baseImg.height || 400;
 
-              if (colorHex) {
-                if (maskSrc) {
-                  try {
-                    // create overlay with color
-                    const overlayCanvas = document.createElement("canvas");
-                    overlayCanvas.width = w;
-                    overlayCanvas.height = h;
-                    const octx = overlayCanvas.getContext("2d");
-                    if (!octx) throw new Error("overlay ctx");
+                const canvas = document.createElement("canvas");
+                canvas.width = w;
+                canvas.height = h;
+                const ctx = canvas.getContext("2d");
+                if (!ctx) return null;
 
-                    // fill with color
-                    octx.fillStyle = colorHex;
-                    octx.fillRect(0, 0, w, h);
+                // draw base image
+                ctx.drawImage(baseImg, 0, 0, w, h);
 
-                    // load mask and keep only masked area on overlay
-                    const maskImg = await loadImage(maskSrc);
-                    // Use destination-in to keep overlay where mask has alpha
-                    octx.globalCompositeOperation = "destination-in";
-                    octx.drawImage(maskImg, 0, 0, w, h);
+                const colorHex = persistedFinal?.color?.colorHex || null;
+                const maskSrc =
+                  persistedFinal?.colorMaskSrc ||
+                  persistedFinal?.colorMaskSrc ||
+                  null;
 
-                    // draw overlay onto main canvas using multiply blend to match preview
-                    ctx.globalCompositeOperation = "multiply";
-                    ctx.drawImage(overlayCanvas, 0, 0, w, h);
+                if (colorHex) {
+                  if (maskSrc) {
+                    try {
+                      // create overlay with color
+                      const overlayCanvas = document.createElement("canvas");
+                      overlayCanvas.width = w;
+                      overlayCanvas.height = h;
+                      const octx = overlayCanvas.getContext("2d");
+                      if (!octx) throw new Error("overlay ctx");
 
-                    // reset composite op
-                    ctx.globalCompositeOperation = "source-over";
-                  } catch (e) {
-                    // fallback: apply full-image tint
+                      // fill with color
+                      octx.fillStyle = colorHex;
+                      octx.fillRect(0, 0, w, h);
+
+                      // load mask and keep only masked area on overlay
+                      const maskImg = await loadImage(maskSrc);
+                      // Use destination-in to keep overlay where mask has alpha
+                      octx.globalCompositeOperation = "destination-in";
+                      octx.drawImage(maskImg, 0, 0, w, h);
+
+                      // draw overlay onto main canvas using multiply blend to match preview
+                      ctx.globalCompositeOperation = "multiply";
+                      ctx.drawImage(overlayCanvas, 0, 0, w, h);
+
+                      // reset composite op
+                      ctx.globalCompositeOperation = "source-over";
+                    } catch (e) {
+                      // fallback: apply full-image tint
+                      ctx.globalCompositeOperation = "multiply";
+                      ctx.fillStyle = colorHex;
+                      ctx.globalAlpha = 0.75;
+                      ctx.fillRect(0, 0, w, h);
+                      ctx.globalAlpha = 1;
+                      ctx.globalCompositeOperation = "source-over";
+                    }
+                  } else {
+                    // No mask: apply full-image tint
                     ctx.globalCompositeOperation = "multiply";
                     ctx.fillStyle = colorHex;
                     ctx.globalAlpha = 0.75;
@@ -170,31 +235,23 @@ const SubmitScreen: React.FC = () => {
                     ctx.globalAlpha = 1;
                     ctx.globalCompositeOperation = "source-over";
                   }
-                } else {
-                  // No mask: apply full-image tint
-                  ctx.globalCompositeOperation = "multiply";
-                  ctx.fillStyle = colorHex;
-                  ctx.globalAlpha = 0.75;
-                  ctx.fillRect(0, 0, w, h);
-                  ctx.globalAlpha = 1;
-                  ctx.globalCompositeOperation = "source-over";
                 }
+
+                // export to blob
+                return await new Promise<Blob | null>((resolve) => {
+                  canvas.toBlob((b) => resolve(b), "image/png");
+                });
+              } catch (e) {
+                console.warn("composeImage failed", e);
+                return null;
               }
-
-              // export to blob
-              return await new Promise<Blob | null>((resolve) => {
-                canvas.toBlob((b) => resolve(b), "image/png");
-              });
-            } catch (e) {
-              console.warn("composeImage failed", e);
-              return null;
             }
-          }
 
-          try {
-            blob = await composeImage();
-          } catch (e) {
-            blob = null;
+            try {
+              blob = await composeImage();
+            } catch (e) {
+              blob = null;
+            }
           }
 
           // fallback: if composing failed, fetch base hero image as blob
