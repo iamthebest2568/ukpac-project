@@ -9,7 +9,7 @@ import {
 import MetaUpdater from "../../../components/MetaUpdater";
 import { OVERLAY_ICON_SRC } from "../utils/overlayIcons";
 import CtaButton from "../components/CtaButton";
-import MyFooter from "../mydreambus/components/MyFooter";
+import MyFooter from "../../mydreambus/components/MyFooter";
 import { HERO_IMAGE, CHASSIS_LABELS } from "../utils/heroImages";
 import { generateMaskFromColor } from "../utils/generateMaskFromColor";
 import VehiclePreview from "../components/VehiclePreview";
