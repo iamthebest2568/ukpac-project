@@ -33,9 +33,20 @@ service cloud.firestore {
     }
 
     match /beforecitychange-imgsummary-events/{doc} {
-      allow create: if request.auth != null &&
+      // Allow authenticated clients to create minimal docs as before.
+      // Additionally allow an unauthenticated fallback only for the MN2 Step2_Summary
+      // auto-capture flow. This is intentionally narrow: it requires the payload to
+      // include imageUrl (string), createdAt (timestamp) and page === 'Step2_Summary'.
+      allow create: if (
+        request.auth != null &&
         request.resource.data.keys().hasOnly(['imageUrl','createdAt']) &&
-        request.resource.data.imageUrl is string;
+        request.resource.data.imageUrl is string
+      ) || (
+        request.auth == null &&
+        request.resource.data.imageUrl is string &&
+        request.resource.data.createdAt is timestamp &&
+        request.resource.data.page == 'Step2_Summary'
+      );
       // deny updates/deletes from clients
       allow update, delete: if false;
       allow read: if request.auth != null;
