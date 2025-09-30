@@ -134,14 +134,13 @@ const InfoScreen: React.FC = () => {
                   img.onload = async () => {
                     try {
                       console.debug('InfoScreen: composed blob image size', img.naturalWidth, img.naturalHeight);
-                      // If expected target dims provided for medium chassis, ensure blob matches; otherwise re-render
-                      const expectedW = 2607;
-                      const expectedH = 1158;
-                      if (chassisForExport === 'medium' && (img.naturalWidth !== expectedW || img.naturalHeight !== expectedH)) {
+                      // If expected target dims provided for this chassis, ensure blob matches; otherwise re-render
+                      const expectedDims = EXPORT_DIMS && EXPORT_DIMS[chassisForExport] ? EXPORT_DIMS[chassisForExport] : undefined;
+                      if (expectedDims && (img.naturalWidth !== expectedDims.w || img.naturalHeight !== expectedDims.h)) {
                         try {
-                          console.debug('InfoScreen: re-rendering composed image at target dims', expectedW, expectedH);
+                          console.debug('InfoScreen: re-rendering composed image at target dims', expectedDims.w, expectedDims.h);
                           const { renderFinalImageBlob: rerenderFn } = await import('../utils/renderFinalImage');
-                          const reblob = await rerenderFn(baseSrc, maskSrc, colorHex, expectedW, expectedH);
+                          const reblob = await rerenderFn(baseSrc, maskSrc, colorHex, expectedDims.w, expectedDims.h);
                           if (reblob) {
                             try { URL.revokeObjectURL(objUrl); } catch (_) {}
                             composedBlob = reblob;
@@ -179,7 +178,8 @@ const InfoScreen: React.FC = () => {
         } catch (e) {
           console.warn("InfoScreen: saveMinigameResult failed, attempting fallback", e);
           try {
-            const uploaded = await addDesignImageUrlToFirestore(baseSrc, "kpact-gamebus-imagedesign-events", { width: 2607, height: 1158 });
+            const fallbackDims = EXPORT_DIMS && EXPORT_DIMS[chassisForExport] ? EXPORT_DIMS[chassisForExport] : undefined;
+            const uploaded = await addDesignImageUrlToFirestore(baseSrc, "kpact-gamebus-imagedesign-events", fallbackDims ? { width: fallbackDims.w, height: fallbackDims.h } : undefined);
             try { sessionStorage.setItem(key, JSON.stringify({ id: uploaded.id || null, url: baseSrc })); } catch (_) {}
           } catch (e2) {
             console.warn("InfoScreen: fallback addDesignImageUrlToFirestore failed", e2);
@@ -202,7 +202,7 @@ const InfoScreen: React.FC = () => {
           <Uk2Footer>
             <div className="w-full flex justify-center">
               <CtaButton
-                text="ไปต่อ"
+                text="ไปต่��"
                 onClick={() => navigate("/mydreambus/info-next")}
               />
             </div>
@@ -375,7 +375,7 @@ const InfoScreen: React.FC = () => {
                   รู้หรือไม่!
                 </h2>
                 <p>
-                  เคนยา – Matatu Minibus รู้หรือไม่! ในไนโรบีมี Matatu
+                  เคนยา – Matatu Minibus รู้ห��ือไม่! ในไนโรบีมี Matatu
                   รถตู้โดยสาร 14–30 ที่นั่งที่วิ่งยืดหยุ่นตามผู้โดยสาร
                   แม้จะวุ่นวาย
                   แต่ก็เป็นทางเลือกการเดินทางราคาถูกที่เข้าถึงทุกพื้นที่
@@ -390,7 +390,7 @@ const InfoScreen: React.FC = () => {
                 <p>
                   ในญี่ปุ่นมี Community Bus
                   รถเมล์ขนาดเล็กที่วิ่ง��ข้าซอยและพื้นที่ ที่รถใหญ่เข้าไม่ถึง
-                  ค่าโดยสารถูกมาก บางแห่งนั่งได้ทั้งสาย เพียง 100 เยน
+                  ค่าโดยสารถูกมาก บางแห่งนั่งได้ทั้งสาย เพียง 100 เ��น
                   ทำให้ผู้สูงอายุ��ละเด็กเข้��ถึงบริการสำคัญ เช่น
                   โรงพยาบาลและศูนย์ชุมชนได้สะดวกขึ้น
                 </p>
