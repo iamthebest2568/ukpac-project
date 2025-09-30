@@ -4,7 +4,7 @@ import ConfirmModal from "../components/ConfirmModal";
 import SelectionCard from "../components/SelectionCard";
 import CtaButton from "../components/CtaButton";
 import { HERO_IMAGE, CHASSIS_LABELS } from "../utils/heroImages";
-import MyFooter from "../mydreambus/components/MyFooter";
+import MyFooter from "../../mydreambus/components/MyFooter";
 
 const IconAir = () => (
   <img
@@ -162,7 +162,7 @@ const AMENITIES = [
   },
   {
     key: "cup",
-    label: "ระบบประกาศบอกป้��ย(เสียง/จอ)",
+    label: "ระบบประกาศบอกป้าย(เสียง/จอ)",
     icon: <IconCup />,
     iconActive: <IconCupAlt />,
   },
@@ -199,7 +199,7 @@ const AmenitiesScreen: React.FC = () => {
     แอร์: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F717ae5876456493a97f29b6d6684c104?format=webp&width=800",
     พัดลม:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F891faed3bf8a457fbcdd936181ed2b7a?format=webp&width=800",
-    ที่นั่งพิเศษ:
+    ที่นั่งพิเศ��:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F54f4c944e6ab4e84800e14b2a1105b94?format=webp&width=800",
     "ที่จับ/ราวยืนที่ปลอดภัย":
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fdfbb7f3adfa04596916b9ea1950acef1?format=webp&width=800",
