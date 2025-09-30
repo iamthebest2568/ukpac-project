@@ -199,14 +199,14 @@ const InfoScreen: React.FC = () => {
         theme="light"
         fullWidth
         footerContent={
-          <Uk2Footer>
+          <MyFooter>
             <div className="w-full flex justify-center">
               <CtaButton
                 text="ไปต่อ"
                 onClick={() => navigate("/mydreambus/info-next")}
               />
             </div>
-          </Uk2Footer>
+          </MyFooter>
         }
       >
         <div
@@ -362,7 +362,7 @@ const InfoScreen: React.FC = () => {
                   รู้หรือไม่!
                 </h2>
                 <p>
-                  ฟิลิปปินส��� – Jeepney Modernization รู้หรือไม่! ฟิลิปปินส์พัฒนา
+                  ฟิลิปปินส์ – Jeepney Modernization รู้หรือไม่! ฟิลิปปินส์พัฒนา
                   Jeepney แบบดั้งเดิมให้กลายเป็นมินิบัสขนาด 20–25
                   ที่นั่งที่ปลอดภัยและลดมลพิษกว่าเดิม
                   การเปลี่ยนโฉมนี้ยังคงค่าโดยสารถูก เหมาะกับคนเมือง
@@ -377,7 +377,7 @@ const InfoScreen: React.FC = () => {
                 <p>
                   เคนยา – Matatu Minibus รู้หรือไม่! ในไนโรบีมี Matatu
                   รถตู้โดยสาร 14–30 ที่นั่งที่วิ่งยืดหยุ่นตามผู้โดยสาร
-                  แม้จะวุ่���วาย
+                  แม้จะวุ่นวาย
                   แต่ก็เป็นทางเลือกการเดินทางราคาถูกที่เข้าถึงทุกพื้นที่
                   ทำให้คนทุกระดับรายได้มีโอกาสเดินทางสะดวก
                 </p>
@@ -403,7 +403,7 @@ const InfoScreen: React.FC = () => {
       <ConfirmModal
         isOpen={isExitModalOpen}
         title="ออกจากหน้าจอ"
-        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
+        message="คุณแน่ใจหรือไม่ว่าต้องการออก? การเปลี่ยนแปลงของคุณจะ���ม่ถูกบันทึก"
         onConfirm={() => navigate("/")}
         onCancel={() => setExitModalOpen(false)}
       />
