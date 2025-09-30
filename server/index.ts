@@ -730,11 +730,11 @@ export function createServer() {
 
       // Write Firestore doc referencing the URL
       const fsAdmin = admin.firestore();
-      // Choose collection by project: beforecitychange should go to beforecitychange-imageshow-events
+      // Choose collection by project (updated names)
       const colName =
         project === "beforecitychange"
-          ? "beforecitychange-imageshow-events"
-          : "kpact-gamebus-imagedesign-events";
+          ? "beforecitychange-imgposter-events"
+          : "mydreambus-imgcar-events";
       const col = fsAdmin.collection(colName);
       const docRef = await col.add({
         imageUrl: signedUrl,
@@ -1703,7 +1703,7 @@ export function createServer() {
         "ชื่อผู้รับรางวัล (prize_name)",
         "เบอร์โทรผู้รับรางวัล (prize_phone)",
         "��วลาการรับรางวัล (prize_timestamp)",
-        "แชร์กั��เพื่อน (shared_with_friends)",
+        "แชร์กั��เพ��่อน (shared_with_friends)",
         "เวลาแชร์ (shared_timestamp)",
       ];
 
