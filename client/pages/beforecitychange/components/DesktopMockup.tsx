@@ -215,7 +215,7 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
             if (selectedChassis === 'medium') {
               // shift overlay up by 5 pixels; convert to percentage relative to the vc height
               try {
-                const pxShift = 5; // pixels
+                const pxShift = 20; // pixels (5 + 15 requested)
                 const shiftPct = (pxShift / vcRect.height) * 100;
                 topPct = topPct - shiftPct;
               } catch (e) {
