@@ -4,7 +4,7 @@ import CustomizationScreen from "../components/CustomizationScreen";
 import SummaryDetails from "../components/SummaryDetails";
 import SecondaryButton from "../components/SecondaryButton";
 import CtaButton from "../components/CtaButton";
-import MyFooter from "../mydreambus/components/MyFooter";
+import MyFooter from "../../mydreambus/components/MyFooter";
 import { HERO_IMAGE, CHASSIS_LABELS } from "../utils/heroImages";
 import styles from "./chassis.module.css";
 
@@ -73,7 +73,7 @@ const SummaryScreen: React.FC = () => {
 
   return (
     <CustomizationScreen
-      title="รถเมล์คันนี้ที่คุณออกแบบใกล้เคียงกับรถเมล์ในฝันของคุณแล้วหรือไม่"
+      title="รถเมล์คันนี้ที่คุณออกแบบใกล้เคียงกับรถเมล์ในฝันของคุณแล��วหรือไม่"
       theme="light"
       fullWidth
       containerPaddingClass="px-4 py-2"
