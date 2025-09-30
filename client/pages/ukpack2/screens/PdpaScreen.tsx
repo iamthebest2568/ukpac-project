@@ -14,7 +14,7 @@ const PdpaScreen: React.FC = () => {
       fullWidth
       containerPaddingClass="px-4 py-4"
       footerContent={
-        <Uk2Footer className="pdpa-footer-adjust">
+        <MyFooter className="pdpa-footer-adjust">
           <div className="w-full max-w-sm p-4 md:p-6 flex flex-col items-stretch gap-3">
             <div className="w-full">
               <CtaButton
@@ -29,18 +29,18 @@ const PdpaScreen: React.FC = () => {
               />
             </div>
           </div>
-        </Uk2Footer>
+        </MyFooter>
       }
     >
       <div className="max-w-5xl mx-auto px-4 py-6">
         <div className="prose prose-sm text-[#000d59] text-center mx-auto">
           <p>
             เกมนี้จะเก็บข้อมูลพฤติกรรมการเล่นและ ที่อยู่ IP ของอุปกรณ์
-            เพื่อใช้ในการ วิเคราะห์ พัฒนา และสรุปผลความคิดเห็นในภาพรวมของผู้เล่น
+            เพื่อใช้ในการ วิเคราะห์ พัฒนา และสรุปผลความ��ิดเห็นในภาพรวมของผู้เล่น
           </p>
 
           <p>
-            ข้อม��ลที่เก็บจะถูกจัดเก็บอย่างปลอดภัย นำมาใช้เฉพาะภาพรวม
+            ข้อมูลที่เก็บจะถูกจัดเก็บอย่างปลอดภัย นำมาใช้เฉพาะภาพรวม
             และไม่สามารถระบุตัวตนได้ โดยข้อมูลจะถูกเก็บ ไม่เกิน 2 ปี
             หรือจนกว่าจะเสร็จสิ้นกระบวนการวิเคราะห์
           </p>
@@ -55,8 +55,8 @@ const PdpaScreen: React.FC = () => {
 
           <p>
             โดยการกด “เริ่มเกม”
-            ถือว่าท่านยินยอมให้มีการเก็บและประมวลผลข้อมูลดังกล่าว ตาม
-            พระราชบัญญัต���คุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562
+            ถือว่าท่านยินยอมให้มีการเก็บ��ละประมวลผลข้อมูลดังกล่าว ตาม
+            พระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562
           </p>
 
           <p>&nbsp;</p>
