@@ -163,22 +163,40 @@ export default function UkStornaway() {
 
         if (eventName === "sw.choice.selected") {
           // Allow in-app navigation for special choices/tokens
-          const rawToken = (
-            captured.choiceText ||
-            captured.variantName ||
-            ""
-          );
+          const rawToken = (captured.choiceText || captured.variantName || "");
 
-          // Normalize token: trim, replace NBSP, collapse whitespace, and use NFC
-          const token = rawToken
-            .replace(/\u00A0/g, " ")
-            .replace(/\s+/g, " ")
-            .trim()
-            .normalize && rawToken.normalize
-            ? rawToken.normalize("NFC").replace(/\u00A0/g, " ").replace(/\s+/g, " ").trim()
-            : rawToken.replace(/\u00A0/g, " ").replace(/\s+/g, " ").trim();
+          // Safe normalization
+          const normalize = (s: any) => {
+            try {
+              const str = String(s || "");
+              if (typeof str.normalize === "function") {
+                return str
+                  .normalize("NFC")
+                  .replace(/\u00A0/g, " ")
+                  .replace(/\s+/g, " ")
+                  .trim();
+              }
+              return str.replace(/\u00A0/g, " ").replace(/\s+/g, " ").trim();
+            } catch {
+              try {
+                return String(s || "").replace(/\u00A0/g, " ").replace(/\s+/g, " ").trim();
+              } catch {
+                return "";
+              }
+            }
+          };
 
-          // Helper to safely navigate once
+          const token = normalize(rawToken);
+
+          // Debugging to help identify mismatches in production logs
+          try {
+            // Only log in dev to avoid noisy production logs
+            if (process.env.NODE_ENV !== "production") {
+              // eslint-disable-next-line no-console
+              console.debug("[stornaway] choice captured:", { rawToken, token, captured });
+            }
+          } catch {}
+
           const doNavigate = (path: string, opts?: any, delay = 50) => {
             if (!navigatedRef.current) {
               navigatedRef.current = true;
@@ -186,30 +204,30 @@ export default function UkStornaway() {
             }
           };
 
-          // Match common variants (with/without spaces or punctuation)
-          const variants = (s: string) => [s, s.replace(/\s+/g, ""), s + "."];
+          const t = token.toLowerCase();
 
-          if (variants("อื่น ๆ").includes(token) || variants("อื่นๆ").includes(token)) {
+          // Match using keywords to be resilient to small text differences
+          if (t.includes("อื่น")) {
             doNavigate("ask02_2", { choice: token });
             return;
           }
 
-          if (variants("นโยบายไม่ครอบคลุม").includes(token)) {
+          if (t.includes("นโยบาย") && (t.includes("ไม่") || t.includes("ครอบ"))) {
             doNavigate("Flow_MiniGame_MN1", { choice: token });
             return;
           }
 
-          if (variants("เก็บไปก็ไม่มีอะไรดีขึ้น").includes(token)) {
+          if (t.includes("เก็บไป") || (t.includes("ไม่มี") && t.includes("ดีขึ้น"))) {
             doNavigate("Flow_MiniGame_MN3", { choice: token });
             return;
           }
 
-          if (variants("เห็นด้วย").includes(token)) {
+          if (t.includes("เห็นด้วย")) {
             doNavigate("fakeNews", { choice: token });
             return;
           }
 
-          if (variants("ไปต่อ").includes(token)) {
+          if (t.includes("ไปต่อ")) {
             doNavigate("/what-do-you-travel-by", { choice: token });
             return;
           }
