@@ -5,6 +5,7 @@ import SecondaryButton from "../components/SecondaryButton";
 import CtaButton from "../components/CtaButton";
 import ShareModal from "../components/ShareModal";
 import { clearDesignStorage } from "../utils/clearDesign";
+import MyFooter from "../mydreambus/components/MyFooter";
 
 const SkipEnd: React.FC = () => {
   const navigate = useNavigate();
