@@ -35,7 +35,7 @@ service cloud.firestore {
 
     // imagedesign events collection: allow authenticated clients to create minimal docs with imageUrl only
     // (Used for design uploads when you permit client uploads under strict validation.)
-    match /beforecitychange-imageshow-events/{docId} {
+    match /beforecitychange-imgposter-events/{docId} {
       allow create: if request.auth != null
         && request.resource.data.keys().hasOnly(['imageUrl','createdAt','chassis'])
         && request.resource.data.imageUrl is string;
@@ -43,7 +43,15 @@ service cloud.firestore {
       allow read: if request.auth != null && request.auth.token.email_verified == true;
     }
 
-    match /kpact-gamebus-imagedesign-events/{docId} {
+    match /beforecitychange-imgsummary-events/{docId} {
+      allow create: if request.auth != null
+        && request.resource.data.keys().hasOnly(['imageUrl','createdAt','chassis'])
+        && request.resource.data.imageUrl is string;
+      allow update, delete: if false;
+      allow read: if request.auth != null && request.auth.token.email_verified == true;
+    }
+
+    match /mydreambus-imgcar-events/{docId} {
       allow create: if request.auth != null
         && request.resource.data.keys().hasOnly(['imageUrl','createdAt','chassis'])
         && request.resource.data.imageUrl is string;
