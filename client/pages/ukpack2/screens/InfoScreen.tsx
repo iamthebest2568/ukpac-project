@@ -97,7 +97,7 @@ const InfoScreen: React.FC = () => {
 
             if (!composedBlob) {
               try {
-                const r = await addDesignImageUrlToFirestore(baseSrc, "kpact-gamebus-imagedesign-events");
+                const r = await addDesignImageUrlToFirestore(baseSrc, "mydreambus-imgcar-events");
                 try { sessionStorage.setItem(key, JSON.stringify({ id: r.id || null, url: baseSrc })); } catch (_) {}
               } catch (e) {
                 console.warn("InfoScreen: fallback write image url failed", e);
@@ -108,7 +108,7 @@ const InfoScreen: React.FC = () => {
         } catch (e) {
           console.warn("InfoScreen: renderFinalImageBlob failed", e);
           try {
-            const r = await addDesignImageUrlToFirestore(baseSrc, "kpact-gamebus-imagedesign-events");
+            const r = await addDesignImageUrlToFirestore(baseSrc, "mydreambus-imgcar-events");
             try { sessionStorage.setItem(key, JSON.stringify({ id: r.id || null, url: baseSrc })); } catch (_) {}
           } catch (ee) {
             console.warn("InfoScreen: fallback write image url failed", ee);
@@ -365,7 +365,7 @@ const InfoScreen: React.FC = () => {
                   ฟิลิปปินส์ – Jeepney Modernization รู้หรือไม่! ฟิลิปปินส์พัฒนา
                   Jeepney แบบดั้งเดิมให้กลายเป็นมินิบัสขนาด 20–25
                   ที่นั่งที่ปลอดภัยและลดมลพิษกว่าเดิม
-                  การเปลี่ยนโฉมนี้ยังคงค่าโดยสารถูก หมาะกับคนเมือง
+                  การเปลี่ยนโฉมนี้ยังคงค่าโดยสารถ���ก หมาะกับคนเมือง
                   และช่วยลดปัญหาสิ่งแวดล้อมไปพร้อมกัน
                 </p>
               </div>
