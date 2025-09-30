@@ -760,3 +760,23 @@
 {"sessionId":"session_","eventName":"sw.variant.start","timestamp":"2025-09-30T05:47:26.621Z","variantId":"02fe3354","variantName":"Opening Scene"}
 {"sessionId":"session_","eventName":"sw.choice.selected","timestamp":"2025-09-30T05:47:32.925Z","choiceText":"เริ่มเล่น","variantId":"02fe3354","variantName":"Opening Scene"}
 {"sessionId":"session_","eventName":"sw.variant.start","timestamp":"2025-09-30T05:47:33.676Z","variantId":"333faf2b","variantName":"เหตุผลหลักในการเดินทางเข้าเมือง"}
+{"sessionId":"session_","eventName":"sw.story.start","timestamp":"2025-09-30T05:47:43.913Z","variantId":"a59ef133","variantName":"Intro"}
+{"sessionId":"session_","eventName":"sw.variant.start","timestamp":"2025-09-30T05:47:43.912Z","variantId":"a59ef133","variantName":"Intro"}
+{"sessionId":"session_","eventName":"sw.choice.selected","timestamp":"2025-09-30T05:47:52.446Z","choiceText":"PDPA","variantId":"a59ef133","variantName":"Intro"}
+{"sessionId":"session_","eventName":"sw.story.start","timestamp":"2025-09-30T05:47:52.459Z","variantId":"e61429e0","variantName":"PDPA"}
+{"sessionId":"session_","eventName":"sw.variant.start","timestamp":"2025-09-30T05:47:52.458Z","variantId":"e61429e0","variantName":"PDPA"}
+{"sessionId":"session_","eventName":"sw.choice.selected","timestamp":"2025-09-30T05:47:56.340Z","choiceText":"ยอมรับและเริ่มเล่นเกม","variantId":"e61429e0","variantName":"PDPA"}
+{"sessionId":"session_","eventName":"sw.variant.start","timestamp":"2025-09-30T05:47:57.093Z","variantId":"02fe3354","variantName":"Opening Scene"}
+{"sessionId":"session_","eventName":"sw.variant.start","timestamp":"2025-09-30T05:48:03.713Z","variantId":"333faf2b","variantName":"เหตุผลหลักในการเดินทางเข้าเมือง"}
+{"sessionId":"session_","eventName":"sw.choice.selected","timestamp":"2025-09-30T05:48:03.700Z","choiceText":"เริ่มเล่น","variantId":"02fe3354","variantName":"Opening Scene"}
+{"sessionId":"session_","eventName":"sw.choice.selected","timestamp":"2025-09-30T05:48:07.307Z","choiceText":"อยู่อาศัย","variantId":"333faf2b","variantName":"เหตุผลหลักในการเดินทางเข้าเมือง"}
+{"sessionId":"session_","eventName":"sw.variant.start","timestamp":"2025-09-30T05:48:07.318Z","variantId":"4bec38a0","variantName":"คุณใช้รถแบบไหนเดินทางเข้าเมือง?"}
+{"sessionId":"session_","eventName":"sw.choice.selected","timestamp":"2025-09-30T05:48:10.814Z","choiceText":"รถยนต์ส่วนตัว","variantId":"4bec38a0","variantName":"คุณใช้รถแบบไหนเดินทางเข้าเมือง?"}
+{"sessionId":"session_","eventName":"sw.variant.start","timestamp":"2025-09-30T05:48:11.580Z","variantId":"e5c4a76f","variantName":"รถยนต์ส่วนตัว"}
+{"sessionId":"session_","eventName":"sw.variant.start","timestamp":"2025-09-30T05:48:21.186Z","variantId":"515701b7","variantName":"ไม่เชื่อว่าจะได้ผล"}
+{"sessionId":"session_","eventName":"sw.choice.selected","timestamp":"2025-09-30T05:48:21.173Z","choiceText":"ไม่เชื่อว่าจะได้ผล","variantId":"e5c4a76f","variantName":"รถยนต์ส่วนตัว"}
+{"sessionId":"session_","eventName":"sw.choice.selected","timestamp":"2025-09-30T05:48:25.204Z","choiceText":"ดูแล้ว","variantId":"515701b7","variantName":"ไม่เชื่อว่าจะได้ผล"}
+{"sessionId":"session_","eventName":"sw.variant.start","timestamp":"2025-09-30T05:48:25.954Z","variantId":"0147b501","variantName":"ทดสอบ Key message"}
+{"sessionId":"session_","eventName":"sw.choice.selected","timestamp":"2025-09-30T05:48:42.674Z","choiceText":"เฉย ๆ","variantId":"0147b501","variantName":"ทดสอบ Key message"}
+{"sessionId":"session_","eventName":"sw.variant.start","timestamp":"2025-09-30T05:48:42.696Z","variantId":"0d274bf8","variantName":"ทำไมคุณถึงคิดแบบนั้น ?"}
+{"sessionId":"session_","eventName":"sw.choice.selected","timestamp":"2025-09-30T05:48:47.663Z","choiceText":"เก็บไปก็ไม่มีอะไรเกิดขึ้น","variantId":"0d274bf8","variantName":"ทำไมคุณถึงคิดแบบนั้น ?"}
