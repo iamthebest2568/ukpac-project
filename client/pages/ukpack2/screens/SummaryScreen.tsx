@@ -78,7 +78,7 @@ const SummaryScreen: React.FC = () => {
       fullWidth
       containerPaddingClass="px-4 py-2"
       footerContent={
-        <Uk2Footer>
+        <MyFooter>
           <div className="w-full max-w-sm p-4 md:p-6 flex flex-col items-stretch gap-3">
             <div className="w-full">
               <SecondaryButton
@@ -95,7 +95,7 @@ const SummaryScreen: React.FC = () => {
               />
             </div>
           </div>
-        </Uk2Footer>
+        </MyFooter>
       }
     >
       <div className={`${styles.previewInner} mx-auto px-4 py-2`}>
