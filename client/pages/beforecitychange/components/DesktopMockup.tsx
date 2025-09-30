@@ -408,6 +408,22 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
     </div>
   );
 
+  // If mydreambus: render a simplified portal that mounts the page DOM exactly (mobile layout)
+  if (isMydreambus) {
+    const simple = (
+      <div className={`fixed inset-0 grid place-items-center w-screen h-screen`} style={{ zIndex: 2147483647, pointerEvents: "none", backgroundColor: "transparent" }}>
+        <div ref={frameRef} className="relative" style={{ width: `${BASE_W}px`, height: `${BASE_H}px`, transformOrigin: "center", maxWidth: "100vw", maxHeight: "100vh", transition: "none", visibility: "visible", pointerEvents: "auto" }} aria-label="desktop-mockup-mydreambus">
+          <div style={{ width: "100%", height: "100%", pointerEvents: "auto" }}>
+            <div className={`rounded-[30px] bg-white overflow-visible tablet-mock-env mydreambus-desktop-mock`} style={{ position: "relative", width: `${BASE_W}px`, height: `${BASE_H}px`, pointerEvents: "auto", overflow: "visible" }}>
+              <RouteTransition>{children}</RouteTransition>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+    return createPortal(simple, document.body);
+  }
+
   return createPortal(mockup, document.body);
 };
 
