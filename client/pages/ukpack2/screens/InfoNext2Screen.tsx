@@ -54,7 +54,7 @@ const InfoNext2Screen: React.FC = () => {
       title=""
       theme="light"
       footerContent={
-        <Uk2Footer>
+        <MyFooter>
           <div className="flex flex-col items-stretch gap-3 w-full max-w-sm p-4 md:p-6 mx-auto">
             <div className="w-full">
               <SecondaryButton
@@ -71,7 +71,7 @@ const InfoNext2Screen: React.FC = () => {
               />
             </div>
           </div>
-        </Uk2Footer>
+        </MyFooter>
       }
     >
       <div className="max-w-4xl mx-auto px-4 py-8">
