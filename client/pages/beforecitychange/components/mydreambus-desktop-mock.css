@@ -3,23 +3,23 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  /* match mobile percentage sizing (vehicle-canvas uses w-[60%] on mobile) */
-  width: 60% !important;
-  height: auto !important;
-  max-width: none !important;
+  /* widen to match mobile visuals when mockup is scaled */
+  width: 65% !important;
+  height: 120px !important; /* same height used by VehiclePreview */
+  max-width: 480px !important; /* match VehiclePreview md:max-w */
   min-height: 0 !important;
 }
 
 .mydreambus-desktop-mock .vehicle-canvas img {
   display: block;
   width: 100% !important;
-  height: auto !important;
+  height: 100% !important;
   object-fit: contain !important;
 }
 
 .mydreambus-desktop-mock .vehicle-preview {
-  /* constrain section width to mobile-like content width so layout matches mobile */
-  max-width: 360px !important;
+  /* allow full mobile-like width up to 480px */
+  max-width: 480px !important;
   width: 100% !important;
   margin-left: auto !important;
   margin-right: auto !important;
