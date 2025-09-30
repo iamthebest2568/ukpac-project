@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import CtaButton from "../components/CtaButton";
-import MyFooter from "../mydreambus/components/MyFooter";
+import MyFooter from "../../mydreambus/components/MyFooter";
 
 const HERO_SRC =
   "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F02ba14ac31e7499d8feb398adebc6580?format=webp&width=800";
