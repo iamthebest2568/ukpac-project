@@ -3,7 +3,7 @@ import CustomizationScreen from "../components/CustomizationScreen";
 import SelectionCard from "../components/SelectionCard";
 import CtaButton from "../components/CtaButton";
 import VehiclePreview from "../components/VehiclePreview";
-import MyFooter from "../mydreambus/components/MyFooter";
+import MyFooter from "../../mydreambus/components/MyFooter";
 import { useNavigate } from "react-router-dom";
 import StepTabs from "../components/StepTabs";
 import styles from "./chassis.module.css";
@@ -260,7 +260,7 @@ const BUS_EMPLOY_ICON_ACTIVE =
 
 const OPTIONS = [
   { key: "cash", label: "เงินสด", icon: <IconCash /> },
-  { key: "scan", label: "สแกนจ่��ย", icon: <IconScan /> },
+  { key: "scan", label: "สแกนจ่าย", icon: <IconScan /> },
   { key: "tap", label: "แตะบัตร", icon: <IconTap /> },
   { key: "monthly", label: "ตั๋วรายเดือน/รอบ", icon: null },
   { key: "scan2", label: "ตู้อัตโนมัติ", icon: null },
@@ -327,7 +327,7 @@ const PaymentScreen: React.FC = () => {
       BUS_EMPLOY_ICON_ACTIVE,
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fc672415acf294449bc41d44cd9434120?format=webp&width=800",
     ],
-    "ตั๋วรายเด��อน/รอบ": [
+    "ตั๋วรายเดือน/รอบ": [
       MONTHLY_ICON,
       MONTHLY_ICON_ACTIVE,
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fb7f2ac177a8848c18451c8d3f5109582?format=webp&width=800",
@@ -404,9 +404,9 @@ const PaymentScreen: React.FC = () => {
   const PAYMENT_BUTTON_SRC: Record<string, string> = {
     เงินสด: MONEY_ICON,
     สแกนจ่าย: SCAN_ICON,
-    ตู้อัตโ���มัติ: SCAN2_ICON,
+    ตู้อัตโนมัติ: SCAN2_ICON,
     แตะบัตร: TOUCH_ICON,
-    "ตั๋วรายเดือน/รอบ": MONTHLY_ICON,
+    "ตั๋วร��ยเดือน/รอบ": MONTHLY_ICON,
     กระเป๋ารถเมล์: BUS_EMPLOY_ICON,
   };
 
