@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import CustomizationScreen from "../components/CustomizationScreen";
 import CtaButton from "../components/CtaButton";
-import Uk2Footer from "../components/Uk2Footer";
+import MyFooter from "../mydreambus/components/MyFooter";
 
 const PdpaScreen: React.FC = () => {
   const navigate = useNavigate();
@@ -40,7 +40,7 @@ const PdpaScreen: React.FC = () => {
           </p>
 
           <p>
-            ข้อมูลที่เก็บจะถูกจัดเก็บอย่างปลอดภัย นำมาใช้เฉพาะภาพรวม
+            ข้อม��ลที่เก็บจะถูกจัดเก็บอย่างปลอดภัย นำมาใช้เฉพาะภาพรวม
             และไม่สามารถระบุตัวตนได้ โดยข้อมูลจะถูกเก็บ ไม่เกิน 2 ปี
             หรือจนกว่าจะเสร็จสิ้นกระบวนการวิเคราะห์
           </p>
@@ -56,7 +56,7 @@ const PdpaScreen: React.FC = () => {
           <p>
             โดยการกด “เริ่มเกม”
             ถือว่าท่านยินยอมให้มีการเก็บและประมวลผลข้อมูลดังกล่าว ตาม
-            พระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562
+            พระราชบัญญัต���คุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562
           </p>
 
           <p>&nbsp;</p>
