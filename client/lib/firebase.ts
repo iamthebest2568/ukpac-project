@@ -471,11 +471,18 @@ export async function addDesignImageUrlToFirestore(
   if (!clientFirestoreEnabled) {
     try {
       const col = preferredCollection || "beforecitychange-imageshow-events";
-      const resp = await fetch("/api/write-image-url", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ imageUrl, collection: col }),
-      });
+      const endpoint = (typeof window !== 'undefined' && window.location?.origin ? window.location.origin : '') + '/api/write-image-url';
+      let resp: Response | null = null;
+      try {
+        resp = await fetch(endpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ imageUrl, collection: col }),
+        });
+      } catch (err) {
+        console.warn('addDesignImageUrlToFirestore: server ingestion fetch failed, endpoint=', endpoint, err);
+        resp = null;
+      }
       if (resp && resp.ok) {
         try {
           const j = await resp.json();
@@ -547,11 +554,18 @@ export async function addDesignImageUrlToFirestore(
       // If client-side Firestore write fails (network/CORS/permission), try server-side ingestion endpoint
       try {
         const payload = { imageUrl, collection: colName };
-        const r = await fetch("/api/write-image-url", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        });
+        const endpoint = (typeof window !== 'undefined' && window.location?.origin ? window.location.origin : '') + '/api/write-image-url';
+        let r: Response | null = null;
+        try {
+          r = await fetch(endpoint, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+          });
+        } catch (err) {
+          console.warn('addDesignImageUrlToFirestore: server fallback fetch failed, endpoint=', endpoint, err);
+          r = null;
+        }
         if (r && r.ok) {
           try {
             const j = await r.json();
@@ -602,15 +616,22 @@ export async function saveMinigameSummaryImageUrl(imageUrl: string) {
   // If client Firestore disabled, send server-side ingestion request and return
   if (!clientFirestoreEnabled) {
     try {
-      const resp = await fetch("/api/write-image-url", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          imageUrl,
-          collection: "minigameSummaries",
-          page: "Step2_Summary",
-        }),
-      });
+      const endpoint = (typeof window !== 'undefined' && window.location?.origin ? window.location.origin : '') + '/api/write-image-url';
+      let resp: Response | null = null;
+      try {
+        resp = await fetch(endpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            imageUrl,
+            collection: "minigameSummaries",
+            page: "Step2_Summary",
+          }),
+        });
+      } catch (err) {
+        console.warn('saveMinigameSummaryImageUrl: server fallback fetch failed, endpoint=', endpoint, err);
+        resp = null;
+      }
       if (resp && resp.ok) {
         try {
           const j = await resp.json();
@@ -669,15 +690,22 @@ export async function saveMinigameSummaryImageUrl(imageUrl: string) {
   } catch (e) {
     // server fallback if write fails
     try {
-      const r = await fetch("/api/write-image-url", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          imageUrl,
-          collection: "minigameSummaries",
-          page: "Step2_Summary",
-        }),
-      });
+      const endpoint = (typeof window !== 'undefined' && window.location?.origin ? window.location.origin : '') + '/api/write-image-url';
+      let r: Response | null = null;
+      try {
+        r = await fetch(endpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            imageUrl,
+            collection: "minigameSummaries",
+            page: "Step2_Summary",
+          }),
+        });
+      } catch (err) {
+        console.warn('saveMinigameSummaryImageUrl: server fallback fetch failed (retry), endpoint=', endpoint, err);
+        r = null;
+      }
       if (r && r.ok) {
         try {
           const j = await r.json();
