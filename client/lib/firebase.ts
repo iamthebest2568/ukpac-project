@@ -137,7 +137,8 @@ export async function uploadFileToStorage(
     }
 
     const shouldVerify = options?.verify ?? true;
-    const maxRetries = typeof options?.maxRetries === "number" ? options!.maxRetries : 2;
+    const maxRetries =
+      typeof options?.maxRetries === "number" ? options!.maxRetries : 2;
 
     // Compute client-side hash and attach as custom metadata
     let clientHash: string | null = null;
@@ -192,7 +193,9 @@ export async function uploadFileToStorage(
       const url = await getDownloadURL(ref);
       return url;
     } catch (e) {
-      throw new Error("uploadFileToStorage: upload completed but unable to verify or fetch URL");
+      throw new Error(
+        "uploadFileToStorage: upload completed but unable to verify or fetch URL",
+      );
     }
   } catch (e) {
     console.warn("uploadFileToStorage failed", e);
@@ -471,16 +474,28 @@ export async function addDesignImageUrlToFirestore(
   if (!clientFirestoreEnabled) {
     try {
       const col = preferredCollection || "beforecitychange-imgposter-events";
-      const endpoint = (typeof window !== 'undefined' && window.location?.origin ? window.location.origin : '') + '/api/write-image-url';
+      const endpoint =
+        (typeof window !== "undefined" && window.location?.origin
+          ? window.location.origin
+          : "") + "/api/write-image-url";
       let resp: Response | null = null;
       try {
         resp = await fetch(endpoint, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ imageUrl, collection: col, page: 'addDesignImageUrl', createdAt: new Date().toISOString() }),
+          body: JSON.stringify({
+            imageUrl,
+            collection: col,
+            page: "addDesignImageUrl",
+            createdAt: new Date().toISOString(),
+          }),
         });
       } catch (err) {
-        console.warn('addDesignImageUrlToFirestore: server ingestion fetch failed, endpoint=', endpoint, err);
+        console.warn(
+          "addDesignImageUrlToFirestore: server ingestion fetch failed, endpoint=",
+          endpoint,
+          err,
+        );
         resp = null;
       }
       if (resp && resp.ok) {
@@ -519,9 +534,10 @@ export async function addDesignImageUrlToFirestore(
       let clientHash: string | null = null;
       try {
         // If imageUrl looks like Firebase Storage download URL, try to derive path and read metadata
-        const m = /https:\/\/firebasestorage.googleapis.com\/v0\/b\/[^/]+\/o\/([^?]+)(\?.*)?/.exec(
-          imageUrl,
-        );
+        const m =
+          /https:\/\/firebasestorage.googleapis.com\/v0\/b\/[^/]+\/o\/([^?]+)(\?.*)?/.exec(
+            imageUrl,
+          );
         if (m && m[1]) {
           const encodedPath = m[1];
           const decoded = decodeURIComponent(encodedPath);
@@ -553,8 +569,16 @@ export async function addDesignImageUrlToFirestore(
     } catch (e: any) {
       // If client-side Firestore write fails (network/CORS/permission), try server-side ingestion endpoint
       try {
-        const payload = { imageUrl, collection: colName, page: 'addDesignImageUrl', createdAt: new Date().toISOString() };
-        const endpoint = (typeof window !== 'undefined' && window.location?.origin ? window.location.origin : '') + '/api/write-image-url';
+        const payload = {
+          imageUrl,
+          collection: colName,
+          page: "addDesignImageUrl",
+          createdAt: new Date().toISOString(),
+        };
+        const endpoint =
+          (typeof window !== "undefined" && window.location?.origin
+            ? window.location.origin
+            : "") + "/api/write-image-url";
         let r: Response | null = null;
         try {
           r = await fetch(endpoint, {
@@ -563,7 +587,11 @@ export async function addDesignImageUrlToFirestore(
             body: JSON.stringify(payload),
           });
         } catch (err) {
-          console.warn('addDesignImageUrlToFirestore: server fallback fetch failed, endpoint=', endpoint, err);
+          console.warn(
+            "addDesignImageUrlToFirestore: server fallback fetch failed, endpoint=",
+            endpoint,
+            err,
+          );
           r = null;
         }
         if (r && r.ok) {
@@ -595,9 +623,9 @@ export async function addDesignImageUrlToFirestore(
   } else {
     // No explicit preferred collection: try known historical collections (ukpact then kpact)
     candidates.push(
-    "mydreambus-imgcar-events",
-    "beforecitychange-imgposter-events",
-  );
+      "mydreambus-imgcar-events",
+      "beforecitychange-imgposter-events",
+    );
   }
 
   for (const colName of candidates) {
@@ -616,7 +644,10 @@ export async function saveMinigameSummaryImageUrl(imageUrl: string) {
   // If client Firestore disabled, send server-side ingestion request and return
   if (!clientFirestoreEnabled) {
     try {
-      const endpoint = (typeof window !== 'undefined' && window.location?.origin ? window.location.origin : '') + '/api/write-image-url';
+      const endpoint =
+        (typeof window !== "undefined" && window.location?.origin
+          ? window.location.origin
+          : "") + "/api/write-image-url";
       let resp: Response | null = null;
       try {
         resp = await fetch(endpoint, {
@@ -630,7 +661,11 @@ export async function saveMinigameSummaryImageUrl(imageUrl: string) {
           }),
         });
       } catch (err) {
-        console.warn('saveMinigameSummaryImageUrl: server fallback fetch failed, endpoint=', endpoint, err);
+        console.warn(
+          "saveMinigameSummaryImageUrl: server fallback fetch failed, endpoint=",
+          endpoint,
+          err,
+        );
         resp = null;
       }
       if (resp && resp.ok) {
@@ -660,9 +695,10 @@ export async function saveMinigameSummaryImageUrl(imageUrl: string) {
     // Attempt to capture clientHash from storage metadata when possible
     let clientHash: string | null = null;
     try {
-      const m = /https:\/\/firebasestorage.googleapis.com\/v0\/b\/[^/]+\/o\/([^?]+)(\?.*)?/.exec(
-        imageUrl,
-      );
+      const m =
+        /https:\/\/firebasestorage.googleapis.com\/v0\/b\/[^/]+\/o\/([^?]+)(\?.*)?/.exec(
+          imageUrl,
+        );
       if (m && m[1]) {
         const encodedPath = m[1];
         const decoded = decodeURIComponent(encodedPath);
@@ -687,25 +723,35 @@ export async function saveMinigameSummaryImageUrl(imageUrl: string) {
       clientHash: clientHash || null,
       createdAt: serverTimestamp(),
     });
-    return { id: docRef.id, collection: "beforecitychange-imgsummary-events" } as const;
+    return {
+      id: docRef.id,
+      collection: "beforecitychange-imgsummary-events",
+    } as const;
   } catch (e) {
     // server fallback if write fails
     try {
-      const endpoint = (typeof window !== 'undefined' && window.location?.origin ? window.location.origin : '') + '/api/write-image-url';
+      const endpoint =
+        (typeof window !== "undefined" && window.location?.origin
+          ? window.location.origin
+          : "") + "/api/write-image-url";
       let r: Response | null = null;
       try {
         r = await fetch(endpoint, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              imageUrl,
-              collection: "beforecitychange-imgsummary-events",
-              page: "Step2_Summary",
-              createdAt: new Date().toISOString(),
-            }),
-          });
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            imageUrl,
+            collection: "beforecitychange-imgsummary-events",
+            page: "Step2_Summary",
+            createdAt: new Date().toISOString(),
+          }),
+        });
       } catch (err) {
-        console.warn('saveMinigameSummaryImageUrl: server fallback fetch failed (retry), endpoint=', endpoint, err);
+        console.warn(
+          "saveMinigameSummaryImageUrl: server fallback fetch failed (retry), endpoint=",
+          endpoint,
+          err,
+        );
         r = null;
       }
       if (r && r.ok) {

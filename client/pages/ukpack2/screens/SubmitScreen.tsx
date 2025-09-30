@@ -111,10 +111,17 @@ const SubmitScreen: React.FC = () => {
 
           // First attempt: prefer shared renderer with export dims when available for each chassis
           try {
-            const persistedFinalRaw = sessionStorage.getItem("design.finalImage");
-            const persistedFinal = persistedFinalRaw ? JSON.parse(persistedFinalRaw) : null;
-            const chassis = persistedFinal?.chassis || selectedChassis || "medium";
-            const baseSrc = persistedFinal?.imageSrc || heroImg || persistedFinal?.color?.preview;
+            const persistedFinalRaw =
+              sessionStorage.getItem("design.finalImage");
+            const persistedFinal = persistedFinalRaw
+              ? JSON.parse(persistedFinalRaw)
+              : null;
+            const chassis =
+              persistedFinal?.chassis || selectedChassis || "medium";
+            const baseSrc =
+              persistedFinal?.imageSrc ||
+              heroImg ||
+              persistedFinal?.color?.preview;
             const maskSrc = persistedFinal?.colorMaskSrc || null;
             let colorHex = persistedFinal?.color?.colorHex || null;
             if (!colorHex) {
@@ -124,7 +131,10 @@ const SubmitScreen: React.FC = () => {
               } catch {}
             }
 
-            const EXPORT_DIMS: Record<string, { w: number; h: number } | undefined> = {
+            const EXPORT_DIMS: Record<
+              string,
+              { w: number; h: number } | undefined
+            > = {
               small: { w: 1800, h: 919 },
               medium: { w: 2607, h: 1158 },
               large: { w: 1390, h: 707 },
@@ -134,8 +144,16 @@ const SubmitScreen: React.FC = () => {
             const target = EXPORT_DIMS[chassis];
             if (target) {
               try {
-                const { renderFinalImageBlob } = await import("../utils/renderFinalImage");
-                const maybe = await renderFinalImageBlob(baseSrc, maskSrc, colorHex, target.w, target.h);
+                const { renderFinalImageBlob } = await import(
+                  "../utils/renderFinalImage"
+                );
+                const maybe = await renderFinalImageBlob(
+                  baseSrc,
+                  maskSrc,
+                  colorHex,
+                  target.w,
+                  target.h,
+                );
                 if (maybe) blob = maybe;
               } catch (e) {
                 console.warn("SubmitScreen: renderFinalImageBlob failed", e);
@@ -143,7 +161,7 @@ const SubmitScreen: React.FC = () => {
               }
             }
           } catch (e) {
-            console.warn('SubmitScreen: pre-render failed', e);
+            console.warn("SubmitScreen: pre-render failed", e);
           }
 
           // If not created above, fall back to client-side compose routine (existing behavior)
@@ -160,7 +178,8 @@ const SubmitScreen: React.FC = () => {
                   if (/^https?:\/\//i.test(finalUrl)) {
                     try {
                       const u = new URL(finalUrl);
-                      const sameOrigin = window.location.hostname === u.hostname;
+                      const sameOrigin =
+                        window.location.hostname === u.hostname;
                       if (!sameOrigin) {
                         finalUrl = `/api/proxy-image?url=${encodeURIComponent(String(finalUrl))}`;
                       }

@@ -7,7 +7,10 @@ import { HERO_IMAGE, CHASSIS_LABELS } from "../utils/heroImages";
 import VehiclePreview from "../components/VehiclePreview";
 import MyFooter from "../../mydreambus/components/MyFooter";
 import styles from "./chassis.module.css";
-import { saveMydreambusImage, addDesignImageUrlToFirestore } from "../../../lib/firebase";
+import {
+  saveMydreambusImage,
+  addDesignImageUrlToFirestore,
+} from "../../../lib/firebase";
 
 const InfoScreen: React.FC = () => {
   const navigate = useNavigate();
@@ -50,25 +53,38 @@ const InfoScreen: React.FC = () => {
 
         const baseSrc = persistedFinal?.imageSrc || HERO_IMAGE[chassis];
         const maskSrc = persistedFinal?.colorMaskSrc || null;
-        const colorHex = persistedFinal?.color?.colorHex || (() => {
-          try { const raw = sessionStorage.getItem("design.color"); return raw ? (JSON.parse(raw)?.colorHex || null) : null; } catch { return null; }
-        })();
+        const colorHex =
+          persistedFinal?.color?.colorHex ||
+          (() => {
+            try {
+              const raw = sessionStorage.getItem("design.color");
+              return raw ? JSON.parse(raw)?.colorHex || null : null;
+            } catch {
+              return null;
+            }
+          })();
 
-        const loadImage = (src: string) => new Promise<HTMLImageElement>((resolve, reject) => {
-          const img = new Image();
-          img.crossOrigin = "anonymous";
-          img.onload = () => resolve(img);
-          img.onerror = (e) => reject(e);
-          img.src = src;
-        });
+        const loadImage = (src: string) =>
+          new Promise<HTMLImageElement>((resolve, reject) => {
+            const img = new Image();
+            img.crossOrigin = "anonymous";
+            img.onload = () => resolve(img);
+            img.onerror = (e) => reject(e);
+            img.src = src;
+          });
 
         // Use shared renderer to compose the final image (same logic as DesignScreen)
         let composedBlob: Blob | null = null;
         try {
-          const { renderFinalImageBlob } = await import("../utils/renderFinalImage");
+          const { renderFinalImageBlob } = await import(
+            "../utils/renderFinalImage"
+          );
 
           const chassisForExport = chassis || selected || "medium";
-          const EXPORT_DIMS: Record<string, { w: number; h: number } | undefined> = {
+          const EXPORT_DIMS: Record<
+            string,
+            { w: number; h: number } | undefined
+          > = {
             small: { w: 1800, h: 919 },
             medium: { w: 2607, h: 1158 },
             large: { w: 1390, h: 707 },
@@ -78,17 +94,33 @@ const InfoScreen: React.FC = () => {
           const target = EXPORT_DIMS[chassisForExport] || undefined;
 
           if (target) {
-            composedBlob = await renderFinalImageBlob(baseSrc, maskSrc, colorHex, target.w, target.h);
+            composedBlob = await renderFinalImageBlob(
+              baseSrc,
+              maskSrc,
+              colorHex,
+              target.w,
+              target.h,
+            );
           } else {
-            composedBlob = await renderFinalImageBlob(baseSrc, maskSrc, colorHex);
+            composedBlob = await renderFinalImageBlob(
+              baseSrc,
+              maskSrc,
+              colorHex,
+            );
           }
 
           if (!composedBlob) {
             // attempt to scale base image to requested export dims before falling back to URL write
             try {
-              const { scaleImageToBlob } = await import("../utils/renderFinalImage");
+              const { scaleImageToBlob } = await import(
+                "../utils/renderFinalImage"
+              );
               if (target) {
-                const fallbackBlob = await scaleImageToBlob(baseSrc, target.w, target.h);
+                const fallbackBlob = await scaleImageToBlob(
+                  baseSrc,
+                  target.w,
+                  target.h,
+                );
                 if (fallbackBlob) composedBlob = fallbackBlob;
               }
             } catch (e) {
@@ -97,8 +129,16 @@ const InfoScreen: React.FC = () => {
 
             if (!composedBlob) {
               try {
-                const r = await addDesignImageUrlToFirestore(baseSrc, "mydreambus-imgcar-events");
-                try { sessionStorage.setItem(key, JSON.stringify({ id: r.id || null, url: baseSrc })); } catch (_) {}
+                const r = await addDesignImageUrlToFirestore(
+                  baseSrc,
+                  "mydreambus-imgcar-events",
+                );
+                try {
+                  sessionStorage.setItem(
+                    key,
+                    JSON.stringify({ id: r.id || null, url: baseSrc }),
+                  );
+                } catch (_) {}
               } catch (e) {
                 console.warn("InfoScreen: fallback write image url failed", e);
               }
@@ -108,8 +148,16 @@ const InfoScreen: React.FC = () => {
         } catch (e) {
           console.warn("InfoScreen: renderFinalImageBlob failed", e);
           try {
-            const r = await addDesignImageUrlToFirestore(baseSrc, "mydreambus-imgcar-events");
-            try { sessionStorage.setItem(key, JSON.stringify({ id: r.id || null, url: baseSrc })); } catch (_) {}
+            const r = await addDesignImageUrlToFirestore(
+              baseSrc,
+              "mydreambus-imgcar-events",
+            );
+            try {
+              sessionStorage.setItem(
+                key,
+                JSON.stringify({ id: r.id || null, url: baseSrc }),
+              );
+            } catch (_) {}
           } catch (ee) {
             console.warn("InfoScreen: fallback write image url failed", ee);
           }
@@ -120,7 +168,8 @@ const InfoScreen: React.FC = () => {
         try {
           const { getAuth } = await import("firebase/auth");
           const auth = getAuth();
-          if (auth && (auth as any).currentUser) userId = (auth as any).currentUser.uid;
+          if (auth && (auth as any).currentUser)
+            userId = (auth as any).currentUser.uid;
         } catch (_) {}
 
         try {
@@ -133,56 +182,115 @@ const InfoScreen: React.FC = () => {
                   const img = new Image();
                   img.onload = async () => {
                     try {
-                      console.debug('InfoScreen: composed blob image size', img.naturalWidth, img.naturalHeight);
+                      console.debug(
+                        "InfoScreen: composed blob image size",
+                        img.naturalWidth,
+                        img.naturalHeight,
+                      );
                       // If expected target dims provided for this chassis, ensure blob matches; otherwise re-render
-                      const expectedDims = EXPORT_DIMS && EXPORT_DIMS[chassisForExport] ? EXPORT_DIMS[chassisForExport] : undefined;
-                      if (expectedDims && (img.naturalWidth !== expectedDims.w || img.naturalHeight !== expectedDims.h)) {
+                      const expectedDims =
+                        EXPORT_DIMS && EXPORT_DIMS[chassisForExport]
+                          ? EXPORT_DIMS[chassisForExport]
+                          : undefined;
+                      if (
+                        expectedDims &&
+                        (img.naturalWidth !== expectedDims.w ||
+                          img.naturalHeight !== expectedDims.h)
+                      ) {
                         try {
-                          console.debug('InfoScreen: re-rendering composed image at target dims', expectedDims.w, expectedDims.h);
-                          const { renderFinalImageBlob: rerenderFn } = await import('../utils/renderFinalImage');
-                          const reblob = await rerenderFn(baseSrc, maskSrc, colorHex, expectedDims.w, expectedDims.h);
+                          console.debug(
+                            "InfoScreen: re-rendering composed image at target dims",
+                            expectedDims.w,
+                            expectedDims.h,
+                          );
+                          const { renderFinalImageBlob: rerenderFn } =
+                            await import("../utils/renderFinalImage");
+                          const reblob = await rerenderFn(
+                            baseSrc,
+                            maskSrc,
+                            colorHex,
+                            expectedDims.w,
+                            expectedDims.h,
+                          );
                           if (reblob) {
-                            try { URL.revokeObjectURL(objUrl); } catch (_) {}
+                            try {
+                              URL.revokeObjectURL(objUrl);
+                            } catch (_) {}
                             composedBlob = reblob;
                             resolve();
                             return;
                           }
                         } catch (e) {
-                          console.warn('InfoScreen: re-render failed', e);
+                          console.warn("InfoScreen: re-render failed", e);
                         }
                       }
                       resolve();
                     } catch (e) {
                       resolve();
                     } finally {
-                      try { URL.revokeObjectURL(objUrl); } catch (_) {}
+                      try {
+                        URL.revokeObjectURL(objUrl);
+                      } catch (_) {}
                     }
                   };
                   img.onerror = () => {
-                    try { URL.revokeObjectURL(objUrl); } catch (_) {}
+                    try {
+                      URL.revokeObjectURL(objUrl);
+                    } catch (_) {}
                     resolve();
                   };
                   img.src = objUrl;
                 });
               } catch (e) {
-                try { URL.revokeObjectURL(objUrl); } catch (_) {}
+                try {
+                  URL.revokeObjectURL(objUrl);
+                } catch (_) {}
               }
             } catch (e) {
-              console.warn('InfoScreen: failed to inspect composedBlob', e);
+              console.warn("InfoScreen: failed to inspect composedBlob", e);
             }
           }
 
-          const res = await saveMydreambusImage(composedBlob as any, colorHex || null, userId);
+          const res = await saveMydreambusImage(
+            composedBlob as any,
+            colorHex || null,
+            userId,
+          );
           const url = (res as any).url || null;
-          try { sessionStorage.setItem(key, JSON.stringify({ id: (res as any).docId || null, url })); } catch (_) {}
-        } catch (e) {
-          console.warn("InfoScreen: saveMinigameResult failed, attempting fallback", e);
           try {
-            const fallbackDims = EXPORT_DIMS && EXPORT_DIMS[chassisForExport] ? EXPORT_DIMS[chassisForExport] : undefined;
-            const uploaded = await addDesignImageUrlToFirestore(baseSrc, "mydreambus-imgcar-events", fallbackDims ? { width: fallbackDims.w, height: fallbackDims.h } : undefined);
-            try { sessionStorage.setItem(key, JSON.stringify({ id: uploaded.id || null, url: baseSrc })); } catch (_) {}
+            sessionStorage.setItem(
+              key,
+              JSON.stringify({ id: (res as any).docId || null, url }),
+            );
+          } catch (_) {}
+        } catch (e) {
+          console.warn(
+            "InfoScreen: saveMinigameResult failed, attempting fallback",
+            e,
+          );
+          try {
+            const fallbackDims =
+              EXPORT_DIMS && EXPORT_DIMS[chassisForExport]
+                ? EXPORT_DIMS[chassisForExport]
+                : undefined;
+            const uploaded = await addDesignImageUrlToFirestore(
+              baseSrc,
+              "mydreambus-imgcar-events",
+              fallbackDims
+                ? { width: fallbackDims.w, height: fallbackDims.h }
+                : undefined,
+            );
+            try {
+              sessionStorage.setItem(
+                key,
+                JSON.stringify({ id: uploaded.id || null, url: baseSrc }),
+              );
+            } catch (_) {}
           } catch (e2) {
-            console.warn("InfoScreen: fallback addDesignImageUrlToFirestore failed", e2);
+            console.warn(
+              "InfoScreen: fallback addDesignImageUrlToFirestore failed",
+              e2,
+            );
           }
         }
       } catch (e) {
@@ -190,7 +298,9 @@ const InfoScreen: React.FC = () => {
       }
     }
     composeAndUpload();
-    return () => { cancelled = true; };
+    return () => {
+      cancelled = true;
+    };
   }, [persistedFinal, selected]);
 
   return (

@@ -167,7 +167,8 @@ const Step2_Summary = ({
             await captureAndUpload();
           } catch (e) {
             try {
-              const msg = e && (e as any).message ? (e as any).message : String(e);
+              const msg =
+                e && (e as any).message ? (e as any).message : String(e);
               setCaptureError(msg);
             } catch (_) {}
             console.warn("captureAndUpload failed", e);
@@ -216,14 +217,20 @@ const Step2_Summary = ({
       function findContentElement(): HTMLElement | null {
         // Prefer locating content inside same-origin iframes first (portal mounts often render there)
         try {
-          const iframes = Array.from(document.getElementsByTagName('iframe')) as HTMLIFrameElement[];
+          const iframes = Array.from(
+            document.getElementsByTagName("iframe"),
+          ) as HTMLIFrameElement[];
           for (const f of iframes) {
             try {
-              const doc = f.contentDocument || (f.contentWindow && f.contentWindow.document);
+              const doc =
+                f.contentDocument ||
+                (f.contentWindow && f.contentWindow.document);
               if (!doc) continue;
-              const byId = doc.getElementById('mn2-step2-content');
+              const byId = doc.getElementById("mn2-step2-content");
               if (byId) return byId as HTMLElement;
-              const inside = doc.querySelector('.figma-style1-container') || doc.querySelector('main');
+              const inside =
+                doc.querySelector(".figma-style1-container") ||
+                doc.querySelector("main");
               if (inside) return inside as HTMLElement;
             } catch (e) {
               // cross-origin or inaccessible iframe - skip
@@ -274,7 +281,7 @@ const Step2_Summary = ({
         return null;
       }
 
-      setCaptureStatus('locating content element');
+      setCaptureStatus("locating content element");
       let el = findContentElement();
       if (!el) {
         // retry a few times to allow iframe mount and portal to initialize
@@ -294,15 +301,22 @@ const Step2_Summary = ({
       if (!el) {
         // fallback: try inspecting all iframes individually (best-effort)
         try {
-          const iframes = Array.from(document.getElementsByTagName("iframe")) as HTMLIFrameElement[];
+          const iframes = Array.from(
+            document.getElementsByTagName("iframe"),
+          ) as HTMLIFrameElement[];
           for (const f of iframes) {
             try {
-              const doc = f.contentDocument || (f.contentWindow && f.contentWindow.document);
+              const doc =
+                f.contentDocument ||
+                (f.contentWindow && f.contentWindow.document);
               if (!doc) continue;
-              const candidate = doc.getElementById("mn2-step2-content") || doc.querySelector(".figma-style1-container") || doc.querySelector("main");
+              const candidate =
+                doc.getElementById("mn2-step2-content") ||
+                doc.querySelector(".figma-style1-container") ||
+                doc.querySelector("main");
               if (candidate) {
                 el = candidate as HTMLElement;
-                setCaptureStatus('found content in iframe (fallback)');
+                setCaptureStatus("found content in iframe (fallback)");
                 break;
               }
             } catch (e) {
@@ -315,11 +329,11 @@ const Step2_Summary = ({
 
       if (!el) {
         console.warn("mn2-step2-content element not found");
-        setCaptureError('content element not found');
+        setCaptureError("content element not found");
         setCaptureStatus(null);
         return;
       }
-      setCaptureStatus('content element located');
+      setCaptureStatus("content element located");
 
       // Temporarily hide footers/sticky controls in the live document to avoid overlays
       try {
@@ -441,7 +455,7 @@ const Step2_Summary = ({
         } catch (_) {}
       }
 
-      setCaptureStatus('waiting for images/fonts in clone');
+      setCaptureStatus("waiting for images/fonts in clone");
       // Wait for images/font faces to load inside the clone
       try {
         const imgs = Array.from(
@@ -461,16 +475,16 @@ const Step2_Summary = ({
           ),
         );
       } catch (e) {
-        console.warn('image/font wait failed', e);
+        console.warn("image/font wait failed", e);
       }
       try {
         if ((ownerDoc as any).fonts && (ownerDoc as any).fonts.ready)
           await (ownerDoc as any).fonts.ready;
       } catch (e) {
-        console.warn('fonts.ready failed', e);
+        console.warn("fonts.ready failed", e);
       }
 
-      setCaptureStatus('measuring content');
+      setCaptureStatus("measuring content");
       // Measure natural size
       let measuredW = Math.ceil(
         importedForMeasure.scrollWidth ||
@@ -950,7 +964,7 @@ const Step2_Summary = ({
 
       const serialized = new XMLSerializer().serializeToString(wrapper);
 
-      setCaptureStatus('serializing to svg and rasterizing');
+      setCaptureStatus("serializing to svg and rasterizing");
       const svg = `<?xml version="1.0" encoding="UTF-8"?>\n<svg xmlns='http://www.w3.org/2000/svg' width='${finalOutputW}' height='${finalOutputH}'>\n  <foreignObject width='100%' height='100%'>\n    ${serialized}\n  </foreignObject>\n</svg>`;
 
       const url = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
@@ -973,13 +987,16 @@ const Step2_Summary = ({
           img.onerror = (e) => rej(e);
         });
       } catch (e) {
-        console.warn('svg image rasterize failed', e);
-        setCaptureError('svg rasterize failed: ' + (e && (e as any).message ? (e as any).message : String(e)));
+        console.warn("svg image rasterize failed", e);
+        setCaptureError(
+          "svg rasterize failed: " +
+            (e && (e as any).message ? (e as any).message : String(e)),
+        );
         setCaptureStatus(null);
         throw e;
       }
 
-      setCaptureStatus('creating canvas');
+      setCaptureStatus("creating canvas");
       // Create canvas and apply DPR for crispness
       const canvas = ownerDoc.createElement
         ? (ownerDoc.createElement("canvas") as HTMLCanvasElement)
@@ -1037,7 +1054,7 @@ const Step2_Summary = ({
       const filename = `mn2-step2-summary_${ts}.jpg`;
       const storagePath = `minigame-summary-captures/${filename}`;
 
-      setCaptureStatus('uploading to storage');
+      setCaptureStatus("uploading to storage");
       const storageUrl = await uploadFileToStorage(blob, storagePath);
 
       // Save record to Firestore with required fields
@@ -1051,7 +1068,7 @@ const Step2_Summary = ({
         setLastStorageUrl(storageUrl);
       } catch (_) {}
 
-      setCaptureStatus('done');
+      setCaptureStatus("done");
       setTimeout(() => setCaptureStatus(null), 2000);
 
       return storageUrl;
@@ -1210,36 +1227,71 @@ const Step2_Summary = ({
       </main>
 
       {/* Debug UI: only show when explicitly enabled via ?debug=1 or localStorage 'mn2.captureDebug' === '1' */}
-      {typeof window !== 'undefined' && (new URLSearchParams(window.location.search).get('debug') === '1' || (typeof localStorage !== 'undefined' && localStorage.getItem('mn2.captureDebug') === '1')) ? (
+      {typeof window !== "undefined" &&
+      (new URLSearchParams(window.location.search).get("debug") === "1" ||
+        (typeof localStorage !== "undefined" &&
+          localStorage.getItem("mn2.captureDebug") === "1")) ? (
         <div style={{ marginTop: 12, marginBottom: 12, textAlign: "center" }}>
           {previewDataUrl ? (
-            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
-              <div style={{ fontSize: 14, fontWeight: 600 }}>Capture preview</div>
-              <img src={previewDataUrl} alt="summary preview" style={{ maxWidth: "320px", width: "100%", height: "auto", border: "1px solid #ddd", borderRadius: 8 }} />
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                gap: 8,
+              }}
+            >
+              <div style={{ fontSize: 14, fontWeight: 600 }}>
+                Capture preview
+              </div>
+              <img
+                src={previewDataUrl}
+                alt="summary preview"
+                style={{
+                  maxWidth: "320px",
+                  width: "100%",
+                  height: "auto",
+                  border: "1px solid #ddd",
+                  borderRadius: 8,
+                }}
+              />
               {lastStorageUrl ? (
-                <a href={lastStorageUrl} target="_blank" rel="noreferrer" style={{ fontSize: 12, color: "#0A2A66" }}>{lastStorageUrl}</a>
+                <a
+                  href={lastStorageUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{ fontSize: 12, color: "#0A2A66" }}
+                >
+                  {lastStorageUrl}
+                </a>
               ) : null}
             </div>
           ) : captureError ? (
             <div style={{ color: "crimson", fontSize: 14 }}>{captureError}</div>
           ) : (
-            <div style={{ fontSize: 13, color: "#666" }}>No preview available yet</div>
+            <div style={{ fontSize: 13, color: "#666" }}>
+              No preview available yet
+            </div>
           )}
           <div style={{ marginTop: 8 }}>
-            <Uk1Button onClick={async () => {
-              try {
-                setCaptureError(null);
-                await initFirebase();
-                const url = await captureAndUpload();
-                console.log("manual capture result:", url);
-              } catch (e) {
+            <Uk1Button
+              onClick={async () => {
                 try {
-                  const msg = e && (e as any).message ? (e as any).message : String(e);
-                  setCaptureError(msg);
-                } catch (_) {}
-                console.warn("manual capture failed", e);
-              }
-            }} style={{ height: 40, borderRadius: 28, padding: "0 16px" }}>
+                  setCaptureError(null);
+                  await initFirebase();
+                  const url = await captureAndUpload();
+                  console.log("manual capture result:", url);
+                } catch (e) {
+                  try {
+                    const msg =
+                      e && (e as any).message ? (e as any).message : String(e);
+                    setCaptureError(msg);
+                  } catch (_) {}
+                  console.warn("manual capture failed", e);
+                }
+              }}
+              style={{ height: 40, borderRadius: 28, padding: "0 16px" }}
+            >
               Capture again
             </Uk1Button>
           </div>

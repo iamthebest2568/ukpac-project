@@ -163,7 +163,7 @@ export default function UkStornaway() {
 
         if (eventName === "sw.choice.selected") {
           // Allow in-app navigation for special choices/tokens
-          const rawToken = (captured.choiceText || captured.variantName || "");
+          const rawToken = captured.choiceText || captured.variantName || "";
 
           // Safe normalization
           const normalize = (s: any) => {
@@ -176,10 +176,16 @@ export default function UkStornaway() {
                   .replace(/\s+/g, " ")
                   .trim();
               }
-              return str.replace(/\u00A0/g, " ").replace(/\s+/g, " ").trim();
+              return str
+                .replace(/\u00A0/g, " ")
+                .replace(/\s+/g, " ")
+                .trim();
             } catch {
               try {
-                return String(s || "").replace(/\u00A0/g, " ").replace(/\s+/g, " ").trim();
+                return String(s || "")
+                  .replace(/\u00A0/g, " ")
+                  .replace(/\s+/g, " ")
+                  .trim();
               } catch {
                 return "";
               }
@@ -191,18 +197,29 @@ export default function UkStornaway() {
           // Persist last captured token and payload to sessionStorage for debugging (works in prod)
           try {
             sessionStorage.setItem("stornaway.lastChoice", token);
-            sessionStorage.setItem("stornaway.lastCaptured", JSON.stringify(captured));
+            sessionStorage.setItem(
+              "stornaway.lastCaptured",
+              JSON.stringify(captured),
+            );
             // Only log in dev to avoid noisy production logs
             if (process.env.NODE_ENV !== "production") {
               // eslint-disable-next-line no-console
-              console.debug("[stornaway] choice captured:", { rawToken, token, captured });
+              console.debug("[stornaway] choice captured:", {
+                rawToken,
+                token,
+                captured,
+              });
             }
           } catch {}
 
           const doNavigate = (path: string, opts?: any, delay = 50) => {
             if (!navigatedRef.current) {
               navigatedRef.current = true;
-              setTimeout(() => navigateToPage(path, { from: "stornaway", ...(opts || {}) }), delay);
+              setTimeout(
+                () =>
+                  navigateToPage(path, { from: "stornaway", ...(opts || {}) }),
+                delay,
+              );
             }
           };
 
@@ -214,12 +231,18 @@ export default function UkStornaway() {
             return;
           }
 
-          if (t.includes("นโยบาย") && (t.includes("ไม่") || t.includes("ครอบ"))) {
+          if (
+            t.includes("นโยบาย") &&
+            (t.includes("ไม่") || t.includes("ครอบ"))
+          ) {
             doNavigate("Flow_MiniGame_MN1", { choice: token });
             return;
           }
 
-          if (t.includes("เก็บไป") || (t.includes("ไม่มี") && t.includes("ดีขึ้น"))) {
+          if (
+            t.includes("เก็บไป") ||
+            (t.includes("ไม่มี") && t.includes("ดีขึ้น"))
+          ) {
             doNavigate("Flow_MiniGame_MN3", { choice: token });
             return;
           }
@@ -237,7 +260,11 @@ export default function UkStornaway() {
           // Route tokens disabled per request
           // Otherwise, do not navigate away (stay inside the video)
           if (!preventExternalNavigation) {
-            doNavigate("ask01", { choice: captured.choiceText, variant: captured.variantName }, 150);
+            doNavigate(
+              "ask01",
+              { choice: captured.choiceText, variant: captured.variantName },
+              150,
+            );
           }
         }
       };

@@ -546,7 +546,10 @@ const DesignScreen: React.FC = () => {
 
           // Upload moved to InfoScreen: skip network upload here.
         } catch (e) {
-          console.warn("skipped upload in DesignScreen (moved to InfoScreen)", e);
+          console.warn(
+            "skipped upload in DesignScreen (moved to InfoScreen)",
+            e,
+          );
         }
       }
     } catch (e) {

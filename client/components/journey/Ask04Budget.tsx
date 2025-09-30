@@ -2,7 +2,7 @@ import { logEvent } from "../../services/dataLogger.js";
 import FigmaStyle1Layout from "../layouts/FigmaStyle1Layout.ukpack1";
 import Uk1Button from "../shared/Uk1Button";
 import React, { useEffect, useState } from "react";
-import MN3_MANIFEST from '../../data/mn3-manifest';
+import MN3_MANIFEST from "../../data/mn3-manifest";
 
 interface Ask04BudgetProps {
   sessionID: string | null;
@@ -77,22 +77,22 @@ const Ask04Budget = ({
   };
 
   const priorityImageMap: { [key: string]: string } = {
-    "ตั๋วร่วม":
+    ตั๋วร่วม:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F2f0106ff48a44f03b71429502944e9f2?format=webp&width=720",
-    "เพิ่มที่จอดรถ":
+    เพิ่มที่จอดรถ:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F79ac3a2ac5e84e88b4015fd66aaebe04?format=webp&width=720",
-    "เพิ่มความถี่รถไฟฟ้า":
+    เพิ่มความถี่รถไฟฟ้า:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fd90beaca642d4cceba685d933aeb644f?format=webp&width=720",
-    "ปรับปรุงคุณภาพรถเมล์":
+    ปรับปรุงคุณภาพรถเมล์:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F602cfdd852a147ed852d50b2ed05772d?format=webp&width=720",
-    "เพิ่มความถี่รถเมล์":
+    เพิ่มความถี่รถเมล์:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F4e921e92e2c44db7a2ad24ee299e9a6d?format=webp&width=720",
     "เพิ่ม Feeder ในซอย":
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fbb907b894b5a44b3bde47b685f00caca?format=webp&width=720",
     // accept both variants for reduced fare
-    "ลดค่าโดยสารรถไฟฟ้า":
+    ลดค่าโดยสารรถไฟฟ้า:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F902c640032bd41f3b30e4ce96330d938?format=webp&width=720",
-    "ลดค่าโดยสารไฟฟ้า":
+    ลดค่าโดยสารไฟฟ้า:
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F902c640032bd41f3b30e4ce96330d938?format=webp&width=720",
   };
 
@@ -363,7 +363,12 @@ const Ask04Budget = ({
               // Try direct map, otherwise attempt a fuzzy/normalized match to handle stored keys with minor corruption
               const rawKey = s.priority || "";
               // robust manifest lookup
-              const normalize = (str: string) => (str || "").toString().normalize('NFKC').replace(/\s+/g, '').toLowerCase();
+              const normalize = (str: string) =>
+                (str || "")
+                  .toString()
+                  .normalize("NFKC")
+                  .replace(/\s+/g, "")
+                  .toLowerCase();
               const findManifestFor = (priority: string) => {
                 if (!MN3_MANIFEST) return undefined;
                 if (MN3_MANIFEST[priority]) return MN3_MANIFEST[priority];
@@ -373,14 +378,19 @@ const Ask04Budget = ({
                 }
                 for (const k of Object.keys(MN3_MANIFEST)) {
                   const nk = normalize(k);
-                  if (nk.includes(norm) || norm.includes(nk)) return MN3_MANIFEST[k];
+                  if (nk.includes(norm) || norm.includes(nk))
+                    return MN3_MANIFEST[k];
                 }
                 return undefined;
               };
 
               const manifestImgs = findManifestFor(rawKey) || [];
-              const rankIndex = i < 3 ? i : Math.min(2, manifestImgs.length - 1);
-              const rawImg = manifestImgs[rankIndex] || priorityImageMap[rawKey] || "https://cdn.builder.io/api/v1/image/assets/TEMP/placeholder.png?width=720";
+              const rankIndex =
+                i < 3 ? i : Math.min(2, manifestImgs.length - 1);
+              const rawImg =
+                manifestImgs[rankIndex] ||
+                priorityImageMap[rawKey] ||
+                "https://cdn.builder.io/api/v1/image/assets/TEMP/placeholder.png?width=720";
               const imgSrc = `/api/proxy-image?url=${encodeURIComponent(rawImg)}`;
 
               const offset = collageOffsets[i] || {

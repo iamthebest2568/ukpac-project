@@ -6,7 +6,7 @@
 
 .page-mydreambus {
   --my-btn-bg: var(--color-primary-action);
-  --my-btn-hover: rgba(0,0,0,0.08);
+  --my-btn-hover: rgba(0, 0, 0, 0.08);
   --my-text-color: inherit;
 }
 
