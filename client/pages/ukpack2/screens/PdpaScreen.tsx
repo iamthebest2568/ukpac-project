@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import CustomizationScreen from "../components/CustomizationScreen";
 import CtaButton from "../components/CtaButton";
-import MyFooter from "../mydreambus/components/MyFooter";
+import MyFooter from "../../mydreambus/components/MyFooter";
 
 const PdpaScreen: React.FC = () => {
   const navigate = useNavigate();
@@ -36,7 +36,7 @@ const PdpaScreen: React.FC = () => {
         <div className="prose prose-sm text-[#000d59] text-center mx-auto">
           <p>
             เกมนี้จะเก็บข้อมูลพฤติกรรมการเล่นและ ที่อยู่ IP ของอุปกรณ์
-            เพื่อใช้ในการ วิเคราะห์ พัฒนา และสรุปผลความ��ิดเห็นในภาพรวมของผู้เล่น
+            เพื่อใช้ในการ วิเคราะห์ พัฒนา และสรุปผลความคิดเห็นในภาพรวมของผู้เล่น
           </p>
 
           <p>
@@ -55,8 +55,8 @@ const PdpaScreen: React.FC = () => {
 
           <p>
             โดยการกด “เริ่มเกม”
-            ถือว่าท่านยินยอมให้มีการเก็บ��ละประมวลผลข้อมูลดังกล่าว ตาม
-            พระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562
+            ถือว่าท่านยินยอมให้มีการเก็บและประมวลผลข้อมูลดังกล่าว ตาม
+            พระราชบัญญัติคุ้ม��รองข้อมูลส่วนบุคคล พ.ศ. 2562
           </p>
 
           <p>&nbsp;</p>
