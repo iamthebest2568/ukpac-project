@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import SecondaryButton from "../components/SecondaryButton";
 import CtaButton from "../components/CtaButton";
 import CustomizationScreen from "../components/CustomizationScreen";
+import MyFooter from "../mydreambus/components/MyFooter";
 
 const FeedbackScreen: React.FC = () => {
   const navigate = useNavigate();
