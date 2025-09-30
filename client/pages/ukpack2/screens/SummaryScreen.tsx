@@ -73,7 +73,7 @@ const SummaryScreen: React.FC = () => {
 
   return (
     <CustomizationScreen
-      title="รถเมล์คันนี้ที่คุณออกแบบใกล้เคียงกับรถเมล์ในฝันของคุณแล��วหรือไม่"
+      title="รถเมล์คันนี้ที่คุณออกแบบใกล้เคียงกับรถเมล์ในฝันของคุณแล้วหรือไม่"
       theme="light"
       fullWidth
       containerPaddingClass="px-4 py-2"
