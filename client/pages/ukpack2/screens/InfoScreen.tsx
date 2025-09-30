@@ -7,7 +7,7 @@ import { HERO_IMAGE, CHASSIS_LABELS } from "../utils/heroImages";
 import VehiclePreview from "../components/VehiclePreview";
 import MyFooter from "../../mydreambus/components/MyFooter";
 import styles from "./chassis.module.css";
-import { saveMinigameResult, addDesignImageUrlToFirestore } from "../../../lib/firebase";
+import { saveMydreambusImage, addDesignImageUrlToFirestore } from "../../../lib/firebase";
 
 const InfoScreen: React.FC = () => {
   const navigate = useNavigate();
@@ -350,7 +350,7 @@ const InfoScreen: React.FC = () => {
                 </h2>
                 <p>
                   ในญีุ่่นมี Community Bus
-                  รถเมล์ขนาดเล็กที่วิ่งเข้าซอย���ละพื้นที่ ที่รถใหญ่เข้าไ่ถึง
+                  รถเมล์ขนาดเล็กที่��ิ่งเข้าซอย���ละพื้นที่ ที่รถใหญ่เข้าไ่ถึง
                   ค่าโดยสารถูกมาก บางแห่งนั่งได้ทั้งส��ย เพียง 100 เยน
                   ทำให้ผู้สูงอายุและเด็กเข้าถึงบริการสำคัญ เช่น
                   โรงพยาบาลและศูนย์ชุมชนได้สะดวกขึ้น
