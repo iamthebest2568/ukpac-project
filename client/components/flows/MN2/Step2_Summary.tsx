@@ -1209,39 +1209,42 @@ const Step2_Summary = ({
         )}
       </main>
 
-      <div style={{ marginTop: 12, marginBottom: 12, textAlign: "center" }}>
-        {previewDataUrl ? (
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
-            <div style={{ fontSize: 14, fontWeight: 600 }}>Capture preview</div>
-            <img src={previewDataUrl} alt="summary preview" style={{ maxWidth: "320px", width: "100%", height: "auto", border: "1px solid #ddd", borderRadius: 8 }} />
-            {lastStorageUrl ? (
-              <a href={lastStorageUrl} target="_blank" rel="noreferrer" style={{ fontSize: 12, color: "#0A2A66" }}>{lastStorageUrl}</a>
-            ) : null}
-          </div>
-        ) : captureError ? (
-          <div style={{ color: "crimson", fontSize: 14 }}>{captureError}</div>
-        ) : (
-          <div style={{ fontSize: 13, color: "#666" }}>No preview available yet</div>
-        )}
-        <div style={{ marginTop: 8 }}>
-          <Uk1Button onClick={async () => {
-            try {
-              setCaptureError(null);
-              await initFirebase();
-              const url = await captureAndUpload();
-              console.log("manual capture result:", url);
-            } catch (e) {
+      {/* Debug UI: only show when explicitly enabled via ?debug=1 or localStorage 'mn2.captureDebug' === '1' */}
+      {typeof window !== 'undefined' && (new URLSearchParams(window.location.search).get('debug') === '1' || (typeof localStorage !== 'undefined' && localStorage.getItem('mn2.captureDebug') === '1')) ? (
+        <div style={{ marginTop: 12, marginBottom: 12, textAlign: "center" }}>
+          {previewDataUrl ? (
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
+              <div style={{ fontSize: 14, fontWeight: 600 }}>Capture preview</div>
+              <img src={previewDataUrl} alt="summary preview" style={{ maxWidth: "320px", width: "100%", height: "auto", border: "1px solid #ddd", borderRadius: 8 }} />
+              {lastStorageUrl ? (
+                <a href={lastStorageUrl} target="_blank" rel="noreferrer" style={{ fontSize: 12, color: "#0A2A66" }}>{lastStorageUrl}</a>
+              ) : null}
+            </div>
+          ) : captureError ? (
+            <div style={{ color: "crimson", fontSize: 14 }}>{captureError}</div>
+          ) : (
+            <div style={{ fontSize: 13, color: "#666" }}>No preview available yet</div>
+          )}
+          <div style={{ marginTop: 8 }}>
+            <Uk1Button onClick={async () => {
               try {
-                const msg = e && (e as any).message ? (e as any).message : String(e);
-                setCaptureError(msg);
-              } catch (_) {}
-              console.warn("manual capture failed", e);
-            }
-          }} style={{ height: 40, borderRadius: 28, padding: "0 16px" }}>
-            Capture again
-          </Uk1Button>
+                setCaptureError(null);
+                await initFirebase();
+                const url = await captureAndUpload();
+                console.log("manual capture result:", url);
+              } catch (e) {
+                try {
+                  const msg = e && (e as any).message ? (e as any).message : String(e);
+                  setCaptureError(msg);
+                } catch (_) {}
+                console.warn("manual capture failed", e);
+              }
+            }} style={{ height: 40, borderRadius: 28, padding: "0 16px" }}>
+              Capture again
+            </Uk1Button>
+          </div>
         </div>
-      </div>
+      ) : null}
 
       <footer
         style={{
