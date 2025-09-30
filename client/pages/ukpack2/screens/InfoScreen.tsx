@@ -66,7 +66,13 @@ const InfoScreen: React.FC = () => {
         let composedBlob: Blob | null = null;
         try {
           const { renderFinalImageBlob } = await import("../utils/renderFinalImage");
-          composedBlob = await renderFinalImageBlob(baseSrc, maskSrc, colorHex);
+          // For mydreambus medium chassis, request specific export dimensions for Fire storage
+          const chassisForExport = chassis || selected || "medium";
+          if (chassisForExport === "medium") {
+            composedBlob = await renderFinalImageBlob(baseSrc, maskSrc, colorHex, 2607, 1158);
+          } else {
+            composedBlob = await renderFinalImageBlob(baseSrc, maskSrc, colorHex);
+          }
           if (!composedBlob) {
             try {
               const r = await addDesignImageUrlToFirestore(baseSrc, "kpact-gamebus-imagedesign-events");
@@ -287,7 +293,7 @@ const InfoScreen: React.FC = () => {
                   ฟิลิปปินส์ – Jeepney Modernization รู้หรือไม่! ฟิลิปปินส์พัฒนา
                   Jeepney แบบดั้งเดิมให้กลายเป็นมินิบัสขนาด 20–25
                   ที่นั่งที่ปลอดภยและลดมลพิษกว่าเดิม
-                  การเปลี่ยนโฉมนี้ยังคงค่าโดยสารถูก เหมาะกับคนเมือง
+                  การเปลี่ยนโฉมนี้ยังคงค่าโดยสารถ���ก เหมาะกับคนเมือง
                   และช่วยลดปัญหาสิ่งแวดล้อมไปพร้อมกัน
                 </p>
               </div>
