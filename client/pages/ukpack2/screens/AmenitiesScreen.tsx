@@ -162,7 +162,7 @@ const AMENITIES = [
   },
   {
     key: "cup",
-    label: "ระบบประกาศบอกป้าย(เสียง/จอ)",
+    label: "ระบบประกาศบอกป้��ย(เสียง/จอ)",
     icon: <IconCup />,
     iconActive: <IconCupAlt />,
   },
@@ -269,7 +269,7 @@ const AmenitiesScreen: React.FC = () => {
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F2d38a737cf2c4bf29f8764e48a93d404?format=webp&width=800",
     "Wi‑Fi ฟรี":
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F3704368ab32542b7a31e3eba186adc57?format=webp&width=800",
-    "ระบบประ���าศบอกป้าย (เสียง/จอ)":
+    "ระบบประกาศบอกป้าย (เสียง/จอ)":
       "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F0623bd2f3e75452cbf76a828b416d275?format=webp&width=800",
     // keys (fallback)
     air: "https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F43ef2946e5324cb981bc063db02fe5bc?format=webp&width=800",
@@ -283,15 +283,15 @@ const AmenitiesScreen: React.FC = () => {
 
   return (
     <CustomizationScreen
-      title="อ���กแบบรถเมล์ของคุณ"
+      title="ออกแบบรถเมล์ของคุณ"
       theme="light"
       fullWidth
       footerContent={
-        <Uk2Footer>
+        <MyFooter>
           <div className="w-full flex justify-center">
             <CtaButton text="ถัดไป" onClick={handleNext} />
           </div>
-        </Uk2Footer>
+        </MyFooter>
       }
     >
       <div className={styles.contentGrid}>
