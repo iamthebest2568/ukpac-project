@@ -14,7 +14,7 @@ const ThankYouScreen: React.FC = () => {
       theme="light"
       fullWidth
       footerContent={
-        <Uk2Footer>
+        <MyFooter>
           <div style={{ width: "220px" }}>
             <SecondaryButton
               className="w-full"
@@ -29,7 +29,7 @@ const ThankYouScreen: React.FC = () => {
               onClick={() => navigate("/mydreambus/feedback-skip")}
             />
           </div>
-        </Uk2Footer>
+        </MyFooter>
       }
     >
       <div
