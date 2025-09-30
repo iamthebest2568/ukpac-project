@@ -224,7 +224,7 @@ export default function UkStornaway() {
             return;
           }
 
-          if (t.includes("เ��็นด้วย")) {
+          if (t.includes("เห็นด้วย")) {
             doNavigate("fakeNews", { choice: token });
             return;
           }
