@@ -4,7 +4,7 @@ import CustomizationScreen from "../components/CustomizationScreen";
 import SecondaryButton from "../components/SecondaryButton";
 import CtaButton from "../components/CtaButton";
 import ShareModal from "../components/ShareModal";
-import Uk2Footer from "../components/Uk2Footer";
+import MyFooter from "../mydreambus/components/MyFooter";
 
 const ConfirmationScreen: React.FC = () => {
   const navigate = useNavigate();
