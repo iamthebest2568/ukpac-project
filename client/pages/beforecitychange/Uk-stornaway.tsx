@@ -163,84 +163,61 @@ export default function UkStornaway() {
 
         if (eventName === "sw.choice.selected") {
           // Allow in-app navigation for special choices/tokens
-          const token = (
+          const rawToken = (
             captured.choiceText ||
             captured.variantName ||
             ""
-          ).trim();
-          // 1) Explicit mappings for Thai labels
-          if (token === "อื่น ๆ") {
+          );
+
+          // Normalize token: trim, replace NBSP, collapse whitespace, and use NFC
+          const token = rawToken
+            .replace(/\u00A0/g, " ")
+            .replace(/\s+/g, " ")
+            .trim()
+            .normalize && rawToken.normalize
+            ? rawToken.normalize("NFC").replace(/\u00A0/g, " ").replace(/\s+/g, " ").trim()
+            : rawToken.replace(/\u00A0/g, " ").replace(/\s+/g, " ").trim();
+
+          // Helper to safely navigate once
+          const doNavigate = (path: string, opts?: any, delay = 50) => {
             if (!navigatedRef.current) {
               navigatedRef.current = true;
-              setTimeout(() => {
-                // Navigate to Ask02_2 (ask02-2) flow instead of Ask02
-                navigateToPage("ask02_2", { from: "stornaway", choice: token });
-              }, 50);
+              setTimeout(() => navigateToPage(path, { from: "stornaway", ...(opts || {}) }), delay);
             }
+          };
+
+          // Match common variants (with/without spaces or punctuation)
+          const variants = (s: string) => [s, s.replace(/\s+/g, ""), s + "."];
+
+          if (variants("อื่น ๆ").includes(token) || variants("อื่นๆ").includes(token)) {
+            doNavigate("ask02_2", { choice: token });
             return;
           }
-          if (token === "นโยบายไม่ครอบคลุม") {
-            if (!navigatedRef.current) {
-              navigatedRef.current = true;
-              setTimeout(() => {
-                navigateToPage("Flow_MiniGame_MN1", {
-                  from: "stornaway",
-                  choice: token,
-                });
-              }, 50);
-            }
+
+          if (variants("นโยบายไม่ครอบคลุม").includes(token)) {
+            doNavigate("Flow_MiniGame_MN1", { choice: token });
             return;
           }
-          if (token === "เก็บไปก็ไม่มีอะไรดีขึ้น") {
-            if (!navigatedRef.current) {
-              navigatedRef.current = true;
-              setTimeout(() => {
-                navigateToPage("Flow_MiniGame_MN3", {
-                  from: "stornaway",
-                  choice: token,
-                });
-              }, 50);
-            }
+
+          if (variants("เก็บไปก็ไม่มีอะไรดีขึ้น").includes(token)) {
+            doNavigate("Flow_MiniGame_MN3", { choice: token });
             return;
           }
-          if (token === "เห็นด้วย") {
-            if (!navigatedRef.current) {
-              navigatedRef.current = true;
-              setTimeout(() => {
-                navigateToPage("fakeNews", {
-                  from: "stornaway",
-                  choice: token,
-                });
-              }, 50);
-            }
+
+          if (variants("เห็นด้วย").includes(token)) {
+            doNavigate("fakeNews", { choice: token });
             return;
           }
-          if (token === "ไปต่อ" || token === "ไปต่อ.") {
-            if (!navigatedRef.current) {
-              navigatedRef.current = true;
-              setTimeout(() => {
-                // Navigate first to travel method page, then continue to opinion page from there
-                navigateToPage("/what-do-you-travel-by", {
-                  from: "stornaway",
-                  choice: token,
-                });
-              }, 50);
-            }
+
+          if (variants("ไปต่อ").includes(token)) {
+            doNavigate("/what-do-you-travel-by", { choice: token });
             return;
           }
+
           // Route tokens disabled per request
           // Otherwise, do not navigate away (stay inside the video)
           if (!preventExternalNavigation) {
-            if (!navigatedRef.current) {
-              navigatedRef.current = true;
-              setTimeout(() => {
-                navigateToPage("ask01", {
-                  from: "stornaway",
-                  choice: captured.choiceText,
-                  variant: captured.variantName,
-                });
-              }, 150);
-            }
+            doNavigate("ask01", { choice: captured.choiceText, variant: captured.variantName }, 150);
           }
         }
       };
