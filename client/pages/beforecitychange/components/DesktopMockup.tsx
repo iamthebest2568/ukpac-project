@@ -213,8 +213,15 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
             // If medium (standard) chassis, nudge the overlay slightly upward to match visual
             // This corrects the observed vertical drift for the 'รถเมล์มาตรฐาน 30–50 ที่นั่ง'
             if (selectedChassis === 'medium') {
-              // negative percentage to move overlay up relative to vc height
-              topPct = topPct - 6; // tuned value; adjust if necessary
+              // shift overlay up by 5 pixels; convert to percentage relative to the vc height
+              try {
+                const pxShift = 5; // pixels
+                const shiftPct = (pxShift / vcRect.height) * 100;
+                topPct = topPct - shiftPct;
+              } catch (e) {
+                // fallback to previous tuned percentage if any error
+                topPct = topPct - 6;
+              }
             }
 
             overlay.style.position = 'absolute';
