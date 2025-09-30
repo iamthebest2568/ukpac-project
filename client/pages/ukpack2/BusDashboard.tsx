@@ -91,7 +91,7 @@ export default function BusDashboard() {
         if (!mounted) return;
         setSessions(Array.isArray(data) ? data : []);
       } catch (e: any) {
-        setError(e?.message || "โหลดข้อมูลล้มเห��ว");
+        setError(e?.message || "โหลดข้อมูลล้มเหลว");
       } finally {
         if (mounted) setLoading(false);
       }
