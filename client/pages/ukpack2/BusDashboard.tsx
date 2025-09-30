@@ -13,7 +13,7 @@ const THAI_HEADERS = [
 
   // Bus details
   "ประเภทรถ (bus_type)",
-  "ที่นั่งทั้งหม��� (seat_total)",
+  "ที่นั่งทั้งหมด (seat_total)",
   "ที่นั่งพิเศษ (seat_special)",
   "ที่นั่งเด็กหรือผู้สูงอายุ (seat_child_elder)",
   "ที่นั่งสตรีมีครรภ์ (seat_pregnant)",
@@ -91,7 +91,7 @@ export default function BusDashboard() {
         if (!mounted) return;
         setSessions(Array.isArray(data) ? data : []);
       } catch (e: any) {
-        setError(e?.message || "โหลดข้อมูลล้มเหลว");
+        setError(e?.message || "โหลดข้อมูลล้มเห��ว");
       } finally {
         if (mounted) setLoading(false);
       }
