@@ -179,7 +179,7 @@ const InfoScreen: React.FC = () => {
           console.warn("InfoScreen: saveMinigameResult failed, attempting fallback", e);
           try {
             const fallbackDims = EXPORT_DIMS && EXPORT_DIMS[chassisForExport] ? EXPORT_DIMS[chassisForExport] : undefined;
-            const uploaded = await addDesignImageUrlToFirestore(baseSrc, "kpact-gamebus-imagedesign-events", fallbackDims ? { width: fallbackDims.w, height: fallbackDims.h } : undefined);
+            const uploaded = await addDesignImageUrlToFirestore(baseSrc, "mydreambus-imgcar-events", fallbackDims ? { width: fallbackDims.w, height: fallbackDims.h } : undefined);
             try { sessionStorage.setItem(key, JSON.stringify({ id: uploaded.id || null, url: baseSrc })); } catch (_) {}
           } catch (e2) {
             console.warn("InfoScreen: fallback addDesignImageUrlToFirestore failed", e2);
@@ -390,7 +390,7 @@ const InfoScreen: React.FC = () => {
                 <p>
                   ในญี่ปุ่นมี Community Bus
                   รถเมล์ขนาดเล็กที่วิ่งเข้าซอยและพื้นที่ ที่รถใหญ่เข้าไม่ถึง
-                  ค่าโดยสารถูกมาก บางแห่งนั่งได้ทั้งสาย เพียง 100 เยน
+                  ค่าโดยสารถูกมาก บางแห่ง��ั่งได้ทั้งสาย เพียง 100 เยน
                   ทำให้ผู้สูงอายุและเด็กเข้าถึงบริการสำคัญ เช่น
                   โรงพยาบาลและศูนย์ชุมชนได้สะดวกขึ้น
                 </p>
