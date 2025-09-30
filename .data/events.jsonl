@@ -793,3 +793,10 @@
 {"sessionId":"session_1759209193818_gkeqzrbug","eventName":"sw.variant.start","timestamp":"2025-09-30T05:50:53.579Z","variantId":"4bec38a0","variantName":"คุณใช้รถแบบไหนเดินทางเข้าเมือง?"}
 {"sessionId":"session_1759209193818_gkeqzrbug","eventName":"sw.choice.selected","timestamp":"2025-09-30T05:51:08.017Z","choiceText":"รถไฟฟ้า BTS / MRT","variantId":"4bec38a0","variantName":"คุณใช้รถแบบไหนเดินทางเข้าเมือง?"}
 {"sessionId":"session_1759209193818_gkeqzrbug","eventName":"sw.variant.start","timestamp":"2025-09-30T05:51:08.777Z","variantId":"0c1a4486","variantName":"รถไฟฟ้า BTS / MRT"}
+{"sessionId":"session_1759209193818_gkeqzrbug","eventName":"sw.choice.selected","timestamp":"2025-09-30T05:53:32.448Z","choiceText":"ไม่เชื่อว่าจะได้ผล","variantId":"0c1a4486","variantName":"รถไฟฟ้า BTS / MRT"}
+{"sessionId":"session_1759209193818_gkeqzrbug","eventName":"sw.variant.start","timestamp":"2025-09-30T05:53:32.489Z","variantId":"0cbd0522","variantName":"ไม่เชื่อว่าจะได้ผล"}
+{"sessionId":"session_1759209193818_gkeqzrbug","eventName":"sw.variant.start","timestamp":"2025-09-30T05:55:07.682Z","variantId":"8aa35bfd","variantName":"ทดสอบ Key message"}
+{"sessionId":"session_1759209193818_gkeqzrbug","eventName":"sw.choice.selected","timestamp":"2025-09-30T05:55:07.641Z","choiceText":"อยากรู้อยู่พอดี","variantId":"0cbd0522","variantName":"ไม่เชื่อว่าจะได้ผล"}
+{"sessionId":"session_1759209193818_gkeqzrbug","eventName":"sw.variant.start","timestamp":"2025-09-30T05:56:31.633Z","variantId":"0d274bf8","variantName":"ทำไมคุณถึงคิดแบบนั้น ?"}
+{"sessionId":"session_1759209193818_gkeqzrbug","eventName":"sw.choice.selected","timestamp":"2025-09-30T05:56:31.594Z","choiceText":"เฉย ๆ","variantId":"8aa35bfd","variantName":"ทดสอบ Key message"}
+{"sessionId":"session_1759209193818_gkeqzrbug","eventName":"sw.choice.selected","timestamp":"2025-09-30T05:56:44.140Z","choiceText":"เก็บไปก็ไม่มีอะไรเกิดขึ้น","variantId":"0d274bf8","variantName":"ทำไมคุณถึงคิดแบบนั้น ?"}
