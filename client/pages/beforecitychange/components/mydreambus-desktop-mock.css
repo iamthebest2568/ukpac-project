@@ -45,6 +45,18 @@
   pointer-events: none;
 }
 
+/* Allow vehicle area to overflow mock frame so images/masks aren't clipped */
+.mydreambus-desktop-mock {
+  overflow: visible !important;
+}
+.mydreambus-desktop-mock .vehicle-preview,
+.mydreambus-desktop-mock .vehicle-canvas {
+  overflow: visible !important;
+}
+.mydreambus-desktop-mock .vehicle-canvas {
+  z-index: 50 !important;
+}
+
 /* overlay icon ribbon: force mobile-sized bubbles */
 .mydreambus-desktop-mock .overlay-ribbon {
   left: 50% !important;
