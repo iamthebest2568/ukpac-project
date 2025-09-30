@@ -477,7 +477,7 @@ export async function addDesignImageUrlToFirestore(
         resp = await fetch(endpoint, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ imageUrl, collection: col }),
+          body: JSON.stringify({ imageUrl, collection: col, page: 'addDesignImageUrl', createdAt: new Date().toISOString() }),
         });
       } catch (err) {
         console.warn('addDesignImageUrlToFirestore: server ingestion fetch failed, endpoint=', endpoint, err);
@@ -553,7 +553,7 @@ export async function addDesignImageUrlToFirestore(
     } catch (e: any) {
       // If client-side Firestore write fails (network/CORS/permission), try server-side ingestion endpoint
       try {
-        const payload = { imageUrl, collection: colName };
+        const payload = { imageUrl, collection: colName, page: 'addDesignImageUrl', createdAt: new Date().toISOString() };
         const endpoint = (typeof window !== 'undefined' && window.location?.origin ? window.location.origin : '') + '/api/write-image-url';
         let r: Response | null = null;
         try {
@@ -626,6 +626,7 @@ export async function saveMinigameSummaryImageUrl(imageUrl: string) {
             imageUrl,
             collection: "beforecitychange-imgsummary-events",
             page: "Step2_Summary",
+            createdAt: new Date().toISOString(),
           }),
         });
       } catch (err) {
@@ -694,14 +695,15 @@ export async function saveMinigameSummaryImageUrl(imageUrl: string) {
       let r: Response | null = null;
       try {
         r = await fetch(endpoint, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            imageUrl,
-            collection: "beforecitychange-imgsummary-events",
-            page: "Step2_Summary",
-          }),
-        });
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              imageUrl,
+              collection: "beforecitychange-imgsummary-events",
+              page: "Step2_Summary",
+              createdAt: new Date().toISOString(),
+            }),
+          });
       } catch (err) {
         console.warn('saveMinigameSummaryImageUrl: server fallback fetch failed (retry), endpoint=', endpoint, err);
         r = null;
