@@ -54,6 +54,7 @@ const Step2_Summary = ({
   const [previewDataUrl, setPreviewDataUrl] = useState<string | null>(null);
   const [lastStorageUrl, setLastStorageUrl] = useState<string | null>(null);
   const [captureError, setCaptureError] = useState<string | null>(null);
+  const [captureStatus, setCaptureStatus] = useState<string | null>(null);
   const { navigateToPage } = useSession();
 
   // Cleared: do not reference external images or mappings. Keep only textual labels.
@@ -248,6 +249,7 @@ const Step2_Summary = ({
         return null;
       }
 
+      setCaptureStatus('locating content element');
       const el = findContentElement();
       if (!el) {
         // If running in a parent document where the real app is inside an iframe, try to locate the iframe and inspect its document
@@ -266,6 +268,7 @@ const Step2_Summary = ({
                 doc.querySelector(".figma-style1-container") ||
                 doc.querySelector("main");
               if (candidate) {
+                setCaptureStatus('found content in iframe');
                 return candidate as HTMLElement;
               }
             } catch (e) {
@@ -278,8 +281,11 @@ const Step2_Summary = ({
         }
 
         console.warn("mn2-step2-content element not found");
+        setCaptureError('content element not found');
+        setCaptureStatus(null);
         return;
       }
+      setCaptureStatus('content element located');
 
       // Temporarily hide footers/sticky controls in the live document to avoid overlays
       try {
@@ -401,6 +407,7 @@ const Step2_Summary = ({
         } catch (_) {}
       }
 
+      setCaptureStatus('waiting for images/fonts in clone');
       // Wait for images/font faces to load inside the clone
       try {
         const imgs = Array.from(
@@ -419,12 +426,17 @@ const Step2_Summary = ({
               }),
           ),
         );
-      } catch (_) {}
+      } catch (e) {
+        console.warn('image/font wait failed', e);
+      }
       try {
         if ((ownerDoc as any).fonts && (ownerDoc as any).fonts.ready)
           await (ownerDoc as any).fonts.ready;
-      } catch (_) {}
+      } catch (e) {
+        console.warn('fonts.ready failed', e);
+      }
 
+      setCaptureStatus('measuring content');
       // Measure natural size
       let measuredW = Math.ceil(
         importedForMeasure.scrollWidth ||
@@ -904,6 +916,7 @@ const Step2_Summary = ({
 
       const serialized = new XMLSerializer().serializeToString(wrapper);
 
+      setCaptureStatus('serializing to svg and rasterizing');
       const svg = `<?xml version="1.0" encoding="UTF-8"?>\n<svg xmlns='http://www.w3.org/2000/svg' width='${finalOutputW}' height='${finalOutputH}'>\n  <foreignObject width='100%' height='100%'>\n    ${serialized}\n  </foreignObject>\n</svg>`;
 
       const url = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
@@ -920,11 +933,19 @@ const Step2_Summary = ({
       img.crossOrigin = "anonymous";
       img.src = url;
 
-      await new Promise((res, rej) => {
-        img.onload = () => res(true);
-        img.onerror = (e) => rej(e);
-      });
+      try {
+        await new Promise((res, rej) => {
+          img.onload = () => res(true);
+          img.onerror = (e) => rej(e);
+        });
+      } catch (e) {
+        console.warn('svg image rasterize failed', e);
+        setCaptureError('svg rasterize failed: ' + (e && (e as any).message ? (e as any).message : String(e)));
+        setCaptureStatus(null);
+        throw e;
+      }
 
+      setCaptureStatus('creating canvas');
       // Create canvas and apply DPR for crispness
       const canvas = ownerDoc.createElement
         ? (ownerDoc.createElement("canvas") as HTMLCanvasElement)
@@ -982,6 +1003,7 @@ const Step2_Summary = ({
       const filename = `mn2-step2-summary_${ts}.jpg`;
       const storagePath = `minigame-summary-captures/${filename}`;
 
+      setCaptureStatus('uploading to storage');
       const storageUrl = await uploadFileToStorage(blob, storagePath);
 
       // Save record to Firestore with required fields
@@ -995,9 +1017,17 @@ const Step2_Summary = ({
         setLastStorageUrl(storageUrl);
       } catch (_) {}
 
+      setCaptureStatus('done');
+      setTimeout(() => setCaptureStatus(null), 2000);
+
       return storageUrl;
     } catch (e) {
       console.warn("captureAndUpload error", e);
+      try {
+        const msg = e && (e as any).message ? (e as any).message : String(e);
+        setCaptureError(msg);
+      } catch (_) {}
+      setCaptureStatus(null);
       throw e;
     } finally {
       // restore any hidden elements
