@@ -698,7 +698,7 @@ export async function saveMinigameSummaryImageUrl(imageUrl: string) {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             imageUrl,
-            collection: "minigameSummaries",
+            collection: "beforecitychange-imgsummary-events",
             page: "Step2_Summary",
           }),
         });
