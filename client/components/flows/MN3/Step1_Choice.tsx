@@ -128,7 +128,8 @@ const Step1_Choice = ({
                     mark({ ok: true, beacon: true, ts: Date.now() });
                   } else {
                     // fallback to fetch
-                    fetch("/api/write-image-url", {
+                    const endpoint = (typeof window !== 'undefined' && window.location?.origin ? window.location.origin : '') + '/api/write-image-url';
+                    fetch(endpoint, {
                       method: "POST",
                       headers: { "Content-Type": "application/json" },
                       body: JSON.stringify({
