@@ -7,7 +7,7 @@ import StepTabs from "../components/StepTabs";
 import ConfirmModal from "../components/ConfirmModal";
 import { clearDesignStorage } from "../utils/clearDesign";
 import VehiclePreview from "../components/VehiclePreview";
-import Uk2Footer from "../components/Uk2Footer";
+import MyFooter from "../mydreambus/components/MyFooter";
 import styles from "./chassis.module.css";
 import { useBusDesign } from "../context/BusDesignContext";
 import { HERO_IMAGE, CHASSIS_LABELS } from "../utils/heroImages";
@@ -428,7 +428,7 @@ const ChassisScreen: React.FC = () => {
       <ConfirmModal
         isOpen={isExitModalOpen}
         title="ออกจากหน้าจอ"
-        message="คุณแน่ใจหรือไม่ว่า้องการออก? กาเปลี่ยนแปลงของคุณจะไม่ถูกบันทึก"
+        message="คุณแน่ใจหรือไม่ว่า้องการออก? กาเปล���่ยนแปลงของคุณจะไม่ถูกบันทึก"
         onConfirm={confirmExit}
         onCancel={() => setExitModalOpen(false)}
         contentClassName={`${styles.containerPadding} ${styles.modalContent}`}
