@@ -9,7 +9,7 @@ import styles from "./chassis.module.css";
 import { useBusDesign } from "../context/BusDesignContext";
 import { OVERLAY_ICON_SRC } from "../utils/overlayIcons";
 import ErrorModal from "../components/ErrorModal";
-import Uk2Footer from "../components/Uk2Footer";
+import MyFooter from "../mydreambus/components/MyFooter";
 import { HERO_IMAGE, CHASSIS_LABELS } from "../utils/heroImages";
 
 // Amenity icons (small versions)
