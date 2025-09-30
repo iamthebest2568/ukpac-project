@@ -7,7 +7,7 @@ import StepTabs from "../components/StepTabs";
 import ConfirmModal from "../components/ConfirmModal";
 import { clearDesignStorage } from "../utils/clearDesign";
 import VehiclePreview from "../components/VehiclePreview";
-import MyFooter from "../mydreambus/components/MyFooter";
+import MyFooter from "../../mydreambus/components/MyFooter";
 import styles from "./chassis.module.css";
 import { useBusDesign } from "../context/BusDesignContext";
 import { HERO_IMAGE, CHASSIS_LABELS } from "../utils/heroImages";
