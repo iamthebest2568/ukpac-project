@@ -7,7 +7,7 @@ import ConfirmModal from "../components/ConfirmModal";
 import ErrorModal from "../components/ErrorModal";
 import { useBusDesign } from "../context/BusDesignContext";
 import VehiclePreview from "../components/VehiclePreview";
-import MyFooter from "../mydreambus/components/MyFooter";
+import MyFooter from "../../mydreambus/components/MyFooter";
 import NumericPlaceholderInput from "../components/NumericPlaceholderInput";
 import styles from "./chassis.module.css";
 import { CHASSIS_LABELS } from "../utils/heroImages";
@@ -165,7 +165,7 @@ const SeatingScreen: React.FC = () => {
     if (sumSubs > total) {
       setErrorTitle("ผลรวมของที่นั่งย่อยมากกว่าจำนวนที่นั่งทั้งหมด");
       setErrorMessage(
-        `ผลรวมขอ��ที่นั่งย่อยทั้งหมด (${sumSubs}) มากกว่าจำนวนที่นั่งทั้งหมดที่ระบุ (${total}) กรุณาตรวจสอบ`,
+        `ผลรวมของที่นั่งย่อยทั้งหมด (${sumSubs}) มากกว่าจำนวนที่นั่งทั้งหมดที่ระบุ (${total}) กรุณาตรวจสอบ`,
       );
       setErrorModalOpen(true);
       return false;
