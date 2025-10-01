@@ -62,7 +62,7 @@ const SplashScreen: React.FC = () => {
         >
           <div
             style={{
-              transform: "translateY(-45px)",
+              transform: "translateY(-60px)",
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
