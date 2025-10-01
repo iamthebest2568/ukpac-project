@@ -70,6 +70,9 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
 
   const isIpad = typeof win.w === "number" && win.w >= 768 && win.w <= 1024;
 
+  // Detect if the app is running inside an embed iframe (to prevent recursive mockup nesting).
+  const isEmbedded = typeof window !== "undefined" && new URLSearchParams(window.location.search).get("embed") === "1";
+
   const recomputeScale = useCallback(() => {
     const margin = 32; // include soft shadow space
     const wv = Math.max(0, win.w - margin);
