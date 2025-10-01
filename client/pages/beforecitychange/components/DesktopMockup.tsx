@@ -302,42 +302,8 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
             >
               {/* For MN2/MN3, render content inside an iframe and portal children into it so the mock matches mobile.
                   Scoped to isMN2 or isMN3 to avoid affecting other pages. */}
-              {isMN1 || isMN2 || isMN3 || isAsk04Budget ? (
-                <>
-                  <iframe
-                    ref={iframeRef}
-                    title="mn-desktop-mock-iframe"
-                    sandbox="allow-same-origin allow-scripts allow-forms"
-                    style={{
-                      width: `${BASE_W}px`,
-                      height: `${BASE_H}px`,
-                      border: "0",
-                      borderRadius: 30,
-                      display: "block",
-                    }}
-                  />
-
-                  {iframeMount ? (
-                    createPortal(
-                      isMN1 || isMN3 || isAsk04Budget ? (
-                        <div className="desktop-mock-embed">
-                          <RouteTransition>{children}</RouteTransition>
-                        </div>
-                      ) : (
-                        <RouteTransition>{children}</RouteTransition>
-                      ),
-                      iframeMount,
-                    )
-                  ) : (
-                    // While iframe initializes, keep hidden RouteTransition to avoid layout shift
-                    <div style={{ visibility: "hidden" }}>
-                      <RouteTransition>{children}</RouteTransition>
-                    </div>
-                  )}
-                </>
-              ) : (
-                <RouteTransition>{children}</RouteTransition>
-              )}
+              {/* Render content directly inside the desktop mock (no tablet iframe mock) */}
+              <RouteTransition>{children}</RouteTransition>
             </div>
 
             <div
