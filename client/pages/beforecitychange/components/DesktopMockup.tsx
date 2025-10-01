@@ -26,8 +26,6 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
   const [scale, setScale] = useState(1);
   const [initialized, setInitialized] = useState(false);
   const frameRef = useRef<HTMLDivElement | null>(null);
-  const iframeRef = useRef<HTMLIFrameElement | null>(null);
-  const [iframeMount, setIframeMount] = useState<HTMLElement | null>(null);
   const navigate = useNavigate();
   const location = useLocation();
   const viewportBackground = "#ffffff";
