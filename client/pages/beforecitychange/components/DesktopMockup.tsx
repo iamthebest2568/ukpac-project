@@ -224,6 +224,19 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
 
   if (typeof document === "undefined") return <>{children}</>;
 
+  // Compute portrait-oriented frame dimensions (ensure vertical orientation)
+  const aspect = BASE_W / BASE_H; // ~0.462
+  const viewportW = win.w || window.innerWidth;
+  const viewportH = win.h || window.innerHeight;
+  const preferredMaxHeight = isIpad ? Math.min(viewportH * 0.9, 1080) : Math.min(viewportH * 0.92, 1200);
+  let frameHeightPx = Math.max(380, Math.round(preferredMaxHeight));
+  let frameWidthPx = Math.max(300, Math.round(frameHeightPx * aspect));
+  const maxAllowedWidth = Math.min(viewportW * 0.95, 1400);
+  if (frameWidthPx > maxAllowedWidth) {
+    frameWidthPx = Math.round(maxAllowedWidth);
+    frameHeightPx = Math.max(380, Math.round(frameWidthPx / aspect));
+  }
+
   const mockup = (
     <div
       className={`fixed inset-0 grid place-items-center w-screen h-screen overflow-hidden`}
