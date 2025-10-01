@@ -334,9 +334,9 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
   if (isMydreambus) {
     const simple = (
       <div className={`fixed inset-0 grid place-items-center w-screen h-screen`} style={{ zIndex: 2147483647, pointerEvents: "none", backgroundColor: "transparent" }}>
-        <div ref={frameRef} className="relative" style={{ width: "92vw", height: "92vh", transformOrigin: "center", maxWidth: "1400px", maxHeight: "100vh", transition: "none", visibility: "visible", pointerEvents: "auto" }} aria-label="desktop-mockup-mydreambus">
+        <div ref={frameRef} className="relative" style={{ width: isIpad ? Math.min(win.w * 0.9, 810) + 'px' : '92vw', height: isIpad ? Math.min(win.h * 0.9, 1080) + 'px' : '92vh', transformOrigin: "center", maxWidth: "1400px", maxHeight: "100vh", transition: "none", visibility: "visible", pointerEvents: "auto" }} aria-label="desktop-mockup-mydreambus">
           <div style={{ width: "100%", height: "100%", pointerEvents: "auto" }}>
-            <div className={`rounded-[30px] bg-white overflow-visible ${isMydreambus ? 'mydreambus-desktop-mock' : ''}`} style={{ position: "relative", width: "100%", height: "100%", pointerEvents: "auto", overflow: "visible" }}>
+            <div className={`rounded-[30px] bg-white ${isMydreambus ? 'mydreambus-desktop-mock' : ''}`} style={{ position: "relative", width: "100%", height: "100%", pointerEvents: "auto", overflow: "hidden", willChange: "transform", contain: "layout paint" }}>
               <RouteTransition>{children}</RouteTransition>
             </div>
           </div>
