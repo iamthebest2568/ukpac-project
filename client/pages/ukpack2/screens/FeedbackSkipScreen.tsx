@@ -47,9 +47,10 @@ const FeedbackSkipScreen: React.FC = () => {
               ที่ร่วมเป็นส่วนหนึ่งในการพัฒนาเมือง
             </p>
             <img
-              src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F9989e3bd2f31458aa7691b01a3a08b12?format=webp&width=800"
-              alt="image"
-              className="mt-3 w-full max-w-[640px] h-auto object-contain"
+              src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Ff510b5b92f6a498f8cd020d9816d4d5a?format=webp&width=800"
+              alt="ประกาศรางวัล"
+              className="mt-3 w-full max-w-[480px] h-auto object-contain"
+              style={{ boxShadow: "0 8px 20px rgba(0,0,0,0.12)", borderRadius: 12 }}
             />
           </div>
         </div>
