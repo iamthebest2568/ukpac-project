@@ -1104,7 +1104,7 @@ const Step2_Summary = ({
   // Minimal cleared UI: no external layout components, no external classes.
   return (
     <div
-      className="figma-style1-container figma-style1-ukpack1"
+      className="figma-style1-container figma-style1-ukpack1 mn2-summary-page"
       style={{
         boxSizing: "border-box",
         color: "#000",
