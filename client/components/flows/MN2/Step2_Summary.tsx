@@ -1299,6 +1299,7 @@ const Step2_Summary = ({
       ) : null}
 
       <footer
+        className="mn2-summary-footer"
         style={{
           position: "sticky",
           bottom: "calc(env(safe-area-inset-bottom, 12px))",
