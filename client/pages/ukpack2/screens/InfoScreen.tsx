@@ -476,13 +476,13 @@ const InfoScreen: React.FC = () => {
                   Jeepney แบบดั้งเดิมให้กลายเป็นมินิบัสขนาด 20–25
                   ที่นั่งที่ปลอดภัยและลดมลพิษกว่าเดิม
                   การเปลี่ยนโฉมนี้ยังคงค่าโดยสารถูก หมาะกับคนเมือง
-                  และช่วยลดปัญหาสิ่งแวดล้อมไปพร้อมกัน
+                  และช่วยลดปัญหาสิ่งแวดล้อมไปพร���อมกัน
                 </p>
               </div>
             ) : selected === "large" ? (
               <div className="bg-[#e6e7e8] rounded-xl p-4 text-[#001a73] font-sarabun">
                 <h2 className="font-sarabun font-semibold text-xl text-center">
-                  รู้���รือไม่!
+                  รู้หรือไม่!
                 </h2>
                 <p>
                   เคนยา – Matatu Minibus รู้หรือไม่! ในไนโรบีมี Matatu
