@@ -68,7 +68,7 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
 
   // Removed iframe-based tablet mock; children will render directly inside the desktop mock frame.
 
-  const isIpad = typeof win.w === 'number' && win.w >= 768 && win.w <= 1024;
+  const isIpad = typeof win.w === "number" && win.w >= 768 && win.w <= 1024;
 
   const recomputeScale = useCallback(() => {
     const margin = 32; // include soft shadow space
@@ -135,11 +135,15 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
     const alignAll = () => {
       try {
         const root = frameRef.current as HTMLElement;
-        const canvases = Array.from(root.querySelectorAll('.vehicle-canvas')) as HTMLElement[];
+        const canvases = Array.from(
+          root.querySelectorAll(".vehicle-canvas"),
+        ) as HTMLElement[];
         canvases.forEach((vc) => {
           try {
-            const img = vc.querySelector('img') as HTMLImageElement | null;
-            const overlay = vc.querySelector('div[aria-hidden="true"]') as HTMLElement | null;
+            const img = vc.querySelector("img") as HTMLImageElement | null;
+            const overlay = vc.querySelector(
+              'div[aria-hidden="true"]',
+            ) as HTMLElement | null;
             if (!img || !overlay) return;
 
             const imgRect = img.getBoundingClientRect();
@@ -152,14 +156,14 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
             // Read selected chassis from session storage (fall back safe)
             let selectedChassis: string | null = null;
             try {
-              selectedChassis = sessionStorage.getItem('design.chassis');
+              selectedChassis = sessionStorage.getItem("design.chassis");
             } catch (e) {
               selectedChassis = null;
             }
 
             // If medium (standard) chassis, nudge the overlay slightly upward to match visual
             // This corrects the observed vertical drift for the 'รถเมล์มาตรฐาน 30–50 ที่นั่ง'
-            if (selectedChassis === 'medium') {
+            if (selectedChassis === "medium") {
               // shift overlay up by 5 pixels; convert to percentage relative to the vc height
               try {
                 const pxShift = 20; // pixels (5 + 15 requested)
@@ -171,19 +175,19 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
               }
             }
 
-            overlay.style.position = 'absolute';
-            overlay.style.left = leftPct + '%';
-            overlay.style.top = topPct + '%';
-            overlay.style.width = wPct + '%';
-            overlay.style.height = hPct + '%';
-            overlay.style.transform = 'none';
+            overlay.style.position = "absolute";
+            overlay.style.left = leftPct + "%";
+            overlay.style.top = topPct + "%";
+            overlay.style.width = wPct + "%";
+            overlay.style.height = hPct + "%";
+            overlay.style.transform = "none";
 
             // set mask-size to fully cover the overlay (overlay dimensions already match the image)
             try {
-              overlay.style.webkitMaskSize = '100% 100%';
+              overlay.style.webkitMaskSize = "100% 100%";
             } catch (e) {}
             try {
-              (overlay.style as any).maskSize = '100% 100%';
+              (overlay.style as any).maskSize = "100% 100%";
             } catch (e) {}
           } catch (e) {}
         });
@@ -200,19 +204,23 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
     // align initially and on resize / image load
     schedule();
 
-    const ro = (window as any).ResizeObserver ? new (window as any).ResizeObserver(schedule) : null;
+    const ro = (window as any).ResizeObserver
+      ? new (window as any).ResizeObserver(schedule)
+      : null;
     if (ro) {
       try {
         const root = frameRef.current as HTMLElement;
-        const imgs = Array.from(root.querySelectorAll('.vehicle-canvas img')) as Element[];
+        const imgs = Array.from(
+          root.querySelectorAll(".vehicle-canvas img"),
+        ) as Element[];
         imgs.forEach((i) => ro.observe(i));
         ro.observe(root);
         observers.push(() => ro.disconnect());
       } catch (e) {}
     }
 
-    window.addEventListener('resize', schedule);
-    observers.push(() => window.removeEventListener('resize', schedule));
+    window.addEventListener("resize", schedule);
+    observers.push(() => window.removeEventListener("resize", schedule));
 
     return () => {
       cancelAnimationFrame(raf);
@@ -228,7 +236,9 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
   const aspect = BASE_W / BASE_H; // ~0.462
   const viewportW = win.w || window.innerWidth;
   const viewportH = win.h || window.innerHeight;
-  const preferredMaxHeight = isIpad ? Math.min(viewportH * 0.9, 1080) : Math.min(viewportH * 0.92, 1200);
+  const preferredMaxHeight = isIpad
+    ? Math.min(viewportH * 0.9, 1080)
+    : Math.min(viewportH * 0.92, 1200);
   let frameHeightPx = Math.max(380, Math.round(preferredMaxHeight));
   let frameWidthPx = Math.max(300, Math.round(frameHeightPx * aspect));
   const maxAllowedWidth = Math.min(viewportW * 0.95, 1400);
@@ -277,7 +287,7 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
             style={{ width: "100%", height: "100%" }}
           >
             <div
-              className={`rounded-[30px] bg-white ${isMydreambus ? 'mydreambus-desktop-mock' : ''}`}
+              className={`rounded-[30px] bg-white ${isMydreambus ? "mydreambus-desktop-mock" : ""}`}
               style={{
                 position: "relative",
                 width: "100%",
@@ -346,10 +356,42 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
   // If mydreambus: render a simplified portal that mounts the page DOM exactly (mobile layout)
   if (isMydreambus) {
     const simple = (
-      <div className={`fixed inset-0 grid place-items-center w-screen h-screen`} style={{ zIndex: 2147483647, pointerEvents: "none", backgroundColor: "transparent" }}>
-        <div ref={frameRef} className="relative" style={{ width: isIpad ? Math.min(win.w * 0.9, 810) + 'px' : '92vw', height: isIpad ? Math.min(win.h * 0.9, 1080) + 'px' : '92vh', transformOrigin: "center", maxWidth: "1400px", maxHeight: "100vh", transition: "none", visibility: "visible", pointerEvents: "auto" }} aria-label="desktop-mockup-mydreambus">
+      <div
+        className={`fixed inset-0 grid place-items-center w-screen h-screen`}
+        style={{
+          zIndex: 2147483647,
+          pointerEvents: "none",
+          backgroundColor: "transparent",
+        }}
+      >
+        <div
+          ref={frameRef}
+          className="relative"
+          style={{
+            width: isIpad ? Math.min(win.w * 0.9, 810) + "px" : "92vw",
+            height: isIpad ? Math.min(win.h * 0.9, 1080) + "px" : "92vh",
+            transformOrigin: "center",
+            maxWidth: "1400px",
+            maxHeight: "100vh",
+            transition: "none",
+            visibility: "visible",
+            pointerEvents: "auto",
+          }}
+          aria-label="desktop-mockup-mydreambus"
+        >
           <div style={{ width: "100%", height: "100%", pointerEvents: "auto" }}>
-            <div className={`rounded-[30px] bg-white ${isMydreambus ? 'mydreambus-desktop-mock' : ''}`} style={{ position: "relative", width: "100%", height: "100%", pointerEvents: "auto", overflow: "hidden", willChange: "transform", contain: "layout paint" }}>
+            <div
+              className={`rounded-[30px] bg-white ${isMydreambus ? "mydreambus-desktop-mock" : ""}`}
+              style={{
+                position: "relative",
+                width: "100%",
+                height: "100%",
+                pointerEvents: "auto",
+                overflow: "hidden",
+                willChange: "transform",
+                contain: "layout paint",
+              }}
+            >
               <RouteTransition>{children}</RouteTransition>
             </div>
           </div>

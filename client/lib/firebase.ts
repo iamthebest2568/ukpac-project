@@ -642,40 +642,51 @@ export async function addDesignImageUrlToFirestore(
 export async function saveMinigameSummaryImageUrl(imageUrl: string) {
   // Force server-side ingestion to avoid client Firestore permission/validation issues.
   const endpoint =
-    (typeof window !== 'undefined' && window.location?.origin
+    (typeof window !== "undefined" && window.location?.origin
       ? window.location.origin
-      : '') + '/api/write-image-url';
+      : "") + "/api/write-image-url";
   try {
     const resp = await fetch(endpoint, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         imageUrl,
-        collection: 'beforecitychange-imgsummary-events',
-        page: 'Step2_Summary',
+        collection: "beforecitychange-imgsummary-events",
+        page: "Step2_Summary",
       }),
     });
     if (!resp.ok) {
-      const text = await resp.text().catch(() => '');
+      const text = await resp.text().catch(() => "");
       throw new Error(`server ingestion failed: ${resp.status} ${text}`);
     }
     const j = await resp.json().catch(() => ({}));
-    return { id: j.id || null, collection: 'beforecitychange-imgsummary-events', routed: 'server' } as any;
+    return {
+      id: j.id || null,
+      collection: "beforecitychange-imgsummary-events",
+      routed: "server",
+    } as any;
   } catch (e) {
-    console.warn('saveMinigameSummaryImageUrl: server ingestion failed', e);
+    console.warn("saveMinigameSummaryImageUrl: server ingestion failed", e);
     // As a last resort, attempt client Firestore write if available and allowed
     try {
       if (!db) initFirebase();
       if (!db || !clientFirestoreEnabled) throw e;
-      const colRef = collection(db as any, 'beforecitychange-imgsummary-events');
+      const colRef = collection(
+        db as any,
+        "beforecitychange-imgsummary-events",
+      );
       const docRef = await addDoc(colRef as any, {
         imageUrl,
-        page: 'Step2_Summary',
+        page: "Step2_Summary",
         createdAt: serverTimestamp(),
       });
-      return { id: docRef.id, collection: 'beforecitychange-imgsummary-events', routed: 'client' } as any;
+      return {
+        id: docRef.id,
+        collection: "beforecitychange-imgsummary-events",
+        routed: "client",
+      } as any;
     } catch (e2) {
-      console.warn('saveMinigameSummaryImageUrl: client fallback failed', e2);
+      console.warn("saveMinigameSummaryImageUrl: client fallback failed", e2);
       throw e;
     }
   }
