@@ -344,7 +344,7 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
                   try {
                     const u = new URL(window.location.href);
                     const params = new URLSearchParams(u.search);
-                    params.set("embed", "1");
+                    params.set("embedded", "1");
                     u.search = params.toString();
                     embedSrc =
                       u.pathname + (u.search ? "?" + u.search : "") + u.hash;
@@ -360,6 +360,7 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
                         height: "100%",
                         border: "none",
                         display: "block",
+                        pointerEvents: "auto",
                       }}
                       className="rounded-[30px]"
                       allow="autoplay; encrypted-media; clipboard-write; accelerometer; gyroscope; picture-in-picture; web-share; fullscreen"
