@@ -1,4 +1,3 @@
-// Client-side Firebase initialization (modular SDK)
 import { initializeApp, getApps, getApp } from "firebase/app";
 import {
   getFirestore,
@@ -93,11 +92,47 @@ function initFirebase() {
   }
 }
 
+// Runtime check to decide whether data storage should be disabled (temporary flag).
+function isDataStorageDisabled(): boolean {
+  try {
+    if (typeof window !== "undefined") {
+      if (typeof (window as any).__DISABLE_DATA_STORAGE__ !== "undefined")
+        return !!(window as any).__DISABLE_DATA_STORAGE__;
+      try {
+        const ls = localStorage.getItem("DISABLE_DATA_STORAGE");
+        if (ls === "1" || ls === "true") return true;
+      } catch (_) {}
+    }
+  } catch (_) {}
+  try {
+    // Vite injected env var
+    const v = (import.meta as any)?.env?.VITE_DISABLE_DATA_STORAGE;
+    if (typeof v === "string") {
+      if (v === "1" || v.toLowerCase() === "true") return true;
+    }
+  } catch (_) {}
+  return false;
+}
+
 export async function uploadFileToStorage(
   file: Blob | Uint8Array,
   path: string,
   options?: { verify?: boolean; maxRetries?: number },
 ) {
+  // If data storage disabled, skip actual upload and return a harmless placeholder URL
+  if (isDataStorageDisabled()) {
+    try {
+      const placeholder = 
+        (typeof window !== "undefined" && window.location?.origin)
+          ? window.location.origin + "/placeholder.svg"
+          : "/placeholder.svg";
+      console.warn("Data storage disabled — skipping upload and returning placeholder URL", path);
+      return placeholder;
+    } catch (e) {
+      return "/placeholder.svg";
+    }
+  }
+
   try {
     if (!appInstance) initFirebase();
     if (!appInstance) throw new Error("Firebase app not initialized");
@@ -226,6 +261,14 @@ export async function sendEventToFirestore(
   event: any,
   collectionPath: string = "minigame1_events/minigame1-id",
 ) {
+  // If disabled, short-circuit and report routed: 'disabled'
+  if (isDataStorageDisabled()) {
+    try {
+      console.warn("Data storage disabled — skipping sendEventToFirestore", event);
+    } catch (_) {}
+    return { ok: true, routed: "disabled" } as any;
+  }
+
   if (!db) initFirebase();
   // normalize path (strip leading slashes)
   const normalized = String(collectionPath || "")
@@ -403,6 +446,16 @@ export async function saveMinigameResult(
   colorHex: string | null,
   userId?: string | null,
 ) {
+  // If data storage disabled, skip upload and Firestore write
+  if (isDataStorageDisabled()) {
+    console.warn("Data storage disabled — skipping saveMinigameResult");
+    const placeholder =
+      (typeof window !== "undefined" && window.location?.origin)
+        ? window.location.origin + "/placeholder.svg"
+        : "/placeholder.svg";
+    return { docId: null, url: placeholder } as const;
+  }
+
   if (!appInstance) initFirebase();
   if (!appInstance) throw new Error("Firebase app not initialized");
   try {
@@ -469,6 +522,12 @@ export async function addDesignImageUrlToFirestore(
   preferredCollection?: string,
   dims?: { width?: number | null; height?: number | null },
 ) {
+  // If disabled, short-circuit and return a sentinel
+  if (isDataStorageDisabled()) {
+    console.warn("Data storage disabled — skipping addDesignImageUrlToFirestore", imageUrl);
+    return { id: null, collection: preferredCollection || "disabled", routed: "disabled" } as any;
+  }
+
   if (!db) initFirebase();
   // If client Firestore disabled, send server-side ingestion request and return
   if (!clientFirestoreEnabled) {
@@ -640,6 +699,15 @@ export async function addDesignImageUrlToFirestore(
 
 // also export init for manual init from UI
 export async function saveMinigameSummaryImageUrl(imageUrl: string) {
+  if (isDataStorageDisabled()) {
+    console.warn("Data storage disabled — skipping saveMinigameSummaryImageUrl", imageUrl);
+    return {
+      id: null,
+      collection: "beforecitychange-imgsummary-events",
+      routed: "disabled",
+    } as any;
+  }
+
   // Force server-side ingestion to avoid client Firestore permission/validation issues.
   const endpoint =
     (typeof window !== "undefined" && window.location?.origin
@@ -698,6 +766,15 @@ export async function saveMydreambusImage(
   colorHex: string | null,
   userId?: string | null,
 ) {
+  if (isDataStorageDisabled()) {
+    console.warn("Data storage disabled — skipping saveMydreambusImage");
+    const placeholder =
+      (typeof window !== "undefined" && window.location?.origin)
+        ? window.location.origin + "/placeholder.svg"
+        : "/placeholder.svg";
+    return { docId: null, url: placeholder } as const;
+  }
+
   if (!appInstance) initFirebase();
   if (!appInstance) throw new Error("Firebase app not initialized");
   try {
