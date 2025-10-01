@@ -114,11 +114,28 @@
 /* Footer visual - keep buttons colors but remove layout constraints */
 .mydreambus-footer .footer-row {
   display: flex;
+  flex-direction: column; /* stack vertically by default (mobile) */
   gap: var(--space-sm);
   align-items: center;
   justify-content: center;
   padding: 0 var(--space-sm);
 }
+/* Child buttons wrapper sizing: full width on mobile, constrained on larger viewports */
+.mydreambus-footer .footer-row > * {
+  width: 100%;
+  max-width: 480px; /* mobile-friendly max width */
+}
+
+@media (min-width: 768px) {
+  .mydreambus-footer .footer-row {
+    flex-direction: row; /* horizontal on tablet+ */
+  }
+  .mydreambus-footer .footer-row > * {
+    width: auto;
+    max-width: 220px; /* keep buttons compact on wider screens */
+  }
+}
+
 .mydreambus-footer .cta-button {
   background: var(--my-btn-bg);
   color: var(--color-text-inverse);
@@ -126,6 +143,7 @@
   padding: 12px 18px;
   border-radius: var(--border-radius-full);
   cursor: pointer;
+  width: 100%;
 }
 .mydreambus-footer .cta-button:hover {
   filter: brightness(0.95);
