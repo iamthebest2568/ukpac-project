@@ -264,13 +264,16 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
             style={{ width: "100%", height: "100%" }}
           >
             <div
-              className={`rounded-[30px] bg-white overflow-hidden ${isMydreambus ? 'mydreambus-desktop-mock' : ''}`}
+              className={`rounded-[30px] bg-white ${isMydreambus ? 'mydreambus-desktop-mock' : ''}`}
               style={{
                 position: "relative",
                 width: "100%",
                 height: "100%",
                 pointerEvents: "auto",
                 overflow: "hidden",
+                // Improve rendering isolation and scrolling performance for large viewports
+                willChange: "transform",
+                contain: "layout paint",
               }}
               onClickCapture={(e: React.MouseEvent) => {
                 try {
