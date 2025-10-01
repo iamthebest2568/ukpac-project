@@ -640,138 +640,44 @@ export async function addDesignImageUrlToFirestore(
 
 // also export init for manual init from UI
 export async function saveMinigameSummaryImageUrl(imageUrl: string) {
-  if (!db) initFirebase();
-  // If client Firestore disabled, send server-side ingestion request and return
-  if (!clientFirestoreEnabled) {
-    try {
-      const endpoint =
-        (typeof window !== "undefined" && window.location?.origin
-          ? window.location.origin
-          : "") + "/api/write-image-url";
-      let resp: Response | null = null;
-      try {
-        resp = await fetch(endpoint, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            imageUrl,
-            collection: "beforecitychange-imgsummary-events",
-            page: "Step2_Summary",
-            createdAt: new Date().toISOString(),
-          }),
-        });
-      } catch (err) {
-        console.warn(
-          "saveMinigameSummaryImageUrl: server fallback fetch failed, endpoint=",
-          endpoint,
-          err,
-        );
-        resp = null;
-      }
-      if (resp && resp.ok) {
-        try {
-          const j = await resp.json();
-          return {
-            id: j.id || null,
-            collection: "beforecitychange-imgsummary-events",
-            routed: "server",
-          } as any;
-        } catch (_) {
-          return {
-            id: null,
-            collection: "beforecitychange-imgsummary-events",
-            routed: "server",
-          } as any;
-        }
-      }
-    } catch (e) {
-      // fallthrough to attempt client SDK write
-    }
-  }
-
-  if (!db) throw new Error("Firestore not initialized");
-
+  // Force server-side ingestion to avoid client Firestore permission/validation issues.
+  const endpoint =
+    (typeof window !== 'undefined' && window.location?.origin
+      ? window.location.origin
+      : '') + '/api/write-image-url';
   try {
-    // Attempt to capture clientHash from storage metadata when possible
-    let clientHash: string | null = null;
-    try {
-      const m =
-        /https:\/\/firebasestorage.googleapis.com\/v0\/b\/[^/]+\/o\/([^?]+)(\?.*)?/.exec(
-          imageUrl,
-        );
-      if (m && m[1]) {
-        const encodedPath = m[1];
-        const decoded = decodeURIComponent(encodedPath);
-        try {
-          const storage = getStorage(appInstance as any);
-          const ref = storageRef(storage as any, decoded);
-          const { getMetadata } = await import("firebase/storage");
-          const meta = await getMetadata(ref as any);
-          clientHash = meta?.customMetadata?.clientHash || null;
-        } catch (_) {
-          clientHash = null;
-        }
-      }
-    } catch (_) {
-      clientHash = null;
-    }
-
-    const colRef = collection(db as any, "beforecitychange-imgsummary-events");
-    const docRef = await addDoc(colRef as any, {
-      imageUrl,
-      page: "Step2_Summary",
-      clientHash: clientHash || null,
-      createdAt: serverTimestamp(),
+    const resp = await fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        imageUrl,
+        collection: 'beforecitychange-imgsummary-events',
+        page: 'Step2_Summary',
+      }),
     });
-    return {
-      id: docRef.id,
-      collection: "beforecitychange-imgsummary-events",
-    } as const;
+    if (!resp.ok) {
+      const text = await resp.text().catch(() => '');
+      throw new Error(`server ingestion failed: ${resp.status} ${text}`);
+    }
+    const j = await resp.json().catch(() => ({}));
+    return { id: j.id || null, collection: 'beforecitychange-imgsummary-events', routed: 'server' } as any;
   } catch (e) {
-    // server fallback if write fails
+    console.warn('saveMinigameSummaryImageUrl: server ingestion failed', e);
+    // As a last resort, attempt client Firestore write if available and allowed
     try {
-      const endpoint =
-        (typeof window !== "undefined" && window.location?.origin
-          ? window.location.origin
-          : "") + "/api/write-image-url";
-      let r: Response | null = null;
-      try {
-        r = await fetch(endpoint, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            imageUrl,
-            collection: "beforecitychange-imgsummary-events",
-            page: "Step2_Summary",
-            createdAt: new Date().toISOString(),
-          }),
-        });
-      } catch (err) {
-        console.warn(
-          "saveMinigameSummaryImageUrl: server fallback fetch failed (retry), endpoint=",
-          endpoint,
-          err,
-        );
-        r = null;
-      }
-      if (r && r.ok) {
-        try {
-          const j = await r.json();
-          return {
-            id: j.id || null,
-            collection: "beforecitychange-imgsummary-events",
-            routed: "server",
-          } as any;
-        } catch (_) {
-          return {
-            id: null,
-            collection: "beforecitychange-imgsummary-events",
-            routed: "server",
-          } as any;
-        }
-      }
-    } catch (_) {}
-    throw e;
+      if (!db) initFirebase();
+      if (!db || !clientFirestoreEnabled) throw e;
+      const colRef = collection(db as any, 'beforecitychange-imgsummary-events');
+      const docRef = await addDoc(colRef as any, {
+        imageUrl,
+        page: 'Step2_Summary',
+        createdAt: serverTimestamp(),
+      });
+      return { id: docRef.id, collection: 'beforecitychange-imgsummary-events', routed: 'client' } as any;
+    } catch (e2) {
+      console.warn('saveMinigameSummaryImageUrl: client fallback failed', e2);
+      throw e;
+    }
   }
 }
 
