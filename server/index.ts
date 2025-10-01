@@ -103,8 +103,14 @@ export function createServer() {
   // Server endpoint to write imageUrl documents using Admin SDK (authorized server write)
   app.post("/api/write-image-url", async (req, res) => {
     if (STORAGE_DISABLED) {
-      console.log("/api/write-image-url called but data storage is disabled — returning success without persisting");
-      return res.json({ ok: true, disabled: true, message: "data storage disabled" });
+      console.log(
+        "/api/write-image-url called but data storage is disabled — returning success without persisting",
+      );
+      return res.json({
+        ok: true,
+        disabled: true,
+        message: "data storage disabled",
+      });
     }
 
     const start = Date.now();
@@ -267,7 +273,9 @@ export function createServer() {
             "/api/capture-fullpage missing puppeteer dependency",
             err,
           );
-          return res.status(500).json({ ok: false, error: "puppeteer not available" });
+          return res
+            .status(500)
+            .json({ ok: false, error: "puppeteer not available" });
         }
       }
 
@@ -275,8 +283,8 @@ export function createServer() {
       res.status(200).json({ ok: true });
     } catch (e: any) {
       res
-      .status(400)
-      .json({ ok: false, error: e?.message || "invalid payload" });
+        .status(400)
+        .json({ ok: false, error: e?.message || "invalid payload" });
     }
   });
 
@@ -284,8 +292,12 @@ export function createServer() {
   app.post("/api/track", async (req, res) => {
     try {
       if (STORAGE_DISABLED) {
-        console.log("/api/track called but data storage is disabled — returning success without persisting");
-        return res.status(200).json({ ok: true, disabled: true, message: "data storage disabled" });
+        console.log(
+          "/api/track called but data storage is disabled — returning success without persisting",
+        );
+        return res
+          .status(200)
+          .json({ ok: true, disabled: true, message: "data storage disabled" });
       }
 
       const ua = String(req.headers["user-agent"] || "");

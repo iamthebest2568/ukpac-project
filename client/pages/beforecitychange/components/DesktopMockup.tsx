@@ -71,7 +71,9 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
   const isIpad = typeof win.w === "number" && win.w >= 768 && win.w <= 1024;
 
   // Detect if the app is running inside an embed iframe (to prevent recursive mockup nesting).
-  const isEmbedded = typeof window !== "undefined" && new URLSearchParams(window.location.search).get("embed") === "1";
+  const isEmbedded =
+    typeof window !== "undefined" &&
+    new URLSearchParams(window.location.search).get("embed") === "1";
 
   const recomputeScale = useCallback(() => {
     const margin = 32; // include soft shadow space
@@ -335,13 +337,17 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
                   Prevent recursive nesting by appending ?embed=1 to the iframe src and disabling mockup when embed=1 is present. */}
               {typeof window !== "undefined" && isBeforecity && !isEmbedded ? (
                 (() => {
-                  let embedSrc = window.location.pathname + window.location.search + window.location.hash;
+                  let embedSrc =
+                    window.location.pathname +
+                    window.location.search +
+                    window.location.hash;
                   try {
                     const u = new URL(window.location.href);
                     const params = new URLSearchParams(u.search);
                     params.set("embed", "1");
                     u.search = params.toString();
-                    embedSrc = u.pathname + (u.search ? "?" + u.search : "") + u.hash;
+                    embedSrc =
+                      u.pathname + (u.search ? "?" + u.search : "") + u.hash;
                   } catch (_) {}
                   return (
                     <iframe
@@ -357,7 +363,9 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
                       }}
                       className="rounded-[30px]"
                       allow="autoplay; encrypted-media; clipboard-write; accelerometer; gyroscope; picture-in-picture; web-share; fullscreen"
-                      sandbox={"allow-scripts allow-same-origin allow-forms allow-popups"}
+                      sandbox={
+                        "allow-scripts allow-same-origin allow-forms allow-popups"
+                      }
                     />
                   );
                 })()

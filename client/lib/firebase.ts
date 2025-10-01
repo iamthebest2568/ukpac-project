@@ -122,11 +122,14 @@ export async function uploadFileToStorage(
   // If data storage disabled, skip actual upload and return a harmless placeholder URL
   if (isDataStorageDisabled()) {
     try {
-      const placeholder = 
-        (typeof window !== "undefined" && window.location?.origin)
+      const placeholder =
+        typeof window !== "undefined" && window.location?.origin
           ? window.location.origin + "/placeholder.svg"
           : "/placeholder.svg";
-      console.warn("Data storage disabled — skipping upload and returning placeholder URL", path);
+      console.warn(
+        "Data storage disabled — skipping upload and returning placeholder URL",
+        path,
+      );
       return placeholder;
     } catch (e) {
       return "/placeholder.svg";
@@ -264,7 +267,10 @@ export async function sendEventToFirestore(
   // If disabled, short-circuit and report routed: 'disabled'
   if (isDataStorageDisabled()) {
     try {
-      console.warn("Data storage disabled — skipping sendEventToFirestore", event);
+      console.warn(
+        "Data storage disabled — skipping sendEventToFirestore",
+        event,
+      );
     } catch (_) {}
     return { ok: true, routed: "disabled" } as any;
   }
@@ -450,7 +456,7 @@ export async function saveMinigameResult(
   if (isDataStorageDisabled()) {
     console.warn("Data storage disabled — skipping saveMinigameResult");
     const placeholder =
-      (typeof window !== "undefined" && window.location?.origin)
+      typeof window !== "undefined" && window.location?.origin
         ? window.location.origin + "/placeholder.svg"
         : "/placeholder.svg";
     return { docId: null, url: placeholder } as const;
@@ -524,8 +530,15 @@ export async function addDesignImageUrlToFirestore(
 ) {
   // If disabled, short-circuit and return a sentinel
   if (isDataStorageDisabled()) {
-    console.warn("Data storage disabled — skipping addDesignImageUrlToFirestore", imageUrl);
-    return { id: null, collection: preferredCollection || "disabled", routed: "disabled" } as any;
+    console.warn(
+      "Data storage disabled — skipping addDesignImageUrlToFirestore",
+      imageUrl,
+    );
+    return {
+      id: null,
+      collection: preferredCollection || "disabled",
+      routed: "disabled",
+    } as any;
   }
 
   if (!db) initFirebase();
@@ -700,7 +713,10 @@ export async function addDesignImageUrlToFirestore(
 // also export init for manual init from UI
 export async function saveMinigameSummaryImageUrl(imageUrl: string) {
   if (isDataStorageDisabled()) {
-    console.warn("Data storage disabled — skipping saveMinigameSummaryImageUrl", imageUrl);
+    console.warn(
+      "Data storage disabled — skipping saveMinigameSummaryImageUrl",
+      imageUrl,
+    );
     return {
       id: null,
       collection: "beforecitychange-imgsummary-events",
@@ -769,7 +785,7 @@ export async function saveMydreambusImage(
   if (isDataStorageDisabled()) {
     console.warn("Data storage disabled — skipping saveMydreambusImage");
     const placeholder =
-      (typeof window !== "undefined" && window.location?.origin)
+      typeof window !== "undefined" && window.location?.origin
         ? window.location.origin + "/placeholder.svg"
         : "/placeholder.svg";
     return { docId: null, url: placeholder } as const;
