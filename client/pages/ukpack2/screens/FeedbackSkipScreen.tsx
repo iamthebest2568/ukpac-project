@@ -33,12 +33,13 @@ const FeedbackSkipScreen: React.FC = () => {
           </MyFooter>
         }
       >
-        <div className="max-w-4xl mx-auto pb-32 -mt-16">
-          <div className="w-full flex justify-center mb-2">
+        <div className="max-w-4xl mx-auto pt-6 pb-24">
+          <div className="w-full flex justify-center mb-4" style={{ overflow: "visible" }}>
             <img
               src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F6b62374327d643178ab7f4a913ddc1b1?format=webp&width=800"
               alt="image"
-              className="w-full max-w-[900px] h-auto object-contain mx-auto"
+              className="w-full max-w-[640px] h-auto object-contain mx-auto"
+              style={{ marginTop: 0, maxHeight: '60vh' }}
             />
           </div>
           <div className="flex flex-col items-center text-center text-[#001a73]">
@@ -68,7 +69,7 @@ const FeedbackSkipScreen: React.FC = () => {
         isOpen={isShareOpen}
         onClose={() => setShareOpen(false)}
         shareUrl={window.location.origin + "/mydreambus"}
-        shareText={"ผม/ฉันได้อ��กแบบรถเมล์ในฝัน ลองดูสิ"}
+        shareText={"ผม/ฉันได้ออกแบบรถเมล์ในฝัน ลองดูสิ"}
       />
     </>
   );
