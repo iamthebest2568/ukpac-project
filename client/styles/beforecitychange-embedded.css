@@ -1,0 +1,35 @@
+.embedded-ukpack1 .figma-style1-background,
+.embedded-ukpack1 .figma-style1-background-image,
+.embedded-ukpack1 .figma-style1-background-overlay,
+.embedded-ukpack1 .figma-style1-wave-overlay,
+.embedded-ukpack1 .footer-container,
+.embedded-ukpack1 .mn2-summary-footer {
+  position: absolute !important;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: auto;
+  width: 100%;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+/* Convert fixed/sticky footers to relative inside embedded iframe */
+.embedded-ukpack1 .fixed-footer,
+.embedded-ukpack1 .sticky-footer,
+.embedded-ukpack1 [role="contentinfo"] {
+  position: relative !important;
+}
+
+/* Reserve space for footer inside content area when embedded */
+.embedded-ukpack1 .figma-style1-main {
+  padding-bottom: var(--figma-footer-height, 360px) !important;
+}
+
+/* Ensure any overlay ribbons or decorative absolute overlays are visible within the iframe */
+.embedded-ukpack1 .overlay-ribbon,
+.embedded-ukpack1 .overlay-ribbon-track,
+.embedded-ukpack1 .overlay-ribbon-prev,
+.embedded-ukpack1 .overlay-ribbon-next {
+  z-index: 1002 !important;
+}
