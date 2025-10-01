@@ -258,6 +258,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   React.useEffect(() => {
     try {
       const isMydreambus = location.pathname.startsWith("/mydreambus");
+      const isUkpack1 = location.pathname.startsWith("/beforecitychange");
       if (isMydreambus) {
         document.body.classList.add("page-mydreambus");
       } else {
@@ -267,6 +268,13 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         document.body.classList.add("embedded-mydreambus");
       } else {
         document.body.classList.remove("embedded-mydreambus");
+      }
+      // When beforecitychange is loaded inside the mockup iframe, add a class so footer/background
+      // can be rendered inside the iframe (avoid body-fixed footers in the outer page).
+      if (isEmbedded && isUkpack1) {
+        document.body.classList.add("embedded-ukpack1");
+      } else {
+        document.body.classList.remove("embedded-ukpack1");
       }
     } catch (e) {}
 
