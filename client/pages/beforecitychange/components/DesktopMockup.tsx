@@ -68,16 +68,18 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
 
   // Removed iframe-based tablet mock; children will render directly inside the desktop mock frame.
 
+  const isIpad = typeof win.w === 'number' && win.w >= 768 && win.w <= 1024;
+
   const recomputeScale = useCallback(() => {
     const margin = 32; // include soft shadow space
     const wv = Math.max(0, win.w - margin);
     const hv = Math.max(0, win.h - margin);
-    const naturalW = BASE_W + 40;
-    const naturalH = BASE_H + 40;
+    const naturalW = isIpad ? Math.min(810, BASE_W + 40) : BASE_W + 40;
+    const naturalH = isIpad ? Math.min(1080, BASE_H + 40) : BASE_H + 40;
     const s = Math.min(wv / naturalW, hv / naturalH, 1);
     const minVisibleScale = 0.6;
     setScale(Math.max(s, minVisibleScale));
-  }, [win.w, win.h]);
+  }, [win.w, win.h, isIpad]);
 
   useEffect(() => {
     recomputeScale();
