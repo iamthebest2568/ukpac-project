@@ -112,6 +112,17 @@
 }
 
 /* Footer visual - keep buttons colors but remove layout constraints */
+/* Force vertical layout when component requests it */
+.mydreambus-footer.force-vertical .footer-row {
+  flex-direction: column !important;
+  gap: var(--space-sm);
+  align-items: center;
+  justify-content: center;
+}
+.mydreambus-footer.force-vertical .footer-row > * {
+  width: 100% !important;
+  max-width: 480px !important;
+}
 .mydreambus-footer .footer-row {
   display: flex;
   flex-direction: column; /* stack vertically by default (mobile) */
