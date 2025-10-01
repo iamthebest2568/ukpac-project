@@ -331,10 +331,39 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
                 } catch (err) {}
               }}
             >
-              {/* For MN2/MN3, render content inside an iframe and portal children into it so the mock matches mobile.
-                  Scoped to isMN2 or isMN3 to avoid affecting other pages. */}
-              {/* Render content directly inside the desktop mock (no tablet iframe mock) */}
-              <RouteTransition>{children}</RouteTransition>
+              {/* For beforecitychange pages, render the page inside an iframe to emulate a mobile device within the mockup.
+                  Prevent recursive nesting by appending ?embed=1 to the iframe src and disabling mockup when embed=1 is present. */}
+              {typeof window !== "undefined" && isBeforecity && !isEmbedded ? (
+                (() => {
+                  let embedSrc = window.location.pathname + window.location.search + window.location.hash;
+                  try {
+                    const u = new URL(window.location.href);
+                    const params = new URLSearchParams(u.search);
+                    params.set("embed", "1");
+                    u.search = params.toString();
+                    embedSrc = u.pathname + (u.search ? "?" + u.search : "") + u.hash;
+                  } catch (_) {}
+                  return (
+                    <iframe
+                      src={embedSrc}
+                      title="beforecitychange-mockup-embed"
+                      style={{
+                        position: "absolute",
+                        inset: 0,
+                        width: "100%",
+                        height: "100%",
+                        border: "none",
+                        display: "block",
+                      }}
+                      className="rounded-[30px]"
+                      allow="autoplay; encrypted-media; clipboard-write; accelerometer; gyroscope; picture-in-picture; web-share; fullscreen"
+                      sandbox={"allow-scripts allow-same-origin allow-forms allow-popups"}
+                    />
+                  );
+                })()
+              ) : (
+                <RouteTransition>{children}</RouteTransition>
+              )}
             </div>
 
             <div
