@@ -469,7 +469,7 @@ const InfoScreen: React.FC = () => {
             ) : selected === "extra" ? (
               <div className="bg-[#e6e7e8] rounded-xl p-4 text-[#001a73] font-sarabun">
                 <h2 className="font-sarabun font-semibold text-xl text-center">
-                  รู้หรือไม่!
+                  รู้��รือไม่!
                 </h2>
                 <p>
                   ฟิลิปปินส์ – Jeepney Modernization รู้หรือไม่! ฟิลิปปินส์พัฒนา
@@ -485,8 +485,8 @@ const InfoScreen: React.FC = () => {
                   รู้หรือไม่!
                 </h2>
                 <p>
-                  เคนย�� – Matatu Minibus รู้หรือไม่! ในไนโรบีมี Matatu
-                  รถตู้โดยสาร 14–30 ที่นั่งที่วิ่งยืดหยุ่นตามผู้โดยสาร
+                  เคนยา – Matatu Minibus รู้หรือไม่! ในไนโรบีมี Matatu
+                  รถตู้โดยสาร 14–30 ที่นั่งที่วิ��งยืดหยุ่นตามผู้โดยสาร
                   แม้จะวุ่นวาย
                   แต่ก็เป็นทางเลือกการเดินทางราคาถูกที่เข้าถึงทุกพื้นที่
                   ทำให้คนทุกระดับรายได้มีโอกาสเดินทางสะดวก
