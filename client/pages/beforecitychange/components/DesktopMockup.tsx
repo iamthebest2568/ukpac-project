@@ -256,8 +256,8 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
         ref={frameRef}
         className="relative"
         style={{
-          width: isIpad ? Math.min(win.w * 0.9, 810) + 'px' : '92vw',
-          height: isIpad ? Math.min(win.h * 0.9, 1080) + 'px' : '92vh',
+          width: `${frameWidthPx}px`,
+          height: `${frameHeightPx}px`,
           transform: `scale(${initialized ? Math.max(scale, 0.6) : 1})`,
           transformOrigin: "center",
           maxWidth: "1400px",
