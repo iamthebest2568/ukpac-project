@@ -33,6 +33,14 @@ const FeedbackSkipScreen: React.FC = () => {
           </MyFooter>
         }
       >
+        <div className="w-full flex justify-center mb-4" style={{ overflow: "visible" }}>
+          <img
+            src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F08abc8bef92e40b7bab98188c805f46b?format=webp&width=800"
+            alt="เสร็จแล้ว"
+            className="w-full max-w-[360px] h-auto object-contain mx-auto"
+            style={{ filter: "drop-shadow(0 6px 12px rgba(0,0,0,0.12))", marginTop: 0 }}
+          />
+        </div>
         <div className="max-w-4xl mx-auto pt-6 pb-24">
           <div
             className="w-full flex justify-center mb-4"
