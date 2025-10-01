@@ -30,14 +30,6 @@ const EndScreen: React.FC = () => {
           <p className="text-[#001a73] font-prompt font-semibold text-center">
             ขอบคุณ ที่ร่วมเป็นส่วนหนึ่งในการพัฒนาเมือง
           </p>
-          <div className="w-full flex justify-center">
-            <img
-              src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F02ba14ac31e7499d8feb398adebc6580?format=webp&width=800"
-              alt="image"
-              className="w-full h-auto max-w-[420px] mt-2"
-              style={{ marginBottom: 8 }}
-            />
-          </div>
           <div className="flex flex-col items-center gap-3 pt-2 w-full max-w-sm mx-auto">
             <CtaButton
               className="w-full"
