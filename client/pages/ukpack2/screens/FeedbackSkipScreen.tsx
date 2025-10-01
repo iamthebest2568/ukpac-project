@@ -34,12 +34,15 @@ const FeedbackSkipScreen: React.FC = () => {
         }
       >
         <div className="max-w-4xl mx-auto pt-6 pb-24">
-          <div className="w-full flex justify-center mb-4" style={{ overflow: "visible" }}>
+          <div
+            className="w-full flex justify-center mb-4"
+            style={{ overflow: "visible" }}
+          >
             <img
               src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F6b62374327d643178ab7f4a913ddc1b1?format=webp&width=800"
               alt="image"
               className="w-full max-w-[640px] h-auto object-contain mx-auto"
-              style={{ marginTop: 0, maxHeight: '60vh' }}
+              style={{ marginTop: 0, maxHeight: "60vh" }}
             />
           </div>
           <div className="flex flex-col items-center text-center text-[#001a73]">
@@ -51,7 +54,10 @@ const FeedbackSkipScreen: React.FC = () => {
               src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Ff510b5b92f6a498f8cd020d9816d4d5a?format=webp&width=800"
               alt="ประกาศรางวัล"
               className="mt-3 w-full max-w-[480px] h-auto object-contain"
-              style={{ boxShadow: "0 8px 20px rgba(0,0,0,0.12)", borderRadius: 12 }}
+              style={{
+                boxShadow: "0 8px 20px rgba(0,0,0,0.12)",
+                borderRadius: 12,
+              }}
             />
 
             {/* Success badge image placed under the other images */}
