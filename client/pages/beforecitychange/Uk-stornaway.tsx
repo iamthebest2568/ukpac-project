@@ -375,19 +375,21 @@ export default function UkStornaway() {
   }, []);
 
   return (
-    <div className="fixed inset-0 w-screen h-screen bg-black">
-      <iframe
-        ref={iframeRef}
-        id="stornaway-player-1"
-        src="https://player.stornaway.io/embed/e9fb79bb"
-        title="Stornaway Interactive Video"
-        className="absolute inset-0 w-full h-full"
-        allow="autoplay; encrypted-media; clipboard-write; accelerometer; gyroscope; picture-in-picture; web-share; fullscreen"
-        loading="eager"
-        referrerPolicy="no-referrer-when-downgrade"
-        allowFullScreen
-        sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
-      />
+    <div className="relative w-full max-w-3xl mx-auto px-4 py-6">
+      <div className="relative" style={{ paddingTop: "56.25%" }}>
+        <iframe
+          ref={iframeRef}
+          id="stornaway-player-1"
+          src="https://player.stornaway.io/embed/e9fb79bb"
+          title="Stornaway Interactive Video"
+          className="absolute inset-0 w-full h-full rounded-lg shadow-md"
+          allow="autoplay; encrypted-media; clipboard-write; accelerometer; gyroscope; picture-in-picture; web-share; fullscreen"
+          loading="eager"
+          referrerPolicy="no-referrer-when-downgrade"
+          allowFullScreen
+          sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+        />
+      </div>
     </div>
   );
 }
