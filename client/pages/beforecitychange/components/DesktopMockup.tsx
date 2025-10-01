@@ -232,7 +232,7 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
     };
   }, [isMydreambus, initialized]);
 
-  if (!active) return <>{children}</>;
+  if (!active || isEmbedded) return <>{children}</>;
 
   if (typeof document === "undefined") return <>{children}</>;
 
