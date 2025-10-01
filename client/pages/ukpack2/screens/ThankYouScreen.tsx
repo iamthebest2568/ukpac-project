@@ -15,19 +15,21 @@ const ThankYouScreen: React.FC = () => {
       fullWidth
       footerContent={
         <MyFooter>
-          <div style={{ width: "220px" }}>
-            <SecondaryButton
-              className="w-full"
-              text="ลุ้นรับรางวัล"
-              onClick={() => navigate("/mydreambus/form")}
-            />
-          </div>
-          <div style={{ width: "220px" }}>
-            <CtaButton
-              className="w-full"
-              text="ไม่ลุ้นรับรางวัล"
-              onClick={() => navigate("/mydreambus/feedback-skip")}
-            />
+          <div className="flex flex-col items-center gap-3 w-full">
+            <div style={{ width: "220px" }}>
+              <SecondaryButton
+                className="w-full"
+                text="ลุ้นรับรางวัล"
+                onClick={() => navigate("/mydreambus/form")}
+              />
+            </div>
+            <div style={{ width: "220px" }}>
+              <CtaButton
+                className="w-full"
+                text="ไม่ลุ้นรับรางวัล"
+                onClick={() => navigate("/mydreambus/feedback-skip")}
+              />
+            </div>
           </div>
         </MyFooter>
       }
