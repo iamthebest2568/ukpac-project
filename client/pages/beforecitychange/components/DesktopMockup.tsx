@@ -329,19 +329,19 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
   if (isMydreambus) {
     const simple = (
       <div className={`fixed inset-0 grid place-items-center w-screen h-screen`} style={{ zIndex: 2147483647, pointerEvents: "none", backgroundColor: "transparent" }}>
-        <div ref={frameRef} className="relative" style={{ width: `${BASE_W}px`, height: `${BASE_H}px`, transformOrigin: "center", maxWidth: "100vw", maxHeight: "100vh", transition: "none", visibility: "visible", pointerEvents: "auto" }} aria-label="desktop-mockup-mydreambus">
+        <div ref={frameRef} className="relative" style={{ width: "92vw", height: "92vh", transformOrigin: "center", maxWidth: "1400px", maxHeight: "100vh", transition: "none", visibility: "visible", pointerEvents: "auto" }} aria-label="desktop-mockup-mydreambus">
           <div style={{ width: "100%", height: "100%", pointerEvents: "auto" }}>
-            <div className={`rounded-[30px] bg-white overflow-visible tablet-mock-env mydreambus-desktop-mock`} style={{ position: "relative", width: `${BASE_W}px`, height: `${BASE_H}px`, pointerEvents: "auto", overflow: "visible" }}>
+            <div className={`rounded-[30px] bg-white overflow-visible ${isMydreambus ? 'mydreambus-desktop-mock' : ''}`} style={{ position: "relative", width: "100%", height: "100%", pointerEvents: "auto", overflow: "visible" }}>
               <RouteTransition>{children}</RouteTransition>
             </div>
           </div>
         </div>
       </div>
     );
-    return createPortal(simple, document.body);
+    return simple;
   }
 
-  return createPortal(mockup, document.body);
+  return mockup;
 };
 
 export default DesktopMockup;
