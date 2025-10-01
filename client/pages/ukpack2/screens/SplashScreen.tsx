@@ -35,9 +35,9 @@ const SplashScreen: React.FC = () => {
             display: "block",
             margin: "0 auto",
             width: "100%",
-            maxWidth: "min(92vw, 442px)", // reduced ~15% from 520px
+            maxWidth: "min(92vw, 376px)",
             height: "auto",
-            maxHeight: "50vh",
+            maxHeight: "42.5vh",
             objectFit: "contain",
             boxSizing: "border-box",
             paddingLeft: 16,
@@ -51,7 +51,7 @@ const SplashScreen: React.FC = () => {
         <div
           style={{
             width: "100%",
-            paddingBottom: "calc(env(safe-area-inset-bottom, 16px) + 24px)",
+            paddingBottom: "calc(env(safe-area-inset-bottom, 16px) + 16px)",
             paddingTop: 24,
             display: "flex",
             flexDirection: "column",
@@ -62,7 +62,7 @@ const SplashScreen: React.FC = () => {
         >
           <div
             style={{
-              transform: "translateY(-60px)",
+              transform: "translateY(-75px)",
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
