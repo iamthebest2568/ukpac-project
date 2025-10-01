@@ -241,11 +241,11 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
         ref={frameRef}
         className="relative"
         style={{
-          width: `${BASE_W}px`,
-          height: `${BASE_H}px`,
+          width: "92vw",
+          height: "92vh",
           transform: `scale(${initialized ? Math.max(scale, 0.6) : 1})`,
           transformOrigin: "center",
-          maxWidth: "100vw",
+          maxWidth: "1400px",
           maxHeight: "100vh",
           transition: "none",
           visibility: "visible",
