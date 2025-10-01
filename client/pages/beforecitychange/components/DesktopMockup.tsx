@@ -113,7 +113,8 @@ const DesktopMockup: React.FC<DesktopMockupProps> = ({ children }) => {
     };
   }, [recomputeScale]);
 
-  const active = win.w >= 700;
+  // Activate mockup only on tablet/desktop >= 768px
+  const active = win.w >= 768;
 
   useEffect(() => {
     if (!active) return;
