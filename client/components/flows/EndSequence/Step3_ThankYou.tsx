@@ -136,7 +136,7 @@ const Step3_ThankYou = ({
               fontWeight: 400,
             }}
           >
-            ในการพัฒนาเมือง
+            ในการพัฒนา���มือง
           </span>
         </h1>
 
@@ -144,7 +144,7 @@ const Step3_ThankYou = ({
           className="mt-6 rounded-lg p-4 max-w-[820px] mx-auto"
           style={{
             backgroundImage:
-              "url('https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F078fb776552d4ee5a1b89c7e00d0a299?format=webp&width=800')",
+              "url('https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2Fd74a496f41864e85b8e90e0a2616c7c5?format=webp&width=800')",
             backgroundSize: "contain",
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
