@@ -33,12 +33,20 @@ const FeedbackSkipScreen: React.FC = () => {
           </MyFooter>
         }
       >
-        <div className="w-full flex justify-center mb-4" style={{ overflow: "visible" }}>
+        <div
+          className="w-full flex justify-center mb-4"
+          style={{ overflow: "visible" }}
+        >
           <img
             src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F08abc8bef92e40b7bab98188c805f46b?format=webp&width=800"
             alt="เสร็จแล้ว"
             className="h-auto object-contain mx-auto"
-            style={{ filter: "drop-shadow(0 6px 12px rgba(0,0,0,0.12))", marginTop: 0, width: "80%", maxWidth: 720 }}
+            style={{
+              filter: "drop-shadow(0 6px 12px rgba(0,0,0,0.12))",
+              marginTop: 0,
+              width: "80%",
+              maxWidth: 720,
+            }}
           />
         </div>
         <div className="max-w-4xl mx-auto pt-6 pb-24">
@@ -50,7 +58,12 @@ const FeedbackSkipScreen: React.FC = () => {
               src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F6b62374327d643178ab7f4a913ddc1b1?format=webp&width=800"
               alt="image"
               className="h-auto object-contain mx-auto"
-              style={{ marginTop: 0, maxHeight: "52vh", width: "70%", maxWidth: 900 }}
+              style={{
+                marginTop: 0,
+                maxHeight: "52vh",
+                width: "70%",
+                maxWidth: 900,
+              }}
             />
           </div>
           <div className="flex flex-col items-center text-center text-[#001a73]">
@@ -69,7 +82,6 @@ const FeedbackSkipScreen: React.FC = () => {
                 maxWidth: 760,
               }}
             />
-
           </div>
         </div>
       </CustomizationScreen>
