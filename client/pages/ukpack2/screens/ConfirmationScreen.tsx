@@ -47,7 +47,7 @@ const ConfirmationScreen: React.FC = () => {
           <div className="flex flex-col items-center text-center text-[#001a73]">
             <h2 className="font-prompt font-semibold text-[22px]">ขอบคุณ</h2>
             <p className="mt-2 font-prompt font-semibold text-[18px]">
-              ที่ร่วมเป็นส่วนหนึ่งในกา��พัฒนาเมือง
+              ที่ร่วมเป็นส่วนหนึ่งในการพัฒนาเมือง
             </p>
             <img
               src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F762b2f7f19ec4d069acbd2c8a5deace4?format=webp&width=800"
