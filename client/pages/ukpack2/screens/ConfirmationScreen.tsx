@@ -17,7 +17,7 @@ const ConfirmationScreen: React.FC = () => {
         theme="light"
         footerBgClass="bg-white"
         footerContent={
-          <MyFooter className="bg-white">
+          <MyFooter className="bg-white force-vertical">
             <div style={{ width: "220px" }}>
               <CtaButton
                 className="w-full"
