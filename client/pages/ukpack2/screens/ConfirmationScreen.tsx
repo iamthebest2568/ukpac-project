@@ -61,7 +61,7 @@ const ConfirmationScreen: React.FC = () => {
             />
 
             <img
-              src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F7b077743c9a04c5596ea859a742b1e96?format=webp&width=800"
+              src="https://cdn.builder.io/api/v1/image/assets%2F0eb7afe56fd645b8b4ca090471cef081%2F762b2f7f19ec4d069acbd2c8a5deace4?format=webp&width=800"
               alt="additional image"
               className="w-full h-auto object-contain"
               style={{ marginTop: "12px", maxWidth: "462px" }}
