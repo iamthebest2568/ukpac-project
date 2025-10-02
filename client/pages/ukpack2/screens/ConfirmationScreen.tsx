@@ -74,7 +74,7 @@ const ConfirmationScreen: React.FC = () => {
         isOpen={isShareOpen}
         onClose={() => setShareOpen(false)}
         shareUrl={window.location.origin + "/mydreambus"}
-        shareText={"ผม/ฉ��นได้ออกแบบรถเมล์ในฝัน ลองดูสิ"}
+        shareText={"ผม/ฉันได้ออกแบบรถเมล์ในฝัน ลองดูสิ"}
       />
     </>
   );
